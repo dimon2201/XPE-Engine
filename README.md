@@ -1,2 +1,3 @@
-# XPE-Engine
-Game engine
+# XPE Engine
+
+XPE stands for "eXplicit Play Experience"
