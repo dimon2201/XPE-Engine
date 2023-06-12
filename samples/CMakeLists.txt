@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
 
 set(SOURCE_FILES_SAMPLE_WINDOW Window/main.cpp)
-set(LINK_DIRECTORIES_SAMPLE_WINDOW Window)
+set(LINK_DIRECTORIES_SAMPLE_WINDOW ../build ../build/thirdparty/glfw/src)
 
 link_directories(xpe_example_window ${LINK_DIRECTORIES_SAMPLE_WINDOW})
 add_executable(xpe_example_window ${SOURCE_FILES_SAMPLE_WINDOW})

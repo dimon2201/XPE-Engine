@@ -31,6 +31,7 @@ namespace xpe
             using sword = s64;
             using uword = u64;
         #endif
+        using boolean = uword;
 
         class Object
         {
