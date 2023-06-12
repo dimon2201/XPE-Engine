@@ -1,0 +1,1 @@
+  -L"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/xpe_example_window"  -L"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/Window"  -Wl,-Bstatic -lxpe_engine -lglfw3 -lgdi32 -lopengl32 -Wl,-Bdynamic -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
