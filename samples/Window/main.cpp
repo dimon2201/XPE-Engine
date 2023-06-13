@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../engine/src/core/app.hpp"
+#include "../../engine/src/core/core.hpp"
 
 using namespace xpe::core;
 
@@ -9,11 +9,11 @@ class GameApp : public App_Interface
         GameApp() {}
         ~GameApp() {}
 
-        void Init() override final
+        void Init(Window* window, RenderingContext_Interface* context) override final
         {
         }
 
-        void Update() override final
+        void Update(Window* window, RenderingContext_Interface* context) override final
         {
         }
 };

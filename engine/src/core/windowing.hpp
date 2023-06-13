@@ -13,6 +13,7 @@ namespace xpe
             u32 Width;
             u32 Height;
             const char* Title;
+            uword GPUAPI;
         };
 
         class Window
@@ -22,9 +23,11 @@ namespace xpe
                 ~Window();
 
                 inline void* GetInstance() { return _instance; }
+                inline void* GetWin32HWND() { return _win32HWND; }
 
             private:
                 void* _instance;
+                void* _win32HWND;
                 WindowDescriptor _desc;
         };
 
