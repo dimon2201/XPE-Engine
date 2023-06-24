@@ -1,12 +1,15 @@
 #include <glfw3.h>
+#define GLFW_EXPOSE_NATIVE_WIN32
+#include <glfw3native.h>
 #include <cstring>
 
 #include "windowing.hpp"
 #include "app.hpp"
 
-xpe::core::Window::Window(const void* instance, const WindowDescriptor& desc)
+xpe::core::Window::Window(const void* instance, const void* win32HWND, const WindowDescriptor& desc)
 {
     _instance = (void*)instance;
+    _win32HWND = (void*)win32HWND;
     _desc.Width = desc.Width;
     _desc.Height = desc.Height;
     _desc.Title = desc.Title;
@@ -29,7 +32,7 @@ xpe::core::Window* xpe::core::InitWindow(const WindowDescriptor& desc)
 
     void* instance = (void*)glfwCreateWindow(desc.Width, desc.Height, desc.Title, nullptr, nullptr);
 
-    return new Window(instance, desc);
+    return new Window(instance, glfwGetWin32Window((GLFWwindow*)instance), desc);
 }
 
 xpe::core::boolean xpe::core::ShouldWindowClose(Window& window)

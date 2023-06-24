@@ -1,6 +1,11 @@
 #include "types.hpp"
 #include "memory_pool.hpp"
 
+xpe::core::uword xpe::core::Object::GetType()
+{
+    return ((uword*)this)[0];
+}
+
 void* xpe::core::Object::operator new(size_t byteSize)
 {
     MemoryPool* memoryPool = GetMemoryPool(0);

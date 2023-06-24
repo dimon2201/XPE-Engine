@@ -8,7 +8,8 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc)
     Window window = *pWindow;
 
     RenderingContext_Interface* context = nullptr;
-    if (desc.GPUAPI == K_GPUAPI_D3D11) { context = new D3D11RenderingContext(); }
+    if (desc.GPUApi == K_GPUAPI_D3D11) { context = new D3D11RenderingContext(); }
+    context->Init(window);
 
     app->Init(pWindow, context);
 
@@ -19,5 +20,6 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc)
         DefaultWindowEvents(window);
     }
 
+    context->Free();
     FreeWindow(pWindow);
 }

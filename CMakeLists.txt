@@ -7,8 +7,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
 
 set(SOURCE_FILES
     engine/src/core/app.cpp
+    engine/src/core/canvas.cpp
     engine/src/core/d3d11_context.cpp
     engine/src/core/memory_pool.cpp
+    engine/src/core/rendering.cpp
     engine/src/core/types.cpp
     engine/src/core/windowing.cpp
 )

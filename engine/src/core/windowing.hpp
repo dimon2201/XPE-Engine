@@ -10,20 +10,24 @@ namespace xpe
 
         struct WindowDescriptor
         {
-            u32 Width;
-            u32 Height;
+            s32 Width;
+            s32 Height;
             const char* Title;
-            uword GPUAPI;
+            uword GPUApi;
         };
 
         class Window
         {
             public:
-                Window(const void* instance, const WindowDescriptor& desc);
+                Window(const void* instance, const void* win32HWND, const WindowDescriptor& desc);
                 ~Window();
 
                 inline void* GetInstance() { return _instance; }
                 inline void* GetWin32HWND() { return _win32HWND; }
+                inline s32 GetWidth() { return _desc.Width; }
+                inline s32 GetHeight() { return _desc.Height; }
+                inline const char* GetTitle() { return _desc.Title; }
+                inline uword GetGPUApi() { return _desc.GPUApi; }
 
             private:
                 void* _instance;

@@ -37,17 +37,21 @@ namespace xpe
         {
             public:
                 Object() {}
-                ~Object() {}
+                virtual ~Object() {}
+
+                uword GetType();
 
                 void* operator new(size_t byteSize);
                 void operator delete(void* address);
         };
 
+        constexpr boolean K_TRUE                    = 1;
+        constexpr boolean K_FALSE                   = 0;
         constexpr uword K_GPUAPI_D3D11              = 0;
         constexpr usize K_MEMORY_KIB                = 1024;
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
         constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;
         constexpr usize K_MAX_STRING_BYTE_SIZE      = 128;
-        constexpr usize K_MAX_MEMORY_POOL_BYTE_SIZE = 32 * K_MEMORY_MIB;
+        constexpr usize K_MAX_MEMORY_POOL_BYTE_SIZE = 64 * K_MEMORY_MIB;
     }
 }
