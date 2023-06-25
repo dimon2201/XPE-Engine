@@ -1,5 +1,7 @@
 #include <iostream>
+#include <gtc/matrix_transform.hpp>
 #include "../../engine/src/core/core.hpp"
+#include "../../engine/src/viewer/viewer.hpp"
 
 using namespace xpe::core;
 
@@ -9,7 +11,7 @@ class GameApp : public App_Interface
         GameApp() {}
         ~GameApp() {}
 
-        void Init(Window* window, RenderingContext_Interface* context) override final
+        void Init(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
         {
             _canvas = new Canvas(window->GetWidth(), window->GetHeight(), context);
             _ecs = new ECSManager();
@@ -30,7 +32,7 @@ class GameApp : public App_Interface
             _pipeline.InputVertexBuffer = _batch->GetVertexBuffer();
             _pipeline.InputIndexBuffer = _batch->GetIndexBuffer();
             _pipeline.InputInstanceBuffer = _batch->GetInstanceBuffer();
-            _pipeline.InputShaderBuffer = &context->CreateBuffer(xBuffer::xType::SHADER, 1024, K_TRUE);
+            _pipeline.InputConstantBuffer = _batch->GetConstantBuffer();
             const char* vertexStr =
                 "\
                     struct VSIn\
@@ -46,12 +48,16 @@ class GameApp : public App_Interface
                     {\
                         float4 Position;\
                     };\
+                    cbuffer ConstantBuffer : register(b0)\
+                    {\
+                        float4x4 ViewProjection;\
+                    };\
                     StructuredBuffer<RenderInstance> instances : register(t0);\
                     \
                     VSOut vs_main(VSIn vsIn)\
                     {\
                     VSOut vsOut;\
-                    vsOut.positionClip = float4(vsIn.positionLocal + instances[vsIn.instanceIndex].Position.xyz, 1.0);\
+                    vsOut.positionClip = mul(ViewProjection, float4(15.0 * vsIn.positionLocal + instances[vsIn.instanceIndex].Position.xyz, 1.0));\
                     return vsOut;\
                     }\
                 ";
@@ -76,25 +82,44 @@ class GameApp : public App_Interface
             _pipeline.RenderTarget = _canvas->GetRenderTarget();
         }
 
-        void Update(Window* window, RenderingContext_Interface* context) override final
+        void Update(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
         {
-            _canvas->Clear(glm::vec4(1.0f));
-            
-            context->BindRenderPipeline(&_pipeline);
-            
-            _batch->BeginBatch(std::string("NewGeometryData"));
-            for (f32 y = -1.0f; y < 1.0f; y += 0.05f)
+            static float time = 0.0f;
             {
-                for (f32 x = -1.0f; x < 1.0f; x += 0.05f)
-                {
-                    _batch->RecordInstance(glm::vec4(x, y, 0.0f, 0.0f));
-                }
-            }
-            _batch->EndBatch();
-            _batch->DrawBatch();
+                xpe::core::xCPUProfiler pro(&time);
+                
+                _canvas->Clear(glm::vec4(1.0f));
+                
+                context->BindRenderPipeline(&_pipeline);
 
-            _canvas->Present();
-            context->OutputErrors();
+                static cTransformComponent tr("transform");
+                static cViewerComponent vi("viewer");
+
+                xpe::viewer::ViewerUpdate(time, ui, &tr, &vi);
+
+                xConstantBuffer cbuffer;
+                cbuffer.ViewerViewProjection = vi.ViewProjection;
+                
+                _batch->BeginBatch(std::string("NewGeometryData"));
+                _batch->RecordConstantBuffer(&cbuffer);
+                for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
+                {
+                    for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
+                    {
+                        for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
+                        {
+                            xRenderInstance instance;
+                            instance.Position = glm::vec4(x, y, z, 0.0f);
+                            _batch->RecordInstance(instance);
+                        }
+                    }
+                }
+                _batch->EndBatch();
+                _batch->DrawBatch();
+
+                _canvas->Present();
+                context->OutputErrors();
+            }
         }
 
     private:

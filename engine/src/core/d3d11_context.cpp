@@ -377,7 +377,7 @@ xpe::core::xBuffer xpe::core::D3D11RenderingContext::CreateBuffer(const xBuffer:
         bufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
         bufferDesc.StructureByteStride = sizeof(xRenderInstance);
     }
-    else if (bufferType == xBuffer::xType::SHADER)
+    else if (bufferType == xBuffer::xType::CONSTANT)
     {
         bufferDesc.ByteWidth = (UINT)byteSize;
         bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
@@ -407,9 +407,9 @@ void xpe::core::D3D11RenderingContext::BindBuffer(const xBuffer* buffer)
     {
         _immContext->VSSetShaderResources(0, 1, (ID3D11ShaderResourceView**)&buffer->BufferResource.ViewInstance);
     }
-    else if (buffer->Type == xBuffer::xType::SHADER)
+    else if (buffer->Type == xBuffer::xType::CONSTANT)
     {
-        _immContext->VSSetConstantBuffers(0, 1, (ID3D11Buffer**)&buffer->BufferResource.ViewInstance);
+        _immContext->VSSetConstantBuffers(0, 1, (ID3D11Buffer**)&buffer->BufferResource.Instance);
     }
 }
 
@@ -505,7 +505,7 @@ void xpe::core::D3D11RenderingContext::BindRenderPipeline(const xPipeline* pipel
     _immContext->IASetVertexBuffers(0, 1, (ID3D11Buffer**)&_boundPipeline->InputVertexBuffer->BufferResource.Instance, &stride, &offset);
     _immContext->IASetIndexBuffer((ID3D11Buffer*)_boundPipeline->InputIndexBuffer->BufferResource.Instance, DXGI_FORMAT_R32_UINT, 0);
     BindBuffer(_boundPipeline->InputInstanceBuffer);
-    BindBuffer(_boundPipeline->InputShaderBuffer);
+    BindBuffer(_boundPipeline->InputConstantBuffer);
     BindShader(_boundPipeline->Shaders);
     BindRenderTarget(_boundPipeline->RenderTarget);
 }

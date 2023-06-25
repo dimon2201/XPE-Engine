@@ -7,6 +7,7 @@ xpe::core::BatchManager::BatchManager(RenderingContext_Interface* context)
     _vertex = _context->CreateBuffer(xBuffer::xType::VERTEX, k_vertexBufferByteSize, K_TRUE);
     _index = _context->CreateBuffer(xBuffer::xType::INDEX, k_indexBufferByteSize, K_TRUE);
     _instance = _context->CreateBuffer(xBuffer::xType::INSTANCE, k_instanceBufferByteSize, K_TRUE);
+    _constant = _context->CreateBuffer(xBuffer::xType::CONSTANT, k_constantBufferByteSize, K_TRUE);
     _batch.GeometryInfo = nullptr;
 }
 
@@ -42,20 +43,31 @@ void xpe::core::BatchManager::BeginBatch(const std::string& geometryUSID)
     _batch.InstanceCount = 0;
 }
 
-void xpe::core::BatchManager::RecordInstance(const glm::vec3& position)
+void xpe::core::BatchManager::RecordConstantBuffer(const xConstantBuffer* buffer)
 {
     if (_batch.GeometryInfo == nullptr)
     {
         return;
     }
 
-    ((xRenderInstance*)_instance.CPUMemory)[_batch.InstanceCount].Position = glm::vec4(position, 1.0f);
+    memcpy(_constant.CPUMemory, buffer, sizeof(xConstantBuffer));
+}
+
+void xpe::core::BatchManager::RecordInstance(const xRenderInstance& instance)
+{
+    if (_batch.GeometryInfo == nullptr)
+    {
+        return;
+    }
+
+    ((xRenderInstance*)_instance.CPUMemory)[_batch.InstanceCount].Position = instance.Position;
     _batch.InstanceCount += 1;
 }
 
 void xpe::core::BatchManager::EndBatch()
 {
     _context->WriteBuffer(_instance, _instance.CPUMemory, sizeof(xRenderInstance) * _batch.InstanceCount);
+    _context->WriteBuffer(_constant, _constant.CPUMemory, k_constantBufferByteSize);
 }
 
 void xpe::core::BatchManager::DrawBatch()

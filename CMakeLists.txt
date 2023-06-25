@@ -12,7 +12,10 @@ set(SOURCE_FILES
     engine/src/core/memory_pool.cpp
     engine/src/core/rendering.cpp
     engine/src/core/types.cpp
+    engine/src/core/user_input.cpp
     engine/src/core/windowing.cpp
+    
+    engine/src/viewer/viewer.cpp
 )
 
 add_subdirectory(thirdparty/glfw)

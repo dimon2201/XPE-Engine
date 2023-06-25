@@ -1,6 +1,7 @@
 #include "app.hpp"
 #include "windowing.hpp"
 #include "d3d11_context.hpp"
+#include "user_input.hpp"
 
 void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc)
 {
@@ -8,14 +9,20 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc)
     Window window = *pWindow;
 
     RenderingContext_Interface* context = nullptr;
-    if (desc.GPUApi == K_GPUAPI_D3D11) { context = new D3D11RenderingContext(); }
-    context->Init(window);
+    cUserInputManager* ui = new cUserInputManager();
 
-    app->Init(pWindow, context);
+    if (desc.GPUApi == K_GPUAPI_D3D11) { context = new D3D11RenderingContext(); }
+
+    context->Init(window);
+    ui->Init(pWindow);
+    app->Init(pWindow, context, ui);
+
+    SetUserPointer(window, ui);
 
     while (!ShouldWindowClose(window))
     {
-        app->Update(pWindow, context);
+        ui->CaptureCursor((GLFWwindow*)window.GetInstance());
+        app->Update(pWindow, context, ui);
 
         DefaultWindowEvents(window);
     }

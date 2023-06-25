@@ -38,6 +38,8 @@ namespace xpe
         Window* InitWindow(const WindowDescriptor& desc);
         boolean ShouldWindowClose(Window& window);
         void DefaultWindowEvents(Window& window);
+        void SetUserPointer(Window& window, void* ptr);
+        void* GetUserPointer(Window& window);
         void FreeWindow(Window* window);
     }
 }

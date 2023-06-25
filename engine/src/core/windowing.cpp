@@ -46,6 +46,16 @@ void xpe::core::DefaultWindowEvents(Window& window)
     glfwSwapBuffers((GLFWwindow*)window.GetInstance());
 }
 
+void xpe::core::SetUserPointer(Window& window, void* ptr)
+{
+    glfwSetWindowUserPointer((GLFWwindow*)window.GetInstance(), ptr);
+}
+
+void* xpe::core::GetUserPointer(Window& window)
+{
+    return glfwGetWindowUserPointer((GLFWwindow*)window.GetInstance());
+}
+
 void xpe::core::FreeWindow(Window* window)
 {
     delete window;

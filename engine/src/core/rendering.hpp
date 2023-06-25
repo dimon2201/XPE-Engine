@@ -53,7 +53,7 @@ namespace xpe
                 VERTEX = 0,
                 INDEX = 1,
                 INSTANCE = 2,
-                SHADER = 3
+                CONSTANT = 3
             };
 
             xType Type;
@@ -89,7 +89,7 @@ namespace xpe
             xBuffer* InputVertexBuffer;
             xBuffer* InputIndexBuffer;
             xBuffer* InputInstanceBuffer;
-            xBuffer* InputShaderBuffer;
+            xBuffer* InputConstantBuffer;
             xShader* Shaders;
             xRenderTarget* RenderTarget;
         };
@@ -156,32 +156,41 @@ namespace xpe
             glm::vec4 Position;
         };
 
+        struct xConstantBuffer
+        {
+            glm::mat4 ViewerViewProjection;
+        };
+
         class BatchManager
         {
             public:
                 static const usize k_vertexBufferByteSize = K_MEMORY_MIB;
                 static const usize k_indexBufferByteSize = K_MEMORY_MIB;
-                static const usize k_instanceBufferInstanceCount = 65536;
+                static const usize k_instanceBufferInstanceCount = 1000000;
                 static const usize k_instanceBufferByteSize = sizeof(xRenderInstance) * k_instanceBufferInstanceCount;
+                static const usize k_constantBufferByteSize = K_MEMORY_KIB;
 
                 BatchManager(RenderingContext_Interface* context);
                 ~BatchManager();
 
                 void StoreGlobalGeometryData(const std::string& usid, const void* vertices, usize verticesByteSize, usize vertexCount, const void* indices, usize indicesByteSize, usize indexCount);
                 void BeginBatch(const std::string& geometryUSID);
-                void RecordInstance(const glm::vec3& position);
+                void RecordConstantBuffer(const xConstantBuffer* buffer);
+                void RecordInstance(const xRenderInstance& instance);
                 void EndBatch();
                 void DrawBatch();
 
                 inline xBuffer* GetVertexBuffer() { return &_vertex; }
                 inline xBuffer* GetIndexBuffer() { return &_index; }
                 inline xBuffer* GetInstanceBuffer() { return &_instance; }
+                inline xBuffer* GetConstantBuffer() { return &_constant; }
 
             private:
                 RenderingContext_Interface* _context;
                 xBuffer _vertex;
                 xBuffer _index;
                 xBuffer _instance;
+                xBuffer _constant;
                 std::map<std::string, xGeometryInfo> _geometries;
                 xBatch _batch;
         };
