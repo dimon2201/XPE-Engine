@@ -25,25 +25,31 @@ namespace xpe
             glm::ivec2 Dimensions;
         };
 
+        enum class ePrimitiveTopology
+        {
+            TRIANGLE_LIST = 0,
+            TRIANGLE_STRIP = 1
+        };
+
         struct xShader
         {
-            enum class Type
+            enum class eType
             {
                 VERTEX = 0,
-                PIXEL = 1
+                PIXEL = 1,
+                VERTEX_PIXEL = 2
             };
 
-            enum class PrimitiveTopology
-            {
-                TRIANGLE_LIST = 0,
-                TRIANGLE_STRIP = 1
-            };
-
-            PrimitiveTopology Topology;
-            GPUResource VertexShader;
-            GPUResource PixelShader;
-            void* VertexShaderByteCode;
-            usize VertexShaderByteCodeSize;
+            ePrimitiveTopology PrimitiveTopology;
+            eType Type;
+            char* Sources[3];
+            char* SourceEntryPoints[3];
+            char* SourceProfiles[3];
+            uword SourceFlags[3];
+            GPUResource _VertexShader;
+            GPUResource _PixelShader;
+            void* _VertexShaderByteCode;
+            usize _VertexShaderByteCodeSize;
         };
 
         struct xBuffer
@@ -68,7 +74,9 @@ namespace xpe
             {
                 enum class eFormat
                 {
-                    VEC3 = 0
+                    VEC2 = 0,
+                    VEC3 = 1,
+                    VEC4 = 2
                 };
 
                 const char* Name;
@@ -76,22 +84,31 @@ namespace xpe
                 usize ByteSize;
             };
 
-            GPUResource InputLayout;
-            void* VertexShaderByteCode;
-            usize VertexShaderByteCodeSize;
+            ePrimitiveTopology PrimitiveTopology;
+            GPUResource _InputLayout;
+            void* _VertexShaderByteCode;
+            usize _VertexShaderByteCodeSize;
             usize EntryCount;
             xEntry Entries[16];
+            usize StrideByteSize;
+        };
+
+        struct xDepthStencilState
+        {
+            GPUResource Instance;
+            boolean UseDepthTest;
         };
 
         struct xPipeline
         {
             xInputLayout InputLayout;
-            xBuffer* InputVertexBuffer;
-            xBuffer* InputIndexBuffer;
-            xBuffer* InputInstanceBuffer;
-            xBuffer* InputConstantBuffer;
+            xBuffer* VertexBuffer;
+            xBuffer* IndexBuffer;
+            xBuffer* InstanceBuffer;
+            xBuffer* ConstantBuffer;
             xShader* Shaders;
             xRenderTarget* RenderTarget;
+            xDepthStencilState DepthStencilState;
         };
 
         class RenderingContext_Interface
@@ -102,31 +119,47 @@ namespace xpe
 
                 virtual void Init(Window& window) = 0;
                 virtual void Free() = 0;
+                
                 virtual xRenderTarget CreateRenderTarget(const glm::ivec2& dimensions, const GPUResource* colorTexture, const GPUResource* colorView, const GPUResource* depthTexture, const GPUResource* depthView) = 0;
                 virtual void BindRenderTarget(const xRenderTarget* renderTarget) = 0;
                 virtual void ClearRenderTarget(const glm::vec4& color, const f32 depth) = 0;
                 virtual glm::ivec2 GetSwapChainDimensions() = 0;
                 virtual void FreeRenderTarget(const xRenderTarget& renderTarget) = 0;
                 virtual void Present() = 0;
-                virtual void CreateShaderFromString(xShader& shader, const xShader::PrimitiveTopology& topology, const xShader::Type& type, const char* str, const char* funcName, const char* profile, const uword flags) = 0;
+                
+                virtual void CreateShaderFromString(xShader& shader) = 0;
                 virtual void BindShader(const xShader* shader) = 0;
                 virtual void FreeShader(const xShader& shader) = 0;
+                
                 virtual GPUResource CreateTexture(const void* texture, const glm::ivec2& dimensions) = 0;
-                virtual void BindTexture(const GPUResource* texture, const xShader::Type& shaderType, const u32 slot) = 0;
+                virtual void BindTexture(const GPUResource* texture, const xShader::eType& shaderType, const u32 slot) = 0;
                 virtual void FreeTexture(const GPUResource* texture) = 0;
+                
                 virtual GPUResource CreateSampler() = 0;
                 virtual void BindSampler(const GPUResource* sampler) = 0;
                 virtual void FreeSampler(const GPUResource* sampler) = 0;
+                
                 virtual xBuffer CreateBuffer(const xBuffer::xType& bufferType, usize byteSize, boolean duplicate) = 0;
                 virtual void BindBuffer(const xBuffer* buffer) = 0;
                 virtual void WriteBuffer(const xBuffer& buffer, const void* data, usize dataByteSize) = 0;
                 virtual void WriteBufferOffset(const xBuffer& buffer, usize offset, const void* data, usize dataByteSize) = 0;
                 virtual void WriteBufferAppend(xBuffer& buffer, const void* data, usize dataByteSize) = 0;
                 virtual void FreeBuffer(const xBuffer& buffer) = 0;
+
                 virtual void CreateInputLayout(xInputLayout& inputLayout) = 0;
+                virtual void BindInputLayout(const xInputLayout* inputLayout) = 0;
                 virtual void FreeInputLayout(const xInputLayout& inputLayout) = 0;
+                
                 virtual void BindViewport(const glm::vec4& coords, f32 minDepth, f32 maxDepth) = 0;
+
+                virtual void CreateRenderPipeline(xPipeline& pipeline) = 0;
                 virtual void BindRenderPipeline(const xPipeline* pipeline) = 0;
+                virtual void FreeRenderPipeline(xPipeline& pipeline) = 0;
+
+                virtual void CreateDepthStencilState(xDepthStencilState& state) = 0;
+                virtual void BindDepthStencilState(const xDepthStencilState* state) = 0;
+                virtual void FreeDepthStencilState(xDepthStencilState& state) = 0;
+
                 virtual void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) = 0;
                 virtual void DrawQuad() = 0;
                 virtual void OutputErrors() = 0;

@@ -33,8 +33,7 @@ void xpe::viewer::ViewerUpdate(core::f32 time, core::cUserInputManager* ui, core
     glm::quat qx = glm::angleAxis(glm::radians(transform->Rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
     glm::quat qy = glm::angleAxis(glm::radians(transform->Rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
     glm::quat qz = glm::angleAxis(glm::radians(transform->Rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-    glm::quat q = qx * qy * qz;
-    glm::vec3 direction = q * glm::vec3(0.0f, 0.0f, 1.0f);
+    glm::vec3 direction = qz * qy * qx * glm::vec3(0.0f, 0.0f, 1.0f);
     glm::vec3 right = glm::normalize(glm::cross(direction, up));
 
     transform->Position += direction * viewer->_Keys[0];

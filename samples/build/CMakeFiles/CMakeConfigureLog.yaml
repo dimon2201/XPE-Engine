@@ -24,7 +24,7 @@ events:
       The output was:
       0
       MSBuild version 17.5.1+f6fdcf537 for .NET Framework
-      Build started 16.06.2023 19:42:40.
+      Build started 25.06.2023 17:51:19.
       Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
       
       Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
@@ -52,7 +52,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.80
+      Time Elapsed 00:00:01.44
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -78,7 +78,7 @@ events:
       The output was:
       0
       MSBuild version 17.5.1+f6fdcf537 for .NET Framework
-      Build started 16.06.2023 19:42:42.
+      Build started 25.06.2023 17:51:22.
       Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
       
       Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\3.26.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
@@ -106,7 +106,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.58
+      Time Elapsed 00:00:01.81
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -125,8 +125,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-mgwhxh"
-      binary: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-mgwhxh"
+      source: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-nytmro"
+      binary: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-nytmro"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
@@ -134,38 +134,38 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-mgwhxh
+        Change Dir: C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-nytmro
         
-        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_1ecfc.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
-        Build started 16.06.2023 19:42:45.
+        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_1b662.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
+        Build started 25.06.2023 17:51:25.
         Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
         
-        Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mgwhxh\\cmTC_1ecfc.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nytmro\\cmTC_1b662.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_1ecfc.dir\\Debug\\".
-          Creating directory "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mgwhxh\\Debug\\".
-          Creating directory "cmTC_1ecfc.dir\\Debug\\cmTC_1ecfc.tlog\\".
+          Creating directory "cmTC_1b662.dir\\Debug\\".
+          Creating directory "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nytmro\\Debug\\".
+          Creating directory "cmTC_1b662.dir\\Debug\\cmTC_1b662.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_1ecfc.dir\\Debug\\cmTC_1ecfc.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_1b662.dir\\Debug\\cmTC_1b662.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1ecfc.dir\\Debug\\\\" /Fd"cmTC_1ecfc.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1b662.dir\\Debug\\\\" /Fd"cmTC_1b662.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.35.32216.1 for x64
           CMakeCCompilerABI.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1ecfc.dir\\Debug\\\\" /Fd"cmTC_1ecfc.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1b662.dir\\Debug\\\\" /Fd"cmTC_1b662.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mgwhxh\\Debug\\cmTC_1ecfc.exe" /INCREMENTAL /ILK:"cmTC_1ecfc.dir\\Debug\\cmTC_1ecfc.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-mgwhxh/Debug/cmTC_1ecfc.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-mgwhxh/Debug/cmTC_1ecfc.lib" /MACHINE:X64  /machine:x64 cmTC_1ecfc.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_1ecfc.vcxproj -> C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mgwhxh\\Debug\\cmTC_1ecfc.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nytmro\\Debug\\cmTC_1b662.exe" /INCREMENTAL /ILK:"cmTC_1b662.dir\\Debug\\cmTC_1b662.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-nytmro/Debug/cmTC_1b662.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-nytmro/Debug/cmTC_1b662.lib" /MACHINE:X64  /machine:x64 cmTC_1b662.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_1b662.vcxproj -> C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nytmro\\Debug\\cmTC_1b662.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_1ecfc.dir\\Debug\\cmTC_1ecfc.tlog\\unsuccessfulbuild".
-          Touching "cmTC_1ecfc.dir\\Debug\\cmTC_1ecfc.tlog\\cmTC_1ecfc.lastbuildstate".
-        Done Building Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mgwhxh\\cmTC_1ecfc.vcxproj" (default targets).
+          Deleting file "cmTC_1b662.dir\\Debug\\cmTC_1b662.tlog\\unsuccessfulbuild".
+          Touching "cmTC_1b662.dir\\Debug\\cmTC_1b662.tlog\\cmTC_1b662.lastbuildstate".
+        Done Building Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nytmro\\cmTC_1b662.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.59
+        Time Elapsed 00:00:01.22
         
       exitCode: 0
   -
@@ -177,8 +177,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-n232ei"
-      binary: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-n232ei"
+      source: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-uwbubr"
+      binary: "C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-uwbubr"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
@@ -186,38 +186,38 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-n232ei
+        Change Dir: C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-uwbubr
         
-        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_7542c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
-        Build started 16.06.2023 19:42:48.
+        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_7b372.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
+        Build started 25.06.2023 17:51:26.
         Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
         
-        Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n232ei\\cmTC_7542c.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwbubr\\cmTC_7b372.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_7542c.dir\\Debug\\".
-          Creating directory "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n232ei\\Debug\\".
-          Creating directory "cmTC_7542c.dir\\Debug\\cmTC_7542c.tlog\\".
+          Creating directory "cmTC_7b372.dir\\Debug\\".
+          Creating directory "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwbubr\\Debug\\".
+          Creating directory "cmTC_7b372.dir\\Debug\\cmTC_7b372.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_7542c.dir\\Debug\\cmTC_7542c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Creating "cmTC_7b372.dir\\Debug\\cmTC_7b372.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_7542c.dir\\Debug\\\\" /Fd"cmTC_7542c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_7b372.dir\\Debug\\\\" /Fd"cmTC_7b372.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.35.32216.1 for x64
           CMakeCXXCompilerABI.cpp
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_7542c.dir\\Debug\\\\" /Fd"cmTC_7542c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_7b372.dir\\Debug\\\\" /Fd"cmTC_7b372.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n232ei\\Debug\\cmTC_7542c.exe" /INCREMENTAL /ILK:"cmTC_7542c.dir\\Debug\\cmTC_7542c.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-n232ei/Debug/cmTC_7542c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-n232ei/Debug/cmTC_7542c.lib" /MACHINE:X64  /machine:x64 cmTC_7542c.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_7542c.vcxproj -> C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n232ei\\Debug\\cmTC_7542c.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwbubr\\Debug\\cmTC_7b372.exe" /INCREMENTAL /ILK:"cmTC_7b372.dir\\Debug\\cmTC_7b372.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-uwbubr/Debug/cmTC_7b372.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/build/CMakeFiles/CMakeScratch/TryCompile-uwbubr/Debug/cmTC_7b372.lib" /MACHINE:X64  /machine:x64 cmTC_7b372.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_7b372.vcxproj -> C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwbubr\\Debug\\cmTC_7b372.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_7542c.dir\\Debug\\cmTC_7542c.tlog\\unsuccessfulbuild".
-          Touching "cmTC_7542c.dir\\Debug\\cmTC_7542c.tlog\\cmTC_7542c.lastbuildstate".
-        Done Building Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n232ei\\cmTC_7542c.vcxproj" (default targets).
+          Deleting file "cmTC_7b372.dir\\Debug\\cmTC_7b372.tlog\\unsuccessfulbuild".
+          Touching "cmTC_7b372.dir\\Debug\\cmTC_7b372.tlog\\cmTC_7b372.lastbuildstate".
+        Done Building Project "C:\\Users\\USER100\\Documents\\GitHub\\XPE-Engine\\samples\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwbubr\\cmTC_7b372.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.34
+        Time Elapsed 00:00:01.11
         
       exitCode: 0
 ...

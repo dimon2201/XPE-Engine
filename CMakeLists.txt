@@ -16,11 +16,15 @@ set(SOURCE_FILES
     engine/src/core/windowing.cpp
     
     engine/src/viewer/viewer.cpp
+
+    engine/src/gltf/gltf.cpp
 )
 
 add_subdirectory(thirdparty/glfw)
+add_subdirectory(thirdparty/jsoncpp)
 
 include_directories(thirdparty/glfw/include/GLFW)
 include_directories(thirdparty/glm/glm)
+include_directories(thirdparty/jsoncpp/include)
 
 add_library(xpe_engine ${SOURCE_FILES})

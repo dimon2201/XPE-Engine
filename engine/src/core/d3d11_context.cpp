@@ -2,6 +2,7 @@
 
 #include "d3d11_context.hpp"
 #include "memory_pool.hpp"
+#include "../gltf/gltf.hpp"
 
 void xpe::core::D3D11RenderingContext::Init(Window& window)
 {
@@ -134,7 +135,7 @@ void xpe::core::D3D11RenderingContext::BindRenderTarget(const xRenderTarget* ren
 
     if (_boundRT != nullptr)
     {
-        _immContext->OMSetRenderTargets(1, (ID3D11RenderTargetView**)&_boundRT->ColorTargetInstance, nullptr);
+        _immContext->OMSetRenderTargets(1, (ID3D11RenderTargetView**)&_boundRT->ColorTargetInstance, (ID3D11DepthStencilView*)_boundRT->DepthTargetInstance);
     }
     else
     {
@@ -181,47 +182,73 @@ void xpe::core::D3D11RenderingContext::Present()
     _swapChain->Present(0, 0);
 }
 
-void xpe::core::D3D11RenderingContext::CreateShaderFromString(xShader& shader, const xShader::PrimitiveTopology& topology, const xShader::Type& type, const char* str, const char* funcName, const char* profile, const uword flags)
+void xpe::core::D3D11RenderingContext::CreateShaderFromString(xShader& shader)
 {
-    shader.Topology = topology;
-
-    ID3DBlob* shaderBlob = nullptr;
-    ID3DBlob* errorBlob = nullptr;
-
-    D3DCompile(
-        str,
-        strlen(str),
-        nullptr,
-        nullptr,
-        nullptr,
-        funcName,
-        profile,
-        (UINT)flags,
-        0,
-        &shaderBlob,
-        &errorBlob
-    );
-    
-
-    if (errorBlob != nullptr)
+    if (shader.Type == xShader::eType::VERTEX_PIXEL)
     {
-        std::cout << (char*)errorBlob->GetBufferPointer() << std::endl;
+        // Vertex shader
+        ID3DBlob* vertexShaderBlob = nullptr;
+        ID3DBlob* vertexErrorBlob = nullptr;
 
-        errorBlob->Release();
-    }
+        D3DCompile(
+            shader.Sources[0],
+            strlen(shader.Sources[0]),
+            nullptr,
+            nullptr,
+            nullptr,
+            shader.SourceEntryPoints[0],
+            shader.SourceProfiles[0],
+            (UINT)shader.SourceFlags[0],
+            0,
+            &vertexShaderBlob,
+            &vertexErrorBlob
+        );
+        
 
-    if (shaderBlob != nullptr)
-    {
-        if (type == xShader::Type::VERTEX)
+        if (vertexErrorBlob != nullptr)
         {
-            shader.VertexShaderByteCode = shaderBlob->GetBufferPointer();
-            shader.VertexShaderByteCodeSize = shaderBlob->GetBufferSize();
-            _device->CreateVertexShader(shaderBlob->GetBufferPointer(), shaderBlob->GetBufferSize(), nullptr, (ID3D11VertexShader**)&shader.VertexShader.Instance);
+            std::cout << (char*)vertexErrorBlob->GetBufferPointer() << std::endl;
+
+            vertexErrorBlob->Release();
         }
-        else if (type == xShader::Type::PIXEL)
+
+        if (vertexShaderBlob != nullptr)
         {
-            _device->CreatePixelShader(shaderBlob->GetBufferPointer(), shaderBlob->GetBufferSize(), nullptr, (ID3D11PixelShader**)&shader.PixelShader.Instance);
-            shaderBlob->Release();
+            shader._VertexShaderByteCode = vertexShaderBlob->GetBufferPointer();
+            shader._VertexShaderByteCodeSize = vertexShaderBlob->GetBufferSize();
+            _device->CreateVertexShader(vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize(), nullptr, (ID3D11VertexShader**)&shader._VertexShader.Instance);
+        }
+
+        // Pixel shader
+        ID3DBlob* pixelShaderBlob = nullptr;
+        ID3DBlob* pixelErrorBlob = nullptr;
+
+        D3DCompile(
+            shader.Sources[1],
+            strlen(shader.Sources[1]),
+            nullptr,
+            nullptr,
+            nullptr,
+            shader.SourceEntryPoints[1],
+            shader.SourceProfiles[1],
+            (UINT)shader.SourceFlags[1],
+            0,
+            &pixelShaderBlob,
+            &pixelErrorBlob
+        );
+        
+
+        if (pixelErrorBlob != nullptr)
+        {
+            std::cout << (char*)pixelErrorBlob->GetBufferPointer() << std::endl;
+
+            pixelErrorBlob->Release();
+        }
+
+        if (pixelShaderBlob != nullptr)
+        {
+            _device->CreatePixelShader(pixelShaderBlob->GetBufferPointer(), pixelShaderBlob->GetBufferSize(), nullptr, (ID3D11PixelShader**)&shader._PixelShader.Instance);
+            pixelShaderBlob->Release();
         }
     }
 }
@@ -230,23 +257,26 @@ void xpe::core::D3D11RenderingContext::BindShader(const xShader* shader)
 {
     _boundShader = (xShader*)shader;
 
-    _immContext->VSSetShader((ID3D11VertexShader*)_boundShader->VertexShader.Instance, nullptr, 0);
-    _immContext->PSSetShader((ID3D11PixelShader*)_boundShader->PixelShader.Instance, nullptr, 0);
+    if (_boundShader->Type == xShader::eType::VERTEX_PIXEL)
+    {
+        _immContext->VSSetShader((ID3D11VertexShader*)_boundShader->_VertexShader.Instance, nullptr, 0);
+        _immContext->PSSetShader((ID3D11PixelShader*)_boundShader->_PixelShader.Instance, nullptr, 0);
+    }
 }
 
 void xpe::core::D3D11RenderingContext::FreeShader(const xShader& shader)
 {
-    if (shader.VertexShader.Instance != nullptr)
+    if (shader._VertexShader.Instance != nullptr)
     {
-        ((ID3D11VertexShader*)shader.VertexShader.Instance)->Release();
+        ((ID3D11VertexShader*)shader._VertexShader.Instance)->Release();
     }
-    if (shader.VertexShaderByteCode != nullptr)
+    if (shader._VertexShaderByteCode != nullptr)
     {
-        ((ID3DBlob*)shader.VertexShaderByteCode)->Release();
+        ((ID3DBlob*)shader._VertexShaderByteCode)->Release();
     }
-    if (shader.PixelShader.Instance != nullptr)
+    if (shader._PixelShader.Instance != nullptr)
     {
-        ((ID3D11PixelShader*)shader.PixelShader.Instance)->Release();
+        ((ID3D11PixelShader*)shader._PixelShader.Instance)->Release();
     }
 }
 
@@ -276,13 +306,13 @@ xpe::core::GPUResource xpe::core::D3D11RenderingContext::CreateTexture(const voi
     return tex;
 }
 
-void xpe::core::D3D11RenderingContext::BindTexture(const GPUResource* texture, const xShader::Type& shaderType, const u32 slot)
+void xpe::core::D3D11RenderingContext::BindTexture(const GPUResource* texture, const xShader::eType& shaderType, const u32 slot)
 {
-    if (shaderType == xShader::Type::VERTEX)
+    if (shaderType == xShader::eType::VERTEX)
     {
         _immContext->VSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
     }
-    else if (shaderType == xShader::Type::PIXEL)
+    else if (shaderType == xShader::eType::PIXEL)
     {
         if (texture != nullptr)
         {
@@ -403,7 +433,18 @@ xpe::core::xBuffer xpe::core::D3D11RenderingContext::CreateBuffer(const xBuffer:
 
 void xpe::core::D3D11RenderingContext::BindBuffer(const xBuffer* buffer)
 {
-    if (buffer->Type == xBuffer::xType::INSTANCE)
+    if (buffer->Type == xBuffer::xType::VERTEX)
+    {
+        UINT stride = xpe::gltf::cGLTFModel::k_vertexSize;
+        UINT offset = 0;
+        _immContext->IASetVertexBuffers(0, 1, (ID3D11Buffer**)&buffer->BufferResource.Instance, &stride, &offset);
+    }
+    else if (buffer->Type == xBuffer::xType::INDEX)
+    {
+        DXGI_FORMAT format = xpe::gltf::cGLTFModel::k_indexSize == 4 ? DXGI_FORMAT_R32_UINT : DXGI_FORMAT_R16_UINT;
+        _immContext->IASetIndexBuffer((ID3D11Buffer*)buffer->BufferResource.Instance, format, 0);
+    }
+    else if (buffer->Type == xBuffer::xType::INSTANCE)
     {
         _immContext->VSSetShaderResources(0, 1, (ID3D11ShaderResourceView**)&buffer->BufferResource.ViewInstance);
     }
@@ -450,26 +491,53 @@ void xpe::core::D3D11RenderingContext::FreeBuffer(const xBuffer& buffer)
 void xpe::core::D3D11RenderingContext::CreateInputLayout(xInputLayout& inputLayout)
 {
     usize elementCount = inputLayout.EntryCount;
+    usize byteOffset = 0;
     D3D11_INPUT_ELEMENT_DESC elements[16] = {};
     for (usize i = 0; i < inputLayout.EntryCount; i++)
     {
         elements[i].SemanticName = inputLayout.Entries[i].Name;
-        if (inputLayout.Entries[i].Format == xInputLayout::xEntry::eFormat::VEC3)
+        if (inputLayout.Entries[i].Format == xInputLayout::xEntry::eFormat::VEC2)
+        {
+            elements[i].Format = DXGI_FORMAT_R32G32_FLOAT;
+        }
+        else if (inputLayout.Entries[i].Format == xInputLayout::xEntry::eFormat::VEC3)
         {
             elements[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;
         }
-        elements[i].InputSlot = i;
-        elements[i].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+        else if (inputLayout.Entries[i].Format == xInputLayout::xEntry::eFormat::VEC4)
+        {
+            elements[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+        }
+        elements[i].AlignedByteOffset = byteOffset;
+        elements[i].InstanceDataStepRate = D3D11_INPUT_PER_VERTEX_DATA;
+
+        byteOffset += inputLayout.Entries[i].ByteSize;
     }
 
-    _device->CreateInputLayout(&elements[0], elementCount, inputLayout.VertexShaderByteCode, inputLayout.VertexShaderByteCodeSize, (ID3D11InputLayout**)&inputLayout.InputLayout.Instance);
+    _device->CreateInputLayout(&elements[0], elementCount, inputLayout._VertexShaderByteCode, inputLayout._VertexShaderByteCodeSize, (ID3D11InputLayout**)&inputLayout._InputLayout.Instance);
+}
+
+void xpe::core::D3D11RenderingContext::BindInputLayout(const xInputLayout* inputLayout)
+{
+    UINT stride = inputLayout->StrideByteSize;
+    UINT offset = 0;
+
+    if (inputLayout->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_STRIP)
+    {
+        _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+    }
+    else if (inputLayout->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_LIST)
+    {
+        _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    }
+    _immContext->IASetInputLayout((ID3D11InputLayout*)_boundPipeline->InputLayout._InputLayout.Instance);
 }
 
 void xpe::core::D3D11RenderingContext::FreeInputLayout(const xInputLayout& inputLayout)
 {
-    if (inputLayout.InputLayout.Instance != nullptr)
+    if (inputLayout._InputLayout.Instance != nullptr)
     {
-        ((ID3D11InputLayout*)inputLayout.InputLayout.Instance)->Release();
+        ((ID3D11InputLayout*)inputLayout._InputLayout.Instance)->Release();
     }
 }
 
@@ -486,28 +554,61 @@ void xpe::core::D3D11RenderingContext::BindViewport(const glm::vec4& coords, f32
     _immContext->RSSetViewports(1, &viewport);
 }
 
+void xpe::core::D3D11RenderingContext::CreateRenderPipeline(xPipeline& pipeline)
+{
+    CreateShaderFromString(*pipeline.Shaders);
+    
+    pipeline.InputLayout._VertexShaderByteCode = pipeline.Shaders->_VertexShaderByteCode;
+    pipeline.InputLayout._VertexShaderByteCodeSize = pipeline.Shaders->_VertexShaderByteCodeSize;
+    CreateInputLayout(pipeline.InputLayout);
+
+    CreateDepthStencilState(pipeline.DepthStencilState);
+}
+
 void xpe::core::D3D11RenderingContext::BindRenderPipeline(const xPipeline* pipeline) 
 {
     _boundPipeline = (xPipeline*)pipeline;
 
-    UINT stride = 12;
-    UINT offset = 0;
-
-    if (_boundPipeline->Shaders->Topology == xShader::PrimitiveTopology::TRIANGLE_STRIP)
-    {
-        _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-    }
-    else if (_boundPipeline->Shaders->Topology == xShader::PrimitiveTopology::TRIANGLE_LIST)
-    {
-        _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-    }
-    _immContext->IASetInputLayout((ID3D11InputLayout*)_boundPipeline->InputLayout.InputLayout.Instance);
-    _immContext->IASetVertexBuffers(0, 1, (ID3D11Buffer**)&_boundPipeline->InputVertexBuffer->BufferResource.Instance, &stride, &offset);
-    _immContext->IASetIndexBuffer((ID3D11Buffer*)_boundPipeline->InputIndexBuffer->BufferResource.Instance, DXGI_FORMAT_R32_UINT, 0);
-    BindBuffer(_boundPipeline->InputInstanceBuffer);
-    BindBuffer(_boundPipeline->InputConstantBuffer);
+    BindInputLayout(&_boundPipeline->InputLayout);
+    BindBuffer(_boundPipeline->VertexBuffer);
+    BindBuffer(_boundPipeline->IndexBuffer);
+    BindBuffer(_boundPipeline->InstanceBuffer);
+    BindBuffer(_boundPipeline->ConstantBuffer);
     BindShader(_boundPipeline->Shaders);
     BindRenderTarget(_boundPipeline->RenderTarget);
+    BindDepthStencilState(&_boundPipeline->DepthStencilState);
+}
+
+void xpe::core::D3D11RenderingContext::FreeRenderPipeline(xPipeline& pipeline)
+{
+    if (pipeline.InputLayout._InputLayout.Instance != nullptr)
+    {
+        ((ID3D11InputLayout*)pipeline.InputLayout._InputLayout.Instance)->Release();
+    }
+}
+
+void xpe::core::D3D11RenderingContext::CreateDepthStencilState(xDepthStencilState& state)
+{
+    D3D11_DEPTH_STENCIL_DESC dsDesc = {};
+    dsDesc.DepthEnable = state.UseDepthTest == K_TRUE ? TRUE : FALSE;
+    dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+    dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+    dsDesc.StencilEnable = FALSE;
+
+    _device->CreateDepthStencilState(&dsDesc, (ID3D11DepthStencilState**)&state.Instance.Instance);
+}
+
+void xpe::core::D3D11RenderingContext::BindDepthStencilState(const xDepthStencilState* state) 
+{
+    _immContext->OMSetDepthStencilState((ID3D11DepthStencilState*)state->Instance.Instance, 0);
+}
+
+void xpe::core::D3D11RenderingContext::FreeDepthStencilState(xDepthStencilState& state)
+{
+    if (state.Instance.Instance != nullptr)
+    {
+        ((ID3D11DepthStencilState*)state.Instance.Instance)->Release();
+    }
 }
 
 void xpe::core::D3D11RenderingContext::DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount)
@@ -517,7 +618,7 @@ void xpe::core::D3D11RenderingContext::DrawBatch(usize vertexOffset, usize index
 
 void xpe::core::D3D11RenderingContext::DrawQuad()
 {
-    if (_boundShader->Topology == xShader::PrimitiveTopology::TRIANGLE_STRIP)
+    if (_boundShader->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_STRIP)
     {
         _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
     }

@@ -2,6 +2,7 @@
 #include <gtc/matrix_transform.hpp>
 #include "../../engine/src/core/core.hpp"
 #include "../../engine/src/viewer/viewer.hpp"
+#include "../../engine/src/gltf/gltf.hpp"
 
 using namespace xpe::core;
 
@@ -17,31 +18,35 @@ class GameApp : public App_Interface
             _ecs = new ECSManager();
             _batch = new BatchManager(context);
 
-            // Put geometry
-            glm::vec3 vertices[3] = {
-                glm::vec3(-0.02f, -0.02f, 0.0f),
-                glm::vec3(0.0f, 0.02f, 0.0f),
-                glm::vec3(0.02f, -0.02f, 0.0f)
-            };
-            
-            u32 indices[3] = { 0, 1, 2 };
+            xpe::gltf::cGLTFModel model("C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/files/cube.gltf");
+            xpe::gltf::xMesh* mesh = model.GetMesh(0);
 
-            _batch->StoreGlobalGeometryData(std::string("NewGeometryData"), &vertices[0], 3 * 12, 3, &indices[0], 3 * 4, 3);
+            // Put geometry
+            _batch->StoreGlobalGeometryData(
+                std::string("NewGeometryData"),
+                &mesh->Vertices[0],
+                mesh->VertexCount * xpe::gltf::cGLTFModel::k_vertexSize,
+                mesh->VertexCount,
+                &mesh->Indices[0],
+                mesh->IndexCount * 4,
+                mesh->IndexCount
+            );
         
             // Create render pipeline data
-            _pipeline.InputVertexBuffer = _batch->GetVertexBuffer();
-            _pipeline.InputIndexBuffer = _batch->GetIndexBuffer();
-            _pipeline.InputInstanceBuffer = _batch->GetInstanceBuffer();
-            _pipeline.InputConstantBuffer = _batch->GetConstantBuffer();
-            const char* vertexStr =
-                "\
+            char* vertexStr =
+                    "\
                     struct VSIn\
                     {\
-                        uint instanceIndex : SV_InstanceID;\
                         float3 positionLocal : XPE_POSITION_LOCAL;\
+                        float2 texcoord : XPE_TEXCOORD;\
+                        float3 normal : XPE_NORMAL;\
+                        uint instanceIndex : SV_InstanceID;\
                     };\
                     struct VSOut\
                     {\
+                        float3 positionWorld : XPE_POSITION_WORLD;\
+                        float2 texcoord : XPE_TEXCOORD2;\
+                        float3 normal : XPE_NORMAL2;\
                         float4 positionClip : SV_POSITION;\
                     };\
                     struct RenderInstance\
@@ -56,30 +61,63 @@ class GameApp : public App_Interface
                     \
                     VSOut vs_main(VSIn vsIn)\
                     {\
-                    VSOut vsOut;\
-                    vsOut.positionClip = mul(ViewProjection, float4(15.0 * vsIn.positionLocal + instances[vsIn.instanceIndex].Position.xyz, 1.0));\
-                    return vsOut;\
-                    }\
-                ";
-            const char* pixelStr =
-                "\
-                    float4 ps_main() : SV_TARGET\
+                        VSOut vsOut = (VSOut)0;\
+                        vsOut.positionWorld = 0.5 * vsIn.positionLocal + instances[vsIn.instanceIndex].Position.xyz;\
+                        vsOut.texcoord = vsIn.texcoord;\
+                        vsOut.normal = vsIn.normal;\
+                        vsOut.positionClip = mul(ViewProjection, float4(vsOut.positionWorld, 1.0));\
+                        return vsOut;\
+                    }";
+            
+            char* pixelStr =
+                    "\
+                    struct VSOut\
                     {\
-                        return float4(0.0, 0.0, 1.0, 1.0);\
+                        float3 positionWorld : XPE_POSITION_WORLD;\
+                        float2 texcoord : XPE_TEXCOORD2;\
+                        float3 normal : XPE_NORMAL2;\
+                        float4 positionClip : SV_POSITION;\
+                    };\
+                    float4 ps_main(VSOut psIn) : SV_TARGET\
+                    {\
+                        float3 lightPos = float3(0.0, 100.0, 0.0);\
+                        float3 pointToLight = normalize(lightPos - psIn.positionWorld);\
+                        float lambert = max(0.15, dot(pointToLight, psIn.normal));\
+                        return float4(lambert, lambert, lambert, 1.0);\
                     }\
                 ";
+            
+            _pipeline.VertexBuffer = _batch->GetVertexBuffer();
+            _pipeline.IndexBuffer = _batch->GetIndexBuffer();
+            _pipeline.InstanceBuffer = _batch->GetInstanceBuffer();
+            _pipeline.ConstantBuffer = _batch->GetConstantBuffer();
             _pipeline.Shaders = new xShader();
-            context->CreateShaderFromString(*_pipeline.Shaders, xShader::PrimitiveTopology::TRIANGLE_LIST, xShader::Type::VERTEX, vertexStr, "vs_main", "vs_4_0", 0);
-            context->CreateShaderFromString(*_pipeline.Shaders, xShader::PrimitiveTopology::TRIANGLE_LIST, xShader::Type::PIXEL, pixelStr, "ps_main", "ps_4_0", 0);
-            _layout.EntryCount = 1;
+            _pipeline.Shaders->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+            _pipeline.Shaders->Type = xShader::eType::VERTEX_PIXEL;
+            _pipeline.Shaders->Sources[0] = vertexStr;
+            _pipeline.Shaders->SourceEntryPoints[0] = "vs_main";
+            _pipeline.Shaders->SourceProfiles[0] = "vs_4_0";
+            _pipeline.Shaders->SourceFlags[0] = 0;
+            _pipeline.Shaders->Sources[1] = pixelStr;
+            _pipeline.Shaders->SourceEntryPoints[1] = "ps_main";
+            _pipeline.Shaders->SourceProfiles[1] = "ps_4_0";
+            _pipeline.Shaders->SourceFlags[1] = 0;
+            _layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+            _layout.StrideByteSize = xpe::gltf::cGLTFModel::k_vertexSize;
+            _layout.EntryCount = 3;
             _layout.Entries[0].Name = "XPE_POSITION_LOCAL";
             _layout.Entries[0].Format = xInputLayout::xEntry::eFormat::VEC3;
             _layout.Entries[0].ByteSize = 12;
-            _layout.VertexShaderByteCode = _pipeline.Shaders->VertexShaderByteCode;
-            _layout.VertexShaderByteCodeSize = _pipeline.Shaders->VertexShaderByteCodeSize;
-            context->CreateInputLayout(_layout);
+            _layout.Entries[1].Name = "XPE_TEXCOORD";
+            _layout.Entries[1].Format = xInputLayout::xEntry::eFormat::VEC2;
+            _layout.Entries[1].ByteSize = 8;
+            _layout.Entries[2].Name = "XPE_NORMAL";
+            _layout.Entries[2].Format = xInputLayout::xEntry::eFormat::VEC3;
+            _layout.Entries[2].ByteSize = 12;
             _pipeline.InputLayout = _layout;
             _pipeline.RenderTarget = _canvas->GetRenderTarget();
+            _pipeline.DepthStencilState.UseDepthTest = K_TRUE;
+            context->CreateRenderPipeline(_pipeline);
         }
 
         void Update(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
