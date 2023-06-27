@@ -29,10 +29,7 @@ target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
 
 # Link third party libraries
-if(DEBUG)
-    replace_build_dir(engine/libs/debug engine/libs/debug)
-    link_libs(${PROJECT_NAME} libs/debug)
-else()
-    replace_build_dir(engine/libs/release engine/libs/release)
-    link_libs(${PROJECT_NAME} libs/release)
-endif()
+replace_build_dir(engine/libs/Debug engine/libs/Debug)
+link_libs(${PROJECT_NAME} libs/Debug)
+replace_build_dir(engine/libs/Release engine/libs/Release)
+link_libs(${PROJECT_NAME} libs/Release)

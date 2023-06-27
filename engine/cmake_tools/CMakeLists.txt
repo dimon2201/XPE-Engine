@@ -143,13 +143,48 @@ macro(link_engine project path)
     target_precompile_headers(${project} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:../${path}/include/pch.h>")
     get_filename_component(dir_name ${PROJECT_BINARY_DIR} NAME)
 
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/xpe_engine.lib)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/xpe_engine.lib ${PROJECT_BINARY_DIR}/xpe_engine.lib COPYONLY)
+    ## ---------------- Debug ---------------
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Debug/xpe_engine.lib)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Debug/xpe_engine.lib ${PROJECT_BINARY_DIR}/Debug/xpe_engine.lib COPYONLY)
     endif()
 
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/xpe_engine.dll)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/xpe_engine.dll ${PROJECT_BINARY_DIR}/xpe_engine.dll COPYONLY)
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Debug/xpe_engine.dll)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Debug/xpe_engine.dll ${PROJECT_BINARY_DIR}/Debug/xpe_engine.dll COPYONLY)
     endif()
 
+    ## ---------------- Release ---------------
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Release/xpe_engine.lib)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Release/xpe_engine.lib ${PROJECT_BINARY_DIR}/Release/xpe_engine.lib COPYONLY)
+    endif()
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Release/xpe_engine.dll)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Release/xpe_engine.dll ${PROJECT_BINARY_DIR}/Release/xpe_engine.dll COPYONLY)
+    endif()
+
+    ## ---------------- RelWithDebInfo ---------------
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.lib)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.lib ${PROJECT_BINARY_DIR}/RelWithDebInfo/xpe_engine.lib COPYONLY)
+    endif()
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.dll)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.dll ${PROJECT_BINARY_DIR}/RelWithDebInfo/xpe_engine.dll COPYONLY)
+    endif()
+
+    ## ---------------- MinSizeRel ---------------
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.lib)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.lib ${PROJECT_BINARY_DIR}/MinSizeRel/xpe_engine.lib COPYONLY)
+    endif()
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.dll)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.dll ${PROJECT_BINARY_DIR}/MinSizeRel/xpe_engine.dll COPYONLY)
+    endif()
+
+    message(STATUS "Linking ${project} -> xpe_engine.lib")
+    message(STATUS "Linking ${project} -> xpe_engine.dll")
     target_link_libraries(${project} PUBLIC xpe_engine)
+
 endmacro()

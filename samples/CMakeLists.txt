@@ -15,4 +15,7 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 link_engine(${PROJECT_NAME} ../engine)
 
-replace_build_dir(samples/files samples/files)
+copy_build_dir(samples/files samples/Debug/files)
+copy_build_dir(samples/files samples/Release/files)
+copy_build_dir(samples/files samples/RelWithDebInfo/files)
+copy_build_dir(samples/files samples/MinSizeRel/files)
