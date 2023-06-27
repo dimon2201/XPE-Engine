@@ -1,30 +1,21 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.20)
 
-project(xpe_engine)
+project(XPE-Engine)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
 
-set(SOURCE_FILES
-    engine/src/core/app.cpp
-    engine/src/core/canvas.cpp
-    engine/src/core/d3d11_context.cpp
-    engine/src/core/memory_pool.cpp
-    engine/src/core/rendering.cpp
-    engine/src/core/types.cpp
-    engine/src/core/user_input.cpp
-    engine/src/core/windowing.cpp
-    
-    engine/src/viewer/viewer.cpp
+include(engine/cmake_tools/CMakeLists.txt)
 
-    engine/src/gltf/gltf.cpp
-)
+# Add build targets
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DDEBUG=1)
+elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+    add_definitions(-DDEBUG=1)
+endif()
 
-add_subdirectory(thirdparty/glfw)
-add_subdirectory(thirdparty/jsoncpp)
+# Add Engine
+add_subdirectory(engine)
 
-include_directories(thirdparty/glfw/include/GLFW)
-include_directories(thirdparty/glm/glm)
-include_directories(thirdparty/jsoncpp/include)
-
-add_library(xpe_engine ${SOURCE_FILES})
+# Add Samples
+add_subdirectory(samples)
