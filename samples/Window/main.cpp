@@ -1,8 +1,6 @@
-#include <iostream>
-#include <gtc/matrix_transform.hpp>
-#include "../../engine/src/core/core.hpp"
-#include "../../engine/src/viewer/viewer.hpp"
-#include "../../engine/src/gltf/gltf.hpp"
+#include <core/core.hpp>
+#include <viewer/viewer.hpp>
+#include <gltf/gltf.hpp>
 
 using namespace xpe::core;
 
@@ -18,7 +16,7 @@ class GameApp : public App_Interface
             _ecs = new ECSManager();
             _batch = new BatchManager(context);
 
-            xpe::gltf::cGLTFModel model("C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/files/cube.gltf");
+            xpe::gltf::cGLTFModel model("files/cube.gltf");
             xpe::gltf::xMesh* mesh = model.GetMesh(0);
 
             // Put geometry

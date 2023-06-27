@@ -2,15 +2,17 @@ cmake_minimum_required(VERSION 3.2)
 
 project(xpe_example_window)
 
+include(../engine/cmake_tools/CMakeLists.txt)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
 
-set(SOURCE_FILES_SAMPLE_WINDOW Window/main.cpp)
-set(LINK_DIRECTORIES_SAMPLE_WINDOW ../build/lib/Debug)
+file(GLOB_RECURSE SOURCE_FILES Window/*.c Window/*.cpp)
 
-include_directories(../thirdparty/glfw/include/GLFW ../thirdparty/glm/glm)
-link_directories(xpe_example_window ${LINK_DIRECTORIES_SAMPLE_WINDOW})
+include_engine(../engine)
 
-add_executable(xpe_example_window ${SOURCE_FILES_SAMPLE_WINDOW})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
-target_link_libraries(xpe_example_window xpe_engine glfw3 gdi32 d3d11 d3dcompiler jsoncpp)
+link_engine(${PROJECT_NAME} ../engine)
+
+replace_build_dir(samples/files samples/files)
