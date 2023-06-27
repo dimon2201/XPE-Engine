@@ -2,3 +2,5 @@
 /build/*
 /samples/build/*
 .idea
+debug
+release
