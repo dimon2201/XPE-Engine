@@ -375,7 +375,7 @@ xpe::core::xBuffer xpe::core::D3D11RenderingContext::CreateBuffer(const xBuffer:
 
     if (duplicate == K_TRUE)
     {
-        buffer.CPUMemory = GetMemoryPool(0)->Allocate(byteSize);
+        buffer.CPUMemory = MemoryPoolManager::Allocate(byteSize);
     }
     else
     {

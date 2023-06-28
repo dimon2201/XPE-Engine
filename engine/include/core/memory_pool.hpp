@@ -4,7 +4,7 @@ namespace xpe
 {
     namespace core
     {
-        struct ENGINE_API MemoryPoolAllocation
+        struct MemoryPoolAllocation
         {
             u32 _freeFlag;
             u32 _allocByteWidth;
@@ -12,14 +12,14 @@ namespace xpe
             void* _address;
         };
 
-        class ENGINE_API MemoryPool
+        class MemoryPool
         {
             public:
                 explicit MemoryPool(const usize size);
                 ~MemoryPool();
 
                 void* Allocate(const usize size);
-                void Free(void* address);
+                bool Free(void* address);
                 u32 GetCount();
 
             private:
@@ -30,6 +30,17 @@ namespace xpe
                 std::vector<MemoryPoolAllocation> _allocs;
         };
 
-        MemoryPool* GetMemoryPool(s32 index);
+        class ENGINE_API MemoryPoolManager final {
+
+        public:
+            static MemoryPool* CreatePool(const usize size);
+            static void* Allocate(const usize size);
+            static void Free(void* address);
+            static u32 GetPoolCount();
+            static u32 GetAllocCount(u32 index);
+
+        private:
+            static std::vector<MemoryPool*> s_memoryPools;
+        };
     }
 }
