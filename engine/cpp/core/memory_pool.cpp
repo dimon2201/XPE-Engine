@@ -95,6 +95,9 @@ namespace xpe {
 
             for (const auto& pool : s_memoryPools) {
                 newAddress = pool->Allocate(size);
+                if (newAddress != nullptr) {
+                    return newAddress;
+                }
             }
 
             if (newAddress == nullptr) {
