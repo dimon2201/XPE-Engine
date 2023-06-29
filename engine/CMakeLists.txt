@@ -32,12 +32,6 @@ add_subdirectory(thirdparty/glfw)
 add_subdirectory(thirdparty/glm)
 add_subdirectory(thirdparty/jsoncpp)
 
-# Link internal libraries
+# Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static)
-
-# Link third party libraries
-#replace_build_dir(engine/libs/debug engine/Debug/libs)
-#replace_build_dir(engine/libs/release engine/Release/libs)
-#replace_build_dir(engine/libs/release engine/RelWithDebInfo/libs)
-#replace_build_dir(engine/libs/release engine/MinSizeRel/libs)
