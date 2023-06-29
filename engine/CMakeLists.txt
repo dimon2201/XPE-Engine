@@ -22,7 +22,7 @@ include_directories(
 )
 
 # Create shared dynamic library
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} cpp/core/events.cpp)
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 add_engine_definitions()
 
 # Add precompile header for compile-time optimization
