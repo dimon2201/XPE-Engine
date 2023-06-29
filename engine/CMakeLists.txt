@@ -22,7 +22,7 @@ include_directories(
 
 # Create shared dynamic library
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
-add_engine_definitions(${PROJECT_NAME})
+add_engine_definitions()
 
 # Add precompile header for compile-time optimization
 target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch.h>")

@@ -1,5 +1,5 @@
 # add engine definitions
-macro(add_engine_definitions project)
+macro(add_engine_definitions)
     add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
     add_compile_definitions($<$<CONFIG:RelWithDebInfo>:DEBUG>)
 endmacro()

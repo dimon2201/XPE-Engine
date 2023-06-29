@@ -12,7 +12,7 @@ file(GLOB_RECURSE SOURCE_FILES Window/*.c Window/*.cpp)
 include_engine(../engine)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
-add_engine_definitions(${PROJECT_NAME})
+add_engine_definitions()
 
 link_engine(${PROJECT_NAME} ../engine)
 
