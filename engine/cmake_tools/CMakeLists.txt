@@ -134,6 +134,7 @@ macro(include_engine path)
             ${path}/../thirdparty/glfw/include
             ${path}/../thirdparty/glm/glm
             ${path}/../thirdparty/jsoncpp/include
+            ${path}/../thirdparty/spdlog/include
     )
 endmacro()
 

@@ -113,8 +113,7 @@ namespace xpe
 
                     if (storage == nullptr)
                     {
-                        MemoryPool* memoryPool = GetMemoryPool(0);
-                        void* storageMemory = memoryPool->Allocate(sizeof(ComponentType) * k_maxComponentCount);
+                        void* storageMemory = MemoryPoolManager::Allocate(sizeof(ComponentType) * k_maxComponentCount);
 
                         _storages.insert({ c.GetType(), { storageMemory } });
                         
@@ -155,6 +154,7 @@ namespace xpe
                     {
                         return nullptr;
                     }
+
                     else if (storage->Count > 0)
                     {
                         ComponentType* storageMemory = (ComponentType*)storage->Storage;
@@ -167,11 +167,17 @@ namespace xpe
                         if (it != _components.end())
                         {
                             _components.erase(it);
-                            _components.insert({ lastUSID, &storageMemory[index] })
+                            _components.insert({ lastUSID, &storageMemory[index] });
                         }
 
                         storageMemory[index] = storageMemory[storage->Count - 1];
                         storage->Count -= 1;
+
+                        return storageMemory;
+                    }
+
+                    else {
+                        return nullptr;
                     }
                 }
 

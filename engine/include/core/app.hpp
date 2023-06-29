@@ -20,6 +20,6 @@ namespace xpe
                 virtual void Update(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) = 0;
         };
 
-        void ENGINE_API RunApp(App_Interface* app, const WindowDescriptor& desc);
+        void ENGINE_API RunApp(App_Interface* app, const WindowDescriptor& desc, const LoggerDescriptor& logDesc);
     }
 }

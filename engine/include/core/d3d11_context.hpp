@@ -58,7 +58,8 @@ namespace xpe
 
                 void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) override final;
                 void DrawQuad() override final;
-                void OutputErrors() override final;
+
+                void* GetDevice() override final;
 
                 inline GPUResource* GetSwapChainTexture() { return &_swapChainTexture; }
 

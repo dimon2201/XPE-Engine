@@ -1,5 +1,3 @@
-#include <core/types.hpp>
-
 xpe::core::uword xpe::core::Object::GetType()
 {
     return ((uword*)this)[0];

@@ -12,6 +12,8 @@ class GameApp : public App_Interface
 
         void Init(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
         {
+            log_info("GameApp::Init()");
+
             _canvas = new Canvas(window->GetWidth(), window->GetHeight(), context);
             _ecs = new ECSManager();
             _batch = new BatchManager(context);
@@ -154,7 +156,15 @@ class GameApp : public App_Interface
                 _batch->DrawBatch();
 
                 _canvas->Present();
-                context->OutputErrors();
+
+                log_debug_message();
+            }
+
+            static int logDeltaLimit;
+            logDeltaLimit++;
+            if (logDeltaLimit > 2000) {
+                logDeltaLimit = 0;
+                log_delta(time);
             }
         }
 
@@ -169,13 +179,18 @@ class GameApp : public App_Interface
 int main()
 {
     GameApp app;
+
     WindowDescriptor desc;
     desc.Width = 800;
     desc.Height = 600;
     desc.Title = "Game App Test";
     desc.GPUApi = K_GPUAPI_D3D11;
 
-    RunApp(&app, desc);
+    LoggerDescriptor logDesc;
+    logDesc.Name = "XPE-Window";
+    logDesc.Backtrace = 32;
+
+    RunApp(&app, desc, logDesc);
 
     return 0;
 }

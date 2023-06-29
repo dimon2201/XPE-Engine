@@ -627,26 +627,6 @@ void xpe::core::D3D11RenderingContext::DrawQuad()
     _immContext->Draw(4, 1);
 }
 
-void xpe::core::D3D11RenderingContext::OutputErrors()
-{
-    ID3D11Debug *d3dDebug = nullptr;
-    _device->QueryInterface(__uuidof(ID3D11Debug), (void**)&d3dDebug);
-
-    ID3D11InfoQueue *d3dInfoQueue = nullptr;
-    d3dDebug->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&d3dInfoQueue);
-
-    auto numStoredMessages = d3dInfoQueue->GetNumStoredMessages();
-    for (int i = 0; i < numStoredMessages; i++)
-    {
-        SIZE_T messageByteLength = 0;
-        d3dInfoQueue->GetMessageA(i, nullptr, &messageByteLength);
-
-        D3D11_MESSAGE message = {};
-        d3dInfoQueue->GetMessageA(i, &message, &messageByteLength);
-
-        std::cout << message.pDescription << std::endl;
-    }
-
-    d3dInfoQueue->Release();
-    d3dDebug->Release();
+void* xpe::core::D3D11RenderingContext::GetDevice() {
+    return _device;
 }

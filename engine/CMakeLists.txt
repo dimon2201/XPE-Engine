@@ -17,6 +17,7 @@ include_directories(
         ../thirdparty/glfw/include/GLFW
         ../thirdparty/glm/glm
         ../thirdparty/jsoncpp/include
+        ../thirdparty/spdlog/include
 )
 
 # Create shared dynamic library

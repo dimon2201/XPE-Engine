@@ -158,7 +158,8 @@ namespace xpe
 
                 virtual void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) = 0;
                 virtual void DrawQuad() = 0;
-                virtual void OutputErrors() = 0;
+
+                virtual void* GetDevice() = 0;
         };
 
         struct ENGINE_API xGeometryInfo
