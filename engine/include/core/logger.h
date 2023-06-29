@@ -33,35 +33,41 @@ namespace xpe {
 
 #ifdef DEBUG
 
-#define log_trace(...) SPDLOG_LOGGER_TRACE(xpe::core::Logger::GetTracer(), __VA_ARGS__)
-#define log_verbose(...) SPDLOG_LOGGER_TRACE(xpe::core::Logger::GetLogger(), __VA_ARGS__)
-#define log_info(...) SPDLOG_LOGGER_INFO(xpe::core::Logger::GetLogger(), __VA_ARGS__)
-#define log_warning(...) SPDLOG_LOGGER_WARN(xpe::core::Logger::GetTracer(), __VA_ARGS__)
-#define log_error(...) SPDLOG_LOGGER_ERROR(xpe::core::Logger::GetTracer(), __VA_ARGS__)
+#define InitLogger(desc) xpe::core::Logger::Init(desc)
+#define FreeLogger() xpe::core::Logger::Free()
 
-#define dump_trace_error(...) \
-log_err(__VA_ARGS__); \
+#define LogTrace(...) SPDLOG_LOGGER_TRACE(xpe::core::Logger::GetTracer(), __VA_ARGS__)
+#define LogVerbose(...) SPDLOG_LOGGER_TRACE(xpe::core::Logger::GetLogger(), __VA_ARGS__)
+#define LogInfo(...) SPDLOG_LOGGER_INFO(xpe::core::Logger::GetLogger(), __VA_ARGS__)
+#define LogWarning(...) SPDLOG_LOGGER_WARN(xpe::core::Logger::GetTracer(), __VA_ARGS__)
+#define LogError(...) SPDLOG_LOGGER_ERROR(xpe::core::Logger::GetTracer(), __VA_ARGS__)
+
+#define DumpTraceError(...) \
+LogError(__VA_ARGS__); \
 Logger::DumpBacktrace()
 
-#define log_delta(dt) \
-log_info("Delta time: {} seconds", dt); \
-log_info("FPS: {}", 1 / dt)
+#define LogDelta(dt) \
+LogInfo("Delta time: {} seconds", dt); \
+LogInfo("FPS: {}", 1 / dt)
 
-#define log_glm(name, v) \
-log_info("{}:{}", name, glm::to_string(v))
+#define LogGLM(name, v) \
+LogInfo("{}:{}", name, glm::to_string(v))
 
 #else
 
-#define log_trace(...)
-#define log_verbose(...)
-#define log_info(...)
-#define log_warning(...)
-#define log_error(...)
+#define InitLogger(desc)
+#define FreeLogger()
 
-#define dump_trace_error(...)
+#define LogTrace(...)
+#define LogVerbose(...)
+#define LogInfo(...)
+#define LogWarning(...)
+#define LogError(...)
 
-#define log_delta(dt)
+#define DumpTraceError(...)
 
-#define log_glm(name, v)
+#define LogDelta(dt)
+
+#define LogGLM(name, v)
 
 #endif

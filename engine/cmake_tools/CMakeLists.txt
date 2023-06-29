@@ -1,3 +1,9 @@
+# add engine definitions
+macro(add_engine_definitions project)
+    add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
+    add_compile_definitions($<$<CONFIG:RelWithDebInfo>:DEBUG>)
+endmacro()
+
 # copying target dir to destination dir. If destination does not exist, create it.
 macro(copy_dir dir1 dir2)
     set(srcDir ${dir1})
@@ -131,10 +137,10 @@ macro(include_engine path)
     add_definitions(-DENGINE_DLL=1)
     include_directories(
             ${path}/include
-            ${path}/../thirdparty/glfw/include
-            ${path}/../thirdparty/glm/glm
-            ${path}/../thirdparty/jsoncpp/include
-            ${path}/../thirdparty/spdlog/include
+            ${path}/thirdparty/spdlog/include
+            ${path}/thirdparty/glfw/include
+            ${path}/thirdparty/glm/glm
+            ${path}/thirdparty/jsoncpp/include
     )
 endmacro()
 

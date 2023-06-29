@@ -12,7 +12,7 @@ class GameApp : public App_Interface
 
         void Init(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
         {
-            log_info("GameApp::Init()");
+            LogInfo("GameApp::Init()");
 
             _canvas = new Canvas(window->GetWidth(), window->GetHeight(), context);
             _ecs = new ECSManager();
@@ -156,15 +156,13 @@ class GameApp : public App_Interface
                 _batch->DrawBatch();
 
                 _canvas->Present();
-
-                log_debug_message();
             }
 
             static int logDeltaLimit;
             logDeltaLimit++;
             if (logDeltaLimit > 2000) {
                 logDeltaLimit = 0;
-                log_delta(time);
+                LogDelta(time);
             }
         }
 

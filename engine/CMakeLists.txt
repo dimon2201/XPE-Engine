@@ -14,23 +14,30 @@ file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
 # Include third party dependency headers
 include_directories(
         include
-        ../thirdparty/glfw/include/GLFW
-        ../thirdparty/glm/glm
-        ../thirdparty/jsoncpp/include
-        ../thirdparty/spdlog/include
+        thirdparty/glfw/include/GLFW
+        thirdparty/glm/glm
+        thirdparty/jsoncpp/include
+        thirdparty/spdlog/include
 )
 
 # Create shared dynamic library
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
+add_engine_definitions(${PROJECT_NAME})
 
 # Add precompile header for compile-time optimization
 target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch.h>")
 
+add_subdirectory(thirdparty/spdlog)
+add_subdirectory(thirdparty/glfw)
+add_subdirectory(thirdparty/glm)
+add_subdirectory(thirdparty/jsoncpp)
+
 # Link internal libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static)
 
 # Link third party libraries
-replace_build_dir(engine/libs/Debug engine/libs/Debug)
-link_libs(${PROJECT_NAME} libs/Debug)
-replace_build_dir(engine/libs/Release engine/libs/Release)
-link_libs(${PROJECT_NAME} libs/Release)
+#replace_build_dir(engine/libs/debug engine/Debug/libs)
+#replace_build_dir(engine/libs/release engine/Release/libs)
+#replace_build_dir(engine/libs/release engine/RelWithDebInfo/libs)
+#replace_build_dir(engine/libs/release engine/MinSizeRel/libs)

@@ -12,10 +12,11 @@ file(GLOB_RECURSE SOURCE_FILES Window/*.c Window/*.cpp)
 include_engine(../engine)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_engine_definitions(${PROJECT_NAME})
 
 link_engine(${PROJECT_NAME} ../engine)
 
-copy_build_dir(samples/files samples/Debug/files)
-copy_build_dir(samples/files samples/Release/files)
-copy_build_dir(samples/files samples/RelWithDebInfo/files)
-copy_build_dir(samples/files samples/MinSizeRel/files)
+copy_build_dir(samples/files bin/Debug/files)
+copy_build_dir(samples/files bin/Release/files)
+copy_build_dir(samples/files bin/RelWithDebInfo/files)
+copy_build_dir(samples/files bin/MinSizeRel/files)

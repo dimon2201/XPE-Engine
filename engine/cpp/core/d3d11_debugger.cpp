@@ -44,8 +44,89 @@ namespace xpe {
             return messages;
         }
 
-        DebugMessage D3D11Debugger::ToDebugMessage(const D3D11_MESSAGE &message) {
-            return {};
+        DebugMessage D3D11Debugger::ToDebugMessage(const D3D11_MESSAGE& d3D11Message) {
+            DebugMessage message;
+
+            message.Description = d3D11Message.pDescription;
+            message.ID = d3D11Message.ID;
+
+            switch (d3D11Message.Severity) {
+
+                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_CORRUPTION:
+                    message.Severity = eDebugSeverity::D_HIGH;
+                    message.Type = eDebugType::D_ERROR;
+                    message.ErrorType = eDebugErrorType::D_OTHER_ERROR_TYPE;
+                    break;
+
+                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_MESSAGE:
+                    message.Severity = eDebugSeverity::D_NOTIFICATION;
+                    break;
+
+                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_INFO:
+                    message.Severity = eDebugSeverity::D_LOW;
+                    break;
+
+                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_WARNING:
+                    message.Severity = eDebugSeverity::D_MEDIUM;
+                    message.Type = eDebugType::D_WARNING;
+                    break;
+
+                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_ERROR:
+                    message.Severity = eDebugSeverity::D_HIGH;
+                    message.Type = eDebugType::D_ERROR;
+                    message.ErrorType = eDebugErrorType::D_OTHER_ERROR_TYPE;
+                    break;
+
+            }
+
+            switch (d3D11Message.Category) {
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_APPLICATION_DEFINED:
+                    message.Category = eDebugCategory::D_APPLICATION;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_CLEANUP:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_COMPILATION:
+                    message.Category = eDebugCategory::D_SHADER_COMPILER;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_EXECUTION:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_INITIALIZATION:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_MISCELLANEOUS:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_RESOURCE_MANIPULATION:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_SHADER:
+                    message.Category = eDebugCategory::D_SHADER_COMPILER;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_CREATION:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_GETTING:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+
+                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_SETTING:
+                    message.Category = eDebugCategory::D_API;
+                    break;
+            }
+
+            return message;
         }
 
     }

@@ -4,13 +4,19 @@
 
 #ifdef DEBUG
 
-#define log_debug_messages() xpe::core::DebugManager::Get().LogMessages()
-#define log_debug_message() xpe::core::DebugManager::Get().LogLastMessage()
+#define InitDebugger(debugger, context) xpe::core::DebugManager::Get().Init(debugger, context)
+#define FreeDebugger() xpe::core::DebugManager::Get().Free()
+
+#define LogDebugMessages() xpe::core::DebugManager::Get().LogMessages()
+#define LogDebugMessage() xpe::core::DebugManager::Get().LogLastMessage()
 
 #else
 
-#define log_debug_messages()
-#define log_debug_message()
+#define InitDebugger(debugger, context)
+#define FreeDebugger()
+
+#define LogDebugMessages()
+#define LogDebugMessage()
 
 #endif
 
@@ -18,8 +24,8 @@ namespace xpe {
 
     namespace core {
 
-        enum class eDebugErrorCode {
-            D_NO_CODE,
+        enum class eDebugErrorType {
+            D_NO_ERROR_TYPE,
             D_INVALID_ENUM,
             D_INVALID_OPERATION,
             D_INVALID_VALUE,
@@ -27,11 +33,13 @@ namespace xpe {
             D_STACK_UNDERFLOW,
             D_OUT_OF_MEMORY,
             D_INVALID_FRAMEBUFFER_OPERATION,
+            D_OTHER_ERROR_TYPE
         };
 
         enum class eDebugType {
             D_NO_TYPE,
             D_ERROR,
+            D_WARNING,
             D_DEPRECATED_BEHAVIOUR,
             D_UNDEFINED_BEHAVIOUR,
             D_PORTABILITY,
@@ -42,8 +50,8 @@ namespace xpe {
             D_OTHER
         };
 
-        enum class eDebugSource {
-            D_NO_SOURCE,
+        enum class eDebugCategory {
+            D_NO_CATEGORY,
             D_API,
             D_WINDOW_SYSTEM,
             D_SHADER_COMPILER,
@@ -61,11 +69,12 @@ namespace xpe {
         };
 
         struct ENGINE_API DebugMessage final {
+            int ID = 0;
             const char* Description = "";
-            eDebugErrorCode ErrorCode = eDebugErrorCode::D_NO_CODE;
             eDebugType Type = eDebugType::D_NO_TYPE;
-            eDebugSource Source = eDebugSource ::D_NO_SOURCE;
+            eDebugCategory Category = eDebugCategory::D_NO_CATEGORY;
             eDebugSeverity Severity = eDebugSeverity::D_NO_SEVERITY;
+            eDebugErrorType ErrorType = eDebugErrorType::D_NO_ERROR_TYPE;
         };
 
         class ENGINE_API DebuggerCallback {
@@ -103,7 +112,8 @@ namespace xpe {
                 return instance;
             }
 
-            void SetDebugger(Debugger* const debugger);
+            void Init(Debugger* const debugger, RenderingContext_Interface* const context);
+            void Free();
 
             void LogMessages();
             void LogLastMessage();

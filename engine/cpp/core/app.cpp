@@ -21,17 +21,11 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
         debugger = new D3D11Debugger();
     }
 
-    DebugManager::Get().SetDebugger(debugger);
-
-#ifdef DEBUG
-    Logger::Init(logDesc);
-#endif
+    InitLogger(logDesc);
 
     context->Init(window);
 
-#ifdef DEBUG
-    debugger->Init(context);
-#endif
+    InitDebugger(debugger, context);
 
     ui->Init(pWindow);
 
@@ -39,24 +33,26 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
 
     SetUserPointer(window, ui);
 
+    LogDebugMessages();
+
     while (!ShouldWindowClose(window))
     {
         ui->CaptureCursor((GLFWwindow*)window.GetInstance());
         app->Update(pWindow, context, ui);
 
         DefaultWindowEvents(window);
+
+        LogDebugMessages();
     }
 
-#ifdef DEBUG
-    debugger->Free();
-#endif
+    LogDebugMessages();
+
+    FreeDebugger();
 
     context->Free();
 
     FreeWindow(pWindow);
 
-#ifdef DEBUG
-    Logger::Free();
-#endif
+    FreeLogger();
 
 }

@@ -5,15 +5,6 @@ project(XPE-Engine)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
 
-include(engine/cmake_tools/CMakeLists.txt)
-
-# Add build targets
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_definitions(-DDEBUG=1)
-elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-    add_definitions(-DDEBUG=1)
-endif()
-
 # Add Engine
 add_subdirectory(engine)
 
