@@ -1,57 +1,81 @@
 #pragma once
 
-struct GLFWwindow;
+#include <core/events.h>
 
-namespace xpe
-{
-    namespace core
-    {
-        class Window;
+namespace xpe {
 
-        void ENGINE_API _KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-        void ENGINE_API _MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
+    namespace core {
 
-        enum class eKeyState
-        {
-            NONE = 0,
-            PRESSED = 1,
-            RELEASED = 2
+        struct ENGINE_API MouseCursor final {
+            glm::vec2 Position;
+            glm::vec2 Delta;
         };
 
-        enum class eMouseButton
-        {
-            LEFT = 0,
-            MIDDLE = 1,
-            RIGHT = 2
+        class ENGINE_API cUserInputManager : public Object {
+
+        public:
+            cUserInputManager() = default;
+            ~cUserInputManager() = default;
+
+            void Init(void* window);
+            void Free();
+
+            void CaptureCursor();
+
+            bool isKeyPressed(const eKey key);
+            bool isKeyReleased(const eKey key);
+            bool isKeyHold(const eKey key);
+            KeyState GetKeyState(const eKey key);
+
+            bool isMousePressed(const eMouse mouse);
+            bool isMouseReleased(const eMouse mouse);
+            bool isMouseHold(const eMouse mouse);
+            MouseState GetMouseState(const eMouse mouse);
+
+            void AddWindowEventListener(WindowEventListener* listener, int priority);
+            void AddKeyEventListener(KeyEventListener* listener, int priority);
+            void AddMouseEventListener(MouseEventListener* listener, int priority);
+            void AddCursorEventListener(CursorEventListener* listener, int priority);
+
+            void RemoveWindowEventListener(WindowEventListener* listener);
+            void RemoveKeyEventListener(KeyEventListener* listener);
+            void RemoveMouseEventListener(MouseEventListener* listener);
+            void RemoveCursorEventListener(CursorEventListener* listener);
+
+            inline const EventBuffer<WindowEventListener>& GetWindowEvents() const {
+                return m_WindowEvents;
+            }
+
+            inline const EventBuffer<KeyEventListener>& GetKeyEvents() const {
+                return m_KeyEvents;
+            }
+
+            inline const EventBuffer<MouseEventListener>& GetMouseEvents() const {
+                return m_MouseEvents;
+            }
+
+            inline const EventBuffer<CursorEventListener>& GetCursorEvents() const {
+                return m_CursorEvents;
+            }
+
+            inline const MouseCursor& GetMouseCursor() {
+                return m_Cursor;
+            }
+
+        private:
+            void InitWindowCallbacks();
+            void InitKeyCallbacks();
+            void InitMouseCallbacks();
+            void InitCursorCallbacks();
+
+        private:
+            MouseCursor m_Cursor;
+            EventBuffer<WindowEventListener> m_WindowEvents;
+            EventBuffer<KeyEventListener> m_KeyEvents;
+            EventBuffer<MouseEventListener> m_MouseEvents;
+            EventBuffer<CursorEventListener> m_CursorEvents;
         };
 
-        class ENGINE_API cUserInputManager
-        {
-            // This callbacks are used to capture user input
-            friend void _KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-            friend void _MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
-
-            public:
-                cUserInputManager();
-                ~cUserInputManager();
-
-                void Init(Window* window);
-                void CaptureCursor(GLFWwindow* window);
-
-                inline eKeyState GetKey(int key) { return _keys[key]; }
-                inline boolean GetKeyPressed(int key) { return _keys[key] == eKeyState::PRESSED ? K_TRUE : K_FALSE; }
-                inline boolean GetKeyReleased(int key) { return _keys[key] == eKeyState::RELEASED ? K_TRUE : K_FALSE; }
-                inline glm::vec2 GetMouseCursorPosition() { return _cursorPosition; }
-                inline glm::vec2 GetMouseCursorPositionDelta() { return _cursorPositionDelta; }
-                inline eKeyState GetMouseButton(const eMouseButton& mb) { return _mb[(usize)mb]; }
-                inline boolean GetMouseButtonPressed(const eMouseButton& mb) { return _mb[(usize)mb] == eKeyState::PRESSED ? K_TRUE : K_FALSE; }
-                inline boolean GetMouseButtonReleased(const eMouseButton& mb) { return _mb[(usize)mb] == eKeyState::RELEASED ? K_TRUE : K_FALSE; } 
-
-            private:
-                eKeyState _keys[256];
-                glm::vec2 _cursorPosition;
-                glm::vec2 _cursorPositionDelta;
-                eKeyState _mb[3];
-        };
     }
+
 }

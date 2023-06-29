@@ -39,5 +39,6 @@ namespace xpe
         void SetUserPointer(Window& window, void* ptr);
         void* GetUserPointer(Window& window);
         void FreeWindow(Window* window);
+        ENGINE_API void CloseWindow(Window& window);
     }
 }

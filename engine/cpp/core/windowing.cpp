@@ -59,3 +59,8 @@ void xpe::core::FreeWindow(Window* window)
 {
     delete window;
 }
+
+void xpe::core::CloseWindow(Window& window)
+{
+    glfwSetWindowShouldClose((GLFWwindow*)window.GetInstance(), GLFW_TRUE);
+}

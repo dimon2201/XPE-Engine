@@ -1,5 +1,4 @@
 #include <core/app.hpp>
-#include <core/windowing.hpp>
 #include <core/user_input.hpp>
 
 // API specific includes
@@ -27,17 +26,15 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
 
     InitDebugger(debugger, context);
 
-    ui->Init(pWindow);
+    ui->Init(pWindow->GetInstance());
 
     app->Init(pWindow, context, ui);
-
-    SetUserPointer(window, ui);
 
     LogDebugMessages();
 
     while (!ShouldWindowClose(window))
     {
-        ui->CaptureCursor((GLFWwindow*)window.GetInstance());
+        ui->CaptureCursor();
         app->Update(pWindow, context, ui);
 
         DefaultWindowEvents(window);

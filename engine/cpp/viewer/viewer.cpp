@@ -7,20 +7,20 @@ void xpe::viewer::ViewerUpdate(core::f32 time, core::cUserInputManager* ui, core
     const core::f32 moveSpeed = 10.0f * time;
     const core::f32 lookSpeed = 50.0f * time;
 
-    if (ui->GetKeyPressed('W')) { viewer->_Keys[0] = moveSpeed; }
-    if (ui->GetKeyPressed('A')) { viewer->_Keys[1] = moveSpeed; }
-    if (ui->GetKeyPressed('S')) { viewer->_Keys[2] = moveSpeed; }
-    if (ui->GetKeyPressed('D')) { viewer->_Keys[3] = moveSpeed; }
-    if (ui->GetKeyReleased('W')) { viewer->_Keys[0] = 0.0f; }
-    if (ui->GetKeyReleased('A')) { viewer->_Keys[1] = 0.0f; }
-    if (ui->GetKeyReleased('S')) { viewer->_Keys[2] = 0.0f; }
-    if (ui->GetKeyReleased('D')) { viewer->_Keys[3] = 0.0f; }
-    if (ui->GetMouseButtonPressed(core::eMouseButton::LEFT)) { viewer->_LMBFlag = 1; }
-    if (ui->GetMouseButtonReleased(core::eMouseButton::LEFT)) { viewer->_LMBFlag = 0; }
+    if (ui->isKeyPressed(core::eKey::W)) { viewer->_Keys[0] = moveSpeed; }
+    if (ui->isKeyPressed(core::eKey::A)) { viewer->_Keys[1] = moveSpeed; }
+    if (ui->isKeyPressed(core::eKey::S)) { viewer->_Keys[2] = moveSpeed; }
+    if (ui->isKeyPressed(core::eKey::D)) { viewer->_Keys[3] = moveSpeed; }
+    if (ui->isKeyReleased(core::eKey::W)) { viewer->_Keys[0] = 0.0f; }
+    if (ui->isKeyReleased(core::eKey::A)) { viewer->_Keys[1] = 0.0f; }
+    if (ui->isKeyReleased(core::eKey::S)) { viewer->_Keys[2] = 0.0f; }
+    if (ui->isKeyReleased(core::eKey::D)) { viewer->_Keys[3] = 0.0f; }
+    if (ui->isMousePressed(core::eMouse::ButtonLeft)) { viewer->_LMBFlag = 1; }
+    if (ui->isMouseReleased(core::eMouse::ButtonLeft)) { viewer->_LMBFlag = 0; }
 
     if (viewer->_LMBFlag)
     {
-        glm::vec2 delta = ui->GetMouseCursorPositionDelta();
+        glm::vec2 delta = ui->GetMouseCursor().Delta;
 
         transform->Rotation.y += delta.x * lookSpeed;
         transform->Rotation.x += delta.y * lookSpeed;
