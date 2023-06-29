@@ -10,7 +10,7 @@ namespace xpe {
         static const char* s_tracePattern = "[%D][%H:%M:%S.%e] %^%!(%s:%#) %v%$";
 
         using LogSinkColor = spdlog::sinks::stdout_color_sink_mt;
-        using ErrorSinkColor = spdlog::sinks::stdout_color_sink_mt;
+        using ErrorSinkColor = spdlog::sinks::stderr_color_sink_mt;
         using FileSink = spdlog::sinks::basic_file_sink_mt;
         using Sink = spdlog::sink_ptr;
 
