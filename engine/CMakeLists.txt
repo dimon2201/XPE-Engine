@@ -18,6 +18,7 @@ include_directories(
         thirdparty/glm/glm
         thirdparty/jsoncpp/include
         thirdparty/spdlog/include
+        thirdparty/stbi
 )
 
 # Create shared dynamic library
