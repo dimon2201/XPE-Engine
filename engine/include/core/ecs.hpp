@@ -27,18 +27,18 @@ namespace xpe
 
             glm::vec3 Position;
             glm::vec3 Rotation;
+            glm::vec3 Scale;
         };
 
-        struct ENGINE_API cViewerComponent : public cComponent
+        struct ENGINE_API cRigidBodyComponent : public cComponent
         {
-            cViewerComponent(const std::string& usid) : cComponent(usid)
+            cRigidBodyComponent(const std::string& usid) : cComponent(usid)
             {}
 
-            f32 _Keys[4];
-            boolean _LMBFlag;
-            glm::mat4 ViewProjection;
+            glm::vec3 Position;
+            glm::vec3 Rotation;
         };
-        
+
         struct ENGINE_API xComponentStorage
         {
             xComponentStorage(void* storage) :

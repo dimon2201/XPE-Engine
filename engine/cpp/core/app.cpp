@@ -7,6 +7,8 @@
 
 void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const LoggerDescriptor& logDesc)
 {
+    InitLogger(logDesc);
+
     Window* pWindow = InitWindow(desc);
     Window window = *pWindow;
 
@@ -15,12 +17,18 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
     RenderingContext_Interface* context = nullptr;
     Debugger* debugger = nullptr;
 
-    if (desc.GPUApi == K_GPUAPI_D3D11) {
-        context = new D3D11RenderingContext();
-        debugger = new D3D11Debugger();
-    }
+    switch (EngineConfig::GPU_API) {
 
-    InitLogger(logDesc);
+        case GraphicsAPI::DX11:
+            context = new D3D11RenderingContext();
+            debugger = new D3D11Debugger();
+            break;
+
+        default:
+            LogError("Specified engine configuration is not supported!");
+            exit(1);
+
+    }
 
     context->Init(window);
 

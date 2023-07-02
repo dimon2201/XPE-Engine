@@ -36,7 +36,6 @@ namespace xpe {
             virtual void MousePressed(const eMouse mouse);
             virtual void MouseReleased(const eMouse mouse);
             virtual void MouseHold(const eMouse mouse);
-            virtual void MouseScrollChanged(const double x, const double y);
 
         };
 
@@ -46,6 +45,21 @@ namespace xpe {
             virtual void CursorMoved(const double x, const double y);
             virtual void CursorEntered();
             virtual void CursorLeft();
+
+        };
+
+        class ENGINE_API ScrollEventListener {
+
+        public:
+            virtual void ScrollChanged(const double x, const double y);
+
+        };
+
+        class ENGINE_API CharEventListener {
+
+        public:
+            virtual void CharTyped(const u32 charUnicode);
+            virtual void CharModsTyped(const u32 charUnicode, const int mods);
 
         };
 
@@ -59,10 +73,21 @@ namespace xpe {
             Event(EventListener* listener, int priority)
             : Listener(listener), Priority(priority) {}
 
-            friend bool operator<(const Event<EventListener>& e1, const Event<EventListener>& e2);
-            friend bool operator>(const Event<EventListener>& e1, const Event<EventListener>& e2);
-            friend bool operator==(const Event<EventListener>& e1, const Event<EventListener>& e2);
-            friend bool operator!=(const Event<EventListener>& e1, const Event<EventListener>& e2);
+            inline friend bool operator<(const Event<EventListener>& e1, const Event<EventListener>& e2) {
+                return e1.Priority < e2.Priority;
+            }
+
+            inline friend bool operator>(const Event<EventListener>& e1, const Event<EventListener>& e2) {
+                return e1.Priority > e2.Priority;
+            }
+
+            inline friend bool operator==(const Event<EventListener>& e1, const Event<EventListener>& e2) {
+                return e1.Listener == e2.Listener;
+            }
+
+            inline friend bool operator!=(const Event<EventListener>& e1, const Event<EventListener>& e2) {
+                return e1.Listener != e2.Listener;
+            }
 
         };
 
@@ -79,34 +104,14 @@ namespace xpe {
 
             void Reserve(const usize count);
 
-            inline const std::vector<Event<EventListener>>& GetEvents() const {
+            inline const vector<Event<EventListener>>& GetEvents() const {
                 return m_Events;
             }
 
         private:
-            std::vector<Event<EventListener>> m_Events;
+            vector<Event<EventListener>> m_Events;
             std::mutex m_Mutex;
         };
-
-        template<typename EventListener>
-        bool operator<(const Event<EventListener> &e1, const Event<EventListener> &e2) {
-            return e1.Priority < e2.Priority;
-        }
-
-        template<typename EventListener>
-        bool operator>(const Event<EventListener> &e1, const Event<EventListener> &e2) {
-            return e1.Priority > e2.Priority;
-        }
-
-        template<typename EventListener>
-        bool operator==(const Event<EventListener> &e1, const Event<EventListener> &e2) {
-            return e1.Listener == e2.Listener;
-        }
-
-        template<typename EventListener>
-        bool operator!=(const Event<EventListener> &e1, const Event<EventListener> &e2) {
-            return e1.Listener != e2.Listener;
-        }
 
         template<typename EventListener>
         template<typename... Args>
@@ -135,7 +140,7 @@ namespace xpe {
             std::lock_guard<std::mutex> lock(m_Mutex);
             LogInfo("EventBuffer::RemoveEvent()");
 
-            for (std::vector<Event<EventListener>>::iterator it = m_Events.begin(); it != m_Events.end(); it++) {
+            for (vector<Event<EventListener>>::iterator it = m_Events.begin(); it != m_Events.end(); it++) {
                 if (listener == it->Listener) {
                     m_Events.erase(it);
                     break;

@@ -101,7 +101,7 @@ namespace xpe
             xBuffer* VertexBuffer;
             xBuffer* IndexBuffer;
             xBuffer* InstanceBuffer;
-            xBuffer* ConstantBuffer;
+            vector<xBuffer*> ConstantBuffers;
             xShader* Shaders;
             xRenderTarget* RenderTarget;
             xDepthStencilState DepthStencilState;
@@ -135,7 +135,8 @@ namespace xpe
                 virtual void BindSampler(const GPUResource* sampler) = 0;
                 virtual void FreeSampler(const GPUResource* sampler) = 0;
                 
-                virtual xBuffer CreateBuffer(const xBuffer::xType& bufferType, usize byteSize, boolean duplicate) = 0;
+                xBuffer CreateBuffer(const xBuffer::xType& bufferType, usize byteSize, boolean duplicate);
+                virtual void CreateBuffer(xBuffer& buffer, const xBuffer::xType& bufferType, usize byteSize, boolean duplicate) = 0;
                 virtual void BindBuffer(const xBuffer* buffer) = 0;
                 virtual void WriteBuffer(const xBuffer& buffer, const void* data, usize dataByteSize) = 0;
                 virtual void WriteBufferOffset(const xBuffer& buffer, usize offset, const void* data, usize dataByteSize) = 0;

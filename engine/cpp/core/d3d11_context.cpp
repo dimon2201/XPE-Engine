@@ -367,9 +367,8 @@ void xpe::core::D3D11RenderingContext::FreeSampler(const GPUResource* sampler)
     }
 }
 
-xpe::core::xBuffer xpe::core::D3D11RenderingContext::CreateBuffer(const xBuffer::xType& bufferType, usize byteSize, boolean duplicate)
+void xpe::core::D3D11RenderingContext::CreateBuffer(xBuffer& buffer, const xBuffer::xType& bufferType, usize byteSize, boolean duplicate)
 {
-    xBuffer buffer = {};
     buffer.Type = bufferType;
     buffer.AppendOffset = 0;
 
@@ -427,8 +426,6 @@ xpe::core::xBuffer xpe::core::D3D11RenderingContext::CreateBuffer(const xBuffer:
 
         _device->CreateShaderResourceView((ID3D11Resource*)buffer.BufferResource.Instance, &srvDesc, (ID3D11ShaderResourceView**)&buffer.BufferResource.ViewInstance);
     }
-
-    return buffer;
 }
 
 void xpe::core::D3D11RenderingContext::BindBuffer(const xBuffer* buffer)
@@ -573,7 +570,9 @@ void xpe::core::D3D11RenderingContext::BindRenderPipeline(const xPipeline* pipel
     BindBuffer(_boundPipeline->VertexBuffer);
     BindBuffer(_boundPipeline->IndexBuffer);
     BindBuffer(_boundPipeline->InstanceBuffer);
-    BindBuffer(_boundPipeline->ConstantBuffer);
+    for (const auto* buffer : _boundPipeline->ConstantBuffers) {
+        BindBuffer(buffer);
+    }
     BindShader(_boundPipeline->Shaders);
     BindRenderTarget(_boundPipeline->RenderTarget);
     BindDepthStencilState(&_boundPipeline->DepthStencilState);

@@ -11,7 +11,6 @@ namespace xpe
             s32 Width;
             s32 Height;
             const char* Title;
-            uword GPUApi;
         };
 
         class ENGINE_API Window
@@ -25,7 +24,6 @@ namespace xpe
                 inline s32 GetWidth() { return _desc.Width; }
                 inline s32 GetHeight() { return _desc.Height; }
                 inline const char* GetTitle() { return _desc.Title; }
-                inline uword GetGPUApi() { return _desc.GPUApi; }
 
             private:
                 void* _instance;
