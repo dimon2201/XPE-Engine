@@ -120,6 +120,7 @@ namespace xpe {
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) ZoomSpeed / dt;
+            math::clamp(fov, MinFovDegree, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
         }
@@ -129,6 +130,7 @@ namespace xpe {
             auto& fov = Camera->Projection.FovDegree;
 
             fov += (float) ZoomSpeed / dt;
+            math::clamp(fov, MinFovDegree, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
         }
@@ -138,7 +140,9 @@ namespace xpe {
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) y * ZoomSpeed / dt;
-            math::clamp(fov, 0.0f, MaxFovDegree);
+            math::clamp(fov, MinFovDegree, MaxFovDegree);
+
+            LogInfo("Zoomed FOV {}", fov);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
         }

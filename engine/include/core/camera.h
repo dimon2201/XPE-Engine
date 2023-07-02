@@ -78,7 +78,7 @@ namespace xpe {
             eKey KeyMoveRight = eKey::D;
 
             float MoveSpeed = 0.01f;
-            float ZoomSpeed = 0.01f;
+            float ZoomSpeed = 3.0f;
 
             float HorizontalSensitivity = 1.0f;
             float VerticalSensitivity = 1.0f;
@@ -111,6 +111,7 @@ namespace xpe {
         public:
             cPerspectiveCameraComponent* Camera = nullptr;
             float MaxFovDegree = 45.0f;
+            float MinFovDegree = 1.0f;
 
         public:
             cPerspectiveCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)

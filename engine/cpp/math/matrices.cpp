@@ -27,7 +27,7 @@ namespace xpe {
 
         glm::mat4 PerspectiveMatrixUpdate(const PerspectiveMatrix &perspectiveMatrix) {
             return math::perspective(
-                    perspectiveMatrix.FovDegree,
+                    glm::radians(perspectiveMatrix.FovDegree),
                     perspectiveMatrix.AspectRatio,
                     perspectiveMatrix.Near,
                     perspectiveMatrix.Far
