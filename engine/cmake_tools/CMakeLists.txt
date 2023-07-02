@@ -1,7 +1,35 @@
+# set all config types available in engine project
+macro(add_engine_configs)
+
+    # define all engine build config types
+    set(CMAKE_CONFIGURATION_TYPES Debug;Release;)
+
+    set(LIB_PATH ${CMAKE_BINARY_DIR}/lib)
+    set(BIN_PATH ${CMAKE_BINARY_DIR}/bin)
+
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIB_PATH})
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIB_PATH})
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_PATH})
+
+    message(STATUS "Setting configuration types : ${CMAKE_CONFIGURATION_TYPES}")
+
+    foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+
+        message(STATUS "Configuration=${CONFIG}")
+
+        string(TOUPPER ${CONFIG} UPPER_CONFIG)
+
+        message(STATUS "Setting runtime output path ${BIN_PATH}/${CONFIG}")
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${UPPER_CONFIG} ${BIN_PATH}/${CONFIG})
+
+    endforeach()
+
+endmacro()
+
 # add engine definitions
 macro(add_engine_definitions)
+    add_engine_configs()
     add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
-    add_compile_definitions($<$<CONFIG:RelWithDebInfo>:DEBUG>)
 endmacro()
 
 # copying target dir to destination dir. If destination does not exist, create it.

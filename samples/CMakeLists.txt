@@ -16,7 +16,6 @@ add_engine_definitions()
 
 link_engine(${PROJECT_NAME} ../engine)
 
-copy_build_dir(samples/files bin/Debug/files)
-copy_build_dir(samples/files bin/Release/files)
-copy_build_dir(samples/files bin/RelWithDebInfo/files)
-copy_build_dir(samples/files bin/MinSizeRel/files)
+foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+    copy_build_dir(samples/files bin/${CONFIG}/files)
+endforeach()
