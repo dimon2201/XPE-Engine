@@ -19,7 +19,7 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
 
     switch (EngineConfig::GPU_API) {
 
-        case GraphicsAPI::DX11:
+        case eGPU_API::DX11:
             context = new D3D11RenderingContext();
             debugger = new D3D11Debugger();
             break;

@@ -65,7 +65,10 @@ namespace xpe {
             bool m_Updated = false;
         };
 
-        class cCameraController : public Object, public CursorEventListener, public WindowEventListener, public ScrollEventListener
+        class cCameraController : public Object,
+                public CursorEventListener,
+                public WindowEventListener,
+                public ScrollEventListener
         {
 
         public:
@@ -74,21 +77,19 @@ namespace xpe {
             eKey KeyMoveBackward = eKey::S;
             eKey KeyMoveRight = eKey::D;
 
-            float MoveSpeed = 10.0f;
-            float ZoomSpeed = 3.0f;
+            float MoveSpeed = 0.01f;
+            float ZoomSpeed = 0.01f;
 
             float HorizontalSensitivity = 1.0f;
             float VerticalSensitivity = 1.0f;
 
         public:
-            cCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, float* dt);
+            cCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, Time* time);
             virtual ~cCameraController() override;
 
-            void EnableMove();
             void EnableLook();
             void EnableZoom();
 
-            void DisableMove();
             void DisableLook();
             void DisableZoom();
 
@@ -102,8 +103,7 @@ namespace xpe {
         protected:
             cUserInputManager* m_UserInput = nullptr;
             CameraBuffer* m_CameraBuffer = nullptr;
-            float* m_Dt = nullptr;
-            bool m_EnableMove = false;
+            Time* m_Time = nullptr;
         };
 
         class ENGINE_API cPerspectiveCameraController : public cCameraController {
@@ -113,8 +113,8 @@ namespace xpe {
             float MaxFovDegree = 45.0f;
 
         public:
-            cPerspectiveCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, float* dt)
-            : cCameraController(userInput, cameraBuffer, dt), Camera(camera), m_ZoomedFovDegree(camera->Projection.FovDegree) {
+            cPerspectiveCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)
+            : cCameraController(userInput, cameraBuffer, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
                 m_CameraBuffer->SetCamera(camera);
             }
 
@@ -127,9 +127,6 @@ namespace xpe {
             void Look(const double x, const double y) override;
 
             void ScrollChanged(const double x, const double y) override;
-
-        private:
-            float m_ZoomedFovDegree = 0;
         };
 
         class ENGINE_API cOrthoCameraController : public cCameraController {
@@ -138,8 +135,8 @@ namespace xpe {
             cOrthoCameraComponent* Camera = nullptr;
 
         public:
-            cOrthoCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, float* dt)
-            : cCameraController(userInput, cameraBuffer, dt), Camera(camera) {
+            cOrthoCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, Time* time)
+            : cCameraController(userInput, cameraBuffer, time), Camera(camera) {
                 cameraBuffer->SetCamera(camera);
             }
 

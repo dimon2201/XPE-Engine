@@ -56,18 +56,13 @@ namespace xpe {
             m_Updated = true;
         }
 
-        cCameraController::cCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, float *dt)
-        : m_UserInput(userInput), m_CameraBuffer(cameraBuffer), m_Dt(dt) {
-            EnableMove();
+        cCameraController::cCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, Time* time)
+        : m_UserInput(userInput), m_CameraBuffer(cameraBuffer), m_Time(time) {
             EnableLook();
             EnableZoom();
         }
 
         cCameraController::~cCameraController() {
-        }
-
-        void cCameraController::EnableMove() {
-            m_EnableMove = true;
         }
 
         void cCameraController::EnableLook() {
@@ -76,10 +71,6 @@ namespace xpe {
 
         void cCameraController::EnableZoom() {
             m_UserInput->AddScrollEventListener(this, 2);
-        }
-
-        void cCameraController::DisableMove() {
-            m_EnableMove = false;
         }
 
         void cCameraController::DisableLook() {
@@ -95,10 +86,7 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::Move() {
-            if (!m_EnableMove)
-                return;
-
-            float dt = *m_Dt;
+            float dt = m_Time->Millis();
             float distance = MoveSpeed / dt;
             auto& position = Camera->Position;
             auto& front = Camera->Front;
@@ -109,7 +97,7 @@ namespace xpe {
             }
 
             else if (m_UserInput->isKeyPressed(KeyMoveLeft)) {
-                position -= glm::normalize(glm::cross(front, up)) * distance;
+                position += glm::normalize(glm::cross(front, up)) * distance;
             }
 
             else if (m_UserInput->isKeyPressed(KeyMoveBackward)) {
@@ -117,7 +105,7 @@ namespace xpe {
             }
 
             else if (m_UserInput->isKeyPressed(KeyMoveRight)) {
-                position += glm::normalize(glm::cross(front, up)) * distance;
+                position -= glm::normalize(glm::cross(front, up)) * distance;
             }
 
             else
@@ -128,31 +116,29 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::ZoomIn() {
-            float dt = *m_Dt;
+            float dt = m_Time->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) ZoomSpeed / dt;
-            math::clamp(fov, 1.0f, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
         }
 
         void cPerspectiveCameraController::ZoomOut() {
-            float dt = *m_Dt;
+            float dt = m_Time->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
-            fov -= (float) ZoomSpeed / dt;
-            math::clamp(fov, 1.0f, MaxFovDegree);
+            fov += (float) ZoomSpeed / dt;
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
         }
 
         void cPerspectiveCameraController::ScrollChanged(const double x, const double y) {
-            float dt = *m_Dt;
+            float dt = m_Time->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) y * ZoomSpeed / dt;
-            math::clamp(fov, 1.0f, MaxFovDegree);
+            math::clamp(fov, 0.0f, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
         }
@@ -161,7 +147,7 @@ namespace xpe {
             m_UserInput->CaptureCursor();
 
             auto& cursorDelta = m_UserInput->GetMouseCursor().Delta;
-            float& dt = *m_Dt;
+            float dt = m_Time->Millis();
             auto& front = Camera->Front;
             auto& up = Camera->Up;
 
@@ -169,7 +155,7 @@ namespace xpe {
                 float pitchDt = cursorDelta.y * VerticalSensitivity * 0.001f / dt;
                 float yawDt = cursorDelta.x * HorizontalSensitivity * 0.001f / dt;
                 glm::vec3 right = glm::cross(front, up);
-                glm::quat q = glm::normalize(glm::cross(glm::angleAxis(pitchDt, right), glm::angleAxis(-yawDt, up)));
+                glm::quat q = glm::normalize(glm::cross(glm::angleAxis(-pitchDt, right), glm::angleAxis(yawDt, up)));
                 front = glm::rotate(q, front);
                 m_CameraBuffer->SetView(Camera);
             }

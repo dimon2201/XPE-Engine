@@ -2,7 +2,7 @@ namespace xpe {
 
     namespace core {
 
-        GraphicsAPI EngineConfig::GPU_API = GraphicsAPI::DX11;
+        eGPU_API EngineConfig::GPU_API = eGPU_API::DX11;
 
     }
 

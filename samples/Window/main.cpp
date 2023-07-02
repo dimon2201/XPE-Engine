@@ -140,6 +140,8 @@ public:
         {
             xpe::core::xCPUProfiler pro(&_time);
 
+            _cameraController->Move();
+
             _canvas->Clear(glm::vec4(1.0f));
 
             context->BindRenderPipeline(&_pipeline);
@@ -172,7 +174,7 @@ public:
         if (logDeltaLimit > 2000)
         {
             logDeltaLimit = 0;
-            LogDelta(_time);
+            LogDelta(_time.Seconds());
         }
     }
 
@@ -201,7 +203,7 @@ public:
     }
 
 private:
-    float _time = 0;
+    Time _time = 0;
     Canvas* _canvas;
     ECSManager* _ecs;
     BatchManager* _batch;
@@ -217,7 +219,7 @@ int main()
 {
     GameApp app;
 
-    EngineConfig::GPU_API = GraphicsAPI::DX11;
+    EngineConfig::GPU_API = eGPU_API::DX11;
 
     WindowDescriptor desc;
     desc.Width = 800;

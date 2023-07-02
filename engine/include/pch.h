@@ -53,6 +53,7 @@
 #include <core/allocator.h>
 #include <core/vector.h>
 #include <core/ecs.hpp>
+#include <core/time.h>
 #include <core/profiler.hpp>
 #include <core/logger.h>
 #include <core/debug_break.h>
