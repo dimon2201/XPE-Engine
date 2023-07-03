@@ -127,6 +127,8 @@ namespace xpe {
             void Look(const double x, const double y) override;
 
             void ScrollChanged(const double x, const double y) override;
+
+            void WindowFrameResized(int width, int height) override;
         };
 
         class ENGINE_API cOrthoCameraController : public cCameraController {

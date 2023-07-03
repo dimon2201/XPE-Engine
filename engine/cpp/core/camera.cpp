@@ -53,9 +53,13 @@ namespace xpe {
         : m_UserInput(userInput), m_CameraBuffer(cameraBuffer), m_Time(time) {
             EnableLook();
             EnableZoom();
+            m_UserInput->AddWindowEventListener(this, 2);
         }
 
         cCameraController::~cCameraController() {
+            DisableLook();
+            DisableZoom();
+            m_UserInput->RemoveWindowEventListener(this);
         }
 
         void cCameraController::EnableLook() {
@@ -161,6 +165,12 @@ namespace xpe {
                 m_CameraBuffer->SetView(Camera);
                 m_CameraBuffer->Flush();
             }
+        }
+
+        void cPerspectiveCameraController::WindowFrameResized(int width, int height) {
+            Camera->Projection.AspectRatio = static_cast<float>(width) / static_cast<float>(height);
+            m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer->Flush();
         }
 
         void cOrthoCameraController::Move() {
