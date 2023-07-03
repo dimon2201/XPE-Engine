@@ -146,8 +146,6 @@ public:
 
             context->BindRenderPipeline(&_pipeline);
 
-            _cameraBuffer.Flush();
-
             static cTransformComponent tr("transform");
 
             _batch->BeginBatch(std::string("NewGeometryData"));

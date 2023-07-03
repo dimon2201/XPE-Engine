@@ -62,7 +62,6 @@ namespace xpe {
         private:
             RenderingContext_Interface* m_Context = nullptr;
             CameraBufferData m_Data;
-            bool m_Updated = false;
         };
 
         class cCameraController : public Object,

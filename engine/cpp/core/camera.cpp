@@ -14,10 +14,7 @@ namespace xpe {
         }
 
         void CameraBuffer::Flush() {
-            if (m_Updated) {
-                m_Context->WriteBuffer(*this, &m_Data, sizeof(m_Data));
-                m_Updated = false;
-            }
+            m_Context->WriteBuffer(*this, &m_Data, sizeof(m_Data));
         }
 
         void CameraBuffer::SetCamera(cPerspectiveCameraComponent *camera) {
@@ -34,12 +31,10 @@ namespace xpe {
 
         void CameraBuffer::SetPerspectiveProjection(const math::PerspectiveMatrix &projection) {
             m_Data.Projection = math::PerspectiveMatrixUpdate(projection);
-            m_Updated = true;
         }
 
         void CameraBuffer::SetOrthoProjection(const math::OrthoMatrix &projection) {
             m_Data.Projection = math::OrthoMatrixUpdate(projection);
-            m_Updated = true;
         }
 
         void CameraBuffer::SetView(cCameraComponent *camera) {
@@ -48,12 +43,10 @@ namespace xpe {
             view.Up = camera->Up;
             view.Center = camera->Position + camera->Front;
             m_Data.View = math::ViewMatrixUpdate(view);
-            m_Updated = true;
         }
 
         void CameraBuffer::SetPosition(cCameraComponent *camera) {
             m_Data.Position = camera->Position;
-            m_Updated = true;
         }
 
         cCameraController::cCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, Time* time)
@@ -113,6 +106,7 @@ namespace xpe {
 
             m_CameraBuffer->SetView(Camera);
             m_CameraBuffer->SetPosition(Camera);
+            m_CameraBuffer->Flush();
         }
 
         void cPerspectiveCameraController::ZoomIn() {
@@ -123,6 +117,7 @@ namespace xpe {
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer->Flush();
         }
 
         void cPerspectiveCameraController::ZoomOut() {
@@ -133,6 +128,7 @@ namespace xpe {
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer->Flush();
         }
 
         void cPerspectiveCameraController::ScrollChanged(const double x, const double y) {
@@ -145,6 +141,7 @@ namespace xpe {
             LogInfo("Zoomed FOV {}", fov);
 
             m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer->Flush();
         }
 
         void cPerspectiveCameraController::Look(const double x, const double y) {
@@ -162,6 +159,7 @@ namespace xpe {
                 glm::quat q = glm::normalize(glm::cross(glm::angleAxis(-pitchDt, right), glm::angleAxis(yawDt, up)));
                 front = glm::rotate(q, front);
                 m_CameraBuffer->SetView(Camera);
+                m_CameraBuffer->Flush();
             }
         }
 
