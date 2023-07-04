@@ -2,6 +2,7 @@
 
 #include <d3d11.h>
 #include <core/rendering.hpp>
+#include <core/shader.h>
 
 namespace xpe
 {
@@ -23,12 +24,12 @@ namespace xpe
                 void FreeRenderTarget(const xRenderTarget& renderTarget) override final;
                 void Present() override final;
                 
-                void CreateShaderFromString(xShader& shader) override final;
-                void BindShader(const xShader* shader) override final;
-                void FreeShader(const xShader& shader) override final;
+                void CreateShader(Shader& shader) override final;
+                void BindShader(const Shader* shader) override final;
+                void FreeShader(const Shader& shader) override final;
                 
                 GPUResource CreateTexture(const void* texture, const glm::ivec2& dimensions) override final;
-                void BindTexture(const GPUResource* texture, const xShader::eType& shaderType, const u32 slot) override final;
+                void BindTexture(const GPUResource* texture, const eShaderType& shaderType, const u32 slot) override final;
                 void FreeTexture(const GPUResource* texture) override final;
                 
                 virtual GPUResource CreateSampler() override final;
@@ -70,7 +71,7 @@ namespace xpe
                 GPUResource _swapChainTexture;
                 GPUResource _sampler;
                 xRenderTarget _rt;
-                xShader* _boundShader;
+                Shader* _boundShader;
                 xRenderTarget* _boundRT;
                 xPipeline* _boundPipeline;
         };

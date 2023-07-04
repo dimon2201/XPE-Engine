@@ -5,5 +5,6 @@
 #include <core/d3d11_context.hpp>
 #include <core/image_manager.hpp>
 #include <core/rendering.hpp>
+#include <core/shader.h>
 #include <core/camera.h>
 #include <core/windowing.hpp>

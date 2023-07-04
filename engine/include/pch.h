@@ -50,14 +50,22 @@
 #include <core/types.hpp>
 #include <core/singleton.h>
 #include <core/memory_pool.hpp>
-#include <core/allocator.h>
-#include <core/vector.h>
+
+// STL customization
+#include <stl/allocator.h>
+#include <stl/string.h>
+#include <stl/vector.h>
+#include <stl/unordered_map.h>
+#include <stl/map.h>
+
+// Core
 #include <core/ecs.hpp>
 #include <core/time.h>
 #include <core/profiler.hpp>
 #include <core/logger.h>
 #include <core/debug_break.h>
 #include <core/debugger.h>
+#include <core/file_manager.h>
 
 // Math
 #include <math/math.h>

@@ -1,0 +1,15 @@
+struct VSOut
+{
+    float3 positionWorld : XPE_POSITION_WORLD;
+    float2 texcoord : XPE_TEXCOORD2;
+    float3 normal : XPE_NORMAL2;
+    float4 positionClip : SV_POSITION;
+};
+
+float4 ps_main(VSOut psIn) : SV_TARGET
+{
+    float3 lightPos = float3(0.0, 100.0, 0.0);
+    float3 pointToLight = normalize(lightPos - psIn.positionWorld);
+    float lambert = max(0.15, dot(pointToLight, psIn.normal));
+    return float4(lambert, lambert, lambert, 1.0);
+}

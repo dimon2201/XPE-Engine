@@ -34,6 +34,8 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
 
     InitDebugger(debugger, context);
 
+    ShaderManager::Init(context);
+
     ui->Init(pWindow->GetInstance());
 
     app->Init(pWindow, context, ui);
@@ -51,6 +53,8 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
     }
 
     LogDebugMessages();
+
+    ShaderManager::Free();
 
     FreeDebugger();
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <core/rendering.hpp>
+#include <core/shader.h>
 
 namespace xpe
 {
@@ -19,13 +20,13 @@ namespace xpe
                 inline s32 GetWidth() { return _size.x; }
                 inline s32 GetHeight() { return _size.y; }
                 inline xRenderTarget* GetRenderTarget() { return &_rt; }
-                inline xShader* GetShader() { return &_quad; }
+                inline Shader* GetShader() { return &m_QuadShader; }
 
             private:
                 glm::ivec2 _size;
                 RenderingContext_Interface* _context;
                 xRenderTarget _rt;
-                xShader _quad;
+                Shader m_QuadShader;
         };
     }
 }
