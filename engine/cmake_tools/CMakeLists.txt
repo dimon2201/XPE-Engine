@@ -8,7 +8,7 @@ macro(add_engine_configs)
     set(BIN_PATH ${CMAKE_BINARY_DIR}/bin)
 
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIB_PATH})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIB_PATH})
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_PATH})
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_PATH})
 
     message(STATUS "Setting configuration types : ${CMAKE_CONFIGURATION_TYPES}")

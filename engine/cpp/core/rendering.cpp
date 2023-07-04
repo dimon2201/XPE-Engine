@@ -1,5 +1,15 @@
 #include <core/rendering.hpp>
 
+xpe::core::xBuffer xpe::core::RenderingContext_Interface::CreateBuffer(
+        const xpe::core::xBuffer::xType &bufferType,
+        xpe::core::usize byteSize,
+        xpe::core::boolean duplicate)
+{
+    xBuffer buffer;
+    CreateBuffer(buffer, bufferType, byteSize, duplicate);
+    return buffer;
+}
+
 xpe::core::BatchManager::BatchManager(RenderingContext_Interface* context)
 {
     _context = context;

@@ -24,7 +24,7 @@ namespace xpe {
             Ref<FileSink> fileSink = createRef<FileSink>(filepath, true);
             fileSink->set_pattern(pattern);
 
-            std::vector<Sink> sinks = { consoleSink, fileSink };
+            core::vector<Sink> sinks = { consoleSink, fileSink };
 
             // setup logger
             Ref<spdlog::logger> logger = createRef<spdlog::logger>(logName, std::begin(sinks), std::end(sinks));

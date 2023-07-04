@@ -19,6 +19,8 @@ namespace xpe {
             InitKeyCallbacks();
             InitMouseCallbacks();
             InitCursorCallbacks();
+            InitScrollCallbacks();
+            InitCharCallbacks();
         }
 
         void cUserInputManager::InitWindowCallbacks() {
@@ -116,13 +118,6 @@ namespace xpe {
 
                 }
             });
-
-            glfwSetScrollCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetMouseEvents().GetEvents()) {
-                    event.Listener->MouseScrollChanged(x, y);
-                }
-            });
         }
 
         void cUserInputManager::InitCursorCallbacks() {
@@ -143,6 +138,31 @@ namespace xpe {
                     for (const auto& event : ui->GetCursorEvents().GetEvents()) {
                         event.Listener->CursorLeft();
                     }
+                }
+            });
+        }
+
+        void cUserInputManager::InitScrollCallbacks() {
+            glfwSetScrollCallback(s_Window, [](GLFWwindow* window, double x, double y) {
+                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
+                for (const auto& event : ui->GetScrollEvents().GetEvents()) {
+                    event.Listener->ScrollChanged(x, y);
+                }
+            });
+        }
+
+        void cUserInputManager::InitCharCallbacks() {
+            glfwSetCharCallback(s_Window, [](GLFWwindow* window, u32 charUnicode) {
+                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
+                for (const auto& event : ui->GetCharEvents().GetEvents()) {
+                    event.Listener->CharTyped(charUnicode);
+                }
+            });
+
+            glfwSetCharModsCallback(s_Window, [](GLFWwindow* window, u32 charUnicode, int mods) {
+                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
+                for (const auto& event : ui->GetCharEvents().GetEvents()) {
+                    event.Listener->CharModsTyped(charUnicode, mods);
                 }
             });
         }
@@ -221,6 +241,14 @@ namespace xpe {
             m_CursorEvents.AddEvent(listener, priority);
         }
 
+        void cUserInputManager::AddScrollEventListener(ScrollEventListener *listener, int priority) {
+            m_ScrollEvents.AddEvent(listener, priority);
+        }
+
+        void cUserInputManager::AddCharEventListener(CharEventListener *listener, int priority) {
+            m_CharEvents.AddEvent(listener, priority);
+        }
+
         void cUserInputManager::RemoveWindowEventListener(WindowEventListener* listener) {
             m_WindowEvents.RemoveEvent(listener);
         }
@@ -235,6 +263,14 @@ namespace xpe {
 
         void cUserInputManager::RemoveCursorEventListener(CursorEventListener* listener) {
             m_CursorEvents.RemoveEvent(listener);
+        }
+
+        void cUserInputManager::RemoveScrollEventListener(ScrollEventListener *listener) {
+            m_ScrollEvents.RemoveEvent(listener);
+        }
+
+        void cUserInputManager::RemoveCharEventListener(CharEventListener *listener) {
+            m_CharEvents.RemoveEvent(listener);
         }
 
     }

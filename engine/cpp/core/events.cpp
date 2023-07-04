@@ -40,10 +40,6 @@ namespace xpe {
 
         }
 
-        void MouseEventListener::MouseScrollChanged(const double x, const double y) {
-
-        }
-
         void KeyEventListener::KeyPressed(const eKey key) {
 
         }
@@ -65,6 +61,18 @@ namespace xpe {
         }
 
         void CursorEventListener::CursorLeft() {
+
+        }
+
+        void ScrollEventListener::ScrollChanged(const double x, const double y) {
+
+        }
+
+        void CharEventListener::CharTyped(const u32 charUnicode) {
+
+        }
+
+        void CharEventListener::CharModsTyped(const u32 charUnicode, const int mods) {
 
         }
 

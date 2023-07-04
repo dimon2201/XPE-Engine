@@ -35,7 +35,7 @@ namespace xpe
                 virtual void BindSampler(const GPUResource* sampler) override final;
                 virtual void FreeSampler(const GPUResource* sampler) override final;
                 
-                xBuffer CreateBuffer(const xBuffer::xType& bufferType, usize byteSize, boolean duplicate) override final;
+                void CreateBuffer(xBuffer& buffer, const xBuffer::xType& bufferType, usize byteSize, boolean duplicate) override final;
                 void BindBuffer(const xBuffer* buffer) override final;
                 void WriteBuffer(const xBuffer& buffer, const void* data, usize dataByteSize) override final;
                 void WriteBufferOffset(const xBuffer& buffer, usize offset, const void* data, usize dataByteSize) override final;

@@ -45,7 +45,6 @@ namespace xpe
 
         constexpr boolean K_TRUE                    = 1;
         constexpr boolean K_FALSE                   = 0;
-        constexpr uword K_GPUAPI_D3D11              = 0;
         constexpr usize K_MEMORY_KIB                = 1024;
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
         constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;

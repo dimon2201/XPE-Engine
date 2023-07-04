@@ -1,5 +1,4 @@
 #include <core/core.hpp>
-#include <viewer/viewer.hpp>
 #include <gltf/gltf.hpp>
 
 using namespace xpe::core;
@@ -24,6 +23,11 @@ public:
         _canvas = new Canvas(window->GetWidth(), window->GetHeight(), context);
         _ecs = new ECSManager();
         _batch = new BatchManager(context);
+
+        _cameraBuffer.Init(context);
+
+        static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
+        _cameraController = new cPerspectiveCameraController(ui, &_cameraBuffer, &perspectiveCamera, &_time);
 
         xpe::gltf::cGLTFModel model("files/cube.gltf");
         xpe::gltf::xMesh* mesh = model.GetMesh(0);
@@ -60,9 +64,11 @@ public:
                     {\
                         float4 Position;\
                     };\
-                    cbuffer ConstantBuffer : register(b0)\
+                    cbuffer ConstantBuffers : register(b0)\
                     {\
-                        float4x4 ViewProjection;\
+                        float4x4 Projection;\
+                        float4x4 View;\
+                        float3 CameraPosition;\
                     };\
                     StructuredBuffer<RenderInstance> instances : register(t0);\
                     \
@@ -72,6 +78,7 @@ public:
                         vsOut.positionWorld = 0.5 * vsIn.positionLocal + instances[vsIn.instanceIndex].Position.xyz;\
                         vsOut.texcoord = vsIn.texcoord;\
                         vsOut.normal = vsIn.normal;\
+                        float4x4 ViewProjection = mul(Projection, View);\
                         vsOut.positionClip = mul(ViewProjection, float4(vsOut.positionWorld, 1.0));\
                         return vsOut;\
                     }";
@@ -97,7 +104,8 @@ public:
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
         _pipeline.InstanceBuffer = _batch->GetInstanceBuffer();
-        _pipeline.ConstantBuffer = _batch->GetConstantBuffer();
+        _pipeline.ConstantBuffers.emplace_back(_batch->GetConstantBuffer());
+        _pipeline.ConstantBuffers.emplace_back(&_cameraBuffer);
         _pipeline.Shaders = new xShader();
         _pipeline.Shaders->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         _pipeline.Shaders->Type = xShader::eType::VERTEX_PIXEL;
@@ -129,24 +137,18 @@ public:
 
     void Update(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
     {
-        static float time = 0.0f;
         {
-            xpe::core::xCPUProfiler pro(&time);
+            xpe::core::xCPUProfiler pro(&_time);
+
+            _cameraController->Move();
 
             _canvas->Clear(glm::vec4(1.0f));
 
             context->BindRenderPipeline(&_pipeline);
 
             static cTransformComponent tr("transform");
-            static cViewerComponent vi("viewer");
-
-            xpe::viewer::ViewerUpdate(time, ui, &tr, &vi);
-
-            xConstantBuffer cbuffer;
-            cbuffer.ViewerViewProjection = vi.ViewProjection;
 
             _batch->BeginBatch(std::string("NewGeometryData"));
-            _batch->RecordConstantBuffer(&cbuffer);
             for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
             {
                 for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
@@ -170,13 +172,14 @@ public:
         if (logDeltaLimit > 2000)
         {
             logDeltaLimit = 0;
-            LogDelta(time);
+            LogDelta(_time.Seconds());
         }
     }
 
     void Free() override
     {
         LogInfo("GameApp::Free()");
+        _cameraBuffer.Free();
     }
 
     void WindowClosed() override
@@ -198,6 +201,7 @@ public:
     }
 
 private:
+    Time _time = 0;
     Canvas* _canvas;
     ECSManager* _ecs;
     BatchManager* _batch;
@@ -205,17 +209,20 @@ private:
     xInputLayout _layout;
     Window* _window;
     cUserInputManager* _ui;
+    CameraBuffer _cameraBuffer;
+    cPerspectiveCameraController* _cameraController;
 };
 
 int main()
 {
     GameApp app;
 
+    EngineConfig::GPU_API = eGPU_API::DX11;
+
     WindowDescriptor desc;
     desc.Width = 800;
     desc.Height = 600;
     desc.Title = "Game App Test";
-    desc.GPUApi = K_GPUAPI_D3D11;
 
     LoggerDescriptor logDesc;
     logDesc.Name = "XPE-Window";
