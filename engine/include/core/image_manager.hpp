@@ -8,6 +8,12 @@ namespace xpe
     {
         struct xImage
         {
+            enum class eFileFormat
+            {
+                PNG = 0,
+                JPEG = 1
+            };
+
             enum class eFormat
             {
                 RGB8 = 0,
@@ -21,7 +27,10 @@ namespace xpe
             usize Width;
             usize Height;
             usize Depth;
+            usize ChannelCount;
             eFormat Format;
+            eFileFormat FileFormat;
+            boolean OnMemoryPool;
             void* PixelData;
         };
 
@@ -31,7 +40,10 @@ namespace xpe
                 cImageManager();
                 ~cImageManager();
 
-                xImage Load(const char* filePath, const xImage::eFormat& format);
+                static xImage Load(const char* filePath, const xImage::eFormat& format, const xImage::eFileFormat& fileFormat);
+                static void Write(const char* filePath, const xImage& image);
+                static void Free(xImage& image);
+                static xImage Resize(xImage& input, usize outputWidth, usize outputHeight);
         };
     }
 }
