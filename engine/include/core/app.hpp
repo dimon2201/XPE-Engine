@@ -3,12 +3,15 @@
 #include <core/windowing.hpp>
 #include <core/events.h>
 
-namespace xpe
-{
-    namespace core
-    {
+#include <rendering/context.hpp>
+
+namespace xpe {
+
+    namespace core {
+
+        using namespace xpe::render;
+
         class Window;
-        class RenderingContext_Interface;
         class cUserInputManager;
 
         class ENGINE_API App_Interface {
@@ -17,8 +20,8 @@ namespace xpe
             App_Interface() {}
             ~App_Interface() {}
 
-            virtual void Init(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) = 0;
-            virtual void Update(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) = 0;
+            virtual void Init(Window* window, Context* context, cUserInputManager* ui) = 0;
+            virtual void Update(Window* window, Context* context, cUserInputManager* ui) = 0;
             virtual void Free() = 0;
 
         protected:
@@ -28,4 +31,5 @@ namespace xpe
 
         void ENGINE_API RunApp(App_Interface* app, const WindowDescriptor& desc, const LoggerDescriptor& logDesc);
     }
+
 }

@@ -2,13 +2,18 @@
 
 #include <core/user_input.hpp>
 
+#include <rendering/context.hpp>
+
 namespace xpe {
 
-    namespace core {
+    namespace control {
+
+        using namespace xpe::core;
+        using namespace xpe::render;
 
         struct ENGINE_API cCameraComponent : public cComponent
         {
-            cCameraComponent(const std::string& usid) : cComponent(usid)
+            cCameraComponent(const string& usid) : cComponent(usid)
             {}
 
             glm::vec3 Position = { 0, 0, 10 };
@@ -22,7 +27,7 @@ namespace xpe {
 
         struct ENGINE_API cPerspectiveCameraComponent : public cCameraComponent
         {
-            cPerspectiveCameraComponent(const std::string& usid) : cCameraComponent(usid)
+            cPerspectiveCameraComponent(const string& usid) : cCameraComponent(usid)
             {}
 
             math::PerspectiveMatrix Projection;
@@ -30,7 +35,7 @@ namespace xpe {
 
         struct ENGINE_API cOrthoCameraComponent : public cCameraComponent
         {
-            cOrthoCameraComponent(const std::string& usid) : cCameraComponent(usid)
+            cOrthoCameraComponent(const string& usid) : cCameraComponent(usid)
             {}
 
             math::OrthoMatrix Projection;
@@ -43,11 +48,10 @@ namespace xpe {
             float padding_0 = 0;
         };
 
-        class ENGINE_API CameraBuffer : public xBuffer {
+        class ENGINE_API CameraBuffer : public Buffer {
 
         public:
-            void Init(RenderingContext_Interface* context);
-
+            void Init(Context* context);
             void Free();
 
             void Flush();
@@ -60,7 +64,7 @@ namespace xpe {
             void SetPosition(cCameraComponent* camera);
 
         private:
-            RenderingContext_Interface* m_Context = nullptr;
+            Context* m_Context = nullptr;
             CameraBufferData m_Data;
         };
 

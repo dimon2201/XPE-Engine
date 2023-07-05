@@ -240,7 +240,7 @@ private:
   bool collectComments_{};
 }; // Reader
 
-/** Interface for reading JSON from a char array.
+/** Context for reading JSON from a char array.
  */
 class JSON_API CharReader {
 public:

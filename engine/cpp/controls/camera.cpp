@@ -1,12 +1,13 @@
-#include <core/camera.h>
+#include <rendering/context.hpp>
+#include <controls/camera.h>
 
 namespace xpe {
 
-    namespace core {
+    namespace control {
 
-        void CameraBuffer::Init(RenderingContext_Interface *context) {
+        void CameraBuffer::Init(Context *context) {
             m_Context = context;
-            m_Context->CreateBuffer(*this, xType::CONSTANT, sizeof(CameraBufferData), K_FALSE);
+            m_Context->CreateBuffer(*this, eBufferType::CONSTANT, sizeof(CameraBufferData), K_FALSE);
         }
 
         void CameraBuffer::Free() {

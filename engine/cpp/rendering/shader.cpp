@@ -1,8 +1,9 @@
-#include <core/shader.h>
+#include <rendering/context.hpp>
+#include <rendering/shader.h>
 
 namespace xpe {
 
-    namespace core {
+    namespace render {
 
         Shader* ShaderBuilder::Build(const string& name) {
             m_Context->CreateShader(*m_Shader);
@@ -136,18 +137,18 @@ namespace xpe {
             return *this;
         }
 
-        RenderingContext_Interface* ShaderManager::s_Context = nullptr;
+        Context* ShaderManager::s_Context = nullptr;
         ShaderBuilder ShaderManager::s_ShaderBuilder;
         unordered_map<string, Shader> ShaderManager::s_ShaderTable;
         Shader ShaderManager::s_TempShader;
 
-        void ShaderManager::Init(RenderingContext_Interface* context) {
+        void ShaderManager::Init(Context* context) {
             s_Context = context;
             s_ShaderBuilder = { context, &s_TempShader };
         }
 
         void ShaderManager::Free() {
-            for (const auto& shader : s_ShaderTable) {
+            for (auto& shader : s_ShaderTable) {
                 s_Context->FreeShader(shader.second);
             }
             s_ShaderTable.clear();

@@ -1,15 +1,16 @@
 #pragma once
 
 #include <d3d11.h>
+#include <rendering/debugger.h>
 
 namespace xpe {
 
-    namespace core {
+    namespace render {
 
         class ENGINE_API D3D11Debugger : public Debugger {
 
         public:
-            void Init(RenderingContext_Interface* const context) override;
+            void Init(Context* const context) override;
             void Free() override;
             DebugMessage GetLastMessage() override;
             std::vector<DebugMessage> GetMessageQueue() override;

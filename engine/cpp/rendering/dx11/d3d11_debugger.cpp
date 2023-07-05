@@ -1,10 +1,10 @@
-#include <core/d3d11_debugger.h>
+#include <rendering/dx11/d3d11_debugger.h>
 
 namespace xpe {
 
-    namespace core {
+    namespace render {
 
-        void D3D11Debugger::Init(RenderingContext_Interface* const context) {
+        void D3D11Debugger::Init(Context* const context) {
             m_Device = reinterpret_cast<ID3D11Device*>(context->GetDevice());
             m_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&m_Debug);
             m_Debug->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&m_InfoQueue);

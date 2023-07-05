@@ -2,6 +2,8 @@
 #include <gltf/gltf.hpp>
 
 using namespace xpe::core;
+using namespace xpe::render;
+using namespace xpe::control;
 
 class GameApp : public App_Interface, public WindowEventListener, public KeyEventListener, public CursorEventListener
 {
@@ -9,7 +11,7 @@ public:
     GameApp() {}
     ~GameApp() {}
 
-    void Init(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
+    void Init(Window* window, Context* context, cUserInputManager* ui) override final
     {
         LogInfo("GameApp::Init()");
 
@@ -58,13 +60,13 @@ public:
         _layout.StrideByteSize = xpe::gltf::cGLTFModel::k_vertexSize;
         _layout.EntryCount = 3;
         _layout.Entries[0].Name = "XPE_POSITION_LOCAL";
-        _layout.Entries[0].Format = xInputLayout::xEntry::eFormat::VEC3;
+        _layout.Entries[0].Format = InputLayout::Entry::eFormat::VEC3;
         _layout.Entries[0].ByteSize = 12;
         _layout.Entries[1].Name = "XPE_TEXCOORD";
-        _layout.Entries[1].Format = xInputLayout::xEntry::eFormat::VEC2;
+        _layout.Entries[1].Format = InputLayout::Entry::eFormat::VEC2;
         _layout.Entries[1].ByteSize = 8;
         _layout.Entries[2].Name = "XPE_NORMAL";
-        _layout.Entries[2].Format = xInputLayout::xEntry::eFormat::VEC3;
+        _layout.Entries[2].Format = InputLayout::Entry::eFormat::VEC3;
         _layout.Entries[2].ByteSize = 12;
         _pipeline.InputLayout = _layout;
         _pipeline.RenderTarget = _canvas->GetRenderTarget();
@@ -72,7 +74,7 @@ public:
         context->CreateRenderPipeline(_pipeline);
     }
 
-    void Update(Window* window, RenderingContext_Interface* context, cUserInputManager* ui) override final
+    void Update(Window* window, Context* context, cUserInputManager* ui) override final
     {
         {
             xpe::core::xCPUProfiler pro(&_time);
@@ -92,7 +94,7 @@ public:
                 {
                     for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
                     {
-                        xRenderInstance instance;
+                        RenderInstance instance;
                         instance.Position = glm::vec4(x, y, z, 0.0f);
                         _batch->RecordInstance(instance);
                     }
@@ -142,8 +144,8 @@ private:
     Canvas* _canvas;
     ECSManager* _ecs;
     BatchManager* _batch;
-    xPipeline _pipeline;
-    xInputLayout _layout;
+    Pipeline _pipeline;
+    InputLayout _layout;
     Window* _window;
     cUserInputManager* _ui;
     CameraBuffer _cameraBuffer;
@@ -156,16 +158,16 @@ int main()
 
     EngineConfig::GPU_API = eGPU_API::DX11;
 
-    WindowDescriptor desc;
-    desc.Width = 800;
-    desc.Height = 600;
-    desc.Title = "Game App Test";
+    WindowDescriptor winDesc;
+    winDesc.Width = 800;
+    winDesc.Height = 600;
+    winDesc.Title = "Game App Test";
 
     LoggerDescriptor logDesc;
     logDesc.Name = "XPE-Window";
     logDesc.Backtrace = 32;
 
-    RunApp(&app, desc, logDesc);
+    RunApp(&app, winDesc, logDesc);
 
     return 0;
 }

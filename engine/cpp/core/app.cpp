@@ -2,8 +2,8 @@
 #include <core/user_input.hpp>
 
 // API specific includes
-#include <core/d3d11_context.hpp>
-#include <core/d3d11_debugger.h>
+#include <rendering/dx11/d3d11_context.hpp>
+#include <rendering/dx11/d3d11_debugger.h>
 
 void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const LoggerDescriptor& logDesc)
 {
@@ -14,13 +14,13 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
 
     cUserInputManager* ui = new cUserInputManager();
 
-    RenderingContext_Interface* context = nullptr;
+    Context* context = nullptr;
     Debugger* debugger = nullptr;
 
     switch (EngineConfig::GPU_API) {
 
         case eGPU_API::DX11:
-            context = new D3D11RenderingContext();
+            context = new D3D11Context();
             debugger = new D3D11Debugger();
             break;
 

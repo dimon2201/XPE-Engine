@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/rendering.hpp>
+#include <rendering/context.hpp>
 
 #ifdef DEBUG
 
@@ -22,7 +22,9 @@
 
 namespace xpe {
 
-    namespace core {
+    namespace render {
+
+        using namespace core;
 
         enum class eDebugErrorType {
             D_NO_ERROR_TYPE,
@@ -84,12 +86,10 @@ namespace xpe {
 
         };
 
-        class RenderingContext_Interface;
-
         class ENGINE_API Debugger {
 
         public:
-            virtual void Init(RenderingContext_Interface* const context) = 0;
+            virtual void Init(Context* const context) = 0;
             virtual void Free() = 0;
 
             virtual DebugMessage GetLastMessage() = 0;
@@ -112,7 +112,7 @@ namespace xpe {
                 return instance;
             }
 
-            void Init(Debugger* const debugger, RenderingContext_Interface* const context);
+            void Init(Debugger* const debugger, Context* const context);
             void Free();
 
             void LogMessages();

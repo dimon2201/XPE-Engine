@@ -1,8 +1,10 @@
+#include <rendering/debugger.h>
+
 namespace xpe {
 
-    namespace core {
+    namespace render {
 
-        void DebugManager::Init(Debugger *const debugger, RenderingContext_Interface *const context) {
+        void DebugManager::Init(Debugger *const debugger, Context *const context) {
             m_Debugger = debugger;
             m_Debugger->Init(context);
             m_Debugger->SetCallback(this);

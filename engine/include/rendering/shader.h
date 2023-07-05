@@ -2,11 +2,11 @@
 
 namespace xpe {
 
-    namespace core {
+    namespace render {
 
-        class RenderingContext_Interface;
+        class Context;
 
-        enum eShaderType {
+        enum class eShaderType {
             VERTEX = 0,
             PIXEL = 1,
             GEOMETRY = 2,
@@ -18,21 +18,17 @@ namespace xpe {
         struct ENGINE_API ShaderStage final {
             eShaderType Type;
             GPUResource Resource;
-            void* ByteCode;
-            usize ByteCodeSize;
+            Blob Blob;
             string Source;
-            const char* EntryPoint;
-            const char* Profile;
+            const char* EntryPoint = nullptr;
+            const char* Profile = nullptr;
             uword Flag = 0;
         };
-
-        class RenderingContext_Interface;
 
         struct ENGINE_API Shader {
             ePrimitiveTopology PrimitiveTopology;
             vector<ShaderStage> Stages;
-            void* VertexByteCode = nullptr;
-            usize VertexByteCodeSize = 0;
+            Blob* VertexBlob = nullptr;
         };
 
         class ENGINE_API ShaderBuilder final {
@@ -40,7 +36,7 @@ namespace xpe {
         public:
             ShaderBuilder() = default;
 
-            ShaderBuilder(RenderingContext_Interface* context, Shader* shader)
+            ShaderBuilder(Context* context, Shader* shader)
             : m_Context(context), m_Shader(shader) {}
 
             ~ShaderBuilder() = default;
@@ -63,14 +59,14 @@ namespace xpe {
             ShaderBuilder& AddComputeStage(const string& source);
 
         private:
-            RenderingContext_Interface* m_Context = nullptr;
+            Context* m_Context = nullptr;
             Shader* m_Shader = nullptr;
         };
 
         class ENGINE_API ShaderManager final {
 
         public:
-            static void Init(RenderingContext_Interface* context);
+            static void Init(Context* context);
             static void Free();
 
             static ShaderBuilder& Builder();
@@ -79,7 +75,7 @@ namespace xpe {
             static void RemoveShader(const string& name);
 
         private:
-            static RenderingContext_Interface* s_Context;
+            static Context* s_Context;
             static ShaderBuilder s_ShaderBuilder;
             static unordered_map<string, Shader> s_ShaderTable;
             static Shader s_TempShader;

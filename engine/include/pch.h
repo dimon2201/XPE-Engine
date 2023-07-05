@@ -64,7 +64,6 @@
 #include <core/profiler.hpp>
 #include <core/logger.h>
 #include <core/debug_break.h>
-#include <core/debugger.h>
 #include <core/file_manager.h>
 
 // Math
