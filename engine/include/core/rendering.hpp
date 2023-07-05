@@ -27,27 +27,6 @@ namespace xpe
             TRIANGLE_STRIP = 1
         };
 
-        struct ENGINE_API xShader
-        {
-            enum class eType
-            {
-                VERTEX = 0,
-                PIXEL = 1,
-                VERTEX_PIXEL = 2
-            };
-
-            ePrimitiveTopology PrimitiveTopology;
-            eType Type;
-            char* Sources[3];
-            char* SourceEntryPoints[3];
-            char* SourceProfiles[3];
-            uword SourceFlags[3];
-            GPUResource _VertexShader;
-            GPUResource _PixelShader;
-            void* _VertexShaderByteCode;
-            usize _VertexShaderByteCodeSize;
-        };
-
         struct ENGINE_API xBuffer
         {
             enum class xType
@@ -95,6 +74,10 @@ namespace xpe
             boolean UseDepthTest;
         };
 
+        class Shader;
+        struct ShaderStage;
+        enum eShaderType;
+
         struct ENGINE_API xPipeline
         {
             xInputLayout InputLayout;
@@ -102,7 +85,7 @@ namespace xpe
             xBuffer* IndexBuffer;
             xBuffer* InstanceBuffer;
             vector<xBuffer*> ConstantBuffers;
-            xShader* Shaders;
+            Shader* Shader;
             xRenderTarget* RenderTarget;
             xDepthStencilState DepthStencilState;
         };
@@ -123,12 +106,12 @@ namespace xpe
                 virtual void FreeRenderTarget(const xRenderTarget& renderTarget) = 0;
                 virtual void Present() = 0;
                 
-                virtual void CreateShaderFromString(xShader& shader) = 0;
-                virtual void BindShader(const xShader* shader) = 0;
-                virtual void FreeShader(const xShader& shader) = 0;
+                virtual void CreateShader(Shader& shader) = 0;
+                virtual void BindShader(const Shader* shader) = 0;
+                virtual void FreeShader(const Shader& shader) = 0;
                 
                 virtual GPUResource CreateTexture(const void* texture, const glm::ivec2& dimensions) = 0;
-                virtual void BindTexture(const GPUResource* texture, const xShader::eType& shaderType, const u32 slot) = 0;
+                virtual void BindTexture(const GPUResource* texture, const eShaderType& shaderType, const u32 slot) = 0;
                 virtual void FreeTexture(const GPUResource* texture) = 0;
                 
                 virtual GPUResource CreateSampler() = 0;

@@ -36,3 +36,9 @@ add_subdirectory(thirdparty/jsoncpp)
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static)
+
+# Move shaders into bin folder
+copy_build_dir(engine/engine_shaders bin/engine_shaders)
+foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+    copy_build_dir(engine/engine_shaders bin/${CONFIG}/engine_shaders)
+endforeach()

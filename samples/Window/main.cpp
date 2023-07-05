@@ -44,79 +44,16 @@ public:
         );
 
         // Create render pipeline data
-        char* vertexStr =
-                "\
-                    struct VSIn\
-                    {\
-                        float3 positionLocal : XPE_POSITION_LOCAL;\
-                        float2 texcoord : XPE_TEXCOORD;\
-                        float3 normal : XPE_NORMAL;\
-                        uint instanceIndex : SV_InstanceID;\
-                    };\
-                    struct VSOut\
-                    {\
-                        float3 positionWorld : XPE_POSITION_WORLD;\
-                        float2 texcoord : XPE_TEXCOORD2;\
-                        float3 normal : XPE_NORMAL2;\
-                        float4 positionClip : SV_POSITION;\
-                    };\
-                    struct RenderInstance\
-                    {\
-                        float4 Position;\
-                    };\
-                    cbuffer ConstantBuffers : register(b0)\
-                    {\
-                        float4x4 Projection;\
-                        float4x4 View;\
-                        float3 CameraPosition;\
-                    };\
-                    StructuredBuffer<RenderInstance> instances : register(t0);\
-                    \
-                    VSOut vs_main(VSIn vsIn)\
-                    {\
-                        VSOut vsOut = (VSOut)0;\
-                        vsOut.positionWorld = 0.5 * vsIn.positionLocal + instances[vsIn.instanceIndex].Position.xyz;\
-                        vsOut.texcoord = vsIn.texcoord;\
-                        vsOut.normal = vsIn.normal;\
-                        float4x4 ViewProjection = mul(Projection, View);\
-                        vsOut.positionClip = mul(ViewProjection, float4(vsOut.positionWorld, 1.0));\
-                        return vsOut;\
-                    }";
-
-        char* pixelStr =
-                "\
-                    struct VSOut\
-                    {\
-                        float3 positionWorld : XPE_POSITION_WORLD;\
-                        float2 texcoord : XPE_TEXCOORD2;\
-                        float3 normal : XPE_NORMAL2;\
-                        float4 positionClip : SV_POSITION;\
-                    };\
-                    float4 ps_main(VSOut psIn) : SV_TARGET\
-                    {\
-                        float3 lightPos = float3(0.0, 100.0, 0.0);\
-                        float3 pointToLight = normalize(lightPos - psIn.positionWorld);\
-                        float lambert = max(0.15, dot(pointToLight, psIn.normal));\
-                        return float4(lambert, lambert, lambert, 1.0);\
-                    }\
-                ";
-
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
         _pipeline.InstanceBuffer = _batch->GetInstanceBuffer();
         _pipeline.ConstantBuffers.emplace_back(_batch->GetConstantBuffer());
         _pipeline.ConstantBuffers.emplace_back(&_cameraBuffer);
-        _pipeline.Shaders = new xShader();
-        _pipeline.Shaders->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-        _pipeline.Shaders->Type = xShader::eType::VERTEX_PIXEL;
-        _pipeline.Shaders->Sources[0] = vertexStr;
-        _pipeline.Shaders->SourceEntryPoints[0] = "vs_main";
-        _pipeline.Shaders->SourceProfiles[0] = "vs_4_0";
-        _pipeline.Shaders->SourceFlags[0] = 0;
-        _pipeline.Shaders->Sources[1] = pixelStr;
-        _pipeline.Shaders->SourceEntryPoints[1] = "ps_main";
-        _pipeline.Shaders->SourceProfiles[1] = "ps_4_0";
-        _pipeline.Shaders->SourceFlags[1] = 0;
+        _pipeline.Shader = ShaderManager::Builder()
+                .AddVertexStageFromFile("shaders/window.vs")
+                .AddPixelStageFromFile("shaders/window.ps")
+                .Build("window");
+        _pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         _layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         _layout.StrideByteSize = xpe::gltf::cGLTFModel::k_vertexSize;
         _layout.EntryCount = 3;

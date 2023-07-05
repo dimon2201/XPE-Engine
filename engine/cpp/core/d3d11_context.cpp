@@ -182,101 +182,145 @@ void xpe::core::D3D11RenderingContext::Present()
     _swapChain->Present(0, 0);
 }
 
-void xpe::core::D3D11RenderingContext::CreateShaderFromString(xShader& shader)
+void xpe::core::D3D11RenderingContext::CreateShader(Shader& shader)
 {
-    if (shader.Type == xShader::eType::VERTEX_PIXEL)
-    {
-        // Vertex shader
-        ID3DBlob* vertexShaderBlob = nullptr;
-        ID3DBlob* vertexErrorBlob = nullptr;
+
+    for (auto& stage : shader.Stages) {
+
+        ID3DBlob* shaderBlob = nullptr;
+        ID3DBlob* errorBlob = nullptr;
 
         D3DCompile(
-            shader.Sources[0],
-            strlen(shader.Sources[0]),
-            nullptr,
-            nullptr,
-            nullptr,
-            shader.SourceEntryPoints[0],
-            shader.SourceProfiles[0],
-            (UINT)shader.SourceFlags[0],
-            0,
-            &vertexShaderBlob,
-            &vertexErrorBlob
+                stage.Source.c_str(),
+                stage.Source.length(),
+                nullptr,
+                nullptr,
+                nullptr,
+                stage.EntryPoint,
+                stage.Profile,
+                (UINT)stage.Flag,
+                0,
+                &shaderBlob,
+                &errorBlob
         );
-        
 
-        if (vertexErrorBlob != nullptr)
-        {
-            std::cout << (char*)vertexErrorBlob->GetBufferPointer() << std::endl;
-
-            vertexErrorBlob->Release();
+        if (errorBlob != nullptr) {
+            LogError((char*)errorBlob->GetBufferPointer());
+            errorBlob->Release();
         }
 
-        if (vertexShaderBlob != nullptr)
-        {
-            shader._VertexShaderByteCode = vertexShaderBlob->GetBufferPointer();
-            shader._VertexShaderByteCodeSize = vertexShaderBlob->GetBufferSize();
-            _device->CreateVertexShader(vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize(), nullptr, (ID3D11VertexShader**)&shader._VertexShader.Instance);
+        if (shaderBlob != nullptr) {
+            stage.ByteCode = shaderBlob->GetBufferPointer();
+            stage.ByteCodeSize = shaderBlob->GetBufferSize();
+
+            switch (stage.Type) {
+
+                case eShaderType::VERTEX:
+                    _device->CreateVertexShader(
+                            shaderBlob->GetBufferPointer(),
+                            shaderBlob->GetBufferSize(),
+                            nullptr,
+                            (ID3D11VertexShader**)&stage.Resource.Instance
+                    );
+                    shader.VertexByteCode = stage.ByteCode;
+                    shader.VertexByteCodeSize = stage.ByteCodeSize;
+                    break;
+
+                case eShaderType::PIXEL:
+                    _device->CreatePixelShader(
+                            shaderBlob->GetBufferPointer(),
+                            shaderBlob->GetBufferSize(),
+                            nullptr,
+                            (ID3D11PixelShader**)&stage.Resource.Instance
+                    );
+                    break;
+
+                case eShaderType::GEOMETRY:
+                    _device->CreateGeometryShader(
+                            shaderBlob->GetBufferPointer(),
+                            shaderBlob->GetBufferSize(),
+                            nullptr,
+                            (ID3D11GeometryShader**)&stage.Resource.Instance
+                    );
+                    break;
+
+                case eShaderType::COMPUTE:
+                    _device->CreateComputeShader(
+                            shaderBlob->GetBufferPointer(),
+                            shaderBlob->GetBufferSize(),
+                            nullptr,
+                            (ID3D11ComputeShader**)&stage.Resource.Instance
+                    );
+                    break;
+
+            }
         }
 
-        // Pixel shader
-        ID3DBlob* pixelShaderBlob = nullptr;
-        ID3DBlob* pixelErrorBlob = nullptr;
-
-        D3DCompile(
-            shader.Sources[1],
-            strlen(shader.Sources[1]),
-            nullptr,
-            nullptr,
-            nullptr,
-            shader.SourceEntryPoints[1],
-            shader.SourceProfiles[1],
-            (UINT)shader.SourceFlags[1],
-            0,
-            &pixelShaderBlob,
-            &pixelErrorBlob
-        );
-        
-
-        if (pixelErrorBlob != nullptr)
-        {
-            std::cout << (char*)pixelErrorBlob->GetBufferPointer() << std::endl;
-
-            pixelErrorBlob->Release();
-        }
-
-        if (pixelShaderBlob != nullptr)
-        {
-            _device->CreatePixelShader(pixelShaderBlob->GetBufferPointer(), pixelShaderBlob->GetBufferSize(), nullptr, (ID3D11PixelShader**)&shader._PixelShader.Instance);
-            pixelShaderBlob->Release();
-        }
     }
 }
 
-void xpe::core::D3D11RenderingContext::BindShader(const xShader* shader)
+void xpe::core::D3D11RenderingContext::BindShader(const Shader* shader)
 {
-    _boundShader = (xShader*)shader;
+    _boundShader = (Shader*)shader;
 
-    if (_boundShader->Type == xShader::eType::VERTEX_PIXEL)
-    {
-        _immContext->VSSetShader((ID3D11VertexShader*)_boundShader->_VertexShader.Instance, nullptr, 0);
-        _immContext->PSSetShader((ID3D11PixelShader*)_boundShader->_PixelShader.Instance, nullptr, 0);
+    for (const auto& stage : shader->Stages) {
+
+        switch (stage.Type) {
+
+            case eShaderType::VERTEX:
+                _immContext->VSSetShader((ID3D11VertexShader*)stage.Resource.Instance, nullptr, 0);
+                break;
+
+            case eShaderType::PIXEL:
+                _immContext->PSSetShader((ID3D11PixelShader*)stage.Resource.Instance, nullptr, 0);
+                break;
+
+            case eShaderType::GEOMETRY:
+                _immContext->GSSetShader((ID3D11GeometryShader*)stage.Resource.Instance, nullptr, 0);
+                break;
+
+            case eShaderType::COMPUTE:
+                _immContext->CSSetShader((ID3D11ComputeShader*)stage.Resource.Instance, nullptr, 0);
+                break;
+
+        }
+
     }
+
 }
 
-void xpe::core::D3D11RenderingContext::FreeShader(const xShader& shader)
+void xpe::core::D3D11RenderingContext::FreeShader(const Shader& shader)
 {
-    if (shader._VertexShader.Instance != nullptr)
-    {
-        ((ID3D11VertexShader*)shader._VertexShader.Instance)->Release();
-    }
-    if (shader._VertexShaderByteCode != nullptr)
-    {
-        ((ID3DBlob*)shader._VertexShaderByteCode)->Release();
-    }
-    if (shader._PixelShader.Instance != nullptr)
-    {
-        ((ID3D11PixelShader*)shader._PixelShader.Instance)->Release();
+    for (const auto& stage : shader.Stages) {
+
+        if (stage.ByteCode != nullptr) {
+            ((ID3DBlob*)stage.ByteCode)->Release();
+        }
+
+        if (stage.Resource.Instance != nullptr) {
+
+            switch (stage.Type) {
+
+                case eShaderType::VERTEX:
+                    ((ID3D11VertexShader*)stage.Resource.Instance)->Release();
+                    break;
+
+                case eShaderType::PIXEL:
+                    ((ID3D11PixelShader*)stage.Resource.Instance)->Release();
+                    break;
+
+                case eShaderType::GEOMETRY:
+                    ((ID3D11GeometryShader*)stage.Resource.Instance)->Release();
+                    break;
+
+                case eShaderType::COMPUTE:
+                    ((ID3D11ComputeShader*)stage.Resource.Instance)->Release();
+                    break;
+
+            }
+
+        }
+
     }
 }
 
@@ -306,13 +350,13 @@ xpe::core::GPUResource xpe::core::D3D11RenderingContext::CreateTexture(const voi
     return tex;
 }
 
-void xpe::core::D3D11RenderingContext::BindTexture(const GPUResource* texture, const xShader::eType& shaderType, const u32 slot)
+void xpe::core::D3D11RenderingContext::BindTexture(const GPUResource* texture, const eShaderType& shaderType, const u32 slot)
 {
-    if (shaderType == xShader::eType::VERTEX)
+    if (shaderType == eShaderType::VERTEX)
     {
         _immContext->VSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
     }
-    else if (shaderType == xShader::eType::PIXEL)
+    else if (shaderType == eShaderType::PIXEL)
     {
         if (texture != nullptr)
         {
@@ -553,10 +597,20 @@ void xpe::core::D3D11RenderingContext::BindViewport(const glm::vec4& coords, f32
 
 void xpe::core::D3D11RenderingContext::CreateRenderPipeline(xPipeline& pipeline)
 {
-    CreateShaderFromString(*pipeline.Shaders);
-    
-    pipeline.InputLayout._VertexShaderByteCode = pipeline.Shaders->_VertexShaderByteCode;
-    pipeline.InputLayout._VertexShaderByteCodeSize = pipeline.Shaders->_VertexShaderByteCodeSize;
+    if (pipeline.Shader == nullptr) {
+        LogError("Failed to create render pipeline. Shader does not exist.");
+        assert(false);
+        return;
+    }
+
+    if (pipeline.Shader->VertexByteCode == nullptr) {
+        LogError("Failed to create render pipeline. Shader has no Vertex stage.");
+        assert(false);
+        return;
+    }
+
+    pipeline.InputLayout._VertexShaderByteCode = pipeline.Shader->VertexByteCode;
+    pipeline.InputLayout._VertexShaderByteCodeSize = pipeline.Shader->VertexByteCodeSize;
     CreateInputLayout(pipeline.InputLayout);
 
     CreateDepthStencilState(pipeline.DepthStencilState);
@@ -573,7 +627,7 @@ void xpe::core::D3D11RenderingContext::BindRenderPipeline(const xPipeline* pipel
     for (const auto* buffer : _boundPipeline->ConstantBuffers) {
         BindBuffer(buffer);
     }
-    BindShader(_boundPipeline->Shaders);
+    BindShader(_boundPipeline->Shader);
     BindRenderTarget(_boundPipeline->RenderTarget);
     BindDepthStencilState(&_boundPipeline->DepthStencilState);
 }
