@@ -11,9 +11,9 @@ namespace xpe {
             _rt = _context->CreateRenderTarget(glm::ivec2(width, height), nullptr, nullptr, nullptr, nullptr);
 
             m_QuadShader = *ShaderManager::Builder()
-                    .AddVertexStageFromFile("engine_shaders/canvas.vs")
-                    .AddPixelStageFromFile("engine_shaders/canvas.ps")
-                    .Build("canvas");
+                .AddVertexStageFromFile("engine_shaders/canvas.vs")
+                .AddPixelStageFromFile("engine_shaders/canvas.ps")
+                .Build();
 
             m_QuadShader.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
         }

@@ -5,13 +5,19 @@ namespace xpe {
 
     namespace render {
 
-        Shader* ShaderBuilder::Build(const string& name) {
+        Shader* ShaderBuilder::Build() {
             m_Context->CreateShader(*m_Shader);
-            ShaderManager::AddShader(name, *m_Shader);
             return m_Shader;
         }
 
         ShaderBuilder& ShaderBuilder::AddVertexStageFromFile(const char *filepath) {
+            ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
+
+            if (stage != nullptr) {
+                m_Shader->Stages.emplace_back(*stage);
+                return *this;
+            }
+
             string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
@@ -19,10 +25,21 @@ namespace xpe {
                 return *this;
             }
 
-            return AddVertexStage(src);
+            AddVertexStage(src);
+
+            ShaderManager::AddShaderStage(filepath, m_Shader->Stages.back());
+
+            return *this;
         }
 
         ShaderBuilder& ShaderBuilder::AddPixelStageFromFile(const char *filepath) {
+            ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
+
+            if (stage != nullptr) {
+                m_Shader->Stages.emplace_back(*stage);
+                return *this;
+            }
+
             string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
@@ -30,10 +47,21 @@ namespace xpe {
                 return *this;
             }
 
-            return AddPixelStage(src);
+            AddPixelStage(src);
+
+            ShaderManager::AddShaderStage(filepath, m_Shader->Stages.back());
+
+            return *this;
         }
 
         ShaderBuilder& ShaderBuilder::AddGeometryStageFromFile(const char *filepath) {
+            ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
+
+            if (stage != nullptr) {
+                m_Shader->Stages.emplace_back(*stage);
+                return *this;
+            }
+
             string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
@@ -41,10 +69,21 @@ namespace xpe {
                 return *this;
             }
 
-            return AddGeometryStage(src);
+            AddGeometryStage(src);
+
+            ShaderManager::AddShaderStage(filepath, m_Shader->Stages.back());
+
+            return *this;
         }
 
         ShaderBuilder& ShaderBuilder::AddTessControlStageFromFile(const char *filepath) {
+            ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
+
+            if (stage != nullptr) {
+                m_Shader->Stages.emplace_back(*stage);
+                return *this;
+            }
+
             string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
@@ -52,10 +91,21 @@ namespace xpe {
                 return *this;
             }
 
-            return AddTessControlStage(src);
+            AddTessControlStage(src);
+
+            ShaderManager::AddShaderStage(filepath, m_Shader->Stages.back());
+
+            return *this;
         }
 
         ShaderBuilder& ShaderBuilder::AddTessEvalStageFromFile(const char *filepath) {
+            ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
+
+            if (stage != nullptr) {
+                m_Shader->Stages.emplace_back(*stage);
+                return *this;
+            }
+
             string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
@@ -63,10 +113,21 @@ namespace xpe {
                 return *this;
             }
 
-            return AddTessEvalStage(src);
+            AddTessEvalStage(src);
+
+            ShaderManager::AddShaderStage(filepath, m_Shader->Stages.back());
+
+            return *this;
         }
 
         ShaderBuilder& ShaderBuilder::AddComputeStageFromFile(const char *filepath) {
+            ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
+
+            if (stage != nullptr) {
+                m_Shader->Stages.emplace_back(*stage);
+                return *this;
+            }
+
             string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
@@ -74,7 +135,11 @@ namespace xpe {
                 return *this;
             }
 
-            return AddComputeStage(src);
+            AddComputeStage(src);
+
+            ShaderManager::AddShaderStage(filepath, m_Shader->Stages.back());
+
+            return *this;
         }
 
         ShaderBuilder& ShaderBuilder::AddVertexStage(const string &source) {
@@ -139,7 +204,7 @@ namespace xpe {
 
         Context* ShaderManager::s_Context = nullptr;
         ShaderBuilder ShaderManager::s_ShaderBuilder;
-        unordered_map<string, Shader> ShaderManager::s_ShaderTable;
+        unordered_map<string, ShaderStage> ShaderManager::s_ShaderStageTable;
         Shader ShaderManager::s_TempShader;
 
         void ShaderManager::Init(Context* context) {
@@ -148,10 +213,12 @@ namespace xpe {
         }
 
         void ShaderManager::Free() {
-            for (auto& shader : s_ShaderTable) {
-                s_Context->FreeShader(shader.second);
+            Shader shader;
+            for (auto& stage : s_ShaderStageTable) {
+                shader.Stages.emplace_back(stage.second);
             }
-            s_ShaderTable.clear();
+            s_Context->FreeShader(shader);
+            s_ShaderStageTable.clear();
         }
 
         ShaderBuilder& ShaderManager::Builder() {
@@ -160,12 +227,22 @@ namespace xpe {
             return s_ShaderBuilder;
         }
 
-        void ShaderManager::AddShader(const string& name, const Shader &shader) {
-            s_ShaderTable[name] = shader;
+        void ShaderManager::AddShaderStage(const string& name, const ShaderStage &shaderStage) {
+            s_ShaderStageTable[name] = shaderStage;
         }
 
-        void ShaderManager::RemoveShader(const string& name) {
-            s_ShaderTable.erase(name);
+        void ShaderManager::RemoveShaderStage(const string& name) {
+            s_ShaderStageTable.erase(name);
+        }
+
+        ShaderStage* ShaderManager::GetShaderStage(const string &name) {
+            auto it = s_ShaderStageTable.find(name);
+
+            if (it != s_ShaderStageTable.end()) {
+                return &it->second;
+            }
+
+            return nullptr;
         }
 
     }

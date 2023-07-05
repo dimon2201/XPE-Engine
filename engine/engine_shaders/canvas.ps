@@ -3,15 +3,14 @@ struct VSOut {
     float2 texcoord : XPE_TEXCOORD;
 };
 
-Texture2D<float4> color : register(t0);
-SamplerState colorSampler : register(s0);
+Texture2D<float4> Texture : register(t0);
 
 float4 ps_main(VSOut psIn) : SV_TARGET {
     uint textureWidth = 0;
     uint textureHeight = 0;
 
-    color.GetDimensions(textureWidth, textureHeight);
+    Texture.GetDimensions(textureWidth, textureHeight);
     float3 texcoordWorld = float3(float(textureWidth) * psIn.texcoord.x, float(textureHeight) * psIn.texcoord.y, 0);
 
-    return color.Load(int3(texcoordWorld));
+    return Texture.Load(int3(texcoordWorld));
 }

@@ -18,6 +18,10 @@ namespace xpe {
             m_Context->WriteBuffer(*this, &m_Data, sizeof(m_Data));
         }
 
+        void MaterialBuffer::SetMaterial(const cMaterialComponent *materialComponent) {
+            m_Data = materialComponent->Material->Data;
+        }
+
     }
 
 }

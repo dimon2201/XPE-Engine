@@ -191,6 +191,15 @@ namespace xpe {
 
             for (auto& stage : shader.Stages) {
 
+                // skip stage that is already compiled
+                // save vertex BLOB into shader
+                if (stage.Compiled) {
+                    if (stage.Type == eShaderType::VERTEX) {
+                        shader.VertexBlob = &stage.Blob;
+                    }
+                    continue;
+                }
+
                 ID3DBlob* shaderBlob = nullptr;
                 ID3DBlob* errorBlob = nullptr;
 
@@ -214,6 +223,8 @@ namespace xpe {
                 }
 
                 if (shaderBlob != nullptr) {
+
+                    stage.Compiled = true;
                     stage.Blob.Instance = shaderBlob;
                     stage.Blob.ByteCode = shaderBlob->GetBufferPointer();
                     stage.Blob.ByteCodeSize = shaderBlob->GetBufferSize();
@@ -394,6 +405,53 @@ namespace xpe {
                         texture3DDesc.Usage = D3D11_USAGE_DEFAULT;
 
                         _device->CreateTexture3D(&texture3DDesc, nullptr, (ID3D11Texture3D**)&texture.Instance);
+                        break;
+
+                    case eTextureType::TEXTURE_CUBE:
+                        texture2DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+                        texture2DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+                        texture2DDesc.Width = dimension.x;
+                        texture2DDesc.Height = dimension.y;
+                        texture2DDesc.MipLevels = 1;
+                        texture2DDesc.ArraySize = 6;
+                        texture2DDesc.CPUAccessFlags = 0;
+                        texture2DDesc.SampleDesc.Count = 1;
+                        texture2DDesc.SampleDesc.Quality = 0;
+                        texture2DDesc.Usage = D3D11_USAGE_DEFAULT;
+                        texture2DDesc.CPUAccessFlags = 0;
+                        texture2DDesc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
+
+//                        D3D11_SHADER_RESOURCE_VIEW_DESC SMViewDesc;
+//                        SMViewDesc.Format = texDesc.Format;
+//                        SMViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
+//                        SMViewDesc.TextureCube.MipLevels =  texDesc.MipLevels;
+//                        SMViewDesc.TextureCube.MostDetailedMip = 0;
+//
+//                        D3D11_SUBRESOURCE_DATA pData[6];
+//                        std::vector<vector4b> d[6]; // 6 images of type vector4b = 4 * unsigned char
+//
+//                        for (int cubeMapFaceIndex = 0; cubeMapFaceIndex < 6; cubeMapFaceIndex++)
+//                        {
+//                            d[cubeMapFaceIndex].resize(description.width * description.height);
+//
+//                            // fill with red color
+//                            std::fill(
+//                                    d[cubeMapFaceIndex].begin(),
+//                                    d[cubeMapFaceIndex].end(),
+//                                    vector4b(255,0,0,255));
+//
+//                            pData[cubeMapFaceIndex].pSysMem = &d[cubeMapFaceIndex][0];// description.data;
+//                            pData[cubeMapFaceIndex].SysMemPitch = description.width * 4;
+//                            pData[cubeMapFaceIndex].SysMemSlicePitch = 0;
+//                        }
+//
+//                        HRESULT hr = renderer->getDevice()->CreateTexture2D(&texDesc,
+//                                                                            description.data[0] ? &pData[0] : nullptr, &m_pCubeTexture);
+//                        assert(hr == S_OK);
+//
+//                        hr = renderer->getDevice()->CreateShaderResourceView(
+//                                m_pCubeTexture, &SMViewDesc, &m_pShaderResourceView);
+//                        assert(hr == S_OK);
                         break;
 
                 }

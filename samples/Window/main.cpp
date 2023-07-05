@@ -46,16 +46,19 @@ public:
         );
 
         // Create render pipeline data
+        // setup buffers
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
         _pipeline.InstanceBuffer = _batch->GetInstanceBuffer();
         _pipeline.ConstantBuffers.emplace_back(_batch->GetConstantBuffer());
         _pipeline.ConstantBuffers.emplace_back(&_cameraBuffer);
+        // setup shader
         _pipeline.Shader = ShaderManager::Builder()
                 .AddVertexStageFromFile("shaders/window.vs")
                 .AddPixelStageFromFile("shaders/window.ps")
-                .Build("window");
+                .Build();
         _pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+        // setup input layout
         _layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         _layout.StrideByteSize = xpe::gltf::cGLTFModel::k_vertexSize;
         _layout.EntryCount = 3;

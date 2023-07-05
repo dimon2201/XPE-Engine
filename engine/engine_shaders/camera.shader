@@ -1,10 +1,14 @@
+struct CameraBufferData {
+    float4x4 Projection;
+    float4x4 View;
+    float3 Position;
+};
+
 cbuffer CameraBuffer : register(b0)
 {
-    float4x4 CameraProjection;
-    float4x4 CameraView;
-    float3 CameraPosition;
+    CameraBufferData Camera;
 };
 
 float4x4 CameraViewProjection() {
-    return mul(CameraProjection, CameraView);
+    return mul(Camera.Projection, Camera.View);
 }

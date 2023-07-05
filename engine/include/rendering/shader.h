@@ -23,6 +23,7 @@ namespace xpe {
             const char* EntryPoint = nullptr;
             const char* Profile = nullptr;
             uword Flag = 0;
+            bool Compiled = false;
         };
 
         struct ENGINE_API Shader {
@@ -42,7 +43,7 @@ namespace xpe {
             ~ShaderBuilder() = default;
 
         public:
-            Shader* Build(const string& name);
+            Shader* Build();
 
             ShaderBuilder& AddVertexStageFromFile(const char* filepath);
             ShaderBuilder& AddPixelStageFromFile(const char* filepath);
@@ -71,13 +72,14 @@ namespace xpe {
 
             static ShaderBuilder& Builder();
 
-            static void AddShader(const string& name, const Shader& shader);
-            static void RemoveShader(const string& name);
+            static void AddShaderStage(const string& name, const ShaderStage& shaderStage);
+            static void RemoveShaderStage(const string& name);
+            static ShaderStage* GetShaderStage(const string& name);
 
         private:
             static Context* s_Context;
             static ShaderBuilder s_ShaderBuilder;
-            static unordered_map<string, Shader> s_ShaderTable;
+            static unordered_map<string, ShaderStage> s_ShaderStageTable;
             static Shader s_TempShader;
         };
 
