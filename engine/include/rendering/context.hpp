@@ -43,8 +43,8 @@ namespace xpe {
                 virtual void FreeShader(Shader& shader) = 0;
                 
                 virtual void CreateTexture(Texture& texture, const void* instance) = 0;
-                virtual void BindTexture(const Texture* texture, const eShaderType& shaderType) = 0;
-                virtual void BindTexture(const eShaderType& shaderType, u32 slot) = 0;
+                virtual void BindTexture(const Texture* texture) = 0;
+                virtual void BindTextureSlot(u32 slot) = 0;
                 virtual void FreeTexture(const Texture* texture) = 0;
                 virtual void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize) = 0;
 

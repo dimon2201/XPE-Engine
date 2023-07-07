@@ -32,8 +32,10 @@ namespace xpe {
         }
 
         MaterialBuilder& MaterialBuilder::AddAlbedoFromFile(const char *filepath) {
-            m_Material->Albedo = TextureManager::LoadTexture(filepath, Texture::eFormat::RGBA8);
+            m_Material->Albedo = TextureManager::ReadTexture(filepath, Texture::eFormat::RGBA8);
             m_Material->Albedo->Slot = 0;
+            TextureManager::FlipTexture(*m_Material->Albedo);
+            TextureManager::InitTexture(*m_Material->Albedo);
             return *this;
         }
 
@@ -140,31 +142,31 @@ namespace xpe {
             s_Context->BindSampler(&material.Sampler);
 
             if (material.Albedo) {
-                s_Context->BindTexture(material.Albedo, eShaderType::PIXEL);
+                s_Context->BindTexture(material.Albedo);
             }
 
             if (material.Bumping) {
-                s_Context->BindTexture(material.Bumping, eShaderType::PIXEL);
+                s_Context->BindTexture(material.Bumping);
             }
 
             if (material.Parallax) {
-                s_Context->BindTexture(material.Parallax, eShaderType::PIXEL);
+                s_Context->BindTexture(material.Parallax);
             }
 
             if (material.Metallic) {
-                s_Context->BindTexture(material.Metallic, eShaderType::PIXEL);
+                s_Context->BindTexture(material.Metallic);
             }
 
             if (material.Roughness) {
-                s_Context->BindTexture(material.Roughness, eShaderType::PIXEL);
+                s_Context->BindTexture(material.Roughness);
             }
 
             if (material.AO) {
-                s_Context->BindTexture(material.AO, eShaderType::PIXEL);
+                s_Context->BindTexture(material.AO);
             }
 
             if (material.Emission) {
-                s_Context->BindTexture(material.Emission, eShaderType::PIXEL);
+                s_Context->BindTexture(material.Emission);
             }
         }
 

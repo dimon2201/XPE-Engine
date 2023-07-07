@@ -580,21 +580,14 @@ namespace xpe {
 
         }
 
-        void D3D11Context::BindTexture(const Texture* texture, const eShaderType& shaderType)
+        void D3D11Context::BindTexture(const Texture* texture)
         {
             if (texture != nullptr) {
-                if (shaderType == eShaderType::VERTEX)
-                {
-                    _immContext->VSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
-                }
-                else if (shaderType == eShaderType::PIXEL)
-                {
-                    _immContext->PSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
-                }
+                _immContext->PSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
             }
         }
 
-        void D3D11Context::BindTexture(const eShaderType &shaderType, u32 slot) {
+        void D3D11Context::BindTextureSlot(u32 slot) {
             ID3D11ShaderResourceView* views = nullptr;
             _immContext->PSSetShaderResources(slot, 1, &views);
         }

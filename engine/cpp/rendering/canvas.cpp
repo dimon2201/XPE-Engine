@@ -26,7 +26,7 @@ namespace xpe {
 
         void Canvas::Clear(const glm::vec4& color) {
             _context->BindViewport(glm::ivec4(0.0f, 0.0f, _rt.Dimensions.x, _rt.Dimensions.y), 0.0f, 1.0f);
-            _context->BindTexture(eShaderType::PIXEL, 0);
+            _context->BindTextureSlot(0);
             _context->BindRenderTarget(&_rt);
             _context->ClearRenderTarget(color, 1.0f);
         }
@@ -36,7 +36,7 @@ namespace xpe {
             _context->BindRenderTarget(nullptr);
             _context->BindViewport(glm::ivec4(0.0f, 0.0f, swapChainDimensions.x, swapChainDimensions.y), 0.0f, 1.0f);
             _context->BindShader(&m_QuadShader);
-            _context->BindTexture(_rt.ColorTexture, eShaderType::PIXEL);
+            _context->BindTexture(_rt.ColorTexture);
             _context->ClearRenderTarget(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 1.0f);
             _context->DrawQuad();
             _context->Present();

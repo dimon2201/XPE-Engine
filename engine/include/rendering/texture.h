@@ -14,10 +14,10 @@ namespace xpe {
         {
             enum class eType
             {
-                TEXTURE_1D = 1,
-                TEXTURE_2D = 2,
-                TEXTURE_3D = 3,
-                TEXTURE_CUBE = 4,
+                TEXTURE_1D,
+                TEXTURE_2D,
+                TEXTURE_3D,
+                TEXTURE_CUBE,
 
                 TEXTURE_DEFAULT = TEXTURE_2D
             };
@@ -41,18 +41,10 @@ namespace xpe {
 
             enum class eFormat
             {
-                R8 = 0,
-                R16 = 1,
-                R32 = 2,
-                RG8 = 3,
-                RG16 = 4,
-                RG32 = 5,
-                RGB8 = 6,
-                RGB16 = 7,
-                RGB32 = 8,
-                RGBA8 = 9,
-                RGBA16 = 10,
-                RGBA32 = 11
+                R8, R16, R32,
+                RG8, RG16, RG32,
+                RGB8, RGB16, RGB32,
+                RGBA8, RGBA16, RGBA32
             };
 
             eType Type = eType::TEXTURE_DEFAULT;
@@ -76,23 +68,23 @@ namespace xpe {
         {
             enum class eComparison
             {
-                NEVER = 1,
-                LESS = 2,
-                EQUAL = 3,
-                LESS_EQUAL = 4,
-                GREATER	= 5,
-                NOT_EQUAL = 6,
-                GREATER_EQUAL = 7,
-                ALWAYS= 8
+                NEVER,
+                LESS,
+                EQUAL,
+                LESS_EQUAL,
+                GREATER,
+                NOT_EQUAL,
+                GREATER_EQUAL,
+                ALWAYS
             };
 
             enum class eAddressMode
             {
-                WRAP = 1,
-                MIRROR = 2,
-                CLAMP = 3,
-                BORDER = 4,
-                MIRROR_ONCE	= 5
+                WRAP,
+                MIRROR,
+                CLAMP,
+                BORDER,
+                MIRROR_ONCE
             };
 
             enum class eFilter
@@ -122,10 +114,15 @@ namespace xpe {
             static void Init(Context* context);
             static void Free();
 
+            static void InitTexture(Texture& texture);
+            static void BindTexture(Texture& texture);
+            static void FreeTexture(Texture& texture);
+
+            static Texture* ReadTexture(const char* filepath, const Texture::eFormat& format);
             static Texture* LoadTexture(const char* filePath, const Texture::eFormat& format);
             static void WriteTexture(const char* filePath, const Texture& image, const Texture::eFileFormat& fileFormat);
-            static void FreeTexture(Texture& texture);
             static Texture ResizeTexture(Texture& input, usize outputWidth, usize outputHeight);
+            static void FlipTexture(Texture& texture);
 
         private:
             static Context* s_Context;
