@@ -68,6 +68,7 @@ namespace xpe {
 
             u32 ArraySize = 1;
             u32 MipLevels = 1;
+            u32 MostDetailedMip = 0;
             u32 Slot = 0;
         };
 
@@ -96,20 +97,21 @@ namespace xpe {
 
             enum class eFilter
             {
-                MIN_MAG_MIP_POINT = 1,
+                MIN_MAG_MIP_POINT,
+                MIN_MAG_MIP_LINEAR,
             };
 
-            eFilter Filter = eFilter::MIN_MAG_MIP_POINT;
-            u32 MaxAnisotropy = 0;
-            float MinLOD = 0;
-            float MaxLOD = 0;
+            eFilter Filter = eFilter::MIN_MAG_MIP_LINEAR;
+            float MinLOD = FLT_MIN;
+            float MaxLOD = FLT_MAX;
             float MipLODBias = 0;
+            u32 MaxAnisotropy = 1;
             glm::vec4 BorderColor = { 0, 0, 0, 0 };
             u32 Slot = 0;
-            eComparison Comparison = eComparison::ALWAYS;
-            eAddressMode AddressU = eAddressMode::WRAP;
-            eAddressMode AddressV = eAddressMode::WRAP;
-            eAddressMode AddressW = eAddressMode::WRAP;
+            eComparison Comparison = eComparison::NEVER;
+            eAddressMode AddressU = eAddressMode::CLAMP;
+            eAddressMode AddressV = eAddressMode::CLAMP;
+            eAddressMode AddressW = eAddressMode::CLAMP;
         };
 
         class ENGINE_API TextureManager final

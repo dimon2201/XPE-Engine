@@ -30,10 +30,10 @@ cbuffer MaterialBuffer : register(b1)
 
 SamplerState S_Material : register(s0);
 
-Texture2D<float4> M_Albedo : register(t0);
-Texture2D<float3> M_Bump : register(t1);
-Texture2D<float> M_Parallax : register(t2);
-Texture2D<float> M_Metallic : register(t3);
-Texture2D<float> M_Roughness : register(t4);
-Texture2D<float> M_AO : register(t5);
-Texture2D<float3> M_Emission : register(t6);
+Texture2D M_Albedo : register(t0);
+Texture2D M_Bump : register(t1);
+Texture2D M_Parallax : register(t2);
+Texture2D M_Metallic : register(t3);
+Texture2D M_Roughness : register(t4);
+Texture2D M_AO : register(t5);
+Texture2D M_Emission : register(t6);

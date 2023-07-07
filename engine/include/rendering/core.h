@@ -23,9 +23,8 @@ namespace xpe {
             STRUCTURED = 3
         };
 
-        struct ENGINE_API Buffer {
+        struct ENGINE_API Buffer : public GPUResource {
             eBufferType Type;
-            GPUResource Resource;
             void* CPUMemory;
             usize AppendOffset;
             usize ByteSize = 0;

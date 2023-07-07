@@ -343,25 +343,6 @@ namespace xpe {
             shader.Stages.clear();
         }
 
-        void D3D11Context::BindTexture(const Texture* texture, const eShaderType& shaderType)
-        {
-            if (texture != nullptr) {
-                if (shaderType == eShaderType::VERTEX)
-                {
-                    _immContext->VSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
-                }
-                else if (shaderType == eShaderType::PIXEL)
-                {
-                    _immContext->PSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
-                }
-            }
-        }
-
-        void D3D11Context::BindTexture(const eShaderType &shaderType, u32 slot) {
-            ID3D11ShaderResourceView* views = nullptr;
-            _immContext->PSSetShaderResources(slot, 1, &views);
-        }
-
         static const unordered_map<Texture::eFormat, DXGI_FORMAT> s_TextureFormatTable = {
 
                 { Texture::eFormat::R8, DXGI_FORMAT_R8_UNORM },
@@ -382,23 +363,23 @@ namespace xpe {
 
         };
 
-        static const unordered_map<Texture::eFormat, u32> s_TextureBitsTable = {
+        static const unordered_map<Texture::eFormat, u32> s_TexturePitchTable = {
 
-                { Texture::eFormat::R8, 8 },
-                { Texture::eFormat::R16, 16 },
-                { Texture::eFormat::R32, 32 },
+                { Texture::eFormat::R8, 1 },
+                { Texture::eFormat::R16, 1 },
+                { Texture::eFormat::R32, 1 },
 
-                { Texture::eFormat::RG8, 16 },
-                { Texture::eFormat::RG16, 32 },
-                { Texture::eFormat::RG32, 64 },
+                { Texture::eFormat::RG8, 2 },
+                { Texture::eFormat::RG16, 2 },
+                { Texture::eFormat::RG32, 2 },
 
-                { Texture::eFormat::RGB8, 24 },
-                { Texture::eFormat::RGB16, 48 },
-                { Texture::eFormat::RGB32, 96 },
+                { Texture::eFormat::RGB8, 3 },
+                { Texture::eFormat::RGB16, 3 },
+                { Texture::eFormat::RGB32, 3 },
 
-                { Texture::eFormat::RGBA8, 32 },
-                { Texture::eFormat::RGBA16, 64 },
-                { Texture::eFormat::RGBA32, 128 },
+                { Texture::eFormat::RGBA8, 4 },
+                { Texture::eFormat::RGBA16, 4 },
+                { Texture::eFormat::RGBA32, 4 },
 
         };
 
@@ -423,7 +404,8 @@ namespace xpe {
         };
 
         static const unordered_map<TextureSampler::eFilter, D3D11_FILTER> s_TextureSamplerFilterTable = {
-            { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT }
+            { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT },
+            { TextureSampler::eFilter::MIN_MAG_MIP_LINEAR, D3D11_FILTER_MIN_MAG_MIP_LINEAR },
         };
 
         static const unordered_map<TextureSampler::eAddressMode, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable = {
@@ -446,10 +428,11 @@ namespace xpe {
                 D3D11_SUBRESOURCE_DATA initialData;
                 D3D11_SUBRESOURCE_DATA* pInitialData = nullptr;
 
+                D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
+
                 if (texture.Pixels != nullptr) {
                     initialData.pSysMem = texture.Pixels;
-                    initialData.SysMemPitch = (texture.Width * s_TextureBitsTable.at(texture.Format) + 7) / 8;
-                    initialData.SysMemSlicePitch = initialData.SysMemPitch * texture.Height;
+                    initialData.SysMemPitch = texture.Width * s_TexturePitchTable.at(texture.Format);
                     pInitialData = &initialData;
                 }
 
@@ -464,6 +447,14 @@ namespace xpe {
                         texture1DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                         _device->CreateTexture1D(&texture1DDesc, pInitialData, (ID3D11Texture1D**)&texture.Instance);
+
+                        srv.Format = s_TextureFormatTable.at(texture.Format);
+                        srv.Texture1D.MipLevels = texture.MipLevels;
+                        srv.Texture1D.MostDetailedMip = texture.MostDetailedMip;
+                        srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE1D;
+
+                        _device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+
                         break;
 
                     case Texture::eType::TEXTURE_2D:
@@ -473,10 +464,19 @@ namespace xpe {
                         texture2DDesc.Height = texture.Height;
                         texture2DDesc.ArraySize = texture.ArraySize;
                         texture2DDesc.SampleDesc.Count = 1;
+                        texture2DDesc.SampleDesc.Quality = 0;
                         texture2DDesc.MipLevels = texture.MipLevels;
                         texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                         _device->CreateTexture2D(&texture2DDesc, pInitialData, (ID3D11Texture2D**)&texture.Instance);
+
+                        srv.Format = s_TextureFormatTable.at(texture.Format);
+                        srv.Texture2D.MipLevels = texture.MipLevels;
+                        srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
+                        srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+
+                        _device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+
                         break;
 
                     case Texture::eType::TEXTURE_3D:
@@ -488,6 +488,14 @@ namespace xpe {
                         texture3DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                         _device->CreateTexture3D(&texture3DDesc, pInitialData, (ID3D11Texture3D**)&texture.Instance);
+
+                        srv.Format = s_TextureFormatTable.at(texture.Format);
+                        srv.Texture3D.MipLevels = texture.MipLevels;
+                        srv.Texture3D.MostDetailedMip = texture.MostDetailedMip;
+                        srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE3D;
+
+                        _device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+
                         break;
 
                     case Texture::eType::TEXTURE_CUBE:
@@ -503,6 +511,11 @@ namespace xpe {
                         texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture2DDesc.CPUAccessFlags = 0;
                         texture2DDesc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
+
+                        srv.Format = s_TextureFormatTable.at(texture.Format);
+                        srv.TextureCube.MipLevels = texture.MipLevels;
+                        srv.TextureCube.MostDetailedMip = texture.MostDetailedMip;
+                        srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
 
 //                        D3D11_SHADER_RESOURCE_VIEW_DESC SMViewDesc;
 //                        SMViewDesc.Format = texDesc.Format;
@@ -565,6 +578,25 @@ namespace xpe {
 
             }
 
+        }
+
+        void D3D11Context::BindTexture(const Texture* texture, const eShaderType& shaderType)
+        {
+            if (texture != nullptr) {
+                if (shaderType == eShaderType::VERTEX)
+                {
+                    _immContext->VSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
+                }
+                else if (shaderType == eShaderType::PIXEL)
+                {
+                    _immContext->PSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
+                }
+            }
+        }
+
+        void D3D11Context::BindTexture(const eShaderType &shaderType, u32 slot) {
+            ID3D11ShaderResourceView* views = nullptr;
+            _immContext->PSSetShaderResources(slot, 1, &views);
         }
 
         void D3D11Context::FreeTexture(const Texture* texture)
@@ -688,7 +720,7 @@ namespace xpe {
                 bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
             }
 
-            _device->CreateBuffer(&bufferDesc, nullptr, (ID3D11Buffer**)&buffer.Resource.Instance);
+            _device->CreateBuffer(&bufferDesc, nullptr, (ID3D11Buffer**)&buffer.Instance);
 
             if (bufferType == eBufferType::STRUCTURED)
             {
@@ -698,7 +730,7 @@ namespace xpe {
                 srvDesc.BufferEx.FirstElement = buffer.FirstElement;
                 srvDesc.BufferEx.NumElements = buffer.NumElements;
 
-                _device->CreateShaderResourceView((ID3D11Resource*)buffer.Resource.Instance, &srvDesc, (ID3D11ShaderResourceView**)&buffer.Resource.ViewInstance);
+                _device->CreateShaderResourceView((ID3D11Resource*)buffer.Instance, &srvDesc, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
             }
 
         }
@@ -706,33 +738,33 @@ namespace xpe {
         void D3D11Context::BindVertexBuffer(const Buffer *buffer) {
             UINT stride = xpe::gltf::cGLTFModel::k_vertexSize;
             UINT offset = 0;
-            _immContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance, &stride, &offset);
+            _immContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance, &stride, &offset);
         }
 
         void D3D11Context::BindIndexBuffer(const Buffer *buffer) {
             DXGI_FORMAT format = xpe::gltf::cGLTFModel::k_indexSize == 4 ? DXGI_FORMAT_R32_UINT : DXGI_FORMAT_R16_UINT;
-            _immContext->IASetIndexBuffer((ID3D11Buffer*)buffer->Resource.Instance, format, 0);
+            _immContext->IASetIndexBuffer((ID3D11Buffer*)buffer->Instance, format, 0);
         }
 
         void D3D11Context::BindVSBuffer(const Buffer *buffer) {
             if (buffer->Type == eBufferType::STRUCTURED)
             {
-                _immContext->VSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->Resource.ViewInstance);
+                _immContext->VSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->ViewInstance);
             }
             else if (buffer->Type == eBufferType::CONSTANT)
             {
-                _immContext->VSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance);
+                _immContext->VSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance);
             }
         }
 
         void D3D11Context::BindPSBuffer(const Buffer *buffer) {
             if (buffer->Type == eBufferType::STRUCTURED)
             {
-                _immContext->PSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->Resource.ViewInstance);
+                _immContext->PSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->ViewInstance);
             }
             else if (buffer->Type == eBufferType::CONSTANT)
             {
-                _immContext->PSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance);
+                _immContext->PSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance);
             }
         }
 
@@ -740,9 +772,9 @@ namespace xpe {
         {
             D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 
-            _immContext->Map((ID3D11Resource*)buffer.Resource.Instance, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+            _immContext->Map((ID3D11Resource*)buffer.Instance, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
             memcpy(mappedResource.pData, data, dataByteSize);
-            _immContext->Unmap((ID3D11Resource*)buffer.Resource.Instance, 0);
+            _immContext->Unmap((ID3D11Resource*)buffer.Instance, 0);
         }
 
         void D3D11Context::WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
@@ -764,9 +796,9 @@ namespace xpe {
 
         void D3D11Context::FreeBuffer(const Buffer& buffer)
         {
-            if (buffer.Resource.Instance != nullptr)
+            if (buffer.Instance != nullptr)
             {
-                ((ID3D11Buffer*)buffer.Resource.Instance)->Release();
+                ((ID3D11Buffer*)buffer.Instance)->Release();
             }
         }
 
