@@ -7,10 +7,25 @@ namespace xpe {
 
         BatchManager::BatchManager(Context* context) : _context(context)
         {
-            _vertex = _context->CreateBuffer(eBufferType::VERTEX, k_vertexBufferByteSize, K_TRUE);
-            _index = _context->CreateBuffer(eBufferType::INDEX, k_indexBufferByteSize, K_TRUE);
-            _instance = _context->CreateBuffer(eBufferType::INSTANCE, k_instanceBufferByteSize, K_TRUE);
-            _constant = _context->CreateBuffer(eBufferType::CONSTANT, k_constantBufferByteSize, K_TRUE);
+            _vertex.Type = eBufferType::VERTEX;
+            _vertex.ByteSize = k_vertexBufferByteSize;
+            _context->CreateBuffer(_vertex, K_TRUE);
+
+            _index.Type = eBufferType::INDEX;
+            _index.ByteSize = k_indexBufferByteSize;
+            _context->CreateBuffer(_index, K_TRUE);
+
+            _instance.Type = eBufferType::STRUCTURED;
+            _instance.ByteSize = k_instanceBufferByteSize;
+            _instance.StructureSize = sizeof(RenderInstance);
+            _instance.FirstElement = 0;
+            _instance.NumElements = k_instanceBufferInstanceCount;
+            _context->CreateBuffer(_instance, K_TRUE);
+
+            _constant.Type = eBufferType::CONSTANT;
+            _constant.ByteSize = k_constantBufferByteSize;
+            _context->CreateBuffer(_constant, K_TRUE);
+
             _batch.GeometryInfo = nullptr;
         }
 

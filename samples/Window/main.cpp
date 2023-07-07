@@ -50,8 +50,8 @@ public:
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
         _pipeline.InstanceBuffer = _batch->GetInstanceBuffer();
-        _pipeline.ConstantBuffers.emplace_back(_batch->GetConstantBuffer());
         _pipeline.ConstantBuffers.emplace_back(&_cameraBuffer);
+        _pipeline.ConstantBuffers.emplace_back(MaterialManager::GetBuffer());
         // setup shader
         _pipeline.Shader = ShaderManager::Builder()
                 .AddVertexStageFromFile("shaders/window.vs")
@@ -89,6 +89,12 @@ public:
             context->BindRenderPipeline(&_pipeline);
 
             static cTransformComponent tr("transform");
+            static cMaterialComponent materialComponent(
+                    "material",
+                    MaterialManager::Builder()
+                            .AddAlbedoFromFile("files/sinister_man.png")
+                            .Build("material")
+            );
 
             _batch->BeginBatch(std::string("NewGeometryData"));
             for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
@@ -104,6 +110,10 @@ public:
                 }
             }
             _batch->EndBatch();
+
+            MaterialManager::BindMaterial(*materialComponent.Material, eShaderType::PIXEL, 0);
+            MaterialManager::UpdateMaterial(*materialComponent.Material);
+
             _batch->DrawBatch();
 
             _canvas->Present();

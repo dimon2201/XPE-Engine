@@ -7,7 +7,10 @@ namespace xpe {
 
         void CameraBuffer::Init(Context *context) {
             m_Context = context;
-            m_Context->CreateBuffer(*this, eBufferType::CONSTANT, sizeof(CameraBufferData), K_FALSE);
+            Type = eBufferType::CONSTANT;
+            ByteSize = sizeof(CameraBufferData);
+            Slot = 0;
+            m_Context->CreateBuffer(*this, K_FALSE);
         }
 
         void CameraBuffer::Free() {

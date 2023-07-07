@@ -4,7 +4,6 @@
 
 #include <rendering/context.hpp>
 #include <rendering/pipeline.h>
-#include <rendering/batching.h>
 
 namespace xpe {
 
@@ -30,15 +29,16 @@ namespace xpe {
                 void BindShader(const Shader* shader) override final;
                 void FreeShader(Shader& shader) override final;
                 
-                void CreateTexture(Texture& texture, const void* instance, const glm::ivec2& dimension) override final;
+                void CreateTexture(Texture& texture, const void* instance) override final;
                 void BindTexture(const Texture* texture, const eShaderType& shaderType, const u32 slot) override final;
                 void FreeTexture(const Texture* texture) override final;
-                
+                void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize) override final;
+
                 virtual void CreateSampler(TextureSampler& sampler) override final;
                 virtual void BindSampler(const TextureSampler* sampler) override final;
                 virtual void FreeSampler(const TextureSampler* sampler) override final;
                 
-                void CreateBuffer(Buffer& buffer, const eBufferType& bufferType, usize byteSize, boolean duplicate) override final;
+                void CreateBuffer(Buffer& buffer, boolean duplicate) override final;
                 void BindBuffer(const Buffer* buffer) override final;
                 void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize) override final;
                 void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize) override final;

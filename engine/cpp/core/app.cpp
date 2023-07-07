@@ -5,6 +5,8 @@
 #include <rendering/dx11/d3d11_context.hpp>
 #include <rendering/dx11/d3d11_debugger.h>
 
+#include <rendering/materials/material.h>
+
 void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const LoggerDescriptor& logDesc)
 {
     InitLogger(logDesc);
@@ -36,6 +38,10 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
 
     ShaderManager::Init(context);
 
+    TextureManager::Init(context);
+
+    MaterialManager::Init(context);
+
     ui->Init(pWindow->GetInstance());
 
     app->Init(pWindow, context, ui);
@@ -55,6 +61,10 @@ void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const L
     LogDebugMessages();
 
     ShaderManager::Free();
+
+    TextureManager::Free();
+
+    MaterialManager::Free();
 
     FreeDebugger();
 

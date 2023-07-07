@@ -19,8 +19,8 @@ namespace xpe {
         enum class eBufferType {
             VERTEX = 0,
             INDEX = 1,
-            INSTANCE = 2,
-            CONSTANT = 3
+            CONSTANT = 2,
+            STRUCTURED = 3
         };
 
         struct ENGINE_API Buffer {
@@ -28,6 +28,11 @@ namespace xpe {
             GPUResource Resource;
             void* CPUMemory;
             usize AppendOffset;
+            usize ByteSize = 0;
+            usize StructureSize = 0;
+            u32 FirstElement = 0;
+            u32 NumElements = 0;
+            u32 Slot = 0;
         };
 
         struct ENGINE_API Blob final {

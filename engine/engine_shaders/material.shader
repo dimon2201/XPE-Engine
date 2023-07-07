@@ -23,7 +23,7 @@ struct MaterialBufferData {
     bool EnableEmission;
 };
 
-cbuffer MaterialBuffer : register(b0)
+cbuffer MaterialBuffer : register(b1)
 {
     MaterialBufferData Material;
 };

@@ -50,7 +50,9 @@ namespace xpe {
             );
 
             _swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&_swapChainTexture.Instance);
-            CreateTexture(_swapChainTexture, _swapChainTexture.Instance, glm::ivec2(window.GetWidth(), window.GetHeight()));
+            _swapChainTexture.Width = window.GetWidth();
+            _swapChainTexture.Height = window.GetHeight();
+            CreateTexture(_swapChainTexture, _swapChainTexture.Instance);
             _rt = CreateRenderTarget(glm::ivec2(window.GetWidth(), window.GetHeight()), &_swapChainTexture, nullptr, nullptr, nullptr);
             CreateSampler(_sampler);
         }
@@ -361,7 +363,79 @@ namespace xpe {
             }
         }
 
-        void D3D11Context::CreateTexture(Texture& texture, const void* instance, const glm::ivec2& dimension)
+        static const unordered_map<Texture::eFormat, DXGI_FORMAT> s_TextureFormatTable = {
+
+                { Texture::eFormat::R8, DXGI_FORMAT_R8_UNORM },
+                { Texture::eFormat::R16, DXGI_FORMAT_R16_UNORM },
+                { Texture::eFormat::R32, DXGI_FORMAT_R32_FLOAT },
+
+                { Texture::eFormat::RG8, DXGI_FORMAT_R8G8_UNORM },
+                { Texture::eFormat::RG16, DXGI_FORMAT_R16G16_UNORM },
+                { Texture::eFormat::RG32, DXGI_FORMAT_R32G32_FLOAT },
+
+                { Texture::eFormat::RGB8, DXGI_FORMAT_R8G8B8A8_UNORM },
+                { Texture::eFormat::RGB16, DXGI_FORMAT_R16G16B16A16_UNORM },
+                { Texture::eFormat::RGB32, DXGI_FORMAT_R32G32B32_FLOAT },
+
+                { Texture::eFormat::RGBA8, DXGI_FORMAT_R8G8B8A8_UNORM },
+                { Texture::eFormat::RGBA16, DXGI_FORMAT_R16G16B16A16_UNORM },
+                { Texture::eFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
+
+        };
+
+        static const unordered_map<Texture::eFormat, u32> s_TextureBitsTable = {
+
+                { Texture::eFormat::R8, 8 },
+                { Texture::eFormat::R16, 16 },
+                { Texture::eFormat::R32, 32 },
+
+                { Texture::eFormat::RG8, 16 },
+                { Texture::eFormat::RG16, 32 },
+                { Texture::eFormat::RG32, 64 },
+
+                { Texture::eFormat::RGB8, 24 },
+                { Texture::eFormat::RGB16, 48 },
+                { Texture::eFormat::RGB32, 96 },
+
+                { Texture::eFormat::RGBA8, 32 },
+                { Texture::eFormat::RGBA16, 64 },
+                { Texture::eFormat::RGBA32, 128 },
+
+        };
+
+        static const unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable = {
+
+            { Texture::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
+            { Texture::eUsage::STATIC, D3D11_USAGE_IMMUTABLE },
+            { Texture::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
+            { Texture::eUsage::STAGING, D3D11_USAGE_STAGING }
+
+        };
+
+        static const unordered_map<TextureSampler::eComparison, D3D11_COMPARISON_FUNC> s_TextureSamplerComparisonTable = {
+            { TextureSampler::eComparison::ALWAYS, D3D11_COMPARISON_ALWAYS },
+            { TextureSampler::eComparison::EQUAL, D3D11_COMPARISON_EQUAL },
+            { TextureSampler::eComparison::GREATER, D3D11_COMPARISON_GREATER },
+            { TextureSampler::eComparison::GREATER_EQUAL, D3D11_COMPARISON_GREATER_EQUAL },
+            { TextureSampler::eComparison::LESS, D3D11_COMPARISON_LESS },
+            { TextureSampler::eComparison::LESS_EQUAL, D3D11_COMPARISON_LESS_EQUAL },
+            { TextureSampler::eComparison::NEVER, D3D11_COMPARISON_NEVER },
+            { TextureSampler::eComparison::NOT_EQUAL, D3D11_COMPARISON_NOT_EQUAL }
+        };
+
+        static const unordered_map<TextureSampler::eFilter, D3D11_FILTER> s_TextureSamplerFilterTable = {
+            { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT }
+        };
+
+        static const unordered_map<TextureSampler::eAddressMode, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable = {
+            { TextureSampler::eAddressMode::WRAP, D3D11_TEXTURE_ADDRESS_WRAP },
+            { TextureSampler::eAddressMode::BORDER, D3D11_TEXTURE_ADDRESS_BORDER },
+            { TextureSampler::eAddressMode::CLAMP, D3D11_TEXTURE_ADDRESS_CLAMP },
+            { TextureSampler::eAddressMode::MIRROR, D3D11_TEXTURE_ADDRESS_MIRROR },
+            { TextureSampler::eAddressMode::MIRROR_ONCE, D3D11_TEXTURE_ADDRESS_MIRROR_ONCE }
+        };
+
+        void D3D11Context::CreateTexture(Texture& texture, const void* instance)
         {
 
             if (instance == nullptr) {
@@ -370,54 +444,64 @@ namespace xpe {
                 D3D11_TEXTURE2D_DESC texture2DDesc = {};
                 D3D11_TEXTURE3D_DESC texture3DDesc = {};
 
+                D3D11_SUBRESOURCE_DATA initialData;
+                D3D11_SUBRESOURCE_DATA* pInitialData = nullptr;
+
+                if (texture.Pixels != nullptr) {
+                    initialData.pSysMem = texture.Pixels;
+                    initialData.SysMemPitch = (texture.Width * s_TextureBitsTable.at(texture.Format) + 7) / 8;
+                    initialData.SysMemSlicePitch = initialData.SysMemPitch * texture.Height;
+                    pInitialData = &initialData;
+                }
+
                 switch (texture.Type) {
 
-                    case eTextureType::TEXTURE_1D:
+                    case Texture::eType::TEXTURE_1D:
                         texture1DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
-                        texture1DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-                        texture1DDesc.Width = dimension.x;
-                        texture1DDesc.ArraySize = 1;
-                        texture1DDesc.MipLevels = 1;
-                        texture1DDesc.Usage = D3D11_USAGE_DEFAULT;
+                        texture1DDesc.Format = s_TextureFormatTable.at(texture.Format);
+                        texture1DDesc.Width = texture.Width;
+                        texture1DDesc.ArraySize = texture.ArraySize;
+                        texture1DDesc.MipLevels = texture.MipLevels;
+                        texture1DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
-                        _device->CreateTexture1D(&texture1DDesc, nullptr, (ID3D11Texture1D**)&texture.Instance);
+                        _device->CreateTexture1D(&texture1DDesc, pInitialData, (ID3D11Texture1D**)&texture.Instance);
                         break;
 
-                    case eTextureType::TEXTURE_2D:
+                    case Texture::eType::TEXTURE_2D:
                         texture2DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
-                        texture2DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-                        texture2DDesc.Width = dimension.x;
-                        texture2DDesc.Height = dimension.y;
-                        texture2DDesc.ArraySize = 1;
+                        texture2DDesc.Format = s_TextureFormatTable.at(texture.Format);
+                        texture2DDesc.Width = texture.Width;
+                        texture2DDesc.Height = texture.Height;
+                        texture2DDesc.ArraySize = texture.ArraySize;
                         texture2DDesc.SampleDesc.Count = 1;
-                        texture2DDesc.MipLevels = 1;
-                        texture2DDesc.Usage = D3D11_USAGE_DEFAULT;
+                        texture2DDesc.MipLevels = texture.MipLevels;
+                        texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
-                        _device->CreateTexture2D(&texture2DDesc, nullptr, (ID3D11Texture2D**)&texture.Instance);
+                        _device->CreateTexture2D(&texture2DDesc, pInitialData, (ID3D11Texture2D**)&texture.Instance);
                         break;
 
-                    case eTextureType::TEXTURE_3D:
+                    case Texture::eType::TEXTURE_3D:
                         texture3DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
-                        texture3DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-                        texture3DDesc.Width = dimension.x;
-                        texture3DDesc.Height = dimension.y;
-                        texture3DDesc.MipLevels = 1;
-                        texture3DDesc.Usage = D3D11_USAGE_DEFAULT;
+                        texture3DDesc.Format = s_TextureFormatTable.at(texture.Format);
+                        texture3DDesc.Width = texture.Width;
+                        texture3DDesc.Height = texture.Height;
+                        texture3DDesc.MipLevels = texture.MipLevels;
+                        texture3DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
-                        _device->CreateTexture3D(&texture3DDesc, nullptr, (ID3D11Texture3D**)&texture.Instance);
+                        _device->CreateTexture3D(&texture3DDesc, pInitialData, (ID3D11Texture3D**)&texture.Instance);
                         break;
 
-                    case eTextureType::TEXTURE_CUBE:
+                    case Texture::eType::TEXTURE_CUBE:
                         texture2DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
-                        texture2DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-                        texture2DDesc.Width = dimension.x;
-                        texture2DDesc.Height = dimension.y;
-                        texture2DDesc.MipLevels = 1;
+                        texture2DDesc.Format = s_TextureFormatTable.at(texture.Format);
+                        texture2DDesc.Width = texture.Width;
+                        texture2DDesc.Height = texture.Height;
+                        texture2DDesc.MipLevels = texture.MipLevels;
                         texture2DDesc.ArraySize = 6;
                         texture2DDesc.CPUAccessFlags = 0;
                         texture2DDesc.SampleDesc.Count = 1;
                         texture2DDesc.SampleDesc.Quality = 0;
-                        texture2DDesc.Usage = D3D11_USAGE_DEFAULT;
+                        texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture2DDesc.CPUAccessFlags = 0;
                         texture2DDesc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
 
@@ -459,7 +543,27 @@ namespace xpe {
             }
 
             else {
-                texture.Instance = (void*)instance;
+
+                switch (texture.Type) {
+
+                    case Texture::eType::TEXTURE_1D:
+                        texture.Instance = (ID3D11Texture1D*)instance;
+                        break;
+
+                    case Texture::eType::TEXTURE_2D:
+                        texture.Instance = (ID3D11Texture2D*)instance;
+                        break;
+
+                    case Texture::eType::TEXTURE_3D:
+                        texture.Instance = (ID3D11Texture3D*)instance;
+                        break;
+
+                    case Texture::eType::TEXTURE_CUBE:
+                        texture.Instance = (ID3D11Texture2D*)instance;
+                        break;
+
+                }
+
             }
 
         }
@@ -471,16 +575,20 @@ namespace xpe {
 
                 switch (texture->Type) {
 
-                    case eTextureType::TEXTURE_1D:
+                    case Texture::eType::TEXTURE_1D:
                         ((ID3D11Texture1D*)texture->Instance)->Release();
                         break;
 
-                    case eTextureType::TEXTURE_2D:
+                    case Texture::eType::TEXTURE_2D:
                         ((ID3D11Texture2D*)texture->Instance)->Release();
                         break;
 
-                    case eTextureType::TEXTURE_3D:
+                    case Texture::eType::TEXTURE_3D:
                         ((ID3D11Texture3D*)texture->Instance)->Release();
+                        break;
+
+                    case Texture::eType::TEXTURE_CUBE:
+                        ((ID3D11Texture2D*)texture->Instance)->Release();
                         break;
 
                 }
@@ -488,25 +596,38 @@ namespace xpe {
             }
         }
 
+        void D3D11Context::WriteTexture(const Texture &texture, const void *pixels, usize pixelsSize)
+        {
+            D3D11_MAPPED_SUBRESOURCE mappedResource = {};
+
+            _immContext->Map((ID3D11Resource*)texture.Instance, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+            memcpy(mappedResource.pData, pixels, pixelsSize);
+            _immContext->Unmap((ID3D11Resource*)texture.Instance, 0);
+        }
+
         void D3D11Context::CreateSampler(TextureSampler& sampler)
         {
             D3D11_SAMPLER_DESC desc = {};
-            desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
-            desc.AddressU = D3D11_TEXTURE_ADDRESS_BORDER;
-            desc.AddressV = D3D11_TEXTURE_ADDRESS_BORDER;
-            desc.AddressW = D3D11_TEXTURE_ADDRESS_BORDER;
+            desc.Filter = s_TextureSamplerFilterTable.at(sampler.Filter);
+            desc.AddressU = s_TextureSamplerAddressTable.at(sampler.AddressU);
+            desc.AddressV = s_TextureSamplerAddressTable.at(sampler.AddressV);
+            desc.AddressW = s_TextureSamplerAddressTable.at(sampler.AddressW);
+            desc.ComparisonFunc = s_TextureSamplerComparisonTable.at(sampler.Comparison);
+            desc.MaxAnisotropy = sampler.MaxAnisotropy;
+            desc.MinLOD = sampler.MinLOD;
+            desc.MaxLOD = sampler.MaxLOD;
+            desc.MipLODBias = sampler.MipLODBias;
             desc.BorderColor[0] = sampler.BorderColor[0];
             desc.BorderColor[1] = sampler.BorderColor[1];
             desc.BorderColor[2] = sampler.BorderColor[2];
             desc.BorderColor[3] = sampler.BorderColor[3];
-            desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 
             _device->CreateSamplerState(&desc, (ID3D11SamplerState**)&sampler.Instance);
         }
 
         void D3D11Context::BindSampler(const TextureSampler* sampler)
         {
-            _immContext->PSSetSamplers(0, 1, (ID3D11SamplerState**)&sampler->Instance);
+            _immContext->PSSetSamplers(sampler->Slot, 1, (ID3D11SamplerState**)&sampler->Instance);
         }
 
         void D3D11Context::FreeSampler(const TextureSampler* sampler)
@@ -517,9 +638,10 @@ namespace xpe {
             }
         }
 
-        void D3D11Context::CreateBuffer(Buffer& buffer, const eBufferType& bufferType, usize byteSize, boolean duplicate)
+        void D3D11Context::CreateBuffer(Buffer& buffer, boolean duplicate)
         {
-            buffer.Type = bufferType;
+            eBufferType bufferType = buffer.Type;
+            usize byteSize = buffer.ByteSize;
             buffer.AppendOffset = 0;
 
             if (duplicate == K_TRUE)
@@ -549,14 +671,14 @@ namespace xpe {
                 bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
             }
 
-            else if (bufferType == eBufferType::INSTANCE)
+            else if (bufferType == eBufferType::STRUCTURED)
             {
                 bufferDesc.ByteWidth = (UINT)byteSize;
                 bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
                 bufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
                 bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
                 bufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
-                bufferDesc.StructureByteStride = sizeof(RenderInstance);
+                bufferDesc.StructureByteStride = buffer.StructureSize;
             }
 
             else if (bufferType == eBufferType::CONSTANT)
@@ -569,13 +691,13 @@ namespace xpe {
 
             _device->CreateBuffer(&bufferDesc, nullptr, (ID3D11Buffer**)&buffer.Resource.Instance);
 
-            if (bufferType == eBufferType::INSTANCE)
+            if (bufferType == eBufferType::STRUCTURED)
             {
                 D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
                 srvDesc.Format = DXGI_FORMAT_UNKNOWN;
                 srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFEREX;
-                srvDesc.BufferEx.FirstElement = 0;
-                srvDesc.BufferEx.NumElements = BatchManager::k_instanceBufferInstanceCount;
+                srvDesc.BufferEx.FirstElement = buffer.FirstElement;
+                srvDesc.BufferEx.NumElements = buffer.NumElements;
 
                 _device->CreateShaderResourceView((ID3D11Resource*)buffer.Resource.Instance, &srvDesc, (ID3D11ShaderResourceView**)&buffer.Resource.ViewInstance);
             }
@@ -588,20 +710,20 @@ namespace xpe {
             {
                 UINT stride = xpe::gltf::cGLTFModel::k_vertexSize;
                 UINT offset = 0;
-                _immContext->IASetVertexBuffers(0, 1, (ID3D11Buffer**)&buffer->Resource.Instance, &stride, &offset);
+                _immContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance, &stride, &offset);
             }
             else if (buffer->Type == eBufferType::INDEX)
             {
                 DXGI_FORMAT format = xpe::gltf::cGLTFModel::k_indexSize == 4 ? DXGI_FORMAT_R32_UINT : DXGI_FORMAT_R16_UINT;
                 _immContext->IASetIndexBuffer((ID3D11Buffer*)buffer->Resource.Instance, format, 0);
             }
-            else if (buffer->Type == eBufferType::INSTANCE)
+            else if (buffer->Type == eBufferType::STRUCTURED)
             {
-                _immContext->VSSetShaderResources(0, 1, (ID3D11ShaderResourceView**)&buffer->Resource.ViewInstance);
+                _immContext->VSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->Resource.ViewInstance);
             }
             else if (buffer->Type == eBufferType::CONSTANT)
             {
-                _immContext->VSSetConstantBuffers(0, 1, (ID3D11Buffer**)&buffer->Resource.Instance);
+                _immContext->VSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance);
             }
         }
 

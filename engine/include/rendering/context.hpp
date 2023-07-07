@@ -42,16 +42,16 @@ namespace xpe {
                 virtual void BindShader(const Shader* shader) = 0;
                 virtual void FreeShader(Shader& shader) = 0;
                 
-                virtual void CreateTexture(Texture& texture, const void* instance, const glm::ivec2& dimension) = 0;
+                virtual void CreateTexture(Texture& texture, const void* instance) = 0;
                 virtual void BindTexture(const Texture* texture, const eShaderType& shaderType, const u32 slot) = 0;
                 virtual void FreeTexture(const Texture* texture) = 0;
-                
+                virtual void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize) = 0;
+
                 virtual void CreateSampler(TextureSampler& sampler) = 0;
                 virtual void BindSampler(const TextureSampler* sampler) = 0;
                 virtual void FreeSampler(const TextureSampler* sampler) = 0;
                 
-                Buffer CreateBuffer(const eBufferType& bufferType, usize byteSize, boolean duplicate);
-                virtual void CreateBuffer(Buffer& buffer, const eBufferType& bufferType, usize byteSize, boolean duplicate) = 0;
+                virtual void CreateBuffer(Buffer& buffer, boolean duplicate) = 0;
                 virtual void BindBuffer(const Buffer* buffer) = 0;
                 virtual void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize) = 0;
                 virtual void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize) = 0;
