@@ -703,26 +703,36 @@ namespace xpe {
 
         }
 
-        void D3D11Context::BindBuffer(const Buffer* buffer)
-        {
-            if (buffer->Type == eBufferType::VERTEX)
-            {
-                UINT stride = xpe::gltf::cGLTFModel::k_vertexSize;
-                UINT offset = 0;
-                _immContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance, &stride, &offset);
-            }
-            else if (buffer->Type == eBufferType::INDEX)
-            {
-                DXGI_FORMAT format = xpe::gltf::cGLTFModel::k_indexSize == 4 ? DXGI_FORMAT_R32_UINT : DXGI_FORMAT_R16_UINT;
-                _immContext->IASetIndexBuffer((ID3D11Buffer*)buffer->Resource.Instance, format, 0);
-            }
-            else if (buffer->Type == eBufferType::STRUCTURED)
+        void D3D11Context::BindVertexBuffer(const Buffer *buffer) {
+            UINT stride = xpe::gltf::cGLTFModel::k_vertexSize;
+            UINT offset = 0;
+            _immContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance, &stride, &offset);
+        }
+
+        void D3D11Context::BindIndexBuffer(const Buffer *buffer) {
+            DXGI_FORMAT format = xpe::gltf::cGLTFModel::k_indexSize == 4 ? DXGI_FORMAT_R32_UINT : DXGI_FORMAT_R16_UINT;
+            _immContext->IASetIndexBuffer((ID3D11Buffer*)buffer->Resource.Instance, format, 0);
+        }
+
+        void D3D11Context::BindVSBuffer(const Buffer *buffer) {
+            if (buffer->Type == eBufferType::STRUCTURED)
             {
                 _immContext->VSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->Resource.ViewInstance);
             }
             else if (buffer->Type == eBufferType::CONSTANT)
             {
                 _immContext->VSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance);
+            }
+        }
+
+        void D3D11Context::BindPSBuffer(const Buffer *buffer) {
+            if (buffer->Type == eBufferType::STRUCTURED)
+            {
+                _immContext->PSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->Resource.ViewInstance);
+            }
+            else if (buffer->Type == eBufferType::CONSTANT)
+            {
+                _immContext->PSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Resource.Instance);
             }
         }
 
@@ -851,11 +861,13 @@ namespace xpe {
             _boundPipeline = (Pipeline*)pipeline;
 
             BindInputLayout(&_boundPipeline->InputLayout);
-            BindBuffer(_boundPipeline->VertexBuffer);
-            BindBuffer(_boundPipeline->IndexBuffer);
-            BindBuffer(_boundPipeline->InstanceBuffer);
-            for (const auto* buffer : _boundPipeline->ConstantBuffers) {
-                BindBuffer(buffer);
+            BindVertexBuffer(_boundPipeline->VertexBuffer);
+            BindIndexBuffer(_boundPipeline->IndexBuffer);
+            for (const auto* buffer : _boundPipeline->VSBuffers) {
+                BindVSBuffer(buffer);
+            }
+            for (const auto* buffer : _boundPipeline->PSBuffers) {
+                BindPSBuffer(buffer);
             }
             BindShader(_boundPipeline->Shader);
             BindRenderTarget(_boundPipeline->RenderTarget);

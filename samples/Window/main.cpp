@@ -49,9 +49,9 @@ public:
         // setup buffers
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
-        _pipeline.InstanceBuffer = _batch->GetInstanceBuffer();
-        _pipeline.ConstantBuffers.emplace_back(&_cameraBuffer);
-        _pipeline.ConstantBuffers.emplace_back(MaterialManager::GetBuffer());
+        _pipeline.VSBuffers.emplace_back(_batch->GetInstanceBuffer());
+        _pipeline.VSBuffers.emplace_back(&_cameraBuffer);
+        _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
         // setup shader
         _pipeline.Shader = ShaderManager::Builder()
                 .AddVertexStageFromFile("shaders/window.vs")

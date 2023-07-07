@@ -40,7 +40,10 @@ namespace xpe {
                 virtual void FreeSampler(const TextureSampler* sampler) override final;
                 
                 void CreateBuffer(Buffer& buffer, boolean duplicate) override final;
-                void BindBuffer(const Buffer* buffer) override final;
+                void BindVertexBuffer(const Buffer* buffer) override final;
+                void BindIndexBuffer(const Buffer* buffer) override final;
+                void BindVSBuffer(const Buffer* buffer) override final;
+                void BindPSBuffer(const Buffer* buffer) override final;
                 void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize) override final;
                 void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize) override final;
                 void WriteBufferAppend(Buffer& buffer, const void* data, usize dataByteSize) override final;

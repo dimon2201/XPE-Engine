@@ -13,5 +13,5 @@ float4 ps_main(VSOut psIn) : SV_TARGET
     float3 lightPos = float3(0.0, 100.0, 0.0);
     float3 pointToLight = normalize(lightPos - psIn.positionWorld);
     float lambert = max(0.15, dot(pointToLight, psIn.normal));
-    return float4(lambert, lambert, lambert, 1.0);
+    return Material.BaseColor * lambert;
 }

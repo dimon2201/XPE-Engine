@@ -53,7 +53,10 @@ namespace xpe {
                 virtual void FreeSampler(const TextureSampler* sampler) = 0;
                 
                 virtual void CreateBuffer(Buffer& buffer, boolean duplicate) = 0;
-                virtual void BindBuffer(const Buffer* buffer) = 0;
+                virtual void BindVertexBuffer(const Buffer* buffer) = 0;
+                virtual void BindIndexBuffer(const Buffer* buffer) = 0;
+                virtual void BindVSBuffer(const Buffer* buffer) = 0;
+                virtual void BindPSBuffer(const Buffer* buffer) = 0;
                 virtual void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize) = 0;
                 virtual void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize) = 0;
                 virtual void WriteBufferAppend(Buffer& buffer, const void* data, usize dataByteSize) = 0;
