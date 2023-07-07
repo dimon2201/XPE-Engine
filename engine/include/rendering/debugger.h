@@ -4,11 +4,11 @@
 
 #ifdef DEBUG
 
-#define InitDebugger(debugger, context) xpe::core::DebugManager::Get().Init(debugger, context)
-#define FreeDebugger() xpe::core::DebugManager::Get().Free()
+#define InitDebugger(debugger, context) xpe::render::DebugManager::Get().Init(debugger, context)
+#define FreeDebugger() xpe::render::DebugManager::Get().Free()
 
-#define LogDebugMessages() xpe::core::DebugManager::Get().LogMessages()
-#define LogDebugMessage() xpe::core::DebugManager::Get().LogLastMessage()
+#define LogDebugMessages() xpe::render::DebugManager::Get().LogMessages()
+#define LogDebugMessage() xpe::render::DebugManager::Get().LogLastMessage()
 
 #else
 

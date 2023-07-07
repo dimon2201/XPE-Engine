@@ -32,45 +32,43 @@ namespace xpe {
         }
 
         MaterialBuilder& MaterialBuilder::AddAlbedoFromFile(const char *filepath) {
-            m_Material->Albedo = TextureManager::ReadTexture(filepath, Texture::eFormat::RGBA8);
+            m_Material->Albedo = TextureManager::LoadTextureFile(filepath, Texture::eFormat::RGBA8);
             m_Material->Albedo->Slot = 0;
-            TextureManager::FlipTexture(*m_Material->Albedo);
-            TextureManager::InitTexture(*m_Material->Albedo);
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddBumpFromFile(const char *filepath) {
-            m_Material->Bumping = TextureManager::LoadTexture(filepath, Texture::eFormat::RGB8);
+            m_Material->Bumping = TextureManager::LoadTextureFile(filepath, Texture::eFormat::RGB8);
             m_Material->Bumping->Slot = 1;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddParallaxFromFile(const char *filepath) {
-            m_Material->Parallax = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->Parallax = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
             m_Material->Parallax->Slot = 2;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddMetallicFromFile(const char *filepath) {
-            m_Material->Metallic = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->Metallic = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
             m_Material->Metallic->Slot = 3;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddRoughnessFromFile(const char *filepath) {
-            m_Material->Roughness = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->Roughness = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
             m_Material->Roughness->Slot = 4;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddAOFromFile(const char *filepath) {
-            m_Material->AO = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->AO = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
             m_Material->AO->Slot = 5;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddEmissionFromFile(const char *filepath) {
-            m_Material->Emission = TextureManager::LoadTexture(filepath, Texture::eFormat::RGBA8);
+            m_Material->Emission = TextureManager::LoadTextureFile(filepath, Texture::eFormat::RGBA8);
             m_Material->Emission->Slot = 6;
             return *this;
         }

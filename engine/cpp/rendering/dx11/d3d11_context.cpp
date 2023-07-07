@@ -439,12 +439,12 @@ namespace xpe {
                 switch (texture.Type) {
 
                     case Texture::eType::TEXTURE_1D:
-                        texture1DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+                        texture1DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+                        texture1DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture1DDesc.Format = s_TextureFormatTable.at(texture.Format);
                         texture1DDesc.Width = texture.Width;
                         texture1DDesc.ArraySize = texture.ArraySize;
                         texture1DDesc.MipLevels = texture.MipLevels;
-                        texture1DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                         _device->CreateTexture1D(&texture1DDesc, pInitialData, (ID3D11Texture1D**)&texture.Instance);
 
@@ -458,7 +458,8 @@ namespace xpe {
                         break;
 
                     case Texture::eType::TEXTURE_2D:
-                        texture2DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+                        texture2DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+                        texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture2DDesc.Format = s_TextureFormatTable.at(texture.Format);
                         texture2DDesc.Width = texture.Width;
                         texture2DDesc.Height = texture.Height;
@@ -466,9 +467,11 @@ namespace xpe {
                         texture2DDesc.SampleDesc.Count = 1;
                         texture2DDesc.SampleDesc.Quality = 0;
                         texture2DDesc.MipLevels = texture.MipLevels;
-                        texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
+                        texture2DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
                         _device->CreateTexture2D(&texture2DDesc, pInitialData, (ID3D11Texture2D**)&texture.Instance);
+
+                        LogDebugMessage();
 
                         srv.Format = s_TextureFormatTable.at(texture.Format);
                         srv.Texture2D.MipLevels = texture.MipLevels;
@@ -480,12 +483,12 @@ namespace xpe {
                         break;
 
                     case Texture::eType::TEXTURE_3D:
-                        texture3DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+                        texture3DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+                        texture3DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture3DDesc.Format = s_TextureFormatTable.at(texture.Format);
                         texture3DDesc.Width = texture.Width;
                         texture3DDesc.Height = texture.Height;
                         texture3DDesc.MipLevels = texture.MipLevels;
-                        texture3DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                         _device->CreateTexture3D(&texture3DDesc, pInitialData, (ID3D11Texture3D**)&texture.Instance);
 
@@ -499,7 +502,8 @@ namespace xpe {
                         break;
 
                     case Texture::eType::TEXTURE_CUBE:
-                        texture2DDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+                        texture2DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+                        texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture2DDesc.Format = s_TextureFormatTable.at(texture.Format);
                         texture2DDesc.Width = texture.Width;
                         texture2DDesc.Height = texture.Height;
@@ -508,7 +512,6 @@ namespace xpe {
                         texture2DDesc.CPUAccessFlags = 0;
                         texture2DDesc.SampleDesc.Count = 1;
                         texture2DDesc.SampleDesc.Quality = 0;
-                        texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture2DDesc.CPUAccessFlags = 0;
                         texture2DDesc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
 
@@ -604,6 +607,7 @@ namespace xpe {
                         break;
 
                     case Texture::eType::TEXTURE_2D:
+                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
                         ((ID3D11Texture2D*)texture->Instance)->Release();
                         break;
 

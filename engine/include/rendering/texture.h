@@ -117,10 +117,11 @@ namespace xpe {
             static void InitTexture(Texture& texture);
             static void BindTexture(Texture& texture);
             static void FreeTexture(Texture& texture);
+            static void WriteTexture(Texture& texture);
 
-            static Texture* ReadTexture(const char* filepath, const Texture::eFormat& format);
-            static Texture* LoadTexture(const char* filePath, const Texture::eFormat& format);
-            static void WriteTexture(const char* filePath, const Texture& image, const Texture::eFileFormat& fileFormat);
+            static Texture* ReadTextureFile(const char* filepath, const Texture::eFormat& format);
+            static Texture* LoadTextureFile(const char* filePath, const Texture::eFormat& format);
+            static void WriteTextureFile(const char* filePath, const Texture& image, const Texture::eFileFormat& fileFormat);
             static Texture ResizeTexture(Texture& input, usize outputWidth, usize outputHeight);
             static void FlipTexture(Texture& texture);
 

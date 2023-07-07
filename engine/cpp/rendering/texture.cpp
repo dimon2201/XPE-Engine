@@ -66,7 +66,7 @@ namespace xpe {
             s_TextureTable.clear();
         }
 
-        Texture* TextureManager::ReadTexture(const char *filepath, const Texture::eFormat &format) {
+        Texture* TextureManager::ReadTextureFile(const char *filepath, const Texture::eFormat &format) {
             if (s_TextureTable.find(filepath) != s_TextureTable.end()) {
                 return &s_TextureTable[filepath];
             }
@@ -142,14 +142,14 @@ namespace xpe {
             return &s_TextureTable[filepath];
         }
 
-        Texture* TextureManager::LoadTexture(const char* filePath, const Texture::eFormat& format)
+        Texture* TextureManager::LoadTextureFile(const char* filePath, const Texture::eFormat& format)
         {
-            Texture* texture = ReadTexture(filePath, format);
+            Texture* texture = ReadTextureFile(filePath, format);
             InitTexture(*texture);
             return texture;
         }
 
-        void TextureManager::WriteTexture(const char* filePath, const Texture& texture, const Texture::eFileFormat& fileFormat)
+        void TextureManager::WriteTextureFile(const char* filePath, const Texture& texture, const Texture::eFileFormat& fileFormat)
         {
             switch (fileFormat) {
 
@@ -190,6 +190,10 @@ namespace xpe {
                 stbi_image_free(texture.Pixels);
             }
             s_Context->FreeTexture(&texture);
+        }
+
+        void TextureManager::WriteTexture(Texture &texture) {
+            s_Context->WriteTexture(texture, texture.Pixels, texture.Width * texture.Height * texture.ChannelCount);
         }
 
         Texture TextureManager::ResizeTexture(Texture& input, usize outputWidth, usize outputHeight)
