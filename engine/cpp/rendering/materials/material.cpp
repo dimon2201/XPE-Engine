@@ -1,5 +1,6 @@
 #include <rendering/context.hpp>
 #include <rendering/materials/material.h>
+#include <rendering/shader.h>
 
 namespace xpe {
 
@@ -32,36 +33,43 @@ namespace xpe {
 
         MaterialBuilder& MaterialBuilder::AddAlbedoFromFile(const char *filepath) {
             m_Material->Albedo = TextureManager::LoadTexture(filepath, Texture::eFormat::RGBA8);
+            m_Material->Albedo->Slot = 0;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddBumpFromFile(const char *filepath) {
             m_Material->Bumping = TextureManager::LoadTexture(filepath, Texture::eFormat::RGB8);
+            m_Material->Bumping->Slot = 1;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddParallaxFromFile(const char *filepath) {
             m_Material->Parallax = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->Parallax->Slot = 2;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddMetallicFromFile(const char *filepath) {
             m_Material->Metallic = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->Metallic->Slot = 3;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddRoughnessFromFile(const char *filepath) {
             m_Material->Roughness = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->Roughness->Slot = 4;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddAOFromFile(const char *filepath) {
             m_Material->AO = TextureManager::LoadTexture(filepath, Texture::eFormat::R32);
+            m_Material->AO->Slot = 5;
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddEmissionFromFile(const char *filepath) {
             m_Material->Emission = TextureManager::LoadTexture(filepath, Texture::eFormat::RGBA8);
+            m_Material->Emission->Slot = 6;
             return *this;
         }
 
@@ -128,35 +136,35 @@ namespace xpe {
             }
         }
 
-        void MaterialManager::BindMaterial(Material &material, const eShaderType& shaderType, u32 slot) {
+        void MaterialManager::BindMaterial(Material &material) {
             s_Context->BindSampler(&material.Sampler);
 
             if (material.Albedo) {
-                s_Context->BindTexture(material.Albedo, shaderType, slot);
+                s_Context->BindTexture(material.Albedo, eShaderType::PIXEL);
             }
 
             if (material.Bumping) {
-                s_Context->BindTexture(material.Bumping, shaderType, slot + 1);
+                s_Context->BindTexture(material.Bumping, eShaderType::PIXEL);
             }
 
             if (material.Parallax) {
-                s_Context->BindTexture(material.Parallax, shaderType, slot + 2);
+                s_Context->BindTexture(material.Parallax, eShaderType::PIXEL);
             }
 
             if (material.Metallic) {
-                s_Context->BindTexture(material.Metallic, shaderType, slot + 3);
+                s_Context->BindTexture(material.Metallic, eShaderType::PIXEL);
             }
 
             if (material.Roughness) {
-                s_Context->BindTexture(material.Roughness, shaderType, slot + 4);
+                s_Context->BindTexture(material.Roughness, eShaderType::PIXEL);
             }
 
             if (material.AO) {
-                s_Context->BindTexture(material.AO, shaderType, slot + 5);
+                s_Context->BindTexture(material.AO, eShaderType::PIXEL);
             }
 
             if (material.Emission) {
-                s_Context->BindTexture(material.AO, shaderType, slot + 6);
+                s_Context->BindTexture(material.Emission, eShaderType::PIXEL);
             }
         }
 

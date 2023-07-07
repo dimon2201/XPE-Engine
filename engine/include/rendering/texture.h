@@ -68,6 +68,7 @@ namespace xpe {
 
             u32 ArraySize = 1;
             u32 MipLevels = 1;
+            u32 Slot = 0;
         };
 
         struct ENGINE_API TextureSampler : public GPUResource

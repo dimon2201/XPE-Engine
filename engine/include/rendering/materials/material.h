@@ -110,7 +110,7 @@ namespace xpe {
 
             static void InitMaterial(Material& material);
             static void FreeMaterial(Material& material);
-            static void BindMaterial(Material& material, const eShaderType& shaderType, u32 slot);
+            static void BindMaterial(Material& material);
             static void UpdateMaterial(Material& material);
 
             static MaterialBuffer* GetBuffer();

@@ -96,6 +96,9 @@ public:
                             .Build("material")
             );
 
+            MaterialManager::BindMaterial(*materialComponent.Material);
+            MaterialManager::UpdateMaterial(*materialComponent.Material);
+
             _batch->BeginBatch(std::string("NewGeometryData"));
             for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
             {
@@ -110,9 +113,6 @@ public:
                 }
             }
             _batch->EndBatch();
-
-            MaterialManager::BindMaterial(*materialComponent.Material, eShaderType::PIXEL, 0);
-            MaterialManager::UpdateMaterial(*materialComponent.Material);
 
             _batch->DrawBatch();
 
