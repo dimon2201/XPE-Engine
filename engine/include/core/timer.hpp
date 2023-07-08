@@ -4,16 +4,16 @@ namespace xpe
 {
     namespace core
     {
-        class ENGINE_API xCPUProfiler
+        class ENGINE_API Timer
         {
             public:
-                xCPUProfiler(Time* output)
+                Timer(Time* output)
                 {
                     _start = std::chrono::system_clock::now();
                     _output = output;
                 }
 
-                ~xCPUProfiler()
+                ~Timer()
                 {
                     _end = std::chrono::system_clock::now();
                     *_output = std::chrono::duration_cast<std::chrono::duration<float>>(_end - _start).count() * 1000;

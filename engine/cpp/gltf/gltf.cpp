@@ -24,7 +24,7 @@ namespace xpe {
             std::ifstream file(filePath, std::ios::in | std::ios::binary);
 
             if (!file.is_open()) {
-                std::cerr << "cGLTFModel: Failed to open file " << filePath << std::endl;
+                LogError("Failed to open file {}", filePath);
                 return;
             }
 

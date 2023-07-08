@@ -46,9 +46,9 @@
 
 // Core
 #include <core/build.h>
-#include <core/config.h>
 #include <core/types.hpp>
 #include <core/singleton.h>
+#include <core/config.h>
 #include <core/memory_pool.hpp>
 
 // STL customization
@@ -61,7 +61,7 @@
 // Core
 #include <core/ecs.hpp>
 #include <core/time.h>
-#include <core/profiler.hpp>
+#include <core/timer.hpp>
 #include <core/logger.h>
 #include <core/debug_break.h>
 #include <core/file_manager.h>

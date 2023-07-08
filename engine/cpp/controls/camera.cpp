@@ -53,33 +53,33 @@ namespace xpe {
             m_Data.Position = camera->Position;
         }
 
-        cCameraController::cCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, Time* time)
-        : m_UserInput(userInput), m_CameraBuffer(cameraBuffer), m_Time(time) {
+        cCameraController::cCameraController(CameraBuffer* cameraBuffer, Time* time)
+        : m_CameraBuffer(cameraBuffer), m_Time(time) {
             EnableLook();
             EnableZoom();
-            m_UserInput->AddWindowEventListener(this, 2);
+            Input::AddWindowEventListener(this, 2);
         }
 
         cCameraController::~cCameraController() {
             DisableLook();
             DisableZoom();
-            m_UserInput->RemoveWindowEventListener(this);
+            Input::RemoveWindowEventListener(this);
         }
 
         void cCameraController::EnableLook() {
-            m_UserInput->AddCursorEventListener(this, 2);
+            Input::AddCursorEventListener(this, 2);
         }
 
         void cCameraController::EnableZoom() {
-            m_UserInput->AddScrollEventListener(this, 2);
+            Input::AddScrollEventListener(this, 2);
         }
 
         void cCameraController::DisableLook() {
-            m_UserInput->RemoveCursorEventListener(this);
+            Input::RemoveCursorEventListener(this);
         }
 
         void cCameraController::DisableZoom() {
-            m_UserInput->RemoveScrollEventListener(this);
+            Input::RemoveScrollEventListener(this);
         }
 
         void cCameraController::CursorMoved(const double x, const double y) {
@@ -93,19 +93,19 @@ namespace xpe {
             auto& front = Camera->Front;
             auto& up = Camera->Up;
 
-            if (m_UserInput->isKeyPressed(KeyMoveForward)) {
+            if (Input::KeyPressed(KeyMoveForward)) {
                 position += distance * front;
             }
 
-            else if (m_UserInput->isKeyPressed(KeyMoveLeft)) {
+            else if (Input::KeyPressed(KeyMoveLeft)) {
                 position += glm::normalize(glm::cross(front, up)) * distance;
             }
 
-            else if (m_UserInput->isKeyPressed(KeyMoveBackward)) {
+            else if (Input::KeyPressed(KeyMoveBackward)) {
                 position -= distance * front;
             }
 
-            else if (m_UserInput->isKeyPressed(KeyMoveRight)) {
+            else if (Input::KeyPressed(KeyMoveRight)) {
                 position -= glm::normalize(glm::cross(front, up)) * distance;
             }
 
@@ -153,9 +153,9 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::Look(const double x, const double y) {
-            m_UserInput->CaptureCursor();
+            Input::CaptureCursor();
 
-            auto& cursorDelta = m_UserInput->GetMouseCursor().Delta;
+            auto& cursorDelta = Input::GetMouseCursor().Delta;
             float dt = m_Time->Millis();
             auto& front = Camera->Front;
             auto& up = Camera->Up;

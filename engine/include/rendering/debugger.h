@@ -94,7 +94,9 @@ namespace xpe {
 
             virtual DebugMessage GetLastMessage() = 0;
 
-            virtual std::vector<DebugMessage> GetMessageQueue() = 0;
+            virtual vector<DebugMessage> GetMessageQueue() = 0;
+
+            virtual void ClearMessageQueue() = 0;
 
             inline void SetCallback(DebuggerCallback* const callback) {
                 m_Callback = callback;

@@ -12,24 +12,30 @@ namespace xpe {
         using namespace xpe::render;
 
         class Window;
-        class cUserInputManager;
 
-        class ENGINE_API App_Interface {
+        class ENGINE_API Application {
 
         public:
-            App_Interface() {}
-            ~App_Interface() {}
+            Context* context = nullptr;
+            Window* window = nullptr;
+            Time time;
 
-            virtual void Init(Window* window, Context* context, cUserInputManager* ui) = 0;
-            virtual void Update(Window* window, Context* context, cUserInputManager* ui) = 0;
-            virtual void Free() = 0;
+        public:
+            Application() {}
+            ~Application() {}
+
+        public:
+            void Run();
 
         protected:
-            EventBuffer<AppEventListener> m_AppEvents;
+            virtual void Init() = 0;
+            virtual void Update() = 0;
+            virtual void Free() = 0;
 
         };
 
-        void ENGINE_API RunApp(App_Interface* app, const WindowDescriptor& desc, const LoggerDescriptor& logDesc);
     }
 
 }
+
+xpe::core::Application* CreateApplication();

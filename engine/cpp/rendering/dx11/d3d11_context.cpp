@@ -52,6 +52,7 @@ namespace xpe {
             _swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&_swapChainTexture.Instance);
             _swapChainTexture.Width = window.GetWidth();
             _swapChainTexture.Height = window.GetHeight();
+            _swapChainTexture.Format = Texture::eFormat::RGBA8;
             CreateTexture(_swapChainTexture, _swapChainTexture.Instance);
             _rt = CreateRenderTarget(glm::ivec2(window.GetWidth(), window.GetHeight()), &_swapChainTexture, nullptr, nullptr, nullptr);
             CreateSampler(_sampler);
@@ -363,23 +364,23 @@ namespace xpe {
 
         };
 
-        static const unordered_map<Texture::eFormat, u32> s_TexturePitchTable = {
+        static const unordered_map<Texture::eFormat, u32> s_TextureBPPTable = {
 
                 { Texture::eFormat::R8, 1 },
-                { Texture::eFormat::R16, 1 },
-                { Texture::eFormat::R32, 1 },
+                { Texture::eFormat::R16, 2 },
+                { Texture::eFormat::R32, 4 },
 
                 { Texture::eFormat::RG8, 2 },
-                { Texture::eFormat::RG16, 2 },
-                { Texture::eFormat::RG32, 2 },
+                { Texture::eFormat::RG16, 4 },
+                { Texture::eFormat::RG32, 8 },
 
                 { Texture::eFormat::RGB8, 3 },
-                { Texture::eFormat::RGB16, 3 },
-                { Texture::eFormat::RGB32, 3 },
+                { Texture::eFormat::RGB16, 6 },
+                { Texture::eFormat::RGB32, 12 },
 
                 { Texture::eFormat::RGBA8, 4 },
-                { Texture::eFormat::RGBA16, 4 },
-                { Texture::eFormat::RGBA32, 4 },
+                { Texture::eFormat::RGBA16, 8 },
+                { Texture::eFormat::RGBA32, 16 },
 
         };
 
@@ -430,9 +431,11 @@ namespace xpe {
 
                 D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
 
+                u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+
                 if (texture.Pixels != nullptr) {
                     initialData.pSysMem = texture.Pixels;
-                    initialData.SysMemPitch = texture.Width * s_TexturePitchTable.at(texture.Format);
+                    initialData.SysMemPitch = texture.Width * s_TextureBPPTable.at(texture.Format);
                     pInitialData = &initialData;
                 }
 
@@ -443,8 +446,9 @@ namespace xpe {
                         texture1DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
                         texture1DDesc.Format = s_TextureFormatTable.at(texture.Format);
                         texture1DDesc.Width = texture.Width;
-                        texture1DDesc.ArraySize = texture.ArraySize;
+                        texture1DDesc.ArraySize = arraySize;
                         texture1DDesc.MipLevels = texture.MipLevels;
+                        texture1DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
                         _device->CreateTexture1D(&texture1DDesc, pInitialData, (ID3D11Texture1D**)&texture.Instance);
 
@@ -463,15 +467,13 @@ namespace xpe {
                         texture2DDesc.Format = s_TextureFormatTable.at(texture.Format);
                         texture2DDesc.Width = texture.Width;
                         texture2DDesc.Height = texture.Height;
-                        texture2DDesc.ArraySize = texture.ArraySize;
+                        texture2DDesc.ArraySize = arraySize;
                         texture2DDesc.SampleDesc.Count = 1;
                         texture2DDesc.SampleDesc.Quality = 0;
                         texture2DDesc.MipLevels = texture.MipLevels;
                         texture2DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
                         _device->CreateTexture2D(&texture2DDesc, pInitialData, (ID3D11Texture2D**)&texture.Instance);
-
-                        LogDebugMessage();
 
                         srv.Format = s_TextureFormatTable.at(texture.Format);
                         srv.Texture2D.MipLevels = texture.MipLevels;
@@ -489,6 +491,7 @@ namespace xpe {
                         texture3DDesc.Width = texture.Width;
                         texture3DDesc.Height = texture.Height;
                         texture3DDesc.MipLevels = texture.MipLevels;
+                        texture3DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
                         _device->CreateTexture3D(&texture3DDesc, pInitialData, (ID3D11Texture3D**)&texture.Instance);
 
@@ -502,55 +505,7 @@ namespace xpe {
                         break;
 
                     case Texture::eType::TEXTURE_CUBE:
-                        texture2DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-                        texture2DDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                        texture2DDesc.Format = s_TextureFormatTable.at(texture.Format);
-                        texture2DDesc.Width = texture.Width;
-                        texture2DDesc.Height = texture.Height;
-                        texture2DDesc.MipLevels = texture.MipLevels;
-                        texture2DDesc.ArraySize = 6;
-                        texture2DDesc.CPUAccessFlags = 0;
-                        texture2DDesc.SampleDesc.Count = 1;
-                        texture2DDesc.SampleDesc.Quality = 0;
-                        texture2DDesc.CPUAccessFlags = 0;
-                        texture2DDesc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
-
-                        srv.Format = s_TextureFormatTable.at(texture.Format);
-                        srv.TextureCube.MipLevels = texture.MipLevels;
-                        srv.TextureCube.MostDetailedMip = texture.MostDetailedMip;
-                        srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
-
-//                        D3D11_SHADER_RESOURCE_VIEW_DESC SMViewDesc;
-//                        SMViewDesc.Format = texDesc.Format;
-//                        SMViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
-//                        SMViewDesc.TextureCube.MipLevels =  texDesc.MipLevels;
-//                        SMViewDesc.TextureCube.MostDetailedMip = 0;
-//
-//                        D3D11_SUBRESOURCE_DATA pData[6];
-//                        std::vector<vector4b> d[6]; // 6 images of type vector4b = 4 * unsigned char
-//
-//                        for (int cubeMapFaceIndex = 0; cubeMapFaceIndex < 6; cubeMapFaceIndex++)
-//                        {
-//                            d[cubeMapFaceIndex].resize(description.width * description.height);
-//
-//                            // fill with red color
-//                            std::fill(
-//                                    d[cubeMapFaceIndex].begin(),
-//                                    d[cubeMapFaceIndex].end(),
-//                                    vector4b(255,0,0,255));
-//
-//                            pData[cubeMapFaceIndex].pSysMem = &d[cubeMapFaceIndex][0];// description.data;
-//                            pData[cubeMapFaceIndex].SysMemPitch = description.width * 4;
-//                            pData[cubeMapFaceIndex].SysMemSlicePitch = 0;
-//                        }
-//
-//                        HRESULT hr = renderer->getDevice()->CreateTexture2D(&texDesc,
-//                                                                            description.data[0] ? &pData[0] : nullptr, &m_pCubeTexture);
-//                        assert(hr == S_OK);
-//
-//                        hr = renderer->getDevice()->CreateShaderResourceView(
-//                                m_pCubeTexture, &SMViewDesc, &m_pShaderResourceView);
-//                        assert(hr == S_OK);
+                        CreateTextureCube(texture, instance);
                         break;
 
                 }
@@ -558,29 +513,45 @@ namespace xpe {
             }
 
             else {
-
-                switch (texture.Type) {
-
-                    case Texture::eType::TEXTURE_1D:
-                        texture.Instance = (ID3D11Texture1D*)instance;
-                        break;
-
-                    case Texture::eType::TEXTURE_2D:
-                        texture.Instance = (ID3D11Texture2D*)instance;
-                        break;
-
-                    case Texture::eType::TEXTURE_3D:
-                        texture.Instance = (ID3D11Texture3D*)instance;
-                        break;
-
-                    case Texture::eType::TEXTURE_CUBE:
-                        texture.Instance = (ID3D11Texture2D*)instance;
-                        break;
-
-                }
-
+                texture.Instance = (void*) instance;
             }
 
+        }
+
+        void D3D11Context::CreateTextureCube(Texture &texture, const void *instance) {
+            D3D11_TEXTURE2D_DESC desc = {};
+            D3D11_SUBRESOURCE_DATA initialData[6];
+            D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
+
+            desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+            desc.Usage = s_TextureUsageTable.at(texture.Usage);
+            desc.Format = s_TextureFormatTable.at(texture.Format);
+            desc.Width = texture.Width;
+            desc.Height = texture.Height;
+            desc.MipLevels = texture.MipLevels;
+            desc.ArraySize = 6;
+            desc.SampleDesc.Count = 1;
+            desc.SampleDesc.Quality = 0;
+            desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+            desc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
+
+            srv.Format = s_TextureFormatTable.at(texture.Format);
+            srv.TextureCube.MipLevels = texture.MipLevels;
+            srv.TextureCube.MostDetailedMip = texture.MostDetailedMip;
+            srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
+
+            u32 sysMemPitch = texture.Width * s_TextureBPPTable.at(texture.Format);
+
+            for (int i = 0; i < 6; i++)
+            {
+                auto& data = initialData[i];
+                data.pSysMem = texture.Layers[i];
+                data.SysMemPitch = sysMemPitch;
+                data.SysMemSlicePitch = 0;
+            }
+
+            _device->CreateTexture2D(&desc, &initialData[0], (ID3D11Texture2D**)&texture.Instance);
+            _device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
         }
 
         void D3D11Context::BindTexture(const Texture* texture)
@@ -603,6 +574,7 @@ namespace xpe {
                 switch (texture->Type) {
 
                     case Texture::eType::TEXTURE_1D:
+                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
                         ((ID3D11Texture1D*)texture->Instance)->Release();
                         break;
 
@@ -612,10 +584,12 @@ namespace xpe {
                         break;
 
                     case Texture::eType::TEXTURE_3D:
+                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
                         ((ID3D11Texture3D*)texture->Instance)->Release();
                         break;
 
                     case Texture::eType::TEXTURE_CUBE:
+                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
                         ((ID3D11Texture2D*)texture->Instance)->Release();
                         break;
 
@@ -666,7 +640,7 @@ namespace xpe {
             }
         }
 
-        void D3D11Context::CreateBuffer(Buffer& buffer, boolean duplicate)
+        void D3D11Context::CreateBuffer(Buffer& buffer, Boolean duplicate)
         {
             eBufferType bufferType = buffer.Type;
             usize byteSize = buffer.ByteSize;

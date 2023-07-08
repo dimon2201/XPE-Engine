@@ -62,6 +62,11 @@ macro(copy_build_dir dir1 dir2)
     copy_dir(${CMAKE_SOURCE_DIR}/${dir1} ${CMAKE_BINARY_DIR}/${dir2})
 endmacro()
 
+# copying source file into binary file folder
+macro(copy_build_file f1 f2)
+    configure_file(${CMAKE_SOURCE_DIR}/${f1} ${CMAKE_BINARY_DIR}/bin/${f2} COPYONLY)
+endmacro()
+
 # delete directory
 macro(delete_dir dir)
     set(buildDir ${dir})

@@ -1,0 +1,16 @@
+{
+
+  "win_title": "Example Window",
+  "width": 800,
+  "height": 600,
+
+  "log_title": "ExampleWindow",
+  "log_backtrace": 32,
+
+  "gpu": "DX11",
+
+  "debug_errors": true,
+  "debug_warnings": true,
+  "debug_info": false
+
+}

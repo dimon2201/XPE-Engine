@@ -7,71 +7,96 @@
 
 #include <rendering/materials/material.h>
 
-void xpe::core::RunApp(App_Interface* app, const WindowDescriptor& desc, const LoggerDescriptor& logDesc)
-{
-    InitLogger(logDesc);
+namespace xpe {
 
-    Window* pWindow = InitWindow(desc);
-    Window window = *pWindow;
+    namespace core {
 
-    cUserInputManager* ui = new cUserInputManager();
+        void Application::Run() {
+            LoggerDescriptor logDesc;
+            logDesc.Name = AppConfig::Get().LogTitle.c_str();
+            logDesc.Backtrace = AppConfig::Get().LogBacktrace;
+            InitLogger(logDesc);
 
-    Context* context = nullptr;
-    Debugger* debugger = nullptr;
+            WindowDescriptor winDesc;
+            winDesc.Title = AppConfig::Get().WinTitle.c_str();
+            winDesc.Width = AppConfig::Get().Width;
+            winDesc.Height = AppConfig::Get().Height;
+            window = InitWindow(winDesc);
 
-    switch (EngineConfig::GPU_API) {
+            context = nullptr;
+            Debugger* debugger = nullptr;
 
-        case eGPU_API::DX11:
-            context = new D3D11Context();
-            debugger = new D3D11Debugger();
-            break;
+            switch (AppConfig::Get().GPU) {
 
-        default:
-            LogError("Specified engine configuration is not supported!");
-            exit(1);
+                case AppConfig::eGPU::DX11:
+                    context = new D3D11Context();
+                    debugger = new D3D11Debugger();
+                    break;
+
+                default:
+                    LogError("App config GPU API is not supported!");
+                    exit(1);
+
+            }
+
+            context->Init(*window);
+
+            InitDebugger(debugger, context);
+
+            ShaderManager::Init(context);
+
+            TextureManager::Init(context);
+
+            MaterialManager::Init(context);
+
+            Input::Init(window->GetInstance());
+
+            Init();
+
+            LogDebugMessages();
+
+            while (!ShouldWindowClose(*window))
+            {
+                Timer timer(&time);
+
+                Input::CaptureCursor();
+
+                Update();
+
+                DefaultWindowEvents(*window);
+
+                LogDebugMessages();
+
+                static int logDeltaLimit;
+                logDeltaLimit++;
+                if (logDeltaLimit > 2000)
+                {
+                    logDeltaLimit = 0;
+                    LogDelta(time.Seconds());
+                }
+            }
+
+            LogDebugMessages();
+
+            Free();
+
+            ShaderManager::Free();
+
+            TextureManager::Free();
+
+            MaterialManager::Free();
+
+            FreeDebugger();
+
+            context->Free();
+
+            Input::Free();
+
+            FreeWindow(window);
+
+            FreeLogger();
+        }
 
     }
-
-    context->Init(window);
-
-    InitDebugger(debugger, context);
-
-    ShaderManager::Init(context);
-
-    TextureManager::Init(context);
-
-    MaterialManager::Init(context);
-
-    ui->Init(pWindow->GetInstance());
-
-    app->Init(pWindow, context, ui);
-
-    LogDebugMessages();
-
-    while (!ShouldWindowClose(window))
-    {
-        ui->CaptureCursor();
-        app->Update(pWindow, context, ui);
-
-        DefaultWindowEvents(window);
-
-        LogDebugMessages();
-    }
-
-    LogDebugMessages();
-
-    ShaderManager::Free();
-
-    TextureManager::Free();
-
-    MaterialManager::Free();
-
-    FreeDebugger();
-
-    context->Free();
-
-    FreeWindow(pWindow);
-
-    FreeLogger();
 
 }

@@ -34,7 +34,7 @@ xpe::core::Window* xpe::core::InitWindow(const WindowDescriptor& desc)
     return new Window(instance, glfwGetWin32Window((GLFWwindow*)instance), desc);
 }
 
-xpe::core::boolean xpe::core::ShouldWindowClose(Window& window)
+xpe::core::Boolean xpe::core::ShouldWindowClose(Window& window)
 {
     return glfwWindowShouldClose((GLFWwindow*)window.GetInstance());
 }

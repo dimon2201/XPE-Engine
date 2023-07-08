@@ -13,7 +13,8 @@ namespace xpe {
             void Init(Context* const context) override;
             void Free() override;
             DebugMessage GetLastMessage() override;
-            std::vector<DebugMessage> GetMessageQueue() override;
+            vector<DebugMessage> GetMessageQueue() override;
+            void ClearMessageQueue() override;
 
         private:
             DebugMessage GetDebugMessage(int index);

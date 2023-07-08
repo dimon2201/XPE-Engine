@@ -29,7 +29,7 @@ namespace xpe
             using sword = s64;
             using uword = u64;
         #endif
-        using boolean = uword;
+        using Boolean = uword;
 
         class ENGINE_API Object
         {
@@ -43,8 +43,8 @@ namespace xpe
                 void operator delete(void* address);
         };
 
-        constexpr boolean K_TRUE                    = 1;
-        constexpr boolean K_FALSE                   = 0;
+        constexpr Boolean K_TRUE                    = 1;
+        constexpr Boolean K_FALSE                   = 0;
         constexpr usize K_MEMORY_KIB                = 1024;
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
         constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;

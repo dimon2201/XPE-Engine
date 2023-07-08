@@ -5,22 +5,21 @@ using namespace xpe::core;
 using namespace xpe::render;
 using namespace xpe::control;
 
-class GameApp : public App_Interface, public WindowEventListener, public KeyEventListener, public CursorEventListener
+class GameApp;
+
+class GameApp : public Application, public WindowEventListener, public KeyEventListener, public CursorEventListener
 {
 public:
     GameApp() {}
     ~GameApp() {}
 
-    void Init(Window* window, Context* context, cUserInputManager* ui) override final
+    void Init() override final
     {
         LogInfo("GameApp::Init()");
 
-        _window = window;
-        _ui = ui;
-
-        ui->AddWindowEventListener(this, 1);
-        ui->AddKeyEventListener(this, 1);
-        ui->AddCursorEventListener(this, 1);
+        Input::AddWindowEventListener(this, 1);
+        Input::AddKeyEventListener(this, 1);
+        Input::AddCursorEventListener(this, 1);
 
         _canvas = new Canvas(window->GetWidth(), window->GetHeight(), context);
         _ecs = new ECSManager();
@@ -29,7 +28,18 @@ public:
         _cameraBuffer.Init(context);
 
         static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        _cameraController = new cPerspectiveCameraController(ui, &_cameraBuffer, &perspectiveCamera, &_time);
+        _cameraController = new cPerspectiveCameraController(&_cameraBuffer, &perspectiveCamera, &time);
+
+        TextureCubeFile textureCubeFile;
+        textureCubeFile.Name = "test";
+        textureCubeFile.FrontFilepath = "files/skybox/front.jpg";
+        textureCubeFile.BackFilepath = "files/skybox/back.jpg";
+        textureCubeFile.RightFilepath = "files/skybox/right.jpg";
+        textureCubeFile.LeftFilepath = "files/skybox/left.jpg";
+        textureCubeFile.TopFilepath = "files/skybox/top.jpg";
+        textureCubeFile.BottomFilepath = "files/skybox/bottom.jpg";
+
+        Texture* textureCube = TextureManager::LoadTextureCubeFile(textureCubeFile, Texture::eFormat::RGBA8);
 
         xpe::gltf::cGLTFModel model("files/cube.gltf");
         xpe::gltf::xMesh* mesh = model.GetMesh(0);
@@ -77,11 +87,9 @@ public:
         context->CreateRenderPipeline(_pipeline);
     }
 
-    void Update(Window* window, Context* context, cUserInputManager* ui) override final
+    void Update() override final
     {
         {
-            xpe::core::xCPUProfiler pro(&_time);
-
             _cameraController->Move();
 
             _canvas->Clear(glm::vec4(1.0f));
@@ -118,14 +126,6 @@ public:
 
             _canvas->Present();
         }
-
-        static int logDeltaLimit;
-        logDeltaLimit++;
-        if (logDeltaLimit > 2000)
-        {
-            logDeltaLimit = 0;
-            LogDelta(_time.Seconds());
-        }
     }
 
     void Free() override
@@ -143,7 +143,7 @@ public:
     {
         if (key == eKey::Esc)
         {
-            CloseWindow(*_window);
+            CloseWindow(*window);
         }
     }
 
@@ -153,34 +153,15 @@ public:
     }
 
 private:
-    Time _time = 0;
     Canvas* _canvas;
     ECSManager* _ecs;
     BatchManager* _batch;
     Pipeline _pipeline;
     InputLayout _layout;
-    Window* _window;
-    cUserInputManager* _ui;
     CameraBuffer _cameraBuffer;
     cPerspectiveCameraController* _cameraController;
 };
 
-int main()
-{
-    GameApp app;
-
-    EngineConfig::GPU_API = eGPU_API::DX11;
-
-    WindowDescriptor winDesc;
-    winDesc.Width = 800;
-    winDesc.Height = 600;
-    winDesc.Title = "Game App Test";
-
-    LoggerDescriptor logDesc;
-    logDesc.Name = "XPE-Window";
-    logDesc.Backtrace = 32;
-
-    RunApp(&app, winDesc, logDesc);
-
-    return 0;
+Application* CreateApplication() {
+    return new GameApp();
 }

@@ -36,6 +36,9 @@ namespace xpe {
             eDebugSeverity severity = message.Severity;
             const char* description = message.Description;
 
+            ss << "\n";
+            ss << "--------------- Rendering Debugger ---------------- \n";
+
             ss << "ID: " << id << "\n";
 
             switch (type)
@@ -89,37 +92,54 @@ namespace xpe {
             }
             ss << "\n";
 
-            ss << "Description: " << description;
+            ss << "Description: " << description << "\n";
+            ss << "--------------------------------------------------- \n";
 
-            switch (type) {
+            if (AppConfig::Get().LogDebugErrors)
+            {
 
-                case eDebugType::D_ERROR:
-                    LogError(ss.str().c_str());
-                    debug_break();
-                    break;
+                switch (type) {
 
-                case eDebugType::D_UNDEFINED_BEHAVIOUR:
-                    LogError(ss.str().c_str());
-                    debug_break();
-                    break;
+                    case eDebugType::D_ERROR:
+                        LogError(ss.str().c_str());
+                        debug_break();
+                        break;
 
-                case eDebugType::D_WARNING:
-                    LogWarning(ss.str().c_str());
-                    break;
+                    case eDebugType::D_UNDEFINED_BEHAVIOUR:
+                        LogError(ss.str().c_str());
+                        debug_break();
+                        break;
 
-                case eDebugType::D_DEPRECATED_BEHAVIOUR:
-                    LogWarning(ss.str().c_str());
-                    break;
-
-                case eDebugType::D_PERFORMANCE:
-                    LogWarning(ss.str().c_str());
-                    break;
-
-                default:
-                    LogInfo(ss.str().c_str());
-                    break;
+                }
 
             }
+
+            else if (AppConfig::Get().LogDebugWarnings)
+            {
+
+                switch (type) {
+
+                    case eDebugType::D_WARNING:
+                        LogWarning(ss.str().c_str());
+                        break;
+
+                    case eDebugType::D_DEPRECATED_BEHAVIOUR:
+                        LogWarning(ss.str().c_str());
+                        break;
+
+                    case eDebugType::D_PERFORMANCE:
+                        LogWarning(ss.str().c_str());
+                        break;
+
+                }
+
+            }
+
+            else if (AppConfig::Get().LogDebugInfos)
+            {
+                LogInfo(ss.str().c_str());
+            }
+
         }
 
     }

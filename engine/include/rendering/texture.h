@@ -10,6 +10,16 @@ namespace xpe {
 
         class Context;
 
+        struct Texture;
+
+        struct ENGINE_API cTextureComponent : public cComponent {
+
+            cTextureComponent(const string& usid) : cComponent(usid) {}
+
+            Texture* Texture = nullptr;
+
+        };
+
         struct ENGINE_API Texture : public GPUResource
         {
             enum class eType
@@ -55,13 +65,14 @@ namespace xpe {
             usize Depth;
             usize ChannelCount;
             eFormat Format;
-            boolean OnMemoryPool;
-            void* Pixels = nullptr;
+            Boolean OnMemoryPool;
 
-            u32 ArraySize = 1;
             u32 MipLevels = 1;
             u32 MostDetailedMip = 0;
             u32 Slot = 0;
+
+            void* Pixels = nullptr;
+            vector<void*> Layers;
         };
 
         struct ENGINE_API TextureSampler : public GPUResource
@@ -106,6 +117,16 @@ namespace xpe {
             eAddressMode AddressW = eAddressMode::CLAMP;
         };
 
+        struct ENGINE_API TextureCubeFile final {
+            string Name = "";
+            const char* FrontFilepath = nullptr;
+            const char* BackFilepath = nullptr;
+            const char* RightFilepath = nullptr;
+            const char* LeftFilepath = nullptr;
+            const char* TopFilepath = nullptr;
+            const char* BottomFilepath = nullptr;
+        };
+
         class ENGINE_API TextureManager final
         {
 
@@ -115,15 +136,23 @@ namespace xpe {
             static void Free();
 
             static void InitTexture(Texture& texture);
+            static void InitTextureCube(Texture& texture);
             static void BindTexture(Texture& texture);
             static void FreeTexture(Texture& texture);
             static void WriteTexture(Texture& texture);
 
             static Texture* ReadTextureFile(const char* filepath, const Texture::eFormat& format);
             static Texture* LoadTextureFile(const char* filePath, const Texture::eFormat& format);
+            static Texture* ReadTextureCubeFile(const TextureCubeFile& cubeFile, const Texture::eFormat& format);
+            static Texture* LoadTextureCubeFile(const TextureCubeFile& cubeFile, const Texture::eFormat& format);
+
             static void WriteTextureFile(const char* filePath, const Texture& image, const Texture::eFileFormat& fileFormat);
             static Texture ResizeTexture(Texture& input, usize outputWidth, usize outputHeight);
             static void FlipTexture(Texture& texture);
+
+        private:
+            static void ResizeTextureU8(Texture& input, Texture& output);
+            static void ResizeTextureFloat(Texture& input, Texture& output);
 
         private:
             static Context* s_Context;

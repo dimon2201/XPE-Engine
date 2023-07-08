@@ -4,7 +4,7 @@ namespace xpe
 {
     namespace core
     {
-        class App_Interface;
+        class Application;
 
         struct ENGINE_API WindowDescriptor
         {
@@ -32,7 +32,7 @@ namespace xpe
         };
 
         Window* InitWindow(const WindowDescriptor& desc);
-        boolean ShouldWindowClose(Window& window);
+        Boolean ShouldWindowClose(Window& window);
         void DefaultWindowEvents(Window& window);
         void SetUserPointer(Window& window, void* ptr);
         void* GetUserPointer(Window& window);

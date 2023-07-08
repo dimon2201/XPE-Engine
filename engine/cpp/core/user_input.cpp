@@ -8,13 +8,21 @@ namespace xpe {
 
         static GLFWwindow* s_Window = nullptr;
 
-        void cUserInputManager::Init(void* window) {
-            s_Window = static_cast<GLFWwindow*>(window);
-            m_WindowEvents.Reserve(5);
-            m_KeyEvents.Reserve(5);
-            m_MouseEvents.Reserve(5);
+        MouseCursor Input::s_Cursor;
+        EventBuffer<WindowEventListener> Input::s_WindowEvents;
+        EventBuffer<KeyEventListener> Input::s_KeyEvents;
+        EventBuffer<MouseEventListener> Input::s_MouseEvents;
+        EventBuffer<CursorEventListener> Input::s_CursorEvents;
+        EventBuffer<ScrollEventListener> Input::s_ScrollEvents;
+        EventBuffer<CharEventListener> Input::s_CharEvents;
 
-            glfwSetWindowUserPointer(s_Window, this);
+        void Input::Init(void* window) {
+            s_Window = static_cast<GLFWwindow*>(window);
+
+            s_WindowEvents.Reserve(5);
+            s_KeyEvents.Reserve(5);
+            s_MouseEvents.Reserve(5);
+
             InitWindowCallbacks();
             InitKeyCallbacks();
             InitMouseCallbacks();
@@ -23,68 +31,62 @@ namespace xpe {
             InitCharCallbacks();
         }
 
-        void cUserInputManager::InitWindowCallbacks() {
+        void Input::InitWindowCallbacks() {
             glfwSetWindowCloseCallback(s_Window, [](GLFWwindow* window) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetWindowEvents().GetEvents()) {
+                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
                     event.Listener->WindowClosed();
                 }
             });
 
             glfwSetWindowPosCallback(s_Window, [](GLFWwindow* window, int x, int y) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetWindowEvents().GetEvents()) {
+                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
                     event.Listener->WindowMoved(x, y);
                 }
             });
 
             glfwSetWindowSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetWindowEvents().GetEvents()) {
+                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
                     event.Listener->WindowResized(w, h);
                 }
             });
 
             glfwSetFramebufferSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetWindowEvents().GetEvents()) {
+                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
                     event.Listener->WindowFrameResized(w, h);
                 }
             });
 
             glfwSetWindowFocusCallback(s_Window, [](GLFWwindow* window, int focused) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
                 if (focused == GLFW_TRUE) {
-                    for (const auto& event : ui->GetWindowEvents().GetEvents()) {
+                    for (const auto& event : Input::GetWindowEvents().GetEvents()) {
                         event.Listener->WindowFocused();
                     }
                 } else {
-                    for (const auto& event : ui->GetWindowEvents().GetEvents()) {
+                    for (const auto& event : Input::GetWindowEvents().GetEvents()) {
                         event.Listener->WindowFocusLost();
                     }
                 }
             });
         }
 
-        void cUserInputManager::InitKeyCallbacks() {
+        void Input::InitKeyCallbacks() {
             glfwSetKeyCallback(s_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : ui->GetKeyEvents().GetEvents()) {
+                        for (const auto& event : Input::GetKeyEvents().GetEvents()) {
                             event.Listener->KeyPressed(static_cast<eKey>(key));
                         }
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : ui->GetKeyEvents().GetEvents()) {
+                        for (const auto& event : Input::GetKeyEvents().GetEvents()) {
                             event.Listener->KeyReleased(static_cast<eKey>(key));
                         }
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : ui->GetKeyEvents().GetEvents()) {
+                        for (const auto& event : Input::GetKeyEvents().GetEvents()) {
                             event.Listener->KeyHold(static_cast<eKey>(key));
                         }
                         break;
@@ -93,25 +95,24 @@ namespace xpe {
             });
         }
 
-        void cUserInputManager::InitMouseCallbacks() {
+        void Input::InitMouseCallbacks() {
             glfwSetMouseButtonCallback(s_Window, [](GLFWwindow* window, int button, int action, int mods) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : ui->GetMouseEvents().GetEvents()) {
+                        for (const auto& event : Input::GetMouseEvents().GetEvents()) {
                             event.Listener->MousePressed(static_cast<eMouse>(button));
                         }
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : ui->GetMouseEvents().GetEvents()) {
+                        for (const auto& event : Input::GetMouseEvents().GetEvents()) {
                             event.Listener->MouseReleased(static_cast<eMouse>(button));
                         }
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : ui->GetMouseEvents().GetEvents()) {
+                        for (const auto& event : Input::GetMouseEvents().GetEvents()) {
                             event.Listener->MouseHold(static_cast<eMouse>(button));
                         }
                         break;
@@ -120,82 +121,77 @@ namespace xpe {
             });
         }
 
-        void cUserInputManager::InitCursorCallbacks() {
+        void Input::InitCursorCallbacks() {
             glfwSetCursorPosCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetCursorEvents().GetEvents()) {
+                for (const auto& event : Input::GetCursorEvents().GetEvents()) {
                     event.Listener->CursorMoved(x, y);
                 }
             });
 
             glfwSetCursorEnterCallback(s_Window, [](GLFWwindow* window, int entered) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
                 if (entered == GLFW_TRUE) {
-                    for (const auto& event : ui->GetCursorEvents().GetEvents()) {
+                    for (const auto& event : Input::GetCursorEvents().GetEvents()) {
                         event.Listener->CursorEntered();
                     }
                 } else {
-                    for (const auto& event : ui->GetCursorEvents().GetEvents()) {
+                    for (const auto& event : Input::GetCursorEvents().GetEvents()) {
                         event.Listener->CursorLeft();
                     }
                 }
             });
         }
 
-        void cUserInputManager::InitScrollCallbacks() {
+        void Input::InitScrollCallbacks() {
             glfwSetScrollCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetScrollEvents().GetEvents()) {
+                for (const auto& event : Input::GetScrollEvents().GetEvents()) {
                     event.Listener->ScrollChanged(x, y);
                 }
             });
         }
 
-        void cUserInputManager::InitCharCallbacks() {
+        void Input::InitCharCallbacks() {
             glfwSetCharCallback(s_Window, [](GLFWwindow* window, u32 charUnicode) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetCharEvents().GetEvents()) {
+                for (const auto& event : Input::GetCharEvents().GetEvents()) {
                     event.Listener->CharTyped(charUnicode);
                 }
             });
 
             glfwSetCharModsCallback(s_Window, [](GLFWwindow* window, u32 charUnicode, int mods) {
-                auto* ui = static_cast<cUserInputManager*>(glfwGetWindowUserPointer(window));
-                for (const auto& event : ui->GetCharEvents().GetEvents()) {
+                for (const auto& event : Input::GetCharEvents().GetEvents()) {
                     event.Listener->CharModsTyped(charUnicode, mods);
                 }
             });
         }
 
-        void cUserInputManager::Free() {
-            m_WindowEvents.Clear();
-            m_KeyEvents.Clear();
-            m_MouseEvents.Clear();
+        void Input::Free() {
+            s_WindowEvents.Clear();
+            s_KeyEvents.Clear();
+            s_MouseEvents.Clear();
         }
 
-        void cUserInputManager::CaptureCursor() {
+        void Input::CaptureCursor() {
             double xPos = 0.0;
             double yPos = 0.0;
             glfwGetCursorPos(s_Window, &xPos, &yPos);
 
             glm::vec2 cursorPosition = glm::vec2(xPos, yPos);
-            m_Cursor.Delta = cursorPosition - m_Cursor.Position;
-            m_Cursor.Position = cursorPosition;
+            s_Cursor.Delta = cursorPosition - s_Cursor.Position;
+            s_Cursor.Position = cursorPosition;
         }
 
-        bool cUserInputManager::isKeyPressed(const eKey key) {
+        bool Input::KeyPressed(const eKey key) {
             return glfwGetKey(s_Window, key) == GLFW_PRESS;
         }
 
-        bool cUserInputManager::isKeyReleased(const eKey key) {
+        bool Input::KeyReleased(const eKey key) {
             return glfwGetKey(s_Window, key) == GLFW_RELEASE;
         }
 
-        bool cUserInputManager::isKeyHold(const eKey key) {
+        bool Input::KeyHold(const eKey key) {
             return glfwGetKey(s_Window, key) == GLFW_REPEAT;
         }
 
-        KeyState cUserInputManager::GetKeyState(const eKey key) {
+        KeyState Input::GetKeyState(const eKey key) {
             int state = glfwGetKey(s_Window, key);
             KeyState keyState;
             keyState.Pressed = state == GLFW_PRESS;
@@ -204,19 +200,19 @@ namespace xpe {
             return keyState;
         }
 
-        bool cUserInputManager::isMousePressed(const eMouse mouse) {
+        bool Input::MousePressed(const eMouse mouse) {
             return glfwGetMouseButton(s_Window, mouse) == GLFW_PRESS;
         }
 
-        bool cUserInputManager::isMouseReleased(const eMouse mouse) {
+        bool Input::MouseReleased(const eMouse mouse) {
             return glfwGetMouseButton(s_Window, mouse) == GLFW_RELEASE;
         }
 
-        bool cUserInputManager::isMouseHold(const eMouse mouse) {
+        bool Input::MouseHold(const eMouse mouse) {
             return glfwGetMouseButton(s_Window, mouse) == GLFW_REPEAT;
         }
 
-        MouseState cUserInputManager::GetMouseState(const eMouse mouse) {
+        MouseState Input::GetMouseState(const eMouse mouse) {
             int state = glfwGetMouseButton(s_Window, mouse);
             MouseState mouseState;
             mouseState.Pressed = state == GLFW_PRESS;
@@ -225,52 +221,52 @@ namespace xpe {
             return mouseState;
         }
 
-        void cUserInputManager::AddWindowEventListener(WindowEventListener* listener, int priority) {
-            m_WindowEvents.AddEvent(listener, priority);
+        void Input::AddWindowEventListener(WindowEventListener* listener, int priority) {
+            s_WindowEvents.AddEvent(listener, priority);
         }
 
-        void cUserInputManager::AddKeyEventListener(KeyEventListener* listener, int priority) {
-            m_KeyEvents.AddEvent(listener, priority);
+        void Input::AddKeyEventListener(KeyEventListener* listener, int priority) {
+            s_KeyEvents.AddEvent(listener, priority);
         }
 
-        void cUserInputManager::AddMouseEventListener(MouseEventListener* listener, int priority) {
-            m_MouseEvents.AddEvent(listener, priority);
+        void Input::AddMouseEventListener(MouseEventListener* listener, int priority) {
+            s_MouseEvents.AddEvent(listener, priority);
         }
 
-        void cUserInputManager::AddCursorEventListener(CursorEventListener* listener, int priority) {
-            m_CursorEvents.AddEvent(listener, priority);
+        void Input::AddCursorEventListener(CursorEventListener* listener, int priority) {
+            s_CursorEvents.AddEvent(listener, priority);
         }
 
-        void cUserInputManager::AddScrollEventListener(ScrollEventListener *listener, int priority) {
-            m_ScrollEvents.AddEvent(listener, priority);
+        void Input::AddScrollEventListener(ScrollEventListener *listener, int priority) {
+            s_ScrollEvents.AddEvent(listener, priority);
         }
 
-        void cUserInputManager::AddCharEventListener(CharEventListener *listener, int priority) {
-            m_CharEvents.AddEvent(listener, priority);
+        void Input::AddCharEventListener(CharEventListener *listener, int priority) {
+            s_CharEvents.AddEvent(listener, priority);
         }
 
-        void cUserInputManager::RemoveWindowEventListener(WindowEventListener* listener) {
-            m_WindowEvents.RemoveEvent(listener);
+        void Input::RemoveWindowEventListener(WindowEventListener* listener) {
+            s_WindowEvents.RemoveEvent(listener);
         }
 
-        void cUserInputManager::RemoveKeyEventListener(KeyEventListener* listener) {
-            m_KeyEvents.RemoveEvent(listener);
+        void Input::RemoveKeyEventListener(KeyEventListener* listener) {
+            s_KeyEvents.RemoveEvent(listener);
         }
 
-        void cUserInputManager::RemoveMouseEventListener(MouseEventListener* listener) {
-            m_MouseEvents.RemoveEvent(listener);
+        void Input::RemoveMouseEventListener(MouseEventListener* listener) {
+            s_MouseEvents.RemoveEvent(listener);
         }
 
-        void cUserInputManager::RemoveCursorEventListener(CursorEventListener* listener) {
-            m_CursorEvents.RemoveEvent(listener);
+        void Input::RemoveCursorEventListener(CursorEventListener* listener) {
+            s_CursorEvents.RemoveEvent(listener);
         }
 
-        void cUserInputManager::RemoveScrollEventListener(ScrollEventListener *listener) {
-            m_ScrollEvents.RemoveEvent(listener);
+        void Input::RemoveScrollEventListener(ScrollEventListener *listener) {
+            s_ScrollEvents.RemoveEvent(listener);
         }
 
-        void cUserInputManager::RemoveCharEventListener(CharEventListener *listener) {
-            m_CharEvents.RemoveEvent(listener);
+        void Input::RemoveCharEventListener(CharEventListener *listener) {
+            s_CharEvents.RemoveEvent(listener);
         }
 
     }

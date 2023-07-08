@@ -1,0 +1,16 @@
+{
+
+  "win_title": "Game App Test",
+  "width": 800,
+  "height": 600,
+
+  "log_title": "GameApp",
+  "log_backtrace": 32,
+
+  "gpu": "DX11",
+
+  "debug_errors": true,
+  "debug_warnings": true,
+  "debug_info": false
+
+}

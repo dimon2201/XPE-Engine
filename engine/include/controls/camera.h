@@ -87,7 +87,7 @@ namespace xpe {
             float VerticalSensitivity = 1.0f;
 
         public:
-            cCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, Time* time);
+            cCameraController(CameraBuffer* cameraBuffer, Time* time);
             virtual ~cCameraController() override;
 
             void EnableLook();
@@ -104,7 +104,6 @@ namespace xpe {
             void CursorMoved(const double x, const double y) override;
 
         protected:
-            cUserInputManager* m_UserInput = nullptr;
             CameraBuffer* m_CameraBuffer = nullptr;
             Time* m_Time = nullptr;
         };
@@ -117,8 +116,8 @@ namespace xpe {
             float MinFovDegree = 1.0f;
 
         public:
-            cPerspectiveCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)
-            : cCameraController(userInput, cameraBuffer, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
+            cPerspectiveCameraController(CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)
+            : cCameraController(cameraBuffer, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
                 m_CameraBuffer->SetCamera(camera);
             }
 
@@ -141,8 +140,8 @@ namespace xpe {
             cOrthoCameraComponent* Camera = nullptr;
 
         public:
-            cOrthoCameraController(cUserInputManager* userInput, CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, Time* time)
-            : cCameraController(userInput, cameraBuffer, time), Camera(camera) {
+            cOrthoCameraController(CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, Time* time)
+            : cCameraController(cameraBuffer, time), Camera(camera) {
                 cameraBuffer->SetCamera(camera);
             }
 

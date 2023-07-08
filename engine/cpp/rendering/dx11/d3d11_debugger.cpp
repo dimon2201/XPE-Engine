@@ -7,7 +7,7 @@ namespace xpe {
         void D3D11Debugger::Init(Context* const context) {
             m_Device = reinterpret_cast<ID3D11Device*>(context->GetDevice());
             m_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&m_Debug);
-            m_Debug->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&m_InfoQueue);
+            m_Device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&m_InfoQueue);
         }
 
         void D3D11Debugger::Free() {
@@ -24,24 +24,35 @@ namespace xpe {
         }
 
         DebugMessage D3D11Debugger::GetDebugMessage(int index) {
-            SIZE_T messageByteLength = 0;
-            m_InfoQueue->GetMessageA(index, nullptr, &messageByteLength);
+            SIZE_T messageSize = 0;
+            m_InfoQueue->GetMessage(index, nullptr, &messageSize);
 
-            D3D11_MESSAGE message = {};
-            m_InfoQueue->GetMessageA(index, &message, &messageByteLength);
+            D3D11_MESSAGE* message = (D3D11_MESSAGE*) MemoryPoolManager::Allocate(messageSize);
+            m_InfoQueue->GetMessage(index, message, &messageSize);
 
-            return ToDebugMessage(message);
+            DebugMessage debugMessage = ToDebugMessage(*message);
+
+            MemoryPoolManager::Free(message);
+
+            return debugMessage;
         }
 
-        std::vector<DebugMessage> D3D11Debugger::GetMessageQueue() {
-            std::vector<DebugMessage> messages;
-
+        vector<DebugMessage> D3D11Debugger::GetMessageQueue() {
             auto messageCount = m_InfoQueue->GetNumStoredMessages();
+            vector<DebugMessage> messages;
+            messages.resize(messageCount);
+
             for (int i = 0; i < messageCount; i++) {
                 messages.emplace_back(GetDebugMessage(i));
             }
 
+            m_InfoQueue->ClearStoredMessages();
+
             return messages;
+        }
+
+        void D3D11Debugger::ClearMessageQueue() {
+            m_InfoQueue->ClearStoredMessages();
         }
 
         DebugMessage D3D11Debugger::ToDebugMessage(const D3D11_MESSAGE& d3D11Message) {

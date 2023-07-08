@@ -16,6 +16,8 @@ add_engine_definitions()
 
 link_engine(${PROJECT_NAME} ../engine)
 
+# move files, shaders, configs into bin folder
+copy_build_file(samples/config.json config.json)
 copy_build_dir(samples/files bin/files)
 copy_build_dir(samples/shaders bin/shaders)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})

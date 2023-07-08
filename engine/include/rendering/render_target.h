@@ -8,7 +8,7 @@ namespace xpe {
 
         struct ENGINE_API DepthStencilState final {
             GPUResource Instance;
-            boolean UseDepthTest;
+            Boolean UseDepthTest;
         };
 
         struct ENGINE_API RenderTarget final {
