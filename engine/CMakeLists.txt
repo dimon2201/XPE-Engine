@@ -19,6 +19,7 @@ include_directories(
         thirdparty/jsoncpp/include
         thirdparty/spdlog/include
         thirdparty/stbi
+        thirdparty/freetype2/include
 )
 
 # Create shared dynamic library
@@ -32,10 +33,11 @@ add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/glfw)
 add_subdirectory(thirdparty/glm)
 add_subdirectory(thirdparty/jsoncpp)
+add_subdirectory(thirdparty/freetype2)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static freetype)
 
 # Move shaders into bin folder
 copy_build_file(engine/config.json config.json)

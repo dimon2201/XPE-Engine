@@ -1,9 +1,11 @@
 #include <core/core.hpp>
 #include <gltf/gltf.hpp>
+#include <ttf/ttf_manager.hpp>
 
 using namespace xpe::core;
 using namespace xpe::render;
 using namespace xpe::control;
+using namespace xpe::ttf;
 
 class GameApp;
 
@@ -24,6 +26,9 @@ public:
         _canvas = new Canvas(window->GetWidth(), window->GetHeight(), context);
         _ecs = new ECSManager();
         _batch = new BatchManager(context);
+
+        xFont font = TTFManager::Load("Roboto-Italic.ttf", 32);
+        TTFManager::Free(font);
 
         _cameraBuffer.Init(context);
 
