@@ -13,3 +13,6 @@
 [submodule "engine/thirdparty/stbi"]
 	path = engine/thirdparty/stbi
 	url = https://github.com/nothings/stb
+[submodule "engine/thirdparty/freetype2"]
+	path = engine/thirdparty/freetype2
+	url = https://github.com/aseprite/freetype2
