@@ -6,12 +6,14 @@ struct VSOut
     float2 texcoord : XPE_TEXCOORD2;
     float3 normal : XPE_NORMAL2;
     float4 positionClip : SV_POSITION;
+    uint materialIndex : XPE_MATERIAL_INDEX;
 };
 
 float4 ps_main(VSOut psIn) : SV_TARGET
 {
+    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.texcoord);
     float3 lightPos = float3(0.0, 100.0, 0.0);
     float3 pointToLight = normalize(lightPos - psIn.positionWorld);
     float lambert = max(0.15, dot(pointToLight, psIn.normal));
-    return M_Albedo.Sample(S_Material, psIn.texcoord) * Material.BaseColor * lambert;
+    return albedo * lambert;
 }

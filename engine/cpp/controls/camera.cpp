@@ -53,14 +53,16 @@ namespace xpe {
             m_Data.Position = camera->Position;
         }
 
-        cCameraController::cCameraController(CameraBuffer* cameraBuffer, Time* time)
-        : m_CameraBuffer(cameraBuffer), m_Time(time) {
+        cCameraController::cCameraController(Context* context, Time* time)
+        : m_Time(time) {
+            m_CameraBuffer.Init(context);
             EnableLook();
             EnableZoom();
             Input::AddWindowEventListener(this, 2);
         }
 
         cCameraController::~cCameraController() {
+            m_CameraBuffer.Free();
             DisableLook();
             DisableZoom();
             Input::RemoveWindowEventListener(this);
@@ -90,31 +92,32 @@ namespace xpe {
             float dt = m_Time->Millis();
             float distance = MoveSpeed / dt;
             auto& position = Camera->Position;
-            auto& front = Camera->Front;
-            auto& up = Camera->Up;
+            auto front = glm::normalize(Camera->Front);
+            auto up = glm::normalize(Camera->Up);
+            auto right = glm::cross(front, up);
 
             if (Input::KeyPressed(KeyMoveForward)) {
-                position += distance * front;
+                position += front * distance;
             }
 
             else if (Input::KeyPressed(KeyMoveLeft)) {
-                position += glm::normalize(glm::cross(front, up)) * distance;
+                position += right * distance;
             }
 
             else if (Input::KeyPressed(KeyMoveBackward)) {
-                position -= distance * front;
+                position -= front * distance;
             }
 
             else if (Input::KeyPressed(KeyMoveRight)) {
-                position -= glm::normalize(glm::cross(front, up)) * distance;
+                position -= right * distance;
             }
 
             else
                 return;
 
-            m_CameraBuffer->SetView(Camera);
-            m_CameraBuffer->SetPosition(Camera);
-            m_CameraBuffer->Flush();
+            m_CameraBuffer.SetView(Camera);
+            m_CameraBuffer.SetPosition(Camera);
+            m_CameraBuffer.Flush();
         }
 
         void cPerspectiveCameraController::ZoomIn() {
@@ -124,8 +127,8 @@ namespace xpe {
             fov -= (float) ZoomSpeed / dt;
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
-            m_CameraBuffer->Flush();
+            m_CameraBuffer.SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer.Flush();
         }
 
         void cPerspectiveCameraController::ZoomOut() {
@@ -135,8 +138,8 @@ namespace xpe {
             fov += (float) ZoomSpeed / dt;
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
-            m_CameraBuffer->Flush();
+            m_CameraBuffer.SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer.Flush();
         }
 
         void cPerspectiveCameraController::ScrollChanged(const double x, const double y) {
@@ -146,10 +149,8 @@ namespace xpe {
             fov -= (float) y * ZoomSpeed / dt;
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            LogInfo("Zoomed FOV {}", fov);
-
-            m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
-            m_CameraBuffer->Flush();
+            m_CameraBuffer.SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer.Flush();
         }
 
         void cPerspectiveCameraController::Look(const double x, const double y) {
@@ -166,15 +167,15 @@ namespace xpe {
                 glm::vec3 right = glm::cross(front, up);
                 glm::quat q = glm::normalize(glm::cross(glm::angleAxis(-pitchDt, right), glm::angleAxis(yawDt, up)));
                 front = glm::rotate(q, front);
-                m_CameraBuffer->SetView(Camera);
-                m_CameraBuffer->Flush();
+                m_CameraBuffer.SetView(Camera);
+                m_CameraBuffer.Flush();
             }
         }
 
         void cPerspectiveCameraController::WindowFrameResized(int width, int height) {
             Camera->Projection.AspectRatio = static_cast<float>(width) / static_cast<float>(height);
-            m_CameraBuffer->SetPerspectiveProjection(Camera->Projection);
-            m_CameraBuffer->Flush();
+            m_CameraBuffer.SetPerspectiveProjection(Camera->Projection);
+            m_CameraBuffer.Flush();
         }
 
         void cOrthoCameraController::Move() {

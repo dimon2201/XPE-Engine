@@ -30,11 +30,6 @@ public:
         xFont font = TTFManager::Load("Roboto-Italic.ttf", 32);
         TTFManager::Free(font);
 
-        _cameraBuffer.Init(context);
-
-        static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        _cameraController = new cPerspectiveCameraController(&_cameraBuffer, &perspectiveCamera, &time);
-
         TextureCubeFile textureCubeFile;
         textureCubeFile.Name = "test";
         textureCubeFile.FrontFilepath = "files/skybox/front.jpg";
@@ -51,7 +46,7 @@ public:
 
         // Put geometry
         _batch->StoreGlobalGeometryData(
-                std::string("NewGeometryData"),
+                "NewGeometryData",
                 &mesh->Vertices[0],
                 mesh->VertexCount * xpe::gltf::cGLTFModel::k_vertexSize,
                 mesh->VertexCount,
@@ -60,13 +55,38 @@ public:
                 mesh->IndexCount
         );
 
+        // Put instances of geometry
+        for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
+        {
+            for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
+            {
+                u32 materialIndex = 0;
+                for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
+                {
+                    RenderInstance instance;
+                    instance.Position = glm::vec4(x, y, z, 0.0f);
+                    instance.MaterialIndex = materialIndex;
+
+                    Material* material = MaterialManager::Builder().Build("Material_" + materialIndex);
+                    material->Index = materialIndex;
+                    material->Data = &material->List->DataArray[materialIndex];
+                    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                    material->Data->BaseColor = { r, g, b, 1 };
+
+                    _batch->AddInstance("NewGeometryData", instance);
+
+                    materialIndex++;
+                }
+            }
+        }
+
         // Create render pipeline data
         // setup buffers
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
         _pipeline.VSBuffers.emplace_back(_batch->GetInstanceBuffer());
-        _pipeline.VSBuffers.emplace_back(&_cameraBuffer);
-        _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
         // setup shader
         _pipeline.Shader = ShaderManager::Builder()
                 .AddVertexStageFromFile("shaders/window.vs")
@@ -90,6 +110,13 @@ public:
         _pipeline.RenderTarget = _canvas->GetRenderTarget();
         _pipeline.DepthStencilState.UseDepthTest = K_TRUE;
         context->CreateRenderPipeline(_pipeline);
+
+        static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
+        _cameraController = new cPerspectiveCameraController(context, &perspectiveCamera, &time);
+        _pipeline.VSBuffers.emplace_back(_cameraController->GetBuffer());
+
+        MaterialManager::UpdateMaterials();
+        _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
     }
 
     void Update() override final
@@ -101,33 +128,12 @@ public:
 
             context->BindRenderPipeline(&_pipeline);
 
+            // todo bug: canvas is not update or resized because of BindMaterials()
+//            MaterialManager::BindMaterials();
+
             static cTransformComponent tr("transform");
-            static cMaterialComponent materialComponent(
-                    "material",
-                    MaterialManager::Builder()
-                            .AddAlbedoFromFile("files/sinister_man.png")
-                            .Build("material")
-            );
 
-            MaterialManager::BindMaterial(*materialComponent.Material);
-            MaterialManager::UpdateMaterial(*materialComponent.Material);
-
-            _batch->BeginBatch(std::string("NewGeometryData"));
-            for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
-            {
-                for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
-                {
-                    for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
-                    {
-                        RenderInstance instance;
-                        instance.Position = glm::vec4(x, y, z, 0.0f);
-                        _batch->RecordInstance(instance);
-                    }
-                }
-            }
-            _batch->EndBatch();
-
-            _batch->DrawBatch();
+            _batch->DrawAll();
 
             _canvas->Present();
         }
@@ -136,7 +142,10 @@ public:
     void Free() override
     {
         LogInfo("GameApp::Free()");
-        _cameraBuffer.Free();
+        delete _cameraController;
+        delete _ecs;
+        delete _batch;
+        delete _canvas;
     }
 
     void WindowClosed() override
@@ -154,7 +163,6 @@ public:
 
     void CursorMoved(const double x, const double y) override
     {
-        LogInfo("GameApp::CursorMoved({}, {})", x, y);
     }
 
 private:
@@ -163,7 +171,6 @@ private:
     BatchManager* _batch;
     Pipeline _pipeline;
     InputLayout _layout;
-    CameraBuffer _cameraBuffer;
     cPerspectiveCameraController* _cameraController;
 };
 

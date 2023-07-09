@@ -23,17 +23,24 @@ struct MaterialBufferData {
     bool EnableEmission;
 };
 
-cbuffer MaterialBuffer : register(b1)
-{
-    MaterialBufferData Material;
-};
+StructuredBuffer<MaterialBufferData> MaterialBuffer : register(t0);
 
 SamplerState S_Material : register(s0);
 
-Texture2D M_Albedo : register(t0);
-Texture2D M_Bump : register(t1);
-Texture2D M_Parallax : register(t2);
-Texture2D M_Metallic : register(t3);
-Texture2D M_Roughness : register(t4);
-Texture2D M_AO : register(t5);
-Texture2D M_Emission : register(t6);
+Texture2DArray M_Albedo : register(t1);
+Texture2DArray M_Bump : register(t2);
+Texture2DArray M_Parallax : register(t3);
+Texture2DArray M_Metallic : register(t4);
+Texture2DArray M_Roughness : register(t5);
+Texture2DArray M_AO : register(t6);
+Texture2DArray M_Emissions : register(t7);
+
+float4 GetAlbedo(uint materialIndex, float2 texcoord) {
+    float mId = float(materialIndex);
+    MaterialBufferData Material = MaterialBuffer[materialIndex];
+    float4 albedo = Material.BaseColor;
+    if (Material.EnableAlbedo) {
+        albedo *= M_Albedo.Sample(S_Material, float3(texcoord, mId));
+    }
+    return albedo;
+}

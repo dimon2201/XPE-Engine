@@ -3,7 +3,6 @@
 
 // API specific includes
 #include <rendering/dx11/d3d11_context.hpp>
-#include <rendering/dx11/d3d11_debugger.h>
 
 #include <rendering/materials/material.h>
 
@@ -24,13 +23,11 @@ namespace xpe {
             window = InitWindow(winDesc);
 
             context = nullptr;
-            Debugger* debugger = nullptr;
 
             switch (AppConfig::Get().GPU) {
 
                 case AppConfig::eGPU::DX11:
                     context = new D3D11Context();
-                    debugger = new D3D11Debugger();
                     break;
 
                 default:
@@ -40,8 +37,6 @@ namespace xpe {
             }
 
             context->Init(*window);
-
-            InitDebugger(debugger, context);
 
             ShaderManager::Init(context);
 
@@ -53,8 +48,6 @@ namespace xpe {
 
             Init();
 
-            LogDebugMessages();
-
             while (!ShouldWindowClose(*window))
             {
                 Timer timer(&time);
@@ -65,8 +58,6 @@ namespace xpe {
 
                 DefaultWindowEvents(*window);
 
-                LogDebugMessages();
-
                 static int logDeltaLimit;
                 logDeltaLimit++;
                 if (logDeltaLimit > 2000)
@@ -76,8 +67,6 @@ namespace xpe {
                 }
             }
 
-            LogDebugMessages();
-
             Free();
 
             ShaderManager::Free();
@@ -85,8 +74,6 @@ namespace xpe {
             TextureManager::Free();
 
             MaterialManager::Free();
-
-            FreeDebugger();
 
             context->Free();
 

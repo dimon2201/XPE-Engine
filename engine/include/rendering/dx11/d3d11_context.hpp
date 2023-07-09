@@ -30,11 +30,15 @@ namespace xpe {
                 void FreeShader(Shader& shader) override final;
                 
                 void CreateTexture(Texture& texture, const void* instance) override final;
-                void CreateTextureCube(Texture& texture, const void* instance) override final;
+                void CreateTexture1D(Texture& texture) override final;
+                void CreateTexture2D(Texture& texture) override final;
+                void CreateTexture2DArray(Texture& texture) override final;
+                void CreateTexture3D(Texture& texture) override final;
+                void CreateTextureCube(Texture& texture) override final;
                 void BindTexture(const Texture* texture) override final;
                 void BindTextureSlot(u32 slot) override final;
                 void FreeTexture(const Texture* texture) override final;
-                void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize) override final;
+                void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index) override final;
 
                 virtual void CreateSampler(TextureSampler& sampler) override final;
                 virtual void BindSampler(const TextureSampler* sampler) override final;

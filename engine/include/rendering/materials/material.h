@@ -38,16 +38,29 @@ namespace xpe {
             float padding_1 = 0;
         };
 
-        struct ENGINE_API Material final {
+        struct ENGINE_API MaterialList final {
+            vector<MaterialBufferData> DataArray;
             TextureSampler Sampler;
-            Texture* Albedo = nullptr;
-            Texture* Bumping = nullptr;
-            Texture* Parallax = nullptr;
-            Texture* Metallic = nullptr;
-            Texture* Roughness = nullptr;
-            Texture* AO = nullptr;
-            Texture* Emission = nullptr;
-            MaterialBufferData Data;
+            Texture AlbedoArray;
+            Texture BumpArray;
+            Texture ParallaxArray;
+            Texture MetallicArray;
+            Texture RoughnessArray;
+            Texture AOArray;
+            Texture EmissionArray;
+        };
+
+        struct ENGINE_API Material final {
+            u32 Index = 0;
+            MaterialList* List = nullptr;
+            TextureLayer* Albedo = nullptr;
+            TextureLayer* Bumping = nullptr;
+            TextureLayer* Parallax = nullptr;
+            TextureLayer* Metallic = nullptr;
+            TextureLayer* Roughness = nullptr;
+            TextureLayer* AO = nullptr;
+            TextureLayer* Emission = nullptr;
+            MaterialBufferData* Data = nullptr;
         };
 
         struct ENGINE_API cMaterialComponent : public cComponent {
@@ -62,16 +75,15 @@ namespace xpe {
         class ENGINE_API MaterialBuffer : public Buffer {
 
         public:
-            void Init(Context* context);
+            void Init(Context* context, MaterialList* list);
             void Free();
 
             void Flush();
-
-            void SetMaterial(const Material& material);
+            void Flush(Material& material);
 
         private:
             Context* m_Context = nullptr;
-            MaterialBufferData m_Data;
+            MaterialList* m_List = nullptr;
         };
 
         class ENGINE_API MaterialBuilder final {
@@ -96,6 +108,9 @@ namespace xpe {
             MaterialBuilder& AddEmissionFromFile(const char* filepath);
 
         private:
+            TextureLayer* AddTextureFromFile(const char* filepath, Texture& textureArray);
+
+        private:
             Context* m_Context = nullptr;
             Material* m_Material = nullptr;
         };
@@ -103,14 +118,21 @@ namespace xpe {
         class ENGINE_API MaterialManager final {
 
         public:
+            static const usize k_MaterialsCount = 1000;
+
+        public:
             static void Init(Context* context);
             static void Free();
 
             static MaterialBuilder& Builder();
+            static MaterialList& List();
 
             static void InitMaterial(Material& material);
             static void FreeMaterial(Material& material);
-            static void BindMaterial(Material& material);
+
+            static void BindMaterials();
+
+            static void UpdateMaterials();
             static void UpdateMaterial(Material& material);
 
             static MaterialBuffer* GetBuffer();
@@ -120,11 +142,18 @@ namespace xpe {
             static Material* GetMaterial(const string& name);
 
         private:
+            static void InitMaterialList();
+            static void FreeMaterialList();
+
+            static void InitTextureArray(Texture& textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot);
+
+        private:
             static Context* s_Context;
             static unordered_map<string, Material> s_MaterialTable;
             static MaterialBuilder s_MaterialBuilder;
             static Material s_TempMaterial;
             static MaterialBuffer s_MaterialBuffer;
+            static MaterialList s_MaterialList;
         };
 
     }

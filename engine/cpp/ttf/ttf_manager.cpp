@@ -1,4 +1,3 @@
-#include <core/logger.h>
 #include <ttf/ttf_manager.hpp>
 
 xpe::core::Boolean xpe::ttf::TTFManager::s_loaded = core::K_FALSE;

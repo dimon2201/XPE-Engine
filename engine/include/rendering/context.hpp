@@ -43,11 +43,15 @@ namespace xpe {
                 virtual void FreeShader(Shader& shader) = 0;
                 
                 virtual void CreateTexture(Texture& texture, const void* instance) = 0;
-                virtual void CreateTextureCube(Texture& texture, const void* instance) = 0;
+                virtual void CreateTexture1D(Texture& texture) = 0;
+                virtual void CreateTexture2D(Texture& texture) = 0;
+                virtual void CreateTexture2DArray(Texture& texture) = 0;
+                virtual void CreateTexture3D(Texture& texture) = 0;
+                virtual void CreateTextureCube(Texture& texture) = 0;
                 virtual void BindTexture(const Texture* texture) = 0;
                 virtual void BindTextureSlot(u32 slot) = 0;
                 virtual void FreeTexture(const Texture* texture) = 0;
-                virtual void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize) = 0;
+                virtual void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index = 0) = 0;
 
                 virtual void CreateSampler(TextureSampler& sampler) = 0;
                 virtual void BindSampler(const TextureSampler* sampler) = 0;

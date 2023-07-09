@@ -3,10 +3,6 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <core/memory_pool.hpp>
-#include <core/types.hpp>
-#include <stl/map.h>
-
 namespace xpe
 {
     namespace ttf

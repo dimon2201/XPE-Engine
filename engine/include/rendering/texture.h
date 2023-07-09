@@ -20,12 +20,17 @@ namespace xpe {
 
         };
 
+        struct ENGINE_API TextureLayer final {
+            void* Pixels = nullptr;
+        };
+
         struct ENGINE_API Texture : public GPUResource
         {
             enum class eType
             {
                 TEXTURE_1D,
                 TEXTURE_2D,
+                TEXTURE_2D_ARRAY,
                 TEXTURE_3D,
                 TEXTURE_CUBE,
 
@@ -71,8 +76,8 @@ namespace xpe {
             u32 MostDetailedMip = 0;
             u32 Slot = 0;
 
-            void* Pixels = nullptr;
-            vector<void*> Layers;
+            vector<TextureLayer> Layers;
+            bool InitializeData = true;
         };
 
         struct ENGINE_API TextureSampler : public GPUResource
@@ -131,18 +136,29 @@ namespace xpe {
         {
 
         public:
+            // channels count table for each texture format
+            static unordered_map<Texture::eFormat, int> ChannelTable;
 
+            // bytes per pixel table for each texture format
+            static unordered_map<Texture::eFormat, int> BPPTable;
+
+        public:
             static void Init(Context* context);
             static void Free();
 
             static void InitTexture(Texture& texture);
             static void InitTextureCube(Texture& texture);
+
             static void BindTexture(Texture& texture);
+
             static void FreeTexture(Texture& texture);
+
             static void WriteTexture(Texture& texture);
+            static void WriteTexture(Texture& texture, u32 layerIndex);
 
             static Texture* ReadTextureFile(const char* filepath, const Texture::eFormat& format);
             static Texture* LoadTextureFile(const char* filePath, const Texture::eFormat& format);
+            static TextureLayer ReadTextureLayerFile(const char* filepath, const Texture::eFormat& format, usize& width, usize& height, usize& channels);
             static Texture* ReadTextureCubeFile(const TextureCubeFile& cubeFile, const Texture::eFormat& format);
             static Texture* LoadTextureCubeFile(const TextureCubeFile& cubeFile, const Texture::eFormat& format);
 

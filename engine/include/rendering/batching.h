@@ -11,14 +11,27 @@ namespace xpe {
 
         class Context;
 
-        struct ENGINE_API Batch final {
-            std::string GeometryUSID;
-            GeometryInfo* GeometryInfo;
-            usize InstanceCount;
+        struct ENGINE_API RenderInstance final {
+            glm::vec4 Position = { 0, 0, 0, 0 };
+            u32 MaterialIndex = 0;
+
+            friend inline bool operator ==(const RenderInstance& instance1, const RenderInstance& instance2) {
+                return instance1.Position == instance2.Position;
+            }
         };
 
-        struct ENGINE_API RenderInstance final {
-            glm::vec4 Position;
+        struct ENGINE_API GeometryInstances final {
+            GeometryInfo Info;
+            vector<RenderInstance> Instances;
+
+            GeometryInstances(const GeometryInfo& info, const vector<RenderInstance>& instances = {})
+            : Info(info), Instances(instances) {}
+        };
+
+        struct ENGINE_API Batch final {
+            string GeometryUSID;
+            GeometryInfo* GeometryInfo;
+            vector<RenderInstance>* Instances;
         };
 
         struct ENGINE_API ConstantBuffer final {};
@@ -35,12 +48,16 @@ namespace xpe {
             BatchManager(Context* context);
             ~BatchManager();
 
-            void StoreGlobalGeometryData(const std::string& usid, const void* vertices, usize verticesByteSize, usize vertexCount, const void* indices, usize indicesByteSize, usize indexCount);
-            void BeginBatch(const std::string& geometryUSID);
+            void StoreGlobalGeometryData(const string& usid, const void* vertices, usize verticesByteSize, usize vertexCount, const void* indices, usize indicesByteSize, usize indexCount);
+            void BeginBatch(const string& geometryUSID);
             void RecordConstantBuffer(const ConstantBuffer* buffer);
             void RecordInstance(const RenderInstance& instance);
+            void AddInstance(const string& usid, const RenderInstance& instance);
+            void RemoveInstance(const string& usid, const RenderInstance& instance);
+            void ClearInstances(const string& usid);
             void EndBatch();
             void DrawBatch();
+            void DrawAll();
 
             inline Buffer* GetVertexBuffer() { return &_vertex; }
             inline Buffer* GetIndexBuffer() { return &_index; }
@@ -53,8 +70,8 @@ namespace xpe {
             Buffer _index;
             Buffer _instance;
             Buffer _constant;
-            std::map<std::string, GeometryInfo> _geometries;
             Batch _batch;
+            unordered_map<string, GeometryInstances> _geometryInstanceMap;
         };
 
     }

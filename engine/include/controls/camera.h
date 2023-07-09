@@ -68,7 +68,7 @@ namespace xpe {
             CameraBufferData m_Data;
         };
 
-        class cCameraController : public Object,
+        class ENGINE_API cCameraController : public Object,
                 public CursorEventListener,
                 public WindowEventListener,
                 public ScrollEventListener
@@ -80,15 +80,19 @@ namespace xpe {
             eKey KeyMoveBackward = eKey::S;
             eKey KeyMoveRight = eKey::D;
 
-            float MoveSpeed = 0.01f;
+            float MoveSpeed = 5 / 1000.0f;
             float ZoomSpeed = 3.0f;
 
             float HorizontalSensitivity = 1.0f;
             float VerticalSensitivity = 1.0f;
 
         public:
-            cCameraController(CameraBuffer* cameraBuffer, Time* time);
+            cCameraController(Context* context, Time* time);
             virtual ~cCameraController() override;
+
+            inline CameraBuffer* GetBuffer() {
+                return &m_CameraBuffer;
+            }
 
             void EnableLook();
             void EnableZoom();
@@ -104,7 +108,7 @@ namespace xpe {
             void CursorMoved(const double x, const double y) override;
 
         protected:
-            CameraBuffer* m_CameraBuffer = nullptr;
+            CameraBuffer m_CameraBuffer;
             Time* m_Time = nullptr;
         };
 
@@ -116,9 +120,9 @@ namespace xpe {
             float MinFovDegree = 1.0f;
 
         public:
-            cPerspectiveCameraController(CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)
-            : cCameraController(cameraBuffer, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
-                m_CameraBuffer->SetCamera(camera);
+            cPerspectiveCameraController(Context* context, cPerspectiveCameraComponent* camera, Time* time)
+            : cCameraController(context, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
+                m_CameraBuffer.SetCamera(camera);
             }
 
             void Move() override;
@@ -140,9 +144,9 @@ namespace xpe {
             cOrthoCameraComponent* Camera = nullptr;
 
         public:
-            cOrthoCameraController(CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, Time* time)
-            : cCameraController(cameraBuffer, time), Camera(camera) {
-                cameraBuffer->SetCamera(camera);
+            cOrthoCameraController(Context* context, cOrthoCameraComponent* camera, Time* time)
+            : cCameraController(context, time), Camera(camera) {
+                m_CameraBuffer.SetCamera(camera);
             }
 
             void Move() override;
