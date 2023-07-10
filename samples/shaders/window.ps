@@ -27,10 +27,11 @@ float4 ps_main(VSOut psIn) : SV_TARGET
 
     float3 color = albedo.rgb;
 
-//    uint directLightSize = 0;
-//    uint directLightStride = 0;
-//    DirectLights.GetDimensions(directLightSize, directLightStride);
-    for (uint i = 0 ; i < 1; i++) {
+    uint directLightSize = 0;
+    uint directLightStride = 0;
+    DirectLights.GetDimensions(directLightSize, directLightStride);
+
+    for (uint i = 0 ; i < directLightSize ; i++) {
         DirectLight directLight = DirectLights[i];
         float3 lightPos = directLight.Position;
         float3 lightColor = directLight.Color;

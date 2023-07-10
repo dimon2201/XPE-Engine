@@ -11,9 +11,9 @@ namespace xpe {
         class ENGINE_API LightManager final {
 
         public:
-            static const usize K_DIRECT_LIGHT_COUNT = 10;
-            static const usize K_POINT_LIGHT_COUNT = 1000;
-            static const usize K_SPOT_LIGHT_COUNT = 1000;
+            static const usize K_DIRECT_LIGHT_COUNT = 1;
+            static const usize K_POINT_LIGHT_COUNT = 1;
+            static const usize K_SPOT_LIGHT_COUNT = 1;
 
         public:
             static void Init(Context* context);

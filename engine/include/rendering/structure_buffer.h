@@ -60,7 +60,7 @@ namespace xpe {
             Slot = slot;
             StructureSize = sizeof(T);
             FirstElement = 0;
-            NumElements = m_List.capacity();
+            NumElements = size;
             ByteSize = StructureSize * NumElements;
             Duplicate = duplicate;
             m_Context->CreateBuffer(*this);

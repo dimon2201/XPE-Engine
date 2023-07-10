@@ -146,7 +146,7 @@ namespace xpe {
             ShaderStage stage;
             stage.Type = eShaderType::VERTEX;
             stage.EntryPoint = "vs_main";
-            stage.Profile = "vs_4_0";
+            stage.Profile = "vs_5_0";
             stage.Source = source;
             m_Shader->Stages.emplace_back(stage);
             return *this;
@@ -156,7 +156,7 @@ namespace xpe {
             ShaderStage stage;
             stage.Type = eShaderType::PIXEL;
             stage.EntryPoint = "ps_main";
-            stage.Profile = "ps_4_0";
+            stage.Profile = "ps_5_0";
             stage.Source = source;
             m_Shader->Stages.emplace_back(stage);
             return *this;
@@ -166,7 +166,7 @@ namespace xpe {
             ShaderStage stage;
             stage.Type = eShaderType::GEOMETRY;
             stage.EntryPoint = "gs_main";
-            stage.Profile = "gs_4_0";
+            stage.Profile = "gs_5_0";
             stage.Source = source;
             m_Shader->Stages.emplace_back(stage);
             return *this;
@@ -176,7 +176,7 @@ namespace xpe {
             ShaderStage stage;
             stage.Type = eShaderType::TESS_CONTROL;
             stage.EntryPoint = "tc_main";
-            stage.Profile = "tcs_4_0";
+            stage.Profile = "tcs_5_0";
             stage.Source = source;
             m_Shader->Stages.emplace_back(stage);
             return *this;
@@ -186,7 +186,7 @@ namespace xpe {
             ShaderStage stage;
             stage.Type = eShaderType::TESS_EVAL;
             stage.EntryPoint = "te_main";
-            stage.Profile = "tes_4_0";
+            stage.Profile = "tes_5_0";
             stage.Source = source;
             m_Shader->Stages.emplace_back(stage);
             return *this;
@@ -196,7 +196,7 @@ namespace xpe {
             ShaderStage stage;
             stage.Type = eShaderType::COMPUTE;
             stage.EntryPoint = "cs_main";
-            stage.Profile = "cs_4_0";
+            stage.Profile = "cs_5_0";
             stage.Source = source;
             m_Shader->Stages.emplace_back(stage);
             return *this;
