@@ -8,9 +8,10 @@ namespace xpe
 
         struct ENGINE_API WindowDescriptor
         {
+            const char* Title;
             s32 Width;
             s32 Height;
-            const char* Title;
+            Boolean Vsync;
         };
 
         class ENGINE_API Window
@@ -38,5 +39,6 @@ namespace xpe
         void* GetUserPointer(Window& window);
         void FreeWindow(Window* window);
         ENGINE_API void CloseWindow(Window& window);
+        ENGINE_API void SetVsync(Boolean vsync);
     }
 }

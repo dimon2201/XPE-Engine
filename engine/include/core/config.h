@@ -22,6 +22,7 @@ namespace xpe {
             std::string WinTitle;
             s32 Width = 0;
             s32 Height = 0;
+            Boolean Vsync = K_FALSE;
 
             std::string LogTitle;
             s32 LogBacktrace = 32;
@@ -31,6 +32,10 @@ namespace xpe {
             bool LogDebugErrors = true;
             bool LogDebugWarnings = true;
             bool LogDebugInfos = false;
+
+            float FPS = 165.0f;
+
+            float LogTimeDelaySeconds = 5;
 
         };
 

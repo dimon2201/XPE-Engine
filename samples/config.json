@@ -3,6 +3,7 @@
   "win_title": "Example Window",
   "width": 800,
   "height": 600,
+  "vsync": false,
 
   "log_title": "ExampleWindow",
   "log_backtrace": 32,
@@ -11,6 +12,9 @@
 
   "debug_errors": true,
   "debug_warnings": true,
-  "debug_info": false
+  "debug_info": false,
+
+  "fps": 165,
+  "log_time_delay_seconds": 5
 
 }

@@ -20,6 +20,7 @@ namespace xpe {
             winDesc.Title = AppConfig::Get().WinTitle.c_str();
             winDesc.Width = AppConfig::Get().Width;
             winDesc.Height = AppConfig::Get().Height;
+            winDesc.Vsync = AppConfig::Get().Vsync;
             window = InitWindow(winDesc);
 
             context = nullptr;
@@ -50,6 +51,13 @@ namespace xpe {
 
             while (!ShouldWindowClose(*window))
             {
+                static Time cpuTime; // used to measure real fps and real delta time
+
+                time.SetFps(AppConfig::Get().FPS);
+
+                LogTimeWithDelay(time, cpuTime)
+
+                Timer cpuTimer(&cpuTime);
                 Timer timer(&time);
 
                 Input::CaptureCursor();
@@ -57,14 +65,6 @@ namespace xpe {
                 Update();
 
                 DefaultWindowEvents(*window);
-
-                static int logDeltaLimit;
-                logDeltaLimit++;
-                if (logDeltaLimit > 2000)
-                {
-                    logDeltaLimit = 0;
-                    LogDelta(time.Seconds());
-                }
             }
 
             Free();

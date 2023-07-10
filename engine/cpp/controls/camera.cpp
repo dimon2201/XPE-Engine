@@ -90,7 +90,7 @@ namespace xpe {
 
         void cPerspectiveCameraController::Move() {
             float dt = m_Time->Millis();
-            float distance = MoveSpeed / dt;
+            float distance = MoveSpeed * 0.1f / dt;
             auto& position = Camera->Position;
             auto front = glm::normalize(Camera->Front);
             auto up = glm::normalize(Camera->Up);
@@ -162,8 +162,8 @@ namespace xpe {
             auto& up = Camera->Up;
 
             if (cursorDelta.x != 0 || cursorDelta.y != 0) {
-                float pitchDt = cursorDelta.y * VerticalSensitivity * 0.001f / dt;
-                float yawDt = cursorDelta.x * HorizontalSensitivity * 0.001f / dt;
+                float pitchDt = cursorDelta.y * VerticalSensitivity * 0.1f / dt;
+                float yawDt = cursorDelta.x * HorizontalSensitivity * 0.1f / dt;
                 glm::vec3 right = glm::cross(front, up);
                 glm::quat q = glm::normalize(glm::cross(glm::angleAxis(-pitchDt, right), glm::angleAxis(yawDt, up)));
                 front = glm::rotate(q, front);

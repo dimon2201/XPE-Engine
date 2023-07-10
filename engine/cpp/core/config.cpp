@@ -35,6 +35,8 @@ namespace xpe {
             config.WinTitle = root["win_title"].asString();
             config.Width = root["width"].asInt();
             config.Height = root["height"].asInt();
+            config.Vsync = root["vsync"].asBool() ? K_TRUE : K_FALSE;
+
             config.LogTitle = root["log_title"].asString();
             config.LogBacktrace = root["log_backtrace"].asInt();
 
@@ -56,6 +58,10 @@ namespace xpe {
             config.LogDebugErrors = root["debug_errors"].asBool();
             config.LogDebugWarnings = root["debug_warnings"].asBool();
             config.LogDebugInfos = root["debug_infos"].asBool();
+
+            config.FPS = root["fps"].asFloat();
+
+            config.LogTimeDelaySeconds = root["log_time_delay_seconds"].asFloat();
 
         }
 

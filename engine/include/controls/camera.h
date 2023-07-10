@@ -80,11 +80,11 @@ namespace xpe {
             eKey KeyMoveBackward = eKey::S;
             eKey KeyMoveRight = eKey::D;
 
-            float MoveSpeed = 5 / 1000.0f;
-            float ZoomSpeed = 3.0f;
+            float MoveSpeed = 1.0f;
+            float ZoomSpeed = 5.0f;
 
-            float HorizontalSensitivity = 1.0f;
-            float VerticalSensitivity = 1.0f;
+            float HorizontalSensitivity = 0.5f;
+            float VerticalSensitivity = 0.5f;
 
         public:
             cCameraController(Context* context, Time* time);

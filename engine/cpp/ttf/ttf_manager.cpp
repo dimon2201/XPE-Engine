@@ -12,7 +12,7 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
     {
         if (FT_Init_FreeType(&s_lib))
         {
-            LogInfo("Error initializing FreeType!");
+            LogError("Error initializing FreeType!");
         }
         else
         {
@@ -59,7 +59,7 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
     }
     else
     {
-        LogInfo("Error creating FreeType font face!");
+        LogError("Error creating FreeType font face!");
     }
 
     return font;

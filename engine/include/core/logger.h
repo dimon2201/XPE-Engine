@@ -46,12 +46,25 @@ namespace xpe {
 LogError(__VA_ARGS__); \
 Logger::DumpBacktrace()
 
-#define LogDelta(dt) \
-LogInfo("Delta time: {} seconds", dt); \
-LogInfo("FPS: {}", 1 / dt)
+#define LogTime(t) \
+LogInfo("Delta time: {} ms", t.Millis()); \
+LogInfo("FPS: {}", t.Fps())
+
+#define LogCpuTime(t) \
+LogInfo("CPU Delta time: {} ms", t.Millis()); \
+LogInfo("CPU FPS: {}", t.Fps())
 
 #define LogGLM(name, v) \
 LogInfo("{}:{}", name, glm::to_string(v))
+
+#define LogTimeWithDelay(time, cpuTime) \
+static float tickSeconds = 0; \
+tickSeconds += cpuTime.Seconds(); \
+if (tickSeconds >= AppConfig::Get().LogTimeDelaySeconds) { \
+    tickSeconds = 0; \
+    LogTime(time);                      \
+    LogCpuTime(cpuTime);                                        \
+}
 
 #else
 
@@ -66,8 +79,11 @@ LogInfo("{}:{}", name, glm::to_string(v))
 
 #define DumpTraceError(...)
 
-#define LogDelta(dt)
+#define LogTime(time)
+#define LogCpuTime(time)
 
 #define LogGLM(name, v)
+
+#define LogTimeWithDelay(time)
 
 #endif
