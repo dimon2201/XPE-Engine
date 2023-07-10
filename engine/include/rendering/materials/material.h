@@ -13,29 +13,26 @@ namespace xpe {
         struct ENGINE_API MaterialBufferData final {
             // base color
             glm::vec4 BaseColor = { 1, 1, 0, 1 };
-            bool EnableAlbedo = false;
+            Bool EnableAlbedo = false;
             // bumping
-            bool EnableBumping = false;
+            Bool EnableBumping = false;
             // parallax
-            bool EnableParallax = false;
+            Bool EnableParallax = false;
             float HeightScale = 0.1;
             float ParallaxMinLayers = 8;
             float ParallaxMaxLayers = 32;
             // metallic
             float MetallicFactor = 0.5f;
-            bool EnableMetallic = false;
+            Bool EnableMetallic = false;
             // roughness
             float RoughnessFactor = 0.5f;
-            bool EnableRoughness = false;
+            Bool EnableRoughness = false;
             // ambient occlusion
             float AOFactor = 0.5f;
-            bool EnableAO = false;
+            Bool EnableAO = false;
             // emission
             glm::vec3 EmissionColor = { 0, 0, 0 };
-            bool EnableEmission = false;
-
-            float padding_0 = 0;
-            float padding_1 = 0;
+            Bool EnableEmission = false;
         };
 
         struct ENGINE_API MaterialList final {

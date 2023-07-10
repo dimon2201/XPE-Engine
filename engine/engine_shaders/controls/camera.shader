@@ -4,11 +4,8 @@ struct CameraBufferData {
     float3 Position;
 };
 
-cbuffer CameraBuffer : register(b0)
-{
-    CameraBufferData Camera;
-};
+StructuredBuffer<CameraBufferData> Cameras : K_SLOT_CAMERAS;
 
 float4x4 CameraViewProjection() {
-    return mul(Camera.Projection, Camera.View);
+    return mul(Cameras[0].Projection, Cameras[0].View);
 }

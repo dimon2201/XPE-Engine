@@ -1,4 +1,5 @@
-#include ../engine_shaders/camera.shader
+#include ../engine_shaders/slots.shader
+#include ../engine_shaders/controls/camera.shader
 
 struct VSIn
 {
@@ -23,12 +24,12 @@ struct RenderInstance
     uint MaterialIndex;
 };
 
-StructuredBuffer<RenderInstance> instances : register(t0);
+StructuredBuffer<RenderInstance> Instances : K_SLOT_INSTANCES;
 
 VSOut vs_main(VSIn vsIn)
 {
     VSOut vsOut = (VSOut)0;
-    RenderInstance instance = instances[vsIn.instanceIndex];
+    RenderInstance instance = Instances[vsIn.instanceIndex];
     vsOut.positionWorld = 0.5 * vsIn.positionLocal + instance.Position.xyz;
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = vsIn.normal;

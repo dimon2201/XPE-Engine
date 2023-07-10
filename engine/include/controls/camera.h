@@ -45,7 +45,6 @@ namespace xpe {
             glm::mat4 Projection;
             glm::mat4 View;
             glm::vec3 Position;
-            float padding_0 = 0;
         };
 
         class ENGINE_API CameraBuffer : public Buffer {

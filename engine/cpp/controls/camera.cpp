@@ -7,9 +7,12 @@ namespace xpe {
 
         void CameraBuffer::Init(Context *context) {
             m_Context = context;
-            Type = eBufferType::CONSTANT;
-            ByteSize = sizeof(CameraBufferData);
-            Slot = 0;
+            Type = eBufferType::STRUCTURED;
+            FirstElement = 0;
+            NumElements = 1;
+            StructureSize = sizeof(CameraBufferData);
+            ByteSize = StructureSize * NumElements;
+            Slot = K_SLOT_CAMERAS;
             m_Context->CreateBuffer(*this, K_FALSE);
         }
 

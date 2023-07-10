@@ -117,7 +117,6 @@ namespace xpe {
         template<typename... Args>
         void EventBuffer<EventListener>::AddEvent(Args &&... eventArgs) {
             std::lock_guard<std::mutex> lock(m_Mutex);
-            LogInfo("EventBuffer::AddEvent()");
 
             Event<EventListener> event(std::forward<Args>(eventArgs)...);
 
@@ -138,7 +137,6 @@ namespace xpe {
         template<typename EventListener>
         void EventBuffer<EventListener>::RemoveEvent(EventListener* listener) {
             std::lock_guard<std::mutex> lock(m_Mutex);
-            LogInfo("EventBuffer::RemoveEvent()");
 
             for (vector<Event<EventListener>>::iterator it = m_Events.begin(); it != m_Events.end(); it++) {
                 if (listener == it->Listener) {
@@ -151,7 +149,6 @@ namespace xpe {
         template<typename EventListener>
         void EventBuffer<EventListener>::Clear() {
             std::lock_guard<std::mutex> lock(m_Mutex);
-            LogInfo("EventBuffer::Clear()");
 
             m_Events.clear();
         }
@@ -159,7 +156,6 @@ namespace xpe {
         template<typename EventListener>
         void EventBuffer<EventListener>::Reserve(const usize count) {
             std::lock_guard<std::mutex> lock(m_Mutex);
-            LogInfo("EventBuffer::Reserve({})", count);
 
             m_Events.reserve(sizeof(Event<EventListener>) * count);
         }

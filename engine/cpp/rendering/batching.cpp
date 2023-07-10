@@ -15,11 +15,13 @@ namespace xpe {
             _index.ByteSize = k_indexBufferByteSize;
             _context->CreateBuffer(_index, K_TRUE);
 
+            // todo move into InstanceBuffer wrapper class?
             _instance.Type = eBufferType::STRUCTURED;
             _instance.ByteSize = k_instanceBufferByteSize;
             _instance.StructureSize = sizeof(RenderInstance);
             _instance.FirstElement = 0;
             _instance.NumElements = k_instanceBufferInstanceCount;
+            _instance.Slot = K_SLOT_INSTANCES;
             _context->CreateBuffer(_instance, K_TRUE);
 
             _constant.Type = eBufferType::CONSTANT;

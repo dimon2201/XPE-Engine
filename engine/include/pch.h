@@ -50,6 +50,8 @@
 #include <core/singleton.h>
 #include <core/config.h>
 #include <core/memory_pool.hpp>
+#include <rendering/shader_types.h>
+#include <rendering/slots.h>
 
 // STL customization
 #include <stl/allocator.h>

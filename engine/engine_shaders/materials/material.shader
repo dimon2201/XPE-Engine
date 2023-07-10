@@ -1,4 +1,4 @@
-struct MaterialBufferData {
+struct Material {
     // base color
     float4 BaseColor;
     bool EnableAlbedo;
@@ -23,7 +23,7 @@ struct MaterialBufferData {
     bool EnableEmission;
 };
 
-StructuredBuffer<MaterialBufferData> MaterialBuffer : register(t0);
+StructuredBuffer<Material> Materials : K_SLOT_MATERIALS;
 
 SamplerState S_Material : register(s0);
 
@@ -37,9 +37,9 @@ Texture2DArray M_Emissions : register(t7);
 
 float4 GetAlbedo(uint materialIndex, float2 texcoord) {
     float mId = float(materialIndex);
-    MaterialBufferData Material = MaterialBuffer[materialIndex];
-    float4 albedo = Material.BaseColor;
-    if (Material.EnableAlbedo) {
+    Material material = Materials[materialIndex];
+    float4 albedo = material.BaseColor;
+    if (material.EnableAlbedo) {
         albedo *= M_Albedo.Sample(S_Material, float3(texcoord, mId));
     }
     return albedo;

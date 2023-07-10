@@ -10,11 +10,11 @@ namespace xpe {
             m_Context = context;
             m_List = list;
             Type = eBufferType::STRUCTURED;
-            StructureSize = sizeof(MaterialBufferData);
             FirstElement = 0;
             NumElements = list->DataArray.size();
-            ByteSize = sizeof(MaterialBufferData) * list->DataArray.size();
-            Slot = 0;
+            StructureSize = sizeof(MaterialBufferData);
+            ByteSize = StructureSize * NumElements;
+            Slot = K_SLOT_MATERIALS;
             m_Context->CreateBuffer(*this, K_FALSE);
         }
 
