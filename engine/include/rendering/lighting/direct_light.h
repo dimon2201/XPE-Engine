@@ -9,8 +9,8 @@ namespace xpe {
         using namespace core;
 
         struct ENGINE_API DirectLightBufferData final {
-            glm::vec4 Position;
-            glm::vec4 Color;
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
         };
 
         struct ENGINE_API DirectLight final {

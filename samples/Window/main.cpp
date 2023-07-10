@@ -74,6 +74,9 @@ public:
                     float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     material->Data->BaseColor = { r, g, b, 1 };
+                    material->Data->MetallicFactor = r;
+                    material->Data->RoughnessFactor = g;
+                    material->Data->AOFactor = b;
 
                     _batch->AddInstance("NewGeometryData", instance);
 
@@ -115,14 +118,20 @@ public:
         context->CreateRenderPipeline(_pipeline);
 
         static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        _cameraController = new cPerspectiveCameraController(context, &perspectiveCamera, &time);
-        _pipeline.VSBuffers.emplace_back(_cameraController->GetBuffer());
+        _cameraController = new cPerspectiveCameraController(&m_CameraBuffer, &perspectiveCamera, &time);
+        _pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
 
         _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
 
         _pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
         _pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
         _pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
+
+        // todo maybe we will automate it in future and make it more easy to use
+        LightManager::InitLight(directLightComponent.Light);
+        directLightComponent.Light.Data->Position = { 0, 0, 0 };
+        directLightComponent.Light.Data->Color = { 1, 1, 1 };
+        LightManager::UpdateLight(directLightComponent.Light);
     }
 
     void Update() override final
@@ -165,10 +174,45 @@ public:
         {
             CloseWindow(*window);
         }
+
+        MoveLight(key);
+    }
+
+    void KeyHold(const eKey key) override
+    {
+        MoveLight(key);
     }
 
     void CursorMoved(const double x, const double y) override
     {
+    }
+
+private:
+
+    void MoveLight(const eKey key) {
+        if (key == eKey::Up) {
+            glm::vec3& pos = directLightComponent.Light.Data->Position;
+            pos.y += 1;
+            LightManager::UpdateLight(directLightComponent.Light);
+        }
+
+        if (key == eKey::Down) {
+            glm::vec3& pos = directLightComponent.Light.Data->Position;
+            pos.y -= 1;
+            LightManager::UpdateLight(directLightComponent.Light);
+        }
+
+        if (key == eKey::Left) {
+            glm::vec3& pos = directLightComponent.Light.Data->Position;
+            pos.x -= 1;
+            LightManager::UpdateLight(directLightComponent.Light);
+        }
+
+        if (key == eKey::Right) {
+            glm::vec3& pos = directLightComponent.Light.Data->Position;
+            pos.x += 1;
+            LightManager::UpdateLight(directLightComponent.Light);
+        }
     }
 
 private:
@@ -178,6 +222,7 @@ private:
     Pipeline _pipeline;
     InputLayout _layout;
     cPerspectiveCameraController* _cameraController;
+    cDirectLightComponent directLightComponent = string("DirectLight");
 };
 
 Application* CreateApplication() {

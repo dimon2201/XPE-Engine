@@ -1,15 +1,15 @@
 #pragma once
 
 #include <core/windowing.hpp>
-#include <core/events.h>
 
-#include <rendering/context.hpp>
+#include <controls/camera.h>
 
 namespace xpe {
 
     namespace core {
 
         using namespace xpe::render;
+        using namespace xpe::control;
 
         class Window;
 
@@ -19,6 +19,7 @@ namespace xpe {
             Context* context = nullptr;
             Window* window = nullptr;
             Time time;
+            CameraBuffer m_CameraBuffer;
 
         public:
             Application() {}

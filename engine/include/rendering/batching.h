@@ -13,6 +13,7 @@ namespace xpe {
 
         struct ENGINE_API RenderInstance final {
             glm::vec4 Position = { 0, 0, 0, 0 };
+            u32 CameraIndex = 0;
             u32 MaterialIndex = 0;
 
             friend inline bool operator ==(const RenderInstance& instance1, const RenderInstance& instance2) {

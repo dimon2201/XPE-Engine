@@ -1,4 +1,4 @@
-#include ../engine_shaders/slots.shader
+#include ../engine_shaders/types.shader
 #include ../engine_shaders/controls/camera.shader
 
 struct VSIn
@@ -15,12 +15,14 @@ struct VSOut
     float2 texcoord : XPE_TEXCOORD2;
     float3 normal : XPE_NORMAL2;
     float4 positionClip : SV_POSITION;
+    float3 viewPosition : XPE_VIEW_POSITION;
     uint materialIndex : XPE_MATERIAL_INDEX;
 };
 
 struct RenderInstance
 {
     float4 Position;
+    uint CameraIndex;
     uint MaterialIndex;
 };
 
@@ -33,7 +35,8 @@ VSOut vs_main(VSIn vsIn)
     vsOut.positionWorld = 0.5 * vsIn.positionLocal + instance.Position.xyz;
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = vsIn.normal;
-    vsOut.positionClip = mul(CameraViewProjection(), float4(vsOut.positionWorld, 1.0));
+    vsOut.positionClip = mul(CameraViewProjection(instance.CameraIndex), float4(vsOut.positionWorld, 1.0));
     vsOut.materialIndex = instance.MaterialIndex;
+    vsOut.viewPosition = Cameras[instance.CameraIndex].Position;
     return vsOut;
 }

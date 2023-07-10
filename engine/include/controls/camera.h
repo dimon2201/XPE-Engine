@@ -16,6 +16,8 @@ namespace xpe {
             cCameraComponent(const string& usid) : cComponent(usid)
             {}
 
+            u32 Index = 0;
+
             glm::vec3 Position = { 0, 0, 10 };
             glm::vec3 Front = { 0, 0, -1 };
             glm::vec3 Up = { 0, 1, 0 };
@@ -23,6 +25,7 @@ namespace xpe {
             float Pitch = 0;
             float Yaw = 0;
             float Roll = 0;
+
         };
 
         struct ENGINE_API cPerspectiveCameraComponent : public cCameraComponent
@@ -56,8 +59,8 @@ namespace xpe {
         public:
             void SetCamera(cPerspectiveCameraComponent* camera);
             void SetCamera(cOrthoCameraComponent* camera);
-            void SetPerspectiveProjection(const math::PerspectiveMatrix& projection);
-            void SetOrthoProjection(const math::OrthoMatrix& projection);
+            void SetPerspectiveProjection(u32 index, const math::PerspectiveMatrix& projection);
+            void SetOrthoProjection(u32 index, const math::OrthoMatrix& projection);
             void SetView(cCameraComponent* camera);
             void SetPosition(cCameraComponent* camera);
 
@@ -82,12 +85,8 @@ namespace xpe {
             float VerticalSensitivity = 0.5f;
 
         public:
-            cCameraController(Context* context, Time* time);
+            cCameraController(CameraBuffer* cameraBuffer, Time* time);
             virtual ~cCameraController() override;
-
-            inline CameraBuffer* GetBuffer() {
-                return &m_CameraBuffer;
-            }
 
             void EnableLook();
             void EnableZoom();
@@ -103,7 +102,7 @@ namespace xpe {
             void CursorMoved(const double x, const double y) override;
 
         protected:
-            CameraBuffer m_CameraBuffer;
+            CameraBuffer* m_CameraBuffer = nullptr;
             Time* m_Time = nullptr;
         };
 
@@ -115,9 +114,9 @@ namespace xpe {
             float MinFovDegree = 1.0f;
 
         public:
-            cPerspectiveCameraController(Context* context, cPerspectiveCameraComponent* camera, Time* time)
-            : cCameraController(context, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
-                m_CameraBuffer.SetCamera(camera);
+            cPerspectiveCameraController(CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)
+            : cCameraController(cameraBuffer, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
+                m_CameraBuffer->SetCamera(camera);
             }
 
             void Move() override;
@@ -139,9 +138,9 @@ namespace xpe {
             cOrthoCameraComponent* Camera = nullptr;
 
         public:
-            cOrthoCameraController(Context* context, cOrthoCameraComponent* camera, Time* time)
-            : cCameraController(context, time), Camera(camera) {
-                m_CameraBuffer.SetCamera(camera);
+            cOrthoCameraController(CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, Time* time)
+            : cCameraController(cameraBuffer, time), Camera(camera) {
+                m_CameraBuffer->SetCamera(camera);
             }
 
             void Move() override;

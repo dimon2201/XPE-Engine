@@ -42,6 +42,8 @@ namespace xpe {
 
             context->Init(*window);
 
+            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in memory
+
             ShaderManager::Init(context);
 
             TextureManager::Init(context);
