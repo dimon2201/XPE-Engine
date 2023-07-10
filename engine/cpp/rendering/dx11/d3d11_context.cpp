@@ -829,13 +829,13 @@ namespace xpe {
             }
         }
 
-        void D3D11Context::CreateBuffer(Buffer& buffer, Boolean duplicate)
+        void D3D11Context::CreateBuffer(Buffer& buffer)
         {
             eBufferType bufferType = buffer.Type;
             usize byteSize = buffer.ByteSize;
             buffer.AppendOffset = 0;
 
-            if (duplicate == K_TRUE)
+            if (buffer.Duplicate == K_TRUE)
             {
                 buffer.CPUMemory = MemoryPoolManager::Allocate(byteSize);
             }

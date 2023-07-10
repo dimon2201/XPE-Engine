@@ -5,25 +5,6 @@ namespace xpe {
 
     namespace control {
 
-        void CameraBuffer::Init(Context *context) {
-            m_Context = context;
-            Type = eBufferType::STRUCTURED;
-            FirstElement = 0;
-            NumElements = 1;
-            StructureSize = sizeof(CameraBufferData);
-            ByteSize = StructureSize * NumElements;
-            Slot = K_SLOT_CAMERAS;
-            m_Context->CreateBuffer(*this, K_FALSE);
-        }
-
-        void CameraBuffer::Free() {
-            m_Context->FreeBuffer(*this);
-        }
-
-        void CameraBuffer::Flush() {
-            m_Context->WriteBuffer(*this, &m_Data, sizeof(m_Data));
-        }
-
         void CameraBuffer::SetCamera(cPerspectiveCameraComponent *camera) {
             SetPerspectiveProjection(camera->Projection);
             SetView(camera);
@@ -37,11 +18,11 @@ namespace xpe {
         }
 
         void CameraBuffer::SetPerspectiveProjection(const math::PerspectiveMatrix &projection) {
-            m_Data.Projection = math::PerspectiveMatrixUpdate(projection);
+            GetItem(0)->Projection = math::PerspectiveMatrixUpdate(projection);
         }
 
         void CameraBuffer::SetOrthoProjection(const math::OrthoMatrix &projection) {
-            m_Data.Projection = math::OrthoMatrixUpdate(projection);
+            GetItem(0)->Projection = math::OrthoMatrixUpdate(projection);
         }
 
         void CameraBuffer::SetView(cCameraComponent *camera) {
@@ -49,16 +30,16 @@ namespace xpe {
             view.Eye = camera->Position;
             view.Up = camera->Up;
             view.Center = camera->Position + camera->Front;
-            m_Data.View = math::ViewMatrixUpdate(view);
+            GetItem(0)->View = math::ViewMatrixUpdate(view);
         }
 
         void CameraBuffer::SetPosition(cCameraComponent *camera) {
-            m_Data.Position = camera->Position;
+            GetItem(0)->Position = camera->Position;
         }
 
         cCameraController::cCameraController(Context* context, Time* time)
         : m_Time(time) {
-            m_CameraBuffer.Init(context);
+            m_CameraBuffer = CameraBuffer(context, 1);
             EnableLook();
             EnableZoom();
             Input::AddWindowEventListener(this, 2);

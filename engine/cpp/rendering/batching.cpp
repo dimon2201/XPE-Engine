@@ -9,24 +9,28 @@ namespace xpe {
         {
             _vertex.Type = eBufferType::VERTEX;
             _vertex.ByteSize = k_vertexBufferByteSize;
-            _context->CreateBuffer(_vertex, K_TRUE);
+            _vertex.Duplicate = K_TRUE;
+            _context->CreateBuffer(_vertex);
 
             _index.Type = eBufferType::INDEX;
             _index.ByteSize = k_indexBufferByteSize;
-            _context->CreateBuffer(_index, K_TRUE);
+            _index.Duplicate = K_TRUE;
+            _context->CreateBuffer(_index);
 
-            // todo move into InstanceBuffer wrapper class?
+            // todo move into StructureBuffer<RenderInstance> wrapper class?
             _instance.Type = eBufferType::STRUCTURED;
             _instance.ByteSize = k_instanceBufferByteSize;
             _instance.StructureSize = sizeof(RenderInstance);
             _instance.FirstElement = 0;
             _instance.NumElements = k_instanceBufferInstanceCount;
             _instance.Slot = K_SLOT_INSTANCES;
-            _context->CreateBuffer(_instance, K_TRUE);
+            _instance.Duplicate = K_TRUE;
+            _context->CreateBuffer(_instance);
 
             _constant.Type = eBufferType::CONSTANT;
             _constant.ByteSize = k_constantBufferByteSize;
-            _context->CreateBuffer(_constant, K_TRUE);
+            _constant.Duplicate = K_TRUE;
+            _context->CreateBuffer(_constant);
 
             _batch.GeometryInfo = nullptr;
         }

@@ -2,7 +2,7 @@
 
 #include <core/user_input.hpp>
 
-#include <rendering/context.hpp>
+#include <rendering/structure_buffer.h>
 
 namespace xpe {
 
@@ -47,14 +47,13 @@ namespace xpe {
             glm::vec3 Position;
         };
 
-        class ENGINE_API CameraBuffer : public Buffer {
+        class ENGINE_API CameraBuffer : public render::StructureBuffer<CameraBufferData> {
 
         public:
-            void Init(Context* context);
-            void Free();
+            CameraBuffer() = default;
+            CameraBuffer(Context* context, usize size) : render::StructureBuffer<CameraBufferData>(context, size, K_SLOT_CAMERAS, K_FALSE) {}
 
-            void Flush();
-
+        public:
             void SetCamera(cPerspectiveCameraComponent* camera);
             void SetCamera(cOrthoCameraComponent* camera);
             void SetPerspectiveProjection(const math::PerspectiveMatrix& projection);
@@ -62,9 +61,6 @@ namespace xpe {
             void SetView(cCameraComponent* camera);
             void SetPosition(cCameraComponent* camera);
 
-        private:
-            Context* m_Context = nullptr;
-            CameraBufferData m_Data;
         };
 
         class ENGINE_API cCameraController : public Object,

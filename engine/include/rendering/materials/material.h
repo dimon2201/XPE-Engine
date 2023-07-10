@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/texture.h>
+#include <rendering/structure_buffer.h>
 
 namespace xpe {
 
@@ -35,8 +36,7 @@ namespace xpe {
             Bool EnableEmission = false;
         };
 
-        struct ENGINE_API MaterialList final {
-            vector<MaterialBufferData> DataArray;
+        struct ENGINE_API MaterialTextures final {
             TextureSampler Sampler;
             Texture AlbedoArray;
             Texture BumpArray;
@@ -49,7 +49,7 @@ namespace xpe {
 
         struct ENGINE_API Material final {
             u32 Index = 0;
-            MaterialList* List = nullptr;
+            MaterialTextures* Textures = nullptr;
             TextureLayer* Albedo = nullptr;
             TextureLayer* Bumping = nullptr;
             TextureLayer* Parallax = nullptr;
@@ -69,18 +69,12 @@ namespace xpe {
 
         };
 
-        class ENGINE_API MaterialBuffer : public Buffer {
+        class ENGINE_API MaterialBuffer : public StructureBuffer<MaterialBufferData> {
 
         public:
-            void Init(Context* context, MaterialList* list);
-            void Free();
+            MaterialBuffer() = default;
+            MaterialBuffer(Context* context, usize size) : StructureBuffer<MaterialBufferData>(context, size, K_SLOT_MATERIALS, K_FALSE) {}
 
-            void Flush();
-            void Flush(Material& material);
-
-        private:
-            Context* m_Context = nullptr;
-            MaterialList* m_List = nullptr;
         };
 
         class ENGINE_API MaterialBuilder final {
@@ -115,14 +109,15 @@ namespace xpe {
         class ENGINE_API MaterialManager final {
 
         public:
-            static const usize k_MaterialsCount = 1000;
+            static const usize K_MATERIALS_COUNT = 1000;
 
         public:
             static void Init(Context* context);
             static void Free();
 
             static MaterialBuilder& Builder();
-            static MaterialList& List();
+            static MaterialTextures& Textures();
+            static vector<MaterialBufferData>& List();
 
             static void InitMaterial(Material& material);
             static void FreeMaterial(Material& material);
@@ -138,6 +133,8 @@ namespace xpe {
             static void RemoveMaterial(const string& name);
             static Material* GetMaterial(const string& name);
 
+            static MaterialBufferData* GetMaterialData(u32 index);
+
         private:
             static void InitMaterialList();
             static void FreeMaterialList();
@@ -150,7 +147,7 @@ namespace xpe {
             static MaterialBuilder s_MaterialBuilder;
             static Material s_TempMaterial;
             static MaterialBuffer s_MaterialBuffer;
-            static MaterialList s_MaterialList;
+            static MaterialTextures s_MaterialTextures;
         };
 
     }

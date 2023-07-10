@@ -69,7 +69,7 @@ public:
 
                     Material* material = MaterialManager::Builder().Build("Material_" + materialIndex);
                     material->Index = materialIndex;
-                    material->Data = &material->List->DataArray[materialIndex];
+                    material->Data = MaterialManager::GetMaterialData(materialIndex);
                     float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
@@ -81,6 +81,9 @@ public:
                 }
             }
         }
+
+        // it will flush all materials data into GPU memory
+        MaterialManager::UpdateMaterials();
 
         // Create render pipeline data
         // setup buffers
@@ -115,8 +118,11 @@ public:
         _cameraController = new cPerspectiveCameraController(context, &perspectiveCamera, &time);
         _pipeline.VSBuffers.emplace_back(_cameraController->GetBuffer());
 
-        MaterialManager::UpdateMaterials();
         _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
+
+        _pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
+        _pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
+        _pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
     }
 
     void Update() override final

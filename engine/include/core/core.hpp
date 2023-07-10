@@ -8,5 +8,6 @@
 #include <rendering/shader.h>
 #include <rendering/batching.h>
 #include <rendering/materials/material.h>
+#include <rendering/lighting/light_manager.h>
 
 #include <controls/camera.h>

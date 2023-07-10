@@ -44,7 +44,7 @@ namespace xpe {
                 virtual void BindSampler(const TextureSampler* sampler) override final;
                 virtual void FreeSampler(const TextureSampler* sampler) override final;
                 
-                void CreateBuffer(Buffer& buffer, Boolean duplicate) override final;
+                void CreateBuffer(Buffer& buffer) override final;
                 void BindVertexBuffer(const Buffer* buffer) override final;
                 void BindIndexBuffer(const Buffer* buffer) override final;
                 void BindVSBuffer(const Buffer* buffer) override final;

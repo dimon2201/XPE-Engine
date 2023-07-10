@@ -5,6 +5,7 @@
 #include <rendering/dx11/d3d11_context.hpp>
 
 #include <rendering/materials/material.h>
+#include <rendering/lighting/light_manager.h>
 
 namespace xpe {
 
@@ -37,6 +38,8 @@ namespace xpe {
 
             }
 
+            Input::Init(window->GetInstance());
+
             context->Init(*window);
 
             ShaderManager::Init(context);
@@ -45,7 +48,7 @@ namespace xpe {
 
             MaterialManager::Init(context);
 
-            Input::Init(window->GetInstance());
+            LightManager::Init(context);
 
             Init();
 
@@ -69,11 +72,13 @@ namespace xpe {
 
             Free();
 
-            ShaderManager::Free();
+            LightManager::Free();
+
+            MaterialManager::Free();
 
             TextureManager::Free();
 
-            MaterialManager::Free();
+            ShaderManager::Free();
 
             context->Free();
 

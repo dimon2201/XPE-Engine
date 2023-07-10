@@ -32,6 +32,7 @@ namespace xpe {
             u32 FirstElement = 0;
             u32 NumElements = 0;
             u32 Slot = 0;
+            Boolean Duplicate = K_FALSE;
         };
 
         struct ENGINE_API Blob final {
