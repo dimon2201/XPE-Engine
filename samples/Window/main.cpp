@@ -118,7 +118,7 @@ public:
         context->CreateRenderPipeline(_pipeline);
 
         static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        _cameraController = new cPerspectiveCameraController(&m_CameraBuffer, &perspectiveCamera, &time);
+        _cameraController = new cPerspectiveCameraController(&m_CameraBuffer, &perspectiveCamera, &dt);
         _pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
 
         _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
@@ -138,6 +138,8 @@ public:
     {
         {
             _cameraController->Move();
+
+            Simulate();
 
             _canvas->Clear(glm::vec4(1.0f));
 
@@ -215,6 +217,25 @@ private:
         }
     }
 
+    void Simulate() {
+        if (animateLight) {
+            auto& pos = directLightComponent.Light.Data->Position;
+
+            static int tick = 1;
+            pos.y = 100 * sin(tick++ / 3000.0f);
+
+            if (tick % 10000 == 0) {
+                auto& color = directLightComponent.Light.Data->Color;
+                float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                color = { r, g, b };
+            }
+
+            LightManager::UpdateLight(directLightComponent.Light);
+        }
+    }
+
 private:
     Canvas* _canvas;
     ECSManager* _ecs;
@@ -223,6 +244,7 @@ private:
     InputLayout _layout;
     cPerspectiveCameraController* _cameraController;
     cDirectLightComponent directLightComponent = string("DirectLight");
+    bool animateLight = true;
 };
 
 Application* CreateApplication() {

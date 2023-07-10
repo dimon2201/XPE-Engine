@@ -54,6 +54,22 @@ namespace xpe {
                 return t1.m_Millis / t2.m_Millis;
             }
 
+            friend inline float operator+(const Time& t1, float t2) {
+                return t1.m_Millis + t2;
+            }
+
+            friend inline float operator-(const Time& t1, float t2) {
+                return t1.m_Millis - t2;
+            }
+
+            friend inline float operator*(const Time& t1, float t2) {
+                return t1.m_Millis * t2;
+            }
+
+            friend inline float operator/(const Time& t1, float t2) {
+                return t1.m_Millis / t2;
+            }
+
             inline Time& operator=(float f) {
                 m_Millis = f;
                 return *this;

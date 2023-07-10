@@ -58,12 +58,13 @@ namespace xpe {
             {
                 static Time cpuTime; // used to measure real fps and real delta time
 
-                time.SetFps(AppConfig::Get().FPS);
+                dt.SetFps(AppConfig::Get().FPS);
 
-                LogTimeWithDelay(time, cpuTime)
+                LogTimeWithDelay(dt, cpuTime)
 
                 Timer cpuTimer(&cpuTime);
-                Timer timer(&time);
+                Timer timer(&dt);
+                time = timer.GetStartTime();
 
                 Input::CaptureCursor();
 
