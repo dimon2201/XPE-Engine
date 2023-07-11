@@ -178,7 +178,7 @@ namespace xpe {
         }
 
         void Input::CaptureCursor(const double x, const double y) {
-            LogInfo("{} {}", x, y);
+//            LogInfo("{} {}", x, y);
 
             glm::vec2 cursorPosition = { x, y };
 

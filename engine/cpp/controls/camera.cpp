@@ -173,7 +173,7 @@ namespace xpe {
                 front = glm::rotate(quatFront, front);
                 m_CameraBuffer->SetView(Camera);
                 m_CameraBuffer->Flush();
-                LogGLM("Look Up vector", up);
+//                LogGLM("Look Up vector", up);
             }
         }
 
