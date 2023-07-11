@@ -20,8 +20,10 @@ namespace xpe {
             }
 
             std::string WinTitle;
-            s32 Width = 0;
-            s32 Height = 0;
+            s32 WinWidth = 0;
+            s32 WinHeight = 0;
+            s32 WinX = 0;
+            s32 WinY = 0;
             Boolean Vsync = K_FALSE;
 
             std::string LogTitle;

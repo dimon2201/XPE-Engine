@@ -55,7 +55,7 @@ LogInfo("CPU Delta time: {} ms", t.Millis()); \
 LogInfo("CPU FPS: {}", t.Fps())
 
 #define LogGLM(name, v) \
-LogInfo("{}:{}", name, glm::to_string(v))
+LogInfo("{}: {}", name, glm::to_string(v))
 
 #define LogTimeWithDelay(time, cpuTime) \
 static float tickSeconds = 0; \

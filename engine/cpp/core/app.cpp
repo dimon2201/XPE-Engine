@@ -1,32 +1,39 @@
 #include <core/app.hpp>
-#include <core/user_input.hpp>
 
 // API specific includes
 #include <rendering/dx11/d3d11_context.hpp>
 
+// Rendering features
 #include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
+#include <rendering/transforming.h>
 
 namespace xpe {
 
     namespace core {
 
         void Application::Run() {
+            AppConfig appConfig = AppConfig::Get();
+
             LoggerDescriptor logDesc;
-            logDesc.Name = AppConfig::Get().LogTitle.c_str();
-            logDesc.Backtrace = AppConfig::Get().LogBacktrace;
+            logDesc.Name = appConfig.LogTitle.c_str();
+            logDesc.Backtrace = appConfig.LogBacktrace;
             InitLogger(logDesc);
 
             WindowDescriptor winDesc;
-            winDesc.Title = AppConfig::Get().WinTitle.c_str();
-            winDesc.Width = AppConfig::Get().Width;
-            winDesc.Height = AppConfig::Get().Height;
-            winDesc.Vsync = AppConfig::Get().Vsync;
-            window = InitWindow(winDesc);
+            winDesc.Title = appConfig.WinTitle.c_str();
+            winDesc.Width = appConfig.WinWidth;
+            winDesc.Height = appConfig.WinHeight;
+            winDesc.X = appConfig.WinX;
+            winDesc.Y = appConfig.WinY;
+            winDesc.Vsync = appConfig.Vsync;
+
+            WindowManager::Init();
+            WindowManager::InitWindow(winDesc);
 
             context = nullptr;
 
-            switch (AppConfig::Get().GPU) {
+            switch (appConfig.GPU) {
 
                 case AppConfig::eGPU::DX11:
                     context = new D3D11Context();
@@ -38,9 +45,9 @@ namespace xpe {
 
             }
 
-            Input::Init(window->GetInstance());
+            Input::Init();
 
-            context->Init(*window);
+            context->Init();
 
             m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in memory
 
@@ -52,9 +59,11 @@ namespace xpe {
 
             LightManager::Init(context);
 
+            TransformManager::Init(context);
+
             Init();
 
-            while (!ShouldWindowClose(*window))
+            while (!WindowManager::ShouldClose())
             {
                 static Time cpuTime; // used to measure real fps and real delta time
 
@@ -66,14 +75,15 @@ namespace xpe {
                 Timer timer(&dt);
                 time = timer.GetStartTime();
 
-                Input::CaptureCursor();
-
                 Update();
 
-                DefaultWindowEvents(*window);
+                WindowManager::PollEvents();
+                WindowManager::Swap();
             }
 
             Free();
+
+            TransformManager::Free();
 
             LightManager::Free();
 
@@ -87,7 +97,8 @@ namespace xpe {
 
             Input::Free();
 
-            FreeWindow(window);
+            WindowManager::FreeWindow();
+            WindowManager::Free();
 
             FreeLogger();
         }

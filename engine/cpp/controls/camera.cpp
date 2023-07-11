@@ -4,6 +4,26 @@ namespace xpe {
 
     namespace control {
 
+        glm::vec3 cCameraComponent::GetUpDirection() const {
+            return glm::rotate(GetOrientation(), glm::vec3(0.0f, 1.0f, 0.0f));
+        }
+
+        glm::vec3 cCameraComponent::GetRightDirection() const {
+            return glm::rotate(GetOrientation(), glm::vec3(1.0f, 0.0f, 0.0f));
+        }
+
+        glm::vec3 cCameraComponent::GetForwardDirection() const {
+            return glm::rotate(GetOrientation(), glm::vec3(0.0f, 0.0f, -1.0f));
+        }
+
+        glm::vec3 cCameraComponent::CalculatePosition() const {
+            return FocalPoint - GetForwardDirection() * Distance;
+        }
+
+        glm::quat cCameraComponent::GetOrientation() const {
+            return glm::vec3(-Pitch, -Yaw, -Roll);
+        }
+
         void CameraBuffer::SetCamera(cPerspectiveCameraComponent *camera) {
             SetPerspectiveProjection(camera->Index, camera->Projection);
             SetView(camera);
@@ -37,7 +57,7 @@ namespace xpe {
         }
 
         cCameraController::cCameraController(CameraBuffer* cameraBuffer, Time* time)
-        : m_CameraBuffer(cameraBuffer), m_Time(time) {
+        : m_CameraBuffer(cameraBuffer), m_Dt(time) {
             EnableLook();
             EnableZoom();
             Input::AddWindowEventListener(this, 2);
@@ -70,7 +90,7 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::Move() {
-            float dt = m_Time->Millis();
+            float dt = m_Dt->Millis();
             float distance = MoveSpeed * 0.1f / dt;
             auto& position = Camera->Position;
             auto front = glm::normalize(Camera->Front);
@@ -102,7 +122,7 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::ZoomIn() {
-            float dt = m_Time->Millis();
+            float dt = m_Dt->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) ZoomSpeed / dt;
@@ -113,7 +133,7 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::ZoomOut() {
-            float dt = m_Time->Millis();
+            float dt = m_Dt->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
             fov += (float) ZoomSpeed / dt;
@@ -124,7 +144,7 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::ScrollChanged(const double x, const double y) {
-            float dt = m_Time->Millis();
+            float dt = m_Dt->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) y * ZoomSpeed / dt;
@@ -135,10 +155,10 @@ namespace xpe {
         }
 
         void cPerspectiveCameraController::Look(const double x, const double y) {
-            Input::CaptureCursor();
+            Input::CaptureCursor(x, y);
 
             auto& cursorDelta = Input::GetMouseCursor().Delta;
-            float dt = m_Time->Millis();
+            float dt = m_Dt->Millis();
             auto& front = Camera->Front;
             auto& up = Camera->Up;
 
@@ -146,10 +166,14 @@ namespace xpe {
                 float pitchDt = cursorDelta.y * VerticalSensitivity * 0.1f / dt;
                 float yawDt = cursorDelta.x * HorizontalSensitivity * 0.1f / dt;
                 glm::vec3 right = glm::cross(front, up);
-                glm::quat q = glm::normalize(glm::cross(glm::angleAxis(-pitchDt, right), glm::angleAxis(yawDt, up)));
-                front = glm::rotate(q, front);
+                glm::quat quatRight = glm::normalize(glm::angleAxis(-pitchDt, right));
+                glm::quat quatUp = glm::normalize(glm::angleAxis(yawDt, up));
+                glm::quat quatFront = glm::cross(quatRight, quatUp);
+                up = glm::rotate(quatUp, up);
+                front = glm::rotate(quatFront, front);
                 m_CameraBuffer->SetView(Camera);
                 m_CameraBuffer->Flush();
+                LogGLM("Look Up vector", up);
             }
         }
 

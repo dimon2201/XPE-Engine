@@ -83,7 +83,7 @@ namespace xpe {
                 return;
             }
 
-            ((RenderInstance*)_instance.CPUMemory)[_batch.Instances->size()].Position = instance.Position;
+            ((RenderInstance*)_instance.CPUMemory)[_batch.Instances->size()] = instance;
             _batch.Instances->emplace_back(instance);
         }
 

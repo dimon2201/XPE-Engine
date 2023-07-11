@@ -9,5 +9,6 @@
 #include <rendering/batching.h>
 #include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
+#include <rendering/transforming.h>
 
 #include <controls/camera.h>

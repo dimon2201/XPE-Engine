@@ -15,7 +15,7 @@ namespace xpe {
                 D3D11Context() {}
                 ~D3D11Context() {}
 
-                void Init(Window& window) override final;
+                void Init() override final;
                 void Free() override final;
                 
                 RenderTarget CreateRenderTarget(const glm::ivec2& dimensions, const GPUResource* colorTexture, const GPUResource* colorView, const GPUResource* depthTexture, const GPUResource* depthView) override final;

@@ -1,6 +1,7 @@
 #include <glfw3.h>
 
 #include <core/user_input.hpp>
+#include <core/windowing.hpp>
 
 namespace xpe {
 
@@ -16,8 +17,8 @@ namespace xpe {
         EventBuffer<ScrollEventListener> Input::s_ScrollEvents;
         EventBuffer<CharEventListener> Input::s_CharEvents;
 
-        void Input::Init(void* window) {
-            s_Window = static_cast<GLFWwindow*>(window);
+        void Input::Init() {
+            s_Window = static_cast<GLFWwindow*>(WindowManager::GetInstance());
 
             s_WindowEvents.Reserve(5);
             s_KeyEvents.Reserve(5);
@@ -173,8 +174,26 @@ namespace xpe {
             double xPos = 0.0;
             double yPos = 0.0;
             glfwGetCursorPos(s_Window, &xPos, &yPos);
+            CaptureCursor(xPos, yPos);
+        }
 
-            glm::vec2 cursorPosition = glm::vec2(xPos, yPos);
+        void Input::CaptureCursor(const double x, const double y) {
+            LogInfo("{} {}", x, y);
+
+            glm::vec2 cursorPosition = { x, y };
+
+//            if (x >= WindowManager::GetWidth()) {
+//                s_Cursor.Delta.x += 1;
+//                s_Cursor.Position = cursorPosition;
+//                return;
+//            }
+//
+//            if (y >= WindowManager::GetHeight()) {
+//                s_Cursor.Delta.y += 1;
+//                s_Cursor.Position = cursorPosition;
+//                return;
+//            }
+
             s_Cursor.Delta = cursorPosition - s_Cursor.Position;
             s_Cursor.Position = cursorPosition;
         }

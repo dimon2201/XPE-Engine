@@ -12,13 +12,15 @@ namespace xpe {
         class Context;
 
         struct ENGINE_API RenderInstance final {
-            glm::vec4 Position = { 0, 0, 0, 0 };
+
+            u32 TransformIndex = 0;
             u32 CameraIndex = 0;
             u32 MaterialIndex = 0;
 
             friend inline bool operator ==(const RenderInstance& instance1, const RenderInstance& instance2) {
-                return instance1.Position == instance2.Position;
+                return instance1.TransformIndex == instance2.TransformIndex;
             }
+
         };
 
         struct ENGINE_API GeometryInstances final {

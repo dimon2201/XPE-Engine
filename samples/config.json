@@ -1,8 +1,10 @@
 {
 
   "win_title": "Example Window",
-  "width": 800,
-  "height": 600,
+  "win_width": 800,
+  "win_height": 600,
+  "win_x": 400,
+  "win_y": 300,
   "vsync": false,
 
   "log_title": "ExampleWindow",

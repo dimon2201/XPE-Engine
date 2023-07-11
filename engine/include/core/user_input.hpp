@@ -7,17 +7,18 @@ namespace xpe {
     namespace core {
 
         struct ENGINE_API MouseCursor final {
-            glm::vec2 Position;
-            glm::vec2 Delta;
+            glm::vec2 Position = { 0, 0 };
+            glm::vec2 Delta = { 0, 0 };
         };
 
         class ENGINE_API Input final {
 
         public:
-            static void Init(void* window);
+            static void Init();
             static void Free();
 
             static void CaptureCursor();
+            static void CaptureCursor(const double x, const double y);
 
             static bool KeyPressed(const eKey key);
             static bool KeyReleased(const eKey key);

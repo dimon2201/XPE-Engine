@@ -11,34 +11,53 @@ namespace xpe
             const char* Title;
             s32 Width;
             s32 Height;
+            s32 X;
+            s32 Y;
             Boolean Vsync;
         };
 
-        class ENGINE_API Window
-        {
-            public:
-                Window(const void* instance, const void* win32HWND, const WindowDescriptor& desc);
-                ~Window();
-
-                inline void* GetInstance() { return _instance; }
-                inline void* GetWin32HWND() { return _win32HWND; }
-                inline s32 GetWidth() { return _desc.Width; }
-                inline s32 GetHeight() { return _desc.Height; }
-                inline const char* GetTitle() { return _desc.Title; }
-
-            private:
-                void* _instance;
-                void* _win32HWND;
-                WindowDescriptor _desc;
+        struct ENGINE_API Window final {
+            void* Instance = nullptr;
+            void* Win32Instance = nullptr;
+            WindowDescriptor Descriptor;
         };
 
-        Window* InitWindow(const WindowDescriptor& desc);
-        Boolean ShouldWindowClose(Window& window);
-        void DefaultWindowEvents(Window& window);
-        void SetUserPointer(Window& window, void* ptr);
-        void* GetUserPointer(Window& window);
-        void FreeWindow(Window* window);
-        ENGINE_API void CloseWindow(Window& window);
-        ENGINE_API void SetVsync(Boolean vsync);
+        class ENGINE_API WindowManager final {
+
+        public:
+            static void Init();
+            static void Free();
+
+            static void InitWindow(const WindowDescriptor& windowDescriptor);
+            static void FreeWindow();
+
+            static const WindowDescriptor& GetDescriptor();
+            static int GetWidth();
+            static int GetHeight();
+            static int GetPosX();
+            static int GetPosY();
+            static const char* GetTitle();
+            static void* GetInstance();
+            static void* GetWin32Instance();
+
+            static void SetPos(int x, int y);
+            static void SetSize(int w, int h);
+
+            static bool ShouldClose();
+            static void Close();
+
+            static void PollEvents();
+            static void Swap();
+
+            static void SetUserPointer(void* userPtr);
+            static void* GetUserPointer();
+
+            static void SetVSync(Boolean vsync);
+
+        private:
+            static Window s_Window;
+
+        };
+
     }
 }

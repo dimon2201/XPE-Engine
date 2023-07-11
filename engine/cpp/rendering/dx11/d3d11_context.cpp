@@ -9,7 +9,7 @@ namespace xpe {
 
     namespace render {
 
-        void D3D11Context::Init(Window& window)
+        void D3D11Context::Init()
         {
             _device = nullptr;
             _immContext = nullptr;
@@ -17,8 +17,8 @@ namespace xpe {
             _swapChainTexture.Instance = nullptr;
 
             DXGI_MODE_DESC bufferDesc = {};
-            bufferDesc.Width = window.GetWidth();
-            bufferDesc.Height = window.GetHeight();
+            bufferDesc.Width = WindowManager::GetWidth();
+            bufferDesc.Height = WindowManager::GetHeight();
             bufferDesc.RefreshRate.Numerator = 60;
             bufferDesc.RefreshRate.Denominator = 1;
             bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -31,7 +31,7 @@ namespace xpe {
             swapChainDesc.SampleDesc.Quality = 0;
             swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
             swapChainDesc.BufferCount = 1;
-            swapChainDesc.OutputWindow = (HWND)window.GetWin32HWND();
+            swapChainDesc.OutputWindow = (HWND)WindowManager::GetWin32Instance();
             swapChainDesc.Windowed = TRUE;
             swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
@@ -60,11 +60,11 @@ namespace xpe {
             LogDebugMessage();
 
             _swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&_swapChainTexture.Instance);
-            _swapChainTexture.Width = window.GetWidth();
-            _swapChainTexture.Height = window.GetHeight();
+            _swapChainTexture.Width = WindowManager::GetWidth();
+            _swapChainTexture.Height = WindowManager::GetHeight();
             _swapChainTexture.Format = Texture::eFormat::RGBA8;
 
-            _rt = CreateRenderTarget(glm::ivec2(window.GetWidth(), window.GetHeight()), &_swapChainTexture, nullptr, nullptr, nullptr);
+            _rt = CreateRenderTarget(glm::ivec2(_swapChainTexture.Width, _swapChainTexture.Height), &_swapChainTexture, nullptr, nullptr, nullptr);
             LogDebugMessage();
 
             CreateSampler(_sampler);

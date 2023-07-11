@@ -33,8 +33,10 @@ namespace xpe {
             reader.parse(source, root);
 
             config.WinTitle = root["win_title"].asString();
-            config.Width = root["width"].asInt();
-            config.Height = root["height"].asInt();
+            config.WinWidth = root["win_width"].asInt();
+            config.WinHeight = root["win_height"].asInt();
+            config.WinX = root["win_x"].asInt();
+            config.WinY = root["win_y"].asInt();
             config.Vsync = root["vsync"].asBool() ? K_TRUE : K_FALSE;
 
             config.LogTitle = root["log_title"].asString();

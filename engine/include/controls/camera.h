@@ -13,6 +13,7 @@ namespace xpe {
 
         struct ENGINE_API cCameraComponent : public cComponent
         {
+
             cCameraComponent(const string& usid) : cComponent(usid)
             {}
 
@@ -25,6 +26,15 @@ namespace xpe {
             float Pitch = 0;
             float Yaw = 0;
             float Roll = 0;
+
+            float Distance = 0;
+            glm::vec3 FocalPoint = { 0, 0, 0 };
+
+            glm::vec3 GetUpDirection() const;
+            glm::vec3 GetRightDirection() const;
+            glm::vec3 GetForwardDirection() const;
+            glm::vec3 CalculatePosition() const;
+            glm::quat GetOrientation() const;
 
         };
 
@@ -103,7 +113,7 @@ namespace xpe {
 
         protected:
             CameraBuffer* m_CameraBuffer = nullptr;
-            Time* m_Time = nullptr;
+            Time* m_Dt = nullptr;
         };
 
         class ENGINE_API cPerspectiveCameraController : public cCameraController {

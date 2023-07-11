@@ -17,7 +17,6 @@ namespace xpe {
 
         public:
             Context* context = nullptr;
-            Window* window = nullptr;
             Time dt;     // delta time ms = end time - begin time
             Time time;   // current time ms
             CameraBuffer m_CameraBuffer;

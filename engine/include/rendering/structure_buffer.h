@@ -80,7 +80,7 @@ namespace xpe {
         template<typename T>
         void StructureBuffer<T>::FlushItem(u32 index, const T &item) {
             if (index >= m_List.size()) {
-                Resize(index);
+                Resize(index + 1);
             }
             m_List[index] = item;
             m_Context->WriteBufferOffset(*this, StructureSize * index, &m_List.back(), StructureSize);

@@ -23,7 +23,7 @@ public:
         Input::AddKeyEventListener(this, 1);
         Input::AddCursorEventListener(this, 1);
 
-        _canvas = new Canvas(window->GetWidth(), window->GetHeight(), context);
+        _canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         _ecs = new ECSManager();
         _batch = new BatchManager(context);
 
@@ -56,6 +56,7 @@ public:
         );
 
         // Put instances of geometry
+        u32 transformIndex = 0;
         for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
         {
             for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
@@ -63,16 +64,24 @@ public:
                 u32 materialIndex = 0;
                 for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
                 {
+                    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+                    cTransformComponent transformComponent("Transform_" + transformIndex);
+                    transformComponent.Position = { x, y, z };
+                    transformComponent.Rotation = { r * 360.0f, g * 360.0f, b * 360.0f };
+                    transformComponent.Scale    = { r, g, b };
+
+                    TransformManager::UpdateTransform(transformIndex, transformComponent);
+
                     RenderInstance instance;
-                    instance.Position = glm::vec4(x, y, z, 0.0f);
+                    instance.TransformIndex = transformIndex;
                     instance.MaterialIndex = materialIndex;
 
                     Material* material = MaterialManager::Builder().Build("Material_" + materialIndex);
                     material->Index = materialIndex;
                     material->Data = MaterialManager::GetMaterialData(materialIndex);
-                    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     material->Data->BaseColor = { r, g, b, 1 };
                     material->Data->MetallicFactor = r;
                     material->Data->RoughnessFactor = g;
@@ -80,6 +89,7 @@ public:
 
                     _batch->AddInstance("NewGeometryData", instance);
 
+                    transformIndex++;
                     materialIndex++;
                 }
             }
@@ -93,6 +103,14 @@ public:
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
         _pipeline.VSBuffers.emplace_back(_batch->GetInstanceBuffer());
+        _pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
+        _pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
+        _pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
+        _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
+        _pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
+        _pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
+        _pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
+
         // setup shader
         _pipeline.Shader = ShaderManager::Builder()
                 .AddVertexStageFromFile("shaders/window.vs")
@@ -119,13 +137,6 @@ public:
 
         static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
         _cameraController = new cPerspectiveCameraController(&m_CameraBuffer, &perspectiveCamera, &dt);
-        _pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
-
-        _pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
-
-        _pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
-        _pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
-        _pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
 
         // todo maybe we will automate it in future and make it more easy to use
         LightManager::InitLight(directLightComponent.Light);
@@ -174,7 +185,7 @@ public:
     {
         if (key == eKey::Esc)
         {
-            CloseWindow(*window);
+            WindowManager::Close();
         }
 
         MoveLight(key);

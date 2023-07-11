@@ -28,7 +28,7 @@ namespace xpe {
                 Context() {}
                 ~Context() {}
 
-                virtual void Init(Window& window) = 0;
+                virtual void Init() = 0;
                 virtual void Free() = 0;
                 
                 virtual RenderTarget CreateRenderTarget(const glm::ivec2& dimensions, const GPUResource* colorTexture, const GPUResource* colorView, const GPUResource* depthTexture, const GPUResource* depthView) = 0;

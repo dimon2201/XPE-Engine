@@ -84,13 +84,13 @@ namespace xpe {
 
             s_Context->CreateSampler(s_MaterialTextures.Sampler);
 
-            InitTextureArray(s_MaterialTextures.AlbedoArray, Texture::eFormat::RGBA8, 389, 600, 1);
-            InitTextureArray(s_MaterialTextures.BumpArray, Texture::eFormat::RGB8, 389, 600, 2);
-            InitTextureArray(s_MaterialTextures.ParallaxArray, Texture::eFormat::R32, 389, 600, 3);
-            InitTextureArray(s_MaterialTextures.MetallicArray, Texture::eFormat::R32, 389, 600, 4);
-            InitTextureArray(s_MaterialTextures.RoughnessArray, Texture::eFormat::R32, 389, 600, 5);
-            InitTextureArray(s_MaterialTextures.AOArray, Texture::eFormat::R32, 389, 600, 6);
-            InitTextureArray(s_MaterialTextures.EmissionArray, Texture::eFormat::RGB8, 389, 600, 7);
+            InitTextureArray(s_MaterialTextures.AlbedoArray, Texture::eFormat::RGBA8, 389, 600, K_SLOT_ALBEDO);
+            InitTextureArray(s_MaterialTextures.BumpArray, Texture::eFormat::RGB8, 389, 600, K_SLOT_BUMPING);
+            InitTextureArray(s_MaterialTextures.ParallaxArray, Texture::eFormat::R32, 389, 600, K_SLOT_PARALLAX);
+            InitTextureArray(s_MaterialTextures.MetallicArray, Texture::eFormat::R32, 389, 600, K_SLOT_METALLIC);
+            InitTextureArray(s_MaterialTextures.RoughnessArray, Texture::eFormat::R32, 389, 600, K_SLOT_ROUGHNESS);
+            InitTextureArray(s_MaterialTextures.AOArray, Texture::eFormat::R32, 389, 600, K_SLOT_AO);
+            InitTextureArray(s_MaterialTextures.EmissionArray, Texture::eFormat::RGB8, 389, 600, K_SLOT_EMISSION);
         }
 
         void MaterialManager::InitTextureArray(Texture &textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot) {
@@ -104,7 +104,7 @@ namespace xpe {
             textureArray.ChannelCount = TextureManager::ChannelTable.at(format);
             textureArray.Layers.resize(K_MATERIALS_COUNT);
 //            for (auto& layer : textureArray.Layers) {
-//                layer.Pixels = MemoryPoolManager::Allocate(textureArray.Width * textureArray.Height * textureArray.ChannelCount);
+//                layer.Pixels = MemoryPoolManager::Allocate(textureArray.WinWidth * textureArray.WinHeight * textureArray.ChannelCount);
 //            }
             s_Context->CreateTexture(textureArray, nullptr);
         }

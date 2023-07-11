@@ -27,13 +27,13 @@ StructuredBuffer<Material> Materials : K_SLOT_MATERIALS;
 
 SamplerState S_Material : register(s0);
 
-Texture2DArray M_Albedo : register(t1);
-Texture2DArray M_Bump : register(t2);
-Texture2DArray M_Parallax : register(t3);
-Texture2DArray M_Metallic : register(t4);
-Texture2DArray M_Roughness : register(t5);
-Texture2DArray M_AO : register(t6);
-Texture2DArray M_Emissions : register(t7);
+Texture2DArray M_Albedo    : K_SLOT_ALBEDO;
+Texture2DArray M_Bump      : K_SLOT_BUMPING;
+Texture2DArray M_Parallax  : K_SLOT_PARALLAX;
+Texture2DArray M_Metallic  : K_SLOT_METALLIC;
+Texture2DArray M_Roughness : K_SLOT_ROUGHNESS;
+Texture2DArray M_AO        : K_SLOT_AO;
+Texture2DArray M_Emissions : K_SLOT_EMISSION;
 
 float4 GetAlbedo(uint materialIndex, float2 texcoord) {
     float mId = float(materialIndex);

@@ -30,6 +30,16 @@ namespace xpe
             glm::vec3 Scale;
         };
 
+        struct ENGINE_API cTransform2DComponent : public cComponent
+        {
+            cTransform2DComponent(const string& usid) : cComponent(usid)
+            {}
+
+            glm::vec2 Position;
+            float Rotation;
+            glm::vec2 Scale;
+        };
+
         struct ENGINE_API cRigidBodyComponent : public cComponent
         {
             cRigidBodyComponent(const string& usid) : cComponent(usid)
