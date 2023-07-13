@@ -50,17 +50,29 @@ public:
 //        bool cubeImported = GLTFImporter::Import("resources/cube.gltf", cubeModel);
 //        if (cubeImported) {
 //        Mesh& cubeMesh = cubeModel[0];
-        xpe::gltf::GLTFModel cubeModel("resources/cube.gltf");
-        xpe::gltf::Mesh& cubeMesh = *cubeModel.GetMesh(0);
+        Model3D cubeModel = xpe::gltf::GLTFImporter::Import("resources/cube.gltf");
+        Mesh& cubeMesh = cubeModel[0];
+        _batch->StoreGlobalGeometryData(
+                "CubeMesh",
+                cubeMesh.Vertices.GetData(),
+                cubeMesh.Vertices.Size(),
+                cubeMesh.Vertices.Count(),
+                cubeMesh.Indices.GetData(),
+                cubeMesh.Indices.Size(),
+                cubeMesh.Indices.Count()
+        );
+
+        CubeGeometry cube;
         _batch->StoreGlobalGeometryData(
                 "CubeGeometry",
-                cubeMesh.Vertices,
-                cubeMesh.VertexCount * xpe::gltf::GLTFModel::k_vertexSize,
-                cubeMesh.VertexCount,
-                cubeMesh.Indices,
-                cubeMesh.IndexCount * xpe::gltf::GLTFModel::k_indexSize,
-                cubeMesh.IndexCount
+                cube.Vertices.GetData(),
+                cube.Vertices.Size(),
+                cube.Vertices.Count(),
+                cube.Indices.GetData(),
+                cube.Indices.Size(),
+                cube.Indices.Count()
         );
+
 //        }
 
         // Put instances of geometry
@@ -96,6 +108,7 @@ public:
                     material->Data->AOFactor = b;
 
                     _batch->AddInstance("CubeGeometry", instance);
+                    _batch->AddInstance("CubeMesh", instance);
 
                     transformIndex++;
                     materialIndex++;
@@ -140,8 +153,12 @@ public:
         context->CreateRenderPipeline(_pipeline);
 
         static PerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        perspectiveCamera.Projection.Far = 1000.0f;
-        _cameraController = new PerspectiveCameraController(&m_CameraBuffer, &perspectiveCamera, &dt);
+        perspectiveCamera.Projection.Far = 1000;
+        _camera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera, &dt);
+        _camera->MoveSpeed = _testConfig.CameraMoveSpeed;
+        _camera->ZoomSpeed = _testConfig.CameraZoomSpeed;
+        _camera->HorizontalSensitivity = _testConfig.CameraHorizontalSens;
+        _camera->VerticalSensitivity = _testConfig.CameraVerticalSens;
 
         // todo maybe we will automate it in future and make it more easy to use
         LightManager::InitLight(directLightComponent.Light);
@@ -153,7 +170,7 @@ public:
     void Update() override final
     {
         {
-            _cameraController->Move();
+            _camera->Move();
 
             Simulate();
 
@@ -174,7 +191,7 @@ public:
     void Free()
     {
         LogInfo("GameApp::Free()");
-        delete _cameraController;
+        delete _camera;
         delete _ecs;
         delete _batch;
         delete _canvas;
@@ -259,9 +276,10 @@ private:
     BatchManager* _batch;
     Pipeline _pipeline;
     InputLayout _layout;
-    PerspectiveCameraController* _cameraController;
+    PerspectiveCamera* _camera;
     DirectLightComponent directLightComponent = string("DirectLight");
     TestConfig _testConfig;
+
 };
 
 Application* CreateApplication() {

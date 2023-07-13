@@ -10,6 +10,9 @@ namespace xpe {
         struct ENGINE_API Mesh : Geometry<render::Vertex3D> {
             u32 MaterialIndex = 0;
             u32 LightIndex = 0;
+
+            Mesh() = default;
+            Mesh(usize vertexCount, usize indexCount);
         };
 
         struct ENGINE_API Model3D final {

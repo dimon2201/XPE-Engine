@@ -37,6 +37,9 @@ namespace xpe {
             Vertices[22] = { { 0.5f,-0.5f,-0.5f } };
             Vertices[23] = { { 0.5f,-0.5f,0.5f } };
 
+            InitUV<render::Vertex3D>(*this);
+            InitNormal<render::Vertex3D>(*this);
+
             Indices.Init(36);
             u32 indices[36] = {
                 0,1,3,

@@ -80,8 +80,8 @@ namespace xpe {
             void RecordInstance(const RenderInstance& instance);
             void RecordInstance2D(const RenderInstance2D& instance);
 
-            void AddInstance(const string& usid, const RenderInstance& instance);
-            void AddInstance2D(const string& usid, const RenderInstance2D& instance);
+            bool AddInstance(const string& usid, const RenderInstance& instance);
+            bool AddInstance2D(const string& usid, const RenderInstance2D& instance);
 
             void RemoveInstance(const string& usid, const RenderInstance& instance);
             void RemoveInstance2D(const string& usid, const RenderInstance2D& instance);

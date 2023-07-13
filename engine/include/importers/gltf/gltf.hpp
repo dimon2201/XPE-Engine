@@ -1,9 +1,14 @@
 #pragma once
 
+#include <geometry/mesh.h>
+
 namespace xpe
 {
     namespace gltf
     {
+
+        using namespace math;
+
         struct ENGINE_API Buffer
         {
             int ByteLength;
@@ -18,37 +23,12 @@ namespace xpe
             int ByteOffset;
         };
 
-        struct ENGINE_API Vertex
-        {
-            core::f32 Position[3];
-            core::f32 Texcoord[2];
-            core::f32 Normal[3];
+        class ENGINE_API GLTFImporter final {
+
+        public:
+            static Model3D Import(const char* filepath);
+
         };
 
-        struct ENGINE_API Mesh
-        {
-            core::usize IndexByteSize;
-            core::usize VertexCount;
-            core::usize IndexCount;
-            Vertex* Vertices;
-            core::u32* Indices;
-        };
-
-        class ENGINE_API GLTFModel
-        {
-            public:
-                static const core::usize k_vertexSize = sizeof(Vertex);
-                static const core::usize k_indexSize = sizeof(core::u32);
-
-                GLTFModel(const char* filePath);
-                ~GLTFModel();
-
-                // returns null if index is out of bounds
-                Mesh* GetMesh(core::usize index);
-
-            private:
-                core::vector<Buffer> _buffs;
-                core::vector<Mesh> _meshes;
-        };
     }
 }

@@ -11,11 +11,11 @@ namespace xpe {
         public:
             Time() = default;
 
-            Time(const double millis) : m_Millis(millis) {
+            Time(const float millis) : m_Millis(millis) {
                 Update();
             }
 
-            Time(const Time& time) {
+            Time(const Time& time) : m_Millis(time) {
                 Update();
             }
 
@@ -40,10 +40,8 @@ namespace xpe {
             }
 
             inline void SetFps(float fps) {
-                if (fps < Fps()) {
-                    m_Fps = fps;
-                    m_Millis = 1000.0f / fps;
-                }
+                m_Millis = 1000.0f / fps;
+                Update();
             }
 
             friend inline Time operator+(const Time& t1, const Time& t2) {
@@ -98,7 +96,7 @@ namespace xpe {
             }
 
         private:
-            float m_Fps = 10000;
+            float m_Fps = 0;
             float m_Millis = 0.0f;
             float m_Seconds = 0.0f;
             float m_Minutes = 0.0f;

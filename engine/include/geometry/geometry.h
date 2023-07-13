@@ -12,7 +12,7 @@ namespace xpe {
         struct VertexArray {
             vector<T> Data;
 
-            inline usize Size() const { return Data.capacity(); }
+            inline usize Size() const { return Data.size() * sizeof(T); }
 
             inline usize Count() const { return Data.size(); }
 
@@ -22,14 +22,14 @@ namespace xpe {
 
             inline T& operator [](int i) { return Data[i]; }
 
-            void Init(int count);
+            void Init(usize count);
             void Free();
 
             void CopyFrom(VertexArray<T>* src);
         };
 
         template<typename T>
-        void VertexArray<T>::Init(int count) {
+        void VertexArray<T>::Init(usize count) {
             Data.resize(count);
         }
 
@@ -93,7 +93,7 @@ namespace xpe {
         struct ENGINE_API IndexArray final {
             vector<u32> Data;
 
-            inline usize Size() const { return Data.capacity(); }
+            inline usize Size() const { return Data.size() * sizeof(u32); }
 
             inline usize Count() const { return Data.size(); }
 
@@ -101,7 +101,7 @@ namespace xpe {
 
             inline u32& operator [](int i) { return Data[i]; }
 
-            void Init(int count);
+            void Init(usize count);
             void Free();
 
             void CopyFrom(IndexArray* src);

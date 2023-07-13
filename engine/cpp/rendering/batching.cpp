@@ -122,22 +122,22 @@ namespace xpe {
             geometryInstances.emplace_back(instance);
         }
 
-        void BatchManager::AddInstance(const string& usid, const RenderInstance &instance)
+        bool BatchManager::AddInstance(const string& usid, const RenderInstance &instance)
         {
             if (_geometryInstanceMap.find(usid) == _geometryInstanceMap.end()) {
-                GeometryInstances geometryInstances = { { 0, 0, 0, 0 } };
-                _geometryInstanceMap.insert({ usid, geometryInstances });
+               return false;
             }
             _geometryInstanceMap.at(usid).Instances.emplace_back(instance);
+            return true;
         }
 
-        void BatchManager::AddInstance2D(const string& usid, const RenderInstance2D &instance)
+        bool BatchManager::AddInstance2D(const string& usid, const RenderInstance2D &instance)
         {
             if (_geometry2DInstanceMap.find(usid) == _geometry2DInstanceMap.end()) {
-                Geometry2DInstances geometryInstances = { { 0, 0, 0, 0 } };
-                _geometry2DInstanceMap.insert({ usid, geometryInstances });
+                return false;
             }
             _geometry2DInstanceMap.at(usid).Instances.emplace_back(instance);
+            return true;
         }
 
         void BatchManager::RemoveInstance(const string& usid, const RenderInstance &instance)

@@ -57,13 +57,12 @@ LogInfo("CPU FPS: {}", t.Fps())
 #define LogGLM(name, v) \
 LogInfo("{}: {}", name, glm::to_string(v))
 
-#define LogTimeWithDelay(time, cpuTime) \
+#define LogTimeWithDelay(time) \
 static float tickSeconds = 0; \
-tickSeconds += cpuTime.Seconds(); \
+tickSeconds += time.Seconds(); \
 if (tickSeconds >= AppConfig::Get().LogTimeDelaySeconds) { \
     tickSeconds = 0; \
-    LogTime(time);                      \
-    LogCpuTime(cpuTime);                                        \
+    LogTime(time);   \
 }
 
 #else

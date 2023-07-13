@@ -28,6 +28,8 @@ namespace xpe {
             winDesc.Y = appConfig.WinY;
             winDesc.Vsync = appConfig.Vsync;
 
+            dt.SetFps(appConfig.FPS);
+
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
 
@@ -65,20 +67,19 @@ namespace xpe {
 
             while (!WindowManager::ShouldClose())
             {
-                static Time cpuTime; // used to measure real fps and real delta time
+                if (appConfig.FPS < dt.Fps()) {
+                    dt.SetFps(appConfig.FPS);
+                }
 
-                dt.SetFps(AppConfig::Get().FPS);
-
-                LogTimeWithDelay(dt, cpuTime)
-
-                Timer cpuTimer(&cpuTime);
-                Timer timer(&dt);
-                time = timer.GetStartTime();
+                Timer dtTimer(&dt);
+                time = dtTimer.GetStartTime();
 
                 Update();
 
                 WindowManager::PollEvents();
                 WindowManager::Swap();
+
+                LogTimeWithDelay(dt)
             }
 
             Free();

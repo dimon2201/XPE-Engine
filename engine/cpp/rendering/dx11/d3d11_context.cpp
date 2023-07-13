@@ -1027,9 +1027,6 @@ namespace xpe {
 
         void D3D11Context::BindInputLayout(const InputLayout* inputLayout)
         {
-            UINT stride = inputLayout->Format.Stride;
-            UINT offset = 0;
-
             if (inputLayout->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_STRIP)
             {
                 _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);

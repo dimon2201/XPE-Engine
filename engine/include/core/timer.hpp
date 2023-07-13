@@ -1,14 +1,15 @@
 #pragma once
 
+using namespace std::chrono;
+
 namespace xpe
 {
     namespace core
     {
 
-        using namespace std::chrono;
-
         class ENGINE_API Timer
         {
+
             public:
                 Timer(Time* output)
                 {
@@ -19,16 +20,24 @@ namespace xpe
                 ~Timer()
                 {
                     _end = system_clock::now();
-                    *_output = static_cast<float>(duration_cast<duration<float>>(_end - _start).count() * 1000);
+                    *_output = GetDeltaTime();
                 }
 
             public:
-                Time GetStartTime() {
-                    return static_cast<float>(duration_cast<duration<float>>(_start.time_since_epoch()).count() * 1000);
+                static Time Now();
+                static Time Cast(const system_clock::time_point& time);
+
+            public:
+                inline Time GetStartTime() {
+                    return Cast(_start);
                 }
 
-                Time GetEndTime() {
-                    return static_cast<float>(duration_cast<duration<float>>(_end.time_since_epoch()).count() * 1000);
+                inline Time GetEndTime() {
+                    return Cast(_end);
+                }
+
+                inline Time GetDeltaTime() {
+                    return static_cast<float>(duration_cast<duration<float>>(_end - _start).count() * 1000);
                 }
 
             private:

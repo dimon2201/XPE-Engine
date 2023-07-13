@@ -76,7 +76,7 @@ namespace xpe {
 
         };
 
-        class ENGINE_API CameraController : public Object {
+        class ENGINE_API Camera : public Object {
 
         public:
             eKey KeyMoveForward = eKey::W;
@@ -91,23 +91,23 @@ namespace xpe {
             float VerticalSensitivity = 0.5f;
 
         public:
-            CameraController(CameraBuffer* cameraBuffer, Time* time);
-            ~CameraController() = default;
+            Camera(CameraBuffer* cameraBuffer, Time* time);
+            ~Camera() = default;
 
         protected:
             CameraBuffer* m_CameraBuffer = nullptr;
             Time* m_Dt = nullptr;
         };
 
-        class ENGINE_API PerspectiveCameraController : public CameraController {
+        class ENGINE_API PerspectiveCamera : public Camera {
 
         public:
-            PerspectiveCameraComponent* Camera = nullptr;
+            PerspectiveCameraComponent* Component = nullptr;
             float MaxFovDegree = 45.0f;
             float MinFovDegree = 1.0f;
 
         public:
-            PerspectiveCameraController(CameraBuffer* cameraBuffer, PerspectiveCameraComponent* camera, Time* time);
+            PerspectiveCamera(CameraBuffer* cameraBuffer, PerspectiveCameraComponent* component, Time* time);
 
             void Move();
 
@@ -125,13 +125,13 @@ namespace xpe {
 
         };
 
-        class ENGINE_API OrthoCameraController : public CameraController {
+        class ENGINE_API OrthoCameraController : public Camera {
 
         public:
-            OrthoCameraComponent* Camera = nullptr;
+            OrthoCameraComponent* Component = nullptr;
 
         public:
-            OrthoCameraController(CameraBuffer* cameraBuffer, OrthoCameraComponent* camera, Time* time);
+            OrthoCameraController(CameraBuffer* cameraBuffer, OrthoCameraComponent* component, Time* time);
 
             void Move();
 

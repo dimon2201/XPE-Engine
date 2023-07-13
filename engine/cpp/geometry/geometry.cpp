@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace math {
 
-        void IndexArray::Init(int count) {
+        void IndexArray::Init(usize count) {
             Data.resize(count);
         }
 
