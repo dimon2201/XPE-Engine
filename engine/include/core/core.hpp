@@ -13,6 +13,7 @@
 
 #include <geometry/cube_geometry.h>
 #include <geometry/sphere_geometry.h>
+#include <geometry/plane_geometry.h>
 #include <geometry/mesh.h>
 
 #include <controls/camera.h>

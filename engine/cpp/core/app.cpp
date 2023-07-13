@@ -28,7 +28,7 @@ namespace xpe {
             winDesc.Y = appConfig.WinY;
             winDesc.Vsync = appConfig.Vsync;
 
-            dt.SetFps(appConfig.FPS);
+            DeltaTime.SetFps(appConfig.FPS);
 
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
@@ -67,19 +67,24 @@ namespace xpe {
 
             while (!WindowManager::ShouldClose())
             {
-                if (appConfig.FPS < dt.Fps()) {
-                    dt.SetFps(appConfig.FPS);
+                static float tickSeconds = 0;
+                tickSeconds += DeltaTime.Seconds();
+                if (tickSeconds >= appConfig.LogTimeDelaySeconds) {
+                    tickSeconds = 0;
+                    LogTime(DeltaTime);
                 }
 
-                Timer dtTimer(&dt);
-                time = dtTimer.GetStartTime();
+                if (appConfig.FPS < DeltaTime.Fps()) {
+                    DeltaTime.SetFps(appConfig.FPS);
+                }
+
+                Timer dtTimer(&DeltaTime);
+                CurrentTime = dtTimer.GetStartTime();
 
                 Update();
 
                 WindowManager::PollEvents();
                 WindowManager::Swap();
-
-                LogTimeWithDelay(dt)
             }
 
             Free();

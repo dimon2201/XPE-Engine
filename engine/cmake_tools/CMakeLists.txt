@@ -59,7 +59,7 @@ endmacro()
 
 # copying source directory into binary directory
 macro(copy_build_dir dir1 dir2)
-    copy_dir(${CMAKE_SOURCE_DIR}/${dir1} ${CMAKE_BINARY_DIR}/${dir2})
+    copy_dir(${CMAKE_SOURCE_DIR}/${dir1} ${CMAKE_BINARY_DIR}/bin/${dir2})
 endmacro()
 
 # copying source file into binary file folder

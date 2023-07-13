@@ -25,9 +25,9 @@ namespace xpe
             TransformComponent(const string& usid) : Component(usid)
             {}
 
-            glm::vec3 Position;
-            glm::vec3 Rotation;
-            glm::vec3 Scale;
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Rotation = { 0, 0, 0 };
+            glm::vec3 Scale = { 1, 1, 1 };
         };
 
         struct ENGINE_API Transform2DComponent : public Component
@@ -35,9 +35,9 @@ namespace xpe
             Transform2DComponent(const string& usid) : Component(usid)
             {}
 
-            glm::vec2 Position;
-            float Rotation;
-            glm::vec2 Scale;
+            glm::vec2 Position = { 0, 0 };
+            float Rotation = 0;
+            glm::vec2 Scale = { 0, 0 };
         };
 
         struct ENGINE_API RigidBodyComponent : public Component

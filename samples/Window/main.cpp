@@ -46,10 +46,27 @@ public:
 
         Texture* textureCube = TextureManager::LoadTextureCubeFile(textureCubeFile, Texture::eFormat::RGBA8);
 
+//        PlaneGeometry plane;
+//        _batch->StoreGlobalGeometryData(
+//                "PlaneGeometry",
+//                plane.Vertices.GetData(),
+//                plane.Vertices.Size(),
+//                plane.Vertices.Count(),
+//                plane.Indices.GetData(),
+//                plane.Indices.Size(),
+//                plane.Indices.Count()
+//        );
+//
+//        RenderInstance planeInstance;
+//        TransformComponent planeTransform("PlaneTransform");
+//        planeTransform.Position = { 0, -50, 0 };
+//        TransformManager::UpdateTransform(0, planeTransform);
+//        _batch->AddInstance("PlaneGeometry", planeInstance);
+
 //        Model3D cubeModel;
 //        bool cubeImported = GLTFImporter::Import("resources/cube.gltf", cubeModel);
-//        if (cubeImported) {
 //        Mesh& cubeMesh = cubeModel[0];
+
         Model3D cubeModel = xpe::gltf::GLTFImporter::Import("resources/cube.gltf");
         Mesh& cubeMesh = cubeModel[0];
         _batch->StoreGlobalGeometryData(
@@ -62,21 +79,30 @@ public:
                 cubeMesh.Indices.Count()
         );
 
-        CubeGeometry cube;
-        _batch->StoreGlobalGeometryData(
-                "CubeGeometry",
-                cube.Vertices.GetData(),
-                cube.Vertices.Size(),
-                cube.Vertices.Count(),
-                cube.Indices.GetData(),
-                cube.Indices.Size(),
-                cube.Indices.Count()
-        );
+//        CubeGeometry cube;
+//        _batch->StoreGlobalGeometryData(
+//                "CubeGeometry",
+//                cube.Vertices.GetData(),
+//                cube.Vertices.Size(),
+//                cube.Vertices.Count(),
+//                cube.Indices.GetData(),
+//                cube.Indices.Size(),
+//                cube.Indices.Count()
+//        );
 
-//        }
+//        SphereGeometry sphere;
+//        _batch->StoreGlobalGeometryData(
+//                "SphereGeometry",
+//                sphere.Vertices.GetData(),
+//                sphere.Vertices.Size(),
+//                sphere.Vertices.Count(),
+//                sphere.Indices.GetData(),
+//                sphere.Indices.Size(),
+//                sphere.Indices.Count()
+//        );
 
         // Put instances of geometry
-        u32 transformIndex = 0;
+        u32 transformIndex = 1;
         for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
         {
             for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
@@ -109,6 +135,7 @@ public:
 
                     _batch->AddInstance("CubeGeometry", instance);
                     _batch->AddInstance("CubeMesh", instance);
+                    _batch->AddInstance("SphereGeometry", instance);
 
                     transformIndex++;
                     materialIndex++;
@@ -153,8 +180,8 @@ public:
         context->CreateRenderPipeline(_pipeline);
 
         static PerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        perspectiveCamera.Projection.Far = 1000;
-        _camera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera, &dt);
+        perspectiveCamera.Projection.Far = _testConfig.CameraFar;
+        _camera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera, &DeltaTime);
         _camera->MoveSpeed = _testConfig.CameraMoveSpeed;
         _camera->ZoomSpeed = _testConfig.CameraZoomSpeed;
         _camera->HorizontalSensitivity = _testConfig.CameraHorizontalSens;

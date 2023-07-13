@@ -50,20 +50,8 @@ Logger::DumpBacktrace()
 LogInfo("Delta time: {} ms", t.Millis()); \
 LogInfo("FPS: {}", t.Fps())
 
-#define LogCpuTime(t) \
-LogInfo("CPU Delta time: {} ms", t.Millis()); \
-LogInfo("CPU FPS: {}", t.Fps())
-
 #define LogGLM(name, v) \
 LogInfo("{}: {}", name, glm::to_string(v))
-
-#define LogTimeWithDelay(time) \
-static float tickSeconds = 0; \
-tickSeconds += time.Seconds(); \
-if (tickSeconds >= AppConfig::Get().LogTimeDelaySeconds) { \
-    tickSeconds = 0; \
-    LogTime(time);   \
-}
 
 #else
 
@@ -79,10 +67,7 @@ if (tickSeconds >= AppConfig::Get().LogTimeDelaySeconds) { \
 #define DumpTraceError(...)
 
 #define LogTime(time)
-#define LogCpuTime(time)
 
 #define LogGLM(name, v)
-
-#define LogTimeWithDelay(time)
 
 #endif
