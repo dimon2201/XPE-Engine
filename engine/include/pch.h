@@ -41,6 +41,7 @@
 #include <gtx/quaternion.hpp>
 #include <gtc/type_ptr.hpp>
 #include <gtc/matrix_transform.hpp>
+#include <gtx/matrix_transform_2d.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <gtx/string_cast.hpp>
 

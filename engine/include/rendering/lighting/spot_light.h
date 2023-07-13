@@ -22,9 +22,9 @@ namespace xpe {
             SpotLightBufferData* Data = nullptr;
         };
 
-        struct ENGINE_API cSpotLightComponent : public cComponent {
+        struct ENGINE_API SpotLightComponent : public Component {
 
-            cSpotLightComponent(const string& usid) : cComponent(usid) {}
+            SpotLightComponent(const string& usid) : Component(usid) {}
 
             SpotLight Light;
 

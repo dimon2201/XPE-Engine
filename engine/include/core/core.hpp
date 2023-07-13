@@ -11,4 +11,13 @@
 #include <rendering/lighting/light_manager.h>
 #include <rendering/transforming.h>
 
+#include <geometry/cube_geometry.h>
+#include <geometry/sphere_geometry.h>
+#include <geometry/mesh.h>
+
 #include <controls/camera.h>
+
+#include <importers/importer.h>
+#include <importers/exporter.h>
+
+#include <ttf/ttf_manager.hpp>

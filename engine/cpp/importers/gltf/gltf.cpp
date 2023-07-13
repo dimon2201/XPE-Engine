@@ -1,6 +1,6 @@
 #include <json/json.h>
 
-#include <gltf/gltf.hpp>
+#include <importers/gltf/gltf.hpp>
 
 namespace xpe {
 
@@ -17,7 +17,7 @@ namespace xpe {
             return std::string(str);
         }
 
-        cGLTFModel::cGLTFModel(const char* filePath)
+        GLTFModel::GLTFModel(const char* filePath)
         {
             using namespace core;
 
@@ -48,7 +48,7 @@ namespace xpe {
             auto buffers = root["buffers"];
             for (auto& buffer : buffers)
             {
-                xBuffer buff;
+                Buffer buff;
 
                 buff.ByteLength = buffer["byteLength"].asInt();
                 buff.URI = buffer["uri"].asCString();
@@ -79,10 +79,10 @@ namespace xpe {
                 auto normalBufferViewId = root["accessors"][normalAccessorId]["bufferView"].asInt();
                 auto indicesBufferViewId = root["accessors"][indicesAccessorId]["bufferView"].asInt();
 
-                xBufferView positionBufferView;
-                xBufferView texcoordBufferView;
-                xBufferView normalBufferView;
-                xBufferView indicesBufferView;
+                BufferView positionBufferView;
+                BufferView texcoordBufferView;
+                BufferView normalBufferView;
+                BufferView indicesBufferView;
 
                 positionBufferView.BufferId = root["bufferViews"][positionBufferViewId]["buffer"].asInt();
                 positionBufferView.ByteLength = root["bufferViews"][positionBufferViewId]["byteLength"].asInt();
@@ -101,10 +101,10 @@ namespace xpe {
                 indicesBufferView.ByteOffset = root["bufferViews"][indicesBufferViewId]["byteOffset"].asInt();
 
                 // Construct mesh
-                xMesh mesh;
+                Mesh mesh;
 
                 mesh.VertexCount = root["accessors"][positionAccessorId]["count"].asInt();
-                mesh.Vertices = (xVertex*)malloc(mesh.VertexCount * k_vertexSize);
+                mesh.Vertices = (Vertex*)malloc(mesh.VertexCount * k_vertexSize);
                 memset(mesh.Vertices, 0, mesh.VertexCount * k_vertexSize);
 
                 auto indicesComponentType = root["accessors"][indicesAccessorId]["componentType"].asInt();
@@ -166,7 +166,7 @@ namespace xpe {
             }
         }
 
-        cGLTFModel::~cGLTFModel()
+        GLTFModel::~GLTFModel()
         {
             for (auto& buff : _buffs)
             {
@@ -190,7 +190,7 @@ namespace xpe {
             }
         }
 
-        xMesh* cGLTFModel::GetMesh(core::usize index) {
+        Mesh* GLTFModel::GetMesh(core::usize index) {
             if (index > _meshes.size() - 1)
                 return nullptr;
 

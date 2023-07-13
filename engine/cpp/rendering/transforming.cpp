@@ -27,7 +27,7 @@ namespace xpe {
             return &s_Transform2DBuffer;
         }
 
-        void TransformManager::UpdateTransform(u32 index, const cTransformComponent &transformComponent) {
+        void TransformManager::UpdateTransform(u32 index, const TransformComponent &transformComponent) {
             math::ModelMatrix modelMatrix;
             modelMatrix.Translation = transformComponent.Position;
             modelMatrix.Rotation = transformComponent.Rotation;
@@ -39,7 +39,7 @@ namespace xpe {
             s_TransformBuffer.FlushItem(index, transformData);
         }
 
-        void TransformManager::UpdateTransform2D(u32 index, const cTransform2DComponent &transform2DComponent) {
+        void TransformManager::UpdateTransform2D(u32 index, const Transform2DComponent &transform2DComponent) {
             math::Model2dMatrix modelMatrix;
             modelMatrix.Translation = transform2DComponent.Position;
             modelMatrix.Rotation = transform2DComponent.Rotation;

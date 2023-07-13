@@ -1,15 +1,17 @@
 #include <core/core.hpp>
-#include <gltf/gltf.hpp>
-#include <ttf/ttf_manager.hpp>
+
+#include "test_config.h"
 
 using namespace xpe::core;
 using namespace xpe::render;
 using namespace xpe::control;
 using namespace xpe::ttf;
+using namespace xpe::io;
+using namespace xpe::math;
 
 class GameApp;
 
-class GameApp : public Application, public WindowEventListener, public KeyEventListener, public CursorEventListener
+class GameApp : public Application
 {
 public:
     GameApp() {}
@@ -19,41 +21,47 @@ public:
     {
         LogInfo("GameApp::Init()");
 
-        Input::AddWindowEventListener(this, 1);
-        Input::AddKeyEventListener(this, 1);
-        Input::AddCursorEventListener(this, 1);
+        _testConfig = TestConfigReader::Read("test_config.json");
+
+        Input::WindowClosedEvents.AddEvent(this, OnWindowClosed<GameApp>, 1);
+        Input::KeyPressedEvents.AddEvent(this, OnKeyPressed<GameApp>, 1);
+        Input::KeyHoldEvents.AddEvent(this, OnKeyHold<GameApp>, 1);
+        Input::CursorMovedEvents.AddEvent(this, OnCursorMoved<GameApp>, 1);
 
         _canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         _ecs = new ECSManager();
         _batch = new BatchManager(context);
 
-        xFont font = TTFManager::Load("Roboto-Italic.ttf", 32);
+        Font font = TTFManager::Load("resources/fonts/Roboto-Italic.ttf", 32);
         TTFManager::Free(font);
 
         TextureCubeFile textureCubeFile;
         textureCubeFile.Name = "test";
-        textureCubeFile.FrontFilepath = "files/skybox/front.jpg";
-        textureCubeFile.BackFilepath = "files/skybox/back.jpg";
-        textureCubeFile.RightFilepath = "files/skybox/right.jpg";
-        textureCubeFile.LeftFilepath = "files/skybox/left.jpg";
-        textureCubeFile.TopFilepath = "files/skybox/top.jpg";
-        textureCubeFile.BottomFilepath = "files/skybox/bottom.jpg";
+        textureCubeFile.FrontFilepath = "resources/skybox/front.jpg";
+        textureCubeFile.BackFilepath = "resources/skybox/back.jpg";
+        textureCubeFile.RightFilepath = "resources/skybox/right.jpg";
+        textureCubeFile.LeftFilepath = "resources/skybox/left.jpg";
+        textureCubeFile.TopFilepath = "resources/skybox/top.jpg";
+        textureCubeFile.BottomFilepath = "resources/skybox/bottom.jpg";
 
         Texture* textureCube = TextureManager::LoadTextureCubeFile(textureCubeFile, Texture::eFormat::RGBA8);
 
-        xpe::gltf::cGLTFModel model("files/cube.gltf");
-        xpe::gltf::xMesh* mesh = model.GetMesh(0);
-
-        // Put geometry
+//        Model3D cubeModel;
+//        bool cubeImported = GLTFImporter::Import("resources/cube.gltf", cubeModel);
+//        if (cubeImported) {
+//        Mesh& cubeMesh = cubeModel[0];
+        xpe::gltf::GLTFModel cubeModel("resources/cube.gltf");
+        xpe::gltf::Mesh& cubeMesh = *cubeModel.GetMesh(0);
         _batch->StoreGlobalGeometryData(
-                "NewGeometryData",
-                &mesh->Vertices[0],
-                mesh->VertexCount * xpe::gltf::cGLTFModel::k_vertexSize,
-                mesh->VertexCount,
-                &mesh->Indices[0],
-                mesh->IndexCount * 4,
-                mesh->IndexCount
+                "CubeGeometry",
+                cubeMesh.Vertices,
+                cubeMesh.VertexCount * xpe::gltf::GLTFModel::k_vertexSize,
+                cubeMesh.VertexCount,
+                cubeMesh.Indices,
+                cubeMesh.IndexCount * xpe::gltf::GLTFModel::k_indexSize,
+                cubeMesh.IndexCount
         );
+//        }
 
         // Put instances of geometry
         u32 transformIndex = 0;
@@ -68,7 +76,7 @@ public:
                     float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
-                    cTransformComponent transformComponent("Transform_" + transformIndex);
+                    TransformComponent transformComponent("Transform_" + transformIndex);
                     transformComponent.Position = { x, y, z };
                     transformComponent.Rotation = { r * 360.0f, g * 360.0f, b * 360.0f };
                     transformComponent.Scale    = { r, g, b };
@@ -87,7 +95,7 @@ public:
                     material->Data->RoughnessFactor = g;
                     material->Data->AOFactor = b;
 
-                    _batch->AddInstance("NewGeometryData", instance);
+                    _batch->AddInstance("CubeGeometry", instance);
 
                     transformIndex++;
                     materialIndex++;
@@ -103,6 +111,7 @@ public:
         _pipeline.VertexBuffer = _batch->GetVertexBuffer();
         _pipeline.IndexBuffer = _batch->GetIndexBuffer();
         _pipeline.VSBuffers.emplace_back(_batch->GetInstanceBuffer());
+        _pipeline.VSBuffers.emplace_back(_batch->GetInstance2DBuffer());
         _pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
         _pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
         _pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
@@ -117,26 +126,22 @@ public:
                 .AddPixelStageFromFile("shaders/window.ps")
                 .Build();
         _pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+
         // setup input layout
         _layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-        _layout.StrideByteSize = xpe::gltf::cGLTFModel::k_vertexSize;
-        _layout.EntryCount = 3;
-        _layout.Entries[0].Name = "XPE_POSITION_LOCAL";
-        _layout.Entries[0].Format = InputLayout::Entry::eFormat::VEC3;
-        _layout.Entries[0].ByteSize = 12;
-        _layout.Entries[1].Name = "XPE_TEXCOORD";
-        _layout.Entries[1].Format = InputLayout::Entry::eFormat::VEC2;
-        _layout.Entries[1].ByteSize = 8;
-        _layout.Entries[2].Name = "XPE_NORMAL";
-        _layout.Entries[2].Format = InputLayout::Entry::eFormat::VEC3;
-        _layout.Entries[2].ByteSize = 12;
+        _layout.Format = Vertex3D::Format;
         _pipeline.InputLayout = _layout;
+
+        // setup render target
         _pipeline.RenderTarget = _canvas->GetRenderTarget();
         _pipeline.DepthStencilState.UseDepthTest = K_TRUE;
+
+        // init pipeline
         context->CreateRenderPipeline(_pipeline);
 
-        static cPerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        _cameraController = new cPerspectiveCameraController(&m_CameraBuffer, &perspectiveCamera, &dt);
+        static PerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
+        perspectiveCamera.Projection.Far = 1000.0f;
+        _cameraController = new PerspectiveCameraController(&m_CameraBuffer, &perspectiveCamera, &dt);
 
         // todo maybe we will automate it in future and make it more easy to use
         LightManager::InitLight(directLightComponent.Light);
@@ -159,15 +164,14 @@ public:
             // todo bug: canvas is not update or resized because of BindMaterials()
 //            MaterialManager::BindMaterials();
 
-            static cTransformComponent tr("transform");
-
             _batch->DrawAll();
+            _batch->DrawAll2D();
 
             _canvas->Present();
         }
     }
 
-    void Free() override
+    void Free()
     {
         LogInfo("GameApp::Free()");
         delete _cameraController;
@@ -176,12 +180,12 @@ public:
         delete _canvas;
     }
 
-    void WindowClosed() override
+    void WindowClosed()
     {
         LogWarning("GameApp::WindowClosed()");
     }
 
-    void KeyPressed(const eKey key) override
+    void KeyPressed(const eKey key)
     {
         if (key == eKey::Esc)
         {
@@ -191,12 +195,12 @@ public:
         MoveLight(key);
     }
 
-    void KeyHold(const eKey key) override
+    void KeyHold(const eKey key)
     {
         MoveLight(key);
     }
 
-    void CursorMoved(const double x, const double y) override
+    void CursorMoved(const double x, const double y)
     {
     }
 
@@ -229,12 +233,14 @@ private:
     }
 
     void Simulate() {
-        if (animateLight) {
+        if (_testConfig.AnimateLight) {
             auto& pos = directLightComponent.Light.Data->Position;
 
+            // translation light up and down every N ticks
             static int tick = 1;
             pos.y = 100 * sin(tick++ / 3000.0f);
 
+            // update light color every N ticks
             if (tick % 10000 == 0) {
                 auto& color = directLightComponent.Light.Data->Color;
                 float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
@@ -253,9 +259,9 @@ private:
     BatchManager* _batch;
     Pipeline _pipeline;
     InputLayout _layout;
-    cPerspectiveCameraController* _cameraController;
-    cDirectLightComponent directLightComponent = string("DirectLight");
-    bool animateLight = true;
+    PerspectiveCameraController* _cameraController;
+    DirectLightComponent directLightComponent = string("DirectLight");
+    TestConfig _testConfig;
 };
 
 Application* CreateApplication() {

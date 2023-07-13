@@ -11,10 +11,10 @@ namespace xpe {
         using namespace xpe::core;
         using namespace xpe::render;
 
-        struct ENGINE_API cCameraComponent : public cComponent
+        struct ENGINE_API CameraComponent : public Component
         {
 
-            cCameraComponent(const string& usid) : cComponent(usid)
+            CameraComponent(const string& usid) : Component(usid)
             {}
 
             u32 Index = 0;
@@ -38,17 +38,17 @@ namespace xpe {
 
         };
 
-        struct ENGINE_API cPerspectiveCameraComponent : public cCameraComponent
+        struct ENGINE_API PerspectiveCameraComponent : public CameraComponent
         {
-            cPerspectiveCameraComponent(const string& usid) : cCameraComponent(usid)
+            PerspectiveCameraComponent(const string& usid) : CameraComponent(usid)
             {}
 
             math::PerspectiveMatrix Projection;
         };
 
-        struct ENGINE_API cOrthoCameraComponent : public cCameraComponent
+        struct ENGINE_API OrthoCameraComponent : public CameraComponent
         {
-            cOrthoCameraComponent(const string& usid) : cCameraComponent(usid)
+            OrthoCameraComponent(const string& usid) : CameraComponent(usid)
             {}
 
             math::OrthoMatrix Projection;
@@ -67,20 +67,16 @@ namespace xpe {
             CameraBuffer(Context* context, usize size) : render::StructureBuffer<CameraBufferData>(context, size, K_SLOT_CAMERAS, K_FALSE) {}
 
         public:
-            void SetCamera(cPerspectiveCameraComponent* camera);
-            void SetCamera(cOrthoCameraComponent* camera);
+            void SetCamera(PerspectiveCameraComponent* camera);
+            void SetCamera(OrthoCameraComponent* camera);
             void SetPerspectiveProjection(u32 index, const math::PerspectiveMatrix& projection);
             void SetOrthoProjection(u32 index, const math::OrthoMatrix& projection);
-            void SetView(cCameraComponent* camera);
-            void SetPosition(cCameraComponent* camera);
+            void SetView(CameraComponent* camera);
+            void SetPosition(CameraComponent* camera);
 
         };
 
-        class ENGINE_API cCameraController : public Object,
-                public CursorEventListener,
-                public WindowEventListener,
-                public ScrollEventListener
-        {
+        class ENGINE_API CameraController : public Object {
 
         public:
             eKey KeyMoveForward = eKey::W;
@@ -95,71 +91,61 @@ namespace xpe {
             float VerticalSensitivity = 0.5f;
 
         public:
-            cCameraController(CameraBuffer* cameraBuffer, Time* time);
-            virtual ~cCameraController() override;
-
-            void EnableLook();
-            void EnableZoom();
-
-            void DisableLook();
-            void DisableZoom();
-
-            virtual void Move() = 0;
-            virtual void ZoomIn() = 0;
-            virtual void ZoomOut() = 0;
-            virtual void Look(const double x, const double y) = 0;
-
-            void CursorMoved(const double x, const double y) override;
+            CameraController(CameraBuffer* cameraBuffer, Time* time);
+            ~CameraController() = default;
 
         protected:
             CameraBuffer* m_CameraBuffer = nullptr;
             Time* m_Dt = nullptr;
         };
 
-        class ENGINE_API cPerspectiveCameraController : public cCameraController {
+        class ENGINE_API PerspectiveCameraController : public CameraController {
 
         public:
-            cPerspectiveCameraComponent* Camera = nullptr;
+            PerspectiveCameraComponent* Camera = nullptr;
             float MaxFovDegree = 45.0f;
             float MinFovDegree = 1.0f;
 
         public:
-            cPerspectiveCameraController(CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)
-            : cCameraController(cameraBuffer, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
-                m_CameraBuffer->SetCamera(camera);
-            }
+            PerspectiveCameraController(CameraBuffer* cameraBuffer, PerspectiveCameraComponent* camera, Time* time);
 
-            void Move() override;
+            void Move();
 
-            void ZoomIn() override;
+            void ZoomIn();
 
-            void ZoomOut() override;
+            void ZoomOut();
 
-            void Look(const double x, const double y) override;
+            void Look(const double x, const double y);
 
-            void ScrollChanged(const double x, const double y) override;
+            void ScrollChanged(const double x, const double y);
 
-            void WindowFrameResized(int width, int height) override;
+            void WindowFrameResized(int width, int height);
+
+            void CursorMoved(const double x, const double y);
+
         };
 
-        class ENGINE_API cOrthoCameraController : public cCameraController {
+        class ENGINE_API OrthoCameraController : public CameraController {
 
         public:
-            cOrthoCameraComponent* Camera = nullptr;
+            OrthoCameraComponent* Camera = nullptr;
 
         public:
-            cOrthoCameraController(CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, Time* time)
-            : cCameraController(cameraBuffer, time), Camera(camera) {
-                m_CameraBuffer->SetCamera(camera);
-            }
+            OrthoCameraController(CameraBuffer* cameraBuffer, OrthoCameraComponent* camera, Time* time);
 
-            void Move() override;
+            void Move();
 
-            void ZoomIn() override;
+            void ZoomIn();
 
-            void ZoomOut() override;
+            void ZoomOut();
 
-            void Look(const double x, const double y) override;
+            void Look(const double x, const double y);
+
+            void WindowFrameResized(int w, int h);
+
+            void ScrollChanged(const double x, const double y);
+
+            void CursorMoved(const double x, const double y);
 
         };
 

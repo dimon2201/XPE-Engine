@@ -12,9 +12,9 @@ namespace xpe {
 
         struct Texture;
 
-        struct ENGINE_API cTextureComponent : public cComponent {
+        struct ENGINE_API cTextureComponent : public Component {
 
-            cTextureComponent(const string& usid) : cComponent(usid) {}
+            cTextureComponent(const string& usid) : Component(usid) {}
 
             Texture* Texture = nullptr;
 

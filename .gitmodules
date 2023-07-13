@@ -16,3 +16,6 @@
 [submodule "engine/thirdparty/freetype2"]
 	path = engine/thirdparty/freetype2
 	url = https://github.com/aseprite/freetype2
+[submodule "engine/thirdparty/cgltf"]
+	path = engine/thirdparty/cgltf
+	url = https://github.com/jkuhlmann/cgltf

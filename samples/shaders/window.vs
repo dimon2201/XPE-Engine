@@ -6,7 +6,7 @@
 struct VSIn
 {
     float3 positionLocal : XPE_POSITION_LOCAL;
-    float2 texcoord : XPE_TEXCOORD;
+    float2 texcoord : XPE_UV;
     float3 normal : XPE_NORMAL;
     uint instanceIndex : SV_InstanceID;
 };
@@ -14,7 +14,7 @@ struct VSIn
 struct VSOut
 {
     float3 positionWorld : XPE_POSITION_WORLD;
-    float2 texcoord : XPE_TEXCOORD2;
+    float2 texcoord : XPE_UV2;
     float3 normal : XPE_NORMAL2;
     float4 positionClip : SV_POSITION;
     float3 viewPosition : XPE_VIEW_POSITION;

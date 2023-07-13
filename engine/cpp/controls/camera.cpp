@@ -4,33 +4,33 @@ namespace xpe {
 
     namespace control {
 
-        glm::vec3 cCameraComponent::GetUpDirection() const {
+        glm::vec3 CameraComponent::GetUpDirection() const {
             return glm::rotate(GetOrientation(), glm::vec3(0.0f, 1.0f, 0.0f));
         }
 
-        glm::vec3 cCameraComponent::GetRightDirection() const {
+        glm::vec3 CameraComponent::GetRightDirection() const {
             return glm::rotate(GetOrientation(), glm::vec3(1.0f, 0.0f, 0.0f));
         }
 
-        glm::vec3 cCameraComponent::GetForwardDirection() const {
+        glm::vec3 CameraComponent::GetForwardDirection() const {
             return glm::rotate(GetOrientation(), glm::vec3(0.0f, 0.0f, -1.0f));
         }
 
-        glm::vec3 cCameraComponent::CalculatePosition() const {
+        glm::vec3 CameraComponent::CalculatePosition() const {
             return FocalPoint - GetForwardDirection() * Distance;
         }
 
-        glm::quat cCameraComponent::GetOrientation() const {
+        glm::quat CameraComponent::GetOrientation() const {
             return glm::vec3(-Pitch, -Yaw, -Roll);
         }
 
-        void CameraBuffer::SetCamera(cPerspectiveCameraComponent *camera) {
+        void CameraBuffer::SetCamera(PerspectiveCameraComponent *camera) {
             SetPerspectiveProjection(camera->Index, camera->Projection);
             SetView(camera);
             SetPosition(camera);
         }
 
-        void CameraBuffer::SetCamera(cOrthoCameraComponent *camera) {
+        void CameraBuffer::SetCamera(OrthoCameraComponent *camera) {
             SetOrthoProjection(camera->Index, camera->Projection);
             SetView(camera);
             SetPosition(camera);
@@ -44,7 +44,7 @@ namespace xpe {
             GetItem(index)->Projection = math::OrthoMatrixUpdate(projection);
         }
 
-        void CameraBuffer::SetView(cCameraComponent *camera) {
+        void CameraBuffer::SetView(CameraComponent *camera) {
             math::ViewMatrix view;
             view.Eye = camera->Position;
             view.Up = camera->Up;
@@ -52,44 +52,30 @@ namespace xpe {
             GetItem(camera->Index)->View = math::ViewMatrixUpdate(view);
         }
 
-        void CameraBuffer::SetPosition(cCameraComponent *camera) {
+        void CameraBuffer::SetPosition(CameraComponent *camera) {
             GetItem(camera->Index)->Position = camera->Position;
         }
 
-        cCameraController::cCameraController(CameraBuffer* cameraBuffer, Time* time)
+        CameraController::CameraController(CameraBuffer* cameraBuffer, Time* time)
         : m_CameraBuffer(cameraBuffer), m_Dt(time) {
-            EnableLook();
-            EnableZoom();
-            Input::AddWindowEventListener(this, 2);
         }
 
-        cCameraController::~cCameraController() {
-            DisableLook();
-            DisableZoom();
-            Input::RemoveWindowEventListener(this);
+        PerspectiveCameraController::PerspectiveCameraController(
+                CameraBuffer *cameraBuffer,
+                PerspectiveCameraComponent *camera,
+                Time *time
+        ) : CameraController(cameraBuffer, time),
+            Camera(camera),
+            MaxFovDegree(camera->Projection.FovDegree)
+        {
+            Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<PerspectiveCameraController>, 2);
+            Input::ScrollChangedEvents.AddEvent(this, core::OnScrollChanged<PerspectiveCameraController>, 2);
+            Input::CursorMovedEvents.AddEvent(this, core::OnCursorMoved<PerspectiveCameraController>, 2);
+            m_CameraBuffer->SetCamera(camera);
+            m_CameraBuffer->Flush();
         }
 
-        void cCameraController::EnableLook() {
-            Input::AddCursorEventListener(this, 2);
-        }
-
-        void cCameraController::EnableZoom() {
-            Input::AddScrollEventListener(this, 2);
-        }
-
-        void cCameraController::DisableLook() {
-            Input::RemoveCursorEventListener(this);
-        }
-
-        void cCameraController::DisableZoom() {
-            Input::RemoveScrollEventListener(this);
-        }
-
-        void cCameraController::CursorMoved(const double x, const double y) {
-            Look(x, y);
-        }
-
-        void cPerspectiveCameraController::Move() {
+        void PerspectiveCameraController::Move() {
             float dt = m_Dt->Millis();
             float distance = MoveSpeed * 0.1f / dt;
             auto& position = Camera->Position;
@@ -121,7 +107,7 @@ namespace xpe {
             m_CameraBuffer->Flush();
         }
 
-        void cPerspectiveCameraController::ZoomIn() {
+        void PerspectiveCameraController::ZoomIn() {
             float dt = m_Dt->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
@@ -132,7 +118,7 @@ namespace xpe {
             m_CameraBuffer->Flush();
         }
 
-        void cPerspectiveCameraController::ZoomOut() {
+        void PerspectiveCameraController::ZoomOut() {
             float dt = m_Dt->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
@@ -143,7 +129,7 @@ namespace xpe {
             m_CameraBuffer->Flush();
         }
 
-        void cPerspectiveCameraController::ScrollChanged(const double x, const double y) {
+        void PerspectiveCameraController::ScrollChanged(const double x, const double y) {
             float dt = m_Dt->Millis();
             auto& fov = Camera->Projection.FovDegree;
 
@@ -154,7 +140,7 @@ namespace xpe {
             m_CameraBuffer->Flush();
         }
 
-        void cPerspectiveCameraController::Look(const double x, const double y) {
+        void PerspectiveCameraController::Look(const double x, const double y) {
             Input::CaptureCursor(x, y);
 
             auto& cursorDelta = Input::GetMouseCursor().Delta;
@@ -177,26 +163,56 @@ namespace xpe {
             }
         }
 
-        void cPerspectiveCameraController::WindowFrameResized(int width, int height) {
+        void PerspectiveCameraController::WindowFrameResized(int width, int height) {
             Camera->Projection.AspectRatio = static_cast<float>(width) / static_cast<float>(height);
             m_CameraBuffer->SetPerspectiveProjection(Camera->Index, Camera->Projection);
             m_CameraBuffer->Flush();
         }
 
-        void cOrthoCameraController::Move() {
+        void PerspectiveCameraController::CursorMoved(const double x, const double y) {
+            Look(x, y);
+        }
+
+        OrthoCameraController::OrthoCameraController(
+                CameraBuffer *cameraBuffer,
+                OrthoCameraComponent *camera,
+                Time *time
+        ) : CameraController(cameraBuffer, time), Camera(camera) {
+            Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<OrthoCameraController>, 2);
+            Input::ScrollChangedEvents.AddEvent(this, core::OnScrollChanged<OrthoCameraController>, 2);
+            Input::CursorMovedEvents.AddEvent(this, core::OnCursorMoved<OrthoCameraController>, 2);
+            m_CameraBuffer->SetCamera(camera);
+        }
+
+        void OrthoCameraController::Move() {
             // todo ortho camera move function
         }
 
-        void cOrthoCameraController::ZoomIn() {
+        void OrthoCameraController::ZoomIn() {
             // todo ortho camera zoom in function
         }
 
-        void cOrthoCameraController::ZoomOut() {
+        void OrthoCameraController::ZoomOut() {
             // todo ortho camera zoom out function
         }
 
-        void cOrthoCameraController::Look(const double x, const double y) {
+        void OrthoCameraController::Look(const double x, const double y) {
             // todo ortho camera look function
+        }
+
+        void OrthoCameraController::WindowFrameResized(int w, int h) {
+            Camera->Projection.Left = w;
+            Camera->Projection.Top = h;
+            m_CameraBuffer->SetOrthoProjection(Camera->Index, Camera->Projection);
+            m_CameraBuffer->Flush();
+        }
+
+        void OrthoCameraController::ScrollChanged(const double x, const double y) {
+
+        }
+
+        void OrthoCameraController::CursorMoved(const double x, const double y) {
+            Look(x, y);
         }
 
     }

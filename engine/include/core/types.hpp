@@ -34,8 +34,8 @@ namespace xpe
         class ENGINE_API Object
         {
             public:
-                Object() {}
-                virtual ~Object() {}
+                Object() = default;
+                ~Object() = default;
 
                 uword GetType();
 

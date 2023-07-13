@@ -47,8 +47,8 @@ namespace xpe {
             static TransformBuffer* GetBuffer();
             static Transform2DBuffer* GetBuffer2D();
 
-            static void UpdateTransform(u32 index, const cTransformComponent& transformComponent);
-            static void UpdateTransform2D(u32 index, const cTransform2DComponent& transform2DComponent);
+            static void UpdateTransform(u32 index, const TransformComponent& transformComponent);
+            static void UpdateTransform2D(u32 index, const Transform2DComponent& transform2DComponent);
 
         private:
             static Context* s_Context;

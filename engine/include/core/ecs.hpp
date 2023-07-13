@@ -4,25 +4,25 @@ namespace xpe
 {
     namespace core
     {
-        struct ENGINE_API cEntity : public Object
+        struct ENGINE_API Entity : public Object
         {
-            cEntity(const string& usid) : USID(usid)
+            Entity(const string& usid) : USID(usid)
             {}
 
             string USID;
         };
 
-        struct ENGINE_API cComponent : public Object
+        struct ENGINE_API Component : public Object
         {
-            cComponent(const string& usid) : USID(usid)
+            Component(const string& usid) : USID(usid)
             {}
 
             string USID;
         };
 
-        struct ENGINE_API cTransformComponent : public cComponent
+        struct ENGINE_API TransformComponent : public Component
         {
-            cTransformComponent(const string& usid) : cComponent(usid)
+            TransformComponent(const string& usid) : Component(usid)
             {}
 
             glm::vec3 Position;
@@ -30,9 +30,9 @@ namespace xpe
             glm::vec3 Scale;
         };
 
-        struct ENGINE_API cTransform2DComponent : public cComponent
+        struct ENGINE_API Transform2DComponent : public Component
         {
-            cTransform2DComponent(const string& usid) : cComponent(usid)
+            Transform2DComponent(const string& usid) : Component(usid)
             {}
 
             glm::vec2 Position;
@@ -40,20 +40,19 @@ namespace xpe
             glm::vec2 Scale;
         };
 
-        struct ENGINE_API cRigidBodyComponent : public cComponent
+        struct ENGINE_API RigidBodyComponent : public Component
         {
-            cRigidBodyComponent(const string& usid) : cComponent(usid)
+            RigidBodyComponent(const string& usid) : Component(usid)
             {}
 
             glm::vec3 Position;
             glm::vec3 Rotation;
         };
 
-        struct ENGINE_API xComponentStorage
+        struct ENGINE_API ComponentStorage
         {
-            xComponentStorage(void* storage) :
-                Storage(storage), Count(0)
-            {} 
+            ComponentStorage(void* storage) : Storage(storage), Count(0)
+            {}
 
             void* Storage;
             usize Count;
@@ -67,7 +66,7 @@ namespace xpe
                 ECSManager() {}
                 ~ECSManager() {}
 
-                cEntity* CreateEntity(const string& usid)
+                Entity* CreateEntity(const string& usid)
                 {
                     _entities.insert({ usid, { usid } });
 
@@ -75,7 +74,7 @@ namespace xpe
                     return &it->second;
                 }
 
-                cEntity* GetEntity(const string& usid)
+                Entity* GetEntity(const string& usid)
                 {
                     auto it = _entities.find(usid);
 
@@ -100,7 +99,7 @@ namespace xpe
                 }
 
                 template <typename ComponentType>
-                xComponentStorage* GetComponentStorage()
+                ComponentStorage* GetComponentStorage()
                 {
                     ComponentType c = ComponentType("");
                     auto it = _storages.find(c.GetType());
@@ -119,7 +118,7 @@ namespace xpe
                 ComponentType* CreateComponent(const string& usid)
                 {
                     ComponentType c = ComponentType("");
-                    xComponentStorage* storage = GetComponentStorage<ComponentType>();
+                    ComponentStorage* storage = GetComponentStorage<ComponentType>();
 
                     if (storage == nullptr)
                     {
@@ -158,7 +157,7 @@ namespace xpe
                 template <typename ComponentType>
                 ComponentType* RemoveComponent(const std::string& usid)
                 {
-                    xComponentStorage* storage = GetComponentStorage<ComponentType>();
+                    ComponentStorage* storage = GetComponentStorage<ComponentType>();
 
                     if (storage == nullptr)
                     {
@@ -192,9 +191,9 @@ namespace xpe
                 }
 
             private:
-                map<string, cEntity> _entities;
-                map<uword, xComponentStorage> _storages;
-                map<string, cComponent*> _components;
+                map<string, Entity> _entities;
+                map<uword, ComponentStorage> _storages;
+                map<string, Component*> _components;
         };
     }
 }

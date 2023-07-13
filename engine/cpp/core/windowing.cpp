@@ -8,7 +8,7 @@ namespace xpe {
 
     namespace core {
 
-        static GLFWwindow* window = nullptr;
+        static GLFWwindow* p_WindowHandle = nullptr;
 
         Window WindowManager::s_Window;
 
@@ -31,10 +31,10 @@ namespace xpe {
         }
 
         void WindowManager::InitWindow(const WindowDescriptor &windowDescriptor) {
-            window = glfwCreateWindow(windowDescriptor.Width, windowDescriptor.Height, windowDescriptor.Title, nullptr, nullptr);
+            p_WindowHandle = glfwCreateWindow(windowDescriptor.Width, windowDescriptor.Height, windowDescriptor.Title, nullptr, nullptr);
 
-            s_Window.Instance = window;
-            s_Window.Win32Instance = glfwGetWin32Window(window);
+            s_Window.Instance = p_WindowHandle;
+            s_Window.Win32Instance = glfwGetWin32Window(p_WindowHandle);
             s_Window.Descriptor = windowDescriptor;
 
             SetPos(windowDescriptor.X, windowDescriptor.Y);
@@ -54,22 +54,22 @@ namespace xpe {
         }
 
         int WindowManager::GetWidth() {
-            glfwGetWindowSize(window, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
+            glfwGetWindowSize(p_WindowHandle, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
             return s_Window.Descriptor.Width;
         }
 
         int WindowManager::GetHeight() {
-            glfwGetWindowSize(window, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
+            glfwGetWindowSize(p_WindowHandle, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
             return s_Window.Descriptor.Height;
         }
 
         int WindowManager::GetPosX() {
-            glfwGetWindowPos(window, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
+            glfwGetWindowPos(p_WindowHandle, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
             return s_Window.Descriptor.X;
         }
 
         int WindowManager::GetPosY() {
-            glfwGetWindowPos(window, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
+            glfwGetWindowPos(p_WindowHandle, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
             return s_Window.Descriptor.Y;
         }
 
@@ -86,23 +86,23 @@ namespace xpe {
         }
 
         void WindowManager::SetPos(int x, int y) {
-            glfwSetWindowPos(window, x, y);
+            glfwSetWindowPos(p_WindowHandle, x, y);
             s_Window.Descriptor.X = x;
             s_Window.Descriptor.Y = y;
         }
 
         void WindowManager::SetSize(int w, int h) {
-            glfwSetWindowSize(window, w, h);
+            glfwSetWindowSize(p_WindowHandle, w, h);
             s_Window.Descriptor.Width = w;
             s_Window.Descriptor.Height = h;
         }
 
         bool WindowManager::ShouldClose() {
-            return glfwWindowShouldClose(window);
+            return glfwWindowShouldClose(p_WindowHandle);
         }
 
         void WindowManager::Close() {
-            glfwSetWindowShouldClose(window, GLFW_TRUE);
+            glfwSetWindowShouldClose(p_WindowHandle, GLFW_TRUE);
         }
 
         void WindowManager::PollEvents() {
@@ -110,15 +110,15 @@ namespace xpe {
         }
 
         void WindowManager::Swap() {
-            glfwSwapBuffers(window);
+            glfwSwapBuffers(p_WindowHandle);
         }
 
         void WindowManager::SetUserPointer(void* userPtr) {
-            glfwSetWindowUserPointer(window, userPtr);
+            glfwSetWindowUserPointer(p_WindowHandle, userPtr);
         }
 
         void* WindowManager::GetUserPointer() {
-            return glfwGetWindowUserPointer(window);
+            return glfwGetWindowUserPointer(p_WindowHandle);
         }
 
         void WindowManager::SetVSync(Boolean vsync) {

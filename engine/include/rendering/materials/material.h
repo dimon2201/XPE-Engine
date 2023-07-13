@@ -60,10 +60,10 @@ namespace xpe {
             MaterialBufferData* Data = nullptr;
         };
 
-        struct ENGINE_API cMaterialComponent : public cComponent {
+        struct ENGINE_API MaterialComponent : public Component {
 
-            cMaterialComponent(const string& usid) : cComponent(usid) {}
-            cMaterialComponent(const string& usid, Material* material) : cComponent(usid), Material(material) {}
+            MaterialComponent(const string& usid) : Component(usid) {}
+            MaterialComponent(const string& usid, Material* material) : Component(usid), Material(material) {}
 
             Material* Material = nullptr;
 

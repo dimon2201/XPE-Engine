@@ -20,6 +20,7 @@ include_directories(
         thirdparty/spdlog/include
         thirdparty/stbi
         thirdparty/freetype2/include
+        thirdparty/cgltf/cgltf
 )
 
 # Create shared dynamic library

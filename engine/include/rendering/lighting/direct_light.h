@@ -18,9 +18,9 @@ namespace xpe {
             DirectLightBufferData* Data = nullptr;
         };
 
-        struct ENGINE_API cDirectLightComponent : public cComponent {
+        struct ENGINE_API DirectLightComponent : public Component {
 
-            cDirectLightComponent(const string& usid) : cComponent(usid) {}
+            DirectLightComponent(const string& usid) : Component(usid) {}
 
             DirectLight Light;
 

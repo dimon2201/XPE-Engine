@@ -10,19 +10,33 @@ namespace xpe {
         static GLFWwindow* s_Window = nullptr;
 
         MouseCursor Input::s_Cursor;
-        EventBuffer<WindowEventListener> Input::s_WindowEvents;
-        EventBuffer<KeyEventListener> Input::s_KeyEvents;
-        EventBuffer<MouseEventListener> Input::s_MouseEvents;
-        EventBuffer<CursorEventListener> Input::s_CursorEvents;
-        EventBuffer<ScrollEventListener> Input::s_ScrollEvents;
-        EventBuffer<CharEventListener> Input::s_CharEvents;
+
+        EventBuffer<WindowClosedFn> Input::WindowClosedEvents;
+        EventBuffer<WindowResizedFn> Input::WindowResizedEvents;
+        EventBuffer<WindowFrameResizedFn> Input::WindowFrameResizedEvents;
+        EventBuffer<WindowMovedFn> Input::WindowMovedEvents;
+        EventBuffer<WindowFocusedFn> Input::WindowFocusedEvents;
+        EventBuffer<WindowFocusLostFn> Input::WindowFocusLostEvents;
+
+        EventBuffer<KeyPressedFn> Input::KeyPressedEvents;
+        EventBuffer<KeyReleasedFn> Input::KeyReleasedEvents;
+        EventBuffer<KeyHoldFn> Input::KeyHoldEvents;
+
+        EventBuffer<MousePressedFn> Input::MousePressedEvents;
+        EventBuffer<MouseReleasedFn> Input::MouseReleasedEvents;
+        EventBuffer<MouseHoldFn> Input::MouseHoldEvents;
+
+        EventBuffer<CursorMovedFn> Input::CursorMovedEvents;
+        EventBuffer<CursorEnteredFn> Input::CursorEnteredEvents;
+        EventBuffer<CursorLeftFn> Input::CursorLeftEvents;
+
+        EventBuffer<ScrollChangedFn> Input::ScrollChangedEvents;
+
+        EventBuffer<CharTypedFn> Input::CharTypedEvents;
+        EventBuffer<CharModsTypedFn> Input::CharModsTypedEvents;
 
         void Input::Init() {
             s_Window = static_cast<GLFWwindow*>(WindowManager::GetInstance());
-
-            s_WindowEvents.Reserve(5);
-            s_KeyEvents.Reserve(5);
-            s_MouseEvents.Reserve(5);
 
             InitWindowCallbacks();
             InitKeyCallbacks();
@@ -34,37 +48,37 @@ namespace xpe {
 
         void Input::InitWindowCallbacks() {
             glfwSetWindowCloseCallback(s_Window, [](GLFWwindow* window) {
-                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
-                    event.Listener->WindowClosed();
+                for (const auto& event : Input::WindowClosedEvents.GetEvents()) {
+                    event.Function(event.Thiz);
                 }
             });
 
             glfwSetWindowPosCallback(s_Window, [](GLFWwindow* window, int x, int y) {
-                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
-                    event.Listener->WindowMoved(x, y);
+                for (const auto& event : Input::WindowMovedEvents.GetEvents()) {
+                    event.Function(event.Thiz, x, y);
                 }
             });
 
             glfwSetWindowSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
-                    event.Listener->WindowResized(w, h);
+                for (const auto& event : Input::WindowResizedEvents.GetEvents()) {
+                    event.Function(event.Thiz, w, h);
                 }
             });
 
             glfwSetFramebufferSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                for (const auto& event : Input::GetWindowEvents().GetEvents()) {
-                    event.Listener->WindowFrameResized(w, h);
+                for (const auto& event : Input::WindowFrameResizedEvents.GetEvents()) {
+                    event.Function(event.Thiz, w, h);
                 }
             });
 
             glfwSetWindowFocusCallback(s_Window, [](GLFWwindow* window, int focused) {
                 if (focused == GLFW_TRUE) {
-                    for (const auto& event : Input::GetWindowEvents().GetEvents()) {
-                        event.Listener->WindowFocused();
+                    for (const auto& event : Input::WindowFocusedEvents.GetEvents()) {
+                        event.Function(event.Thiz);
                     }
                 } else {
-                    for (const auto& event : Input::GetWindowEvents().GetEvents()) {
-                        event.Listener->WindowFocusLost();
+                    for (const auto& event : Input::WindowFocusLostEvents.GetEvents()) {
+                        event.Function(event.Thiz);
                     }
                 }
             });
@@ -75,20 +89,20 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : Input::GetKeyEvents().GetEvents()) {
-                            event.Listener->KeyPressed(static_cast<eKey>(key));
+                        for (const auto& event : Input::KeyPressedEvents.GetEvents()) {
+                            event.Function(event.Thiz, static_cast<eKey>(key));
                         }
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : Input::GetKeyEvents().GetEvents()) {
-                            event.Listener->KeyReleased(static_cast<eKey>(key));
+                        for (const auto& event : Input::KeyReleasedEvents.GetEvents()) {
+                            event.Function(event.Thiz, static_cast<eKey>(key));
                         }
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : Input::GetKeyEvents().GetEvents()) {
-                            event.Listener->KeyHold(static_cast<eKey>(key));
+                        for (const auto& event : Input::KeyHoldEvents.GetEvents()) {
+                            event.Function(event.Thiz, static_cast<eKey>(key));
                         }
                         break;
 
@@ -101,20 +115,20 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : Input::GetMouseEvents().GetEvents()) {
-                            event.Listener->MousePressed(static_cast<eMouse>(button));
+                        for (const auto& event : Input::MousePressedEvents.GetEvents()) {
+                            event.Function(event.Thiz, static_cast<eMouse>(button));
                         }
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : Input::GetMouseEvents().GetEvents()) {
-                            event.Listener->MouseReleased(static_cast<eMouse>(button));
+                        for (const auto& event : Input::MouseReleasedEvents.GetEvents()) {
+                            event.Function(event.Thiz, static_cast<eMouse>(button));
                         }
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : Input::GetMouseEvents().GetEvents()) {
-                            event.Listener->MouseHold(static_cast<eMouse>(button));
+                        for (const auto& event : Input::MouseHoldEvents.GetEvents()) {
+                            event.Function(event.Thiz, static_cast<eMouse>(button));
                         }
                         break;
 
@@ -124,19 +138,19 @@ namespace xpe {
 
         void Input::InitCursorCallbacks() {
             glfwSetCursorPosCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                for (const auto& event : Input::GetCursorEvents().GetEvents()) {
-                    event.Listener->CursorMoved(x, y);
+                for (const auto& event : Input::CursorMovedEvents.GetEvents()) {
+                    event.Function(event.Thiz, x, y);
                 }
             });
 
             glfwSetCursorEnterCallback(s_Window, [](GLFWwindow* window, int entered) {
                 if (entered == GLFW_TRUE) {
-                    for (const auto& event : Input::GetCursorEvents().GetEvents()) {
-                        event.Listener->CursorEntered();
+                    for (const auto& event : Input::CursorEnteredEvents.GetEvents()) {
+                        event.Function(event.Thiz);
                     }
                 } else {
-                    for (const auto& event : Input::GetCursorEvents().GetEvents()) {
-                        event.Listener->CursorLeft();
+                    for (const auto& event : Input::CursorLeftEvents.GetEvents()) {
+                        event.Function(event.Thiz);
                     }
                 }
             });
@@ -144,30 +158,41 @@ namespace xpe {
 
         void Input::InitScrollCallbacks() {
             glfwSetScrollCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                for (const auto& event : Input::GetScrollEvents().GetEvents()) {
-                    event.Listener->ScrollChanged(x, y);
+                for (const auto& event : Input::ScrollChangedEvents.GetEvents()) {
+                    event.Function(event.Thiz, x, y);
                 }
             });
         }
 
         void Input::InitCharCallbacks() {
             glfwSetCharCallback(s_Window, [](GLFWwindow* window, u32 charUnicode) {
-                for (const auto& event : Input::GetCharEvents().GetEvents()) {
-                    event.Listener->CharTyped(charUnicode);
+                for (const auto& event : Input::CharTypedEvents.GetEvents()) {
+                    event.Function(event.Thiz, charUnicode);
                 }
             });
 
             glfwSetCharModsCallback(s_Window, [](GLFWwindow* window, u32 charUnicode, int mods) {
-                for (const auto& event : Input::GetCharEvents().GetEvents()) {
-                    event.Listener->CharModsTyped(charUnicode, mods);
+                for (const auto& event : Input::CharModsTypedEvents.GetEvents()) {
+                    event.Function(event.Thiz, charUnicode, mods);
                 }
             });
         }
 
         void Input::Free() {
-            s_WindowEvents.Clear();
-            s_KeyEvents.Clear();
-            s_MouseEvents.Clear();
+            WindowClosedEvents.Clear();
+            WindowResizedEvents.Clear();
+            WindowFrameResizedEvents.Clear();
+            WindowMovedEvents.Clear();
+            WindowFocusedEvents.Clear();
+            WindowFocusLostEvents.Clear();
+
+            KeyPressedEvents.Clear();
+            KeyReleasedEvents.Clear();
+            KeyHoldEvents.Clear();
+
+            MousePressedEvents.Clear();
+            MouseReleasedEvents.Clear();
+            MouseHoldEvents.Clear();
         }
 
         void Input::CaptureCursor() {
@@ -238,54 +263,6 @@ namespace xpe {
             mouseState.Released = state == GLFW_RELEASE;
             mouseState.Hold = state == GLFW_REPEAT;
             return mouseState;
-        }
-
-        void Input::AddWindowEventListener(WindowEventListener* listener, int priority) {
-            s_WindowEvents.AddEvent(listener, priority);
-        }
-
-        void Input::AddKeyEventListener(KeyEventListener* listener, int priority) {
-            s_KeyEvents.AddEvent(listener, priority);
-        }
-
-        void Input::AddMouseEventListener(MouseEventListener* listener, int priority) {
-            s_MouseEvents.AddEvent(listener, priority);
-        }
-
-        void Input::AddCursorEventListener(CursorEventListener* listener, int priority) {
-            s_CursorEvents.AddEvent(listener, priority);
-        }
-
-        void Input::AddScrollEventListener(ScrollEventListener *listener, int priority) {
-            s_ScrollEvents.AddEvent(listener, priority);
-        }
-
-        void Input::AddCharEventListener(CharEventListener *listener, int priority) {
-            s_CharEvents.AddEvent(listener, priority);
-        }
-
-        void Input::RemoveWindowEventListener(WindowEventListener* listener) {
-            s_WindowEvents.RemoveEvent(listener);
-        }
-
-        void Input::RemoveKeyEventListener(KeyEventListener* listener) {
-            s_KeyEvents.RemoveEvent(listener);
-        }
-
-        void Input::RemoveMouseEventListener(MouseEventListener* listener) {
-            s_MouseEvents.RemoveEvent(listener);
-        }
-
-        void Input::RemoveCursorEventListener(CursorEventListener* listener) {
-            s_CursorEvents.RemoveEvent(listener);
-        }
-
-        void Input::RemoveScrollEventListener(ScrollEventListener *listener) {
-            s_ScrollEvents.RemoveEvent(listener);
-        }
-
-        void Input::RemoveCharEventListener(CharEventListener *listener) {
-            s_CharEvents.RemoveEvent(listener);
         }
 
     }

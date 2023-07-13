@@ -7,9 +7,9 @@ namespace xpe
 {
     namespace ttf
     {
-        struct xFont
+        struct Font
         {
-            struct xGlyph
+            struct Glyph
             {
                 core::u8 Character;
                 core::usize Width;
@@ -23,13 +23,13 @@ namespace xpe
         class ENGINE_API TTFManager
         {
             public:
-                static xFont Load(const char* filePath, core::usize glyphSize);
-                static void Free(const xFont& font);
+                static Font Load(const char* filePath, core::usize glyphSize);
+                static void Free(const Font& font);
 
             private:
                 static core::Boolean s_loaded;
                 static FT_Library s_lib;
-                static core::unordered_map<char, xFont::xGlyph> s_alphabet;
+                static core::unordered_map<char, Font::Glyph> s_alphabet;
         };
     }
 }

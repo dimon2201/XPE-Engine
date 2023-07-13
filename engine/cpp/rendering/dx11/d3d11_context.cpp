@@ -3,8 +3,6 @@
 #include <rendering/dx11/d3d11_context.hpp>
 #include <rendering/dx11/d3d11_debugger.h>
 
-#include <gltf/gltf.hpp>
-
 namespace xpe {
 
     namespace render {
@@ -898,14 +896,16 @@ namespace xpe {
         }
 
         void D3D11Context::BindVertexBuffer(const Buffer *buffer) {
-            UINT stride = xpe::gltf::cGLTFModel::k_vertexSize;
+            UINT stride = buffer->StructureSize;
             UINT offset = 0;
             _immContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance, &stride, &offset);
             LogDebugMessage();
         }
 
         void D3D11Context::BindIndexBuffer(const Buffer *buffer) {
-            DXGI_FORMAT format = xpe::gltf::cGLTFModel::k_indexSize == 4 ? DXGI_FORMAT_R32_UINT : DXGI_FORMAT_R16_UINT;
+            // we can skip 16-bit index type
+            // it's very rare that we will bind index buffer with index range [0, ~65555]
+            DXGI_FORMAT format = DXGI_FORMAT_R32_UINT;
             _immContext->IASetIndexBuffer((ID3D11Buffer*)buffer->Instance, format, 0);
             LogDebugMessage();
         }
@@ -985,39 +985,49 @@ namespace xpe {
             }
         }
 
+        static const unordered_map<VertexFormat::Attribute::eFormat, DXGI_FORMAT> p_VertexFormatTable = {
+            { VertexFormat::Attribute::eFormat::BOOL, DXGI_FORMAT_R32_UINT },
+            { VertexFormat::Attribute::eFormat::INT, DXGI_FORMAT_R32_SINT },
+            { VertexFormat::Attribute::eFormat::FLOAT, DXGI_FORMAT_R32_FLOAT },
+            { VertexFormat::Attribute::eFormat::VEC2, DXGI_FORMAT_R32G32_FLOAT },
+            { VertexFormat::Attribute::eFormat::VEC3, DXGI_FORMAT_R32G32B32_FLOAT },
+            { VertexFormat::Attribute::eFormat::VEC4, DXGI_FORMAT_R32G32B32A32_FLOAT },
+        };
+
         void D3D11Context::CreateInputLayout(InputLayout& inputLayout)
         {
-            usize elementCount = inputLayout.EntryCount;
-            usize byteOffset = 0;
-            D3D11_INPUT_ELEMENT_DESC elements[16] = {};
-            for (usize i = 0; i < inputLayout.EntryCount; i++)
-            {
-                elements[i].SemanticName = inputLayout.Entries[i].Name;
-                if (inputLayout.Entries[i].Format == InputLayout::Entry::eFormat::VEC2)
-                {
-                    elements[i].Format = DXGI_FORMAT_R32G32_FLOAT;
-                }
-                else if (inputLayout.Entries[i].Format == InputLayout::Entry::eFormat::VEC3)
-                {
-                    elements[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-                }
-                else if (inputLayout.Entries[i].Format == InputLayout::Entry::eFormat::VEC4)
-                {
-                    elements[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-                }
-                elements[i].AlignedByteOffset = byteOffset;
-                elements[i].InstanceDataStepRate = D3D11_INPUT_PER_VERTEX_DATA;
+            VertexFormat& vertexFormat = inputLayout.Format;
+            usize attributeCount = vertexFormat.Attributes.size();
+            usize attributeOffset = 0;
+            auto* attributes = (D3D11_INPUT_ELEMENT_DESC*) MemoryPoolManager::Allocate(attributeCount * sizeof(D3D11_INPUT_ELEMENT_DESC));
 
-                byteOffset += inputLayout.Entries[i].ByteSize;
+            for (u32 i = 0 ; i < attributeCount ; i++)
+            {
+                auto& attribute = vertexFormat.Attributes[i];
+                auto& dxAttribute = attributes[i];
+                dxAttribute = {};
+
+                dxAttribute.SemanticName = attribute.Name;
+                dxAttribute.Format = p_VertexFormatTable.at(attribute.Format);
+                dxAttribute.AlignedByteOffset = attributeOffset;
+                dxAttribute.InstanceDataStepRate = D3D11_INPUT_PER_VERTEX_DATA;
+
+                attributeOffset += (u32) attribute.Format;
             }
 
-            _device->CreateInputLayout(&elements[0], elementCount, inputLayout.VertexBlob->ByteCode, inputLayout.VertexBlob->ByteCodeSize, (ID3D11InputLayout**)&inputLayout.InputLayout.Instance);
+            _device->CreateInputLayout(
+                    attributes, attributeCount,
+                    inputLayout.VertexBlob->ByteCode, inputLayout.VertexBlob->ByteCodeSize,
+                    (ID3D11InputLayout**)&inputLayout.Layout.Instance
+            );
             LogDebugMessage();
+
+            MemoryPoolManager::Free(attributes);
         }
 
         void D3D11Context::BindInputLayout(const InputLayout* inputLayout)
         {
-            UINT stride = inputLayout->StrideByteSize;
+            UINT stride = inputLayout->Format.Stride;
             UINT offset = 0;
 
             if (inputLayout->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_STRIP)
@@ -1032,15 +1042,15 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            _immContext->IASetInputLayout((ID3D11InputLayout*)_boundPipeline->InputLayout.InputLayout.Instance);
+            _immContext->IASetInputLayout((ID3D11InputLayout*)_boundPipeline->InputLayout.Layout.Instance);
             LogDebugMessage();
         }
 
         void D3D11Context::FreeInputLayout(const InputLayout& inputLayout)
         {
-            if (inputLayout.InputLayout.Instance != nullptr)
+            if (inputLayout.Layout.Instance != nullptr)
             {
-                ((ID3D11InputLayout*)inputLayout.InputLayout.Instance)->Release();
+                ((ID3D11InputLayout*)inputLayout.Layout.Instance)->Release();
                 LogDebugMessage();
             }
         }
@@ -1099,9 +1109,9 @@ namespace xpe {
 
         void D3D11Context::FreeRenderPipeline(Pipeline& pipeline)
         {
-            if (pipeline.InputLayout.InputLayout.Instance != nullptr)
+            if (pipeline.InputLayout.Layout.Instance != nullptr)
             {
-                ((ID3D11InputLayout*)pipeline.InputLayout.InputLayout.Instance)->Release();
+                ((ID3D11InputLayout*)pipeline.InputLayout.Layout.Instance)->Release();
                 LogDebugMessage();
             }
         }

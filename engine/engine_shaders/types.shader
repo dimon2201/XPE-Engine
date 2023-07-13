@@ -3,9 +3,10 @@
 // ---------- For Vertex Stage --------------- //
 
 #define K_SLOT_INSTANCES               register(t0)
-#define K_SLOT_TRANSFORMS              register(t1)   // takes 2 slots
-#define K_SLOT_TRANSFORMS2D            register(t2)   // takes 2 slots
-#define K_SLOT_CAMERAS                 register(t3)   // takes 3 slots
+#define K_SLOT_INSTANCES2D             register(t1)
+#define K_SLOT_TRANSFORMS              register(t2)
+#define K_SLOT_TRANSFORMS2D            register(t3)
+#define K_SLOT_CAMERAS                 register(t4)
 
 // ---------- For Pixel Stage --------------- //
 

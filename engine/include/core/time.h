@@ -10,30 +10,38 @@ namespace xpe {
 
         public:
             Time() = default;
-            Time(const double millis) : m_Millis(millis) {}
+
+            Time(const double millis) : m_Millis(millis) {
+                Update();
+            }
+
+            Time(const Time& time) {
+                Update();
+            }
 
             inline float Millis() const {
                 return m_Millis;
             }
 
             inline float Seconds() const {
-                return m_Millis * 0.001f;
+                return m_Seconds;
             }
 
             inline float Minutes() const {
-                return m_Millis * 0.06f;
+                return m_Minutes;
             }
 
             inline float Hours() const {
-                return m_Millis * 3.6f;
+                return m_Hours;
             }
 
             inline float Fps() const {
-                return 1000.0f / m_Millis;
+                return m_Fps;
             }
 
             inline void SetFps(float fps) {
                 if (fps < Fps()) {
+                    m_Fps = fps;
                     m_Millis = 1000.0f / fps;
                 }
             }
@@ -72,6 +80,7 @@ namespace xpe {
 
             inline Time& operator=(float f) {
                 m_Millis = f;
+                Update();
                 return *this;
             }
 
@@ -80,7 +89,20 @@ namespace xpe {
             }
 
         private:
+
+            void Update() {
+                m_Fps     = 1000.0f  / m_Millis;
+                m_Seconds = m_Millis * 0.001f;
+                m_Minutes = m_Millis * 0.06f;
+                m_Hours   = m_Millis * 3.6f;
+            }
+
+        private:
+            float m_Fps = 10000;
             float m_Millis = 0.0f;
+            float m_Seconds = 0.0f;
+            float m_Minutes = 0.0f;
+            float m_Hours = 0.0f;
         };
 
     }

@@ -2,11 +2,11 @@
 
 xpe::core::Boolean xpe::ttf::TTFManager::s_loaded = core::K_FALSE;
 FT_Library xpe::ttf::TTFManager::s_lib;
-xpe::core::unordered_map<char, xpe::ttf::xFont::xGlyph> xpe::ttf::TTFManager::s_alphabet;
+xpe::core::unordered_map<char, xpe::ttf::Font::Glyph> xpe::ttf::TTFManager::s_alphabet;
 
-xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyphSize)
+xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyphSize)
 {
-    xFont font = {};
+    Font font = {};
 
     if (s_loaded == core::K_FALSE)
     {
@@ -35,7 +35,7 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
 
                     FT_Render_Glyph(face->glyph, FT_RENDER_MODE_NORMAL);
 
-                    xFont::xGlyph glyph;
+                    Font::Glyph glyph;
                     glyph.Character = (char)c;
                     glyph.Width = face->glyph->bitmap.width;
                     glyph.Height = face->glyph->bitmap.rows;
@@ -65,7 +65,7 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
     return font;
 }
 
-void xpe::ttf::TTFManager::Free(const xpe::ttf::xFont& font)
+void xpe::ttf::TTFManager::Free(const xpe::ttf::Font& font)
 {
     for (auto& glyph : s_alphabet)
     {
