@@ -3,7 +3,7 @@
 
 xpe::core::Boolean xpe::ttf::TTFManager::s_loaded = core::K_FALSE;
 FT_Library xpe::ttf::TTFManager::s_lib;
-xpe::core::unordered_map<char, xpe::ttf::xFont::xGlyph> xpe::ttf::TTFManager::s_alphabet;
+xpe::core::unordered_map<std::string, xpe::ttf::xFont> xpe::ttf::TTFManager::s_fonts;
 
 xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyphSize)
 {
@@ -21,26 +21,25 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
         }
     }
 
-    FT_Face face;
-    if (FT_New_Face(s_lib, filePath, 0, &face) == 0)
+    if (FT_New_Face(s_lib, filePath, 0, &font.Face) == 0)
     {
-        if (FT_Set_Pixel_Sizes(face, 0, glyphSize) == 0)
+        if (FT_Set_Pixel_Sizes(font.Face, 0, glyphSize) == 0)
         {
             for (int c = 0; c < 256; c++)
             {
-                FT_UInt gi = FT_Get_Char_Index(face, (char)c);
+                FT_UInt gi = FT_Get_Char_Index(font.Face, (char)c);
 
-                if (FT_Load_Glyph(face, gi, FT_LOAD_DEFAULT) == 0)
+                if (FT_Load_Glyph(font.Face, gi, FT_LOAD_DEFAULT) == 0)
                 {
                     font.GlyphCount += 1;
 
-                    FT_Render_Glyph(face->glyph, FT_RENDER_MODE_NORMAL);
+                    FT_Render_Glyph(font.Face->glyph, FT_RENDER_MODE_NORMAL);
 
                     xFont::xGlyph glyph;
                     glyph.Character = (char)c;
-                    glyph.Width = face->glyph->bitmap.width;
-                    glyph.Height = face->glyph->bitmap.rows;
-                    glyph.BitmapData = core::MemoryPoolManager::Allocate(face->glyph->bitmap.pitch * glyph.Height);
+                    glyph.Width = font.Face->glyph->bitmap.width;
+                    glyph.Height = font.Face->glyph->bitmap.rows;
+                    glyph.BitmapData = core::MemoryPoolManager::Allocate(font.Face->glyph->bitmap.pitch * glyph.Height);
 
                     int x = 0;
                     int y = 0;
@@ -48,15 +47,17 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
                     {
                         for (int j = 0; j < (int)glyph.Width; j++)
                         {
-                            unsigned char p = face->glyph->bitmap.buffer[i * face->glyph->bitmap.pitch + j];
-                            ((unsigned char*)glyph.BitmapData)[i * face->glyph->bitmap.pitch + j] = p;
+                            unsigned char p = font.Face->glyph->bitmap.buffer[i * font.Face->glyph->bitmap.pitch + j];
+                            ((unsigned char*)glyph.BitmapData)[i * font.Face->glyph->bitmap.pitch + j] = p;
                         }
                     }
+
+                    font.Alphabet.insert({ (char)c, glyph });
                 }
             }
         }
 
-        FT_Done_Face(face);
+        s_fonts.insert({ std::string(filePath), font });
     }
     else
     {
@@ -68,11 +69,13 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
 
 void xpe::ttf::TTFManager::Free(const xpe::ttf::xFont& font)
 {
-    for (auto& glyph : s_alphabet)
+    for (auto& glyph : font.Alphabet)
     {
         if (glyph.second.BitmapData != nullptr)
         {
             core::MemoryPoolManager::Free(glyph.second.BitmapData);
         }
     }
+
+    FT_Done_Face(font.Face);
 }

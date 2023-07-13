@@ -27,7 +27,7 @@ public:
         _ecs = new ECSManager();
         _batch = new BatchManager(context);
 
-        xFont font = TTFManager::Load("Roboto-Italic.ttf", 32);
+        xFont font = TTFManager::Load("C:/Users/USER100/Documents/GitHub/XPE-Engine/Roboto-Italic.ttf", 32);
         TTFManager::Free(font);
 
         _cameraBuffer.Init(context);
