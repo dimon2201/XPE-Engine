@@ -17,6 +17,7 @@
   "debug_info": false,
 
   "fps": 165,
+  "lock_on_fps": false,
   "log_time_delay_seconds": 5
 
 }

@@ -9,7 +9,8 @@ namespace xpe {
         using namespace core;
 
         template<typename T>
-        struct VertexArray {
+        struct VertexArray final {
+
             vector<T> Data;
 
             inline usize Size() const { return Data.size() * sizeof(T); }
@@ -22,10 +23,15 @@ namespace xpe {
 
             inline T& operator [](int i) { return Data[i]; }
 
+            inline usize Capacity() const { return Data.capacity(); }
+
             void Init(usize count);
             void Free();
 
             void CopyFrom(VertexArray<T>* src);
+
+            void Reserve(usize count);
+
         };
 
         template<typename T>
@@ -42,6 +48,11 @@ namespace xpe {
         void VertexArray<T>::CopyFrom(VertexArray<T>* src) {
             Data.resize(src->Size());
             memcpy(Data.data(), src->Data.data(), src->Size());
+        }
+
+        template<typename T>
+        void VertexArray<T>::Reserve(usize count) {
+            Data.reserve(count * sizeof(T));
         }
 
         template<typename T>
@@ -101,27 +112,50 @@ namespace xpe {
 
             inline u32& operator [](int i) { return Data[i]; }
 
+            inline usize Capacity() const { return Data.capacity(); }
+
             void Init(usize count);
             void Free();
 
             void CopyFrom(IndexArray* src);
             void CopyFrom(u32* indices, usize count);
+
+            void Reserve(usize count);
         };
 
-        struct ENGINE_API GeometryInfo final {
-            usize VertexOffset;
-            usize IndexOffset;
-            usize VertexCount;
-            usize IndexCount;
+        struct ENGINE_API GeometryIndexedFormat final {
+            string USID;
+            usize VertexOffset = 0;
+            usize IndexOffset = 0;
+            usize VertexCount = 0;
+            usize IndexCount = 0;
 
-            GeometryInfo(usize vertexOffset, usize indexOffset, usize vertexCount, usize indexCount)
+            GeometryIndexedFormat() = default;
+
+            GeometryIndexedFormat(usize vertexOffset, usize indexOffset, usize vertexCount, usize indexCount)
             : VertexOffset(vertexOffset), IndexOffset(indexOffset), VertexCount(vertexCount), IndexCount(indexCount) {}
         };
 
         template<typename T>
-        struct Geometry {
+        struct GeometryIndexed {
             VertexArray<T> Vertices;
             IndexArray Indices;
+        };
+
+        struct ENGINE_API GeometryVertexedFormat final {
+            string USID;
+            usize VertexOffset = 0;
+            usize VertexCount = 0;
+
+            GeometryVertexedFormat() = default;
+
+            GeometryVertexedFormat(usize vertexOffset, usize vertexCount)
+            : VertexOffset(vertexOffset), VertexCount(vertexCount) {}
+        };
+
+        template<typename T>
+        struct GeometryVertexed {
+            VertexArray<T> Vertices;
         };
 
     }

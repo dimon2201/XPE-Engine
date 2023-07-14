@@ -17,9 +17,11 @@ namespace xpe {
 
         public:
             Context* context = nullptr;
-            Time DeltaTime;     // delta CurrentTime ms = end CurrentTime - begin CurrentTime
+            Time CPUTime;       // delta CPU time ms = end time - begin time
+            Time DeltaTime;     // delta CurrentTime ms = end time - begin time
             Time CurrentTime;   // current CurrentTime ms
             CameraBuffer m_CameraBuffer;
+            AppConfig Config;
 
         public:
             Application() {}
@@ -32,6 +34,8 @@ namespace xpe {
             virtual void Init() = 0;
             virtual void Update() = 0;
             virtual void Free() = 0;
+
+            void LockFPSFromConfig();
 
         };
 

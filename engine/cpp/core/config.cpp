@@ -65,6 +65,8 @@ namespace xpe {
 
             config.LogTimeDelaySeconds = root["log_time_delay_seconds"].asFloat();
 
+            config.LockOnFPS = root["lock_on_fps"].asBool();
+
         }
 
     }

@@ -138,7 +138,6 @@ namespace xpe {
         public:
             // channels count table for each texture format
             static unordered_map<Texture::eFormat, int> ChannelTable;
-
             // bytes per pixel table for each texture format
             static unordered_map<Texture::eFormat, int> BPPTable;
 

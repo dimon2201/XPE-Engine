@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API CubeGeometry : Geometry<render::Vertex3D> {
+        struct ENGINE_API CubeGeometry : GeometryIndexed<render::Vertex3D> {
             CubeGeometry();
             ~CubeGeometry();
         };

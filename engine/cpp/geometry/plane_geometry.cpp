@@ -26,11 +26,12 @@ namespace xpe {
                     auto& v = Vertices[k];
                     v.Position = { shiftX + i, 0, shiftZ + j };
                     v.UV = { (float) i / (float) size, (float) j / (float) size };
-                    k++;
 
-                    if (k % 3 == 0) {
+                    if (k % 3 == 0 && k > 0) {
                         InitNormal(&Vertices[k - 3], &Vertices[k - 2], &Vertices[k - 1], &Vertices[k]);
                     }
+
+                    k++;
                 }
             }
 

@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API Mesh : Geometry<render::Vertex3D> {
+        struct ENGINE_API Mesh : GeometryIndexed<render::Vertex3D> {
             u32 MaterialIndex = 0;
             u32 LightIndex = 0;
 

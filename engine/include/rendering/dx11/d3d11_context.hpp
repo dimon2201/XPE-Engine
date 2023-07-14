@@ -69,6 +69,7 @@ namespace xpe {
                 void FreeDepthStencilState(DepthStencilState& state) override final;
 
                 void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) override final;
+                void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) override final;
                 void DrawQuad() override final;
 
                 void* GetDevice() override final;

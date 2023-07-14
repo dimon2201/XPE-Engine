@@ -965,6 +965,7 @@ namespace xpe {
 
         void D3D11Context::WriteBufferAppend(Buffer& buffer, const void* data, usize dataByteSize)
         {
+            // todo do we really need CPU memory for buffer? check structure, vertex, index buffers implementations
             if (buffer.CPUMemory == nullptr)
             {
                 return;
@@ -1091,16 +1092,19 @@ namespace xpe {
             _boundPipeline = (Pipeline*)pipeline;
 
             BindInputLayout(&_boundPipeline->InputLayout);
-            BindVertexBuffer(_boundPipeline->VertexBuffer);
-            BindIndexBuffer(_boundPipeline->IndexBuffer);
+
             for (const auto* buffer : _boundPipeline->VSBuffers) {
                 BindVSBuffer(buffer);
             }
+
             for (const auto* buffer : _boundPipeline->PSBuffers) {
                 BindPSBuffer(buffer);
             }
+
             BindShader(_boundPipeline->Shader);
+
             BindRenderTarget(_boundPipeline->RenderTarget);
+
             BindDepthStencilState(&_boundPipeline->DepthStencilState);
         }
 
@@ -1143,6 +1147,11 @@ namespace xpe {
         void D3D11Context::DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount)
         {
             _immContext->DrawIndexedInstanced(indexCount, instanceCount, 0, vertexOffset, indexOffset);
+            LogDebugMessage();
+        }
+
+        void D3D11Context::DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) {
+            _immContext->DrawInstanced(vertexCount, instanceCount, 0, vertexOffset);
             LogDebugMessage();
         }
 

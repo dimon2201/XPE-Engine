@@ -1,7 +1,10 @@
 #pragma once
 
-#include <rendering/core.h>
 #include <geometry/mesh.h>
+
+#include <rendering/buffers/vertex_buffer.h>
+#include <rendering/buffers/index_buffer.h>
+#include <rendering/buffers/instance_buffer.h>
 
 namespace xpe {
 
@@ -12,106 +15,136 @@ namespace xpe {
 
         class Context;
 
-        struct ENGINE_API RenderInstance final
+        struct ENGINE_API BatchIndexed final
         {
-            u32 TransformIndex = 0;
-            u32 CameraIndex = 0;
-            u32 MaterialIndex = 0;
-
-            friend inline bool operator ==(const RenderInstance& instance1, const RenderInstance& instance2) {
-                return instance1.TransformIndex == instance2.TransformIndex;
-            }
+            GeometryIndexedFormat Format;
+            VertexBuffer<Vertex3D> Vertices;
+            IndexBuffer Indices;
+            InstanceBuffer Instances;
         };
 
-        struct ENGINE_API RenderInstance2D final
+        struct ENGINE_API BatchIndexed2d final
         {
-            u32 TransformIndex = 0;
-            u32 CameraIndex = 0;
-
-            friend inline bool operator ==(const RenderInstance2D& instance1, const RenderInstance2D& instance2) {
-                return instance1.TransformIndex == instance2.TransformIndex;
-            }
+            GeometryIndexedFormat Format;
+            VertexBuffer<Vertex2D> Vertices;
+            IndexBuffer Indices;
+            InstanceBuffer2d Instances;
         };
 
-        struct ENGINE_API GeometryInstances final
+        struct ENGINE_API BatchVertexed final
         {
-            GeometryInfo Info;
-            vector<RenderInstance> Instances;
-
-            GeometryInstances(const GeometryInfo& info, const vector<RenderInstance>& instances = {})
-            : Info(info), Instances(instances) {}
+            GeometryVertexedFormat Format;
+            VertexBuffer<Vertex3D> Vertices;
+            InstanceBuffer Instances;
         };
 
-        struct ENGINE_API Geometry2DInstances final
+        struct ENGINE_API BatchVertexed2d final
         {
-            GeometryInfo Info;
-            vector<RenderInstance2D> Instances;
-
-            Geometry2DInstances(const GeometryInfo& info, const vector<RenderInstance2D>& instances = {})
-            : Info(info), Instances(instances) {}
+            GeometryVertexedFormat Format;
+            VertexBuffer<Vertex2D> Vertices;
+            InstanceBuffer2d Instances;
         };
 
-        struct ENGINE_API Batch final
+        class ENGINE_API BatchManager final
         {
-            string GeometryUSID;
-            GeometryInstances* Geometry = nullptr;
-            Geometry2DInstances* Geometry2D = nullptr;
-        };
-
-        struct ENGINE_API ConstantBuffer final {};
-
-        class ENGINE_API BatchManager final {
 
         public:
-            static const usize k_vertexBufferByteSize = K_MEMORY_MIB;
-            static const usize k_indexBufferByteSize = K_MEMORY_MIB;
-            static const usize k_instanceBufferInstanceCount = 1000000;
-            static const usize k_instanceBufferByteSize = sizeof(RenderInstance) * k_instanceBufferInstanceCount;
+            static const usize K_VERTICES_BYTE_SIZE = K_MEMORY_MIB;
+            static const usize K_INDICES_BYTE_SIZE = K_MEMORY_MIB;
+            static const usize K_INSTANCE_COUNT = 1000000;
 
             BatchManager(Context* context);
             ~BatchManager();
 
-            void StoreGlobalGeometryData(const string& usid, const void* vertices, usize verticesByteSize, usize vertexCount, const void* indices, usize indicesByteSize, usize indexCount);
-            void StoreGlobalGeometry2DData(const string& usid, const void* vertices, usize verticesByteSize, usize vertexCount, const void* indices, usize indicesByteSize, usize indexCount);
+            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex3D>& geometry);
+            void StoreGeometryVertexed(const string& usid, const GeometryVertexed<Vertex3D>& geometry);
 
             void BeginBatch(const string& geometryUSID);
-            void BeginBatch2D(const string& geometryUSID);
-
-            void RecordInstance(const RenderInstance& instance);
-            void RecordInstance2D(const RenderInstance2D& instance);
+            void BeginBatch(BatchVertexed& batchVertexed);
+            void BeginBatch(BatchIndexed& batchIndexed);
 
             bool AddInstance(const string& usid, const RenderInstance& instance);
-            bool AddInstance2D(const string& usid, const RenderInstance2D& instance);
 
             void RemoveInstance(const string& usid, const RenderInstance& instance);
-            void RemoveInstance2D(const string& usid, const RenderInstance2D& instance);
 
             void ClearInstances(const string& usid);
-            void ClearInstances2D(const string& usid);
 
-            void EndBatch();
-            void EndBatch2D();
+            void FlushInstances(const string& usid);
 
-            void DrawBatch();
-            void DrawBatch2D();
+            void DrawBatch(const string& usid);
+            void DrawBatch(BatchVertexed& batchVertexed);
+            void DrawBatch(BatchIndexed& batchIndexed);
 
             void DrawAll();
-            void DrawAll2D();
-
-            inline Buffer* GetVertexBuffer() { return &_vertex; }
-            inline Buffer* GetIndexBuffer() { return &_index; }
-            inline Buffer* GetInstanceBuffer() { return &_instance; }
-            inline Buffer* GetInstance2DBuffer() { return &_instance2D; }
 
         private:
-            Context* _context;
-            Buffer _vertex;
-            Buffer _index;
-            Buffer _instance;
-            Buffer _instance2D;
-            Batch _batch;
-            unordered_map<string, GeometryInstances> _geometryInstanceMap;
-            unordered_map<string, Geometry2DInstances> _geometry2DInstanceMap;
+
+            void InitBatchIndexed(BatchIndexed& batchIndexed, const GeometryIndexedFormat& format);
+            void InitBatchVertexed(BatchVertexed& batchVertexed, const GeometryVertexedFormat& format);
+
+            void FreeBatchIndexed(BatchIndexed& batchIndexed);
+            void FreeBatchVertexed(BatchVertexed& batchVertexed);
+
+            void NewBatchIndexed(const GeometryIndexedFormat& format);
+            void NewBatchVertexed(const GeometryVertexedFormat& format);
+
+        private:
+            Context* m_Context;
+            unordered_map<string, BatchIndexed*> m_BatchIndexedLookup;
+            unordered_map<string, BatchVertexed*> m_BatchVertexedLookup;
+            vector<BatchIndexed> m_BatchesIndexed;
+            vector<BatchVertexed> m_BatchesVertexed;
+        };
+
+        class ENGINE_API BatchManager2d final
+        {
+
+        public:
+            static const usize K_VERTICES_BYTE_SIZE = K_MEMORY_MIB;
+            static const usize K_INDICES_BYTE_SIZE = K_MEMORY_MIB;
+            static const usize K_INSTANCE_COUNT = 1000000;
+
+            BatchManager2d(Context* context);
+            ~BatchManager2d();
+
+            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex2D>& geometry);
+            void StoreGeometryVertexed(const string& usid, const GeometryVertexed<Vertex2D>& geometry);
+
+            void BeginBatch(const string& geometryUSID);
+            void BeginBatch(BatchVertexed2d& batchVertexed);
+            void BeginBatch(BatchIndexed2d& batchIndexed);
+
+            bool AddInstance(const string& usid, const RenderInstance2d& instance);
+
+            void RemoveInstance(const string& usid, const RenderInstance2d& instance);
+
+            void ClearInstances(const string& usid);
+
+            void FlushInstances(const string& usid);
+
+            void DrawBatch(const string& usid);
+            void DrawBatch(BatchVertexed2d& batchVertexed);
+            void DrawBatch(BatchIndexed2d& batchIndexed);
+
+            void DrawAll();
+
+        private:
+
+            void InitBatchIndexed(BatchIndexed2d& batchIndexed, const GeometryIndexedFormat& format);
+            void InitBatchVertexed(BatchVertexed2d& batchVertexed, const GeometryVertexedFormat& format);
+
+            void FreeBatchIndexed(BatchIndexed2d& batchIndexed);
+            void FreeBatchVertexed(BatchVertexed2d& batchVertexed);
+
+            void NewBatchIndexed(const GeometryIndexedFormat& format);
+            void NewBatchVertexed(const GeometryVertexedFormat& format);
+
+        private:
+            Context* m_Context;
+            unordered_map<string, BatchIndexed2d*> m_BatchIndexedLookup;
+            unordered_map<string, BatchVertexed2d*> m_BatchVertexedLookup;
+            vector<BatchIndexed2d> m_BatchesIndexed;
+            vector<BatchVertexed2d> m_BatchesVertexed;
         };
 
     }

@@ -39,6 +39,8 @@ namespace xpe {
 
             float LogTimeDelaySeconds = 5;
 
+            bool LockOnFPS = true;
+
         };
 
         class ENGINE_API AppConfigReader final {

@@ -11,10 +11,12 @@
 #include <rendering/lighting/light_manager.h>
 #include <rendering/transforming.h>
 
+#include <geometry/mesh.h>
 #include <geometry/cube_geometry.h>
 #include <geometry/sphere_geometry.h>
 #include <geometry/plane_geometry.h>
-#include <geometry/mesh.h>
+#include <geometry/quad_geometry.h>
+#include <geometry/triangle_geometry.h>
 
 #include <controls/camera.h>
 

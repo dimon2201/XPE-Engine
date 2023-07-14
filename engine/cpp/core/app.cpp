@@ -13,29 +13,30 @@ namespace xpe {
     namespace core {
 
         void Application::Run() {
-            AppConfig appConfig = AppConfig::Get();
+            Config = AppConfig::Get();
 
             LoggerDescriptor logDesc;
-            logDesc.Name = appConfig.LogTitle.c_str();
-            logDesc.Backtrace = appConfig.LogBacktrace;
+            logDesc.Name = Config.LogTitle.c_str();
+            logDesc.Backtrace = Config.LogBacktrace;
             InitLogger(logDesc);
 
             WindowDescriptor winDesc;
-            winDesc.Title = appConfig.WinTitle.c_str();
-            winDesc.Width = appConfig.WinWidth;
-            winDesc.Height = appConfig.WinHeight;
-            winDesc.X = appConfig.WinX;
-            winDesc.Y = appConfig.WinY;
-            winDesc.Vsync = appConfig.Vsync;
+            winDesc.Title = Config.WinTitle.c_str();
+            winDesc.Width = Config.WinWidth;
+            winDesc.Height = Config.WinHeight;
+            winDesc.X = Config.WinX;
+            winDesc.Y = Config.WinY;
+            winDesc.Vsync = Config.Vsync;
 
-            DeltaTime.SetFps(appConfig.FPS);
+            DeltaTime.SetFps(Config.FPS);
+            CPUTime = DeltaTime;
 
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
 
             context = nullptr;
 
-            switch (appConfig.GPU) {
+            switch (Config.GPU) {
 
                 case AppConfig::eGPU::DX11:
                     context = new D3D11Context();
@@ -67,24 +68,37 @@ namespace xpe {
 
             while (!WindowManager::ShouldClose())
             {
-                static float tickSeconds = 0;
-                tickSeconds += DeltaTime.Seconds();
-                if (tickSeconds >= appConfig.LogTimeDelaySeconds) {
-                    tickSeconds = 0;
-                    LogTime(DeltaTime);
-                }
 
-                if (appConfig.FPS < DeltaTime.Fps()) {
-                    DeltaTime.SetFps(appConfig.FPS);
+                // measure cpu ticks in seconds and log CPU time
+#ifdef DEBUG
+                static float cpuTickSec = 0;
+                cpuTickSec += CPUTime.Seconds();
+                if (cpuTickSec >= Config.LogTimeDelaySeconds) {
+                    cpuTickSec = 0;
+                    LogCpuTime(CPUTime);
                 }
+#endif
 
-                Timer dtTimer(&DeltaTime);
-                CurrentTime = dtTimer.GetStartTime();
+                Timer cpuTimer(&CPUTime);
+                Timer deltaTimer(&DeltaTime);
+
+                CurrentTime = cpuTimer.GetStartTime();
 
                 Update();
 
                 WindowManager::PollEvents();
                 WindowManager::Swap();
+
+                // measure delta ticks in seconds and log delta
+#ifdef DEBUG
+                static float deltaTickSec = 0;
+                deltaTickSec += CPUTime.Seconds();
+                if (deltaTickSec >= Config.LogTimeDelaySeconds) {
+                    deltaTickSec = 0;
+                    LogTime(DeltaTime);
+                }
+#endif
+
             }
 
             Free();
@@ -107,6 +121,12 @@ namespace xpe {
             WindowManager::Free();
 
             FreeLogger();
+        }
+
+        void Application::LockFPSFromConfig() {
+            if (Config.LockOnFPS && Config.FPS < DeltaTime.Fps()) {
+                DeltaTime.SetFps(Config.FPS);
+            }
         }
 
     }

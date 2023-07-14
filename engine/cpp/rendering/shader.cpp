@@ -65,7 +65,7 @@ namespace xpe {
             string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
-                LogError("Failed to add Geometry stage from filepath {}", filepath);
+                LogError("Failed to add GeometryInstances stage from filepath {}", filepath);
                 return *this;
             }
 

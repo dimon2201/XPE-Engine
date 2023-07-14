@@ -82,6 +82,7 @@ namespace xpe {
                 virtual void FreeDepthStencilState(DepthStencilState& state) = 0;
 
                 virtual void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) = 0;
+                virtual void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) = 0;
                 virtual void DrawQuad() = 0;
 
                 virtual void* GetDevice() = 0;

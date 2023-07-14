@@ -50,6 +50,10 @@ Logger::DumpBacktrace()
 LogInfo("Delta time: {} ms", t.Millis()); \
 LogInfo("FPS: {}", t.Fps())
 
+#define LogCpuTime(t) \
+LogInfo("CPU time: {} ms", t.Millis()); \
+LogInfo("CPU FPS: {}", t.Fps())
+
 #define LogGLM(name, v) \
 LogInfo("{}: {}", name, glm::to_string(v))
 

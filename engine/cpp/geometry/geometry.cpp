@@ -20,6 +20,10 @@ namespace xpe {
             memcpy(Data.data(), indices, count * sizeof(u32));
         }
 
+        void IndexArray::Reserve(usize count) {
+            Data.reserve(count * sizeof(u32));
+        }
+
     }
 
 }

@@ -6,8 +6,8 @@ namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API PlaneGeometry : Geometry<render::Vertex3D> {
-            int Size = 64;
+        struct ENGINE_API PlaneGeometry : GeometryIndexed<render::Vertex3D> {
+            int Size = 16;
 
             PlaneGeometry();
             PlaneGeometry(int size);

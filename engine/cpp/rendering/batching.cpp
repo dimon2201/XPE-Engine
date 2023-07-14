@@ -5,251 +5,604 @@ namespace xpe {
 
     namespace render {
 
-        BatchManager::BatchManager(Context* context) : _context(context)
+        // --------------------- Batching 3D ---------------------- //
+
+        BatchManager::BatchManager(Context* context) : m_Context(context)
         {
-            // todo move into vertex buffer structure ?
-            _vertex.Type = eBufferType::VERTEX;
-            _vertex.ByteSize = k_vertexBufferByteSize;
-            _vertex.Duplicate = K_TRUE;
-            _vertex.StructureSize = sizeof(Vertex3D);
-            _context->CreateBuffer(_vertex);
-
-            // todo move into index buffer structure ?
-            _index.Type = eBufferType::INDEX;
-            _index.ByteSize = k_indexBufferByteSize;
-            _index.Duplicate = K_TRUE;
-            _index.StructureSize = sizeof(u32);
-            _context->CreateBuffer(_index);
-
-            // todo move into StructureBuffer<RenderInstance> wrapper class?
-            _instance.Type = eBufferType::STRUCTURED;
-            _instance.ByteSize = k_instanceBufferByteSize;
-            _instance.StructureSize = sizeof(RenderInstance);
-            _instance.FirstElement = 0;
-            _instance.NumElements = k_instanceBufferInstanceCount;
-            _instance.Slot = K_SLOT_INSTANCES;
-            _instance.Duplicate = K_TRUE;
-            _context->CreateBuffer(_instance);
-
-            // todo move into StructureBuffer<RenderInstance> wrapper class?
-            _instance2D.Type = eBufferType::STRUCTURED;
-            _instance2D.ByteSize = k_instanceBufferByteSize;
-            _instance2D.StructureSize = sizeof(RenderInstance2D);
-            _instance2D.FirstElement = 0;
-            _instance2D.NumElements = k_instanceBufferInstanceCount;
-            _instance2D.Slot = K_SLOT_INSTANCES2D;
-            _instance2D.Duplicate = K_TRUE;
-            _context->CreateBuffer(_instance);
         }
 
         BatchManager::~BatchManager()
         {
-            _context->FreeBuffer(_vertex);
-            _context->FreeBuffer(_index);
-            _context->FreeBuffer(_instance);
-            _context->FreeBuffer(_instance2D);
-        }
-
-        void BatchManager::StoreGlobalGeometryData(const string& usid, const void* vertices, usize verticesByteSize, usize vertexCount, const void* indices, usize indicesByteSize, usize indexCount)
-        {
-            usize vertexOffset = _vertex.AppendOffset;
-            usize indexOffset = _index.AppendOffset;
-
-            _context->WriteBufferAppend(_vertex, vertices, verticesByteSize);
-            _context->WriteBufferAppend(_index, indices, indicesByteSize);
-
-            _geometryInstanceMap.insert({ usid, { { vertexOffset, indexOffset, vertexCount, indexCount } } });
-        }
-
-        void BatchManager::StoreGlobalGeometry2DData(const string& usid, const void* vertices, usize verticesByteSize, usize vertexCount, const void* indices, usize indicesByteSize, usize indexCount)
-        {
-            usize vertexOffset = _vertex.AppendOffset;
-            usize indexOffset = _index.AppendOffset;
-
-            _context->WriteBufferAppend(_vertex, vertices, verticesByteSize);
-            _context->WriteBufferAppend(_index, indices, indicesByteSize);
-
-            _geometry2DInstanceMap.insert({ usid, {{ vertexOffset, indexOffset, vertexCount, indexCount } } });
-        }
-
-        void BatchManager::BeginBatch(const string& geometryUSID)
-        {
-            auto it = _geometryInstanceMap.find(geometryUSID);
-            if (it == _geometryInstanceMap.end())
+            for (auto& batchVertexed : m_BatchesVertexed)
             {
-                return;
+                FreeBatchVertexed(batchVertexed);
+            }
+            m_BatchesVertexed.clear();
+
+            for (auto& batchIndexed : m_BatchesIndexed)
+            {
+                FreeBatchIndexed(batchIndexed);
+            }
+            m_BatchesIndexed.clear();
+        }
+
+        void BatchManager::InitBatchIndexed(BatchIndexed &batchIndexed, const GeometryIndexedFormat& format)
+        {
+            batchIndexed.Format = format;
+            batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount * sizeof(Vertex3D));
+            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount * sizeof(u32));
+            batchIndexed.Instances = InstanceBuffer(m_Context, K_INSTANCE_COUNT);
+        }
+
+        void BatchManager::InitBatchVertexed(BatchVertexed &batchVertexed, const GeometryVertexedFormat& format)
+        {
+            batchVertexed.Format = format;
+            batchVertexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount * sizeof(Vertex3D));
+            batchVertexed.Instances = InstanceBuffer(m_Context, K_INSTANCE_COUNT);
+        }
+
+        void BatchManager::FreeBatchIndexed(BatchIndexed &batchIndexed)
+        {
+            m_BatchIndexedLookup[batchIndexed.Format.USID] = nullptr;
+            batchIndexed.Vertices.Free();
+            batchIndexed.Indices.Free();
+            batchIndexed.Instances.Free();
+        }
+
+        void BatchManager::FreeBatchVertexed(BatchVertexed &batchVertexed)
+        {
+            m_BatchVertexedLookup[batchVertexed.Format.USID] = nullptr;
+            batchVertexed.Vertices.Free();
+            batchVertexed.Instances.Free();
+        }
+
+        void BatchManager::NewBatchIndexed(const GeometryIndexedFormat& format)
+        {
+            BatchIndexed batchIndexed;
+            InitBatchIndexed(batchIndexed, format);
+            batchIndexed.Format = format;
+            m_BatchesIndexed.emplace_back(batchIndexed);
+            m_BatchIndexedLookup[format.USID] = &m_BatchesIndexed.back();
+        }
+
+        void BatchManager::NewBatchVertexed(const GeometryVertexedFormat& format)
+        {
+            BatchVertexed batchVertexed;
+            InitBatchVertexed(batchVertexed, format);
+            batchVertexed.Format = format;
+            m_BatchesVertexed.emplace_back(batchVertexed);
+            m_BatchVertexedLookup[format.USID] = &m_BatchesVertexed.back();
+        }
+
+        void BatchManager::StoreGeometryIndexed(const string &usid, const GeometryIndexed<Vertex3D>& geometry)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+                GeometryIndexedFormat format;
+                format.USID = usid;
+                format.VertexOffset = 0;
+                format.VertexCount = geometry.Vertices.Count();
+                format.IndexOffset = 0;
+                format.IndexCount = geometry.Indices.Count();
+                NewBatchIndexed(format);
+                batchIndexed = m_BatchIndexedLookup.find(usid);
             }
 
-            _batch.GeometryUSID = geometryUSID;
-            _batch.Geometry = &it->second;
+            batchIndexed->second->Vertices.FlushVertices(geometry.Vertices);
+            batchIndexed->second->Indices.FlushIndices(geometry.Indices);
         }
 
-        void BatchManager::BeginBatch2D(const string& geometryUSID)
+        void BatchManager::StoreGeometryVertexed(const string &usid, const GeometryVertexed<Vertex3D>& geometry)
         {
-            auto it = _geometry2DInstanceMap.find(geometryUSID);
-            if (it == _geometry2DInstanceMap.end())
-            {
-                return;
+            auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+            if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                GeometryVertexedFormat format;
+                format.USID = usid;
+                format.VertexOffset = 0;
+                format.VertexCount = geometry.Vertices.Count();
+                NewBatchVertexed(format);
+                batchVertexed = m_BatchVertexedLookup.find(usid);
             }
 
-            _batch.GeometryUSID = geometryUSID;
-            _batch.Geometry2D = &it->second;
+            batchVertexed->second->Vertices.FlushVertices(geometry.Vertices);
         }
 
-        void BatchManager::RecordInstance(const RenderInstance& instance)
+        void BatchManager::BeginBatch(const string& usid)
         {
-            if (_batch.Geometry == nullptr)
-            {
-                return;
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to begin batch for usid {}. It's absent", usid);
+                    return;
+                }
+
+                else {
+                    BeginBatch(*batchVertexed->second);
+                }
+
             }
 
-            auto& geometryInstances = _batch.Geometry->Instances;
-
-            ((RenderInstance*)_instance.CPUMemory)[geometryInstances.size()] = instance;
-            geometryInstances.emplace_back(instance);
+            else {
+                BeginBatch(*batchIndexed->second);
+            }
         }
 
-        void BatchManager::RecordInstance2D(const RenderInstance2D& instance)
-        {
-            if (_batch.Geometry2D == nullptr)
-            {
-                return;
-            }
+        void BatchManager::BeginBatch(BatchVertexed &batchVertexed) {
+            batchVertexed.Vertices.Bind();
+            batchVertexed.Instances.Bind();
+        }
 
-            auto& geometryInstances = _batch.Geometry2D->Instances;
-
-            ((RenderInstance2D*)_instance.CPUMemory)[geometryInstances.size()] = instance;
-            geometryInstances.emplace_back(instance);
+        void BatchManager::BeginBatch(BatchIndexed &batchIndexed) {
+            batchIndexed.Vertices.Bind();
+            batchIndexed.Indices.Bind();
+            batchIndexed.Instances.Bind();
         }
 
         bool BatchManager::AddInstance(const string& usid, const RenderInstance &instance)
         {
-            if (_geometryInstanceMap.find(usid) == _geometryInstanceMap.end()) {
-               return false;
-            }
-            _geometryInstanceMap.at(usid).Instances.emplace_back(instance);
-            return true;
-        }
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
 
-        bool BatchManager::AddInstance2D(const string& usid, const RenderInstance2D &instance)
-        {
-            if (_geometry2DInstanceMap.find(usid) == _geometry2DInstanceMap.end()) {
-                return false;
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+//                    LogWarning("Failed to add instance to batch {}. Batch is absent", usid);
+                    return false;
+                }
+
+                else {
+                    batchVertexed->second->Instances.GetList().emplace_back(instance);
+                }
+
             }
-            _geometry2DInstanceMap.at(usid).Instances.emplace_back(instance);
+
+            else {
+                batchIndexed->second->Instances.GetList().emplace_back(instance);
+            }
+
             return true;
         }
 
         void BatchManager::RemoveInstance(const string& usid, const RenderInstance &instance)
         {
-            if (_geometryInstanceMap.find(usid) != _geometryInstanceMap.end()) {
-                auto& instanceList = _geometryInstanceMap.at(usid).Instances;
-                auto it = std::find(instanceList.begin(), instanceList.end(), instance);
-                if (it != instanceList.end()) {
-                    instanceList.erase(it);
-                }
-            }
-        }
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
 
-        void BatchManager::RemoveInstance2D(const string& usid, const RenderInstance2D &instance)
-        {
-            if (_geometry2DInstanceMap.find(usid) != _geometry2DInstanceMap.end()) {
-                auto& instanceList = _geometry2DInstanceMap.at(usid).Instances;
-                auto it = std::find(instanceList.begin(), instanceList.end(), instance);
-                if (it != instanceList.end()) {
-                    instanceList.erase(it);
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to remove instance from batch {}. Batch is absent", usid);
+                    return;
                 }
+
+                else {
+                    auto& instanceList = batchVertexed->second->Instances.GetList();
+                    auto it = std::find(instanceList.begin(), instanceList.end(), instance);
+                    if (it != instanceList.end()) {
+                        instanceList.erase(it);
+                    }
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.GetList().emplace_back(instance);
             }
         }
 
         void BatchManager::ClearInstances(const string& usid)
         {
-            if (_geometryInstanceMap.find(usid) != _geometryInstanceMap.end()) {
-                _geometryInstanceMap.at(usid).Instances.clear();
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to clear instances of batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    batchVertexed->second->Instances.GetList().clear();
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.GetList().clear();
             }
         }
 
-        void BatchManager::ClearInstances2D(const string& usid)
+        void BatchManager::FlushInstances(const string &usid)
         {
-            if (_geometry2DInstanceMap.find(usid) != _geometry2DInstanceMap.end()) {
-                _geometry2DInstanceMap.at(usid).Instances.clear();
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to flush instances of batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    batchVertexed->second->Instances.Flush();
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.Flush();
             }
         }
 
-        void BatchManager::EndBatch()
+        void BatchManager::DrawBatch(const string &usid)
         {
-            _context->WriteBuffer(
-                    _instance,
-                    _instance.CPUMemory,
-                    sizeof(RenderInstance) * _batch.Geometry->Instances.size()
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to flush instances of batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    DrawBatch(*batchVertexed->second);
+                }
+
+            }
+
+            else {
+                DrawBatch(*batchIndexed->second);
+            }
+        }
+
+        void BatchManager::DrawBatch(BatchVertexed &batchVertexed)
+        {
+            auto& geometryInfo = batchVertexed.Format;
+            auto& instances = batchVertexed.Instances;
+            m_Context->DrawBatch(
+                    geometryInfo.VertexOffset,
+                    geometryInfo.VertexCount,
+                    instances.Count()
             );
         }
 
-        void BatchManager::EndBatch2D()
+        void BatchManager::DrawBatch(BatchIndexed &batchIndexed)
         {
-            _context->WriteBuffer(
-                    _instance2D,
-                    _instance2D.CPUMemory,
-                    sizeof(RenderInstance2D) * _batch.Geometry2D->Instances.size()
+            auto& geometryInfo = batchIndexed.Format;
+            auto& instances = batchIndexed.Instances;
+            m_Context->DrawBatch(
+                    geometryInfo.VertexOffset,
+                    geometryInfo.IndexOffset,
+                    geometryInfo.IndexCount,
+                    instances.Count()
             );
         }
 
         void BatchManager::DrawAll()
         {
-            for (auto& instanceEntry : _geometryInstanceMap) {
-                _batch.GeometryUSID = instanceEntry.first;
-                _batch.Geometry = &instanceEntry.second;
+            for (auto& batch : m_BatchesVertexed) {
+                BeginBatch(batch);
+                DrawBatch(batch);
+            }
 
-                memcpy(
-                        _instance.CPUMemory,
-                        instanceEntry.second.Instances.data(),
-                       instanceEntry.second.Instances.size() * sizeof(RenderInstance)
-                );
-
-                EndBatch();
-                DrawBatch();
+            for (auto& batch : m_BatchesIndexed) {
+                BeginBatch(batch);
+                DrawBatch(batch);
             }
         }
 
-        void BatchManager::DrawAll2D()
+        // --------------------- Batching 2D ------------------------ //
+
+        BatchManager2d::BatchManager2d(Context* context) : m_Context(context)
         {
-            for (auto& instanceEntry : _geometry2DInstanceMap) {
-                _batch.GeometryUSID = instanceEntry.first;
-                _batch.Geometry2D = &instanceEntry.second;
+        }
 
-                memcpy(
-                        _instance.CPUMemory,
-                        instanceEntry.second.Instances.data(),
-                        instanceEntry.second.Instances.size() * sizeof(RenderInstance)
-                );
+        BatchManager2d::~BatchManager2d()
+        {
+            for (auto& batchVertexed : m_BatchesVertexed)
+            {
+                FreeBatchVertexed(batchVertexed);
+            }
+            m_BatchesVertexed.clear();
 
-                EndBatch2D();
-                DrawBatch2D();
+            for (auto& batchIndexed : m_BatchesIndexed)
+            {
+                FreeBatchIndexed(batchIndexed);
+            }
+            m_BatchesIndexed.clear();
+        }
+
+        void BatchManager2d::InitBatchIndexed(BatchIndexed2d &batchIndexed, const GeometryIndexedFormat& format)
+        {
+            batchIndexed.Format = format;
+            batchIndexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount * sizeof(Vertex2D));
+            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount * sizeof(u32));
+            batchIndexed.Instances = InstanceBuffer2d(m_Context, K_INSTANCE_COUNT);
+        }
+
+        void BatchManager2d::InitBatchVertexed(BatchVertexed2d &batchVertexed, const GeometryVertexedFormat& format)
+        {
+            batchVertexed.Format = format;
+            batchVertexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount * sizeof(Vertex2D));
+            batchVertexed.Instances = InstanceBuffer2d(m_Context, K_INSTANCE_COUNT);
+        }
+
+        void BatchManager2d::FreeBatchIndexed(BatchIndexed2d &batchIndexed)
+        {
+            m_BatchIndexedLookup[batchIndexed.Format.USID] = nullptr;
+            batchIndexed.Vertices.Free();
+            batchIndexed.Indices.Free();
+            batchIndexed.Instances.Free();
+        }
+
+        void BatchManager2d::FreeBatchVertexed(BatchVertexed2d &batchVertexed)
+        {
+            m_BatchVertexedLookup[batchVertexed.Format.USID] = nullptr;
+            batchVertexed.Vertices.Free();
+            batchVertexed.Instances.Free();
+        }
+
+        void BatchManager2d::NewBatchIndexed(const GeometryIndexedFormat& format)
+        {
+            BatchIndexed2d batchIndexed;
+            InitBatchIndexed(batchIndexed, format);
+            m_BatchesIndexed.emplace_back(batchIndexed);
+            m_BatchIndexedLookup[format.USID] = &m_BatchesIndexed[m_BatchesIndexed.size() - 1];
+        }
+
+        void BatchManager2d::NewBatchVertexed(const GeometryVertexedFormat& format)
+        {
+            BatchVertexed2d batchVertexed;
+            InitBatchVertexed(batchVertexed, format);
+            m_BatchesVertexed.emplace_back(batchVertexed);
+            m_BatchVertexedLookup[format.USID] = &m_BatchesVertexed[m_BatchesVertexed.size() - 1];
+        }
+
+        void BatchManager2d::StoreGeometryIndexed(const string &usid, const GeometryIndexed<Vertex2D>& geometry)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+                GeometryIndexedFormat format;
+                format.USID = usid;
+                format.VertexOffset = 0;
+                format.VertexCount = geometry.Vertices.Count();
+                format.IndexOffset = 0;
+                format.IndexCount = geometry.Indices.Count();
+                NewBatchIndexed(format);
+                batchIndexed = m_BatchIndexedLookup.find(usid);
+            }
+
+            batchIndexed->second->Vertices.FlushVertices(geometry.Vertices);
+            batchIndexed->second->Indices.FlushIndices(geometry.Indices);
+        }
+
+        void BatchManager2d::StoreGeometryVertexed(const string &usid, const GeometryVertexed<Vertex2D>& geometry)
+        {
+            auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+            if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                GeometryVertexedFormat format;
+                format.USID = usid;
+                format.VertexOffset = 0;
+                format.VertexCount = geometry.Vertices.Count();
+                NewBatchVertexed(format);
+                batchVertexed = m_BatchVertexedLookup.find(usid);
+            }
+
+            batchVertexed->second->Vertices.FlushVertices(geometry.Vertices);
+        }
+
+        void BatchManager2d::BeginBatch(const string& usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to begin batch for usid {}. It's absent", usid);
+                    return;
+                }
+
+                else {
+                    BeginBatch(*batchVertexed->second);
+                }
+
+            }
+
+            else {
+                BeginBatch(*batchIndexed->second);
             }
         }
 
-        void BatchManager::DrawBatch()
+        void BatchManager2d::BeginBatch(BatchVertexed2d &batchVertexed) {
+            batchVertexed.Vertices.Bind();
+            batchVertexed.Instances.Bind();
+        }
+
+        void BatchManager2d::BeginBatch(BatchIndexed2d &batchIndexed) {
+            batchIndexed.Vertices.Bind();
+            batchIndexed.Indices.Bind();
+            batchIndexed.Instances.Bind();
+        }
+
+        bool BatchManager2d::AddInstance(const string& usid, const RenderInstance2d &instance)
         {
-            auto& geometryInfo = _batch.Geometry->Info;
-            auto& instances = _batch.Geometry->Instances;
-            _context->DrawBatch(
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to add instance to batch {}. Batch is absent", usid);
+                    return false;
+                }
+
+                else {
+                    batchVertexed->second->Instances.GetList().emplace_back(instance);
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.GetList().emplace_back(instance);
+            }
+
+            return true;
+        }
+
+        void BatchManager2d::RemoveInstance(const string& usid, const RenderInstance2d &instance)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to remove instance from batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    auto& instanceList = batchVertexed->second->Instances.GetList();
+                    auto it = std::find(instanceList.begin(), instanceList.end(), instance);
+                    if (it != instanceList.end()) {
+                        instanceList.erase(it);
+                    }
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.GetList().emplace_back(instance);
+            }
+        }
+
+        void BatchManager2d::ClearInstances(const string& usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to clear instances of batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    batchVertexed->second->Instances.GetList().clear();
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.GetList().clear();
+            }
+        }
+
+        void BatchManager2d::FlushInstances(const string &usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to flush instances of batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    batchVertexed->second->Instances.Flush();
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.Flush();
+            }
+        }
+
+        void BatchManager2d::DrawBatch(const string &usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to flush instances of batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    DrawBatch(*batchVertexed->second);
+                }
+
+            }
+
+            else {
+                DrawBatch(*batchIndexed->second);
+            }
+        }
+
+        void BatchManager2d::DrawBatch(BatchVertexed2d &batchVertexed)
+        {
+            auto& geometryInfo = batchVertexed.Format;
+            auto& instances = batchVertexed.Instances;
+            m_Context->DrawBatch(
                     geometryInfo.VertexOffset,
-                    geometryInfo.IndexOffset,
-                    geometryInfo.IndexCount,
-                    instances.size()
+                    geometryInfo.VertexCount,
+                    instances.Count()
             );
         }
 
-        void BatchManager::DrawBatch2D()
+        void BatchManager2d::DrawBatch(BatchIndexed2d &batchIndexed)
         {
-            auto& geometryInfo = _batch.Geometry2D->Info;
-            auto& instances = _batch.Geometry2D->Instances;
-            _context->DrawBatch(
+            auto& geometryInfo = batchIndexed.Format;
+            auto& instances = batchIndexed.Instances;
+            m_Context->DrawBatch(
                     geometryInfo.VertexOffset,
                     geometryInfo.IndexOffset,
                     geometryInfo.IndexCount,
-                    instances.size()
+                    instances.Count()
             );
+        }
+
+        void BatchManager2d::DrawAll()
+        {
+            for (auto& batch : m_BatchesVertexed) {
+                BeginBatch(batch);
+                DrawBatch(batch);
+            }
+
+            for (auto& batch : m_BatchesIndexed) {
+                BeginBatch(batch);
+                DrawBatch(batch);
+            }
         }
 
     }

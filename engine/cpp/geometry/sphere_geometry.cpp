@@ -38,12 +38,9 @@ namespace xpe {
 
                     V.Position = { xPos, yPos, zPos };
                     V.UV = { xSegment, ySegment };
+                    V.Normal = { xPos, yPos, zPos };
 
                     i++;
-
-                    if (i % 3 == 0) {
-                        InitNormal(&Vertices[i - 3], &Vertices[i - 2], &Vertices[i - 1], &Vertices[i]);
-                    }
                 }
             }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/structure_buffer.h>
+#include <rendering/buffers/structure_buffer.h>
 
 namespace xpe {
 

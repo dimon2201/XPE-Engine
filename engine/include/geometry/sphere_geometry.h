@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API SphereGeometry : Geometry<render::Vertex3D> {
+        struct ENGINE_API SphereGeometry : GeometryIndexed<render::Vertex3D> {
             int XSegments = 64;
             int YSegments = 64;
 
