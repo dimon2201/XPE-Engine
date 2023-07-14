@@ -11,9 +11,9 @@ namespace xpe {
             ~Quad2d();
         };
 
-        struct ENGINE_API Quad3d : GeometryVertexed<render::Vertex3D> {
-            Quad3d();
-            ~Quad3d();
+        struct ENGINE_API Quad : GeometryVertexed<render::Vertex3D> {
+            Quad();
+            ~Quad();
         };
 
     }

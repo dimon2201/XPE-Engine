@@ -11,9 +11,9 @@ namespace xpe {
             ~Triangle2d();
         };
 
-        struct ENGINE_API Triangle3d : GeometryVertexed<render::Vertex3D> {
-            Triangle3d();
-            ~Triangle3d();
+        struct ENGINE_API Triangle : GeometryVertexed<render::Vertex3D> {
+            Triangle();
+            ~Triangle();
         };
 
     }

@@ -24,7 +24,7 @@ namespace xpe {
             Vertices.Free();
         }
 
-        Triangle3d::Triangle3d() {
+        Triangle::Triangle() {
             Vertices.Init(3);
 
             auto& v0 = Vertices[0];
@@ -40,7 +40,7 @@ namespace xpe {
             v2.UV = { 1, 1 };
         }
 
-        Triangle3d::~Triangle3d() {
+        Triangle::~Triangle() {
             Vertices.Free();
         }
 

@@ -5,6 +5,8 @@ namespace xpe {
     namespace math {
 
         Quad2d::Quad2d() {
+            Vertices.Init(4);
+
             Vertices[0].Position = { -0.5f, -0.5f };
             Vertices[1].Position = { -0.5f, 0.5f };
             Vertices[2].Position = { 0.5f, 0.5f };
@@ -17,7 +19,9 @@ namespace xpe {
             Vertices.Free();
         }
 
-        math::Quad3d::Quad3d() {
+        Quad::Quad() {
+            Vertices.Init(4);
+
             Vertices[0].Position = { -0.5f, -0.5f, 0 };
             Vertices[1].Position = { -0.5f, 0.5f, 0 };
             Vertices[2].Position = { 0.5f, 0.5f, 0 };
@@ -27,7 +31,7 @@ namespace xpe {
             InitNormal(&Vertices[0], &Vertices[1], &Vertices[2], &Vertices[3]);
         }
 
-        math::Quad3d::~Quad3d() {
+        Quad::~Quad() {
             Vertices.Free();
         }
 
