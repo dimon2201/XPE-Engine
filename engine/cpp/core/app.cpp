@@ -55,6 +55,9 @@ namespace xpe {
             m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in memory
 
             ShaderManager::Init(context);
+            if (Config.HotReloadShaders) {
+                ShaderManager::WatchShaders("engine_shaders", true);
+            }
 
             TextureManager::Init(context);
 
@@ -68,6 +71,11 @@ namespace xpe {
 
             while (!WindowManager::ShouldClose())
             {
+
+                // update shader file watches if it's enabled in config
+                if (Config.HotReloadShaders) {
+                    ShaderManager::UpdateShaderWatches();
+                }
 
                 // measure cpu ticks in seconds and log CPU time
 #ifdef DEBUG

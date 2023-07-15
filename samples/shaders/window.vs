@@ -32,7 +32,7 @@ VSOut vs_main(VSIn vsIn)
     vsOut.positionWorld = positionWorld.xyz;
     vsOut.viewPosition = instanceCamera.Position;
     vsOut.texcoord = vsIn.texcoord;
-    vsOut.normal = vsIn.normal;
+    vsOut.normal = normalize(vsIn.normal);
     vsOut.positionClip = mul(CameraViewProjection(instance.CameraIndex), float4(vsOut.positionWorld, 1.0));
     vsOut.materialIndex = instance.MaterialIndex;
 

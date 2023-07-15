@@ -13,6 +13,8 @@ namespace xpe {
         Window WindowManager::s_Window;
 
         void WindowManager::Init() {
+            LogInfo("WindowManager::Init()");
+
             int status = glfwInit();
 
             if (status == GLFW_FALSE) {
@@ -24,13 +26,18 @@ namespace xpe {
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
             glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+
+            LogInfo("WindowManager initialized");
         }
 
         void WindowManager::Free() {
+            LogInfo("WindowManager::Free()");
             glfwTerminate();
         }
 
         void WindowManager::InitWindow(const WindowDescriptor &windowDescriptor) {
+            LogInfo("WindowManager::InitWindow()");
+
             p_WindowHandle = glfwCreateWindow(windowDescriptor.Width, windowDescriptor.Height, windowDescriptor.Title, nullptr, nullptr);
 
             s_Window.Instance = p_WindowHandle;
@@ -40,9 +47,12 @@ namespace xpe {
             SetPos(windowDescriptor.X, windowDescriptor.Y);
             SetSize(windowDescriptor.Width, windowDescriptor.Height);
             SetVSync(windowDescriptor.Vsync);
+
+            LogInfo("Window initialized");
         }
 
         void WindowManager::FreeWindow() {
+            LogInfo("WindowManager::FreeWindow()");
             if (s_Window.Instance != nullptr)
             {
                 glfwDestroyWindow((GLFWwindow*)s_Window.Instance);

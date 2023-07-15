@@ -7,20 +7,23 @@ namespace xpe {
         using namespace core;
 
         struct ENGINE_API GPUResource {
-            void* Instance = nullptr;
-            void* ViewInstance = nullptr;
+            void* Instance;
+            void* ViewInstance;
         };
 
-        enum ePrimitiveTopology {
-            TRIANGLE_LIST = 0,
-            TRIANGLE_STRIP = 1
+        enum class ePrimitiveTopology {
+            TRIANGLE_LIST,
+            TRIANGLE_STRIP,
+            POINT_LIST,
+            LINE_LIST,
+            LINE_STRIP
         };
 
         enum class eBufferType {
-            VERTEX = 0,
-            INDEX = 1,
-            CONSTANT = 2,
-            STRUCTURED = 3
+            VERTEX,
+            INDEX,
+            CONSTANT,
+            STRUCTURED
         };
 
         struct ENGINE_API Buffer : public GPUResource {

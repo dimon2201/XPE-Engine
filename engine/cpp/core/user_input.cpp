@@ -36,6 +36,8 @@ namespace xpe {
         EventBuffer<CharModsTypedFn> Input::CharModsTypedEvents;
 
         void Input::Init() {
+            LogInfo("Input::Init()");
+
             s_Window = static_cast<GLFWwindow*>(WindowManager::GetInstance());
 
             InitWindowCallbacks();
@@ -44,6 +46,8 @@ namespace xpe {
             InitCursorCallbacks();
             InitScrollCallbacks();
             InitCharCallbacks();
+
+            LogInfo("Input initialized");
         }
 
         void Input::InitWindowCallbacks() {

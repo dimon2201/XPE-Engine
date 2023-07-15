@@ -66,16 +66,23 @@ namespace xpe {
         MaterialTextures MaterialManager::s_MaterialTextures;
 
         void MaterialManager::Init(Context* context) {
+            LogInfo("MaterialManager::Init()");
+
             s_Context = context;
             s_MaterialBuilder = { s_Context, &s_TempMaterial };
             InitMaterialList();
+
+            LogInfo("MaterialManager initialized");
         }
 
         void MaterialManager::Free() {
+            LogInfo("MaterialManager::Free()");
+
             for (auto& material : s_MaterialTable) {
                 FreeMaterial(material.second);
             }
             s_MaterialTable.clear();
+
             FreeMaterialList();
         }
 

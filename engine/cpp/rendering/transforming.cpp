@@ -9,12 +9,18 @@ namespace xpe {
         Transform2DBuffer TransformManager::s_Transform2DBuffer;
 
         void TransformManager::Init(Context* context) {
+            LogInfo("TransformManager::Init()");
+
             s_Context = context;
             s_Transform2DBuffer = Transform2DBuffer(context, K_TRANSFORMS2D_SIZE);
             s_TransformBuffer = TransformBuffer(context, K_TRANSFORMS_SIZE);
+
+            LogInfo("TransformManager initialized");
         }
 
         void TransformManager::Free() {
+            LogInfo("TransformManager::Free()");
+
             s_Transform2DBuffer.Free();
             s_TransformBuffer.Free();
         }

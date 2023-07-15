@@ -22,6 +22,8 @@ public:
     {
         LogInfo("GameApp::Init()");
 
+        ShaderManager::WatchShaders("shaders", 1);
+
         m_TestConfig = TestConfigReader::Read("test_config.json");
 
         Input::WindowClosedEvents.AddEvent(this, OnWindowClosed<GameApp>, 1);
@@ -140,7 +142,7 @@ public:
         m_Pipeline.Shader = ShaderManager::Builder()
                 .AddVertexStageFromFile("shaders/window.vs")
                 .AddPixelStageFromFile("shaders/window.ps")
-                .Build();
+                .Build("window");
         m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
         // setup input layout
@@ -211,6 +213,12 @@ public:
         if (key == eKey::Esc)
         {
             WindowManager::Close();
+        }
+
+        if (key == eKey::R)
+        {
+            ShaderManager::ReloadStage("shaders/window.vs");
+            ShaderManager::ReloadStage("shaders/window.ps");
         }
 
         MoveLight(key);

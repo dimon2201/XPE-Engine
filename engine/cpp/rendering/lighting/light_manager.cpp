@@ -10,13 +10,19 @@ namespace xpe {
         SpotLightBuffer LightManager::s_SpotLightBuffer;
 
         void LightManager::Init(Context* context) {
+            LogInfo("LightManager::Init()");
+
             s_Context = context;
             s_DirectLightBuffer = DirectLightBuffer(context, K_DIRECT_LIGHT_COUNT);
             s_PointLightBuffer = PointLightBuffer(context, K_POINT_LIGHT_COUNT);
             s_SpotLightBuffer = SpotLightBuffer(context, K_SPOT_LIGHT_COUNT);
+
+            LogInfo("LightManager initialized");
         }
 
         void LightManager::Free() {
+            LogInfo("LightManager::Free()");
+
             s_DirectLightBuffer.Free();
             s_PointLightBuffer.Free();
             s_SpotLightBuffer.Free();

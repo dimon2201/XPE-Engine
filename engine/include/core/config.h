@@ -6,10 +6,10 @@ namespace xpe {
 
         struct ENGINE_API AppConfig final {
 
-            enum eGPU {
-                DX11 = 0,
-                OPENGL = 1,
-                VULKAN = 2,
+            enum class eGPU {
+                DX11,
+                OPENGL,
+                VULKAN,
 
                 DEFAULT = DX11
             };
@@ -40,6 +40,8 @@ namespace xpe {
             float LogTimeDelaySeconds = 5;
 
             bool LockOnFPS = true;
+
+            bool HotReloadShaders = true;
 
         };
 

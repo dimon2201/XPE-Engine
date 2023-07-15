@@ -48,6 +48,8 @@
 // Core
 #include <core/build.h>
 #include <core/types.hpp>
+#include <core/keycodes.h>
+#include <core/mousecodes.h>
 #include <core/singleton.h>
 #include <core/config.h>
 #include <core/memory_pool.hpp>
@@ -74,3 +76,6 @@
 #include <math/matrices.h>
 #include <math/sphere.h>
 #include <math/raycast.h>
+
+// Platform
+#include <platform/file_watcher.h>

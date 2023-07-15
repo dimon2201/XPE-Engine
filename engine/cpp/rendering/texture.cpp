@@ -56,10 +56,13 @@ namespace xpe {
         };
 
         void TextureManager::Init(Context* context) {
+            LogInfo("TextureManager::Init()");
             s_Context = context;
+            LogInfo("TextureManager initialized");
         }
 
         void TextureManager::Free() {
+            LogInfo("TextureManager::Free()");
             for (auto& texture : s_TextureTable) {
                 FreeTexture(texture.second);
             }

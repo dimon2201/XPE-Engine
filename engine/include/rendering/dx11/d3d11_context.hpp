@@ -28,7 +28,11 @@ namespace xpe {
                 void CreateShader(Shader& shader) override final;
                 void BindShader(const Shader* shader) override final;
                 void FreeShader(Shader& shader) override final;
-                
+
+                void CreateShaderStage(ShaderStage &stage) override;
+                void BindShaderStage(const ShaderStage &stage) override;
+                void FreeShaderStage(ShaderStage &stage) override;
+
                 void CreateTexture(Texture& texture, const void* instance) override final;
                 void CreateTexture1D(Texture& texture) override final;
                 void CreateTexture2D(Texture& texture) override final;

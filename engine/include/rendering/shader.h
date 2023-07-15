@@ -24,12 +24,15 @@ namespace xpe {
             const char* Profile = nullptr;
             uword Flag = 0;
             bool Compiled = false;
+
+            ShaderStage() = default;
+            ShaderStage(eShaderType type) : Type(type) {}
         };
 
         struct ENGINE_API Shader {
+            string ID = "Untitled";
             ePrimitiveTopology PrimitiveTopology;
-            vector<ShaderStage> Stages;
-            Blob* VertexBlob = nullptr;
+            vector<ShaderStage*> Stages;
         };
 
         class ENGINE_API ShaderBuilder final {
@@ -43,7 +46,7 @@ namespace xpe {
             ~ShaderBuilder() = default;
 
         public:
-            Shader* Build();
+            Shader* Build(const string& shaderId);
 
             ShaderBuilder& AddVertexStageFromFile(const char* filepath);
             ShaderBuilder& AddPixelStageFromFile(const char* filepath);
@@ -52,12 +55,12 @@ namespace xpe {
             ShaderBuilder& AddTessEvalStageFromFile(const char* filepath);
             ShaderBuilder& AddComputeStageFromFile(const char* filepath);
 
-            ShaderBuilder& AddVertexStage(const string& source);
-            ShaderBuilder& AddPixelStage(const string& source);
-            ShaderBuilder& AddGeometryStage(const string& source);
-            ShaderBuilder& AddTessControlStage(const string& source);
-            ShaderBuilder& AddTessEvalStage(const string& source);
-            ShaderBuilder& AddComputeStage(const string& source);
+            ShaderBuilder& AddVertexStage(const string& id, const string& source);
+            ShaderBuilder& AddPixelStage(const string& id, const string& source);
+            ShaderBuilder& AddGeometryStage(const string& id, const string& source);
+            ShaderBuilder& AddTessControlStage(const string& id, const string& source);
+            ShaderBuilder& AddTessEvalStage(const string& id, const string& source);
+            ShaderBuilder& AddComputeStage(const string& id, const string& source);
 
         private:
             Context* m_Context = nullptr;
@@ -72,15 +75,26 @@ namespace xpe {
 
             static ShaderBuilder& Builder();
 
-            static void AddShaderStage(const string& name, const ShaderStage& shaderStage);
-            static void RemoveShaderStage(const string& name);
-            static ShaderStage* GetShaderStage(const string& name);
+            static void AddShaderStage(const string& filepath, const ShaderStage& shaderStage);
+            static void RemoveShaderStage(const string& filepath);
+            static ShaderStage* GetShaderStage(const string& filepath);
+
+            static void ReloadStage(const char* filepath);
+
+            static void AddShader(const string& id, const Shader& shader);
+            static void FreeShader(const string& id);
+            static Shader* GetShader(const string& id);
+
+            static void WatchShaders(const string& dirName, bool recursive = false);
+            static void UpdateShaderWatches();
 
         private:
             static Context* s_Context;
             static ShaderBuilder s_ShaderBuilder;
             static unordered_map<string, ShaderStage> s_ShaderStageTable;
+            static unordered_map<string, Shader> s_ShaderTable;
             static Shader s_TempShader;
+            static platform::FileWatcher* s_FileWatcher;
         };
 
     }

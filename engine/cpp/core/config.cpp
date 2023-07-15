@@ -67,6 +67,8 @@ namespace xpe {
 
             config.LockOnFPS = root["lock_on_fps"].asBool();
 
+            config.HotReloadShaders = root["hot_reload_shaders"].asBool();
+
         }
 
     }

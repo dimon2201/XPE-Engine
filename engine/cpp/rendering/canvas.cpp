@@ -13,7 +13,7 @@ namespace xpe {
             m_QuadShader = *ShaderManager::Builder()
                 .AddVertexStageFromFile("engine_shaders/canvas.vs")
                 .AddPixelStageFromFile("engine_shaders/canvas.ps")
-                .Build();
+                .Build("canvas");
 
             m_QuadShader.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
         }

@@ -9,6 +9,8 @@ namespace xpe {
 
         void D3D11Context::Init()
         {
+            LogInfo("D3D11Context::Init()");
+
             _device = nullptr;
             _immContext = nullptr;
             _swapChain = nullptr;
@@ -67,10 +69,14 @@ namespace xpe {
 
             CreateSampler(_sampler);
             LogDebugMessage();
+
+            LogInfo("D3D11Context initialized");
         }
 
         void D3D11Context::Free()
         {
+            LogInfo("D3D11Context::Free()");
+
             // todo need to improve concept of RenderTarget
 //            FreeRenderTarget(_rt);
             LogDebugMessage();
@@ -235,176 +241,177 @@ namespace xpe {
 
         void D3D11Context::CreateShader(Shader& shader)
         {
-
-            for (auto& stage : shader.Stages) {
-
-                // skip stage that is already compiled
-                // save vertex BLOB into shader
-                if (stage.Compiled) {
-                    if (stage.Type == eShaderType::VERTEX) {
-                        shader.VertexBlob = &stage.Blob;
-                    }
-                    continue;
-                }
-
-                ID3DBlob* shaderBlob = nullptr;
-                ID3DBlob* errorBlob = nullptr;
-
-                D3DCompile(
-                        stage.Source.c_str(),
-                        stage.Source.length(),
-                        nullptr,
-                        nullptr,
-                        nullptr,
-                        stage.EntryPoint,
-                        stage.Profile,
-                        (UINT)stage.Flag,
-                        0,
-                        &shaderBlob,
-                        &errorBlob
-                );
-                LogDebugMessage();
-
-                if (errorBlob != nullptr) {
-                    LogError((char*)errorBlob->GetBufferPointer());
-                    errorBlob->Release();
-                    LogDebugMessage();
-                }
-
-                if (shaderBlob != nullptr) {
-
-                    stage.Compiled = true;
-                    stage.Blob.Instance = shaderBlob;
-                    stage.Blob.ByteCode = shaderBlob->GetBufferPointer();
-                    stage.Blob.ByteCodeSize = shaderBlob->GetBufferSize();
-
-                    switch (stage.Type) {
-
-                        case eShaderType::VERTEX:
-                            _device->CreateVertexShader(
-                                    shaderBlob->GetBufferPointer(),
-                                    shaderBlob->GetBufferSize(),
-                                    nullptr,
-                                    (ID3D11VertexShader**)&stage.Resource.Instance
-                            );
-                            LogDebugMessage();
-                            shader.VertexBlob = &stage.Blob;
-                            break;
-
-                        case eShaderType::PIXEL:
-                            _device->CreatePixelShader(
-                                    shaderBlob->GetBufferPointer(),
-                                    shaderBlob->GetBufferSize(),
-                                    nullptr,
-                                    (ID3D11PixelShader**)&stage.Resource.Instance
-                            );
-                            LogDebugMessage();
-                            break;
-
-                        case eShaderType::GEOMETRY:
-                            _device->CreateGeometryShader(
-                                    shaderBlob->GetBufferPointer(),
-                                    shaderBlob->GetBufferSize(),
-                                    nullptr,
-                                    (ID3D11GeometryShader**)&stage.Resource.Instance
-                            );
-                            LogDebugMessage();
-                            break;
-
-                        case eShaderType::COMPUTE:
-                            _device->CreateComputeShader(
-                                    shaderBlob->GetBufferPointer(),
-                                    shaderBlob->GetBufferSize(),
-                                    nullptr,
-                                    (ID3D11ComputeShader**)&stage.Resource.Instance
-                            );
-                            LogDebugMessage();
-                            break;
-
-                    }
-                }
-
+            for (auto* stage : shader.Stages) {
+                CreateShaderStage(*stage);
             }
         }
 
         void D3D11Context::BindShader(const Shader* shader)
         {
             _boundShader = (Shader*)shader;
-
-            for (const auto& stage : shader->Stages) {
-
-                switch (stage.Type) {
-
-                    case eShaderType::VERTEX:
-                        _immContext->VSSetShader((ID3D11VertexShader*)stage.Resource.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        break;
-
-                    case eShaderType::PIXEL:
-                        _immContext->PSSetShader((ID3D11PixelShader*)stage.Resource.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        break;
-
-                    case eShaderType::GEOMETRY:
-                        _immContext->GSSetShader((ID3D11GeometryShader*)stage.Resource.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        break;
-
-                    case eShaderType::COMPUTE:
-                        _immContext->CSSetShader((ID3D11ComputeShader*)stage.Resource.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        break;
-
-                }
-
+            for (const auto* stage : shader->Stages) {
+                BindShaderStage(*stage);
             }
-
         }
 
         void D3D11Context::FreeShader(Shader& shader)
         {
-            for (const auto& stage : shader.Stages) {
+            for (auto* stage : shader.Stages) {
+                FreeShaderStage(*stage);
+            }
+            shader.Stages.clear();
+        }
 
-                if (stage.Blob.Instance != nullptr) {
-                    ((ID3DBlob*)stage.Blob.Instance)->Release();
-                    LogDebugMessage();
+        void D3D11Context::CreateShaderStage(ShaderStage &stage)
+        {
+            // skip stage that is already compiled
+            // save vertex BLOB into shader
+            if (stage.Compiled) {
+                return;
+            }
+
+            ID3DBlob* shaderBlob = nullptr;
+            ID3DBlob* errorBlob = nullptr;
+
+            D3DCompile(
+                    stage.Source.c_str(),
+                    stage.Source.length(),
+                    nullptr,
+                    nullptr,
+                    nullptr,
+                    stage.EntryPoint,
+                    stage.Profile,
+                    (UINT)stage.Flag,
+                    0,
+                    &shaderBlob,
+                    &errorBlob
+            );
+            LogDebugMessage();
+
+            if (errorBlob != nullptr) {
+                LogError((char*)errorBlob->GetBufferPointer());
+                errorBlob->Release();
+                LogDebugMessage();
+            }
+
+            if (shaderBlob != nullptr) {
+
+                stage.Compiled = true;
+                stage.Blob.Instance = shaderBlob;
+                stage.Blob.ByteCode = shaderBlob->GetBufferPointer();
+                stage.Blob.ByteCodeSize = shaderBlob->GetBufferSize();
+
+                switch (stage.Type) {
+
+                    case eShaderType::VERTEX:
+                        _device->CreateVertexShader(
+                                shaderBlob->GetBufferPointer(),
+                                shaderBlob->GetBufferSize(),
+                                nullptr,
+                                (ID3D11VertexShader**)&stage.Resource.Instance
+                        );
+                        LogDebugMessage();
+                        break;
+
+                    case eShaderType::PIXEL:
+                        _device->CreatePixelShader(
+                                shaderBlob->GetBufferPointer(),
+                                shaderBlob->GetBufferSize(),
+                                nullptr,
+                                (ID3D11PixelShader**)&stage.Resource.Instance
+                        );
+                        LogDebugMessage();
+                        break;
+
+                    case eShaderType::GEOMETRY:
+                        _device->CreateGeometryShader(
+                                shaderBlob->GetBufferPointer(),
+                                shaderBlob->GetBufferSize(),
+                                nullptr,
+                                (ID3D11GeometryShader**)&stage.Resource.Instance
+                        );
+                        LogDebugMessage();
+                        break;
+
+                    case eShaderType::COMPUTE:
+                        _device->CreateComputeShader(
+                                shaderBlob->GetBufferPointer(),
+                                shaderBlob->GetBufferSize(),
+                                nullptr,
+                                (ID3D11ComputeShader**)&stage.Resource.Instance
+                        );
+                        LogDebugMessage();
+                        break;
+
                 }
+            }
+        }
 
-                if (stage.Resource.Instance != nullptr) {
+        void D3D11Context::BindShaderStage(const ShaderStage &stage)
+        {
+            switch (stage.Type) {
 
-                    switch (stage.Type) {
+                case eShaderType::VERTEX:
+                    _immContext->VSSetShader((ID3D11VertexShader*)stage.Resource.Instance, nullptr, 0);
+                    LogDebugMessage();
+                    break;
 
-                        case eShaderType::VERTEX:
-                            ((ID3D11VertexShader*)stage.Resource.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+                case eShaderType::PIXEL:
+                    _immContext->PSSetShader((ID3D11PixelShader*)stage.Resource.Instance, nullptr, 0);
+                    LogDebugMessage();
+                    break;
 
-                        case eShaderType::PIXEL:
-                            ((ID3D11PixelShader*)stage.Resource.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+                case eShaderType::GEOMETRY:
+                    _immContext->GSSetShader((ID3D11GeometryShader*)stage.Resource.Instance, nullptr, 0);
+                    LogDebugMessage();
+                    break;
 
-                        case eShaderType::GEOMETRY:
-                            ((ID3D11GeometryShader*)stage.Resource.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+                case eShaderType::COMPUTE:
+                    _immContext->CSSetShader((ID3D11ComputeShader*)stage.Resource.Instance, nullptr, 0);
+                    LogDebugMessage();
+                    break;
 
-                        case eShaderType::COMPUTE:
-                            ((ID3D11ComputeShader*)stage.Resource.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+            }
+        }
 
-                    }
+        void D3D11Context::FreeShaderStage(ShaderStage &stage)
+        {
+            if (stage.Blob.Instance != nullptr) {
+                ((ID3DBlob*)stage.Blob.Instance)->Release();
+                LogDebugMessage();
+            }
+
+            if (stage.Resource.Instance != nullptr) {
+
+                switch (stage.Type) {
+
+                    case eShaderType::VERTEX:
+                        ((ID3D11VertexShader*)stage.Resource.Instance)->Release();
+                        LogDebugMessage();
+                        break;
+
+                    case eShaderType::PIXEL:
+                        ((ID3D11PixelShader*)stage.Resource.Instance)->Release();
+                        LogDebugMessage();
+                        break;
+
+                    case eShaderType::GEOMETRY:
+                        ((ID3D11GeometryShader*)stage.Resource.Instance)->Release();
+                        LogDebugMessage();
+                        break;
+
+                    case eShaderType::COMPUTE:
+                        ((ID3D11ComputeShader*)stage.Resource.Instance)->Release();
+                        LogDebugMessage();
+                        break;
 
                 }
 
             }
-
-            shader.Stages.clear();
         }
 
-        static const unordered_map<Texture::eFormat, DXGI_FORMAT> s_TextureFormatTable = {
-
+        static const unordered_map<Texture::eFormat, DXGI_FORMAT> s_TextureFormatTable =
+        {
                 { Texture::eFormat::R8, DXGI_FORMAT_R8_UNORM },
                 { Texture::eFormat::R16, DXGI_FORMAT_R16_UNORM },
                 { Texture::eFormat::R32, DXGI_FORMAT_R32_FLOAT },
@@ -420,19 +427,18 @@ namespace xpe {
                 { Texture::eFormat::RGBA8, DXGI_FORMAT_R8G8B8A8_UNORM },
                 { Texture::eFormat::RGBA16, DXGI_FORMAT_R16G16B16A16_UNORM },
                 { Texture::eFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
-
         };
 
-        static const unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable = {
-
+        static const unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable =
+        {
             { Texture::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
             { Texture::eUsage::STATIC, D3D11_USAGE_IMMUTABLE },
             { Texture::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
             { Texture::eUsage::STAGING, D3D11_USAGE_STAGING }
-
         };
 
-        static const unordered_map<TextureSampler::eComparison, D3D11_COMPARISON_FUNC> s_TextureSamplerComparisonTable = {
+        static const unordered_map<TextureSampler::eComparison, D3D11_COMPARISON_FUNC> s_TextureSamplerComparisonTable =
+        {
             { TextureSampler::eComparison::ALWAYS, D3D11_COMPARISON_ALWAYS },
             { TextureSampler::eComparison::EQUAL, D3D11_COMPARISON_EQUAL },
             { TextureSampler::eComparison::GREATER, D3D11_COMPARISON_GREATER },
@@ -443,12 +449,14 @@ namespace xpe {
             { TextureSampler::eComparison::NOT_EQUAL, D3D11_COMPARISON_NOT_EQUAL }
         };
 
-        static const unordered_map<TextureSampler::eFilter, D3D11_FILTER> s_TextureSamplerFilterTable = {
+        static const unordered_map<TextureSampler::eFilter, D3D11_FILTER> s_TextureSamplerFilterTable =
+        {
             { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT },
             { TextureSampler::eFilter::MIN_MAG_MIP_LINEAR, D3D11_FILTER_MIN_MAG_MIP_LINEAR },
         };
 
-        static const unordered_map<TextureSampler::eAddressMode, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable = {
+        static const unordered_map<TextureSampler::eAddressMode, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable =
+        {
             { TextureSampler::eAddressMode::WRAP, D3D11_TEXTURE_ADDRESS_WRAP },
             { TextureSampler::eAddressMode::BORDER, D3D11_TEXTURE_ADDRESS_BORDER },
             { TextureSampler::eAddressMode::CLAMP, D3D11_TEXTURE_ADDRESS_CLAMP },
@@ -493,7 +501,8 @@ namespace xpe {
 
         }
 
-        void D3D11Context::CreateTexture1D(Texture &texture) {
+        void D3D11Context::CreateTexture1D(Texture &texture)
+        {
             HRESULT status = 0;
             D3D11_TEXTURE1D_DESC texDesc = {};
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
@@ -535,7 +544,8 @@ namespace xpe {
             MemoryPoolManager::Free(initialData);
         }
 
-        void D3D11Context::CreateTexture2D(Texture &texture) {
+        void D3D11Context::CreateTexture2D(Texture &texture)
+        {
             HRESULT status = 0;
             D3D11_TEXTURE2D_DESC texDesc = {};
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
@@ -580,7 +590,8 @@ namespace xpe {
             MemoryPoolManager::Free(initialData);
         }
 
-        void D3D11Context::CreateTexture2DArray(Texture &texture) {
+        void D3D11Context::CreateTexture2DArray(Texture &texture)
+        {
             HRESULT status = 0;
             D3D11_TEXTURE2D_DESC texDesc = {};
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
@@ -628,7 +639,8 @@ namespace xpe {
             MemoryPoolManager::Free(initialData);
         }
 
-        void D3D11Context::CreateTexture3D(Texture &texture) {
+        void D3D11Context::CreateTexture3D(Texture &texture)
+        {
             HRESULT status = 0;
             D3D11_TEXTURE3D_DESC texDesc = {};
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
@@ -671,7 +683,8 @@ namespace xpe {
             MemoryPoolManager::Free(initialData);
         }
 
-        void D3D11Context::CreateTextureCube(Texture &texture) {
+        void D3D11Context::CreateTextureCube(Texture &texture)
+        {
             D3D11_TEXTURE2D_DESC desc = {};
             D3D11_SUBRESOURCE_DATA initialData[6];
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
@@ -718,7 +731,8 @@ namespace xpe {
             }
         }
 
-        void D3D11Context::BindTextureSlot(u32 slot) {
+        void D3D11Context::BindTextureSlot(u32 slot)
+        {
             ID3D11ShaderResourceView* views = nullptr;
             _immContext->PSSetShaderResources(slot, 1, &views);
             LogDebugMessage();
@@ -895,14 +909,16 @@ namespace xpe {
 
         }
 
-        void D3D11Context::BindVertexBuffer(const Buffer *buffer) {
+        void D3D11Context::BindVertexBuffer(const Buffer *buffer)
+        {
             UINT stride = buffer->StructureSize;
             UINT offset = 0;
             _immContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance, &stride, &offset);
             LogDebugMessage();
         }
 
-        void D3D11Context::BindIndexBuffer(const Buffer *buffer) {
+        void D3D11Context::BindIndexBuffer(const Buffer *buffer)
+        {
             // we can skip 16-bit index type
             // it's very rare that we will bind index buffer with index range [0, ~65555]
             DXGI_FORMAT format = DXGI_FORMAT_R32_UINT;
@@ -910,7 +926,8 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::BindVSBuffer(const Buffer *buffer) {
+        void D3D11Context::BindVSBuffer(const Buffer *buffer)
+        {
             if (buffer->Type == eBufferType::STRUCTURED)
             {
                 _immContext->VSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->ViewInstance);
@@ -923,7 +940,8 @@ namespace xpe {
             }
         }
 
-        void D3D11Context::BindPSBuffer(const Buffer *buffer) {
+        void D3D11Context::BindPSBuffer(const Buffer *buffer)
+        {
             if (buffer->Type == eBufferType::STRUCTURED)
             {
                 _immContext->PSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->ViewInstance);
@@ -986,7 +1004,8 @@ namespace xpe {
             }
         }
 
-        static const unordered_map<VertexFormat::Attribute::eFormat, DXGI_FORMAT> p_VertexFormatTable = {
+        static const unordered_map<VertexFormat::Attribute::eFormat, DXGI_FORMAT> p_VertexFormatTable =
+        {
             { VertexFormat::Attribute::eFormat::BOOL, DXGI_FORMAT_R32_UINT },
             { VertexFormat::Attribute::eFormat::INT, DXGI_FORMAT_R32_SINT },
             { VertexFormat::Attribute::eFormat::FLOAT, DXGI_FORMAT_R32_FLOAT },
@@ -1026,19 +1045,19 @@ namespace xpe {
             MemoryPoolManager::Free(attributes);
         }
 
+        static const unordered_map<ePrimitiveTopology, D3D11_PRIMITIVE_TOPOLOGY> s_PrimitiveTopologyTable =
+        {
+                { ePrimitiveTopology::TRIANGLE_STRIP, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP },
+                { ePrimitiveTopology::TRIANGLE_LIST, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST },
+                { ePrimitiveTopology::POINT_LIST, D3D11_PRIMITIVE_TOPOLOGY_POINTLIST },
+                { ePrimitiveTopology::LINE_LIST, D3D11_PRIMITIVE_TOPOLOGY_LINELIST },
+                { ePrimitiveTopology::LINE_STRIP, D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP }
+        };
+
         void D3D11Context::BindInputLayout(const InputLayout* inputLayout)
         {
-            if (inputLayout->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_STRIP)
-            {
-                _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-                LogDebugMessage();
-            }
-
-            else if (inputLayout->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_LIST)
-            {
-                _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-                LogDebugMessage();
-            }
+            _immContext->IASetPrimitiveTopology(s_PrimitiveTopologyTable.at(inputLayout->PrimitiveTopology));
+            LogDebugMessage();
 
             _immContext->IASetInputLayout((ID3D11InputLayout*)_boundPipeline->InputLayout.Layout.Instance);
             LogDebugMessage();
@@ -1075,13 +1094,20 @@ namespace xpe {
                 return;
             }
 
-            if (pipeline.Shader->VertexBlob == nullptr) {
+            Blob* vertexBlob = nullptr;
+            for (auto* stage : pipeline.Shader->Stages) {
+                if (stage->Type == eShaderType::VERTEX) {
+                    vertexBlob = &stage->Blob;
+                }
+            }
+
+            if (vertexBlob == nullptr) {
                 LogError("Failed to create render pipeline. Shader has no Vertex stage.");
                 assert(false);
                 return;
             }
 
-            pipeline.InputLayout.VertexBlob = pipeline.Shader->VertexBlob;
+            pipeline.InputLayout.VertexBlob = vertexBlob;
             CreateInputLayout(pipeline.InputLayout);
 
             CreateDepthStencilState(pipeline.DepthStencilState);
@@ -1157,11 +1183,8 @@ namespace xpe {
 
         void D3D11Context::DrawQuad()
         {
-            if (_boundShader->PrimitiveTopology == ePrimitiveTopology::TRIANGLE_STRIP)
-            {
-                _immContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-                LogDebugMessage();
-            }
+            _immContext->IASetPrimitiveTopology(s_PrimitiveTopologyTable.at(_boundShader->PrimitiveTopology));
+            LogDebugMessage();
 
             _immContext->PSSetSamplers(0, 1, (ID3D11SamplerState**)&_sampler.Instance);
             LogDebugMessage();

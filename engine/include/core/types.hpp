@@ -45,6 +45,7 @@ namespace xpe
 
         constexpr Boolean K_TRUE                    = 1;
         constexpr Boolean K_FALSE                   = 0;
+
         constexpr usize K_MEMORY_KIB                = 1024;
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
         constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;

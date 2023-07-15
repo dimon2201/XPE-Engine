@@ -11,6 +11,7 @@ namespace xpe {
         class RenderTarget;
 
         class Shader;
+        class ShaderStage;
         enum class eShaderType;
 
         class InputLayout;
@@ -41,6 +42,10 @@ namespace xpe {
                 virtual void CreateShader(Shader& shader) = 0;
                 virtual void BindShader(const Shader* shader) = 0;
                 virtual void FreeShader(Shader& shader) = 0;
+
+                virtual void CreateShaderStage(ShaderStage& stage) = 0;
+                virtual void BindShaderStage(const ShaderStage& stage) = 0;
+                virtual void FreeShaderStage(ShaderStage& stage) = 0;
                 
                 virtual void CreateTexture(Texture& texture, const void* instance) = 0;
                 virtual void CreateTexture1D(Texture& texture) = 0;
