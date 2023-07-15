@@ -3,9 +3,9 @@
   "animate_light": true,
 
   "camera_far": 1000,
-  "camera_move_speed": 1.0,
-  "camera_zoom_speed": 5.0,
-  "camera_horizontal_sens": 0.5,
-  "camera_vertical_sens": 0.5
+  "camera_move_speed": 0.01,
+  "camera_zoom_speed": 1.0,
+  "camera_horizontal_sens": 0.01,
+  "camera_vertical_sens": 0.01
 
 }

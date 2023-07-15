@@ -4,14 +4,13 @@ namespace xpe {
 
     namespace control {
 
-        Camera::Camera(CameraBuffer* cameraBuffer, Time* time)
-        : m_CameraBuffer(cameraBuffer), m_Dt(time) {}
+        Camera::Camera(CameraBuffer* cameraBuffer)
+        : m_CameraBuffer(cameraBuffer) {}
 
         PerspectiveCamera::PerspectiveCamera(
                 CameraBuffer *cameraBuffer,
-                PerspectiveCameraComponent *component,
-                Time *time
-        ) : Camera(cameraBuffer, time),
+                PerspectiveCameraComponent *component
+        ) : Camera(cameraBuffer),
             Component(component),
             MaxFovDegree(component->Projection.FovDegree)
         {
@@ -23,8 +22,7 @@ namespace xpe {
         }
 
         void PerspectiveCamera::Move() {
-            float dt = m_Dt->Millis();
-            float distance = MoveSpeed * 0.1f / dt;
+            float distance = MoveSpeed;
             auto& position = Component->Position;
             auto front = glm::normalize(Component->Front);
             auto up = glm::normalize(Component->Up);
@@ -55,10 +53,9 @@ namespace xpe {
         }
 
         void PerspectiveCamera::ZoomIn() {
-            float dt = m_Dt->Millis();
             auto& fov = Component->Projection.FovDegree;
 
-            fov -= (float) ZoomSpeed / dt;
+            fov -= (float) ZoomSpeed;
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Component->Index, Component->Projection);
@@ -66,10 +63,9 @@ namespace xpe {
         }
 
         void PerspectiveCamera::ZoomOut() {
-            float dt = m_Dt->Millis();
             auto& fov = Component->Projection.FovDegree;
 
-            fov += (float) ZoomSpeed / dt;
+            fov += (float) ZoomSpeed;
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Component->Index, Component->Projection);
@@ -77,10 +73,9 @@ namespace xpe {
         }
 
         void PerspectiveCamera::ScrollChanged(const double x, const double y) {
-            float dt = m_Dt->Millis();
             auto& fov = Component->Projection.FovDegree;
 
-            fov -= (float) y * ZoomSpeed / dt;
+            fov -= (float) y * ZoomSpeed;
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
             m_CameraBuffer->SetPerspectiveProjection(Component->Index, Component->Projection);
@@ -91,13 +86,12 @@ namespace xpe {
             Input::CaptureCursor(x, y);
 
             auto& cursorDelta = Input::GetMouseCursor().Delta;
-            float dt = m_Dt->Millis();
             auto& front = Component->Front;
             auto& up = Component->Up;
 
             if (cursorDelta.x != 0 || cursorDelta.y != 0) {
-                float pitchDt = cursorDelta.y * VerticalSensitivity * 0.1f / dt;
-                float yawDt = cursorDelta.x * HorizontalSensitivity * 0.1f / dt;
+                float pitchDt = cursorDelta.y * VerticalSensitivity;
+                float yawDt = cursorDelta.x * HorizontalSensitivity;
                 glm::vec3 right = glm::cross(front, up);
                 glm::quat quatRight = glm::normalize(glm::angleAxis(-pitchDt, right));
                 glm::quat quatUp = glm::normalize(glm::angleAxis(yawDt, up));
@@ -121,10 +115,9 @@ namespace xpe {
         }
 
         OrthoCamera::OrthoCamera(
-                CameraBuffer *cameraBuffer,
-                OrthoCameraComponent *component,
-                Time *time
-        ) : Camera(cameraBuffer, time), Component(component) {
+            CameraBuffer *cameraBuffer,
+            OrthoCameraComponent *component
+        ) : Camera(cameraBuffer), Component(component) {
             m_CameraBuffer->SetCamera(component);
             m_CameraBuffer->Flush();
             Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<OrthoCamera>, 2);

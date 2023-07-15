@@ -109,7 +109,7 @@ namespace xpe {
             textureArray.Height = height;
             textureArray.Slot = slot;
             textureArray.ChannelCount = TextureManager::ChannelTable.at(format);
-            textureArray.Layers.resize(K_MATERIALS_COUNT);
+            textureArray.Layers.resize(TextureManager::K_TEXTURE_ARRAY_SIZE);
 //            for (auto& layer : textureArray.Layers) {
 //                layer.Pixels = MemoryPoolManager::Allocate(textureArray.WinWidth * textureArray.WinHeight * textureArray.ChannelCount);
 //            }

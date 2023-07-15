@@ -22,7 +22,7 @@ public:
     {
         LogInfo("GameApp::Init()");
 
-        ShaderManager::WatchShaders("shaders", 1);
+        ShaderManager::WatchShaders("shaders", true);
 
         m_TestConfig = TestConfigReader::Read("test_config.json");
 
@@ -159,7 +159,7 @@ public:
 
         static PerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
         perspectiveCamera.Projection.Far = m_TestConfig.CameraFar;
-        m_PerspectiveCamera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera, &DeltaTime);
+        m_PerspectiveCamera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera);
         m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_PerspectiveCamera->ZoomSpeed = m_TestConfig.CameraZoomSpeed;
         m_PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;

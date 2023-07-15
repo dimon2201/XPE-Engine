@@ -136,6 +136,8 @@ namespace xpe {
         {
 
         public:
+            // hardware specific values
+            static const usize K_TEXTURE_ARRAY_SIZE = 1;
             // channels count table for each texture format
             static unordered_map<Texture::eFormat, int> ChannelTable;
             // bytes per pixel table for each texture format

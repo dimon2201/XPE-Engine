@@ -7,8 +7,8 @@ namespace xpe {
         using namespace core;
 
         struct ENGINE_API GPUResource {
-            void* Instance;
-            void* ViewInstance;
+            void* Instance = nullptr;
+            void* ViewInstance = nullptr;
         };
 
         enum class ePrimitiveTopology {
