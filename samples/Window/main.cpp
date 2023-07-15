@@ -161,7 +161,8 @@ public:
         perspectiveCamera.Projection.Far = m_TestConfig.CameraFar;
         m_PerspectiveCamera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera);
         m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
-        m_PerspectiveCamera->ZoomSpeed = m_TestConfig.CameraZoomSpeed;
+        m_PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
+        m_PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
         m_PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
         m_PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
 
@@ -177,7 +178,7 @@ public:
         {
             LockFPSFromConfig();
 
-            m_PerspectiveCamera->Move();
+            UpdateCamera();
 
             Simulate();
 
@@ -234,6 +235,15 @@ public:
     }
 
 private:
+
+    void UpdateCamera() {
+        if (Input::MousePressed(eMouse::ButtonLeft)) {
+            m_PerspectiveCamera->LookMode = Camera::eLookMode::EDITOR;
+        } else {
+            m_PerspectiveCamera->LookMode = Camera::eLookMode::GAME;
+        }
+        m_PerspectiveCamera->Move();
+    }
 
     void MoveLight(const eKey key) {
         if (key == eKey::Up) {

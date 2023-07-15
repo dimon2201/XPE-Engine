@@ -43,6 +43,16 @@ namespace xpe {
             }
         }
 
+        template<typename T>
+        T min(const T& right, const T& left) {
+            return right < left ? right : left;
+        }
+
+        template<typename T>
+        T max(const T& right, const T& left) {
+            return right > left ? right : left;
+        }
+
     }
 
 }

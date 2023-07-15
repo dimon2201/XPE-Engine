@@ -6,7 +6,8 @@ struct TestConfig final {
     bool AnimateLight = false;
     float CameraFar = 1000;
     float CameraMoveSpeed = 1.0f;
-    float CameraZoomSpeed = 5.0f;
+    float CameraZoomAcceleration = 1.0f;
+    float CameraPanAcceleration = 1.0f;
     float CameraHorizontalSens = 0.5f;
     float CameraVerticalSens = 0.5f;
 };
