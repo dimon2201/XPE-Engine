@@ -51,10 +51,11 @@ namespace xpe {
 
             math::ViewMatrix viewMatrix;
             viewMatrix.Up = componentData.Up;
-            viewMatrix.Center = componentData.Front;
-            viewMatrix.Eye = componentData.Position;
+            viewMatrix.Front = componentData.Front;
+            viewMatrix.Position = componentData.Position;
 
             auto& projection = Component->Projection;
+            projection.AspectRatio = m_ViewWidth / m_ViewHeight;
 
             bufferData.Position = componentData.Position;
             bufferData.View = math::ViewMatrixUpdate(viewMatrix);
@@ -191,11 +192,13 @@ namespace xpe {
             auto& bufferData = *buffer.GetItem(componentData.Index);
 
             math::ViewMatrix viewMatrix;
+            viewMatrix.Position = componentData.Position;
+            viewMatrix.Front = componentData.Front;
             viewMatrix.Up = componentData.Up;
-            viewMatrix.Center = componentData.Front;
-            viewMatrix.Eye = componentData.Position;
 
-            auto& projection = Component->Projection;
+            auto& projection = componentData.Projection;
+            projection.Right = m_ViewWidth / 100.0f;
+            projection.Top = m_ViewHeight / 100.0f;
 
             bufferData.Position = componentData.Position;
             bufferData.View = math::ViewMatrixUpdate(viewMatrix);
@@ -223,18 +226,18 @@ namespace xpe {
             // todo ortho camera look function
         }
 
-        void OrthoCamera::WindowFrameResized(int w, int h) {
+        void OrthoCamera::WindowFrameResized(int width, int height) {
             auto& component = *Component;
             auto& projection = component.Projection;
             auto& cameraBuffer = *m_CameraBuffer;
 
-            m_ViewWidth = w;
-            m_ViewHeight = h;
+            m_ViewWidth = width;
+            m_ViewHeight = height;
 
-            projection.Left = w;
-            projection.Top = h;
+            projection.Right = width / 100.0f;
+            projection.Top = height / 100.0f;
 
-            cameraBuffer.GetItem(component.Index)->View = math::OrthoMatrixUpdate(projection);
+            cameraBuffer.GetItem(component.Index)->Projection = math::OrthoMatrixUpdate(projection);
             cameraBuffer.Flush();
         }
 

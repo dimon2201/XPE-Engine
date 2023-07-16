@@ -21,8 +21,8 @@ namespace xpe {
         glm::mat4 ENGINE_API Model2dMatrixUpdate(const Model2dMatrix& model2DMatrix);
 
         struct ENGINE_API ViewMatrix final {
-            glm::vec3 Eye = { 0, 0, 0 };
-            glm::vec3 Center = { 0, 0, 0 };
+            glm::vec3 Position = {0, 0, 0 };
+            glm::vec3 Front = {0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
         };
 
@@ -30,11 +30,11 @@ namespace xpe {
 
         struct ENGINE_API OrthoMatrix final {
             float Left = 0;
-            float Right = 800;
+            float Right = 1;
             float Bottom = 0;
-            float Top = 600;
+            float Top = 1;
             float Near = 0.1f;
-            float Far = 100.0f;
+            float Far = 1.0f;
         };
 
         glm::mat4 ENGINE_API OrthoMatrixUpdate(const OrthoMatrix& orthoMatrix);

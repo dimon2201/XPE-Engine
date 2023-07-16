@@ -9,6 +9,4 @@
   "camera_horizontal_sens": 0.01,
   "camera_vertical_sens": 0.01,
 
-  "ortho_camera_far": 1000
-
 }

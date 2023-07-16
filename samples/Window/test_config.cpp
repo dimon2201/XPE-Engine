@@ -41,6 +41,4 @@ void TestConfigReader::Parse(const std::string &source, TestConfig &config) {
     config.CameraHorizontalSens = root["camera_horizontal_sens"].asFloat();
     config.CameraVerticalSens = root["camera_vertical_sens"].asFloat();
 
-    config.OrthoCameraFar = root["ortho_camera_far"].asFloat();
-
 }

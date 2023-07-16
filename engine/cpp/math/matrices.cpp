@@ -21,7 +21,7 @@ namespace xpe {
         }
 
         glm::mat4 ViewMatrixUpdate(const ViewMatrix &viewMatrix) {
-            return math::lookAt(viewMatrix.Eye, viewMatrix.Center, viewMatrix.Up);
+            return math::lookAt(viewMatrix.Position, viewMatrix.Front, viewMatrix.Up);
         }
 
         glm::mat4 OrthoMatrixUpdate(const OrthoMatrix &orthoMatrix) {

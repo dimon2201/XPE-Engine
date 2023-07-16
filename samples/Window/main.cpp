@@ -74,13 +74,13 @@ public:
 //        SphereGeometry sphere = { 16, 16 };
 //        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
 
-//        Triangle2d triangle;
-//        RenderInstance2d triangleInstance;
-//        Transform2DComponent triangleTransform("Triangle2dTransform");
-//        TransformManager::UpdateTransform2D(0, triangleTransform);
-//        m_BatchManager2d->StoreGeometryVertexed("Triangle2d", triangle);
-//        m_BatchManager2d->AddInstance("Triangle2d", triangleInstance);
-//        m_BatchManager2d->FlushInstances("Triangle2d");
+        Triangle2d triangle2D;
+        RenderInstance2d triangle2DInstance;
+        Transform2DComponent triangle2DTransform("Triangle2DTransform");
+        TransformManager::UpdateTransform2D(0, triangle2DTransform);
+        m_BatchManager2d->StoreGeometryVertexed("Triangle2D", triangle2D);
+        m_BatchManager2d->AddInstance("Triangle2D", triangle2DInstance);
+        m_BatchManager2d->FlushInstances("Triangle2D");
 
         Triangle triangle;
         m_BatchManager->StoreGeometryVertexed("Triangle", triangle);
@@ -137,20 +137,9 @@ public:
         MaterialManager::UpdateMaterials();
 
         InitPipeline();
-        InitPipeline2d();
-
-        static PerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        perspectiveCamera.Projection.Far = m_TestConfig.CameraFar;
-        m_PerspectiveCamera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera);
-        m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
-        m_PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
-        m_PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
-        m_PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
-        m_PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
-
-        static OrthoCameraComponent orthoCamera("OrthoCamera");
-        orthoCamera.Projection.Far = m_TestConfig.OrthoCameraFar;
-        m_OrthoCamera = new OrthoCamera(&m_CameraBuffer2d, &orthoCamera);
+        InitPipeline2D();
+        InitCamera();
+        InitCamera2D();
 
         // todo maybe we will automate it in future and make it more easy to use
         LightManager::InitLight(m_DirectLightComponent.Light);
@@ -173,8 +162,8 @@ public:
 
             m_Canvas->Clear(glm::vec4(1.0f));
 
-            context->BindRenderPipeline(&m_Pipeline);
-            m_BatchManager->DrawAll();
+//            context->BindRenderPipeline(&m_Pipeline);
+//            m_BatchManager->DrawAll();
 
             context->BindRenderPipeline(&m_Pipeline2d);
             m_BatchManager2d->DrawAll();
@@ -190,10 +179,10 @@ public:
         delete m_ECS;
         delete m_Canvas;
 
-        delete m_PerspectiveCamera;
+        delete m_Camera;
         delete m_BatchManager;
 
-        delete m_OrthoCamera;
+        delete m_Camera2D;
         delete m_BatchManager2d;
     }
 
@@ -258,7 +247,7 @@ private:
         context->CreateRenderPipeline(m_Pipeline);
     }
 
-    void InitPipeline2d() {
+    void InitPipeline2D() {
         // setup buffers
         m_Pipeline2d.VSBuffers.emplace_back(&m_CameraBuffer2d);
         m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
@@ -268,10 +257,10 @@ private:
                 .AddVertexStageFromFile("shaders/window2d.vs")
                 .AddPixelStageFromFile("shaders/window2d.ps")
                 .Build("window2d");
-        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
         // setup input layout
-        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
         m_Layout2d.Format = Vertex2D::Format;
         m_Pipeline2d.InputLayout = m_Layout2d;
 
@@ -283,13 +272,29 @@ private:
         context->CreateRenderPipeline(m_Pipeline2d);
     }
 
+    void InitCamera() {
+        static PerspectiveCameraComponent perspectiveCamera("Camera");
+        perspectiveCamera.Projection.Far = m_TestConfig.CameraFar;
+        m_Camera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera);
+        m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
+        m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
+        m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
+        m_Camera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
+        m_Camera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+    }
+
+    void InitCamera2D() {
+        static OrthoCameraComponent orthoCamera("Camera2D");
+        m_Camera2D = new OrthoCamera(&m_CameraBuffer2d, &orthoCamera);
+    }
+
     void UpdateCamera() {
         if (Input::MousePressed(eMouse::ButtonLeft)) {
-            m_PerspectiveCamera->LookMode = Camera::eLookMode::EDITOR;
+            m_Camera->LookMode = Camera::eLookMode::EDITOR;
         } else {
-            m_PerspectiveCamera->LookMode = Camera::eLookMode::GAME;
+            m_Camera->LookMode = Camera::eLookMode::GAME;
         }
-        m_PerspectiveCamera->Move();
+        m_Camera->Move();
     }
 
     void MoveLight(const eKey key) {
@@ -352,8 +357,8 @@ private:
     InputLayout m_Layout;
     InputLayout m_Layout2d;
 
-    PerspectiveCamera* m_PerspectiveCamera;
-    OrthoCamera* m_OrthoCamera;
+    PerspectiveCamera* m_Camera;
+    OrthoCamera* m_Camera2D;
 
     DirectLightComponent m_DirectLightComponent = string("DirectLight");
 
