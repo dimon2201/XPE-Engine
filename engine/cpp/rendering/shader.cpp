@@ -6,17 +6,17 @@ namespace xpe {
     namespace render {
 
         Shader* ShaderBuilder::Build(const string& shaderId) {
-            m_Context->CreateShader(*m_Shader);
-            m_Shader->ID = shaderId;
-            ShaderManager::AddShader(shaderId, *m_Shader);
-            return m_Shader;
+            m_Shader.ID = shaderId;
+            m_Context->CreateShader(m_Shader);
+            ShaderManager::AddShader(shaderId, m_Shader);
+            return ShaderManager::GetShader(shaderId);
         }
 
         ShaderBuilder& ShaderBuilder::AddVertexStageFromFile(const char *filepath) {
             ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
 
             if (stage != nullptr) {
-                m_Shader->Stages.emplace_back(stage);
+                m_Shader.Stages.emplace_back(stage);
                 return *this;
             }
 
@@ -36,7 +36,7 @@ namespace xpe {
             ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
 
             if (stage != nullptr) {
-                m_Shader->Stages.emplace_back(stage);
+                m_Shader.Stages.emplace_back(stage);
                 return *this;
             }
 
@@ -56,7 +56,7 @@ namespace xpe {
             ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
 
             if (stage != nullptr) {
-                m_Shader->Stages.emplace_back(stage);
+                m_Shader.Stages.emplace_back(stage);
                 return *this;
             }
 
@@ -76,7 +76,7 @@ namespace xpe {
             ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
 
             if (stage != nullptr) {
-                m_Shader->Stages.emplace_back(stage);
+                m_Shader.Stages.emplace_back(stage);
                 return *this;
             }
 
@@ -96,7 +96,7 @@ namespace xpe {
             ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
 
             if (stage != nullptr) {
-                m_Shader->Stages.emplace_back(stage);
+                m_Shader.Stages.emplace_back(stage);
                 return *this;
             }
 
@@ -116,7 +116,7 @@ namespace xpe {
             ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
 
             if (stage != nullptr) {
-                m_Shader->Stages.emplace_back(stage);
+                m_Shader.Stages.emplace_back(stage);
                 return *this;
             }
 
@@ -140,7 +140,7 @@ namespace xpe {
 
             ShaderManager::AddShaderStage(id, stage);
 
-            m_Shader->Stages.emplace_back(ShaderManager::GetShaderStage(id));
+            m_Shader.Stages.emplace_back(ShaderManager::GetShaderStage(id));
 
             return *this;
         }
@@ -153,7 +153,7 @@ namespace xpe {
 
             ShaderManager::AddShaderStage(id, stage);
 
-            m_Shader->Stages.emplace_back(ShaderManager::GetShaderStage(id));
+            m_Shader.Stages.emplace_back(ShaderManager::GetShaderStage(id));
 
             return *this;
         }
@@ -166,7 +166,7 @@ namespace xpe {
 
             ShaderManager::AddShaderStage(id, stage);
 
-            m_Shader->Stages.emplace_back(ShaderManager::GetShaderStage(id));
+            m_Shader.Stages.emplace_back(ShaderManager::GetShaderStage(id));
 
             return *this;
         }
@@ -179,7 +179,7 @@ namespace xpe {
 
             ShaderManager::AddShaderStage(id, stage);
 
-            m_Shader->Stages.emplace_back(ShaderManager::GetShaderStage(id));
+            m_Shader.Stages.emplace_back(ShaderManager::GetShaderStage(id));
 
             return *this;
         }
@@ -192,7 +192,7 @@ namespace xpe {
 
             ShaderManager::AddShaderStage(id, stage);
 
-            m_Shader->Stages.emplace_back(ShaderManager::GetShaderStage(id));
+            m_Shader.Stages.emplace_back(ShaderManager::GetShaderStage(id));
 
             return *this;
         }
@@ -205,7 +205,7 @@ namespace xpe {
 
             ShaderManager::AddShaderStage(id, stage);
 
-            m_Shader->Stages.emplace_back(ShaderManager::GetShaderStage(id));
+            m_Shader.Stages.emplace_back(ShaderManager::GetShaderStage(id));
 
             return *this;
         }
@@ -217,15 +217,13 @@ namespace xpe {
         unordered_map<string, ShaderStage> ShaderManager::s_ShaderStageTable;
         unordered_map<string, Shader> ShaderManager::s_ShaderTable;
 
-        Shader ShaderManager::s_TempShader;
-
         platform::FileWatcher* ShaderManager::s_FileWatcher = nullptr;
 
         void ShaderManager::Init(Context* context) {
             LogInfo("ShaderManager::Init()");
 
             s_Context = context;
-            s_ShaderBuilder = { context, &s_TempShader };
+            s_ShaderBuilder = { context };
             s_FileWatcher = new platform::FileWatcher();
 
             LogInfo("ShaderManager initialized");
@@ -244,8 +242,7 @@ namespace xpe {
         }
 
         ShaderBuilder& ShaderManager::Builder() {
-            s_TempShader = {};
-            s_ShaderBuilder = { s_Context, &s_TempShader };
+            s_ShaderBuilder = { s_Context };
             return s_ShaderBuilder;
         }
 

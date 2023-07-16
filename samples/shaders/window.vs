@@ -5,7 +5,7 @@
 
 struct VSIn
 {
-    float3 positionLocal : XPE_POSITION_LOCAL;
+    float3 positionLocal : XPE_POSITION;
     float2 texcoord : XPE_UV;
     float3 normal : XPE_NORMAL;
     uint instanceIndex : SV_InstanceID;

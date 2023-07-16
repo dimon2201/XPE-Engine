@@ -52,7 +52,8 @@ namespace xpe {
 
             context->Init();
 
-            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in memory
+            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
+            m_CameraBuffer2d = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
 
             ShaderManager::Init(context);
             if (Config.HotReloadShaders) {

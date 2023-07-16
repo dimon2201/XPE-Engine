@@ -263,7 +263,7 @@ namespace xpe {
             );
         }
 
-        Texture TextureManager::ResizeTexture(Texture& input, usize outputWidth, usize outputHeight)
+        Texture TextureManager::ResizeTexture(const Texture& input, usize outputWidth, usize outputHeight)
         {
             Texture output = {};
             output.Width = outputWidth;
@@ -312,7 +312,7 @@ namespace xpe {
             return output;
         }
 
-        void TextureManager::ResizeTextureU8(Texture &input, Texture &output) {
+        void TextureManager::ResizeTextureU8(const Texture &input, Texture &output) {
             usize layerSize = input.Layers.size();
             for (usize i = 0 ; i < layerSize ; i++) {
                 stbir_resize_uint8(
@@ -325,7 +325,7 @@ namespace xpe {
             }
         }
 
-        void TextureManager::ResizeTextureFloat(Texture &input, Texture &output) {
+        void TextureManager::ResizeTextureFloat(const Texture &input, Texture &output) {
             usize layerSize = input.Layers.size();
             for (usize i = 0 ; i < layerSize ; i++) {
                 stbir_resize_float(

@@ -64,6 +64,16 @@ namespace xpe {
         }
 
         template<typename T>
+        static void InitNormal(T* v0, T* v1, T* v2) {
+            glm::vec3 x1 = v1->Position - v0->Position;
+            glm::vec3 x2 = v2->Position - v0->Position;
+            glm::vec3 normal = -glm::normalize(glm::cross(x1, x2));
+            v0->Normal = normal;
+            v1->Normal = normal;
+            v2->Normal = normal;
+        }
+
+        template<typename T>
         static void InitNormal(T* v0, T* v1, T* v2, T* v3) {
             glm::vec3 x1 = v1->Position - v0->Position;
             glm::vec3 x2 = v3->Position - v0->Position;

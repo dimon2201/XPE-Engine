@@ -38,6 +38,8 @@ namespace xpe {
             v0.UV = { 0, 1 };
             v1.UV = { 1, 0 };
             v2.UV = { 1, 1 };
+
+            InitNormal<render::Vertex3D>(&v0, &v1, &v2);
         }
 
         Triangle::~Triangle() {

@@ -34,6 +34,7 @@ public:
         m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         m_ECS = new ECSManager();
         m_BatchManager = new BatchManager(context);
+        m_BatchManager2d = new BatchManager2d(context);
 
         Font font = TTFManager::Load("resources/fonts/Roboto-Italic.ttf", 32);
         TTFManager::Free(font);
@@ -56,25 +57,33 @@ public:
 //        Model3D cubeModel = GLTFImporter::Import("resources/cube.gltf");
 //        Mesh& cubeMesh = cubeModel[0];
 //        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
-
-        PlaneGeometry plane = 100;
-        m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
-
-        RenderInstance planeInstance;
-        TransformComponent planeTransform("PlaneTransform");
-        planeTransform.Position = { 0, -60, 0 };
-        TransformManager::UpdateTransform(0, planeTransform);
-        m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
-        m_BatchManager->FlushInstances("PlaneGeometry");
+//
+//        PlaneGeometry plane = 100;
+//        m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
+//
+//        RenderInstance planeInstance;
+//        TransformComponent planeTransform("PlaneTransform");
+//        planeTransform.Position = { 0, -60, 0 };
+//        TransformManager::UpdateTransform(0, planeTransform);
+//        m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
+//        m_BatchManager->FlushInstances("PlaneGeometry");
 
 //        CubeGeometry cube;
 //        m_BatchManager->StoreGeometryIndexed("CubeGeometry", cube);
 //
-        SphereGeometry sphere = { 16, 16 };
-        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
-//
-//        Triangle3d triangle;
-//        m_BatchManager->StoreGeometryVertexed("Triangle", triangle);
+//        SphereGeometry sphere = { 16, 16 };
+//        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
+
+//        Triangle2d triangle;
+//        RenderInstance2d triangleInstance;
+//        Transform2DComponent triangleTransform("Triangle2dTransform");
+//        TransformManager::UpdateTransform2D(0, triangleTransform);
+//        m_BatchManager2d->StoreGeometryVertexed("Triangle2d", triangle);
+//        m_BatchManager2d->AddInstance("Triangle2d", triangleInstance);
+//        m_BatchManager2d->FlushInstances("Triangle2d");
+
+        Triangle triangle;
+        m_BatchManager->StoreGeometryVertexed("Triangle", triangle);
 
         // Put instances of geometry
         u32 transformIndex = 1;
@@ -127,35 +136,8 @@ public:
         // it will flush all materials data into GPU memory
         MaterialManager::UpdateMaterials();
 
-        // Create render pipeline data
-
-        // setup buffers
-        m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
-        m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
-        m_Pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
-        m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
-
-        // setup shader
-        m_Pipeline.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window.vs")
-                .AddPixelStageFromFile("shaders/window.ps")
-                .Build("window");
-        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-
-        // setup input layout
-        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-        m_Layout.Format = Vertex3D::Format;
-        m_Pipeline.InputLayout = m_Layout;
-
-        // setup render target
-        m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
-        m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
-
-        // init pipeline
-        context->CreateRenderPipeline(m_Pipeline);
+        InitPipeline();
+        InitPipeline2d();
 
         static PerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
         perspectiveCamera.Projection.Far = m_TestConfig.CameraFar;
@@ -165,6 +147,10 @@ public:
         m_PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
         m_PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
         m_PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+
+        static OrthoCameraComponent orthoCamera("OrthoCamera");
+        orthoCamera.Projection.Far = m_TestConfig.OrthoCameraFar;
+        m_OrthoCamera = new OrthoCamera(&m_CameraBuffer2d, &orthoCamera);
 
         // todo maybe we will automate it in future and make it more easy to use
         LightManager::InitLight(m_DirectLightComponent.Light);
@@ -182,14 +168,16 @@ public:
 
             Simulate();
 
+            // todo bug: canvas is not updated or resized because after binding material textures
+            // MaterialManager::BindMaterials();
+
             m_Canvas->Clear(glm::vec4(1.0f));
 
             context->BindRenderPipeline(&m_Pipeline);
-
-            // todo bug: canvas is not update or resized because of BindMaterials()
-//            MaterialManager::BindMaterials();
-
             m_BatchManager->DrawAll();
+
+            context->BindRenderPipeline(&m_Pipeline2d);
+            m_BatchManager2d->DrawAll();
 
             m_Canvas->Present();
         }
@@ -198,10 +186,15 @@ public:
     void Free()
     {
         LogInfo("GameApp::Free()");
-        delete m_PerspectiveCamera;
+
         delete m_ECS;
-        delete m_BatchManager;
         delete m_Canvas;
+
+        delete m_PerspectiveCamera;
+        delete m_BatchManager;
+
+        delete m_OrthoCamera;
+        delete m_BatchManager2d;
     }
 
     void WindowClosed()
@@ -235,6 +228,60 @@ public:
     }
 
 private:
+
+    void InitPipeline() {
+        // setup buffers
+        m_Pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
+        m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
+        m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
+        m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
+        m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
+        m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
+
+        // setup shader
+        m_Pipeline.Shader = ShaderManager::Builder()
+                .AddVertexStageFromFile("shaders/window.vs")
+                .AddPixelStageFromFile("shaders/window.ps")
+                .Build("window");
+        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+
+        // setup input layout
+        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+        m_Layout.Format = Vertex3D::Format;
+        m_Pipeline.InputLayout = m_Layout;
+
+        // setup render target
+        m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
+        m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
+
+        // init pipeline
+        context->CreateRenderPipeline(m_Pipeline);
+    }
+
+    void InitPipeline2d() {
+        // setup buffers
+        m_Pipeline2d.VSBuffers.emplace_back(&m_CameraBuffer2d);
+        m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
+
+        // setup shader
+        m_Pipeline2d.Shader = ShaderManager::Builder()
+                .AddVertexStageFromFile("shaders/window2d.vs")
+                .AddPixelStageFromFile("shaders/window2d.ps")
+                .Build("window2d");
+        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+
+        // setup input layout
+        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+        m_Layout2d.Format = Vertex2D::Format;
+        m_Pipeline2d.InputLayout = m_Layout2d;
+
+        // setup render target
+        m_Pipeline2d.RenderTarget = m_Canvas->GetRenderTarget();
+        m_Pipeline2d.DepthStencilState.UseDepthTest = K_FALSE;
+
+        // init pipeline
+        context->CreateRenderPipeline(m_Pipeline2d);
+    }
 
     void UpdateCamera() {
         if (Input::MousePressed(eMouse::ButtonLeft)) {
@@ -297,16 +344,16 @@ private:
     ECSManager* m_ECS;
 
     BatchManager* m_BatchManager;
-//    BatchManager2d* m_BatchManager2d;
+    BatchManager2d* m_BatchManager2d;
 
     Pipeline m_Pipeline;
-//    Pipeline m_Pipeline2D;
+    Pipeline m_Pipeline2d;
 
     InputLayout m_Layout;
-//    InputLayout m_Layout2D;
+    InputLayout m_Layout2d;
 
     PerspectiveCamera* m_PerspectiveCamera;
-//    OrthoCamera* m_OrthoCamera;
+    OrthoCamera* m_OrthoCamera;
 
     DirectLightComponent m_DirectLightComponent = string("DirectLight");
 

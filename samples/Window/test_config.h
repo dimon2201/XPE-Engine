@@ -10,6 +10,7 @@ struct TestConfig final {
     float CameraPanAcceleration = 1.0f;
     float CameraHorizontalSens = 0.5f;
     float CameraVerticalSens = 0.5f;
+    float OrthoCameraFar = 1000;
 };
 
 class TestConfigReader final {

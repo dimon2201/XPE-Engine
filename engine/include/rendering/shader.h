@@ -40,8 +40,7 @@ namespace xpe {
         public:
             ShaderBuilder() = default;
 
-            ShaderBuilder(Context* context, Shader* shader)
-            : m_Context(context), m_Shader(shader) {}
+            ShaderBuilder(Context* context) : m_Context(context) {}
 
             ~ShaderBuilder() = default;
 
@@ -64,7 +63,7 @@ namespace xpe {
 
         private:
             Context* m_Context = nullptr;
-            Shader* m_Shader = nullptr;
+            Shader m_Shader;
         };
 
         class ENGINE_API ShaderManager final {
@@ -93,7 +92,6 @@ namespace xpe {
             static ShaderBuilder s_ShaderBuilder;
             static unordered_map<string, ShaderStage> s_ShaderStageTable;
             static unordered_map<string, Shader> s_ShaderTable;
-            static Shader s_TempShader;
             static platform::FileWatcher* s_FileWatcher;
         };
 

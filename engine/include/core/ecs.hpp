@@ -37,7 +37,7 @@ namespace xpe
 
             glm::vec2 Position = { 0, 0 };
             float Rotation = 0;
-            glm::vec2 Scale = { 0, 0 };
+            glm::vec2 Scale = { 1, 1 };
         };
 
         struct ENGINE_API RigidBodyComponent : public Component

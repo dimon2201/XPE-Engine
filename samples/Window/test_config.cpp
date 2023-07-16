@@ -22,6 +22,8 @@ TestConfig TestConfigReader::Read(const char *filepath) {
 
     Parse(std::string(str), config);
 
+    free(str);
+
     return config;
 }
 
@@ -31,10 +33,14 @@ void TestConfigReader::Parse(const std::string &source, TestConfig &config) {
     reader.parse(source, root);
 
     config.AnimateLight = root["animate_light"].asBool();
+
     config.CameraFar = root["camera_far"].asFloat();
     config.CameraMoveSpeed = root["camera_move_speed"].asFloat();
     config.CameraZoomAcceleration = root["camera_zoom_acceleration"].asFloat();
     config.CameraPanAcceleration = root["camera_pan_acceleration"].asFloat();
     config.CameraHorizontalSens = root["camera_horizontal_sens"].asFloat();
     config.CameraVerticalSens = root["camera_vertical_sens"].asFloat();
+
+    config.OrthoCameraFar = root["ortho_camera_far"].asFloat();
+
 }

@@ -30,9 +30,9 @@ namespace xpe {
 
         struct ENGINE_API OrthoMatrix final {
             float Left = 0;
-            float Right = 0;
+            float Right = 800;
             float Bottom = 0;
-            float Top = 0;
+            float Top = 600;
             float Near = 0.1f;
             float Far = 100.0f;
         };

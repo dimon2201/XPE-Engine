@@ -12,9 +12,9 @@ namespace xpe {
 
         struct Texture;
 
-        struct ENGINE_API cTextureComponent : public Component {
+        struct ENGINE_API TextureComponent : public Component {
 
-            cTextureComponent(const string& usid) : Component(usid) {}
+            TextureComponent(const string& usid) : Component(usid) {}
 
             Texture* Texture = nullptr;
 
@@ -164,12 +164,12 @@ namespace xpe {
             static Texture* LoadTextureCubeFile(const TextureCubeFile& cubeFile, const Texture::eFormat& format);
 
             static void WriteTextureFile(const char* filePath, const Texture& image, const Texture::eFileFormat& fileFormat);
-            static Texture ResizeTexture(Texture& input, usize outputWidth, usize outputHeight);
+            static Texture ResizeTexture(const Texture& input, usize outputWidth, usize outputHeight);
             static void FlipTexture(Texture& texture);
 
         private:
-            static void ResizeTextureU8(Texture& input, Texture& output);
-            static void ResizeTextureFloat(Texture& input, Texture& output);
+            static void ResizeTextureU8(const Texture& input, Texture& output);
+            static void ResizeTextureFloat(const Texture& input, Texture& output);
 
         private:
             static Context* s_Context;

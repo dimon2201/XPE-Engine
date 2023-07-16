@@ -29,15 +29,15 @@ namespace xpe {
         void BatchManager::InitBatchIndexed(BatchIndexed &batchIndexed, const GeometryIndexedFormat& format)
         {
             batchIndexed.Format = format;
-            batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount * sizeof(Vertex3D));
-            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount * sizeof(u32));
+            batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
+            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
             batchIndexed.Instances = InstanceBuffer(m_Context, K_INSTANCE_COUNT);
         }
 
         void BatchManager::InitBatchVertexed(BatchVertexed &batchVertexed, const GeometryVertexedFormat& format)
         {
             batchVertexed.Format = format;
-            batchVertexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount * sizeof(Vertex3D));
+            batchVertexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
             batchVertexed.Instances = InstanceBuffer(m_Context, K_INSTANCE_COUNT);
         }
 
@@ -330,15 +330,15 @@ namespace xpe {
         void BatchManager2d::InitBatchIndexed(BatchIndexed2d &batchIndexed, const GeometryIndexedFormat& format)
         {
             batchIndexed.Format = format;
-            batchIndexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount * sizeof(Vertex2D));
-            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount * sizeof(u32));
+            batchIndexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount);
+            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
             batchIndexed.Instances = InstanceBuffer2d(m_Context, K_INSTANCE_COUNT);
         }
 
         void BatchManager2d::InitBatchVertexed(BatchVertexed2d &batchVertexed, const GeometryVertexedFormat& format)
         {
             batchVertexed.Format = format;
-            batchVertexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount * sizeof(Vertex2D));
+            batchVertexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount);
             batchVertexed.Instances = InstanceBuffer2d(m_Context, K_INSTANCE_COUNT);
         }
 

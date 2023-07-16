@@ -24,6 +24,8 @@ namespace xpe {
 
             Parse(std::string(str), appConfig);
 
+            free(str);
+
             return appConfig;
         }
 
