@@ -162,8 +162,8 @@ public:
 
             m_Canvas->Clear(glm::vec4(1.0f));
 
-//            context->BindRenderPipeline(&m_Pipeline);
-//            m_BatchManager->DrawAll();
+            context->BindRenderPipeline(&m_Pipeline);
+            m_BatchManager->DrawAll();
 
             context->BindRenderPipeline(&m_Pipeline2d);
             m_BatchManager2d->DrawAll();
@@ -214,6 +214,14 @@ public:
 
     void CursorMoved(const double x, const double y)
     {
+        if (Input::MousePressed(eMouse::ButtonRight)) {
+            m_Camera->EnableLook = false;
+            Input::CaptureCursor(x, y);
+            auto& cursorDelta = Input::GetMouseCursor().Delta;
+            m_Camera->Pan(cursorDelta);
+        } else {
+            m_Camera->EnableLook = true;
+        }
     }
 
 private:

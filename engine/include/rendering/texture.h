@@ -56,7 +56,7 @@ namespace xpe {
 
             enum class eFormat
             {
-                R8, R16, R32,
+                R8, R16, R32, R32_TYPELESS,
                 RG8, RG16, RG32,
                 RGB8, RGB16, RGB32,
                 RGBA8, RGBA16, RGBA32
@@ -78,6 +78,7 @@ namespace xpe {
 
             vector<TextureLayer> Layers;
             bool InitializeData = true;
+            bool BindRenderTarget = false;
         };
 
         struct ENGINE_API TextureSampler : public GPUResource

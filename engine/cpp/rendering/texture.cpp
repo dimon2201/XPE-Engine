@@ -225,7 +225,7 @@ namespace xpe {
         }
 
         void TextureManager::InitTexture(Texture &texture) {
-            s_Context->CreateTexture(texture, nullptr);
+            s_Context->CreateTexture(texture);
         }
 
         void TextureManager::InitTextureCube(Texture &texture) {

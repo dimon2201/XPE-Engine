@@ -113,7 +113,7 @@ namespace xpe {
 //            for (auto& layer : textureArray.Layers) {
 //                layer.Pixels = MemoryPoolManager::Allocate(textureArray.WinWidth * textureArray.WinHeight * textureArray.ChannelCount);
 //            }
-            s_Context->CreateTexture(textureArray, nullptr);
+            s_Context->CreateTexture(textureArray);
         }
 
         void MaterialManager::FreeMaterialList() {

@@ -12,11 +12,12 @@ namespace xpe {
         };
 
         struct ENGINE_API RenderTarget final {
-            Texture* ColorTexture;
-            Texture* DepthTexture;
-            void* ColorTargetInstance;
-            void* DepthTargetInstance;
-            glm::ivec2 Dimensions;
+            int Width = 0;
+            int Height = 0;
+            Texture* ColorTexture = nullptr;
+            Texture* DepthTexture = nullptr;
+            void* ColorTargetView = nullptr;
+            void* DepthTargetView = nullptr;
         };
 
     }

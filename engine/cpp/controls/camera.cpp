@@ -30,14 +30,6 @@ namespace xpe {
             return distance * distance;
         }
 
-        void Camera::Pan(const glm::vec2 &delta) {
-            float distance = MoveSpeed;
-            glm::vec3& focalPoint = m_Position;
-            glm::vec2 speed = GetPanSpeed();
-            focalPoint += -GetRightDirection() * delta.x * speed.x * distance;
-            focalPoint += GetUpDirection() * delta.y * speed.y * distance;
-        }
-
         PerspectiveCamera::PerspectiveCamera(
             CameraBuffer* cameraBuffer,
             PerspectiveCameraComponent* component
@@ -65,6 +57,18 @@ namespace xpe {
             Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<PerspectiveCamera>, 2);
             Input::ScrollChangedEvents.AddEvent(this, core::OnScrollChanged<PerspectiveCamera>, 2);
             Input::CursorMovedEvents.AddEvent(this, core::OnCursorMoved<PerspectiveCamera>, 2);
+        }
+
+        void PerspectiveCamera::Pan(const glm::vec2 &delta) {
+            float distance = MoveSpeed;
+            glm::vec3& focalPoint = m_Position;
+            glm::vec2 speed = GetPanSpeed();
+
+            focalPoint += -GetRightDirection() * delta.x * speed.x * distance;
+            focalPoint += GetUpDirection() * delta.y * speed.y * distance;
+
+            UpdateView(focalPoint);
+            m_CameraBuffer->Flush();
         }
 
         void PerspectiveCamera::Move() {
@@ -131,12 +135,17 @@ namespace xpe {
         }
 
         void PerspectiveCamera::Look(const double x, const double y) {
+            if (!EnableLook)
+                return;
+
             Input::CaptureCursor(x, y);
             auto& cursorDelta = Input::GetMouseCursor().Delta;
             float lookSign = (float) LookMode;
             float yawSign = GetUpDirection().y < 0 ? -1.0f : 1.0f;
+
             Yaw += yawSign * cursorDelta.x * HorizontalSensitivity * lookSign;
             Pitch += cursorDelta.y * VerticalSensitivity * lookSign;
+
             UpdateView(m_Position);
             m_CameraBuffer->Flush();
         }
