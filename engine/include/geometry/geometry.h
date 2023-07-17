@@ -52,7 +52,7 @@ namespace xpe {
 
         template<typename T>
         void VertexArray<T>::Reserve(usize count) {
-            Data.reserve(count * sizeof(T));
+            Data.reserve(count);
         }
 
         template<typename T>

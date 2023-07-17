@@ -106,6 +106,18 @@ namespace xpe {
             Material* m_Material = nullptr;
         };
 
+        struct ENGINE_API MaterialStorage : public Object {
+            MaterialBuffer Buffer;
+            MaterialTextures Textures;
+            unordered_map<string, Material> Table;
+
+            MaterialStorage(Context* context, usize count);
+            ~MaterialStorage();
+
+        private:
+            void InitTextureArray(Context* context, Texture& textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot);
+        };
+
         class ENGINE_API MaterialManager final {
 
         public:
@@ -139,15 +151,11 @@ namespace xpe {
             static void InitMaterialList();
             static void FreeMaterialList();
 
-            static void InitTextureArray(Texture& textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot);
-
         private:
             static Context* s_Context;
-            static unordered_map<string, Material> s_MaterialTable;
+            static MaterialStorage* s_Storage;
             static MaterialBuilder s_MaterialBuilder;
             static Material s_TempMaterial;
-            static MaterialBuffer s_MaterialBuffer;
-            static MaterialTextures s_MaterialTextures;
         };
 
     }

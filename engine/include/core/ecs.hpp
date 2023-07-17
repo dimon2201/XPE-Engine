@@ -68,17 +68,17 @@ namespace xpe
 
                 Entity* CreateEntity(const string& usid)
                 {
-                    _entities.insert({ usid, { usid } });
+                    m_Entities.insert({usid, {usid } });
 
-                    auto it = _entities.find(usid);
+                    auto it = m_Entities.find(usid);
                     return &it->second;
                 }
 
                 Entity* GetEntity(const string& usid)
                 {
-                    auto it = _entities.find(usid);
+                    auto it = m_Entities.find(usid);
 
-                    if (it == _entities.end())
+                    if (it == m_Entities.end())
                     {
                         return nullptr;
                     }
@@ -90,11 +90,11 @@ namespace xpe
 
                 void RemoveEntity(const string& usid)
                 {
-                    auto it = _entities.find(usid);
+                    auto it = m_Entities.find(usid);
 
-                    if (it != _entities.end())
+                    if (it != m_Entities.end())
                     {
-                        _entities.erase(it);
+                        m_Entities.erase(it);
                     }
                 }
 
@@ -102,9 +102,9 @@ namespace xpe
                 ComponentStorage* GetComponentStorage()
                 {
                     ComponentType c = ComponentType("");
-                    auto it = _storages.find(c.GetType());
+                    auto it = m_Storages.find(c.GetType());
 
-                    if (it == _storages.end())
+                    if (it == m_Storages.end())
                     {
                         return nullptr;
                     }
@@ -122,17 +122,17 @@ namespace xpe
 
                     if (storage == nullptr)
                     {
-                        void* storageMemory = MemoryPoolManager::Allocate(sizeof(ComponentType) * k_maxComponentCount);
+                        void* storageMemory = allocObj(sizeof(ComponentType) * k_maxComponentCount);
 
-                        _storages.insert({ c.GetType(), { storageMemory } });
+                        m_Storages.insert({c.GetType(), {storageMemory } });
                         
-                        storage = &_storages.find(c.GetType())->second;
+                        storage = &m_Storages.find(c.GetType())->second;
                     }
 
                     ComponentType* storageMemory = (ComponentType*)storage->Storage;
                     storageMemory[storage->Count] = ComponentType(usid);
 
-                    _components.insert({ usid, &storageMemory[storage->Count] });
+                    m_Components.insert({usid, &storageMemory[storage->Count] });
 
                     storage->Count += 1;
 
@@ -142,9 +142,9 @@ namespace xpe
                 template <typename ComponentType>
                 ComponentType* GetComponent(const string& usid)
                 {
-                    auto it = _components.find(usid);
+                    auto it = m_Components.find(usid);
 
-                    if (it == _components.end())
+                    if (it == m_Components.end())
                     {
                         return nullptr;
                     }
@@ -172,11 +172,11 @@ namespace xpe
                         while (storageMemory[index]->USID != usid) { index++; }
 
                         string lastUSID = storageMemory[storage->Count - 1]->USID;
-                        auto it = _components.find(lastUSID);
-                        if (it != _components.end())
+                        auto it = m_Components.find(lastUSID);
+                        if (it != m_Components.end())
                         {
-                            _components.erase(it);
-                            _components.insert({ lastUSID, &storageMemory[index] });
+                            m_Components.erase(it);
+                            m_Components.insert({lastUSID, &storageMemory[index] });
                         }
 
                         storageMemory[index] = storageMemory[storage->Count - 1];
@@ -191,9 +191,9 @@ namespace xpe
                 }
 
             private:
-                map<string, Entity> _entities;
-                map<uword, ComponentStorage> _storages;
-                map<string, Component*> _components;
+                map<string, Entity> m_Entities;
+                map<uword, ComponentStorage> m_Storages;
+                map<string, Component*> m_Components;
         };
     }
 }

@@ -12,11 +12,7 @@ namespace xpe {
 
     namespace render {
 
-        Context* TextureManager::s_Context = nullptr;
-
-        unordered_map<string, Texture> TextureManager::s_TextureTable;
-
-        unordered_map<Texture::eFormat, int> TextureManager::ChannelTable = {
+        std::unordered_map<Texture::eFormat, int> TextureManager::ChannelTable = {
 
                 { Texture::eFormat::R8, 1 },
                 { Texture::eFormat::R16, 1 },
@@ -37,7 +33,7 @@ namespace xpe {
         };
 
         // bytes per pixel table for each texture format
-        unordered_map<Texture::eFormat, int> TextureManager::BPPTable = {
+        std::unordered_map<Texture::eFormat, int> TextureManager::BPPTable = {
                 { Texture::eFormat::R8, 1 },
                 { Texture::eFormat::R16, 2 },
                 { Texture::eFormat::R32, 4 },
@@ -55,23 +51,33 @@ namespace xpe {
                 { Texture::eFormat::RGBA32, 16 },
         };
 
+        Context* TextureManager::s_Context = nullptr;
+        TextureStorage* TextureManager::s_Storage = nullptr;
+
+        TextureStorage::~TextureStorage() {
+            for (auto& texture : Table) {
+                TextureManager::FreeTexture(texture.second);
+            }
+            Table.clear();
+        }
+
         void TextureManager::Init(Context* context) {
             LogInfo("TextureManager::Init()");
             s_Context = context;
+            s_Storage = new TextureStorage();
             LogInfo("TextureManager initialized");
         }
 
         void TextureManager::Free() {
             LogInfo("TextureManager::Free()");
-            for (auto& texture : s_TextureTable) {
-                FreeTexture(texture.second);
-            }
-            s_TextureTable.clear();
+            delete s_Storage;
         }
 
         Texture* TextureManager::ReadTextureFile(const char *filepath, const Texture::eFormat &format) {
-            if (s_TextureTable.find(filepath) != s_TextureTable.end()) {
-                return &s_TextureTable[filepath];
+            auto& table = s_Storage->Table;
+
+            if (table.find(filepath) != table.end()) {
+                return &table[filepath];
             }
 
             Texture texture = {};
@@ -81,9 +87,9 @@ namespace xpe {
             TextureLayer layer = ReadTextureLayerFile(filepath, format, texture.Width, texture.Height, texture.ChannelCount);
             texture.Layers.emplace_back(layer);
 
-            s_TextureTable[filepath] = texture;
+            table[filepath] = texture;
 
-            return &s_TextureTable[filepath];
+            return &table[filepath];
         }
 
         Texture* TextureManager::LoadTextureFile(const char* filePath, const Texture::eFormat& format)
@@ -160,8 +166,10 @@ namespace xpe {
         }
 
         Texture* TextureManager::ReadTextureCubeFile(const TextureCubeFile &cubeFile, const Texture::eFormat &format) {
-            if (s_TextureTable.find(cubeFile.Name) != s_TextureTable.end()) {
-                return &s_TextureTable[cubeFile.Name];
+            auto& table = s_Storage->Table;
+
+            if (table.find(cubeFile.Name) != table.end()) {
+                return &table[cubeFile.Name];
             }
 
             Texture textureCube;
@@ -184,9 +192,9 @@ namespace xpe {
                 bottom,
             };
 
-            s_TextureTable[cubeFile.Name] = textureCube;
+            table[cubeFile.Name] = textureCube;
 
-            return &s_TextureTable[cubeFile.Name];
+            return &table[cubeFile.Name];
         }
 
         Texture* TextureManager::LoadTextureCubeFile(const TextureCubeFile &cubeFile, const Texture::eFormat &format) {

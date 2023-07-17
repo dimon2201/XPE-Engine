@@ -20,8 +20,8 @@ namespace xpe {
 
         public:
             CameraBuffer() = default;
-            CameraBuffer(Context* context, usize size)
-            : render::StructureBuffer<CameraBufferData>(context, size, K_SLOT_CAMERAS, K_FALSE) {}
+            CameraBuffer(Context* context, usize count)
+            : render::StructureBuffer<CameraBufferData>(context, count, K_SLOT_CAMERAS, K_FALSE) {}
 
         };
 

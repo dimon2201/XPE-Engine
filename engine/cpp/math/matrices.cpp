@@ -16,7 +16,7 @@ namespace xpe {
             glm::mat3 m = glm::mat3(1.0f);
             m = glm::translate(m, model2DMatrix.Translation);
             m = glm::rotate(m, glm::radians(model2DMatrix.Rotation));
-            m = glm::scale(m, model2DMatrix.Translation);
+            m = glm::scale(m, model2DMatrix.Scale);
             return m;
         }
 
@@ -26,10 +26,10 @@ namespace xpe {
 
         glm::mat4 OrthoMatrixUpdate(const OrthoMatrix &orthoMatrix) {
             return math::ortho(
-                    orthoMatrix.Left,
-                    orthoMatrix.Right,
-                    orthoMatrix.Bottom,
-                    orthoMatrix.Top,
+                    orthoMatrix.Left / 100.0f,
+                    orthoMatrix.Right / 100.0f,
+                    orthoMatrix.Bottom / 100.0f,
+                    orthoMatrix.Top / 100.0f,
                     orthoMatrix.Near,
                     orthoMatrix.Far
             );

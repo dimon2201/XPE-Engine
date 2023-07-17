@@ -16,23 +16,26 @@ namespace xpe {
         }
 
         DebugMessage D3D11Debugger::GetLastMessage() {
+            DebugMessage debugMessage = {};
+
             auto messageCount = m_InfoQueue->GetNumStoredMessages();
+
             if (messageCount > 0) {
-                return GetDebugMessage(messageCount - 1);
+                debugMessage = GetDebugMessage(messageCount - 1);
+                m_InfoQueue->ClearStoredMessages();
             }
-            return {};
+
+            return debugMessage;
         }
 
         DebugMessage D3D11Debugger::GetDebugMessage(int index) {
             SIZE_T messageSize = 0;
             m_InfoQueue->GetMessage(index, nullptr, &messageSize);
 
-            D3D11_MESSAGE* message = (D3D11_MESSAGE*) MemoryPoolManager::Allocate(messageSize);
+            D3D11_MESSAGE* message = (D3D11_MESSAGE*) salloc(messageSize);
             m_InfoQueue->GetMessage(index, message, &messageSize);
 
             DebugMessage debugMessage = ToDebugMessage(*message);
-
-            MemoryPoolManager::Free(message);
 
             return debugMessage;
         }

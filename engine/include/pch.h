@@ -53,11 +53,13 @@
 #include <core/singleton.h>
 #include <core/config.h>
 #include <core/memory_pool.hpp>
+#include <core/main_allocator.h>
+#include <core/hot_allocator.h>
+#include <core/stack_allocator.h>
 #include <rendering/shader_types.h>
 #include <rendering/slots.h>
 
 // STL customization
-#include <stl/allocator.h>
 #include <stl/string.h>
 #include <stl/vector.h>
 #include <stl/unordered_map.h>

@@ -46,14 +46,6 @@ namespace xpe {
 LogError(__VA_ARGS__); \
 Logger::DumpBacktrace()
 
-#define LogTime(t) \
-LogInfo("Delta time: {} ms", t.Millis()); \
-LogInfo("FPS: {}", t.Fps())
-
-#define LogCpuTime(t) \
-LogInfo("CPU time: {} ms", t.Millis()); \
-LogInfo("CPU FPS: {}", t.Fps())
-
 #define LogGLM(name, v) \
 LogInfo("{}: {}", name, glm::to_string(v))
 

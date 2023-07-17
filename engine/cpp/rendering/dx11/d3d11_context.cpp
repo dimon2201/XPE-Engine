@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        static const unordered_map<Texture::eFormat, DXGI_FORMAT> s_TextureFormatTable =
+        static const std::unordered_map<Texture::eFormat, DXGI_FORMAT> s_TextureFormatTable =
         {
                 { Texture::eFormat::R8, DXGI_FORMAT_R8_UNORM },
                 { Texture::eFormat::R16, DXGI_FORMAT_R16_UNORM },
@@ -27,7 +27,7 @@ namespace xpe {
                 { Texture::eFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
         };
 
-        static const unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable =
+        static const std::unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable =
         {
                 { Texture::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
                 { Texture::eUsage::STATIC, D3D11_USAGE_IMMUTABLE },
@@ -35,7 +35,7 @@ namespace xpe {
                 { Texture::eUsage::STAGING, D3D11_USAGE_STAGING }
         };
 
-        static const unordered_map<TextureSampler::eComparison, D3D11_COMPARISON_FUNC> s_TextureSamplerComparisonTable =
+        static const std::unordered_map<TextureSampler::eComparison, D3D11_COMPARISON_FUNC> s_TextureSamplerComparisonTable =
         {
                 { TextureSampler::eComparison::ALWAYS, D3D11_COMPARISON_ALWAYS },
                 { TextureSampler::eComparison::EQUAL, D3D11_COMPARISON_EQUAL },
@@ -47,13 +47,13 @@ namespace xpe {
                 { TextureSampler::eComparison::NOT_EQUAL, D3D11_COMPARISON_NOT_EQUAL }
         };
 
-        static const unordered_map<TextureSampler::eFilter, D3D11_FILTER> s_TextureSamplerFilterTable =
+        static const std::unordered_map<TextureSampler::eFilter, D3D11_FILTER> s_TextureSamplerFilterTable =
         {
                 { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT },
                 { TextureSampler::eFilter::MIN_MAG_MIP_LINEAR, D3D11_FILTER_MIN_MAG_MIP_LINEAR },
         };
 
-        static const unordered_map<TextureSampler::eAddressMode, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable =
+        static const std::unordered_map<TextureSampler::eAddressMode, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable =
         {
                 { TextureSampler::eAddressMode::WRAP, D3D11_TEXTURE_ADDRESS_WRAP },
                 { TextureSampler::eAddressMode::BORDER, D3D11_TEXTURE_ADDRESS_BORDER },
@@ -450,7 +450,7 @@ namespace xpe {
             u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
 
             if (texture.InitializeData) {
-                initialData = (D3D11_SUBRESOURCE_DATA*) MemoryPoolManager::Allocate(sizeof(D3D11_SUBRESOURCE_DATA) * arraySize);
+                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
 
                 u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
 
@@ -485,7 +485,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            MemoryPoolManager::Free(initialData);
+            dealloc(initialData);
         }
 
         void D3D11Context::CreateTexture2D(Texture &texture)
@@ -497,7 +497,7 @@ namespace xpe {
             u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
 
             if (texture.InitializeData) {
-                initialData = (D3D11_SUBRESOURCE_DATA*) MemoryPoolManager::Allocate(sizeof(D3D11_SUBRESOURCE_DATA) * arraySize);
+                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
 
                 u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
 
@@ -535,7 +535,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            MemoryPoolManager::Free(initialData);
+            dealloc(initialData);
         }
 
         void D3D11Context::CreateTexture2DArray(Texture &texture)
@@ -547,7 +547,7 @@ namespace xpe {
             u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
 
             if (texture.InitializeData) {
-                initialData = (D3D11_SUBRESOURCE_DATA*) MemoryPoolManager::Allocate(sizeof(D3D11_SUBRESOURCE_DATA) * arraySize);
+                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
 
                 u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
 
@@ -588,7 +588,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            MemoryPoolManager::Free(initialData);
+            dealloc(initialData);
         }
 
         void D3D11Context::CreateTexture3D(Texture &texture)
@@ -600,7 +600,7 @@ namespace xpe {
             u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
 
             if (texture.InitializeData) {
-                initialData = (D3D11_SUBRESOURCE_DATA*) MemoryPoolManager::Allocate(sizeof(D3D11_SUBRESOURCE_DATA) * arraySize);
+                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
 
                 u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
 
@@ -636,7 +636,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            MemoryPoolManager::Free(initialData);
+            dealloc(initialData);
         }
 
         void D3D11Context::CreateTextureCube(Texture &texture)
@@ -824,7 +824,7 @@ namespace xpe {
 
             if (buffer.Duplicate == K_TRUE)
             {
-                buffer.CPUMemory = MemoryPoolManager::Allocate(byteSize);
+                buffer.CPUMemory = alloc(byteSize);
             }
             else
             {
@@ -979,7 +979,7 @@ namespace xpe {
             }
         }
 
-        static const unordered_map<VertexFormat::Attribute::eFormat, DXGI_FORMAT> p_VertexFormatTable =
+        static const std::unordered_map<VertexFormat::Attribute::eFormat, DXGI_FORMAT> p_VertexFormatTable =
         {
             { VertexFormat::Attribute::eFormat::BOOL, DXGI_FORMAT_R32_UINT },
             { VertexFormat::Attribute::eFormat::INT, DXGI_FORMAT_R32_SINT },
@@ -994,7 +994,7 @@ namespace xpe {
             VertexFormat& vertexFormat = inputLayout.Format;
             usize attributeCount = vertexFormat.Attributes.size();
             usize attributeOffset = 0;
-            auto* attributes = (D3D11_INPUT_ELEMENT_DESC*) MemoryPoolManager::Allocate(attributeCount * sizeof(D3D11_INPUT_ELEMENT_DESC));
+            auto* attributes = allocT(D3D11_INPUT_ELEMENT_DESC, attributeCount);
 
             for (u32 i = 0 ; i < attributeCount ; i++)
             {
@@ -1017,10 +1017,10 @@ namespace xpe {
             );
             LogDebugMessage();
 
-            MemoryPoolManager::Free(attributes);
+            dealloc(attributes);
         }
 
-        static const unordered_map<ePrimitiveTopology, D3D11_PRIMITIVE_TOPOLOGY> s_PrimitiveTopologyTable =
+        static const std::unordered_map<ePrimitiveTopology, D3D11_PRIMITIVE_TOPOLOGY> s_PrimitiveTopologyTable =
         {
                 { ePrimitiveTopology::TRIANGLE_STRIP, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP },
                 { ePrimitiveTopology::TRIANGLE_LIST, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST },

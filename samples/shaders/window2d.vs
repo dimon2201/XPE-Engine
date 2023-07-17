@@ -26,11 +26,15 @@ VSOut vs_main(VSIn vsIn)
     Camera camera = Cameras[instance.CameraIndex];
 
     float4 positionWorld = float4(mul(transform.Matrix, float3(vsIn.positionLocal, 1.0)), 1.0);
+    float4 positionView = mul(camera.View, positionWorld);
+    positionView.z = 1.0;
+    positionView.w = 1.0;
+    float4 positionClip = mul(camera.Projection, positionView);
+
     vsOut.positionWorld = positionWorld.xy;
     vsOut.viewPosition = camera.Position.xy;
     vsOut.uv = vsIn.uv;
-
-    vsOut.positionClip = mul(camera.Projection, float4(vsIn.positionLocal, 1.0, 1.0));
+    vsOut.positionClip = positionClip;
 
     return vsOut;
 }

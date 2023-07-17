@@ -41,6 +41,8 @@ namespace xpe {
         class EventBuffer final {
 
         public:
+            ~EventBuffer();
+
             template<typename... Args>
             void AddEvent(Args &&... eventArgs);
 
@@ -58,6 +60,11 @@ namespace xpe {
             vector<Event<EventFunction>> m_Events;
             std::mutex m_Mutex;
         };
+
+        template<typename EventFunction>
+        EventBuffer<EventFunction>::~EventBuffer() {
+            m_Events.clear();
+        }
 
         template<typename EventFunction>
         template<typename... Args>
@@ -103,7 +110,7 @@ namespace xpe {
         void EventBuffer<EventFunction>::Reserve(const usize count) {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
-            m_Events.reserve(sizeof(Event<EventFunction>) * count);
+            m_Events.reserve(count);
         }
 
     }

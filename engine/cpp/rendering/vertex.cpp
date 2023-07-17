@@ -17,7 +17,7 @@ namespace xpe {
             Attributes::NORMAL
         }};
 
-        VertexFormat::VertexFormat(const vector<VertexFormat::Attribute>& attributes) : Attributes(attributes) {
+        VertexFormat::VertexFormat(const std::vector<VertexFormat::Attribute>& attributes) : Attributes(attributes) {
             for (const auto& attribute : attributes) {
                 Stride += (u32) attribute.Format;
             }

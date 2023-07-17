@@ -26,18 +26,18 @@ public:
 
         m_TestConfig = TestConfigReader::Read("test_config.json");
 
-        Input::WindowClosedEvents.AddEvent(this, OnWindowClosed<GameApp>, 1);
-        Input::KeyPressedEvents.AddEvent(this, OnKeyPressed<GameApp>, 1);
-        Input::KeyHoldEvents.AddEvent(this, OnKeyHold<GameApp>, 1);
-        Input::CursorMovedEvents.AddEvent(this, OnCursorMoved<GameApp>, 1);
+        Input::WindowClosedEvents->AddEvent(this, OnWindowClosed<GameApp>, 1);
+        Input::KeyPressedEvents->AddEvent(this, OnKeyPressed<GameApp>, 1);
+        Input::KeyHoldEvents->AddEvent(this, OnKeyHold<GameApp>, 1);
+        Input::CursorMovedEvents->AddEvent(this, OnCursorMoved<GameApp>, 1);
 
         m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         m_ECS = new ECSManager();
         m_BatchManager = new BatchManager(context);
         m_BatchManager2d = new BatchManager2d(context);
 
-        Font font = TTFManager::Load("resources/fonts/Roboto-Italic.ttf", 32);
-        TTFManager::Free(font);
+        Font font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
+        TTFManager::Get().Free(font);
 
         TextureCubeFile textureCubeFile;
         textureCubeFile.Name = "test";
@@ -58,32 +58,32 @@ public:
 //        Mesh& cubeMesh = cubeModel[0];
 //        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
 //
-//        PlaneGeometry plane = 100;
-//        m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
-//
-//        RenderInstance planeInstance;
-//        TransformComponent planeTransform("PlaneTransform");
-//        planeTransform.Position = { 0, -60, 0 };
-//        TransformManager::UpdateTransform(0, planeTransform);
-//        m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
-//        m_BatchManager->FlushInstances("PlaneGeometry");
+        PlaneGeometry plane = 100;
+        m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
+
+        RenderInstance planeInstance;
+        TransformComponent planeTransform("PlaneTransform");
+        planeTransform.Position = { 0, -60, 0 };
+        TransformManager::UpdateTransform(0, planeTransform);
+        m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
+        m_BatchManager->FlushInstances("PlaneGeometry");
 
 //        CubeGeometry cube;
 //        m_BatchManager->StoreGeometryIndexed("CubeGeometry", cube);
 //
-//        SphereGeometry sphere = { 16, 16 };
-//        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
+        SphereGeometry sphere = { 16, 16 };
+        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
+        m_BatchManager->ReserveInstances("SphereGeometry", 1000000);
 
-        Triangle2d triangle2D;
-        RenderInstance2d triangle2DInstance;
-        Transform2DComponent triangle2DTransform("Triangle2DTransform");
-        TransformManager::UpdateTransform2D(0, triangle2DTransform);
-        m_BatchManager2d->StoreGeometryVertexed("Triangle2D", triangle2D);
-        m_BatchManager2d->AddInstance("Triangle2D", triangle2DInstance);
-        m_BatchManager2d->FlushInstances("Triangle2D");
-
-        Triangle triangle;
-        m_BatchManager->StoreGeometryVertexed("Triangle", triangle);
+        Quad2d quad2D;
+        RenderInstance2d quad2DInstance;
+        Transform2DComponent quad2DTransform("Quad2DTransform");
+        quad2DTransform.Position = { 0, 0 };
+        quad2DTransform.Scale = { 5, 1 };
+        TransformManager::UpdateTransform2D(0, quad2DTransform);
+        m_BatchManager2d->StoreGeometryIndexed("Quad2D", quad2D);
+        m_BatchManager2d->AddInstance("Quad2D", quad2DInstance);
+        m_BatchManager2d->FlushInstances("Quad2D");
 
         // Put instances of geometry
         u32 transformIndex = 1;
@@ -265,10 +265,10 @@ private:
                 .AddVertexStageFromFile("shaders/window2d.vs")
                 .AddPixelStageFromFile("shaders/window2d.ps")
                 .Build("window2d");
-        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
 
         // setup input layout
-        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         m_Layout2d.Format = Vertex2D::Format;
         m_Pipeline2d.InputLayout = m_Layout2d;
 
@@ -281,9 +281,8 @@ private:
     }
 
     void InitCamera() {
-        static PerspectiveCameraComponent perspectiveCamera("Camera");
-        perspectiveCamera.Projection.Far = m_TestConfig.CameraFar;
-        m_Camera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera);
+        m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
+        m_Camera = new PerspectiveCamera(&m_CameraBuffer, &m_PerspectiveCameraComponent);
         m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
         m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
@@ -292,8 +291,8 @@ private:
     }
 
     void InitCamera2D() {
-        static OrthoCameraComponent orthoCamera("Camera2D");
-        m_Camera2D = new OrthoCamera(&m_CameraBuffer2d, &orthoCamera);
+        m_OrthoCameraComponent.Position = { 0, 0, -1 };
+        m_Camera2D = new OrthoCamera(&m_CameraBuffer2d, &m_OrthoCameraComponent);
     }
 
     void UpdateCamera() {
@@ -369,6 +368,9 @@ private:
     OrthoCamera* m_Camera2D;
 
     DirectLightComponent m_DirectLightComponent = string("DirectLight");
+
+    PerspectiveCameraComponent m_PerspectiveCameraComponent = string("PerspectiveCamera");
+    OrthoCameraComponent m_OrthoCameraComponent = string("OrthoCamera");
 
     TestConfig m_TestConfig;
 

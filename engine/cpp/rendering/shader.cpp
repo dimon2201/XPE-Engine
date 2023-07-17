@@ -9,6 +9,7 @@ namespace xpe {
             m_Shader.ID = shaderId;
             m_Context->CreateShader(m_Shader);
             ShaderManager::AddShader(shaderId, m_Shader);
+            m_Shader = {};
             return ShaderManager::GetShader(shaderId);
         }
 
@@ -211,19 +212,25 @@ namespace xpe {
         }
 
         Context* ShaderManager::s_Context = nullptr;
-
-        ShaderBuilder ShaderManager::s_ShaderBuilder;
-
-        unordered_map<string, ShaderStage> ShaderManager::s_ShaderStageTable;
-        unordered_map<string, Shader> ShaderManager::s_ShaderTable;
+        ShaderStorage* ShaderManager::s_Storage = nullptr;
+        ShaderBuilder* ShaderManager::s_ShaderBuilder = nullptr;
 
         platform::FileWatcher* ShaderManager::s_FileWatcher = nullptr;
+
+        ShaderStorage::~ShaderStorage() {
+            for (const auto& shader : Shaders) {
+                ShaderManager::FreeShader(shader.first);
+            }
+            Shaders.clear();
+            ShaderStages.clear();
+        }
 
         void ShaderManager::Init(Context* context) {
             LogInfo("ShaderManager::Init()");
 
             s_Context = context;
-            s_ShaderBuilder = { context };
+            s_ShaderBuilder = new ShaderBuilder(context);
+            s_Storage = new ShaderStorage();
             s_FileWatcher = new platform::FileWatcher();
 
             LogInfo("ShaderManager initialized");
@@ -231,33 +238,27 @@ namespace xpe {
 
         void ShaderManager::Free() {
             LogInfo("ShaderManager::Free()");
-
             delete s_FileWatcher;
-
-            for (auto& shader : s_ShaderTable) {
-                s_Context->FreeShader(shader.second);
-            }
-            s_ShaderTable.clear();
-            s_ShaderStageTable.clear();
+            delete s_Storage;
         }
 
         ShaderBuilder& ShaderManager::Builder() {
-            s_ShaderBuilder = { s_Context };
-            return s_ShaderBuilder;
+            return *s_ShaderBuilder;
         }
 
         void ShaderManager::AddShaderStage(const string& filepath, const ShaderStage &shaderStage) {
-            s_ShaderStageTable.insert({ filepath, shaderStage });
+            s_Storage->ShaderStages.insert({ filepath, shaderStage });
         }
 
         void ShaderManager::RemoveShaderStage(const string& name) {
-            s_ShaderStageTable.erase(name);
+            s_Storage->ShaderStages.erase(name);
         }
 
         ShaderStage* ShaderManager::GetShaderStage(const string &name) {
-            auto it = s_ShaderStageTable.find(name);
+            auto& stages = s_Storage->ShaderStages;
+            auto it = stages.find(name);
 
-            if (it != s_ShaderStageTable.end()) {
+            if (it != stages.end()) {
                 return &it->second;
             }
 
@@ -265,9 +266,10 @@ namespace xpe {
         }
 
         void ShaderManager::ReloadStage(const char* filepath) {
-            auto it = s_ShaderStageTable.find(filepath);
+            auto& stages = s_Storage->ShaderStages;
 
-            if (it != s_ShaderStageTable.end()) {
+            auto it = stages.find(filepath);
+            if (it != stages.end()) {
                 string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
                 if (src.empty()) {
@@ -284,22 +286,24 @@ namespace xpe {
         }
 
         void ShaderManager::AddShader(const string &id, const Shader& shader) {
-            s_ShaderTable[id] = shader;
+            s_Storage->Shaders[id] = shader;
         }
 
         void ShaderManager::FreeShader(const string &id) {
-            auto it = s_ShaderTable.find(id);
+            auto& shaders = s_Storage->Shaders;
 
-            if (it != s_ShaderTable.end()) {
+            auto it = shaders.find(id);
+            if (it != shaders.end()) {
                 s_Context->FreeShader(it->second);
             }
         }
 
         Shader* ShaderManager::GetShader(const string &id) {
-            auto it = s_ShaderTable.find(id);
+            auto& shaders = s_Storage->Shaders;
 
-            if (it != s_ShaderTable.end()) {
-                return &s_ShaderTable[id];
+            auto it = shaders.find(id);
+            if (it != shaders.end()) {
+                return &shaders[id];
             }
 
             return nullptr;

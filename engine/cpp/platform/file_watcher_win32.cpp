@@ -32,7 +32,7 @@ namespace xpe {
 
         bool RefreshWatch(WatchStruct* pWatch, bool clear = false);
 
-        static const unordered_map<DWORD, FileWatch::eAction> s_FileWatchActionTable = {
+        static const std::unordered_map<DWORD, FileWatch::eAction> s_FileWatchActionTable = {
             { FILE_ACTION_ADDED, FileWatch::eAction::ADDED },
             { FILE_ACTION_REMOVED, FileWatch::eAction::DELETED },
             { FILE_ACTION_MODIFIED, FileWatch::eAction::MODIFIED },
@@ -123,7 +123,7 @@ namespace xpe {
                     CloseHandle(watchStruct->DirHandle);
                 }
 
-                MemoryPoolManager::Free(watchStruct->DirName);
+                dealloc(watchStruct->DirName);
             }
         }
 
@@ -170,10 +170,10 @@ namespace xpe {
         FileWatch* FileWatcher::CreateWatch(const string &directory, bool recursive) {
             FileWatchID watchId = ++m_LastWatchId;
 
-            auto* watch = MemoryPoolManager::Allocate<WatchStruct>();
+            auto* watch = allocT(WatchStruct, 1);
             watch->Parent.FileWatcher = this;
             watch->WatchId = watchId;
-            watch->DirName = (TCHAR*) MemoryPoolManager::Allocate(directory.length() + 1);
+            watch->DirName = (TCHAR*) alloc(directory.length() + 1);
             memcpy(watch->DirName, directory.c_str(), (directory.length() + 1) * sizeof(TCHAR));
 
             bool created = CreateWatchImpl(
@@ -187,8 +187,8 @@ namespace xpe {
             );
 
             if (!created) {
-                MemoryPoolManager::Free(watch->DirName);
-                MemoryPoolManager::Free(watch);
+                dealloc(watch->DirName);
+                dealloc(watch);
                 return nullptr;
             }
 

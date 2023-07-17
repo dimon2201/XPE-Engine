@@ -32,11 +32,11 @@ namespace xpe {
 
             };
 
-            vector<Attribute> Attributes;
+            std::vector<Attribute> Attributes;
             usize Stride = 0;
 
             VertexFormat() = default;
-            VertexFormat(const vector<Attribute>& attributes);
+            VertexFormat(const std::vector<Attribute>& attributes);
 
         };
 

@@ -8,6 +8,14 @@ namespace xpe {
 
     namespace render {
 
+        struct ENGINE_API LightStorage final {
+            DirectLightBuffer DirectBuffer;
+            PointLightBuffer PointBuffer;
+            SpotLightBuffer SpotBuffer;
+
+            ~LightStorage();
+        };
+
         class ENGINE_API LightManager final {
 
         public:
@@ -41,9 +49,7 @@ namespace xpe {
 
         private:
             static Context* s_Context;
-            static DirectLightBuffer s_DirectLightBuffer;
-            static PointLightBuffer s_PointLightBuffer;
-            static SpotLightBuffer s_SpotLightBuffer;
+            static LightStorage* s_Storage;
 
         };
 

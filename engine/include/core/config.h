@@ -4,6 +4,8 @@ namespace xpe {
 
     namespace core {
 
+        struct MemoryConfig;
+
         struct ENGINE_API AppConfig final {
 
             enum class eGPU {

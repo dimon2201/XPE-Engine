@@ -21,7 +21,7 @@ namespace xpe {
         glm::mat4 ENGINE_API Model2dMatrixUpdate(const Model2dMatrix& model2DMatrix);
 
         struct ENGINE_API ViewMatrix final {
-            glm::vec3 Position = {0, 0, 0 };
+            glm::vec3 Position = { 0, 0, 1 };
             glm::vec3 Front = {0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
         };

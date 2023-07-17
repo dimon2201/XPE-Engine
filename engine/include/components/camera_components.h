@@ -9,8 +9,10 @@ namespace xpe {
         struct ENGINE_API CameraComponent : public Component
         {
             u32 Index = 0;
-            glm::vec3 Position = { 0, 0, 10 };
-            glm::vec3 Front = { 0, 0, -1 };
+            // Position.z = -1 is a default valid value for 2D orthographic view
+            // If Position.z >= 0, 2D geometry will not be shown on screen
+            glm::vec3 Position = { 0, 0, -1 };
+            glm::vec3 Front = { 0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
 
             CameraComponent(const string& usid) : Component(usid)

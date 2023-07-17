@@ -133,6 +133,13 @@ namespace xpe {
             const char* BottomFilepath = nullptr;
         };
 
+        struct ENGINE_API TextureStorage : public Object {
+            unordered_map<string, Texture> Table;
+
+            TextureStorage() = default;
+            ~TextureStorage();
+        };
+
         class ENGINE_API TextureManager final
         {
 
@@ -140,9 +147,9 @@ namespace xpe {
             // hardware specific values
             static const usize K_TEXTURE_ARRAY_SIZE = 1;
             // channels count table for each texture format
-            static unordered_map<Texture::eFormat, int> ChannelTable;
+            static std::unordered_map<Texture::eFormat, int> ChannelTable;
             // bytes per pixel table for each texture format
-            static unordered_map<Texture::eFormat, int> BPPTable;
+            static std::unordered_map<Texture::eFormat, int> BPPTable;
 
         public:
             static void Init(Context* context);
@@ -174,8 +181,7 @@ namespace xpe {
 
         private:
             static Context* s_Context;
-            static unordered_map<string, Texture> s_TextureTable;
-
+            static TextureStorage* s_Storage;
         };
 
     }

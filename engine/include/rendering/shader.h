@@ -35,7 +35,7 @@ namespace xpe {
             vector<ShaderStage*> Stages;
         };
 
-        class ENGINE_API ShaderBuilder final {
+        class ENGINE_API ShaderBuilder : public Object {
 
         public:
             ShaderBuilder() = default;
@@ -66,6 +66,13 @@ namespace xpe {
             Shader m_Shader;
         };
 
+        struct ENGINE_API ShaderStorage : public Object {
+            unordered_map<string, ShaderStage> ShaderStages;
+            unordered_map<string, Shader> Shaders;
+
+            ~ShaderStorage();
+        };
+
         class ENGINE_API ShaderManager final {
 
         public:
@@ -89,9 +96,8 @@ namespace xpe {
 
         private:
             static Context* s_Context;
-            static ShaderBuilder s_ShaderBuilder;
-            static unordered_map<string, ShaderStage> s_ShaderStageTable;
-            static unordered_map<string, Shader> s_ShaderTable;
+            static ShaderStorage* s_Storage;
+            static ShaderBuilder* s_ShaderBuilder;
             static platform::FileWatcher* s_FileWatcher;
         };
 

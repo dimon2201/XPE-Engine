@@ -14,29 +14,29 @@ namespace xpe {
         class ENGINE_API Input final {
 
         public:
-            static EventBuffer<WindowClosedFn> WindowClosedEvents;
-            static EventBuffer<WindowResizedFn> WindowResizedEvents;
-            static EventBuffer<WindowFrameResizedFn> WindowFrameResizedEvents;
-            static EventBuffer<WindowMovedFn> WindowMovedEvents;
-            static EventBuffer<WindowFocusedFn> WindowFocusedEvents;
-            static EventBuffer<WindowFocusLostFn> WindowFocusLostEvents;
+            static EventBuffer<WindowClosedFn>* WindowClosedEvents;
+            static EventBuffer<WindowResizedFn>* WindowResizedEvents;
+            static EventBuffer<WindowFrameResizedFn>* WindowFrameResizedEvents;
+            static EventBuffer<WindowMovedFn>* WindowMovedEvents;
+            static EventBuffer<WindowFocusedFn>* WindowFocusedEvents;
+            static EventBuffer<WindowFocusLostFn>* WindowFocusLostEvents;
 
-            static EventBuffer<KeyPressedFn> KeyPressedEvents;
-            static EventBuffer<KeyReleasedFn> KeyReleasedEvents;
-            static EventBuffer<KeyHoldFn> KeyHoldEvents;
+            static EventBuffer<KeyPressedFn>* KeyPressedEvents;
+            static EventBuffer<KeyReleasedFn>* KeyReleasedEvents;
+            static EventBuffer<KeyHoldFn>* KeyHoldEvents;
 
-            static EventBuffer<MousePressedFn> MousePressedEvents;
-            static EventBuffer<MouseReleasedFn> MouseReleasedEvents;
-            static EventBuffer<MouseHoldFn> MouseHoldEvents;
+            static EventBuffer<MousePressedFn>* MousePressedEvents;
+            static EventBuffer<MouseReleasedFn>* MouseReleasedEvents;
+            static EventBuffer<MouseHoldFn>* MouseHoldEvents;
 
-            static EventBuffer<CursorMovedFn> CursorMovedEvents;
-            static EventBuffer<CursorEnteredFn> CursorEnteredEvents;
-            static EventBuffer<CursorLeftFn> CursorLeftEvents;
+            static EventBuffer<CursorMovedFn>* CursorMovedEvents;
+            static EventBuffer<CursorEnteredFn>* CursorEnteredEvents;
+            static EventBuffer<CursorLeftFn>* CursorLeftEvents;
 
-            static EventBuffer<ScrollChangedFn> ScrollChangedEvents;
+            static EventBuffer<ScrollChangedFn>* ScrollChangedEvents;
 
-            static EventBuffer<CharTypedFn> CharTypedEvents;
-            static EventBuffer<CharModsTypedFn> CharModsTypedEvents;
+            static EventBuffer<CharTypedFn>* CharTypedEvents;
+            static EventBuffer<CharModsTypedFn>* CharModsTypedEvents;
 
         public:
             static void Init();

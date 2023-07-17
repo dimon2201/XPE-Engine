@@ -31,14 +31,14 @@ namespace xpe {
             batchIndexed.Format = format;
             batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
             batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
-            batchIndexed.Instances = InstanceBuffer(m_Context, K_INSTANCE_COUNT);
+            batchIndexed.Instances = InstanceBuffer(m_Context, 1);
         }
 
         void BatchManager::InitBatchVertexed(BatchVertexed &batchVertexed, const GeometryVertexedFormat& format)
         {
             batchVertexed.Format = format;
             batchVertexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
-            batchVertexed.Instances = InstanceBuffer(m_Context, K_INSTANCE_COUNT);
+            batchVertexed.Instances = InstanceBuffer(m_Context, 1);
         }
 
         void BatchManager::FreeBatchIndexed(BatchIndexed &batchIndexed)
@@ -246,6 +246,29 @@ namespace xpe {
             }
         }
 
+        void BatchManager::ReserveInstances(const string &usid, const usize count) {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to reserve instances for batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    batchVertexed->second->Instances.Reserve(count);
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.Reserve(count);
+            }
+        }
+
         void BatchManager::DrawBatch(const string &usid)
         {
             auto batchIndexed = m_BatchIndexedLookup.find(usid);
@@ -332,14 +355,14 @@ namespace xpe {
             batchIndexed.Format = format;
             batchIndexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount);
             batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
-            batchIndexed.Instances = InstanceBuffer2d(m_Context, K_INSTANCE_COUNT);
+            batchIndexed.Instances = InstanceBuffer2d(m_Context, 1);
         }
 
         void BatchManager2d::InitBatchVertexed(BatchVertexed2d &batchVertexed, const GeometryVertexedFormat& format)
         {
             batchVertexed.Format = format;
             batchVertexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount);
-            batchVertexed.Instances = InstanceBuffer2d(m_Context, K_INSTANCE_COUNT);
+            batchVertexed.Instances = InstanceBuffer2d(m_Context, 1);
         }
 
         void BatchManager2d::FreeBatchIndexed(BatchIndexed2d &batchIndexed)
@@ -542,6 +565,29 @@ namespace xpe {
 
             else {
                 batchIndexed->second->Instances.Flush();
+            }
+        }
+
+        void BatchManager2d::ReserveInstances(const string &usid, const usize count) {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+
+                auto batchVertexed = m_BatchVertexedLookup.find(usid);
+
+                if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
+                    LogWarning("Failed to reserve instances for batch {}. Batch is absent", usid);
+                    return;
+                }
+
+                else {
+                    batchVertexed->second->Instances.Reserve(count);
+                }
+
+            }
+
+            else {
+                batchIndexed->second->Instances.Reserve(count);
             }
         }
 

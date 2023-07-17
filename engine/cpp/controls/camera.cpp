@@ -54,9 +54,9 @@ namespace xpe {
             bufferData.Projection = math::PerspectiveMatrixUpdate(projection);
             buffer.Flush();
 
-            Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<PerspectiveCamera>, 2);
-            Input::ScrollChangedEvents.AddEvent(this, core::OnScrollChanged<PerspectiveCamera>, 2);
-            Input::CursorMovedEvents.AddEvent(this, core::OnCursorMoved<PerspectiveCamera>, 2);
+            Input::WindowFrameResizedEvents->AddEvent(this, core::OnWindowFrameResized<PerspectiveCamera>, 2);
+            Input::ScrollChangedEvents->AddEvent(this, core::OnScrollChanged<PerspectiveCamera>, 2);
+            Input::CursorMovedEvents->AddEvent(this, core::OnCursorMoved<PerspectiveCamera>, 2);
         }
 
         void PerspectiveCamera::Pan(const glm::vec2 &delta) {
@@ -206,17 +206,19 @@ namespace xpe {
             viewMatrix.Up = componentData.Up;
 
             auto& projection = componentData.Projection;
-            projection.Right = m_ViewWidth / 100.0f;
-            projection.Top = m_ViewHeight / 100.0f;
+            projection.Right = m_ViewWidth;
+            projection.Left = -m_ViewWidth;
+            projection.Top = m_ViewHeight;
+            projection.Bottom = -m_ViewHeight;
 
             bufferData.Position = componentData.Position;
             bufferData.View = math::ViewMatrixUpdate(viewMatrix);
             bufferData.Projection = math::OrthoMatrixUpdate(projection);
             buffer.Flush();
 
-            Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<OrthoCamera>, 2);
-            Input::ScrollChangedEvents.AddEvent(this, core::OnScrollChanged<OrthoCamera>, 2);
-            Input::CursorMovedEvents.AddEvent(this, core::OnCursorMoved<OrthoCamera>, 2);
+            Input::WindowFrameResizedEvents->AddEvent(this, core::OnWindowFrameResized<OrthoCamera>, 2);
+            Input::ScrollChangedEvents->AddEvent(this, core::OnScrollChanged<OrthoCamera>, 2);
+            Input::CursorMovedEvents->AddEvent(this, core::OnCursorMoved<OrthoCamera>, 2);
         }
 
         void OrthoCamera::Move() {
@@ -243,8 +245,10 @@ namespace xpe {
             m_ViewWidth = width;
             m_ViewHeight = height;
 
-            projection.Right = width / 100.0f;
-            projection.Top = height / 100.0f;
+            projection.Right = m_ViewWidth;
+            projection.Left = -m_ViewWidth;
+            projection.Top = m_ViewHeight;
+            projection.Bottom = -m_ViewHeight;
 
             cameraBuffer.GetItem(component.Index)->Projection = math::OrthoMatrixUpdate(projection);
             cameraBuffer.Flush();
