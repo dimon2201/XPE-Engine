@@ -29,8 +29,6 @@ namespace xpe {
                 .AddVertexStageFromFile("engine_shaders/canvas.vs")
                 .AddPixelStageFromFile("engine_shaders/canvas.ps")
                 .Build("canvas");
-
-            m_Shader.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
         Canvas::Canvas(const glm::ivec2& size, Context* context) : Canvas(size.x, size.y, context) {}
@@ -62,7 +60,7 @@ namespace xpe {
 
             context.ClearColorTarget({ 0.0f, 0.0f, 0.0f, 1.0f });
 
-            context.DrawQuad();
+            context.DrawQuad(ePrimitiveTopology::TRIANGLE_STRIP);
 
             context.Present();
         }

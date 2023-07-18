@@ -240,10 +240,8 @@ private:
                 .AddVertexStageFromFile("shaders/window.vs")
                 .AddPixelStageFromFile("shaders/window.ps")
                 .Build("window");
-        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
         // setup input layout
-        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
         m_Layout.Format = Vertex3D::Format;
         m_Pipeline.InputLayout = m_Layout;
 
@@ -265,10 +263,8 @@ private:
                 .AddVertexStageFromFile("shaders/window2d.vs")
                 .AddPixelStageFromFile("shaders/window2d.ps")
                 .Build("window2d");
-        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
 
         // setup input layout
-        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         m_Layout2d.Format = Vertex2D::Format;
         m_Pipeline2d.InputLayout = m_Layout2d;
 

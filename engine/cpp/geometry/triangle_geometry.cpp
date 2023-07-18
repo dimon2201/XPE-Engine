@@ -18,6 +18,8 @@ namespace xpe {
             v0.UV = { 0, 1 };
             v1.UV = { 1, 0 };
             v2.UV = { 1, 1 };
+
+            PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
         Triangle2d::~Triangle2d() {
@@ -40,6 +42,8 @@ namespace xpe {
             v2.UV = { 1, 1 };
 
             InitNormal<render::Vertex3D>(&v0, &v1, &v2);
+
+            PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
         Triangle::~Triangle() {

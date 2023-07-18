@@ -16,7 +16,9 @@ namespace xpe {
             TRIANGLE_STRIP,
             POINT_LIST,
             LINE_LIST,
-            LINE_STRIP
+            LINE_STRIP,
+
+            DEFAULT = TRIANGLE_LIST
         };
 
         enum class eBufferType {

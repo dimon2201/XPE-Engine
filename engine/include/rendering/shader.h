@@ -31,7 +31,6 @@ namespace xpe {
 
         struct ENGINE_API Shader {
             string ID = "Untitled";
-            ePrimitiveTopology PrimitiveTopology;
             vector<ShaderStage*> Stages;
         };
 

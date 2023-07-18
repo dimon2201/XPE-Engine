@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/vertex.h>
+#include <rendering/core.h>
 
 namespace xpe {
 
@@ -134,6 +135,7 @@ namespace xpe {
         };
 
         struct ENGINE_API GeometryIndexedFormat final {
+            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             string USID;
             usize VertexOffset = 0;
             usize IndexOffset = 0;
@@ -142,30 +144,41 @@ namespace xpe {
 
             GeometryIndexedFormat() = default;
 
-            GeometryIndexedFormat(usize vertexOffset, usize indexOffset, usize vertexCount, usize indexCount)
-            : VertexOffset(vertexOffset), IndexOffset(indexOffset), VertexCount(vertexCount), IndexCount(indexCount) {}
+            GeometryIndexedFormat(const render::ePrimitiveTopology& primitiveTopology, usize vertexOffset, usize indexOffset, usize vertexCount, usize indexCount)
+            : PrimitiveTopology(primitiveTopology),
+            VertexOffset(vertexOffset),
+            IndexOffset(indexOffset),
+            VertexCount(vertexCount),
+            IndexCount(indexCount)
+            {}
         };
 
         template<typename T>
         struct GeometryIndexed {
             VertexArray<T> Vertices;
             IndexArray Indices;
+            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
         };
 
         struct ENGINE_API GeometryVertexedFormat final {
+            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             string USID;
             usize VertexOffset = 0;
             usize VertexCount = 0;
 
             GeometryVertexedFormat() = default;
 
-            GeometryVertexedFormat(usize vertexOffset, usize vertexCount)
-            : VertexOffset(vertexOffset), VertexCount(vertexCount) {}
+            GeometryVertexedFormat(const render::ePrimitiveTopology& primitiveTopology, usize vertexOffset, usize vertexCount)
+            : PrimitiveTopology(primitiveTopology),
+            VertexOffset(vertexOffset),
+            VertexCount(vertexCount)
+            {}
         };
 
         template<typename T>
         struct GeometryVertexed {
             VertexArray<T> Vertices;
+            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
         };
 
     }

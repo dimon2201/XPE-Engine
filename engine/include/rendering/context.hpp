@@ -81,6 +81,8 @@ namespace xpe {
                 virtual void CreateInputLayout(InputLayout& inputLayout) = 0;
                 virtual void BindInputLayout(const InputLayout* inputLayout) = 0;
                 virtual void FreeInputLayout(const InputLayout& inputLayout) = 0;
+
+                virtual void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology) = 0;
                 
                 virtual void BindViewport(const glm::vec4& coords, f32 minDepth, f32 maxDepth) = 0;
 
@@ -94,7 +96,8 @@ namespace xpe {
 
                 virtual void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) = 0;
                 virtual void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) = 0;
-                virtual void DrawQuad() = 0;
+
+                virtual void DrawQuad(const ePrimitiveTopology& primitiveTopology) = 0;
 
                 virtual void* GetDevice() = 0;
 

@@ -80,10 +80,11 @@ namespace xpe {
 
             if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
                 GeometryIndexedFormat format;
+                format.PrimitiveTopology = geometry.PrimitiveTopology;
                 format.USID = usid;
                 format.VertexOffset = 0;
-                format.VertexCount = geometry.Vertices.Count();
                 format.IndexOffset = 0;
+                format.VertexCount = geometry.Vertices.Count();
                 format.IndexCount = geometry.Indices.Count();
                 NewBatchIndexed(format);
                 batchIndexed = m_BatchIndexedLookup.find(usid);
@@ -99,6 +100,7 @@ namespace xpe {
 
             if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
                 GeometryVertexedFormat format;
+                format.PrimitiveTopology = geometry.PrimitiveTopology;
                 format.USID = usid;
                 format.VertexOffset = 0;
                 format.VertexCount = geometry.Vertices.Count();
@@ -136,12 +138,14 @@ namespace xpe {
         void BatchManager::BeginBatch(BatchVertexed &batchVertexed) {
             batchVertexed.Vertices.Bind();
             batchVertexed.Instances.Bind();
+            m_Context->BindPrimitiveTopology(batchVertexed.Format.PrimitiveTopology);
         }
 
         void BatchManager::BeginBatch(BatchIndexed &batchIndexed) {
             batchIndexed.Vertices.Bind();
             batchIndexed.Indices.Bind();
             batchIndexed.Instances.Bind();
+            m_Context->BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
         }
 
         bool BatchManager::AddInstance(const string& usid, const RenderInstance &instance)
@@ -402,10 +406,11 @@ namespace xpe {
 
             if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
                 GeometryIndexedFormat format;
+                format.PrimitiveTopology = geometry.PrimitiveTopology;
                 format.USID = usid;
                 format.VertexOffset = 0;
-                format.VertexCount = geometry.Vertices.Count();
                 format.IndexOffset = 0;
+                format.VertexCount = geometry.Vertices.Count();
                 format.IndexCount = geometry.Indices.Count();
                 NewBatchIndexed(format);
                 batchIndexed = m_BatchIndexedLookup.find(usid);
@@ -421,6 +426,7 @@ namespace xpe {
 
             if (batchVertexed == m_BatchVertexedLookup.end() || batchVertexed->second == nullptr) {
                 GeometryVertexedFormat format;
+                format.PrimitiveTopology = geometry.PrimitiveTopology;
                 format.USID = usid;
                 format.VertexOffset = 0;
                 format.VertexCount = geometry.Vertices.Count();
@@ -458,12 +464,14 @@ namespace xpe {
         void BatchManager2d::BeginBatch(BatchVertexed2d &batchVertexed) {
             batchVertexed.Vertices.Bind();
             batchVertexed.Instances.Bind();
+            m_Context->BindPrimitiveTopology(batchVertexed.Format.PrimitiveTopology);
         }
 
         void BatchManager2d::BeginBatch(BatchIndexed2d &batchIndexed) {
             batchIndexed.Vertices.Bind();
             batchIndexed.Indices.Bind();
             batchIndexed.Instances.Bind();
+            m_Context->BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
         }
 
         bool BatchManager2d::AddInstance(const string& usid, const RenderInstance2d &instance)

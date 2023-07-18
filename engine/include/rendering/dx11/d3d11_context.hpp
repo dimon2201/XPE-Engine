@@ -64,7 +64,9 @@ namespace xpe {
                 void CreateInputLayout(InputLayout& inputLayout) override final;
                 void BindInputLayout(const InputLayout* inputLayout) override final;
                 void FreeInputLayout(const InputLayout& inputLayout) override final;
-                
+
+                void BindPrimitiveTopology(const ePrimitiveTopology &primitiveTopology) override final;
+
                 void BindViewport(const glm::vec4& coords, f32 minDepth, f32 maxDepth) override final;
                 
                 void CreateRenderPipeline(Pipeline& pipeline) override final;
@@ -77,11 +79,12 @@ namespace xpe {
 
                 void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) override final;
                 void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) override final;
-                void DrawQuad() override final;
+
+                void DrawQuad(const ePrimitiveTopology& primitiveTopology) override final;
 
                 void* GetDevice() override final;
 
-            private:
+        private:
                 ID3D11Device* m_Device;
                 ID3D11DeviceContext* m_ImmContext;
                 void* m_BoundColorTargetView;

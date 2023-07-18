@@ -1031,10 +1031,12 @@ namespace xpe {
 
         void D3D11Context::BindInputLayout(const InputLayout* inputLayout)
         {
-            m_ImmContext->IASetPrimitiveTopology(s_PrimitiveTopologyTable.at(inputLayout->PrimitiveTopology));
-            LogDebugMessage();
-
             m_ImmContext->IASetInputLayout((ID3D11InputLayout*)m_BoundPipeline->InputLayout.Layout.Instance);
+            LogDebugMessage();
+        }
+
+        void D3D11Context::BindPrimitiveTopology(const ePrimitiveTopology &primitiveTopology) {
+            m_ImmContext->IASetPrimitiveTopology(s_PrimitiveTopologyTable.at(primitiveTopology));
             LogDebugMessage();
         }
 
@@ -1157,9 +1159,9 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::DrawQuad()
+        void D3D11Context::DrawQuad(const ePrimitiveTopology& primitiveTopology)
         {
-            m_ImmContext->IASetPrimitiveTopology(s_PrimitiveTopologyTable.at(m_BoundShader->PrimitiveTopology));
+            m_ImmContext->IASetPrimitiveTopology(s_PrimitiveTopologyTable.at(primitiveTopology));
             LogDebugMessage();
 
             m_ImmContext->PSSetSamplers(0, 1, (ID3D11SamplerState**)&m_SwapChainSampler.Instance);
