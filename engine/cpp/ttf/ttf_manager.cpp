@@ -1,45 +1,51 @@
-#include <core/logger.h>
 #include <ttf/ttf_manager.hpp>
 
-xpe::core::Boolean xpe::ttf::TTFManager::s_loaded = core::K_FALSE;
-FT_Library xpe::ttf::TTFManager::s_lib;
-xpe::core::unordered_map<std::string, xpe::ttf::xFont> xpe::ttf::TTFManager::s_fonts;
+xpe::ttf::TTFManager* xpe::ttf::TTFManager::s_Instance = nullptr;
 
-xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyphSize)
+void xpe::ttf::TTFManager::Init() {
+    s_Instance = new TTFManager();
+}
+
+void xpe::ttf::TTFManager::Free() {
+    delete s_Instance;
+}
+
+xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyphSize)
 {
-    xFont font = {};
+    Font font = {};
 
-    if (s_loaded == core::K_FALSE)
+    if (m_Loaded == core::K_FALSE)
     {
-        if (FT_Init_FreeType(&s_lib))
+        if (FT_Init_FreeType(&m_Lib))
         {
-            LogInfo("Error initializing FreeType!");
+            LogError("Error initializing FreeType!");
         }
         else
         {
-            s_loaded = core::K_TRUE;
+            m_Loaded = core::K_TRUE;
         }
     }
 
-    if (FT_New_Face(s_lib, filePath, 0, &font.Face) == 0)
+    FT_Face face;
+    if (FT_New_Face(m_Lib, filePath, 0, &face) == 0)
     {
-        if (FT_Set_Pixel_Sizes(font.Face, 0, glyphSize) == 0)
+        if (FT_Set_Pixel_Sizes(face, 0, glyphSize) == 0)
         {
             for (int c = 0; c < 256; c++)
             {
-                FT_UInt gi = FT_Get_Char_Index(font.Face, (char)c);
+                FT_UInt gi = FT_Get_Char_Index(face, (char)c);
 
-                if (FT_Load_Glyph(font.Face, gi, FT_LOAD_DEFAULT) == 0)
+                if (FT_Load_Glyph(face, gi, FT_LOAD_DEFAULT) == 0)
                 {
                     font.GlyphCount += 1;
 
-                    FT_Render_Glyph(font.Face->glyph, FT_RENDER_MODE_NORMAL);
+                    FT_Render_Glyph(face->glyph, FT_RENDER_MODE_NORMAL);
 
-                    xFont::xGlyph glyph;
+                    Font::Glyph glyph;
                     glyph.Character = (char)c;
-                    glyph.Width = font.Face->glyph->bitmap.width;
-                    glyph.Height = font.Face->glyph->bitmap.rows;
-                    glyph.BitmapData = core::MemoryPoolManager::Allocate(font.Face->glyph->bitmap.pitch * glyph.Height);
+                    glyph.Width = face->glyph->bitmap.width;
+                    glyph.Height = face->glyph->bitmap.rows;
+                    glyph.BitmapData = alloc(face->glyph->bitmap.pitch * glyph.Height);
 
                     int x = 0;
                     int y = 0;
@@ -47,35 +53,31 @@ xpe::ttf::xFont xpe::ttf::TTFManager::Load(const char* filePath, core::usize gly
                     {
                         for (int j = 0; j < (int)glyph.Width; j++)
                         {
-                            unsigned char p = font.Face->glyph->bitmap.buffer[i * font.Face->glyph->bitmap.pitch + j];
-                            ((unsigned char*)glyph.BitmapData)[i * font.Face->glyph->bitmap.pitch + j] = p;
+                            unsigned char p = face->glyph->bitmap.buffer[i * face->glyph->bitmap.pitch + j];
+                            ((unsigned char*)glyph.BitmapData)[i * face->glyph->bitmap.pitch + j] = p;
                         }
                     }
-
-                    font.Alphabet.insert({ (char)c, glyph });
                 }
             }
         }
 
-        s_fonts.insert({ std::string(filePath), font });
+        FT_Done_Face(face);
     }
     else
     {
-        LogInfo("Error creating FreeType font face!");
+        LogError("Error creating FreeType font face!");
     }
 
     return font;
 }
 
-void xpe::ttf::TTFManager::Free(const xpe::ttf::xFont& font)
+void xpe::ttf::TTFManager::Free(const xpe::ttf::Font& font)
 {
-    for (auto& glyph : font.Alphabet)
+    for (auto& glyph : m_AlphaBet)
     {
         if (glyph.second.BitmapData != nullptr)
         {
-            core::MemoryPoolManager::Free(glyph.second.BitmapData);
+            dealloc(glyph.second.BitmapData);
         }
     }
-
-    FT_Done_Face(font.Face);
 }
