@@ -1,5 +1,22 @@
 #pragma once
 
+#ifdef DEBUG
+
+#define LogTime(t) \
+LogInfo("Delta time: {} ms", t.Millis()); \
+LogInfo("FPS: {}", t.Fps())
+
+#define LogCpuTime(t) \
+LogInfo("CPU time: {} ms", t.Millis()); \
+LogInfo("CPU FPS: {}", t.Fps())
+
+#else
+
+#define LogTime(t)
+#define LogCpuTime(t)
+
+#endif
+
 namespace xpe {
 
     namespace core {

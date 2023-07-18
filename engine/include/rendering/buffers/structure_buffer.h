@@ -59,7 +59,7 @@ namespace xpe {
         template<typename T>
         StructureBuffer<T>::StructureBuffer(Context* context, usize count, u32 slot, Boolean duplicate) : m_Context(context)
         {
-            m_List.reserve(count * sizeof(T));
+            m_List.reserve(count);
             Type = eBufferType::STRUCTURED;
             Slot = slot;
             StructureSize = sizeof(T);
@@ -83,7 +83,7 @@ namespace xpe {
 
         template<typename T>
         void StructureBuffer<T>::FlushItem(u32 index, const T &item) {
-            if (index >= m_List.size()) {
+            if (index >= Count()) {
                 Resize(index + 1);
             }
             m_List[index] = item;
@@ -103,7 +103,7 @@ namespace xpe {
         void StructureBuffer<T>::Resize(const usize count) {
             usize capacity = m_List.capacity();
             m_List.resize(count);
-            if (capacity < count * StructureSize) {
+            if (capacity < count) {
                 Recreate(count);
             }
         }
@@ -111,8 +111,8 @@ namespace xpe {
         template<typename T>
         void StructureBuffer<T>::Reserve(const usize count) {
             usize capacity = m_List.capacity();
-            m_List.reserve(count * StructureSize);
-            if (capacity < count * StructureSize) {
+            m_List.reserve(count);
+            if (capacity < count) {
                 Recreate(count);
             }
         }

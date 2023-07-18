@@ -6,13 +6,11 @@ namespace xpe {
 
     namespace gltf {
 
-        static vector <Buffer> p_Buffers;
-
         string GetFileFolderPath(const string &filePath) {
             xpe::core::usize i = filePath.size();
             while (filePath[--i] != '/');
 
-            char str[xpe::core::K_MAX_STRING_BYTE_SIZE] = {};
+            char str[128] = {};
             memcpy(&str[0], filePath.c_str(), i);
 
             return str;
@@ -20,6 +18,8 @@ namespace xpe {
 
         Model3D GLTFImporter::Import(const char *filepath) {
             using namespace core;
+
+            static vector<Buffer> s_Buffers;
 
             Model3D model;
 
@@ -32,27 +32,28 @@ namespace xpe {
 
             file.seekg(0, std::ios::end);
             usize fileByteSize = file.tellg();
-            char *str = (char *) malloc(fileByteSize);
-            memset(str, 0, fileByteSize);
+            std::string str;
+            str.resize(fileByteSize);
             file.seekg(0, std::ios::beg);
-            file.read(str, fileByteSize);
+            file.read(const_cast<char*>(str.data()), fileByteSize);
             file.close();
 
             Json::Value root;
             Json::Reader reader;
-            reader.parse(std::string(str), root);
+            reader.parse(str, root);
 
             if (std::string(root["asset"]["version"].asCString()) != std::string("2.0")) {
                 return model;
             }
 
             auto buffers = root["buffers"];
+            s_Buffers.reserve(buffers.size());
             for (auto &buffer: buffers) {
                 Buffer buff;
 
                 buff.ByteLength = buffer["byteLength"].asInt();
                 buff.URI = buffer["uri"].asCString();
-                buff.Data = malloc(buff.ByteLength);
+                buff.Data = alloc(buff.ByteLength);
                 memset(buff.Data, 0, buff.ByteLength);
 
                 string folderPath = GetFileFolderPath(filepath);
@@ -62,7 +63,7 @@ namespace xpe {
                 bufferFile.read((char *) buff.Data, buff.ByteLength);
                 bufferFile.close();
 
-                p_Buffers.push_back(buff);
+                s_Buffers.push_back(buff);
             }
 
             auto meshes = root["meshes"];
@@ -117,20 +118,20 @@ namespace xpe {
                 for (usize i = 0; i < mesh.Vertices.Count(); i++) {
 
                     void* positionPtr = (void*)(
-                        (usize) p_Buffers[positionBufferView.BufferId].Data +
-                        (usize) positionBufferView.ByteOffset +
+                            (usize) s_Buffers[positionBufferView.BufferId].Data +
+                            (usize) positionBufferView.ByteOffset +
                         ((usize) sizeof(glm::vec3) * i)
                     );
 
                     void* texcoordPtr = (void*)(
-                        (usize) p_Buffers[texcoordBufferView.BufferId].Data +
-                        (usize) texcoordBufferView.ByteOffset +
+                            (usize) s_Buffers[texcoordBufferView.BufferId].Data +
+                            (usize) texcoordBufferView.ByteOffset +
                         ((usize) sizeof(glm::vec2) * i)
                     );
 
                     void* normalPtr = (void*)(
-                        (usize) p_Buffers[normalBufferView.BufferId].Data +
-                        (usize) normalBufferView.ByteOffset +
+                            (usize) s_Buffers[normalBufferView.BufferId].Data +
+                            (usize) normalBufferView.ByteOffset +
                         ((usize) sizeof(glm::vec3) * i)
                     );
 
@@ -141,8 +142,8 @@ namespace xpe {
 
                 for (usize i = 0; i < mesh.Indices.Count(); i++) {
                     void* indexPtr = (void*)(
-                        (usize) p_Buffers[indicesBufferView.BufferId].Data +
-                        (usize) indicesBufferView.ByteOffset +
+                            (usize) s_Buffers[indicesBufferView.BufferId].Data +
+                            (usize) indicesBufferView.ByteOffset +
                         ((usize) indexByteSize * i)
                     );
 
@@ -152,7 +153,10 @@ namespace xpe {
                 model.Meshes.emplace_back(mesh);
             }
 
-            p_Buffers.clear();
+            for (auto& buffer : s_Buffers) {
+                dealloc(buffer.Data);
+            }
+            s_Buffers.clear();
 
             return model;
         }

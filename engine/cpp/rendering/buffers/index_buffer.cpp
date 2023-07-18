@@ -65,7 +65,7 @@ namespace xpe {
         void IndexBuffer::Reserve(const usize indexCount) {
             usize capacity = m_IndexArray.Capacity();
             m_IndexArray.Reserve(indexCount);
-            if (capacity < indexCount * StructureSize) {
+            if (capacity < indexCount) {
                 Recreate(indexCount);
             }
         }

@@ -42,8 +42,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static free
 
 # Move shaders into bin folder
 copy_build_file(engine/config.json config.json)
+copy_build_file(engine/memory_config.json memory_config.json)
 copy_build_dir(engine/engine_shaders engine_shaders)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
     copy_build_file(engine/config.json ${CONFIG}/config.json)
+    copy_build_file(engine/memory_config.json ${CONFIG}/memory_config.json)
     copy_build_dir(engine/engine_shaders ${CONFIG}/engine_shaders)
 endforeach()

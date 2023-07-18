@@ -32,13 +32,16 @@ namespace xpe {
                 virtual void Init() = 0;
                 virtual void Free() = 0;
                 
-                virtual RenderTarget CreateRenderTarget(const glm::ivec2& dimensions, const GPUResource* colorTexture, const GPUResource* colorView, const GPUResource* depthTexture, const GPUResource* depthView) = 0;
-                virtual void BindRenderTarget(const RenderTarget* renderTarget) = 0;
-                virtual void ClearRenderTarget(const glm::vec4& color, const f32 depth) = 0;
-                virtual glm::ivec2 GetSwapChainDimensions() = 0;
+                virtual void CreateRenderTarget(RenderTarget& renderTarget) = 0;
+                virtual void BindRenderTarget(void* colorTargetView, void* depthTargetView) = 0;
+                virtual void BindSwapChainTarget() = 0;
+                virtual void ClearColorTarget(const glm::vec4& color) = 0;
+                virtual void ClearDepthTarget(const f32 depth) = 0;
                 virtual void FreeRenderTarget(const RenderTarget& renderTarget) = 0;
+
+                virtual glm::ivec2 GetSwapChainDimensions() = 0;
                 virtual void Present() = 0;
-                
+
                 virtual void CreateShader(Shader& shader) = 0;
                 virtual void BindShader(const Shader* shader) = 0;
                 virtual void FreeShader(Shader& shader) = 0;
@@ -47,12 +50,15 @@ namespace xpe {
                 virtual void BindShaderStage(const ShaderStage& stage) = 0;
                 virtual void FreeShaderStage(ShaderStage& stage) = 0;
                 
-                virtual void CreateTexture(Texture& texture, const void* instance) = 0;
+                void CreateTexture(Texture& texture);
+
                 virtual void CreateTexture1D(Texture& texture) = 0;
                 virtual void CreateTexture2D(Texture& texture) = 0;
                 virtual void CreateTexture2DArray(Texture& texture) = 0;
                 virtual void CreateTexture3D(Texture& texture) = 0;
                 virtual void CreateTextureCube(Texture& texture) = 0;
+                virtual void CreateTextureDepthStencil(Texture& texture) = 0;
+
                 virtual void BindTexture(const Texture* texture) = 0;
                 virtual void BindTextureSlot(u32 slot) = 0;
                 virtual void FreeTexture(const Texture* texture) = 0;

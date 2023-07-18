@@ -26,17 +26,18 @@ public:
 
         m_TestConfig = TestConfigReader::Read("test_config.json");
 
-        Input::WindowClosedEvents.AddEvent(this, OnWindowClosed<GameApp>, 1);
-        Input::KeyPressedEvents.AddEvent(this, OnKeyPressed<GameApp>, 1);
-        Input::KeyHoldEvents.AddEvent(this, OnKeyHold<GameApp>, 1);
-        Input::CursorMovedEvents.AddEvent(this, OnCursorMoved<GameApp>, 1);
+        Input::WindowClosedEvents->AddEvent(this, OnWindowClosed<GameApp>, 1);
+        Input::KeyPressedEvents->AddEvent(this, OnKeyPressed<GameApp>, 1);
+        Input::KeyHoldEvents->AddEvent(this, OnKeyHold<GameApp>, 1);
+        Input::CursorMovedEvents->AddEvent(this, OnCursorMoved<GameApp>, 1);
 
         m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         m_ECS = new ECSManager();
         m_BatchManager = new BatchManager(context);
+        m_BatchManager2d = new BatchManager2d(context);
 
-        Font font = TTFManager::Load("resources/fonts/Roboto-Italic.ttf", 32);
-        TTFManager::Free(font);
+        Font font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
+        TTFManager::Get().Free(font);
 
         TextureCubeFile textureCubeFile;
         textureCubeFile.Name = "test";
@@ -56,7 +57,7 @@ public:
 //        Model3D cubeModel = GLTFImporter::Import("resources/cube.gltf");
 //        Mesh& cubeMesh = cubeModel[0];
 //        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
-
+//
         PlaneGeometry plane = 100;
         m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
 
@@ -72,9 +73,17 @@ public:
 //
         SphereGeometry sphere = { 16, 16 };
         m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
-//
-//        Triangle3d triangle;
-//        m_BatchManager->StoreGeometryVertexed("Triangle", triangle);
+        m_BatchManager->ReserveInstances("SphereGeometry", 1000000);
+
+        Quad2d quad2D;
+        RenderInstance2d quad2DInstance;
+        Transform2DComponent quad2DTransform("Quad2DTransform");
+        quad2DTransform.Position = { 0, 0 };
+        quad2DTransform.Scale = { 5, 1 };
+        TransformManager::UpdateTransform2D(0, quad2DTransform);
+        m_BatchManager2d->StoreGeometryIndexed("Quad2D", quad2D);
+        m_BatchManager2d->AddInstance("Quad2D", quad2DInstance);
+        m_BatchManager2d->FlushInstances("Quad2D");
 
         // Put instances of geometry
         u32 transformIndex = 1;
@@ -127,44 +136,10 @@ public:
         // it will flush all materials data into GPU memory
         MaterialManager::UpdateMaterials();
 
-        // Create render pipeline data
-
-        // setup buffers
-        m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
-        m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
-        m_Pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
-        m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
-
-        // setup shader
-        m_Pipeline.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window.vs")
-                .AddPixelStageFromFile("shaders/window.ps")
-                .Build("window");
-        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-
-        // setup input layout
-        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-        m_Layout.Format = Vertex3D::Format;
-        m_Pipeline.InputLayout = m_Layout;
-
-        // setup render target
-        m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
-        m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
-
-        // init pipeline
-        context->CreateRenderPipeline(m_Pipeline);
-
-        static PerspectiveCameraComponent perspectiveCamera("PerspectiveCamera");
-        perspectiveCamera.Projection.Far = m_TestConfig.CameraFar;
-        m_PerspectiveCamera = new PerspectiveCamera(&m_CameraBuffer, &perspectiveCamera);
-        m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
-        m_PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
-        m_PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
-        m_PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
-        m_PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+        InitPipeline();
+        InitPipeline2D();
+        InitCamera();
+        InitCamera2D();
 
         // todo maybe we will automate it in future and make it more easy to use
         LightManager::InitLight(m_DirectLightComponent.Light);
@@ -182,14 +157,16 @@ public:
 
             Simulate();
 
+            // todo bug: canvas is not updated or resized because after binding material textures
+            // MaterialManager::BindMaterials();
+
             m_Canvas->Clear(glm::vec4(1.0f));
 
             context->BindRenderPipeline(&m_Pipeline);
-
-            // todo bug: canvas is not update or resized because of BindMaterials()
-//            MaterialManager::BindMaterials();
-
             m_BatchManager->DrawAll();
+
+            context->BindRenderPipeline(&m_Pipeline2d);
+            m_BatchManager2d->DrawAll();
 
             m_Canvas->Present();
         }
@@ -198,10 +175,15 @@ public:
     void Free()
     {
         LogInfo("GameApp::Free()");
-        delete m_PerspectiveCamera;
+
         delete m_ECS;
-        delete m_BatchManager;
         delete m_Canvas;
+
+        delete m_Camera;
+        delete m_BatchManager;
+
+        delete m_Camera2D;
+        delete m_BatchManager2d;
     }
 
     void WindowClosed()
@@ -232,17 +214,94 @@ public:
 
     void CursorMoved(const double x, const double y)
     {
+        if (Input::MousePressed(eMouse::ButtonRight)) {
+            m_Camera->EnableLook = false;
+            Input::CaptureCursor(x, y);
+            auto& cursorDelta = Input::GetMouseCursor().Delta;
+            m_Camera->Pan(cursorDelta);
+        } else {
+            m_Camera->EnableLook = true;
+        }
     }
 
 private:
 
+    void InitPipeline() {
+        // setup buffers
+        m_Pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
+        m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
+        m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
+        m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
+        m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
+        m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
+
+        // setup shader
+        m_Pipeline.Shader = ShaderManager::Builder()
+                .AddVertexStageFromFile("shaders/window.vs")
+                .AddPixelStageFromFile("shaders/window.ps")
+                .Build("window");
+        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+
+        // setup input layout
+        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+        m_Layout.Format = Vertex3D::Format;
+        m_Pipeline.InputLayout = m_Layout;
+
+        // setup render target
+        m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
+        m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
+
+        // init pipeline
+        context->CreateRenderPipeline(m_Pipeline);
+    }
+
+    void InitPipeline2D() {
+        // setup buffers
+        m_Pipeline2d.VSBuffers.emplace_back(&m_CameraBuffer2d);
+        m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
+
+        // setup shader
+        m_Pipeline2d.Shader = ShaderManager::Builder()
+                .AddVertexStageFromFile("shaders/window2d.vs")
+                .AddPixelStageFromFile("shaders/window2d.ps")
+                .Build("window2d");
+        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+
+        // setup input layout
+        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+        m_Layout2d.Format = Vertex2D::Format;
+        m_Pipeline2d.InputLayout = m_Layout2d;
+
+        // setup render target
+        m_Pipeline2d.RenderTarget = m_Canvas->GetRenderTarget();
+        m_Pipeline2d.DepthStencilState.UseDepthTest = K_FALSE;
+
+        // init pipeline
+        context->CreateRenderPipeline(m_Pipeline2d);
+    }
+
+    void InitCamera() {
+        m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
+        m_Camera = new PerspectiveCamera(&m_CameraBuffer, &m_PerspectiveCameraComponent);
+        m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
+        m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
+        m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
+        m_Camera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
+        m_Camera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+    }
+
+    void InitCamera2D() {
+        m_OrthoCameraComponent.Position = { 0, 0, -1 };
+        m_Camera2D = new OrthoCamera(&m_CameraBuffer2d, &m_OrthoCameraComponent);
+    }
+
     void UpdateCamera() {
         if (Input::MousePressed(eMouse::ButtonLeft)) {
-            m_PerspectiveCamera->LookMode = Camera::eLookMode::EDITOR;
+            m_Camera->LookMode = Camera::eLookMode::EDITOR;
         } else {
-            m_PerspectiveCamera->LookMode = Camera::eLookMode::GAME;
+            m_Camera->LookMode = Camera::eLookMode::GAME;
         }
-        m_PerspectiveCamera->Move();
+        m_Camera->Move();
     }
 
     void MoveLight(const eKey key) {
@@ -297,18 +356,21 @@ private:
     ECSManager* m_ECS;
 
     BatchManager* m_BatchManager;
-//    BatchManager2d* m_BatchManager2d;
+    BatchManager2d* m_BatchManager2d;
 
     Pipeline m_Pipeline;
-//    Pipeline m_Pipeline2D;
+    Pipeline m_Pipeline2d;
 
     InputLayout m_Layout;
-//    InputLayout m_Layout2D;
+    InputLayout m_Layout2d;
 
-    PerspectiveCamera* m_PerspectiveCamera;
-//    OrthoCamera* m_OrthoCamera;
+    PerspectiveCamera* m_Camera;
+    OrthoCamera* m_Camera2D;
 
     DirectLightComponent m_DirectLightComponent = string("DirectLight");
+
+    PerspectiveCameraComponent m_PerspectiveCameraComponent = string("PerspectiveCamera");
+    OrthoCameraComponent m_OrthoCameraComponent = string("OrthoCamera");
 
     TestConfig m_TestConfig;
 

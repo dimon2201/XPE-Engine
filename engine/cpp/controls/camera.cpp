@@ -30,14 +30,6 @@ namespace xpe {
             return distance * distance;
         }
 
-        void Camera::Pan(const glm::vec2 &delta) {
-            float distance = MoveSpeed;
-            glm::vec3& focalPoint = m_Position;
-            glm::vec2 speed = GetPanSpeed();
-            focalPoint += -GetRightDirection() * delta.x * speed.x * distance;
-            focalPoint += GetUpDirection() * delta.y * speed.y * distance;
-        }
-
         PerspectiveCamera::PerspectiveCamera(
             CameraBuffer* cameraBuffer,
             PerspectiveCameraComponent* component
@@ -51,19 +43,32 @@ namespace xpe {
 
             math::ViewMatrix viewMatrix;
             viewMatrix.Up = componentData.Up;
-            viewMatrix.Center = componentData.Front;
-            viewMatrix.Eye = componentData.Position;
+            viewMatrix.Front = componentData.Front;
+            viewMatrix.Position = componentData.Position;
 
             auto& projection = Component->Projection;
+            projection.AspectRatio = m_ViewWidth / m_ViewHeight;
 
             bufferData.Position = componentData.Position;
             bufferData.View = math::ViewMatrixUpdate(viewMatrix);
             bufferData.Projection = math::PerspectiveMatrixUpdate(projection);
             buffer.Flush();
 
-            Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<PerspectiveCamera>, 2);
-            Input::ScrollChangedEvents.AddEvent(this, core::OnScrollChanged<PerspectiveCamera>, 2);
-            Input::CursorMovedEvents.AddEvent(this, core::OnCursorMoved<PerspectiveCamera>, 2);
+            Input::WindowFrameResizedEvents->AddEvent(this, core::OnWindowFrameResized<PerspectiveCamera>, 2);
+            Input::ScrollChangedEvents->AddEvent(this, core::OnScrollChanged<PerspectiveCamera>, 2);
+            Input::CursorMovedEvents->AddEvent(this, core::OnCursorMoved<PerspectiveCamera>, 2);
+        }
+
+        void PerspectiveCamera::Pan(const glm::vec2 &delta) {
+            float distance = MoveSpeed;
+            glm::vec3& focalPoint = m_Position;
+            glm::vec2 speed = GetPanSpeed();
+
+            focalPoint += -GetRightDirection() * delta.x * speed.x * distance;
+            focalPoint += GetUpDirection() * delta.y * speed.y * distance;
+
+            UpdateView(focalPoint);
+            m_CameraBuffer->Flush();
         }
 
         void PerspectiveCamera::Move() {
@@ -130,12 +135,17 @@ namespace xpe {
         }
 
         void PerspectiveCamera::Look(const double x, const double y) {
+            if (!EnableLook)
+                return;
+
             Input::CaptureCursor(x, y);
             auto& cursorDelta = Input::GetMouseCursor().Delta;
             float lookSign = (float) LookMode;
             float yawSign = GetUpDirection().y < 0 ? -1.0f : 1.0f;
+
             Yaw += yawSign * cursorDelta.x * HorizontalSensitivity * lookSign;
             Pitch += cursorDelta.y * VerticalSensitivity * lookSign;
+
             UpdateView(m_Position);
             m_CameraBuffer->Flush();
         }
@@ -191,20 +201,24 @@ namespace xpe {
             auto& bufferData = *buffer.GetItem(componentData.Index);
 
             math::ViewMatrix viewMatrix;
+            viewMatrix.Position = componentData.Position;
+            viewMatrix.Front = componentData.Front;
             viewMatrix.Up = componentData.Up;
-            viewMatrix.Center = componentData.Front;
-            viewMatrix.Eye = componentData.Position;
 
-            auto& projection = Component->Projection;
+            auto& projection = componentData.Projection;
+            projection.Right = m_ViewWidth;
+            projection.Left = -m_ViewWidth;
+            projection.Top = m_ViewHeight;
+            projection.Bottom = -m_ViewHeight;
 
             bufferData.Position = componentData.Position;
             bufferData.View = math::ViewMatrixUpdate(viewMatrix);
             bufferData.Projection = math::OrthoMatrixUpdate(projection);
             buffer.Flush();
 
-            Input::WindowFrameResizedEvents.AddEvent(this, core::OnWindowFrameResized<OrthoCamera>, 2);
-            Input::ScrollChangedEvents.AddEvent(this, core::OnScrollChanged<OrthoCamera>, 2);
-            Input::CursorMovedEvents.AddEvent(this, core::OnCursorMoved<OrthoCamera>, 2);
+            Input::WindowFrameResizedEvents->AddEvent(this, core::OnWindowFrameResized<OrthoCamera>, 2);
+            Input::ScrollChangedEvents->AddEvent(this, core::OnScrollChanged<OrthoCamera>, 2);
+            Input::CursorMovedEvents->AddEvent(this, core::OnCursorMoved<OrthoCamera>, 2);
         }
 
         void OrthoCamera::Move() {
@@ -223,18 +237,20 @@ namespace xpe {
             // todo ortho camera look function
         }
 
-        void OrthoCamera::WindowFrameResized(int w, int h) {
+        void OrthoCamera::WindowFrameResized(int width, int height) {
             auto& component = *Component;
             auto& projection = component.Projection;
             auto& cameraBuffer = *m_CameraBuffer;
 
-            m_ViewWidth = w;
-            m_ViewHeight = h;
+            m_ViewWidth = width;
+            m_ViewHeight = height;
 
-            projection.Left = w;
-            projection.Top = h;
+            projection.Right = m_ViewWidth;
+            projection.Left = -m_ViewWidth;
+            projection.Top = m_ViewHeight;
+            projection.Bottom = -m_ViewHeight;
 
-            cameraBuffer.GetItem(component.Index)->View = math::OrthoMatrixUpdate(projection);
+            cameraBuffer.GetItem(component.Index)->Projection = math::OrthoMatrixUpdate(projection);
             cameraBuffer.Flush();
         }
 

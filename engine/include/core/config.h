@@ -4,6 +4,8 @@ namespace xpe {
 
     namespace core {
 
+        struct MemoryConfig;
+
         struct ENGINE_API AppConfig final {
 
             enum class eGPU {
@@ -32,7 +34,7 @@ namespace xpe {
             eGPU GPU = eGPU::DEFAULT;
 
             bool LogDebugErrors = true;
-            bool LogDebugWarnings = true;
+            bool LogDebugWarnings = false;
             bool LogDebugInfos = false;
 
             float FPS = 165.0f;

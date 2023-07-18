@@ -1,27 +1,33 @@
 #include <ttf/ttf_manager.hpp>
 
-xpe::core::Boolean xpe::ttf::TTFManager::s_loaded = core::K_FALSE;
-FT_Library xpe::ttf::TTFManager::s_lib;
-xpe::core::unordered_map<char, xpe::ttf::Font::Glyph> xpe::ttf::TTFManager::s_alphabet;
+xpe::ttf::TTFManager* xpe::ttf::TTFManager::s_Instance = nullptr;
+
+void xpe::ttf::TTFManager::Init() {
+    s_Instance = new TTFManager();
+}
+
+void xpe::ttf::TTFManager::Free() {
+    delete s_Instance;
+}
 
 xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyphSize)
 {
     Font font = {};
 
-    if (s_loaded == core::K_FALSE)
+    if (m_Loaded == core::K_FALSE)
     {
-        if (FT_Init_FreeType(&s_lib))
+        if (FT_Init_FreeType(&m_Lib))
         {
             LogError("Error initializing FreeType!");
         }
         else
         {
-            s_loaded = core::K_TRUE;
+            m_Loaded = core::K_TRUE;
         }
     }
 
     FT_Face face;
-    if (FT_New_Face(s_lib, filePath, 0, &face) == 0)
+    if (FT_New_Face(m_Lib, filePath, 0, &face) == 0)
     {
         if (FT_Set_Pixel_Sizes(face, 0, glyphSize) == 0)
         {
@@ -39,7 +45,7 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
                     glyph.Character = (char)c;
                     glyph.Width = face->glyph->bitmap.width;
                     glyph.Height = face->glyph->bitmap.rows;
-                    glyph.BitmapData = core::MemoryPoolManager::Allocate(face->glyph->bitmap.pitch * glyph.Height);
+                    glyph.BitmapData = alloc(face->glyph->bitmap.pitch * glyph.Height);
 
                     int x = 0;
                     int y = 0;
@@ -67,11 +73,11 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
 
 void xpe::ttf::TTFManager::Free(const xpe::ttf::Font& font)
 {
-    for (auto& glyph : s_alphabet)
+    for (auto& glyph : m_AlphaBet)
     {
         if (glyph.second.BitmapData != nullptr)
         {
-            core::MemoryPoolManager::Free(glyph.second.BitmapData);
+            dealloc(glyph.second.BitmapData);
         }
     }
 }

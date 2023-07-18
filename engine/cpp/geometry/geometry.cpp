@@ -21,7 +21,7 @@ namespace xpe {
         }
 
         void IndexArray::Reserve(usize count) {
-            Data.reserve(count * sizeof(u32));
+            Data.reserve(count);
         }
 
     }

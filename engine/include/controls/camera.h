@@ -29,7 +29,7 @@ namespace xpe {
 
             float MoveSpeed = 0.1f;
             float ZoomAcceleration = 10.0f;
-            float PanAcceleration = 1.0f;
+            float PanAcceleration = 10.0f;
             float HorizontalSensitivity = 0.01f;
             float VerticalSensitivity = 0.01f;
 
@@ -39,10 +39,10 @@ namespace xpe {
 
             eLookMode LookMode = eLookMode::GAME;
 
+            bool EnableLook = true;
+
             glm::vec2 GetPanSpeed();
             float GetZoomSpeed();
-
-            void Pan(const glm::vec2& delta);
 
         public:
             Camera(CameraBuffer* cameraBuffer);
@@ -118,6 +118,8 @@ namespace xpe {
             PerspectiveCamera(CameraBuffer* cameraBuffer, PerspectiveCameraComponent* component);
 
             void Move();
+
+            void Pan(const glm::vec2& delta);
 
             void ZoomIn();
 

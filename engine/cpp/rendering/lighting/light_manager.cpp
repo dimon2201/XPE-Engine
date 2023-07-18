@@ -4,40 +4,42 @@ namespace xpe {
 
     namespace render {
 
-        Context* LightManager::s_Context;
-        DirectLightBuffer LightManager::s_DirectLightBuffer;
-        PointLightBuffer LightManager::s_PointLightBuffer;
-        SpotLightBuffer LightManager::s_SpotLightBuffer;
+        Context* LightManager::s_Context = nullptr;
+        LightStorage* LightManager::s_Storage = nullptr;
+
+        LightStorage::~LightStorage() {
+            DirectBuffer.Free();
+            PointBuffer.Free();
+            SpotBuffer.Free();
+        }
 
         void LightManager::Init(Context* context) {
             LogInfo("LightManager::Init()");
 
             s_Context = context;
-            s_DirectLightBuffer = DirectLightBuffer(context, K_DIRECT_LIGHT_COUNT);
-            s_PointLightBuffer = PointLightBuffer(context, K_POINT_LIGHT_COUNT);
-            s_SpotLightBuffer = SpotLightBuffer(context, K_SPOT_LIGHT_COUNT);
+            s_Storage = new LightStorage();
+            s_Storage->DirectBuffer = DirectLightBuffer(context, K_DIRECT_LIGHT_COUNT);
+            s_Storage->PointBuffer = PointLightBuffer(context, K_POINT_LIGHT_COUNT);
+            s_Storage->SpotBuffer = SpotLightBuffer(context, K_SPOT_LIGHT_COUNT);
 
             LogInfo("LightManager initialized");
         }
 
         void LightManager::Free() {
             LogInfo("LightManager::Free()");
-
-            s_DirectLightBuffer.Free();
-            s_PointLightBuffer.Free();
-            s_SpotLightBuffer.Free();
+            delete s_Storage;
         }
 
         void LightManager::InitLight(DirectLight &light) {
-            light.Data = s_DirectLightBuffer.GetItem(light.Index);
+            light.Data = s_Storage->DirectBuffer.GetItem(light.Index);
         }
 
         void LightManager::InitLight(PointLight &light) {
-            light.Data = s_PointLightBuffer.GetItem(light.Index);
+            light.Data = s_Storage->PointBuffer.GetItem(light.Index);
         }
 
         void LightManager::InitLight(SpotLight &light) {
-            light.Data = s_SpotLightBuffer.GetItem(light.Index);
+            light.Data = s_Storage->SpotBuffer.GetItem(light.Index);
         }
 
         void LightManager::FreeLight(DirectLight &light) {
@@ -53,39 +55,39 @@ namespace xpe {
         }
 
         vector<DirectLightBufferData>& LightManager::DirectList() {
-            return s_DirectLightBuffer.GetList();
+            return s_Storage->DirectBuffer.GetList();
         }
 
         vector<PointLightBufferData>& LightManager::PointList() {
-            return s_PointLightBuffer.GetList();
+            return s_Storage->PointBuffer.GetList();
         }
 
         vector<SpotLightBufferData>& LightManager::SpotList() {
-            return s_SpotLightBuffer.GetList();
+            return s_Storage->SpotBuffer.GetList();
         }
 
         DirectLightBuffer* LightManager::GetDirectBuffer() {
-            return &s_DirectLightBuffer;
+            return &s_Storage->DirectBuffer;
         }
 
         PointLightBuffer* LightManager::GetPointBuffer() {
-            return &s_PointLightBuffer;
+            return &s_Storage->PointBuffer;
         }
 
         SpotLightBuffer* LightManager::GetSpotBuffer() {
-            return &s_SpotLightBuffer;
+            return &s_Storage->SpotBuffer;
         }
 
         void LightManager::UpdateLight(const DirectLight &light) {
-            s_DirectLightBuffer.FlushItem(light.Index, *light.Data);
+            s_Storage->DirectBuffer.FlushItem(light.Index, *light.Data);
         }
 
         void LightManager::UpdateLight(const PointLight &light) {
-            s_PointLightBuffer.FlushItem(light.Index, *light.Data);
+            s_Storage->PointBuffer.FlushItem(light.Index, *light.Data);
         }
 
         void LightManager::UpdateLight(const SpotLight &light) {
-            s_SpotLightBuffer.FlushItem(light.Index, *light.Data);
+            s_Storage->SpotBuffer.FlushItem(light.Index, *light.Data);
         }
 
     }

@@ -49,10 +49,6 @@ namespace xpe {
         {
 
         public:
-            static const usize K_VERTICES_BYTE_SIZE = K_MEMORY_MIB;
-            static const usize K_INDICES_BYTE_SIZE = K_MEMORY_MIB;
-            static const usize K_INSTANCE_COUNT = 1000000;
-
             BatchManager(Context* context);
             ~BatchManager();
 
@@ -70,6 +66,8 @@ namespace xpe {
             void ClearInstances(const string& usid);
 
             void FlushInstances(const string& usid);
+
+            void ReserveInstances(const string& usid, const usize count);
 
             void DrawBatch(const string& usid);
             void DrawBatch(BatchVertexed& batchVertexed);
@@ -100,10 +98,6 @@ namespace xpe {
         {
 
         public:
-            static const usize K_VERTICES_BYTE_SIZE = K_MEMORY_MIB;
-            static const usize K_INDICES_BYTE_SIZE = K_MEMORY_MIB;
-            static const usize K_INSTANCE_COUNT = 1000000;
-
             BatchManager2d(Context* context);
             ~BatchManager2d();
 
@@ -121,6 +115,8 @@ namespace xpe {
             void ClearInstances(const string& usid);
 
             void FlushInstances(const string& usid);
+
+            void ReserveInstances(const string& usid, const usize count);
 
             void DrawBatch(const string& usid);
             void DrawBatch(BatchVertexed2d& batchVertexed);

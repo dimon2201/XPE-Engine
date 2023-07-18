@@ -15,24 +15,24 @@ namespace xpe {
             m_InfoQueue->Release();
         }
 
-        DebugMessage D3D11Debugger::GetLastMessage() {
+        bool D3D11Debugger::GetLastMessage(DebugMessage& message) {
             auto messageCount = m_InfoQueue->GetNumStoredMessages();
             if (messageCount > 0) {
-                return GetDebugMessage(messageCount - 1);
+                message = GetDebugMessage(messageCount - 1);
+                m_InfoQueue->ClearStoredMessages();
+                return true;
             }
-            return {};
+            return false;
         }
 
         DebugMessage D3D11Debugger::GetDebugMessage(int index) {
             SIZE_T messageSize = 0;
             m_InfoQueue->GetMessage(index, nullptr, &messageSize);
 
-            D3D11_MESSAGE* message = (D3D11_MESSAGE*) MemoryPoolManager::Allocate(messageSize);
+            D3D11_MESSAGE* message = (D3D11_MESSAGE*) salloc(messageSize);
             m_InfoQueue->GetMessage(index, message, &messageSize);
 
             DebugMessage debugMessage = ToDebugMessage(*message);
-
-            MemoryPoolManager::Free(message);
 
             return debugMessage;
         }
@@ -58,10 +58,16 @@ namespace xpe {
         DebugMessage D3D11Debugger::ToDebugMessage(const D3D11_MESSAGE& d3D11Message) {
             DebugMessage message;
 
-            message.Description = d3D11Message.pDescription;
             message.ID = d3D11Message.ID;
+            auto severity = d3D11Message.Severity;
+            auto category = d3D11Message.Category;
 
-            switch (d3D11Message.Severity) {
+            message.Description.reserve(d3D11Message.DescriptionByteLength);
+            memmove((char*) message.Description.data(),
+                   d3D11Message.pDescription,
+                   d3D11Message.DescriptionByteLength);
+
+            switch (severity) {
 
                 case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_CORRUPTION:
                     message.Severity = eDebugSeverity::D_HIGH;
@@ -90,7 +96,7 @@ namespace xpe {
 
             }
 
-            switch (d3D11Message.Category) {
+            switch (category) {
 
                 case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_APPLICATION_DEFINED:
                     message.Category = eDebugCategory::D_APPLICATION;

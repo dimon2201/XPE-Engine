@@ -34,11 +34,18 @@ namespace xpe {
 
         };
 
-        class ENGINE_API TransformManager final {
-
-        public:
+        struct ENGINE_API TransformStorage : public Object {
             static const usize K_TRANSFORMS_SIZE = 1000000;
             static const usize K_TRANSFORMS2D_SIZE = 1000000;
+
+            TransformBuffer Buffer;
+            Transform2DBuffer Buffer2D;
+
+            TransformStorage(Context* context);
+            ~TransformStorage();
+        };
+
+        class ENGINE_API TransformManager final {
 
         public:
             static void Init(Context* context);
@@ -52,8 +59,7 @@ namespace xpe {
 
         private:
             static Context* s_Context;
-            static TransformBuffer s_TransformBuffer;
-            static Transform2DBuffer s_Transform2DBuffer;
+            static TransformStorage* s_Storage;
 
         };
 

@@ -15,12 +15,13 @@ namespace xpe {
 
         class ENGINE_API Application {
 
-        public:
+        protected:
             Context* context = nullptr;
             Time CPUTime;       // delta CPU time ms = end time - begin time
             Time DeltaTime;     // delta CurrentTime ms = end time - begin time
-            Time CurrentTime;   // current CurrentTime ms
+            Time CurrentTime;
             CameraBuffer m_CameraBuffer;
+            CameraBuffer m_CameraBuffer2d;
             AppConfig Config;
 
         public:

@@ -22,19 +22,21 @@ namespace xpe {
         }
 
         void DebugManager::LogLastMessage() {
-            auto message = m_Debugger->GetLastMessage();
-            ReceiveMessage(message);
+            DebugMessage message;
+            if (m_Debugger->GetLastMessage(message)) {
+                ReceiveMessage(message);
+            }
         }
 
         void DebugManager::ReceiveMessage(const DebugMessage& message) {
-            std::stringstream ss;
+            hstringstream ss;
 
             int id = message.ID;
             eDebugType type = message.Type;
             eDebugCategory category = message.Category;
             eDebugErrorType errorType = message.ErrorType;
             eDebugSeverity severity = message.Severity;
-            const char* description = message.Description;
+            const char* description = message.Description.c_str();
 
             ss << "\n";
             ss << "--------------- Rendering Debugger ---------------- \n";
@@ -45,6 +47,7 @@ namespace xpe {
             {
                 case eDebugType::D_NO_TYPE:               ss << "Type: None"; break;
                 case eDebugType::D_ERROR:                 ss << "Type: Error"; break;
+                case eDebugType::D_WARNING:               ss << "Type: Warning"; break;
                 case eDebugType::D_DEPRECATED_BEHAVIOUR:  ss << "Type: Deprecated Behaviour"; break;
                 case eDebugType::D_UNDEFINED_BEHAVIOUR:   ss << "Type: Undefined Behaviour"; break;
                 case eDebugType::D_PORTABILITY:           ss << "Type: Portability"; break;
@@ -95,7 +98,9 @@ namespace xpe {
             ss << "Description: " << description << "\n";
             ss << "--------------------------------------------------- \n";
 
-            if (AppConfig::Get().LogDebugErrors)
+            auto& appConfig = AppConfig::Get();
+
+            if (appConfig.LogDebugErrors)
             {
 
                 switch (type) {
@@ -114,7 +119,7 @@ namespace xpe {
 
             }
 
-            else if (AppConfig::Get().LogDebugWarnings)
+            if (appConfig.LogDebugWarnings)
             {
 
                 switch (type) {
@@ -135,7 +140,7 @@ namespace xpe {
 
             }
 
-            else if (AppConfig::Get().LogDebugInfos)
+            if (appConfig.LogDebugInfos)
             {
                 LogInfo(ss.str().c_str());
             }

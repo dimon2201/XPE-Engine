@@ -18,9 +18,11 @@ namespace xpe {
                 void Init() override final;
                 void Free() override final;
                 
-                RenderTarget CreateRenderTarget(const glm::ivec2& dimensions, const GPUResource* colorTexture, const GPUResource* colorView, const GPUResource* depthTexture, const GPUResource* depthView) override final;
-                void BindRenderTarget(const RenderTarget* renderTarget) override final;
-                void ClearRenderTarget(const glm::vec4& color, const f32 depth) override final;
+                void CreateRenderTarget(RenderTarget& renderTarget) override final;
+                void BindRenderTarget(void* colorTargetView, void* depthTargetView) override final;
+                void BindSwapChainTarget() override final;
+                void ClearColorTarget(const glm::vec4& color) override final;
+                void ClearDepthTarget(const f32 depth) override final;
                 glm::ivec2 GetSwapChainDimensions() override final;
                 void FreeRenderTarget(const RenderTarget& renderTarget) override final;
                 void Present() override final;
@@ -33,12 +35,13 @@ namespace xpe {
                 void BindShaderStage(const ShaderStage &stage) override;
                 void FreeShaderStage(ShaderStage &stage) override;
 
-                void CreateTexture(Texture& texture, const void* instance) override final;
                 void CreateTexture1D(Texture& texture) override final;
                 void CreateTexture2D(Texture& texture) override final;
                 void CreateTexture2DArray(Texture& texture) override final;
                 void CreateTexture3D(Texture& texture) override final;
                 void CreateTextureCube(Texture& texture) override final;
+                void CreateTextureDepthStencil(Texture& texture) override final;
+
                 void BindTexture(const Texture* texture) override final;
                 void BindTextureSlot(u32 slot) override final;
                 void FreeTexture(const Texture* texture) override final;
@@ -78,18 +81,17 @@ namespace xpe {
 
                 void* GetDevice() override final;
 
-                inline GPUResource* GetSwapChainTexture() { return &_swapChainTexture; }
-
             private:
-                IDXGISwapChain* _swapChain;
-                ID3D11Device* _device;
-                ID3D11DeviceContext* _immContext;
-                Texture _swapChainTexture;
-                TextureSampler _sampler;
-                RenderTarget _rt;
-                Shader* _boundShader;
-                RenderTarget* _boundRT;
-                Pipeline* _boundPipeline;
+                ID3D11Device* m_Device;
+                ID3D11DeviceContext* m_ImmContext;
+                void* m_BoundColorTargetView;
+                void* m_BoundDepthTargetView;
+                Shader* m_BoundShader;
+                Pipeline* m_BoundPipeline;
+                IDXGISwapChain* m_SwapChain;
+                Texture m_SwapChainTexture;
+                TextureSampler m_SwapChainSampler;
+                RenderTarget m_SwapChainTarget;
         };
 
     }

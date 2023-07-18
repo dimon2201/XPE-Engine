@@ -8,6 +8,8 @@
 #include <rendering/lighting/light_manager.h>
 #include <rendering/transforming.h>
 
+#include <ttf/ttf_manager.hpp>
+
 namespace xpe {
 
     namespace core {
@@ -52,8 +54,6 @@ namespace xpe {
 
             context->Init();
 
-            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in memory
-
             ShaderManager::Init(context);
             if (Config.HotReloadShaders) {
                 ShaderManager::WatchShaders("engine_shaders", true);
@@ -66,6 +66,11 @@ namespace xpe {
             LightManager::Init(context);
 
             TransformManager::Init(context);
+
+            ttf::TTFManager::Init();
+
+            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
+            m_CameraBuffer2d = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
 
             Init();
 
@@ -84,6 +89,8 @@ namespace xpe {
                 if (cpuTickSec >= Config.LogTimeDelaySeconds) {
                     cpuTickSec = 0;
                     LogCpuTime(CPUTime);
+                    LogMemoryPools();
+                    LogStackMemory();
                 }
 #endif
 
@@ -110,6 +117,11 @@ namespace xpe {
             }
 
             Free();
+
+            m_CameraBuffer.Free();
+            m_CameraBuffer2d.Free();
+
+            ttf::TTFManager::Free();
 
             TransformManager::Free();
 

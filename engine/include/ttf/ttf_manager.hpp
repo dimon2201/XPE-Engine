@@ -20,16 +20,27 @@ namespace xpe
             core::usize GlyphCount;
         };
 
-        class ENGINE_API TTFManager
+        class ENGINE_API TTFManager : public core::Object
         {
-            public:
-                static Font Load(const char* filePath, core::usize glyphSize);
-                static void Free(const Font& font);
 
-            private:
-                static core::Boolean s_loaded;
-                static FT_Library s_lib;
-                static core::unordered_map<char, Font::Glyph> s_alphabet;
+        public:
+            static void Init();
+            static void Free();
+
+            static TTFManager& Get() {
+                return *s_Instance;
+            }
+
+        public:
+            Font Load(const char* filePath, core::usize glyphSize);
+            void Free(const Font& font);
+
+        private:
+            static TTFManager* s_Instance;
+
+            core::Boolean m_Loaded = core::K_FALSE;
+            FT_Library m_Lib;
+            core::unordered_map<char, Font::Glyph> m_AlphaBet;
         };
     }
 }

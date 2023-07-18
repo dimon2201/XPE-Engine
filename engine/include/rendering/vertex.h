@@ -32,19 +32,19 @@ namespace xpe {
 
             };
 
-            vector<Attribute> Attributes;
+            std::vector<Attribute> Attributes;
             usize Stride = 0;
 
             VertexFormat() = default;
-            VertexFormat(const vector<Attribute>& attributes);
+            VertexFormat(const std::vector<Attribute>& attributes);
 
         };
 
         class ENGINE_API Attributes final {
 
         public:
-            static constexpr VertexFormat::Attribute POS2 = { 0, "XPE_POSITION_LOCAL", VertexFormat::Attribute::eFormat::VEC2 };
-            static constexpr VertexFormat::Attribute POS3 = { 0, "XPE_POSITION_LOCAL", VertexFormat::Attribute::eFormat::VEC3 };
+            static constexpr VertexFormat::Attribute POS2 = { 0, "XPE_POSITION_2D", VertexFormat::Attribute::eFormat::VEC2 };
+            static constexpr VertexFormat::Attribute POS3 = { 0, "XPE_POSITION", VertexFormat::Attribute::eFormat::VEC3 };
             static constexpr VertexFormat::Attribute UV = { 1, "XPE_UV", VertexFormat::Attribute::eFormat::VEC2 };
             static constexpr VertexFormat::Attribute NORMAL = { 2, "XPE_NORMAL", VertexFormat::Attribute::eFormat::VEC3 };
             static constexpr VertexFormat::Attribute TANGENT = { 3, "XPE_TANGENT", VertexFormat::Attribute::eFormat::VEC3 };

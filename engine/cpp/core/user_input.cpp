@@ -11,34 +11,58 @@ namespace xpe {
 
         MouseCursor Input::s_Cursor;
 
-        EventBuffer<WindowClosedFn> Input::WindowClosedEvents;
-        EventBuffer<WindowResizedFn> Input::WindowResizedEvents;
-        EventBuffer<WindowFrameResizedFn> Input::WindowFrameResizedEvents;
-        EventBuffer<WindowMovedFn> Input::WindowMovedEvents;
-        EventBuffer<WindowFocusedFn> Input::WindowFocusedEvents;
-        EventBuffer<WindowFocusLostFn> Input::WindowFocusLostEvents;
+        EventBuffer<WindowClosedFn>* Input::WindowClosedEvents = nullptr;
+        EventBuffer<WindowResizedFn>* Input::WindowResizedEvents = nullptr;
+        EventBuffer<WindowFrameResizedFn>* Input::WindowFrameResizedEvents = nullptr;
+        EventBuffer<WindowMovedFn>* Input::WindowMovedEvents = nullptr;
+        EventBuffer<WindowFocusedFn>* Input::WindowFocusedEvents = nullptr;
+        EventBuffer<WindowFocusLostFn>* Input::WindowFocusLostEvents = nullptr;
 
-        EventBuffer<KeyPressedFn> Input::KeyPressedEvents;
-        EventBuffer<KeyReleasedFn> Input::KeyReleasedEvents;
-        EventBuffer<KeyHoldFn> Input::KeyHoldEvents;
+        EventBuffer<KeyPressedFn>* Input::KeyPressedEvents = nullptr;
+        EventBuffer<KeyReleasedFn>* Input::KeyReleasedEvents = nullptr;
+        EventBuffer<KeyHoldFn>* Input::KeyHoldEvents = nullptr;
 
-        EventBuffer<MousePressedFn> Input::MousePressedEvents;
-        EventBuffer<MouseReleasedFn> Input::MouseReleasedEvents;
-        EventBuffer<MouseHoldFn> Input::MouseHoldEvents;
+        EventBuffer<MousePressedFn>* Input::MousePressedEvents = nullptr;
+        EventBuffer<MouseReleasedFn>* Input::MouseReleasedEvents = nullptr;
+        EventBuffer<MouseHoldFn>* Input::MouseHoldEvents = nullptr;
 
-        EventBuffer<CursorMovedFn> Input::CursorMovedEvents;
-        EventBuffer<CursorEnteredFn> Input::CursorEnteredEvents;
-        EventBuffer<CursorLeftFn> Input::CursorLeftEvents;
+        EventBuffer<CursorMovedFn>* Input::CursorMovedEvents = nullptr;
+        EventBuffer<CursorEnteredFn>* Input::CursorEnteredEvents = nullptr;
+        EventBuffer<CursorLeftFn>* Input::CursorLeftEvents = nullptr;
 
-        EventBuffer<ScrollChangedFn> Input::ScrollChangedEvents;
+        EventBuffer<ScrollChangedFn>* Input::ScrollChangedEvents = nullptr;
 
-        EventBuffer<CharTypedFn> Input::CharTypedEvents;
-        EventBuffer<CharModsTypedFn> Input::CharModsTypedEvents;
+        EventBuffer<CharTypedFn>* Input::CharTypedEvents = nullptr;
+        EventBuffer<CharModsTypedFn>* Input::CharModsTypedEvents = nullptr;
 
         void Input::Init() {
             LogInfo("Input::Init()");
 
             s_Window = static_cast<GLFWwindow*>(WindowManager::GetInstance());
+
+            WindowClosedEvents = new EventBuffer<WindowClosedFn>;
+            WindowResizedEvents = new EventBuffer<WindowResizedFn>;
+            WindowFrameResizedEvents = new EventBuffer<WindowFrameResizedFn>;
+            WindowMovedEvents = new EventBuffer<WindowMovedFn>;
+            WindowFocusedEvents = new EventBuffer<WindowFocusedFn>;
+            WindowFocusLostEvents = new EventBuffer<WindowFocusLostFn>;
+
+            KeyPressedEvents = new EventBuffer<KeyPressedFn>;
+            KeyReleasedEvents = new EventBuffer<KeyReleasedFn>;
+            KeyHoldEvents = new EventBuffer<KeyHoldFn>;
+
+            MousePressedEvents = new EventBuffer<MousePressedFn>;
+            MouseReleasedEvents = new EventBuffer<MouseReleasedFn>;
+            MouseHoldEvents = new EventBuffer<MouseHoldFn>;
+
+            CursorMovedEvents = new EventBuffer<CursorMovedFn>;
+            CursorEnteredEvents = new EventBuffer<CursorEnteredFn>;
+            CursorLeftEvents = new EventBuffer<CursorLeftFn>;
+
+            ScrollChangedEvents = new EventBuffer<ScrollChangedFn>;
+
+            CharTypedEvents = new EventBuffer<CharTypedFn>;
+            CharModsTypedEvents = new EventBuffer<CharModsTypedFn>;
 
             InitWindowCallbacks();
             InitKeyCallbacks();
@@ -52,36 +76,36 @@ namespace xpe {
 
         void Input::InitWindowCallbacks() {
             glfwSetWindowCloseCallback(s_Window, [](GLFWwindow* window) {
-                for (const auto& event : Input::WindowClosedEvents.GetEvents()) {
+                for (const auto& event : Input::WindowClosedEvents->GetEvents()) {
                     event.Function(event.Thiz);
                 }
             });
 
             glfwSetWindowPosCallback(s_Window, [](GLFWwindow* window, int x, int y) {
-                for (const auto& event : Input::WindowMovedEvents.GetEvents()) {
+                for (const auto& event : Input::WindowMovedEvents->GetEvents()) {
                     event.Function(event.Thiz, x, y);
                 }
             });
 
             glfwSetWindowSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                for (const auto& event : Input::WindowResizedEvents.GetEvents()) {
+                for (const auto& event : Input::WindowResizedEvents->GetEvents()) {
                     event.Function(event.Thiz, w, h);
                 }
             });
 
             glfwSetFramebufferSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                for (const auto& event : Input::WindowFrameResizedEvents.GetEvents()) {
+                for (const auto& event : Input::WindowFrameResizedEvents->GetEvents()) {
                     event.Function(event.Thiz, w, h);
                 }
             });
 
             glfwSetWindowFocusCallback(s_Window, [](GLFWwindow* window, int focused) {
                 if (focused == GLFW_TRUE) {
-                    for (const auto& event : Input::WindowFocusedEvents.GetEvents()) {
+                    for (const auto& event : Input::WindowFocusedEvents->GetEvents()) {
                         event.Function(event.Thiz);
                     }
                 } else {
-                    for (const auto& event : Input::WindowFocusLostEvents.GetEvents()) {
+                    for (const auto& event : Input::WindowFocusLostEvents->GetEvents()) {
                         event.Function(event.Thiz);
                     }
                 }
@@ -93,19 +117,19 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : Input::KeyPressedEvents.GetEvents()) {
+                        for (const auto& event : Input::KeyPressedEvents->GetEvents()) {
                             event.Function(event.Thiz, static_cast<eKey>(key));
                         }
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : Input::KeyReleasedEvents.GetEvents()) {
+                        for (const auto& event : Input::KeyReleasedEvents->GetEvents()) {
                             event.Function(event.Thiz, static_cast<eKey>(key));
                         }
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : Input::KeyHoldEvents.GetEvents()) {
+                        for (const auto& event : Input::KeyHoldEvents->GetEvents()) {
                             event.Function(event.Thiz, static_cast<eKey>(key));
                         }
                         break;
@@ -119,19 +143,19 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : Input::MousePressedEvents.GetEvents()) {
+                        for (const auto& event : Input::MousePressedEvents->GetEvents()) {
                             event.Function(event.Thiz, static_cast<eMouse>(button));
                         }
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : Input::MouseReleasedEvents.GetEvents()) {
+                        for (const auto& event : Input::MouseReleasedEvents->GetEvents()) {
                             event.Function(event.Thiz, static_cast<eMouse>(button));
                         }
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : Input::MouseHoldEvents.GetEvents()) {
+                        for (const auto& event : Input::MouseHoldEvents->GetEvents()) {
                             event.Function(event.Thiz, static_cast<eMouse>(button));
                         }
                         break;
@@ -142,18 +166,18 @@ namespace xpe {
 
         void Input::InitCursorCallbacks() {
             glfwSetCursorPosCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                for (const auto& event : Input::CursorMovedEvents.GetEvents()) {
+                for (const auto& event : Input::CursorMovedEvents->GetEvents()) {
                     event.Function(event.Thiz, x, y);
                 }
             });
 
             glfwSetCursorEnterCallback(s_Window, [](GLFWwindow* window, int entered) {
                 if (entered == GLFW_TRUE) {
-                    for (const auto& event : Input::CursorEnteredEvents.GetEvents()) {
+                    for (const auto& event : Input::CursorEnteredEvents->GetEvents()) {
                         event.Function(event.Thiz);
                     }
                 } else {
-                    for (const auto& event : Input::CursorLeftEvents.GetEvents()) {
+                    for (const auto& event : Input::CursorLeftEvents->GetEvents()) {
                         event.Function(event.Thiz);
                     }
                 }
@@ -162,7 +186,7 @@ namespace xpe {
 
         void Input::InitScrollCallbacks() {
             glfwSetScrollCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                for (const auto& event : Input::ScrollChangedEvents.GetEvents()) {
+                for (const auto& event : Input::ScrollChangedEvents->GetEvents()) {
                     event.Function(event.Thiz, x, y);
                 }
             });
@@ -170,33 +194,42 @@ namespace xpe {
 
         void Input::InitCharCallbacks() {
             glfwSetCharCallback(s_Window, [](GLFWwindow* window, u32 charUnicode) {
-                for (const auto& event : Input::CharTypedEvents.GetEvents()) {
+                for (const auto& event : Input::CharTypedEvents->GetEvents()) {
                     event.Function(event.Thiz, charUnicode);
                 }
             });
 
             glfwSetCharModsCallback(s_Window, [](GLFWwindow* window, u32 charUnicode, int mods) {
-                for (const auto& event : Input::CharModsTypedEvents.GetEvents()) {
+                for (const auto& event : Input::CharModsTypedEvents->GetEvents()) {
                     event.Function(event.Thiz, charUnicode, mods);
                 }
             });
         }
 
         void Input::Free() {
-            WindowClosedEvents.Clear();
-            WindowResizedEvents.Clear();
-            WindowFrameResizedEvents.Clear();
-            WindowMovedEvents.Clear();
-            WindowFocusedEvents.Clear();
-            WindowFocusLostEvents.Clear();
+            delete WindowClosedEvents;
+            delete WindowResizedEvents;
+            delete WindowFrameResizedEvents;
+            delete WindowMovedEvents;
+            delete WindowFocusedEvents;
+            delete WindowFocusLostEvents;
 
-            KeyPressedEvents.Clear();
-            KeyReleasedEvents.Clear();
-            KeyHoldEvents.Clear();
+            delete KeyPressedEvents;
+            delete KeyReleasedEvents;
+            delete KeyHoldEvents;
 
-            MousePressedEvents.Clear();
-            MouseReleasedEvents.Clear();
-            MouseHoldEvents.Clear();
+            delete MousePressedEvents;
+            delete MouseReleasedEvents;
+            delete MouseHoldEvents;
+
+            delete CursorMovedEvents;
+            delete CursorEnteredEvents;
+            delete CursorLeftEvents;
+
+            delete ScrollChangedEvents;
+
+            delete CharTypedEvents;
+            delete CharModsTypedEvents;
         }
 
         void Input::CaptureCursor() {

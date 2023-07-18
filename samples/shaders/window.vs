@@ -5,7 +5,7 @@
 
 struct VSIn
 {
-    float3 positionLocal : XPE_POSITION_LOCAL;
+    float3 positionLocal : XPE_POSITION;
     float2 texcoord : XPE_UV;
     float3 normal : XPE_NORMAL;
     uint instanceIndex : SV_InstanceID;
@@ -24,16 +24,20 @@ struct VSOut
 VSOut vs_main(VSIn vsIn)
 {
     VSOut vsOut = (VSOut)0;
-    RenderInstance instance = Instances[vsIn.instanceIndex];
-    Transform instanceTransform = Transforms[instance.TransformIndex];
-    Camera instanceCamera = Cameras[instance.CameraIndex];
 
-    float4 positionWorld = mul(instanceTransform.Matrix, float4(vsIn.positionLocal, 1.0));
+    RenderInstance instance = Instances[vsIn.instanceIndex];
+    Transform transform = Transforms[instance.TransformIndex];
+    Camera camera = Cameras[instance.CameraIndex];
+
+    float4 positionWorld = mul(transform.Matrix, float4(vsIn.positionLocal, 1.0));
+    float4 positionView = mul(camera.View, positionWorld);
+    float4 positionClip = mul(camera.Projection, positionView);
+
     vsOut.positionWorld = positionWorld.xyz;
-    vsOut.viewPosition = instanceCamera.Position;
+    vsOut.viewPosition = camera.Position;
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = normalize(vsIn.normal);
-    vsOut.positionClip = mul(CameraViewProjection(instance.CameraIndex), float4(vsOut.positionWorld, 1.0));
+    vsOut.positionClip = positionClip;
     vsOut.materialIndex = instance.MaterialIndex;
 
     return vsOut;
