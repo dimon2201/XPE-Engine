@@ -64,6 +64,7 @@
 #include <stl/vector.h>
 #include <stl/unordered_map.h>
 #include <stl/map.h>
+#include <stl/sstream.h>
 
 // Core
 #include <core/ecs.hpp>

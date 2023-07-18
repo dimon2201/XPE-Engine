@@ -10,17 +10,20 @@ namespace xpe {
             m_Memory = malloc(m_ByteSize);
             m_LastAddress = m_Memory;
             m_MaxAddress = (void*)(((u64)m_Memory) + ((u64)byteSize));
-            m_Allocs.reserve(byteSize / allocs);
+            m_Allocs.reserve(allocs);
         }
 
         MemoryPool::~MemoryPool()
         {
             free(m_Memory);
-            m_BytesUsage = 0;
         }
 
         void* MemoryPool::Allocate(const usize size)
         {
+#ifdef DEBUG
+            m_BytesOccupied += size;
+#endif
+
             for (auto& alloc: m_Allocs)
             {
                 if (alloc.FreeFlag == 1u && alloc.AllocByteWidth >= size)
@@ -60,10 +63,6 @@ namespace xpe {
             // Update last address
             m_LastAddress = (void*)(((u64)m_LastAddress) + ((u64)size));
 
-#ifdef DEBUG
-            m_BytesUsage += newAlloc.OccupiedByteWidth;
-#endif
-
             return newAlloc.Address;
         }
 
@@ -73,10 +72,12 @@ namespace xpe {
             {
                 if (alloc.Address == address)
                 {
+
 #ifdef DEBUG
-                    m_BytesUsage -= alloc.OccupiedByteWidth;
+                    m_BytesFreed += alloc.OccupiedByteWidth;
                     m_LastFreedBytes = alloc.OccupiedByteWidth;
 #endif
+
                     alloc.FreeFlag = 1u;
                     alloc.OccupiedByteWidth = 0;
 
@@ -87,14 +88,15 @@ namespace xpe {
             return false;
         }
 
-        MemoryPoolStorage::MemoryPoolStorage(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocByteSize)
-        : USID(usid), PoolByteSize(poolByteSize), PoolAllocByteSize(poolAllocByteSize)
+        MemoryPoolStorage::MemoryPoolStorage(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocs)
+        : USID(usid), PoolByteSize(poolByteSize), PoolAllocs(poolAllocs)
         {
             Pools.reserve(poolCount);
             for (u32 i = 0 ; i < poolCount ; i++)
             {
-                Pools.emplace_back(poolByteSize, poolAllocByteSize);
+                Pools.emplace_back(poolByteSize, poolAllocs);
             }
+            TotalBytes = poolCount * poolByteSize;
         }
 
         MemoryPoolStorage::~MemoryPoolStorage() {
@@ -104,7 +106,7 @@ namespace xpe {
         void* MemoryPoolStorage::Allocate(const usize size) {
 #ifdef DEBUG
             TotalAllocCount++;
-            TotalBytesUsage += size;
+            TotalBytesOccupied += size;
 #endif
 
             void* newAddress = nullptr;
@@ -117,7 +119,8 @@ namespace xpe {
             }
 
             usize poolSize = size <= PoolByteSize ? PoolByteSize : size;
-            Pools.emplace_back(poolSize, PoolAllocByteSize);
+            TotalBytes += poolSize;
+            Pools.emplace_back(poolSize, PoolAllocs);
             auto *newPool = &Pools[Pools.size() - 1];
             newAddress = newPool->Allocate(size);
 
@@ -129,7 +132,7 @@ namespace xpe {
                 if (pool.Free(address)) {
 #ifdef DEBUG
                     TotalFreeCount++;
-                    TotalBytesUsage -= pool.GetLastFreedBytes();
+                    TotalBytesFreed += pool.GetLastFreedBytes();
 #endif
                     return;
                 }
@@ -139,25 +142,32 @@ namespace xpe {
         void MemoryPoolStorage::LogPools() {
             usize poolCount = Pools.size();
 
-            LogInfo("{}: Pools = {}, Total Usage = {}MB, Total Allocs = {}, Total Frees = {}",
-                    USID,
-                    poolCount,
-                    (double) TotalBytesUsage / K_MEMORY_MIB,
-                    TotalAllocCount,
-                    TotalFreeCount
-            );
+            hstringstream ss;
+
+            ss << "\n------------------- " << USID << " -------------------\n";
+
+            usize totalMB = TotalBytes / K_MEMORY_MIB;
+            usize totalKB = (TotalBytesOccupied - TotalBytesFreed) / K_MEMORY_KIB;
+
+            ss << "Total Size = " << totalMB << "MB, "
+            << "Total Usage = " << totalKB << "KB" << "\n"
+            << "Total Allocs = " << TotalAllocCount
+            << ", Total Frees = " << TotalFreeCount << "\n";
 
             for (u32 i = 0 ; i < poolCount ; i++) {
                 auto& pool = Pools[i];
-                LogInfo("{}-{}: Total Size = {}MB, Usage = {}MB, Allocs = {}",
-                        USID,
-                        i,
-                        (double) pool.GetByteSize() / K_MEMORY_MIB,
-                        (double) pool.GetBytesUsage() / K_MEMORY_MIB,
-                        pool.GetAllocCount()
-                );
+                usize sizeMB = pool.GetByteSize() / K_MEMORY_MIB;
+                usize usageKB = pool.GetBytesUsage() / K_MEMORY_KIB;
+
+                ss << USID << "Pool-" << i << ": "
+                << "Total = " << sizeMB << "MB, "
+                << "Usage = " << usageKB << "KB, "
+                << "Allocs = " << pool.GetAllocCount() << "\n";
             }
 
+            ss << "---------------------------------------------------------\n";
+
+            LogInfo(ss.str());
         }
 
         MemoryPoolStorage* MemoryPoolManager::MainPools = nullptr;

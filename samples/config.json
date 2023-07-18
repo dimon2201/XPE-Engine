@@ -13,7 +13,7 @@
   "gpu": "DX11",
 
   "debug_errors": true,
-  "debug_warnings": true,
+  "debug_warnings": false,
   "debug_info": false,
 
   "fps": 165,

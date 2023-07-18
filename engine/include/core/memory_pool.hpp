@@ -45,7 +45,7 @@ namespace xpe
                 }
 
                 inline usize GetBytesUsage() const {
-                    return m_BytesUsage;
+                    return m_BytesOccupied - m_BytesFreed;
                 }
 
                 inline usize GetLastFreedBytes() const {
@@ -58,20 +58,23 @@ namespace xpe
                 void* m_LastAddress;
                 void* m_MaxAddress;
                 std::vector<MemoryPoolAllocation> m_Allocs;
-                usize m_BytesUsage = 0;
+                usize m_BytesOccupied = 0;
+                usize m_BytesFreed = 0;
                 usize m_LastFreedBytes = 0;
         };
 
         struct ENGINE_API MemoryPoolStorage final {
             std::vector<MemoryPool> Pools;
             usize PoolByteSize = 0;
-            usize PoolAllocByteSize = 0;
+            usize PoolAllocs = 0;
             usize TotalAllocCount = 0;
             usize TotalFreeCount = 0;
-            usize TotalBytesUsage = 0;
+            usize TotalBytes = 0;
+            usize TotalBytesOccupied = 0;
+            usize TotalBytesFreed = 0;
             const char* USID = nullptr;
 
-            MemoryPoolStorage(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocByteSize);
+            MemoryPoolStorage(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocs);
 
             ~MemoryPoolStorage();
 

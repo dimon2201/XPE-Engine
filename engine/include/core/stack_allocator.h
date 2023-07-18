@@ -61,8 +61,8 @@ namespace xpe {
         template<typename T>
         StackTypedAllocator<T>::~StackTypedAllocator()
         {
-            StackMemory::TotalFreeCount -= 1;
-            StackMemory::MemoryFreedBytes -= Size;
+            StackMemory::TotalAllocCount -= 1;
+            StackMemory::MemoryOccupiedBytes -= Size;
         }
 
     }

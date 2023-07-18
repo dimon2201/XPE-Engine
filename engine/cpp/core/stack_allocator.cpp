@@ -6,11 +6,16 @@ namespace xpe {
         usize StackMemory::MemoryOccupiedBytes = 0;
 
         void StackMemory::Log() {
-            LogInfo(
-                    "StackMemory: Using = {}KB, Allocs = {}",
-                    (double) MemoryOccupiedBytes / K_MEMORY_KIB,
-                    TotalAllocCount
-            );
+            hstringstream ss;
+
+            ss << "\n----------- Stack Memory -------------\n";
+
+            ss << "Usage = " << (double) MemoryOccupiedBytes / K_MEMORY_KIB << "KB, "
+            << "Allocs = " << TotalAllocCount << "\n";
+
+            ss << "--------------------------------------\n";
+
+            LogInfo(ss.str());
         }
 
         StackAllocator::StackAllocator(usize size) : Size(size)
