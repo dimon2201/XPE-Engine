@@ -31,6 +31,10 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
     {
         if (FT_Set_Pixel_Sizes(face, 0, glyphSize) == 0)
         {
+            core::usize textureWidth = 0;
+            core::usize textureHeight = 0;
+            core::usize xOffset = 0;
+
             for (int c = 0; c < 256; c++)
             {
                 FT_UInt gi = FT_Get_Char_Index(face, (char)c);
@@ -45,6 +49,9 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
                     glyph.Character = (char)c;
                     glyph.Width = face->glyph->bitmap.width;
                     glyph.Height = face->glyph->bitmap.rows;
+                    glyph.Left = face->glyph->bitmap_left;
+                    glyph.Top = face->glyph->bitmap_top;
+                    glyph.Advance = face->glyph->advance.x;
                     glyph.BitmapData = alloc(face->glyph->bitmap.pitch * glyph.Height);
 
                     int x = 0;
@@ -57,8 +64,30 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
                             ((unsigned char*)glyph.BitmapData)[i * face->glyph->bitmap.pitch + j] = p;
                         }
                     }
+
+                    xOffset += glyph.Width;
+
+                    if (xOffset > 1024)
+                    {
+                        textureWidth = xOffset;
+                        textureHeight += glyph.Height;
+                    }
                 }
             }
+
+            font.Atlas.Type = render::Texture::eType::TEXTURE_2D;
+            font.Atlas.Width = textureWidth;
+            font.Atlas.Height = textureHeight;
+            font.Atlas.Depth = 1;
+            font.Atlas.ChannelCount = 4;
+            font.Atlas.Format = render::Texture::eFormat::RGBA8;
+            font.Atlas.OnMemoryPool = core::K_TRUE;
+            render::TextureLayer textureLayer;
+            textureLayer.Pixels = alloc(font.Atlas.Width * font.Atlas.Height * 4);
+            font.Atlas.Layers.push_back(textureLayer);
+            render::TextureManager::InitTexture(font.Atlas);
+
+            m_Fonts.insert({ std::string(filePath), font });
         }
 
         FT_Done_Face(face);
@@ -71,13 +100,14 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
     return font;
 }
 
-void xpe::ttf::TTFManager::Free(const xpe::ttf::Font& font)
+void xpe::ttf::TTFManager::Free(Font& font)
 {
-    for (auto& glyph : m_AlphaBet)
+    render::TextureManager::FreeTexture(font.Atlas);
+
+    for (auto& glyph : font.AlphaBet)
     {
-        if (glyph.second.BitmapData != nullptr)
-        {
-            dealloc(glyph.second.BitmapData);
-        }
+        dealloc(glyph.second.BitmapData);
     }
+
+    font.AlphaBet.clear();
 }

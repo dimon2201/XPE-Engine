@@ -1,7 +1,9 @@
 #pragma once
 
+#include <string>
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include <rendering/texture.h>
 
 namespace xpe
 {
@@ -14,10 +16,15 @@ namespace xpe
                 core::u8 Character;
                 core::usize Width;
                 core::usize Height;
+                core::usize Left;
+                core::usize Top;
+                core::usize Advance;
                 void* BitmapData = nullptr;
             };
 
             core::usize GlyphCount;
+            core::unordered_map<char, Font::Glyph> AlphaBet;
+            render::Texture Atlas;
         };
 
         class ENGINE_API TTFManager : public core::Object
@@ -33,14 +40,14 @@ namespace xpe
 
         public:
             Font Load(const char* filePath, core::usize glyphSize);
-            void Free(const Font& font);
+            void Free(Font& font);
 
         private:
             static TTFManager* s_Instance;
 
             core::Boolean m_Loaded = core::K_FALSE;
             FT_Library m_Lib;
-            core::unordered_map<char, Font::Glyph> m_AlphaBet;
+            core::unordered_map<std::string, Font> m_Fonts;
         };
     }
 }
