@@ -175,7 +175,7 @@ macro(include_engine path)
             ${path}/thirdparty/glm/glm
             ${path}/thirdparty/jsoncpp/include
             ${path}/thirdparty/freetype2/include
-            ${path}/thirdparty/cgltf/cgltf
+            ${path}/thirdparty/cgltf
     )
 endmacro()
 
