@@ -1,6 +1,7 @@
 #include <core/core.hpp>
 #include <gltf/gltf.hpp>
 #include <ttf/ttf_manager.hpp>
+#include <rendering/texture.h>
 
 using namespace xpe::core;
 using namespace xpe::render;
@@ -27,8 +28,9 @@ public:
         _ecs = new ECSManager();
         _batch = new BatchManager(context);
 
-        xFont font = TTFManager::Load("C:/Users/USER100/Documents/GitHub/XPE-Engine/Roboto-Italic.ttf", 32);
-        TTFManager::Free(font);
+        // Font font = TTFManager::Get().Load("C:/Users/USER100/Documents/GitHub/XPE-Engine/Roboto-Italic.ttf", 32);
+        // TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/image.png", font.Atlas, Texture::eFileFormat::PNG);
+        // TTFManager::Get().Free(font);
 
         _cameraBuffer.Init(context);
 

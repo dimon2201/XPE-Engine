@@ -1,4 +1,5 @@
 #include <ttf/ttf_manager.hpp>
+#include <core/memory_pool.hpp>
 
 xpe::ttf::TTFManager* xpe::ttf::TTFManager::s_Instance = nullptr;
 
@@ -52,7 +53,7 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
                     glyph.Left = face->glyph->bitmap_left;
                     glyph.Top = face->glyph->bitmap_top;
                     glyph.Advance = face->glyph->advance.x;
-                    glyph.BitmapData = alloc(face->glyph->bitmap.pitch * glyph.Height);
+                    glyph.BitmapData = core::MemoryPoolManager::Allocate(face->glyph->bitmap.pitch * glyph.Height);
 
                     int x = 0;
                     int y = 0;
@@ -64,6 +65,8 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
                             ((unsigned char*)glyph.BitmapData)[i * face->glyph->bitmap.pitch + j] = p;
                         }
                     }
+
+                    font.AlphaBet.insert({ (char)c, glyph });
 
                     xOffset += glyph.Width;
 
@@ -82,9 +85,26 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
             font.Atlas.ChannelCount = 4;
             font.Atlas.Format = render::Texture::eFormat::RGBA8;
             font.Atlas.OnMemoryPool = core::K_TRUE;
-            render::TextureLayer textureLayer;
-            textureLayer.Pixels = alloc(font.Atlas.Width * font.Atlas.Height * 4);
-            font.Atlas.Layers.push_back(textureLayer);
+            void* pixels = core::MemoryPoolManager::Allocate(font.Atlas.Width * font.Atlas.Height * 4);
+            font.Atlas.Layers.push_back(pixels);
+
+            // Fill atlas texture with glyphs
+            xOffset = 0;
+            core::usize yOffset = 0;
+            core::u8* pixelsU8 = (core::u8*)pixels;
+            for (auto& glyph : font.AlphaBet)
+            {
+                for (int y = 0; y < glyph.second.Height; y++)
+                {
+                    for (int x = 0; x < glyph.second.Width; x++)
+                    {
+                        int glyphPixelIndex = x + (y * glyph.second.Width);
+                        int pixelIndex = (xOffset + x) + ((yOffset + y) * glyph.second.Width);
+                        pixelsU8[pixelIndex] = ((core::u8*)glyph.second.BitmapData)[glyphPixelIndex];
+                    }
+                }
+            }
+
             render::TextureManager::InitTexture(font.Atlas);
 
             m_Fonts.insert({ std::string(filePath), font });
@@ -106,7 +126,7 @@ void xpe::ttf::TTFManager::Free(Font& font)
 
     for (auto& glyph : font.AlphaBet)
     {
-        dealloc(glyph.second.BitmapData);
+        core::MemoryPoolManager::Free(glyph.second.BitmapData);
     }
 
     font.AlphaBet.clear();
