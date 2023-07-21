@@ -42,10 +42,12 @@ namespace xpe {
                 virtual glm::ivec2 GetSwapChainDimensions() = 0;
                 virtual void Present() = 0;
 
-                virtual void CreateShader(Shader& shader) = 0;
-                virtual void BindShader(const Shader* shader) = 0;
-                virtual void FreeShader(Shader& shader) = 0;
+                void CreateShader(Shader& shader);
+                void CompileShader(Shader& shader);
+                void BindShader(const Shader* shader);
+                void FreeShader(Shader& shader);
 
+                virtual void CompileShaderStage(ShaderStage& stage) = 0;
                 virtual void CreateShaderStage(ShaderStage& stage) = 0;
                 virtual void BindShaderStage(const ShaderStage& stage) = 0;
                 virtual void FreeShaderStage(ShaderStage& stage) = 0;
@@ -63,6 +65,8 @@ namespace xpe {
                 virtual void BindTextureSlot(u32 slot) = 0;
                 virtual void FreeTexture(const Texture* texture) = 0;
                 virtual void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index = 0) = 0;
+
+                virtual void GenerateMips(const Texture& texture) = 0;
 
                 virtual void CreateSampler(TextureSampler& sampler) = 0;
                 virtual void BindSampler(const TextureSampler* sampler) = 0;
@@ -100,6 +104,14 @@ namespace xpe {
                 virtual void DrawQuad(const ePrimitiveTopology& primitiveTopology) = 0;
 
                 virtual void* GetDevice() = 0;
+
+                virtual void InitHardwareConfig() = 0;
+
+        protected:
+            Shader* m_BoundShader = nullptr;
+            void* m_BoundColorTargetView = nullptr;
+            void* m_BoundDepthTargetView = nullptr;
+            Pipeline* m_BoundPipeline = nullptr;
 
         };
 

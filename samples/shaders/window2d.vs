@@ -22,10 +22,10 @@ VSOut vs_main(VSIn vsIn)
 {
     VSOut vsOut = (VSOut)0;
     RenderInstance2D instance = Instances2D[vsIn.instanceIndex];
-    Transform2D transform = Transforms2D[instance.TransformIndex];
+    float3x3 worldMatrix = Transforms2D[instance.TransformIndex].ModelMatrix;
     Camera camera = Cameras[instance.CameraIndex];
 
-    float4 positionWorld = float4(mul(transform.Matrix, float3(vsIn.positionLocal, 1.0)), 1.0);
+    float4 positionWorld = float4(mul(worldMatrix, float3(vsIn.positionLocal, 1.0)), 1.0);
     float4 positionView = mul(camera.View, positionWorld);
     positionView.z = 1.0;
     positionView.w = 1.0;

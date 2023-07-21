@@ -151,6 +151,7 @@ namespace xpe {
         }
 
         void PerspectiveCamera::WindowFrameResized(int w, int h) {
+            LogInfo("WindowFrameResized: width={}, height={}", w, h);
             m_ViewWidth = w;
             m_ViewHeight = h;
             UpdateProjection();

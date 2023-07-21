@@ -78,7 +78,7 @@ public:
         Quad2d quad2D;
         RenderInstance2d quad2DInstance;
         Transform2DComponent quad2DTransform("Quad2DTransform");
-        quad2DTransform.Position = { 0, 0 };
+        quad2DTransform.Position = { 0, -10 };
         quad2DTransform.Scale = { 5, 1 };
         TransformManager::UpdateTransform2D(0, quad2DTransform);
         m_BatchManager2d->StoreGeometryIndexed("Quad2D", quad2D);
@@ -87,12 +87,13 @@ public:
 
         // Put instances of geometry
         u32 transformIndex = 1;
-        for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
+        u32 materialIndex = 0;
+        u32 textureIndex = 0;
+        for (f32 y = -4.0f; y < 4.0f; y += 4.0f)
         {
-            for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
+            for (f32 x = -4.0f; x < 4.0f; x += 4.0f)
             {
-                u32 materialIndex = 0;
-                for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
+                for (f32 z = -4.0f; z < 4.0f; z += 4.0f)
                 {
                     float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
@@ -109,13 +110,29 @@ public:
                     instance.TransformIndex = transformIndex;
                     instance.MaterialIndex = materialIndex;
 
-                    Material* material = MaterialManager::Builder().Build("Material_" + materialIndex);
+                    Material* material = MaterialManager::CreateMaterial("Material_" + materialIndex);
                     material->Index = materialIndex;
                     material->Data = MaterialManager::GetMaterialData(materialIndex);
-                    material->Data->BaseColor = { r, g, b, 1 };
+                    material->Data->BaseColor = { 1, 1, 1, 1 };
                     material->Data->MetallicFactor = r;
                     material->Data->RoughnessFactor = g;
                     material->Data->AOFactor = b;
+
+                    material->Data->EnableAlbedo = true;
+                    material->AlbedoIndex = textureIndex;
+                    MaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
+
+                    material->Data->EnableMetallic = true;
+                    material->MetallicIndex = textureIndex;
+                    MaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
+
+                    material->Data->EnableRoughness = true;
+                    material->RoughnessIndex = textureIndex;
+                    MaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
+
+                    material->Data->EnableAO = true;
+                    material->AOIndex = textureIndex;
+                    MaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
 
                     m_BatchManager->AddInstance("CubeGeometry", instance);
                     m_BatchManager->AddInstance("CubeMesh", instance);
@@ -124,6 +141,9 @@ public:
 
                     transformIndex++;
                     materialIndex++;
+                    if (++textureIndex > 1) {
+                        textureIndex = 0;
+                    }
                 }
             }
         }
@@ -158,7 +178,7 @@ public:
             Simulate();
 
             // todo bug: canvas is not updated or resized because after binding material textures
-            // MaterialManager::BindMaterials();
+            MaterialManager::BindMaterials();
 
             m_Canvas->Clear(glm::vec4(1.0f));
 
@@ -236,10 +256,10 @@ private:
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
 
         // setup shader
-        m_Pipeline.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window.vs")
-                .AddPixelStageFromFile("shaders/window.ps")
-                .Build("window");
+        m_Pipeline.Shader = ShaderManager::CreateShader("window");
+        ShaderManager::AddVertexStageFromFile(m_Pipeline.Shader, "shaders/window.vs");
+        ShaderManager::AddPixelStageFromFile(m_Pipeline.Shader, "shaders/window.ps");
+        ShaderManager::BuildShader(m_Pipeline.Shader);
 
         // setup input layout
         m_Layout.Format = Vertex3D::Format;
@@ -259,10 +279,10 @@ private:
         m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
 
         // setup shader
-        m_Pipeline2d.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window2d.vs")
-                .AddPixelStageFromFile("shaders/window2d.ps")
-                .Build("window2d");
+        m_Pipeline2d.Shader = ShaderManager::CreateShader("window2d");
+        ShaderManager::AddVertexStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.vs");
+        ShaderManager::AddPixelStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.ps");
+        ShaderManager::BuildShader(m_Pipeline2d.Shader);
 
         // setup input layout
         m_Layout2d.Format = Vertex2D::Format;
@@ -278,6 +298,8 @@ private:
 
     void InitCamera() {
         m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
+        // todo BUG: after moving camera, the camera resets position
+        m_PerspectiveCameraComponent.Position = { 5, 5, 20 };
         m_Camera = new PerspectiveCamera(&m_CameraBuffer, &m_PerspectiveCameraComponent);
         m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;

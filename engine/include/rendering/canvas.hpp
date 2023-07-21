@@ -21,13 +21,13 @@ namespace xpe {
                 inline s32 GetWidth() const { return m_Size.x; }
                 inline s32 GetHeight() const { return m_Size.y; }
                 inline RenderTarget* GetRenderTarget() { return &m_RenderTarget; }
-                inline Shader* GetShader() { return &m_Shader; }
+                inline Shader* GetShader() { return m_Shader; }
 
             private:
                 glm::ivec2 m_Size;
                 Context* m_Context;
                 RenderTarget m_RenderTarget;
-                Shader m_Shader;
+                Shader* m_Shader = nullptr;
                 Texture m_ColorTexture;
                 Texture m_DepthTexture;
         };

@@ -46,7 +46,8 @@ namespace xpe {
             modelMatrix.Scale = transformComponent.Scale;
 
             TransformData transformData;
-            transformData.Matrix = ModelMatrixUpdate(modelMatrix);
+            transformData.ModelMatrix = ModelMatrixUpdate(modelMatrix);
+            transformData.NormalMatrix = glm::transpose(glm::inverse(glm::mat3(transformData.ModelMatrix)));
 
             s_Storage->Buffer.FlushItem(index, transformData);
         }
@@ -58,7 +59,7 @@ namespace xpe {
             modelMatrix.Scale = transform2DComponent.Scale;
 
             Transform2DData transformData;
-            transformData.Matrix = Model2dMatrixUpdate(modelMatrix);
+            transformData.ModelMatrix = Model2dMatrixUpdate(modelMatrix);
 
             s_Storage->Buffer2D.FlushItem(index, transformData);
         }

@@ -32,13 +32,25 @@ namespace xpe {
                     float xSegment = (float)x / (float)xSegments;
                     float ySegment = (float)y / (float)ySegments;
 
-                    float xPos = std::cos(xSegment * 2.0f * PI) * std::sin(ySegment * PI);
-                    float yPos = std::cos(ySegment * PI);
-                    float zPos = std::sin(xSegment * 2.0f * PI) * std::sin(ySegment * PI);
+                    float xPos = cos(xSegment * 2.0f * PI) * sin(ySegment * PI);
+                    float yPos = cos(ySegment * PI);
+                    float zPos = sin(xSegment * 2.0f * PI) * sin(ySegment * PI);
 
                     V.Position = { xPos, yPos, zPos };
                     V.UV = { xSegment, ySegment };
-                    V.Normal = { xPos, yPos, zPos };
+                    V.Normal = glm::normalize(V.Position);
+
+                    // calculate tangent
+                    // todo: it will not always give a correct tangents.
+                    // todo: we need to check for different case of  [(theta,phi+pi/2);(theta+pi/2,phi);(theta+pi/2,phi+pi/2)]
+                    glm::vec3 tangent;
+                    float r = V.Position.length();
+                    float theta = acos(zPos / r);
+                    float phi = atan2(yPos, xPos) + PI * 0.5;
+                    tangent.x = sin(theta) * cos(phi);
+                    tangent.y = sin(theta) * sin(phi);
+                    tangent.z = cos(theta);
+                    V.Tangent = tangent;
 
                     i++;
                 }

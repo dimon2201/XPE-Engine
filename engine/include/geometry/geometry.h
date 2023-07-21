@@ -30,6 +30,7 @@ namespace xpe {
             void Free();
 
             void CopyFrom(VertexArray<T>* src);
+            void MoveFrom(VertexArray<T>* src);
 
             void Reserve(usize count);
 
@@ -49,6 +50,12 @@ namespace xpe {
         void VertexArray<T>::CopyFrom(VertexArray<T>* src) {
             Data.resize(src->Size());
             memcpy(Data.data(), src->Data.data(), src->Size());
+        }
+
+        template<typename T>
+        void VertexArray<T>::MoveFrom(VertexArray<T> *src) {
+            Data.resize(src->Size());
+            memmove(Data.data(), src->Data.data(), src->Size());
         }
 
         template<typename T>
@@ -130,6 +137,9 @@ namespace xpe {
 
             void CopyFrom(IndexArray* src);
             void CopyFrom(u32* indices, usize count);
+
+            void MoveFrom(IndexArray* src);
+            void MoveFrom(u32* indices, usize count);
 
             void Reserve(usize count);
         };

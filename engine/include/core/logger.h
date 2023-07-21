@@ -22,6 +22,7 @@ namespace xpe {
 
             static spdlog::logger* GetLogger();
             static spdlog::logger* GetTracer();
+            static spdlog::logger* GetMemLogger();
 
             static void DumpBacktrace();
 
@@ -39,8 +40,9 @@ namespace xpe {
 #define LogTrace(...) SPDLOG_LOGGER_TRACE(xpe::core::Logger::GetTracer(), __VA_ARGS__)
 #define LogVerbose(...) SPDLOG_LOGGER_TRACE(xpe::core::Logger::GetLogger(), __VA_ARGS__)
 #define LogInfo(...) SPDLOG_LOGGER_INFO(xpe::core::Logger::GetLogger(), __VA_ARGS__)
-#define LogWarning(...) SPDLOG_LOGGER_WARN(xpe::core::Logger::GetTracer(), __VA_ARGS__)
+#define LogWarning(...) SPDLOG_LOGGER_WARN(xpe::core::Logger::GetLogger(), __VA_ARGS__)
 #define LogError(...) SPDLOG_LOGGER_ERROR(xpe::core::Logger::GetTracer(), __VA_ARGS__)
+#define LogMemory(...) SPDLOG_LOGGER_INFO(xpe::core::Logger::GetMemLogger(), __VA_ARGS__)
 
 #define DumpTraceError(...) \
 LogError(__VA_ARGS__); \
@@ -59,6 +61,7 @@ LogInfo("{}: {}", name, glm::to_string(v))
 #define LogInfo(...)
 #define LogWarning(...)
 #define LogError(...)
+#define LogMemory(...)
 
 #define DumpTraceError(...)
 

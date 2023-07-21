@@ -51,15 +51,16 @@ namespace xpe {
         {
                 { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT },
                 { TextureSampler::eFilter::MIN_MAG_MIP_LINEAR, D3D11_FILTER_MIN_MAG_MIP_LINEAR },
+                { TextureSampler::eFilter::ANISOTROPIC, D3D11_FILTER_ANISOTROPIC },
         };
 
-        static const std::unordered_map<TextureSampler::eAddressMode, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable =
+        static const std::unordered_map<TextureSampler::eAddress, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable =
         {
-                { TextureSampler::eAddressMode::WRAP, D3D11_TEXTURE_ADDRESS_WRAP },
-                { TextureSampler::eAddressMode::BORDER, D3D11_TEXTURE_ADDRESS_BORDER },
-                { TextureSampler::eAddressMode::CLAMP, D3D11_TEXTURE_ADDRESS_CLAMP },
-                { TextureSampler::eAddressMode::MIRROR, D3D11_TEXTURE_ADDRESS_MIRROR },
-                { TextureSampler::eAddressMode::MIRROR_ONCE, D3D11_TEXTURE_ADDRESS_MIRROR_ONCE }
+                { TextureSampler::eAddress::WRAP,        D3D11_TEXTURE_ADDRESS_WRAP },
+                { TextureSampler::eAddress::BORDER,      D3D11_TEXTURE_ADDRESS_BORDER },
+                { TextureSampler::eAddress::CLAMP,       D3D11_TEXTURE_ADDRESS_CLAMP },
+                { TextureSampler::eAddress::MIRROR,      D3D11_TEXTURE_ADDRESS_MIRROR },
+                { TextureSampler::eAddress::MIRROR_ONCE, D3D11_TEXTURE_ADDRESS_MIRROR_ONCE }
         };
 
         void D3D11Context::Init()
@@ -110,20 +111,30 @@ namespace xpe {
                 return;
             }
 
+            InitHardwareConfig();
+
             InitDebugger(new D3D11Debugger(), this);
 
             LogDebugMessage();
 
             m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&m_SwapChainTexture.Instance);
-            m_SwapChainTexture.Width = WindowManager::GetWidth();
+
+            m_SwapChainTexture.Width  = WindowManager::GetWidth();
             m_SwapChainTexture.Height = WindowManager::GetHeight();
             m_SwapChainTexture.Format = Texture::eFormat::RGBA8;
 
-            m_SwapChainTarget.Width = m_SwapChainTexture.Width;
+            m_SwapChainTarget.Width  = m_SwapChainTexture.Width;
             m_SwapChainTarget.Height = m_SwapChainTexture.Height;
             m_SwapChainTarget.ColorTexture = &m_SwapChainTexture;
+
             CreateRenderTarget(m_SwapChainTarget);
             LogDebugMessage();
+
+            m_SwapChainSampler.Filter   = TextureSampler::eFilter::MIN_MAG_MIP_POINT;
+            m_SwapChainSampler.AddressU = TextureSampler::eAddress::CLAMP;
+            m_SwapChainSampler.AddressV = TextureSampler::eAddress::CLAMP;
+            m_SwapChainSampler.AddressW = TextureSampler::eAddress::CLAMP;
+            m_SwapChainSampler.AnisotropyLevel = 1;
 
             CreateSampler(m_SwapChainSampler);
             LogDebugMessage();
@@ -270,31 +281,7 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::CreateShader(Shader& shader)
-        {
-            for (auto* stage : shader.Stages) {
-                CreateShaderStage(*stage);
-            }
-        }
-
-        void D3D11Context::BindShader(const Shader* shader)
-        {
-            m_BoundShader = (Shader*)shader;
-            for (const auto* stage : shader->Stages) {
-                BindShaderStage(*stage);
-            }
-        }
-
-        void D3D11Context::FreeShader(Shader& shader)
-        {
-            for (auto* stage : shader.Stages) {
-                FreeShaderStage(*stage);
-            }
-            shader.Stages.clear();
-        }
-
-        void D3D11Context::CreateShaderStage(ShaderStage &stage)
-        {
+        void D3D11Context::CompileShaderStage(ShaderStage &stage) {
             // skip stage that is already compiled
             // save vertex BLOB into shader
             if (stage.Compiled) {
@@ -326,18 +313,28 @@ namespace xpe {
             }
 
             if (shaderBlob != nullptr) {
-
                 stage.Compiled = true;
                 stage.Blob.Instance = shaderBlob;
                 stage.Blob.ByteCode = shaderBlob->GetBufferPointer();
                 stage.Blob.ByteCodeSize = shaderBlob->GetBufferSize();
+            }
+        }
+
+        void D3D11Context::CreateShaderStage(ShaderStage &stage)
+        {
+            Blob blob = stage.Blob;
+
+            if (blob.Instance != nullptr) {
+
+                const void* byteCode = blob.ByteCode;
+                const usize byteCodeSize = blob.ByteCodeSize;
 
                 switch (stage.Type) {
 
                     case eShaderType::VERTEX:
                         m_Device->CreateVertexShader(
-                                shaderBlob->GetBufferPointer(),
-                                shaderBlob->GetBufferSize(),
+                                byteCode,
+                                byteCodeSize,
                                 nullptr,
                                 (ID3D11VertexShader**)&stage.Resource.Instance
                         );
@@ -346,8 +343,8 @@ namespace xpe {
 
                     case eShaderType::PIXEL:
                         m_Device->CreatePixelShader(
-                                shaderBlob->GetBufferPointer(),
-                                shaderBlob->GetBufferSize(),
+                                byteCode,
+                                byteCodeSize,
                                 nullptr,
                                 (ID3D11PixelShader**)&stage.Resource.Instance
                         );
@@ -356,8 +353,8 @@ namespace xpe {
 
                     case eShaderType::GEOMETRY:
                         m_Device->CreateGeometryShader(
-                                shaderBlob->GetBufferPointer(),
-                                shaderBlob->GetBufferSize(),
+                                byteCode,
+                                byteCodeSize,
                                 nullptr,
                                 (ID3D11GeometryShader**)&stage.Resource.Instance
                         );
@@ -366,8 +363,8 @@ namespace xpe {
 
                     case eShaderType::COMPUTE:
                         m_Device->CreateComputeShader(
-                                shaderBlob->GetBufferPointer(),
-                                shaderBlob->GetBufferSize(),
+                                byteCode,
+                                byteCodeSize,
                                 nullptr,
                                 (ID3D11ComputeShader**)&stage.Resource.Instance
                         );
@@ -443,244 +440,185 @@ namespace xpe {
 
         void D3D11Context::CreateTexture1D(Texture &texture)
         {
-            HRESULT status = 0;
             D3D11_TEXTURE1D_DESC texDesc = {};
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
-            D3D11_SUBRESOURCE_DATA* initialData = nullptr;
+
             u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+            u32 mipLevels = texture.GetMipLevels();
+            D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
 
-            if (texture.InitializeData) {
-                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
+            UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
 
-                u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
-
-                for (int i = 0 ; i < arraySize ; i++) {
-                    auto& data = initialData[i];
-                    data.pSysMem = texture.Layers[i].Pixels;
-                    data.SysMemPitch = sysMemPitch;
-                    data.SysMemSlicePitch = 0;
-                }
-            }
-
-            texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-            if (texture.BindRenderTarget) {
-                texDesc.BindFlags |= D3D11_BIND_RENDER_TARGET;
-            }
-
-            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-            texDesc.Format = s_TextureFormatTable.at(texture.Format);
             texDesc.Width = texture.Width;
+            texDesc.MipLevels = mipLevels;
             texDesc.ArraySize = arraySize;
-            texDesc.MipLevels = texture.MipLevels;
+            texDesc.Format = s_TextureFormatTable.at(texture.Format);
+            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
             texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-            srv.Format = s_TextureFormatTable.at(texture.Format);
-            srv.Texture1D.MipLevels = texture.MipLevels;
-            srv.Texture1D.MostDetailedMip = texture.MostDetailedMip;
+            srv.Format = texDesc.Format;
             srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE1D;
+            srv.Texture1D.MostDetailedMip = texture.MostDetailedMip;
+            srv.Texture1D.MipLevels = mipLevels;
 
             m_Device->CreateTexture1D(&texDesc, initialData, (ID3D11Texture1D**)&texture.Instance);
             LogDebugMessage();
 
-            m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+            m_Device->CreateShaderResourceView((ID3D11Texture1D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            dealloc(initialData);
+            GenerateMips(texture);
+
+            FreeTextureData(initialData);
         }
 
         void D3D11Context::CreateTexture2D(Texture &texture)
         {
-            HRESULT status = 0;
             D3D11_TEXTURE2D_DESC texDesc = {};
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
-            D3D11_SUBRESOURCE_DATA* initialData = nullptr;
+
             u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+            u32 mipLevels = texture.GetMipLevels();
+            D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
 
-            if (texture.InitializeData) {
-                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
+            UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
 
-                u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
-
-                for (int i = 0 ; i < arraySize ; i++) {
-                    auto& data = initialData[i];
-                    data.pSysMem = texture.Layers[i].Pixels;
-                    data.SysMemPitch = sysMemPitch;
-                    data.SysMemSlicePitch = 0;
-                }
-            }
-
-            texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-            if (texture.BindRenderTarget) {
-                texDesc.BindFlags |= D3D11_BIND_RENDER_TARGET;
-            }
-
-            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-            texDesc.Format = s_TextureFormatTable.at(texture.Format);
             texDesc.Width = texture.Width;
             texDesc.Height = texture.Height;
+            texDesc.MipLevels = mipLevels;
             texDesc.ArraySize = arraySize;
+            texDesc.Format = s_TextureFormatTable.at(texture.Format);
             texDesc.SampleDesc.Count = 1;
             texDesc.SampleDesc.Quality = 0;
-            texDesc.MipLevels = texture.MipLevels;
+            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
             texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-            srv.Format = s_TextureFormatTable.at(texture.Format);
-            srv.Texture2D.MipLevels = texture.MipLevels;
-            srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
+            srv.Format = texDesc.Format;
             srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+            srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
+            srv.Texture2D.MipLevels = mipLevels;
 
             m_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)&texture.Instance);
             LogDebugMessage();
 
-            m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+            m_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            dealloc(initialData);
+            GenerateMips(texture);
+
+            FreeTextureData(initialData);
         }
 
         void D3D11Context::CreateTexture2DArray(Texture &texture)
         {
-            HRESULT status = 0;
             D3D11_TEXTURE2D_DESC texDesc = {};
             D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
-            D3D11_SUBRESOURCE_DATA* initialData = nullptr;
+
             u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+            u32 mipLevels = texture.GetMipLevels();
+            D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
 
-            if (texture.InitializeData) {
-                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
+            UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
 
-                u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
-
-                for (int i = 0 ; i < arraySize ; i++) {
-                    auto& data = initialData[i];
-                    data.pSysMem = texture.Layers[i].Pixels;
-                    data.SysMemPitch = sysMemPitch;
-                    data.SysMemSlicePitch = 0;
-                }
-            }
-
-            texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-            if (texture.BindRenderTarget) {
-                texDesc.BindFlags |= D3D11_BIND_RENDER_TARGET;
-            }
-
-            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-            texDesc.Format = s_TextureFormatTable.at(texture.Format);
             texDesc.Width = texture.Width;
             texDesc.Height = texture.Height;
+            texDesc.MipLevels = mipLevels;
             texDesc.ArraySize = arraySize;
+            texDesc.Format = s_TextureFormatTable.at(texture.Format);
             texDesc.SampleDesc.Count = 1;
             texDesc.SampleDesc.Quality = 0;
-            texDesc.MipLevels = texture.MipLevels;
+            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
             texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-            texDesc.MiscFlags = 0;
 
-            srv.Format = s_TextureFormatTable.at(texture.Format);
-            srv.Texture2DArray.MipLevels = texture.MipLevels;
+            srv.Format = texDesc.Format;
+            srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2DARRAY;
             srv.Texture2DArray.MostDetailedMip = texture.MostDetailedMip;
+            srv.Texture2DArray.MipLevels = mipLevels;
             srv.Texture2DArray.FirstArraySlice = 0;
             srv.Texture2DArray.ArraySize = arraySize;
-            srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2DARRAY;
 
-            status = m_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)&texture.Instance);
-            LogDebugMessage();
-
-            m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
-            LogDebugMessage();
-
-            dealloc(initialData);
-        }
-
-        void D3D11Context::CreateTexture3D(Texture &texture)
-        {
-            HRESULT status = 0;
-            D3D11_TEXTURE3D_DESC texDesc = {};
-            D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
-            D3D11_SUBRESOURCE_DATA* initialData = nullptr;
-            u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
-
-            if (texture.InitializeData) {
-                initialData = allocT(D3D11_SUBRESOURCE_DATA, arraySize);
-
-                u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
-
-                for (int i = 0 ; i < arraySize ; i++) {
-                    auto& data = initialData[i];
-                    data.pSysMem = texture.Layers[i].Pixels;
-                    data.SysMemPitch = sysMemPitch;
-                    data.SysMemSlicePitch = 0; // todo for 3D texture we should set non-zero value here
-                }
-            }
-
-            texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-            if (texture.BindRenderTarget) {
-                texDesc.BindFlags |= D3D11_BIND_RENDER_TARGET;
-            }
-
-            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-            texDesc.Format = s_TextureFormatTable.at(texture.Format);
-            texDesc.Width = texture.Width;
-            texDesc.Height = texture.Height;
-            texDesc.MipLevels = texture.MipLevels;
-            texDesc.Depth = texture.Depth;
-            texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-
-            srv.Format = s_TextureFormatTable.at(texture.Format);
-            srv.Texture3D.MipLevels = texture.MipLevels;
-            srv.Texture3D.MostDetailedMip = texture.MostDetailedMip;
-            srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE3D;
-
-            m_Device->CreateTexture3D(&texDesc, initialData, (ID3D11Texture3D**)&texture.Instance);
-            LogDebugMessage();
-
-            m_Device->CreateShaderResourceView((ID3D11Resource*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
-            LogDebugMessage();
-
-            dealloc(initialData);
-        }
-
-        void D3D11Context::CreateTextureCube(Texture &texture)
-        {
-            D3D11_TEXTURE2D_DESC desc = {};
-            D3D11_SUBRESOURCE_DATA initialData[6];
-            D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
-
-            desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-            if (texture.BindRenderTarget) {
-                desc.BindFlags |= D3D11_BIND_RENDER_TARGET;
-            }
-
-            desc.Usage = s_TextureUsageTable.at(texture.Usage);
-            desc.Format = s_TextureFormatTable.at(texture.Format);
-            desc.Width = texture.Width;
-            desc.Height = texture.Height;
-            desc.MipLevels = texture.MipLevels;
-            desc.ArraySize = 6;
-            desc.SampleDesc.Count = 1;
-            desc.SampleDesc.Quality = 0;
-            desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-            desc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
-
-            srv.Format = s_TextureFormatTable.at(texture.Format);
-            srv.TextureCube.MipLevels = texture.MipLevels;
-            srv.TextureCube.MostDetailedMip = texture.MostDetailedMip;
-            srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
-
-            u32 sysMemPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
-
-            for (int i = 0; i < 6; i++)
-            {
-                auto& data = initialData[i];
-                data.pSysMem = texture.Layers[i].Pixels;
-                data.SysMemPitch = sysMemPitch;
-                data.SysMemSlicePitch = 0;
-            }
-
-            m_Device->CreateTexture2D(&desc, &initialData[0], (ID3D11Texture2D**)&texture.Instance);
+            m_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)&texture.Instance);
             LogDebugMessage();
 
             m_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
+
+            GenerateMips(texture);
+
+            FreeTextureData(initialData);
+        }
+
+        void D3D11Context::CreateTexture3D(Texture &texture)
+        {
+            D3D11_TEXTURE3D_DESC texDesc = {};
+            D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
+
+            u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+            u32 mipLevels = texture.GetMipLevels();
+            D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
+
+            UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
+
+            texDesc.Width = texture.Width;
+            texDesc.Height = texture.Height;
+            texDesc.Depth = texture.Depth;
+            texDesc.MipLevels = mipLevels;
+            texDesc.Format = s_TextureFormatTable.at(texture.Format);
+            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
+            texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+            srv.Format = texDesc.Format;
+            srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE3D;
+            srv.Texture3D.MostDetailedMip = texture.MostDetailedMip;
+            srv.Texture3D.MipLevels = mipLevels;
+
+            m_Device->CreateTexture3D(&texDesc, initialData, (ID3D11Texture3D**)&texture.Instance);
+            LogDebugMessage();
+
+            m_Device->CreateShaderResourceView((ID3D11Texture3D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+            LogDebugMessage();
+
+            GenerateMips(texture);
+
+            FreeTextureData(initialData);
+        }
+
+        void D3D11Context::CreateTextureCube(Texture &texture)
+        {
+            D3D11_TEXTURE2D_DESC texDesc = {};
+            D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
+
+            u32 arraySize = 6;
+            u32 mipLevels = texture.GetMipLevels();
+            D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
+
+            UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
+
+            texDesc.Width = texture.Width;
+            texDesc.Height = texture.Height;
+            texDesc.MipLevels = mipLevels;
+            texDesc.ArraySize = arraySize;
+            texDesc.Format = s_TextureFormatTable.at(texture.Format);
+            texDesc.SampleDesc.Count = 1;
+            texDesc.SampleDesc.Quality = 0;
+            texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
+            texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+            texDesc.MiscFlags |= D3D11_RESOURCE_MISC_TEXTURECUBE;
+
+            srv.Format = texDesc.Format;
+            srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
+            srv.TextureCube.MostDetailedMip = texture.MostDetailedMip;
+            srv.TextureCube.MipLevels = mipLevels;
+
+            m_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)&texture.Instance);
+            LogDebugMessage();
+
+            m_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+            LogDebugMessage();
+
+            GenerateMips(texture);
+
+            FreeTextureData(initialData);
         }
 
         void D3D11Context::CreateTextureDepthStencil(Texture &texture) {
@@ -766,8 +704,8 @@ namespace xpe {
             LogDebugMessage();
 
             if (mappedResource.pData == nullptr) {
-                u32 rowPitch = texture.Width * TextureManager::BPPTable.at(texture.Format);
-                u32 depthPitch = rowPitch * texture.Height;
+                u32 rowPitch = pixelsSize / texture.Height;
+                u32 depthPitch = pixelsSize;
                 m_ImmContext->UpdateSubresource((ID3D11Resource*)texture.Instance, index, nullptr, pixels, rowPitch, depthPitch);
                 LogDebugMessage();
             }
@@ -780,18 +718,33 @@ namespace xpe {
 
         }
 
+        void D3D11Context::GenerateMips(const Texture& texture) {
+            u32 mipLevels = texture.GetMipLevels();
+            if (mipLevels > 1) {
+                m_ImmContext->GenerateMips((ID3D11ShaderResourceView*) texture.ViewInstance);
+                LogDebugMessage();
+            } else {
+                LogWarning("Unable to generate mips on GPU for texture with MipLevels={}", mipLevels);
+            }
+        }
+
         void D3D11Context::CreateSampler(TextureSampler& sampler)
         {
             D3D11_SAMPLER_DESC desc = {};
+
             desc.Filter = s_TextureSamplerFilterTable.at(sampler.Filter);
+
             desc.AddressU = s_TextureSamplerAddressTable.at(sampler.AddressU);
             desc.AddressV = s_TextureSamplerAddressTable.at(sampler.AddressV);
             desc.AddressW = s_TextureSamplerAddressTable.at(sampler.AddressW);
+
             desc.ComparisonFunc = s_TextureSamplerComparisonTable.at(sampler.Comparison);
-            desc.MaxAnisotropy = sampler.MaxAnisotropy;
+
+            desc.MaxAnisotropy = sampler.AnisotropyLevel;
             desc.MinLOD = sampler.MinLOD;
             desc.MaxLOD = sampler.MaxLOD;
             desc.MipLODBias = sampler.MipLODBias;
+
             desc.BorderColor[0] = sampler.BorderColor[0];
             desc.BorderColor[1] = sampler.BorderColor[1];
             desc.BorderColor[2] = sampler.BorderColor[2];
@@ -1174,6 +1127,62 @@ namespace xpe {
         void* D3D11Context::GetDevice()
         {
             return m_Device;
+        }
+
+        void D3D11Context::InitHardwareConfig() {
+            core::HardwareConfig::K_TEXTURE_2D_ARRAY_SIZE_MAX = D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION;
+            core::HardwareConfig::K_ANISOTROPY_LEVEL_MAX = D3D11_REQ_MAXANISOTROPY;
+        }
+
+        D3D11_SUBRESOURCE_DATA* D3D11Context::InitTextureData(const Texture& texture, const u32 arraySize, const u32 mipLevels) {
+            D3D11_SUBRESOURCE_DATA* initialData = nullptr;
+
+            u32 initialDataSize = arraySize * mipLevels;
+
+            if (texture.InitializeData)
+            {
+                initialData = allocT(D3D11_SUBRESOURCE_DATA, initialDataSize);
+
+                for (int i = 0; i < arraySize; i++)
+                {
+                    auto& textureLayer = texture.Layers[i];
+                    int mipSize = textureLayer.Mips.size();
+                    int k = i * (mipSize + 1);
+
+                    auto& textureData = initialData[k];
+                    textureData.pSysMem = textureLayer.Pixels;
+                    textureData.SysMemPitch = textureLayer.RowByteSize;
+                    textureData.SysMemSlicePitch = 0;
+
+                    for (int j = 0 ; j < mipSize ; j++)
+                    {
+                        auto& mip = textureLayer.Mips[j];
+                        auto& mipData = initialData[++k];
+                        mipData.pSysMem = mip.Pixels;
+                        mipData.SysMemPitch = mip.RowByteSize;
+                        mipData.SysMemSlicePitch = 0;
+                    }
+                }
+            }
+
+            return initialData;
+        }
+
+        void D3D11Context::FreeTextureData(D3D11_SUBRESOURCE_DATA* initialData) {
+            dealloc(initialData);
+        }
+
+        void D3D11Context::UpdateTextureFlags(Texture &texture, u32 &bindFlags, u32 &miscFlags) {
+            bindFlags = D3D11_BIND_SHADER_RESOURCE;
+
+            if (texture.EnableRenderTarget) {
+                bindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
+            }
+
+            if (texture.GetMipLevels() > 1) {
+                bindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
+                miscFlags = D3D11_RESOURCE_MISC_GENERATE_MIPS;
+            }
         }
 
     }

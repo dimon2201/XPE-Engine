@@ -66,6 +66,7 @@ namespace xpe {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec2 UV = { 0, 0 };
             glm::vec3 Normal = { 0, 0, 0 };
+            glm::vec3 Tangent = { 0, 0, 0 };
         };
 
     }

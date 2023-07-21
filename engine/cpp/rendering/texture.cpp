@@ -82,9 +82,8 @@ namespace xpe {
 
             Texture texture = {};
             texture.Format = format;
-            texture.OnMemoryPool = K_FALSE;
             texture.Depth = 1;
-            TextureLayer layer = ReadTextureLayerFile(filepath, format, texture.Width, texture.Height, texture.ChannelCount);
+            TextureLayer layer = ReadTextureLayerFile(filepath, format, texture.Width, texture.Height, texture.Channels);
             texture.Layers.emplace_back(layer);
 
             table[filepath] = texture;
@@ -99,7 +98,10 @@ namespace xpe {
             return texture;
         }
 
-        TextureLayer TextureManager::ReadTextureLayerFile(const char *filepath, const Texture::eFormat &format, usize& width, usize& height, usize& channels) {
+        TextureLayer TextureManager::ReadTextureLayerFile(
+                const char *filepath,
+                const Texture::eFormat &format, int& width, int& height, int& channels
+        ) {
             int desiredChannels = ChannelTable.at(format);
             TextureLayer layer;
             int w;
@@ -162,6 +164,8 @@ namespace xpe {
             height = h;
             channels = c;
 
+            layer.RowByteSize = width * BPPTable.at(format);
+
             return layer;
         }
 
@@ -176,12 +180,12 @@ namespace xpe {
             textureCube.Type = Texture::eType::TEXTURE_CUBE;
             textureCube.Format = format;
 
-            TextureLayer front = ReadTextureLayerFile(cubeFile.FrontFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
-            TextureLayer back = ReadTextureLayerFile(cubeFile.BackFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
-            TextureLayer right = ReadTextureLayerFile(cubeFile.RightFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
-            TextureLayer left = ReadTextureLayerFile(cubeFile.LeftFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
-            TextureLayer top = ReadTextureLayerFile(cubeFile.TopFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
-            TextureLayer bottom = ReadTextureLayerFile(cubeFile.BottomFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
+            TextureLayer front = ReadTextureLayerFile(cubeFile.FrontFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
+            TextureLayer back = ReadTextureLayerFile(cubeFile.BackFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
+            TextureLayer right = ReadTextureLayerFile(cubeFile.RightFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
+            TextureLayer left = ReadTextureLayerFile(cubeFile.LeftFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
+            TextureLayer top = ReadTextureLayerFile(cubeFile.TopFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
+            TextureLayer bottom = ReadTextureLayerFile(cubeFile.BottomFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
 
             textureCube.Layers = {
                 front,
@@ -210,23 +214,23 @@ namespace xpe {
             switch (fileFormat) {
 
                 case Texture::eFileFormat::PNG:
-                    stbi_write_png(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels, 0);
+                    stbi_write_png(filePath, texture.Width, texture.Height, texture.Channels, pixels, 0);
                     break;
 
                 case Texture::eFileFormat::JPG:
-                    stbi_write_jpg(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels, 3);
+                    stbi_write_jpg(filePath, texture.Width, texture.Height, texture.Channels, pixels, 3);
                     break;
 
                 case Texture::eFileFormat::TGA:
-                    stbi_write_tga(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels);
+                    stbi_write_tga(filePath, texture.Width, texture.Height, texture.Channels, pixels);
                     break;
 
                 case Texture::eFileFormat::HDR:
-                    stbi_write_hdr(filePath, texture.Width, texture.Height, texture.ChannelCount, (float*) pixels);
+                    stbi_write_hdr(filePath, texture.Width, texture.Height, texture.Channels, (float*) pixels);
                     break;
 
                 case Texture::eFileFormat::BMP:
-                    stbi_write_bmp(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels);
+                    stbi_write_bmp(filePath, texture.Width, texture.Height, texture.Channels, pixels);
                     break;
 
             }
@@ -249,7 +253,9 @@ namespace xpe {
             for (auto& layer : texture.Layers) {
                 if (layer.Pixels != nullptr) {
                     stbi_image_free(layer.Pixels);
+                    dealloc(layer.Pixels);
                 }
+                FreeMips(layer);
             }
             texture.Layers.clear();
             s_Context->FreeTexture(&texture);
@@ -266,20 +272,16 @@ namespace xpe {
             s_Context->WriteTexture(
                     texture,
                     texture.Layers[layerIndex].Pixels,
-                    texture.Width * texture.Height * texture.ChannelCount,
+                    texture.Width * texture.Height * BPPTable.at(texture.Format),
                     layerIndex
             );
         }
 
-        Texture TextureManager::ResizeTexture(const Texture& input, usize outputWidth, usize outputHeight)
+        Texture TextureManager::ResizeTexture(const Texture& input, int outputWidth, int outputHeight)
         {
-            Texture output = {};
+            Texture output = input;
             output.Width = outputWidth;
             output.Height = outputHeight;
-            output.Depth = 1;
-            output.ChannelCount = input.ChannelCount;
-            output.OnMemoryPool = K_TRUE;
-            output.Layers = input.Layers;
 
             switch (input.Format) {
 
@@ -323,12 +325,9 @@ namespace xpe {
         void TextureManager::ResizeTextureU8(const Texture &input, Texture &output) {
             usize layerSize = input.Layers.size();
             for (usize i = 0 ; i < layerSize ; i++) {
-                stbir_resize_uint8(
-                        (const unsigned char*)input.Layers[i].Pixels,
-                        input.Width, input.Height, 0,
-                        (unsigned char*)output.Layers[i].Pixels,
-                        output.Width, output.Height, 0,
-                        input.ChannelCount
+                ResizeTextureLayerU8(
+                        input.Layers[i], input.Width, input.Height, input.Channels,
+                        output.Layers[i], output.Width, output.Height
                 );
             }
         }
@@ -336,14 +335,75 @@ namespace xpe {
         void TextureManager::ResizeTextureFloat(const Texture &input, Texture &output) {
             usize layerSize = input.Layers.size();
             for (usize i = 0 ; i < layerSize ; i++) {
-                stbir_resize_float(
-                        (const float*)input.Layers[i].Pixels,
-                        input.Width, input.Height, 0,
-                        (float*)output.Layers[i].Pixels,
-                        output.Width, output.Height, 0,
-                        input.ChannelCount
+                ResizeTextureLayerFloat(
+                    input.Layers[i], input.Width, input.Height, input.Channels,
+                    output.Layers[i], output.Width, output.Height
                 );
             }
+        }
+
+        void TextureManager::ResizeTextureLayerU8(
+                const TextureLayer &input, int inputWidth, int inputHeight, int channels,
+                TextureLayer &output, int outputWidth, int outputHeight
+        ) {
+            output.Pixels = ResizePixelsU8(
+                    input.Pixels,
+                    inputWidth, inputHeight, channels,
+                    outputWidth, outputHeight
+            );
+
+            if (!input.Mips.empty()) {
+                FreeMips(output);
+                int bpp = sizeof(u8) * channels;
+                GenerateMipsU8(output, outputWidth, outputHeight, bpp, channels);
+            }
+        }
+
+        void TextureManager::ResizeTextureLayerFloat(
+                const TextureLayer &input, int inputWidth, int inputHeight, int channels,
+                TextureLayer &output, int outputWidth, int outputHeight
+        ) {
+            output.Pixels = ResizePixelsFloat(
+                    input.Pixels,
+                    inputWidth, inputHeight, channels,
+                    outputWidth, outputHeight
+            );
+
+            if (!input.Mips.empty()) {
+                FreeMips(output);
+                int bpp = sizeof(float) * channels;
+                GenerateMipsFloat(output, outputWidth, outputHeight, bpp, channels);
+            }
+        }
+
+        void* TextureManager::ResizePixelsU8(
+                const void* inputPixels, int inputWidth, int inputHeight, int channels,
+                int outputWidth, int outputHeight
+        ) {
+            auto* output = allocT(u8, outputWidth * outputHeight * channels);
+            stbir_resize_uint8(
+                    (const u8*) inputPixels,
+                    inputWidth, inputHeight, 0,
+                    output,
+                    outputWidth, outputHeight, 0,
+                    channels
+            );
+            return output;
+        }
+
+        void* TextureManager::ResizePixelsFloat(
+                const void* inputPixels, int inputWidth, int inputHeight, int channels,
+                int outputWidth, int outputHeight
+        ) {
+            auto* output = allocT(float, outputWidth * outputHeight * channels);
+            stbir_resize_float(
+                    (const float*) inputPixels,
+                    inputWidth, inputHeight, 0,
+                    output,
+                    outputWidth, outputHeight, 0,
+                    channels
+            );
+            return output;
         }
 
         void TextureManager::FlipTexture(Texture &texture) {
@@ -351,6 +411,104 @@ namespace xpe {
             for (auto& layer : texture.Layers) {
                 stbi__vertical_flip(layer.Pixels, texture.Width, texture.Height, bpp);
             }
+        }
+
+        u32 TextureManager::GetMipLevels(usize width) {
+            return (u32)(log(width) / log(2)) + 1;
+        }
+
+        void TextureManager::GenerateMips(Texture& texture) {
+            for (auto& layer : texture.Layers) {
+                GenerateMips(layer, texture.Width, texture.Height, texture.Format);
+            }
+        }
+
+        void TextureManager::GenerateMips(
+                TextureLayer &textureLayer,
+                int width, int height,
+                const Texture::eFormat &format
+        ) {
+            int bpp = BPPTable.at(format);
+            int channels = ChannelTable.at(format);
+
+            switch (format) {
+
+                case Texture::eFormat::R8:
+                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::R32:
+                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::R32_TYPELESS:
+                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::RG8:
+                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::RG32:
+                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::RGB8:
+                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::RGB32:
+                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::RGBA8:
+                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
+                    break;
+
+                case Texture::eFormat::RGBA32:
+                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
+                    break;
+
+            }
+        }
+
+        void TextureManager::GenerateMipsU8(
+                TextureLayer &textureLayer, int width, int height,
+                int bpp, int channels
+        ) {
+            void* previousMip = textureLayer.Pixels;
+            while (width != 1) {
+                width /= 2;
+                height /= 2;
+
+                previousMip = ResizePixelsU8(previousMip, width * 2, height * 2, channels, width, height);
+
+                textureLayer.Mips.emplace_back(previousMip, width * bpp);
+            }
+        }
+
+        void TextureManager::GenerateMipsFloat(
+                TextureLayer &textureLayer, int width, int height,
+                int bpp, int channels
+        ) {
+            void* previousMip = textureLayer.Pixels;
+            while (width != 1) {
+                width /= 2;
+                height /= 2;
+
+                previousMip = ResizePixelsFloat(previousMip, width * 2, height * 2, channels, width, height);
+
+                textureLayer.Mips.emplace_back(previousMip, width * bpp);
+            }
+        }
+
+        void TextureManager::FreeMips(TextureLayer& textureLayer) {
+            for (auto& mip : textureLayer.Mips) {
+                if (mip.Pixels != nullptr) {
+                    dealloc(mip.Pixels);
+                }
+            }
+            textureLayer.Mips.clear();
         }
 
     }

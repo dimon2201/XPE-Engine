@@ -14,7 +14,8 @@ namespace xpe {
         {{
             Attributes::POS3,
             Attributes::UV,
-            Attributes::NORMAL
+            Attributes::NORMAL,
+            Attributes::TANGENT
         }};
 
         VertexFormat::VertexFormat(const std::vector<VertexFormat::Attribute>& attributes) : Attributes(attributes) {

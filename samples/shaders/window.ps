@@ -7,23 +7,27 @@
 struct VSOut
 {
     float3 positionWorld : XPE_POSITION_WORLD;
-    float2 texcoord : XPE_UV2;
-    float3 normal : XPE_NORMAL2;  // normalized
+    float2 uv : XPE_UV2;
+    float3 normal : XPE_NORMAL_WORLD;  // normalized
     float4 positionClip : SV_POSITION;
     float3 viewPosition : XPE_VIEW_POSITION;
     uint materialIndex : XPE_MATERIAL_INDEX;
+    float3x3 tbn : XPE_TBN;
 };
 
 float4 ps_main(VSOut psIn) : SV_TARGET
 {
     W = psIn.positionWorld;
     V = normalize(psIn.viewPosition - psIn.positionWorld);
-    N = psIn.normal;
+    N = GetNormal(psIn.materialIndex, psIn.uv, psIn.normal, psIn.tbn);
 
-    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.texcoord);
-    float metallic = Materials[psIn.materialIndex].MetallicFactor;
-    float roughness = Materials[psIn.materialIndex].RoughnessFactor;
-    float ao = Materials[psIn.materialIndex].AOFactor;
+    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv);
+    // gamma correction
+    // albedo = float4(pow(albedo.rgb, float3(2.2, 2.2, 2.2)), albedo.a);
+
+    float metallic = GetMetallic(psIn.materialIndex, psIn.uv);
+    float roughness = GetRoughness(psIn.materialIndex, psIn.uv);
+    float ao = GetAO(psIn.materialIndex, psIn.uv);
 
     float3 color = albedo.rgb;
 

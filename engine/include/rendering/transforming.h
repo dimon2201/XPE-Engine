@@ -7,7 +7,8 @@ namespace xpe {
     namespace render {
 
         struct ENGINE_API TransformData final {
-            glm::mat4 Matrix;
+            glm::mat4 ModelMatrix;
+            glm::mat4 NormalMatrix;
         };
 
         class ENGINE_API TransformBuffer : public StructureBuffer<TransformData> {
@@ -21,7 +22,7 @@ namespace xpe {
         };
 
         struct ENGINE_API Transform2DData final {
-            glm::mat3 Matrix;
+            glm::mat3 ModelMatrix;
         };
 
         class ENGINE_API Transform2DBuffer : public StructureBuffer<Transform2DData> {

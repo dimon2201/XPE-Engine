@@ -8,14 +8,14 @@ namespace xpe {
         void StackMemory::Log() {
             hstringstream ss;
 
-            ss << "\n----------- Stack Memory -------------\n";
+            ss << "\n\n----------- Stack Memory -------------\n";
 
             ss << "Usage = " << (double) MemoryOccupiedBytes / K_MEMORY_KIB << "KB, "
             << "Allocs = " << TotalAllocCount << "\n";
 
             ss << "--------------------------------------\n";
 
-            LogInfo(ss.str());
+            LogMemory(ss.str());
         }
 
         StackAllocator::StackAllocator(usize size) : Size(size)

@@ -16,7 +16,7 @@ namespace xpe {
             m_ColorTexture.Height = height;
             m_ColorTexture.Format = Texture::eFormat::RGB8;
             m_ColorTexture.InitializeData = false;
-            m_ColorTexture.BindRenderTarget = true;
+            m_ColorTexture.EnableRenderTarget = true;
             m_RenderTarget.ColorTexture = &m_ColorTexture;
 
             m_DepthTexture.Width = width;
@@ -25,10 +25,10 @@ namespace xpe {
 
             m_Context->CreateRenderTarget(m_RenderTarget);
 
-            m_Shader = *ShaderManager::Builder()
-                .AddVertexStageFromFile("engine_shaders/canvas.vs")
-                .AddPixelStageFromFile("engine_shaders/canvas.ps")
-                .Build("canvas");
+            m_Shader = ShaderManager::CreateShader("canvas");
+            ShaderManager::AddVertexStageFromFile(m_Shader, "engine_shaders/canvas.vs");
+            ShaderManager::AddPixelStageFromFile(m_Shader, "engine_shaders/canvas.ps");
+            ShaderManager::BuildShader(m_Shader);
         }
 
         Canvas::Canvas(const glm::ivec2& size, Context* context) : Canvas(size.x, size.y, context) {}
@@ -55,7 +55,7 @@ namespace xpe {
 
             context.BindSwapChainTarget();
             context.BindViewport(glm::ivec4(0.0f, 0.0f, swapChainDimensions.x, swapChainDimensions.y), 0.0f, 1.0f);
-            context.BindShader(&m_Shader);
+            context.BindShader(m_Shader);
             context.BindTexture(m_RenderTarget.ColorTexture);
 
             context.ClearColorTarget({ 0.0f, 0.0f, 0.0f, 1.0f });
