@@ -1,12 +1,6 @@
 #include <core/core.hpp>
-<<<<<<< HEAD
-#include <gltf/gltf.hpp>
-#include <ttf/ttf_manager.hpp>
-#include <rendering/texture.h>
-=======
 
 #include "test_config.h"
->>>>>>> main
 
 using namespace xpe::core;
 using namespace xpe::render;
@@ -43,6 +37,8 @@ public:
         m_BatchManager2d = new BatchManager2d(context);
 
         Font font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
+        Font* pfont = TTFManager::Get().GetFont("resources/fonts/Roboto-Italic.ttf");
+        TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/Roboto-Italic.png", pfont->Atlas, Texture::eFileFormat::PNG);
         TTFManager::Get().Free(font);
 
         TextureCubeFile textureCubeFile;

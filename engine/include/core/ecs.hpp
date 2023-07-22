@@ -49,23 +49,7 @@ namespace xpe
             glm::vec3 Rotation;
         };
 
-<<<<<<< HEAD
-        struct ENGINE_API cText2dComponent : public cComponent
-        {
-            cText2dComponent(const string& usid) : cComponent(usid)
-            {}
-        };
-
-        struct ENGINE_API cText3dComponent : public cComponent
-        {
-            cText3dComponent(const string& usid) : cComponent(usid)
-            {}
-        };
-
-        struct ENGINE_API xComponentStorage
-=======
         struct ENGINE_API ComponentStorage
->>>>>>> main
         {
             ComponentStorage(void* storage) : Storage(storage), Count(0)
             {}

@@ -9,7 +9,7 @@ namespace xpe
 {
     namespace ttf
     {
-        struct Font
+        struct ENGINE_API Font
         {
             struct Glyph
             {
@@ -20,6 +20,8 @@ namespace xpe
                 core::usize Top;
                 core::usize Advance;
                 void* BitmapData = nullptr;
+                core::usize AtlasXOffset;
+                core::usize AtlasYOffset;
             };
 
             core::usize GlyphCount;
@@ -40,22 +42,15 @@ namespace xpe
 
         public:
             Font Load(const char* filePath, core::usize glyphSize);
-<<<<<<< HEAD
             void Free(Font& font);
-=======
-            void Free(const Font& font);
->>>>>>> main
+            Font* GetFont(const char* filePath);
 
         private:
             static TTFManager* s_Instance;
 
             core::Boolean m_Loaded = core::K_FALSE;
             FT_Library m_Lib;
-<<<<<<< HEAD
             core::unordered_map<std::string, Font> m_Fonts;
-=======
-            core::unordered_map<char, Font::Glyph> m_AlphaBet;
->>>>>>> main
         };
     }
 }

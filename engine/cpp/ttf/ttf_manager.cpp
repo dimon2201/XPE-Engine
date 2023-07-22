@@ -1,5 +1,5 @@
 #include <ttf/ttf_manager.hpp>
-#include <core/memory_pool.hpp>
+#include <core/main_allocator.h>
 
 xpe::ttf::TTFManager* xpe::ttf::TTFManager::s_Instance = nullptr;
 
@@ -53,7 +53,7 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
                     glyph.Left = face->glyph->bitmap_left;
                     glyph.Top = face->glyph->bitmap_top;
                     glyph.Advance = face->glyph->advance.x;
-                    glyph.BitmapData = core::MemoryPoolManager::Allocate(face->glyph->bitmap.pitch * glyph.Height);
+                    glyph.BitmapData = alloc(face->glyph->bitmap.pitch * glyph.Height);
 
                     int x = 0;
                     int y = 0;
@@ -68,12 +68,17 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
 
                     font.AlphaBet.insert({ (char)c, glyph });
 
-                    xOffset += glyph.Width;
+                    xOffset += glyph.Width + 1;
 
                     if (xOffset > 1024)
                     {
-                        textureWidth = xOffset;
-                        textureHeight += glyph.Height;
+                        if (textureWidth < xOffset)
+                        {
+                            textureWidth = xOffset;
+                        }
+
+                        textureHeight += glyph.Height + 1;
+                        xOffset = 0;
                     }
                 }
             }
@@ -82,26 +87,38 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
             font.Atlas.Width = textureWidth;
             font.Atlas.Height = textureHeight;
             font.Atlas.Depth = 1;
-            font.Atlas.ChannelCount = 4;
-            font.Atlas.Format = render::Texture::eFormat::RGBA8;
-            font.Atlas.OnMemoryPool = core::K_TRUE;
-            void* pixels = core::MemoryPoolManager::Allocate(font.Atlas.Width * font.Atlas.Height * 4);
-            font.Atlas.Layers.push_back(pixels);
+            font.Atlas.ChannelCount = 1;
+            font.Atlas.Format = render::Texture::eFormat::R8;
+            font.Atlas.OnMemoryPool = core::K_FALSE;
+            render::TextureLayer layer;
+            layer.Pixels = alloc(font.Atlas.Width * font.Atlas.Height);
+            font.Atlas.Layers.push_back(layer);
 
             // Fill atlas texture with glyphs
             xOffset = 0;
             core::usize yOffset = 0;
-            core::u8* pixelsU8 = (core::u8*)pixels;
+            core::u8* pixelsU8 = (core::u8*)layer.Pixels;
             for (auto& glyph : font.AlphaBet)
             {
+                glyph.second.AtlasXOffset = xOffset;
+                glyph.second.AtlasYOffset = yOffset;
+
                 for (int y = 0; y < glyph.second.Height; y++)
                 {
                     for (int x = 0; x < glyph.second.Width; x++)
                     {
                         int glyphPixelIndex = x + (y * glyph.second.Width);
-                        int pixelIndex = (xOffset + x) + ((yOffset + y) * glyph.second.Width);
+                        int pixelIndex = (xOffset + x) + ((yOffset + y) * textureWidth);
                         pixelsU8[pixelIndex] = ((core::u8*)glyph.second.BitmapData)[glyphPixelIndex];
                     }
+                }
+
+                xOffset += glyph.second.Width + 1;
+
+                if (xOffset > 1024)
+                {
+                    yOffset += glyph.second.Height + 1;
+                    xOffset = 0;
                 }
             }
 
@@ -122,12 +139,24 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
 
 void xpe::ttf::TTFManager::Free(Font& font)
 {
-    render::TextureManager::FreeTexture(font.Atlas);
+    // render::TextureManager::FreeTexture(font.Atlas);
 
     for (auto& glyph : font.AlphaBet)
     {
-        core::MemoryPoolManager::Free(glyph.second.BitmapData);
+        dealloc(glyph.second.BitmapData);
     }
 
     font.AlphaBet.clear();
+}
+
+xpe::ttf::Font* xpe::ttf::TTFManager::GetFont(const char* filePath)
+{
+    auto it = m_Fonts.find(std::string(filePath));
+
+    if (it != m_Fonts.end())
+    {
+        return &it->second;
+    }
+
+    return nullptr;
 }
