@@ -72,7 +72,7 @@ namespace xpe {
 
         struct ENGINE_API DebugMessage final {
             int ID = 0;
-            const char* Description = "";
+            hstring Description = "";
             eDebugType Type = eDebugType::D_NO_TYPE;
             eDebugCategory Category = eDebugCategory::D_NO_CATEGORY;
             eDebugSeverity Severity = eDebugSeverity::D_NO_SEVERITY;
@@ -92,7 +92,7 @@ namespace xpe {
             virtual void Init(Context* const context) = 0;
             virtual void Free() = 0;
 
-            virtual DebugMessage GetLastMessage() = 0;
+            virtual bool GetLastMessage(DebugMessage& message) = 0;
 
             virtual vector<DebugMessage> GetMessageQueue() = 0;
 

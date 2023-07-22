@@ -10,8 +10,6 @@ namespace xpe {
 
         struct ENGINE_API Pipeline final {
             InputLayout InputLayout;
-            Buffer* VertexBuffer;
-            Buffer* IndexBuffer;
             vector<Buffer*> VSBuffers; // buffers defined in vertex shader
             vector<Buffer*> PSBuffers; // buffers defined in pixel shader
             Shader* Shader;

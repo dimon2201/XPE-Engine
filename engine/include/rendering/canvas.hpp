@@ -18,16 +18,18 @@ namespace xpe {
                 void Clear(const glm::vec4& color);
                 void Present();
 
-                inline s32 GetWidth() const { return _size.x; }
-                inline s32 GetHeight() const { return _size.y; }
-                inline RenderTarget* GetRenderTarget() { return &_rt; }
-                inline Shader* GetShader() { return &m_QuadShader; }
+                inline s32 GetWidth() const { return m_Size.x; }
+                inline s32 GetHeight() const { return m_Size.y; }
+                inline RenderTarget* GetRenderTarget() { return &m_RenderTarget; }
+                inline Shader* GetShader() { return &m_Shader; }
 
             private:
-                glm::ivec2 _size;
-                Context* _context;
-                RenderTarget _rt;
-                Shader m_QuadShader;
+                glm::ivec2 m_Size;
+                Context* m_Context;
+                RenderTarget m_RenderTarget;
+                Shader m_Shader;
+                Texture m_ColorTexture;
+                Texture m_DepthTexture;
         };
 
     }

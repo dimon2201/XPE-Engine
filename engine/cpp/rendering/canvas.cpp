@@ -5,41 +5,66 @@ namespace xpe {
     namespace render {
 
         Canvas::Canvas(s32 width, s32 height, Context* context) {
-            _size.x = width;
-            _size.y = height;
-            _context = context;
-            _rt = _context->CreateRenderTarget(glm::ivec2(width, height), nullptr, nullptr, nullptr, nullptr);
+            m_Context = context;
+            m_Size.x = width;
+            m_Size.y = height;
 
-            m_QuadShader = *ShaderManager::Builder()
+            m_RenderTarget.Width = width;
+            m_RenderTarget.Height = height;
+
+            m_ColorTexture.Width = width;
+            m_ColorTexture.Height = height;
+            m_ColorTexture.Format = Texture::eFormat::RGB8;
+            m_ColorTexture.InitializeData = false;
+            m_ColorTexture.BindRenderTarget = true;
+            m_RenderTarget.ColorTexture = &m_ColorTexture;
+
+            m_DepthTexture.Width = width;
+            m_DepthTexture.Height = height;
+            m_RenderTarget.DepthTexture = &m_DepthTexture;
+
+            m_Context->CreateRenderTarget(m_RenderTarget);
+
+            m_Shader = *ShaderManager::Builder()
                 .AddVertexStageFromFile("engine_shaders/canvas.vs")
                 .AddPixelStageFromFile("engine_shaders/canvas.ps")
-                .Build();
+                .Build("canvas");
 
-            m_QuadShader.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+            m_Shader.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
         Canvas::Canvas(const glm::ivec2& size, Context* context) : Canvas(size.x, size.y, context) {}
 
         Canvas::~Canvas() {
-            _context->FreeRenderTarget(_rt);
+            m_Context->FreeRenderTarget(m_RenderTarget);
         }
 
         void Canvas::Clear(const glm::vec4& color) {
-            _context->BindViewport(glm::ivec4(0.0f, 0.0f, _rt.Dimensions.x, _rt.Dimensions.y), 0.0f, 1.0f);
-            _context->BindTextureSlot(0);
-            _context->BindRenderTarget(&_rt);
-            _context->ClearRenderTarget(color, 1.0f);
+            Context& context = *m_Context;
+
+            context.BindViewport(glm::ivec4(0.0f, 0.0f, m_RenderTarget.Width, m_RenderTarget.Height), 0.0f, 1.0f);
+            context.BindTextureSlot(0);
+            context.BindRenderTarget(m_RenderTarget.ColorTargetView, m_RenderTarget.DepthTargetView);
+
+            context.ClearColorTarget(color);
+            context.ClearDepthTarget(1.0f);
         }
 
         void Canvas::Present() {
-            glm::ivec2 swapChainDimensions = _context->GetSwapChainDimensions();
-            _context->BindRenderTarget(nullptr);
-            _context->BindViewport(glm::ivec4(0.0f, 0.0f, swapChainDimensions.x, swapChainDimensions.y), 0.0f, 1.0f);
-            _context->BindShader(&m_QuadShader);
-            _context->BindTexture(_rt.ColorTexture);
-            _context->ClearRenderTarget(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 1.0f);
-            _context->DrawQuad();
-            _context->Present();
+            Context& context = *m_Context;
+
+            glm::ivec2 swapChainDimensions = context.GetSwapChainDimensions();
+
+            context.BindSwapChainTarget();
+            context.BindViewport(glm::ivec4(0.0f, 0.0f, swapChainDimensions.x, swapChainDimensions.y), 0.0f, 1.0f);
+            context.BindShader(&m_Shader);
+            context.BindTexture(m_RenderTarget.ColorTexture);
+
+            context.ClearColorTarget({ 0.0f, 0.0f, 0.0f, 1.0f });
+
+            context.DrawQuad();
+
+            context.Present();
         }
 
     }

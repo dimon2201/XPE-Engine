@@ -1,4 +1,3 @@
-#include <rendering/context.hpp>
 #include <rendering/materials/material.h>
 #include <rendering/shader.h>
 
@@ -6,91 +5,131 @@ namespace xpe {
 
     namespace render {
 
-        void MaterialBuffer::Init(Context *context) {
-            m_Context = context;
-            Type = eBufferType::CONSTANT;
-            ByteSize = sizeof(MaterialBufferData);
-            Slot = 1;
-            m_Context->CreateBuffer(*this, K_FALSE);
-        }
-
-        void MaterialBuffer::Free() {
-            m_Context->FreeBuffer(*this);
-        }
-
-        void MaterialBuffer::Flush() {
-            m_Context->WriteBuffer(*this, &m_Data, sizeof(m_Data));
-        }
-
-        void MaterialBuffer::SetMaterial(const Material &material) {
-            m_Data = material.Data;
-        }
-
         Material* MaterialBuilder::Build(const string& name) {
             MaterialManager::AddMaterial(name, *m_Material);
             return MaterialManager::GetMaterial(name);
         }
 
         MaterialBuilder& MaterialBuilder::AddAlbedoFromFile(const char *filepath) {
-            m_Material->Albedo = TextureManager::LoadTextureFile(filepath, Texture::eFormat::RGBA8);
-            m_Material->Albedo->Slot = 0;
+            m_Material->Albedo = AddTextureFromFile(filepath, MaterialManager::Textures().AlbedoArray);
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddBumpFromFile(const char *filepath) {
-            m_Material->Bumping = TextureManager::LoadTextureFile(filepath, Texture::eFormat::RGB8);
-            m_Material->Bumping->Slot = 1;
+            m_Material->Bumping = AddTextureFromFile(filepath, MaterialManager::Textures().BumpArray);
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddParallaxFromFile(const char *filepath) {
-            m_Material->Parallax = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
-            m_Material->Parallax->Slot = 2;
+            m_Material->Parallax = AddTextureFromFile(filepath, MaterialManager::Textures().ParallaxArray);
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddMetallicFromFile(const char *filepath) {
-            m_Material->Metallic = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
-            m_Material->Metallic->Slot = 3;
+            m_Material->Metallic = AddTextureFromFile(filepath, MaterialManager::Textures().MetallicArray);
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddRoughnessFromFile(const char *filepath) {
-            m_Material->Roughness = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
-            m_Material->Roughness->Slot = 4;
+            m_Material->Roughness = AddTextureFromFile(filepath, MaterialManager::Textures().RoughnessArray);
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddAOFromFile(const char *filepath) {
-            m_Material->AO = TextureManager::LoadTextureFile(filepath, Texture::eFormat::R32);
-            m_Material->AO->Slot = 5;
+            m_Material->AO = AddTextureFromFile(filepath, MaterialManager::Textures().AOArray);
             return *this;
         }
 
         MaterialBuilder& MaterialBuilder::AddEmissionFromFile(const char *filepath) {
-            m_Material->Emission = TextureManager::LoadTextureFile(filepath, Texture::eFormat::RGBA8);
-            m_Material->Emission->Slot = 6;
+            m_Material->Emission = AddTextureFromFile(filepath, MaterialManager::Textures().EmissionArray);
             return *this;
         }
 
-        Context* MaterialManager::s_Context = nullptr;
-        MaterialBuilder MaterialManager::s_MaterialBuilder;
-        unordered_map<string, Material> MaterialManager::s_MaterialTable;
-        Material MaterialManager::s_TempMaterial;
-        MaterialBuffer MaterialManager::s_MaterialBuffer;
+        TextureLayer* MaterialBuilder::AddTextureFromFile(const char *filepath, Texture &textureArray)
+        {
+            u32 materialIndex = m_Material->Index;
 
-        void MaterialManager::Init(Context *context) {
+            Texture* texture = TextureManager::ReadTextureFile(filepath, textureArray.Format);
+            TextureLayer& textureLayer = texture->Layers.front();
+
+            textureArray.Layers[materialIndex] = textureLayer;
+            TextureManager::WriteTexture(textureArray, materialIndex);
+
+            return &textureLayer;
+        }
+
+        Context* MaterialManager::s_Context = nullptr;
+        MaterialStorage* MaterialManager::s_Storage = nullptr;
+        MaterialBuilder MaterialManager::s_MaterialBuilder;
+        Material MaterialManager::s_TempMaterial;
+
+        MaterialStorage::MaterialStorage(Context *context, usize count) {
+            Buffer = MaterialBuffer(context, count);
+
+            context->CreateSampler(Textures.Sampler);
+
+            InitTextureArray(context, Textures.AlbedoArray, Texture::eFormat::RGBA8, 389, 600, K_SLOT_ALBEDO);
+            InitTextureArray(context, Textures.BumpArray, Texture::eFormat::RGB8, 389, 600, K_SLOT_BUMPING);
+            InitTextureArray(context, Textures.ParallaxArray, Texture::eFormat::R32, 389, 600, K_SLOT_PARALLAX);
+            InitTextureArray(context, Textures.MetallicArray, Texture::eFormat::R32, 389, 600, K_SLOT_METALLIC);
+            InitTextureArray(context, Textures.RoughnessArray, Texture::eFormat::R32, 389, 600, K_SLOT_ROUGHNESS);
+            InitTextureArray(context, Textures.AOArray, Texture::eFormat::R32, 389, 600, K_SLOT_AO);
+            InitTextureArray(context, Textures.EmissionArray, Texture::eFormat::RGB8, 389, 600, K_SLOT_EMISSION);
+        }
+
+        void MaterialStorage::InitTextureArray(Context* context, Texture &textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot) {
+            textureArray.InitializeData = false;
+            textureArray.Type = Texture::eType::TEXTURE_2D_ARRAY;
+            textureArray.Usage = Texture::eUsage::DEFAULT;
+            textureArray.Format = format;
+            textureArray.Width = width;
+            textureArray.Height = height;
+            textureArray.Slot = slot;
+            textureArray.ChannelCount = TextureManager::ChannelTable.at(format);
+            textureArray.Layers.resize(TextureManager::K_TEXTURE_ARRAY_SIZE);
+//            for (auto& layer : textureArray.Layers) {
+//                layer.Pixels = MemoryPoolManager::Allocate(textureArray.WinWidth * textureArray.WinHeight * textureArray.ChannelCount);
+//            }
+            context->CreateTexture(textureArray);
+        }
+
+        MaterialStorage::~MaterialStorage() {
+            for (auto& material : Table) {
+                MaterialManager::FreeMaterial(material.second);
+            }
+            Table.clear();
+        }
+
+        void MaterialManager::Init(Context* context) {
+            LogInfo("MaterialManager::Init()");
+
             s_Context = context;
             s_MaterialBuilder = { s_Context, &s_TempMaterial };
-            s_MaterialBuffer.Init(context);
+            s_Storage = new MaterialStorage(s_Context, K_MATERIALS_COUNT);
+
+            LogInfo("MaterialManager initialized");
         }
 
         void MaterialManager::Free() {
-            for (auto& material : s_MaterialTable) {
-                FreeMaterial(material.second);
-            }
-            s_MaterialTable.clear();
-            s_MaterialBuffer.Free();
+            LogInfo("MaterialManager::Free()");
+            FreeMaterialList();
+            delete s_Storage;
+        }
+
+        void MaterialManager::FreeMaterialList() {
+            auto& textures = s_Storage->Textures;
+
+            s_Storage->Buffer.Free();
+
+            s_Context->FreeSampler(&textures.Sampler);
+
+            s_Context->FreeTexture(&textures.AlbedoArray);
+            s_Context->FreeTexture(&textures.BumpArray);
+            s_Context->FreeTexture(&textures.ParallaxArray);
+            s_Context->FreeTexture(&textures.MetallicArray);
+            s_Context->FreeTexture(&textures.RoughnessArray);
+            s_Context->FreeTexture(&textures.AOArray);
+            s_Context->FreeTexture(&textures.EmissionArray);
         }
 
         MaterialBuilder& MaterialManager::Builder() {
@@ -100,97 +139,69 @@ namespace xpe {
             return s_MaterialBuilder;
         }
 
+        MaterialTextures& MaterialManager::Textures() {
+            return s_Storage->Textures;
+        }
+
+        vector<MaterialBufferData>& MaterialManager::List() {
+            return s_Storage->Buffer.GetList();
+        }
+
         void MaterialManager::InitMaterial(Material &material) {
-            s_Context->CreateSampler(material.Sampler);
+            material.Textures = &s_Storage->Textures;
+            material.Data = s_Storage->Buffer.GetItem(material.Index);
         }
 
         void MaterialManager::FreeMaterial(Material &material) {
-            s_Context->FreeSampler(&material.Sampler);
-
-            if (material.Albedo) {
-                s_Context->FreeTexture(material.Albedo);
-            }
-
-            if (material.Bumping) {
-                s_Context->FreeTexture(material.Bumping);
-            }
-
-            if (material.Parallax) {
-                s_Context->FreeTexture(material.Parallax);
-            }
-
-            if (material.Metallic) {
-                s_Context->FreeTexture(material.Metallic);
-            }
-
-            if (material.Roughness) {
-                s_Context->FreeTexture(material.Roughness);
-            }
-
-            if (material.AO) {
-                s_Context->FreeTexture(material.AO);
-            }
-
-            if (material.Emission) {
-                s_Context->FreeTexture(material.Emission);
-            }
+            material.Textures = nullptr;
+            material.Data = nullptr;
         }
 
-        void MaterialManager::BindMaterial(Material &material) {
-            s_Context->BindSampler(&material.Sampler);
+        void MaterialManager::BindMaterials() {
+            auto& textures = s_Storage->Textures;
 
-            if (material.Albedo) {
-                s_Context->BindTexture(material.Albedo);
-            }
+            s_Context->BindSampler(&textures.Sampler);
 
-            if (material.Bumping) {
-                s_Context->BindTexture(material.Bumping);
-            }
+            s_Context->BindTexture(&textures.AlbedoArray);
+            s_Context->BindTexture(&textures.BumpArray);
+            s_Context->BindTexture(&textures.ParallaxArray);
+            s_Context->BindTexture(&textures.MetallicArray);
+            s_Context->BindTexture(&textures.RoughnessArray);
+            s_Context->BindTexture(&textures.AOArray);
+            s_Context->BindTexture(&textures.EmissionArray);
+        }
 
-            if (material.Parallax) {
-                s_Context->BindTexture(material.Parallax);
-            }
-
-            if (material.Metallic) {
-                s_Context->BindTexture(material.Metallic);
-            }
-
-            if (material.Roughness) {
-                s_Context->BindTexture(material.Roughness);
-            }
-
-            if (material.AO) {
-                s_Context->BindTexture(material.AO);
-            }
-
-            if (material.Emission) {
-                s_Context->BindTexture(material.Emission);
-            }
+        void MaterialManager::UpdateMaterials() {
+            s_Storage->Buffer.Flush();
         }
 
         void MaterialManager::UpdateMaterial(Material &material) {
-            s_MaterialBuffer.SetMaterial(material);
-            s_MaterialBuffer.Flush();
+            s_Storage->Buffer.FlushItem(material.Index, *material.Data);
         }
 
         MaterialBuffer* MaterialManager::GetBuffer() {
-            return &s_MaterialBuffer;
+            return &s_Storage->Buffer;
         }
 
         void MaterialManager::AddMaterial(const string &name, const Material &material) {
-            s_MaterialTable[name] = material;
+            s_Storage->Table[name] = material;
         }
 
         void MaterialManager::RemoveMaterial(const string &name) {
-            auto it = s_MaterialTable.find(name);
-            if (it != s_MaterialTable.end()) {
+            auto& table = s_Storage->Table;
+            auto it = table.find(name);
+            if (it != table.end()) {
                 FreeMaterial(it->second);
-                s_MaterialTable.erase(it);
+                table.erase(it);
             }
         }
 
         Material* MaterialManager::GetMaterial(const string &name) {
-            return &s_MaterialTable[name];
+            return &s_Storage->Table[name];
+        }
+
+        MaterialBufferData* MaterialManager::GetMaterialData(u32 index) {
+            return s_Storage->Buffer.GetItem(index);
         }
 
     }

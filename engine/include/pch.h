@@ -41,22 +41,30 @@
 #include <gtx/quaternion.hpp>
 #include <gtc/type_ptr.hpp>
 #include <gtc/matrix_transform.hpp>
+#include <gtx/matrix_transform_2d.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <gtx/string_cast.hpp>
 
 // Core
 #include <core/build.h>
 #include <core/types.hpp>
+#include <core/keycodes.h>
+#include <core/mousecodes.h>
 #include <core/singleton.h>
 #include <core/config.h>
 #include <core/memory_pool.hpp>
+#include <core/main_allocator.h>
+#include <core/hot_allocator.h>
+#include <core/stack_allocator.h>
+#include <rendering/shader_types.h>
+#include <rendering/slots.h>
 
 // STL customization
-#include <stl/allocator.h>
 #include <stl/string.h>
 #include <stl/vector.h>
 #include <stl/unordered_map.h>
 #include <stl/map.h>
+#include <stl/sstream.h>
 
 // Core
 #include <core/ecs.hpp>
@@ -71,3 +79,6 @@
 #include <math/matrices.h>
 #include <math/sphere.h>
 #include <math/raycast.h>
+
+// Platform
+#include <platform/file_watcher.h>

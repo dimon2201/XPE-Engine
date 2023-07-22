@@ -12,11 +12,7 @@ namespace xpe {
 
     namespace render {
 
-        Context* TextureManager::s_Context = nullptr;
-        unordered_map<string, Texture> TextureManager::s_TextureTable;
-
-        // channels count table for each texture format
-        static const unordered_map<Texture::eFormat, int> s_TextureChannelTable = {
+        std::unordered_map<Texture::eFormat, int> TextureManager::ChannelTable = {
 
                 { Texture::eFormat::R8, 1 },
                 { Texture::eFormat::R16, 1 },
@@ -37,7 +33,7 @@ namespace xpe {
         };
 
         // bytes per pixel table for each texture format
-        static const unordered_map<Texture::eFormat, int> s_TextureBPPTable = {
+        std::unordered_map<Texture::eFormat, int> TextureManager::BPPTable = {
                 { Texture::eFormat::R8, 1 },
                 { Texture::eFormat::R16, 2 },
                 { Texture::eFormat::R32, 4 },
@@ -55,92 +51,45 @@ namespace xpe {
                 { Texture::eFormat::RGBA32, 16 },
         };
 
+        Context* TextureManager::s_Context = nullptr;
+        TextureStorage* TextureManager::s_Storage = nullptr;
+
+        TextureStorage::~TextureStorage() {
+            for (auto& texture : Table) {
+                TextureManager::FreeTexture(texture.second);
+            }
+            Table.clear();
+        }
+
         void TextureManager::Init(Context* context) {
+            LogInfo("TextureManager::Init()");
             s_Context = context;
+            s_Storage = new TextureStorage();
+            LogInfo("TextureManager initialized");
         }
 
         void TextureManager::Free() {
-            for (auto& texture : s_TextureTable) {
-                FreeTexture(texture.second);
-            }
-            s_TextureTable.clear();
+            LogInfo("TextureManager::Free()");
+            delete s_Storage;
         }
 
         Texture* TextureManager::ReadTextureFile(const char *filepath, const Texture::eFormat &format) {
-            if (s_TextureTable.find(filepath) != s_TextureTable.end()) {
-                return &s_TextureTable[filepath];
+            auto& table = s_Storage->Table;
+
+            if (table.find(filepath) != table.end()) {
+                return &table[filepath];
             }
 
             Texture texture = {};
             texture.Format = format;
             texture.OnMemoryPool = K_FALSE;
-
-            int width = 0;
-            int height = 0;
-            int channels = 0;
-            int desiredChannels = s_TextureChannelTable.at(format);
-
-            switch (format) {
-
-                case Texture::eFormat::R8:
-                    texture.Pixels = stbi_load(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::R16:
-                    texture.Pixels = stbi_load_16(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::R32:
-                    texture.Pixels = stbi_loadf(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RG8:
-                    texture.Pixels = stbi_load(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RG16:
-                    texture.Pixels = stbi_load_16(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RG32:
-                    texture.Pixels = stbi_loadf(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGB8:
-                    texture.Pixels = stbi_load(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGB16:
-                    texture.Pixels = stbi_load_16(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGB32:
-                    texture.Pixels = stbi_loadf(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGBA8:
-                    texture.Pixels = stbi_load(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGBA16:
-                    texture.Pixels = stbi_load_16(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGBA32:
-                    texture.Pixels = stbi_loadf(filepath, &width, &height, &channels, desiredChannels);
-                    break;
-
-            }
-
-            texture.Width = width;
-            texture.Height = height;
             texture.Depth = 1;
-            texture.ChannelCount = channels;
-            texture.Layers = { texture.Layers };
+            TextureLayer layer = ReadTextureLayerFile(filepath, format, texture.Width, texture.Height, texture.ChannelCount);
+            texture.Layers.emplace_back(layer);
 
-            s_TextureTable[filepath] = texture;
+            table[filepath] = texture;
 
-            return &s_TextureTable[filepath];
+            return &table[filepath];
         }
 
         Texture* TextureManager::LoadTextureFile(const char* filePath, const Texture::eFormat& format)
@@ -150,34 +99,102 @@ namespace xpe {
             return texture;
         }
 
-        Texture* TextureManager::ReadTextureCubeFile(const TextureCubeFile &cubeFile, const Texture::eFormat &format) {
-            if (s_TextureTable.find(cubeFile.Name) != s_TextureTable.end()) {
-                return &s_TextureTable[cubeFile.Name];
+        TextureLayer TextureManager::ReadTextureLayerFile(const char *filepath, const Texture::eFormat &format, usize& width, usize& height, usize& channels) {
+            int desiredChannels = ChannelTable.at(format);
+            TextureLayer layer;
+            int w;
+            int h;
+            int c;
+
+            switch (format) {
+
+                case Texture::eFormat::R8:
+                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::R16:
+                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::R32:
+                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RG8:
+                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RG16:
+                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RG32:
+                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RGB8:
+                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RGB16:
+                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RGB32:
+                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RGBA8:
+                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RGBA16:
+                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
+                case Texture::eFormat::RGBA32:
+                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
             }
 
-            Texture* front = ReadTextureFile(cubeFile.FrontFilepath, format);
-            Texture* back = ReadTextureFile(cubeFile.BackFilepath, format);
-            Texture* right = ReadTextureFile(cubeFile.RightFilepath, format);
-            Texture* left = ReadTextureFile(cubeFile.LeftFilepath, format);
-            Texture* top = ReadTextureFile(cubeFile.TopFilepath, format);
-            Texture* bottom = ReadTextureFile(cubeFile.BottomFilepath, format);
+            width = w;
+            height = h;
+            channels = c;
+
+            return layer;
+        }
+
+        Texture* TextureManager::ReadTextureCubeFile(const TextureCubeFile &cubeFile, const Texture::eFormat &format) {
+            auto& table = s_Storage->Table;
+
+            if (table.find(cubeFile.Name) != table.end()) {
+                return &table[cubeFile.Name];
+            }
 
             Texture textureCube;
-            textureCube = *front;
             textureCube.Type = Texture::eType::TEXTURE_CUBE;
-            textureCube.Pixels = front->Pixels;
+            textureCube.Format = format;
+
+            TextureLayer front = ReadTextureLayerFile(cubeFile.FrontFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
+            TextureLayer back = ReadTextureLayerFile(cubeFile.BackFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
+            TextureLayer right = ReadTextureLayerFile(cubeFile.RightFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
+            TextureLayer left = ReadTextureLayerFile(cubeFile.LeftFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
+            TextureLayer top = ReadTextureLayerFile(cubeFile.TopFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
+            TextureLayer bottom = ReadTextureLayerFile(cubeFile.BottomFilepath, format, textureCube.Width, textureCube.Height, textureCube.ChannelCount);
+
             textureCube.Layers = {
-                front->Pixels,
-                back->Pixels,
-                right->Pixels,
-                left->Pixels,
-                top->Pixels,
-                bottom->Pixels,
+                front,
+                back,
+                right,
+                left,
+                top,
+                bottom,
             };
 
-            s_TextureTable[cubeFile.Name] = textureCube;
+            table[cubeFile.Name] = textureCube;
 
-            return &s_TextureTable[cubeFile.Name];
+            return &table[cubeFile.Name];
         }
 
         Texture* TextureManager::LoadTextureCubeFile(const TextureCubeFile &cubeFile, const Texture::eFormat &format) {
@@ -188,37 +205,39 @@ namespace xpe {
 
         void TextureManager::WriteTextureFile(const char* filePath, const Texture& texture, const Texture::eFileFormat& fileFormat)
         {
+            void* pixels = texture.Layers.front().Pixels;
+
             switch (fileFormat) {
 
                 case Texture::eFileFormat::PNG:
-                    stbi_write_png(filePath, texture.Width, texture.Height, texture.ChannelCount, texture.Pixels, 0);
+                    stbi_write_png(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels, 0);
                     break;
 
                 case Texture::eFileFormat::JPG:
-                    stbi_write_jpg(filePath, texture.Width, texture.Height, texture.ChannelCount, texture.Pixels, 3);
+                    stbi_write_jpg(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels, 3);
                     break;
 
                 case Texture::eFileFormat::TGA:
-                    stbi_write_tga(filePath, texture.Width, texture.Height, texture.ChannelCount, texture.Pixels);
+                    stbi_write_tga(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels);
                     break;
 
                 case Texture::eFileFormat::HDR:
-                    stbi_write_hdr(filePath, texture.Width, texture.Height, texture.ChannelCount, (float*) texture.Pixels);
+                    stbi_write_hdr(filePath, texture.Width, texture.Height, texture.ChannelCount, (float*) pixels);
                     break;
 
                 case Texture::eFileFormat::BMP:
-                    stbi_write_bmp(filePath, texture.Width, texture.Height, texture.ChannelCount, texture.Pixels);
+                    stbi_write_bmp(filePath, texture.Width, texture.Height, texture.ChannelCount, pixels);
                     break;
 
             }
         }
 
         void TextureManager::InitTexture(Texture &texture) {
-            s_Context->CreateTexture(texture, nullptr);
+            s_Context->CreateTexture(texture);
         }
 
         void TextureManager::InitTextureCube(Texture &texture) {
-            s_Context->CreateTextureCube(texture, nullptr);
+            s_Context->CreateTextureCube(texture);
         }
 
         void TextureManager::BindTexture(Texture &texture) {
@@ -227,18 +246,32 @@ namespace xpe {
 
         void TextureManager::FreeTexture(Texture &texture)
         {
-            for (void* layer : texture.Layers) {
-                stbi_image_free(layer);
+            for (auto& layer : texture.Layers) {
+                if (layer.Pixels != nullptr) {
+                    stbi_image_free(layer.Pixels);
+                }
             }
             texture.Layers.clear();
             s_Context->FreeTexture(&texture);
         }
 
         void TextureManager::WriteTexture(Texture &texture) {
-            s_Context->WriteTexture(texture, texture.Pixels, texture.Width * texture.Height * texture.ChannelCount);
+            usize layerSize = texture.Layers.size();
+            for (u32 layerIndex = 0 ; layerIndex < layerSize ; layerIndex++) {
+                WriteTexture(texture, layerIndex);
+            }
         }
 
-        Texture TextureManager::ResizeTexture(Texture& input, usize outputWidth, usize outputHeight)
+        void TextureManager::WriteTexture(Texture &texture, u32 layerIndex) {
+            s_Context->WriteTexture(
+                    texture,
+                    texture.Layers[layerIndex].Pixels,
+                    texture.Width * texture.Height * texture.ChannelCount,
+                    layerIndex
+            );
+        }
+
+        Texture TextureManager::ResizeTexture(const Texture& input, usize outputWidth, usize outputHeight)
         {
             Texture output = {};
             output.Width = outputWidth;
@@ -246,7 +279,6 @@ namespace xpe {
             output.Depth = 1;
             output.ChannelCount = input.ChannelCount;
             output.OnMemoryPool = K_TRUE;
-            output.Pixels = MemoryPoolManager::Allocate(outputWidth * outputHeight * input.ChannelCount);
             output.Layers = input.Layers;
 
             switch (input.Format) {
@@ -288,26 +320,26 @@ namespace xpe {
             return output;
         }
 
-        void TextureManager::ResizeTextureU8(Texture &input, Texture &output) {
+        void TextureManager::ResizeTextureU8(const Texture &input, Texture &output) {
             usize layerSize = input.Layers.size();
             for (usize i = 0 ; i < layerSize ; i++) {
                 stbir_resize_uint8(
-                        (const unsigned char*)input.Layers[i],
+                        (const unsigned char*)input.Layers[i].Pixels,
                         input.Width, input.Height, 0,
-                        (unsigned char*)output.Layers[i],
+                        (unsigned char*)output.Layers[i].Pixels,
                         output.Width, output.Height, 0,
                         input.ChannelCount
                 );
             }
         }
 
-        void TextureManager::ResizeTextureFloat(Texture &input, Texture &output) {
+        void TextureManager::ResizeTextureFloat(const Texture &input, Texture &output) {
             usize layerSize = input.Layers.size();
             for (usize i = 0 ; i < layerSize ; i++) {
                 stbir_resize_float(
-                        (const float*)input.Layers[i],
+                        (const float*)input.Layers[i].Pixels,
                         input.Width, input.Height, 0,
-                        (float*)output.Layers[i],
+                        (float*)output.Layers[i].Pixels,
                         output.Width, output.Height, 0,
                         input.ChannelCount
                 );
@@ -315,9 +347,9 @@ namespace xpe {
         }
 
         void TextureManager::FlipTexture(Texture &texture) {
-            int bpp = s_TextureBPPTable.at(texture.Format);
-            for (void* layer : texture.Layers) {
-                stbi__vertical_flip(layer, texture.Width, texture.Height, bpp);
+            int bpp = BPPTable.at(texture.Format);
+            for (auto& layer : texture.Layers) {
+                stbi__vertical_flip(layer.Pixels, texture.Width, texture.Height, bpp);
             }
         }
 

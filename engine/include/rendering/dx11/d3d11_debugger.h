@@ -12,7 +12,7 @@ namespace xpe {
         public:
             void Init(Context* const context) override;
             void Free() override;
-            DebugMessage GetLastMessage() override;
+            bool GetLastMessage(DebugMessage& message) override;
             vector<DebugMessage> GetMessageQueue() override;
             void ClearMessageQueue() override;
 

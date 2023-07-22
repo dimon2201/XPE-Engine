@@ -2,7 +2,7 @@
 
 #include <core/user_input.hpp>
 
-#include <rendering/context.hpp>
+#include <rendering/buffers/camera_buffer.h>
 
 namespace xpe {
 
@@ -10,69 +10,16 @@ namespace xpe {
 
         using namespace xpe::core;
         using namespace xpe::render;
+        using namespace xpe::ecs;
 
-        struct ENGINE_API cCameraComponent : public cComponent
-        {
-            cCameraComponent(const string& usid) : cComponent(usid)
-            {}
-
-            glm::vec3 Position = { 0, 0, 10 };
-            glm::vec3 Front = { 0, 0, -1 };
-            glm::vec3 Up = { 0, 1, 0 };
-
-            float Pitch = 0;
-            float Yaw = 0;
-            float Roll = 0;
-        };
-
-        struct ENGINE_API cPerspectiveCameraComponent : public cCameraComponent
-        {
-            cPerspectiveCameraComponent(const string& usid) : cCameraComponent(usid)
-            {}
-
-            math::PerspectiveMatrix Projection;
-        };
-
-        struct ENGINE_API cOrthoCameraComponent : public cCameraComponent
-        {
-            cOrthoCameraComponent(const string& usid) : cCameraComponent(usid)
-            {}
-
-            math::OrthoMatrix Projection;
-        };
-
-        struct ENGINE_API CameraBufferData final {
-            glm::mat4 Projection;
-            glm::mat4 View;
-            glm::vec3 Position;
-            float padding_0 = 0;
-        };
-
-        class ENGINE_API CameraBuffer : public Buffer {
+        class ENGINE_API Camera : public Object {
 
         public:
-            void Init(Context* context);
-            void Free();
 
-            void Flush();
-
-            void SetCamera(cPerspectiveCameraComponent* camera);
-            void SetCamera(cOrthoCameraComponent* camera);
-            void SetPerspectiveProjection(const math::PerspectiveMatrix& projection);
-            void SetOrthoProjection(const math::OrthoMatrix& projection);
-            void SetView(cCameraComponent* camera);
-            void SetPosition(cCameraComponent* camera);
-
-        private:
-            Context* m_Context = nullptr;
-            CameraBufferData m_Data;
-        };
-
-        class cCameraController : public Object,
-                public CursorEventListener,
-                public WindowEventListener,
-                public ScrollEventListener
-        {
+            enum class eLookMode {
+                EDITOR = 1,
+                GAME = -1,
+            };
 
         public:
             eKey KeyMoveForward = eKey::W;
@@ -80,78 +27,139 @@ namespace xpe {
             eKey KeyMoveBackward = eKey::S;
             eKey KeyMoveRight = eKey::D;
 
-            float MoveSpeed = 0.01f;
-            float ZoomSpeed = 3.0f;
+            float MoveSpeed = 0.1f;
+            float ZoomAcceleration = 10.0f;
+            float PanAcceleration = 10.0f;
+            float HorizontalSensitivity = 0.01f;
+            float VerticalSensitivity = 0.01f;
 
-            float HorizontalSensitivity = 1.0f;
-            float VerticalSensitivity = 1.0f;
+            float Pitch = 0;
+            float Yaw = 0;
+            float Roll = 0;
+
+            eLookMode LookMode = eLookMode::GAME;
+
+            bool EnableLook = true;
+
+            glm::vec2 GetPanSpeed();
+            float GetZoomSpeed();
 
         public:
-            cCameraController(CameraBuffer* cameraBuffer, Time* time);
-            virtual ~cCameraController() override;
+            Camera(CameraBuffer* cameraBuffer);
+            ~Camera() = default;
 
-            void EnableLook();
-            void EnableZoom();
+        protected:
 
-            void DisableLook();
-            void DisableZoom();
+            inline glm::vec3 GetUpDirection() const
+            {
+                return glm::rotate(GetOrientation(), glm::vec3(0.0f, 1.0f, 0.0f));
+            }
 
-            virtual void Move() = 0;
-            virtual void ZoomIn() = 0;
-            virtual void ZoomOut() = 0;
-            virtual void Look(const double x, const double y) = 0;
+            inline glm::vec3 GetRightDirection() const
+            {
+                return glm::rotate(GetOrientation(), glm::vec3(1.0f, 0.0f, 0.0f));
+            }
 
-            void CursorMoved(const double x, const double y) override;
+            inline glm::vec3 GetForwardDirection() const
+            {
+                return glm::rotate(GetOrientation(), glm::vec3(0.0f, 0.0f, -1.0f));
+            }
+
+            inline glm::vec3 CalculateFrontPosition() const
+            {
+                return m_Position - GetForwardDirection() * MoveSpeed;
+            }
+
+            inline glm::vec3 CalculateBackPosition() const
+            {
+                return m_Position + GetForwardDirection() * MoveSpeed;
+            }
+
+            inline glm::vec3 CalculateRightPosition() const
+            {
+                return m_Position + GetRightDirection() * MoveSpeed;
+            }
+
+            inline glm::vec3 CalculateLeftPosition() const
+            {
+                return m_Position - GetRightDirection() * MoveSpeed;
+            }
+
+            inline glm::vec3 CalculateUpPosition() const
+            {
+                return m_Position + GetUpDirection() * MoveSpeed;
+            }
+
+            inline glm::vec3 CalculateDownPosition() const
+            {
+                return m_Position - GetUpDirection() * MoveSpeed;
+            }
+
+            inline glm::quat GetOrientation() const
+            {
+                return glm::quat(glm::vec3(-Pitch, -Yaw, Roll));
+            }
 
         protected:
             CameraBuffer* m_CameraBuffer = nullptr;
-            Time* m_Time = nullptr;
+            int m_ViewWidth = 0;
+            int m_ViewHeight = 0;
+            glm::vec3 m_Position = { 0, 0, 0 };
         };
 
-        class ENGINE_API cPerspectiveCameraController : public cCameraController {
+        class ENGINE_API PerspectiveCamera : public Camera {
 
         public:
-            cPerspectiveCameraComponent* Camera = nullptr;
+            PerspectiveCameraComponent* Component = nullptr;
             float MaxFovDegree = 45.0f;
             float MinFovDegree = 1.0f;
 
         public:
-            cPerspectiveCameraController(CameraBuffer* cameraBuffer, cPerspectiveCameraComponent* camera, Time* time)
-            : cCameraController(cameraBuffer, time), Camera(camera), MaxFovDegree(camera->Projection.FovDegree) {
-                m_CameraBuffer->SetCamera(camera);
-            }
+            PerspectiveCamera(CameraBuffer* cameraBuffer, PerspectiveCameraComponent* component);
 
-            void Move() override;
+            void Move();
 
-            void ZoomIn() override;
+            void Pan(const glm::vec2& delta);
 
-            void ZoomOut() override;
+            void ZoomIn();
 
-            void Look(const double x, const double y) override;
+            void ZoomOut();
 
-            void ScrollChanged(const double x, const double y) override;
+            void Look(const double x, const double y);
 
-            void WindowFrameResized(int width, int height) override;
+            void ScrollChanged(const double x, const double y);
+
+            void WindowFrameResized(int width, int height);
+
+            void CursorMoved(const double x, const double y);
+
+        private:
+            void UpdateProjection();
+            void UpdateView(const glm::vec3& position);
+
         };
 
-        class ENGINE_API cOrthoCameraController : public cCameraController {
+        class ENGINE_API OrthoCamera : public Camera {
 
         public:
-            cOrthoCameraComponent* Camera = nullptr;
+            OrthoCameraComponent* Component = nullptr;
 
         public:
-            cOrthoCameraController(CameraBuffer* cameraBuffer, cOrthoCameraComponent* camera, Time* time)
-            : cCameraController(cameraBuffer, time), Camera(camera) {
-                cameraBuffer->SetCamera(camera);
-            }
+            OrthoCamera(CameraBuffer* cameraBuffer, OrthoCameraComponent* component);
 
-            void Move() override;
+            void Move();
 
-            void ZoomIn() override;
+            void ZoomIn();
 
-            void ZoomOut() override;
+            void ZoomOut();
 
-            void Look(const double x, const double y) override;
+            void Look(const double x, const double y);
+
+            void WindowFrameResized(int w, int h);
+
+            void ScrollChanged(const double x, const double y);
+
+            void CursorMoved(const double x, const double y);
 
         };
 

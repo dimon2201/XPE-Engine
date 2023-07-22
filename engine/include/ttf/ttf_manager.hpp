@@ -40,14 +40,22 @@ namespace xpe
 
         public:
             Font Load(const char* filePath, core::usize glyphSize);
+<<<<<<< HEAD
             void Free(Font& font);
+=======
+            void Free(const Font& font);
+>>>>>>> main
 
         private:
             static TTFManager* s_Instance;
 
             core::Boolean m_Loaded = core::K_FALSE;
             FT_Library m_Lib;
+<<<<<<< HEAD
             core::unordered_map<std::string, Font> m_Fonts;
+=======
+            core::unordered_map<char, Font::Glyph> m_AlphaBet;
+>>>>>>> main
         };
     }
 }

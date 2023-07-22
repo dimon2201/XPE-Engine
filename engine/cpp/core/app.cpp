@@ -1,36 +1,47 @@
 #include <core/app.hpp>
-#include <core/user_input.hpp>
 
 // API specific includes
 #include <rendering/dx11/d3d11_context.hpp>
-#include <rendering/dx11/d3d11_debugger.h>
 
+// Rendering features
 #include <rendering/materials/material.h>
+#include <rendering/lighting/light_manager.h>
+#include <rendering/transforming.h>
+
+#include <ttf/ttf_manager.hpp>
 
 namespace xpe {
 
     namespace core {
 
         void Application::Run() {
+            Config = AppConfig::Get();
+
             LoggerDescriptor logDesc;
-            logDesc.Name = AppConfig::Get().LogTitle.c_str();
-            logDesc.Backtrace = AppConfig::Get().LogBacktrace;
+            logDesc.Name = Config.LogTitle.c_str();
+            logDesc.Backtrace = Config.LogBacktrace;
             InitLogger(logDesc);
 
             WindowDescriptor winDesc;
-            winDesc.Title = AppConfig::Get().WinTitle.c_str();
-            winDesc.Width = AppConfig::Get().Width;
-            winDesc.Height = AppConfig::Get().Height;
-            window = InitWindow(winDesc);
+            winDesc.Title = Config.WinTitle.c_str();
+            winDesc.Width = Config.WinWidth;
+            winDesc.Height = Config.WinHeight;
+            winDesc.X = Config.WinX;
+            winDesc.Y = Config.WinY;
+            winDesc.Vsync = Config.Vsync;
+
+            DeltaTime.SetFps(Config.FPS);
+            CPUTime = DeltaTime;
+
+            WindowManager::Init();
+            WindowManager::InitWindow(winDesc);
 
             context = nullptr;
-            Debugger* debugger = nullptr;
 
-            switch (AppConfig::Get().GPU) {
+            switch (Config.GPU) {
 
                 case AppConfig::eGPU::DX11:
                     context = new D3D11Context();
-                    debugger = new D3D11Debugger();
                     break;
 
                 default:
@@ -39,62 +50,103 @@ namespace xpe {
 
             }
 
-            context->Init(*window);
+            Input::Init();
 
-            InitDebugger(debugger, context);
+            context->Init();
 
             ShaderManager::Init(context);
+            if (Config.HotReloadShaders) {
+                ShaderManager::WatchShaders("engine_shaders", true);
+            }
 
             TextureManager::Init(context);
 
             MaterialManager::Init(context);
 
-            Input::Init(window->GetInstance());
+            LightManager::Init(context);
+
+            TransformManager::Init(context);
+
+            ttf::TTFManager::Init();
+
+            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
+            m_CameraBuffer2d = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
 
             Init();
 
-            LogDebugMessages();
-
-            while (!ShouldWindowClose(*window))
+            while (!WindowManager::ShouldClose())
             {
-                Timer timer(&time);
 
-                Input::CaptureCursor();
+                // update shader file watches if it's enabled in config
+                if (Config.HotReloadShaders) {
+                    ShaderManager::UpdateShaderWatches();
+                }
+
+                // measure cpu ticks in seconds and log CPU time
+#ifdef DEBUG
+                static float cpuTickSec = 0;
+                cpuTickSec += CPUTime.Seconds();
+                if (cpuTickSec >= Config.LogTimeDelaySeconds) {
+                    cpuTickSec = 0;
+                    LogCpuTime(CPUTime);
+                    LogMemoryPools();
+                    LogStackMemory();
+                }
+#endif
+
+                Timer cpuTimer(&CPUTime);
+                Timer deltaTimer(&DeltaTime);
+
+                CurrentTime = cpuTimer.GetStartTime();
 
                 Update();
 
-                DefaultWindowEvents(*window);
+                WindowManager::PollEvents();
+                WindowManager::Swap();
 
-                LogDebugMessages();
-
-                static int logDeltaLimit;
-                logDeltaLimit++;
-                if (logDeltaLimit > 2000)
-                {
-                    logDeltaLimit = 0;
-                    LogDelta(time.Seconds());
+                // measure delta ticks in seconds and log delta
+#ifdef DEBUG
+                static float deltaTickSec = 0;
+                deltaTickSec += CPUTime.Seconds();
+                if (deltaTickSec >= Config.LogTimeDelaySeconds) {
+                    deltaTickSec = 0;
+                    LogTime(DeltaTime);
                 }
-            }
+#endif
 
-            LogDebugMessages();
+            }
 
             Free();
 
-            ShaderManager::Free();
+            m_CameraBuffer.Free();
+            m_CameraBuffer2d.Free();
 
-            TextureManager::Free();
+            ttf::TTFManager::Free();
+
+            TransformManager::Free();
+
+            LightManager::Free();
 
             MaterialManager::Free();
 
-            FreeDebugger();
+            TextureManager::Free();
+
+            ShaderManager::Free();
 
             context->Free();
 
             Input::Free();
 
-            FreeWindow(window);
+            WindowManager::FreeWindow();
+            WindowManager::Free();
 
             FreeLogger();
+        }
+
+        void Application::LockFPSFromConfig() {
+            if (Config.LockOnFPS && Config.FPS < DeltaTime.Fps()) {
+                DeltaTime.SetFps(Config.FPS);
+            }
         }
 
     }

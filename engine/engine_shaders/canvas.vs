@@ -1,6 +1,6 @@
 struct VSOut {
     float4 positionClip : SV_POSITION;
-    float2 texcoord : XPE_TEXCOORD;
+    float2 texcoord : XPE_UV;
 };
 
 VSOut vs_main(uint vertexIndex : SV_VertexID) {

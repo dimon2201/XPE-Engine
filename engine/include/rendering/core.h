@@ -11,16 +11,19 @@ namespace xpe {
             void* ViewInstance = nullptr;
         };
 
-        enum ePrimitiveTopology {
-            TRIANGLE_LIST = 0,
-            TRIANGLE_STRIP = 1
+        enum class ePrimitiveTopology {
+            TRIANGLE_LIST,
+            TRIANGLE_STRIP,
+            POINT_LIST,
+            LINE_LIST,
+            LINE_STRIP
         };
 
         enum class eBufferType {
-            VERTEX = 0,
-            INDEX = 1,
-            CONSTANT = 2,
-            STRUCTURED = 3
+            VERTEX,
+            INDEX,
+            CONSTANT,
+            STRUCTURED
         };
 
         struct ENGINE_API Buffer : public GPUResource {
@@ -32,6 +35,7 @@ namespace xpe {
             u32 FirstElement = 0;
             u32 NumElements = 0;
             u32 Slot = 0;
+            Boolean Duplicate = K_FALSE;
         };
 
         struct ENGINE_API Blob final {

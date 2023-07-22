@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/texture.h>
+#include <rendering/buffers/structure_buffer.h>
 
 namespace xpe {
 
@@ -13,65 +14,67 @@ namespace xpe {
         struct ENGINE_API MaterialBufferData final {
             // base color
             glm::vec4 BaseColor = { 1, 1, 0, 1 };
-            bool EnableAlbedo = false;
+            Bool EnableAlbedo = false;
             // bumping
-            bool EnableBumping = false;
+            Bool EnableBumping = false;
             // parallax
-            bool EnableParallax = false;
+            Bool EnableParallax = false;
             float HeightScale = 0.1;
             float ParallaxMinLayers = 8;
             float ParallaxMaxLayers = 32;
             // metallic
             float MetallicFactor = 0.5f;
-            bool EnableMetallic = false;
+            Bool EnableMetallic = false;
             // roughness
             float RoughnessFactor = 0.5f;
-            bool EnableRoughness = false;
+            Bool EnableRoughness = false;
             // ambient occlusion
             float AOFactor = 0.5f;
-            bool EnableAO = false;
+            Bool EnableAO = false;
             // emission
             glm::vec3 EmissionColor = { 0, 0, 0 };
-            bool EnableEmission = false;
+            Bool EnableEmission = false;
+        };
 
-            float padding_0 = 0;
-            float padding_1 = 0;
+        struct ENGINE_API MaterialTextures final {
+            TextureSampler Sampler;
+            Texture AlbedoArray;
+            Texture BumpArray;
+            Texture ParallaxArray;
+            Texture MetallicArray;
+            Texture RoughnessArray;
+            Texture AOArray;
+            Texture EmissionArray;
         };
 
         struct ENGINE_API Material final {
-            TextureSampler Sampler;
-            Texture* Albedo = nullptr;
-            Texture* Bumping = nullptr;
-            Texture* Parallax = nullptr;
-            Texture* Metallic = nullptr;
-            Texture* Roughness = nullptr;
-            Texture* AO = nullptr;
-            Texture* Emission = nullptr;
-            MaterialBufferData Data;
+            u32 Index = 0;
+            MaterialTextures* Textures = nullptr;
+            TextureLayer* Albedo = nullptr;
+            TextureLayer* Bumping = nullptr;
+            TextureLayer* Parallax = nullptr;
+            TextureLayer* Metallic = nullptr;
+            TextureLayer* Roughness = nullptr;
+            TextureLayer* AO = nullptr;
+            TextureLayer* Emission = nullptr;
+            MaterialBufferData* Data = nullptr;
         };
 
-        struct ENGINE_API cMaterialComponent : public cComponent {
+        struct ENGINE_API MaterialComponent : public Component {
 
-            cMaterialComponent(const string& usid) : cComponent(usid) {}
-            cMaterialComponent(const string& usid, Material* material) : cComponent(usid), Material(material) {}
+            MaterialComponent(const string& usid) : Component(usid) {}
+            MaterialComponent(const string& usid, Material* material) : Component(usid), Material(material) {}
 
             Material* Material = nullptr;
 
         };
 
-        class ENGINE_API MaterialBuffer : public Buffer {
+        class ENGINE_API MaterialBuffer : public StructureBuffer<MaterialBufferData> {
 
         public:
-            void Init(Context* context);
-            void Free();
+            MaterialBuffer() = default;
+            MaterialBuffer(Context* context, usize size) : StructureBuffer<MaterialBufferData>(context, size, K_SLOT_MATERIALS, K_FALSE) {}
 
-            void Flush();
-
-            void SetMaterial(const Material& material);
-
-        private:
-            Context* m_Context = nullptr;
-            MaterialBufferData m_Data;
         };
 
         class ENGINE_API MaterialBuilder final {
@@ -96,21 +99,44 @@ namespace xpe {
             MaterialBuilder& AddEmissionFromFile(const char* filepath);
 
         private:
+            TextureLayer* AddTextureFromFile(const char* filepath, Texture& textureArray);
+
+        private:
             Context* m_Context = nullptr;
             Material* m_Material = nullptr;
         };
 
+        struct ENGINE_API MaterialStorage : public Object {
+            MaterialBuffer Buffer;
+            MaterialTextures Textures;
+            unordered_map<string, Material> Table;
+
+            MaterialStorage(Context* context, usize count);
+            ~MaterialStorage();
+
+        private:
+            void InitTextureArray(Context* context, Texture& textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot);
+        };
+
         class ENGINE_API MaterialManager final {
+
+        public:
+            static const usize K_MATERIALS_COUNT = 1000;
 
         public:
             static void Init(Context* context);
             static void Free();
 
             static MaterialBuilder& Builder();
+            static MaterialTextures& Textures();
+            static vector<MaterialBufferData>& List();
 
             static void InitMaterial(Material& material);
             static void FreeMaterial(Material& material);
-            static void BindMaterial(Material& material);
+
+            static void BindMaterials();
+
+            static void UpdateMaterials();
             static void UpdateMaterial(Material& material);
 
             static MaterialBuffer* GetBuffer();
@@ -119,12 +145,17 @@ namespace xpe {
             static void RemoveMaterial(const string& name);
             static Material* GetMaterial(const string& name);
 
+            static MaterialBufferData* GetMaterialData(u32 index);
+
+        private:
+            static void InitMaterialList();
+            static void FreeMaterialList();
+
         private:
             static Context* s_Context;
-            static unordered_map<string, Material> s_MaterialTable;
+            static MaterialStorage* s_Storage;
             static MaterialBuilder s_MaterialBuilder;
             static Material s_TempMaterial;
-            static MaterialBuffer s_MaterialBuffer;
         };
 
     }

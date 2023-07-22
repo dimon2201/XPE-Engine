@@ -24,6 +24,8 @@ namespace xpe {
 
             Parse(std::string(str), appConfig);
 
+            free(str);
+
             return appConfig;
         }
 
@@ -33,8 +35,12 @@ namespace xpe {
             reader.parse(source, root);
 
             config.WinTitle = root["win_title"].asString();
-            config.Width = root["width"].asInt();
-            config.Height = root["height"].asInt();
+            config.WinWidth = root["win_width"].asInt();
+            config.WinHeight = root["win_height"].asInt();
+            config.WinX = root["win_x"].asInt();
+            config.WinY = root["win_y"].asInt();
+            config.Vsync = root["vsync"].asBool() ? K_TRUE : K_FALSE;
+
             config.LogTitle = root["log_title"].asString();
             config.LogBacktrace = root["log_backtrace"].asInt();
 
@@ -56,6 +62,14 @@ namespace xpe {
             config.LogDebugErrors = root["debug_errors"].asBool();
             config.LogDebugWarnings = root["debug_warnings"].asBool();
             config.LogDebugInfos = root["debug_infos"].asBool();
+
+            config.FPS = root["fps"].asFloat();
+
+            config.LogTimeDelaySeconds = root["log_time_delay_seconds"].asFloat();
+
+            config.LockOnFPS = root["lock_on_fps"].asBool();
+
+            config.HotReloadShaders = root["hot_reload_shaders"].asBool();
 
         }
 

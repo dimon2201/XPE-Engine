@@ -34,8 +34,8 @@ namespace xpe
         class ENGINE_API Object
         {
             public:
-                Object() {}
-                virtual ~Object() {}
+                Object() = default;
+                ~Object() = default;
 
                 uword GetType();
 
@@ -45,11 +45,10 @@ namespace xpe
 
         constexpr Boolean K_TRUE                    = 1;
         constexpr Boolean K_FALSE                   = 0;
+
         constexpr usize K_MEMORY_KIB                = 1024;
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
         constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;
-        constexpr usize K_MAX_STRING_BYTE_SIZE      = 128;
-        constexpr usize K_MAX_MEMORY_POOL_BYTE_SIZE = 64 * K_MEMORY_MIB;
 
         template<typename T>
         using Scope = std::unique_ptr<T>;

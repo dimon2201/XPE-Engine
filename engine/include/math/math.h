@@ -1,5 +1,7 @@
 #pragma once
 
+#define PI 3.14159265359f
+
 namespace xpe {
 
     namespace math {
@@ -39,6 +41,16 @@ namespace xpe {
             } else {
                 return glm::orthoRH(left, right, bottom, top, zNear, zFar);
             }
+        }
+
+        template<typename T>
+        T min(const T& right, const T& left) {
+            return right < left ? right : left;
+        }
+
+        template<typename T>
+        T max(const T& right, const T& left) {
+            return right > left ? right : left;
         }
 
     }

@@ -20,13 +20,14 @@ include_directories(
         thirdparty/spdlog/include
         thirdparty/stbi
         thirdparty/freetype2/include
+        thirdparty/cgltf
 )
 
 # Create shared dynamic library
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 add_engine_definitions()
 
-# Add precompile header for compile-time optimization
+# Add precompile header for compile-CurrentTime optimization
 target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch.h>")
 
 add_subdirectory(thirdparty/spdlog)
@@ -41,7 +42,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static free
 
 # Move shaders into bin folder
 copy_build_file(engine/config.json config.json)
-copy_build_dir(engine/engine_shaders bin/engine_shaders)
+copy_build_file(engine/memory_config.json memory_config.json)
+copy_build_dir(engine/engine_shaders engine_shaders)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
-    copy_build_dir(engine/engine_shaders bin/${CONFIG}/engine_shaders)
+    copy_build_file(engine/config.json ${CONFIG}/config.json)
+    copy_build_file(engine/memory_config.json ${CONFIG}/memory_config.json)
+    copy_build_dir(engine/engine_shaders ${CONFIG}/engine_shaders)
 endforeach()

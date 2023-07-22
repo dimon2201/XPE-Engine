@@ -46,12 +46,8 @@ namespace xpe {
 LogError(__VA_ARGS__); \
 Logger::DumpBacktrace()
 
-#define LogDelta(dt) \
-LogInfo("Delta time: {} seconds", dt); \
-LogInfo("FPS: {}", 1 / dt)
-
 #define LogGLM(name, v) \
-LogInfo("{}:{}", name, glm::to_string(v))
+LogInfo("{}: {}", name, glm::to_string(v))
 
 #else
 
@@ -66,7 +62,7 @@ LogInfo("{}:{}", name, glm::to_string(v))
 
 #define DumpTraceError(...)
 
-#define LogDelta(dt)
+#define LogTime(time)
 
 #define LogGLM(name, v)
 

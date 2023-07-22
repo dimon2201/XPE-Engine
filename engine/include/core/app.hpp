@@ -1,24 +1,28 @@
 #pragma once
 
 #include <core/windowing.hpp>
-#include <core/events.h>
 
-#include <rendering/context.hpp>
+#include <controls/camera.h>
 
 namespace xpe {
 
     namespace core {
 
         using namespace xpe::render;
+        using namespace xpe::control;
 
         class Window;
 
         class ENGINE_API Application {
 
-        public:
+        protected:
             Context* context = nullptr;
-            Window* window = nullptr;
-            Time time;
+            Time CPUTime;       // delta CPU time ms = end time - begin time
+            Time DeltaTime;     // delta CurrentTime ms = end time - begin time
+            Time CurrentTime;
+            CameraBuffer m_CameraBuffer;
+            CameraBuffer m_CameraBuffer2d;
+            AppConfig Config;
 
         public:
             Application() {}
@@ -31,6 +35,8 @@ namespace xpe {
             virtual void Init() = 0;
             virtual void Update() = 0;
             virtual void Free() = 0;
+
+            void LockFPSFromConfig();
 
         };
 

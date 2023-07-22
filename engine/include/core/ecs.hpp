@@ -4,41 +4,52 @@ namespace xpe
 {
     namespace core
     {
-        struct ENGINE_API cEntity : public Object
+        struct ENGINE_API Entity : public Object
         {
-            cEntity(const string& usid) : USID(usid)
+            Entity(const string& usid) : USID(usid)
             {}
 
             string USID;
         };
 
-        struct ENGINE_API cComponent : public Object
+        struct ENGINE_API Component : public Object
         {
-            cComponent(const string& usid) : USID(usid)
+            Component(const string& usid) : USID(usid)
             {}
 
             string USID;
         };
 
-        struct ENGINE_API cTransformComponent : public cComponent
+        struct ENGINE_API TransformComponent : public Component
         {
-            cTransformComponent(const string& usid) : cComponent(usid)
+            TransformComponent(const string& usid) : Component(usid)
+            {}
+
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Rotation = { 0, 0, 0 };
+            glm::vec3 Scale = { 1, 1, 1 };
+        };
+
+        struct ENGINE_API Transform2DComponent : public Component
+        {
+            Transform2DComponent(const string& usid) : Component(usid)
+            {}
+
+            glm::vec2 Position = { 0, 0 };
+            float Rotation = 0;
+            glm::vec2 Scale = { 1, 1 };
+        };
+
+        struct ENGINE_API RigidBodyComponent : public Component
+        {
+            RigidBodyComponent(const string& usid) : Component(usid)
             {}
 
             glm::vec3 Position;
             glm::vec3 Rotation;
-            glm::vec3 Scale;
         };
 
-        struct ENGINE_API cRigidBodyComponent : public cComponent
-        {
-            cRigidBodyComponent(const string& usid) : cComponent(usid)
-            {}
-
-            glm::vec3 Position;
-            glm::vec3 Rotation;
-        };
-
+<<<<<<< HEAD
         struct ENGINE_API cText2dComponent : public cComponent
         {
             cText2dComponent(const string& usid) : cComponent(usid)
@@ -52,10 +63,12 @@ namespace xpe
         };
 
         struct ENGINE_API xComponentStorage
+=======
+        struct ENGINE_API ComponentStorage
+>>>>>>> main
         {
-            xComponentStorage(void* storage) :
-                Storage(storage), Count(0)
-            {} 
+            ComponentStorage(void* storage) : Storage(storage), Count(0)
+            {}
 
             void* Storage;
             usize Count;
@@ -69,19 +82,19 @@ namespace xpe
                 ECSManager() {}
                 ~ECSManager() {}
 
-                cEntity* CreateEntity(const string& usid)
+                Entity* CreateEntity(const string& usid)
                 {
-                    _entities.insert({ usid, { usid } });
+                    m_Entities.insert({usid, {usid } });
 
-                    auto it = _entities.find(usid);
+                    auto it = m_Entities.find(usid);
                     return &it->second;
                 }
 
-                cEntity* GetEntity(const string& usid)
+                Entity* GetEntity(const string& usid)
                 {
-                    auto it = _entities.find(usid);
+                    auto it = m_Entities.find(usid);
 
-                    if (it == _entities.end())
+                    if (it == m_Entities.end())
                     {
                         return nullptr;
                     }
@@ -93,21 +106,21 @@ namespace xpe
 
                 void RemoveEntity(const string& usid)
                 {
-                    auto it = _entities.find(usid);
+                    auto it = m_Entities.find(usid);
 
-                    if (it != _entities.end())
+                    if (it != m_Entities.end())
                     {
-                        _entities.erase(it);
+                        m_Entities.erase(it);
                     }
                 }
 
                 template <typename ComponentType>
-                xComponentStorage* GetComponentStorage()
+                ComponentStorage* GetComponentStorage()
                 {
                     ComponentType c = ComponentType("");
-                    auto it = _storages.find(c.GetType());
+                    auto it = m_Storages.find(c.GetType());
 
-                    if (it == _storages.end())
+                    if (it == m_Storages.end())
                     {
                         return nullptr;
                     }
@@ -121,21 +134,21 @@ namespace xpe
                 ComponentType* CreateComponent(const string& usid)
                 {
                     ComponentType c = ComponentType("");
-                    xComponentStorage* storage = GetComponentStorage<ComponentType>();
+                    ComponentStorage* storage = GetComponentStorage<ComponentType>();
 
                     if (storage == nullptr)
                     {
-                        void* storageMemory = MemoryPoolManager::Allocate(sizeof(ComponentType) * k_maxComponentCount);
+                        void* storageMemory = allocObj(sizeof(ComponentType) * k_maxComponentCount);
 
-                        _storages.insert({ c.GetType(), { storageMemory } });
+                        m_Storages.insert({c.GetType(), {storageMemory } });
                         
-                        storage = &_storages.find(c.GetType())->second;
+                        storage = &m_Storages.find(c.GetType())->second;
                     }
 
                     ComponentType* storageMemory = (ComponentType*)storage->Storage;
                     storageMemory[storage->Count] = ComponentType(usid);
 
-                    _components.insert({ usid, &storageMemory[storage->Count] });
+                    m_Components.insert({usid, &storageMemory[storage->Count] });
 
                     storage->Count += 1;
 
@@ -145,9 +158,9 @@ namespace xpe
                 template <typename ComponentType>
                 ComponentType* GetComponent(const string& usid)
                 {
-                    auto it = _components.find(usid);
+                    auto it = m_Components.find(usid);
 
-                    if (it == _components.end())
+                    if (it == m_Components.end())
                     {
                         return nullptr;
                     }
@@ -160,7 +173,7 @@ namespace xpe
                 template <typename ComponentType>
                 ComponentType* RemoveComponent(const std::string& usid)
                 {
-                    xComponentStorage* storage = GetComponentStorage<ComponentType>();
+                    ComponentStorage* storage = GetComponentStorage<ComponentType>();
 
                     if (storage == nullptr)
                     {
@@ -175,11 +188,11 @@ namespace xpe
                         while (storageMemory[index]->USID != usid) { index++; }
 
                         string lastUSID = storageMemory[storage->Count - 1]->USID;
-                        auto it = _components.find(lastUSID);
-                        if (it != _components.end())
+                        auto it = m_Components.find(lastUSID);
+                        if (it != m_Components.end())
                         {
-                            _components.erase(it);
-                            _components.insert({ lastUSID, &storageMemory[index] });
+                            m_Components.erase(it);
+                            m_Components.insert({lastUSID, &storageMemory[index] });
                         }
 
                         storageMemory[index] = storageMemory[storage->Count - 1];
@@ -194,9 +207,9 @@ namespace xpe
                 }
 
             private:
-                map<string, cEntity> _entities;
-                map<uword, xComponentStorage> _storages;
-                map<string, cComponent*> _components;
+                map<string, Entity> m_Entities;
+                map<uword, ComponentStorage> m_Storages;
+                map<string, Component*> m_Components;
         };
     }
 }
