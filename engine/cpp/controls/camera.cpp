@@ -239,12 +239,22 @@ namespace xpe {
         }
 
         void OrthoCamera::WindowFrameResized(int width, int height) {
+            m_ViewWidth = width;
+            m_ViewHeight = height;
+            UpdateProjection();
+        }
+
+        void OrthoCamera::ScrollChanged(const double x, const double y) {
+        }
+
+        void OrthoCamera::CursorMoved(const double x, const double y) {
+            Look(x, y);
+        }
+
+        void OrthoCamera::UpdateProjection() {
             auto& component = *Component;
             auto& projection = component.Projection;
             auto& cameraBuffer = *m_CameraBuffer;
-
-            m_ViewWidth = width;
-            m_ViewHeight = height;
 
             projection.Right = m_ViewWidth;
             projection.Left = -m_ViewWidth;
@@ -253,13 +263,6 @@ namespace xpe {
 
             cameraBuffer.GetItem(component.Index)->Projection = math::OrthoMatrixUpdate(projection);
             cameraBuffer.Flush();
-        }
-
-        void OrthoCamera::ScrollChanged(const double x, const double y) {
-        }
-
-        void OrthoCamera::CursorMoved(const double x, const double y) {
-            Look(x, y);
         }
 
     }

@@ -18,13 +18,19 @@ namespace xpe {
             void Init() override final;
             void Free() override final;
 
+            void CreateSwapchain(int width, int height) override final;
+            void FreeSwapchain() override final;
+            void ResizeSwapchain(RenderTarget& renderTarget, int width, int height) override final;
+            void CreateSwapchainTargetView() override final;
+
             void CreateRenderTarget(RenderTarget& renderTarget) override final;
             void BindRenderTarget(void* colorTargetView, void* depthTargetView) override final;
-            void BindSwapChainTarget() override final;
+            void UnbindRenderTarget() override final;
             void ClearColorTarget(const glm::vec4& color) override final;
             void ClearDepthTarget(const f32 depth) override final;
-            glm::ivec2 GetSwapChainDimensions() override final;
-            void FreeRenderTarget(const RenderTarget& renderTarget) override final;
+            void FreeRenderTarget(RenderTarget& renderTarget) override final;
+            void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height) override final;
+
             void Present() override final;
 
             void CompileShaderStage(ShaderStage& stage) override final;
@@ -41,7 +47,7 @@ namespace xpe {
 
             void BindTexture(const Texture* texture) override final;
             void BindTextureSlot(u32 slot) override final;
-            void FreeTexture(const Texture* texture) override final;
+            void FreeTexture(Texture& texture) override final;
             void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index) override final;
             void GenerateMips(const Texture& texture) override final;
 
@@ -65,11 +71,11 @@ namespace xpe {
 
             void BindPrimitiveTopology(const ePrimitiveTopology &primitiveTopology) override final;
 
-            void BindViewport(const glm::vec4& coords, f32 minDepth, f32 maxDepth) override final;
+            void BindViewport(Viewport* viewport) override final;
 
-            void CreateRenderPipeline(Pipeline& pipeline) override final;
-            void BindRenderPipeline(const Pipeline* pipeline) override final;
-            void FreeRenderPipeline(Pipeline& pipeline) override final;
+            void CreatePipeline(Pipeline& pipeline) override final;
+            void BindPipeline(const Pipeline* pipeline) override final;
+            void FreePipeline(Pipeline& pipeline) override final;
 
             void CreateDepthStencilState(DepthStencilState& state) override final;
             void BindDepthStencilState(const DepthStencilState* state) override final;
@@ -78,11 +84,11 @@ namespace xpe {
             void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) override final;
             void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) override final;
 
-            void DrawQuad(const ePrimitiveTopology& primitiveTopology) override final;
+            void DrawQuad() override final;
 
             void* GetDevice() override final;
 
-            void InitHardwareConfig() override final;
+            void CreateHardwareConfig() override final;
 
         private:
             D3D11_SUBRESOURCE_DATA* InitTextureData(const Texture& texture, const u32 arraySize, const u32 mipLevels);
@@ -90,12 +96,12 @@ namespace xpe {
             void UpdateTextureFlags(Texture& texture, u32& bindFlags, u32& miscFlags);
 
         private:
-            ID3D11Device* m_Device;
-            ID3D11DeviceContext* m_ImmContext;
-            IDXGISwapChain* m_SwapChain;
-            Texture m_SwapChainTexture;
-            TextureSampler m_SwapChainSampler;
-            RenderTarget m_SwapChainTarget;
+            ID3D11Device* m_Device = nullptr;
+            ID3D11DeviceContext* m_ImmContext = nullptr;
+            IDXGISwapChain* m_SwapChain = nullptr;
+            IDXGIDevice* m_GIDevice = nullptr;
+            IDXGIAdapter* m_GIAdapter = nullptr;
+            IDXGIFactory* m_GIFactory = nullptr;
         };
 
     }

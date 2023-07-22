@@ -29,17 +29,26 @@ namespace xpe {
                 Context() {}
                 ~Context() {}
 
+                inline void* GetSwapchainTargetView() const {
+                    return m_SwapchainTargetView;
+                }
+
                 virtual void Init() = 0;
                 virtual void Free() = 0;
-                
+
+                virtual void CreateSwapchain(int width, int height) = 0;
+                virtual void FreeSwapchain() = 0;
+                virtual void ResizeSwapchain(RenderTarget& presentTarget, int width, int height) = 0;
+                virtual void CreateSwapchainTargetView() = 0;
+
                 virtual void CreateRenderTarget(RenderTarget& renderTarget) = 0;
                 virtual void BindRenderTarget(void* colorTargetView, void* depthTargetView) = 0;
-                virtual void BindSwapChainTarget() = 0;
+                virtual void UnbindRenderTarget() = 0;
                 virtual void ClearColorTarget(const glm::vec4& color) = 0;
                 virtual void ClearDepthTarget(const f32 depth) = 0;
-                virtual void FreeRenderTarget(const RenderTarget& renderTarget) = 0;
+                virtual void FreeRenderTarget(RenderTarget& renderTarget) = 0;
+                virtual void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height) = 0;
 
-                virtual glm::ivec2 GetSwapChainDimensions() = 0;
                 virtual void Present() = 0;
 
                 void CreateShader(Shader& shader);
@@ -63,7 +72,7 @@ namespace xpe {
 
                 virtual void BindTexture(const Texture* texture) = 0;
                 virtual void BindTextureSlot(u32 slot) = 0;
-                virtual void FreeTexture(const Texture* texture) = 0;
+                virtual void FreeTexture(Texture& texture) = 0;
                 virtual void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index = 0) = 0;
 
                 virtual void GenerateMips(const Texture& texture) = 0;
@@ -88,11 +97,11 @@ namespace xpe {
 
                 virtual void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology) = 0;
                 
-                virtual void BindViewport(const glm::vec4& coords, f32 minDepth, f32 maxDepth) = 0;
+                virtual void BindViewport(Viewport* viewport) = 0;
 
-                virtual void CreateRenderPipeline(Pipeline& pipeline) = 0;
-                virtual void BindRenderPipeline(const Pipeline* pipeline) = 0;
-                virtual void FreeRenderPipeline(Pipeline& pipeline) = 0;
+                virtual void CreatePipeline(Pipeline& pipeline) = 0;
+                virtual void BindPipeline(const Pipeline* pipeline) = 0;
+                virtual void FreePipeline(Pipeline& pipeline) = 0;
 
                 virtual void CreateDepthStencilState(DepthStencilState& state) = 0;
                 virtual void BindDepthStencilState(const DepthStencilState* state) = 0;
@@ -101,18 +110,19 @@ namespace xpe {
                 virtual void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) = 0;
                 virtual void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) = 0;
 
-                virtual void DrawQuad(const ePrimitiveTopology& primitiveTopology) = 0;
+                virtual void DrawQuad() = 0;
 
                 virtual void* GetDevice() = 0;
 
-                virtual void InitHardwareConfig() = 0;
+                virtual void CreateHardwareConfig() = 0;
 
         protected:
-            Shader* m_BoundShader = nullptr;
+            void* m_SwapchainTargetView = nullptr;
+            Viewport* m_Viewport = nullptr;
             void* m_BoundColorTargetView = nullptr;
             void* m_BoundDepthTargetView = nullptr;
+            Shader* m_BoundShader = nullptr;
             Pipeline* m_BoundPipeline = nullptr;
-
         };
 
     }

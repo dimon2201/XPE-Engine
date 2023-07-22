@@ -12,8 +12,6 @@ namespace xpe {
         };
 
         struct ENGINE_API RenderTarget final {
-            int Width = 0;
-            int Height = 0;
             Texture* ColorTexture = nullptr;
             Texture* DepthTexture = nullptr;
             void* ColorTargetView = nullptr;

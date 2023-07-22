@@ -78,13 +78,13 @@ namespace xpe {
 
             m_Context->FreeSampler(&textures.Sampler);
 
-            m_Context->FreeTexture(&textures.AlbedoArray);
-            m_Context->FreeTexture(&textures.BumpArray);
-            m_Context->FreeTexture(&textures.ParallaxArray);
-            m_Context->FreeTexture(&textures.MetallicArray);
-            m_Context->FreeTexture(&textures.RoughnessArray);
-            m_Context->FreeTexture(&textures.AOArray);
-            m_Context->FreeTexture(&textures.EmissionArray);
+            m_Context->FreeTexture(textures.AlbedoArray);
+            m_Context->FreeTexture(textures.BumpArray);
+            m_Context->FreeTexture(textures.ParallaxArray);
+            m_Context->FreeTexture(textures.MetallicArray);
+            m_Context->FreeTexture(textures.RoughnessArray);
+            m_Context->FreeTexture(textures.AOArray);
+            m_Context->FreeTexture(textures.EmissionArray);
         }
 
 
@@ -220,7 +220,7 @@ namespace xpe {
             if (textureLayerIndex >= textureArray.Layers.size()) {
                 textureArray.Layers.resize(textureLayerIndex + 1);
                 textureArray.Layers[textureLayerIndex] = textureLayer;
-                s_Context->FreeTexture(&textureArray);
+                s_Context->FreeTexture(textureArray);
                 s_Context->CreateTexture(textureArray);
             }
             textureArray.Layers[textureLayerIndex] = textureLayer;

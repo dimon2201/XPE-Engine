@@ -258,7 +258,7 @@ namespace xpe {
                 FreeMips(layer);
             }
             texture.Layers.clear();
-            s_Context->FreeTexture(&texture);
+            s_Context->FreeTexture(texture);
         }
 
         void TextureManager::WriteTexture(Texture &texture) {

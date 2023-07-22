@@ -8,14 +8,16 @@ namespace xpe {
 
         void Context::CreateShader(Shader& shader)
         {
-            for (auto* stage : shader.Stages) {
+            for (auto* stage : shader.Stages)
+            {
                 CreateShaderStage(*stage);
             }
         }
 
         void Context::CompileShader(Shader& shader)
         {
-            for (auto* stage : shader.Stages) {
+            for (auto* stage : shader.Stages)
+            {
                 CompileShaderStage(*stage);
             }
         }
@@ -23,22 +25,26 @@ namespace xpe {
         void Context::BindShader(const Shader* shader)
         {
             m_BoundShader = (Shader*)shader;
-            for (const auto* stage : shader->Stages) {
+            for (const auto* stage : shader->Stages)
+            {
                 BindShaderStage(*stage);
             }
         }
 
         void Context::FreeShader(Shader& shader)
         {
-            for (auto* stage : shader.Stages) {
+            for (auto* stage : shader.Stages)
+            {
                 FreeShaderStage(*stage);
             }
             shader.Stages.clear();
         }
 
-        void Context::CreateTexture(Texture& texture) {
+        void Context::CreateTexture(Texture& texture)
+        {
 
-            switch (texture.Type) {
+            switch (texture.Type)
+            {
 
                 case Texture::eType::TEXTURE_1D:
                     CreateTexture1D(texture);

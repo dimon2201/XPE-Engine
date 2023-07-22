@@ -6,12 +6,14 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API GPUResource {
+        struct ENGINE_API GPUResource
+        {
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
         };
 
-        enum class ePrimitiveTopology {
+        enum class ePrimitiveTopology
+        {
             TRIANGLE_LIST,
             TRIANGLE_STRIP,
             POINT_LIST,
@@ -21,14 +23,16 @@ namespace xpe {
             DEFAULT = TRIANGLE_LIST
         };
 
-        enum class eBufferType {
+        enum class eBufferType
+        {
             VERTEX,
             INDEX,
             CONSTANT,
             STRUCTURED
         };
 
-        struct ENGINE_API Buffer : public GPUResource {
+        struct ENGINE_API Buffer : public GPUResource
+        {
             eBufferType Type;
             void* CPUMemory;
             usize AppendOffset;
@@ -40,10 +44,21 @@ namespace xpe {
             Boolean Duplicate = K_FALSE;
         };
 
-        struct ENGINE_API Blob final {
+        struct ENGINE_API Blob final
+        {
             void* Instance = nullptr;
             void* ByteCode = nullptr;
             usize ByteCodeSize = 0;
+        };
+
+        struct ENGINE_API Viewport final
+        {
+            float TopLeftX = 0;
+            float TopLeftY = 0;
+            float Width = 0;
+            float Height = 0;
+            float MinDepth = 0;
+            float MaxDepth = 1;
         };
 
     }

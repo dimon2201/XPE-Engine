@@ -67,15 +67,72 @@ namespace xpe {
         {
             LogInfo("D3D11Context::Init()");
 
-            m_Device = nullptr;
-            m_ImmContext = nullptr;
-            m_SwapChain = nullptr;
-            m_SwapChainTexture.Instance = nullptr;
+            HRESULT result = D3D11CreateDevice(
+                    nullptr,
+                    D3D_DRIVER_TYPE_HARDWARE,
+                    0,
+                    D3D11_CREATE_DEVICE_DEBUG,
+                    nullptr,
+                    0,
+                    D3D11_SDK_VERSION,
+                    (ID3D11Device**)&m_Device,
+                    nullptr,
+                    (ID3D11DeviceContext**)&m_ImmContext
+            );
 
+            if (result != S_OK) {
+                FMT_ASSERT(false, "Failed to create rendering context and device for DX11");
+                return;
+            }
+
+            CreateHardwareConfig();
+
+            InitDebugger(new D3D11Debugger(), this);
+
+            m_Device->QueryInterface(__uuidof(IDXGIDevice), (void **)&m_GIDevice);
+            LogDebugMessage();
+
+            m_GIDevice->GetAdapter(&m_GIAdapter);
+            LogDebugMessage();
+
+            m_GIAdapter->GetParent(__uuidof(IDXGIFactory), (void **)&m_GIFactory);
+            LogDebugMessage();
+
+            CreateSwapchain(WindowManager::GetWidth(), WindowManager::GetHeight());
+
+            LogInfo("D3D11Context initialized");
+        }
+
+        void D3D11Context::Free()
+        {
+            LogInfo("D3D11Context::Free()");
+
+            m_ImmContext->Release();
+            LogDebugMessage();
+
+            m_Device->Release();
+            LogDebugMessage();
+
+            m_GIDevice->Release();
+            LogDebugMessage();
+
+            m_GIAdapter->Release();
+            LogDebugMessage();
+
+            m_GIFactory->Release();
+            LogDebugMessage();
+
+            FreeSwapchain();
+
+            FreeDebugger();
+        }
+
+        void D3D11Context::CreateSwapchain(int width, int height)
+        {
             DXGI_MODE_DESC bufferDesc = {};
-            bufferDesc.Width = WindowManager::GetWidth();
-            bufferDesc.Height = WindowManager::GetHeight();
-            bufferDesc.RefreshRate.Numerator = 60;
+            bufferDesc.Width = width;
+            bufferDesc.Height = height;
+            bufferDesc.RefreshRate.Numerator = WindowManager::GetRefreshRate();
             bufferDesc.RefreshRate.Denominator = 1;
             bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
             bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
@@ -88,84 +145,60 @@ namespace xpe {
             swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
             swapChainDesc.BufferCount = 1;
             swapChainDesc.OutputWindow = (HWND)WindowManager::GetWin32Instance();
-            swapChainDesc.Windowed = TRUE;
+            swapChainDesc.Windowed = WindowManager::IsWindowed();
             swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
-            HRESULT result = D3D11CreateDeviceAndSwapChain(
-                    nullptr,
-                    D3D_DRIVER_TYPE_HARDWARE,
-                    0,
-                    D3D11_CREATE_DEVICE_DEBUG,
-                    nullptr,
-                    0,
-                    D3D11_SDK_VERSION,
-                    &swapChainDesc,
-                    (IDXGISwapChain**)&m_SwapChain,
-                    (ID3D11Device**)&m_Device,
-                    nullptr,
-                    (ID3D11DeviceContext**)&m_ImmContext
-            );
-
-            if (result != S_OK) {
-                FMT_ASSERT(false, "Failed to create rendering context and device for DX11");
-                return;
-            }
-
-            InitHardwareConfig();
-
-            InitDebugger(new D3D11Debugger(), this);
-
+            m_GIFactory->CreateSwapChain(m_Device, &swapChainDesc, &m_SwapChain);
             LogDebugMessage();
 
-            m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&m_SwapChainTexture.Instance);
-
-            m_SwapChainTexture.Width  = WindowManager::GetWidth();
-            m_SwapChainTexture.Height = WindowManager::GetHeight();
-            m_SwapChainTexture.Format = Texture::eFormat::RGBA8;
-
-            m_SwapChainTarget.Width  = m_SwapChainTexture.Width;
-            m_SwapChainTarget.Height = m_SwapChainTexture.Height;
-            m_SwapChainTarget.ColorTexture = &m_SwapChainTexture;
-
-            CreateRenderTarget(m_SwapChainTarget);
-            LogDebugMessage();
-
-            m_SwapChainSampler.Filter   = TextureSampler::eFilter::MIN_MAG_MIP_POINT;
-            m_SwapChainSampler.AddressU = TextureSampler::eAddress::CLAMP;
-            m_SwapChainSampler.AddressV = TextureSampler::eAddress::CLAMP;
-            m_SwapChainSampler.AddressW = TextureSampler::eAddress::CLAMP;
-            m_SwapChainSampler.AnisotropyLevel = 1;
-
-            CreateSampler(m_SwapChainSampler);
-            LogDebugMessage();
-
-            LogInfo("D3D11Context initialized");
+            CreateSwapchainTargetView();
         }
 
-        void D3D11Context::Free()
+        void D3D11Context::FreeSwapchain()
         {
-            LogInfo("D3D11Context::Free()");
-
-            // todo need to improve concept of RenderTarget
-//            FreeRenderTarget(m_SwapChainTarget);
-            LogDebugMessage();
-
-            ((ID3D11Texture2D*)m_SwapChainTexture.Instance)->Release();
-            LogDebugMessage();
-
-            FreeSampler(&m_SwapChainSampler);
-            LogDebugMessage();
-
-            m_ImmContext->Release();
-            LogDebugMessage();
-
-            m_Device->Release();
-            LogDebugMessage();
-
             m_SwapChain->Release();
             LogDebugMessage();
+        }
 
-            FreeDebugger();
+        void D3D11Context::ResizeSwapchain(RenderTarget& renderTarget, int width, int height)
+        {
+            m_ImmContext->OMSetRenderTargets(0, 0, 0);
+
+            ((ID3D11RenderTargetView*) renderTarget.ColorTargetView)->Release();
+
+            m_SwapChain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+            LogDebugMessage();
+
+            CreateSwapchainTargetView();
+            renderTarget.ColorTargetView = m_SwapchainTargetView;
+
+            m_ImmContext->OMSetRenderTargets(
+                    1,
+                    (ID3D11RenderTargetView**) &renderTarget.ColorTargetView,
+                    NULL
+            );
+            LogDebugMessage();
+
+            m_Viewport->Width = width;
+            m_Viewport->Height = height;
+            BindViewport(m_Viewport);
+        }
+
+        void D3D11Context::CreateSwapchainTargetView()
+        {
+            ID3D11Texture2D* swapchainTexture = nullptr;
+            m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**) &swapchainTexture);
+            LogDebugMessage();
+
+            m_Device->CreateRenderTargetView(
+                    (ID3D11Texture2D*) swapchainTexture,
+                    NULL,
+                    (ID3D11RenderTargetView**) &m_SwapchainTargetView
+            );
+            LogDebugMessage();
+
+            ((ID3D11Texture2D*) swapchainTexture)->Release();
+            LogDebugMessage();
         }
 
         void D3D11Context::CreateRenderTarget(RenderTarget& renderTarget)
@@ -184,8 +217,8 @@ namespace xpe {
             {
                 D3D11_RENDER_TARGET_VIEW_DESC desc = {};
                 desc.Format = s_TextureFormatTable.at(renderTarget.ColorTexture->Format);
-                desc.Texture2D.MipSlice = 0;
                 desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+                desc.Texture2D.MipSlice = 0;
 
                 m_Device->CreateRenderTargetView(
                         (ID3D11Resource*)renderTarget.ColorTexture->Instance,
@@ -197,21 +230,22 @@ namespace xpe {
 
             if (renderTarget.DepthTexture != nullptr && renderTarget.DepthTargetView == nullptr)
             {
-                D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc = {};
-                dsvDesc.Format = DXGI_FORMAT_D32_FLOAT;
-                dsvDesc.Texture2D.MipSlice = 0;
-                dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
+                desc.Format = DXGI_FORMAT_D32_FLOAT;
+                desc.Texture2D.MipSlice = 0;
+                desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 
                 m_Device->CreateDepthStencilView(
                         (ID3D11Resource*)renderTarget.DepthTexture->Instance,
-                        &dsvDesc,
+                        &desc,
                         (ID3D11DepthStencilView**)&renderTarget.DepthTargetView
                 );
                 LogDebugMessage();
             }
         }
 
-        void D3D11Context::BindRenderTarget(void *colorTargetView, void *depthTargetView) {
+        void D3D11Context::BindRenderTarget(void *colorTargetView, void *depthTargetView)
+        {
             m_BoundColorTargetView = colorTargetView;
             m_BoundDepthTargetView = depthTargetView;
             m_ImmContext->OMSetRenderTargets(
@@ -222,57 +256,72 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::BindSwapChainTarget() {
-            m_BoundColorTargetView = m_SwapChainTarget.ColorTargetView;
-            m_BoundDepthTargetView = m_SwapChainTarget.DepthTargetView;
-            m_ImmContext->OMSetRenderTargets(
-                    1,
-                    (ID3D11RenderTargetView**)&m_BoundColorTargetView,
-                    (ID3D11DepthStencilView*)m_BoundDepthTargetView
-            );
+        void D3D11Context::UnbindRenderTarget()
+        {
+            m_BoundColorTargetView = nullptr;
+            m_BoundDepthTargetView = nullptr;
+            m_ImmContext->OMSetRenderTargets(0, 0, 0);
             LogDebugMessage();
         }
 
-        void D3D11Context::ClearColorTarget(const glm::vec4 &color) {
+        void D3D11Context::ClearColorTarget(const glm::vec4 &color)
+        {
             m_ImmContext->ClearRenderTargetView((ID3D11RenderTargetView*)m_BoundColorTargetView, &color.x);
             LogDebugMessage();
         }
 
-        void D3D11Context::ClearDepthTarget(const f32 depth) {
+        void D3D11Context::ClearDepthTarget(const f32 depth)
+        {
             m_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*)m_BoundDepthTargetView, D3D11_CLEAR_DEPTH, depth, 0);
             LogDebugMessage();
         }
 
-        glm::ivec2 D3D11Context::GetSwapChainDimensions()
+        void D3D11Context::FreeRenderTarget(RenderTarget& renderTarget)
         {
-            return {m_SwapChainTarget.Width, m_SwapChainTarget.Height };
-        }
-
-        void D3D11Context::FreeRenderTarget(const RenderTarget& renderTarget)
-        {
-            if (renderTarget.ColorTexture != nullptr)
-            {
-                ((ID3D11Texture2D*)renderTarget.ColorTexture->Instance)->Release();
-                LogDebugMessage();
-            }
-
             if (renderTarget.ColorTargetView != nullptr)
             {
                 ((ID3D11RenderTargetView*)renderTarget.ColorTargetView)->Release();
                 LogDebugMessage();
+                renderTarget.ColorTargetView = nullptr;
             }
 
-            if (renderTarget.DepthTexture != nullptr)
+            if (renderTarget.ColorTexture != nullptr)
             {
-                ((ID3D11Texture2D*)renderTarget.DepthTexture->Instance)->Release();
-                LogDebugMessage();
+                FreeTexture(*renderTarget.ColorTexture);
             }
 
             if (renderTarget.DepthTargetView != nullptr)
             {
                 ((ID3D11DepthStencilView*)renderTarget.DepthTargetView)->Release();
                 LogDebugMessage();
+                renderTarget.DepthTargetView = nullptr;
             }
+
+            if (renderTarget.DepthTexture != nullptr)
+            {
+                FreeTexture(*renderTarget.DepthTexture);
+            }
+        }
+
+        void D3D11Context::ResizeRenderTarget(RenderTarget& renderTarget, int width, int height)
+        {
+            UnbindRenderTarget();
+
+            FreeRenderTarget(renderTarget);
+
+            if (renderTarget.ColorTexture != nullptr) {
+                renderTarget.ColorTexture->Width = width;
+                renderTarget.ColorTexture->Height = height;
+                renderTarget.ColorTexture->Instance = nullptr;
+            }
+
+            if (renderTarget.DepthTexture != nullptr) {
+                renderTarget.DepthTexture->Width = width;
+                renderTarget.DepthTexture->Height = height;
+                renderTarget.DepthTexture->Instance = nullptr;
+            }
+
+            CreateRenderTarget(renderTarget);
         }
 
         void D3D11Context::Present()
@@ -651,42 +700,67 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::FreeTexture(const Texture* texture)
+        void D3D11Context::FreeTexture(Texture& texture)
         {
-            if (texture->Instance != nullptr)
+            if (texture.Instance != nullptr)
             {
 
-                switch (texture->Type) {
+                switch (texture.Type) {
 
                     case Texture::eType::TEXTURE_1D:
-                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
-                        LogDebugMessage();
-                        ((ID3D11Texture1D*)texture->Instance)->Release();
+                        ((ID3D11Texture1D*)texture.Instance)->Release();
                         LogDebugMessage();
                         break;
 
                     case Texture::eType::TEXTURE_2D:
-                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
-                        LogDebugMessage();
-                        ((ID3D11Texture2D*)texture->Instance)->Release();
+                        ((ID3D11Texture2D*)texture.Instance)->Release();
                         LogDebugMessage();
                         break;
 
                     case Texture::eType::TEXTURE_3D:
-                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
-                        LogDebugMessage();
-                        ((ID3D11Texture3D*)texture->Instance)->Release();
+                        ((ID3D11Texture3D*)texture.Instance)->Release();
                         LogDebugMessage();
                         break;
 
                     case Texture::eType::TEXTURE_CUBE:
-                        ((ID3D11ShaderResourceView*)texture->ViewInstance)->Release();
-                        LogDebugMessage();
-                        ((ID3D11Texture2D*)texture->Instance)->Release();
+                        ((ID3D11Texture2D*)texture.Instance)->Release();
                         LogDebugMessage();
                         break;
 
                 }
+
+                texture.Instance = nullptr;
+
+            }
+
+            if (texture.ViewInstance != nullptr)
+            {
+
+                switch (texture.Type) {
+
+                    case Texture::eType::TEXTURE_1D:
+                        ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
+                        LogDebugMessage();
+                        break;
+
+                    case Texture::eType::TEXTURE_2D:
+                        ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
+                        LogDebugMessage();
+                        break;
+
+                    case Texture::eType::TEXTURE_3D:
+                        ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
+                        LogDebugMessage();
+                        break;
+
+                    case Texture::eType::TEXTURE_CUBE:
+                        ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
+                        LogDebugMessage();
+                        break;
+
+                }
+
+                texture.ViewInstance = nullptr;
 
             }
         }
@@ -993,6 +1067,21 @@ namespace xpe {
             LogDebugMessage();
         }
 
+        void D3D11Context::BindViewport(Viewport* viewport) {
+            m_Viewport = viewport;
+
+            D3D11_VIEWPORT v = {};
+            v.TopLeftX = viewport->TopLeftX;
+            v.TopLeftY = viewport->TopLeftY;
+            v.Width = viewport->Width;
+            v.Height = viewport->Height;
+            v.MinDepth = viewport->MinDepth;
+            v.MaxDepth = viewport->MaxDepth;
+
+            m_ImmContext->RSSetViewports(1, &v);
+            LogDebugMessage();
+        }
+
         void D3D11Context::FreeInputLayout(const InputLayout& inputLayout)
         {
             if (inputLayout.Layout.Instance != nullptr)
@@ -1002,21 +1091,7 @@ namespace xpe {
             }
         }
 
-        void D3D11Context::BindViewport(const glm::vec4& coords, f32 minDepth, f32 maxDepth)
-        {
-            D3D11_VIEWPORT viewport = {};
-            viewport.TopLeftX = coords.x;
-            viewport.TopLeftY = coords.y;
-            viewport.Width = coords.z;
-            viewport.Height = coords.w;
-            viewport.MinDepth = minDepth;
-            viewport.MaxDepth = maxDepth;
-
-            m_ImmContext->RSSetViewports(1, &viewport);
-            LogDebugMessage();
-        }
-
-        void D3D11Context::CreateRenderPipeline(Pipeline& pipeline)
+        void D3D11Context::CreatePipeline(Pipeline& pipeline)
         {
             if (pipeline.Shader == nullptr) {
                 LogError("Failed to create render pipeline. Shader does not exist.");
@@ -1043,7 +1118,7 @@ namespace xpe {
             CreateDepthStencilState(pipeline.DepthStencilState);
         }
 
-        void D3D11Context::BindRenderPipeline(const Pipeline* pipeline)
+        void D3D11Context::BindPipeline(const Pipeline* pipeline)
         {
             m_BoundPipeline = (Pipeline*) pipeline;
             Pipeline& boundPipeline = *m_BoundPipeline;
@@ -1065,7 +1140,7 @@ namespace xpe {
             BindDepthStencilState(&m_BoundPipeline->DepthStencilState);
         }
 
-        void D3D11Context::FreeRenderPipeline(Pipeline& pipeline)
+        void D3D11Context::FreePipeline(Pipeline& pipeline)
         {
             if (pipeline.InputLayout.Layout.Instance != nullptr)
             {
@@ -1112,12 +1187,9 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::DrawQuad(const ePrimitiveTopology& primitiveTopology)
+        void D3D11Context::DrawQuad()
         {
-            m_ImmContext->IASetPrimitiveTopology(s_PrimitiveTopologyTable.at(primitiveTopology));
-            LogDebugMessage();
-
-            m_ImmContext->PSSetSamplers(0, 1, (ID3D11SamplerState**)&m_SwapChainSampler.Instance);
+            m_ImmContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
             LogDebugMessage();
 
             m_ImmContext->Draw(4, 1);
@@ -1129,7 +1201,7 @@ namespace xpe {
             return m_Device;
         }
 
-        void D3D11Context::InitHardwareConfig() {
+        void D3D11Context::CreateHardwareConfig() {
             core::HardwareConfig::K_TEXTURE_2D_ARRAY_SIZE_MAX = D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION;
             core::HardwareConfig::K_ANISOTROPY_LEVEL_MAX = D3D11_REQ_MAXANISOTROPY;
         }

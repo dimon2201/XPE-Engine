@@ -161,7 +161,6 @@ public:
         InitCamera();
         InitCamera2D();
 
-        // todo maybe we will automate it in future and make it more easy to use
         LightManager::InitLight(m_DirectLightComponent.Light);
         m_DirectLightComponent.Light.Data->Position = {0, 0, 0 };
         m_DirectLightComponent.Light.Data->Color = {1, 1, 1 };
@@ -170,26 +169,23 @@ public:
 
     void Update() override final
     {
-        {
-            LockFPSFromConfig();
+        LockFPSFromConfig();
 
-            UpdateCamera();
+        UpdateCamera();
 
-            Simulate();
+        Simulate();
 
-            // todo bug: canvas is not updated or resized because after binding material textures
-            MaterialManager::BindMaterials();
+        MaterialManager::BindMaterials();
 
-            m_Canvas->Clear(glm::vec4(1.0f));
+        m_Canvas->Clear(glm::vec4(1.0f));
 
-            context->BindRenderPipeline(&m_Pipeline);
-            m_BatchManager->DrawAll();
+        context->BindPipeline(&m_Pipeline);
+        m_BatchManager->DrawAll();
 
-            context->BindRenderPipeline(&m_Pipeline2d);
-            m_BatchManager2d->DrawAll();
+        context->BindPipeline(&m_Pipeline2d);
+        m_BatchManager2d->DrawAll();
 
-            m_Canvas->Present();
-        }
+        m_Canvas->Present();
     }
 
     void Free()
@@ -270,7 +266,7 @@ private:
         m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
 
         // init pipeline
-        context->CreateRenderPipeline(m_Pipeline);
+        context->CreatePipeline(m_Pipeline);
     }
 
     void InitPipeline2D() {
@@ -293,7 +289,7 @@ private:
         m_Pipeline2d.DepthStencilState.UseDepthTest = K_FALSE;
 
         // init pipeline
-        context->CreateRenderPipeline(m_Pipeline2d);
+        context->CreatePipeline(m_Pipeline2d);
     }
 
     void InitCamera() {

@@ -150,7 +150,6 @@ namespace xpe {
             void Move();
 
             void ZoomIn();
-
             void ZoomOut();
 
             void Look(const double x, const double y);
@@ -160,6 +159,9 @@ namespace xpe {
             void ScrollChanged(const double x, const double y);
 
             void CursorMoved(const double x, const double y);
+
+        private:
+            void UpdateProjection();
 
         };
 
