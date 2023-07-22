@@ -1,4 +1,4 @@
-#include <rendering/debugger.h>
+#include <rendering/core/debugger.h>
 
 namespace xpe {
 

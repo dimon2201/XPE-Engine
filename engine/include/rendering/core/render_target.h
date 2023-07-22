@@ -1,13 +1,13 @@
 #pragma once
 
-#include <rendering/texture.h>
+#include <rendering/core/texture.h>
 
 namespace xpe {
 
     namespace render {
 
         struct ENGINE_API DepthStencilState final {
-            GPUResource Instance;
+            void* State = nullptr;
             Boolean UseDepthTest;
         };
 

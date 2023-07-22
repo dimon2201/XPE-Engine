@@ -1,8 +1,8 @@
 #pragma once
 
-#include <rendering/context.hpp>
-#include <rendering/shader.h>
-#include <rendering/render_target.h>
+#include <rendering/core/context.hpp>
+#include <rendering/core/shader.h>
+#include <rendering/core/render_target.h>
 
 namespace xpe {
 

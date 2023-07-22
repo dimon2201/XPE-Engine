@@ -1,14 +1,14 @@
 #pragma once
 
-#include <rendering/core.h>
-#include <rendering/vertex.h>
+#include <rendering/core/core.h>
+#include <rendering/core/vertex.h>
 
 namespace xpe {
 
     namespace render {
 
         struct ENGINE_API InputLayout final {
-            GPUResource Layout;
+            void* Layout;
             Blob* VertexBlob = nullptr;
             VertexFormat Format;
         };

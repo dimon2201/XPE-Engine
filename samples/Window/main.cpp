@@ -57,8 +57,8 @@ public:
 //        Model3D cubeModel = GLTFImporter::Import("resources/cube.gltf");
 //        Mesh& cubeMesh = cubeModel[0];
 //        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
-//
-        PlaneGeometry plane = 100;
+
+        PlaneGeometry plane;
         m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
 
         RenderInstance planeInstance;
@@ -70,8 +70,8 @@ public:
 
 //        CubeGeometry cube;
 //        m_BatchManager->StoreGeometryIndexed("CubeGeometry", cube);
-//
-        SphereGeometry sphere = { 16, 16 };
+
+        SphereGeometry sphere;
         m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
         m_BatchManager->ReserveInstances("SphereGeometry", 1000000);
 
@@ -122,15 +122,19 @@ public:
                     material->AlbedoIndex = textureIndex;
                     MaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
 
-                    material->Data->EnableMetallic = true;
+                    material->Data->EnableBumping = false;
+                    material->BumpingIndex = textureIndex;
+                    MaterialManager::AddBumpFromFile(*material, "resources/materials/steel/bump.png");
+
+                    material->Data->EnableMetallic = false;
                     material->MetallicIndex = textureIndex;
                     MaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
 
-                    material->Data->EnableRoughness = true;
+                    material->Data->EnableRoughness = false;
                     material->RoughnessIndex = textureIndex;
                     MaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
 
-                    material->Data->EnableAO = true;
+                    material->Data->EnableAO = false;
                     material->AOIndex = textureIndex;
                     MaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
 

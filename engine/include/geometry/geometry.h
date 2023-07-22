@@ -1,7 +1,7 @@
 #pragma once
 
-#include <rendering/vertex.h>
-#include <rendering/core.h>
+#include <rendering/core/vertex.h>
+#include <rendering/core/core.h>
 
 namespace xpe {
 

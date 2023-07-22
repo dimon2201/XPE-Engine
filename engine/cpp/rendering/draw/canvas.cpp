@@ -1,4 +1,4 @@
-#include <rendering/canvas.hpp>
+#include <rendering/draw/canvas.hpp>
 
 #include <core/user_input.hpp>
 

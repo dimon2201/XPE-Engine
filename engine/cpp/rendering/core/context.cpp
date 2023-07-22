@@ -1,6 +1,6 @@
-#include <rendering/context.hpp>
-#include <rendering/shader.h>
-#include <rendering/texture.h>
+#include <rendering/core/context.hpp>
+#include <rendering/core/shader.h>
+#include <rendering/core/texture.h>
 
 namespace xpe {
 

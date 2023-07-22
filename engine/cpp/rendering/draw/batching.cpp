@@ -1,5 +1,5 @@
-#include <rendering/context.hpp>
-#include <rendering/batching.h>
+#include <rendering/core/context.hpp>
+#include <rendering/draw/batching.h>
 
 namespace xpe {
 

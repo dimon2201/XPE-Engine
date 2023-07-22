@@ -3,7 +3,7 @@
   "animate_light": false,
 
   "camera_far": 10000,
-  "camera_move_speed": 0.05,
+  "camera_move_speed": 0.005,
   "camera_zoom_acceleration": 10.0,
   "camera_pan_acceleration": 5.0,
   "camera_horizontal_sens": 0.005,

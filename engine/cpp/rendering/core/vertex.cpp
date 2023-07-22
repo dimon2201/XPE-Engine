@@ -1,4 +1,4 @@
-#include <rendering/vertex.h>
+#include <rendering/core/vertex.h>
 
 namespace xpe {
 

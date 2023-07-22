@@ -6,7 +6,7 @@
 // Rendering features
 #include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
-#include <rendering/transforming.h>
+#include <rendering/transforming/transforming.h>
 
 #include <ttf/ttf_manager.hpp>
 

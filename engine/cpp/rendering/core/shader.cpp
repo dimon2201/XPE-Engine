@@ -1,5 +1,5 @@
-#include <rendering/context.hpp>
-#include <rendering/shader.h>
+#include <rendering/core/context.hpp>
+#include <rendering/core/shader.h>
 
 namespace xpe {
 

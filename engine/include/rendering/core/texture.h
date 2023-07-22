@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/core.h>
+#include <rendering/core/core.h>
 
 namespace xpe {
 

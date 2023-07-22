@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/texture.h>
+#include <rendering/core/texture.h>
 #include <rendering/buffers/material_buffer.h>
 
 namespace xpe {

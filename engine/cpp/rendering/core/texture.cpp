@@ -1,5 +1,5 @@
-#include <rendering/texture.h>
-#include <rendering/context.hpp>
+#include <rendering/core/texture.h>
+#include <rendering/core/context.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION

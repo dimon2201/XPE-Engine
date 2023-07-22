@@ -1,5 +1,5 @@
 #include <rendering/materials/material.h>
-#include <rendering/shader.h>
+#include <rendering/core/shader.h>
 
 namespace xpe {
 

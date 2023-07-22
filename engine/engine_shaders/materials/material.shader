@@ -49,8 +49,8 @@ float3 GetNormal(uint materialIndex, float2 uv, float3 normal, float3x3 tbn) {
     float mId = float(materialIndex);
     Material material = Materials[materialIndex];
     if (material.EnableBumping) {
-        float3 normalTangent = M_Bump.Sample(S_Material, float3(uv, mId)).xyz;
-        normal = mul(tbn, normalTangent);
+        float3 normalTangent = M_Bump.Sample(S_Material, float3(uv, mId)).xyz * 2.0 - 1.0;
+        normal = normalize(mul(tbn, normalTangent));
     }
     return normal;
 }

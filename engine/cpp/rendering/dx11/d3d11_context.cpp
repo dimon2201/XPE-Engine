@@ -1040,7 +1040,7 @@ namespace xpe {
             m_Device->CreateInputLayout(
                     attributes, attributeCount,
                     inputLayout.VertexBlob->ByteCode, inputLayout.VertexBlob->ByteCodeSize,
-                    (ID3D11InputLayout**)&inputLayout.Layout.Instance
+                    (ID3D11InputLayout**)&inputLayout.Layout
             );
             LogDebugMessage();
 
@@ -1058,7 +1058,7 @@ namespace xpe {
 
         void D3D11Context::BindInputLayout(const InputLayout* inputLayout)
         {
-            m_ImmContext->IASetInputLayout((ID3D11InputLayout*)m_BoundPipeline->InputLayout.Layout.Instance);
+            m_ImmContext->IASetInputLayout((ID3D11InputLayout*)m_BoundPipeline->InputLayout.Layout);
             LogDebugMessage();
         }
 
@@ -1082,12 +1082,13 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::FreeInputLayout(const InputLayout& inputLayout)
+        void D3D11Context::FreeInputLayout(InputLayout& inputLayout)
         {
-            if (inputLayout.Layout.Instance != nullptr)
+            if (inputLayout.Layout != nullptr)
             {
-                ((ID3D11InputLayout*)inputLayout.Layout.Instance)->Release();
+                ((ID3D11InputLayout*)inputLayout.Layout)->Release();
                 LogDebugMessage();
+                inputLayout.Layout = nullptr;
             }
         }
 
@@ -1116,6 +1117,8 @@ namespace xpe {
             CreateInputLayout(pipeline.InputLayout);
 
             CreateDepthStencilState(pipeline.DepthStencilState);
+
+            CreateRasterizer(pipeline.Rasterizer);
         }
 
         void D3D11Context::BindPipeline(const Pipeline* pipeline)
@@ -1137,16 +1140,16 @@ namespace xpe {
 
             BindRenderTarget(boundPipeline.RenderTarget->ColorTargetView, boundPipeline.RenderTarget->DepthTargetView);
 
-            BindDepthStencilState(&m_BoundPipeline->DepthStencilState);
+            BindDepthStencilState(&boundPipeline.DepthStencilState);
+
+            BindRasterizer(&boundPipeline.Rasterizer);
         }
 
         void D3D11Context::FreePipeline(Pipeline& pipeline)
         {
-            if (pipeline.InputLayout.Layout.Instance != nullptr)
-            {
-                ((ID3D11InputLayout*)pipeline.InputLayout.Layout.Instance)->Release();
-                LogDebugMessage();
-            }
+            FreeInputLayout(pipeline.InputLayout);
+            FreeDepthStencilState(pipeline.DepthStencilState);
+            FreeRasterizer(pipeline.Rasterizer);
         }
 
         void D3D11Context::CreateDepthStencilState(DepthStencilState& state)
@@ -1157,22 +1160,66 @@ namespace xpe {
             dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
             dsDesc.StencilEnable = FALSE;
 
-            m_Device->CreateDepthStencilState(&dsDesc, (ID3D11DepthStencilState**)&state.Instance.Instance);
+            m_Device->CreateDepthStencilState(&dsDesc, (ID3D11DepthStencilState**)&state.State);
             LogDebugMessage();
         }
 
         void D3D11Context::BindDepthStencilState(const DepthStencilState* state)
         {
-            m_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*)state->Instance.Instance, 0);
+            m_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*)state->State, 0);
             LogDebugMessage();
         }
 
         void D3D11Context::FreeDepthStencilState(DepthStencilState& state)
         {
-            if (state.Instance.Instance != nullptr)
+            if (state.State != nullptr)
             {
-                ((ID3D11DepthStencilState*)state.Instance.Instance)->Release();
+                ((ID3D11DepthStencilState*)state.State)->Release();
                 LogDebugMessage();
+                state.State = nullptr;
+            }
+        }
+
+        static const std::unordered_map<eFillMode, D3D11_FILL_MODE> s_FillModeTable =
+        {
+                { eFillMode::SOLID,     D3D11_FILL_SOLID },
+                { eFillMode::WIREFRAME, D3D11_FILL_WIREFRAME }
+        };
+
+        static const std::unordered_map<eCullMode, D3D11_CULL_MODE> s_CullModeTable =
+        {
+                { eCullMode::NONE,  D3D11_CULL_NONE },
+                { eCullMode::FRONT, D3D11_CULL_FRONT },
+                { eCullMode::BACK,  D3D11_CULL_BACK }
+        };
+
+        void D3D11Context::CreateRasterizer(Rasterizer &rasterizer)
+        {
+            D3D11_RASTERIZER_DESC desc = {};
+            desc.FillMode = s_FillModeTable.at(rasterizer.FillMode);
+            desc.CullMode = s_CullModeTable.at(rasterizer.CullMode);
+            desc.FrontCounterClockwise = rasterizer.FrontCounterClockwise;
+            desc.DepthBias = rasterizer.DepthBias;
+            desc.DepthBiasClamp = rasterizer.DepthBiasClamp;
+            desc.SlopeScaledDepthBias = rasterizer.SlopeScaledDepthBias;
+            desc.DepthClipEnable = rasterizer.DepthClipEnable;
+            desc.ScissorEnable = rasterizer.ScissorEnable;
+            desc.MultisampleEnable = rasterizer.MultisampleEnable;
+            desc.AntialiasedLineEnable = rasterizer.AntialiasedLineEnable;
+
+            m_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**)&rasterizer.State);
+        }
+
+        void D3D11Context::BindRasterizer(const Rasterizer *rasterizer)
+        {
+            m_ImmContext->RSSetState((ID3D11RasterizerState*) rasterizer->State);
+        }
+
+        void D3D11Context::FreeRasterizer(Rasterizer& rasterizer)
+        {
+            if (rasterizer.State != nullptr) {
+                ((ID3D11RasterizerState*) rasterizer.State)->Release();
+                rasterizer.State = nullptr;
             }
         }
 
@@ -1182,7 +1229,8 @@ namespace xpe {
             LogDebugMessage();
         }
 
-        void D3D11Context::DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) {
+        void D3D11Context::DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount)
+        {
             m_ImmContext->DrawInstanced(vertexCount, instanceCount, 0, vertexOffset);
             LogDebugMessage();
         }
@@ -1201,12 +1249,14 @@ namespace xpe {
             return m_Device;
         }
 
-        void D3D11Context::CreateHardwareConfig() {
+        void D3D11Context::CreateHardwareConfig()
+        {
             core::HardwareConfig::K_TEXTURE_2D_ARRAY_SIZE_MAX = D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION;
             core::HardwareConfig::K_ANISOTROPY_LEVEL_MAX = D3D11_REQ_MAXANISOTROPY;
         }
 
-        D3D11_SUBRESOURCE_DATA* D3D11Context::InitTextureData(const Texture& texture, const u32 arraySize, const u32 mipLevels) {
+        D3D11_SUBRESOURCE_DATA* D3D11Context::InitTextureData(const Texture& texture, const u32 arraySize, const u32 mipLevels)
+        {
             D3D11_SUBRESOURCE_DATA* initialData = nullptr;
 
             u32 initialDataSize = arraySize * mipLevels;
@@ -1240,11 +1290,13 @@ namespace xpe {
             return initialData;
         }
 
-        void D3D11Context::FreeTextureData(D3D11_SUBRESOURCE_DATA* initialData) {
+        void D3D11Context::FreeTextureData(D3D11_SUBRESOURCE_DATA* initialData)
+        {
             dealloc(initialData);
         }
 
-        void D3D11Context::UpdateTextureFlags(Texture &texture, u32 &bindFlags, u32 &miscFlags) {
+        void D3D11Context::UpdateTextureFlags(Texture &texture, u32 &bindFlags, u32 &miscFlags)
+        {
             bindFlags = D3D11_BIND_SHADER_RESOURCE;
 
             if (texture.EnableRenderTarget) {

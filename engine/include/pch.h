@@ -57,8 +57,8 @@
 #include <core/hot_allocator.h>
 #include <core/stack_allocator.h>
 #include <core/hardware_config.h>
-#include <rendering/types.h>
-#include <rendering/slots.h>
+#include <rendering/core/types.h>
+#include <rendering/core/slots.h>
 
 // STL customization
 #include <stl/string.h>

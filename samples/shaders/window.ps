@@ -1,5 +1,8 @@
 #include ../engine_shaders/types.shader
+#include ../engine_shaders/utils.shader
+
 #include ../engine_shaders/materials/material.shader
+
 #include ../engine_shaders/lighting/direct_light.shader
 #include ../engine_shaders/lighting/point_light.shader
 #include ../engine_shaders/lighting/spot_light.shader
@@ -13,6 +16,7 @@ struct VSOut
     float3 viewPosition : XPE_VIEW_POSITION;
     uint materialIndex : XPE_MATERIAL_INDEX;
     float3x3 tbn : XPE_TBN;
+    float gamma : XPE_GAMMA;
 };
 
 float4 ps_main(VSOut psIn) : SV_TARGET
@@ -22,8 +26,7 @@ float4 ps_main(VSOut psIn) : SV_TARGET
     N = GetNormal(psIn.materialIndex, psIn.uv, psIn.normal, psIn.tbn);
 
     float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv);
-    // gamma correction
-    // albedo = float4(pow(albedo.rgb, float3(2.2, 2.2, 2.2)), albedo.a);
+    albedo = GammaCorrect(albedo, psIn.gamma);
 
     float metallic = GetMetallic(psIn.materialIndex, psIn.uv);
     float roughness = GetRoughness(psIn.materialIndex, psIn.uv);

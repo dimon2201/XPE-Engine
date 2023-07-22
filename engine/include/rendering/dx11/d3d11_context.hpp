@@ -2,8 +2,8 @@
 
 #include <d3d11.h>
 
-#include <rendering/debugger.h>
-#include <rendering/pipeline.h>
+#include <rendering/core/debugger.h>
+#include <rendering/core/pipeline.h>
 
 namespace xpe {
 
@@ -67,7 +67,7 @@ namespace xpe {
 
             void CreateInputLayout(InputLayout& inputLayout) override final;
             void BindInputLayout(const InputLayout* inputLayout) override final;
-            void FreeInputLayout(const InputLayout& inputLayout) override final;
+            void FreeInputLayout(InputLayout& inputLayout) override final;
 
             void BindPrimitiveTopology(const ePrimitiveTopology &primitiveTopology) override final;
 
@@ -80,6 +80,10 @@ namespace xpe {
             void CreateDepthStencilState(DepthStencilState& state) override final;
             void BindDepthStencilState(const DepthStencilState* state) override final;
             void FreeDepthStencilState(DepthStencilState& state) override final;
+
+            void CreateRasterizer(Rasterizer& rasterizer) override final;
+            void BindRasterizer(const Rasterizer* rasterizer) override final;
+            void FreeRasterizer(Rasterizer& rasterizer) override final;
 
             void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) override final;
             void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) override final;

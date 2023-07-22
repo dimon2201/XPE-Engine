@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/context.hpp>
+#include <rendering/core/context.hpp>
 
 #ifdef DEBUG
 

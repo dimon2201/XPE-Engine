@@ -2,7 +2,8 @@
 
 #include <core/windowing.hpp>
 
-#include <rendering/core.h>
+#include <rendering/core/core.h>
+#include <rendering/core/viewport.h>
 
 namespace xpe {
 
@@ -22,6 +23,8 @@ namespace xpe {
         class Pipeline;
 
         class DepthStencilState;
+
+        class Rasterizer;
 
         class ENGINE_API Context {
 
@@ -93,7 +96,7 @@ namespace xpe {
 
                 virtual void CreateInputLayout(InputLayout& inputLayout) = 0;
                 virtual void BindInputLayout(const InputLayout* inputLayout) = 0;
-                virtual void FreeInputLayout(const InputLayout& inputLayout) = 0;
+                virtual void FreeInputLayout(InputLayout& inputLayout) = 0;
 
                 virtual void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology) = 0;
                 
@@ -106,6 +109,10 @@ namespace xpe {
                 virtual void CreateDepthStencilState(DepthStencilState& state) = 0;
                 virtual void BindDepthStencilState(const DepthStencilState* state) = 0;
                 virtual void FreeDepthStencilState(DepthStencilState& state) = 0;
+
+                virtual void CreateRasterizer(Rasterizer& rasterizer) = 0;
+                virtual void BindRasterizer(const Rasterizer* rasterizer) = 0;
+                virtual void FreeRasterizer(Rasterizer& rasterizer) = 0;
 
                 virtual void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) = 0;
                 virtual void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) = 0;
