@@ -1,5 +1,8 @@
 #include <rendering/context.hpp>
 #include <rendering/batching.h>
+#include <geometry/quad_geometry.h>
+#include <rendering/transforming.h>
+#include <ttf/ttf_manager.hpp>
 
 namespace xpe {
 
@@ -645,6 +648,191 @@ namespace xpe {
                 DrawBatch(batch);
             }
 
+            for (auto& batch : m_BatchesIndexed) {
+                BeginBatch(batch);
+                DrawBatch(batch);
+            }
+        }
+
+        // --------------------- Text batching ------------------------ //
+
+        TextBatchManager::TextBatchManager(Context* context) : m_Context(context)
+        {
+            Quad quad;
+            StoreGeometryIndexed("Glyph", quad);
+        }
+
+        TextBatchManager::~TextBatchManager()
+        {
+            for (auto& batchIndexed : m_BatchesIndexed)
+            {
+                FreeBatchIndexed(batchIndexed);
+            }
+            m_BatchesIndexed.clear();
+        }
+
+        void TextBatchManager::InitBatchIndexed(BatchTextGlyphIndexed &batchIndexed, const GeometryIndexedFormat& format)
+        {
+            batchIndexed.Format = format;
+            batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
+            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
+            batchIndexed.Instances = TextGlyphInstanceBuffer(m_Context, 1);
+        }
+
+        void TextBatchManager::FreeBatchIndexed(BatchTextGlyphIndexed &batchIndexed)
+        {
+            m_BatchIndexedLookup[batchIndexed.Format.USID] = nullptr;
+            batchIndexed.Vertices.Free();
+            batchIndexed.Indices.Free();
+            batchIndexed.Instances.Free();
+        }
+
+        void TextBatchManager::NewBatchIndexed(const GeometryIndexedFormat& format)
+        {
+            BatchTextGlyphIndexed batchIndexed;
+            InitBatchIndexed(batchIndexed, format);
+            m_BatchesIndexed.emplace_back(batchIndexed);
+            m_BatchIndexedLookup[format.USID] = &m_BatchesIndexed[m_BatchesIndexed.size() - 1];
+        }
+
+        void TextBatchManager::StoreGeometryIndexed(const string &usid, const GeometryIndexed<Vertex3D>& geometry)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed == m_BatchIndexedLookup.end() || batchIndexed->second == nullptr) {
+                GeometryIndexedFormat format;
+                format.USID = usid;
+                format.VertexOffset = 0;
+                format.VertexCount = geometry.Vertices.Count();
+                format.IndexOffset = 0;
+                format.IndexCount = geometry.Indices.Count();
+                NewBatchIndexed(format);
+                batchIndexed = m_BatchIndexedLookup.find(usid);
+            }
+
+            batchIndexed->second->Vertices.FlushVertices(geometry.Vertices);
+            batchIndexed->second->Indices.FlushIndices(geometry.Indices);
+        }
+
+        void TextBatchManager::BeginBatch(const string& usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed != m_BatchIndexedLookup.end() && batchIndexed->second != nullptr) {
+                BeginBatch(*batchIndexed->second);
+            }
+        }
+
+        void TextBatchManager::BeginBatch(BatchTextGlyphIndexed &batchIndexed) {
+            batchIndexed.Vertices.Bind();
+            batchIndexed.Indices.Bind();
+            batchIndexed.Instances.Bind();
+        }
+
+        void TextBatchManager::AddText(const Text& text) {
+            core::usize charsCount = text.Chars.size();
+
+            ReserveInstances("Glyph", charsCount);
+
+            for (core::usize i = 0; i < charsCount; i++)
+            {
+                char character = text.Chars[i];
+                auto it = text.TextFont->AlphaBet.find(character);
+                if (it == text.TextFont->AlphaBet.end()) {
+                    continue;
+                }
+
+                xpe::ttf::Font::Glyph glyph = it->second;
+
+                TransformComponent glyphTransform("GlyphTransform" + m_GlyphsCount);
+                glyphTransform.Position.x = (float)i;
+
+                TransformManager::UpdateTransform(m_GlyphsCount, glyphTransform);
+
+                TextGlyphInstance glyphInstance;
+                glyphInstance.TransformIndex = m_GlyphsCount;
+                glyphInstance.GlyphIndex = m_GlyphsCount;
+                glyphInstance.Left = glyph.Left;
+                glyphInstance.Top = glyph.Top;
+                glyphInstance.Advance = glyph.Advance;
+
+                AddInstance("Glyph", glyphInstance);
+
+                m_GlyphsCount++;
+            }
+
+            FlushInstances("Glyph");
+        }
+
+        bool TextBatchManager::AddInstance(const string& usid, const TextGlyphInstance &instance)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed != m_BatchIndexedLookup.end() && batchIndexed->second != nullptr) {
+                batchIndexed->second->Instances.GetList().emplace_back(instance);
+            }
+
+            return true;
+        }
+
+        void TextBatchManager::RemoveInstance(const string& usid, const TextGlyphInstance &instance)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed != m_BatchIndexedLookup.end() && batchIndexed->second != nullptr) {
+                batchIndexed->second->Instances.GetList().emplace_back(instance);
+            }
+        }
+
+        void TextBatchManager::ClearInstances(const string& usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed != m_BatchIndexedLookup.end() && batchIndexed->second != nullptr) {
+                batchIndexed->second->Instances.GetList().clear();
+            }
+        }
+
+        void TextBatchManager::FlushInstances(const string &usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed != m_BatchIndexedLookup.end() && batchIndexed->second != nullptr) {
+                batchIndexed->second->Instances.Flush();
+            }
+        }
+
+        void TextBatchManager::ReserveInstances(const string &usid, const usize count) {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed != m_BatchIndexedLookup.end() && batchIndexed->second != nullptr) {
+                batchIndexed->second->Instances.Reserve(count);
+            }
+        }
+
+        void TextBatchManager::DrawBatch(const string &usid)
+        {
+            auto batchIndexed = m_BatchIndexedLookup.find(usid);
+
+            if (batchIndexed != m_BatchIndexedLookup.end() && batchIndexed->second != nullptr) {
+                DrawBatch(*batchIndexed->second);
+            }
+        }
+
+        void TextBatchManager::DrawBatch(BatchTextGlyphIndexed &batchIndexed)
+        {
+            auto& geometryInfo = batchIndexed.Format;
+            auto& instances = batchIndexed.Instances;
+            m_Context->DrawBatch(
+                    geometryInfo.VertexOffset,
+                    geometryInfo.IndexOffset,
+                    geometryInfo.IndexCount,
+                    instances.Count()
+            );
+        }
+
+        void TextBatchManager::DrawAll()
+        {
             for (auto& batch : m_BatchesIndexed) {
                 BeginBatch(batch);
                 DrawBatch(batch);

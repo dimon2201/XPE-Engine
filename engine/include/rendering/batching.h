@@ -5,6 +5,7 @@
 #include <rendering/buffers/vertex_buffer.h>
 #include <rendering/buffers/index_buffer.h>
 #include <rendering/buffers/instance_buffer.h>
+#include <rendering/text.h>
 
 namespace xpe {
 
@@ -14,6 +15,14 @@ namespace xpe {
         using namespace xpe::math;
 
         class Context;
+
+        struct ENGINE_API BatchTextGlyphIndexed final
+        {
+            GeometryIndexedFormat Format;
+            VertexBuffer<Vertex3D> Vertices;
+            IndexBuffer Indices;
+            TextGlyphInstanceBuffer Instances;
+        };
 
         struct ENGINE_API BatchIndexed final
         {
@@ -141,6 +150,50 @@ namespace xpe {
             unordered_map<string, BatchVertexed2d*> m_BatchVertexedLookup;
             vector<BatchIndexed2d> m_BatchesIndexed;
             vector<BatchVertexed2d> m_BatchesVertexed;
+        };
+
+        class ENGINE_API TextBatchManager final
+        {
+
+        public:
+            TextBatchManager(Context* context);
+            ~TextBatchManager();
+
+            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex3D>& geometry);
+
+            void BeginBatch(const string& geometryUSID);
+            void BeginBatch(BatchTextGlyphIndexed& batchIndexed);
+
+            void AddText(const Text& text);
+
+            bool AddInstance(const string& usid, const TextGlyphInstance& instance);
+
+            void RemoveInstance(const string& usid, const TextGlyphInstance& instance);
+
+            void ClearInstances(const string& usid);
+
+            void FlushInstances(const string& usid);
+
+            void ReserveInstances(const string& usid, const usize count);
+
+            void DrawBatch(const string& usid);
+            void DrawBatch(BatchTextGlyphIndexed& batchIndexed);
+
+            void DrawAll();
+
+        private:
+
+            void InitBatchIndexed(BatchTextGlyphIndexed& batchIndexed, const GeometryIndexedFormat& format);
+
+            void FreeBatchIndexed(BatchTextGlyphIndexed& batchIndexed);
+
+            void NewBatchIndexed(const GeometryIndexedFormat& format);
+
+        private:
+            Context* m_Context;
+            unordered_map<string, BatchTextGlyphIndexed*> m_BatchIndexedLookup;
+            vector<BatchTextGlyphIndexed> m_BatchesIndexed;
+            core::usize m_GlyphsCount = 0;
         };
 
     }

@@ -1,4 +1,5 @@
 #include <core/core.hpp>
+#include <rendering/text.h>
 
 #include "test_config.h"
 
@@ -34,112 +35,29 @@ public:
         m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         m_ECS = new ECSManager();
         m_BatchManager = new BatchManager(context);
-        m_BatchManager2d = new BatchManager2d(context);
+        m_TextBatchManager = new TextBatchManager(context);
 
         Font font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
         Font* pfont = TTFManager::Get().GetFont("resources/fonts/Roboto-Italic.ttf");
         TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/Roboto-Italic.png", pfont->Atlas, Texture::eFileFormat::PNG);
-        TTFManager::Get().Free(font);
 
-        TextureCubeFile textureCubeFile;
-        textureCubeFile.Name = "test";
-        textureCubeFile.FrontFilepath = "resources/skybox/front.jpg";
-        textureCubeFile.BackFilepath = "resources/skybox/back.jpg";
-        textureCubeFile.RightFilepath = "resources/skybox/right.jpg";
-        textureCubeFile.LeftFilepath = "resources/skybox/left.jpg";
-        textureCubeFile.TopFilepath = "resources/skybox/top.jpg";
-        textureCubeFile.BottomFilepath = "resources/skybox/bottom.jpg";
+        m_Pipeline.Textures.emplace_back(&font.Atlas);
 
-        Texture* textureCube = TextureManager::LoadTextureCubeFile(textureCubeFile, Texture::eFormat::RGBA8);
+        TransformComponent transform("TextTransform");
+        transform.Position = { 0.0f, 0.0f, 0.0f };
+        transform.Rotation = { 0.0f, 0.0f, 0.0f };
+        transform.Scale = { 1.0f, 1.0f, 1.0f };
 
-//        Model3D cubeModel;
-//        bool cubeImported = GLTFImporter::Import("resources/cube.gltf", cubeModel);
-//        Mesh& cubeMesh = cubeModel[0];
-
-//        Model3D cubeModel = GLTFImporter::Import("resources/cube.gltf");
-//        Mesh& cubeMesh = cubeModel[0];
-//        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
-//
-        PlaneGeometry plane = 100;
-        m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
-
-        RenderInstance planeInstance;
-        TransformComponent planeTransform("PlaneTransform");
-        planeTransform.Position = { 0, -60, 0 };
-        TransformManager::UpdateTransform(0, planeTransform);
-        m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
-        m_BatchManager->FlushInstances("PlaneGeometry");
-
-//        CubeGeometry cube;
-//        m_BatchManager->StoreGeometryIndexed("CubeGeometry", cube);
-//
-        SphereGeometry sphere = { 16, 16 };
-        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
-        m_BatchManager->ReserveInstances("SphereGeometry", 1000000);
-
-        Quad2d quad2D;
-        RenderInstance2d quad2DInstance;
-        Transform2DComponent quad2DTransform("Quad2DTransform");
-        quad2DTransform.Position = { 0, 0 };
-        quad2DTransform.Scale = { 5, 1 };
-        TransformManager::UpdateTransform2D(0, quad2DTransform);
-        m_BatchManager2d->StoreGeometryIndexed("Quad2D", quad2D);
-        m_BatchManager2d->AddInstance("Quad2D", quad2DInstance);
-        m_BatchManager2d->FlushInstances("Quad2D");
-
-        // Put instances of geometry
-        u32 transformIndex = 1;
-        for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
-        {
-            for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
-            {
-                u32 materialIndex = 0;
-                for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
-                {
-                    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-                    TransformComponent transformComponent("Transform_" + transformIndex);
-                    transformComponent.Position = { x, y, z };
-                    transformComponent.Rotation = { r * 360.0f, g * 360.0f, b * 360.0f };
-//                    transformComponent.Scale    = { r, g, b };
-
-                    TransformManager::UpdateTransform(transformIndex, transformComponent);
-
-                    RenderInstance instance;
-                    instance.TransformIndex = transformIndex;
-                    instance.MaterialIndex = materialIndex;
-
-                    Material* material = MaterialManager::Builder().Build("Material_" + materialIndex);
-                    material->Index = materialIndex;
-                    material->Data = MaterialManager::GetMaterialData(materialIndex);
-                    material->Data->BaseColor = { r, g, b, 1 };
-                    material->Data->MetallicFactor = r;
-                    material->Data->RoughnessFactor = g;
-                    material->Data->AOFactor = b;
-
-                    m_BatchManager->AddInstance("CubeGeometry", instance);
-                    m_BatchManager->AddInstance("CubeMesh", instance);
-                    m_BatchManager->AddInstance("SphereGeometry", instance);
-                    m_BatchManager->AddInstance("Triangle", instance);
-
-                    transformIndex++;
-                    materialIndex++;
-                }
-            }
-        }
-
-        m_BatchManager->FlushInstances("CubeGeometry");
-        m_BatchManager->FlushInstances("CubeMesh");
-        m_BatchManager->FlushInstances("SphereGeometry");
-        m_BatchManager->FlushInstances("Triangle");
+        xpe::render::Text text;
+        text.Chars = string("ABCD");
+        text.Transform = &transform;
+        text.TextFont = &font;
+        m_TextBatchManager->AddText(text);
 
         // it will flush all materials data into GPU memory
         MaterialManager::UpdateMaterials();
 
         InitPipeline();
-        InitPipeline2D();
         InitCamera();
         InitCamera2D();
 
@@ -159,16 +77,12 @@ public:
 
             Simulate();
 
-            // todo bug: canvas is not updated or resized because after binding material textures
-            // MaterialManager::BindMaterials();
+            MaterialManager::BindMaterials();
 
             m_Canvas->Clear(glm::vec4(1.0f));
 
             context->BindRenderPipeline(&m_Pipeline);
-            m_BatchManager->DrawAll();
-
-            context->BindRenderPipeline(&m_Pipeline2d);
-            m_BatchManager2d->DrawAll();
+            m_TextBatchManager->DrawAll();
 
             m_Canvas->Present();
         }
@@ -185,7 +99,6 @@ public:
         delete m_BatchManager;
 
         delete m_Camera2D;
-        delete m_BatchManager2d;
     }
 
     void WindowClosed()
@@ -232,20 +145,20 @@ private:
         // setup buffers
         m_Pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
         m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
-        m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
+        m_Pipeline.VSBuffers.emplace_back(MaterialManager::GetBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
 
         // setup shader
         m_Pipeline.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window.vs")
-                .AddPixelStageFromFile("shaders/window.ps")
+                .AddVertexStageFromFile("shaders/text.vs")
+                .AddPixelStageFromFile("shaders/text.ps")
                 .Build("window");
-        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
 
         // setup input layout
-        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         m_Layout.Format = Vertex3D::Format;
         m_Pipeline.InputLayout = m_Layout;
 
@@ -255,31 +168,6 @@ private:
 
         // init pipeline
         context->CreateRenderPipeline(m_Pipeline);
-    }
-
-    void InitPipeline2D() {
-        // setup buffers
-        m_Pipeline2d.VSBuffers.emplace_back(&m_CameraBuffer2d);
-        m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
-
-        // setup shader
-        m_Pipeline2d.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window2d.vs")
-                .AddPixelStageFromFile("shaders/window2d.ps")
-                .Build("window2d");
-        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-
-        // setup input layout
-        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-        m_Layout2d.Format = Vertex2D::Format;
-        m_Pipeline2d.InputLayout = m_Layout2d;
-
-        // setup render target
-        m_Pipeline2d.RenderTarget = m_Canvas->GetRenderTarget();
-        m_Pipeline2d.DepthStencilState.UseDepthTest = K_FALSE;
-
-        // init pipeline
-        context->CreateRenderPipeline(m_Pipeline2d);
     }
 
     void InitCamera() {
@@ -358,13 +246,11 @@ private:
     ECSManager* m_ECS;
 
     BatchManager* m_BatchManager;
-    BatchManager2d* m_BatchManager2d;
+    TextBatchManager* m_TextBatchManager;
 
     Pipeline m_Pipeline;
-    Pipeline m_Pipeline2d;
 
     InputLayout m_Layout;
-    InputLayout m_Layout2d;
 
     PerspectiveCamera* m_Camera;
     OrthoCamera* m_Camera2D;

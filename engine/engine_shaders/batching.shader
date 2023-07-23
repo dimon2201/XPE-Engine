@@ -14,3 +14,15 @@ struct RenderInstance2D
 };
 
 StructuredBuffer<RenderInstance2D> Instances2D : K_SLOT_INSTANCES2D;
+
+struct TextGlyphInstance
+{
+    uint TransformIndex;
+    uint CameraIndex;
+    uint GlyphIndex;
+    float Left;
+    float Top;
+    float Advance;
+};
+
+StructuredBuffer<TextGlyphInstance> TextGlyphs : K_SLOT_TEXT_GLYPH_INSTANCES;
