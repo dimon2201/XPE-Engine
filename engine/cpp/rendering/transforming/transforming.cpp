@@ -8,8 +8,11 @@ namespace xpe {
         TransformStorage* TransformManager::s_Storage = nullptr;
 
         TransformStorage::TransformStorage(Context* context) {
-            Buffer2D = Transform2DBuffer(context, K_TRANSFORMS2D_SIZE);
-            Buffer = TransformBuffer(context, K_TRANSFORMS_SIZE);
+            Buffer2D = Transform2DBuffer(context, 0);
+            Buffer2D.Reserve(K_TRANSFORMS2D_SIZE);
+
+            Buffer = TransformBuffer(context, 0);
+            Buffer.Reserve(K_TRANSFORMS_SIZE);
         }
 
         TransformStorage::~TransformStorage() {
@@ -39,7 +42,7 @@ namespace xpe {
             return &s_Storage->Buffer2D;
         }
 
-        void TransformManager::UpdateTransform(u32 index, const TransformComponent &transformComponent) {
+        void TransformManager::AddTransform(TransformComponent &transformComponent) {
             math::ModelMatrix modelMatrix;
             modelMatrix.Translation = transformComponent.Position;
             modelMatrix.Rotation = transformComponent.Rotation;
@@ -49,10 +52,43 @@ namespace xpe {
             transformData.ModelMatrix = ModelMatrixUpdate(modelMatrix);
             transformData.NormalMatrix = glm::transpose(glm::inverse(glm::mat3(transformData.ModelMatrix)));
 
-            s_Storage->Buffer.FlushItem(index, transformData);
+            transformComponent.Index = s_Storage->Buffer.Add(transformData);
         }
 
-        void TransformManager::UpdateTransform2D(u32 index, const Transform2DComponent &transform2DComponent) {
+        void TransformManager::AddTransform2D(Transform2DComponent &transformComponent) {
+            math::Model2dMatrix modelMatrix;
+            modelMatrix.Translation = transformComponent.Position;
+            modelMatrix.Rotation = transformComponent.Rotation;
+            modelMatrix.Scale = transformComponent.Scale;
+
+            Transform2DData transformData;
+            transformData.ModelMatrix = Model2dMatrixUpdate(modelMatrix);
+
+            transformComponent.Index = s_Storage->Buffer2D.Add(transformData);
+        }
+
+        void TransformManager::RemoveTransform(TransformComponent &transformComponent) {
+            s_Storage->Buffer.RemoveAt(transformComponent.Index);
+        }
+
+        void TransformManager::RemoveTransform2D(Transform2DComponent &transformComponent) {
+            s_Storage->Buffer2D.RemoveAt(transformComponent.Index);
+        }
+
+        void TransformManager::FlushTransform(const TransformComponent &transformComponent) {
+            math::ModelMatrix modelMatrix;
+            modelMatrix.Translation = transformComponent.Position;
+            modelMatrix.Rotation = transformComponent.Rotation;
+            modelMatrix.Scale = transformComponent.Scale;
+
+            TransformData transformData;
+            transformData.ModelMatrix = ModelMatrixUpdate(modelMatrix);
+            transformData.NormalMatrix = glm::transpose(glm::inverse(glm::mat3(transformData.ModelMatrix)));
+
+            s_Storage->Buffer.FlushItem(transformComponent.Index, transformData);
+        }
+
+        void TransformManager::FlushTransform2D(const Transform2DComponent &transform2DComponent) {
             math::Model2dMatrix modelMatrix;
             modelMatrix.Translation = transform2DComponent.Position;
             modelMatrix.Rotation = transform2DComponent.Rotation;
@@ -61,7 +97,15 @@ namespace xpe {
             Transform2DData transformData;
             transformData.ModelMatrix = Model2dMatrixUpdate(modelMatrix);
 
-            s_Storage->Buffer2D.FlushItem(index, transformData);
+            s_Storage->Buffer2D.FlushItem(transform2DComponent.Index, transformData);
+        }
+
+        void TransformManager::FlushTransforms() {
+            s_Storage->Buffer.Flush();
+        }
+
+        void TransformManager::FlushTransforms2D() {
+            s_Storage->Buffer2D.Flush();
         }
 
     }

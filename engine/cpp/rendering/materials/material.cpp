@@ -10,23 +10,9 @@ namespace xpe {
 
         MaterialStorage::MaterialStorage(Context *context, usize count) : m_Context(context)
         {
-            Buffer = MaterialBuffer(context, count);
+            Buffer = MaterialBuffer(context, 0);
+            Buffer.Reserve(count);
             InitMaterialTextures();
-        }
-
-        void MaterialStorage::Bind()
-        {
-            auto& textures = Textures;
-
-            m_Context->BindSampler(&textures.Sampler);
-
-            m_Context->BindTexture(&textures.AlbedoArray);
-            m_Context->BindTexture(&textures.BumpArray);
-            m_Context->BindTexture(&textures.ParallaxArray);
-            m_Context->BindTexture(&textures.MetallicArray);
-            m_Context->BindTexture(&textures.RoughnessArray);
-            m_Context->BindTexture(&textures.AOArray);
-            m_Context->BindTexture(&textures.EmissionArray);
         }
 
         void MaterialStorage::AddMaterial(const string &name, const Material &material)
@@ -87,8 +73,6 @@ namespace xpe {
             m_Context->FreeTexture(textures.EmissionArray);
         }
 
-
-
         void MaterialStorage::InitTextureArray(Texture &textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot)
         {
             textureArray.InitializeData = true;
@@ -137,23 +121,34 @@ namespace xpe {
 
         void MaterialManager::CreateMaterial(Material &material)
         {
+            material.Index = s_Storage->Buffer.Add();
+            material.Data = s_Storage->Buffer[material.Index];
             material.Textures = &s_Storage->Textures;
-            material.Data = s_Storage->Buffer.GetItem(material.Index);
         }
 
-        void MaterialManager::BindMaterials()
+        u32 MaterialManager::AddMaterial(const string& usid, const Material &material)
         {
-            s_Storage->Bind();
+            s_Storage->AddMaterial(usid, material);
+            return s_Storage->Buffer.Add(*material.Data);
         }
 
-        void MaterialManager::UpdateMaterials()
+        void MaterialManager::RemoveMaterial(const string& usid)
         {
-            s_Storage->Buffer.Flush();
+            auto* material = s_Storage->GetMaterial(usid);
+            if (material != nullptr) {
+                s_Storage->RemoveMaterial(usid);
+                s_Storage->Buffer.RemoveAt(material->Index);
+            }
         }
 
-        void MaterialManager::UpdateMaterial(Material &material)
+        void MaterialManager::FlushMaterial(Material &material)
         {
             s_Storage->Buffer.FlushItem(material.Index, *material.Data);
+        }
+
+        void MaterialManager::FlushMaterials()
+        {
+            s_Storage->Buffer.Flush();
         }
 
         MaterialBuffer* MaterialManager::GetBuffer()
@@ -167,7 +162,7 @@ namespace xpe {
 
         MaterialBufferData* MaterialManager::GetMaterialData(u32 index)
         {
-            return s_Storage->Buffer.GetItem(index);
+            return s_Storage->Buffer[index];
         }
 
         void MaterialManager::AddAlbedoFromFile(Material& material, const char *filepath)

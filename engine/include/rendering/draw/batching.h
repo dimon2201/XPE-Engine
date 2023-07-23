@@ -52,24 +52,26 @@ namespace xpe {
             BatchManager(Context* context);
             ~BatchManager();
 
-            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex3D>& geometry);
-            void StoreGeometryVertexed(const string& usid, const GeometryVertexed<Vertex3D>& geometry);
+            void StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount = 0);
+            void StoreGeometryVertexed(const string& str, const GeometryVertexed<Vertex3D>& geometry, usize instanceCount = 0);
 
-            void BeginBatch(const string& geometryUSID);
+            void BeginBatch(const string& str);
             void BeginBatch(BatchVertexed& batchVertexed);
             void BeginBatch(BatchIndexed& batchIndexed);
 
-            bool AddInstance(const string& usid, const RenderInstance& instance);
+            u32 AddInstance(const string& str, const RenderInstance& instance);
 
-            void RemoveInstance(const string& usid, const RenderInstance& instance);
+            void RemoveInstanceAt(const string& str, u32 index);
 
-            void ClearInstances(const string& usid);
+            void ClearInstances(const string& str);
 
-            void FlushInstances(const string& usid);
+            void FlushInstances(const string& str);
 
-            void ReserveInstances(const string& usid, const usize count);
+            void ResizeInstances(const string& str, const usize count);
 
-            void DrawBatch(const string& usid);
+            void ReserveInstances(const string& str, const usize count);
+
+            void DrawBatch(const string& str);
             void DrawBatch(BatchVertexed& batchVertexed);
             void DrawBatch(BatchIndexed& batchIndexed);
 
@@ -77,19 +79,17 @@ namespace xpe {
 
         private:
 
-            void InitBatchIndexed(BatchIndexed& batchIndexed, const GeometryIndexedFormat& format);
-            void InitBatchVertexed(BatchVertexed& batchVertexed, const GeometryVertexedFormat& format);
+            void InitBatchIndexed(BatchIndexed& batchIndexed, const GeometryIndexedFormat& format, usize instanceCount);
+            void InitBatchVertexed(BatchVertexed& batchVertexed, const GeometryVertexedFormat& format, usize instanceCount);
 
             void FreeBatchIndexed(BatchIndexed& batchIndexed);
             void FreeBatchVertexed(BatchVertexed& batchVertexed);
 
-            void NewBatchIndexed(const GeometryIndexedFormat& format);
-            void NewBatchVertexed(const GeometryVertexedFormat& format);
+            BatchIndexed NewBatchIndexed(const GeometryIndexedFormat& format, usize instanceCount);
+            BatchVertexed NewBatchVertexed(const GeometryVertexedFormat& format, usize instanceCount);
 
         private:
             Context* m_Context;
-            unordered_map<string, BatchIndexed*> m_BatchIndexedLookup;
-            unordered_map<string, BatchVertexed*> m_BatchVertexedLookup;
             vector<BatchIndexed> m_BatchesIndexed;
             vector<BatchVertexed> m_BatchesVertexed;
         };
@@ -101,24 +101,26 @@ namespace xpe {
             BatchManager2d(Context* context);
             ~BatchManager2d();
 
-            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex2D>& geometry);
-            void StoreGeometryVertexed(const string& usid, const GeometryVertexed<Vertex2D>& geometry);
+            void StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex2D>& geometry, usize instanceCount = 0);
+            void StoreGeometryVertexed(const string& str, const GeometryVertexed<Vertex2D>& geometry, usize instanceCount = 0);
 
-            void BeginBatch(const string& geometryUSID);
+            void BeginBatch(const string& str);
             void BeginBatch(BatchVertexed2d& batchVertexed);
             void BeginBatch(BatchIndexed2d& batchIndexed);
 
-            bool AddInstance(const string& usid, const RenderInstance2d& instance);
+            u32 AddInstance(const string& str, const RenderInstance2d& instance);
 
-            void RemoveInstance(const string& usid, const RenderInstance2d& instance);
+            void RemoveInstanceAt(const string& str, u32 index);
 
-            void ClearInstances(const string& usid);
+            void ClearInstances(const string& str);
 
-            void FlushInstances(const string& usid);
+            void FlushInstances(const string& str);
 
-            void ReserveInstances(const string& usid, const usize count);
+            void ReserveInstances(const string& str, const usize count);
 
-            void DrawBatch(const string& usid);
+            void ResizeInstances(const string& str, const usize count);
+
+            void DrawBatch(const string& str);
             void DrawBatch(BatchVertexed2d& batchVertexed);
             void DrawBatch(BatchIndexed2d& batchIndexed);
 
@@ -126,19 +128,17 @@ namespace xpe {
 
         private:
 
-            void InitBatchIndexed(BatchIndexed2d& batchIndexed, const GeometryIndexedFormat& format);
-            void InitBatchVertexed(BatchVertexed2d& batchVertexed, const GeometryVertexedFormat& format);
+            void InitBatchIndexed(BatchIndexed2d& batchIndexed, const GeometryIndexedFormat& format, usize instanceCount);
+            void InitBatchVertexed(BatchVertexed2d& batchVertexed, const GeometryVertexedFormat& format, usize instanceCount);
 
             void FreeBatchIndexed(BatchIndexed2d& batchIndexed);
             void FreeBatchVertexed(BatchVertexed2d& batchVertexed);
 
-            void NewBatchIndexed(const GeometryIndexedFormat& format);
-            void NewBatchVertexed(const GeometryVertexedFormat& format);
+            BatchIndexed2d NewBatchIndexed(const GeometryIndexedFormat& format, usize instanceCount);
+            BatchVertexed2d NewBatchVertexed(const GeometryVertexedFormat& format, usize instanceCount);
 
         private:
             Context* m_Context;
-            unordered_map<string, BatchIndexed2d*> m_BatchIndexedLookup;
-            unordered_map<string, BatchVertexed2d*> m_BatchVertexedLookup;
             vector<BatchIndexed2d> m_BatchesIndexed;
             vector<BatchVertexed2d> m_BatchesVertexed;
         };

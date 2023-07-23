@@ -13,6 +13,8 @@ namespace xpe {
             InputLayout InputLayout;
             vector<Buffer*> VSBuffers; // buffers defined in vertex shader
             vector<Buffer*> PSBuffers; // buffers defined in pixel shader
+            vector<Texture*> Textures;
+            vector<TextureSampler*> Samplers;
             Shader* Shader = nullptr;
             RenderTarget* RenderTarget = nullptr;
             DepthStencilState DepthStencilState;

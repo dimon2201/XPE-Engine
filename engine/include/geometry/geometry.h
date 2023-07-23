@@ -146,7 +146,7 @@ namespace xpe {
 
         struct ENGINE_API GeometryIndexedFormat final {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            string USID;
+            u64 USID;
             usize VertexOffset = 0;
             usize IndexOffset = 0;
             usize VertexCount = 0;
@@ -172,7 +172,7 @@ namespace xpe {
 
         struct ENGINE_API GeometryVertexedFormat final {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            string USID;
+            u64 USID;
             usize VertexOffset = 0;
             usize VertexCount = 0;
 

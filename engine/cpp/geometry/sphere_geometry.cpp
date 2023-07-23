@@ -77,7 +77,7 @@ namespace xpe {
             }
 
             Indices.Init(indexList.size());
-            Indices.CopyFrom(indexList.data(), indexList.size());
+            Indices.MoveFrom(indexList.data(), indexList.size());
 
             PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_STRIP;
         }

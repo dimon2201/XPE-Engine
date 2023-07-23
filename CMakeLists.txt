@@ -10,3 +10,9 @@ add_subdirectory(engine)
 
 # Add Samples
 add_subdirectory(samples)
+
+# Add Game Code
+add_subdirectory(Game/Code)
+
+# Add Game Launcher
+add_subdirectory(Game/Launcher)

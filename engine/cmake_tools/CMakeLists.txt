@@ -205,26 +205,6 @@ macro(link_engine project path)
         configure_file(${PROJECT_BINARY_DIR}/${path}/Release/xpe_engine.dll ${PROJECT_BINARY_DIR}/Release/xpe_engine.dll COPYONLY)
     endif()
 
-    ## ---------------- RelWithDebInfo ---------------
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.lib)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.lib ${PROJECT_BINARY_DIR}/RelWithDebInfo/xpe_engine.lib COPYONLY)
-    endif()
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.dll)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.dll ${PROJECT_BINARY_DIR}/RelWithDebInfo/xpe_engine.dll COPYONLY)
-    endif()
-
-    ## ---------------- MinSizeRel ---------------
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.lib)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.lib ${PROJECT_BINARY_DIR}/MinSizeRel/xpe_engine.lib COPYONLY)
-    endif()
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.dll)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.dll ${PROJECT_BINARY_DIR}/MinSizeRel/xpe_engine.dll COPYONLY)
-    endif()
-
     message(STATUS "Linking ${project} -> xpe_engine.lib")
     message(STATUS "Linking ${project} -> xpe_engine.dll")
     target_link_libraries(${project} PUBLIC xpe_engine)

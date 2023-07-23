@@ -59,8 +59,6 @@ namespace xpe {
             MaterialStorage(Context* context, usize count);
             ~MaterialStorage();
 
-            void Bind();
-
             void AddMaterial(const string& name, const Material& material);
             void RemoveMaterial(const string& name);
             Material* GetMaterial(const string& name);
@@ -95,10 +93,13 @@ namespace xpe {
             static void AddAOFromFile(Material& material, const char* filepath);
             static void AddEmissionFromFile(Material& material, const char* filepath);
 
-            static void BindMaterials();
+            static u32 AddMaterial(const string& usid, const Material& material);
 
-            static void UpdateMaterials();
-            static void UpdateMaterial(Material& material);
+            static void RemoveMaterial(const string& usid);
+
+            static void FlushMaterial(Material& material);
+
+            static void FlushMaterials();
 
             static MaterialBuffer* GetBuffer();
             static MaterialStorage* GetStorage();

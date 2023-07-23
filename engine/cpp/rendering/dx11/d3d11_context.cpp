@@ -1136,6 +1136,14 @@ namespace xpe {
                 BindPSBuffer(buffer);
             }
 
+            for (const auto* texture : boundPipeline.Textures) {
+                BindTexture(texture);
+            }
+
+            for (const auto* sampler : boundPipeline.Samplers) {
+                BindSampler(sampler);
+            }
+
             BindShader(boundPipeline.Shader);
 
             BindRenderTarget(boundPipeline.RenderTarget->ColorTargetView, boundPipeline.RenderTarget->DepthTargetView);

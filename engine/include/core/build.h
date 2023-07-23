@@ -17,3 +17,20 @@
 #define ENGINE_API
 
 #endif
+
+// dynamic library
+#ifdef GAME_DLL_BUILD
+
+// defined for game build
+#define GAME_API __declspec(dllexport)
+
+// defined for launcher build
+#elif defined(GAME_DLL)
+
+#define GAME_API __declspec(dllimport)
+
+#else
+
+#define GAME_API
+
+#endif

@@ -24,31 +24,39 @@ namespace xpe {
 
             void FlushItem(u32 index, const T& item);
 
+            void FlushItemAt(u32 index);
+
+            template<typename ... Args>
+            u32 Add(Args&&... args);
+
+            void RemoveAt(u32 index);
+
             void Resize(const usize count);
 
             void Reserve(const usize count);
 
             void Recreate(const usize count);
 
-            inline T* GetItem(const u32 index) {
-                // check if index is in the size bounds
-                // if not, then resize to index + 1
-                if (index >= Count()) {
-                    Resize(index + 1);
+            void Clear();
+
+            inline usize Size() const {
+                return m_List.size();
+            }
+
+            inline usize Capacity() const {
+                return m_List.capacity();
+            }
+
+            inline T* Get(u32 index) {
+                if (index >= m_List.size()) {
+                    LogError("Index {} is out of bounds of size {}", index, m_List.size());
+                    return nullptr;
                 }
                 return &m_List[index];
             }
 
-            inline vector<T>& GetList() {
-                return m_List;
-            }
-
-            inline usize Count() {
-                return m_List.size();
-            }
-
-            inline usize Size() {
-                return m_List.size() * StructureSize;
+            inline T* operator [](u32 index) {
+                return Get(index);
             }
 
         protected:
@@ -57,17 +65,21 @@ namespace xpe {
         };
 
         template<typename T>
-        StructureBuffer<T>::StructureBuffer(Context* context, usize count, u32 slot, Boolean duplicate) : m_Context(context)
+        StructureBuffer<T>::StructureBuffer(Context* context, usize count, u32 slot, Boolean duplicate)
         {
-            m_List.reserve(count);
+            m_Context = context;
             Type = eBufferType::STRUCTURED;
             Slot = slot;
             StructureSize = sizeof(T);
             FirstElement = 0;
             NumElements = count;
-            ByteSize = StructureSize * NumElements;
+            ByteSize = StructureSize * count;
             Duplicate = duplicate;
-            m_Context->CreateBuffer(*this);
+            if (count > 0) {
+                m_List.resize(count);
+                m_Context->CreateBuffer(*this);
+                m_Context->WriteBuffer(*this, m_List.data(), ByteSize);
+            }
         }
 
         template<typename T>
@@ -78,43 +90,69 @@ namespace xpe {
 
         template<typename T>
         void StructureBuffer<T>::Flush() {
-            m_Context->WriteBuffer(*this, m_List.data(), m_List.size() * StructureSize);
+            usize size = m_List.size();
+            if (size != NumElements) {
+                Recreate(size);
+            }
+            else {
+                m_Context->WriteBuffer(*this, m_List.data(), ByteSize);
+            }
         }
 
         template<typename T>
-        void StructureBuffer<T>::FlushItem(u32 index, const T &item) {
-            if (index >= Count()) {
-                Resize(index + 1);
+        void StructureBuffer<T>::FlushItem(u32 index, const T& newItem) {
+            T* item = operator[](index);
+            if (item == nullptr) {
+                return;
             }
-            m_List[index] = item;
-            m_Context->WriteBufferOffset(*this, StructureSize * index, &m_List.back(), StructureSize);
+            *item = newItem;
+            m_Context->WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
+        }
+
+        template<typename T>
+        void StructureBuffer<T>::FlushItemAt(u32 index) {
+            T* item = operator[](index);
+            if (item == nullptr) {
+                return;
+            }
+            m_Context->WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
         }
 
         template<typename T>
         void StructureBuffer<T>::Recreate(const usize count) {
+            m_List.resize(count);
             NumElements = count;
-            ByteSize = NumElements * StructureSize;
+            ByteSize = StructureSize * count;
             m_Context->FreeBuffer(*this);
             m_Context->CreateBuffer(*this);
-            Flush();
+            m_Context->WriteBuffer(*this, m_List.data(), ByteSize);
         }
 
         template<typename T>
         void StructureBuffer<T>::Resize(const usize count) {
-            usize capacity = m_List.capacity();
-            m_List.resize(count);
-            if (capacity < count) {
-                Recreate(count);
-            }
+            Recreate(count);
         }
 
         template<typename T>
         void StructureBuffer<T>::Reserve(const usize count) {
-            usize capacity = m_List.capacity();
             m_List.reserve(count);
-            if (capacity < count) {
-                Recreate(count);
-            }
+        }
+
+        template<typename T>
+        void StructureBuffer<T>::Clear() {
+            m_List.clear();
+        }
+
+        template<typename T>
+        template<typename... Args>
+        u32 StructureBuffer<T>::Add(Args &&... args) {
+            m_List.emplace_back(args...);
+            return m_List.size() - 1;
+        }
+
+        template<typename T>
+        void StructureBuffer<T>::RemoveAt(u32 index) {
+            m_List.erase(m_List.begin() + index);
         }
 
     }

@@ -9,24 +9,25 @@ namespace xpe {
         using namespace core;
 
         struct ENGINE_API PointLightBufferData final {
-            glm::vec4 Position;
-            glm::vec4 Color;
+            glm::vec3 Position;
+            glm::vec3 Color;
             float Constant;
             float Linear;
             float Quadratic;
-            float Refraction;
-        };
-
-        struct ENGINE_API PointLight final {
-            u32 Index = 0;
-            PointLightBufferData* Data = nullptr;
         };
 
         struct ENGINE_API PointLightComponent : public Component {
 
             PointLightComponent(const string& usid) : Component(usid) {}
 
-            PointLight Light;
+            PointLightComponent(const string& usid, u32 index) : Component(usid), Index(index) {}
+
+            u32 Index = 0;
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
+            float Constant;
+            float Linear;
+            float Quadratic;
 
         };
 
