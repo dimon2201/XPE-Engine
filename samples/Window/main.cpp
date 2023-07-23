@@ -57,65 +57,83 @@ public:
 //        Model3D cubeModel = GLTFImporter::Import("resources/cube.gltf");
 //        Mesh& cubeMesh = cubeModel[0];
 //        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
-//
-        PlaneGeometry plane = 100;
+
+        PlaneGeometry plane;
         m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
 
         RenderInstance planeInstance;
-        TransformComponent planeTransform("PlaneTransform");
+        TransformComponent planeTransform("PlaneTransform", 0);
         planeTransform.Position = { 0, -60, 0 };
-        TransformManager::UpdateTransform(0, planeTransform);
+        TransformManager::AddTransform(planeTransform);
         m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
-        m_BatchManager->FlushInstances("PlaneGeometry");
 
 //        CubeGeometry cube;
 //        m_BatchManager->StoreGeometryIndexed("CubeGeometry", cube);
-//
-        SphereGeometry sphere = { 16, 16 };
+//        m_BatchManager->ResizeInstances("CubeGeometry", 1000);
+
+        SphereGeometry sphere;
         m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
-        m_BatchManager->ReserveInstances("SphereGeometry", 1000000);
+//        m_BatchManager->ReserveInstances("SphereGeometry", 1000);
 
         Quad2d quad2D;
         RenderInstance2d quad2DInstance;
-        Transform2DComponent quad2DTransform("Quad2DTransform");
-        quad2DTransform.Position = { 0, 0 };
+        Transform2DComponent quad2DTransform("Quad2DTransform", 0);
+        quad2DTransform.Position = { 0, -10 };
         quad2DTransform.Scale = { 5, 1 };
-        TransformManager::UpdateTransform2D(0, quad2DTransform);
+        TransformManager::AddTransform2D(quad2DTransform);
         m_BatchManager2d->StoreGeometryIndexed("Quad2D", quad2D);
         m_BatchManager2d->AddInstance("Quad2D", quad2DInstance);
-        m_BatchManager2d->FlushInstances("Quad2D");
 
         // Put instances of geometry
         u32 transformIndex = 1;
-        for (f32 y = -50.0f; y < 50.0f; y += 4.0f)
+        u32 materialIndex = 0;
+        u32 textureIndex = 0;
+        for (f32 y = -4.0f; y < 4.0f; y += 4.0f)
         {
-            for (f32 x = -50.0f; x < 50.0f; x += 4.0f)
+            for (f32 x = -4.0f; x < 4.0f; x += 4.0f)
             {
-                u32 materialIndex = 0;
-                for (f32 z = -50.0f; z < 50.0f; z += 4.0f)
+                for (f32 z = -4.0f; z < 4.0f; z += 4.0f)
                 {
                     float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
-                    TransformComponent transformComponent("Transform_" + transformIndex);
+                    TransformComponent transformComponent("Transform_" + transformIndex, transformIndex);
                     transformComponent.Position = { x, y, z };
                     transformComponent.Rotation = { r * 360.0f, g * 360.0f, b * 360.0f };
 //                    transformComponent.Scale    = { r, g, b };
 
-                    TransformManager::UpdateTransform(transformIndex, transformComponent);
+                    TransformManager::AddTransform(transformComponent);
 
                     RenderInstance instance;
                     instance.TransformIndex = transformIndex;
                     instance.MaterialIndex = materialIndex;
 
-                    Material* material = MaterialManager::Builder().Build("Material_" + materialIndex);
-                    material->Index = materialIndex;
-                    material->Data = MaterialManager::GetMaterialData(materialIndex);
-                    material->Data->BaseColor = { r, g, b, 1 };
+                    Material* material = MaterialManager::CreateMaterial("Material_" + materialIndex);
+                    material->Data->BaseColor = { 1, 1, 1, 1 };
                     material->Data->MetallicFactor = r;
                     material->Data->RoughnessFactor = g;
                     material->Data->AOFactor = b;
+
+//                    material->Data->EnableAlbedo = false;
+//                    material->AlbedoIndex = textureIndex;
+//                    MaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
+//
+//                    material->Data->EnableBumping = false;
+//                    material->BumpingIndex = textureIndex;
+//                    MaterialManager::AddBumpFromFile(*material, "resources/materials/steel/bump.png");
+//
+//                    material->Data->EnableMetallic = false;
+//                    material->MetallicIndex = textureIndex;
+//                    MaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
+//
+//                    material->Data->EnableRoughness = false;
+//                    material->RoughnessIndex = textureIndex;
+//                    MaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
+//
+//                    material->Data->EnableAO = false;
+//                    material->AOIndex = textureIndex;
+//                    MaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
 
                     m_BatchManager->AddInstance("CubeGeometry", instance);
                     m_BatchManager->AddInstance("CubeMesh", instance);
@@ -124,52 +142,60 @@ public:
 
                     transformIndex++;
                     materialIndex++;
+                    if (++textureIndex > 1) {
+                        textureIndex = 0;
+                    }
                 }
             }
         }
 
+        m_DirectLightComponent.Position = { 0, 0, 0 };
+        m_DirectLightComponent.Color = { 1, 1, 1 };
+        LightManager::AddDirectLight(m_DirectLightComponent);
+
+        // it will flush all instance data into GPU memory
         m_BatchManager->FlushInstances("CubeGeometry");
         m_BatchManager->FlushInstances("CubeMesh");
         m_BatchManager->FlushInstances("SphereGeometry");
         m_BatchManager->FlushInstances("Triangle");
+        m_BatchManager->FlushInstances("PlaneGeometry");
 
-        // it will flush all materials data into GPU memory
-        MaterialManager::UpdateMaterials();
+        // it will flush all instance 2D data into GPU memory
+        m_BatchManager2d->FlushInstances("Quad2D");
+
+        // it will flush all transform data into GPU memory
+        TransformManager::FlushTransforms();
+        TransformManager::FlushTransforms2D();
+
+        // it will flush all material data into GPU memory
+        MaterialManager::FlushMaterials();
+
+        // it will flush all direct light data into GPU memory
+        LightManager::FlushDirectLights();
 
         InitPipeline();
         InitPipeline2D();
         InitCamera();
         InitCamera2D();
-
-        // todo maybe we will automate it in future and make it more easy to use
-        LightManager::InitLight(m_DirectLightComponent.Light);
-        m_DirectLightComponent.Light.Data->Position = {0, 0, 0 };
-        m_DirectLightComponent.Light.Data->Color = {1, 1, 1 };
-        LightManager::UpdateLight(m_DirectLightComponent.Light);
     }
 
     void Update() override final
     {
-        {
-            LockFPSFromConfig();
+        LockFPSFromConfig();
 
-            UpdateCamera();
+        UpdateCamera();
 
-            Simulate();
+        Simulate();
 
-            // todo bug: canvas is not updated or resized because after binding material textures
-            // MaterialManager::BindMaterials();
+        m_Canvas->Clear(glm::vec4(1.0f));
 
-            m_Canvas->Clear(glm::vec4(1.0f));
+        context->BindPipeline(&m_Pipeline);
+        m_BatchManager->DrawAll();
 
-            context->BindRenderPipeline(&m_Pipeline);
-            m_BatchManager->DrawAll();
+        context->BindPipeline(&m_Pipeline2d);
+        m_BatchManager2d->DrawAll();
 
-            context->BindRenderPipeline(&m_Pipeline2d);
-            m_BatchManager2d->DrawAll();
-
-            m_Canvas->Present();
-        }
+        m_Canvas->Present();
     }
 
     void Free()
@@ -235,24 +261,38 @@ private:
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
 
+        // setup material textures, sampler
+        m_Pipeline.Samplers.emplace_back(&MaterialManager::GetStorage()->Textures.Sampler);
+        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.AlbedoArray);
+        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.BumpArray);
+        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.ParallaxArray);
+        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.MetallicArray);
+        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.RoughnessArray);
+        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.AOArray);
+        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.EmissionArray);
+
         // setup shader
-        m_Pipeline.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window.vs")
-                .AddPixelStageFromFile("shaders/window.ps")
-                .Build("window");
-        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+        m_Pipeline.Shader = ShaderManager::CreateShader("window");
+        ShaderManager::AddVertexStageFromFile(m_Pipeline.Shader, "shaders/window.vs");
+        ShaderManager::AddPixelStageFromFile(m_Pipeline.Shader, "shaders/window.ps");
+        ShaderManager::BuildShader(m_Pipeline.Shader);
 
         // setup input layout
-        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
         m_Layout.Format = Vertex3D::Format;
         m_Pipeline.InputLayout = m_Layout;
 
         // setup render target
         m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
+
+        // setup depth stencil testing
         m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
 
+        // setup rasterizer
+        m_Pipeline.Rasterizer.CullMode = eCullMode::DEFAULT;
+        m_Pipeline.Rasterizer.FillMode = eFillMode::WIREFRAME;
+
         // init pipeline
-        context->CreateRenderPipeline(m_Pipeline);
+        context->CreatePipeline(m_Pipeline);
     }
 
     void InitPipeline2D() {
@@ -261,14 +301,12 @@ private:
         m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
 
         // setup shader
-        m_Pipeline2d.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/window2d.vs")
-                .AddPixelStageFromFile("shaders/window2d.ps")
-                .Build("window2d");
-        m_Pipeline2d.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+        m_Pipeline2d.Shader = ShaderManager::CreateShader("window2d");
+        ShaderManager::AddVertexStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.vs");
+        ShaderManager::AddPixelStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.ps");
+        ShaderManager::BuildShader(m_Pipeline2d.Shader);
 
         // setup input layout
-        m_Layout2d.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         m_Layout2d.Format = Vertex2D::Format;
         m_Pipeline2d.InputLayout = m_Layout2d;
 
@@ -277,11 +315,13 @@ private:
         m_Pipeline2d.DepthStencilState.UseDepthTest = K_FALSE;
 
         // init pipeline
-        context->CreateRenderPipeline(m_Pipeline2d);
+        context->CreatePipeline(m_Pipeline2d);
     }
 
     void InitCamera() {
         m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
+        // todo BUG: after moving camera, the camera resets position
+        m_PerspectiveCameraComponent.Position = { 5, 5, 20 };
         m_Camera = new PerspectiveCamera(&m_CameraBuffer, &m_PerspectiveCameraComponent);
         m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
@@ -306,33 +346,33 @@ private:
 
     void MoveLight(const eKey key) {
         if (key == eKey::Up) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
+            glm::vec3& pos = m_DirectLightComponent.Position;
             pos.y += 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
+            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
 
         if (key == eKey::Down) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
+            glm::vec3& pos = m_DirectLightComponent.Position;
             pos.y -= 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
+            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
 
         if (key == eKey::Left) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
+            glm::vec3& pos = m_DirectLightComponent.Position;
             pos.x -= 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
+            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
 
         if (key == eKey::Right) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
+            glm::vec3& pos = m_DirectLightComponent.Position;
             pos.x += 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
+            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
     }
 
     void Simulate() {
         if (m_TestConfig.AnimateLight) {
-            auto& pos = m_DirectLightComponent.Light.Data->Position;
+            auto& pos = m_DirectLightComponent.Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -340,14 +380,14 @@ private:
 
             // update light color every N ticks
             if (tick % 10000 == 0) {
-                auto& color = m_DirectLightComponent.Light.Data->Color;
+                auto& color = m_DirectLightComponent.Color;
                 float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 color = { r, g, b };
             }
 
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
+            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
     }
 
@@ -367,7 +407,7 @@ private:
     PerspectiveCamera* m_Camera;
     OrthoCamera* m_Camera2D;
 
-    DirectLightComponent m_DirectLightComponent = string("DirectLight");
+    DirectLightComponent m_DirectLightComponent = string("DirectLight", 0);
 
     PerspectiveCameraComponent m_PerspectiveCameraComponent = string("PerspectiveCamera");
     OrthoCameraComponent m_OrthoCameraComponent = string("OrthoCamera");

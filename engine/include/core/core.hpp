@@ -4,12 +4,12 @@
 #include <core/windowing.hpp>
 
 #include <rendering/dx11/d3d11_context.hpp>
-#include <rendering/canvas.hpp>
-#include <rendering/shader.h>
-#include <rendering/batching.h>
+#include <rendering/draw/canvas.hpp>
+#include <rendering/core/shader.h>
+#include <rendering/draw/batching.h>
 #include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
-#include <rendering/transforming.h>
+#include <rendering/transforming/transforming.h>
 
 #include <geometry/mesh.h>
 #include <geometry/cube_geometry.h>

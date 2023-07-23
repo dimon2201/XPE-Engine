@@ -55,6 +55,8 @@ namespace xpe {
                     Indices[k++] = bottomRight;
                 }
             }
+
+            PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
         PlaneGeometry::~PlaneGeometry() {

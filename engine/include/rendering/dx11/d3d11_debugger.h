@@ -1,7 +1,7 @@
 #pragma once
 
 #include <d3d11.h>
-#include <rendering/debugger.h>
+#include <rendering/core/debugger.h>
 
 namespace xpe {
 

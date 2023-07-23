@@ -72,16 +72,19 @@ namespace xpe {
                 auto positionAccessorId = mesh["primitives"][0]["attributes"]["POSITION"].asInt();
                 auto texcoordAccessorId = mesh["primitives"][0]["attributes"]["TEXCOORD_0"].asInt();
                 auto normalAccessorId = mesh["primitives"][0]["attributes"]["NORMAL"].asInt();
+                auto tangentAccessorId = mesh["primitives"][0]["attributes"]["TANGENT"].asInt();
                 auto indicesAccessorId = mesh["primitives"][0]["indices"].asInt();
 
                 auto positionBufferViewId = root["accessors"][positionAccessorId]["bufferView"].asInt();
                 auto texcoordBufferViewId = root["accessors"][texcoordAccessorId]["bufferView"].asInt();
                 auto normalBufferViewId = root["accessors"][normalAccessorId]["bufferView"].asInt();
+                auto tangentBufferViewId = root["accessors"][tangentAccessorId]["bufferView"].asInt();
                 auto indicesBufferViewId = root["accessors"][indicesAccessorId]["bufferView"].asInt();
 
                 BufferView positionBufferView;
                 BufferView texcoordBufferView;
                 BufferView normalBufferView;
+                BufferView tangentBufferView;
                 BufferView indicesBufferView;
 
                 positionBufferView.BufferId = root["bufferViews"][positionBufferViewId]["buffer"].asInt();
@@ -95,6 +98,10 @@ namespace xpe {
                 normalBufferView.BufferId = root["bufferViews"][normalBufferViewId]["buffer"].asInt();
                 normalBufferView.ByteLength = root["bufferViews"][normalBufferViewId]["byteLength"].asInt();
                 normalBufferView.ByteOffset = root["bufferViews"][normalBufferViewId]["byteOffset"].asInt();
+
+                tangentBufferView.BufferId = root["bufferViews"][normalBufferViewId]["buffer"].asInt();
+                tangentBufferView.ByteLength = root["bufferViews"][normalBufferViewId]["byteLength"].asInt();
+                tangentBufferView.ByteOffset = root["bufferViews"][normalBufferViewId]["byteOffset"].asInt();
 
                 indicesBufferView.BufferId = root["bufferViews"][indicesBufferViewId]["buffer"].asInt();
                 indicesBufferView.ByteLength = root["bufferViews"][indicesBufferViewId]["byteLength"].asInt();
@@ -120,24 +127,31 @@ namespace xpe {
                     void* positionPtr = (void*)(
                             (usize) s_Buffers[positionBufferView.BufferId].Data +
                             (usize) positionBufferView.ByteOffset +
-                        ((usize) sizeof(glm::vec3) * i)
+                            ((usize) sizeof(glm::vec3) * i)
                     );
 
                     void* texcoordPtr = (void*)(
                             (usize) s_Buffers[texcoordBufferView.BufferId].Data +
                             (usize) texcoordBufferView.ByteOffset +
-                        ((usize) sizeof(glm::vec2) * i)
+                            ((usize) sizeof(glm::vec2) * i)
                     );
 
                     void* normalPtr = (void*)(
                             (usize) s_Buffers[normalBufferView.BufferId].Data +
                             (usize) normalBufferView.ByteOffset +
-                        ((usize) sizeof(glm::vec3) * i)
+                            ((usize) sizeof(glm::vec3) * i)
+                    );
+
+                    void* tangentPtr = (void*)(
+                            (usize) s_Buffers[tangentBufferView.BufferId].Data +
+                            (usize) tangentBufferView.ByteOffset +
+                            ((usize) sizeof(glm::vec3) * i)
                     );
 
                     memcpy(&mesh.Vertices[i].Position, positionPtr, sizeof(glm::vec3));
                     memcpy(&mesh.Vertices[i].UV, texcoordPtr, sizeof(glm::vec2));
                     memcpy(&mesh.Vertices[i].Normal, normalPtr, sizeof(glm::vec3));
+                    memcpy(&mesh.Vertices[i].Tangent, tangentPtr, sizeof(glm::vec3));
                 }
 
                 for (usize i = 0; i < mesh.Indices.Count(); i++) {

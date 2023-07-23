@@ -20,6 +20,14 @@ namespace xpe {
             memcpy(Data.data(), indices, count * sizeof(u32));
         }
 
+        void IndexArray::MoveFrom(IndexArray *src) {
+            memmove(Data.data(), src->Data.data(), src->Size());
+        }
+
+        void IndexArray::MoveFrom(u32 *indices, usize count) {
+            memmove(Data.data(), indices, count * sizeof(u32));
+        }
+
         void IndexArray::Reserve(usize count) {
             Data.reserve(count);
         }

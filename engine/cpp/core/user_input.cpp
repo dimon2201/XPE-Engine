@@ -88,12 +88,22 @@ namespace xpe {
             });
 
             glfwSetWindowSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
+                if (w <= 0 || h <= 0) {
+                    LogWarning("Window size has invalid width={} height={}. WindowResized event will not be handled!", w, h);
+                    return;
+                }
+
                 for (const auto& event : Input::WindowResizedEvents->GetEvents()) {
                     event.Function(event.Thiz, w, h);
                 }
             });
 
             glfwSetFramebufferSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
+                if (w <= 0 || h <= 0) {
+                    LogWarning("Window framebuffer size has invalid width={} height={}. FramebufferResized event will not be handled!", w, h);
+                    return;
+                }
+
                 for (const auto& event : Input::WindowFrameResizedEvents->GetEvents()) {
                     event.Function(event.Thiz, w, h);
                 }

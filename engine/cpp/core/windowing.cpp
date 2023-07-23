@@ -8,9 +8,30 @@ namespace xpe {
 
     namespace core {
 
-        static GLFWwindow* p_WindowHandle = nullptr;
+        static GLFWwindow* s_WindowHandle = nullptr;
+        static GLFWmonitor* s_PrimaryMonitor = nullptr;
+        static std::unordered_map<GLFWmonitor*, const GLFWvidmode*> s_MonitorTable;
+
+        static const std::unordered_map<eCursorMode, int> s_CursorModeTable = {
+                { eCursorMode::NORMAL, GLFW_CURSOR_NORMAL },
+                { eCursorMode::HIDE, GLFW_CURSOR_HIDDEN },
+                { eCursorMode::DISABLE, GLFW_CURSOR_DISABLED },
+                { eCursorMode::CAPTURED, GLFW_CURSOR_CAPTURED }
+        };
+
+        static const std::unordered_map<eWindowTheme, u8> s_WindowThemeTable = {
+                { eWindowTheme::LIGHT, 0 },
+                { eWindowTheme::DARK, 20 }
+        };
 
         Window WindowManager::s_Window;
+
+        int WindowManager::s_WindowModeX = 0;
+        int WindowManager::s_WindowModeY = 0;
+        int WindowManager::s_WindowModeWidth = 0;
+        int WindowManager::s_WindowModeHeight = 0;
+
+        bool WindowManager::s_EnableFullscreen = false;
 
         void WindowManager::Init() {
             LogInfo("WindowManager::Init()");
@@ -27,6 +48,8 @@ namespace xpe {
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
             glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
+            CreatePrimaryMonitor();
+
             LogInfo("WindowManager initialized");
         }
 
@@ -38,10 +61,10 @@ namespace xpe {
         void WindowManager::InitWindow(const WindowDescriptor &windowDescriptor) {
             LogInfo("WindowManager::InitWindow()");
 
-            p_WindowHandle = glfwCreateWindow(windowDescriptor.Width, windowDescriptor.Height, windowDescriptor.Title, nullptr, nullptr);
+            s_WindowHandle = glfwCreateWindow(windowDescriptor.Width, windowDescriptor.Height, windowDescriptor.Title, nullptr, nullptr);
 
-            s_Window.Instance = p_WindowHandle;
-            s_Window.Win32Instance = glfwGetWin32Window(p_WindowHandle);
+            s_Window.Instance = s_WindowHandle;
+            s_Window.Win32Instance = glfwGetWin32Window(s_WindowHandle);
             s_Window.Descriptor = windowDescriptor;
 
             SetPos(windowDescriptor.X, windowDescriptor.Y);
@@ -59,27 +82,27 @@ namespace xpe {
             }
         }
 
-        const WindowDescriptor &WindowManager::GetDescriptor() {
+        const WindowDescriptor& WindowManager::GetDescriptor() {
             return s_Window.Descriptor;
         }
 
         int WindowManager::GetWidth() {
-            glfwGetWindowSize(p_WindowHandle, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
+            glfwGetWindowSize(s_WindowHandle, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
             return s_Window.Descriptor.Width;
         }
 
         int WindowManager::GetHeight() {
-            glfwGetWindowSize(p_WindowHandle, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
+            glfwGetWindowSize(s_WindowHandle, &s_Window.Descriptor.Width, &s_Window.Descriptor.Height);
             return s_Window.Descriptor.Height;
         }
 
         int WindowManager::GetPosX() {
-            glfwGetWindowPos(p_WindowHandle, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
+            glfwGetWindowPos(s_WindowHandle, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
             return s_Window.Descriptor.X;
         }
 
         int WindowManager::GetPosY() {
-            glfwGetWindowPos(p_WindowHandle, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
+            glfwGetWindowPos(s_WindowHandle, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
             return s_Window.Descriptor.Y;
         }
 
@@ -95,24 +118,36 @@ namespace xpe {
             return s_Window.Win32Instance;
         }
 
+        int WindowManager::GetRefreshRate() {
+            return s_MonitorTable[s_PrimaryMonitor]->refreshRate;
+        }
+
+        int WindowManager::GetMonitorWidth() {
+            return s_MonitorTable[s_PrimaryMonitor]->width;
+        }
+
+        int WindowManager::GetMonitorHeight() {
+            return s_MonitorTable[s_PrimaryMonitor]->height;
+        }
+
         void WindowManager::SetPos(int x, int y) {
-            glfwSetWindowPos(p_WindowHandle, x, y);
+            glfwSetWindowPos(s_WindowHandle, x, y);
             s_Window.Descriptor.X = x;
             s_Window.Descriptor.Y = y;
         }
 
         void WindowManager::SetSize(int w, int h) {
-            glfwSetWindowSize(p_WindowHandle, w, h);
+            glfwSetWindowSize(s_WindowHandle, w, h);
             s_Window.Descriptor.Width = w;
             s_Window.Descriptor.Height = h;
         }
 
         bool WindowManager::ShouldClose() {
-            return glfwWindowShouldClose(p_WindowHandle);
+            return glfwWindowShouldClose(s_WindowHandle);
         }
 
         void WindowManager::Close() {
-            glfwSetWindowShouldClose(p_WindowHandle, GLFW_TRUE);
+            glfwSetWindowShouldClose(s_WindowHandle, GLFW_TRUE);
         }
 
         void WindowManager::PollEvents() {
@@ -120,19 +155,83 @@ namespace xpe {
         }
 
         void WindowManager::Swap() {
-            glfwSwapBuffers(p_WindowHandle);
+            glfwSwapBuffers(s_WindowHandle);
         }
 
         void WindowManager::SetUserPointer(void* userPtr) {
-            glfwSetWindowUserPointer(p_WindowHandle, userPtr);
+            glfwSetWindowUserPointer(s_WindowHandle, userPtr);
         }
 
         void* WindowManager::GetUserPointer() {
-            return glfwGetWindowUserPointer(p_WindowHandle);
+            return glfwGetWindowUserPointer(s_WindowHandle);
         }
 
         void WindowManager::SetVSync(Boolean vsync) {
             glfwSwapInterval(vsync);
+        }
+
+        void WindowManager::SetFullscreen() {
+            s_WindowModeX = s_Window.Descriptor.X;
+            s_WindowModeY = s_Window.Descriptor.Y;
+            s_WindowModeWidth = s_Window.Descriptor.Width;
+            s_WindowModeHeight = s_Window.Descriptor.Height;
+            auto& mode = s_MonitorTable[s_PrimaryMonitor];
+            glfwSetWindowMonitor(s_WindowHandle, s_PrimaryMonitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+        }
+
+        void WindowManager::SetWindowed() {
+            s_Window.Descriptor.X = s_WindowModeX;
+            s_Window.Descriptor.Y = s_WindowModeY;
+            s_Window.Descriptor.Width = s_WindowModeWidth;
+            s_Window.Descriptor.Height = s_WindowModeHeight;
+            auto& refreshRate = s_MonitorTable[s_PrimaryMonitor]->refreshRate;
+            glfwSetWindowMonitor(
+                    s_WindowHandle,
+                    nullptr,
+                    s_WindowModeX, s_WindowModeY,
+                    s_WindowModeWidth, s_WindowModeHeight,
+                    refreshRate
+            );
+        }
+
+        void WindowManager::SetFullscreenWindowed() {
+            s_WindowModeX = s_Window.Descriptor.X;
+            s_WindowModeY = s_Window.Descriptor.Y;
+            s_WindowModeWidth = s_Window.Descriptor.Width;
+            s_WindowModeHeight = s_Window.Descriptor.Height;
+            auto& mode = s_MonitorTable[s_PrimaryMonitor];
+            glfwSetWindowMonitor(
+                    s_WindowHandle,
+                    nullptr,
+                    0, 0,
+                    mode->width, mode->height,
+                    mode->refreshRate
+            );
+        }
+
+        void WindowManager::ToggleWindowMode() {
+            s_EnableFullscreen = !s_EnableFullscreen;
+            if (s_EnableFullscreen)
+                SetFullscreen();
+            else
+                SetWindowed();
+        }
+
+        bool WindowManager::IsWindowed() {
+            return !s_EnableFullscreen;
+        }
+
+        void WindowManager::CreatePrimaryMonitor() {
+            s_PrimaryMonitor = glfwGetPrimaryMonitor();
+            const GLFWvidmode* primary_mode = glfwGetVideoMode(s_PrimaryMonitor);
+            s_WindowModeX = primary_mode->width / 4;
+            s_WindowModeY = primary_mode->height / 4;
+            s_MonitorTable[s_PrimaryMonitor] = primary_mode;
+
+            glfwWindowHint(GLFW_RED_BITS, primary_mode->redBits);
+            glfwWindowHint(GLFW_GREEN_BITS, primary_mode->greenBits);
+            glfwWindowHint(GLFW_BLUE_BITS, primary_mode->blueBits);
+            glfwWindowHint(GLFW_REFRESH_RATE, primary_mode->refreshRate);
         }
 
     }

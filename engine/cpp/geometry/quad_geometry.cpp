@@ -16,6 +16,8 @@ namespace xpe {
             InitUV(&Vertices[0], &Vertices[1], &Vertices[2], &Vertices[3]);
 
             Indices.Data = { 0, 1, 2, 2, 3, 0 };
+
+            PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_LIST;
         }
 
         Quad2d::~Quad2d() {
@@ -36,6 +38,8 @@ namespace xpe {
             InitNormal(&Vertices[0], &Vertices[1], &Vertices[2], &Vertices[3]);
 
             Indices.Data = { 0, 1, 2, 2, 3, 0 };
+
+            PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_LIST;
         }
 
         Quad::~Quad() {

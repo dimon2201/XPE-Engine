@@ -25,6 +25,10 @@ namespace xpe
             TransformComponent(const string& usid) : Component(usid)
             {}
 
+            TransformComponent(const string& usid, u32 index) : Component(usid), Index(index)
+            {}
+
+            u32 Index = 0;
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Rotation = { 0, 0, 0 };
             glm::vec3 Scale = { 1, 1, 1 };
@@ -35,6 +39,10 @@ namespace xpe
             Transform2DComponent(const string& usid) : Component(usid)
             {}
 
+            Transform2DComponent(const string& usid, u32 index) : Component(usid), Index(index)
+            {}
+
+            u32 Index = 0;
             glm::vec2 Position = { 0, 0 };
             float Rotation = 0;
             glm::vec2 Scale = { 1, 1 };
@@ -122,7 +130,7 @@ namespace xpe
 
                     if (storage == nullptr)
                     {
-                        void* storageMemory = allocObj(sizeof(ComponentType) * k_maxComponentCount);
+                        void* storageMemory = alloc(sizeof(ComponentType) * k_maxComponentCount);
 
                         m_Storages.insert({c.GetType(), {storageMemory } });
                         
