@@ -1,5 +1,5 @@
 #include <core/core.hpp>
-
+#include <launcher.h>
 #include "test_config.h"
 
 using namespace xpe::core;
@@ -289,7 +289,7 @@ private:
 
         // setup rasterizer
         m_Pipeline.Rasterizer.CullMode = eCullMode::DEFAULT;
-        m_Pipeline.Rasterizer.FillMode = eFillMode::WIREFRAME;
+        m_Pipeline.Rasterizer.FillMode = eFillMode::DEFAULT;
 
         // init pipeline
         context->CreatePipeline(m_Pipeline);

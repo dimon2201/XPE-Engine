@@ -1,7 +1,7 @@
-# set all config types available in engine project
+# set all config types available in game project
 macro(add_game_configs)
 
-    # define all engine build config types
+    # define all game build config types
     set(CMAKE_CONFIGURATION_TYPES Debug;Release;)
 
     set(LIB_PATH ${CMAKE_BINARY_DIR}/lib)
@@ -28,6 +28,7 @@ endmacro()
 
 # add game definitions
 macro(add_game_definitions)
+    add_game_configs()
     add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
 endmacro()
 
