@@ -1,4 +1,5 @@
 #include <core/app.hpp>
+#include <core/camera.h>
 
 // API specific includes
 #include <rendering/dx11/d3d11_context.hpp>
@@ -67,10 +68,9 @@ namespace xpe {
 
             TransformManager::Init(context);
 
-            ttf::TTFManager::Init();
+            CameraManager::Init(context);
 
-            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
-            m_CameraBuffer2d = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
+            ttf::TTFManager::Init();
 
             Init();
 
@@ -117,9 +117,6 @@ namespace xpe {
             }
 
             Free();
-
-            m_CameraBuffer.Free();
-            m_CameraBuffer2d.Free();
 
             ttf::TTFManager::Free();
 

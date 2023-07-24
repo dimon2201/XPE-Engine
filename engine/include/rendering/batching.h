@@ -5,7 +5,7 @@
 #include <rendering/buffers/vertex_buffer.h>
 #include <rendering/buffers/index_buffer.h>
 #include <rendering/buffers/instance_buffer.h>
-#include <rendering/text.h>
+#include <ttf/text.h>
 
 namespace xpe {
 
@@ -164,7 +164,7 @@ namespace xpe {
             void BeginBatch(const string& geometryUSID);
             void BeginBatch(BatchTextGlyphIndexed& batchIndexed);
 
-            void AddText(const Text& text);
+            void AddText(const xpe::ttf::Text& text);
 
             bool AddInstance(const string& usid, const TextGlyphInstance& instance);
 

@@ -729,7 +729,7 @@ namespace xpe {
             batchIndexed.Instances.Bind();
         }
 
-        void TextBatchManager::AddText(const Text& text) {
+        void TextBatchManager::AddText(const xpe::ttf::Text& text) {
             core::usize charsCount = text.Chars.size();
 
             ReserveInstances("Glyph", charsCount);

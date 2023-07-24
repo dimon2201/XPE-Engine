@@ -7,15 +7,15 @@
 
 namespace xpe {
 
-    namespace render {
+    namespace ttf {
 
         struct ENGINE_API Text {
             Text() {}
             ~Text() {}
 
-            string Chars;
-            TransformComponent* Transform;
-            ttf::Font* TextFont;
+            xpe::core::string Chars;
+            xpe::render::TransformComponent* Transform;
+            Font* TextFont;
         };
 
     }

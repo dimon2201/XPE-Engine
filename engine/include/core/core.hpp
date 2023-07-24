@@ -2,6 +2,7 @@
 
 #include <launcher.h>
 #include <core/windowing.hpp>
+#include <core/camera.h>
 
 #include <rendering/dx11/d3d11_context.hpp>
 #include <rendering/canvas.hpp>

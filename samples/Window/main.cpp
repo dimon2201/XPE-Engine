@@ -1,5 +1,5 @@
 #include <core/core.hpp>
-#include <rendering/text.h>
+#include <ttf/text.h>
 
 #include "test_config.h"
 
@@ -41,14 +41,14 @@ public:
         Font* pfont = TTFManager::Get().GetFont("resources/fonts/Roboto-Italic.ttf");
         TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/Roboto-Italic.png", pfont->Atlas, Texture::eFileFormat::PNG);
 
-        m_Pipeline.Textures.emplace_back(&font.Atlas);
+        //m_Pipeline.Textures.emplace_back(&font.Atlas);
 
         TransformComponent transform("TextTransform");
         transform.Position = { 0.0f, 0.0f, 0.0f };
         transform.Rotation = { 0.0f, 0.0f, 0.0f };
         transform.Scale = { 1.0f, 1.0f, 1.0f };
 
-        xpe::render::Text text;
+        xpe::ttf::Text text;
         text.Chars = string("ABCD");
         text.Transform = &transform;
         text.TextFont = &font;
@@ -143,13 +143,13 @@ private:
 
     void InitPipeline() {
         // setup buffers
-        m_Pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
+        m_Pipeline.VSBuffers.emplace_back(CameraManager::GetCameraBuffer());
         m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
         m_Pipeline.VSBuffers.emplace_back(MaterialManager::GetBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
-
+        
         // setup shader
         m_Pipeline.Shader = ShaderManager::Builder()
                 .AddVertexStageFromFile("shaders/text.vs")
@@ -172,7 +172,7 @@ private:
 
     void InitCamera() {
         m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
-        m_Camera = new PerspectiveCamera(&m_CameraBuffer, &m_PerspectiveCameraComponent);
+        m_Camera = new PerspectiveCamera(CameraManager::GetCameraBuffer(), &m_PerspectiveCameraComponent);
         m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
         m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
@@ -182,7 +182,7 @@ private:
 
     void InitCamera2D() {
         m_OrthoCameraComponent.Position = { 0, 0, -1 };
-        m_Camera2D = new OrthoCamera(&m_CameraBuffer2d, &m_OrthoCameraComponent);
+        m_Camera2D = new OrthoCamera(CameraManager::GetCameraBuffer2D(), &m_OrthoCameraComponent);
     }
 
     void UpdateCamera() {
