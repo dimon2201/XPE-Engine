@@ -1,7 +1,6 @@
 #pragma once
 
 #include <core/app.hpp>
-#include <core/windowing.hpp>
 
 #include <rendering/dx11/d3d11_context.hpp>
 #include <rendering/draw/canvas.hpp>
@@ -17,8 +16,6 @@
 #include <geometry/plane_geometry.h>
 #include <geometry/quad_geometry.h>
 #include <geometry/triangle_geometry.h>
-
-#include <controls/camera.h>
 
 #include <importers/importer.h>
 #include <importers/exporter.h>

@@ -4,9 +4,6 @@ project(xpe_example_window)
 
 include(../engine/cmake_tools/CMakeLists.txt)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
-
 file(GLOB_RECURSE SOURCE_FILES Window/*.c Window/*.cpp)
 
 include_engine(../engine)
@@ -17,15 +14,11 @@ add_engine_definitions()
 link_engine(${PROJECT_NAME} ../engine)
 
 # move files, shaders, configs into bin folder
-copy_build_file(samples/config.json config.json)
-copy_build_file(samples/memory_config.json memory_config.json)
-copy_build_file(samples/test_config.json test_config.json)
+copy_build_dir(samples/config config)
 copy_build_dir(samples/resources resources)
 copy_build_dir(samples/shaders shaders)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
-    copy_build_file(samples/config.json ${CONFIG}/config.json)
-    copy_build_file(samples/memory_config.json ${CONFIG}/memory_config.json)
-    copy_build_file(samples/test_config.json ${CONFIG}/test_config.json)
+    copy_build_dir(samples/config ${CONFIG}/config)
     copy_build_dir(samples/resources ${CONFIG}/resources)
     copy_build_dir(samples/shaders ${CONFIG}/shaders)
 endforeach()

@@ -72,7 +72,7 @@
 // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2634.html
 
 // #define GLM_CXX11_ALIAS_TEMPLATE
-// Template aliases	N2258	GCC 4.7
+// TemplateGame aliases	N2258	GCC 4.7
 // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2258.pdf
 
 //

@@ -69,10 +69,12 @@ namespace xpe {
 
             ttf::TTFManager::Init();
 
-            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
-            m_CameraBuffer2d = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
+            cameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
+            cameraBuffer2D = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
 
             Init();
+
+            InitGame();
 
             while (!WindowManager::ShouldClose())
             {
@@ -101,6 +103,8 @@ namespace xpe {
 
                 Update();
 
+                m_Game->Update();
+
                 WindowManager::PollEvents();
                 WindowManager::Swap();
 
@@ -116,10 +120,12 @@ namespace xpe {
 
             }
 
+            m_Game->Free();
+
             Free();
 
-            m_CameraBuffer.Free();
-            m_CameraBuffer2d.Free();
+            cameraBuffer.Free();
+            cameraBuffer2D.Free();
 
             ttf::TTFManager::Free();
 
@@ -147,6 +153,24 @@ namespace xpe {
             if (Config.LockOnFPS && Config.FPS < DeltaTime.Fps()) {
                 DeltaTime.SetFps(Config.FPS);
             }
+        }
+
+        void Application::InitGame() {
+            m_Game = CreateGame();
+
+            m_Game->context = context;
+            m_Game->cameraBuffer = &cameraBuffer;
+            m_Game->cameraBuffer2D = &cameraBuffer2D;
+            m_Game->Config = &Config;
+            m_Game->CPUTime = &CPUTime;
+            m_Game->DeltaTime = &DeltaTime;
+            m_Game->CurrentTime = &CurrentTime;
+
+            m_Game->Init();
+        }
+
+        Game* Application::CreateGame() {
+            return new Game();
         }
 
     }

@@ -10,6 +10,7 @@
 #include <core/platform_detection.h>
 
 // STL
+#define _ENFORCE_MATCHING_ALLOCATORS 0
 #include <random>
 #include <string>
 #include <algorithm>
@@ -35,6 +36,7 @@
 #include <utility>
 #include <chrono>
 #include <iostream>
+#include <regex>
 
 // GLM
 #include <glm.hpp>

@@ -6,9 +6,9 @@ namespace xpe {
         static Ref<spdlog::logger> s_Tracer;
         static Ref<spdlog::logger> s_MemLogger;
         // [DateTime][Hours:Minutes:Seconds:Milliseconds]: Message
-        static const char* s_logPattern = "[%D][%H:%M:%S.%e]: %^%v%$";
+        static const char* s_LogPattern = "[%D][%H:%M:%S.%e]: %^%v%$";
         // [DateTime][Hours:Minutes:Seconds:Milliseconds] FunctionName(FileName:CodeLine) Message
-        static const char* s_tracePattern = "[%D][%H:%M:%S.%e] %^%!(%s:%#) %v%$";
+        static const char* s_TracePattern = "[%D][%H:%M:%S.%e] %^%!(%s:%#) %v%$";
 
         using LogSinkColor = spdlog::sinks::stdout_color_sink_mt;
         using ErrorSinkColor = spdlog::sinks::stderr_color_sink_mt;
@@ -47,7 +47,7 @@ namespace xpe {
                 ss << "logs/" << name << ".log";
                 hstring filepath = ss.str();
                 ss = {};
-                s_Logger = createLogger(logName.c_str(), filepath.c_str(), s_logPattern, backtrace);
+                s_Logger = createLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
 
                 ss << name << "_Tracer";
                 logName = ss.str();
@@ -55,7 +55,7 @@ namespace xpe {
                 ss << "logs/" << name << ".trace";
                 filepath = ss.str();
                 ss = {};
-                s_Tracer = createLogger(logName.c_str(), filepath.c_str(), s_tracePattern, backtrace);
+                s_Tracer = createLogger(logName.c_str(), filepath.c_str(), s_TracePattern, backtrace);
 
                 ss << name << "_Memory";
                 logName = ss.str();
@@ -63,7 +63,7 @@ namespace xpe {
                 ss << "logs/" << name << ".memory";
                 filepath = ss.str();
                 ss = {};
-                s_MemLogger = createLogger(logName.c_str(), filepath.c_str(), s_logPattern, backtrace);
+                s_MemLogger = createLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
             }
 
             catch (const spdlog::spdlog_ex &ex) {

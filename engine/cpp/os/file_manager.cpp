@@ -1,11 +1,9 @@
-
-#include <os/file_manager.h>
-
 namespace xpe {
 
     namespace os {
 
-        string FileManager::ReadFileWithIncludes(const string& path, string includeIdentifier) {
+        string FileManager::ReadFileWithIncludes(const string& path, string includeIdentifier)
+        {
             includeIdentifier += ' ';
             static bool recursive = false;
             string fullSrc = "";
@@ -14,7 +12,7 @@ namespace xpe {
             file.open(path.c_str());
 
             if (!file.is_open()) {
-                LogError("Failed to open file {0}", path.c_str());
+                LogError("Failed to open file {}", path.c_str());
                 return fullSrc;
             }
 
@@ -56,17 +54,42 @@ namespace xpe {
         void FileManager::GetFilepath(
                 const string& fullPath,
                 string& pathWithoutFilename
-        ) {
+        )
+        {
             // Remove the file name and store the path to this folder
             size_t found = fullPath.find_last_of("/\\");
             pathWithoutFilename = fullPath.substr(0, found + 1);
         }
 
-        bool FileManager::WriteFile(const char* filepath, const string &str) {
+        string FileManager::ReadFile(const char* filepath)
+        {
+            std::ifstream file;
+
+            file.open(filepath);
+
+            if (!file.is_open()) {
+                LogError("Failed to open-read a file {}", filepath);
+                return {};
+            }
+
+            string line;
+            string buffer;
+            while (std::getline(file, line)) {
+                buffer += line + '\n';
+            }
+
+            file.close();
+
+            return buffer;
+        }
+
+        bool FileManager::WriteFile(const char* filepath, const string &str)
+        {
             return WriteFile(filepath, str.c_str(), str.length());
         }
 
-        bool FileManager::WriteFile(const char* filepath, const char* bytes, usize byteSize) {
+        bool FileManager::WriteFile(const char* filepath, const char* bytes, usize byteSize)
+        {
             std::ofstream file;
 
             file.open(filepath);
@@ -81,6 +104,26 @@ namespace xpe {
             file.close();
 
             return true;
+        }
+
+        void FileManager::CopyDirs(const char* srcPath, const char* destPath, const bool createRoot)
+        {
+            namespace fs = std::filesystem;
+
+            if (createRoot)
+                fs::create_directory(destPath);
+
+            for (fs::path p: fs::directory_iterator(srcPath))
+            {
+                fs::path destFile = destPath/p.filename();
+
+                if (fs::is_directory(p)) {
+                    fs::create_directory(destFile);
+                    CopyDirs(p.string().c_str(), destFile.string().c_str(), false);
+                } else {
+                    fs::copy(p, destFile);
+                }
+            }
         }
 
     }

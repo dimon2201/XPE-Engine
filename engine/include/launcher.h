@@ -6,10 +6,10 @@ using namespace xpe::core;
 
 int main(int argc, char** argv) {
     // read app configs
-    AppConfig::Get() = AppConfigReader::Read("config.json");
+    AppConfig::Get() = AppConfigReader::Read("config/config.json");
 
     // read memory configs
-    MemoryConfig::Get() = MemoryConfigReader::Read("memory_config.json");
+    MemoryConfig::Get() = MemoryConfigReader::Read("config/memory_config.json");
 
     // init memory pools
     MemoryPoolManager::Init(MemoryConfig::Get());

@@ -1,8 +1,6 @@
 #pragma once
 
-#include <core/windowing.hpp>
-
-#include <controls/camera.h>
+#include <core/game.h>
 
 namespace xpe {
 
@@ -15,13 +13,13 @@ namespace xpe {
 
         class ENGINE_API Application {
 
-        protected:
+        public:
             Context* context = nullptr;
-            Time CPUTime;       // delta CPU time ms = end time - begin time
-            Time DeltaTime;     // delta CurrentTime ms = end time - begin time
+            Time CPUTime;              // delta CPU time ms = end time - begin time
+            Time DeltaTime;            // delta CurrentTime ms = end time - begin time
             Time CurrentTime;
-            CameraBuffer m_CameraBuffer;
-            CameraBuffer m_CameraBuffer2d;
+            CameraBuffer cameraBuffer;
+            CameraBuffer cameraBuffer2D;
             AppConfig Config;
 
         public:
@@ -32,11 +30,19 @@ namespace xpe {
             void Run();
 
         protected:
-            virtual void Init() = 0;
-            virtual void Update() = 0;
-            virtual void Free() = 0;
-
             void LockFPSFromConfig();
+
+        private:
+            virtual void Init() {}
+            virtual void Update() {}
+            virtual void Free() {}
+
+            virtual Game* CreateGame();
+
+            void InitGame();
+
+        protected:
+            Game* m_Game = nullptr;
 
         };
 
