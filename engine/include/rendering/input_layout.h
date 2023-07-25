@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API InputLayout final {
+        struct ENGINE_API InputLayout final : public Object {
             ePrimitiveTopology PrimitiveTopology;
             GPUResource Layout;
             Blob* VertexBlob = nullptr;

@@ -1,5 +1,4 @@
 #include ../engine_shaders/types.shader
-#include ../engine_shaders/text/types.shader
 #include ../engine_shaders/batching.shader
 #include ../engine_shaders/transforming.shader
 #include ../engine_shaders/controls/camera.shader

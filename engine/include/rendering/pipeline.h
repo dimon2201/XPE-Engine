@@ -9,7 +9,7 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API Pipeline final {
+        struct ENGINE_API Pipeline final : public Object {
             InputLayout InputLayout;
             vector<Buffer*> VSBuffers; // buffers defined in vertex shader
             vector<Buffer*> PSBuffers; // buffers defined in pixel shader
