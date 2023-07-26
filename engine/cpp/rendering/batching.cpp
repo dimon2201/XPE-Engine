@@ -729,41 +729,6 @@ namespace xpe {
             batchIndexed.Instances.Bind();
         }
 
-        void TextBatchManager::AddText(const xpe::ttf::Text& text) {
-            core::usize charsCount = text.Chars.size();
-
-            ReserveInstances("Glyph", charsCount);
-
-            for (core::usize i = 0; i < charsCount; i++)
-            {
-                char character = text.Chars[i];
-                auto it = text.TextFont->AlphaBet.find(character);
-                if (it == text.TextFont->AlphaBet.end()) {
-                    continue;
-                }
-
-                xpe::ttf::Font::Glyph glyph = it->second;
-
-                TransformComponent glyphTransform("GlyphTransform" + m_GlyphsCount);
-                glyphTransform.Position.x = (float)i;
-
-                TransformManager::UpdateTransform(m_GlyphsCount, glyphTransform);
-
-                TextGlyphInstance glyphInstance;
-                glyphInstance.TransformIndex = m_GlyphsCount;
-                glyphInstance.GlyphIndex = m_GlyphsCount;
-                glyphInstance.Left = glyph.Left;
-                glyphInstance.Top = glyph.Top;
-                glyphInstance.Advance = glyph.Advance;
-
-                AddInstance("Glyph", glyphInstance);
-
-                m_GlyphsCount++;
-            }
-
-            FlushInstances("Glyph");
-        }
-
         bool TextBatchManager::AddInstance(const string& usid, const TextGlyphInstance &instance)
         {
             auto batchIndexed = m_BatchIndexedLookup.find(usid);

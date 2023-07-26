@@ -5,7 +5,6 @@
 #include <rendering/buffers/vertex_buffer.h>
 #include <rendering/buffers/index_buffer.h>
 #include <rendering/buffers/instance_buffer.h>
-#include <ttf/text.h>
 
 namespace xpe {
 
@@ -164,8 +163,6 @@ namespace xpe {
             void BeginBatch(const string& geometryUSID);
             void BeginBatch(BatchTextGlyphIndexed& batchIndexed);
 
-            void AddText(const xpe::ttf::Text& text);
-
             bool AddInstance(const string& usid, const TextGlyphInstance& instance);
 
             void RemoveInstance(const string& usid, const TextGlyphInstance& instance);
@@ -193,7 +190,6 @@ namespace xpe {
             Context* m_Context;
             unordered_map<string, BatchTextGlyphIndexed*> m_BatchIndexedLookup;
             vector<BatchTextGlyphIndexed> m_BatchesIndexed;
-            core::usize m_GlyphsCount = 0;
         };
 
     }

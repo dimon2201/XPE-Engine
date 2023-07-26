@@ -1,5 +1,6 @@
 #include <core/core.hpp>
-#include <ttf/text.h>
+#include <ttf/text_renderer.hpp>
+#include <ttf/ttf_manager.hpp>
 
 #include "test_config.h"
 
@@ -37,22 +38,12 @@ public:
         m_BatchManager = new BatchManager(context);
         m_TextBatchManager = new TextBatchManager(context);
 
-        Font font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
-        Font* pfont = TTFManager::Get().GetFont("resources/fonts/Roboto-Italic.ttf");
-        TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/Roboto-Italic.png", pfont->Atlas, Texture::eFileFormat::PNG);
-
-        //m_Pipeline.Textures.emplace_back(&font.Atlas);
+        m_Font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
 
         TransformComponent transform("TextTransform");
         transform.Position = { 0.0f, 0.0f, 0.0f };
         transform.Rotation = { 0.0f, 0.0f, 0.0f };
         transform.Scale = { 1.0f, 1.0f, 1.0f };
-
-        xpe::ttf::Text text;
-        text.Chars = string("ABCD");
-        text.Transform = &transform;
-        text.TextFont = &font;
-        m_TextBatchManager->AddText(text);
 
         // it will flush all materials data into GPU memory
         MaterialManager::UpdateMaterials();
@@ -66,6 +57,8 @@ public:
         m_DirectLightComponent.Light.Data->Position = {0, 0, 0 };
         m_DirectLightComponent.Light.Data->Color = {1, 1, 1 };
         LightManager::UpdateLight(m_DirectLightComponent.Light);
+
+        TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
     }
 
     void Update() override final
@@ -81,8 +74,9 @@ public:
 
             m_Canvas->Clear(glm::vec4(1.0f));
 
-            context->BindRenderPipeline(&m_Pipeline);
-            m_TextBatchManager->DrawAll();
+            TransformComponent transform("TextTransform");
+            transform.Position = { 0.0f, 0.0f, 0.0f };
+            TextRenderer::Get().Draw(&m_Font, &transform, "Hello!");
 
             m_Canvas->Present();
         }
@@ -247,6 +241,7 @@ private:
 
     BatchManager* m_BatchManager;
     TextBatchManager* m_TextBatchManager;
+    Font m_Font;
 
     Pipeline m_Pipeline;
 

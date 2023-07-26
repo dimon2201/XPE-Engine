@@ -1,5 +1,5 @@
 #include <ttf/text_renderer.hpp>
-#include <ttf/text.h>
+#include <ttf/ttf_manager.hpp>
 #include <core/types.hpp>
 #include <core/camera.h>
 #include <rendering/transforming.h>
@@ -8,62 +8,80 @@
 #include <rendering/shader.h>
 
 xpe::ttf::TextRenderer* xpe::ttf::TextRenderer::s_Instance = nullptr;
-xpe::render::Context* xpe::ttf::TextRenderer::s_Context = nullptr;
-xpe::render::TextBatchManager* xpe::ttf::TextRenderer::s_Manager = nullptr;
-xpe::render::InputLayout* xpe::ttf::TextRenderer::s_InputLayout = nullptr;
-xpe::render::Pipeline* xpe::ttf::TextRenderer::s_Pipeline = nullptr;
 
 void xpe::ttf::TextRenderer::Init(xpe::render::Context* context, xpe::render::TextBatchManager* manager, xpe::render::Canvas* canvas) {
     s_Instance = new TextRenderer();
-    s_Context = context;
-    s_Manager = manager;
-    s_InputLayout = new xpe::render::InputLayout();
-    s_Pipeline = new xpe::render::Pipeline();
+    s_Instance->m_Context = context;
+    s_Instance->m_Manager = manager;
+    s_Instance->m_InputLayout = new xpe::render::InputLayout();
+    s_Instance->m_Pipeline = new xpe::render::Pipeline();
 
     // Setup pipeline
-    s_Pipeline->VSBuffers.emplace_back(xpe::core::CameraManager::GetCameraBuffer());
-    s_Pipeline->VSBuffers.emplace_back(xpe::render::TransformManager::GetBuffer());
-    s_Pipeline->VSBuffers.emplace_back(xpe::render::MaterialManager::GetBuffer());
-    s_Pipeline->PSBuffers.emplace_back(xpe::render::LightManager::GetDirectBuffer());
-    s_Pipeline->PSBuffers.emplace_back(xpe::render::LightManager::GetPointBuffer());
-    s_Pipeline->PSBuffers.emplace_back(xpe::render::LightManager::GetSpotBuffer());
+    s_Instance->m_Pipeline->VSBuffers.emplace_back(xpe::core::CameraManager::GetCameraBuffer());
+    s_Instance->m_Pipeline->VSBuffers.emplace_back(xpe::render::TransformManager::GetBuffer());
 
-    s_Pipeline->Shader = xpe::render::ShaderManager::Builder()
+    s_Instance->m_Pipeline->Shader = xpe::render::ShaderManager::Builder()
         .AddVertexStageFromFile("shaders/text.vs")
         .AddPixelStageFromFile("shaders/text.ps")
         .Build("window");
-    s_Pipeline->Shader->PrimitiveTopology = xpe::render::ePrimitiveTopology::TRIANGLE_LIST;
+    s_Instance->m_Pipeline->Shader->PrimitiveTopology = xpe::render::ePrimitiveTopology::TRIANGLE_LIST;
 
-    s_InputLayout->PrimitiveTopology = xpe::render::ePrimitiveTopology::TRIANGLE_LIST;
-    s_InputLayout->Format = xpe::render::Vertex3D::Format;
-    s_Pipeline->InputLayout = *s_InputLayout;
+    s_Instance->m_InputLayout->PrimitiveTopology = xpe::render::ePrimitiveTopology::TRIANGLE_LIST;
+    s_Instance->m_InputLayout->Format = xpe::render::Vertex3D::Format;
+    s_Instance->m_Pipeline->InputLayout = *s_Instance->m_InputLayout;
 
-    s_Pipeline->RenderTarget = canvas->GetRenderTarget();
-    s_Pipeline->DepthStencilState.UseDepthTest = xpe::core::K_TRUE;
+    s_Instance->m_Pipeline->RenderTarget = canvas->GetRenderTarget();
+    s_Instance->m_Pipeline->DepthStencilState.UseDepthTest = xpe::core::K_TRUE;
+
+    s_Instance->m_Pipeline->Textures.push_back(nullptr);
 
     // Init pipeline
-    context->CreateRenderPipeline(*s_Pipeline);
+    context->CreateRenderPipeline(*s_Instance->m_Pipeline);
 }
 
 void xpe::ttf::TextRenderer::Free() {
     delete s_Instance;
 }
 
-void xpe::ttf::TextRenderer::DrawText(Font* font, const xpe::render::TransformComponent* transform, const char* chars)
+void xpe::ttf::TextRenderer::Draw(xpe::ttf::Font* font, const xpe::render::TransformComponent* transform, const char* chars)
 {
-    Text text;
-    text.Chars = core::string(chars);
-    text.Transform = (xpe::render::TransformComponent*)transform;
-    text.TextFont = (Font*)font;
-
     // Bind font atlas
     font->Atlas.Slot = 0;
-    s_Pipeline->Textures.emplace_back(&font->Atlas);
+    m_Pipeline->Textures[0] = &font->Atlas;
 
     // Prepare text batch manager for drawing
-    s_Manager->ClearInstances("Glyph");
-    s_Manager->AddText(text);
+    m_Manager->ClearInstances("Glyph");
+
+    // Add instances to text batch manager
+    xpe::core::usize charsCount = strlen(chars);
+    m_Manager->ReserveInstances("Glyph", charsCount);
+    for (core::usize i = 0; i < charsCount; i++)
+    {
+        char character = chars[i];
+        auto it = font->AlphaBet.find(character);
+        if (it == font->AlphaBet.end()) {
+            continue;
+        }
+
+        Font::Glyph glyph = it->second;
+
+        xpe::render::TransformComponent glyphTransform("GlyphTransform" + i);
+        glyphTransform.Position.x = (float)i;
+
+        xpe::render::TransformManager::UpdateTransform(i, glyphTransform);
+
+        xpe::render::TextGlyphInstance glyphInstance;
+        glyphInstance.TransformIndex = i;
+        glyphInstance.Left = glyph.Left;
+        glyphInstance.Top = glyph.Top;
+        glyphInstance.Advance = glyph.Advance;
+
+        m_Manager->AddInstance("Glyph", glyphInstance);
+    }
+
+    m_Manager->FlushInstances("Glyph");
 
     // Draw glyphs
-    s_Manager->DrawAll();
+    m_Context->BindRenderPipeline(m_Pipeline);
+    m_Manager->DrawAll();
 }

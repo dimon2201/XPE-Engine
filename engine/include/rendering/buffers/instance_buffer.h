@@ -31,7 +31,6 @@ namespace xpe {
         {
             u32 TransformIndex = 0;
             u32 CameraIndex = 0;
-            u32 GlyphIndex = 0;
             f32 Left = 0;
             f32 Top = 0;
             f32 Advance = 0;
