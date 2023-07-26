@@ -10,50 +10,40 @@ namespace xpe {
 
         typedef unsigned long FileWatchID;
 
-        typedef void (*FileAddedFn)(void* thiz, FileWatchID watchId, const string& dirname, const string& filename);
+        typedef void (*FileAddedFn)(void* thiz, const string& watchpath, const string& filepath);
         template<typename T>
-        static void OnFileAdded(void* const thiz, FileWatchID watchId, const string& dirname, const string& filename) {
-            ((T*) thiz)->FileAdded(watchId, dirname, filename);
+        static void OnFileAdded(void* const thiz, const string& watchpath, const string& filepath) {
+            ((T*) thiz)->FileAdded(watchpath, filepath);
         }
 
-        typedef void (*FileDeletedFn)(void* thiz, FileWatchID watchId, const string& dirname, const string& filename);
+        typedef void (*FileDeletedFn)(void* thiz, const string& watchpath, const string& filepath);
         template<typename T>
-        static void OnFileDeleted(void* const thiz, FileWatchID watchId, const string& dirname, const string& filename) {
-            ((T*) thiz)->FileDeleted(watchId, dirname, filename);
+        static void OnFileDeleted(void* const thiz, const string& watchpath, const string& filepath) {
+            ((T*) thiz)->FileDeleted(watchpath, filepath);
         }
 
-        typedef void (*FileModifiedFn)(void* thiz, FileWatchID watchId, const string& dirname, const string& filename);
+        typedef void (*FileModifiedFn)(void* thiz, const string& watchpath, const string& filepath);
         template<typename T>
-        static void OnFileModified(void* const thiz, FileWatchID watchId, const string& dirname, const string& filename) {
-            ((T*) thiz)->FileModified(watchId, dirname, filename);
+        static void OnFileModified(void* const thiz, const string& watchpath, const string& filepath) {
+            ((T*) thiz)->FileModified(watchpath, filepath);
         }
 
-        typedef void (*FileNewNameFn)(void* thiz, FileWatchID watchId, const string& dirname, const string& filename);
+        typedef void (*FileNewNameFn)(void* thiz, const string& watchpath, const string& filepath);
         template<typename T>
-        static void OnFileNewName(void* const thiz, FileWatchID watchId, const string& dirname, const string& filename) {
-            ((T*) thiz)->FileNewName(watchId, dirname, filename);
+        static void OnFileNewName(void* const thiz, const string& watchpath, const string& filepath) {
+            ((T*) thiz)->FileNewName(watchpath, filepath);
         }
 
-        typedef void (*FileOldNameFn)(void* thiz, FileWatchID watchId, const string& dirname, const string& filename);
+        typedef void (*FileOldNameFn)(void* thiz, const string& watchpath, const string& filepath);
         template<typename T>
-        static void OnFileOldName(void* const thiz, FileWatchID watchId, const string& dirname, const string& filename) {
-            ((T*) thiz)->FileOldName(watchId, dirname, filename);
+        static void OnFileOldName(void* const thiz, const string& watchpath, const string& filepath) {
+            ((T*) thiz)->FileOldName(watchpath, filepath);
         }
 
         class FileWatcher;
 
-        struct ENGINE_API FileWatch {
-
-            enum class eAction {
-                ADDED,
-                DELETED,
-                MODIFIED,
-                NEW_NAME,
-                OLD_NAME
-            };
-
-            FileWatcher* FileWatcher = nullptr;
-
+        struct ENGINE_API FileWatch final {
+            std::filesystem::file_time_type Timestamp;
             Event<FileAddedFn> FileAddedEvent;
             Event<FileDeletedFn> FileDeletedEvent;
             Event<FileModifiedFn> FileModifiedEvent;
@@ -61,34 +51,67 @@ namespace xpe {
             Event<FileOldNameFn> FileOldNameEvent;
         };
 
-        typedef map<FileWatchID, FileWatch*> FileWatchMap;
-
-        class ENGINE_API FileWatcher : public Object
+        struct ENGINE_API FileWatcher
         {
 
-        public:
-            FileWatcher();
+            enum class eAction
+            {
+                ADDED,
+                DELETED,
+                MODIFIED,
+                NEW_NAME,
+                OLD_NAME
+            };
 
-            ~FileWatcher();
+            string USID;
 
-            FileWatch* CreateWatch(const string& directory, bool recursive = false);
+            FileWatcher(const string& usid) : USID(usid) {}
 
-            void RemoveWatch(const string& directory);
-            void RemoveWatch(FileWatchID watchid);
+        protected:
+            void Dispatch(
+                    FileWatch& watch,
+                    const string& watchpath,
+                    const string& filepath,
+                    FileWatcher::eAction action
+            );
+        };
+
+        struct ENGINE_API MultiFileWatcher : public FileWatcher
+        {
+
+            MultiFileWatcher(const string& usid) : FileWatcher(usid) {}
+
+            FileWatch& AddWatch(const char* path);
+            void RemoveWatch(const char* path);
 
             void Update();
 
-            void DispatchFileAction(
-                    FileWatch* fileWatch,
-                    FileWatchID watchId,
-                    const string& dirname,
-                    const string& filename,
-                    FileWatch::eAction action
-            );
+        private:
+            bool Exists(const string& path);
 
         private:
-            FileWatchMap m_Watches;
-            FileWatchID m_LastWatchId;
+            unordered_map<string, FileWatch> m_Paths;
+        };
+
+        struct ENGINE_API DirectoryWatcher : public FileWatcher
+        {
+
+            DirectoryWatcher(const string& usid) : FileWatcher(usid) {}
+
+            FileWatch& AddWatch(const char* path);
+            void RemoveWatch(const char* path);
+
+            void Update();
+
+        private:
+            bool Exists(const string& watchpath);
+            bool Exists(const string& watchpath, const string& filepath);
+
+            void Update(const string& watchpath, const string& filepath, FileWatch& watch);
+
+        private:
+            unordered_map<string, unordered_map<string, std::filesystem::file_time_type>> m_Paths;
+            unordered_map<string, FileWatch> m_Watches;
         };
 
     }

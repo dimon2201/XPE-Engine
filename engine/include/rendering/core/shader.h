@@ -1,5 +1,7 @@
 #pragma once
 
+#include <rendering/core/core.h>
+
 namespace xpe {
 
     namespace render {
@@ -73,9 +75,6 @@ namespace xpe {
 
             static void ReloadStage(const char* filepath);
 
-            static void WatchShaders(const string& dirName, bool recursive = false);
-            static void UpdateShaderWatches();
-
         private:
             static void AddShader(const string& id, const Shader& shader);
             static void FreeShader(const string& id);
@@ -89,7 +88,6 @@ namespace xpe {
         private:
             static Context* s_Context;
             static ShaderStorage* s_Storage;
-            static os::FileWatcher* s_FileWatcher;
         };
 
     }

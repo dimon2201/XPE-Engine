@@ -1,6 +1,6 @@
 #include <core/core.hpp>
 
-#include "test_config.h"
+#include <test_config.h>
 
 using namespace xpe::core;
 using namespace xpe::render;

@@ -9,6 +9,7 @@
 #include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
 #include <rendering/transforming/transforming.h>
+#include <rendering/camera/camera_manager.h>
 
 #include <geometry/mesh.h>
 #include <geometry/cube_geometry.h>

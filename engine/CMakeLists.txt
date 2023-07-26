@@ -44,7 +44,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static freetype)
 
 # Move shaders into bin folder
-copy_build_dir(engine/engine_shaders engine_shaders)
+copy_engine_shaders(engine)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
-    copy_build_dir(engine/engine_shaders ${CONFIG}/engine_shaders)
+    copy_engine_shaders_to_config(engine ${CONFIG})
 endforeach()

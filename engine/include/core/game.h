@@ -19,8 +19,6 @@ namespace xpe {
             Time* CPUTime;
             Time* DeltaTime;
             Time* CurrentTime;
-            CameraBuffer* cameraBuffer;
-            CameraBuffer* cameraBuffer2D;
             AppConfig* Config;
 
         public:

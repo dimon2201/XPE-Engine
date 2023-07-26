@@ -1,6 +1,15 @@
+#include <os/file_manager.h>
+
 namespace xpe {
 
     namespace os {
+
+        std::unordered_map<string, DirectoryWatcher> FileManager::s_DirectoryWatchers;
+        std::unordered_map<string, MultiFileWatcher> FileManager::s_MultiFileWatchers;
+
+        bool FileManager::CreateDir(const char* dirName) {
+            return std::filesystem::create_directory(dirName);
+        }
 
         string FileManager::ReadFileWithIncludes(const string& path, string includeIdentifier)
         {
@@ -110,8 +119,9 @@ namespace xpe {
         {
             namespace fs = std::filesystem;
 
-            if (createRoot)
+            if (createRoot) {
                 fs::create_directory(destPath);
+            }
 
             for (fs::path p: fs::directory_iterator(srcPath))
             {
@@ -120,9 +130,69 @@ namespace xpe {
                 if (fs::is_directory(p)) {
                     fs::create_directory(destFile);
                     CopyDirs(p.string().c_str(), destFile.string().c_str(), false);
-                } else {
-                    fs::copy(p, destFile);
                 }
+
+                else {
+
+                    try {
+
+                        if (fs::exists(destFile)) {
+                            fs::copy_file(p, destFile, fs::copy_options::overwrite_existing);
+                        }
+
+                        else {
+                            fs::copy(p, destFile);
+                        }
+
+                    } catch (std::exception& e) {
+                        LogError("Failed to copy dirs from {} to {} \n Error: {}",
+                                 p.string(),
+                                 destFile.string(),
+                                 e.what());
+                    }
+
+                }
+            }
+        }
+
+        bool FileManager::Exists(const char *filepath)
+        {
+            return std::filesystem::exists(filepath);
+        }
+
+        DirectoryWatcher* FileManager::CreateDirectoryWatch(const string &usid)
+        {
+            s_DirectoryWatchers.insert({ usid, usid });
+            return &s_DirectoryWatchers.at(usid);
+        }
+
+        void FileManager::RemoveDirectoryWatch(const string &usid)
+        {
+            s_DirectoryWatchers.erase(usid);
+        }
+
+        void FileManager::UpdateDirectoryWatchers()
+        {
+            for (auto& watcher : s_DirectoryWatchers) {
+                watcher.second.Update();
+            }
+        }
+
+        MultiFileWatcher* FileManager::CreateMultiFileWatch(const string &usid)
+        {
+            s_MultiFileWatchers.insert({ usid, usid });
+            return &s_MultiFileWatchers.at(usid);
+        }
+
+        void FileManager::RemoveMultiFileWatch(const string &usid)
+        {
+            s_MultiFileWatchers.erase(usid);
+        }
+
+        void FileManager::UpdateMultiFileWatchers()
+        {
+            for (auto& watcher : s_MultiFileWatchers) {
+                watcher.second.Update();
             }
         }
 

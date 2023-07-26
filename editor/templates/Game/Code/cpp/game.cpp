@@ -8,8 +8,6 @@ void TemplateGame::Init()
 {
     LogInfo("TemplateGame::Init()");
 
-    ShaderManager::WatchShaders("shaders", true);
-
     m_TestConfig = TestConfigReader::Read("config/test_config.json");
 
     Input::WindowClosedEvents->AddEvent(this, OnWindowClosed<TemplateGame>, 1);
@@ -237,7 +235,7 @@ void TemplateGame::CursorMoved(const double x, const double y)
 void TemplateGame::InitPipeline()
 {
     // setup buffers
-    m_Pipeline.VSBuffers.emplace_back(cameraBuffer);
+    m_Pipeline.VSBuffers.emplace_back(CameraManager::GetBuffer());
     m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
     m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
     m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
@@ -281,7 +279,7 @@ void TemplateGame::InitPipeline()
 void TemplateGame::InitPipeline2D()
 {
     // setup buffers
-    m_Pipeline2d.VSBuffers.emplace_back(cameraBuffer2D);
+    m_Pipeline2d.VSBuffers.emplace_back(CameraManager::GetBuffer());
     m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
 
     // setup shader
@@ -307,7 +305,7 @@ void TemplateGame::InitCamera()
     m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
     // todo BUG: after moving camera, the camera resets position
     m_PerspectiveCameraComponent.Position = { 5, 5, 20 };
-    m_Camera = new PerspectiveCamera(cameraBuffer, &m_PerspectiveCameraComponent);
+    m_Camera = new PerspectiveCamera(CameraManager::GetBuffer(), &m_PerspectiveCameraComponent);
     m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
     m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
     m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
@@ -318,7 +316,7 @@ void TemplateGame::InitCamera()
 void TemplateGame::InitCamera2D()
 {
     m_OrthoCameraComponent.Position = { 0, 0, -1 };
-    m_Camera2D = new OrthoCamera(cameraBuffer2D, &m_OrthoCameraComponent);
+    m_Camera2D = new OrthoCamera(CameraManager::GetBuffer2D(), &m_OrthoCameraComponent);
 }
 
 void TemplateGame::UpdateCamera()

@@ -8,8 +8,6 @@ namespace xpe {
         Context* ShaderManager::s_Context = nullptr;
         ShaderStorage* ShaderManager::s_Storage = nullptr;
 
-        os::FileWatcher* ShaderManager::s_FileWatcher = nullptr;
-
         ShaderStorage::~ShaderStorage() {
             Shaders.clear();
             ShaderStages.clear();
@@ -20,10 +18,9 @@ namespace xpe {
 
             s_Context = context;
             s_Storage = new ShaderStorage();
-            s_FileWatcher = new os::FileWatcher();
-            os::FileManager::CreateDirectory("generated");
-            os::FileManager::CreateDirectory("generated/engine_shaders");
-            os::FileManager::CreateDirectory("generated/shaders");
+            os::FileManager::CreateDir("generated");
+            os::FileManager::CreateDir("generated/engine_shaders");
+            os::FileManager::CreateDir("generated/shaders");
 
             LogInfo("ShaderManager initialized");
         }
@@ -31,7 +28,6 @@ namespace xpe {
         void ShaderManager::Free() {
             LogInfo("ShaderManager::Free()");
             FreeShaders();
-            delete s_FileWatcher;
             delete s_Storage;
         }
 
@@ -304,32 +300,6 @@ namespace xpe {
             }
 
             return nullptr;
-        }
-
-        static void OnShaderFileModified(
-                void* thiz,
-                os::FileWatchID watchId,
-                const string& dirname,
-                const string& filename
-        ) {
-            std::stringstream ss;
-            ss << dirname << "/" << filename;
-            std::string filepath = ss.str();
-
-            LogInfo("ShaderManager: Shader file changed {}", filepath);
-
-            ShaderManager::ReloadStage(filepath.c_str());
-        }
-
-        void ShaderManager::WatchShaders(const string& dirName, bool recursive) {
-            auto* watch = s_FileWatcher->CreateWatch(dirName, recursive);
-            watch->FileModifiedEvent = { OnShaderFileModified, 1 };
-            watch->FileAddedEvent = { OnShaderFileModified, 1 };
-            watch->FileDeletedEvent = { OnShaderFileModified, 1 };
-        }
-
-        void ShaderManager::UpdateShaderWatches() {
-            s_FileWatcher->Update();
         }
 
         void ShaderManager::WriteGeneratedShader(const char *filepath, const string &src) {

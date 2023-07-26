@@ -7,8 +7,11 @@
 #include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
 #include <rendering/transforming/transforming.h>
+#include <rendering/camera/camera_manager.h>
 
+// todo(cheerwizard): It would be nice to move TTF as Resource Importer into Focus editor and instead use just AssetManager for fonts
 #include <ttf/ttf_manager.hpp>
+using namespace xpe::ttf;
 
 namespace xpe {
 
@@ -54,10 +57,9 @@ namespace xpe {
 
             context->Init();
 
+            CameraManager::Init(context);
+
             ShaderManager::Init(context);
-            if (Config.HotReloadShaders) {
-                ShaderManager::WatchShaders("engine_shaders", true);
-            }
 
             TextureManager::Init(context);
 
@@ -67,22 +69,15 @@ namespace xpe {
 
             TransformManager::Init(context);
 
-            ttf::TTFManager::Init();
-
-            cameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
-            cameraBuffer2D = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
+            TTFManager::Init();
 
             Init();
 
+            m_Game = CreateGame();
             InitGame();
 
             while (!WindowManager::ShouldClose())
             {
-
-                // update shader file watches if it's enabled in config
-                if (Config.HotReloadShaders) {
-                    ShaderManager::UpdateShaderWatches();
-                }
 
                 // measure cpu ticks in seconds and log CPU time
 #ifdef DEBUG
@@ -124,9 +119,6 @@ namespace xpe {
 
             Free();
 
-            cameraBuffer.Free();
-            cameraBuffer2D.Free();
-
             ttf::TTFManager::Free();
 
             TransformManager::Free();
@@ -138,6 +130,8 @@ namespace xpe {
             TextureManager::Free();
 
             ShaderManager::Free();
+
+            CameraManager::Free();
 
             context->Free();
 
@@ -156,16 +150,11 @@ namespace xpe {
         }
 
         void Application::InitGame() {
-            m_Game = CreateGame();
-
             m_Game->context = context;
-            m_Game->cameraBuffer = &cameraBuffer;
-            m_Game->cameraBuffer2D = &cameraBuffer2D;
             m_Game->Config = &Config;
             m_Game->CPUTime = &CPUTime;
             m_Game->DeltaTime = &DeltaTime;
             m_Game->CurrentTime = &CurrentTime;
-
             m_Game->Init();
         }
 

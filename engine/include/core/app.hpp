@@ -18,8 +18,6 @@ namespace xpe {
             Time CPUTime;              // delta CPU time ms = end time - begin time
             Time DeltaTime;            // delta CurrentTime ms = end time - begin time
             Time CurrentTime;
-            CameraBuffer cameraBuffer;
-            CameraBuffer cameraBuffer2D;
             AppConfig Config;
 
         public:
@@ -32,18 +30,16 @@ namespace xpe {
         protected:
             void LockFPSFromConfig();
 
-        private:
+        protected:
             virtual void Init() {}
             virtual void Update() {}
             virtual void Free() {}
 
             virtual Game* CreateGame();
-
             void InitGame();
 
         protected:
             Game* m_Game = nullptr;
-
         };
 
     }
