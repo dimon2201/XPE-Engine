@@ -1,7 +1,7 @@
 #pragma once
 
 #include <geometry/geometry.h>
-#include <rendering/core.h>
+#include <rendering/core/core.h>
 
 namespace xpe {
 

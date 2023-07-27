@@ -1,5 +1,5 @@
 #include <rendering/buffers/index_buffer.h>
-#include <rendering/context.hpp>
+#include <rendering/core/context.hpp>
 
 namespace xpe {
 

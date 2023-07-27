@@ -2,12 +2,13 @@ namespace xpe {
 
     namespace core {
 
-        static Ref<spdlog::logger> s_logger;
-        static Ref<spdlog::logger> s_tracer;
+        static Ref<spdlog::logger> s_Logger;
+        static Ref<spdlog::logger> s_Tracer;
+        static Ref<spdlog::logger> s_MemLogger;
         // [DateTime][Hours:Minutes:Seconds:Milliseconds]: Message
-        static const char* s_logPattern = "[%D][%H:%M:%S.%e]: %^%v%$";
+        static const char* s_LogPattern = "[%D][%H:%M:%S.%e]: %^%v%$";
         // [DateTime][Hours:Minutes:Seconds:Milliseconds] FunctionName(FileName:CodeLine) Message
-        static const char* s_tracePattern = "[%D][%H:%M:%S.%e] %^%!(%s:%#) %v%$";
+        static const char* s_TracePattern = "[%D][%H:%M:%S.%e] %^%!(%s:%#) %v%$";
 
         using LogSinkColor = spdlog::sinks::stdout_color_sink_mt;
         using ErrorSinkColor = spdlog::sinks::stderr_color_sink_mt;
@@ -37,16 +38,16 @@ namespace xpe {
         void Logger::Init(const LoggerDescriptor& descriptor) {
             const char* name = descriptor.Name;
             const int backtrace = descriptor.Backtrace;
-            std::stringstream ss;
+            hstringstream ss;
 
             try {
                 ss << name << "_Logger";
-                std::string logName = ss.str();
+                hstring logName = ss.str();
                 ss = {};
                 ss << "logs/" << name << ".log";
-                std::string filepath = ss.str();
+                hstring filepath = ss.str();
                 ss = {};
-                s_logger = createLogger(logName.c_str(), filepath.c_str(), s_logPattern, backtrace);
+                s_Logger = createLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
 
                 ss << name << "_Tracer";
                 logName = ss.str();
@@ -54,28 +55,42 @@ namespace xpe {
                 ss << "logs/" << name << ".trace";
                 filepath = ss.str();
                 ss = {};
-                s_tracer = createLogger(logName.c_str(), filepath.c_str(), s_tracePattern, backtrace);
+                s_Tracer = createLogger(logName.c_str(), filepath.c_str(), s_TracePattern, backtrace);
+
+                ss << name << "_Memory";
+                logName = ss.str();
+                ss = {};
+                ss << "logs/" << name << ".memory";
+                filepath = ss.str();
+                ss = {};
+                s_MemLogger = createLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
             }
+
             catch (const spdlog::spdlog_ex &ex) {
                 SPDLOG_ERROR("Failed to initialize log {}. Error: {}", name, ex.what());
             }
         }
 
         void Logger::Free() {
-            s_logger.reset();
-            s_tracer.reset();
+            s_Tracer->flush();
+            s_Logger->flush();
+            s_MemLogger->flush();
         }
 
         void Logger::DumpBacktrace() {
-            s_tracer->dump_backtrace();
+            s_Tracer->dump_backtrace();
         }
 
         spdlog::logger* Logger::GetLogger() {
-            return s_logger.get();
+            return s_Logger.get();
         }
 
         spdlog::logger* Logger::GetTracer() {
-            return s_tracer.get();
+            return s_Tracer.get();
+        }
+
+        spdlog::logger* Logger::GetMemLogger() {
+            return s_MemLogger.get();
         }
 
     }

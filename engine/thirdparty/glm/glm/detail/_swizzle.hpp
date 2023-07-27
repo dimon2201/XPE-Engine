@@ -42,7 +42,7 @@ namespace detail
 
 	// Internal class for implementing swizzle operators
 	/*
-		Template parameters:
+		TemplateGame parameters:
 
 		T			= type of scalar values (e.g. float, double)
 		N			= number of components in the vector (e.g. 3)

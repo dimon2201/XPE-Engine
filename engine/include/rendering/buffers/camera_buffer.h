@@ -13,6 +13,8 @@ namespace xpe {
             glm::vec3 Position;
             glm::mat4 View;
             glm::mat4 Projection;
+            float Gamma = 2.2f;
+            float Exposure = 1.0f;
         };
 
         class ENGINE_API CameraBuffer : public render::StructureBuffer<CameraBufferData> {

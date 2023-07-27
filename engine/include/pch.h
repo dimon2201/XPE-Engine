@@ -10,6 +10,7 @@
 #include <core/platform_detection.h>
 
 // STL
+#define _ENFORCE_MATCHING_ALLOCATORS 0
 #include <random>
 #include <string>
 #include <algorithm>
@@ -35,6 +36,7 @@
 #include <utility>
 #include <chrono>
 #include <iostream>
+#include <regex>
 
 // GLM
 #include <glm.hpp>
@@ -56,8 +58,9 @@
 #include <core/main_allocator.h>
 #include <core/hot_allocator.h>
 #include <core/stack_allocator.h>
-#include <rendering/shader_types.h>
-#include <rendering/slots.h>
+#include <core/hardware_config.h>
+#include <rendering/core/types.h>
+#include <rendering/core/slots.h>
 
 // STL customization
 #include <stl/string.h>
@@ -67,12 +70,11 @@
 #include <stl/sstream.h>
 
 // Core
-#include <core/ecs.hpp>
 #include <core/time.h>
 #include <core/timer.hpp>
 #include <core/logger.h>
 #include <core/debug_break.h>
-#include <core/file_manager.h>
+#include <core/ecs.hpp>
 
 // Math
 #include <math/math.h>
@@ -80,5 +82,5 @@
 #include <math/sphere.h>
 #include <math/raycast.h>
 
-// Platform
-#include <platform/file_watcher.h>
+// OS tools
+#include <os/file_manager.h>

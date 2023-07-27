@@ -133,6 +133,10 @@ namespace xpe {
 
             void CursorMoved(const double x, const double y);
 
+            void UpdateGamma(float gamma);
+
+            void UpdateExposure(float exposure);
+
         private:
             void UpdateProjection();
             void UpdateView(const glm::vec3& position);
@@ -150,7 +154,6 @@ namespace xpe {
             void Move();
 
             void ZoomIn();
-
             void ZoomOut();
 
             void Look(const double x, const double y);
@@ -160,6 +163,9 @@ namespace xpe {
             void ScrollChanged(const double x, const double y);
 
             void CursorMoved(const double x, const double y);
+
+        private:
+            void UpdateProjection();
 
         };
 

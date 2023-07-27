@@ -76,38 +76,34 @@ namespace xpe {
 
         void Input::InitWindowCallbacks() {
             glfwSetWindowCloseCallback(s_Window, [](GLFWwindow* window) {
-                for (const auto& event : Input::WindowClosedEvents->GetEvents()) {
-                    event.Function(event.Thiz);
-                }
+                Input::WindowClosedEvents->NotifyAll();
             });
 
             glfwSetWindowPosCallback(s_Window, [](GLFWwindow* window, int x, int y) {
-                for (const auto& event : Input::WindowMovedEvents->GetEvents()) {
-                    event.Function(event.Thiz, x, y);
-                }
+                Input::WindowMovedEvents->NotifyAll(x, y);
             });
 
             glfwSetWindowSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                for (const auto& event : Input::WindowResizedEvents->GetEvents()) {
-                    event.Function(event.Thiz, w, h);
+                if (w <= 0 || h <= 0) {
+                    LogWarning("Window size has invalid width={} height={}. WindowResized event will not be handled!", w, h);
+                    return;
                 }
+                Input::WindowFrameResizedEvents->NotifyAll(w, h);
             });
 
             glfwSetFramebufferSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
-                for (const auto& event : Input::WindowFrameResizedEvents->GetEvents()) {
-                    event.Function(event.Thiz, w, h);
+                if (w <= 0 || h <= 0) {
+                    LogWarning("Window framebuffer size has invalid width={} height={}. FramebufferResized event will not be handled!", w, h);
+                    return;
                 }
+                Input::WindowFrameResizedEvents->NotifyAll(w, h);
             });
 
             glfwSetWindowFocusCallback(s_Window, [](GLFWwindow* window, int focused) {
                 if (focused == GLFW_TRUE) {
-                    for (const auto& event : Input::WindowFocusedEvents->GetEvents()) {
-                        event.Function(event.Thiz);
-                    }
+                    Input::WindowFocusedEvents->NotifyAll();
                 } else {
-                    for (const auto& event : Input::WindowFocusLostEvents->GetEvents()) {
-                        event.Function(event.Thiz);
-                    }
+                    Input::WindowFocusLostEvents->NotifyAll();
                 }
             });
         }
@@ -117,21 +113,15 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : Input::KeyPressedEvents->GetEvents()) {
-                            event.Function(event.Thiz, static_cast<eKey>(key));
-                        }
+                        Input::KeyPressedEvents->NotifyAll(static_cast<eKey>(key));
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : Input::KeyReleasedEvents->GetEvents()) {
-                            event.Function(event.Thiz, static_cast<eKey>(key));
-                        }
+                        Input::KeyReleasedEvents->NotifyAll(static_cast<eKey>(key));
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : Input::KeyHoldEvents->GetEvents()) {
-                            event.Function(event.Thiz, static_cast<eKey>(key));
-                        }
+                        Input::KeyHoldEvents->NotifyAll(static_cast<eKey>(key));
                         break;
 
                 }
@@ -143,21 +133,15 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        for (const auto& event : Input::MousePressedEvents->GetEvents()) {
-                            event.Function(event.Thiz, static_cast<eMouse>(button));
-                        }
+                        Input::MousePressedEvents->NotifyAll(static_cast<eMouse>(button));
                         break;
 
                     case GLFW_RELEASE:
-                        for (const auto& event : Input::MouseReleasedEvents->GetEvents()) {
-                            event.Function(event.Thiz, static_cast<eMouse>(button));
-                        }
+                        Input::MouseReleasedEvents->NotifyAll(static_cast<eMouse>(button));
                         break;
 
                     case GLFW_REPEAT:
-                        for (const auto& event : Input::MouseHoldEvents->GetEvents()) {
-                            event.Function(event.Thiz, static_cast<eMouse>(button));
-                        }
+                        Input::MouseHoldEvents->NotifyAll(static_cast<eMouse>(button));
                         break;
 
                 }
@@ -166,43 +150,31 @@ namespace xpe {
 
         void Input::InitCursorCallbacks() {
             glfwSetCursorPosCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                for (const auto& event : Input::CursorMovedEvents->GetEvents()) {
-                    event.Function(event.Thiz, x, y);
-                }
+                Input::CursorMovedEvents->NotifyAll(x, y);
             });
 
             glfwSetCursorEnterCallback(s_Window, [](GLFWwindow* window, int entered) {
                 if (entered == GLFW_TRUE) {
-                    for (const auto& event : Input::CursorEnteredEvents->GetEvents()) {
-                        event.Function(event.Thiz);
-                    }
+                    Input::CursorEnteredEvents->NotifyAll();
                 } else {
-                    for (const auto& event : Input::CursorLeftEvents->GetEvents()) {
-                        event.Function(event.Thiz);
-                    }
+                    Input::CursorLeftEvents->NotifyAll();
                 }
             });
         }
 
         void Input::InitScrollCallbacks() {
             glfwSetScrollCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                for (const auto& event : Input::ScrollChangedEvents->GetEvents()) {
-                    event.Function(event.Thiz, x, y);
-                }
+                Input::ScrollChangedEvents->NotifyAll(x, y);
             });
         }
 
         void Input::InitCharCallbacks() {
             glfwSetCharCallback(s_Window, [](GLFWwindow* window, u32 charUnicode) {
-                for (const auto& event : Input::CharTypedEvents->GetEvents()) {
-                    event.Function(event.Thiz, charUnicode);
-                }
+                Input::CharTypedEvents->NotifyAll(charUnicode);
             });
 
             glfwSetCharModsCallback(s_Window, [](GLFWwindow* window, u32 charUnicode, int mods) {
-                for (const auto& event : Input::CharModsTypedEvents->GetEvents()) {
-                    event.Function(event.Thiz, charUnicode, mods);
-                }
+                Input::CharModsTypedEvents->NotifyAll(charUnicode, mods);
             });
         }
 

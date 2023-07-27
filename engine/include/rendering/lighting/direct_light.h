@@ -13,16 +13,15 @@ namespace xpe {
             glm::vec3 Color = { 1, 1, 1 };
         };
 
-        struct ENGINE_API DirectLight final {
-            u32 Index = 0;
-            DirectLightBufferData* Data = nullptr;
-        };
-
         struct ENGINE_API DirectLightComponent : public Component {
 
             DirectLightComponent(const string& usid) : Component(usid) {}
 
-            DirectLight Light;
+            DirectLightComponent(const string& usid, u32 index) : Component(usid), Index(index) {}
+
+            u32 Index = 0;
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
 
         };
 

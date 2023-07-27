@@ -3,6 +3,7 @@
 #include <rendering/lighting/direct_light.h>
 #include <rendering/lighting/point_light.h>
 #include <rendering/lighting/spot_light.h>
+#include "direct_light.h"
 
 namespace xpe {
 
@@ -19,33 +20,33 @@ namespace xpe {
         class ENGINE_API LightManager final {
 
         public:
-            static const usize K_DIRECT_LIGHT_COUNT = 1;
-            static const usize K_POINT_LIGHT_COUNT = 1;
-            static const usize K_SPOT_LIGHT_COUNT = 1;
+            static const usize K_DIRECT_LIGHT_SIZE = 1;
+            static const usize K_POINT_LIGHT_SIZE = 1000;
+            static const usize K_SPOT_LIGHT_SIZE = 1000;
 
         public:
             static void Init(Context* context);
             static void Free();
 
-            static void InitLight(DirectLight& light);
-            static void InitLight(PointLight& light);
-            static void InitLight(SpotLight& light);
-
-            static void FreeLight(DirectLight& light);
-            static void FreeLight(PointLight& light);
-            static void FreeLight(SpotLight& light);
-
-            static vector<DirectLightBufferData>& DirectList();
-            static vector<PointLightBufferData>& PointList();
-            static vector<SpotLightBufferData>& SpotList();
-
             static DirectLightBuffer* GetDirectBuffer();
             static PointLightBuffer* GetPointBuffer();
             static SpotLightBuffer* GetSpotBuffer();
 
-            static void UpdateLight(const DirectLight& light);
-            static void UpdateLight(const PointLight& light);
-            static void UpdateLight(const SpotLight& light);
+            static void AddDirectLight(DirectLightComponent& light);
+            static void AddPointLight(PointLightComponent& light);
+            static void AddSpotLight(SpotLightComponent& light);
+
+            static void RemoveDirectLight(const DirectLightComponent& light);
+            static void RemovePointLight(const PointLightComponent& light);
+            static void RemoveSpotLight(const SpotLightComponent& light);
+
+            static void FlushDirectLight(const DirectLightComponent &light);
+            static void FlushPointLight(const PointLightComponent &light);
+            static void FlushSpotLight(const SpotLightComponent &light);
+
+            static void FlushDirectLights();
+            static void FlushPointLights();
+            static void FlushSpotLights();
 
         private:
             static Context* s_Context;

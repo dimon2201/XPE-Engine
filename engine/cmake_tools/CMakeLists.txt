@@ -175,7 +175,7 @@ macro(include_engine path)
             ${path}/thirdparty/glm/glm
             ${path}/thirdparty/jsoncpp/include
             ${path}/thirdparty/freetype2/include
-            ${path}/thirdparty/cgltf/cgltf
+            ${path}/thirdparty/cgltf
     )
 endmacro()
 
@@ -205,28 +205,16 @@ macro(link_engine project path)
         configure_file(${PROJECT_BINARY_DIR}/${path}/Release/xpe_engine.dll ${PROJECT_BINARY_DIR}/Release/xpe_engine.dll COPYONLY)
     endif()
 
-    ## ---------------- RelWithDebInfo ---------------
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.lib)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.lib ${PROJECT_BINARY_DIR}/RelWithDebInfo/xpe_engine.lib COPYONLY)
-    endif()
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.dll)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/RelWithDebInfo/xpe_engine.dll ${PROJECT_BINARY_DIR}/RelWithDebInfo/xpe_engine.dll COPYONLY)
-    endif()
-
-    ## ---------------- MinSizeRel ---------------
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.lib)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.lib ${PROJECT_BINARY_DIR}/MinSizeRel/xpe_engine.lib COPYONLY)
-    endif()
-
-    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.dll)
-        configure_file(${PROJECT_BINARY_DIR}/${path}/MinSizeRel/xpe_engine.dll ${PROJECT_BINARY_DIR}/MinSizeRel/xpe_engine.dll COPYONLY)
-    endif()
-
     message(STATUS "Linking ${project} -> xpe_engine.lib")
     message(STATUS "Linking ${project} -> xpe_engine.dll")
     target_link_libraries(${project} PUBLIC xpe_engine)
 
+endmacro()
+
+macro(copy_engine_shaders path)
+    copy_build_dir(${path}/engine_shaders engine_shaders)
+endmacro()
+
+macro(copy_engine_shaders_to_config path config)
+    copy_build_dir(${path}/engine_shaders ${config}/engine_shaders)
 endmacro()

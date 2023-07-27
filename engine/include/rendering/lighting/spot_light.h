@@ -9,24 +9,25 @@ namespace xpe {
         using namespace core;
 
         struct ENGINE_API SpotLightBufferData final {
-            glm::vec4 Position;
-            glm::vec4 Direction;
-            glm::vec4 Color;
+            glm::vec3 Position;
+            glm::vec3 Direction;
+            glm::vec3 Color;
             float Cutoff;
             float Outer;
-            float Refraction;
-        };
-
-        struct ENGINE_API SpotLight final {
-            u32 Index = 0;
-            SpotLightBufferData* Data = nullptr;
         };
 
         struct ENGINE_API SpotLightComponent : public Component {
 
             SpotLightComponent(const string& usid) : Component(usid) {}
 
-            SpotLight Light;
+            SpotLightComponent(const string& usid, u32 index) : Component(usid), Index(index) {}
+
+            u32 Index = 0;
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Direction = { 0, 0, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
+            float Cutoff;
+            float Outer;
 
         };
 

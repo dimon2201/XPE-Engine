@@ -144,7 +144,7 @@ namespace xpe {
 
             hstringstream ss;
 
-            ss << "\n------------------- " << USID << " -------------------\n";
+            ss << "\n\n------------------- " << USID << " -------------------\n";
 
             usize totalMB = TotalBytes / K_MEMORY_MIB;
             usize totalKB = (TotalBytesOccupied - TotalBytesFreed) / K_MEMORY_KIB;
@@ -167,7 +167,7 @@ namespace xpe {
 
             ss << "---------------------------------------------------------\n";
 
-            LogInfo(ss.str());
+            LogMemory(ss.str());
         }
 
         MemoryPoolStorage* MemoryPoolManager::MainPools = nullptr;

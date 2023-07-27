@@ -55,7 +55,11 @@ namespace xpe {
                 20,21,23,
                 23,21,22
             };
-            Indices.CopyFrom(indices, 36);
+            Indices.MoveFrom(indices, 36);
+
+            InitTBN<render::Vertex3D>(*this);
+
+            PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_LIST;
         }
 
         CubeGeometry::~CubeGeometry() {
