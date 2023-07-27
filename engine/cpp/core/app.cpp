@@ -7,8 +7,11 @@
 #include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
 #include <rendering/transforming/transforming.h>
+#include <rendering/camera/camera_manager.h>
 
+// todo(cheerwizard): It would be nice to move TTF as Resource Importer into Focus editor and instead use just AssetManager for fonts
 #include <ttf/ttf_manager.hpp>
+using namespace xpe::ttf;
 
 namespace xpe {
 
@@ -54,10 +57,9 @@ namespace xpe {
 
             context->Init();
 
+            CameraManager::Init(context);
+
             ShaderManager::Init(context);
-            if (Config.HotReloadShaders) {
-                ShaderManager::WatchShaders("engine_shaders", true);
-            }
 
             TextureManager::Init(context);
 
@@ -67,20 +69,15 @@ namespace xpe {
 
             TransformManager::Init(context);
 
-            ttf::TTFManager::Init();
-
-            m_CameraBuffer = CameraBuffer(context, 1); // by default, we have a single camera in 3D memory space
-            m_CameraBuffer2d = CameraBuffer(context, 1); // by default, we have a single camera in 2D memory space
+            TTFManager::Init();
 
             Init();
 
+            m_Game = CreateGame();
+            InitGame();
+
             while (!WindowManager::ShouldClose())
             {
-
-                // update shader file watches if it's enabled in config
-                if (Config.HotReloadShaders) {
-                    ShaderManager::UpdateShaderWatches();
-                }
 
                 // measure cpu ticks in seconds and log CPU time
 #ifdef DEBUG
@@ -101,6 +98,8 @@ namespace xpe {
 
                 Update();
 
+                m_Game->Update();
+
                 WindowManager::PollEvents();
                 WindowManager::Swap();
 
@@ -116,10 +115,9 @@ namespace xpe {
 
             }
 
-            Free();
+            m_Game->Free();
 
-            m_CameraBuffer.Free();
-            m_CameraBuffer2d.Free();
+            Free();
 
             ttf::TTFManager::Free();
 
@@ -132,6 +130,8 @@ namespace xpe {
             TextureManager::Free();
 
             ShaderManager::Free();
+
+            CameraManager::Free();
 
             context->Free();
 
@@ -147,6 +147,19 @@ namespace xpe {
             if (Config.LockOnFPS && Config.FPS < DeltaTime.Fps()) {
                 DeltaTime.SetFps(Config.FPS);
             }
+        }
+
+        void Application::InitGame() {
+            m_Game->context = context;
+            m_Game->Config = &Config;
+            m_Game->CPUTime = &CPUTime;
+            m_Game->DeltaTime = &DeltaTime;
+            m_Game->CurrentTime = &CurrentTime;
+            m_Game->Init();
+        }
+
+        Game* Application::CreateGame() {
+            return new Game();
         }
 
     }

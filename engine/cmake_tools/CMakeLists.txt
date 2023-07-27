@@ -210,3 +210,11 @@ macro(link_engine project path)
     target_link_libraries(${project} PUBLIC xpe_engine)
 
 endmacro()
+
+macro(copy_engine_shaders path)
+    copy_build_dir(${path}/engine_shaders engine_shaders)
+endmacro()
+
+macro(copy_engine_shaders_to_config path config)
+    copy_build_dir(${path}/engine_shaders ${config}/engine_shaders)
+endmacro()

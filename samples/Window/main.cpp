@@ -10,7 +10,6 @@ using namespace xpe::io;
 using namespace xpe::math;
 using namespace xpe::gltf;
 
-class GameApp;
 
 class GameApp : public Application
 {
@@ -22,14 +21,12 @@ public:
     {
         LogInfo("GameApp::Init()");
 
-        ShaderManager::WatchShaders("shaders", true);
+        m_TestConfig = TestConfigReader::Read("config/test_config.json");
 
-        m_TestConfig = TestConfigReader::Read("test_config.json");
-
-        Input::WindowClosedEvents->AddEvent(this, OnWindowClosed<GameApp>, 1);
-        Input::KeyPressedEvents->AddEvent(this, OnKeyPressed<GameApp>, 1);
-        Input::KeyHoldEvents->AddEvent(this, OnKeyHold<GameApp>, 1);
-        Input::CursorMovedEvents->AddEvent(this, OnCursorMoved<GameApp>, 1);
+        AddWindowClosed(GameApp, 1);
+        AddKeyPressed(GameApp, 1);
+        AddKeyHold(GameApp, 1);
+        AddCursorMove(GameApp, 1);
 
         m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         m_ECS = new ECSManager();
@@ -254,7 +251,7 @@ private:
 
     void InitPipeline() {
         // setup buffers
-        m_Pipeline.VSBuffers.emplace_back(&m_CameraBuffer);
+        m_Pipeline.VSBuffers.emplace_back(CameraManager::GetBuffer());
         m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
         m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
@@ -297,7 +294,7 @@ private:
 
     void InitPipeline2D() {
         // setup buffers
-        m_Pipeline2d.VSBuffers.emplace_back(&m_CameraBuffer2d);
+        m_Pipeline2d.VSBuffers.emplace_back(CameraManager::GetBuffer2D());
         m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
 
         // setup shader
@@ -320,9 +317,9 @@ private:
 
     void InitCamera() {
         m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
-        // todo BUG: after moving camera, the camera resets position
+        // todo(cheerwizard): BUG - after moving camera, the camera resets position
         m_PerspectiveCameraComponent.Position = { 5, 5, 20 };
-        m_Camera = new PerspectiveCamera(&m_CameraBuffer, &m_PerspectiveCameraComponent);
+        m_Camera = new PerspectiveCamera(CameraManager::GetBuffer(), &m_PerspectiveCameraComponent);
         m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
         m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
@@ -332,7 +329,7 @@ private:
 
     void InitCamera2D() {
         m_OrthoCameraComponent.Position = { 0, 0, -1 };
-        m_Camera2D = new OrthoCamera(&m_CameraBuffer2d, &m_OrthoCameraComponent);
+        m_Camera2D = new OrthoCamera(CameraManager::GetBuffer2D(), &m_OrthoCameraComponent);
     }
 
     void UpdateCamera() {

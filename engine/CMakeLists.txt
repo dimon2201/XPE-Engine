@@ -5,6 +5,9 @@ project(xpe_engine)
 # Include CMake helpers
 include(cmake_tools/CMakeLists.txt)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
+
 # Defines engine as DLL build
 build_engine_dll()
 
@@ -41,11 +44,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm jsoncpp_static freetype)
 
 # Move shaders into bin folder
-copy_build_file(engine/config.json config.json)
-copy_build_file(engine/memory_config.json memory_config.json)
-copy_build_dir(engine/engine_shaders engine_shaders)
+copy_engine_shaders(engine)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
-    copy_build_file(engine/config.json ${CONFIG}/config.json)
-    copy_build_file(engine/memory_config.json ${CONFIG}/memory_config.json)
-    copy_build_dir(engine/engine_shaders ${CONFIG}/engine_shaders)
+    copy_engine_shaders_to_config(engine ${CONFIG})
 endforeach()
