@@ -1,12 +1,12 @@
 #pragma once
 
-#include <os/file_watcher.h>
-
 namespace xpe {
 
     namespace os {
 
         using namespace core;
+
+        namespace fs = std::filesystem;
 
         class ENGINE_API FileManager final {
 
@@ -20,24 +20,18 @@ namespace xpe {
 
             static bool CreateDir(const char* dirName);
 
+            static void CopyFile(const char* srcPath, const char* destPath);
             static void CopyDirs(const char* srcPath, const char* destPath, const bool createRoot = false);
+
+            static hstring GetFullFileName(const char* path);
+            static hstring GetFileName(const char* path);
 
             static bool Exists(const char* filepath);
 
-            static DirectoryWatcher* CreateDirectoryWatch(const string& usid);
-            static void RemoveDirectoryWatch(const string& usid);
-            static void UpdateDirectoryWatchers();
-
-            static MultiFileWatcher* CreateMultiFileWatch(const string& usid);
-            static void RemoveMultiFileWatch(const string& usid);
-            static void UpdateMultiFileWatchers();
+            static string GetAbsolutePath(const char* path);
 
         private:
             static void GetFilepath(const string& fullPath, string& pathWithoutFilename);
-
-        private:
-            static std::unordered_map<string, DirectoryWatcher> s_DirectoryWatchers;
-            static std::unordered_map<string, MultiFileWatcher> s_MultiFileWatchers;
 
         };
 

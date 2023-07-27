@@ -20,3 +20,12 @@ add_engine_definitions()
 add_game_definitions()
 
 link_engine(${PROJECT_NAME} ${ENGINE_PATH})
+
+if (EXISTS ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}.dll)
+    configure_file(${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}.dll ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}_Edit.dll COPYONLY)
+endif()
+foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+    if (EXISTS ${CMAKE_BINARY_DIR}/bin/${CONFIG}/${PROJECT_NAME}.dll)
+        configure_file(${CMAKE_BINARY_DIR}/bin/${CONFIG}/${PROJECT_NAME}.dll ${CMAKE_BINARY_DIR}/bin/${CONFIG}/${PROJECT_NAME}_Edit.dll COPYONLY)
+    endif()
+endforeach()

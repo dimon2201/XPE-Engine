@@ -1,14 +1,12 @@
+
 #include <os/file_manager.h>
 
 namespace xpe {
 
     namespace os {
 
-        std::unordered_map<string, DirectoryWatcher> FileManager::s_DirectoryWatchers;
-        std::unordered_map<string, MultiFileWatcher> FileManager::s_MultiFileWatchers;
-
         bool FileManager::CreateDir(const char* dirName) {
-            return std::filesystem::create_directory(dirName);
+            return fs::create_directory(dirName);
         }
 
         string FileManager::ReadFileWithIncludes(const string& path, string includeIdentifier)
@@ -115,10 +113,35 @@ namespace xpe {
             return true;
         }
 
+        void FileManager::CopyFile(const char *srcPath, const char *destPath)
+        {
+            if (!fs::exists(destPath)) {
+                WriteFile(destPath, "");
+            }
+            fs::copy_file(srcPath, destPath, fs::copy_options::overwrite_existing);
+        }
+
+        hstring FileManager::GetFullFileName(const char *path)
+        {
+            fs::path filepath = path;
+            if (filepath.has_filename()) {
+                return filepath.filename().string().c_str();
+            }
+            return {};
+        }
+
+        hstring FileManager::GetFileName(const char* path)
+        {
+            // todo remove extension from file name
+            fs::path filepath = path;
+            if (filepath.has_filename()) {
+                return filepath.filename().string().c_str();
+            }
+            return {};
+        }
+
         void FileManager::CopyDirs(const char* srcPath, const char* destPath, const bool createRoot)
         {
-            namespace fs = std::filesystem;
-
             if (createRoot) {
                 fs::create_directory(destPath);
             }
@@ -157,43 +180,12 @@ namespace xpe {
 
         bool FileManager::Exists(const char *filepath)
         {
-            return std::filesystem::exists(filepath);
+            return fs::exists(filepath);
         }
 
-        DirectoryWatcher* FileManager::CreateDirectoryWatch(const string &usid)
+        string FileManager::GetAbsolutePath(const char* path)
         {
-            s_DirectoryWatchers.insert({ usid, usid });
-            return &s_DirectoryWatchers.at(usid);
-        }
-
-        void FileManager::RemoveDirectoryWatch(const string &usid)
-        {
-            s_DirectoryWatchers.erase(usid);
-        }
-
-        void FileManager::UpdateDirectoryWatchers()
-        {
-            for (auto& watcher : s_DirectoryWatchers) {
-                watcher.second.Update();
-            }
-        }
-
-        MultiFileWatcher* FileManager::CreateMultiFileWatch(const string &usid)
-        {
-            s_MultiFileWatchers.insert({ usid, usid });
-            return &s_MultiFileWatchers.at(usid);
-        }
-
-        void FileManager::RemoveMultiFileWatch(const string &usid)
-        {
-            s_MultiFileWatchers.erase(usid);
-        }
-
-        void FileManager::UpdateMultiFileWatchers()
-        {
-            for (auto& watcher : s_MultiFileWatchers) {
-                watcher.second.Update();
-            }
+            return fs::absolute(path).string().c_str();
         }
 
     }

@@ -2,13 +2,11 @@
 
 #include <core/event.h>
 
-namespace xpe {
+namespace focus {
 
     namespace os {
 
-        using namespace core;
-
-        typedef unsigned long FileWatchID;
+        using namespace xpe::core;
 
         typedef void (*FileAddedFn)(void* thiz, const string& watchpath, const string& filepath);
         template<typename T>
@@ -42,16 +40,17 @@ namespace xpe {
 
         class FileWatcher;
 
-        struct ENGINE_API FileWatch final {
+        struct FileWatch final {
+            bool DeleteNotified = false;
             std::filesystem::file_time_type Timestamp;
-            Event<FileAddedFn> FileAddedEvent;
-            Event<FileDeletedFn> FileDeletedEvent;
-            Event<FileModifiedFn> FileModifiedEvent;
-            Event<FileNewNameFn> FileNewNameEvent;
-            Event<FileOldNameFn> FileOldNameEvent;
+            EventBuffer<FileAddedFn> FileAddedEventBuffer;
+            EventBuffer<FileDeletedFn> FileDeletedEventBuffer;
+            EventBuffer<FileModifiedFn> FileModifiedEventBuffer;
+            EventBuffer<FileNewNameFn> FileNewNameEventBuffer;
+            EventBuffer<FileOldNameFn> FileOldNameEventBuffer;
         };
 
-        struct ENGINE_API FileWatcher
+        struct FileWatcher : public Object
         {
 
             enum class eAction
@@ -68,7 +67,7 @@ namespace xpe {
             FileWatcher(const string& usid) : USID(usid) {}
 
         protected:
-            void Dispatch(
+            void Notify(
                     FileWatch& watch,
                     const string& watchpath,
                     const string& filepath,
@@ -76,7 +75,7 @@ namespace xpe {
             );
         };
 
-        struct ENGINE_API MultiFileWatcher : public FileWatcher
+        struct MultiFileWatcher : public FileWatcher
         {
 
             MultiFileWatcher(const string& usid) : FileWatcher(usid) {}
@@ -84,16 +83,20 @@ namespace xpe {
             FileWatch& AddWatch(const char* path);
             void RemoveWatch(const char* path);
 
-            void Update();
+            void Start();
+            void Stop();
 
         private:
+            void Update();
+
             bool Exists(const string& path);
 
         private:
+            bool m_Running = false;
             unordered_map<string, FileWatch> m_Paths;
         };
 
-        struct ENGINE_API DirectoryWatcher : public FileWatcher
+        struct DirectoryWatcher : public FileWatcher
         {
 
             DirectoryWatcher(const string& usid) : FileWatcher(usid) {}
@@ -101,7 +104,8 @@ namespace xpe {
             FileWatch& AddWatch(const char* path);
             void RemoveWatch(const char* path);
 
-            void Update();
+            void Start();
+            void Stop();
 
         private:
             bool Exists(const string& watchpath);
@@ -110,6 +114,7 @@ namespace xpe {
             void Update(const string& watchpath, const string& filepath, FileWatch& watch);
 
         private:
+            bool m_Running = false;
             unordered_map<string, unordered_map<string, std::filesystem::file_time_type>> m_Paths;
             unordered_map<string, FileWatch> m_Watches;
         };

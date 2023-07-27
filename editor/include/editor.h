@@ -26,7 +26,8 @@ namespace focus {
 
         void Free();
 
-        void GameCodeReloaded(Game* game) override;
+    private:
+        void LoadGame(Game* game);
 
     };
 

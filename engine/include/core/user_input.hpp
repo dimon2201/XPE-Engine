@@ -2,6 +2,17 @@
 
 #include <core/events.h>
 
+#define AddWindowClosed(clazz, priority) xpe::core::Input::WindowClosedEvents->AddEvent(this, xpe::core::OnWindowClosed<clazz>, priority)
+#define AddWindowFrameResized(clazz, priority) xpe::core::Input::WindowFrameResizedEvents->AddEvent(this, xpe::core::OnWindowFrameResized<clazz>, priority)
+
+#define AddKeyPressed(clazz, priority) xpe::core::Input::KeyPressedEvents->AddEvent(this, xpe::core::OnKeyPressed<clazz>, priority)
+#define AddKeyRelease(clazz, priority) xpe::core::Input::KeyReleasedEvents->AddEvent(this, xpe::core::OnKeyReleased<clazz>, priority)
+#define AddKeyHold(clazz, priority) xpe::core::Input::KeyHoldEvents->AddEvent(this, xpe::core::OnKeyHold<clazz>, priority)
+
+#define AddCursorMove(clazz, priority) xpe::core::Input::CursorMovedEvents->AddEvent(this, xpe::core::OnCursorMoved<clazz>, priority)
+
+#define AddScrollChanged(clazz, priority) xpe::core::Input::ScrollChangedEvents->AddEvent(this, xpe::core::OnScrollChanged<clazz>, priority)
+
 namespace xpe {
 
     namespace core {

@@ -1,56 +1,31 @@
 #include <os/file_watcher.h>
 
-namespace xpe {
+namespace focus {
 
     namespace os {
 
-        void FileWatcher::Dispatch(FileWatch& watch, const string &watchpath, const string &filepath, FileWatcher::eAction action)
+        void FileWatcher::Notify(FileWatch& watch, const string &watchpath, const string &filepath, FileWatcher::eAction action)
         {
             switch (action) {
 
                 case FileWatcher::eAction::OLD_NAME:
-                    {
-                        auto& event = watch.FileOldNameEvent;
-                        if (event.Thiz != nullptr || event.Function != nullptr) {
-                            event.Function(event.Thiz, watchpath, filepath);
-                        }
-                    }
+                    watch.FileOldNameEventBuffer.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::NEW_NAME:
-                    {
-                        auto& event = watch.FileNewNameEvent;
-                        if (event.Thiz != nullptr || event.Function != nullptr) {
-                            event.Function(event.Thiz, watchpath, filepath);
-                        }
-                    }
+                    watch.FileNewNameEventBuffer.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::ADDED:
-                    {
-                        auto& event = watch.FileAddedEvent;
-                        if (event.Thiz != nullptr || event.Function != nullptr) {
-                            event.Function(event.Thiz, watchpath, filepath);
-                        }
-                    }
+                    watch.FileAddedEventBuffer.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::DELETED:
-                    {
-                        auto& event = watch.FileDeletedEvent;
-                        if (event.Thiz != nullptr || event.Function != nullptr) {
-                            event.Function(event.Thiz, watchpath, filepath);
-                        }
-                    }
+                    watch.FileDeletedEventBuffer.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::MODIFIED:
-                    {
-                        auto& event = watch.FileModifiedEvent;
-                        if (event.Thiz != nullptr || event.Function != nullptr) {
-                            event.Function(event.Thiz, watchpath, filepath);
-                        }
-                    }
+                    watch.FileModifiedEventBuffer.NotifyAll(watchpath, filepath);
                     break;
 
             }
@@ -72,40 +47,58 @@ namespace xpe {
             return m_Paths.find(path) != m_Paths.end();
         }
 
+        void MultiFileWatcher::Start()
+        {
+            m_Running = true;
+
+            std::thread thread([this]()
+            {
+                while (m_Running)
+                {
+                    Update();
+                }
+            });
+
+            thread.detach();
+        }
+
+        void MultiFileWatcher::Stop()
+        {
+            m_Running = false;
+        }
+
         void MultiFileWatcher::Update()
         {
-            auto it = m_Paths.begin();
-
-            // check if a file was deleted
-            while (it != m_Paths.end())
-            {
-                if (!std::filesystem::exists(it->first)) {
-                    Dispatch(it->second, it->first, it->first, eAction::DELETED);
-                    it = m_Paths.erase(it);
-                }
-
-                else {
-                    it++;
-                }
-            }
-
-            // check if a file was added or modified
             for (auto& watchpath : m_Paths)
             {
-                string filepath = watchpath.first;
+                auto& filepath = (string&)(watchpath.first);
                 FileWatch& filewatch = m_Paths[filepath];
-                auto currentFileLastWriteTime = std::filesystem::last_write_time(filepath);
+
+                // check if file was deleted
+                if (!std::filesystem::exists(filepath)) {
+                    if (!filewatch.DeleteNotified) {
+                        Notify(filewatch, filepath, filepath, eAction::DELETED);
+                        filewatch.DeleteNotified = true;
+                    }
+                    // we don't want to remove watch path even if it's deleted.
+                    // because it could be deleted for a short time or replaced.
+                    // so we want to continue watching.
+                    continue;
+                }
+
+                filewatch.DeleteNotified = false;
+                auto currentFileLastWriteTime = std::filesystem::last_write_time(filepath.c_str());
 
                 // check if file was added
                 if (!Exists(filepath)) {
                     filewatch.Timestamp = currentFileLastWriteTime;
-                    Dispatch(filewatch, filepath, filepath, eAction::ADDED);
+                    Notify(filewatch, filepath, filepath, eAction::ADDED);
                 }
 
                 // check if file was modified
                 else if (filewatch.Timestamp != currentFileLastWriteTime) {
                     filewatch.Timestamp = currentFileLastWriteTime;
-                    Dispatch(filewatch, filepath, filepath, eAction::MODIFIED);
+                    Notify(filewatch, filepath, filepath, eAction::MODIFIED);
                 }
             }
         }
@@ -113,11 +106,12 @@ namespace xpe {
         FileWatch& DirectoryWatcher::AddWatch(const char* path)
         {
             m_Paths[path] = {};
-            m_Watches[path] = {};
+
             for (auto &file : std::filesystem::recursive_directory_iterator(path))
             {
                 m_Paths[path][file.path().string().c_str()] = std::filesystem::last_write_time(file);
             }
+
             return m_Watches[path];
         }
 
@@ -137,15 +131,30 @@ namespace xpe {
             return files.find(filepath) != files.end();
         }
 
-        void DirectoryWatcher::Update()
+        void DirectoryWatcher::Start()
         {
-            for (auto& watchpath : m_Paths)
+            m_Running = true;
+
+            std::thread thread([this]()
             {
-                auto& watch = m_Watches[watchpath.first];
-                for (auto& filepath : watchpath.second) {
-                    Update(watchpath.first, filepath.first, watch);
+                while (m_Running)
+                {
+                    for (auto& watchpath : m_Paths)
+                    {
+                        auto& watch = m_Watches[watchpath.first];
+                        for (auto& filepath : watchpath.second) {
+                            Update(watchpath.first, filepath.first, watch);
+                        }
+                    }
                 }
-            }
+            });
+
+            thread.detach();
+        }
+
+        void DirectoryWatcher::Stop()
+        {
+            m_Running = false;
         }
 
         void DirectoryWatcher::Update(const string& watchpath, const string& filepath, FileWatch& watch)
@@ -154,7 +163,7 @@ namespace xpe {
 
             // check if a file was deleted
             if (!std::filesystem::exists(filepath)) {
-                Dispatch(watch, watchpath, filepath, eAction::DELETED);
+                Notify(watch, watchpath, filepath, eAction::DELETED);
                 files.erase(filepath);
             }
 
@@ -167,7 +176,7 @@ namespace xpe {
                 // check if file was added
                 if (!Exists(watchpath, fsfilepath)) {
                     files.insert({ fsfilepath, currentFileLastWriteTime });
-                    Dispatch(watch, watchpath, fsfilepath, eAction::ADDED);
+                    Notify(watch, watchpath, fsfilepath, eAction::ADDED);
                     continue;
                 }
 
@@ -175,7 +184,7 @@ namespace xpe {
                 auto& timestamp = files[fsfilepath];
                 if (timestamp != currentFileLastWriteTime) {
                     timestamp = currentFileLastWriteTime;
-                    Dispatch(watch, watchpath, fsfilepath, eAction::MODIFIED);
+                    Notify(watch, watchpath, fsfilepath, eAction::MODIFIED);
                 }
             }
         }

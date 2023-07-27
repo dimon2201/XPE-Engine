@@ -59,9 +59,9 @@ namespace xpe {
             bufferData.Exposure = component->Exposure;
             buffer.FlushItemAt(component->Index);
 
-            Input::WindowFrameResizedEvents->AddEvent(this, core::OnWindowFrameResized<PerspectiveCamera>, 2);
-            Input::ScrollChangedEvents->AddEvent(this, core::OnScrollChanged<PerspectiveCamera>, 2);
-            Input::CursorMovedEvents->AddEvent(this, core::OnCursorMoved<PerspectiveCamera>, 2);
+            AddWindowFrameResized(PerspectiveCamera, 2);
+            AddCursorMove(PerspectiveCamera, 2);
+            AddScrollChanged(PerspectiveCamera, 2);
         }
 
         void PerspectiveCamera::Pan(const glm::vec2 &delta)
@@ -253,9 +253,9 @@ namespace xpe {
             bufferData.Exposure = component->Exposure;
             buffer.FlushItemAt(component->Index);
 
-            Input::WindowFrameResizedEvents->AddEvent(this, core::OnWindowFrameResized<OrthoCamera>, 2);
-            Input::ScrollChangedEvents->AddEvent(this, core::OnScrollChanged<OrthoCamera>, 2);
-            Input::CursorMovedEvents->AddEvent(this, core::OnCursorMoved<OrthoCamera>, 2);
+            AddWindowFrameResized(OrthoCamera, 2);
+            AddScrollChanged(OrthoCamera, 2);
+            AddCursorMove(OrthoCamera, 2);
         }
 
         void OrthoCamera::Move()

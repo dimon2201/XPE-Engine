@@ -1,5 +1,7 @@
 #pragma once
 
+#include <os/file_watcher.h>
+
 namespace xpe::core {
     class Game;
 }
@@ -7,21 +9,29 @@ namespace xpe::core {
 namespace focus {
 
     using namespace xpe::core;
-    using namespace xpe::os;
+    using namespace os;
 
     struct Project final {
+
+        enum class eBuildType
+        {
+            DEBUG_VS,
+            RELEASE_VS,
+            DEBUG_CLION,
+            RELEASE_CLION
+        };
+
         string Title;
+        MultiFileWatcher* FilesWatcher = nullptr;
+        DirectoryWatcher* DirsWatcher = nullptr;
     };
 
     struct ProjectStorage : public Object {
         unordered_map<string, Project> Projects;
     };
 
-    class ProjectManagerCallback {
-
-    public:
-        virtual void GameCodeReloaded(Game* game) = 0;
-
+    struct ProjectManagerCallback {
+        std::atomic<Game*> GameReloaded;
     };
 
     class ProjectManager final {
@@ -35,13 +45,24 @@ namespace focus {
 
         static Project* CreateProject(const string& title);
 
-        static void UpdateWatches();
+        static void StartWatching(const string& title);
+        static void StopWatching(const string& title);
 
         static void LoadGameCode(const string& dllpath);
 
+        static void OpenInСMake(const string& title);
+        static void OpenInCLion(const string& title);
+        static void OpenInVS(const string& title);
+        static void OpenInVSCode(const string& title);
+
+        static void LaunchGame(const string& title, Project::eBuildType buildType);
+
     private:
-        static void SetupProject(const string& title);
         static hstring GetProjectPath(const string& title);
+        static hstring GetVSBuildPath(const string& title);
+        static hstring GetLaunchPath(const string& title, Project::eBuildType buildType);
+
+        static void SetupProject(const string& title);
 
         static void WatchProjectGameCodeDLL(MultiFileWatcher& watcher, const string& title, const char* buildPath);
         static void WatchProjectShaders(DirectoryWatcher& watcher, const string& title);

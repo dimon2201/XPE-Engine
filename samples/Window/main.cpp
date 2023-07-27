@@ -23,10 +23,10 @@ public:
 
         m_TestConfig = TestConfigReader::Read("config/test_config.json");
 
-        Input::WindowClosedEvents->AddEvent(this, OnWindowClosed<GameApp>, 1);
-        Input::KeyPressedEvents->AddEvent(this, OnKeyPressed<GameApp>, 1);
-        Input::KeyHoldEvents->AddEvent(this, OnKeyHold<GameApp>, 1);
-        Input::CursorMovedEvents->AddEvent(this, OnCursorMoved<GameApp>, 1);
+        AddWindowClosed(GameApp, 1);
+        AddKeyPressed(GameApp, 1);
+        AddKeyHold(GameApp, 1);
+        AddCursorMove(GameApp, 1);
 
         m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         m_ECS = new ECSManager();

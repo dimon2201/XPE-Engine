@@ -31,5 +31,3 @@ namespace xpe {
     }
 
 }
-
-typedef xpe::core::Game* (*CreateGameFn)();

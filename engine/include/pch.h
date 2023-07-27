@@ -82,6 +82,5 @@
 #include <math/sphere.h>
 #include <math/raycast.h>
 
-// Platform
-#include <os/file_watcher.h>
+// OS tools
 #include <os/file_manager.h>
