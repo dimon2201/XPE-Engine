@@ -633,6 +633,167 @@ namespace xpe {
             }
         }
 
+        // --------------------- Text Batching ---------------------- //
+
+        TextBatchManager::TextBatchManager(Context* context) : m_Context(context)
+        {
+        }
+
+        TextBatchManager::~TextBatchManager()
+        {
+            for (auto& batchIndexed : m_BatchesIndexed)
+            {
+                FreeBatchIndexed(batchIndexed);
+            }
+            m_BatchesIndexed.clear();
+        }
+
+        void TextBatchManager::InitBatchIndexed(BatchTextGlyphIndexed& batchIndexed, const GeometryIndexedFormat& format, usize instanceCount)
+        {
+            batchIndexed.Format = format;
+            batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
+            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
+            batchIndexed.Instances = TextGlyphInstanceBuffer(m_Context, instanceCount);
+        }
+
+        void TextBatchManager::FreeBatchIndexed(BatchTextGlyphIndexed& batchIndexed)
+        {
+            batchIndexed.Indices.Free();
+            batchIndexed.Instances.Free();
+        }
+
+        BatchTextGlyphIndexed TextBatchManager::NewBatchIndexed(const GeometryIndexedFormat& format, usize instanceCount)
+        {
+            BatchTextGlyphIndexed batchIndexed;
+            InitBatchIndexed(batchIndexed, format, instanceCount);
+            batchIndexed.Format = format;
+            m_BatchesIndexed.emplace_back(batchIndexed);
+            return batchIndexed;
+        }
+
+        void TextBatchManager::StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount)
+        {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    batchIndexed.Vertices.FlushVertices(geometry.Vertices);
+                    batchIndexed.Indices.FlushIndices(geometry.Indices);
+                    return;
+                }
+            }
+
+            GeometryIndexedFormat format;
+            format.PrimitiveTopology = geometry.PrimitiveTopology;
+            format.USID = usid;
+            format.VertexOffset = 0;
+            format.IndexOffset = 0;
+            format.VertexCount = geometry.Vertices.Count();
+            format.IndexCount = geometry.Indices.Count();
+
+            BatchTextGlyphIndexed batchIndexed = NewBatchIndexed(format, instanceCount);
+
+            batchIndexed.Vertices.FlushVertices(geometry.Vertices);
+            batchIndexed.Indices.FlushIndices(geometry.Indices);
+        }
+
+        void TextBatchManager::BeginBatch(const string& str)
+        {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    BeginBatch(batchIndexed);
+                    return;
+                }
+            }
+        }
+
+        void TextBatchManager::BeginBatch(BatchTextGlyphIndexed& batchIndexed) {
+            batchIndexed.Indices.Bind();
+            batchIndexed.Instances.Bind();
+            m_Context->BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
+        }
+
+        u32 TextBatchManager::AddInstance(const string& str, const TextGlyphInstance& instance)
+        {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    return batchIndexed.Instances.Add(instance);
+                }
+            }
+
+            return -1;
+        }
+
+        void TextBatchManager::ClearInstances(const string& str)
+        {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    batchIndexed.Instances.Clear();
+                    return;
+                }
+            }
+        }
+
+        void TextBatchManager::FlushInstances(const string& str)
+        {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    batchIndexed.Instances.Flush();
+                    return;
+                }
+            }
+        }
+
+        void TextBatchManager::ReserveInstances(const string& str, const usize count) {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    batchIndexed.Instances.Reserve(count);
+                    return;
+                }
+            }
+        }
+
+        void TextBatchManager::DrawBatch(const string& str)
+        {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    DrawBatch(batchIndexed);
+                    return;
+                }
+            }
+        }
+
+        void TextBatchManager::DrawBatch(BatchTextGlyphIndexed& batchIndexed)
+        {
+            auto& geometryInfo = batchIndexed.Format;
+            auto& instances = batchIndexed.Instances;
+            m_Context->DrawBatch(
+                geometryInfo.VertexOffset,
+                geometryInfo.IndexOffset,
+                geometryInfo.IndexCount,
+                instances.Size()
+            );
+        }
+
+        void TextBatchManager::DrawAll()
+        {
+            for (auto& batch : m_BatchesIndexed) {
+                BeginBatch(batch);
+                DrawBatch(batch);
+            }
+        }
     }
 
 }

@@ -1,4 +1,5 @@
 #include <core/app.hpp>
+#include <core/camera.h>
 
 // API specific includes
 #include <rendering/dx11/d3d11_context.hpp>
@@ -69,7 +70,7 @@ namespace xpe {
 
             TransformManager::Init(context);
 
-            TTFManager::Init();
+            ttf::TTFManager::Init();
 
             Init();
 

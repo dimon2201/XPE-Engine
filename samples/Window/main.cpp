@@ -3,6 +3,7 @@
 #include <ttf/ttf_manager.hpp>
 
 #include "test_config.h"
+#include "launcher.h"
 
 using namespace xpe::core;
 using namespace xpe::render;
@@ -24,8 +25,6 @@ public:
     {
         LogInfo("GameApp::Init()");
 
-        ShaderManager::WatchShaders("shaders", true);
-
         m_TestConfig = TestConfigReader::Read("test_config.json");
 
         Input::WindowClosedEvents->AddEvent(this, OnWindowClosed<GameApp>, 1);
@@ -46,19 +45,14 @@ public:
         transform.Scale = { 1.0f, 1.0f, 1.0f };
 
         // it will flush all materials data into GPU memory
-        MaterialManager::UpdateMaterials();
+        //MaterialManager::FlushMaterials();
 
         InitPipeline();
         InitCamera();
         InitCamera2D();
 
-        // todo maybe we will automate it in future and make it more easy to use
-        LightManager::InitLight(m_DirectLightComponent.Light);
-        m_DirectLightComponent.Light.Data->Position = {0, 0, 0 };
-        m_DirectLightComponent.Light.Data->Color = {1, 1, 1 };
-        LightManager::UpdateLight(m_DirectLightComponent.Light);
-
-        TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
+        //TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
+        CameraManager::Init(Application::context);
     }
 
     void Update() override final
@@ -70,13 +64,11 @@ public:
 
             Simulate();
 
-            MaterialManager::BindMaterials();
-
             m_Canvas->Clear(glm::vec4(1.0f));
 
             TransformComponent transform("TextTransform");
             transform.Position = { 0.0f, 0.0f, 0.0f };
-            TextRenderer::Get().Draw(&m_Font, &transform, "Hello!");
+            //TextRenderer::Get().Draw(&m_Font, &transform, "Hello!");
 
             m_Canvas->Present();
         }
@@ -137,7 +129,7 @@ private:
 
     void InitPipeline() {
         // setup buffers
-        m_Pipeline.VSBuffers.emplace_back(CameraManager::GetCameraBuffer());
+        m_Pipeline.VSBuffers.emplace_back(CameraManager::GetBuffer());
         m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
         m_Pipeline.VSBuffers.emplace_back(MaterialManager::GetBuffer());
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
@@ -145,14 +137,12 @@ private:
         m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
         
         // setup shader
-        m_Pipeline.Shader = ShaderManager::Builder()
-                .AddVertexStageFromFile("shaders/text.vs")
-                .AddPixelStageFromFile("shaders/text.ps")
-                .Build("window");
-        m_Pipeline.Shader->PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+        m_Pipeline.Shader = xpe::render::ShaderManager::CreateShader("window");
+        xpe::render::ShaderManager::AddVertexStageFromFile(m_Pipeline.Shader, "shaders/window.vs");
+        xpe::render::ShaderManager::AddPixelStageFromFile(m_Pipeline.Shader, "shaders/window.ps");
+        xpe::render::ShaderManager::BuildShader(m_Pipeline.Shader);
 
         // setup input layout
-        m_Layout.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
         m_Layout.Format = Vertex3D::Format;
         m_Pipeline.InputLayout = m_Layout;
 
@@ -161,12 +151,12 @@ private:
         m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
 
         // init pipeline
-        context->CreateRenderPipeline(m_Pipeline);
+        context->CreatePipeline(m_Pipeline);
     }
 
     void InitCamera() {
         m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
-        m_Camera = new PerspectiveCamera(CameraManager::GetCameraBuffer(), &m_PerspectiveCameraComponent);
+        m_Camera = new PerspectiveCamera(CameraManager::GetBuffer(), &m_PerspectiveCameraComponent);
         m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
         m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
@@ -176,7 +166,7 @@ private:
 
     void InitCamera2D() {
         m_OrthoCameraComponent.Position = { 0, 0, -1 };
-        m_Camera2D = new OrthoCamera(CameraManager::GetCameraBuffer2D(), &m_OrthoCameraComponent);
+        m_Camera2D = new OrthoCamera(CameraManager::GetBuffer(), &m_OrthoCameraComponent);
     }
 
     void UpdateCamera() {
@@ -189,50 +179,11 @@ private:
     }
 
     void MoveLight(const eKey key) {
-        if (key == eKey::Up) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
-            pos.y += 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
-        }
-
-        if (key == eKey::Down) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
-            pos.y -= 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
-        }
-
-        if (key == eKey::Left) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
-            pos.x -= 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
-        }
-
-        if (key == eKey::Right) {
-            glm::vec3& pos = m_DirectLightComponent.Light.Data->Position;
-            pos.x += 1;
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
-        }
+        
     }
 
     void Simulate() {
-        if (m_TestConfig.AnimateLight) {
-            auto& pos = m_DirectLightComponent.Light.Data->Position;
-
-            // translation light up and down every N ticks
-            static int tick = 1;
-            pos.y = 100 * sin(tick++ / 3000.0f);
-
-            // update light color every N ticks
-            if (tick % 10000 == 0) {
-                auto& color = m_DirectLightComponent.Light.Data->Color;
-                float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                color = { r, g, b };
-            }
-
-            LightManager::UpdateLight(m_DirectLightComponent.Light);
-        }
+        
     }
 
 private:

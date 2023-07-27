@@ -158,12 +158,12 @@ namespace xpe {
             TextBatchManager(Context* context);
             ~TextBatchManager();
 
-            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex3D>& geometry);
+            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount);
 
             void BeginBatch(const string& geometryUSID);
             void BeginBatch(BatchTextGlyphIndexed& batchIndexed);
 
-            bool AddInstance(const string& usid, const TextGlyphInstance& instance);
+            u32 AddInstance(const string& usid, const TextGlyphInstance& instance);
 
             void RemoveInstance(const string& usid, const TextGlyphInstance& instance);
 
@@ -180,11 +180,11 @@ namespace xpe {
 
         private:
 
-            void InitBatchIndexed(BatchTextGlyphIndexed& batchIndexed, const GeometryIndexedFormat& format);
+            void InitBatchIndexed(BatchTextGlyphIndexed& batchIndexed, const GeometryIndexedFormat& format, usize instanceCount);
 
             void FreeBatchIndexed(BatchTextGlyphIndexed& batchIndexed);
 
-            void NewBatchIndexed(const GeometryIndexedFormat& format);
+            BatchTextGlyphIndexed NewBatchIndexed(const GeometryIndexedFormat& format, usize instanceCount);
 
         private:
             Context* m_Context;

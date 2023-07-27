@@ -1,12 +1,23 @@
 #pragma once
 
 #include <string>
-#include <rendering/batching.h>
-#include <rendering/pipeline.h>
-#include <rendering/canvas.hpp>
 
 namespace xpe
 {
+    namespace core
+    {
+        struct TransformComponent;
+    }
+
+    namespace render
+    {
+        class Context;
+        class Canvas;
+        class InputLayout;
+        class Pipeline;
+        class TextBatchManager;
+    }
+
     namespace ttf
     {
         class Font;
@@ -15,23 +26,19 @@ namespace xpe
         {
 
         public:
-            static void Init(
-                xpe::render::Context* context,
-                xpe::render::TextBatchManager* manager,
-                xpe::render::Canvas* canvas
-            );
+            static void Init(xpe::render::Context* context, xpe::render::TextBatchManager* batchManager, xpe::render::Canvas* canvas);
             static void Free();
 
             static TextRenderer& Get() {
                 return *s_Instance;
             }
 
-            void Draw(Font* font, const xpe::render::TransformComponent* transform, const char* chars);
+            void Draw(Font* font, const xpe::core::TransformComponent* transform, const char* chars);
 
         private:
             static TextRenderer* s_Instance;
             xpe::render::Context* m_Context;
-            xpe::render::TextBatchManager* m_Manager;
+            xpe::render::TextBatchManager* m_BatchManager;
             xpe::render::InputLayout* m_InputLayout;
             xpe::render::Pipeline* m_Pipeline;
         };

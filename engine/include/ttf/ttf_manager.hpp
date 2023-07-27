@@ -3,7 +3,7 @@
 #include <string>
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include <rendering/texture.h>
+#include <rendering/core/texture.h>
 
 namespace xpe
 {

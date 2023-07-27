@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/context.hpp>
+#include <rendering/core/context.hpp>
 #include <rendering/buffers/camera_buffer.h>
 
 namespace xpe
