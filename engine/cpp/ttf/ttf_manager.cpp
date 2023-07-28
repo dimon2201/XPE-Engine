@@ -90,10 +90,11 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
             font.Atlas.Channels = 1;
             font.Atlas.Format = render::Texture::eFormat::R8;
             font.Atlas.Slot = 0;
-            render::TextureLayer layer;
-            layer.Pixels = alloc(font.Atlas.Width * font.Atlas.Height);
-            font.Atlas.Layers.push_back(layer);
             font.Atlas.MostDetailedMip = 0;
+            font.Atlas.Layers.push_back({});
+            font.Atlas.Layers[0].RowByteSize = font.Atlas.Width;
+            font.Atlas.Layers[0].Pixels = alloc(font.Atlas.Width * font.Atlas.Height);
+            const render::TextureLayer& layer = font.Atlas.Layers[0];
 
             // Fill atlas texture with glyphs
             xOffset = 0;

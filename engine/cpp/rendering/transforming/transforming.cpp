@@ -108,6 +108,13 @@ namespace xpe {
             s_Storage->Buffer2D.Flush();
         }
 
+        void TransformManager::ClearTransforms() {
+            s_Storage->Buffer.Clear();
+        }
+
+        void TransformManager::ClearTransforms2D() {
+            s_Storage->Buffer2D.Clear();
+        }
     }
 
 }

@@ -25,6 +25,8 @@ public:
     {
         LogInfo("GameApp::Init()");
 
+        CameraManager::Init(Application::context);
+
         m_TestConfig = TestConfigReader::Read("test_config.json");
 
         Input::WindowClosedEvents->AddEvent(this, OnWindowClosed<GameApp>, 1);
@@ -44,15 +46,11 @@ public:
         transform.Rotation = { 0.0f, 0.0f, 0.0f };
         transform.Scale = { 1.0f, 1.0f, 1.0f };
 
-        // it will flush all materials data into GPU memory
-        //MaterialManager::FlushMaterials();
-
         InitPipeline();
         InitCamera();
         InitCamera2D();
 
-        //TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
-        CameraManager::Init(Application::context);
+        TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
     }
 
     void Update() override final
@@ -68,7 +66,7 @@ public:
 
             TransformComponent transform("TextTransform");
             transform.Position = { 0.0f, 0.0f, 0.0f };
-            //TextRenderer::Get().Draw(&m_Font, &transform, "Hello!");
+            TextRenderer::Get().Draw(&m_Font, &transform, "H");
 
             m_Canvas->Present();
         }
@@ -83,8 +81,6 @@ public:
 
         delete m_Camera;
         delete m_BatchManager;
-
-        delete m_Camera2D;
     }
 
     void WindowClosed()
@@ -165,8 +161,6 @@ private:
     }
 
     void InitCamera2D() {
-        m_OrthoCameraComponent.Position = { 0, 0, -1 };
-        m_Camera2D = new OrthoCamera(CameraManager::GetBuffer(), &m_OrthoCameraComponent);
     }
 
     void UpdateCamera() {
@@ -199,12 +193,10 @@ private:
     InputLayout m_Layout;
 
     PerspectiveCamera* m_Camera;
-    OrthoCamera* m_Camera2D;
 
     DirectLightComponent m_DirectLightComponent = string("DirectLight");
 
     PerspectiveCameraComponent m_PerspectiveCameraComponent = string("PerspectiveCamera");
-    OrthoCameraComponent m_OrthoCameraComponent = string("OrthoCamera");
 
     TestConfig m_TestConfig;
 

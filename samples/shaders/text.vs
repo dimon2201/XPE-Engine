@@ -29,7 +29,7 @@ VSOut vs_main(VSIn vsIn)
     Transform transform = Transforms[instance.TransformIndex];
     Camera camera = Cameras[instance.CameraIndex];
 
-    float4 positionWorld = mul(transform.Matrix, float4(vsIn.positionLocal, 1.0));
+    float4 positionWorld = mul(transform.ModelMatrix, float4(vsIn.positionLocal, 1.0));
     float4 positionView = mul(camera.View, positionWorld);
     float4 positionClip = mul(camera.Projection, positionView);
 

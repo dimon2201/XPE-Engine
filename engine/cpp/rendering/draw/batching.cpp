@@ -658,6 +658,7 @@ namespace xpe {
 
         void TextBatchManager::FreeBatchIndexed(BatchTextGlyphIndexed& batchIndexed)
         {
+            batchIndexed.Vertices.Free();
             batchIndexed.Indices.Free();
             batchIndexed.Instances.Free();
         }
@@ -710,6 +711,7 @@ namespace xpe {
         }
 
         void TextBatchManager::BeginBatch(BatchTextGlyphIndexed& batchIndexed) {
+            batchIndexed.Vertices.Bind();
             batchIndexed.Indices.Bind();
             batchIndexed.Instances.Bind();
             m_Context->BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
@@ -726,6 +728,18 @@ namespace xpe {
             }
 
             return -1;
+        }
+
+        void TextBatchManager::RemoveInstanceAt(const string& str, u32 index)
+        {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    batchIndexed.Instances.RemoveAt(index);
+                    return;
+                }
+            }
         }
 
         void TextBatchManager::ClearInstances(const string& str)
@@ -747,6 +761,17 @@ namespace xpe {
             for (auto& batchIndexed : m_BatchesIndexed) {
                 if (batchIndexed.Format.USID == usid) {
                     batchIndexed.Instances.Flush();
+                    return;
+                }
+            }
+        }
+
+        void TextBatchManager::ResizeInstances(const string& str, const usize count) {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    batchIndexed.Instances.Resize(count);
                     return;
                 }
             }

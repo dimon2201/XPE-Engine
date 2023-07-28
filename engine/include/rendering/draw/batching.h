@@ -158,22 +158,24 @@ namespace xpe {
             TextBatchManager(Context* context);
             ~TextBatchManager();
 
-            void StoreGeometryIndexed(const string& usid, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount);
+            void StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount = 0);
 
-            void BeginBatch(const string& geometryUSID);
+            void BeginBatch(const string& str);
             void BeginBatch(BatchTextGlyphIndexed& batchIndexed);
 
-            u32 AddInstance(const string& usid, const TextGlyphInstance& instance);
+            u32 AddInstance(const string& str, const TextGlyphInstance& instance);
 
-            void RemoveInstance(const string& usid, const TextGlyphInstance& instance);
+            void RemoveInstanceAt(const string& str, u32 index);
 
-            void ClearInstances(const string& usid);
+            void ClearInstances(const string& str);
 
-            void FlushInstances(const string& usid);
+            void FlushInstances(const string& str);
 
-            void ReserveInstances(const string& usid, const usize count);
+            void ResizeInstances(const string& str, const usize count);
 
-            void DrawBatch(const string& usid);
+            void ReserveInstances(const string& str, const usize count);
+
+            void DrawBatch(const string& str);
             void DrawBatch(BatchTextGlyphIndexed& batchIndexed);
 
             void DrawAll();
@@ -188,7 +190,6 @@ namespace xpe {
 
         private:
             Context* m_Context;
-            unordered_map<string, BatchTextGlyphIndexed*> m_BatchIndexedLookup;
             vector<BatchTextGlyphIndexed> m_BatchesIndexed;
         };
 

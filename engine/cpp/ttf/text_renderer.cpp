@@ -9,7 +9,7 @@
 #include <rendering/dx11/d3d11_context.hpp>
 #include <rendering/draw/canvas.hpp>
 #include <rendering/draw/batching.h>
-#include <geometry/quad_geometry.h>
+#include <geometry/sphere_geometry.h>
 
 xpe::ttf::TextRenderer* xpe::ttf::TextRenderer::s_Instance = nullptr;
 
@@ -41,7 +41,7 @@ void xpe::ttf::TextRenderer::Init(xpe::render::Context* context, xpe::render::Te
     context->CreatePipeline(*s_Instance->m_Pipeline);
 
     // Store quad geometry to batch manager
-    xpe::render::Quad quad;
+    xpe::render::SphereGeometry quad;
     s_Instance->m_BatchManager->StoreGeometryIndexed("__TextQuad", quad, 1);
     
 }
@@ -86,11 +86,13 @@ void xpe::ttf::TextRenderer::Draw(xpe::ttf::Font* font, const xpe::core::Transfo
         m_BatchManager->AddInstance("__TextQuad", glyphInstance);
     }
 
-    xpe::render::TransformManager::FlushTransforms();
-
     m_BatchManager->FlushInstances("__TextQuad");
+
+    xpe::render::TransformManager::FlushTransforms();
 
     // Draw glyphs
     m_Context->BindPipeline(m_Pipeline);
     m_BatchManager->DrawAll();
+
+    xpe::render::TransformManager::ClearTransforms();
 }
