@@ -31,6 +31,7 @@ namespace xpe {
         struct ENGINE_API TextureLayer final {
             void* Pixels = nullptr;
             u32 RowByteSize = 0;
+            core::Boolean FromFile = K_FALSE;
             vector<Mip> Mips;
         };
 
@@ -89,6 +90,7 @@ namespace xpe {
             u32 MostDetailedMip = 0;
 
             bool InitializeData = true;
+            bool GenerateMips = false;
             vector<TextureLayer> Layers;
 
             inline u32 GetMipLevels() const {

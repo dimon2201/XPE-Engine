@@ -165,6 +165,7 @@ namespace xpe {
             channels = c;
 
             layer.RowByteSize = width * BPPTable.at(format);
+            layer.FromFile = K_TRUE;
 
             return layer;
         }
@@ -252,10 +253,14 @@ namespace xpe {
         {
             for (auto& layer : texture.Layers) {
                 if (layer.Pixels != nullptr) {
-                    stbi_image_free(layer.Pixels);
+                    if (layer.FromFile == K_TRUE) {
+                        stbi_image_free(layer.Pixels);
+                    }
                     dealloc(layer.Pixels);
                 }
-                FreeMips(layer);
+                if (texture.GenerateMips) {
+                    FreeMips(layer);
+                }
             }
             texture.Layers.clear();
             s_Context->FreeTexture(texture);

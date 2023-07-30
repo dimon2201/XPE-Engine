@@ -19,9 +19,14 @@ struct TextGlyphInstance
 {
     uint TransformIndex;
     uint CameraIndex;
+    float GlyphSize;
+    float Width;
+    float Height;
     float Left;
     float Top;
     float Advance;
+    float AtlasXOffset;
+    float AtlasYOffset;
 };
 
 StructuredBuffer<TextGlyphInstance> TextGlyphs : K_SLOT_TEXT_GLYPH_INSTANCES;

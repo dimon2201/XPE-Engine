@@ -39,7 +39,11 @@ public:
         m_BatchManager = new BatchManager(context);
         m_TextBatchManager = new TextBatchManager(context);
 
-        m_Font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
+        m_Font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 64);
+        Font* f = TTFManager::Get().Resize("resources/fonts/Roboto-Italic.ttf", 32);
+        TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/font.png", m_Font.Atlas, Texture::eFileFormat::PNG);
+        m_Font = *f;
+        //std::cout << f->GlyphSize << std::endl;
 
         TransformComponent transform("TextTransform");
         transform.Position = { 0.0f, 0.0f, 0.0f };
@@ -66,7 +70,8 @@ public:
 
             TransformComponent transform("TextTransform");
             transform.Position = { 0.0f, 0.0f, 0.0f };
-            TextRenderer::Get().Draw(&m_Font, &transform, "H");
+            transform.Scale = { 1.0f, 1.0f, 1.0f };
+            TextRenderer::Get().Draw(&m_Font, &transform, "Hello!");
 
             m_Canvas->Present();
         }

@@ -31,9 +31,14 @@ namespace xpe {
         {
             u32 TransformIndex = 0;
             u32 CameraIndex = 0;
+            f32 GlyphSize = 0;
+            f32 Width = 0;
+            f32 Height = 0;
             f32 Left = 0;
             f32 Top = 0;
             f32 Advance = 0;
+            f32 AtlasXOffset = 0;
+            f32 AtlasYOffset = 0;
 
             friend inline bool operator ==(const TextGlyphInstance& instance1, const TextGlyphInstance& instance2) {
                 return instance1.TransformIndex == instance2.TransformIndex;

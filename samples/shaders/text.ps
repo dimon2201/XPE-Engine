@@ -8,12 +8,25 @@ struct VSOut
     float3 normal : XPE_NORMAL2;  // normalized
     float4 positionClip : SV_POSITION;
     float3 viewPosition : XPE_VIEW_POSITION;
-    uint materialIndex : XPE_MATERIAL_INDEX;
+    float2 glyphSize : XPE_GLYPH_SIZE;
+    float3 glyphData : XPE_GLYPH_DATA;
+    float2 glyphAtlasOffset : XPE_GLYPH_ATLAS_OFFSET;
 };
 
 float4 ps_main(VSOut psIn) : SV_TARGET
 {
-    float3 color = M_Atlas.Sample(S_Atlas, psIn.texcoord);
+    uint width = 0;
+    uint height = 0;
+    M_Atlas.GetDimensions(width, height);
+    float2 atlasSize = float2(width, height);
+    float2 fGlyphSize = psIn.glyphSize / atlasSize;
+    float2 fOffset = psIn.glyphAtlasOffset / atlasSize;
+    float2 texcoord = fOffset + (float2(psIn.texcoord.x, 1.0 - psIn.texcoord.y) * fGlyphSize);
 
-    return float4(1.0, 0.0, 0.0, 1.0);
+    float value = M_Atlas.Sample(S_Atlas, texcoord).x;
+    if (value == 0.0) {
+        discard;
+    }
+
+    return float4(value, 0.0, 0.0, 1.0);
 }

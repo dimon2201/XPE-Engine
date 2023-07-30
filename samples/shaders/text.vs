@@ -1,6 +1,5 @@
 #include ../engine_shaders/types.shader
 #include ../engine_shaders/batching.shader
-#include ../engine_shaders/transforming.shader
 #include ../engine_shaders/controls/camera.shader
 
 struct VSIn
@@ -18,7 +17,9 @@ struct VSOut
     float3 normal : XPE_NORMAL2;
     float4 positionClip : SV_POSITION;
     float3 viewPosition : XPE_VIEW_POSITION;
-    uint materialIndex : XPE_MATERIAL_INDEX;
+    float2 glyphSize : XPE_GLYPH_SIZE;
+    float3 glyphData : XPE_GLYPH_DATA;
+    float2 glyphAtlasOffset : XPE_GLYPH_ATLAS_OFFSET;
 };
 
 VSOut vs_main(VSIn vsIn)
@@ -26,11 +27,15 @@ VSOut vs_main(VSIn vsIn)
     VSOut vsOut = (VSOut)0;
 
     TextGlyphInstance instance = TextGlyphs[vsIn.instanceIndex];
-    Transform transform = Transforms[instance.TransformIndex];
     Camera camera = Cameras[instance.CameraIndex];
 
-    float4 positionWorld = mul(transform.ModelMatrix, float4(vsIn.positionLocal, 1.0));
-    float4 positionView = mul(camera.View, positionWorld);
+    float3 positionLocal = (vsIn.positionLocal * 0.5f) + 0.25f;
+    float4 positionWorld = float4(positionLocal, 1.0f);
+    positionWorld.x *= instance.Width / instance.GlyphSize;
+    positionWorld.y *= instance.Height / instance.GlyphSize;
+    positionWorld.x += 0.5f * ((instance.Left / instance.GlyphSize) + instance.Advance);
+    positionWorld.y -= 0.5f * ((instance.Height - instance.Top) / instance.GlyphSize);
+    float4 positionView = positionWorld + float4(0.0f, 0.0f, 8.0f, 0.0f);
     float4 positionClip = mul(camera.Projection, positionView);
 
     vsOut.positionWorld = positionWorld.xyz;
@@ -38,7 +43,9 @@ VSOut vs_main(VSIn vsIn)
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = normalize(vsIn.normal);
     vsOut.positionClip = positionClip;
-    vsOut.materialIndex = 0;
+    vsOut.glyphSize = float2(instance.Width, instance.Height);
+    vsOut.glyphData = float3(instance.Left, instance.Top, instance.Advance);
+    vsOut.glyphAtlasOffset = float2(instance.AtlasXOffset, instance.AtlasYOffset);
 
     return vsOut;
 }

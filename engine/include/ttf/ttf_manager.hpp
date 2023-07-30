@@ -16,15 +16,17 @@ namespace xpe
                 core::u8 Character;
                 core::usize Width;
                 core::usize Height;
-                core::usize Left;
-                core::usize Top;
+                core::ssize Left;
+                core::ssize Top;
                 core::usize Advance;
                 void* BitmapData = nullptr;
                 core::usize AtlasXOffset;
                 core::usize AtlasYOffset;
             };
 
+            FT_Face FTFace;
             core::usize GlyphCount;
+            core::usize GlyphSize;
             core::unordered_map<char, Font::Glyph> AlphaBet;
             render::Texture Atlas;
         };
@@ -42,6 +44,7 @@ namespace xpe
 
         public:
             Font Load(const char* filePath, core::usize glyphSize);
+            Font* Resize(const char* filePath, core::usize glyphSize);
             void Free(Font& font);
             Font* GetFont(const char* filePath);
 
