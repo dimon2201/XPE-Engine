@@ -112,23 +112,23 @@ public:
                     material->Data->RoughnessFactor = g;
                     material->Data->AOFactor = b;
 
-//                    material->Data->EnableAlbedo = false;
+//                    material->Data->EnableAlbedo = true;
 //                    material->AlbedoIndex = textureIndex;
 //                    MaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
 //
-//                    material->Data->EnableBumping = false;
+//                    material->Data->EnableBumping = true;
 //                    material->BumpingIndex = textureIndex;
 //                    MaterialManager::AddBumpFromFile(*material, "resources/materials/steel/bump.png");
 //
-//                    material->Data->EnableMetallic = false;
+//                    material->Data->EnableMetallic = true;
 //                    material->MetallicIndex = textureIndex;
 //                    MaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
 //
-//                    material->Data->EnableRoughness = false;
+//                    material->Data->EnableRoughness = true;
 //                    material->RoughnessIndex = textureIndex;
 //                    MaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
 //
-//                    material->Data->EnableAO = false;
+//                    material->Data->EnableAO = true;
 //                    material->AOIndex = textureIndex;
 //                    MaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
 
