@@ -1,5 +1,6 @@
 #include ../engine_shaders/types.shader
 #include ../engine_shaders/batching.shader
+#include ../engine_shaders/transforming.shader
 #include ../engine_shaders/controls/camera.shader
 
 struct VSIn
@@ -27,12 +28,15 @@ VSOut vs_main(VSIn vsIn)
     VSOut vsOut = (VSOut)0;
 
     TextGlyphInstance instance = TextGlyphs[vsIn.instanceIndex];
+    Transform transform = Transforms[instance.TransformIndex];
     Camera camera = Cameras[instance.CameraIndex];
 
     float3 positionLocal = (vsIn.positionLocal * 0.5f) + 0.25f;
     float4 positionWorld = float4(positionLocal, 1.0f);
-    positionWorld.x *= instance.Width / instance.GlyphSize;
-    positionWorld.y *= instance.Height / instance.GlyphSize;
+    //positionWorld = mul(transform.ModelMatrix, positionWorld);
+    positionWorld.x *= instance.Width;
+    positionWorld.y *= instance.Height;
+    positionWorld = mul(transform.ModelMatrix, positionWorld);
     positionWorld.x += 0.5f * ((instance.Left / instance.GlyphSize) + instance.Advance);
     positionWorld.y -= 0.5f * ((instance.Height - instance.Top) / instance.GlyphSize);
     float4 positionView = positionWorld + float4(0.0f, 0.0f, 8.0f, 0.0f);

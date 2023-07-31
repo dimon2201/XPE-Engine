@@ -258,9 +258,7 @@ namespace xpe {
                     }
                     dealloc(layer.Pixels);
                 }
-                if (texture.GenerateMips) {
-                    FreeMips(layer);
-                }
+                FreeMips(layer);
             }
             texture.Layers.clear();
             s_Context->FreeTexture(texture);

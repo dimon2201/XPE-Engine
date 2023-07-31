@@ -516,9 +516,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Texture1D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            if (texture.GenerateMips) {
-                GenerateMips(texture);
-            }
+            GenerateMips(texture);
 
             FreeTextureData(initialData);
         }
@@ -555,9 +553,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            if (texture.GenerateMips) {
-                GenerateMips(texture);
-            }
+            GenerateMips(texture);
 
             FreeTextureData(initialData);
         }
@@ -596,9 +592,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            if (texture.GenerateMips) {
-                GenerateMips(texture);
-            }
+            GenerateMips(texture);
 
             FreeTextureData(initialData);
         }
@@ -633,9 +627,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Texture3D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            if (texture.GenerateMips) {
-                GenerateMips(texture);
-            }
+            GenerateMips(texture);
 
             FreeTextureData(initialData);
         }
@@ -673,9 +665,7 @@ namespace xpe {
             m_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
             LogDebugMessage();
 
-            if (texture.GenerateMips) {
-                GenerateMips(texture);
-            }
+            GenerateMips(texture);
 
             FreeTextureData(initialData);
         }

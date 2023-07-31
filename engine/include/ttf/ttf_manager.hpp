@@ -43,23 +43,17 @@ namespace xpe
             static void Init(render::Context* context);
             static void Free();
 
-            static TTFManager& Get() {
-                return *s_Instance;
-            }
-
         public:
-            Font Load(const char* filePath, core::usize glyphSize);
-            Font* Resize(const char* filePath, core::usize glyphSize);
-            void Free(Font& font);
-            Font* GetFont(const char* filePath);
+            static Font Load(const std::string& filePath, core::usize glyphSize);
+            static Font* Resize(const std::string& filePath, core::usize glyphSize);
+            static void Free(Font& font);
+            static Font* GetFont(const std::string& filePath);
 
         private:
-            static TTFManager* s_Instance;
             static render::Context* s_Context;
-
-            core::Boolean m_Loaded = core::K_FALSE;
-            FT_Library m_Lib;
-            core::unordered_map<std::string, Font> m_Fonts;
+            static core::Boolean s_Loaded;
+            static FT_Library s_Lib;
+            static core::unordered_map<std::string, Font>* s_Fonts;
         };
     }
 }

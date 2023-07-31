@@ -90,7 +90,6 @@ namespace xpe {
             u32 MostDetailedMip = 0;
 
             bool InitializeData = true;
-            bool GenerateMips = false;
             vector<TextureLayer> Layers;
 
             inline u32 GetMipLevels() const {

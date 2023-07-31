@@ -2,35 +2,38 @@
 #include <core/main_allocator.h>
 #include <rendering/core/context.hpp>
 
-xpe::ttf::TTFManager* xpe::ttf::TTFManager::s_Instance = nullptr;
 xpe::render::Context* xpe::ttf::TTFManager::s_Context = nullptr;
+xpe::core::Boolean xpe::ttf::TTFManager::s_Loaded = core::K_FALSE;
+FT_Library xpe::ttf::TTFManager::s_Lib;
+xpe::core::unordered_map<std::string, xpe::ttf::Font>* xpe::ttf::TTFManager::s_Fonts = nullptr;
 
 void xpe::ttf::TTFManager::Init(render::Context* context) {
-    s_Instance = new TTFManager();
     s_Context = context;
+    s_Fonts = new xpe::core::unordered_map<std::string, xpe::ttf::Font>();
 }
 
 void xpe::ttf::TTFManager::Free() {
-    delete s_Instance;
+    FT_Done_FreeType(s_Lib);
+    delete s_Fonts;
 }
 
-xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyphSize)
+xpe::ttf::Font xpe::ttf::TTFManager::Load(const std::string& filePath, core::usize glyphSize)
 {
     Font font = {};
 
-    if (m_Loaded == core::K_FALSE)
+    if (s_Loaded == core::K_FALSE)
     {
-        if (FT_Init_FreeType(&m_Lib))
+        if (FT_Init_FreeType(&s_Lib))
         {
             LogError("Error initializing FreeType!");
         }
         else
         {
-            m_Loaded = core::K_TRUE;
+            s_Loaded = core::K_TRUE;
         }
     }
 
-    if (FT_New_Face(m_Lib, filePath, 0, &font.FTFace) == 0)
+    if (FT_New_Face(s_Lib, filePath.c_str(), 0, &font.FTFace) == 0)
     {
         if (FT_Set_Pixel_Sizes(font.FTFace, 0, glyphSize) == 0)
         {
@@ -139,7 +142,7 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
 
             render::TextureManager::InitTexture(font.Atlas);
 
-            m_Fonts.insert({ std::string(filePath), font });
+            s_Fonts->insert({ std::string(filePath), font });
         }
     }
     else
@@ -150,7 +153,7 @@ xpe::ttf::Font xpe::ttf::TTFManager::Load(const char* filePath, core::usize glyp
     return font;
 }
 
-xpe::ttf::Font* xpe::ttf::TTFManager::Resize(const char* filePath, core::usize glyphSize)
+xpe::ttf::Font* xpe::ttf::TTFManager::Resize(const std::string& filePath, core::usize glyphSize)
 {
     Font* font = GetFont(filePath);
     if (font == nullptr) {
@@ -293,11 +296,11 @@ void xpe::ttf::TTFManager::Free(Font& font)
     FT_Done_Face(font.FTFace);
 }
 
-xpe::ttf::Font* xpe::ttf::TTFManager::GetFont(const char* filePath)
+xpe::ttf::Font* xpe::ttf::TTFManager::GetFont(const std::string& filePath)
 {
-    auto it = m_Fonts.find(std::string(filePath));
+    auto it = s_Fonts->find(filePath);
 
-    if (it != m_Fonts.end())
+    if (it != s_Fonts->end())
     {
         return &it->second;
     }

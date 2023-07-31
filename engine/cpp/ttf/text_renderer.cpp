@@ -22,6 +22,7 @@ void xpe::ttf::TextRenderer::Init(xpe::render::Context* context, xpe::render::Te
 
     // Setup pipeline
     s_Instance->m_Pipeline->VSBuffers.emplace_back(render::CameraManager::GetBuffer());
+    s_Instance->m_Pipeline->VSBuffers.emplace_back(render::TransformManager::GetBuffer());
 
     s_Instance->m_Pipeline->Shader = xpe::render::ShaderManager::CreateShader("text");
     xpe::render::ShaderManager::AddVertexStageFromFile(s_Instance->m_Pipeline->Shader, "shaders/text.vs");
@@ -61,6 +62,9 @@ void xpe::ttf::TextRenderer::Draw(xpe::ttf::Font* font, const xpe::core::Transfo
     m_BatchManager->ClearInstances("__TextQuad");
     m_BatchManager->ReserveInstances("__TextQuad", charsCount);
 
+    xpe::render::TransformManager::AddTransform(*(xpe::core::TransformComponent*)transform);
+    xpe::render::TransformManager::FlushTransforms();
+
     // Add instances to text batch manager
     xpe::core::f32 advance = 0.0f;
     for (core::usize i = 0; i < charsCount; i++)
@@ -73,10 +77,8 @@ void xpe::ttf::TextRenderer::Draw(xpe::ttf::Font* font, const xpe::core::Transfo
 
         Font::Glyph glyph = it->second;
 
-        xpe::render::TransformManager::AddTransform(*(xpe::core::TransformComponent*)transform);
-
         xpe::render::TextGlyphInstance instance;
-        instance.TransformIndex = i;
+        instance.TransformIndex = transform->Index;
         instance.GlyphSize = font->GlyphSize;
         instance.Width = glyph.Width;
         instance.Height = glyph.Height;
@@ -85,14 +87,12 @@ void xpe::ttf::TextRenderer::Draw(xpe::ttf::Font* font, const xpe::core::Transfo
         instance.Advance = advance;
         instance.AtlasXOffset = glyph.AtlasXOffset;
         instance.AtlasYOffset = glyph.AtlasYOffset;
-        advance += glyph.Advance / 64.0f / (core::f32)font->GlyphSize;
+        advance += (glyph.Advance / 64.0f) * 0.1f;
 
         m_BatchManager->AddInstance("__TextQuad", instance);
     }
 
     m_BatchManager->FlushInstances("__TextQuad");
-
-    xpe::render::TransformManager::FlushTransforms();
 
     // Draw glyphs
     m_Context->BindPipeline(m_Pipeline);

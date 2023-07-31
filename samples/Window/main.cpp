@@ -39,16 +39,11 @@ public:
         m_BatchManager = new BatchManager(context);
         m_TextBatchManager = new TextBatchManager(context);
 
-        m_Font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 64);
-        Font* f = TTFManager::Get().Resize("resources/fonts/Roboto-Italic.ttf", 72);
-        m_Font = *f;
-        TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/font.png", m_Font.Atlas, Texture::eFileFormat::PNG);
+        m_Font = TTFManager::Load("resources/fonts/Roboto-Italic.ttf", 32);
+        //Font* f = TTFManager::Resize("resources/fonts/Roboto-Italic.ttf", 72);
+        //m_Font = *f;
+        //TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/font.png", m_Font.Atlas, Texture::eFileFormat::PNG);
         //std::cout << f->GlyphSize << std::endl;
-
-        TransformComponent transform("TextTransform");
-        transform.Position = { 0.0f, 0.0f, 0.0f };
-        transform.Rotation = { 0.0f, 0.0f, 0.0f };
-        transform.Scale = { 1.0f, 1.0f, 1.0f };
 
         InitPipeline();
         InitCamera();
@@ -70,8 +65,8 @@ public:
 
             TransformComponent transform("TextTransform");
             transform.Position = { 0.0f, 0.0f, 0.0f };
-            transform.Scale = { 1.0f, 1.0f, 1.0f };
-            TextRenderer::Get().Draw(&m_Font, &transform, "Hello!");
+            transform.Scale = { 0.1f, 0.1f, 0.1f };
+            TextRenderer::Get().Draw(&m_Font, &transform, "yo!");
 
             m_Canvas->Present();
         }
