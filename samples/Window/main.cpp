@@ -40,9 +40,9 @@ public:
         m_TextBatchManager = new TextBatchManager(context);
 
         m_Font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 64);
-        Font* f = TTFManager::Get().Resize("resources/fonts/Roboto-Italic.ttf", 32);
-        TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/font.png", m_Font.Atlas, Texture::eFileFormat::PNG);
+        Font* f = TTFManager::Get().Resize("resources/fonts/Roboto-Italic.ttf", 72);
         m_Font = *f;
+        TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/font.png", m_Font.Atlas, Texture::eFileFormat::PNG);
         //std::cout << f->GlyphSize << std::endl;
 
         TransformComponent transform("TextTransform");

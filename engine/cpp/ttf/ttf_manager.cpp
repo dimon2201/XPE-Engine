@@ -1,10 +1,13 @@
 #include <ttf/ttf_manager.hpp>
 #include <core/main_allocator.h>
+#include <rendering/core/context.hpp>
 
 xpe::ttf::TTFManager* xpe::ttf::TTFManager::s_Instance = nullptr;
+xpe::render::Context* xpe::ttf::TTFManager::s_Context = nullptr;
 
-void xpe::ttf::TTFManager::Init() {
+void xpe::ttf::TTFManager::Init(render::Context* context) {
     s_Instance = new TTFManager();
+    s_Context = context;
 }
 
 void xpe::ttf::TTFManager::Free() {
@@ -269,6 +272,8 @@ xpe::ttf::Font* xpe::ttf::TTFManager::Resize(const char* filePath, core::usize g
                 xOffset = 0;
             }
         }
+
+        s_Context->WriteTexture(font->Atlas, layer.Pixels, font->Atlas.Width * font->Atlas.Height);
     }
 
     return font;

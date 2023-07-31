@@ -7,6 +7,11 @@
 
 namespace xpe
 {
+    namespace render
+    {
+        class Context;
+    }
+
     namespace ttf
     {
         struct ENGINE_API Font
@@ -35,7 +40,7 @@ namespace xpe
         {
 
         public:
-            static void Init();
+            static void Init(render::Context* context);
             static void Free();
 
             static TTFManager& Get() {
@@ -50,6 +55,7 @@ namespace xpe
 
         private:
             static TTFManager* s_Instance;
+            static render::Context* s_Context;
 
             core::Boolean m_Loaded = core::K_FALSE;
             FT_Library m_Lib;

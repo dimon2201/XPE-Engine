@@ -70,7 +70,7 @@ namespace xpe {
 
             TransformManager::Init(context);
 
-            ttf::TTFManager::Init();
+            ttf::TTFManager::Init(context);
 
             Init();
 
