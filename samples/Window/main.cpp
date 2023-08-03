@@ -1,6 +1,4 @@
 #include <core/core.hpp>
-#include <ttf/text_renderer.hpp>
-#include <ttf/ttf_manager.hpp>
 
 #include "test_config.h"
 #include "launcher.h"
@@ -40,10 +38,9 @@ public:
         m_TextBatchManager = new TextBatchManager(context);
 
         m_Font = TTFManager::Load("resources/fonts/Roboto-Italic.ttf", 32);
-        //Font* f = TTFManager::Resize("resources/fonts/Roboto-Italic.ttf", 72);
-        //m_Font = *f;
-        //TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/font.png", m_Font.Atlas, Texture::eFileFormat::PNG);
-        //std::cout << f->GlyphSize << std::endl;
+        Font* f = TTFManager::Resize("resources/fonts/Roboto-Italic.ttf", 80);
+        m_Font = *f;
+        TextureManager::WriteTextureFile("C:/Users/USER100/Documents/GitHub/XPE-Engine/font.png", m_Font.Atlas, Texture::eFileFormat::PNG);
 
         InitPipeline();
         InitCamera();
@@ -61,12 +58,13 @@ public:
 
             Simulate();
 
-            m_Canvas->Clear(glm::vec4(1.0f));
+            m_Canvas->Clear(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
             TransformComponent transform("TextTransform");
             transform.Position = { 0.0f, 0.0f, 0.0f };
-            transform.Scale = { 0.1f, 0.1f, 0.1f };
-            TextRenderer::Get().Draw(&m_Font, &transform, "yo!");
+            transform.Scale = { 0.01f, 0.01f, 0.01f };
+            m_Font.GlyphNewLineExtraOffset = 32.0f;
+            TextRenderer::Get().Draw(&m_Font, &transform, "Hello!\nNew line");
 
             m_Canvas->Present();
         }
@@ -145,6 +143,7 @@ private:
         // setup render target
         m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
         m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
+        m_Pipeline.BlendState.UseBlending = xpe::core::K_TRUE;
 
         // init pipeline
         context->CreatePipeline(m_Pipeline);

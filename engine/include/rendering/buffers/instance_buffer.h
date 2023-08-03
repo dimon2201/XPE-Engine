@@ -36,7 +36,8 @@ namespace xpe {
             f32 Height = 0;
             f32 Left = 0;
             f32 Top = 0;
-            f32 Advance = 0;
+            f32 AdvanceX = 0;
+            f32 AdvanceY = 0;
             f32 AtlasXOffset = 0;
             f32 AtlasYOffset = 0;
 

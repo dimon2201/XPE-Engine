@@ -24,7 +24,8 @@ struct TextGlyphInstance
     float Height;
     float Left;
     float Top;
-    float Advance;
+    float AdvanceX;
+    float AdvanceY;
     float AtlasXOffset;
     float AtlasYOffset;
 };

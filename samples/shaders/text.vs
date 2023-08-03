@@ -19,7 +19,6 @@ struct VSOut
     float4 positionClip : SV_POSITION;
     float3 viewPosition : XPE_VIEW_POSITION;
     float2 glyphSize : XPE_GLYPH_SIZE;
-    float3 glyphData : XPE_GLYPH_DATA;
     float2 glyphAtlasOffset : XPE_GLYPH_ATLAS_OFFSET;
 };
 
@@ -33,12 +32,11 @@ VSOut vs_main(VSIn vsIn)
 
     float3 positionLocal = (vsIn.positionLocal * 0.5f) + 0.25f;
     float4 positionWorld = float4(positionLocal, 1.0f);
-    //positionWorld = mul(transform.ModelMatrix, positionWorld);
-    positionWorld.x *= instance.Width;
-    positionWorld.y *= instance.Height;
-    positionWorld = mul(transform.ModelMatrix, positionWorld);
-    positionWorld.x += 0.5f * ((instance.Left / instance.GlyphSize) + instance.Advance);
-    positionWorld.y -= 0.5f * ((instance.Height - instance.Top) / instance.GlyphSize);
+    float4 offsetScaled = mul(transform.ModelMatrix, float4(instance.Left, instance.Top, 1.0f, 1.0f));
+    float4 sizeScaled = mul(transform.ModelMatrix, float4(instance.Width, instance.Height, 1.0f, 1.0f));
+    positionWorld *= sizeScaled;
+    positionWorld.x += 0.5f * (offsetScaled.x + instance.AdvanceX);
+    positionWorld.y -= 0.5f * ((sizeScaled.y - offsetScaled.y) + instance.AdvanceY);
     float4 positionView = positionWorld + float4(0.0f, 0.0f, 8.0f, 0.0f);
     float4 positionClip = mul(camera.Projection, positionView);
 
@@ -48,7 +46,6 @@ VSOut vs_main(VSIn vsIn)
     vsOut.normal = normalize(vsIn.normal);
     vsOut.positionClip = positionClip;
     vsOut.glyphSize = float2(instance.Width, instance.Height);
-    vsOut.glyphData = float3(instance.Left, instance.Top, instance.Advance);
     vsOut.glyphAtlasOffset = float2(instance.AtlasXOffset, instance.AtlasYOffset);
 
     return vsOut;

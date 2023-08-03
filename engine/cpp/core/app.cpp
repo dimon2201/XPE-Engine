@@ -11,7 +11,7 @@
 #include <rendering/camera/camera_manager.h>
 
 // todo(cheerwizard): It would be nice to move TTF as Resource Importer into Focus editor and instead use just AssetManager for fonts
-#include <ttf/ttf_manager.hpp>
+#include <rendering/text/ttf_manager.hpp>
 using namespace xpe::ttf;
 
 namespace xpe {
