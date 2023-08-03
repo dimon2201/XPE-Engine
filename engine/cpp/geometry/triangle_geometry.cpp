@@ -4,7 +4,8 @@ namespace xpe {
 
     namespace math {
 
-        Triangle2d::Triangle2d() {
+        Triangle2d::Triangle2d()
+        {
             Vertices.Init(3);
 
             auto& v0 = Vertices[0];
@@ -22,11 +23,13 @@ namespace xpe {
             PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
-        Triangle2d::~Triangle2d() {
+        Triangle2d::~Triangle2d()
+        {
             Vertices.Free();
         }
 
-        Triangle::Triangle() {
+        Triangle::Triangle()
+        {
             Vertices.Init(3);
 
             auto& v0 = Vertices[0];
@@ -46,7 +49,8 @@ namespace xpe {
             PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
-        Triangle::~Triangle() {
+        Triangle::~Triangle()
+        {
             Vertices.Free();
         }
 

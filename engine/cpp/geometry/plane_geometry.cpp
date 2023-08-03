@@ -4,11 +4,13 @@ namespace xpe {
 
     namespace math {
 
-        PlaneGeometry::PlaneGeometry() {
+        PlaneGeometry::PlaneGeometry()
+        {
             Init();
         }
 
-        PlaneGeometry::PlaneGeometry(int size) : Size(size) {
+        PlaneGeometry::PlaneGeometry(int size) : Size(size)
+        {
             Init();
         }
 
@@ -59,7 +61,8 @@ namespace xpe {
             PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_STRIP;
         }
 
-        PlaneGeometry::~PlaneGeometry() {
+        PlaneGeometry::~PlaneGeometry()
+        {
             Vertices.Free();
             Indices.Free();
         }

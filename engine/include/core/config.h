@@ -1,14 +1,15 @@
 #pragma once
 
+#include <res/json.h>
+
 namespace xpe {
 
     namespace core {
 
-        struct MemoryConfig;
-
-        struct ENGINE_API AppConfig final {
-
-            enum class eGPU {
+        struct ENGINE_API AppConfig : res::JsonObject
+        {
+            enum class eGPU
+            {
                 DX11,
                 OPENGL,
                 VULKAN,
@@ -16,10 +17,32 @@ namespace xpe {
                 DEFAULT = DX11
             };
 
-            static AppConfig& Get() {
-                static AppConfig instance;
-                return instance;
-            }
+            JsonEnum(eGPU, {
+                { eGPU::DEFAULT, "DEFAULT" },
+                { eGPU::DX11, "DX11" },
+                { eGPU::OPENGL, "OPENGL" },
+                { eGPU::VULKAN, "VULKAN" },
+            })
+
+            JsonFields(
+                AppConfig,
+                WinTitle,
+                WinWidth,
+                WinHeight,
+                WinX,
+                WinY,
+                Vsync,
+                LogTitle,
+                LogBacktrace,
+                GPU,
+                LogDebugErrors,
+                LogDebugWarnings,
+                LogDebugInfos,
+                FPS,
+                LogTimeDelaySeconds,
+                LockOnFPS,
+                HotReloadShaders
+            )
 
             std::string WinTitle;
             s32 WinWidth = 0;
@@ -45,20 +68,14 @@ namespace xpe {
 
             bool HotReloadShaders = true;
 
-        };
-
-        class ENGINE_API AppConfigReader final {
-
-        public:
-            static AppConfig Read(const char* filepath);
-
-        private:
-            static void Parse(const std::string& source, AppConfig& config);
+            static AppConfig& Get()
+            {
+                static AppConfig instance;
+                return instance;
+            }
 
         };
 
     }
-
-
 
 }

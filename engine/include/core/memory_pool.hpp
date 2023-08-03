@@ -116,7 +116,15 @@ namespace xpe
             return address;
         }
 
-        struct ENGINE_API MemoryConfig final {
+        struct ENGINE_API MemoryConfig : res::JsonObject
+        {
+            JsonFields(
+                MemoryConfig,
+                MainMemoryMB,
+                MainAllocs,
+                HotMemoryKB,
+                HotAllocs
+            )
 
             usize MainMemoryMB = 1024 * K_MEMORY_MIB;
             usize MainAllocs = 1000;
@@ -131,17 +139,8 @@ namespace xpe
 
         };
 
-        class ENGINE_API MemoryConfigReader final {
-
-        public:
-            static MemoryConfig Read(const char* filepath);
-
-        private:
-            static void Parse(const std::string& source, MemoryConfig& config);
-
-        };
-
-        class ENGINE_API MemoryPoolManager final {
+        class ENGINE_API MemoryPoolManager final
+        {
 
         public:
             static MemoryPoolStorage* MainPools;

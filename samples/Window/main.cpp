@@ -9,6 +9,7 @@ using namespace xpe::ttf;
 using namespace xpe::io;
 using namespace xpe::math;
 using namespace xpe::gltf;
+using namespace xpe::res;
 
 
 class GameApp : public Application
@@ -21,7 +22,10 @@ public:
     {
         LogInfo("GameApp::Init()");
 
-        m_TestConfig = TestConfigReader::Read("config/test_config.json");
+        if (!ReadJsonFile("config/test_config.json", m_TestConfig))
+        {
+            LogError("Failed to read test config from config/test_config.json");
+        }
 
         AddWindowClosed(GameApp, 1);
         AddKeyPressed(GameApp, 1);

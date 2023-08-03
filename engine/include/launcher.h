@@ -5,11 +5,20 @@
 using namespace xpe::core;
 
 int main(int argc, char** argv) {
+
     // read app configs
-    AppConfig::Get() = AppConfigReader::Read("config/config.json");
+    if (!ReadJsonFile("config/config.json", AppConfig::Get()))
+    {
+        FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");
+        return 0;
+    }
 
     // read memory configs
-    MemoryConfig::Get() = MemoryConfigReader::Read("config/memory_config.json");
+    if (!ReadJsonFile("config/memory_config.json", MemoryConfig::Get()))
+    {
+        FMT_ASSERT(false, "Failed to read memory config from config/memory_config.json file. Please provide config file!");
+        return 0;
+    }
 
     // init memory pools
     MemoryPoolManager::Init(MemoryConfig::Get());

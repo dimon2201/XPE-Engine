@@ -4,7 +4,8 @@ namespace xpe {
 
     namespace math {
 
-        CubeGeometry::CubeGeometry() {
+        CubeGeometry::CubeGeometry()
+        {
             Vertices.Init(24);
 
             Vertices[0] = { { -0.5f,0.5f,-0.5f } };
@@ -62,7 +63,8 @@ namespace xpe {
             PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_LIST;
         }
 
-        CubeGeometry::~CubeGeometry() {
+        CubeGeometry::~CubeGeometry()
+        {
             Vertices.Free();
             Indices.Free();
         }

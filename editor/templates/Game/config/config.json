@@ -1,25 +1,27 @@
 {
 
-  "win_title": "Example Window",
-  "win_width": 800,
-  "win_height": 600,
-  "win_x": 400,
-  "win_y": 300,
-  "vsync": false,
+  "AppConfig": {
+      "WinTitle": "Example Window",
+      "WinWidth": 800,
+      "WinHeight": 600,
+      "WinX": 400,
+      "WinY": 300,
+      "VSync": false,
 
-  "log_title": "ExampleWindow",
-  "log_backtrace": 32,
+      "LogTitle": "ExampleWindow",
+      "LogBacktrace": 32,
 
-  "gpu": "DX11",
+      "GPU": "DX11",
 
-  "debug_errors": true,
-  "debug_warnings": false,
-  "debug_info": false,
+      "DebugErrors": true,
+      "DebugWarnings": false,
+      "DebugInfo": false,
 
-  "fps": 165,
-  "lock_on_fps": false,
-  "log_time_delay_seconds": 5,
+      "FPS": 165,
+      "LockOnFps": false,
+      "LogTimeDelaySeconds": 5,
 
-  "hot_reload_shaders": true
+      "HotReloadShaders": true
+  }
 
 }

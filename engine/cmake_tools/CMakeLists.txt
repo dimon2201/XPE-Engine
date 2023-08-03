@@ -173,9 +173,9 @@ macro(include_engine path)
             ${path}/thirdparty/spdlog/include
             ${path}/thirdparty/glfw/include
             ${path}/thirdparty/glm/glm
-            ${path}/thirdparty/jsoncpp/include
+            ${path}/thirdparty/json/include
             ${path}/thirdparty/freetype2/include
-            ${path}/thirdparty/cgltf
+            ${path}/thirdparty/assimp/include
     )
 endmacro()
 

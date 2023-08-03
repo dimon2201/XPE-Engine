@@ -4,21 +4,25 @@ namespace xpe {
 
     namespace math {
 
-        SphereGeometry::SphereGeometry() {
+        SphereGeometry::SphereGeometry()
+        {
             Init();
         }
 
         SphereGeometry::SphereGeometry(int xSegments, int ySegments)
-        : XSegments(xSegments), YSegments(ySegments) {
+        : XSegments(xSegments), YSegments(ySegments)
+        {
             Init();
         }
 
-        SphereGeometry::~SphereGeometry() {
+        SphereGeometry::~SphereGeometry()
+        {
             Vertices.Free();
             Indices.Free();
         }
 
-        void SphereGeometry::Init() {
+        void SphereGeometry::Init()
+        {
             int xSegments = XSegments;
             int ySegments = YSegments;
 

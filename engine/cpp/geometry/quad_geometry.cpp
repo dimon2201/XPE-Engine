@@ -4,7 +4,8 @@ namespace xpe {
 
     namespace math {
 
-        Quad2d::Quad2d() {
+        Quad2d::Quad2d()
+        {
             Vertices.Init(4);
             Indices.Init(6);
 
@@ -20,12 +21,14 @@ namespace xpe {
             PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_LIST;
         }
 
-        Quad2d::~Quad2d() {
+        Quad2d::~Quad2d()
+        {
             Vertices.Free();
             Indices.Free();
         }
 
-        Quad::Quad() {
+        Quad::Quad()
+        {
             Vertices.Init(4);
             Indices.Init(6);
 
@@ -42,7 +45,8 @@ namespace xpe {
             PrimitiveTopology = render::ePrimitiveTopology::TRIANGLE_LIST;
         }
 
-        Quad::~Quad() {
+        Quad::~Quad()
+        {
             Vertices.Free();
             Indices.Free();
         }

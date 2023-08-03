@@ -8,7 +8,10 @@ void TemplateGame::Init()
 {
     LogInfo("TemplateGame::Init()");
 
-    m_TestConfig = TestConfigReader::Read("config/test_config.json");
+    if (!ReadJsonFile("config/test_config.json", m_TestConfig))
+    {
+        LogError("Failed to read test config from config/test_config.json");
+    }
 
     AddWindowClosed(TemplateGame, 1);
     AddKeyPressed(TemplateGame, 1);

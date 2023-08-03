@@ -1,8 +1,18 @@
 #pragma once
 
-#include <json/json.h>
+struct TestConfig : xpe::res::JsonObject
+{
+    JsonFields(
+        TestConfig,
+        AnimateLight,
+        CameraFar,
+        CameraMoveSpeed,
+        CameraZoomAcceleration,
+        CameraPanAcceleration,
+        CameraHorizontalSens,
+        CameraVerticalSens
+    )
 
-struct TestConfig final {
     bool AnimateLight = false;
     float CameraFar = 1000;
     float CameraMoveSpeed = 0.05f;
@@ -10,14 +20,4 @@ struct TestConfig final {
     float CameraPanAcceleration = 5.0f;
     float CameraHorizontalSens = 0.005f;
     float CameraVerticalSens = 0.005f;
-};
-
-class TestConfigReader final {
-
-public:
-    static TestConfig Read(const char* filepath);
-
-private:
-    static void Parse(const std::string& source, TestConfig& config);
-
 };

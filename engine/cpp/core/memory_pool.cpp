@@ -188,43 +188,6 @@ namespace xpe {
             HotPools->LogPools();
         }
 
-        MemoryConfig MemoryConfigReader::Read(const char *filepath) {
-            MemoryConfig memoryConfig;
-
-            std::ifstream file(filepath, std::ios::in | std::ios::binary);
-
-            if (!file.is_open()) {
-                std::cerr << "Please specify correct path to memory_config.json file!" << std::endl;
-                return memoryConfig;
-            }
-
-            file.seekg(0, std::ios::end);
-            usize fileByteSize = file.tellg();
-            char* str = (char*)malloc(fileByteSize);
-            memset(str, 0, fileByteSize);
-            file.seekg(0, std::ios::beg);
-            file.read(str, fileByteSize);
-            file.close();
-
-            Parse(std::string(str), memoryConfig);
-
-            free(str);
-
-            return memoryConfig;
-        }
-
-        void MemoryConfigReader::Parse(const std::string &source, MemoryConfig &config) {
-            Json::Value root;
-            Json::Reader reader;
-            reader.parse(source, root);
-
-            config.MainMemoryMB = root["main_memory_mb"].asUInt() * K_MEMORY_MIB;
-            config.MainAllocs = root["main_allocs"].asUInt();
-
-            config.HotMemoryKB = root["hot_memory_kb"].asUInt() * K_MEMORY_KIB;
-            config.HotAllocs = root["hot_allocs"].asUInt();
-        }
-
     }
 
 }
