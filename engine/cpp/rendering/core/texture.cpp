@@ -480,7 +480,7 @@ namespace xpe {
                 int bpp, int channels
         ) {
             void* previousMip = textureLayer.Pixels;
-            while (width != 1) {
+            while (width != 1 && height != 1) {
                 width /= 2;
                 height /= 2;
 
@@ -495,7 +495,7 @@ namespace xpe {
                 int bpp, int channels
         ) {
             void* previousMip = textureLayer.Pixels;
-            while (width != 1) {
+            while (width != 1 && height != 1) {
                 width /= 2;
                 height /= 2;
 

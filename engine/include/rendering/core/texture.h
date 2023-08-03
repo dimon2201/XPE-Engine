@@ -92,7 +92,7 @@ namespace xpe {
             bool InitializeData = true;
             vector<TextureLayer> Layers;
 
-            inline u32 GetMipLevels() const {
+            [[nodiscard]] inline u32 GetMipLevels() const {
                 if (Layers.empty()) {
                     return 1;
                 }
