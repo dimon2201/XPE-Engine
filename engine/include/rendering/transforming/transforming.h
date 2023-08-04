@@ -67,6 +67,9 @@ namespace xpe {
             static void FlushTransforms();
             static void FlushTransforms2D();
 
+            static void ClearTransforms();
+            static void ClearTransforms2D();
+
         private:
             static Context* s_Context;
             static TransformStorage* s_Storage;

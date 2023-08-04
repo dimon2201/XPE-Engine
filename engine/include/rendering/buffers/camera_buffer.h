@@ -1,7 +1,6 @@
 #pragma once
 
 #include <rendering/buffers/structure_buffer.h>
-
 #include <components/camera_components.h>
 
 namespace xpe {
