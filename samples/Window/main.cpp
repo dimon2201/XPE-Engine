@@ -4,6 +4,7 @@
 #include "launcher.h"
 
 using namespace xpe::core;
+using namespace xpe::ecs;
 using namespace xpe::render;
 using namespace xpe::control;
 using namespace xpe::text;
@@ -171,7 +172,11 @@ public:
             transform.Position = { 0.0f, 0.0f, 0.0f };
             transform.Scale = { 0.01f, 0.01f, 0.01f };
             m_Font.GlyphNewLineExtraOffset = 32.0f;
-            TextRenderer::Get().Draw(&m_Font, &transform, "Hello!\nNew line");
+
+            TextComponent text("TextComponent");
+            text.Text = "Hello!\nNew line";
+
+            TextRenderer::Get().Draw(&m_Font, &transform, &text);
 
             m_Canvas->Present();
         }

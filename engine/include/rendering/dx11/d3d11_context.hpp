@@ -81,6 +81,10 @@ namespace xpe {
             void BindDepthStencilState(const DepthStencilState* state) override final;
             void FreeDepthStencilState(DepthStencilState& state) override final;
 
+            void CreateBlendState(BlendState& state) override final;
+            void BindBlendState(const BlendState* state) override final;
+            void FreeBlendState(BlendState& state) override final;
+
             void CreateRasterizer(Rasterizer& rasterizer) override final;
             void BindRasterizer(const Rasterizer* rasterizer) override final;
             void FreeRasterizer(Rasterizer& rasterizer) override final;

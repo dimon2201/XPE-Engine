@@ -20,43 +20,6 @@ namespace xpe
             string USID;
         };
 
-        struct ENGINE_API TransformComponent : public Component
-        {
-            TransformComponent(const string& usid) : Component(usid)
-            {}
-
-            TransformComponent(const string& usid, u32 index) : Component(usid), Index(index)
-            {}
-
-            u32 Index = 0;
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Rotation = { 0, 0, 0 };
-            glm::vec3 Scale = { 1, 1, 1 };
-        };
-
-        struct ENGINE_API Transform2DComponent : public Component
-        {
-            Transform2DComponent(const string& usid) : Component(usid)
-            {}
-
-            Transform2DComponent(const string& usid, u32 index) : Component(usid), Index(index)
-            {}
-
-            u32 Index = 0;
-            glm::vec2 Position = { 0, 0 };
-            float Rotation = 0;
-            glm::vec2 Scale = { 1, 1 };
-        };
-
-        struct ENGINE_API RigidBodyComponent : public Component
-        {
-            RigidBodyComponent(const string& usid) : Component(usid)
-            {}
-
-            glm::vec3 Position;
-            glm::vec3 Rotation;
-        };
-
         struct ENGINE_API ComponentStorage
         {
             ComponentStorage(void* storage) : Storage(storage), Count(0)

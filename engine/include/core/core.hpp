@@ -2,6 +2,10 @@
 
 #include <core/app.hpp>
 
+#include <ecs/components.hpp>
+#include <ecs/entities.hpp>
+#include <ecs/scenes.hpp>
+
 #include <rendering/dx11/d3d11_context.hpp>
 #include <rendering/draw/canvas.hpp>
 #include <rendering/core/shader.h>

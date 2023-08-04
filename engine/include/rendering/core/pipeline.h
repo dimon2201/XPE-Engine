@@ -18,6 +18,7 @@ namespace xpe {
             Shader* Shader = nullptr;
             RenderTarget* RenderTarget = nullptr;
             DepthStencilState DepthStencilState;
+            BlendState BlendState;
             Rasterizer Rasterizer;
         };
 
