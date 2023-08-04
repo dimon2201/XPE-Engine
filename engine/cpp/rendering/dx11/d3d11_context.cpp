@@ -1117,6 +1117,8 @@ namespace xpe {
             CreateInputLayout(pipeline.InputLayout);
 
             CreateDepthStencilState(pipeline.DepthStencilState);
+            
+            CreateBlendState(pipeline.BlendState);
 
             CreateRasterizer(pipeline.Rasterizer);
         }
@@ -1149,6 +1151,8 @@ namespace xpe {
             BindRenderTarget(boundPipeline.RenderTarget->ColorTargetView, boundPipeline.RenderTarget->DepthTargetView);
 
             BindDepthStencilState(&boundPipeline.DepthStencilState);
+
+            BindBlendState(&boundPipeline.BlendState);
 
             BindRasterizer(&boundPipeline.Rasterizer);
         }
@@ -1183,6 +1187,40 @@ namespace xpe {
             if (state.State != nullptr)
             {
                 ((ID3D11DepthStencilState*)state.State)->Release();
+                LogDebugMessage();
+                state.State = nullptr;
+            }
+        }
+
+        void D3D11Context::CreateBlendState(BlendState& state)
+        {
+            D3D11_BLEND_DESC bsDesc = {};
+            bsDesc.AlphaToCoverageEnable = false;
+            bsDesc.IndependentBlendEnable = false;
+            bsDesc.RenderTarget[0].BlendEnable = state.UseBlending == K_TRUE ? TRUE : FALSE;
+            bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+            bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+            bsDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+            bsDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+            bsDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+            bsDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+            bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+            m_Device->CreateBlendState(&bsDesc, (ID3D11BlendState**)&state.State);
+            LogDebugMessage();
+        }
+
+        void D3D11Context::BindBlendState(const BlendState* state)
+        {
+            m_ImmContext->OMSetBlendState((ID3D11BlendState*)state->State, nullptr, 0xffffffff);
+            LogDebugMessage();
+        }
+
+        void D3D11Context::FreeBlendState(BlendState& state)
+        {
+            if (state.State != nullptr)
+            {
+                ((ID3D11BlendState*)state.State)->Release();
                 LogDebugMessage();
                 state.State = nullptr;
             }

@@ -4,9 +4,10 @@
 
 namespace xpe
 {
-    namespace core
+    namespace ecs
     {
         struct TransformComponent;
+        struct TextComponent;
     }
 
     namespace render
@@ -33,7 +34,7 @@ namespace xpe
                 return *s_Instance;
             }
 
-            void Draw(Font* font, const xpe::core::TransformComponent* transform, const char* chars);
+            void Draw(Font* font, const xpe::ecs::TransformComponent* transform, const xpe::ecs::TextComponent* text);
 
         private:
             static TextRenderer* s_Instance;

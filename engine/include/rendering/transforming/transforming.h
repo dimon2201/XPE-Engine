@@ -1,10 +1,13 @@
 #pragma once
 
 #include <rendering/buffers/structure_buffer.h>
+#include <ecs/components.hpp>
 
 namespace xpe {
 
     namespace render {
+
+        using namespace ecs;
 
         struct ENGINE_API TransformData final {
             glm::mat4 ModelMatrix;

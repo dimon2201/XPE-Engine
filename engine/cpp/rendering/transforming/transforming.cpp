@@ -1,8 +1,11 @@
 #include <rendering/transforming/transforming.h>
+#include <ecs/components.hpp>
 
 namespace xpe {
 
     namespace render {
+
+        using namespace ecs;
 
         Context* TransformManager::s_Context = nullptr;
         TransformStorage* TransformManager::s_Storage = nullptr;

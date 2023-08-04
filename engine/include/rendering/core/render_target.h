@@ -11,6 +11,11 @@ namespace xpe {
             Boolean UseDepthTest;
         };
 
+        struct ENGINE_API BlendState final {
+            void* State = nullptr;
+            Boolean UseBlending;
+        };
+
         struct ENGINE_API RenderTarget final {
             Texture* ColorTexture = nullptr;
             Texture* DepthTexture = nullptr;

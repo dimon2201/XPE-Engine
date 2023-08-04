@@ -1,4 +1,5 @@
 #include <core/types.hpp>
+#include <ecs/components.hpp>
 #include <rendering/camera/camera_manager.h>
 #include <rendering/transforming/transforming.h>
 #include <rendering/materials/material.h>
@@ -51,9 +52,10 @@ void xpe::text::TextRenderer::Free() {
     delete s_Instance;
 }
 
-void xpe::text::TextRenderer::Draw(xpe::text::Font* font, const xpe::core::TransformComponent* transform, const char* chars)
+void xpe::text::TextRenderer::Draw(xpe::text::Font* font, const xpe::ecs::TransformComponent* transform, const xpe::ecs::TextComponent* text)
 {
-    xpe::core::usize charsCount = strlen(chars);
+    xpe::core::usize charsCount = text->Text.size();
+    const char* chars = text->Text.c_str();
 
     // Bind font atlas
     font->Atlas.Slot = 0;
@@ -63,7 +65,7 @@ void xpe::text::TextRenderer::Draw(xpe::text::Font* font, const xpe::core::Trans
     m_BatchManager->ClearInstances("__TextQuad");
     m_BatchManager->ReserveInstances("__TextQuad", charsCount);
 
-    xpe::render::TransformManager::AddTransform(*(xpe::core::TransformComponent*)transform);
+    xpe::render::TransformManager::AddTransform(*(xpe::ecs::TransformComponent*)transform);
     xpe::render::TransformManager::FlushTransforms();
 
     // Add instances to text batch manager
@@ -92,10 +94,16 @@ void xpe::text::TextRenderer::Draw(xpe::text::Font* font, const xpe::core::Trans
         instance.AtlasYOffset = glyph.AtlasYOffset;
         advance.x += (glyph.AdvanceX / 64.0f) * transform->Scale.x;
 
-        if (character == '\n')
+        // Tab
+        if (character == '\t')
+        {
+            advance.x += font->WhitespaceOffset;
+        }
+        // New line
+        else if (character == '\n')
         {
             advance.x = 0.0f;
-            advance.y = (tempAdvanceY + font->GlyphNewLineExtraOffset)*transform->Scale.y;
+            advance.y = (tempAdvanceY + font->NewLineOffset)*transform->Scale.y;
             tempAdvanceY = 0.0f;
         }
         else

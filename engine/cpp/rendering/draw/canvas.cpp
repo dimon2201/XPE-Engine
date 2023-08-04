@@ -66,7 +66,7 @@ namespace xpe {
         void Canvas::CreateRenderTarget(int width, int height) {
             m_ColorTexture.Width = width;
             m_ColorTexture.Height = height;
-            m_ColorTexture.Format = Texture::eFormat::RGB8;
+            m_ColorTexture.Format = Texture::eFormat::RGBA8;
             m_ColorTexture.InitializeData = false;
             m_ColorTexture.EnableRenderTarget = true;
 
