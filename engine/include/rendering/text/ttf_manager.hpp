@@ -33,7 +33,8 @@ namespace xpe
             FT_Face FTFace;
             core::usize GlyphCount;
             core::usize GlyphSize;
-            core::f32 GlyphNewLineExtraOffset;
+            core::f32 NewLineOffset;
+            core::f32 WhitespaceOffset;
             core::unordered_map<char, Font::Glyph> AlphaBet;
             render::Texture Atlas;
         };

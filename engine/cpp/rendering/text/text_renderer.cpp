@@ -94,10 +94,16 @@ void xpe::text::TextRenderer::Draw(xpe::text::Font* font, const xpe::ecs::Transf
         instance.AtlasYOffset = glyph.AtlasYOffset;
         advance.x += (glyph.AdvanceX / 64.0f) * transform->Scale.x;
 
-        if (character == '\n')
+        // Tab
+        if (character == '\t')
+        {
+            advance.x += font->WhitespaceOffset;
+        }
+        // New line
+        else if (character == '\n')
         {
             advance.x = 0.0f;
-            advance.y = (tempAdvanceY + font->GlyphNewLineExtraOffset)*transform->Scale.y;
+            advance.y = (tempAdvanceY + font->NewLineOffset)*transform->Scale.y;
             tempAdvanceY = 0.0f;
         }
         else
