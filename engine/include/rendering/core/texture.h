@@ -31,6 +31,7 @@ namespace xpe {
         struct ENGINE_API TextureLayer final {
             void* Pixels = nullptr;
             u32 RowByteSize = 0;
+            core::Boolean FromFile = K_FALSE;
             vector<Mip> Mips;
         };
 

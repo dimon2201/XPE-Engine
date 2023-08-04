@@ -24,6 +24,8 @@ namespace xpe {
 
         class DepthStencilState;
 
+        class BlendState;
+
         class Rasterizer;
 
         class ENGINE_API Context {
@@ -109,6 +111,10 @@ namespace xpe {
                 virtual void CreateDepthStencilState(DepthStencilState& state) = 0;
                 virtual void BindDepthStencilState(const DepthStencilState* state) = 0;
                 virtual void FreeDepthStencilState(DepthStencilState& state) = 0;
+
+                virtual void CreateBlendState(BlendState& state) = 0;
+                virtual void BindBlendState(const BlendState* state) = 0;
+                virtual void FreeBlendState(BlendState& state) = 0;
 
                 virtual void CreateRasterizer(Rasterizer& rasterizer) = 0;
                 virtual void BindRasterizer(const Rasterizer* rasterizer) = 0;

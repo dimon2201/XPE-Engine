@@ -12,6 +12,10 @@ namespace xpe {
             m_Context->BindVSBuffer(this);
         }
 
+        void TextGlyphInstanceBuffer::Bind() {
+            m_Context->BindVSBuffer(this);
+        }
+
     }
 
 }

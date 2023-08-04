@@ -1,8 +1,11 @@
 #include <rendering/transforming/transforming.h>
+#include <ecs/components.hpp>
 
 namespace xpe {
 
     namespace render {
+
+        using namespace ecs;
 
         Context* TransformManager::s_Context = nullptr;
         TransformStorage* TransformManager::s_Storage = nullptr;
@@ -108,6 +111,13 @@ namespace xpe {
             s_Storage->Buffer2D.Flush();
         }
 
+        void TransformManager::ClearTransforms() {
+            s_Storage->Buffer.Clear();
+        }
+
+        void TransformManager::ClearTransforms2D() {
+            s_Storage->Buffer2D.Clear();
+        }
     }
 
 }

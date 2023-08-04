@@ -1,4 +1,5 @@
 #include <core/app.hpp>
+#include <core/camera.h>
 
 // API specific includes
 #include <rendering/dx11/d3d11_context.hpp>
@@ -10,8 +11,8 @@
 #include <rendering/camera/camera_manager.h>
 
 // todo(cheerwizard): It would be nice to move TTF as Resource Importer into Focus editor and instead use just AssetManager for fonts
-#include <ttf/ttf_manager.hpp>
-using namespace xpe::ttf;
+#include <rendering/text/ttf_manager.hpp>
+using namespace xpe::text;
 
 namespace xpe {
 
@@ -69,7 +70,7 @@ namespace xpe {
 
             TransformManager::Init(context);
 
-            TTFManager::Init();
+            text::TTFManager::Init(context);
 
             Init();
 
@@ -119,7 +120,7 @@ namespace xpe {
 
             Free();
 
-            ttf::TTFManager::Free();
+            text::TTFManager::Free();
 
             TransformManager::Free();
 

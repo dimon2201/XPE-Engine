@@ -3,10 +3,11 @@
 #include "test_config.h"
 
 using namespace xpe::core;
+using namespace xpe::ecs;
 using namespace xpe::render;
 using namespace xpe::control;
-using namespace xpe::ttf;
 using namespace xpe::io;
+using namespace xpe::text;
 using namespace xpe::math;
 using namespace xpe::gltf;
 using namespace xpe::res;
@@ -22,11 +23,6 @@ public:
     {
         LogInfo("GameApp::Init()");
 
-        if (!ReadJsonFile("config/test_config.json", m_TestConfig))
-        {
-            LogError("Failed to read test config from config/test_config.json");
-        }
-
         AddWindowClosed(GameApp, 1);
         AddKeyPressed(GameApp, 1);
         AddKeyHold(GameApp, 1);
@@ -35,10 +31,7 @@ public:
         m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
         m_ECS = new ECSManager();
         m_BatchManager = new BatchManager(context);
-        m_BatchManager2d = new BatchManager2d(context);
-
-        Font font = TTFManager::Get().Load("resources/fonts/Roboto-Italic.ttf", 32);
-        TTFManager::Get().Free(font);
+        m_TextBatchManager = new TextBatchManager(context);
 
         TextureCubeFile textureCubeFile;
         textureCubeFile.Name = "test";
@@ -75,15 +68,6 @@ public:
         SphereGeometry sphere;
         m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
 //        m_BatchManager->ReserveInstances("SphereGeometry", 1000);
-
-        Quad2d quad2D;
-        RenderInstance2d quad2DInstance;
-        Transform2DComponent quad2DTransform("Quad2DTransform", 0);
-        quad2DTransform.Position = { 0, -10 };
-        quad2DTransform.Scale = { 5, 1 };
-        TransformManager::AddTransform2D(quad2DTransform);
-        m_BatchManager2d->StoreGeometryIndexed("Quad2D", quad2D);
-        m_BatchManager2d->AddInstance("Quad2D", quad2DInstance);
 
         // Put instances of geometry
         u32 transformIndex = 1;
@@ -161,23 +145,11 @@ public:
         m_BatchManager->FlushInstances("Triangle");
         m_BatchManager->FlushInstances("PlaneGeometry");
 
-        // it will flush all instance 2D data into GPU memory
-        m_BatchManager2d->FlushInstances("Quad2D");
-
-        // it will flush all transform data into GPU memory
-        TransformManager::FlushTransforms();
-        TransformManager::FlushTransforms2D();
-
-        // it will flush all material data into GPU memory
-        MaterialManager::FlushMaterials();
-
-        // it will flush all direct light data into GPU memory
-        LightManager::FlushDirectLights();
-
         InitPipeline();
-        InitPipeline2D();
         InitCamera();
         InitCamera2D();
+
+        TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
     }
 
     void Update() override final
@@ -193,9 +165,6 @@ public:
         context->BindPipeline(&m_Pipeline);
         m_BatchManager->DrawAll();
 
-        context->BindPipeline(&m_Pipeline2d);
-        m_BatchManager2d->DrawAll();
-
         m_Canvas->Present();
     }
 
@@ -210,7 +179,6 @@ public:
         delete m_BatchManager;
 
         delete m_Camera2D;
-        delete m_BatchManager2d;
     }
 
     void WindowClosed()
@@ -287,36 +255,10 @@ private:
 
         // setup depth stencil testing
         m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
-
-        // setup rasterizer
-        m_Pipeline.Rasterizer.CullMode = eCullMode::DEFAULT;
-        m_Pipeline.Rasterizer.FillMode = eFillMode::DEFAULT;
+        m_Pipeline.BlendState.UseBlending = xpe::core::K_TRUE;
 
         // init pipeline
         context->CreatePipeline(m_Pipeline);
-    }
-
-    void InitPipeline2D() {
-        // setup buffers
-        m_Pipeline2d.VSBuffers.emplace_back(CameraManager::GetBuffer2D());
-        m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
-
-        // setup shader
-        m_Pipeline2d.Shader = ShaderManager::CreateShader("window2d");
-        ShaderManager::AddVertexStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.vs");
-        ShaderManager::AddPixelStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.ps");
-        ShaderManager::BuildShader(m_Pipeline2d.Shader);
-
-        // setup input layout
-        m_Layout2d.Format = Vertex2D::Format;
-        m_Pipeline2d.InputLayout = m_Layout2d;
-
-        // setup render target
-        m_Pipeline2d.RenderTarget = m_Canvas->GetRenderTarget();
-        m_Pipeline2d.DepthStencilState.UseDepthTest = K_FALSE;
-
-        // init pipeline
-        context->CreatePipeline(m_Pipeline2d);
     }
 
     void InitCamera() {
@@ -397,13 +339,12 @@ private:
     ECSManager* m_ECS;
 
     BatchManager* m_BatchManager;
-    BatchManager2d* m_BatchManager2d;
+    TextBatchManager* m_TextBatchManager;
+    Font m_Font;
 
     Pipeline m_Pipeline;
-    Pipeline m_Pipeline2d;
 
     InputLayout m_Layout;
-    InputLayout m_Layout2d;
 
     PerspectiveCamera* m_Camera;
     OrthoCamera* m_Camera2D;

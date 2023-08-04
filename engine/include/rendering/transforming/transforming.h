@@ -1,10 +1,13 @@
 #pragma once
 
 #include <rendering/buffers/structure_buffer.h>
+#include <ecs/components.hpp>
 
 namespace xpe {
 
     namespace render {
+
+        using namespace ecs;
 
         struct ENGINE_API TransformData final {
             glm::mat4 ModelMatrix;
@@ -66,6 +69,9 @@ namespace xpe {
 
             static void FlushTransforms();
             static void FlushTransforms2D();
+
+            static void ClearTransforms();
+            static void ClearTransforms2D();
 
         private:
             static Context* s_Context;
