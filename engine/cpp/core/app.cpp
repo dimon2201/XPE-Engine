@@ -12,7 +12,7 @@
 
 // todo(cheerwizard): It would be nice to move TTF as Resource Importer into Focus editor and instead use just AssetManager for fonts
 #include <rendering/text/ttf_manager.hpp>
-using namespace xpe::ttf;
+using namespace xpe::text;
 
 namespace xpe {
 
@@ -70,7 +70,7 @@ namespace xpe {
 
             TransformManager::Init(context);
 
-            ttf::TTFManager::Init(context);
+            text::TTFManager::Init(context);
 
             Init();
 
@@ -120,7 +120,7 @@ namespace xpe {
 
             Free();
 
-            ttf::TTFManager::Free();
+            text::TTFManager::Free();
 
             TransformManager::Free();
 
