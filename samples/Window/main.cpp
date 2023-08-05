@@ -151,7 +151,7 @@ public:
         TextRenderer::Init(m_TextBatchManager, m_Canvas);
 
         m_TextTransform.Position = { 0, 0, 0 };
-        m_TextTransform.Scale = { 1, 1, 1 };
+        m_TextTransform.Scale = { 0.01, 0.01, 0.01 };
 
         TransformManager::AddTransform(m_TextTransform);
         TransformManager::FlushTransforms();
