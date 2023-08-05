@@ -16,6 +16,6 @@
 [submodule "engine/thirdparty/json"]
 	path = engine/thirdparty/json
 	url = https://github.com/nlohmann/json
-[submodule "editor/thirdparty/assimp"]
-    path = editor/thirdparty/assimp
+[submodule "engine/thirdparty/assimp"]
+    path = engine/thirdparty/assimp
     url = https://github.com/assimp/assimp
