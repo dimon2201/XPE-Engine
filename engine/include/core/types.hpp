@@ -52,29 +52,5 @@ namespace xpe
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
         constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;
 
-        template<typename T>
-        using Scope = std::unique_ptr<T>;
-
-        template<typename T, typename ... Args>
-        ENGINE_API constexpr Scope<T> createScope(Args&& ... args) {
-            return std::make_unique<T>(std::forward<Args>(args)...);
-        }
-
-        template<typename T>
-        using Ref = std::shared_ptr<T>;
-
-        template<typename T, typename ... Args>
-        ENGINE_API constexpr Ref<T> createRef(Args&& ... args) {
-            return std::make_shared<T>(std::forward<Args>(args)...);
-        }
-
-        template<typename T>
-        using Weak = std::weak_ptr<T>;
-
-        template<typename T, typename ... Args>
-        ENGINE_API constexpr Weak<T> createWeak(Args&& ... args) {
-            return std::weak_ptr<T>(std::forward<Args>(args)...);
-        }
-
     }
 }

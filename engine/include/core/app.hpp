@@ -14,7 +14,6 @@ namespace xpe {
         class ENGINE_API Application {
 
         public:
-            Context* context = nullptr;
             Time CPUTime;              // delta CPU time ms = end time - begin time
             Time DeltaTime;            // delta CurrentTime ms = end time - begin time
             Time CurrentTime;

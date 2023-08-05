@@ -1,151 +1,168 @@
-#include <rendering/dx11/d3d11_debugger.h>
+#ifdef DX11
+
+#include <rendering/core/debugger.h>
+#include <d3d11.h>
 
 namespace xpe {
 
     namespace render {
 
-        void D3D11Debugger::Init(Context* const context) {
-            m_Device = reinterpret_cast<ID3D11Device*>(context->GetDevice());
-            m_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&m_Debug);
-            m_Device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&m_InfoQueue);
-        }
+        namespace debugger {
 
-        void D3D11Debugger::Free() {
-            m_Debug->Release();
-            m_InfoQueue->Release();
-        }
+            DebuggerCallback Callback = nullptr;
 
-        bool D3D11Debugger::GetLastMessage(DebugMessage& message) {
-            auto messageCount = m_InfoQueue->GetNumStoredMessages();
-            if (messageCount > 0) {
-                message = GetDebugMessage(messageCount - 1);
-                m_InfoQueue->ClearStoredMessages();
-                return true;
-            }
-            return false;
-        }
+            ID3D11Device* s_Device = nullptr;
+            ID3D11Debug* s_Debug = nullptr;
+            ID3D11InfoQueue* s_InfoQueue = nullptr;
 
-        DebugMessage D3D11Debugger::GetDebugMessage(int index) {
-            SIZE_T messageSize = 0;
-            m_InfoQueue->GetMessage(index, nullptr, &messageSize);
+            static DebugMessage ToDebugMessage(const D3D11_MESSAGE& d3D11Message)
+            {
+                DebugMessage message;
 
-            D3D11_MESSAGE* message = (D3D11_MESSAGE*) salloc(messageSize);
-            m_InfoQueue->GetMessage(index, message, &messageSize);
+                message.ID = d3D11Message.ID;
+                auto severity = d3D11Message.Severity;
+                auto category = d3D11Message.Category;
 
-            DebugMessage debugMessage = ToDebugMessage(*message);
+                message.Description.reserve(d3D11Message.DescriptionByteLength);
+                memmove((char*) message.Description.data(),
+                        d3D11Message.pDescription,
+                        d3D11Message.DescriptionByteLength);
 
-            return debugMessage;
-        }
+                switch (severity) {
 
-        vector<DebugMessage> D3D11Debugger::GetMessageQueue() {
-            auto messageCount = m_InfoQueue->GetNumStoredMessages();
-            vector<DebugMessage> messages;
-            messages.resize(messageCount);
+                    case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_CORRUPTION:
+                        message.Severity = eDebugSeverity::D_HIGH;
+                        message.Type = eDebugType::D_ERROR;
+                        message.ErrorType = eDebugErrorType::D_OTHER_ERROR_TYPE;
+                        break;
 
-            for (int i = 0; i < messageCount; i++) {
-                messages.emplace_back(GetDebugMessage(i));
-            }
+                    case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_MESSAGE:
+                        message.Severity = eDebugSeverity::D_NOTIFICATION;
+                        break;
 
-            m_InfoQueue->ClearStoredMessages();
+                    case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_INFO:
+                        message.Severity = eDebugSeverity::D_LOW;
+                        break;
 
-            return messages;
-        }
+                    case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_WARNING:
+                        message.Severity = eDebugSeverity::D_MEDIUM;
+                        message.Type = eDebugType::D_WARNING;
+                        break;
 
-        void D3D11Debugger::ClearMessageQueue() {
-            m_InfoQueue->ClearStoredMessages();
-        }
+                    case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_ERROR:
+                        message.Severity = eDebugSeverity::D_HIGH;
+                        message.Type = eDebugType::D_ERROR;
+                        message.ErrorType = eDebugErrorType::D_OTHER_ERROR_TYPE;
+                        break;
 
-        DebugMessage D3D11Debugger::ToDebugMessage(const D3D11_MESSAGE& d3D11Message) {
-            DebugMessage message;
+                }
 
-            message.ID = d3D11Message.ID;
-            auto severity = d3D11Message.Severity;
-            auto category = d3D11Message.Category;
+                switch (category) {
 
-            message.Description.reserve(d3D11Message.DescriptionByteLength);
-            memmove((char*) message.Description.data(),
-                   d3D11Message.pDescription,
-                   d3D11Message.DescriptionByteLength);
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_APPLICATION_DEFINED:
+                        message.Category = eDebugCategory::D_APPLICATION;
+                        break;
 
-            switch (severity) {
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_CLEANUP:
+                        message.Category = eDebugCategory::D_API;
+                        break;
 
-                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_CORRUPTION:
-                    message.Severity = eDebugSeverity::D_HIGH;
-                    message.Type = eDebugType::D_ERROR;
-                    message.ErrorType = eDebugErrorType::D_OTHER_ERROR_TYPE;
-                    break;
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_COMPILATION:
+                        message.Category = eDebugCategory::D_SHADER_COMPILER;
+                        break;
 
-                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_MESSAGE:
-                    message.Severity = eDebugSeverity::D_NOTIFICATION;
-                    break;
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_EXECUTION:
+                        message.Category = eDebugCategory::D_API;
+                        break;
 
-                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_INFO:
-                    message.Severity = eDebugSeverity::D_LOW;
-                    break;
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_INITIALIZATION:
+                        message.Category = eDebugCategory::D_API;
+                        break;
 
-                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_WARNING:
-                    message.Severity = eDebugSeverity::D_MEDIUM;
-                    message.Type = eDebugType::D_WARNING;
-                    break;
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_MISCELLANEOUS:
+                        message.Category = eDebugCategory::D_API;
+                        break;
 
-                case D3D11_MESSAGE_SEVERITY::D3D11_MESSAGE_SEVERITY_ERROR:
-                    message.Severity = eDebugSeverity::D_HIGH;
-                    message.Type = eDebugType::D_ERROR;
-                    message.ErrorType = eDebugErrorType::D_OTHER_ERROR_TYPE;
-                    break;
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_RESOURCE_MANIPULATION:
+                        message.Category = eDebugCategory::D_API;
+                        break;
 
-            }
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_SHADER:
+                        message.Category = eDebugCategory::D_SHADER_COMPILER;
+                        break;
 
-            switch (category) {
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_CREATION:
+                        message.Category = eDebugCategory::D_API;
+                        break;
 
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_APPLICATION_DEFINED:
-                    message.Category = eDebugCategory::D_APPLICATION;
-                    break;
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_GETTING:
+                        message.Category = eDebugCategory::D_API;
+                        break;
 
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_CLEANUP:
-                    message.Category = eDebugCategory::D_API;
-                    break;
+                    case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_SETTING:
+                        message.Category = eDebugCategory::D_API;
+                        break;
+                }
 
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_COMPILATION:
-                    message.Category = eDebugCategory::D_SHADER_COMPILER;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_EXECUTION:
-                    message.Category = eDebugCategory::D_API;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_INITIALIZATION:
-                    message.Category = eDebugCategory::D_API;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_MISCELLANEOUS:
-                    message.Category = eDebugCategory::D_API;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_RESOURCE_MANIPULATION:
-                    message.Category = eDebugCategory::D_API;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_SHADER:
-                    message.Category = eDebugCategory::D_SHADER_COMPILER;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_CREATION:
-                    message.Category = eDebugCategory::D_API;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_GETTING:
-                    message.Category = eDebugCategory::D_API;
-                    break;
-
-                case D3D11_MESSAGE_CATEGORY::D3D11_MESSAGE_CATEGORY_STATE_SETTING:
-                    message.Category = eDebugCategory::D_API;
-                    break;
+                return message;
             }
 
-            return message;
+            static DebugMessage GetDebugMessage(int index)
+            {
+                SIZE_T messageSize = 0;
+                s_InfoQueue->GetMessage(index, nullptr, &messageSize);
+
+                D3D11_MESSAGE* message = (D3D11_MESSAGE*) salloc(messageSize);
+                s_InfoQueue->GetMessage(index, message, &messageSize);
+
+                DebugMessage debugMessage = ToDebugMessage(*message);
+
+                return debugMessage;
+            }
+
+            void Init() {
+                s_Device = reinterpret_cast<ID3D11Device*>(context::GetDevice());
+                s_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&s_Debug);
+                s_Device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&s_InfoQueue);
+            }
+
+            void Free() {
+                s_Debug->Release();
+                s_InfoQueue->Release();
+            }
+
+            bool GetLastMessage(DebugMessage& message) {
+                auto messageCount = s_InfoQueue->GetNumStoredMessages();
+                if (messageCount > 0) {
+                    message = GetDebugMessage(messageCount - 1);
+                    s_InfoQueue->ClearStoredMessages();
+                    return true;
+                }
+                return false;
+            }
+
+            vector<DebugMessage> GetMessageQueue() {
+                auto messageCount = s_InfoQueue->GetNumStoredMessages();
+                vector<DebugMessage> messages;
+                messages.resize(messageCount);
+
+                for (int i = 0; i < messageCount; i++) {
+                    messages.emplace_back(GetDebugMessage(i));
+                }
+
+                s_InfoQueue->ClearStoredMessages();
+
+                return messages;
+            }
+
+            void ClearMessageQueue() {
+                s_InfoQueue->ClearStoredMessages();
+            }
+
         }
 
     }
 
 }
+
+#endif // DX11

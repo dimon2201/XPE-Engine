@@ -16,7 +16,7 @@ namespace xpe {
 
         public:
             IndexBuffer() = default;
-            IndexBuffer(Context* context, const usize indexCount);
+            IndexBuffer(const usize indexCount);
 
         public:
             void Free();
@@ -53,7 +53,6 @@ namespace xpe {
             }
 
         protected:
-            Context* m_Context = nullptr;
             IndexArray m_IndexArray;
         };
 

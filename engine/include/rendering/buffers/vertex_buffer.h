@@ -17,7 +17,7 @@ namespace xpe {
 
         public:
             VertexBuffer() = default;
-            VertexBuffer(Context* context,const usize vertexCount);
+            VertexBuffer(const usize vertexCount);
 
         public:
             void Free();
@@ -54,12 +54,11 @@ namespace xpe {
             }
 
         protected:
-            Context* m_Context = nullptr;
             VertexArray<T> m_VertexArray;
         };
 
         template<typename T>
-        VertexBuffer<T>::VertexBuffer(Context* context, const usize vertexCount) : m_Context(context)
+        VertexBuffer<T>::VertexBuffer(const usize vertexCount)
         {
             m_VertexArray.Init(vertexCount);
             Type = eBufferType::VERTEX;
@@ -68,23 +67,23 @@ namespace xpe {
             NumElements = vertexCount;
             ByteSize = StructureSize * vertexCount;
             Duplicate = K_FALSE;
-            m_Context->CreateBuffer(*this);
+            context::CreateBuffer(*this);
         }
 
         template<typename T>
         void VertexBuffer<T>::Free() {
-            m_Context->FreeBuffer(*this);
+            context::FreeBuffer(*this);
             m_VertexArray.Free();
         }
 
         template<typename T>
         void VertexBuffer<T>::Flush() {
-            m_Context->WriteBuffer(*this, m_VertexArray.GetData(), m_VertexArray.Size());
+            context::WriteBuffer(*this, m_VertexArray.GetData(), m_VertexArray.Size());
         }
 
         template<typename T>
         void VertexBuffer<T>::Bind() {
-            m_Context->BindVertexBuffer(this);
+            context::BindVertexBuffer(this);
         }
 
         template<typename T>
@@ -93,7 +92,7 @@ namespace xpe {
                 Resize(index + 1);
             }
             m_VertexArray[index] = vertex;
-            m_Context->WriteBufferOffset(*this, StructureSize * index, &m_VertexArray.Data.back(), StructureSize);
+            context::WriteBufferOffset(*this, StructureSize * index, &m_VertexArray.Data.back(), StructureSize);
         }
 
         template<typename T>
@@ -109,8 +108,8 @@ namespace xpe {
         void VertexBuffer<T>::Recreate(const usize vertexCount) {
             NumElements = vertexCount;
             ByteSize = NumElements * StructureSize;
-            m_Context->FreeBuffer(*this);
-            m_Context->CreateBuffer(*this);
+            context::FreeBuffer(*this);
+            context::CreateBuffer(*this);
             Flush();
         }
 

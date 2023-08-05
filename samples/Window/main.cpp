@@ -6,10 +6,7 @@ using namespace xpe::core;
 using namespace xpe::ecs;
 using namespace xpe::render;
 using namespace xpe::control;
-using namespace xpe::io;
-using namespace xpe::text;
 using namespace xpe::math;
-using namespace xpe::gltf;
 using namespace xpe::res;
 
 
@@ -28,10 +25,12 @@ public:
         AddKeyHold(GameApp, 1);
         AddCursorMove(GameApp, 1);
 
-        m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), context);
+        m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight());
         m_ECS = new ECSManager();
-        m_BatchManager = new BatchManager(context);
-        m_TextBatchManager = new TextBatchManager(context);
+        m_BatchManager = new BatchManager();
+        m_TextBatchManager = new TextBatchManager();
+
+        m_Font = TTFManager::Load("resources/fonts/Roboto-Bold.ttf", 22);
 
         TextureCubeFile textureCubeFile;
         textureCubeFile.Name = "test";
@@ -149,7 +148,15 @@ public:
         InitCamera();
         InitCamera2D();
 
-        TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
+        TextRenderer::Init(m_TextBatchManager, m_Canvas);
+
+        m_TextTransform.Position = { 0, 0, 0 };
+        m_TextTransform.Scale = { 1, 1, 1 };
+
+        TransformManager::AddTransform(m_TextTransform);
+        TransformManager::FlushTransforms();
+
+        m_Font.NewLineOffset = 8.0f;
     }
 
     void Update() override final
@@ -162,8 +169,18 @@ public:
 
         m_Canvas->Clear(glm::vec4(1.0f));
 
-        context->BindPipeline(&m_Pipeline);
+        context::BindPipeline(&m_Pipeline);
         m_BatchManager->DrawAll();
+
+        TextComponent textComponent("Text");
+
+        stringstream ss;
+        ss << "CPU: " << CPUTime << "\n";
+        ss << "FPS: " << DeltaTime << "\n";
+        ss << "Current Time: " << CurrentTime << "\n";
+        textComponent.Text = ss.str();
+
+        TextRenderer::Draw(textComponent, m_TextTransform, m_Font);
 
         m_Canvas->Present();
     }
@@ -255,10 +272,10 @@ private:
 
         // setup depth stencil testing
         m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
-        m_Pipeline.BlendState.UseBlending = xpe::core::K_TRUE;
+        m_Pipeline.BlendState.UseBlending = K_TRUE;
 
         // init pipeline
-        context->CreatePipeline(m_Pipeline);
+        context::CreatePipeline(m_Pipeline);
     }
 
     void InitCamera() {
@@ -356,6 +373,7 @@ private:
 
     TestConfig m_TestConfig;
 
+    TransformComponent m_TextTransform = string("TextTransform");
 };
 
 Application* CreateApplication() {

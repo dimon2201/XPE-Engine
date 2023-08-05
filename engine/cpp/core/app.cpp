@@ -1,8 +1,4 @@
 #include <core/app.hpp>
-#include <core/camera.h>
-
-// API specific includes
-#include <rendering/dx11/d3d11_context.hpp>
 
 // Rendering features
 #include <rendering/materials/material.h>
@@ -12,7 +8,6 @@
 
 // todo(cheerwizard): It would be nice to move TTF as Resource Importer into Focus editor and instead use just AssetManager for fonts
 #include <rendering/text/ttf_manager.hpp>
-using namespace xpe::text;
 
 namespace xpe {
 
@@ -32,7 +27,7 @@ namespace xpe {
             winDesc.Height = Config.WinHeight;
             winDesc.X = Config.WinX;
             winDesc.Y = Config.WinY;
-            winDesc.Vsync = Config.Vsync;
+            winDesc.VSync = Config.VSync;
 
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
@@ -40,37 +35,23 @@ namespace xpe {
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
 
-            context = nullptr;
-
-            switch (Config.GPU) {
-
-                case AppConfig::eGPU::DX11:
-                    context = new D3D11Context();
-                    break;
-
-                default:
-                    LogError("App config GPU API is not supported!");
-                    exit(1);
-
-            }
-
             Input::Init();
 
-            context->Init();
+            context::Init();
 
-            CameraManager::Init(context);
+            CameraManager::Init();
 
-            ShaderManager::Init(context);
+            ShaderManager::Init();
 
-            TextureManager::Init(context);
+            TextureManager::Init();
 
-            MaterialManager::Init(context);
+            MaterialManager::Init();
 
-            LightManager::Init(context);
+            LightManager::Init();
 
-            TransformManager::Init(context);
+            TransformManager::Init();
 
-            text::TTFManager::Init(context);
+            TTFManager::Init();
 
             Init();
 
@@ -120,7 +101,7 @@ namespace xpe {
 
             Free();
 
-            text::TTFManager::Free();
+            TTFManager::Free();
 
             TransformManager::Free();
 
@@ -134,7 +115,7 @@ namespace xpe {
 
             CameraManager::Free();
 
-            context->Free();
+            context::Free();
 
             Input::Free();
 
@@ -145,13 +126,12 @@ namespace xpe {
         }
 
         void Application::LockFPSFromConfig() {
-            if (Config.LockOnFPS && Config.FPS < DeltaTime.Fps()) {
+            if (Config.LockOnFps && Config.FPS < DeltaTime.Fps()) {
                 DeltaTime.SetFps(Config.FPS);
             }
         }
 
         void Application::InitGame() {
-            m_Game->context = context;
             m_Game->Config = &Config;
             m_Game->CPUTime = &CPUTime;
             m_Game->DeltaTime = &DeltaTime;

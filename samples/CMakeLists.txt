@@ -8,8 +8,8 @@ file(GLOB_RECURSE SOURCE_FILES Window/*.c Window/*.cpp)
 
 include_engine(../engine)
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 add_engine_definitions()
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 link_engine(${PROJECT_NAME} ../engine)
 

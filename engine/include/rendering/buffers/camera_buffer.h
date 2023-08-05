@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/buffers/structure_buffer.h>
+
 #include <ecs/components.hpp>
 
 namespace xpe {
@@ -21,8 +22,8 @@ namespace xpe {
 
         public:
             CameraBuffer() = default;
-            CameraBuffer(Context* context, usize count)
-            : render::StructureBuffer<CameraBufferData>(context, count, K_SLOT_CAMERAS, K_FALSE) {}
+            CameraBuffer(usize count)
+            : render::StructureBuffer<CameraBufferData>(count, K_SLOT_CAMERAS, K_FALSE) {}
 
         };
 

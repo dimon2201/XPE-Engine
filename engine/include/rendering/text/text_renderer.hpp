@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 namespace xpe
 {
     namespace ecs
@@ -12,36 +10,29 @@ namespace xpe
 
     namespace render
     {
-        class Context;
+
+        using namespace core;
+        using namespace ecs;
+
         class Canvas;
         class InputLayout;
         class Pipeline;
         class TextBatchManager;
-    }
-
-    namespace text
-    {
         class Font;
 
-        class ENGINE_API TextRenderer : public core::Object
+        class ENGINE_API TextRenderer : public Object
         {
 
         public:
-            static void Init(xpe::render::Context* context, xpe::render::TextBatchManager* batchManager, xpe::render::Canvas* canvas);
+            static void Init(TextBatchManager* batchManager, Canvas* canvas);
             static void Free();
 
-            static TextRenderer& Get() {
-                return *s_Instance;
-            }
-
-            void Draw(Font* font, const xpe::ecs::TransformComponent* transform, const xpe::ecs::TextComponent* text);
+            static void Draw(TextComponent& text, TransformComponent& transform, Font& font);
 
         private:
-            static TextRenderer* s_Instance;
-            xpe::render::Context* m_Context;
-            xpe::render::TextBatchManager* m_BatchManager;
-            xpe::render::InputLayout* m_InputLayout;
-            xpe::render::Pipeline* m_Pipeline;
+            static TextBatchManager* s_BatchManager;
+            static InputLayout* s_InputLayout;
+            static Pipeline* s_Pipeline;
         };
     }
 }

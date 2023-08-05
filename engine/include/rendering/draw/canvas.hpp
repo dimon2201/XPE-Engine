@@ -1,18 +1,17 @@
 #pragma once
 
 #include <rendering/core/context.hpp>
-#include <rendering/core/shader.h>
-#include <rendering/core/render_target.h>
 
 namespace xpe {
 
     namespace render {
 
-        class ENGINE_API Canvas : public Object {
+        class ENGINE_API Canvas : public Object
+        {
 
         public:
-            Canvas(s32 width, s32 height, Context* context);
-            Canvas(const glm::ivec2& size, Context* context);
+            Canvas(s32 width, s32 height);
+            Canvas(const glm::ivec2& size);
             ~Canvas();
 
             void Clear(const glm::vec4& color);
@@ -32,7 +31,6 @@ namespace xpe {
             void FreePresentTarget();
 
         private:
-            Context* m_Context;
             Viewport m_Viewport;
             glm::vec4 m_ClearColor = { 0.0f, 0.0f, 0.0f, 1.0f };
             RenderTarget m_RenderTarget;

@@ -63,6 +63,7 @@
 #include <rendering/core/slots.h>
 
 // STL customization
+#include <stl/pointers.h>
 #include <stl/string.h>
 #include <stl/vector.h>
 #include <stl/unordered_map.h>

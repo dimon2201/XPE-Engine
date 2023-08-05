@@ -3,7 +3,6 @@
 #include <rendering/lighting/direct_light.h>
 #include <rendering/lighting/point_light.h>
 #include <rendering/lighting/spot_light.h>
-#include "direct_light.h"
 
 namespace xpe {
 
@@ -25,7 +24,7 @@ namespace xpe {
             static const usize K_SPOT_LIGHT_SIZE = 1000;
 
         public:
-            static void Init(Context* context);
+            static void Init();
             static void Free();
 
             static DirectLightBuffer* GetDirectBuffer();
@@ -49,7 +48,6 @@ namespace xpe {
             static void FlushSpotLights();
 
         private:
-            static Context* s_Context;
             static LightStorage* s_Storage;
 
         };

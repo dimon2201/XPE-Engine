@@ -56,7 +56,7 @@ namespace xpe {
             MaterialTextures Textures;
             unordered_map<string, Material> Table;
 
-            MaterialStorage(Context* context, usize count);
+            MaterialStorage(usize count);
             ~MaterialStorage();
 
             void AddMaterial(const string& name, const Material& material);
@@ -68,9 +68,6 @@ namespace xpe {
             void FreeMaterialTextures();
             void InitMaterialSampler();
             void InitTextureArray(Texture& textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot);
-
-        private:
-            Context* m_Context = nullptr;
         };
 
         class ENGINE_API MaterialManager final {
@@ -79,7 +76,7 @@ namespace xpe {
             static const usize K_MATERIALS_COUNT = 1000;
 
         public:
-            static void Init(Context* context);
+            static void Init();
             static void Free();
 
             static Material* CreateMaterial(const string& usid);
@@ -113,7 +110,6 @@ namespace xpe {
             );
 
         private:
-            static Context* s_Context;
             static MaterialStorage* s_Storage;
         };
 

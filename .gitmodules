@@ -4,9 +4,9 @@
 [submodule "engine/thirdparty/glm"]
 	path = engine/thirdparty/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "engine/thirdparty/jsoncpp"]
-	path = engine/thirdparty/jsoncpp
-	url = https://github.com/open-source-parsers/jsoncpp
+[submodule "engine/thirdparty/json"]
+	path = engine/thirdparty/json
+	url = https://github.com/nlohmann/json
 [submodule "engine/thirdparty/spdlog"]
     path = engine/thirdparty/spdlog
     url = https://github.com/gabime/spdlog.git
@@ -16,9 +16,6 @@
 [submodule "engine/thirdparty/freetype2"]
 	path = engine/thirdparty/freetype2
 	url = https://github.com/aseprite/freetype2
-[submodule "engine/thirdparty/cgltf"]
-	path = engine/thirdparty/cgltf
-	url = https://github.com/jkuhlmann/cgltf
 [submodule "editor/thirdparty/assimp"]
     path = editor/thirdparty/assimp
     url = https://github.com/assimp/assimp

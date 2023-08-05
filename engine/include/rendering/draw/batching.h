@@ -1,6 +1,6 @@
 #pragma once
 
-#include <geometry/mesh.h>
+#include <geometry/mesh_geometry.h>
 
 #include <rendering/buffers/vertex_buffer.h>
 #include <rendering/buffers/index_buffer.h>
@@ -49,7 +49,6 @@ namespace xpe {
         {
 
         public:
-            BatchManager(Context* context);
             ~BatchManager();
 
             void StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount = 0);
@@ -89,7 +88,6 @@ namespace xpe {
             BatchVertexed NewBatchVertexed(const GeometryVertexedFormat& format, usize instanceCount);
 
         private:
-            Context* m_Context;
             vector<BatchIndexed> m_BatchesIndexed;
             vector<BatchVertexed> m_BatchesVertexed;
         };
@@ -98,7 +96,6 @@ namespace xpe {
         {
 
         public:
-            BatchManager2d(Context* context);
             ~BatchManager2d();
 
             void StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex2D>& geometry, usize instanceCount = 0);
@@ -138,7 +135,6 @@ namespace xpe {
             BatchVertexed2d NewBatchVertexed(const GeometryVertexedFormat& format, usize instanceCount);
 
         private:
-            Context* m_Context;
             vector<BatchIndexed2d> m_BatchesIndexed;
             vector<BatchVertexed2d> m_BatchesVertexed;
         };

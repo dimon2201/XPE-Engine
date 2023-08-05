@@ -4,31 +4,8 @@ namespace xpe {
 
     namespace render {
 
-        void DebugManager::Init(Debugger *const debugger, Context *const context) {
-            m_Debugger = debugger;
-            m_Debugger->Init(context);
-            m_Debugger->SetCallback(this);
-        }
-
-        void DebugManager::Free() {
-            m_Debugger->Free();
-        }
-
-        void DebugManager::LogMessages() {
-            auto messages = m_Debugger->GetMessageQueue();
-            for (const auto& message : messages) {
-                ReceiveMessage(message);
-            }
-        }
-
-        void DebugManager::LogLastMessage() {
-            DebugMessage message;
-            if (m_Debugger->GetLastMessage(message)) {
-                ReceiveMessage(message);
-            }
-        }
-
-        void DebugManager::ReceiveMessage(const DebugMessage& message) {
+        static void ReceiveMessage(const DebugMessage& message)
+        {
             hstringstream ss;
 
             int id = message.ID;
@@ -100,7 +77,7 @@ namespace xpe {
 
             auto& appConfig = AppConfig::Get();
 
-            if (appConfig.LogDebugErrors)
+            if (appConfig.DebugErrors)
             {
 
                 switch (type) {
@@ -119,7 +96,7 @@ namespace xpe {
 
             }
 
-            if (appConfig.LogDebugWarnings)
+            if (appConfig.DebugWarnings)
             {
 
                 switch (type) {
@@ -140,11 +117,39 @@ namespace xpe {
 
             }
 
-            if (appConfig.LogDebugInfos)
+            if (appConfig.DebugInfo)
             {
                 LogInfo(ss.str().c_str());
             }
+        }
 
+        void DebugManager::Init()
+        {
+            debugger::Init();
+            debugger::Callback = ReceiveMessage;
+        }
+
+        void DebugManager::Free()
+        {
+            debugger::Free();
+        }
+
+        void DebugManager::LogMessages()
+        {
+            auto messages = debugger::GetMessageQueue();
+            for (const auto& message : messages)
+            {
+                ReceiveMessage(message);
+            }
+        }
+
+        void DebugManager::LogLastMessage()
+        {
+            DebugMessage message;
+            if (debugger::GetLastMessage(message))
+            {
+                ReceiveMessage(message);
+            }
         }
 
     }

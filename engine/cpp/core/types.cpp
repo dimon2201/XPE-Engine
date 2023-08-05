@@ -1,14 +1,22 @@
-xpe::core::uword xpe::core::Object::GetType()
-{
-    return ((uword*)this)[0];
-}
+namespace xpe {
 
-void* xpe::core::Object::operator new(size_t byteSize)
-{
-    return alloc(byteSize);
-}
+    namespace core {
 
-void xpe::core::Object::operator delete(void* address)
-{
-    return dealloc(address);
+        uword Object::GetType()
+        {
+            return ((uword*)this)[0];
+        }
+
+        void* Object::operator new(size_t byteSize)
+        {
+            return alloc(byteSize);
+        }
+
+        void Object::operator delete(void* address)
+        {
+            return dealloc(address);
+        }
+
+    }
+
 }

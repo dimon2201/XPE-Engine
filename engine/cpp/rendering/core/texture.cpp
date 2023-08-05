@@ -51,7 +51,6 @@ namespace xpe {
                 { Texture::eFormat::RGBA32, 16 },
         };
 
-        Context* TextureManager::s_Context = nullptr;
         TextureStorage* TextureManager::s_Storage = nullptr;
 
         TextureStorage::~TextureStorage() {
@@ -61,9 +60,8 @@ namespace xpe {
             Table.clear();
         }
 
-        void TextureManager::Init(Context* context) {
+        void TextureManager::Init() {
             LogInfo("TextureManager::Init()");
-            s_Context = context;
             s_Storage = new TextureStorage();
             LogInfo("TextureManager initialized");
         }
@@ -238,15 +236,15 @@ namespace xpe {
         }
 
         void TextureManager::InitTexture(Texture &texture) {
-            s_Context->CreateTexture(texture);
+            context::CreateTexture(texture);
         }
 
         void TextureManager::InitTextureCube(Texture &texture) {
-            s_Context->CreateTextureCube(texture);
+            context::CreateTextureCube(texture);
         }
 
         void TextureManager::BindTexture(Texture &texture) {
-            s_Context->BindTexture(&texture);
+            context::BindTexture(&texture);
         }
 
         void TextureManager::FreeTexture(Texture &texture)
@@ -261,7 +259,7 @@ namespace xpe {
                 FreeMips(layer);
             }
             texture.Layers.clear();
-            s_Context->FreeTexture(texture);
+            context::FreeTexture(texture);
         }
 
         void TextureManager::WriteTexture(Texture &texture) {
@@ -272,7 +270,7 @@ namespace xpe {
         }
 
         void TextureManager::WriteTexture(Texture &texture, u32 layerIndex) {
-            s_Context->WriteTexture(
+            context::WriteTexture(
                     texture,
                     texture.Layers[layerIndex].Pixels,
                     texture.Width * texture.Height * BPPTable.at(texture.Format),

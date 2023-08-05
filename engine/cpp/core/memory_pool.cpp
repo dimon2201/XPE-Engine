@@ -1,10 +1,8 @@
-#include <json/json.h>
-
 namespace xpe {
 
     namespace core {
 
-        MemoryPool::MemoryPool(const usize byteSize, const usize allocs)
+        void MemoryPool::Init(const usize byteSize, const usize allocs)
         {
             m_ByteSize = byteSize;
             m_Memory = malloc(m_ByteSize);
@@ -13,9 +11,10 @@ namespace xpe {
             m_Allocs.reserve(allocs);
         }
 
-        MemoryPool::~MemoryPool()
+        void MemoryPool::Release()
         {
             free(m_Memory);
+            m_Allocs.clear();
         }
 
         void* MemoryPool::Allocate(const usize size)
@@ -94,12 +93,19 @@ namespace xpe {
             Pools.reserve(poolCount);
             for (u32 i = 0 ; i < poolCount ; i++)
             {
-                Pools.emplace_back(poolByteSize, poolAllocs);
+                MemoryPool pool;
+                pool.Init(poolByteSize, poolAllocs);
+                Pools.emplace_back(pool);
             }
             TotalBytes = poolCount * poolByteSize;
         }
 
         MemoryPoolStorage::~MemoryPoolStorage() {
+            for (auto& pool : Pools)
+            {
+                // todo (CheerWizard): Heap corruption will happen here when we have more than 1 pool here!
+                pool.Release();
+            }
             Pools.clear();
         }
 
@@ -120,9 +126,12 @@ namespace xpe {
 
             usize poolSize = size <= PoolByteSize ? PoolByteSize : size;
             TotalBytes += poolSize;
-            Pools.emplace_back(poolSize, PoolAllocs);
-            auto *newPool = &Pools[Pools.size() - 1];
-            newAddress = newPool->Allocate(size);
+
+            MemoryPool newPool;
+            newPool.Init(poolSize, PoolAllocs);
+            newAddress = newPool.Allocate(size);
+
+            Pools.emplace_back(newPool);
 
             return newAddress;
         }
@@ -174,8 +183,8 @@ namespace xpe {
         MemoryPoolStorage* MemoryPoolManager::HotPools = nullptr;
 
         void MemoryPoolManager::Init(const MemoryConfig& config) {
-            HotPools = new MemoryPoolStorage("HotMemory", 1, config.HotMemoryKB, config.HotAllocs);
-            MainPools = new MemoryPoolStorage("MainMemory", 1, config.MainMemoryMB, config.MainAllocs);
+            HotPools = new MemoryPoolStorage("HotMemory", 1, config.GetHotMemoryBytes(), config.HotAllocs);
+            MainPools = new MemoryPoolStorage("MainMemory", 1, config.GetMainMemoryBytes(), config.MainAllocs);
         }
 
         void MemoryPoolManager::Free() {
@@ -186,6 +195,16 @@ namespace xpe {
         void MemoryPoolManager::LogPools() {
             MainPools->LogPools();
             HotPools->LogPools();
+        }
+
+        void MemoryPoolManager::FreeMainMemory(void* address)
+        {
+            MainPools->Free(address);
+        }
+
+        void MemoryPoolManager::FreeHotMemory(void* address)
+        {
+            HotPools->Free(address);
         }
 
     }

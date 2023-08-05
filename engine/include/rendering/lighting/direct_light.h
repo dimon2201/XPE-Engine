@@ -30,8 +30,7 @@ namespace xpe {
         public:
             DirectLightBuffer() = default;
 
-            DirectLightBuffer(Context* context, usize size)
-            : StructureBuffer<DirectLightBufferData>(context, size, K_SLOT_DIRECT_LIGHTS, K_FALSE) {}
+            DirectLightBuffer(usize size) : StructureBuffer<DirectLightBufferData>(size, K_SLOT_DIRECT_LIGHTS, K_FALSE) {}
 
         };
 

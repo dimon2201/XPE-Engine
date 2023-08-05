@@ -27,8 +27,8 @@ include_directories(
 )
 
 # Create shared dynamic library
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 add_engine_definitions()
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
 # Add precompile header for compile-CurrentTime optimization
 target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch.h>")
@@ -42,7 +42,7 @@ add_subdirectory(thirdparty/assimp)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json freetype)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm freetype nlohmann_json assimp)
 
 # Move shaders into bin folder
 copy_engine_shaders(engine)

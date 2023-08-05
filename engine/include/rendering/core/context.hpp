@@ -2,8 +2,8 @@
 
 #include <core/windowing.hpp>
 
-#include <rendering/core/core.h>
 #include <rendering/core/viewport.h>
+#include <rendering/core/pipeline.h>
 
 namespace xpe {
 
@@ -28,115 +28,107 @@ namespace xpe {
 
         class Rasterizer;
 
-        class ENGINE_API Context {
+        namespace context {
 
-            public:
-                Context() {}
-                ~Context() {}
+            extern void* SwapchainTargetView;
+            extern Viewport* BoundViewport;
+            extern void* BoundColorTargetView;
+            extern void* BoundDepthTargetView;
+            extern Shader* BoundShader;
+            extern Pipeline* BoundPipeline;
 
-                inline void* GetSwapchainTargetView() const {
-                    return m_SwapchainTargetView;
-                }
+            ENGINE_API void Init();
+            ENGINE_API void Free();
 
-                virtual void Init() = 0;
-                virtual void Free() = 0;
+            ENGINE_API void CreateSwapchain(int width, int height);
+            ENGINE_API void FreeSwapchain();
+            ENGINE_API void ResizeSwapchain(RenderTarget& presentTarget, int width, int height);
+            ENGINE_API void CreateSwapchainTargetView();
 
-                virtual void CreateSwapchain(int width, int height) = 0;
-                virtual void FreeSwapchain() = 0;
-                virtual void ResizeSwapchain(RenderTarget& presentTarget, int width, int height) = 0;
-                virtual void CreateSwapchainTargetView() = 0;
+            ENGINE_API void CreateRenderTarget(RenderTarget& renderTarget);
+            ENGINE_API void BindRenderTarget(void* colorTargetView, void* depthTargetView);
+            ENGINE_API void UnbindRenderTarget();
+            ENGINE_API void ClearColorTarget(const glm::vec4& color);
+            ENGINE_API void ClearDepthTarget(const f32 depth);
+            ENGINE_API void FreeRenderTarget(RenderTarget& renderTarget);
+            ENGINE_API void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height);
 
-                virtual void CreateRenderTarget(RenderTarget& renderTarget) = 0;
-                virtual void BindRenderTarget(void* colorTargetView, void* depthTargetView) = 0;
-                virtual void UnbindRenderTarget() = 0;
-                virtual void ClearColorTarget(const glm::vec4& color) = 0;
-                virtual void ClearDepthTarget(const f32 depth) = 0;
-                virtual void FreeRenderTarget(RenderTarget& renderTarget) = 0;
-                virtual void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height) = 0;
+            ENGINE_API void Present();
 
-                virtual void Present() = 0;
+            ENGINE_API void CreateShader(Shader& shader);
+            ENGINE_API void CompileShader(Shader& shader);
+            ENGINE_API void BindShader(const Shader* shader);
+            ENGINE_API void FreeShader(Shader& shader);
 
-                void CreateShader(Shader& shader);
-                void CompileShader(Shader& shader);
-                void BindShader(const Shader* shader);
-                void FreeShader(Shader& shader);
+            ENGINE_API void CompileShaderStage(ShaderStage& stage);
+            ENGINE_API void CreateShaderStage(ShaderStage& stage);
+            ENGINE_API void BindShaderStage(const ShaderStage& stage);
+            ENGINE_API void FreeShaderStage(ShaderStage& stage);
 
-                virtual void CompileShaderStage(ShaderStage& stage) = 0;
-                virtual void CreateShaderStage(ShaderStage& stage) = 0;
-                virtual void BindShaderStage(const ShaderStage& stage) = 0;
-                virtual void FreeShaderStage(ShaderStage& stage) = 0;
-                
-                void CreateTexture(Texture& texture);
+            ENGINE_API void CreateTexture(Texture& texture);
 
-                virtual void CreateTexture1D(Texture& texture) = 0;
-                virtual void CreateTexture2D(Texture& texture) = 0;
-                virtual void CreateTexture2DArray(Texture& texture) = 0;
-                virtual void CreateTexture3D(Texture& texture) = 0;
-                virtual void CreateTextureCube(Texture& texture) = 0;
-                virtual void CreateTextureDepthStencil(Texture& texture) = 0;
+            ENGINE_API void CreateTexture1D(Texture& texture);
+            ENGINE_API void CreateTexture2D(Texture& texture);
+            ENGINE_API void CreateTexture2DArray(Texture& texture);
+            ENGINE_API void CreateTexture3D(Texture& texture);
+            ENGINE_API void CreateTextureCube(Texture& texture);
+            ENGINE_API void CreateTextureDepthStencil(Texture& texture);
 
-                virtual void BindTexture(const Texture* texture) = 0;
-                virtual void BindTextureSlot(u32 slot) = 0;
-                virtual void FreeTexture(Texture& texture) = 0;
-                virtual void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index = 0) = 0;
+            ENGINE_API void BindTexture(const Texture* texture);
+            ENGINE_API void BindTextureSlot(u32 slot);
+            ENGINE_API void FreeTexture(Texture& texture);
+            ENGINE_API void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index = 0);
 
-                virtual void GenerateMips(const Texture& texture) = 0;
+            ENGINE_API void GenerateMips(const Texture& texture);
 
-                virtual void CreateSampler(TextureSampler& sampler) = 0;
-                virtual void BindSampler(const TextureSampler* sampler) = 0;
-                virtual void FreeSampler(const TextureSampler* sampler) = 0;
-                
-                virtual void CreateBuffer(Buffer& buffer) = 0;
-                virtual void BindVertexBuffer(const Buffer* buffer) = 0;
-                virtual void BindIndexBuffer(const Buffer* buffer) = 0;
-                virtual void BindVSBuffer(const Buffer* buffer) = 0;
-                virtual void BindPSBuffer(const Buffer* buffer) = 0;
-                virtual void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize) = 0;
-                virtual void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize) = 0;
-                virtual void WriteBufferAppend(Buffer& buffer, const void* data, usize dataByteSize) = 0;
-                virtual void FreeBuffer(const Buffer& buffer) = 0;
+            ENGINE_API void CreateSampler(TextureSampler& sampler);
+            ENGINE_API void BindSampler(const TextureSampler* sampler);
+            ENGINE_API void FreeSampler(const TextureSampler* sampler);
 
-                virtual void CreateInputLayout(InputLayout& inputLayout) = 0;
-                virtual void BindInputLayout(const InputLayout* inputLayout) = 0;
-                virtual void FreeInputLayout(InputLayout& inputLayout) = 0;
+            ENGINE_API void CreateBuffer(Buffer& buffer);
+            ENGINE_API void BindVertexBuffer(const Buffer* buffer);
+            ENGINE_API void BindIndexBuffer(const Buffer* buffer);
+            ENGINE_API void BindVSBuffer(const Buffer* buffer);
+            ENGINE_API void BindPSBuffer(const Buffer* buffer);
+            ENGINE_API void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize);
+            ENGINE_API void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize);
+            ENGINE_API void WriteBufferAppend(Buffer& buffer, const void* data, usize dataByteSize);
+            ENGINE_API void FreeBuffer(const Buffer& buffer);
 
-                virtual void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology) = 0;
-                
-                virtual void BindViewport(Viewport* viewport) = 0;
+            ENGINE_API void CreateInputLayout(InputLayout& inputLayout);
+            ENGINE_API void BindInputLayout(const InputLayout* inputLayout);
+            ENGINE_API void FreeInputLayout(InputLayout& inputLayout);
 
-                virtual void CreatePipeline(Pipeline& pipeline) = 0;
-                virtual void BindPipeline(const Pipeline* pipeline) = 0;
-                virtual void FreePipeline(Pipeline& pipeline) = 0;
+            ENGINE_API void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology);
 
-                virtual void CreateDepthStencilState(DepthStencilState& state) = 0;
-                virtual void BindDepthStencilState(const DepthStencilState* state) = 0;
-                virtual void FreeDepthStencilState(DepthStencilState& state) = 0;
+            ENGINE_API void BindViewport(Viewport* viewport);
 
-                virtual void CreateBlendState(BlendState& state) = 0;
-                virtual void BindBlendState(const BlendState* state) = 0;
-                virtual void FreeBlendState(BlendState& state) = 0;
+            ENGINE_API void CreatePipeline(Pipeline& pipeline);
+            ENGINE_API void BindPipeline(const Pipeline* pipeline);
+            ENGINE_API void FreePipeline(Pipeline& pipeline);
 
-                virtual void CreateRasterizer(Rasterizer& rasterizer) = 0;
-                virtual void BindRasterizer(const Rasterizer* rasterizer) = 0;
-                virtual void FreeRasterizer(Rasterizer& rasterizer) = 0;
+            ENGINE_API void CreateDepthStencilState(DepthStencilState& state);
+            ENGINE_API void BindDepthStencilState(const DepthStencilState* state);
+            ENGINE_API void FreeDepthStencilState(DepthStencilState& state);
 
-                virtual void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount) = 0;
-                virtual void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount) = 0;
+            ENGINE_API void CreateRasterizer(Rasterizer& rasterizer);
+            ENGINE_API void BindRasterizer(const Rasterizer* rasterizer);
+            ENGINE_API void FreeRasterizer(Rasterizer& rasterizer);
 
-                virtual void DrawQuad() = 0;
+            ENGINE_API void CreateBlendState(BlendState& state);
+            ENGINE_API void BindBlendState(const BlendState* state);
+            ENGINE_API void FreeBlendState(BlendState& state);
 
-                virtual void* GetDevice() = 0;
+            ENGINE_API void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount);
+            ENGINE_API void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount);
 
-                virtual void CreateHardwareConfig() = 0;
+            ENGINE_API void DrawQuad();
 
-        protected:
-            void* m_SwapchainTargetView = nullptr;
-            Viewport* m_Viewport = nullptr;
-            void* m_BoundColorTargetView = nullptr;
-            void* m_BoundDepthTargetView = nullptr;
-            Shader* m_BoundShader = nullptr;
-            Pipeline* m_BoundPipeline = nullptr;
-        };
+            ENGINE_API void* GetDevice();
+
+            ENGINE_API void CreateHardwareConfig();
+
+        }
 
     }
 

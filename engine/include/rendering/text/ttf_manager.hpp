@@ -1,62 +1,60 @@
 #pragma once
 
-#include <string>
 #include <ft2build.h>
 #include FT_FREETYPE_H
+
 #include <rendering/core/texture.h>
 
 namespace xpe
 {
+
     namespace render
     {
-        class Context;
-    }
 
-    namespace text
-    {
-        struct ENGINE_API Font
+        using namespace core;
+
+        struct ENGINE_API Font final
         {
             struct Glyph
             {
-                core::u8 Character;
-                core::usize Width;
-                core::usize Height;
-                core::ssize Left;
-                core::ssize Top;
-                core::usize AdvanceX;
-                core::usize AdvanceY;
+                u8 Character;
+                usize Width;
+                usize Height;
+                ssize Left;
+                ssize Top;
+                usize AdvanceX;
+                usize AdvanceY;
                 void* BitmapData = nullptr;
-                core::usize AtlasXOffset;
-                core::usize AtlasYOffset;
+                usize AtlasXOffset;
+                usize AtlasYOffset;
             };
 
             FT_Face FTFace;
-            core::usize GlyphCount;
-            core::usize GlyphSize;
-            core::f32 NewLineOffset;
-            core::f32 WhitespaceOffset;
-            core::unordered_map<char, Font::Glyph> AlphaBet;
-            render::Texture Atlas;
+            usize GlyphCount;
+            usize GlyphSize;
+            f32 NewLineOffset;
+            f32 WhitespaceOffset;
+            unordered_map<char, Font::Glyph> AlphaBet;
+            Texture Atlas;
         };
 
-        class ENGINE_API TTFManager : public core::Object
+        class ENGINE_API TTFManager final
         {
 
         public:
-            static void Init(render::Context* context);
+            static void Init();
             static void Free();
 
         public:
-            static Font Load(const std::string& filePath, core::usize glyphSize);
-            static Font* Resize(const std::string& filePath, core::usize glyphSize);
+            static Font Load(const string& filePath, usize glyphSize);
+            static Font* Resize(const string& filePath, usize glyphSize);
             static void Free(Font& font);
-            static Font* GetFont(const std::string& filePath);
+            static Font* GetFont(const string& filePath);
 
         private:
-            static render::Context* s_Context;
-            static core::Boolean s_Loaded;
+            static bool s_Loaded;
             static FT_Library s_Lib;
-            static core::unordered_map<std::string, Font>* s_Fonts;
+            static unordered_map<string, Font>* s_Fonts;
         };
     }
 }

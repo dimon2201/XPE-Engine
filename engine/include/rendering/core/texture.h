@@ -179,7 +179,7 @@ namespace xpe {
             static std::unordered_map<Texture::eFormat, int> BPPTable;
 
         public:
-            static void Init(Context* context);
+            static void Init();
             static void Free();
 
             static void InitTexture(Texture& texture);
@@ -237,7 +237,6 @@ namespace xpe {
             );
 
         private:
-            static Context* s_Context;
             static TextureStorage* s_Storage;
         };
 

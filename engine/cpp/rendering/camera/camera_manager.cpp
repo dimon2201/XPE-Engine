@@ -6,15 +6,15 @@ namespace xpe {
 
         CameraStorage* CameraManager::s_Storage = nullptr;
 
-        CameraStorage::CameraStorage(Context *context)
+        CameraStorage::CameraStorage()
         {
-            CameraBuffer2D = CameraBuffer(context, 1);
-            CameraBuffer3D = CameraBuffer(context, 1);
+            Buffer2D = CameraBuffer(1);
+            Buffer3D = CameraBuffer(1);
         }
 
-        void CameraManager::Init(Context* context)
+        void CameraManager::Init()
         {
-            s_Storage = new CameraStorage(context);
+            s_Storage = new CameraStorage();
         }
 
         void CameraManager::Free()
@@ -22,12 +22,14 @@ namespace xpe {
             delete s_Storage;
         }
 
-        CameraBuffer *CameraManager::GetBuffer2D() {
-            return &s_Storage->CameraBuffer2D;
+        CameraBuffer *CameraManager::GetBuffer2D()
+        {
+            return &s_Storage->Buffer2D;
         }
 
-        CameraBuffer *CameraManager::GetBuffer() {
-            return &s_Storage->CameraBuffer3D;
+        CameraBuffer *CameraManager::GetBuffer()
+        {
+            return &s_Storage->Buffer3D;
         }
 
     }

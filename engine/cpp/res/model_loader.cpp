@@ -14,12 +14,12 @@ namespace xpe {
                 const aiScene* scene, aiMesh* mesh,
                 const string& directory, u32 flags
         ) {
-
+            return 0;
         }
 
         ModelResource ModelLoader::Load(const char* filepath, const vector <ModelLoader::eOption> &options)
         {
-
+            return {};
         }
 
     }

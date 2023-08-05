@@ -25,30 +25,31 @@ namespace xpe
         class ENGINE_API MemoryPool
         {
             public:
-                MemoryPool() = default;
-
                 // byte size - actual size in bytes of malloc
                 // allocs - count of allocations that will be reserved for later use
-                MemoryPool(const usize byteSize, const usize allocs);
-
-                ~MemoryPool();
+                void Init(const usize byteSize, const usize allocs);
+                void Release();
 
                 void* Allocate(const usize size);
                 bool Free(void* address);
 
-                inline usize GetAllocCount() const {
+                inline usize GetAllocCount() const
+                {
                     return m_Allocs.size();
                 }
 
-                inline usize GetByteSize() const {
+                inline usize GetByteSize() const
+                {
                     return m_ByteSize;
                 }
 
-                inline usize GetBytesUsage() const {
+                inline usize GetBytesUsage() const
+                {
                     return m_BytesOccupied - m_BytesFreed;
                 }
 
-                inline usize GetLastFreedBytes() const {
+                inline usize GetLastFreedBytes() const
+                {
                     return m_LastFreedBytes;
                 }
 
@@ -78,15 +79,18 @@ namespace xpe
 
             ~MemoryPoolStorage();
 
-            inline usize GetPoolCount() const {
+            inline usize GetPoolCount() const
+            {
                 return Pools.size();
             }
 
-            inline usize GetAllocCount(u32 index) const {
+            inline usize GetAllocCount(u32 index) const
+            {
                 return Pools[index].GetAllocCount();
             }
 
-            inline usize GetPoolSize(u32 index) const {
+            inline usize GetPoolSize(u32 index) const
+            {
                 return Pools[index].GetByteSize();
             }
 
@@ -97,20 +101,22 @@ namespace xpe
             T* AllocateConstruct();
 
             template<typename T, typename ... Args>
-            T* AllocateConstruct(Args &&... args);
+            T* AllocateConstructArgs(Args &&... args);
 
             void LogPools();
         };
 
         template<typename T>
-        T* MemoryPoolStorage::AllocateConstruct() {
+        T* MemoryPoolStorage::AllocateConstruct()
+        {
             T* address = static_cast<T*>(Allocate(sizeof(T)));
             new (address) T();
             return address;
         }
 
         template<typename T, typename... Args>
-        T* MemoryPoolStorage::AllocateConstruct(Args &&... args) {
+        T* MemoryPoolStorage::AllocateConstructArgs(Args &&... args)
+        {
             T* address = static_cast<T*>(Allocate(sizeof(T)));
             new (address) T(std::forward<Args>(args)...);
             return address;
@@ -126,17 +132,20 @@ namespace xpe
                 HotAllocs
             )
 
-            usize MainMemoryMB = 1024 * K_MEMORY_MIB;
+            usize MainMemoryMB = 1024;
             usize MainAllocs = 1000;
 
-            usize HotMemoryKB = 1024 * K_MEMORY_KIB;
+            usize HotMemoryKB = 1024;
             usize HotAllocs = 1000;
 
-            static MemoryConfig& Get() {
+            static MemoryConfig& Get()
+            {
                 static MemoryConfig instance;
                 return instance;
             }
 
+            [[nodiscard]] inline usize GetMainMemoryBytes() const { return MainMemoryMB * K_MEMORY_MIB; }
+            [[nodiscard]] inline usize GetHotMemoryBytes()  const { return HotMemoryKB  * K_MEMORY_KIB; }
         };
 
         class ENGINE_API MemoryPoolManager final
@@ -149,6 +158,8 @@ namespace xpe
         public:
             static void Init(const MemoryConfig& config);
             static void Free();
+            static void FreeMainMemory(void* address);
+            static void FreeHotMemory(void* address);
             static void LogPools();
 
         };

@@ -69,7 +69,7 @@ namespace xpe {
 
             SetPos(windowDescriptor.X, windowDescriptor.Y);
             SetSize(windowDescriptor.Width, windowDescriptor.Height);
-            SetVSync(windowDescriptor.Vsync);
+            SetVSync(windowDescriptor.VSync);
 
             LogInfo("Window initialized");
         }
@@ -166,7 +166,7 @@ namespace xpe {
             return glfwGetWindowUserPointer(s_WindowHandle);
         }
 
-        void WindowManager::SetVSync(Boolean vsync) {
+        void WindowManager::SetVSync(bool vsync) {
             glfwSwapInterval(vsync);
         }
 

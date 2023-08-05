@@ -2,6 +2,8 @@
 
 #define alloc(size) xpe::core::MemoryPoolManager::MainPools->Allocate(size)
 #define allocT(T, count) static_cast<T*>(alloc(sizeof(T) * count))
+#define alloc_construct(T) xpe::core::MemoryPoolManager::MainPools->AllocateConstruct<T>()
+#define alloc_construct_args(T, ...) xpe::core::MemoryPoolManager::MainPools->AllocateConstructArgs<T>(__VA_ARGS__)
 #define dealloc(addr) xpe::core::MemoryPoolManager::MainPools->Free(addr)
 
 namespace xpe {

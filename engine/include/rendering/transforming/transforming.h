@@ -19,8 +19,8 @@ namespace xpe {
         public:
             TransformBuffer() = default;
 
-            TransformBuffer(Context* context, usize size)
-            : StructureBuffer<TransformData>(context, size, K_SLOT_TRANSFORMS, K_FALSE) {}
+            TransformBuffer(usize size)
+            : StructureBuffer<TransformData>(size, K_SLOT_TRANSFORMS, K_FALSE) {}
 
         };
 
@@ -33,26 +33,26 @@ namespace xpe {
         public:
             Transform2DBuffer() = default;
 
-            Transform2DBuffer(Context* context, usize size)
-            : StructureBuffer<Transform2DData>(context, size, K_SLOT_TRANSFORMS2D, K_FALSE) {}
+            Transform2DBuffer(usize size)
+            : StructureBuffer<Transform2DData>(size, K_SLOT_TRANSFORMS2D, K_FALSE) {}
 
         };
 
         struct ENGINE_API TransformStorage : public Object {
-            static const usize K_TRANSFORMS_SIZE = 1000000;
-            static const usize K_TRANSFORMS2D_SIZE = 1000000;
+            static const usize K_TRANSFORMS_SIZE = 1000;
+            static const usize K_TRANSFORMS2D_SIZE = 1000;
 
             TransformBuffer Buffer;
             Transform2DBuffer Buffer2D;
 
-            TransformStorage(Context* context);
+            TransformStorage();
             ~TransformStorage();
         };
 
         class ENGINE_API TransformManager final {
 
         public:
-            static void Init(Context* context);
+            static void Init();
             static void Free();
 
             static TransformBuffer* GetBuffer();
@@ -74,7 +74,6 @@ namespace xpe {
             static void ClearTransforms2D();
 
         private:
-            static Context* s_Context;
             static TransformStorage* s_Storage;
 
         };

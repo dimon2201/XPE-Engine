@@ -7,10 +7,6 @@ namespace xpe {
 
         // --------------------- Text Batching ---------------------- //
 
-        TextBatchManager::TextBatchManager(Context* context) : m_Context(context)
-        {
-        }
-
         TextBatchManager::~TextBatchManager()
         {
             for (auto& batchIndexed : m_BatchesIndexed)
@@ -23,9 +19,9 @@ namespace xpe {
         void TextBatchManager::InitBatchIndexed(BatchTextGlyphIndexed& batchIndexed, const GeometryIndexedFormat& format, usize instanceCount)
         {
             batchIndexed.Format = format;
-            batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
-            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
-            batchIndexed.Instances = TextGlyphInstanceBuffer(m_Context, instanceCount);
+            batchIndexed.Vertices = VertexBuffer<Vertex3D>(format.VertexCount);
+            batchIndexed.Indices = IndexBuffer(format.IndexCount);
+            batchIndexed.Instances = TextGlyphInstanceBuffer(instanceCount);
         }
 
         void TextBatchManager::FreeBatchIndexed(BatchTextGlyphIndexed& batchIndexed)
@@ -44,7 +40,7 @@ namespace xpe {
             return batchIndexed;
         }
 
-        void TextBatchManager::StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount)
+        bool TextBatchManager::StoreGeometryIndexed(const string& str, const GeometryIndexed<Vertex3D>& geometry, usize instanceCount)
         {
             u64 usid = core::Hash(str);
 
@@ -52,7 +48,7 @@ namespace xpe {
                 if (batchIndexed.Format.USID == usid) {
                     batchIndexed.Vertices.FlushVertices(geometry.Vertices);
                     batchIndexed.Indices.FlushIndices(geometry.Indices);
-                    return;
+                    return true;
                 }
             }
 
@@ -68,6 +64,20 @@ namespace xpe {
 
             batchIndexed.Vertices.FlushVertices(geometry.Vertices);
             batchIndexed.Indices.FlushIndices(geometry.Indices);
+
+            return true;
+        }
+
+        bool TextBatchManager::HasGeometryIndexed(const string &str) {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         void TextBatchManager::BeginBatch(const string& str)
@@ -86,7 +96,7 @@ namespace xpe {
             batchIndexed.Vertices.Bind();
             batchIndexed.Indices.Bind();
             batchIndexed.Instances.Bind();
-            m_Context->BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
+            context::BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
         }
 
         u32 TextBatchManager::AddInstance(const string& str, const TextGlyphInstance& instance)
@@ -160,6 +170,18 @@ namespace xpe {
             }
         }
 
+        usize TextBatchManager::GetInstanceCapacity(const string &str) {
+            u64 usid = core::Hash(str);
+
+            for (auto& batchIndexed : m_BatchesIndexed) {
+                if (batchIndexed.Format.USID == usid) {
+                    return batchIndexed.Instances.Capacity();
+                }
+            }
+
+            return 0;
+        }
+
         void TextBatchManager::DrawBatch(const string& str)
         {
             u64 usid = core::Hash(str);
@@ -176,7 +198,7 @@ namespace xpe {
         {
             auto& geometryInfo = batchIndexed.Format;
             auto& instances = batchIndexed.Instances;
-            m_Context->DrawBatch(
+            context::DrawBatch(
                 geometryInfo.VertexOffset,
                 geometryInfo.IndexOffset,
                 geometryInfo.IndexCount,

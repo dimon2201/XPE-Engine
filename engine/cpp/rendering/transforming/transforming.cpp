@@ -7,14 +7,13 @@ namespace xpe {
 
         using namespace ecs;
 
-        Context* TransformManager::s_Context = nullptr;
         TransformStorage* TransformManager::s_Storage = nullptr;
 
-        TransformStorage::TransformStorage(Context* context) {
-            Buffer2D = Transform2DBuffer(context, 0);
+        TransformStorage::TransformStorage() {
+            Buffer2D = Transform2DBuffer(0);
             Buffer2D.Reserve(K_TRANSFORMS2D_SIZE);
 
-            Buffer = TransformBuffer(context, 0);
+            Buffer = TransformBuffer(0);
             Buffer.Reserve(K_TRANSFORMS_SIZE);
         }
 
@@ -23,12 +22,9 @@ namespace xpe {
             Buffer.Free();
         }
 
-        void TransformManager::Init(Context* context) {
+        void TransformManager::Init() {
             LogInfo("TransformManager::Init()");
-
-            s_Context = context;
-            s_Storage = new TransformStorage(context);
-
+            s_Storage = new TransformStorage();
             LogInfo("TransformManager initialized");
         }
 

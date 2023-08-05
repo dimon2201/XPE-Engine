@@ -5,7 +5,7 @@ namespace xpe {
 
     namespace render {
 
-        IndexBuffer::IndexBuffer(Context* context, const usize indexCount) : m_Context(context)
+        IndexBuffer::IndexBuffer(const usize indexCount)
         {
             m_IndexArray.Init(indexCount);
             Type = eBufferType::INDEX;
@@ -14,16 +14,16 @@ namespace xpe {
             NumElements = indexCount;
             ByteSize = StructureSize * indexCount;
             Duplicate = K_FALSE;
-            m_Context->CreateBuffer(*this);
+            context::CreateBuffer(*this);
         }
 
         void IndexBuffer::Free() {
-            m_Context->FreeBuffer(*this);
+            context::FreeBuffer(*this);
             m_IndexArray.Free();
         }
 
         void IndexBuffer::Flush() {
-            m_Context->WriteBuffer(*this, m_IndexArray.GetData(), m_IndexArray.Size());
+            context::WriteBuffer(*this, m_IndexArray.GetData(), m_IndexArray.Size());
         }
 
         void IndexBuffer::FlushIndices(const IndexArray &indices) {
@@ -35,7 +35,7 @@ namespace xpe {
         }
 
         void IndexBuffer::Bind() {
-            m_Context->BindIndexBuffer(this);
+            context::BindIndexBuffer(this);
         }
 
         void IndexBuffer::FlushIndex(u32 i, u32 index) {
@@ -43,14 +43,14 @@ namespace xpe {
                 Resize(i + 1);
             }
             m_IndexArray[i] = index;
-            m_Context->WriteBufferOffset(*this, StructureSize * i, &m_IndexArray.Data.back(), StructureSize);
+            context::WriteBufferOffset(*this, StructureSize * i, &m_IndexArray.Data.back(), StructureSize);
         }
 
         void IndexBuffer::Recreate(const usize indexCount) {
             NumElements = indexCount;
             ByteSize = NumElements * StructureSize;
-            m_Context->FreeBuffer(*this);
-            m_Context->CreateBuffer(*this);
+            context::FreeBuffer(*this);
+            context::CreateBuffer(*this);
             Flush();
         }
 

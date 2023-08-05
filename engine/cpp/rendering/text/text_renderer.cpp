@@ -1,126 +1,134 @@
-#include <core/types.hpp>
-#include <ecs/components.hpp>
-#include <rendering/camera/camera_manager.h>
-#include <rendering/transforming/transforming.h>
-#include <rendering/materials/material.h>
-#include <rendering/lighting/light_manager.h>
 #include <rendering/text/text_renderer.hpp>
 #include <rendering/text/ttf_manager.hpp>
 #include <rendering/text/text_batching.hpp>
-#include <rendering/core/shader.h>
-#include <rendering/dx11/d3d11_context.hpp>
 #include <rendering/draw/canvas.hpp>
+#include <rendering/camera/camera_manager.h>
+#include <rendering/transforming/transforming.h>
+
 #include <geometry/quad_geometry.h>
 
-xpe::text::TextRenderer* xpe::text::TextRenderer::s_Instance = nullptr;
+namespace xpe {
 
-void xpe::text::TextRenderer::Init(xpe::render::Context* context, xpe::render::TextBatchManager* batchManager, xpe::render::Canvas* canvas) {
-    s_Instance = new TextRenderer();
-    s_Instance->m_Context = context;
-    s_Instance->m_BatchManager = batchManager;
-    s_Instance->m_InputLayout = new render::InputLayout();
-    s_Instance->m_Pipeline = new render::Pipeline();
+    namespace render {
 
-    // Setup pipeline
-    s_Instance->m_Pipeline->VSBuffers.emplace_back(render::CameraManager::GetBuffer());
-    s_Instance->m_Pipeline->VSBuffers.emplace_back(render::TransformManager::GetBuffer());
+        TextBatchManager* TextRenderer::s_BatchManager = nullptr;
+        InputLayout* TextRenderer::s_InputLayout = nullptr;
+        Pipeline* TextRenderer::s_Pipeline = nullptr;
 
-    s_Instance->m_Pipeline->Shader = render::ShaderManager::CreateShader("text");
-    xpe::render::ShaderManager::AddVertexStageFromFile(s_Instance->m_Pipeline->Shader, "shaders/text.vs");
-    xpe::render::ShaderManager::AddPixelStageFromFile(s_Instance->m_Pipeline->Shader, "shaders/text.ps");
-    xpe::render::ShaderManager::BuildShader(s_Instance->m_Pipeline->Shader);
+        static Quad* s_Quad = nullptr;
 
-    s_Instance->m_InputLayout->Format = render::Vertex3D::Format;
-    s_Instance->m_Pipeline->InputLayout = *s_Instance->m_InputLayout;
+        void TextRenderer::Init(TextBatchManager* batchManager, Canvas* canvas)
+        {
+            s_BatchManager = batchManager;
+            s_InputLayout = new InputLayout();
+            s_Pipeline = new Pipeline();
 
-    s_Instance->m_Pipeline->RenderTarget = canvas->GetRenderTarget();
-    s_Instance->m_Pipeline->DepthStencilState.UseDepthTest = core::K_TRUE;
-    s_Instance->m_Pipeline->BlendState.UseBlending = core::K_TRUE;
+            // Setup pipeline
+            s_Pipeline->VSBuffers.emplace_back(CameraManager::GetBuffer());
+            s_Pipeline->VSBuffers.emplace_back(TransformManager::GetBuffer());
 
-    s_Instance->m_Pipeline->Textures.push_back(nullptr);
+            s_Pipeline->Shader = ShaderManager::CreateShader("text");
+            ShaderManager::AddVertexStageFromFile(s_Pipeline->Shader, "shaders/text.vs");
+            ShaderManager::AddPixelStageFromFile(s_Pipeline->Shader, "shaders/text.ps");
+            ShaderManager::BuildShader(s_Pipeline->Shader);
 
-    // Init pipeline
-    context->CreatePipeline(*s_Instance->m_Pipeline);
+            s_InputLayout->Format = Vertex3D::Format;
+            s_Pipeline->InputLayout = *s_InputLayout;
 
-    // Store quad geometry to batch manager
-    render::Quad quad;
-    s_Instance->m_BatchManager->StoreGeometryIndexed("__TextQuad", quad, 1);
-    
-}
+            s_Pipeline->RenderTarget = canvas->GetRenderTarget();
+            s_Pipeline->DepthStencilState.UseDepthTest = K_TRUE;
+            s_Pipeline->BlendState.UseBlending = K_TRUE;
 
-void xpe::text::TextRenderer::Free() {
-    delete s_Instance;
-}
+            s_Pipeline->Textures.push_back(nullptr);
 
-void xpe::text::TextRenderer::Draw(xpe::text::Font* font, const xpe::ecs::TransformComponent* transform, const xpe::ecs::TextComponent* text)
-{
-    xpe::core::usize charsCount = text->Text.size();
-    const char* chars = text->Text.c_str();
+            context::CreatePipeline(*s_Pipeline);
 
-    // Bind font atlas
-    font->Atlas.Slot = 0;
-    m_Pipeline->Textures[0] = &font->Atlas;
-
-    // Prepare text batch manager for drawing
-    m_BatchManager->ClearInstances("__TextQuad");
-    m_BatchManager->ReserveInstances("__TextQuad", charsCount);
-
-    xpe::render::TransformManager::AddTransform(*(xpe::ecs::TransformComponent*)transform);
-    xpe::render::TransformManager::FlushTransforms();
-
-    // Add instances to text batch manager
-    core::f32 tempAdvanceY = 0.0f;
-    glm::vec2 advance = glm::vec2(0.0f);
-    for (core::usize i = 0; i < charsCount; i++)
-    {
-        char character = chars[i];
-        auto it = font->AlphaBet.find(character);
-        if (it == font->AlphaBet.end()) {
-            continue;
+            s_Quad = new Quad();
         }
 
-        Font::Glyph glyph = it->second;
-
-        xpe::render::TextGlyphInstance instance;
-        instance.TransformIndex = transform->Index;
-        instance.GlyphSize = font->GlyphSize;
-        instance.Width = glyph.Width;
-        instance.Height = glyph.Height;
-        instance.Left = glyph.Left;
-        instance.Top = glyph.Top;
-        instance.AdvanceX = advance.x;
-        instance.AdvanceY = advance.y;
-        instance.AtlasXOffset = glyph.AtlasXOffset;
-        instance.AtlasYOffset = glyph.AtlasYOffset;
-        advance.x += (glyph.AdvanceX / 64.0f) * transform->Scale.x;
-
-        // Tab
-        if (character == '\t')
+        void TextRenderer::Free()
         {
-            advance.x += font->WhitespaceOffset;
+            delete s_InputLayout;
+            delete s_Pipeline;
+            delete s_Quad;
         }
-        // New line
-        else if (character == '\n')
+
+        void TextRenderer::Draw(TextComponent& text, TransformComponent& transform, Font& font)
         {
-            advance.x = 0.0f;
-            advance.y = (tempAdvanceY + font->NewLineOffset)*transform->Scale.y;
-            tempAdvanceY = 0.0f;
-        }
-        else
-        {
-            if (instance.Height > advance.y) {
-                tempAdvanceY = instance.Height;
+            usize charsCount = text.Text.size();
+            const char* chars = text.Text.c_str();
+            string& usid = text.USID;
+
+            // Bind font atlas
+            font.Atlas.Slot = 0;
+            s_Pipeline->Textures[0] = &font.Atlas;
+
+            // Store text geometry
+            if (!s_BatchManager->HasGeometryIndexed(usid)) {
+                s_BatchManager->StoreGeometryIndexed(usid, *s_Quad, charsCount);
             }
 
-            m_BatchManager->AddInstance("__TextQuad", instance);
+            // Reserve char instances
+            s_BatchManager->ClearInstances(usid);
+            if (s_BatchManager->GetInstanceCapacity(usid) < charsCount) {
+                s_BatchManager->ReserveInstances(usid, charsCount);
+            }
+
+            // Add instances to text batch manager
+            f32 tempAdvanceY = 0.0f;
+            glm::vec2 advance = glm::vec2(0.0f);
+            for (core::usize i = 0; i < charsCount; i++)
+            {
+                char character = chars[i];
+                auto it = font.AlphaBet.find(character);
+                if (it == font.AlphaBet.end()) {
+                    continue;
+                }
+
+                Font::Glyph glyph = it->second;
+
+                TextGlyphInstance instance;
+                instance.TransformIndex = transform.Index;
+                instance.GlyphSize = font.GlyphSize;
+                instance.Width = glyph.Width;
+                instance.Height = glyph.Height;
+                instance.Left = glyph.Left;
+                instance.Top = glyph.Top;
+                instance.AdvanceX = advance.x;
+                instance.AdvanceY = advance.y;
+                instance.AtlasXOffset = glyph.AtlasXOffset;
+                instance.AtlasYOffset = glyph.AtlasYOffset;
+                advance.x += (glyph.AdvanceX / 64.0f) * transform.Scale.x;
+
+                // Tab
+                if (character == '\t')
+                {
+                    advance.x += font.WhitespaceOffset;
+                }
+                    // New line
+                else if (character == '\n')
+                {
+                    advance.x = 0.0f;
+                    advance.y = (tempAdvanceY + font.NewLineOffset)*transform.Scale.y;
+                    tempAdvanceY = 0.0f;
+                }
+                else
+                {
+                    if (instance.Height > advance.y) {
+                        tempAdvanceY = instance.Height;
+                    }
+
+                    s_BatchManager->AddInstance(usid, instance);
+                }
+            }
+
+            s_BatchManager->FlushInstances(usid);
+
+            // Draw glyphs
+            context::BindPipeline(s_Pipeline);
+            s_BatchManager->DrawAll();
         }
+
     }
 
-    m_BatchManager->FlushInstances("__TextQuad");
-
-    // Draw glyphs
-    m_Context->BindPipeline(m_Pipeline);
-    m_BatchManager->DrawAll();
-
-    xpe::render::TransformManager::ClearTransforms();
 }

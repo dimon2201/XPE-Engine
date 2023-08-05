@@ -6,24 +6,27 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API CameraStorage : public Object {
-            CameraBuffer CameraBuffer2D;
-            CameraBuffer CameraBuffer3D;
+        struct ENGINE_API CameraStorage final
+        {
+            CameraBuffer Buffer2D;
+            CameraBuffer Buffer3D;
 
-            CameraStorage(Context* context);
+            CameraStorage();
         };
 
-        class ENGINE_API CameraManager final {
+        class ENGINE_API CameraManager final
+        {
 
         public:
-            static void Init(Context* context);
+            static void Init();
             static void Free();
 
-            static CameraBuffer* GetBuffer2D();
             static CameraBuffer* GetBuffer();
+            static CameraBuffer* GetBuffer2D();
 
         private:
             static CameraStorage* s_Storage;
+
         };
 
     }

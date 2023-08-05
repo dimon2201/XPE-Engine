@@ -48,7 +48,7 @@ namespace xpe {
         class ENGINE_API ShaderManager final {
 
         public:
-            static void Init(Context* context);
+            static void Init();
             static void Free();
 
             static Shader* CreateShader(const string& id);
@@ -86,7 +86,6 @@ namespace xpe {
             static void WriteGeneratedShader(const char* filepath, const string& src);
 
         private:
-            static Context* s_Context;
             static ShaderStorage* s_Storage;
         };
 

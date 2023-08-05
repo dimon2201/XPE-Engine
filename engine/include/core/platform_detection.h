@@ -7,6 +7,7 @@
 
 /* Windows x64  */
 #define WINDOWS
+#define DX11
 
 #else
 /* Windows x86 */
@@ -58,3 +59,13 @@
 	#error "Unknown platform!"
 
 #endif
+
+#ifdef DX11
+#define GLM_FORCE_LEFT_HANDED
+#endif // DX11
+
+#ifdef VK
+#endif // VK
+
+#ifdef OGL
+#endif // OGL

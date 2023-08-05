@@ -2,9 +2,9 @@ namespace xpe {
 
     namespace core {
 
-        static Ref<spdlog::logger> s_Logger;
-        static Ref<spdlog::logger> s_Tracer;
-        static Ref<spdlog::logger> s_MemLogger;
+        static std::shared_ptr<spdlog::logger> s_Logger;
+        static std::shared_ptr<spdlog::logger> s_Tracer;
+        static std::shared_ptr<spdlog::logger> s_MemLogger;
         // [DateTime][Hours:Minutes:Seconds:Milliseconds]: Message
         static const char* s_LogPattern = "[%D][%H:%M:%S.%e]: %^%v%$";
         // [DateTime][Hours:Minutes:Seconds:Milliseconds] FunctionName(FileName:CodeLine) Message
@@ -15,24 +15,24 @@ namespace xpe {
         using FileSink = spdlog::sinks::basic_file_sink_mt;
         using Sink = spdlog::sink_ptr;
 
-        static Ref<spdlog::logger> createLogger(const char* logName, const char* filepath, const char* pattern, int backtrace) {
+        static std::shared_ptr<spdlog::logger> CreateLogger(const char* logName, const char* filepath, const char* pattern, int backtrace) {
 
             // setup console color sink
-            Ref<LogSinkColor> consoleSink = createRef<LogSinkColor>();
+            Ref<LogSinkColor> consoleSink;
             consoleSink->set_pattern(pattern);
 
             // setup file sink
-            Ref<FileSink> fileSink = createRef<FileSink>(filepath, true);
+            Ref<FileSink> fileSink(filepath, true);
             fileSink->set_pattern(pattern);
 
-            core::vector<Sink> sinks = { consoleSink, fileSink };
+            core::vector<Sink> sinks = { consoleSink.GetPtr(), fileSink.GetPtr() };
 
             // setup logger
-            Ref<spdlog::logger> logger = createRef<spdlog::logger>(logName, std::begin(sinks), std::end(sinks));
-            spdlog::register_logger(logger);
+            Ref<spdlog::logger> logger(logName, std::begin(sinks), std::end(sinks));
+            spdlog::register_logger(logger.GetPtr());
             logger->enable_backtrace(backtrace);
 
-            return logger;
+            return logger.GetPtr();
         }
 
         void Logger::Init(const LoggerDescriptor& descriptor) {
@@ -47,7 +47,7 @@ namespace xpe {
                 ss << "logs/" << name << ".log";
                 hstring filepath = ss.str();
                 ss = {};
-                s_Logger = createLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
+                s_Logger = CreateLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
 
                 ss << name << "_Tracer";
                 logName = ss.str();
@@ -55,7 +55,7 @@ namespace xpe {
                 ss << "logs/" << name << ".trace";
                 filepath = ss.str();
                 ss = {};
-                s_Tracer = createLogger(logName.c_str(), filepath.c_str(), s_TracePattern, backtrace);
+                s_Tracer = CreateLogger(logName.c_str(), filepath.c_str(), s_TracePattern, backtrace);
 
                 ss << name << "_Memory";
                 logName = ss.str();
@@ -63,7 +63,7 @@ namespace xpe {
                 ss << "logs/" << name << ".memory";
                 filepath = ss.str();
                 ss = {};
-                s_MemLogger = createLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
+                s_MemLogger = CreateLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
             }
 
             catch (const spdlog::spdlog_ex &ex) {

@@ -4,7 +4,6 @@ namespace xpe {
 
     namespace render {
 
-        Context* LightManager::s_Context = nullptr;
         LightStorage* LightManager::s_Storage = nullptr;
 
         LightStorage::~LightStorage() {
@@ -13,20 +12,18 @@ namespace xpe {
             SpotBuffer.Free();
         }
 
-        void LightManager::Init(Context* context) {
+        void LightManager::Init() {
             LogInfo("LightManager::Init()");
-
-            s_Context = context;
 
             s_Storage = new LightStorage();
 
-            s_Storage->DirectBuffer = DirectLightBuffer(context, 0);
+            s_Storage->DirectBuffer = DirectLightBuffer(0);
             s_Storage->DirectBuffer.Reserve(K_DIRECT_LIGHT_SIZE);
 
-            s_Storage->PointBuffer = PointLightBuffer(context, 0);
+            s_Storage->PointBuffer = PointLightBuffer(0);
             s_Storage->PointBuffer.Reserve(K_POINT_LIGHT_SIZE);
 
-            s_Storage->SpotBuffer = SpotLightBuffer(context, 0);
+            s_Storage->SpotBuffer = SpotLightBuffer(0);
             s_Storage->SpotBuffer.Reserve(K_SPOT_LIGHT_SIZE);
 
             LogInfo("LightManager initialized");

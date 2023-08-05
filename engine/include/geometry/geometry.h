@@ -164,7 +164,7 @@ namespace xpe {
         };
 
         template<typename T>
-        struct GeometryIndexed {
+        struct GeometryIndexed : public Object {
             VertexArray<T> Vertices;
             IndexArray Indices;
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
@@ -186,7 +186,7 @@ namespace xpe {
         };
 
         template<typename T>
-        struct GeometryVertexed {
+        struct GeometryVertexed : public Object {
             VertexArray<T> Vertices;
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
         };

@@ -1,27 +1,25 @@
 {
 
-  "AppConfig": {
-      "WinTitle": "Example Window",
-      "WinWidth": 800,
-      "WinHeight": 600,
-      "WinX": 400,
-      "WinY": 300,
-      "VSync": false,
+    "AppConfig": {
+        "WinTitle": "Example Window",
+        "WinWidth": 800,
+        "WinHeight": 600,
+        "WinX": 400,
+        "WinY": 300,
+        "VSync": false,
 
-      "LogTitle": "ExampleWindow",
-      "LogBacktrace": 32,
+        "LogTitle": "ExampleWindow",
+        "LogBacktrace": 32,
 
-      "GPU": "DX11",
+        "DebugErrors": true,
+        "DebugWarnings": false,
+        "DebugInfo": false,
 
-      "DebugErrors": true,
-      "DebugWarnings": false,
-      "DebugInfo": false,
+        "FPS": 165,
+        "LockOnFps": false,
+        "LogTimeDelaySeconds": 5,
 
-      "FPS": 165,
-      "LockOnFps": false,
-      "LogTimeDelaySeconds": 5,
-
-      "HotReloadShaders": true
-  }
+        "HotReloadShaders": true
+    }
 
 }

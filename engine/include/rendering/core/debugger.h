@@ -4,15 +4,15 @@
 
 #ifdef DEBUG
 
-#define InitDebugger(debugger, context) xpe::render::DebugManager::Get().Init(debugger, context)
-#define FreeDebugger() xpe::render::DebugManager::Get().Free()
+#define InitDebugger() xpe::render::DebugManager::Init()
+#define FreeDebugger() xpe::render::DebugManager::Free()
 
-#define LogDebugMessages() xpe::render::DebugManager::Get().LogMessages()
-#define LogDebugMessage() xpe::render::DebugManager::Get().LogLastMessage()
+#define LogDebugMessages() xpe::render::DebugManager::LogMessages()
+#define LogDebugMessage() xpe::render::DebugManager::LogLastMessage()
 
 #else
 
-#define InitDebugger(debugger, context)
+#define InitDebugger()
 #define FreeDebugger()
 
 #define LogDebugMessages()
@@ -79,51 +79,32 @@ namespace xpe {
             eDebugErrorType ErrorType = eDebugErrorType::D_NO_ERROR_TYPE;
         };
 
-        class ENGINE_API DebuggerCallback {
+        typedef void (*DebuggerCallback)(const DebugMessage&);
+
+        namespace debugger {
+
+            extern DebuggerCallback Callback;
+
+            ENGINE_API void Init();
+            ENGINE_API void Free();
+
+            ENGINE_API bool GetLastMessage(DebugMessage& message);
+
+            ENGINE_API vector<DebugMessage> GetMessageQueue();
+
+            ENGINE_API void ClearMessageQueue();
+
+        }
+
+        class ENGINE_API DebugManager final {
 
         public:
-            virtual void ReceiveMessage(const DebugMessage& message) = 0;
+            static void Init();
+            static void Free();
 
-        };
+            static void LogMessages();
+            static void LogLastMessage();
 
-        class ENGINE_API Debugger {
-
-        public:
-            virtual void Init(Context* const context) = 0;
-            virtual void Free() = 0;
-
-            virtual bool GetLastMessage(DebugMessage& message) = 0;
-
-            virtual vector<DebugMessage> GetMessageQueue() = 0;
-
-            virtual void ClearMessageQueue() = 0;
-
-            inline void SetCallback(DebuggerCallback* const callback) {
-                m_Callback = callback;
-            }
-
-        protected:
-            DebuggerCallback* m_Callback;
-        };
-
-        class ENGINE_API DebugManager : public DebuggerCallback {
-
-        public:
-            static DebugManager& Get() {
-                static DebugManager instance;
-                return instance;
-            }
-
-            void Init(Debugger* const debugger, Context* const context);
-            void Free();
-
-            void LogMessages();
-            void LogLastMessage();
-
-            void ReceiveMessage(const DebugMessage &message) override;
-
-        private:
-            Debugger* m_Debugger;
         };
 
     }

@@ -15,7 +15,7 @@ namespace xpe {
 
         public:
             StructureBuffer() = default;
-            StructureBuffer(Context* context, usize count, u32 slot, Boolean duplicate);
+            StructureBuffer(usize count, u32 slot, Boolean duplicate);
 
         public:
             void Free();
@@ -60,14 +60,12 @@ namespace xpe {
             }
 
         protected:
-            Context* m_Context = nullptr;
             vector<T> m_List;
         };
 
         template<typename T>
-        StructureBuffer<T>::StructureBuffer(Context* context, usize count, u32 slot, Boolean duplicate)
+        StructureBuffer<T>::StructureBuffer(usize count, u32 slot, Boolean duplicate)
         {
-            m_Context = context;
             Type = eBufferType::STRUCTURED;
             Slot = slot;
             StructureSize = sizeof(T);
@@ -77,14 +75,14 @@ namespace xpe {
             Duplicate = duplicate;
             if (count > 0) {
                 m_List.resize(count);
-                m_Context->CreateBuffer(*this);
-                m_Context->WriteBuffer(*this, m_List.data(), ByteSize);
+                context::CreateBuffer(*this);
+                context::WriteBuffer(*this, m_List.data(), ByteSize);
             }
         }
 
         template<typename T>
         void StructureBuffer<T>::Free() {
-            m_Context->FreeBuffer(*this);
+            context::FreeBuffer(*this);
             m_List.clear();
         }
 
@@ -95,7 +93,7 @@ namespace xpe {
                 Recreate(size);
             }
             else {
-                m_Context->WriteBuffer(*this, m_List.data(), ByteSize);
+                context::WriteBuffer(*this, m_List.data(), ByteSize);
             }
         }
 
@@ -106,7 +104,7 @@ namespace xpe {
                 return;
             }
             *item = newItem;
-            m_Context->WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
+            context::WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
         }
 
         template<typename T>
@@ -115,7 +113,7 @@ namespace xpe {
             if (item == nullptr) {
                 return;
             }
-            m_Context->WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
+            context::WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
         }
 
         template<typename T>
@@ -123,9 +121,9 @@ namespace xpe {
             m_List.resize(count);
             NumElements = count;
             ByteSize = StructureSize * count;
-            m_Context->FreeBuffer(*this);
-            m_Context->CreateBuffer(*this);
-            m_Context->WriteBuffer(*this, m_List.data(), ByteSize);
+            context::FreeBuffer(*this);
+            context::CreateBuffer(*this);
+            context::WriteBuffer(*this, m_List.data(), ByteSize);
         }
 
         template<typename T>

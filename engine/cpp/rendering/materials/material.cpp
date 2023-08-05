@@ -5,12 +5,11 @@ namespace xpe {
 
     namespace render {
 
-        Context* MaterialManager::s_Context = nullptr;
         MaterialStorage* MaterialManager::s_Storage = nullptr;
 
-        MaterialStorage::MaterialStorage(Context *context, usize count) : m_Context(context)
+        MaterialStorage::MaterialStorage(usize count)
         {
-            Buffer = MaterialBuffer(context, 0);
+            Buffer = MaterialBuffer(0);
             Buffer.Reserve(count);
             InitMaterialTextures();
         }
@@ -53,7 +52,7 @@ namespace xpe {
             materialSampler.AddressV        = TextureSampler::eAddress::WRAP;
             materialSampler.AddressW        = TextureSampler::eAddress::WRAP;
 
-            m_Context->CreateSampler(Textures.Sampler);
+            context::CreateSampler(Textures.Sampler);
         }
 
         void MaterialStorage::FreeMaterialTextures()
@@ -62,15 +61,15 @@ namespace xpe {
 
             Buffer.Free();
 
-            m_Context->FreeSampler(&textures.Sampler);
+            context::FreeSampler(&textures.Sampler);
 
-            m_Context->FreeTexture(textures.AlbedoArray);
-            m_Context->FreeTexture(textures.BumpArray);
-            m_Context->FreeTexture(textures.ParallaxArray);
-            m_Context->FreeTexture(textures.MetallicArray);
-            m_Context->FreeTexture(textures.RoughnessArray);
-            m_Context->FreeTexture(textures.AOArray);
-            m_Context->FreeTexture(textures.EmissionArray);
+            context::FreeTexture(textures.AlbedoArray);
+            context::FreeTexture(textures.BumpArray);
+            context::FreeTexture(textures.ParallaxArray);
+            context::FreeTexture(textures.MetallicArray);
+            context::FreeTexture(textures.RoughnessArray);
+            context::FreeTexture(textures.AOArray);
+            context::FreeTexture(textures.EmissionArray);
         }
 
         void MaterialStorage::InitTextureArray(Texture &textureArray, const Texture::eFormat& format, usize width, usize height, u32 slot)
@@ -95,13 +94,10 @@ namespace xpe {
             FreeMaterialTextures();
         }
 
-        void MaterialManager::Init(Context* context)
+        void MaterialManager::Init()
         {
             LogInfo("MaterialManager::Init()");
-
-            s_Context = context;
-            s_Storage = new MaterialStorage(s_Context, K_MATERIALS_COUNT);
-
+            s_Storage = new MaterialStorage(K_MATERIALS_COUNT);
             LogInfo("MaterialManager initialized");
         }
 
@@ -215,8 +211,8 @@ namespace xpe {
             if (textureLayerIndex >= textureArray.Layers.size()) {
                 textureArray.Layers.resize(textureLayerIndex + 1);
                 textureArray.Layers[textureLayerIndex] = textureLayer;
-                s_Context->FreeTexture(textureArray);
-                s_Context->CreateTexture(textureArray);
+                context::FreeTexture(textureArray);
+                context::CreateTexture(textureArray);
             }
             textureArray.Layers[textureLayerIndex] = textureLayer;
 

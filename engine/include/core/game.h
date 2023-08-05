@@ -15,7 +15,6 @@ namespace xpe {
         class ENGINE_API Game {
 
         public:
-            Context* context = nullptr;
             Time* CPUTime;
             Time* DeltaTime;
             Time* CurrentTime;

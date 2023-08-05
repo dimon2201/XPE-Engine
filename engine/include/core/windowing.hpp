@@ -29,7 +29,7 @@ namespace xpe
             s32 Height;
             s32 X;
             s32 Y;
-            Boolean Vsync;
+            bool VSync;
             eCursorMode CursorMode = eCursorMode::DEFAULT;
             eWindowTheme Theme = eWindowTheme::DEFAULT;
         };
@@ -78,7 +78,7 @@ namespace xpe
             static void SetUserPointer(void* userPtr);
             static void* GetUserPointer();
 
-            static void SetVSync(Boolean vsync);
+            static void SetVSync(bool vsync);
 
             static void SetFullscreen();
             static void SetWindowed();

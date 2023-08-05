@@ -51,8 +51,8 @@ namespace xpe {
         public:
             InstanceBuffer() = default;
 
-            InstanceBuffer(Context* context, usize count)
-            : StructureBuffer<RenderInstance>(context, count, K_SLOT_INSTANCES, K_FALSE) {}
+            InstanceBuffer(usize count)
+            : StructureBuffer<RenderInstance>(count, K_SLOT_INSTANCES, K_FALSE) {}
 
         public:
             void Bind();
@@ -64,8 +64,8 @@ namespace xpe {
         public:
             InstanceBuffer2d() = default;
 
-            InstanceBuffer2d(Context* context, usize count)
-            : StructureBuffer<RenderInstance2d>(context, count, K_SLOT_INSTANCES2D, K_FALSE) {}
+            InstanceBuffer2d(usize count)
+            : StructureBuffer<RenderInstance2d>(count, K_SLOT_INSTANCES2D, K_FALSE) {}
 
         public:
             void Bind();
@@ -77,8 +77,8 @@ namespace xpe {
         public:
             TextGlyphInstanceBuffer() = default;
 
-            TextGlyphInstanceBuffer(Context* context, usize count)
-            : StructureBuffer<TextGlyphInstance>(context, count, K_SLOT_TEXT_GLYPH_INSTANCES, K_FALSE) {}
+            TextGlyphInstanceBuffer(usize count)
+            : StructureBuffer<TextGlyphInstance>(count, K_SLOT_TEXT_GLYPH_INSTANCES, K_FALSE) {}
 
         public:
             void Bind();

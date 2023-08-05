@@ -8,22 +8,6 @@ namespace xpe {
 
         struct ENGINE_API AppConfig : res::JsonObject
         {
-            enum class eGPU
-            {
-                DX11,
-                OPENGL,
-                VULKAN,
-
-                DEFAULT = DX11
-            };
-
-            JsonEnum(eGPU, {
-                { eGPU::DEFAULT, "DEFAULT" },
-                { eGPU::DX11, "DX11" },
-                { eGPU::OPENGL, "OPENGL" },
-                { eGPU::VULKAN, "VULKAN" },
-            })
-
             JsonFields(
                 AppConfig,
                 WinTitle,
@@ -31,16 +15,15 @@ namespace xpe {
                 WinHeight,
                 WinX,
                 WinY,
-                Vsync,
+                VSync,
                 LogTitle,
                 LogBacktrace,
-                GPU,
-                LogDebugErrors,
-                LogDebugWarnings,
-                LogDebugInfos,
+                DebugErrors,
+                DebugWarnings,
+                DebugInfo,
                 FPS,
                 LogTimeDelaySeconds,
-                LockOnFPS,
+                LockOnFps,
                 HotReloadShaders
             )
 
@@ -49,22 +32,20 @@ namespace xpe {
             s32 WinHeight = 0;
             s32 WinX = 0;
             s32 WinY = 0;
-            Boolean Vsync = K_FALSE;
+            bool VSync = false;
 
             std::string LogTitle;
             s32 LogBacktrace = 32;
 
-            eGPU GPU = eGPU::DEFAULT;
-
-            bool LogDebugErrors = true;
-            bool LogDebugWarnings = false;
-            bool LogDebugInfos = false;
+            bool DebugErrors = true;
+            bool DebugWarnings = false;
+            bool DebugInfo = false;
 
             float FPS = 165.0f;
 
             float LogTimeDelaySeconds = 5;
 
-            bool LockOnFPS = true;
+            bool LockOnFps = true;
 
             bool HotReloadShaders = true;
 

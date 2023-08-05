@@ -7,10 +7,6 @@ namespace xpe {
 
         // --------------------- Batching 3D ---------------------- //
 
-        BatchManager::BatchManager(Context* context) : m_Context(context)
-        {
-        }
-
         BatchManager::~BatchManager()
         {
             for (auto& batchVertexed : m_BatchesVertexed)
@@ -29,16 +25,16 @@ namespace xpe {
         void BatchManager::InitBatchIndexed(BatchIndexed &batchIndexed, const GeometryIndexedFormat& format, usize instanceCount)
         {
             batchIndexed.Format = format;
-            batchIndexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
-            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
-            batchIndexed.Instances = InstanceBuffer(m_Context, instanceCount);
+            batchIndexed.Vertices = VertexBuffer<Vertex3D>(format.VertexCount);
+            batchIndexed.Indices = IndexBuffer(format.IndexCount);
+            batchIndexed.Instances = InstanceBuffer(instanceCount);
         }
 
         void BatchManager::InitBatchVertexed(BatchVertexed &batchVertexed, const GeometryVertexedFormat& format, usize instanceCount)
         {
             batchVertexed.Format = format;
-            batchVertexed.Vertices = VertexBuffer<Vertex3D>(m_Context, format.VertexCount);
-            batchVertexed.Instances = InstanceBuffer(m_Context, instanceCount);
+            batchVertexed.Vertices = VertexBuffer<Vertex3D>(format.VertexCount);
+            batchVertexed.Instances = InstanceBuffer(instanceCount);
         }
 
         void BatchManager::FreeBatchIndexed(BatchIndexed &batchIndexed)
@@ -142,14 +138,14 @@ namespace xpe {
         void BatchManager::BeginBatch(BatchVertexed &batchVertexed) {
             batchVertexed.Vertices.Bind();
             batchVertexed.Instances.Bind();
-            m_Context->BindPrimitiveTopology(batchVertexed.Format.PrimitiveTopology);
+            context::BindPrimitiveTopology(batchVertexed.Format.PrimitiveTopology);
         }
 
         void BatchManager::BeginBatch(BatchIndexed &batchIndexed) {
             batchIndexed.Vertices.Bind();
             batchIndexed.Indices.Bind();
             batchIndexed.Instances.Bind();
-            m_Context->BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
+            context::BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
         }
 
         u32 BatchManager::AddInstance(const string& str, const RenderInstance &instance)
@@ -287,7 +283,7 @@ namespace xpe {
         {
             auto& geometryInfo = batchVertexed.Format;
             auto& instances = batchVertexed.Instances;
-            m_Context->DrawBatch(
+            context::DrawBatch(
                     geometryInfo.VertexOffset,
                     geometryInfo.VertexCount,
                     instances.Size()
@@ -298,7 +294,7 @@ namespace xpe {
         {
             auto& geometryInfo = batchIndexed.Format;
             auto& instances = batchIndexed.Instances;
-            m_Context->DrawBatch(
+            context::DrawBatch(
                     geometryInfo.VertexOffset,
                     geometryInfo.IndexOffset,
                     geometryInfo.IndexCount,
@@ -321,10 +317,6 @@ namespace xpe {
 
         // --------------------- Batching 2D ------------------------ //
 
-        BatchManager2d::BatchManager2d(Context* context) : m_Context(context)
-        {
-        }
-
         BatchManager2d::~BatchManager2d()
         {
             for (auto& batchVertexed : m_BatchesVertexed)
@@ -343,16 +335,16 @@ namespace xpe {
         void BatchManager2d::InitBatchIndexed(BatchIndexed2d &batchIndexed, const GeometryIndexedFormat& format, usize instanceCount)
         {
             batchIndexed.Format = format;
-            batchIndexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount);
-            batchIndexed.Indices = IndexBuffer(m_Context, format.IndexCount);
-            batchIndexed.Instances = InstanceBuffer2d(m_Context, instanceCount);
+            batchIndexed.Vertices = VertexBuffer<Vertex2D>(format.VertexCount);
+            batchIndexed.Indices = IndexBuffer(format.IndexCount);
+            batchIndexed.Instances = InstanceBuffer2d(instanceCount);
         }
 
         void BatchManager2d::InitBatchVertexed(BatchVertexed2d &batchVertexed, const GeometryVertexedFormat& format, usize instanceCount)
         {
             batchVertexed.Format = format;
-            batchVertexed.Vertices = VertexBuffer<Vertex2D>(m_Context, format.VertexCount);
-            batchVertexed.Instances = InstanceBuffer2d(m_Context, instanceCount);
+            batchVertexed.Vertices = VertexBuffer<Vertex2D>(format.VertexCount);
+            batchVertexed.Instances = InstanceBuffer2d(instanceCount);
         }
 
         void BatchManager2d::FreeBatchIndexed(BatchIndexed2d &batchIndexed)
@@ -456,14 +448,14 @@ namespace xpe {
         void BatchManager2d::BeginBatch(BatchVertexed2d &batchVertexed) {
             batchVertexed.Vertices.Bind();
             batchVertexed.Instances.Bind();
-            m_Context->BindPrimitiveTopology(batchVertexed.Format.PrimitiveTopology);
+            context::BindPrimitiveTopology(batchVertexed.Format.PrimitiveTopology);
         }
 
         void BatchManager2d::BeginBatch(BatchIndexed2d &batchIndexed) {
             batchIndexed.Vertices.Bind();
             batchIndexed.Indices.Bind();
             batchIndexed.Instances.Bind();
-            m_Context->BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
+            context::BindPrimitiveTopology(batchIndexed.Format.PrimitiveTopology);
         }
 
         u32 BatchManager2d::AddInstance(const string& str, const RenderInstance2d &instance)
@@ -601,7 +593,7 @@ namespace xpe {
         {
             auto& geometryInfo = batchVertexed.Format;
             auto& instances = batchVertexed.Instances;
-            m_Context->DrawBatch(
+            context::DrawBatch(
                     geometryInfo.VertexOffset,
                     geometryInfo.VertexCount,
                     instances.Size()
@@ -612,7 +604,7 @@ namespace xpe {
         {
             auto& geometryInfo = batchIndexed.Format;
             auto& instances = batchIndexed.Instances;
-            m_Context->DrawBatch(
+            context::DrawBatch(
                     geometryInfo.VertexOffset,
                     geometryInfo.IndexOffset,
                     geometryInfo.IndexCount,

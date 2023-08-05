@@ -36,8 +36,7 @@ namespace xpe {
         public:
             SpotLightBuffer() = default;
 
-            SpotLightBuffer(Context* context, usize size)
-            : StructureBuffer<SpotLightBufferData>(context, size, K_SLOT_SPOT_LIGHTS, K_FALSE) {}
+            SpotLightBuffer(usize size) : StructureBuffer<SpotLightBufferData>(size, K_SLOT_SPOT_LIGHTS, K_FALSE) {}
 
         };
 

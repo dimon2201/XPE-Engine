@@ -5,15 +5,15 @@ namespace xpe {
     namespace render {
 
         void InstanceBuffer::Bind() {
-            m_Context->BindVSBuffer(this);
+            context::BindVSBuffer(this);
         }
 
         void InstanceBuffer2d::Bind() {
-            m_Context->BindVSBuffer(this);
+            context::BindVSBuffer(this);
         }
 
         void TextGlyphInstanceBuffer::Bind() {
-            m_Context->BindVSBuffer(this);
+            context::BindVSBuffer(this);
         }
 
     }

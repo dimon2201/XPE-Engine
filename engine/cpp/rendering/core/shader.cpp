@@ -5,7 +5,6 @@ namespace xpe {
 
     namespace render {
 
-        Context* ShaderManager::s_Context = nullptr;
         ShaderStorage* ShaderManager::s_Storage = nullptr;
 
         ShaderStorage::~ShaderStorage() {
@@ -13,10 +12,9 @@ namespace xpe {
             ShaderStages.clear();
         }
 
-        void ShaderManager::Init(Context* context) {
+        void ShaderManager::Init() {
             LogInfo("ShaderManager::Init()");
 
-            s_Context = context;
             s_Storage = new ShaderStorage();
             os::FileManager::CreateDir("generated");
             os::FileManager::CreateDir("generated/engine_shaders");
@@ -225,8 +223,8 @@ namespace xpe {
         }
 
         void ShaderManager::BuildShader(Shader *const shader) {
-            s_Context->CompileShader(*shader);
-            s_Context->CreateShader(*shader);
+            context::CompileShader(*shader);
+            context::CreateShader(*shader);
         }
 
         void ShaderManager::BuildShader(const string &id) {
@@ -267,8 +265,8 @@ namespace xpe {
                 auto& stage = it->second;
                 stage.Source = src;
                 stage.Compiled = false;
-                s_Context->FreeShaderStage(stage);
-                s_Context->CreateShaderStage(stage);
+                context::FreeShaderStage(stage);
+                context::CreateShaderStage(stage);
             }
         }
 
@@ -281,13 +279,13 @@ namespace xpe {
 
             auto it = shaders.find(id);
             if (it != shaders.end()) {
-                s_Context->FreeShader(it->second);
+                context::FreeShader(it->second);
             }
         }
 
         void ShaderManager::FreeShaders() {
             for (auto& shader : s_Storage->Shaders) {
-                s_Context->FreeShader(shader.second);
+                context::FreeShader(shader.second);
             }
         }
 

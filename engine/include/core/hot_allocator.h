@@ -2,6 +2,8 @@
 
 #define halloc(size) xpe::core::MemoryPoolManager::HotPools->Allocate(size)
 #define hallocT(T, count) static_cast<T*>(halloc(sizeof(T) * count))
+#define halloc_construct(T) xpe::core::MemoryPoolManager::HotPools->AllocateConstruct<T>()
+#define halloc_construct_args(T, ...) xpe::core::MemoryPoolManager::HotPools->AllocateConstructArgs<T>(__VA_ARGS__)
 #define dehalloc(addr) xpe::core::MemoryPoolManager::HotPools->Free(addr)
 
 namespace xpe {
