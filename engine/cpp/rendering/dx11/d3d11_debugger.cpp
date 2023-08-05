@@ -9,8 +9,6 @@ namespace xpe {
 
         namespace debugger {
 
-            DebuggerCallback Callback = nullptr;
-
             ID3D11Device* s_Device = nullptr;
             ID3D11Debug* s_Debug = nullptr;
             ID3D11InfoQueue* s_InfoQueue = nullptr;

@@ -6,26 +6,25 @@ using namespace xpe::core;
 
 int main(int argc, char** argv) {
 
+    // pull hardware config
+    xpe::os::HardwareConfig::UpdateMemoryStats();
+    xpe::os::HardwareConfig::UpdateVideoStats();
+
+    // init memory pools
+    MemoryPoolManager::Init();
+
+    // run app implementation
+    auto* application = CreateApplication();
+
     // read app configs
-    if (!ReadJsonFile("config/config.json", AppConfig::Get()))
+    if (!ReadJsonFile("config/config.json", application->Config))
     {
         FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");
         return 0;
     }
 
-    // read memory configs
-    if (!ReadJsonFile("config/memory_config.json", MemoryConfig::Get()))
-    {
-        FMT_ASSERT(false, "Failed to read memory config from config/memory_config.json file. Please provide config file!");
-        return 0;
-    }
-
-    // init memory pools
-    MemoryPoolManager::Init(MemoryConfig::Get());
-
-    // run app implementation
-    auto* application = CreateApplication();
     application->Run();
+
     delete application;
 
     // free memory pools

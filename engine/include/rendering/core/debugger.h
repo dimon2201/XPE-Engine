@@ -84,6 +84,9 @@ namespace xpe {
         namespace debugger {
 
             extern DebuggerCallback Callback;
+            extern bool DebugErrors;
+            extern bool DebugWarnings;
+            extern bool DebugInfo;
 
             ENGINE_API void Init();
             ENGINE_API void Free();

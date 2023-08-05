@@ -54,11 +54,13 @@
 #include <core/mousecodes.h>
 #include <core/singleton.h>
 #include <core/config.h>
+#include <os/hardware_config.h>
 #include <core/memory_pool.hpp>
 #include <core/main_allocator.h>
 #include <core/hot_allocator.h>
 #include <core/stack_allocator.h>
-#include <core/hardware_config.h>
+
+// Rendering core types
 #include <rendering/core/types.h>
 #include <rendering/core/slots.h>
 

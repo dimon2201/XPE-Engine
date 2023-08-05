@@ -4,6 +4,13 @@ namespace xpe {
 
     namespace render {
 
+        namespace debugger {
+            DebuggerCallback Callback = nullptr;
+            bool DebugErrors = true;
+            bool DebugWarnings = false;
+            bool DebugInfo = false;
+        }
+
         static void ReceiveMessage(const DebugMessage& message)
         {
             hstringstream ss;
@@ -75,9 +82,7 @@ namespace xpe {
             ss << "Description: " << description << "\n";
             ss << "--------------------------------------------------- \n";
 
-            auto& appConfig = AppConfig::Get();
-
-            if (appConfig.DebugErrors)
+            if (debugger::DebugErrors)
             {
 
                 switch (type) {
@@ -96,7 +101,7 @@ namespace xpe {
 
             }
 
-            if (appConfig.DebugWarnings)
+            if (debugger::DebugWarnings)
             {
 
                 switch (type) {
@@ -117,7 +122,7 @@ namespace xpe {
 
             }
 
-            if (appConfig.DebugInfo)
+            if (debugger::DebugInfo)
             {
                 LogInfo(ss.str().c_str());
             }

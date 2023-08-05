@@ -27,14 +27,14 @@ namespace xpe {
                 HotReloadShaders
             )
 
-            std::string WinTitle;
+            string WinTitle;
             s32 WinWidth = 0;
             s32 WinHeight = 0;
             s32 WinX = 0;
             s32 WinY = 0;
             bool VSync = false;
 
-            std::string LogTitle;
+            string LogTitle;
             s32 LogBacktrace = 32;
 
             bool DebugErrors = true;
@@ -48,13 +48,6 @@ namespace xpe {
             bool LockOnFps = true;
 
             bool HotReloadShaders = true;
-
-            static AppConfig& Get()
-            {
-                static AppConfig instance;
-                return instance;
-            }
-
         };
 
     }

@@ -1,3 +1,6 @@
+
+#include <res/json.h>
+
 namespace xpe {
 
     namespace res {

@@ -126,8 +126,6 @@ namespace xpe {
 
             ENGINE_API void* GetDevice();
 
-            ENGINE_API void CreateHardwareConfig();
-
         }
 
     }
