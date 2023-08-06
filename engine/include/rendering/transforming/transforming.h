@@ -20,7 +20,7 @@ namespace xpe {
             TransformBuffer() = default;
 
             TransformBuffer(usize size)
-            : StructureBuffer<TransformData>(size, K_SLOT_TRANSFORMS, K_FALSE) {}
+            : StructureBuffer<TransformData>(size, K_SLOT_TRANSFORMS) {}
 
         };
 
@@ -34,7 +34,7 @@ namespace xpe {
             Transform2DBuffer() = default;
 
             Transform2DBuffer(usize size)
-            : StructureBuffer<Transform2DData>(size, K_SLOT_TRANSFORMS2D, K_FALSE) {}
+            : StructureBuffer<Transform2DData>(size, K_SLOT_TRANSFORMS2D) {}
 
         };
 

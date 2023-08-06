@@ -1,4 +1,3 @@
-
 #include <res/json.h>
 
 namespace xpe {

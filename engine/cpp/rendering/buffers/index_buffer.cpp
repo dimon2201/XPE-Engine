@@ -10,10 +10,7 @@ namespace xpe {
             m_IndexArray.Init(indexCount);
             Type = eBufferType::INDEX;
             StructureSize = sizeof(u32);
-            FirstElement = 0;
             NumElements = indexCount;
-            ByteSize = StructureSize * indexCount;
-            Duplicate = K_FALSE;
             context::CreateBuffer(*this);
         }
 
@@ -27,7 +24,7 @@ namespace xpe {
         }
 
         void IndexBuffer::FlushIndices(const IndexArray &indices) {
-            if (indices.Size() > ByteSize) {
+            if (indices.Size() > ByteSize()) {
                 Resize(indices.Count());
             }
             memcpy((void*)m_IndexArray.GetData(), (const void*)indices.GetData(), indices.Size());
@@ -48,7 +45,6 @@ namespace xpe {
 
         void IndexBuffer::Recreate(const usize indexCount) {
             NumElements = indexCount;
-            ByteSize = NumElements * StructureSize;
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
             Flush();

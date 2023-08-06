@@ -148,15 +148,20 @@ public:
         InitCamera();
         InitCamera2D();
 
-        TextRenderer::Init(m_TextBatchManager, m_Canvas);
+        m_Text2DRenderer = new Text2DRenderer(m_TextBatchManager, m_Canvas);
+        m_Text3DRenderer = new Text3DRenderer(m_TextBatchManager, m_Canvas);
 
-        m_TextTransform.Position = { 0, 0, 0 };
-        m_TextTransform.Scale = { 0.01, 0.01, 0.01 };
+        m_Text2dTransform.Position = { 400, 400, 0 };
+        m_Text2dTransform.Scale = { 1.0, 1.0, 1.0 };
 
-        TransformManager::AddTransform(m_TextTransform);
+        m_Text3dTransform.Position = { 0, 0, 0 };
+        m_Text3dTransform.Scale = { 1.0, 1.0, 1.0 };
+
+        TransformManager::AddTransform(m_Text2dTransform);
+        TransformManager::AddTransform(m_Text3dTransform);
         TransformManager::FlushTransforms();
 
-        m_Font.NewLineOffset = 8.0f;
+        m_Font.NewLineOffset = 1.0f;
     }
 
     void Update() override final
@@ -172,15 +177,29 @@ public:
         context::BindPipeline(&m_Pipeline);
         m_BatchManager->DrawAll();
 
-        TextComponent textComponent("Text");
+        // Render 2D text
+        {
+            Text2DComponent text2D("Text2D");
+            stringstream ss;
+            ss << "CPU: " << CPUTime << "\n";
+            ss << "FPS: " << DeltaTime << "\n";
+            ss << "Current Time: " << CurrentTime << "\n";
+            text2D.Text = ss.str();
 
-        stringstream ss;
-        ss << "CPU: " << CPUTime << "\n";
-        ss << "FPS: " << DeltaTime << "\n";
-        ss << "Current Time: " << CurrentTime << "\n";
-        textComponent.Text = ss.str();
+            m_Text2DRenderer->Draw(text2D, m_Text2dTransform, m_Font);
+        }
 
-        TextRenderer::Draw(textComponent, m_TextTransform, m_Font);
+        // Render 3D text
+        {
+            Text3DComponent text3D("Text3D");
+            stringstream ss;
+            ss << "CPU: " << CPUTime << "\n";
+            ss << "FPS: " << DeltaTime << "\n";
+            ss << "Current Time: " << CurrentTime << "\n";
+            text3D.Text = ss.str();
+
+            m_Text3DRenderer->Draw(text3D, m_Text3dTransform, m_Font);
+        }
 
         m_Canvas->Present();
     }
@@ -196,6 +215,9 @@ public:
         delete m_BatchManager;
 
         delete m_Camera2D;
+
+        delete m_Text2DRenderer;
+        delete m_Text3DRenderer;
     }
 
     void WindowClosed()
@@ -358,6 +380,8 @@ private:
     BatchManager* m_BatchManager;
     TextBatchManager* m_TextBatchManager;
     Font m_Font;
+    Text2DRenderer* m_Text2DRenderer;
+    Text3DRenderer* m_Text3DRenderer;
 
     Pipeline m_Pipeline;
 
@@ -373,9 +397,18 @@ private:
 
     TestConfig m_TestConfig;
 
-    TransformComponent m_TextTransform = string("TextTransform");
+    TransformComponent m_Text2dTransform = string("Text2DTransform");
+    TransformComponent m_Text3dTransform = string("Text3DTransform");
 };
 
 Application* CreateApplication() {
-    return new GameApp();
+    Application* app = new GameApp();
+    // read app configs
+    app->Config = string("AppConfig");
+    if (!xpe::res::ReadJsonFile("config/config.json", app->Config))
+    {
+        FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");
+        return 0;
+    }
+    return app;
 }

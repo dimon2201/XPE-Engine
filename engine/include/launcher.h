@@ -16,13 +16,6 @@ int main(int argc, char** argv) {
     // run app implementation
     auto* application = CreateApplication();
 
-    // read app configs
-    if (!ReadJsonFile("config/config.json", application->Config))
-    {
-        FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");
-        return 0;
-    }
-
     application->Run();
 
     delete application;

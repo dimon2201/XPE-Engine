@@ -36,7 +36,7 @@ namespace xpe {
         public:
             MaterialBuffer() = default;
             MaterialBuffer(usize size)
-            : StructureBuffer<MaterialBufferData>(size, K_SLOT_MATERIALS, K_FALSE) {}
+            : StructureBuffer<MaterialBufferData>(size, K_SLOT_MATERIALS) {}
 
         };
 

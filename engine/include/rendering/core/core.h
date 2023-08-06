@@ -34,14 +34,13 @@ namespace xpe {
         struct ENGINE_API Buffer : public GPUResource
         {
             eBufferType Type;
-            void* CPUMemory;
-            usize AppendOffset;
-            usize ByteSize = 0;
             usize StructureSize = 0;
-            u32 FirstElement = 0;
             u32 NumElements = 0;
             u32 Slot = 0;
-            Boolean Duplicate = K_FALSE;
+
+            [[nodiscard]] inline usize ByteSize() const {
+                return NumElements * StructureSize;
+            }
         };
 
         struct ENGINE_API Blob final
