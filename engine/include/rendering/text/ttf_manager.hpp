@@ -35,6 +35,7 @@ namespace xpe
             core::usize GlyphSize;
             core::f32 NewLineOffset;
             core::f32 WhitespaceOffset;
+            core::usize MaxGlyphHeight;
             core::unordered_map<char, Font::Glyph> AlphaBet;
             render::Texture Atlas;
         };
@@ -51,6 +52,7 @@ namespace xpe
             static Font* Resize(const std::string& filePath, core::usize glyphSize);
             static void Free(Font& font);
             static Font* GetFont(const std::string& filePath);
+            static core::f32 GetWhitespaceCharWidth(Font* font);
 
         private:
             static render::Context* s_Context;

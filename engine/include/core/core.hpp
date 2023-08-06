@@ -17,6 +17,7 @@
 #include <rendering/text/ttf_manager.hpp>
 #include <rendering/text/text_renderer.hpp>
 #include <rendering/text/text_batching.hpp>
+#include <rendering/skybox/skybox.hpp>
 
 #include <geometry/mesh.h>
 #include <geometry/cube_geometry.h>

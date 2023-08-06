@@ -146,6 +146,14 @@ xpe::text::Font xpe::text::TTFManager::Load(const std::string& filePath, core::u
 
             render::TextureManager::InitTexture(font.Atlas);
 
+            // Find max glyph height
+            font.MaxGlyphHeight = 0;
+            for (auto& glyph : font.AlphaBet) {
+                if (glyph.second.Height > font.MaxGlyphHeight) {
+                    font.MaxGlyphHeight = glyph.second.Height;
+                }
+            }
+
             s_Fonts->insert({ std::string(filePath), font });
         }
     }
@@ -287,6 +295,14 @@ xpe::text::Font* xpe::text::TTFManager::Resize(const std::string& filePath, core
         }
 
         render::TextureManager::InitTexture(font->Atlas);
+
+        // Find max glyph height
+        font->MaxGlyphHeight = 0;
+        for (auto& glyph : font->AlphaBet) {
+            if (glyph.second.Height > font->MaxGlyphHeight) {
+                font->MaxGlyphHeight = glyph.second.Height;
+            }
+        }
     }
 
     return font;
@@ -316,4 +332,9 @@ xpe::text::Font* xpe::text::TTFManager::GetFont(const std::string& filePath)
     }
 
     return nullptr;
+}
+
+xpe::core::f32 xpe::text::TTFManager::GetWhitespaceCharWidth(Font* font)
+{
+    return 8.0f * ((xpe::core::f32)font->AlphaBet[0x20].AdvanceX / 64.0f);
 }

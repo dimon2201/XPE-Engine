@@ -8,6 +8,7 @@ using namespace xpe::ecs;
 using namespace xpe::render;
 using namespace xpe::control;
 using namespace xpe::text;
+using namespace xpe::skybox;
 using namespace xpe::io;
 using namespace xpe::math;
 using namespace xpe::gltf;
@@ -38,6 +39,10 @@ public:
         m_BatchManager = new BatchManager(context);
         m_TextBatchManager = new TextBatchManager(context);
 
+        InitPipeline();
+        InitCamera();
+        InitCamera2D();
+
         TextureCubeFile textureCubeFile;
         textureCubeFile.Name = "test";
         textureCubeFile.FrontFilepath = "resources/skybox/front.jpg";
@@ -49,111 +54,8 @@ public:
 
         Texture* textureCube = TextureManager::LoadTextureCubeFile(textureCubeFile, Texture::eFormat::RGBA8);
 
-//        Model3D cubeModel;
-//        bool cubeImported = GLTFImporter::Import("resources/cube.gltf", cubeModel);
-//        Mesh& cubeMesh = cubeModel[0];
-
-//        Model3D cubeModel = GLTFImporter::Import("resources/cube.gltf");
-//        Mesh& cubeMesh = cubeModel[0];
-//        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
-
-        PlaneGeometry plane;
-        m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
-
-        RenderInstance planeInstance;
-        TransformComponent planeTransform("PlaneTransform", 0);
-        planeTransform.Position = { 0, -60, 0 };
-        TransformManager::AddTransform(planeTransform);
-        m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
-
-//        CubeGeometry cube;
-//        m_BatchManager->StoreGeometryIndexed("CubeGeometry", cube);
-//        m_BatchManager->ResizeInstances("CubeGeometry", 1000);
-
-        SphereGeometry sphere;
-        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
-//        m_BatchManager->ReserveInstances("SphereGeometry", 1000);
-
-        // Put instances of geometry
-        u32 transformIndex = 1;
-        u32 materialIndex = 0;
-        u32 textureIndex = 0;
-        for (f32 y = -4.0f; y < 4.0f; y += 4.0f)
-        {
-            for (f32 x = -4.0f; x < 4.0f; x += 4.0f)
-            {
-                for (f32 z = -4.0f; z < 4.0f; z += 4.0f)
-                {
-                    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-                    TransformComponent transformComponent("Transform_" + transformIndex, transformIndex);
-                    transformComponent.Position = { x, y, z };
-                    transformComponent.Rotation = { r * 360.0f, g * 360.0f, b * 360.0f };
-//                    transformComponent.Scale    = { r, g, b };
-
-                    TransformManager::AddTransform(transformComponent);
-
-                    RenderInstance instance;
-                    instance.TransformIndex = transformIndex;
-                    instance.MaterialIndex = materialIndex;
-
-                    Material* material = MaterialManager::CreateMaterial("Material_" + materialIndex);
-                    material->Data->BaseColor = { 1, 1, 1, 1 };
-                    material->Data->MetallicFactor = r;
-                    material->Data->RoughnessFactor = g;
-                    material->Data->AOFactor = b;
-
-//                    material->Data->EnableAlbedo = false;
-//                    material->AlbedoIndex = textureIndex;
-//                    MaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
-//
-//                    material->Data->EnableBumping = false;
-//                    material->BumpingIndex = textureIndex;
-//                    MaterialManager::AddBumpFromFile(*material, "resources/materials/steel/bump.png");
-//
-//                    material->Data->EnableMetallic = false;
-//                    material->MetallicIndex = textureIndex;
-//                    MaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
-//
-//                    material->Data->EnableRoughness = false;
-//                    material->RoughnessIndex = textureIndex;
-//                    MaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
-//
-//                    material->Data->EnableAO = false;
-//                    material->AOIndex = textureIndex;
-//                    MaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
-
-                    m_BatchManager->AddInstance("CubeGeometry", instance);
-                    m_BatchManager->AddInstance("CubeMesh", instance);
-                    m_BatchManager->AddInstance("SphereGeometry", instance);
-                    m_BatchManager->AddInstance("Triangle", instance);
-
-                    transformIndex++;
-                    materialIndex++;
-                    if (++textureIndex > 1) {
-                        textureIndex = 0;
-                    }
-                }
-            }
-        }
-
-        m_DirectLightComponent.Position = { 0, 0, 0 };
-        m_DirectLightComponent.Color = { 1, 1, 1 };
-        LightManager::AddDirectLight(m_DirectLightComponent);
-
-        // it will flush all instance data into GPU memory
-        m_BatchManager->FlushInstances("CubeGeometry");
-        m_BatchManager->FlushInstances("CubeMesh");
-        m_BatchManager->FlushInstances("SphereGeometry");
-        m_BatchManager->FlushInstances("Triangle");
-        m_BatchManager->FlushInstances("PlaneGeometry");
-
-        InitPipeline();
-        InitCamera();
-        InitCamera2D();
-
+        m_Font = TTFManager::Load("C:/Users/USER100/Documents/GitHub/XPE-Engine/samples/resources/fonts/Roboto-Italic.ttf", 32);
+        m_Font.WhitespaceOffset = TTFManager::GetWhitespaceCharWidth(&m_Font);
         TextRenderer::Init(context, m_TextBatchManager, m_Canvas);
     }
 
@@ -170,13 +72,10 @@ public:
 
             TransformComponent transform("TextTransform");
             transform.Position = { 0.0f, 0.0f, 0.0f };
-            transform.Scale = { 0.01f, 0.01f, 0.01f };
-            m_Font.GlyphNewLineExtraOffset = 32.0f;
-
-            TextComponent text("TextComponent");
-            text.Text = "Hello!\nNew line";
-
-            TextRenderer::Get().Draw(&m_Font, &transform, &text);
+            transform.Scale = { 0.1f, 0.1f, 1.0f };
+            Text2DComponent text("TextText");
+            text.Text = "Hello!\nHow\tare\tyou ?";
+            TextRenderer::Get().Draw2D(&m_Font, &transform, &text);
 
             m_Canvas->Present();
         }
@@ -298,6 +197,7 @@ private:
     BatchManager* m_BatchManager;
     TextBatchManager* m_TextBatchManager;
     Font m_Font;
+    Skybox* m_Skybox;
 
     Pipeline m_Pipeline;
 

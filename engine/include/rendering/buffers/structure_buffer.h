@@ -59,7 +59,7 @@ namespace xpe {
                 return Get(index);
             }
 
-        protected:
+        public:
             Context* m_Context = nullptr;
             vector<T> m_List;
         };

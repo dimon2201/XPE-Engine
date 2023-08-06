@@ -30,14 +30,19 @@ VSOut vs_main(VSIn vsIn)
     Transform transform = Transforms[instance.TransformIndex];
     Camera camera = Cameras[instance.CameraIndex];
 
+    float2 offsetScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(instance.Left, instance.Top);
+    float2 sizeScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(instance.Width, instance.Height);
+
     float3 positionLocal = (vsIn.positionLocal * 0.5f) + 0.25f;
+
     float4 positionWorld = float4(positionLocal, 1.0f);
-    float4 offsetScaled = mul(transform.ModelMatrix, float4(instance.Left, instance.Top, 1.0f, 1.0f));
-    float4 sizeScaled = mul(transform.ModelMatrix, float4(instance.Width, instance.Height, 1.0f, 1.0f));
-    positionWorld *= sizeScaled;
+    positionWorld *= float4(instance.Width, instance.Height, 1.0f, 1.0f);
+    positionWorld = mul(transform.ModelMatrix, positionWorld);
+
     positionWorld.x += 0.5f * (offsetScaled.x + instance.AdvanceX);
     positionWorld.y -= 0.5f * ((sizeScaled.y - offsetScaled.y) + instance.AdvanceY);
-    float4 positionView = positionWorld + float4(0.0f, 0.0f, 8.0f, 0.0f);
+
+    float4 positionView = mul(camera.View, positionWorld);
     float4 positionClip = mul(camera.Projection, positionView);
 
     vsOut.positionWorld = positionWorld.xyz;
