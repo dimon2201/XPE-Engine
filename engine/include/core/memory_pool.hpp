@@ -122,32 +122,6 @@ namespace xpe
             return address;
         }
 
-        struct ENGINE_API MemoryConfig : res::JsonObject
-        {
-            JsonFields(
-                MemoryConfig,
-                MainMemoryMB,
-                MainAllocs,
-                HotMemoryKB,
-                HotAllocs
-            )
-
-            usize MainMemoryMB = 1024;
-            usize MainAllocs = 1000;
-
-            usize HotMemoryKB = 1024;
-            usize HotAllocs = 1000;
-
-            static MemoryConfig& Get()
-            {
-                static MemoryConfig instance;
-                return instance;
-            }
-
-            [[nodiscard]] inline usize GetMainMemoryBytes() const { return MainMemoryMB * K_MEMORY_MIB; }
-            [[nodiscard]] inline usize GetHotMemoryBytes()  const { return HotMemoryKB  * K_MEMORY_KIB; }
-        };
-
         class ENGINE_API MemoryPoolManager final
         {
 
@@ -156,7 +130,7 @@ namespace xpe
             static MemoryPoolStorage* HotPools;
 
         public:
-            static void Init(const MemoryConfig& config);
+            static void Init();
             static void Free();
             static void FreeMainMemory(void* address);
             static void FreeHotMemory(void* address);

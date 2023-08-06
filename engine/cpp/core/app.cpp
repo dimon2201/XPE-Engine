@@ -1,7 +1,8 @@
 #include <core/app.hpp>
 
+#include <rendering/core/debugger.h>
+
 // Rendering features
-#include <rendering/materials/material.h>
 #include <rendering/lighting/light_manager.h>
 #include <rendering/transforming/transforming.h>
 #include <rendering/camera/camera_manager.h>
@@ -14,8 +15,6 @@ namespace xpe {
     namespace core {
 
         void Application::Run() {
-            Config = AppConfig::Get();
-
             LoggerDescriptor logDesc;
             logDesc.Name = Config.LogTitle.c_str();
             logDesc.Backtrace = Config.LogBacktrace;
@@ -37,6 +36,9 @@ namespace xpe {
 
             Input::Init();
 
+            debugger::DebugErrors = Config.DebugErrors;
+            debugger::DebugWarnings = Config.DebugWarnings;
+            debugger::DebugInfo = Config.DebugInfo;
             context::Init();
 
             CameraManager::Init();

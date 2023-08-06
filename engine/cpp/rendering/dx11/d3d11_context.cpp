@@ -181,8 +181,6 @@ namespace xpe {
                     return;
                 }
 
-                CreateHardwareConfig();
-
                 InitDebugger();
 
                 s_Device->QueryInterface(__uuidof(IDXGIDevice), (void **)&s_GIDevice);
@@ -1357,12 +1355,6 @@ namespace xpe {
             void* GetDevice()
             {
                 return s_Device;
-            }
-
-            void CreateHardwareConfig()
-            {
-                core::HardwareConfig::K_TEXTURE_2D_ARRAY_SIZE_MAX = D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION;
-                core::HardwareConfig::K_ANISOTROPY_LEVEL_MAX = D3D11_REQ_MAXANISOTROPY;
             }
 
         }

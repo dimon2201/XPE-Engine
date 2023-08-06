@@ -47,7 +47,7 @@ namespace xpe {
         void MaterialStorage::InitMaterialSampler() {
             TextureSampler& materialSampler = Textures.Sampler;
             materialSampler.Filter          = TextureSampler::eFilter::ANISOTROPIC;
-            materialSampler.AnisotropyLevel = HardwareConfig::K_ANISOTROPY_LEVEL_MAX;
+            materialSampler.AnisotropyLevel = os::HardwareConfig::GetVideoStats().MaxAnisotropyLevel;
             materialSampler.AddressU        = TextureSampler::eAddress::WRAP;
             materialSampler.AddressV        = TextureSampler::eAddress::WRAP;
             materialSampler.AddressW        = TextureSampler::eAddress::WRAP;
@@ -82,7 +82,7 @@ namespace xpe {
             textureArray.Height = height;
             textureArray.Slot = slot;
             textureArray.Channels = TextureManager::ChannelTable.at(format);
-            textureArray.Layers.reserve(HardwareConfig::K_TEXTURE_2D_ARRAY_SIZE_MAX);
+            textureArray.Layers.reserve(os::HardwareConfig::GetVideoStats().MaxTexture2dArray);
 //            for (auto& layer : textureArray.Layers) {
 //                layer.Pixels = MemoryPoolManager::Allocate(textureArray.WinWidth * textureArray.WinHeight * textureArray.Channels);
 //            }

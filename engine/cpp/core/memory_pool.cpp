@@ -182,9 +182,14 @@ namespace xpe {
         MemoryPoolStorage* MemoryPoolManager::MainPools = nullptr;
         MemoryPoolStorage* MemoryPoolManager::HotPools = nullptr;
 
-        void MemoryPoolManager::Init(const MemoryConfig& config) {
-            HotPools = new MemoryPoolStorage("HotMemory", 1, config.GetHotMemoryBytes(), config.HotAllocs);
-            MainPools = new MemoryPoolStorage("MainMemory", 1, config.GetMainMemoryBytes(), config.MainAllocs);
+        void MemoryPoolManager::Init() {
+            // use by default 15% of TOTAL PHYSICAL RAM memory for main pre-allocation
+            usize mainMemorySize = os::HardwareConfig::GetMemoryStats().TotalPhysical * 0.15;
+            MainPools = new MemoryPoolStorage("MainMemory", 1, mainMemorySize, 1000);
+
+            // use by default 1MB for hot memory pre-allocation
+            usize hotMemorySize = K_MEMORY_MIB;
+            HotPools = new MemoryPoolStorage("HotMemory", 1, hotMemorySize, 1000);
         }
 
         void MemoryPoolManager::Free() {
