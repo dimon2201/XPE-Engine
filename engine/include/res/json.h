@@ -37,7 +37,6 @@ namespace xpe {
 
             JsonObject() = default;
             JsonObject(const xpe::core::string& jsonName) : JsonName(jsonName) {}
-            virtual ~JsonObject() = default;
 
             virtual void ToJson(json& root) = 0;
             virtual void FromJson(json& root) = 0;

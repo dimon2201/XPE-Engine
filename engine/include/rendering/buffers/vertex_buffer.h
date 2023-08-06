@@ -63,10 +63,7 @@ namespace xpe {
             m_VertexArray.Init(vertexCount);
             Type = eBufferType::VERTEX;
             StructureSize = sizeof(T);
-            FirstElement = 0;
             NumElements = vertexCount;
-            ByteSize = StructureSize * vertexCount;
-            Duplicate = K_FALSE;
             context::CreateBuffer(*this);
         }
 
@@ -97,7 +94,7 @@ namespace xpe {
 
         template<typename T>
         void VertexBuffer<T>::FlushVertices(const VertexArray<T> &vertices) {
-            if (vertices.Size() > ByteSize) {
+            if (vertices.Size() > ByteSize()) {
                 Resize(vertices.Count());
             }
             memcpy((void*)m_VertexArray.GetData(), (const void*)vertices.GetData(), vertices.Size());
@@ -107,7 +104,6 @@ namespace xpe {
         template<typename T>
         void VertexBuffer<T>::Recreate(const usize vertexCount) {
             NumElements = vertexCount;
-            ByteSize = NumElements * StructureSize;
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
             Flush();

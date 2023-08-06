@@ -8,14 +8,13 @@ namespace xpe {
 
         using namespace core;
 
-        class Context;
-
         template<typename T>
-        class StructureBuffer : public Buffer {
+        class StructureBuffer : public Buffer
+        {
 
         public:
             StructureBuffer() = default;
-            StructureBuffer(usize count, u32 slot, Boolean duplicate);
+            StructureBuffer(usize count, u32 slot);
 
         public:
             void Free();
@@ -39,23 +38,28 @@ namespace xpe {
 
             void Clear();
 
-            inline usize Size() const {
+            inline usize Size() const
+            {
                 return m_List.size();
             }
 
-            inline usize Capacity() const {
+            inline usize Capacity() const
+            {
                 return m_List.capacity();
             }
 
-            inline T* Get(u32 index) {
-                if (index >= m_List.size()) {
+            inline T* Get(u32 index)
+            {
+                if (index >= m_List.size())
+                {
                     LogError("Index {} is out of bounds of size {}", index, m_List.size());
                     return nullptr;
                 }
                 return &m_List[index];
             }
 
-            inline T* operator [](u32 index) {
+            inline T* operator [](u32 index)
+            {
                 return Get(index);
             }
 
@@ -64,41 +68,42 @@ namespace xpe {
         };
 
         template<typename T>
-        StructureBuffer<T>::StructureBuffer(usize count, u32 slot, Boolean duplicate)
+        StructureBuffer<T>::StructureBuffer(usize count, u32 slot)
         {
             Type = eBufferType::STRUCTURED;
             Slot = slot;
             StructureSize = sizeof(T);
-            FirstElement = 0;
             NumElements = count;
-            ByteSize = StructureSize * count;
-            Duplicate = duplicate;
-            if (count > 0) {
+            if (count > 0)
+            {
                 m_List.resize(count);
                 context::CreateBuffer(*this);
-                context::WriteBuffer(*this, m_List.data(), ByteSize);
+                context::WriteBuffer(*this, m_List.data(), ByteSize());
             }
         }
 
         template<typename T>
-        void StructureBuffer<T>::Free() {
+        void StructureBuffer<T>::Free()
+        {
             context::FreeBuffer(*this);
             m_List.clear();
         }
 
         template<typename T>
-        void StructureBuffer<T>::Flush() {
+        void StructureBuffer<T>::Flush()
+        {
             usize size = m_List.size();
             if (size != NumElements) {
                 Recreate(size);
             }
             else {
-                context::WriteBuffer(*this, m_List.data(), ByteSize);
+                context::WriteBuffer(*this, m_List.data(), ByteSize());
             }
         }
 
         template<typename T>
-        void StructureBuffer<T>::FlushItem(u32 index, const T& newItem) {
+        void StructureBuffer<T>::FlushItem(u32 index, const T& newItem)
+        {
             T* item = operator[](index);
             if (item == nullptr) {
                 return;
@@ -108,7 +113,8 @@ namespace xpe {
         }
 
         template<typename T>
-        void StructureBuffer<T>::FlushItemAt(u32 index) {
+        void StructureBuffer<T>::FlushItemAt(u32 index)
+        {
             T* item = operator[](index);
             if (item == nullptr) {
                 return;
@@ -117,39 +123,44 @@ namespace xpe {
         }
 
         template<typename T>
-        void StructureBuffer<T>::Recreate(const usize count) {
+        void StructureBuffer<T>::Recreate(const usize count)
+        {
             m_List.resize(count);
             NumElements = count;
-            ByteSize = StructureSize * count;
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
-            context::WriteBuffer(*this, m_List.data(), ByteSize);
+            context::WriteBuffer(*this, m_List.data(), ByteSize());
         }
 
         template<typename T>
-        void StructureBuffer<T>::Resize(const usize count) {
+        void StructureBuffer<T>::Resize(const usize count)
+        {
             Recreate(count);
         }
 
         template<typename T>
-        void StructureBuffer<T>::Reserve(const usize count) {
+        void StructureBuffer<T>::Reserve(const usize count)
+        {
             m_List.reserve(count);
         }
 
         template<typename T>
-        void StructureBuffer<T>::Clear() {
+        void StructureBuffer<T>::Clear()
+        {
             m_List.clear();
         }
 
         template<typename T>
         template<typename... Args>
-        u32 StructureBuffer<T>::Add(Args &&... args) {
+        u32 StructureBuffer<T>::Add(Args &&... args)
+        {
             m_List.emplace_back(args...);
             return m_List.size() - 1;
         }
 
         template<typename T>
-        void StructureBuffer<T>::RemoveAt(u32 index) {
+        void StructureBuffer<T>::RemoveAt(u32 index)
+        {
             m_List.erase(m_List.begin() + index);
         }
 

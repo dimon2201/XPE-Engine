@@ -9,6 +9,7 @@
 #define K_SLOT_CAMERAS                 register(t4)
 #define K_SLOT_TEXT_GLYPHS             register(t5)
 #define K_SLOT_TEXT_GLYPH_INSTANCES    register(t6)
+#define K_SLOT_VIEWPORT                register(t7)
 
 // ---------- For Pixel Stage --------------- //
 

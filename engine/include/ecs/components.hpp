@@ -88,9 +88,16 @@ namespace xpe
 
         };
 
-        struct ENGINE_API TextComponent : public Component
+        struct ENGINE_API Text2DComponent : public Component
         {
-            TextComponent(const string& usid) : Component(usid) {}
+            Text2DComponent(const string& usid) : Component(usid) {}
+
+            string Text;
+        };
+
+        struct ENGINE_API Text3DComponent : public Component
+        {
+            Text3DComponent(const string& usid) : Component(usid) {}
 
             string Text;
         };

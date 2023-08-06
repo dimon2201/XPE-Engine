@@ -7,8 +7,9 @@ namespace xpe {
     namespace render {
 
         Canvas::Canvas(s32 width, s32 height) {
-            m_Viewport.Width = width;
-            m_Viewport.Height = height;
+            m_ViewportBuffer.Item.Width = width;
+            m_ViewportBuffer.Item.Height = height;
+            m_ViewportBuffer.Flush();
 
             CreateRenderTarget(width, height);
             CreatePresentTarget();
@@ -31,7 +32,7 @@ namespace xpe {
         }
 
         void Canvas::Clear(const glm::vec4& color) {
-            context::BindViewport(&m_Viewport);
+            context::BindViewport(&m_ViewportBuffer.Item);
             context::BindTextureSlot(0);
             context::BindRenderTarget(m_RenderTarget.ColorTargetView, m_RenderTarget.DepthTargetView);
 
@@ -41,7 +42,7 @@ namespace xpe {
 
         void Canvas::Present() {
             context::BindRenderTarget(m_PresentTarget.ColorTargetView, m_PresentTarget.DepthTargetView);
-            context::BindViewport(&m_Viewport);
+            context::BindViewport(&m_ViewportBuffer.Item);
             context::BindShader(m_Shader);
             context::BindTexture(m_RenderTarget.ColorTexture);
             context::BindSampler(&m_PresentSampler);
@@ -56,6 +57,7 @@ namespace xpe {
         void Canvas::WindowFrameResized(int width, int height) {
             context::ResizeRenderTarget(m_RenderTarget, width, height);
             context::ResizeSwapchain(m_PresentTarget, width, height);
+            m_ViewportBuffer.Flush();
         }
 
         void Canvas::CreateRenderTarget(int width, int height) {

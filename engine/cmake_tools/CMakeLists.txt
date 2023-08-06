@@ -175,7 +175,6 @@ macro(include_engine path)
             ${path}/thirdparty/glm/glm
             ${path}/thirdparty/json/include
             ${path}/thirdparty/freetype2/include
-            ${path}/thirdparty/assimp/include
     )
 endmacro()
 

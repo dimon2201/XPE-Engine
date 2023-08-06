@@ -146,6 +146,14 @@ namespace xpe {
 
                     TextureManager::InitTexture(font.Atlas);
 
+                    // Find max glyph height
+                    font.MaxGlyphHeight = 0;
+                    for (auto& glyph : font.AlphaBet) {
+                        if (glyph.second.Height > font.MaxGlyphHeight) {
+                            font.MaxGlyphHeight = glyph.second.Height;
+                        }
+                    }
+
                     s_Fonts->insert({ filePath, font });
                 }
             }
@@ -289,6 +297,14 @@ namespace xpe {
                 }
 
                 render::TextureManager::InitTexture(font->Atlas);
+
+                // Find max glyph height
+                font->MaxGlyphHeight = 0;
+                for (auto& glyph : font->AlphaBet) {
+                    if (glyph.second.Height > font->MaxGlyphHeight) {
+                        font->MaxGlyphHeight = glyph.second.Height;
+                    }
+                }
             }
 
             return font;
@@ -318,6 +334,11 @@ namespace xpe {
             }
 
             return nullptr;
+        }
+
+        f32 TTFManager::GetWhitespaceCharWidth(Font* font)
+        {
+            return 8.0f * ((f32)font->AlphaBet[0x20].AdvanceX / 64.0f);
         }
 
     }

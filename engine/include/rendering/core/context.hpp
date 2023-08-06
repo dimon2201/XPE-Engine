@@ -92,7 +92,6 @@ namespace xpe {
             ENGINE_API void BindPSBuffer(const Buffer* buffer);
             ENGINE_API void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize);
             ENGINE_API void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize);
-            ENGINE_API void WriteBufferAppend(Buffer& buffer, const void* data, usize dataByteSize);
             ENGINE_API void FreeBuffer(const Buffer& buffer);
 
             ENGINE_API void CreateInputLayout(InputLayout& inputLayout);

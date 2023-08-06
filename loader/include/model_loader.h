@@ -9,12 +9,12 @@ namespace xpe {
         using namespace core;
         using namespace render;
 
-        struct ENGINE_API MeshResource final
+        struct MeshResource final
         {
 
         };
 
-        struct ENGINE_API TextureResource final
+        struct TextureResource final
         {
             int Width = 0;
             int Height = 0;
@@ -26,7 +26,7 @@ namespace xpe {
             TextureResource(const Texture::eFormat format) : Format(format) {}
         };
 
-        struct ENGINE_API MaterialResource final
+        struct MaterialResource final
         {
             TextureResource Albedo = Texture::eFormat::RGB8;
             TextureResource Bump = Texture::eFormat::RGB8;
@@ -37,13 +37,13 @@ namespace xpe {
             TextureResource Emission = Texture::eFormat::RGB8;
         };
 
-        struct ENGINE_API ModelResource final
+        struct ModelResource final
         {
             vector<MeshResource> Meshes;
             unordered_map<u32, MaterialResource> Materials;
         };
 
-        struct ENGINE_API ModelLoader final
+        struct ModelLoader final
         {
 
             enum class eOption

@@ -1,4 +1,4 @@
-#include <res/model_loader.h>
+#include "model_loader.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/Exporter.hpp>

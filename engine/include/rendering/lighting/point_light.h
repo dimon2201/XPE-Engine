@@ -36,7 +36,7 @@ namespace xpe {
         public:
             PointLightBuffer() = default;
 
-            PointLightBuffer(usize size) : StructureBuffer<PointLightBufferData>(size, K_SLOT_POINT_LIGHTS, K_FALSE) {}
+            PointLightBuffer(usize size) : StructureBuffer<PointLightBufferData>(size, K_SLOT_POINT_LIGHTS) {}
 
         };
 

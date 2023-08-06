@@ -940,17 +940,7 @@ namespace xpe {
             void CreateBuffer(Buffer& buffer)
             {
                 eBufferType bufferType = buffer.Type;
-                usize byteSize = buffer.ByteSize;
-                buffer.AppendOffset = 0;
-
-                if (buffer.Duplicate == K_TRUE)
-                {
-                    buffer.CPUMemory = alloc(byteSize);
-                }
-                else
-                {
-                    buffer.CPUMemory = nullptr;
-                }
+                usize byteSize = buffer.ByteSize();
 
                 D3D11_BUFFER_DESC bufferDesc = {};
 
@@ -996,7 +986,7 @@ namespace xpe {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
                     srvDesc.Format = DXGI_FORMAT_UNKNOWN;
                     srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFEREX;
-                    srvDesc.BufferEx.FirstElement = buffer.FirstElement;
+                    srvDesc.BufferEx.FirstElement = 0;
                     srvDesc.BufferEx.NumElements = buffer.NumElements;
 
                     s_Device->CreateShaderResourceView((ID3D11Resource*)buffer.Instance, &srvDesc, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
@@ -1075,20 +1065,6 @@ namespace xpe {
 
                 s_ImmContext->Unmap((ID3D11Resource*)buffer.Instance, 0);
                 LogDebugMessage();
-            }
-
-            void WriteBufferAppend(Buffer& buffer, const void* data, usize dataByteSize)
-            {
-                // todo do we really need CPU memory for buffer? check structure, vertex, index buffers implementations
-                if (buffer.CPUMemory == nullptr)
-                {
-                    return;
-                }
-
-                memcpy((void*)((usize)buffer.CPUMemory + (usize)buffer.AppendOffset), data, dataByteSize);
-                buffer.AppendOffset += dataByteSize;
-
-                WriteBuffer(buffer, buffer.CPUMemory, buffer.AppendOffset);
             }
 
             void FreeBuffer(const Buffer& buffer)
