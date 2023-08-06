@@ -45,7 +45,7 @@ namespace xpe
             xpe::render::TextBatchManager* m_BatchManager;
             xpe::render::Canvas* m_Canvas;
             xpe::render::InputLayout* m_InputLayout;
-            xpe::render::StructureBuffer<glm::vec4>* m_RTInfo;
+            xpe::render::StructureBuffer<glm::vec2>* m_RTInfo;
             xpe::render::Pipeline* m_Pipeline2D;
             xpe::render::Pipeline* m_Pipeline3D;
         };

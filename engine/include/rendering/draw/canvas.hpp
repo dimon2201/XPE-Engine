@@ -22,6 +22,7 @@ namespace xpe {
 
             inline RenderTarget* GetRenderTarget() { return &m_RenderTarget; }
             inline Shader* GetShader() { return m_Shader; }
+            inline glm::vec2 GetDimension() { return glm::vec2(m_Viewport.Width, m_Viewport.Height); }
             inline void SetViewport(const Viewport& viewport) { m_Viewport = viewport; }
             inline void SetClearColor(const glm::vec4& color) { m_ClearColor = color; }
 

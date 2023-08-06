@@ -3,7 +3,7 @@
 #include ../engine_shaders/transforming.shader
 #include ../engine_shaders/controls/camera.shader
 
-StructuredBuffer<float4> RTInfo : register(t7);
+StructuredBuffer<float2> RTInfo : register(t7);
 
 struct VSIn
 {
@@ -15,7 +15,6 @@ struct VSIn
 
 struct VSOut
 {
-    float3 positionWorld : XPE_POSITION_WORLD;
     float2 texcoord : XPE_UV2;
     float3 normal : XPE_NORMAL2;
     float4 positionClip : SV_POSITION;
@@ -37,21 +36,20 @@ VSOut vs_main(VSIn vsIn)
 
     float3 positionLocal = (vsIn.positionLocal * 0.5f) + 0.25f;
 
-    float4 positionWorld = float4(positionLocal, 1.0f);
-    //positionWorld *= float4(instance.Width, instance.Height, 1.0f, 1.0f);
-    //positionWorld = mul(transform.ModelMatrix, positionWorld);
-    positionWorld *= float4(1.0, 1.0, 1.0f, 1.0f);
+    float4 positionNDC = float4(positionLocal, 1.0f);
+    positionNDC *= float4(instance.Width, instance.Height, 1.0f, 1.0f);
+    positionNDC = mul(transform.ModelMatrix, positionNDC);
 
-    //positionWorld.x += 0.5f * (offsetScaled.x + instance.AdvanceX);
-    //positionWorld.y -= 0.5f * ((sizeScaled.y - offsetScaled.y) + instance.AdvanceY);
+    positionNDC.x += 0.5f * (offsetScaled.x + instance.AdvanceX);
+    positionNDC.y -= 0.5f * ((sizeScaled.y - offsetScaled.y) + instance.AdvanceY);
 
-    float4 positionClip = mul(camera.Projection, positionWorld);
+    positionNDC.xy /= RTInfo[0];
+    positionNDC.xy = (positionNDC.xy * 2.0f) - 1.0f;
 
-    vsOut.positionWorld = positionWorld.xyz;
     vsOut.viewPosition = camera.Position;
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = normalize(vsIn.normal);
-    vsOut.positionClip = positionClip;
+    vsOut.positionClip = positionNDC;
     vsOut.glyphSize = float2(instance.Width, instance.Height);
     vsOut.glyphAtlasOffset = float2(instance.AtlasXOffset, instance.AtlasYOffset);
 

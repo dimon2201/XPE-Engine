@@ -71,8 +71,8 @@ public:
             m_Canvas->Clear(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
             TransformComponent transform("TextTransform");
-            transform.Position = { 0.0f, 0.0f, 0.0f };
-            transform.Scale = { 0.1f, 0.1f, 1.0f };
+            transform.Position = { 400.0f, 400.0f, 0.0f };
+            transform.Scale = { 2.0f, 2.0f, 1.0f };
             Text2DComponent text("TextText");
             text.Text = "Hello!\nHow\tare\tyou ?";
             TextRenderer::Get().Draw2D(&m_Font, &transform, &text);

@@ -20,14 +20,14 @@ void xpe::text::TextRenderer::Init(xpe::render::Context* context, xpe::render::T
     s_Instance->m_BatchManager = batchManager;
     s_Instance->m_Canvas = canvas;
     s_Instance->m_InputLayout = new render::InputLayout();
-    s_Instance->m_RTInfo = new render::StructureBuffer<glm::vec4>(context, 1, 7, core::K_FALSE);
+    s_Instance->m_RTInfo = new render::StructureBuffer<glm::vec2>(context, 0, 7, core::K_FALSE);
     s_Instance->m_Pipeline2D = new render::Pipeline();
     s_Instance->m_Pipeline3D = new render::Pipeline();
     
     // Setup pipeline for 2D
     s_Instance->m_Pipeline2D->VSBuffers.emplace_back(render::CameraManager::GetBuffer());
     s_Instance->m_Pipeline2D->VSBuffers.emplace_back(render::TransformManager::GetBuffer());
-    s_Instance->m_Pipeline3D->VSBuffers.emplace_back(s_Instance->m_RTInfo);
+    s_Instance->m_Pipeline2D->VSBuffers.emplace_back(s_Instance->m_RTInfo);
 
     s_Instance->m_Pipeline2D->Shader = render::ShaderManager::CreateShader("text2d");
     xpe::render::ShaderManager::AddVertexStageFromFile(s_Instance->m_Pipeline2D->Shader, "shaders/text2d.vs");
@@ -138,8 +138,7 @@ void xpe::text::TextRenderer::Draw2D(xpe::text::Font* font, const xpe::ecs::Tran
 
     // Update render target info buffer
     s_Instance->m_RTInfo->Slot = 7;
-    glm::vec2 rtSize = glm::vec2(m_Canvas->GetRenderTarget()->ColorTexture->Width, m_Canvas->GetRenderTarget()->ColorTexture->Height);
-    m_RTInfo->m_List[0] = glm::vec4(1.0f);
+    m_RTInfo->Add(m_Canvas->GetDimension());
     m_RTInfo->Flush();
 
     // Draw glyphs
@@ -148,7 +147,7 @@ void xpe::text::TextRenderer::Draw2D(xpe::text::Font* font, const xpe::ecs::Tran
 
     xpe::render::TransformManager::ClearTransforms();
 
-    //m_RTInfo->Clear();
+    m_RTInfo->Clear();
 }
 
 void xpe::text::TextRenderer::Draw3D(xpe::text::Font* font, const xpe::ecs::TransformComponent* transform, const xpe::ecs::Text3DComponent* text)
