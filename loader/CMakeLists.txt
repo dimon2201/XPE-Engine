@@ -20,7 +20,7 @@ include_engine(../engine)
 include_directories(
         include
         thirdparty/Assimp/include
-        thirdparty/freetype2/include
+        thirdparty/Freetype/include
         thirdparty/stbi
 )
 
