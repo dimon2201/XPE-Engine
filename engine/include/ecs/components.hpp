@@ -1,7 +1,11 @@
 #pragma once
 
-#include <core/ecs.hpp>
+#include <ecs/component.h>
+
 #include <rendering/materials/material.h>
+#include <rendering/font/font.hpp>
+
+#include <geometry/geometries.h>
 
 namespace xpe
 {
@@ -9,47 +13,10 @@ namespace xpe
     {
         using namespace core;
         using namespace render;
+        using namespace math;
 
-        struct ENGINE_API TransformComponent : public Component
+        struct ENGINE_API CameraComponent : Component
         {
-            TransformComponent(const string& usid) : Component(usid)
-            {}
-
-            TransformComponent(const string& usid, u32 index) : Component(usid), Index(index)
-            {}
-
-            u32 Index = 0;
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Rotation = { 0, 0, 0 };
-            glm::vec3 Scale = { 1, 1, 1 };
-        };
-
-        struct ENGINE_API Transform2DComponent : public Component
-        {
-            Transform2DComponent(const string& usid) : Component(usid)
-            {}
-
-            Transform2DComponent(const string& usid, u32 index) : Component(usid), Index(index)
-            {}
-
-            u32 Index = 0;
-            glm::vec2 Position = { 0, 0 };
-            float Rotation = 0;
-            glm::vec2 Scale = { 1, 1 };
-        };
-
-        struct ENGINE_API RigidBodyComponent : public Component
-        {
-            RigidBodyComponent(const string& usid) : Component(usid)
-            {}
-
-            glm::vec3 Position;
-            glm::vec3 Rotation;
-        };
-
-        struct ENGINE_API CameraComponent : public Component
-        {
-            u32 Index = 0;
             // Position.z = -1 is a default valid value for 2D orthographic view
             // If Position.z >= 0, 2D geometry will not be shown on screen
             glm::vec3 Position = { 0, 0, -1 };
@@ -59,47 +26,196 @@ namespace xpe
             float Gamma = 2.2f;
             float Exposure = 1.0f;
 
-            CameraComponent(const string& usid) : Component(usid)
-            {}
+            JsonClass(
+                CameraComponent,
+                Position,
+                Front,
+                Up,
+                Gamma,
+                Exposure
+            )
         };
 
-        struct ENGINE_API PerspectiveCameraComponent : public CameraComponent
+        struct ENGINE_API PerspectiveCameraComponent : CameraComponent
         {
             math::PerspectiveMatrix Projection;
 
-            PerspectiveCameraComponent(const string& usid) : CameraComponent(usid)
-            {}
+            JsonClass(
+                PerspectiveCameraComponent,
+                Projection
+            )
         };
 
-        struct ENGINE_API OrthoCameraComponent : public CameraComponent
+        struct ENGINE_API OrthoCameraComponent : CameraComponent
         {
             math::OrthoMatrix Projection;
 
-            OrthoCameraComponent(const string& usid) : CameraComponent(usid)
-            {}
+            JsonClass(
+                OrthoCameraComponent,
+                Projection
+            )
         };
 
-        struct ENGINE_API MaterialComponent : public Component {
-
-            MaterialComponent(const string& usid) : Component(usid) {}
-            MaterialComponent(const string& usid, Material* material) : Component(usid), Material(material) {}
-
-            Material* Material = nullptr;
-
-        };
-
-        struct ENGINE_API Text2DComponent : public Component
+        struct ENGINE_API Text2DComponent : Component
         {
-            Text2DComponent(const string& usid) : Component(usid) {}
-
+            math::Transform Transform;
             string Text;
+            Ref<Font> Font;
+            string FontResFilepath;
+
+            JsonClass(
+                Text2DComponent,
+                Text,
+                FontResFilepath,
+                Transform
+            )
         };
 
-        struct ENGINE_API Text3DComponent : public Component
+        struct ENGINE_API Text3DComponent : Component
         {
-            Text3DComponent(const string& usid) : Component(usid) {}
-
+            math::Transform Transform;
             string Text;
+            Ref<Font> Font;
+            string FontResFilepath;
+
+            JsonClass(
+                Text3DComponent,
+                Transform,
+                Text,
+                FontResFilepath
+            )
         };
+
+        struct ENGINE_API TextureComponent : Component
+        {
+            Ref<Texture> Texture;
+        };
+
+        struct ENGINE_API DirectLightComponent : Component
+        {
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
+
+            JsonClass(
+                DirectLightComponent,
+                Position,
+                Color
+            )
+        };
+
+        struct ENGINE_API PointLightComponent : Component
+        {
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
+            float Constant;
+            float Linear;
+            float Quadratic;
+
+            JsonClass(
+                PointLightComponent,
+                Position,
+                Color,
+                Constant,
+                Linear,
+                Quadratic
+            )
+        };
+
+        struct ENGINE_API SpotLightComponent : Component
+        {
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Direction = { 0, 0, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
+            float Cutoff;
+            float Outer;
+
+            JsonClass(
+                SpotLightComponent,
+                Position,
+                Direction,
+                Color,
+                Cutoff,
+                Outer
+            )
+        };
+
+        template<class GeometryType>
+        struct GeometryComponent : Component
+        {
+            Ref<GeometryType> Geometry;
+            MaterialInstance Instance;
+
+            JsonClass(
+                GeometryComponent,
+                Instance
+            )
+        };
+
+        typedef GeometryComponent<GeometryVertexed<Vertex2D>> GeometryVertexed2DComponent;
+        typedef GeometryComponent<GeometryIndexed<Vertex2D>> GeometryIndexed2DComponent;
+        typedef GeometryComponent<GeometryVertexed<Vertex3D>> GeometryVertexed3DComponent;
+        typedef GeometryComponent<GeometryIndexed<Vertex3D>> GeometryIndexed3DComponent;
+
+        template<class GeometryType>
+        struct GeometryListComponent : Component
+        {
+            Ref<GeometryType> Geometry;
+            vector<MaterialInstance> Instances;
+
+            JsonClass(
+                GeometryListComponent,
+                Instances
+            )
+        };
+
+        typedef GeometryListComponent<GeometryVertexed<Vertex2D>> GeometryVertexed2DListComponent;
+        typedef GeometryListComponent<GeometryIndexed<Vertex2D>> GeometryIndexed2DListComponent;
+        typedef GeometryListComponent<GeometryVertexed<Vertex3D>> GeometryVertexed3DListComponent;
+        typedef GeometryListComponent<GeometryIndexed<Vertex3D>> GeometryIndexed3DListComponent;
+
+        struct ENGINE_API MeshComponent : Component
+        {
+            math::Transform Transform;
+            Ref<Mesh> Mesh;
+
+            JsonClass(
+                MeshComponent,
+                Transform
+            )
+        };
+
+        struct ENGINE_API MeshListComponent : Component
+        {
+            vector<Transform> Transforms;
+            Ref<Mesh> Mesh;
+
+            JsonClass(
+                MeshListComponent,
+                Transforms
+            )
+        };
+
+        struct ENGINE_API ModelComponent : Component
+        {
+            math::Transform Transform;
+            Ref<Model3D> Model;
+
+            JsonClass(
+                ModelComponent,
+                Transform
+            )
+        };
+
+        struct ENGINE_API ModelListComponent : Component
+        {
+            vector<Transform> Transforms;
+            Ref<Model3D> Model;
+
+            JsonClass(
+                ModelListComponent,
+                Transforms
+            )
+        };
+
     }
 }

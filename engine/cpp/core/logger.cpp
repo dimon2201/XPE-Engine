@@ -2,9 +2,9 @@ namespace xpe {
 
     namespace core {
 
-        static std::shared_ptr<spdlog::logger> s_Logger;
-        static std::shared_ptr<spdlog::logger> s_Tracer;
-        static std::shared_ptr<spdlog::logger> s_MemLogger;
+        static Ref<spdlog::logger> s_Logger;
+        static Ref<spdlog::logger> s_Tracer;
+        static Ref<spdlog::logger> s_MemLogger;
         // [DateTime][Hours:Minutes:Seconds:Milliseconds]: Message
         static const char* s_LogPattern = "[%D][%H:%M:%S.%e]: %^%v%$";
         // [DateTime][Hours:Minutes:Seconds:Milliseconds] FunctionName(FileName:CodeLine) Message
@@ -15,24 +15,27 @@ namespace xpe {
         using FileSink = spdlog::sinks::basic_file_sink_mt;
         using Sink = spdlog::sink_ptr;
 
-        static std::shared_ptr<spdlog::logger> CreateLogger(const char* logName, const char* filepath, const char* pattern, int backtrace) {
+        static Ref<spdlog::logger> CreateLogger(const char* logName, const char* filepath, const char* pattern, int backtrace) {
 
             // setup console color sink
             Ref<LogSinkColor> consoleSink;
+            consoleSink.Create();
             consoleSink->set_pattern(pattern);
 
             // setup file sink
-            Ref<FileSink> fileSink(filepath, true);
+            Ref<FileSink> fileSink;
+            fileSink.Create(filepath, true);
             fileSink->set_pattern(pattern);
 
             core::vector<Sink> sinks = { consoleSink.GetPtr(), fileSink.GetPtr() };
 
             // setup logger
-            Ref<spdlog::logger> logger(logName, std::begin(sinks), std::end(sinks));
+            Ref<spdlog::logger> logger;
+            logger.Create(logName, std::begin(sinks), std::end(sinks));
             spdlog::register_logger(logger.GetPtr());
             logger->enable_backtrace(backtrace);
 
-            return logger.GetPtr();
+            return logger;
         }
 
         void Logger::Init(const LoggerDescriptor& descriptor) {
@@ -82,15 +85,15 @@ namespace xpe {
         }
 
         spdlog::logger* Logger::GetLogger() {
-            return s_Logger.get();
+            return s_Logger.Get();
         }
 
         spdlog::logger* Logger::GetTracer() {
-            return s_Tracer.get();
+            return s_Tracer.Get();
         }
 
         spdlog::logger* Logger::GetMemLogger() {
-            return s_MemLogger.get();
+            return s_MemLogger.Get();
         }
 
     }

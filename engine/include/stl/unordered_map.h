@@ -7,6 +7,9 @@ namespace xpe {
         template<typename K, typename V>
         using unordered_map = std::unordered_map<K, V, std::hash<K>, std::equal_to<K>, MainAllocator<std::pair<K, V>>>;
 
+        template<typename K, typename V>
+        using hunordered_map = std::unordered_map<K, V, std::hash<K>, std::equal_to<K>, HotAllocator<std::pair<K, V>>>;
+
     }
 
 }

@@ -1,5 +1,17 @@
-#include <core/core.hpp>
+#include <core/app.hpp>
 #include <launcher.h>
+
+#include <rendering/renderer.h>
+
+#include <rendering/draw/instance_drawer.h>
+
+#include <ecs/entities.hpp>
+#include <ecs/scenes.hpp>
+
+#include <model_loader.h>
+#include <font_loader.h>
+#include <texture_loader.h>
+
 #include "test_config.h"
 
 using namespace xpe::core;
@@ -9,215 +21,145 @@ using namespace xpe::control;
 using namespace xpe::math;
 using namespace xpe::res;
 
-
 class GameApp : public Application
 {
 public:
     GameApp() {}
     ~GameApp() {}
 
-    void Init() override final
+protected:
+
+    void InitRenderer() override
     {
+        Application::InitRenderer();
+
+        Shader* shader = ShaderManager::CreateShader("window");
+        ShaderManager::AddVertexStageFromFile(shader, "shaders/window.vs");
+        ShaderManager::AddPixelStageFromFile(shader, "shaders/window.ps");
+        ShaderManager::BuildShader(shader);
+        m_Renderer->AddDrawer<InstanceDrawer>(
+                m_Renderer->GetCameraBuffer(),
+                shader,
+                m_GeometryStorage,
+                m_MaterialStorage
+        );
+    }
+
+public:
+
+    void Init() override final {
         LogInfo("GameApp::Init()");
+
+        // read test configs from file
+        if (!xpe::res::ReadJsonFile("config/test_config.json", m_TestConfig))
+        {
+            LogError("test_config.json file not found in config/test_config.json path.");
+        }
 
         AddWindowClosed(GameApp, 1);
         AddKeyPressed(GameApp, 1);
         AddKeyHold(GameApp, 1);
         AddCursorMove(GameApp, 1);
 
-        m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight());
-        m_ECS = new ECSManager();
-        m_BatchManager = new BatchManager();
-        m_TextBatchManager = new TextBatchManager();
+        m_ModelLoader.Create(m_GeometryStorage, m_MaterialStorage);
+        m_TextureLoader.Create(m_TextureStorage);
+        m_FontLoader.Create(m_FontStorage);
 
-        m_Font = TTFManager::Load("resources/fonts/Roboto-Bold.ttf", 22);
-
-        TextureCubeFile textureCubeFile;
-        textureCubeFile.Name = "test";
-        textureCubeFile.FrontFilepath = "resources/skybox/front.jpg";
-        textureCubeFile.BackFilepath = "resources/skybox/back.jpg";
-        textureCubeFile.RightFilepath = "resources/skybox/right.jpg";
-        textureCubeFile.LeftFilepath = "resources/skybox/left.jpg";
-        textureCubeFile.TopFilepath = "resources/skybox/top.jpg";
-        textureCubeFile.BottomFilepath = "resources/skybox/bottom.jpg";
-
-        Texture* textureCube = TextureManager::LoadTextureCubeFile(textureCubeFile, Texture::eFormat::RGBA8);
-
-//        Model3D cubeModel;
-//        bool cubeImported = GLTFImporter::Import("resources/cube.gltf", cubeModel);
-//        Mesh& cubeMesh = cubeModel[0];
-
-//        Model3D cubeModel = GLTFImporter::Import("resources/cube.gltf");
-//        Mesh& cubeMesh = cubeModel[0];
-//        m_BatchManager->StoreGeometryIndexed("CubeMesh", cubeMesh);
-
-        PlaneGeometry plane;
-        m_BatchManager->StoreGeometryIndexed("PlaneGeometry", plane);
-
-        RenderInstance planeInstance;
-        TransformComponent planeTransform("PlaneTransform", 0);
-        planeTransform.Position = { 0, -60, 0 };
-        TransformManager::AddTransform(planeTransform);
-        m_BatchManager->AddInstance("PlaneGeometry", planeInstance);
-
-//        CubeGeometry cube;
-//        m_BatchManager->StoreGeometryIndexed("CubeGeometry", cube);
-//        m_BatchManager->ResizeInstances("CubeGeometry", 1000);
-
-        SphereGeometry sphere;
-        m_BatchManager->StoreGeometryIndexed("SphereGeometry", sphere);
-//        m_BatchManager->ReserveInstances("SphereGeometry", 1000);
-
-        // Put instances of geometry
-        u32 transformIndex = 1;
-        u32 materialIndex = 0;
-        u32 textureIndex = 0;
-        for (f32 y = -4.0f; y < 4.0f; y += 4.0f)
-        {
-            for (f32 x = -4.0f; x < 4.0f; x += 4.0f)
-            {
-                for (f32 z = -4.0f; z < 4.0f; z += 4.0f)
-                {
-                    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-                    TransformComponent transformComponent("Transform_" + transformIndex, transformIndex);
-                    transformComponent.Position = { x, y, z };
-                    transformComponent.Rotation = { r * 360.0f, g * 360.0f, b * 360.0f };
-//                    transformComponent.Scale    = { r, g, b };
-
-                    TransformManager::AddTransform(transformComponent);
-
-                    RenderInstance instance;
-                    instance.TransformIndex = transformIndex;
-                    instance.MaterialIndex = materialIndex;
-
-                    Material* material = MaterialManager::CreateMaterial("Material_" + materialIndex);
-                    material->Data->BaseColor = { 1, 1, 1, 1 };
-                    material->Data->MetallicFactor = r;
-                    material->Data->RoughnessFactor = g;
-                    material->Data->AOFactor = b;
-
-//                    material->Data->EnableAlbedo = true;
-//                    material->AlbedoIndex = textureIndex;
-//                    MaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
-//
-//                    material->Data->EnableBumping = true;
-//                    material->BumpingIndex = textureIndex;
-//                    MaterialManager::AddBumpFromFile(*material, "resources/materials/steel/bump.png");
-//
-//                    material->Data->EnableMetallic = true;
-//                    material->MetallicIndex = textureIndex;
-//                    MaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
-//
-//                    material->Data->EnableRoughness = true;
-//                    material->RoughnessIndex = textureIndex;
-//                    MaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
-//
-//                    material->Data->EnableAO = true;
-//                    material->AOIndex = textureIndex;
-//                    MaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
-
-                    m_BatchManager->AddInstance("CubeGeometry", instance);
-                    m_BatchManager->AddInstance("CubeMesh", instance);
-                    m_BatchManager->AddInstance("SphereGeometry", instance);
-                    m_BatchManager->AddInstance("Triangle", instance);
-
-                    transformIndex++;
-                    materialIndex++;
-                    if (++textureIndex > 1) {
-                        textureIndex = 0;
-                    }
-                }
-            }
-        }
-
-        m_DirectLightComponent.Position = { 0, 0, 0 };
-        m_DirectLightComponent.Color = { 1, 1, 1 };
-        LightManager::AddDirectLight(m_DirectLightComponent);
-
-        // it will flush all instance data into GPU memory
-        m_BatchManager->FlushInstances("CubeGeometry");
-        m_BatchManager->FlushInstances("CubeMesh");
-        m_BatchManager->FlushInstances("SphereGeometry");
-        m_BatchManager->FlushInstances("Triangle");
-        m_BatchManager->FlushInstances("PlaneGeometry");
-
-        InitPipeline();
         InitCamera();
         InitCamera2D();
 
-        m_Text2DRenderer = new Text2DRenderer(m_TextBatchManager, m_Canvas);
-        m_Text3DRenderer = new Text3DRenderer(m_TextBatchManager, m_Canvas);
+        // setup text 3D entity
+        {
+            m_Text3D = {"Text3D", m_MainScene};
 
-        m_Text2dTransform.Position = { 400, 400, 0 };
-        m_Text2dTransform.Scale = { 1.0, 1.0, 1.0 };
+            Text3DComponent text3D("Text3D");
+            text3D.FontResFilepath = "res/fonts/Roboto-Bold.ttf";
+            text3D.Font = m_FontLoader->Load(text3D.FontResFilepath.c_str(), 22);
+            text3D.Text = "Hi,\nWelcome to Example Window\nThis is a testing version of application";
+            text3D.Font->NewLineOffset = 1.0f;
+            text3D.Transform.Position = { 0, 0, 0 };
+            text3D.Transform.Scale = { 1, 1, 1 };
 
-        m_Text3dTransform.Position = { 0, 0, 0 };
-        m_Text3dTransform.Scale = { 1.0, 1.0, 1.0 };
+            m_Text3D.AddComponent<Text3DComponent>(text3D);
+        }
 
-        TransformManager::AddTransform(m_Text2dTransform);
-        TransformManager::AddTransform(m_Text3dTransform);
-        TransformManager::FlushTransforms();
+        // setup skybox global
+        {
+            m_MainScene->Skybox->FrontResFilepath = "res/skybox/front.jpg";
+            m_MainScene->Skybox->BackResFilepath = "res/skybox/back.jpg";
+            m_MainScene->Skybox->RightResFilepath = "res/skybox/right.jpg";
+            m_MainScene->Skybox->LeftResFilepath = "res/skybox/left.jpg";
+            m_MainScene->Skybox->TopResFilepath = "res/skybox/top.jpg";
+            m_MainScene->Skybox->BottomResFilepath = "res/skybox/bottom.jpg";
 
-        m_Font.NewLineOffset = 1.0f;
+            TextureCubeFilepath skyboxPath;
+            skyboxPath.Name = m_MainScene->Skybox->GetTag();
+            skyboxPath.FrontFilepath = m_MainScene->Skybox->FrontResFilepath;
+            skyboxPath.BackFilepath = m_MainScene->Skybox->BackResFilepath;
+            skyboxPath.LeftFilepath = m_MainScene->Skybox->LeftResFilepath;
+            skyboxPath.RightFilepath = m_MainScene->Skybox->RightResFilepath;
+            skyboxPath.TopFilepath = m_MainScene->Skybox->TopResFilepath;
+            skyboxPath.BottomFilepath = m_MainScene->Skybox->BottomResFilepath;
+
+            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
+            m_MainScene->Skybox->CubeTexture->GenerateMips();
+        }
+
+        // setup cube
+        {
+            m_Cube = {"Cube", m_MainScene };
+
+            GeometryIndexed3DComponent cube("Cube");
+            cube.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Cube", Cube());
+            cube.Instance.Transform.Position = { 1, -10, 0 };
+            cube.Instance.Material = m_MaterialStorage->Add("CubeMaterial", Material());
+
+            m_Cube.AddComponent<GeometryIndexed3DComponent>(cube);
+        }
+
+        // setup plane
+        {
+            m_Plane = { "Plane", m_MainScene };
+
+            GeometryIndexed3DComponent plane("Plane");
+            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Plane", Plane());
+            plane.Instance.Transform.Position = { 0, -10, 0 };
+            m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
+        }
+
+        // setup direct light
+        {
+            m_DirectLight = { "DirectLight", m_MainScene };
+
+            DirectLightComponent directLight("DirectLight");
+            directLight.Position = { 0, 0, 0 };
+            directLight.Color = { 1, 1, 1 };
+
+            m_DirectLight.AddComponent<DirectLightComponent>(directLight);
+        }
+
+        // setup 3D model
+        {
+            m_WinterGirl = { "WinterGirl", m_MainScene };
+
+            ModelComponent winterGirlModel("Model_WinterGirl");
+            winterGirlModel.Model = m_ModelLoader->Load("res/models/winter_girl/winter_girl.obj");
+            winterGirlModel.Transform.Position = { 0, -10, 0 };
+
+            m_WinterGirl.AddComponent<ModelComponent>(winterGirlModel);
+        }
     }
 
     void Update() override final
     {
         LockFPSFromConfig();
-
         UpdateCamera();
-
         Simulate();
-
-        m_Canvas->Clear(glm::vec4(1.0f));
-
-        context::BindPipeline(&m_Pipeline);
-        m_BatchManager->DrawAll();
-
-        // Render 2D text
-        {
-            Text2DComponent text2D("Text2D");
-            stringstream ss;
-            ss << "CPU: " << CPUTime << "\n";
-            ss << "FPS: " << DeltaTime << "\n";
-            ss << "Current Time: " << CurrentTime << "\n";
-            text2D.Text = ss.str();
-
-            m_Text2DRenderer->Draw(text2D, m_Text2dTransform, m_Font);
-        }
-
-        // Render 3D text
-        {
-            Text3DComponent text3D("Text3D");
-            stringstream ss;
-            ss << "CPU: " << CPUTime << "\n";
-            ss << "FPS: " << DeltaTime << "\n";
-            ss << "Current Time: " << CurrentTime << "\n";
-            text3D.Text = ss.str();
-
-            m_Text3DRenderer->Draw(text3D, m_Text3dTransform, m_Font);
-        }
-
-        m_Canvas->Present();
     }
 
     void Free()
     {
         LogInfo("GameApp::Free()");
-
-        delete m_ECS;
-        delete m_Canvas;
-
-        delete m_Camera;
-        delete m_BatchManager;
-
-        delete m_Camera2D;
-
-        delete m_Text2DRenderer;
-        delete m_Text3DRenderer;
     }
 
     void WindowClosed()
@@ -232,12 +174,6 @@ public:
             WindowManager::Close();
         }
 
-        if (key == eKey::R)
-        {
-            ShaderManager::ReloadStage("shaders/window.vs");
-            ShaderManager::ReloadStage("shaders/window.ps");
-        }
-
         MoveLight(key);
     }
 
@@ -248,161 +184,119 @@ public:
 
     void CursorMoved(const double x, const double y)
     {
+        auto& camera = *m_MainScene->PerspectiveCamera;
         if (Input::MousePressed(eMouse::ButtonRight)) {
-            m_Camera->EnableLook = false;
+            camera.EnableLook = false;
             Input::CaptureCursor(x, y);
             auto& cursorDelta = Input::GetMouseCursor().Delta;
-            m_Camera->Pan(cursorDelta);
+            camera.Pan(cursorDelta);
         } else {
-            m_Camera->EnableLook = true;
+            camera.EnableLook = true;
         }
     }
 
 private:
 
-    void InitPipeline() {
-        // setup buffers
-        m_Pipeline.VSBuffers.emplace_back(CameraManager::GetBuffer());
-        m_Pipeline.VSBuffers.emplace_back(TransformManager::GetBuffer());
-        m_Pipeline.PSBuffers.emplace_back(MaterialManager::GetBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetDirectBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetPointBuffer());
-        m_Pipeline.PSBuffers.emplace_back(LightManager::GetSpotBuffer());
-
-        // setup material textures, sampler
-        m_Pipeline.Samplers.emplace_back(&MaterialManager::GetStorage()->Textures.Sampler);
-        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.AlbedoArray);
-        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.BumpArray);
-        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.ParallaxArray);
-        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.MetallicArray);
-        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.RoughnessArray);
-        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.AOArray);
-        m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.EmissionArray);
-
-        // setup shader
-        m_Pipeline.Shader = ShaderManager::CreateShader("window");
-        ShaderManager::AddVertexStageFromFile(m_Pipeline.Shader, "shaders/window.vs");
-        ShaderManager::AddPixelStageFromFile(m_Pipeline.Shader, "shaders/window.ps");
-        ShaderManager::BuildShader(m_Pipeline.Shader);
-
-        // setup input layout
-        m_Layout.Format = Vertex3D::Format;
-        m_Pipeline.InputLayout = m_Layout;
-
-        // setup render target
-        m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
-
-        // setup depth stencil testing
-        m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
-        m_Pipeline.BlendState.UseBlending = K_TRUE;
-
-        // init pipeline
-        context::CreatePipeline(m_Pipeline);
-    }
-
     void InitCamera() {
-        m_PerspectiveCameraComponent.Projection.Far = m_TestConfig.CameraFar;
+        m_MainScene->PerspectiveCamera->Component = string("PerspectiveCamera");
+        m_MainScene->PerspectiveCamera->Component.Projection.Far = m_TestConfig.CameraFar;
         // todo(cheerwizard): BUG - after moving camera, the camera resets position
-        m_PerspectiveCameraComponent.Position = { 5, 5, 20 };
-        m_Camera = new PerspectiveCamera(CameraManager::GetBuffer(), &m_PerspectiveCameraComponent);
-        m_Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
-        m_Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
-        m_Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
-        m_Camera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
-        m_Camera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+        m_MainScene->PerspectiveCamera->Component.Position = { 5, 5, 20 };
+        m_MainScene->PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
+        m_MainScene->PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
+        m_MainScene->PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
+        m_MainScene->PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
+        m_MainScene->PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+
+        m_MainScene->PerspectiveCamera->Init(WindowManager::GetWidth(), WindowManager::GetHeight());
     }
 
-    void InitCamera2D() {
-        m_OrthoCameraComponent.Position = { 0, 0, -1 };
-        m_Camera2D = new OrthoCamera(CameraManager::GetBuffer2D(), &m_OrthoCameraComponent);
+    void InitCamera2D()
+    {
+        m_MainScene->OrthoCamera->Component = string("OrthoCamera");
+        m_MainScene->OrthoCamera->Component.Position = { 0, 0, -1 };
     }
 
-    void UpdateCamera() {
+    void UpdateCamera()
+    {
+        auto& camera = *m_MainScene->PerspectiveCamera;
         if (Input::MousePressed(eMouse::ButtonLeft)) {
-            m_Camera->LookMode = Camera::eLookMode::EDITOR;
+            camera.LookMode = Camera::eLookMode::EDITOR;
         } else {
-            m_Camera->LookMode = Camera::eLookMode::GAME;
+            camera.LookMode = Camera::eLookMode::GAME;
         }
-        m_Camera->Move();
+        camera.Move();
     }
 
-    void MoveLight(const eKey key) {
-        if (key == eKey::Up) {
-            glm::vec3& pos = m_DirectLightComponent.Position;
+    void MoveLight(const eKey key)
+    {
+        auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("DirectLight");
+        auto& pos = directLight->Position;
+
+        if (key == eKey::Up)
+        {
             pos.y += 1;
-            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
 
-        if (key == eKey::Down) {
-            glm::vec3& pos = m_DirectLightComponent.Position;
+        if (key == eKey::Down)
+        {
             pos.y -= 1;
-            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
 
-        if (key == eKey::Left) {
-            glm::vec3& pos = m_DirectLightComponent.Position;
+        if (key == eKey::Left)
+        {
             pos.x -= 1;
-            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
 
-        if (key == eKey::Right) {
-            glm::vec3& pos = m_DirectLightComponent.Position;
+        if (key == eKey::Right)
+        {
             pos.x += 1;
-            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
     }
 
-    void Simulate() {
-        if (m_TestConfig.AnimateLight) {
-            auto& pos = m_DirectLightComponent.Position;
+    void Simulate()
+    {
+        if (m_TestConfig.AnimateLight)
+        {
+            auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("DirectLight");
+            auto& pos = directLight->Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
-            pos.y = 100 * sin(tick++ / 3000.0f);
+            pos.x = 100 * sin(tick / 3000.0f);
+            pos.z = 100 * sin(tick / 3000.0f);
 
             // update light color every N ticks
-            if (tick % 10000 == 0) {
-                auto& color = m_DirectLightComponent.Color;
+            if (tick++ % 10000 == 0)
+            {
+                auto& color = directLight->Color;
                 float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 color = { r, g, b };
             }
-
-            LightManager::FlushDirectLight(m_DirectLightComponent);
         }
     }
 
 private:
-    Canvas* m_Canvas;
-    ECSManager* m_ECS;
 
-    BatchManager* m_BatchManager;
-    TextBatchManager* m_TextBatchManager;
-    Font m_Font;
-    Text2DRenderer* m_Text2DRenderer;
-    Text3DRenderer* m_Text3DRenderer;
+    Ref<ModelLoader> m_ModelLoader;
+    Ref<TextureLoader> m_TextureLoader;
+    Ref<FontLoader> m_FontLoader;
 
-    Pipeline m_Pipeline;
+    Entity m_DirectLight;
+    Entity m_Text3D;
+    Entity m_Cube;
+    Entity m_Plane;
+    Entity m_Spheres;
+    Entity m_WinterGirl;
 
-    InputLayout m_Layout;
-
-    PerspectiveCamera* m_Camera;
-    OrthoCamera* m_Camera2D;
-
-    DirectLightComponent m_DirectLightComponent = string("DirectLight", 0);
-
-    PerspectiveCameraComponent m_PerspectiveCameraComponent = string("PerspectiveCamera");
-    OrthoCameraComponent m_OrthoCameraComponent = string("OrthoCamera");
-
-    TestConfig m_TestConfig;
-
-    TransformComponent m_Text2dTransform = string("Text2DTransform");
-    TransformComponent m_Text3dTransform = string("Text3DTransform");
+    TestConfig m_TestConfig = string("TestConfig");
 };
 
 Application* CreateApplication() {
     Application* app = new GameApp();
+
     // read app configs
     app->Config = string("AppConfig");
     if (!xpe::res::ReadJsonFile("config/config.json", app->Config))
@@ -410,5 +304,6 @@ Application* CreateApplication() {
         FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");
         return 0;
     }
+
     return app;
 }

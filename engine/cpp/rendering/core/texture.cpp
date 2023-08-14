@@ -1,383 +1,334 @@
 #include <rendering/core/texture.h>
-#include <rendering/core/context.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include <stb_image.h>
-#include <stb_image_write.h>
 #include <stb_image_resize.h>
+
+#include <rendering/core/context.hpp>
 
 namespace xpe {
 
     namespace render {
 
-        std::unordered_map<Texture::eFormat, int> TextureManager::ChannelTable = {
+        const std::unordered_map<eTextureFormat, int> Texture::ChannelTable =
+        {
 
-                { Texture::eFormat::R8, 1 },
-                { Texture::eFormat::R16, 1 },
-                { Texture::eFormat::R32, 1 },
+                { eTextureFormat::R8, 1 },
+                { eTextureFormat::R16, 1 },
+                { eTextureFormat::R32, 1 },
 
-                { Texture::eFormat::RG8, 2 },
-                { Texture::eFormat::RG16, 2 },
-                { Texture::eFormat::RG32, 2 },
+                { eTextureFormat::RG8, 2 },
+                { eTextureFormat::RG16, 2 },
+                { eTextureFormat::RG32, 2 },
 
-                { Texture::eFormat::RGB8, 3 },
-                { Texture::eFormat::RGB16, 3 },
-                { Texture::eFormat::RGB32, 3 },
+                { eTextureFormat::RGB8, 3 },
+                { eTextureFormat::RGB16, 3 },
+                { eTextureFormat::RGB32, 3 },
 
-                { Texture::eFormat::RGBA8, 4 },
-                { Texture::eFormat::RGBA16, 4 },
-                { Texture::eFormat::RGBA32, 4 },
+                { eTextureFormat::RGBA8, 4 },
+                { eTextureFormat::RGBA16, 4 },
+                { eTextureFormat::RGBA32, 4 }
 
         };
 
-        // bytes per pixel table for each texture format
-        std::unordered_map<Texture::eFormat, int> TextureManager::BPPTable = {
-                { Texture::eFormat::R8, 1 },
-                { Texture::eFormat::R16, 2 },
-                { Texture::eFormat::R32, 4 },
+        const std::unordered_map<eTextureFormat, int> Texture::BPPTable =
+        {
 
-                { Texture::eFormat::RG8, 2 },
-                { Texture::eFormat::RG16, 4 },
-                { Texture::eFormat::RG32, 8 },
+                { eTextureFormat::R8, 1 },
+                { eTextureFormat::R16, 2 },
+                { eTextureFormat::R32, 4 },
 
-                { Texture::eFormat::RGB8, 3 },
-                { Texture::eFormat::RGB16, 6 },
-                { Texture::eFormat::RGB32, 12 },
+                { eTextureFormat::RG8, 2 },
+                { eTextureFormat::RG16, 4 },
+                { eTextureFormat::RG32, 8 },
 
-                { Texture::eFormat::RGBA8, 4 },
-                { Texture::eFormat::RGBA16, 8 },
-                { Texture::eFormat::RGBA32, 16 },
+                { eTextureFormat::RGB8, 3 },
+                { eTextureFormat::RGB16, 6 },
+                { eTextureFormat::RGB32, 12 },
+
+                { eTextureFormat::RGBA8, 4 },
+                { eTextureFormat::RGBA16, 8 },
+                { eTextureFormat::RGBA32, 16 }
+
         };
 
-        TextureStorage* TextureManager::s_Storage = nullptr;
-
-        TextureStorage::~TextureStorage() {
-            for (auto& texture : Table) {
-                TextureManager::FreeTexture(texture.second);
-            }
-            Table.clear();
-        }
-
-        void TextureManager::Init() {
-            LogInfo("TextureManager::Init()");
-            s_Storage = new TextureStorage();
-            LogInfo("TextureManager initialized");
-        }
-
-        void TextureManager::Free() {
-            LogInfo("TextureManager::Free()");
-            delete s_Storage;
-        }
-
-        Texture* TextureManager::ReadTextureFile(const char *filepath, const Texture::eFormat &format) {
-            auto& table = s_Storage->Table;
-
-            if (table.find(filepath) != table.end()) {
-                return &table[filepath];
-            }
-
-            Texture texture = {};
-            texture.Format = format;
-            texture.Depth = 1;
-            TextureLayer layer = ReadTextureLayerFile(filepath, format, texture.Width, texture.Height, texture.Channels);
-            texture.Layers.emplace_back(layer);
-
-            table[filepath] = texture;
-
-            return &table[filepath];
-        }
-
-        Texture* TextureManager::LoadTextureFile(const char* filePath, const Texture::eFormat& format)
+        Texture::~Texture()
         {
-            Texture* texture = ReadTextureFile(filePath, format);
-            InitTexture(*texture);
-            return texture;
-        }
-
-        TextureLayer TextureManager::ReadTextureLayerFile(
-                const char *filepath,
-                const Texture::eFormat &format, int& width, int& height, int& channels
-        ) {
-            int desiredChannels = ChannelTable.at(format);
-            TextureLayer layer;
-            int w;
-            int h;
-            int c;
-
-            switch (format) {
-
-                case Texture::eFormat::R8:
-                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::R16:
-                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::R32:
-                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RG8:
-                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RG16:
-                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RG32:
-                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGB8:
-                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGB16:
-                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGB32:
-                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGBA8:
-                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGBA16:
-                    layer.Pixels = stbi_load_16(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
-                case Texture::eFormat::RGBA32:
-                    layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
-                    break;
-
+            for (auto& layer : Layers)
+            {
+                layer.Free();
             }
-
-            width = w;
-            height = h;
-            channels = c;
-
-            layer.RowByteSize = width * BPPTable.at(format);
-            layer.FromFile = K_TRUE;
-
-            return layer;
+            Layers.clear();
+            context::FreeTexture(*this);
         }
 
-        Texture* TextureManager::ReadTextureCubeFile(const TextureCubeFile &cubeFile, const Texture::eFormat &format) {
-            auto& table = s_Storage->Table;
-
-            if (table.find(cubeFile.Name) != table.end()) {
-                return &table[cubeFile.Name];
-            }
-
-            Texture textureCube;
-            textureCube.Type = Texture::eType::TEXTURE_CUBE;
-            textureCube.Format = format;
-
-            TextureLayer front = ReadTextureLayerFile(cubeFile.FrontFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
-            TextureLayer back = ReadTextureLayerFile(cubeFile.BackFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
-            TextureLayer right = ReadTextureLayerFile(cubeFile.RightFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
-            TextureLayer left = ReadTextureLayerFile(cubeFile.LeftFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
-            TextureLayer top = ReadTextureLayerFile(cubeFile.TopFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
-            TextureLayer bottom = ReadTextureLayerFile(cubeFile.BottomFilepath, format, textureCube.Width, textureCube.Height, textureCube.Channels);
-
-            textureCube.Layers = {
-                front,
-                back,
-                right,
-                left,
-                top,
-                bottom,
-            };
-
-            table[cubeFile.Name] = textureCube;
-
-            return &table[cubeFile.Name];
-        }
-
-        Texture* TextureManager::LoadTextureCubeFile(const TextureCubeFile &cubeFile, const Texture::eFormat &format) {
-            Texture* texture = ReadTextureCubeFile(cubeFile, format);
-            InitTextureCube(*texture);
-            return texture;
-        }
-
-        void TextureManager::WriteTextureFile(const char* filePath, const Texture& texture, const Texture::eFileFormat& fileFormat)
+        void Texture::Init()
         {
-            void* pixels = texture.Layers.front().Pixels;
-
-            switch (fileFormat) {
-
-                case Texture::eFileFormat::PNG:
-                    stbi_write_png(filePath, texture.Width, texture.Height, texture.Channels, pixels, 0);
-                    break;
-
-                case Texture::eFileFormat::JPG:
-                    stbi_write_jpg(filePath, texture.Width, texture.Height, texture.Channels, pixels, 3);
-                    break;
-
-                case Texture::eFileFormat::TGA:
-                    stbi_write_tga(filePath, texture.Width, texture.Height, texture.Channels, pixels);
-                    break;
-
-                case Texture::eFileFormat::HDR:
-                    stbi_write_hdr(filePath, texture.Width, texture.Height, texture.Channels, (float*) pixels);
-                    break;
-
-                case Texture::eFileFormat::BMP:
-                    stbi_write_bmp(filePath, texture.Width, texture.Height, texture.Channels, pixels);
-                    break;
-
-            }
+            context::CreateTexture(*this);
         }
 
-        void TextureManager::InitTexture(Texture &texture) {
-            context::CreateTexture(texture);
-        }
-
-        void TextureManager::InitTextureCube(Texture &texture) {
-            context::CreateTextureCube(texture);
-        }
-
-        void TextureManager::BindTexture(Texture &texture) {
-            context::BindTexture(&texture);
-        }
-
-        void TextureManager::FreeTexture(Texture &texture)
+        void Texture::RemoveLayerAt(u32 index)
         {
-            for (auto& layer : texture.Layers) {
-                if (layer.Pixels != nullptr) {
-                    if (layer.FromFile == K_TRUE) {
-                        stbi_image_free(layer.Pixels);
-                    }
-                    dealloc(layer.Pixels);
-                }
-                FreeMips(layer);
-            }
-            texture.Layers.clear();
-            context::FreeTexture(texture);
+            auto& layer = Layers[index];
+            layer.Free();
+            Layers.erase(Layers.begin() + index);
         }
 
-        void TextureManager::WriteTexture(Texture &texture) {
-            usize layerSize = texture.Layers.size();
-            for (u32 layerIndex = 0 ; layerIndex < layerSize ; layerIndex++) {
-                WriteTexture(texture, layerIndex);
-            }
-        }
-
-        void TextureManager::WriteTexture(Texture &texture, u32 layerIndex) {
-            context::WriteTexture(
-                    texture,
-                    texture.Layers[layerIndex].Pixels,
-                    texture.Width * texture.Height * BPPTable.at(texture.Format),
-                    layerIndex
-            );
-        }
-
-        Texture TextureManager::ResizeTexture(const Texture& input, int outputWidth, int outputHeight)
+        u32 Texture::GetMipLevels() const
         {
-            Texture output = input;
-            output.Width = outputWidth;
-            output.Height = outputHeight;
+            if (Layers.empty()) {
+                return 1;
+            }
+
+            auto& mips = Layers.front().Mips;
+            return mips.empty() ? 1 : mips.size();
+        }
+
+        u32 Texture::GetMipsLevels(s32 width)
+        {
+            return (u32)(log(width) / log(2)) + 1;
+        }
+
+        void Texture::Resize(s32 width, s32 height)
+        {
+            Texture& input = *this;
+            Texture output = {};
+            output.Width = width;
+            output.Height = height;
 
             switch (input.Format) {
 
-                case Texture::eFormat::R8:
-                    ResizeTextureU8(input, output);
+                case eTextureFormat::R8:
+                    ResizeTextureU8(width, height);
                     break;
 
-                case Texture::eFormat::R32:
-                    ResizeTextureFloat(input, output);
+                case eTextureFormat::R32:
+                    ResizeTextureFloat(width, height);
                     break;
 
-                case Texture::eFormat::RG8:
-                    ResizeTextureU8(input, output);
+                case eTextureFormat::RG8:
+                    ResizeTextureU8(width, height);
                     break;
 
-                case Texture::eFormat::RG32:
-                    ResizeTextureFloat(input, output);
+                case eTextureFormat::RG32:
+                    ResizeTextureFloat(width, height);
                     break;
 
-                case Texture::eFormat::RGB8:
-                    ResizeTextureU8(input, output);
+                case eTextureFormat::RGB8:
+                    ResizeTextureU8(width, height);
                     break;
 
-                case Texture::eFormat::RGB32:
-                    ResizeTextureFloat(input, output);
+                case eTextureFormat::RGB32:
+                    ResizeTextureFloat(width, height);
                     break;
 
-                case Texture::eFormat::RGBA8:
-                    ResizeTextureU8(input, output);
+                case eTextureFormat::RGBA8:
+                    ResizeTextureU8(width, height);
                     break;
 
-                case Texture::eFormat::RGBA32:
-                    ResizeTextureFloat(input, output);
+                case eTextureFormat::RGBA32:
+                    ResizeTextureFloat(width, height);
                     break;
 
             }
 
-            return output;
+            *this = output;
         }
 
-        void TextureManager::ResizeTextureU8(const Texture &input, Texture &output) {
-            usize layerSize = input.Layers.size();
-            for (usize i = 0 ; i < layerSize ; i++) {
-                ResizeTextureLayerU8(
-                        input.Layers[i], input.Width, input.Height, input.Channels,
-                        output.Layers[i], output.Width, output.Height
+        void Texture::ResizeTextureU8(s32 width, s32 height) {
+            for (auto& layer : Layers) {
+                layer.ResizeU8(
+                        Width, Height, Channels,
+                        width, height
                 );
             }
         }
 
-        void TextureManager::ResizeTextureFloat(const Texture &input, Texture &output) {
-            usize layerSize = input.Layers.size();
-            for (usize i = 0 ; i < layerSize ; i++) {
-                ResizeTextureLayerFloat(
-                    input.Layers[i], input.Width, input.Height, input.Channels,
-                    output.Layers[i], output.Width, output.Height
+        void Texture::ResizeTextureFloat(s32 width, s32 height) {
+            for (auto& layer : Layers) {
+                layer.ResizeFloat(
+                        Width, Height, Channels,
+                        width, height
                 );
             }
         }
 
-        void TextureManager::ResizeTextureLayerU8(
-                const TextureLayer &input, int inputWidth, int inputHeight, int channels,
-                TextureLayer &output, int outputWidth, int outputHeight
+        void Texture::Flip()
+        {
+            int bpp = BPPTable.at(Format);
+            for (auto& layer : Layers) {
+                stbi__vertical_flip(layer.Pixels, Width, Height, bpp);
+            }
+        }
+
+        void Texture::GenerateMips()
+        {
+            for (auto& layer : Layers) {
+                layer.GenerateMips(Width, Height, Format);
+            }
+        }
+
+        void Texture::FlushLayer(u32 index)
+        {
+            context::WriteTexture(
+                    *this,
+                    Layers[index].Pixels,
+                    Width * Height * BPPTable.at(Format),
+                    index
+            );
+        }
+
+        void Texture::Flush()
+        {
+            // todo(cheerwizard): crashes sometimes in WriteTexture, so need to be fixed, before using it.
+//            u32 layerCount = Layers.size();
+//            for (u32 i = 0 ; i < layerCount ; i++)
+//            {
+//                FlushLayer(i);
+//            }
+            context::FreeTexture(*this);
+            context::CreateTexture(*this);
+        }
+
+        void TextureLayer::Free()
+        {
+            if (Pixels != nullptr) {
+                if (FromFile == K_TRUE) {
+                    stbi_image_free(Pixels);
+                }
+                dealloc(Pixels);
+                FreeMips();
+            }
+        }
+
+        void TextureLayer::GenerateMips(int width, int height, const eTextureFormat &format)
+        {
+            if (Pixels == nullptr) return;
+
+            int bpp = Texture::BPPTable.at(format);
+            int channels = Texture::ChannelTable.at(format);
+
+            switch (format) {
+
+                case eTextureFormat::R8:
+                    GenerateMipsU8(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::R32:
+                    GenerateMipsFloat(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::R32_TYPELESS:
+                    GenerateMipsFloat(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::RG8:
+                    GenerateMipsU8(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::RG32:
+                    GenerateMipsFloat(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::RGB8:
+                    GenerateMipsU8(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::RGB32:
+                    GenerateMipsFloat(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::RGBA8:
+                    GenerateMipsU8(width, height, bpp, channels);
+                    break;
+
+                case eTextureFormat::RGBA32:
+                    GenerateMipsFloat(width, height, bpp, channels);
+                    break;
+
+            }
+        }
+
+        void TextureLayer::GenerateMipsU8(int width, int height, int bpp, int channels)
+        {
+            void* previousMip = Pixels;
+            while (width != 1 && height != 1)
+            {
+                width /= 2;
+                height /= 2;
+
+                previousMip = ResizePixelsU8(previousMip, width * 2, height * 2, channels, width, height);
+
+                Mips.emplace_back(previousMip, width * bpp);
+            }
+        }
+
+        void TextureLayer::GenerateMipsFloat(int width, int height, int bpp, int channels) {
+            void* previousMip = Pixels;
+            while (width != 1 && height != 1)
+            {
+                width /= 2;
+                height /= 2;
+
+                previousMip = ResizePixelsFloat(previousMip, width * 2, height * 2, channels, width, height);
+
+                Mips.emplace_back(previousMip, width * bpp);
+            }
+        }
+
+        void TextureLayer::FreeMips() {
+            for (auto& mip : Mips) {
+                if (mip.Pixels != nullptr) {
+                    dealloc(mip.Pixels);
+                }
+            }
+            Mips.clear();
+        }
+
+        void TextureLayer::ResizeU8(
+                int inputWidth, int inputHeight, int channels,
+                int outputWidth, int outputHeight
         ) {
+            TextureLayer output = {};
+
             output.Pixels = ResizePixelsU8(
-                    input.Pixels,
+                    Pixels,
                     inputWidth, inputHeight, channels,
                     outputWidth, outputHeight
             );
 
-            if (!input.Mips.empty()) {
-                FreeMips(output);
+            if (!Mips.empty()) {
+                output.FreeMips();
                 int bpp = sizeof(u8) * channels;
-                GenerateMipsU8(output, outputWidth, outputHeight, bpp, channels);
+                output.GenerateMipsU8(outputWidth, outputHeight, bpp, channels);
             }
+
+            *this = output;
         }
 
-        void TextureManager::ResizeTextureLayerFloat(
-                const TextureLayer &input, int inputWidth, int inputHeight, int channels,
-                TextureLayer &output, int outputWidth, int outputHeight
+        void TextureLayer::ResizeFloat(
+                int inputWidth, int inputHeight, int channels,
+                int outputWidth, int outputHeight
         ) {
+            TextureLayer output = {};
+
             output.Pixels = ResizePixelsFloat(
-                    input.Pixels,
+                    Pixels,
                     inputWidth, inputHeight, channels,
                     outputWidth, outputHeight
             );
 
-            if (!input.Mips.empty()) {
-                FreeMips(output);
+            if (!Mips.empty()) {
+                output.FreeMips();
                 int bpp = sizeof(float) * channels;
-                GenerateMipsFloat(output, outputWidth, outputHeight, bpp, channels);
+                output.GenerateMipsFloat(outputWidth, outputHeight, bpp, channels);
             }
+
+            *this = output;
         }
 
-        void* TextureManager::ResizePixelsU8(
+        void* TextureLayer::ResizePixelsU8(
                 const void* inputPixels, int inputWidth, int inputHeight, int channels,
                 int outputWidth, int outputHeight
         ) {
@@ -392,7 +343,7 @@ namespace xpe {
             return output;
         }
 
-        void* TextureManager::ResizePixelsFloat(
+        void* TextureLayer::ResizePixelsFloat(
                 const void* inputPixels, int inputWidth, int inputHeight, int channels,
                 int outputWidth, int outputHeight
         ) {
@@ -405,111 +356,6 @@ namespace xpe {
                     channels
             );
             return output;
-        }
-
-        void TextureManager::FlipTexture(Texture &texture) {
-            int bpp = BPPTable.at(texture.Format);
-            for (auto& layer : texture.Layers) {
-                stbi__vertical_flip(layer.Pixels, texture.Width, texture.Height, bpp);
-            }
-        }
-
-        u32 TextureManager::GetMipLevels(usize width) {
-            return (u32)(log(width) / log(2)) + 1;
-        }
-
-        void TextureManager::GenerateMips(Texture& texture) {
-            for (auto& layer : texture.Layers) {
-                GenerateMips(layer, texture.Width, texture.Height, texture.Format);
-            }
-        }
-
-        void TextureManager::GenerateMips(
-                TextureLayer &textureLayer,
-                int width, int height,
-                const Texture::eFormat &format
-        ) {
-            int bpp = BPPTable.at(format);
-            int channels = ChannelTable.at(format);
-
-            switch (format) {
-
-                case Texture::eFormat::R8:
-                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::R32:
-                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::R32_TYPELESS:
-                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::RG8:
-                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::RG32:
-                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::RGB8:
-                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::RGB32:
-                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::RGBA8:
-                    GenerateMipsU8(textureLayer, width, height, bpp, channels);
-                    break;
-
-                case Texture::eFormat::RGBA32:
-                    GenerateMipsFloat(textureLayer, width, height, bpp, channels);
-                    break;
-
-            }
-        }
-
-        void TextureManager::GenerateMipsU8(
-                TextureLayer &textureLayer, int width, int height,
-                int bpp, int channels
-        ) {
-            void* previousMip = textureLayer.Pixels;
-            while (width != 1 && height != 1) {
-                width /= 2;
-                height /= 2;
-
-                previousMip = ResizePixelsU8(previousMip, width * 2, height * 2, channels, width, height);
-
-                textureLayer.Mips.emplace_back(previousMip, width * bpp);
-            }
-        }
-
-        void TextureManager::GenerateMipsFloat(
-                TextureLayer &textureLayer, int width, int height,
-                int bpp, int channels
-        ) {
-            void* previousMip = textureLayer.Pixels;
-            while (width != 1 && height != 1) {
-                width /= 2;
-                height /= 2;
-
-                previousMip = ResizePixelsFloat(previousMip, width * 2, height * 2, channels, width, height);
-
-                textureLayer.Mips.emplace_back(previousMip, width * bpp);
-            }
-        }
-
-        void TextureManager::FreeMips(TextureLayer& textureLayer) {
-            for (auto& mip : textureLayer.Mips) {
-                if (mip.Pixels != nullptr) {
-                    dealloc(mip.Pixels);
-                }
-            }
-            textureLayer.Mips.clear();
         }
 
     }

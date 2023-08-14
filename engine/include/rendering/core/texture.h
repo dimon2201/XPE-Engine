@@ -8,19 +8,16 @@ namespace xpe {
 
         using namespace core;
 
-        class Context;
-
-        struct Texture;
-
-        struct ENGINE_API TextureComponent : public Component {
-
-            TextureComponent(const string& usid) : Component(usid) {}
-
-            Texture* Texture = nullptr;
-
+        enum class eTextureFormat
+        {
+            R8, R16, R32, R32_TYPELESS,
+            RG8, RG16, RG32,
+            RGB8, RGB16, RGB32,
+            RGBA8, RGBA16, RGBA32
         };
 
-        struct ENGINE_API Mip final {
+        struct ENGINE_API Mip final
+        {
             void* Pixels = nullptr;
             u32 RowByteSize = 0;
 
@@ -28,11 +25,36 @@ namespace xpe {
             Mip(void* pixels, u32 rowByteSize) : Pixels(pixels), RowByteSize(rowByteSize) {}
         };
 
-        struct ENGINE_API TextureLayer final {
+        struct ENGINE_API TextureLayer final
+        {
             void* Pixels = nullptr;
             u32 RowByteSize = 0;
             core::Boolean FromFile = K_FALSE;
             vector<Mip> Mips;
+
+            void Free();
+            void GenerateMips(int width, int height, const eTextureFormat& format);
+            void GenerateMipsU8(int width, int height, int bpp, int channels);
+            void GenerateMipsFloat(int width, int height, int bpp, int channels);
+            void FreeMips();
+
+            void ResizeU8(
+                    int inputWidth, int inputHeight, int channels,
+                    int outputWidth, int outputHeight
+            );
+            void ResizeFloat(
+                    int inputWidth, int inputHeight, int channels,
+                    int outputWidth, int outputHeight
+            );
+
+            void* ResizePixelsU8(
+                    const void* inputPixels, int inputWidth, int inputHeight, int channels,
+                    int outputWidth, int outputHeight
+            );
+            void* ResizePixelsFloat(
+                    const void* inputPixels, int inputWidth, int inputHeight, int channels,
+                    int outputWidth, int outputHeight
+            );
         };
 
         struct ENGINE_API Texture : public GPUResource
@@ -66,22 +88,19 @@ namespace xpe {
                 BMP
             };
 
-            enum class eFormat
-            {
-                R8, R16, R32, R32_TYPELESS,
-                RG8, RG16, RG32,
-                RGB8, RGB16, RGB32,
-                RGBA8, RGBA16, RGBA32
-            };
+            // channels count table for each texture format
+            static const std::unordered_map<eTextureFormat, int> ChannelTable;
+            // bytes per pixel table for each texture format
+            static const std::unordered_map<eTextureFormat, int> BPPTable;
 
             eType Type = eType::TEXTURE_DEFAULT;
             eUsage Usage = eUsage::DEFAULT;
 
-            int Width;
-            int Height;
-            int Depth = 1;
-            int Channels;
-            eFormat Format;
+            s32 Width;
+            s32 Height;
+            s32 Depth = 1;
+            s32 Channels;
+            eTextureFormat Format;
 
             bool EnableRenderTarget = false;
 
@@ -92,14 +111,28 @@ namespace xpe {
             bool InitializeData = true;
             vector<TextureLayer> Layers;
 
-            [[nodiscard]] inline u32 GetMipLevels() const {
-                if (Layers.empty()) {
-                    return 1;
-                }
+            ~Texture();
 
-                auto& mips = Layers.front().Mips;
-                return mips.empty() ? 1 : mips.size();
-            }
+            void Init();
+
+            void RemoveLayerAt(u32 index);
+
+            [[nodiscard]] u32 GetMipLevels() const;
+            static u32 GetMipsLevels(s32 width);
+
+            void Resize(s32 width, s32 height);
+
+            void Flip();
+
+            void GenerateMips();
+
+            void FlushLayer(u32 index);
+
+            void Flush();
+
+        private:
+            void ResizeTextureU8(s32 width, s32 height);
+            void ResizeTextureFloat(s32 width, s32 height);
         };
 
         struct ENGINE_API TextureSampler : public GPUResource
@@ -137,9 +170,9 @@ namespace xpe {
 
             eFilter Filter = eFilter::MIN_MAG_MIP_POINT;
 
-            float MinLOD = 0;
-            float MaxLOD = FLT_MAX;
-            float MipLODBias = 0;
+            f32 MinLOD = 0;
+            f32 MaxLOD = FLT_MAX;
+            f32 MipLODBias = 0;
 
             u32 AnisotropyLevel = 1;
 
@@ -150,94 +183,6 @@ namespace xpe {
             eAddress AddressU = eAddress::CLAMP;
             eAddress AddressV = eAddress::CLAMP;
             eAddress AddressW = eAddress::CLAMP;
-        };
-
-        struct ENGINE_API TextureCubeFile final {
-            string Name = "";
-            const char* FrontFilepath = nullptr;
-            const char* BackFilepath = nullptr;
-            const char* RightFilepath = nullptr;
-            const char* LeftFilepath = nullptr;
-            const char* TopFilepath = nullptr;
-            const char* BottomFilepath = nullptr;
-        };
-
-        struct ENGINE_API TextureStorage : public Object {
-            unordered_map<string, Texture> Table;
-
-            TextureStorage() = default;
-            ~TextureStorage();
-        };
-
-        class ENGINE_API TextureManager final
-        {
-
-        public:
-            // channels count table for each texture format
-            static std::unordered_map<Texture::eFormat, int> ChannelTable;
-            // bytes per pixel table for each texture format
-            static std::unordered_map<Texture::eFormat, int> BPPTable;
-
-        public:
-            static void Init();
-            static void Free();
-
-            static void InitTexture(Texture& texture);
-            static void InitTextureCube(Texture& texture);
-
-            static void BindTexture(Texture& texture);
-
-            static void FreeTexture(Texture& texture);
-
-            static void WriteTexture(Texture& texture);
-            static void WriteTexture(Texture& texture, u32 layerIndex);
-
-            static Texture* ReadTextureFile(const char* filepath, const Texture::eFormat& format);
-            static Texture* LoadTextureFile(const char* filePath, const Texture::eFormat& format);
-            static TextureLayer ReadTextureLayerFile(
-                    const char* filepath,
-                    const Texture::eFormat& format,
-                    int& width, int& height, int& channels
-            );
-            static Texture* ReadTextureCubeFile(const TextureCubeFile& cubeFile, const Texture::eFormat& format);
-            static Texture* LoadTextureCubeFile(const TextureCubeFile& cubeFile, const Texture::eFormat& format);
-
-            static void WriteTextureFile(const char* filePath, const Texture& image, const Texture::eFileFormat& fileFormat);
-            static Texture ResizeTexture(const Texture& input, int outputWidth, int outputHeight);
-            static void FlipTexture(Texture& texture);
-
-            static u32 GetMipLevels(usize width);
-            static void GenerateMips(Texture& texture);
-            static void GenerateMips(TextureLayer& textureLayer, int width, int height, const Texture::eFormat& format);
-            static void GenerateMipsU8(TextureLayer& textureLayer, int width, int height, int bpp, int channels);
-            static void GenerateMipsFloat(TextureLayer& textureLayer, int width, int height, int bpp, int channels);
-
-            static void FreeMips(TextureLayer& textureLayer);
-
-        private:
-            static void ResizeTextureU8(const Texture& input, Texture& output);
-            static void ResizeTextureFloat(const Texture& input, Texture& output);
-
-            static void ResizeTextureLayerU8(
-                    const TextureLayer& input, int inputWidth, int inputHeight, int channels,
-                    TextureLayer& output, int outputWidth, int outputHeight
-            );
-            static void ResizeTextureLayerFloat(
-                    const TextureLayer& input, int inputWidth, int inputHeight, int channels,
-                    TextureLayer& output, int outputWidth, int outputHeight
-            );
-
-            static void* ResizePixelsU8(
-                    const void* inputPixels, int inputWidth, int inputHeight, int channels,
-                    int outputWidth, int outputHeight
-            );
-            static void* ResizePixelsFloat(
-                    const void* inputPixels, int inputWidth, int inputHeight, int channels,
-                    int outputWidth, int outputHeight
-            );
-
-        private:
-            static TextureStorage* s_Storage;
         };
 
     }

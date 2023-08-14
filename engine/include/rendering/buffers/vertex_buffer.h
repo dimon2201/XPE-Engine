@@ -13,18 +13,17 @@ namespace xpe {
         class Context;
 
         template<typename T>
-        class VertexBuffer : public Buffer {
+        class VertexBuffer : public Buffer
+        {
 
         public:
             VertexBuffer() = default;
             VertexBuffer(const usize vertexCount);
+            VertexBuffer(const VertexArray<T>& vertexArray);
+            ~VertexBuffer();
 
         public:
-            void Free();
-
             void Flush();
-
-            void Bind();
 
             void FlushVertex(u32 index, const T& item);
 
@@ -36,7 +35,8 @@ namespace xpe {
 
             void Recreate(const usize count);
 
-            inline T* GetVertex(const u32 index) {
+            inline T* GetVertex(const u32 index)
+            {
                 // check if index is in the size bounds
                 // if not, then resize to index + 1
                 if (index >= Count()) {
@@ -45,11 +45,13 @@ namespace xpe {
                 return &m_VertexArray[index];
             }
 
-            inline VertexArray<T>& GetVertexArray() {
+            inline VertexArray<T>& GetVertexArray()
+            {
                 return m_VertexArray;
             }
 
-            inline usize Count() {
+            inline usize Count()
+            {
                 return m_VertexArray.Count();
             }
 
@@ -60,31 +62,38 @@ namespace xpe {
         template<typename T>
         VertexBuffer<T>::VertexBuffer(const usize vertexCount)
         {
-            m_VertexArray.Init(vertexCount);
             Type = eBufferType::VERTEX;
             StructureSize = sizeof(T);
             NumElements = vertexCount;
             context::CreateBuffer(*this);
+            m_VertexArray.Init(vertexCount);
         }
 
         template<typename T>
-        void VertexBuffer<T>::Free() {
+        VertexBuffer<T>::VertexBuffer(const VertexArray<T>& vertexArray) : m_VertexArray(vertexArray)
+        {
+            Type = eBufferType::VERTEX;
+            StructureSize = sizeof(T);
+            NumElements = vertexArray.Count();
+            context::CreateBuffer(*this);
+            FlushVertices(vertexArray);
+        }
+
+        template<typename T>
+        VertexBuffer<T>::~VertexBuffer()
+        {
             context::FreeBuffer(*this);
-            m_VertexArray.Free();
         }
 
         template<typename T>
-        void VertexBuffer<T>::Flush() {
+        void VertexBuffer<T>::Flush()
+        {
             context::WriteBuffer(*this, m_VertexArray.GetData(), m_VertexArray.Size());
         }
 
         template<typename T>
-        void VertexBuffer<T>::Bind() {
-            context::BindVertexBuffer(this);
-        }
-
-        template<typename T>
-        void VertexBuffer<T>::FlushVertex(u32 index, const T& vertex) {
+        void VertexBuffer<T>::FlushVertex(u32 index, const T& vertex)
+        {
             if (index >= m_VertexArray.Count()) {
                 Resize(index + 1);
             }
@@ -93,7 +102,8 @@ namespace xpe {
         }
 
         template<typename T>
-        void VertexBuffer<T>::FlushVertices(const VertexArray<T> &vertices) {
+        void VertexBuffer<T>::FlushVertices(const VertexArray<T> &vertices)
+        {
             if (vertices.Size() > ByteSize()) {
                 Resize(vertices.Count());
             }
@@ -102,7 +112,8 @@ namespace xpe {
         }
 
         template<typename T>
-        void VertexBuffer<T>::Recreate(const usize vertexCount) {
+        void VertexBuffer<T>::Recreate(const usize vertexCount)
+        {
             NumElements = vertexCount;
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
@@ -110,7 +121,8 @@ namespace xpe {
         }
 
         template<typename T>
-        void VertexBuffer<T>::Resize(const usize vertexCount) {
+        void VertexBuffer<T>::Resize(const usize vertexCount)
+        {
             usize capacity = m_VertexArray.Capacity();
             m_VertexArray.Init(vertexCount);
             if (capacity < vertexCount * StructureSize) {
@@ -119,7 +131,8 @@ namespace xpe {
         }
 
         template<typename T>
-        void VertexBuffer<T>::Reserve(const usize vertexCount) {
+        void VertexBuffer<T>::Reserve(const usize vertexCount)
+        {
             usize capacity = m_VertexArray.Capacity();
             m_VertexArray.Reserve(vertexCount);
             if (capacity < vertexCount * StructureSize) {

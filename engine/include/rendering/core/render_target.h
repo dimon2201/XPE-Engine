@@ -6,17 +6,20 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API DepthStencilState final {
+        struct ENGINE_API DepthStencilState final
+        {
             void* State = nullptr;
             Boolean UseDepthTest;
         };
 
-        struct ENGINE_API BlendState final {
+        struct ENGINE_API BlendState final
+        {
             void* State = nullptr;
             Boolean UseBlending;
         };
 
-        struct ENGINE_API RenderTarget final {
+        struct ENGINE_API RenderTarget final
+        {
             Texture* ColorTexture = nullptr;
             Texture* DepthTexture = nullptr;
             void* ColorTargetView = nullptr;

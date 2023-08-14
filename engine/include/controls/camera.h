@@ -4,6 +4,9 @@
 
 #include <rendering/buffers/camera_buffer.h>
 
+#include <ecs/global.h>
+#include <ecs/components.hpp>
+
 namespace xpe {
 
     namespace control {
@@ -12,16 +15,40 @@ namespace xpe {
         using namespace xpe::render;
         using namespace xpe::ecs;
 
-        class ENGINE_API Camera : public Object {
+        class ENGINE_API Camera : public Global
+        {
 
         public:
 
-            enum class eLookMode {
+            JsonClass(
+                Camera,
+                KeyMoveForward,
+                KeyMoveLeft,
+                KeyMoveBackward,
+                KeyMoveRight,
+                MoveSpeed,
+                ZoomAcceleration,
+                PanAcceleration,
+                HorizontalSensitivity,
+                VerticalSensitivity,
+                Pitch,
+                Yaw,
+                Roll,
+                LookMode,
+                EnableLook,
+                m_ViewWidth,
+                m_ViewHeight,
+                m_Position
+            )
+
+            enum class eLookMode
+            {
                 EDITOR = 1,
                 GAME = -1,
             };
 
-        public:
+            render::CameraBuffer* Buffer = nullptr;
+
             eKey KeyMoveForward = eKey::W;
             eKey KeyMoveLeft = eKey::A;
             eKey KeyMoveBackward = eKey::S;
@@ -42,11 +69,8 @@ namespace xpe {
             bool EnableLook = true;
 
             glm::vec2 GetPanSpeed();
-            float GetZoomSpeed();
 
-        public:
-            Camera(CameraBuffer* cameraBuffer);
-            ~Camera() = default;
+            float GetZoomSpeed();
 
         protected:
 
@@ -100,22 +124,49 @@ namespace xpe {
                 return glm::quat(glm::vec3(-Pitch, -Yaw, Roll));
             }
 
-        protected:
-            CameraBuffer* m_CameraBuffer = nullptr;
             int m_ViewWidth = 0;
             int m_ViewHeight = 0;
             glm::vec3 m_Position = { 0, 0, 0 };
         };
 
+        JsonEnum(Camera::eLookMode, {
+            { Camera::eLookMode::GAME,   "GAME" },
+            { Camera::eLookMode::EDITOR, "EDITOR" }
+        })
+
         class ENGINE_API PerspectiveCamera : public Camera {
 
         public:
-            PerspectiveCameraComponent* Component = nullptr;
+
+            JsonClass(
+                PerspectiveCamera,
+                KeyMoveForward,
+                KeyMoveLeft,
+                KeyMoveBackward,
+                KeyMoveRight,
+                MoveSpeed,
+                ZoomAcceleration,
+                PanAcceleration,
+                HorizontalSensitivity,
+                VerticalSensitivity,
+                Pitch,
+                Yaw,
+                Roll,
+                LookMode,
+                EnableLook,
+                m_ViewWidth,
+                m_ViewHeight,
+                m_Position,
+                MaxFovDegree,
+                MinFovDegree,
+                Component
+            )
+
             float MaxFovDegree = 45.0f;
             float MinFovDegree = 1.0f;
+            PerspectiveCameraComponent Component;
 
-        public:
-            PerspectiveCamera(CameraBuffer* cameraBuffer, PerspectiveCameraComponent* component);
+            void Init(int viewWidth, int viewHeight);
 
             void Move();
 
@@ -146,10 +197,29 @@ namespace xpe {
         class ENGINE_API OrthoCamera : public Camera {
 
         public:
-            OrthoCameraComponent* Component = nullptr;
 
-        public:
-            OrthoCamera(CameraBuffer* cameraBuffer, OrthoCameraComponent* component);
+            JsonClass(
+                OrthoCamera,
+                KeyMoveForward,
+                KeyMoveLeft,
+                KeyMoveBackward,
+                KeyMoveRight,
+                MoveSpeed,
+                ZoomAcceleration,
+                PanAcceleration,
+                HorizontalSensitivity,
+                VerticalSensitivity,
+                Pitch,
+                Yaw,
+                Roll,
+                LookMode,
+                EnableLook,
+                Component
+            )
+
+            OrthoCameraComponent Component;
+
+            void Init(int viewWidth, int viewHeight);
 
             void Move();
 

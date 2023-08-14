@@ -1,26 +1,40 @@
 #pragma once
 
-#include <core/windowing.hpp>
-#include <controls/camera.h>
-
 namespace xpe {
+
+    namespace render
+    {
+        class Canvas;
+        class Renderer;
+        class GeometryStorage;
+        class TextureStorage;
+        class MaterialStorage;
+        class FontStorage;
+    }
+
+    namespace ecs
+    {
+        class MainScene;
+    }
 
     namespace core {
 
-        using namespace xpe::render;
-        using namespace xpe::control;
-
-        class Window;
-
-        class ENGINE_API Game {
+        class ENGINE_API Game : public Object
+        {
 
         public:
             Time* CPUTime;
             Time* DeltaTime;
             Time* CurrentTime;
             AppConfig* Config;
+            ecs::MainScene* MainScene;
+            render::Canvas* Canvas;
+            render::Renderer* Renderer;
+            render::FontStorage* FontStorage;
+            render::GeometryStorage* GeometryStorage;
+            render::MaterialStorage* MaterialStorage;
+            render::TextureStorage* TextureStorage;
 
-        public:
             virtual void Init() {}
             virtual void Update() {}
             virtual void Free() {}

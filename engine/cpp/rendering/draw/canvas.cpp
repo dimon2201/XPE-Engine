@@ -6,7 +6,8 @@ namespace xpe {
 
     namespace render {
 
-        Canvas::Canvas(s32 width, s32 height) {
+        Canvas::Canvas(s32 width, s32 height, Shader* shader) : m_Shader(shader)
+        {
             m_ViewportBuffer.Item.Width = width;
             m_ViewportBuffer.Item.Height = height;
             m_ViewportBuffer.Flush();
@@ -15,23 +16,20 @@ namespace xpe {
             CreatePresentTarget();
             CreatePresentSampler();
 
-            m_Shader = ShaderManager::CreateShader("canvas");
-            ShaderManager::AddVertexStageFromFile(m_Shader, "engine_shaders/canvas.vs");
-            ShaderManager::AddPixelStageFromFile(m_Shader, "engine_shaders/canvas.ps");
-            ShaderManager::BuildShader(m_Shader);
-
-            Input::WindowFrameResizedEvents->AddEvent(this, OnWindowFrameResized<Canvas>, 1);
+            AddWindowFrameResized(Canvas, 1);
         }
 
-        Canvas::Canvas(const glm::ivec2& size) : Canvas(size.x, size.y) {}
+        Canvas::Canvas(const glm::ivec2& size, Shader* shader) : Canvas(size.x, size.y, shader) {}
 
-        Canvas::~Canvas() {
+        Canvas::~Canvas()
+        {
             context::FreeRenderTarget(m_RenderTarget);
-            context::FreeSampler(&m_PresentSampler);
+            context::FreeSampler(m_PresentSampler);
             FreePresentTarget();
         }
 
-        void Canvas::Clear(const glm::vec4& color) {
+        void Canvas::Clear(const glm::vec4& color)
+        {
             context::BindViewport(&m_ViewportBuffer.Item);
             context::BindTextureSlot(0);
             context::BindRenderTarget(m_RenderTarget.ColorTargetView, m_RenderTarget.DepthTargetView);
@@ -40,7 +38,8 @@ namespace xpe {
             context::ClearDepthTarget(1.0f);
         }
 
-        void Canvas::Present() {
+        void Canvas::Present()
+        {
             context::BindRenderTarget(m_PresentTarget.ColorTargetView, m_PresentTarget.DepthTargetView);
             context::BindViewport(&m_ViewportBuffer.Item);
             context::BindShader(m_Shader);
@@ -54,16 +53,18 @@ namespace xpe {
             context::Present();
         }
 
-        void Canvas::WindowFrameResized(int width, int height) {
+        void Canvas::WindowFrameResized(s32 width, s32 height)
+        {
             context::ResizeRenderTarget(m_RenderTarget, width, height);
             context::ResizeSwapchain(m_PresentTarget, width, height);
             m_ViewportBuffer.Flush();
         }
 
-        void Canvas::CreateRenderTarget(int width, int height) {
+        void Canvas::CreateRenderTarget(int width, int height)
+        {
             m_ColorTexture.Width = width;
             m_ColorTexture.Height = height;
-            m_ColorTexture.Format = Texture::eFormat::RGBA8;
+            m_ColorTexture.Format = eTextureFormat::RGBA8;
             m_ColorTexture.InitializeData = false;
             m_ColorTexture.EnableRenderTarget = true;
 
@@ -76,11 +77,13 @@ namespace xpe {
             context::CreateRenderTarget(m_RenderTarget);
         }
 
-        void Canvas::CreatePresentTarget() {
+        void Canvas::CreatePresentTarget()
+        {
             m_PresentTarget.ColorTargetView = context::SwapchainTargetView;
         }
 
-        void Canvas::CreatePresentSampler() {
+        void Canvas::CreatePresentSampler()
+        {
             m_PresentSampler.Filter   = TextureSampler::eFilter::MIN_MAG_MIP_POINT;
             m_PresentSampler.AddressU = TextureSampler::eAddress::CLAMP;
             m_PresentSampler.AddressV = TextureSampler::eAddress::CLAMP;
@@ -90,7 +93,8 @@ namespace xpe {
             context::CreateSampler(m_PresentSampler);
         }
 
-        void Canvas::FreePresentTarget() {
+        void Canvas::FreePresentTarget()
+        {
             context::FreeRenderTarget(m_PresentTarget);
         }
 

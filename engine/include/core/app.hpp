@@ -6,39 +6,42 @@ namespace xpe {
 
     namespace core {
 
-        using namespace xpe::render;
-        using namespace xpe::control;
-
-        class Window;
-
-        class ENGINE_API Application {
+        class ENGINE_API Application : public Object {
 
         public:
             Time CPUTime;              // delta CPU time ms = end time - begin time
             Time DeltaTime;            // delta CurrentTime ms = end time - begin time
             Time CurrentTime;
             AppConfig Config;
+            glm::vec4 ClearColor = { 1, 1, 1, 1 };
 
-        public:
             Application() {}
             ~Application() {}
 
-        public:
             void Run();
 
         protected:
+
             void LockFPSFromConfig();
 
-        protected:
             virtual void Init() {}
             virtual void Update() {}
             virtual void Free() {}
+            virtual void Render();
 
             virtual Game* CreateGame();
             void InitGame();
 
-        protected:
+            virtual void InitRenderer();
+
             Game* m_Game = nullptr;
+            ecs::MainScene* m_MainScene = nullptr;
+            render::Canvas* m_Canvas = nullptr;
+            render::Renderer* m_Renderer = nullptr;
+            render::FontStorage* m_FontStorage = nullptr;
+            render::GeometryStorage* m_GeometryStorage = nullptr;
+            render::MaterialStorage* m_MaterialStorage = nullptr;
+            render::TextureStorage* m_TextureStorage = nullptr;
         };
 
     }

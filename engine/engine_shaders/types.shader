@@ -6,7 +6,7 @@
 #define K_SLOT_INSTANCES2D             register(t1)
 #define K_SLOT_TRANSFORMS              register(t2)
 #define K_SLOT_TRANSFORMS2D            register(t3)
-#define K_SLOT_CAMERAS                 register(t4)
+#define K_SLOT_CAMERA                  register(t4)
 #define K_SLOT_TEXT_GLYPHS             register(t5)
 #define K_SLOT_TEXT_GLYPH_INSTANCES    register(t6)
 #define K_SLOT_VIEWPORT                register(t7)

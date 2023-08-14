@@ -4,13 +4,15 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API MouseState final {
+        struct ENGINE_API MouseState final
+        {
             bool Pressed = false;
             bool Released = false;
             bool Hold = false;
         };
 
-        enum eMouse : u8 {
+        enum eMouse : u8
+        {
             NoneButton             = 16,
 
             Button0                = 0,

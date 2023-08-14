@@ -38,7 +38,8 @@ namespace xpe {
             u32 NumElements = 0;
             u32 Slot = 0;
 
-            [[nodiscard]] inline usize ByteSize() const {
+            [[nodiscard]] inline usize ByteSize() const
+            {
                 return NumElements * StructureSize;
             }
         };

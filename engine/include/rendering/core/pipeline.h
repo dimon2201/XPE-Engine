@@ -11,16 +11,19 @@ namespace xpe {
 
         struct ENGINE_API Pipeline final
         {
-            InputLayout InputLayout;
+            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
+            render::InputLayout InputLayout;
+            Buffer* VertexBuffer = nullptr;
+            Buffer* IndexBuffer = nullptr;
             vector<Buffer*> VSBuffers; // buffers defined in vertex shader
             vector<Buffer*> PSBuffers; // buffers defined in pixel shader
             vector<Texture*> Textures;
             vector<TextureSampler*> Samplers;
-            Shader* Shader = nullptr;
-            RenderTarget* RenderTarget = nullptr;
-            DepthStencilState DepthStencilState;
-            BlendState BlendState;
-            Rasterizer Rasterizer;
+            render::Shader* Shader = nullptr;
+            render::RenderTarget* RenderTarget = nullptr;
+            render::DepthStencilState DepthStencilState;
+            render::BlendState BlendState;
+            render::Rasterizer Rasterizer;
         };
 
     }

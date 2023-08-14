@@ -4,13 +4,15 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API KeyState final {
+        struct ENGINE_API KeyState final
+        {
             bool Pressed = false;
             bool Released = false;
             bool Hold = false;
         };
 
-        enum eKey : u16 {
+        enum eKey : u16
+        {
             None                = 0,
             Space               = 32,
             Apostrophe          = 39, /* ' */

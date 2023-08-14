@@ -12,20 +12,19 @@ namespace xpe {
 
         class Context;
 
-        class IndexBuffer : public Buffer {
+        class IndexBuffer : public Buffer
+        {
 
         public:
             IndexBuffer() = default;
             IndexBuffer(const usize indexCount);
+            IndexBuffer(const IndexArray& indexArray);
+            ~IndexBuffer();
 
         public:
-            void Free();
-
             void Flush();
 
             void FlushIndices(const IndexArray& indices);
-
-            void Bind();
 
             void FlushIndex(u32 i, u32 index);
 

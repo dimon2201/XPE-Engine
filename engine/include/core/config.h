@@ -1,14 +1,12 @@
 #pragma once
 
-#include <res/json.h>
-
 namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API AppConfig : res::JsonObject
+        struct ENGINE_API AppConfig : public res::JsonObject
         {
-            JsonFields(
+            JsonClass(
                 AppConfig,
                 WinTitle,
                 WinWidth,

@@ -3,10 +3,14 @@ cmake_minimum_required(VERSION 3.2)
 project(xpe_loader)
 
 # Include CMake helpers
+include(cmake_tools/CMakeLists.txt)
 include(../engine/cmake_tools/CMakeLists.txt)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
+
+# Defines engine as DLL build
+build_loader_dll()
 
 # Add sources
 file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
@@ -15,14 +19,23 @@ file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
 include_engine(../engine)
 include_directories(
         include
-        thirdparty/assimp/include
+        thirdparty/Assimp142/include
+        thirdparty/Freetype/include
+        thirdparty/stbi
 )
 
 add_engine_definitions()
-add_library(${PROJECT_NAME} ${SOURCE_FILES})
-
-add_subdirectory(thirdparty/assimp)
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
 # Link libraries
 link_engine(${PROJECT_NAME} ../engine)
-target_link_libraries(${PROJECT_NAME} PUBLIC assimp)
+target_link_libraries(${PROJECT_NAME} PUBLIC ../lib/assimp-vc142-mt ../lib/freetype)
+
+# Copy binaries and libs
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mt.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Release/assimp-vc142-mt.dll COPYONLY)
+
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/lib/freetype.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Debug/freetype.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Release/freetype.dll COPYONLY)

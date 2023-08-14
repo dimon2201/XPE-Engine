@@ -30,6 +30,8 @@ namespace xpe {
 
             static string GetAbsolutePath(const char* path);
 
+            static hstring GetDirectory(const char* filepath);
+
         private:
             static void GetFilepath(const string& fullPath, string& pathWithoutFilename);
 
