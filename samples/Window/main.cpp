@@ -111,8 +111,7 @@ public:
 
             GeometryIndexed3DComponent cube("Cube");
             cube.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Cube", Cube());
-            cube.Instance.Transform.Position = { 0, 5, 0 };
-            cube.Instance.Transform.Scale = { 1, 1, 1 };
+            cube.Instance.Transform.Position = { 1, -10, 0 };
             cube.Instance.Material = m_MaterialStorage->Add("CubeMaterial", Material());
 
             m_Cube.AddComponent<GeometryIndexed3DComponent>(cube);
@@ -124,44 +123,8 @@ public:
 
             GeometryIndexed3DComponent plane("Plane");
             plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Plane", Plane());
-            plane.Instance.Transform.Position = { 0, -60, 0 };
+            plane.Instance.Transform.Position = { 0, -10, 0 };
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
-        }
-
-        // setup spheres
-        {
-            m_Spheres = { "Spheres", m_MainScene };
-            GeometryIndexed3DListComponent spheres("Spheres");
-            spheres.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Spheres", Sphere());
-
-            u32 i = 0;
-            for (f32 y = -4.0f; y < 4.0f; y += 4.0f)
-            {
-                for (f32 x = -4.0f; x < 4.0f; x += 4.0f)
-                {
-                    for (f32 z = -4.0f; z < 4.0f; z += 4.0f)
-                    {
-                        float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                        float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                        float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-                        Transform transform;
-                        transform.Position = { x, y, z };
-                        transform.Rotation = { r * 360.0f, g * 360.0f, b * 360.0f };
-                        transform.Scale    = { 1, 1, 1 };
-
-                        string materialName = string(&"SphereMaterial_"[i]);
-                        Ref<Material> material = m_MaterialStorage->Add(materialName, Material());
-                        material->MetallicFactor = r;
-                        material->RoughnessFactor = g;
-                        material->AOFactor = b;
-
-                        spheres.Instances.emplace_back(transform, material);
-                    }
-                }
-
-                m_Spheres.AddComponent<GeometryIndexed3DListComponent>(spheres);
-            }
         }
 
         // setup direct light
@@ -181,8 +144,7 @@ public:
 
             ModelComponent winterGirlModel("Model_WinterGirl");
             winterGirlModel.Model = m_ModelLoader->Load("res/models/winter_girl/winter_girl.obj");
-            winterGirlModel.Transform.Position = { 0, -30, 0 };
-            winterGirlModel.Transform.Scale = { 1, 1, 1 };
+            winterGirlModel.Transform.Position = { 0, -10, 0 };
 
             m_WinterGirl.AddComponent<ModelComponent>(winterGirlModel);
         }
@@ -269,28 +231,25 @@ private:
     void MoveLight(const eKey key)
     {
         auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("DirectLight");
+        auto& pos = directLight->Position;
 
         if (key == eKey::Up)
         {
-            glm::vec3& pos = directLight->Position;
             pos.y += 1;
         }
 
         if (key == eKey::Down)
         {
-            glm::vec3& pos = directLight->Position;
             pos.y -= 1;
         }
 
         if (key == eKey::Left)
         {
-            glm::vec3& pos = directLight->Position;
             pos.x -= 1;
         }
 
         if (key == eKey::Right)
         {
-            glm::vec3& pos = directLight->Position;
             pos.x += 1;
         }
     }
@@ -304,10 +263,11 @@ private:
 
             // translation light up and down every N ticks
             static int tick = 1;
-            pos.y = 100 * sin(tick++ / 3000.0f);
+            pos.x = 100 * sin(tick / 3000.0f);
+            pos.z = 100 * sin(tick / 3000.0f);
 
             // update light color every N ticks
-            if (tick % 10000 == 0)
+            if (tick++ % 10000 == 0)
             {
                 auto& color = directLight->Color;
                 float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);

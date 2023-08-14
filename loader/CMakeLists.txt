@@ -19,7 +19,7 @@ file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
 include_engine(../engine)
 include_directories(
         include
-        thirdparty/Assimp/include
+        thirdparty/Assimp142/include
         thirdparty/Freetype/include
         thirdparty/stbi
 )
@@ -32,10 +32,10 @@ link_engine(${PROJECT_NAME} ../engine)
 target_link_libraries(${PROJECT_NAME} PUBLIC ../lib/assimp-vc142-mt ../lib/freetype)
 
 # Copy binaries and libs
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mt.dll COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Release/assimp-vc142-mt.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mt.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Release/assimp-vc142-mt.dll COPYONLY)
 
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/freetype2/lib/freetype.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/freetype2/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Debug/freetype.dll COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/freetype2/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Release/freetype.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/lib/freetype.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Debug/freetype.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Release/freetype.dll COPYONLY)

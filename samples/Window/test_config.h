@@ -4,6 +4,7 @@ struct TestConfig : xpe::res::JsonObject
 {
     JsonClass(
         TestConfig,
+        AnimateLight,
         CameraFar,
         CameraMoveSpeed,
         CameraZoomAcceleration,
