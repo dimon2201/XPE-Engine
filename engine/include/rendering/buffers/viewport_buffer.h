@@ -7,11 +7,8 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API ViewportBuffer : public ItemBuffer<Viewport> {
-
-        public:
+        struct ENGINE_API ViewportBuffer : public ItemBuffer<Viewport> {
             ViewportBuffer() : ItemBuffer<Viewport>(K_SLOT_VIEWPORT) {}
-
         };
 
     }

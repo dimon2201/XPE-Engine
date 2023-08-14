@@ -22,7 +22,6 @@ include_directories(
         thirdparty/json/include
         thirdparty/spdlog/include
         thirdparty/stbi
-        thirdparty/freetype2/include
 )
 
 # Create shared dynamic library
@@ -35,12 +34,11 @@ target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch
 add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/glfw)
 add_subdirectory(thirdparty/glm)
-add_subdirectory(thirdparty/freetype2)
 add_subdirectory(thirdparty/json)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm freetype nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json)
 
 # Move shaders into bin folder
 copy_engine_shaders(engine)

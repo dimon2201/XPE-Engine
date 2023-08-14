@@ -110,7 +110,7 @@ namespace xpe
         T* MemoryPoolStorage::AllocateConstruct()
         {
             T* address = static_cast<T*>(Allocate(sizeof(T)));
-            new (address) T();
+            ::new (address) T();
             return address;
         }
 
@@ -118,7 +118,7 @@ namespace xpe
         T* MemoryPoolStorage::AllocateConstructArgs(Args &&... args)
         {
             T* address = static_cast<T*>(Allocate(sizeof(T)));
-            new (address) T(std::forward<Args>(args)...);
+            ::new (address) T(std::forward<Args>(args)...);
             return address;
         }
 
@@ -126,10 +126,10 @@ namespace xpe
         {
 
         public:
+
             static MemoryPoolStorage* MainPools;
             static MemoryPoolStorage* HotPools;
 
-        public:
             static void Init();
             static void Free();
             static void FreeMainMemory(void* address);

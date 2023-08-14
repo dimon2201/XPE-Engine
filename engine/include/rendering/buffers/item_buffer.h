@@ -18,9 +18,9 @@ namespace xpe {
         public:
             ItemBuffer() = default;
             ItemBuffer(u32 slot);
+            ~ItemBuffer();
 
         public:
-            void Free();
             void Flush();
             void FlushItem(const T& item);
         };
@@ -37,7 +37,7 @@ namespace xpe {
         }
 
         template<typename T>
-        void ItemBuffer<T>::Free()
+        ItemBuffer<T>::~ItemBuffer()
         {
             context::FreeBuffer(*this);
         }

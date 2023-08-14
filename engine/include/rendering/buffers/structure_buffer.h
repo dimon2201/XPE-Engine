@@ -15,10 +15,9 @@ namespace xpe {
         public:
             StructureBuffer() = default;
             StructureBuffer(usize count, u32 slot);
+            ~StructureBuffer();
 
         public:
-            void Free();
-
             void Flush();
 
             void FlushItem(u32 index, const T& item);
@@ -83,7 +82,7 @@ namespace xpe {
         }
 
         template<typename T>
-        void StructureBuffer<T>::Free()
+        StructureBuffer<T>::~StructureBuffer()
         {
             context::FreeBuffer(*this);
             m_List.clear();

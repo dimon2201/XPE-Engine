@@ -1,10 +1,8 @@
 #pragma once
 
-#include <res/json.h>
-
 struct TestConfig : xpe::res::JsonObject
 {
-    JsonFields(
+    JsonClass(
         TestConfig,
         CameraFar,
         CameraMoveSpeed,

@@ -17,24 +17,24 @@ namespace xpe {
             IDXGIAdapter* s_GIAdapter = nullptr;
             IDXGIFactory* s_GIFactory = nullptr;
 
-            static const std::unordered_map<Texture::eFormat, DXGI_FORMAT> s_TextureFormatTable =
+            static const std::unordered_map<eTextureFormat, DXGI_FORMAT> s_TextureFormatTable =
                     {
-                            { Texture::eFormat::R8, DXGI_FORMAT_R8_UNORM },
-                            { Texture::eFormat::R16, DXGI_FORMAT_R16_UNORM },
-                            { Texture::eFormat::R32, DXGI_FORMAT_R32_FLOAT },
-                            { Texture::eFormat::R32_TYPELESS, DXGI_FORMAT_R32_TYPELESS },
+                            { eTextureFormat::R8, DXGI_FORMAT_R8_UNORM },
+                            { eTextureFormat::R16, DXGI_FORMAT_R16_UNORM },
+                            { eTextureFormat::R32, DXGI_FORMAT_R32_FLOAT },
+                            { eTextureFormat::R32_TYPELESS, DXGI_FORMAT_R32_TYPELESS },
 
-                            { Texture::eFormat::RG8, DXGI_FORMAT_R8G8_UNORM },
-                            { Texture::eFormat::RG16, DXGI_FORMAT_R16G16_UNORM },
-                            { Texture::eFormat::RG32, DXGI_FORMAT_R32G32_FLOAT },
+                            { eTextureFormat::RG8, DXGI_FORMAT_R8G8_UNORM },
+                            { eTextureFormat::RG16, DXGI_FORMAT_R16G16_UNORM },
+                            { eTextureFormat::RG32, DXGI_FORMAT_R32G32_FLOAT },
 
-                            { Texture::eFormat::RGB8, DXGI_FORMAT_R8G8B8A8_UNORM },
-                            { Texture::eFormat::RGB16, DXGI_FORMAT_R16G16B16A16_UNORM },
-                            { Texture::eFormat::RGB32, DXGI_FORMAT_R32G32B32_FLOAT },
+                            { eTextureFormat::RGB8, DXGI_FORMAT_R8G8B8A8_UNORM },
+                            { eTextureFormat::RGB16, DXGI_FORMAT_R16G16B16A16_UNORM },
+                            { eTextureFormat::RGB32, DXGI_FORMAT_R32G32B32_FLOAT },
 
-                            { Texture::eFormat::RGBA8, DXGI_FORMAT_R8G8B8A8_UNORM },
-                            { Texture::eFormat::RGBA16, DXGI_FORMAT_R16G16B16A16_UNORM },
-                            { Texture::eFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
+                            { eTextureFormat::RGBA8, DXGI_FORMAT_R8G8B8A8_UNORM },
+                            { eTextureFormat::RGBA16, DXGI_FORMAT_R16G16B16A16_UNORM },
+                            { eTextureFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
                     };
 
             static const std::unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable =
@@ -883,7 +883,6 @@ namespace xpe {
                     s_ImmContext->Unmap((ID3D11Resource*)texture.Instance, index);
                     LogDebugMessage();
                 }
-
             }
 
             void GenerateMips(const Texture& texture) {
@@ -928,11 +927,11 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void FreeSampler(const TextureSampler* sampler)
+            void FreeSampler(TextureSampler& sampler)
             {
-                if (sampler->Instance != nullptr)
+                if (sampler.Instance != nullptr)
                 {
-                    ((ID3D11SamplerState*)sampler->Instance)->Release();
+                    ((ID3D11SamplerState*)sampler.Instance)->Release();
                     LogDebugMessage();
                 }
             }
@@ -992,7 +991,6 @@ namespace xpe {
                     s_Device->CreateShaderResourceView((ID3D11Resource*)buffer.Instance, &srvDesc, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
                     LogDebugMessage();
                 }
-
             }
 
             void BindVertexBuffer(const Buffer *buffer)
@@ -1042,6 +1040,8 @@ namespace xpe {
 
             void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
             {
+                if (buffer.Instance == nullptr) return;
+
                 D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 
                 s_ImmContext->Map((ID3D11Resource*)buffer.Instance, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
@@ -1055,6 +1055,8 @@ namespace xpe {
 
             void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
+                if (buffer.Instance == nullptr) return;
+
                 D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 
                 s_ImmContext->Map((ID3D11Resource*)buffer.Instance, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
@@ -1107,9 +1109,9 @@ namespace xpe {
                 dealloc(attributes);
             }
 
-            void BindInputLayout(const InputLayout* inputLayout)
+            void BindInputLayout(const InputLayout& inputLayout)
             {
-                s_ImmContext->IASetInputLayout((ID3D11InputLayout*)BoundPipeline->InputLayout.Layout);
+                s_ImmContext->IASetInputLayout((ID3D11InputLayout*) inputLayout.Layout);
                 LogDebugMessage();
             }
 
@@ -1137,82 +1139,10 @@ namespace xpe {
             {
                 if (inputLayout.Layout != nullptr)
                 {
-                    ((ID3D11InputLayout*)inputLayout.Layout)->Release();
+                    ((ID3D11InputLayout*) inputLayout.Layout)->Release();
                     LogDebugMessage();
                     inputLayout.Layout = nullptr;
                 }
-            }
-
-            void CreatePipeline(Pipeline& pipeline)
-            {
-                if (pipeline.Shader == nullptr) {
-                    LogError("Failed to create render pipeline. Shader does not exist.");
-                    assert(false);
-                    return;
-                }
-
-                Blob* vertexBlob = nullptr;
-                for (auto* stage : pipeline.Shader->Stages) {
-                    if (stage->Type == eShaderType::VERTEX) {
-                        vertexBlob = &stage->Blob;
-                    }
-                }
-
-                if (vertexBlob == nullptr) {
-                    LogError("Failed to create render pipeline. Shader has no Vertex stage.");
-                    assert(false);
-                    return;
-                }
-
-                pipeline.InputLayout.VertexBlob = vertexBlob;
-                CreateInputLayout(pipeline.InputLayout);
-
-                CreateDepthStencilState(pipeline.DepthStencilState);
-            
-            CreateBlendState(pipeline.BlendState);
-
-                CreateRasterizer(pipeline.Rasterizer);
-            }
-
-            void BindPipeline(const Pipeline* pipeline)
-            {
-                BoundPipeline = (Pipeline*) pipeline;
-                Pipeline& boundPipeline = *BoundPipeline;
-
-                BindInputLayout(&boundPipeline.InputLayout);
-
-                for (const auto* buffer : boundPipeline.VSBuffers) {
-                    BindVSBuffer(buffer);
-                }
-
-                for (const auto* buffer : boundPipeline.PSBuffers) {
-                    BindPSBuffer(buffer);
-                }
-
-                for (const auto* texture : boundPipeline.Textures) {
-                    BindTexture(texture);
-                }
-
-                for (const auto* sampler : boundPipeline.Samplers) {
-                    BindSampler(sampler);
-                }
-
-                BindShader(boundPipeline.Shader);
-
-                BindRenderTarget(boundPipeline.RenderTarget->ColorTargetView, boundPipeline.RenderTarget->DepthTargetView);
-
-                BindDepthStencilState(&boundPipeline.DepthStencilState);
-
-            BindBlendState(&boundPipeline.BlendState);
-
-                BindRasterizer(&boundPipeline.Rasterizer);
-            }
-
-            void FreePipeline(Pipeline& pipeline)
-            {
-                FreeInputLayout(pipeline.InputLayout);
-                FreeDepthStencilState(pipeline.DepthStencilState);
-                FreeRasterizer(pipeline.Rasterizer);
             }
 
             void CreateDepthStencilState(DepthStencilState& state)
@@ -1223,13 +1153,13 @@ namespace xpe {
                 dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
                 dsDesc.StencilEnable = FALSE;
 
-                s_Device->CreateDepthStencilState(&dsDesc, (ID3D11DepthStencilState**)&state.State);
+                s_Device->CreateDepthStencilState(&dsDesc, (ID3D11DepthStencilState**) &state.State);
                 LogDebugMessage();
             }
 
             void BindDepthStencilState(const DepthStencilState* state)
             {
-                s_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*)state->State, 0);
+                s_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*) state->State, 0);
                 LogDebugMessage();
             }
 
@@ -1237,7 +1167,7 @@ namespace xpe {
             {
                 if (state.State != nullptr)
                 {
-                    ((ID3D11DepthStencilState*)state.State)->Release();
+                    ((ID3D11DepthStencilState*) state.State)->Release();
                     LogDebugMessage();
                     state.State = nullptr;
                 }
@@ -1257,13 +1187,13 @@ namespace xpe {
                 bsDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
                 bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-                s_Device->CreateBlendState(&bsDesc, (ID3D11BlendState**)&state.State);
+                s_Device->CreateBlendState(&bsDesc, (ID3D11BlendState**) &state.State);
                 LogDebugMessage();
             }
 
             void BindBlendState(const BlendState* state)
             {
-                s_ImmContext->OMSetBlendState((ID3D11BlendState*)state->State, nullptr, 0xffffffff);
+                s_ImmContext->OMSetBlendState((ID3D11BlendState*) state->State, nullptr, 0xffffffff);
                 LogDebugMessage();
             }
 
@@ -1291,7 +1221,7 @@ namespace xpe {
                 desc.MultisampleEnable = rasterizer.MultisampleEnable;
                 desc.AntialiasedLineEnable = rasterizer.AntialiasedLineEnable;
 
-                s_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**)&rasterizer.State);
+                s_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**) &rasterizer.State);
             }
 
             void BindRasterizer(const Rasterizer *rasterizer)
@@ -1307,13 +1237,13 @@ namespace xpe {
                 }
             }
 
-            void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount)
+            void DrawIndexed(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount)
             {
                 s_ImmContext->DrawIndexedInstanced(indexCount, instanceCount, 0, vertexOffset, indexOffset);
                 LogDebugMessage();
             }
 
-            void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount)
+            void DrawVertexed(usize vertexOffset, usize vertexCount, usize instanceCount)
             {
                 s_ImmContext->DrawInstanced(vertexCount, instanceCount, 0, vertexOffset);
                 LogDebugMessage();

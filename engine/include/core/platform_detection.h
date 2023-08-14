@@ -11,7 +11,7 @@
 
 #else
 /* Windows x86 */
-		#error "x86 Builds are not supported!"
+#error "x86 Builds are not supported!"
 
 #endif
 
@@ -56,7 +56,7 @@
 #else
 
 /* Unknown compiler/platform */
-	#error "Unknown platform!"
+#error "Unknown platform!"
 
 #endif
 

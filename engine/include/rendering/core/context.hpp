@@ -34,8 +34,6 @@ namespace xpe {
             extern Viewport* BoundViewport;
             extern void* BoundColorTargetView;
             extern void* BoundDepthTargetView;
-            extern Shader* BoundShader;
-            extern Pipeline* BoundPipeline;
 
             ENGINE_API void Init();
             ENGINE_API void Free();
@@ -83,7 +81,7 @@ namespace xpe {
 
             ENGINE_API void CreateSampler(TextureSampler& sampler);
             ENGINE_API void BindSampler(const TextureSampler* sampler);
-            ENGINE_API void FreeSampler(const TextureSampler* sampler);
+            ENGINE_API void FreeSampler(TextureSampler& sampler);
 
             ENGINE_API void CreateBuffer(Buffer& buffer);
             ENGINE_API void BindVertexBuffer(const Buffer* buffer);
@@ -95,7 +93,7 @@ namespace xpe {
             ENGINE_API void FreeBuffer(const Buffer& buffer);
 
             ENGINE_API void CreateInputLayout(InputLayout& inputLayout);
-            ENGINE_API void BindInputLayout(const InputLayout* inputLayout);
+            ENGINE_API void BindInputLayout(const InputLayout& inputLayout);
             ENGINE_API void FreeInputLayout(InputLayout& inputLayout);
 
             ENGINE_API void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology);
@@ -103,7 +101,7 @@ namespace xpe {
             ENGINE_API void BindViewport(Viewport* viewport);
 
             ENGINE_API void CreatePipeline(Pipeline& pipeline);
-            ENGINE_API void BindPipeline(const Pipeline* pipeline);
+            ENGINE_API void BindPipeline(Pipeline& pipeline);
             ENGINE_API void FreePipeline(Pipeline& pipeline);
 
             ENGINE_API void CreateDepthStencilState(DepthStencilState& state);
@@ -118,8 +116,8 @@ namespace xpe {
             ENGINE_API void BindBlendState(const BlendState* state);
             ENGINE_API void FreeBlendState(BlendState& state);
 
-            ENGINE_API void DrawBatch(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount);
-            ENGINE_API void DrawBatch(usize vertexOffset, usize vertexCount, usize instanceCount);
+            ENGINE_API void DrawIndexed(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount);
+            ENGINE_API void DrawVertexed(usize vertexOffset, usize vertexCount, usize instanceCount);
 
             ENGINE_API void DrawQuad();
 

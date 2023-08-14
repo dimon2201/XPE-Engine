@@ -11,14 +11,14 @@ namespace xpe {
         {
 
         public:
-            Canvas(s32 width, s32 height);
-            Canvas(const glm::ivec2& size);
+            Canvas(s32 width, s32 height, Shader* shader);
+            Canvas(const glm::ivec2& size, Shader* shader);
             ~Canvas();
 
             void Clear(const glm::vec4& color);
             void Present();
 
-            void WindowFrameResized(int width, int height);
+            void WindowFrameResized(s32 width, s32 height);
 
             inline RenderTarget* GetRenderTarget() { return &m_RenderTarget; }
             inline Shader* GetShader() { return m_Shader; }

@@ -18,32 +18,24 @@ namespace xpe
         using f64 = double;
         using dword = u32;
         using qword = u64;
+
         #if defined(__ILP32__) || defined(__arm__) || defined(_M_ARM) || defined(__i386__) || defined(_M_IX86) || defined(_X86_)
             // 32-bit machine
             using ssize = s32;
             using usize = u32;
             using sword = s32;
             using uword = u32;
+
         #elif defined(__amd64__) || defined(_M_AMD64) || defined(_M_X64) || defined(__aarch64__) || defined(__ia64__) || defined(_M_IA64)
             // 64-bit machine
             using ssize = s64;
             using usize = u64;
             using sword = s64;
             using uword = u64;
+
         #endif
+
         using Boolean = uword;
-
-        class ENGINE_API Object
-        {
-            public:
-                Object() = default;
-                ~Object() = default;
-
-                uword GetType();
-
-                void* operator new(size_t byteSize);
-                void operator delete(void* address);
-        };
 
         constexpr Boolean K_TRUE                    = 1;
         constexpr Boolean K_FALSE                   = 0;

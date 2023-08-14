@@ -6,9 +6,8 @@ namespace xpe {
 
     namespace render {
 
-        class Context;
-
-        enum class eShaderType {
+        enum class eShaderType
+        {
             VERTEX = 0,
             PIXEL = 1,
             GEOMETRY = 2,
@@ -17,10 +16,11 @@ namespace xpe {
             COMPUTE = 5,
         };
 
-        struct ENGINE_API ShaderStage final {
+        struct ENGINE_API ShaderStage final
+        {
             GPUResource Resource;
             eShaderType Type;
-            Blob Blob;
+            render::Blob Blob;
             string Source;
             const char* EntryPoint = nullptr;
             const char* Profile = nullptr;
@@ -33,19 +33,22 @@ namespace xpe {
             ShaderStage(const string& id, eShaderType type) : Type(type), ID(id) {}
         };
 
-        struct ENGINE_API Shader {
+        struct ENGINE_API Shader
+        {
             string ID = "Untitled";
             vector<ShaderStage*> Stages;
         };
 
-        struct ENGINE_API ShaderStorage : public Object {
+        struct ENGINE_API ShaderStorage : public Object
+        {
             unordered_map<string, ShaderStage> ShaderStages;
             unordered_map<string, Shader> Shaders;
 
             ~ShaderStorage();
         };
 
-        class ENGINE_API ShaderManager final {
+        class ENGINE_API ShaderManager final
+        {
 
         public:
             static void Init();

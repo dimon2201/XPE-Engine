@@ -4,7 +4,8 @@ namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API Sphere final {
+        struct ENGINE_API Sphere final
+        {
             glm::vec3 Center;
             float Radius;
 

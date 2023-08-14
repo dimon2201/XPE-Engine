@@ -7,7 +7,8 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API InputLayout final {
+        struct ENGINE_API InputLayout final
+        {
             void* Layout;
             Blob* VertexBlob = nullptr;
             VertexFormat Format;

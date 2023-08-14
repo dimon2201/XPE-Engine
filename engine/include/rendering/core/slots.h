@@ -12,7 +12,7 @@ namespace xpe {
         const core::u32 K_SLOT_INSTANCES2D             = 1;
         const core::u32 K_SLOT_TRANSFORMS              = 2;
         const core::u32 K_SLOT_TRANSFORMS2D            = 3;
-        const core::u32 K_SLOT_CAMERAS                 = 4;
+        const core::u32 K_SLOT_CAMERA                  = 4;
         const core::u32 K_SLOT_TEXT_GLYPHS             = 5;
         const core::u32 K_SLOT_TEXT_GLYPH_INSTANCES    = 6;
         const core::u32 K_SLOT_VIEWPORT                = 7;

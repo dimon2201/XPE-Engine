@@ -6,7 +6,8 @@ namespace xpe
     {
         class Application;
 
-        enum class eCursorMode {
+        enum class eCursorMode
+        {
             NORMAL,
             HIDE,
             DISABLE,
@@ -15,7 +16,8 @@ namespace xpe
             DEFAULT = NORMAL
         };
 
-        enum class eWindowTheme {
+        enum class eWindowTheme
+        {
             LIGHT,
             DARK,
 
@@ -34,13 +36,15 @@ namespace xpe
             eWindowTheme Theme = eWindowTheme::DEFAULT;
         };
 
-        struct ENGINE_API Window final {
+        struct ENGINE_API Window final
+        {
             void* Instance = nullptr;
             void* Win32Instance = nullptr;
             WindowDescriptor Descriptor;
         };
 
-        class ENGINE_API WindowManager final {
+        class ENGINE_API WindowManager final
+        {
 
         public:
             static void Init();
@@ -90,14 +94,12 @@ namespace xpe
         private:
             static void CreatePrimaryMonitor();
 
-        private:
             static Window s_Window;
             static int s_WindowModeX;
             static int s_WindowModeY;
             static int s_WindowModeWidth;
             static int s_WindowModeHeight;
             static bool s_EnableFullscreen;
-
         };
 
     }

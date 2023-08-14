@@ -50,9 +50,12 @@
 // Core
 #include <core/build.h>
 #include <core/types.hpp>
+#include <core/object.h>
 #include <core/keycodes.h>
 #include <core/mousecodes.h>
+#include <core/gamepadcodes.h>
 #include <core/singleton.h>
+#include <res/json.h>
 #include <core/config.h>
 #include <os/hardware_config.h>
 #include <core/memory_pool.hpp>
@@ -77,10 +80,10 @@
 #include <core/timer.hpp>
 #include <core/logger.h>
 #include <core/debug_break.h>
-#include <core/ecs.hpp>
 
 // Math
 #include <math/math.h>
+#include <math/transform.h>
 #include <math/matrices.h>
 #include <math/sphere.h>
 #include <math/raycast.h>

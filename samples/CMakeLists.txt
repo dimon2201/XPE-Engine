@@ -14,14 +14,14 @@ add_engine_definitions()
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 link_engine(${PROJECT_NAME} ../engine)
-target_link_libraries(${PROJECT_NAME} PUBLIC xpe_loader)
+link_loader(${PROJECT_NAME} ../loader)
 
 # move files, shaders, configs into bin folder
 copy_build_dir(samples/config config)
-copy_build_dir(samples/resources resources)
+copy_build_dir(samples/res res)
 copy_build_dir(samples/shaders shaders)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
     copy_build_dir(samples/config ${CONFIG}/config)
-    copy_build_dir(samples/resources ${CONFIG}/resources)
+    copy_build_dir(samples/res ${CONFIG}/res)
     copy_build_dir(samples/shaders ${CONFIG}/shaders)
 endforeach()

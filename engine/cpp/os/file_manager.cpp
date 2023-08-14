@@ -188,6 +188,12 @@ namespace xpe {
             return fs::absolute(path).string().c_str();
         }
 
+        hstring FileManager::GetDirectory(const char *filepath)
+        {
+            hstring filepathStr = filepath;
+            return filepathStr.substr(0, filepathStr.find_last_of('/'));
+        }
+
     }
 
 }

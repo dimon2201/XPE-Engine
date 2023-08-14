@@ -10,8 +10,8 @@ namespace xpe {
         using namespace core;
 
         template<typename T>
-        struct VertexArray final {
-
+        struct VertexArray final
+        {
             vector<T> Data;
 
             inline usize Size() const { return Data.size() * sizeof(T); }
@@ -27,44 +27,24 @@ namespace xpe {
             inline usize Capacity() const { return Data.capacity(); }
 
             void Init(usize count);
-            void Free();
-
-            void CopyFrom(VertexArray<T>* src);
-            void MoveFrom(VertexArray<T>* src);
-
             void Reserve(usize count);
-
         };
 
         template<typename T>
-        void VertexArray<T>::Init(usize count) {
+        void VertexArray<T>::Init(usize count)
+        {
             Data.resize(count);
         }
 
         template<typename T>
-        void VertexArray<T>::Free() {
-            Data.clear();
-        }
-
-        template<typename T>
-        void VertexArray<T>::CopyFrom(VertexArray<T>* src) {
-            Data.resize(src->Size());
-            memcpy(Data.data(), src->Data.data(), src->Size());
-        }
-
-        template<typename T>
-        void VertexArray<T>::MoveFrom(VertexArray<T> *src) {
-            Data.resize(src->Size());
-            memmove(Data.data(), src->Data.data(), src->Size());
-        }
-
-        template<typename T>
-        void VertexArray<T>::Reserve(usize count) {
+        void VertexArray<T>::Reserve(usize count)
+        {
             Data.reserve(count);
         }
 
         template<typename T>
-        static void InitUV(T* v0, T* v1, T* v2, T* v3) {
+        static void InitUV(T* v0, T* v1, T* v2, T* v3)
+        {
             v0->UV = { 0, 0 };
             v1->UV = { 0, 1 };
             v2->UV = { 1, 1 };
@@ -72,7 +52,8 @@ namespace xpe {
         }
 
         template<typename T>
-        static void InitNormal(T* v0, T* v1, T* v2) {
+        static void InitNormal(T* v0, T* v1, T* v2)
+        {
             glm::vec3 x1 = v1->Position - v0->Position;
             glm::vec3 x2 = v2->Position - v0->Position;
             glm::vec3 normal = -glm::normalize(glm::cross(x1, x2));
@@ -82,7 +63,8 @@ namespace xpe {
         }
 
         template<typename T>
-        static void InitNormal(T* v0, T* v1, T* v2, T* v3) {
+        static void InitNormal(T* v0, T* v1, T* v2, T* v3)
+        {
             glm::vec3 x1 = v1->Position - v0->Position;
             glm::vec3 x2 = v3->Position - v0->Position;
             glm::vec3 normal = -glm::normalize(glm::cross(x1, x2));
@@ -93,7 +75,8 @@ namespace xpe {
         }
 
         template<typename T>
-        static void InitTBN(T* v0, T* v1, T* v2, T* v3) {
+        static void InitTBN(T* v0, T* v1, T* v2, T* v3)
+        {
             glm::vec3& pos0 = v0->Position;
             glm::vec3& pos1 = v1->Position;
             glm::vec3& pos2 = v2->Position;
@@ -119,7 +102,8 @@ namespace xpe {
             v3->Tangent = tangent;
         }
 
-        struct ENGINE_API IndexArray final {
+        struct ENGINE_API IndexArray final
+        {
             vector<u32> Data;
 
             inline usize Size() const { return Data.size() * sizeof(u32); }
@@ -133,18 +117,11 @@ namespace xpe {
             inline usize Capacity() const { return Data.capacity(); }
 
             void Init(usize count);
-            void Free();
-
-            void CopyFrom(IndexArray* src);
-            void CopyFrom(u32* indices, usize count);
-
-            void MoveFrom(IndexArray* src);
-            void MoveFrom(u32* indices, usize count);
-
             void Reserve(usize count);
         };
 
-        struct ENGINE_API GeometryIndexedFormat final {
+        struct ENGINE_API GeometryIndexedFormat final
+        {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             u64 USID;
             usize VertexOffset = 0;
@@ -164,13 +141,15 @@ namespace xpe {
         };
 
         template<typename T>
-        struct GeometryIndexed : public Object {
+        struct GeometryIndexed : public Object
+        {
+            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             VertexArray<T> Vertices;
             IndexArray Indices;
-            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
         };
 
-        struct ENGINE_API GeometryVertexedFormat final {
+        struct ENGINE_API GeometryVertexedFormat final
+        {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             u64 USID;
             usize VertexOffset = 0;
@@ -186,9 +165,10 @@ namespace xpe {
         };
 
         template<typename T>
-        struct GeometryVertexed : public Object {
-            VertexArray<T> Vertices;
+        struct GeometryVertexed : public Object
+        {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
+            VertexArray<T> Vertices;
         };
 
     }

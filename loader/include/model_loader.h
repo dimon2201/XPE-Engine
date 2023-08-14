@@ -1,6 +1,10 @@
 #pragma once
 
-#include <rendering/core/texture.h>
+#include <build.h>
+
+#include <material_loader.h>
+
+#include <rendering/storages/geometry_storage.h>
 
 namespace xpe {
 
@@ -8,43 +12,12 @@ namespace xpe {
 
         using namespace core;
         using namespace render;
+        using namespace math;
 
-        struct MeshResource final
+        class LOADER_API ModelLoader : public Object
         {
 
-        };
-
-        struct TextureResource final
-        {
-            int Width = 0;
-            int Height = 0;
-            Texture::eFormat Format = Texture::eFormat::RGB8;
-            void* Pixels = nullptr;
-
-            TextureResource() = default;
-
-            TextureResource(const Texture::eFormat format) : Format(format) {}
-        };
-
-        struct MaterialResource final
-        {
-            TextureResource Albedo = Texture::eFormat::RGB8;
-            TextureResource Bump = Texture::eFormat::RGB8;
-            TextureResource Parallax = Texture::eFormat::R8;
-            TextureResource Metallic = Texture::eFormat::R8;
-            TextureResource Roughness = Texture::eFormat::R8;
-            TextureResource AO = Texture::eFormat::R8;
-            TextureResource Emission = Texture::eFormat::RGB8;
-        };
-
-        struct ModelResource final
-        {
-            vector<MeshResource> Meshes;
-            unordered_map<u32, MaterialResource> Materials;
-        };
-
-        struct ModelLoader final
-        {
+        public:
 
             enum class eOption
             {
@@ -54,9 +27,20 @@ namespace xpe {
                 OPTIMIZE_MESHES
             };
 
-        public:
-            ModelResource Load(const char* filepath, const vector<eOption>& options);
+            ModelLoader(GeometryStorage* geometryStorage, MaterialStorage* materialStorage)
+            : m_Storage(geometryStorage), m_MaterialLoader(materialStorage) {}
 
+            Ref<Model3D> Load(const char* filepath, const vector<eOption>& options = {
+                    eOption::TRIANGULATE,
+                    eOption::FLIP_UV,
+                    eOption::CALC_TANGENTS,
+                    eOption::OPTIMIZE_MESHES,
+            });
+
+        private:
+            GeometryStorage* m_Storage = nullptr;
+            MaterialLoader m_MaterialLoader;
+            unordered_map<hstring, const aiScene*> m_Scenes;
         };
 
     }

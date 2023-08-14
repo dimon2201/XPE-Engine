@@ -9,40 +9,31 @@ namespace xpe {
         {
 
         public:
-            Scope();
-            template<typename ... Args>
-            Scope(Args &&... args);
 
-        public:
+            Scope() = default;
+
+            template<typename ... Args>
+            void Create(Args &&... args);
+
             void Reset();
 
             inline auto& GetPtr() { return m_Ptr; }
-
-            inline T& operator*() const noexcept { return m_Ptr.template operator*(); }
-            inline T* operator->() const noexcept { return m_Ptr.template operator->(); }
-            T* get() const noexcept { return m_Ptr.get(); }
-            explicit operator bool() const noexcept { return m_Ptr; }
+            inline T* Get() const noexcept { return m_Ptr.get(); }
+            inline T& operator*() const noexcept { return *m_Ptr.get(); }
+            inline T* operator->() const noexcept { return m_Ptr.get(); }
+            inline explicit operator bool() const noexcept { return m_Ptr.get(); }
 
         private:
-            std::unique_ptr<T, void(*)(void*)> m_Ptr;
+            std::unique_ptr<T> m_Ptr;
         };
 
         template<typename T>
-        Scope<T>::Scope()
-        {
-            m_Ptr = {
-                    alloc_construct(T),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
-            };
-        }
-
-        template<typename T>
         template<typename... Args>
-        Scope<T>::Scope(Args &&... args)
+        void Scope<T>::Create(Args &&... args)
         {
             m_Ptr = {
-                    alloc_construct_args(T, std::forward<Args>(args)...),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
+                alloc_construct_args(T, std::forward<Args>(args)...),
+                xpe::core::MemoryPoolManager::FreeMainMemory
             };
         }
 
@@ -57,40 +48,31 @@ namespace xpe {
         {
 
         public:
-            Ref();
-            template<typename ... Args>
-            Ref(Args &&... args);
 
-        public:
+            Ref() = default;
+
+            template<typename ... Args>
+            void Create(Args &&... args);
+
             void Reset();
 
             inline auto& GetPtr() { return m_Ptr; }
-
-            inline T& operator*() const noexcept { return m_Ptr.template operator*(); }
-            inline T* operator->() const noexcept { return m_Ptr.template operator->(); }
-            T* get() const noexcept { return m_Ptr.get(); }
-            explicit operator bool() const noexcept { return m_Ptr; }
+            inline T* Get() const noexcept { return m_Ptr.get(); }
+            inline T& operator*() const noexcept { return *m_Ptr.get(); }
+            inline T* operator->() const noexcept { return m_Ptr.get(); }
+            inline explicit operator bool() const noexcept { return m_Ptr.get(); }
 
         private:
             std::shared_ptr<T> m_Ptr;
         };
 
         template<typename T>
-        Ref<T>::Ref()
-        {
-            m_Ptr = {
-                    alloc_construct(T),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
-            };
-        }
-
-        template<typename T>
         template<typename... Args>
-        Ref<T>::Ref(Args &&... args)
+        void Ref<T>::Create(Args &&... args)
         {
             m_Ptr = {
-                    alloc_construct_args(T, std::forward<Args>(args)...),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
+                alloc_construct_args(T, std::forward<Args>(args)...),
+                xpe::core::MemoryPoolManager::FreeMainMemory
             };
         }
 
@@ -105,40 +87,31 @@ namespace xpe {
         {
 
         public:
-            Weak();
-            template<typename ... Args>
-            Weak(Args &&... args);
 
-        public:
+            Weak() = default;
+
+            template<typename ... Args>
+            void Create(Args &&... args);
+
             void Reset();
 
             inline auto& GetPtr() { return m_Ptr; }
-
-            inline T& operator*() const noexcept { return m_Ptr.template operator*(); }
-            inline T* operator->() const noexcept { return m_Ptr.template operator->(); }
-            T* get() const noexcept { return m_Ptr.get(); }
-            explicit operator bool() const noexcept { return m_Ptr; }
+            inline T* Get() const noexcept { return m_Ptr.get(); }
+            inline T& operator*() const noexcept { return *m_Ptr.get(); }
+            inline T* operator->() const noexcept { return m_Ptr.get(); }
+            inline explicit operator bool() const noexcept { return m_Ptr.get(); }
 
         private:
             std::weak_ptr<T> m_Ptr;
         };
 
         template<typename T>
-        Weak<T>::Weak()
-        {
-            m_Ptr = {
-                    alloc_construct(T),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
-            };
-        }
-
-        template<typename T>
         template<typename... Args>
-        Weak<T>::Weak(Args &&... args)
+        void Weak<T>::Create(Args &&... args)
         {
             m_Ptr = {
-                    alloc_construct_args(T, std::forward<Args>(args)...),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
+                alloc_construct_args(T, std::forward<Args>(args)...),
+                xpe::core::MemoryPoolManager::FreeMainMemory
             };
         }
 
@@ -153,40 +126,31 @@ namespace xpe {
         {
 
         public:
-            HotScope();
-            template<typename ... Args>
-            HotScope(Args &&... args);
 
-        public:
+            HotScope() = default;
+
+            template<typename ... Args>
+            void Create(Args &&... args);
+
             void Reset();
 
             inline auto& GetPtr() { return m_Ptr; }
-
-            inline T& operator*() const noexcept { return m_Ptr.template operator*(); }
-            inline T* operator->() const noexcept { return m_Ptr.template operator->(); }
-            T* get() const noexcept { return m_Ptr.get(); }
-            explicit operator bool() const noexcept { return m_Ptr; }
+            inline T* Get() const noexcept { return m_Ptr.get(); }
+            inline T& operator*() const noexcept { return *m_Ptr.get(); }
+            inline T* operator->() const noexcept { return m_Ptr.get(); }
+            inline explicit operator bool() const noexcept { return m_Ptr.get(); }
 
         private:
-            std::unique_ptr<T, void(*)(void*)> m_Ptr;
+            std::unique_ptr<T> m_Ptr;
         };
 
         template<typename T>
-        HotScope<T>::HotScope()
-        {
-            m_Ptr = {
-                    halloc_construct(T),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
-            };
-        }
-
-        template<typename T>
         template<typename... Args>
-        HotScope<T>::HotScope(Args &&... args)
+        void HotScope<T>::Create(Args &&... args)
         {
             m_Ptr = {
-                    halloc_construct_args(T, std::forward<Args>(args)...),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
+                halloc_construct_args(T, std::forward<Args>(args)...),
+                xpe::core::MemoryPoolManager::FreeHotMemory
             };
         }
 
@@ -201,40 +165,31 @@ namespace xpe {
         {
 
         public:
-            HotRef();
-            template<typename ... Args>
-            HotRef(Args &&... args);
 
-        public:
+            HotRef() = default;
+
+            template<typename ... Args>
+            void Create(Args &&... args);
+
             void Reset();
 
             inline auto& GetPtr() { return m_Ptr; }
-
-            inline T& operator*() const noexcept { return m_Ptr.template operator*(); }
-            inline T* operator->() const noexcept { return m_Ptr.template operator->(); }
-            T* get() const noexcept { return m_Ptr.get(); }
-            explicit operator bool() const noexcept { return m_Ptr; }
+            inline T* Get() const noexcept { return m_Ptr.get(); }
+            inline T& operator*() const noexcept { return *m_Ptr.get(); }
+            inline T* operator->() const noexcept { return m_Ptr.get(); }
+            inline explicit operator bool() const noexcept { return m_Ptr.get(); }
 
         private:
             std::shared_ptr<T> m_Ptr;
         };
 
         template<typename T>
-        HotRef<T>::HotRef()
-        {
-            m_Ptr = {
-                    halloc_construct(T),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
-            };
-        }
-
-        template<typename T>
         template<typename... Args>
-        HotRef<T>::HotRef(Args &&... args)
+        void HotRef<T>::Create(Args &&... args)
         {
             m_Ptr = {
-                    halloc_construct_args(T, std::forward<Args>(args)...),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
+                halloc_construct_args(T, std::forward<Args>(args)...),
+                xpe::core::MemoryPoolManager::FreeHotMemory
             };
         }
 
@@ -249,40 +204,31 @@ namespace xpe {
         {
 
         public:
-            HotWeak();
-            template<typename ... Args>
-            HotWeak(Args &&... args);
 
-        public:
+            HotWeak() = default;
+
+            template<typename ... Args>
+            void Create(Args &&... args);
+
             void Reset();
 
             inline auto& GetPtr() { return m_Ptr; }
-
-            inline T& operator*() const noexcept { return m_Ptr.template operator*(); }
-            inline T* operator->() const noexcept { return m_Ptr.template operator->(); }
-            T* get() const noexcept { return m_Ptr.get(); }
-            explicit operator bool() const noexcept { return m_Ptr; }
+            inline T* Get() const noexcept { return m_Ptr.get(); }
+            inline T& operator*() const noexcept { return *m_Ptr.get(); }
+            inline T* operator->() const noexcept { return m_Ptr.get(); }
+            inline explicit operator bool() const noexcept { return m_Ptr.get(); }
 
         private:
             std::weak_ptr<T> m_Ptr;
         };
 
         template<typename T>
-        HotWeak<T>::HotWeak()
-        {
-            m_Ptr = {
-                    halloc_construct(T),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
-            };
-        }
-
-        template<typename T>
         template<typename... Args>
-        HotWeak<T>::HotWeak(Args &&... args)
+        void HotWeak<T>::Create(Args &&... args)
         {
             m_Ptr = {
-                    halloc_construct_args(T, std::forward<Args>(args)...),
-                    xpe::core::MemoryPoolManager::FreeMainMemory
+                halloc_construct_args(T, std::forward<Args>(args)...),
+                xpe::core::MemoryPoolManager::FreeHotMemory
             };
         }
 
