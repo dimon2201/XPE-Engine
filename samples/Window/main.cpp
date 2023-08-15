@@ -104,7 +104,7 @@ public:
             skyboxPath.BottomFilepath = m_MainScene->Skybox->BottomResFilepath;
 
             m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
-            m_MainScene->Skybox->CubeTexture->GenerateMips();
+//            m_MainScene->Skybox->CubeTexture->GenerateMips();
         }
 
         // setup plane

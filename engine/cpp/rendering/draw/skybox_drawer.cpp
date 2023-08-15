@@ -10,16 +10,16 @@ namespace xpe {
         SkyboxDrawer::SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader) : Drawer(cameraBuffer, shader)
         {
             auto cube = Cube();
-            m_VertexBuffer = VertexBuffer<Vertex3D>(cube.Vertices);
-            m_IndexBuffer = IndexBuffer(cube.Indices);
+            m_VertexBuffer.Create(cube.Vertices);
+            m_IndexBuffer.Create(cube.Indices);
 
             m_Sampler.AddressU = TextureSampler::eAddress::CLAMP;
             m_Sampler.AddressV = TextureSampler::eAddress::CLAMP;
             m_Sampler.AddressW = TextureSampler::eAddress::CLAMP;
 
             m_Pipeline->InputLayout.Format = Vertex3D::Format;
-            m_Pipeline->VertexBuffer = &m_VertexBuffer;
-            m_Pipeline->IndexBuffer = &m_IndexBuffer;
+            m_Pipeline->VertexBuffer = m_VertexBuffer.Get();
+            m_Pipeline->IndexBuffer = m_IndexBuffer.Get();
             m_Pipeline->DepthStencilState.UseDepthTest = K_TRUE;
             m_Pipeline->BlendState.UseBlending = K_TRUE;
             m_Pipeline->Textures.resize(1);

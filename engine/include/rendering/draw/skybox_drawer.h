@@ -25,8 +25,8 @@ namespace xpe {
             void Draw(Scene* scene, RenderTarget* renderTarget) override;
 
         protected:
-            VertexBuffer<Vertex3D> m_VertexBuffer;
-            IndexBuffer m_IndexBuffer;
+            Scope<VertexBuffer<Vertex3D>> m_VertexBuffer;
+            Scope<IndexBuffer> m_IndexBuffer;
             TextureSampler m_Sampler;
         };
 
