@@ -132,6 +132,8 @@ namespace xpe
 
             static void Init();
             static void Free();
+            static void* AllocMainMemory(usize size);
+            static void* AllocHotMemory(usize size);
             static void FreeMainMemory(void* address);
             static void FreeHotMemory(void* address);
             static void LogPools();

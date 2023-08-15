@@ -1,3 +1,6 @@
+
+#include <core/memory_pool.hpp>
+
 namespace xpe {
 
     namespace core {
@@ -200,6 +203,16 @@ namespace xpe {
         void MemoryPoolManager::LogPools() {
             MainPools->LogPools();
             HotPools->LogPools();
+        }
+
+        void* MemoryPoolManager::AllocMainMemory(usize size)
+        {
+            return MainPools->Allocate(size);
+        }
+
+        void* MemoryPoolManager::AllocHotMemory(usize size)
+        {
+            return HotPools->Allocate(size);
         }
 
         void MemoryPoolManager::FreeMainMemory(void* address)
