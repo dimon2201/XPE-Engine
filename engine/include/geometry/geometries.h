@@ -152,7 +152,7 @@ namespace xpe {
 
         struct ENGINE_API Model3D : public Object
         {
-            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
+            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
             vector<Mesh> Meshes;
 
             inline Mesh& operator [](u32 i) { return Meshes[i]; }

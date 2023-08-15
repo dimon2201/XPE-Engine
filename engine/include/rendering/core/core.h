@@ -6,6 +6,15 @@ namespace xpe {
 
         using namespace core;
 
+        enum class eMapType
+        {
+            READ,
+            WRITE,
+            READ_WRITE,
+            WRITE_NO_OVERWRITE,
+            WRITE_DISCARD
+        };
+
         struct ENGINE_API GPUResource
         {
             void* Instance = nullptr;
@@ -31,9 +40,18 @@ namespace xpe {
             STRUCTURED
         };
 
+        enum class eBufferUsage
+        {
+            STATIC,
+            DYNAMIC,
+
+            DEFAULT = STATIC
+        };
+
         struct ENGINE_API Buffer : public GPUResource
         {
             eBufferType Type;
+            eBufferUsage Usage;
             usize StructureSize = 0;
             u32 NumElements = 0;
             u32 Slot = 0;

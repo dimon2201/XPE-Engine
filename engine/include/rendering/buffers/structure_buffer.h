@@ -77,7 +77,7 @@ namespace xpe {
             {
                 m_List.resize(count);
                 context::CreateBuffer(*this);
-                context::WriteBuffer(*this, m_List.data(), ByteSize());
+                context::CopyBuffer(*this, m_List.data(), ByteSize());
             }
         }
 
@@ -96,7 +96,7 @@ namespace xpe {
                 Recreate(size);
             }
             else {
-                context::WriteBuffer(*this, m_List.data(), ByteSize());
+                context::CopyBuffer(*this, m_List.data(), ByteSize());
             }
         }
 
@@ -108,7 +108,7 @@ namespace xpe {
                 return;
             }
             *item = newItem;
-            context::WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
+            context::CopyBufferOffset(*this, StructureSize * index, item, StructureSize);
         }
 
         template<typename T>
@@ -118,7 +118,7 @@ namespace xpe {
             if (item == nullptr) {
                 return;
             }
-            context::WriteBufferOffset(*this, StructureSize * index, item, StructureSize);
+            context::CopyBufferOffset(*this, StructureSize * index, item, StructureSize);
         }
 
         template<typename T>
@@ -128,7 +128,7 @@ namespace xpe {
             NumElements = count;
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
-            context::WriteBuffer(*this, m_List.data(), ByteSize());
+            context::CopyBuffer(*this, m_List.data(), ByteSize());
         }
 
         template<typename T>

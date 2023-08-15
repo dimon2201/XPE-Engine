@@ -33,7 +33,7 @@ namespace xpe {
             StructureSize = sizeof(T);
             NumElements = 1;
             context::CreateBuffer(*this);
-            context::WriteBuffer(*this, &Item, StructureSize);
+            context::CopyBuffer(*this, &Item, StructureSize);
         }
 
         template<typename T>
@@ -45,14 +45,14 @@ namespace xpe {
         template<typename T>
         void ItemBuffer<T>::Flush()
         {
-            context::WriteBuffer(*this, &Item, StructureSize);
+            context::CopyBuffer(*this, &Item, StructureSize);
         }
 
         template<typename T>
         void ItemBuffer<T>::FlushItem(const T &item)
         {
             Item = item;
-            context::WriteBuffer(*this, &Item, StructureSize);
+            context::MoveBuffer(*this, &Item, StructureSize);
         }
 
     }

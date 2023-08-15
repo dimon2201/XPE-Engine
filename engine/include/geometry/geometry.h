@@ -120,48 +120,12 @@ namespace xpe {
             void Reserve(usize count);
         };
 
-        struct ENGINE_API GeometryIndexedFormat final
-        {
-            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            u64 USID;
-            usize VertexOffset = 0;
-            usize IndexOffset = 0;
-            usize VertexCount = 0;
-            usize IndexCount = 0;
-
-            GeometryIndexedFormat() = default;
-
-            GeometryIndexedFormat(const render::ePrimitiveTopology& primitiveTopology, usize vertexOffset, usize indexOffset, usize vertexCount, usize indexCount)
-            : PrimitiveTopology(primitiveTopology),
-            VertexOffset(vertexOffset),
-            IndexOffset(indexOffset),
-            VertexCount(vertexCount),
-            IndexCount(indexCount)
-            {}
-        };
-
         template<typename T>
         struct GeometryIndexed : public Object
         {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             VertexArray<T> Vertices;
             IndexArray Indices;
-        };
-
-        struct ENGINE_API GeometryVertexedFormat final
-        {
-            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            u64 USID;
-            usize VertexOffset = 0;
-            usize VertexCount = 0;
-
-            GeometryVertexedFormat() = default;
-
-            GeometryVertexedFormat(const render::ePrimitiveTopology& primitiveTopology, usize vertexOffset, usize vertexCount)
-            : PrimitiveTopology(primitiveTopology),
-            VertexOffset(vertexOffset),
-            VertexCount(vertexCount)
-            {}
         };
 
         template<typename T>

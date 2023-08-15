@@ -18,92 +18,101 @@ namespace xpe {
             IDXGIFactory* s_GIFactory = nullptr;
 
             static const std::unordered_map<eTextureFormat, DXGI_FORMAT> s_TextureFormatTable =
-                    {
-                            { eTextureFormat::R8, DXGI_FORMAT_R8_UNORM },
-                            { eTextureFormat::R16, DXGI_FORMAT_R16_UNORM },
-                            { eTextureFormat::R32, DXGI_FORMAT_R32_FLOAT },
-                            { eTextureFormat::R32_TYPELESS, DXGI_FORMAT_R32_TYPELESS },
+            {
+                    { eTextureFormat::R8, DXGI_FORMAT_R8_UNORM },
+                    { eTextureFormat::R16, DXGI_FORMAT_R16_UNORM },
+                    { eTextureFormat::R32, DXGI_FORMAT_R32_FLOAT },
+                    { eTextureFormat::R32_TYPELESS, DXGI_FORMAT_R32_TYPELESS },
 
-                            { eTextureFormat::RG8, DXGI_FORMAT_R8G8_UNORM },
-                            { eTextureFormat::RG16, DXGI_FORMAT_R16G16_UNORM },
-                            { eTextureFormat::RG32, DXGI_FORMAT_R32G32_FLOAT },
+                    { eTextureFormat::RG8, DXGI_FORMAT_R8G8_UNORM },
+                    { eTextureFormat::RG16, DXGI_FORMAT_R16G16_UNORM },
+                    { eTextureFormat::RG32, DXGI_FORMAT_R32G32_FLOAT },
 
-                            { eTextureFormat::RGB8, DXGI_FORMAT_R8G8B8A8_UNORM },
-                            { eTextureFormat::RGB16, DXGI_FORMAT_R16G16B16A16_UNORM },
-                            { eTextureFormat::RGB32, DXGI_FORMAT_R32G32B32_FLOAT },
+                    { eTextureFormat::RGB8, DXGI_FORMAT_R8G8B8A8_UNORM },
+                    { eTextureFormat::RGB16, DXGI_FORMAT_R16G16B16A16_UNORM },
+                    { eTextureFormat::RGB32, DXGI_FORMAT_R32G32B32_FLOAT },
 
-                            { eTextureFormat::RGBA8, DXGI_FORMAT_R8G8B8A8_UNORM },
-                            { eTextureFormat::RGBA16, DXGI_FORMAT_R16G16B16A16_UNORM },
-                            { eTextureFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
-                    };
+                    { eTextureFormat::RGBA8, DXGI_FORMAT_R8G8B8A8_UNORM },
+                    { eTextureFormat::RGBA16, DXGI_FORMAT_R16G16B16A16_UNORM },
+                    { eTextureFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
+            };
 
             static const std::unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable =
-                    {
-                            { Texture::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
-                            { Texture::eUsage::STATIC, D3D11_USAGE_IMMUTABLE },
-                            { Texture::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
-                            { Texture::eUsage::STAGING, D3D11_USAGE_STAGING }
-                    };
+            {
+                    { Texture::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
+                    { Texture::eUsage::STATIC, D3D11_USAGE_IMMUTABLE },
+                    { Texture::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
+                    { Texture::eUsage::STAGING, D3D11_USAGE_STAGING }
+            };
 
             static const std::unordered_map<TextureSampler::eComparison, D3D11_COMPARISON_FUNC> s_TextureSamplerComparisonTable =
-                    {
-                            { TextureSampler::eComparison::ALWAYS, D3D11_COMPARISON_ALWAYS },
-                            { TextureSampler::eComparison::EQUAL, D3D11_COMPARISON_EQUAL },
-                            { TextureSampler::eComparison::GREATER, D3D11_COMPARISON_GREATER },
-                            { TextureSampler::eComparison::GREATER_EQUAL, D3D11_COMPARISON_GREATER_EQUAL },
-                            { TextureSampler::eComparison::LESS, D3D11_COMPARISON_LESS },
-                            { TextureSampler::eComparison::LESS_EQUAL, D3D11_COMPARISON_LESS_EQUAL },
-                            { TextureSampler::eComparison::NEVER, D3D11_COMPARISON_NEVER },
-                            { TextureSampler::eComparison::NOT_EQUAL, D3D11_COMPARISON_NOT_EQUAL }
-                    };
+            {
+                    { TextureSampler::eComparison::ALWAYS, D3D11_COMPARISON_ALWAYS },
+                    { TextureSampler::eComparison::EQUAL, D3D11_COMPARISON_EQUAL },
+                    { TextureSampler::eComparison::GREATER, D3D11_COMPARISON_GREATER },
+                    { TextureSampler::eComparison::GREATER_EQUAL, D3D11_COMPARISON_GREATER_EQUAL },
+                    { TextureSampler::eComparison::LESS, D3D11_COMPARISON_LESS },
+                    { TextureSampler::eComparison::LESS_EQUAL, D3D11_COMPARISON_LESS_EQUAL },
+                    { TextureSampler::eComparison::NEVER, D3D11_COMPARISON_NEVER },
+                    { TextureSampler::eComparison::NOT_EQUAL, D3D11_COMPARISON_NOT_EQUAL }
+            };
 
             static const std::unordered_map<TextureSampler::eFilter, D3D11_FILTER> s_TextureSamplerFilterTable =
-                    {
-                            { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT },
-                            { TextureSampler::eFilter::MIN_MAG_MIP_LINEAR, D3D11_FILTER_MIN_MAG_MIP_LINEAR },
-                            { TextureSampler::eFilter::ANISOTROPIC, D3D11_FILTER_ANISOTROPIC },
-                    };
+            {
+                    { TextureSampler::eFilter::MIN_MAG_MIP_POINT, D3D11_FILTER_MIN_MAG_MIP_POINT },
+                    { TextureSampler::eFilter::MIN_MAG_MIP_LINEAR, D3D11_FILTER_MIN_MAG_MIP_LINEAR },
+                    { TextureSampler::eFilter::ANISOTROPIC, D3D11_FILTER_ANISOTROPIC },
+            };
 
             static const std::unordered_map<TextureSampler::eAddress, D3D11_TEXTURE_ADDRESS_MODE> s_TextureSamplerAddressTable =
-                    {
-                            { TextureSampler::eAddress::WRAP,        D3D11_TEXTURE_ADDRESS_WRAP },
-                            { TextureSampler::eAddress::BORDER,      D3D11_TEXTURE_ADDRESS_BORDER },
-                            { TextureSampler::eAddress::CLAMP,       D3D11_TEXTURE_ADDRESS_CLAMP },
-                            { TextureSampler::eAddress::MIRROR,      D3D11_TEXTURE_ADDRESS_MIRROR },
-                            { TextureSampler::eAddress::MIRROR_ONCE, D3D11_TEXTURE_ADDRESS_MIRROR_ONCE }
-                    };
+            {
+                    { TextureSampler::eAddress::WRAP,        D3D11_TEXTURE_ADDRESS_WRAP },
+                    { TextureSampler::eAddress::BORDER,      D3D11_TEXTURE_ADDRESS_BORDER },
+                    { TextureSampler::eAddress::CLAMP,       D3D11_TEXTURE_ADDRESS_CLAMP },
+                    { TextureSampler::eAddress::MIRROR,      D3D11_TEXTURE_ADDRESS_MIRROR },
+                    { TextureSampler::eAddress::MIRROR_ONCE, D3D11_TEXTURE_ADDRESS_MIRROR_ONCE }
+            };
 
             static const std::unordered_map<VertexFormat::Attribute::eFormat, DXGI_FORMAT> p_VertexFormatTable =
-                    {
-                            { VertexFormat::Attribute::eFormat::BOOL, DXGI_FORMAT_R32_UINT },
-                            { VertexFormat::Attribute::eFormat::INT, DXGI_FORMAT_R32_SINT },
-                            { VertexFormat::Attribute::eFormat::FLOAT, DXGI_FORMAT_R32_FLOAT },
-                            { VertexFormat::Attribute::eFormat::VEC2, DXGI_FORMAT_R32G32_FLOAT },
-                            { VertexFormat::Attribute::eFormat::VEC3, DXGI_FORMAT_R32G32B32_FLOAT },
-                            { VertexFormat::Attribute::eFormat::VEC4, DXGI_FORMAT_R32G32B32A32_FLOAT },
-                    };
+            {
+                    { VertexFormat::Attribute::eFormat::BOOL, DXGI_FORMAT_R32_UINT },
+                    { VertexFormat::Attribute::eFormat::INT, DXGI_FORMAT_R32_SINT },
+                    { VertexFormat::Attribute::eFormat::FLOAT, DXGI_FORMAT_R32_FLOAT },
+                    { VertexFormat::Attribute::eFormat::VEC2, DXGI_FORMAT_R32G32_FLOAT },
+                    { VertexFormat::Attribute::eFormat::VEC3, DXGI_FORMAT_R32G32B32_FLOAT },
+                    { VertexFormat::Attribute::eFormat::VEC4, DXGI_FORMAT_R32G32B32A32_FLOAT },
+            };
 
             static const std::unordered_map<ePrimitiveTopology, D3D11_PRIMITIVE_TOPOLOGY> s_PrimitiveTopologyTable =
-                    {
-                            { ePrimitiveTopology::TRIANGLE_STRIP, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP },
-                            { ePrimitiveTopology::TRIANGLE_LIST, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST },
-                            { ePrimitiveTopology::POINT_LIST, D3D11_PRIMITIVE_TOPOLOGY_POINTLIST },
-                            { ePrimitiveTopology::LINE_LIST, D3D11_PRIMITIVE_TOPOLOGY_LINELIST },
-                            { ePrimitiveTopology::LINE_STRIP, D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP }
-                    };
+            {
+                    { ePrimitiveTopology::TRIANGLE_STRIP, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP },
+                    { ePrimitiveTopology::TRIANGLE_LIST, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST },
+                    { ePrimitiveTopology::POINT_LIST, D3D11_PRIMITIVE_TOPOLOGY_POINTLIST },
+                    { ePrimitiveTopology::LINE_LIST, D3D11_PRIMITIVE_TOPOLOGY_LINELIST },
+                    { ePrimitiveTopology::LINE_STRIP, D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP }
+            };
 
             static const std::unordered_map<eFillMode, D3D11_FILL_MODE> s_FillModeTable =
-                    {
-                            { eFillMode::SOLID,     D3D11_FILL_SOLID },
-                            { eFillMode::WIREFRAME, D3D11_FILL_WIREFRAME }
-                    };
+            {
+                    { eFillMode::SOLID,     D3D11_FILL_SOLID },
+                    { eFillMode::WIREFRAME, D3D11_FILL_WIREFRAME }
+            };
 
             static const std::unordered_map<eCullMode, D3D11_CULL_MODE> s_CullModeTable =
-                    {
-                            { eCullMode::NONE,  D3D11_CULL_NONE },
-                            { eCullMode::FRONT, D3D11_CULL_FRONT },
-                            { eCullMode::BACK,  D3D11_CULL_BACK }
-                    };
+            {
+                    { eCullMode::NONE,  D3D11_CULL_NONE },
+                    { eCullMode::FRONT, D3D11_CULL_FRONT },
+                    { eCullMode::BACK,  D3D11_CULL_BACK }
+            };
+
+            static const std::unordered_map<eMapType, D3D11_MAP> s_MapTypes =
+            {
+                    { eMapType::READ, D3D11_MAP_READ },
+                    { eMapType::WRITE, D3D11_MAP_WRITE },
+                    { eMapType::READ_WRITE, D3D11_MAP_READ_WRITE },
+                    { eMapType::WRITE_NO_OVERWRITE, D3D11_MAP_WRITE_NO_OVERWRITE },
+                    { eMapType::WRITE_DISCARD, D3D11_MAP_WRITE_DISCARD },
+            };
 
             static D3D11_SUBRESOURCE_DATA* InitTextureData(const Texture& texture, const u32 arraySize, const u32 mipLevels)
             {
@@ -523,22 +532,22 @@ namespace xpe {
                 switch (stage.Type) {
 
                     case eShaderType::VERTEX:
-                        s_ImmContext->VSSetShader((ID3D11VertexShader*)stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->VSSetShader((ID3D11VertexShader*) stage.Resource.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
                     case eShaderType::PIXEL:
-                        s_ImmContext->PSSetShader((ID3D11PixelShader*)stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->PSSetShader((ID3D11PixelShader*) stage.Resource.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
                     case eShaderType::GEOMETRY:
-                        s_ImmContext->GSSetShader((ID3D11GeometryShader*)stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->GSSetShader((ID3D11GeometryShader*) stage.Resource.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
                     case eShaderType::COMPUTE:
-                        s_ImmContext->CSSetShader((ID3D11ComputeShader*)stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->CSSetShader((ID3D11ComputeShader*) stage.Resource.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
@@ -548,7 +557,7 @@ namespace xpe {
             void FreeShaderStage(ShaderStage &stage)
             {
                 if (stage.Blob.Instance != nullptr) {
-                    ((ID3DBlob*)stage.Blob.Instance)->Release();
+                    ((ID3DBlob*) stage.Blob.Instance)->Release();
                     LogDebugMessage();
                 }
 
@@ -557,22 +566,22 @@ namespace xpe {
                     switch (stage.Type) {
 
                         case eShaderType::VERTEX:
-                            ((ID3D11VertexShader*)stage.Resource.Instance)->Release();
+                            ((ID3D11VertexShader*) stage.Resource.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case eShaderType::PIXEL:
-                            ((ID3D11PixelShader*)stage.Resource.Instance)->Release();
+                            ((ID3D11PixelShader*) stage.Resource.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case eShaderType::GEOMETRY:
-                            ((ID3D11GeometryShader*)stage.Resource.Instance)->Release();
+                            ((ID3D11GeometryShader*) stage.Resource.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case eShaderType::COMPUTE:
-                            ((ID3D11ComputeShader*)stage.Resource.Instance)->Release();
+                            ((ID3D11ComputeShader*) stage.Resource.Instance)->Release();
                             LogDebugMessage();
                             break;
 
@@ -604,10 +613,10 @@ namespace xpe {
                 srv.Texture1D.MostDetailedMip = texture.MostDetailedMip;
                 srv.Texture1D.MipLevels = mipLevels;
 
-                s_Device->CreateTexture1D(&texDesc, initialData, (ID3D11Texture1D**)&texture.Instance);
+                s_Device->CreateTexture1D(&texDesc, initialData, (ID3D11Texture1D**) &texture.Instance);
                 LogDebugMessage();
 
-                s_Device->CreateShaderResourceView((ID3D11Texture1D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+                s_Device->CreateShaderResourceView((ID3D11Texture1D*) texture.Instance, &srv, (ID3D11ShaderResourceView**) &texture.ViewInstance);
                 LogDebugMessage();
 
                 GenerateMips(texture);
@@ -777,6 +786,7 @@ namespace xpe {
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                 s_Device->CreateTexture2D(&texDesc, nullptr, (ID3D11Texture2D**)&texture.Instance);
+                LogDebugMessage();
             }
 
             void BindTexture(const Texture* texture)
@@ -798,64 +808,38 @@ namespace xpe {
             {
                 if (texture.Instance != nullptr)
                 {
-
                     switch (texture.Type) {
 
                         case Texture::eType::TEXTURE_1D:
-                            ((ID3D11Texture1D*)texture.Instance)->Release();
+                            ((ID3D11Texture1D*) texture.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case Texture::eType::TEXTURE_2D:
-                            ((ID3D11Texture2D*)texture.Instance)->Release();
+                            ((ID3D11Texture2D*) texture.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case Texture::eType::TEXTURE_3D:
-                            ((ID3D11Texture3D*)texture.Instance)->Release();
+                            ((ID3D11Texture3D*) texture.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case Texture::eType::TEXTURE_CUBE:
-                            ((ID3D11Texture2D*)texture.Instance)->Release();
+                            ((ID3D11Texture2D*) texture.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                     }
 
                     texture.Instance = nullptr;
-
                 }
 
                 if (texture.ViewInstance != nullptr)
                 {
-
-                    switch (texture.Type) {
-
-                        case Texture::eType::TEXTURE_1D:
-                            ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
-                            LogDebugMessage();
-                            break;
-
-                        case Texture::eType::TEXTURE_2D:
-                            ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
-                            LogDebugMessage();
-                            break;
-
-                        case Texture::eType::TEXTURE_3D:
-                            ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
-                            LogDebugMessage();
-                            break;
-
-                        case Texture::eType::TEXTURE_CUBE:
-                            ((ID3D11ShaderResourceView*)texture.ViewInstance)->Release();
-                            LogDebugMessage();
-                            break;
-
-                    }
-
+                    ((ID3D11ShaderResourceView*) texture.ViewInstance)->Release();
+                    LogDebugMessage();
                     texture.ViewInstance = nullptr;
-
                 }
             }
 
@@ -1038,34 +1022,22 @@ namespace xpe {
                 }
             }
 
-            void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
-            {
-                if (buffer.Instance == nullptr) return;
-
+            void* Map(
+                    const GPUResource &resource,
+                    u32 subresourceIndex,
+                    eMapType mapType
+            ) {
                 D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 
-                s_ImmContext->Map((ID3D11Resource*)buffer.Instance, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+                s_ImmContext->Map((ID3D11Resource*) resource.Instance, subresourceIndex, s_MapTypes.at(mapType), 0, &mappedResource);
                 LogDebugMessage();
 
-                memcpy(mappedResource.pData, data, dataByteSize);
-
-                s_ImmContext->Unmap((ID3D11Resource*)buffer.Instance, 0);
-                LogDebugMessage();
+                return mappedResource.pData;
             }
 
-            void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
+            void Unmap(const GPUResource& resource)
             {
-                if (buffer.Instance == nullptr) return;
-
-                D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-
-                s_ImmContext->Map((ID3D11Resource*)buffer.Instance, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-                LogDebugMessage();
-
-                void* dst = (void*)((u8*)mappedResource.pData + offset);
-                memcpy(dst, data, dataByteSize);
-
-                s_ImmContext->Unmap((ID3D11Resource*)buffer.Instance, 0);
+                s_ImmContext->Unmap((ID3D11Resource*)resource.Instance, 0);
                 LogDebugMessage();
             }
 
@@ -1157,9 +1129,9 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindDepthStencilState(const DepthStencilState* state)
+            void BindDepthStencilState(const DepthStencilState& state)
             {
-                s_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*) state->State, 0);
+                s_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*) state.State, 0);
                 LogDebugMessage();
             }
 
@@ -1191,9 +1163,9 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindBlendState(const BlendState* state)
+            void BindBlendState(const BlendState& state)
             {
-                s_ImmContext->OMSetBlendState((ID3D11BlendState*) state->State, nullptr, 0xffffffff);
+                s_ImmContext->OMSetBlendState((ID3D11BlendState*) state.State, nullptr, 0xffffffff);
                 LogDebugMessage();
             }
 
@@ -1210,6 +1182,7 @@ namespace xpe {
             void CreateRasterizer(Rasterizer &rasterizer)
             {
                 D3D11_RASTERIZER_DESC desc = {};
+
                 desc.FillMode = s_FillModeTable.at(rasterizer.FillMode);
                 desc.CullMode = s_CullModeTable.at(rasterizer.CullMode);
                 desc.FrontCounterClockwise = rasterizer.FrontCounterClockwise;
@@ -1222,17 +1195,20 @@ namespace xpe {
                 desc.AntialiasedLineEnable = rasterizer.AntialiasedLineEnable;
 
                 s_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**) &rasterizer.State);
+                LogDebugMessage();
             }
 
-            void BindRasterizer(const Rasterizer *rasterizer)
+            void BindRasterizer(const Rasterizer& rasterizer)
             {
-                s_ImmContext->RSSetState((ID3D11RasterizerState*) rasterizer->State);
+                s_ImmContext->RSSetState((ID3D11RasterizerState*) rasterizer.State);
+                LogDebugMessage();
             }
 
             void FreeRasterizer(Rasterizer& rasterizer)
             {
                 if (rasterizer.State != nullptr) {
                     ((ID3D11RasterizerState*) rasterizer.State)->Release();
+                    LogDebugMessage();
                     rasterizer.State = nullptr;
                 }
             }

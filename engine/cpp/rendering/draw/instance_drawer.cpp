@@ -31,6 +31,7 @@ namespace xpe {
 
             m_Pipeline->DepthStencilState.UseDepthTest = K_TRUE;
             m_Pipeline->BlendState.UseBlending = K_TRUE;
+            m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
 
             Init();
         }
@@ -39,9 +40,10 @@ namespace xpe {
 
         void InstanceDrawer::Draw(Scene* scene, RenderTarget* renderTarget)
         {
-            m_Pipeline->RenderTarget = renderTarget;
-
             FlushLights(scene);
+
+            m_Pipeline->RenderTarget = renderTarget;
+            Bind();
 
             scene->EachComponent<GeometryVertexed3DComponent>([this](GeometryVertexed3DComponent* component)
             {
@@ -116,10 +118,6 @@ namespace xpe {
             instance.CameraIndex = 0;
             instance.MaterialIndex = m_MaterialStorage->GetIndex(materialInstance.Material.Get());
 
-            m_Pipeline->PrimitiveTopology = geometry->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-            m_Pipeline->IndexBuffer = nullptr;
-
             m_InstanceBuffer.Clear();
             m_InstanceBuffer.Add(instance);
             m_InstanceBuffer.Flush();
@@ -128,8 +126,12 @@ namespace xpe {
             m_TransformBuffer.AddTransform(materialInstance.Transform);
             m_TransformBuffer.Flush();
 
-            Bind();
-            context::DrawVertexed(0, m_Pipeline->VertexBuffer->NumElements, 1);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
+            context::BindPrimitiveTopology(geometry->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawVertexed(0, vertexBuffer.NumElements, 1);
         }
 
         void InstanceDrawer::DrawGeometryIndexed(
@@ -143,10 +145,6 @@ namespace xpe {
             instance.CameraIndex = 0;
             instance.MaterialIndex = m_MaterialStorage->GetIndex(materialInstance.Material.Get());
 
-            m_Pipeline->PrimitiveTopology = geometry->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-            m_Pipeline->IndexBuffer = &m_GeometryStorage->GetIndexBuffer(geometry.Get());
-
             m_InstanceBuffer.Clear();
             m_InstanceBuffer.Add(instance);
             m_InstanceBuffer.Flush();
@@ -155,8 +153,14 @@ namespace xpe {
             m_TransformBuffer.AddTransform(materialInstance.Transform);
             m_TransformBuffer.Flush();
 
-            Bind();
-            context::DrawIndexed(0, 0, m_Pipeline->IndexBuffer->NumElements, 1);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
+            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(geometry.Get());
+            context::BindPrimitiveTopology(geometry->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindIndexBuffer(&indexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawIndexed(0, 0, indexBuffer.NumElements, 1);
         }
 
         void InstanceDrawer::DrawGeometryVertexedList(
@@ -183,12 +187,12 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            m_Pipeline->PrimitiveTopology = geometry->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-            m_Pipeline->IndexBuffer = nullptr;
-
-            Bind();
-            context::DrawVertexed(0, m_Pipeline->VertexBuffer->NumElements, instanceCount);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
+            context::BindPrimitiveTopology(geometry->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawVertexed(0, vertexBuffer.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawGeometryIndexedList(
@@ -215,12 +219,14 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            m_Pipeline->PrimitiveTopology = geometry->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-            m_Pipeline->IndexBuffer = &m_GeometryStorage->GetIndexBuffer(geometry.Get());
-
-            Bind();
-            context::DrawIndexed(0, 0, m_Pipeline->IndexBuffer->NumElements, instanceCount);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
+            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(geometry.Get());
+            context::BindPrimitiveTopology(geometry->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindIndexBuffer(&indexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawMesh(const Ref<Mesh> &mesh, const Transform &transform)
@@ -232,10 +238,6 @@ namespace xpe {
             instance.CameraIndex = 0;
             instance.MaterialIndex = m_MaterialStorage->GetIndex(mesh->Material.Get());
 
-            m_Pipeline->PrimitiveTopology = mesh->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(mesh.Get());
-            m_Pipeline->IndexBuffer = &m_GeometryStorage->GetIndexBuffer(mesh.Get());
-
             m_InstanceBuffer.Clear();
             m_InstanceBuffer.Add(instance);
             m_InstanceBuffer.Flush();
@@ -244,8 +246,14 @@ namespace xpe {
             m_TransformBuffer.AddTransform(transform);
             m_TransformBuffer.Flush();
 
-            Bind();
-            context::DrawIndexed(0, 0, m_Pipeline->IndexBuffer->NumElements, 1);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(mesh.Get());
+            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(mesh.Get());
+            context::BindPrimitiveTopology(mesh->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindIndexBuffer(&indexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawIndexed(0, 0, indexBuffer.NumElements, 1);
         }
 
         void InstanceDrawer::DrawMeshList(const Ref<Mesh> &mesh, const vector<Transform> &transforms)
@@ -268,12 +276,14 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            m_Pipeline->PrimitiveTopology = mesh->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(mesh.Get());
-            m_Pipeline->IndexBuffer = &m_GeometryStorage->GetIndexBuffer(mesh.Get());
-
-            Bind();
-            context::DrawIndexed(0, 0, m_Pipeline->IndexBuffer->NumElements, instanceCount);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(mesh.Get());
+            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(mesh.Get());
+            context::BindPrimitiveTopology(mesh->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindIndexBuffer(&indexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawModel(const Ref<Model3D> &model, const Transform &transform)
@@ -296,12 +306,14 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            m_Pipeline->PrimitiveTopology = model->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(model.Get());
-            m_Pipeline->IndexBuffer = &m_GeometryStorage->GetIndexBuffer(model.Get());
-
-            Bind();
-            context::DrawIndexed(0, 0, m_Pipeline->IndexBuffer->NumElements, instanceCount);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(model.Get());
+            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(model.Get());
+            context::BindPrimitiveTopology(model->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindIndexBuffer(&indexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawModelList(const Ref<Model3D> &model, const vector<Transform> &transforms)
@@ -321,7 +333,7 @@ namespace xpe {
                 for (usize j = 0 ; j < meshCount ; j++)
                 {
                     instance.CameraIndex = 0;
-                    instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Meshes[i].Material.Get());
+                    instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Meshes[j].Material.Get());
                     m_InstanceBuffer.Add(instance);
                 }
 
@@ -330,12 +342,14 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            m_Pipeline->PrimitiveTopology = model->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &m_GeometryStorage->GetVertexBuffer3D(model.Get());
-            m_Pipeline->IndexBuffer = &m_GeometryStorage->GetIndexBuffer(model.Get());
-
-            Bind();
-            context::DrawIndexed(0, 0, m_Pipeline->IndexBuffer->NumElements, instanceCount);
+            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(model.Get());
+            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(model.Get());
+            context::BindPrimitiveTopology(model->PrimitiveTopology);
+            context::BindVertexBuffer(&vertexBuffer);
+            context::BindIndexBuffer(&indexBuffer);
+            context::BindVSBuffer(&m_InstanceBuffer);
+            context::BindVSBuffer(&m_TransformBuffer);
+            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
         }
 
     }

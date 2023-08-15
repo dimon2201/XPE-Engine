@@ -88,9 +88,15 @@ namespace xpe {
             ENGINE_API void BindIndexBuffer(const Buffer* buffer);
             ENGINE_API void BindVSBuffer(const Buffer* buffer);
             ENGINE_API void BindPSBuffer(const Buffer* buffer);
-            ENGINE_API void WriteBuffer(const Buffer& buffer, const void* data, usize dataByteSize);
-            ENGINE_API void WriteBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize);
             ENGINE_API void FreeBuffer(const Buffer& buffer);
+
+            ENGINE_API void CopyBuffer(const Buffer& buffer, const void* data, usize dataByteSize);
+            ENGINE_API void CopyBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize);
+            ENGINE_API void MoveBuffer(const Buffer& buffer, const void* data, usize dataByteSize);
+            ENGINE_API void MoveBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize);
+
+            ENGINE_API void* Map(const GPUResource& resource, u32 subresourceIndex, eMapType mapType);
+            ENGINE_API void Unmap(const GPUResource& resource);
 
             ENGINE_API void CreateInputLayout(InputLayout& inputLayout);
             ENGINE_API void BindInputLayout(const InputLayout& inputLayout);
@@ -101,19 +107,19 @@ namespace xpe {
             ENGINE_API void BindViewport(Viewport* viewport);
 
             ENGINE_API void CreatePipeline(Pipeline& pipeline);
-            ENGINE_API void BindPipeline(Pipeline& pipeline);
+            ENGINE_API void BindPipeline(const Pipeline& pipeline);
             ENGINE_API void FreePipeline(Pipeline& pipeline);
 
             ENGINE_API void CreateDepthStencilState(DepthStencilState& state);
-            ENGINE_API void BindDepthStencilState(const DepthStencilState* state);
+            ENGINE_API void BindDepthStencilState(const DepthStencilState& state);
             ENGINE_API void FreeDepthStencilState(DepthStencilState& state);
 
             ENGINE_API void CreateRasterizer(Rasterizer& rasterizer);
-            ENGINE_API void BindRasterizer(const Rasterizer* rasterizer);
+            ENGINE_API void BindRasterizer(const Rasterizer& rasterizer);
             ENGINE_API void FreeRasterizer(Rasterizer& rasterizer);
 
             ENGINE_API void CreateBlendState(BlendState& state);
-            ENGINE_API void BindBlendState(const BlendState* state);
+            ENGINE_API void BindBlendState(const BlendState& state);
             ENGINE_API void FreeBlendState(BlendState& state);
 
             ENGINE_API void DrawIndexed(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount);

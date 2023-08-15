@@ -31,7 +31,7 @@ namespace xpe {
 
         void IndexBuffer::Flush()
         {
-            context::WriteBuffer(*this, m_IndexArray.GetData(), m_IndexArray.Size());
+            context::CopyBuffer(*this, m_IndexArray.GetData(), m_IndexArray.Size());
         }
 
         void IndexBuffer::FlushIndices(const IndexArray &indices)
@@ -49,7 +49,7 @@ namespace xpe {
                 Resize(i + 1);
             }
             m_IndexArray[i] = index;
-            context::WriteBufferOffset(*this, StructureSize * i, &m_IndexArray.Data.back(), StructureSize);
+            context::MoveBufferOffset(*this, StructureSize * i, &m_IndexArray.Data.back(), StructureSize);
         }
 
         void IndexBuffer::Recreate(const usize indexCount)

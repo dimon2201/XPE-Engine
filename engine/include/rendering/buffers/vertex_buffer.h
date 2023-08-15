@@ -88,7 +88,7 @@ namespace xpe {
         template<typename T>
         void VertexBuffer<T>::Flush()
         {
-            context::WriteBuffer(*this, m_VertexArray.GetData(), m_VertexArray.Size());
+            context::CopyBuffer(*this, m_VertexArray.GetData(), m_VertexArray.Size());
         }
 
         template<typename T>
@@ -98,7 +98,7 @@ namespace xpe {
                 Resize(index + 1);
             }
             m_VertexArray[index] = vertex;
-            context::WriteBufferOffset(*this, StructureSize * index, &m_VertexArray.Data.back(), StructureSize);
+            context::MoveBufferOffset(*this, StructureSize * index, &m_VertexArray.Data.back(), StructureSize);
         }
 
         template<typename T>
