@@ -9,6 +9,7 @@
 #include <ecs/scenes.hpp>
 
 #include <model_loader.h>
+#include <material_loader.h>
 #include <font_loader.h>
 #include <texture_loader.h>
 
@@ -61,7 +62,8 @@ public:
         AddKeyHold(GameApp, 1);
         AddCursorMove(GameApp, 1);
 
-        m_ModelLoader.Create(m_GeometryStorage, m_MaterialStorage);
+        m_ModelLoader.Create(m_GeometryStorage);
+        m_MaterialLoader.Create(m_MaterialStorage);
         m_TextureLoader.Create(m_TextureStorage);
         m_FontLoader.Create(m_FontStorage);
 
@@ -136,13 +138,85 @@ public:
             m_WinterGirl = { "WinterGirl", m_MainScene };
 
             ModelListComponent winterGirlModel("M_WinterGirl");
-            winterGirlModel.Model = m_ModelLoader->Load("res/models/winter_girl/winter_girl.obj");
-            for (int i = 0 ; i < 1 ; i++)
+            winterGirlModel.Model = m_ModelLoader->Load("res/models/winter-girl/source/winter_girl.fbx");
+
             {
                 Transform transform;
-                transform.Position = { i, -10, 0 };
-                transform.Scale = { 0.5, 0.5, 0.5 };
+                transform.Position = { -2, -10, -2 };
+                transform.Rotation = { -90, 0, 0 };
+                transform.Scale = { 0.25, 0.25, 0.25 };
                 winterGirlModel.Transforms.emplace_back(transform);
+            }
+
+            {
+                Transform transform;
+                transform.Position = { -2, -10, 2 };
+                transform.Rotation = { -90, 0, 0 };
+                transform.Scale = { 0.25, 0.25, 0.25 };
+                winterGirlModel.Transforms.emplace_back(transform);
+            }
+
+            {
+                Transform transform;
+                transform.Position = { 2, -10, -2 };
+                transform.Rotation = { -90, 0, 0 };
+                transform.Scale = { 0.25, 0.25, 0.25 };
+                winterGirlModel.Transforms.emplace_back(transform);
+            }
+
+            {
+                Transform transform;
+                transform.Position = { 2, -10, 2 };
+                transform.Rotation = { -90, 0, 0 };
+                transform.Scale = { 0.25, 0.25, 0.25 };
+                winterGirlModel.Transforms.emplace_back(transform);
+            }
+
+            {
+                MaterialFilepath materialFilepath;
+                materialFilepath.Name = "niz";
+                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_niz_BaseColor.png";
+                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_niz_Normal.png";
+                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_niz_Metallic.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_niz_Roughness.png";
+                winterGirlModel.Model->Meshes[0].Material = m_MaterialLoader->Load(materialFilepath);
+            }
+
+            {
+                MaterialFilepath materialFilepath;
+                materialFilepath.Name = "04";
+                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_04_BaseColor.png";
+                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_04_Normal.png";
+                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_04_Metallic.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_04_Roughness.png";
+                winterGirlModel.Model->Meshes[1].Material = m_MaterialLoader->Load(materialFilepath);
+            }
+
+            {
+                MaterialFilepath materialFilepath;
+                materialFilepath.Name = "R1";
+                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_R1_BaseColor.png";
+                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_R1_Normal.png";
+                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_R1_Metallic.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_R1_Roughness.png";
+                winterGirlModel.Model->Meshes[2].Material = m_MaterialLoader->Load(materialFilepath);
+            }
+
+            {
+                MaterialFilepath materialFilepath;
+                materialFilepath.Name = "verx";
+                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_verx_BaseColor.png";
+                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_verx_Normal.png";
+                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_verx_Metallic.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_verx_Roughness.png";
+                winterGirlModel.Model->Meshes[3].Material = m_MaterialLoader->Load(materialFilepath);
+            }
+
+            {
+                MaterialFilepath materialFilepath;
+                materialFilepath.Name = "pngegg";
+                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/pngegg.png";
+                winterGirlModel.Model->Meshes[4].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             m_WinterGirl.AddComponent<ModelListComponent>(winterGirlModel);
@@ -273,6 +347,7 @@ private:
 private:
 
     Ref<ModelLoader> m_ModelLoader;
+    Ref<MaterialLoader> m_MaterialLoader;
     Ref<TextureLoader> m_TextureLoader;
     Ref<FontLoader> m_FontLoader;
 

@@ -87,8 +87,6 @@ namespace xpe {
             u32 materialIndex = m_MaterialIndices[materialRef.Get()];
 
             m_DataBuffer.FlushItem(materialIndex, material);
-//            *m_DataBuffer[materialIndex] = material;
-//            m_DataBuffer.Flush();
 
             SetLayer(*AlbedoArray, material.Albedo, materialIndex);
             SetLayer(*BumpArray, material.Bumping, materialIndex);

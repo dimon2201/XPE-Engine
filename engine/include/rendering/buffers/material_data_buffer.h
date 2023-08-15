@@ -9,7 +9,7 @@ namespace xpe {
         struct ENGINE_API MaterialData
         {
             // base color
-            glm::vec4 BaseColor = { 0.75, 0.75, 0.75, 1 };
+            glm::vec4 BaseColor = { 0.9, 0.9, 0.9, 1 };
             Bool EnableAlbedo = false;
             // bumping
             Bool EnableBumping = false;

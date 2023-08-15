@@ -69,8 +69,7 @@ namespace xpe {
         static void ParseMeshes(
                 aiNode* node, const aiScene* scene,
                 Model3D& model,
-                const hstring& directory, u32 flags,
-                MaterialLoader* materialLoader
+                const hstring& directory, u32 flags
         ) {
             auto& meshes = model.Meshes;
 
@@ -78,13 +77,12 @@ namespace xpe {
             {
                 aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
                 Mesh result = ParseMesh(mesh);
-                result.Material = materialLoader->Load(scene, mesh, directory, flags);
                 meshes.push_back(result);
             }
 
             for (u32 i = 0 ; i < node->mNumChildren ; i++)
             {
-                ParseMeshes(node->mChildren[i], scene, model, directory, flags, materialLoader);
+                ParseMeshes(node->mChildren[i], scene, model, directory, flags);
             }
         }
 
@@ -120,7 +118,7 @@ namespace xpe {
                 return {};
             }
 
-            ParseMeshes(scene->mRootNode, scene, model, directory, flags, &m_MaterialLoader);
+            ParseMeshes(scene->mRootNode, scene, model, directory, flags);
 
             m_Scenes.insert({ filepath, scene });
 

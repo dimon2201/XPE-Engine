@@ -115,6 +115,8 @@ namespace xpe {
 
             void Init();
 
+            TextureLayer CreateLayer() const;
+
             void RemoveLayerAt(u32 index);
 
             [[nodiscard]] u32 GetMipLevels() const;

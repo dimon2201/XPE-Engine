@@ -2,9 +2,14 @@
 
 #include <build.h>
 
-#include <material_loader.h>
-
 #include <rendering/storages/geometry_storage.h>
+
+#include <assimp/Importer.hpp>
+#include <assimp/Exporter.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+class aiScene;
 
 namespace xpe {
 
@@ -18,7 +23,6 @@ namespace xpe {
         {
 
         public:
-
             enum class eOption
             {
                 TRIANGULATE,
@@ -27,19 +31,17 @@ namespace xpe {
                 OPTIMIZE_MESHES
             };
 
-            ModelLoader(GeometryStorage* geometryStorage, MaterialStorage* materialStorage)
-            : m_Storage(geometryStorage), m_MaterialLoader(materialStorage) {}
+            ModelLoader(GeometryStorage* geometryStorage)
+            : m_Storage(geometryStorage) {}
 
             Ref<Model3D> Load(const char* filepath, const vector<eOption>& options = {
                     eOption::TRIANGULATE,
-                    eOption::FLIP_UV,
                     eOption::CALC_TANGENTS,
                     eOption::OPTIMIZE_MESHES,
             });
 
         private:
             GeometryStorage* m_Storage = nullptr;
-            MaterialLoader m_MaterialLoader;
             unordered_map<hstring, const aiScene*> m_Scenes;
         };
 
