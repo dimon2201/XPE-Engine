@@ -68,6 +68,14 @@ namespace xpe {
             context::CreateTexture(*this);
         }
 
+        TextureLayer Texture::CreateLayer() const
+        {
+            TextureLayer layer;
+            layer.RowByteSize = Width * BPPTable.at(Format);
+            layer.Pixels = alloc(layer.RowByteSize);
+            return layer;
+        }
+
         void Texture::RemoveLayerAt(u32 index)
         {
             auto& layer = Layers[index];

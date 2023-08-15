@@ -143,24 +143,31 @@ namespace xpe {
 
         void MaterialStorage::AddLayer(Texture &texture, TextureLayer &layer)
         {
-            if (layer.Pixels != nullptr) {
-                if (layer.Mips.empty()) {
-                    layer.GenerateMips(texture.Width, texture.Height, texture.Format);
-                }
-                texture.Layers.emplace_back(layer);
-                texture.Flush();
+            if (layer.Pixels == nullptr) {
+                layer = texture.CreateLayer();
             }
+
+//            if (layer.Mips.empty()) {
+//                layer.GenerateMips(texture.Width, texture.Height, texture.Format);
+//            }
+
+            texture.Layers.emplace_back(layer);
+            texture.Flush();
         }
 
         void MaterialStorage::SetLayer(Texture &texture, TextureLayer &layer, u32 layerIndex)
         {
-            if (layer.Pixels != nullptr) {
-                if (layer.Mips.empty()) {
-                    layer.GenerateMips(texture.Width, texture.Height, texture.Format);
-                }
-                texture.Layers[layerIndex] = layer;
-                texture.Flush();
+            if (layer.Pixels == nullptr) {
+                layer = texture.CreateLayer();
             }
+
+//            if (layer.Mips.empty()) {
+//                layer.GenerateMips(texture.Width, texture.Height, texture.Format);
+//            }
+
+            texture.Layers[layerIndex].Free();
+            texture.Layers[layerIndex] = layer;
+            texture.Flush();
         }
 
     }

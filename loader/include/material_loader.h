@@ -2,29 +2,46 @@
 
 #include <build.h>
 
-#include <rendering/storages/material_storage.h>
-
-#include <assimp/Importer.hpp>
-#include <assimp/Exporter.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+class aiScene;
+class aiMesh;
 
 namespace xpe {
+
+    namespace render
+    {
+        class MaterialStorage;
+        class Material;
+    }
 
     namespace res {
 
         using namespace core;
         using namespace render;
 
+        struct LOADER_API MaterialFilepath final
+        {
+            string Name;
+            string AlbedoFilepath;
+            string BumpFilepath;
+            string ParallaxFilepath;
+            string MetallicFilepath;
+            string RoughnessFilepath;
+            string AOFilepath;
+            string EmissionFilepath;
+        };
+
         class LOADER_API MaterialLoader : public Object
         {
 
         public:
             MaterialLoader(MaterialStorage* materialStorage) : m_Storage(materialStorage) {}
+
             Ref<Material> Load(const aiScene* scene, aiMesh* mesh, const hstring& directory, u32 flags);
 
+            Ref<Material> Load(const MaterialFilepath& filepath);
+
         private:
-            render::MaterialStorage* m_Storage = nullptr;
+            MaterialStorage* m_Storage = nullptr;
         };
 
     }
