@@ -11,6 +11,44 @@ namespace xpe {
             void* BoundColorTargetView = nullptr;
             void* BoundDepthTargetView = nullptr;
 
+            void CopyBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
+            {
+                if (buffer.Instance == nullptr) return;
+
+                void* mappedData = Map(buffer, 0, eMapType::WRITE_DISCARD);
+                memcpy(mappedData, data, dataByteSize);
+                Unmap(buffer);
+            }
+
+            void CopyBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
+            {
+                if (buffer.Instance == nullptr) return;
+
+                void* mappedData = Map(buffer, 0, eMapType::WRITE_NO_OVERWRITE);
+                void* dst = (void*)((u8*)mappedData + offset);
+                memcpy(dst, data, dataByteSize);
+                Unmap(buffer);
+            }
+
+            void MoveBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
+            {
+                if (buffer.Instance == nullptr) return;
+
+                void* mappedData = Map(buffer, 0, eMapType::WRITE_DISCARD);
+                memmove(mappedData, data, dataByteSize);
+                Unmap(buffer);
+            }
+
+            void MoveBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
+            {
+                if (buffer.Instance == nullptr) return;
+
+                void* mappedData = Map(buffer, 0, eMapType::WRITE_NO_OVERWRITE);
+                void* dst = (void*)((u8*)mappedData + offset);
+                memmove(dst, data, dataByteSize);
+                Unmap(buffer);
+            }
+
             void CreateShader(Shader& shader)
             {
                 for (auto* stage : shader.Stages)
@@ -108,7 +146,7 @@ namespace xpe {
                 CreateRasterizer(pipeline.Rasterizer);
             }
 
-            void BindPipeline(Pipeline& pipeline)
+            void BindPipeline(const Pipeline& pipeline)
             {
                 BindPrimitiveTopology(pipeline.PrimitiveTopology);
 
@@ -146,9 +184,9 @@ namespace xpe {
                     BindRenderTarget(pipeline.RenderTarget->ColorTargetView, pipeline.RenderTarget->DepthTargetView);
                 }
 
-                BindDepthStencilState(&pipeline.DepthStencilState);
-                BindBlendState(&pipeline.BlendState);
-                BindRasterizer(&pipeline.Rasterizer);
+                BindDepthStencilState(pipeline.DepthStencilState);
+                BindBlendState(pipeline.BlendState);
+                BindRasterizer(pipeline.Rasterizer);
             }
 
             void FreePipeline(Pipeline& pipeline)

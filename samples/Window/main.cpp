@@ -105,25 +105,18 @@ public:
             m_MainScene->Skybox->CubeTexture->GenerateMips();
         }
 
-        // setup cube
-        {
-            m_Cube = {"Cube", m_MainScene };
-
-            GeometryIndexed3DComponent cube("Cube");
-            cube.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Cube", Cube());
-            cube.Instance.Transform.Position = { 1, -10, 0 };
-            cube.Instance.Material = m_MaterialStorage->Add("CubeMaterial", Material());
-
-            m_Cube.AddComponent<GeometryIndexed3DComponent>(cube);
-        }
-
         // setup plane
         {
             m_Plane = { "Plane", m_MainScene };
 
-            GeometryIndexed3DComponent plane("Plane");
-            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Plane", Plane());
+            GeometryIndexed3DComponent plane("G_Plane");
+            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Plane", Cube());
             plane.Instance.Transform.Position = { 0, -10, 0 };
+            plane.Instance.Transform.Scale = { 100, 0.01, 100 };
+            plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
+            plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
+            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
+
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
         }
 
@@ -131,7 +124,7 @@ public:
         {
             m_DirectLight = { "DirectLight", m_MainScene };
 
-            DirectLightComponent directLight("DirectLight");
+            DirectLightComponent directLight("L_Direct");
             directLight.Position = { 0, 0, 0 };
             directLight.Color = { 1, 1, 1 };
 
@@ -142,11 +135,17 @@ public:
         {
             m_WinterGirl = { "WinterGirl", m_MainScene };
 
-            ModelComponent winterGirlModel("Model_WinterGirl");
+            ModelListComponent winterGirlModel("M_WinterGirl");
             winterGirlModel.Model = m_ModelLoader->Load("res/models/winter_girl/winter_girl.obj");
-            winterGirlModel.Transform.Position = { 0, -10, 0 };
+            for (int i = 0 ; i < 1 ; i++)
+            {
+                Transform transform;
+                transform.Position = { i, -10, 0 };
+                transform.Scale = { 0.5, 0.5, 0.5 };
+                winterGirlModel.Transforms.emplace_back(transform);
+            }
 
-            m_WinterGirl.AddComponent<ModelComponent>(winterGirlModel);
+            m_WinterGirl.AddComponent<ModelListComponent>(winterGirlModel);
         }
     }
 
@@ -230,7 +229,7 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("DirectLight");
+        auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");
         auto& pos = directLight->Position;
 
         if (key == eKey::Up)
@@ -258,23 +257,16 @@ private:
     {
         if (m_TestConfig.AnimateLight)
         {
-            auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("DirectLight");
+            auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");
             auto& pos = directLight->Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
+
             pos.x = 100 * sin(tick / 3000.0f);
             pos.z = 100 * sin(tick / 3000.0f);
 
-            // update light color every N ticks
-            if (tick++ % 10000 == 0)
-            {
-                auto& color = directLight->Color;
-                float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-                color = { r, g, b };
-            }
+            tick++;
         }
     }
 
@@ -286,9 +278,7 @@ private:
 
     Entity m_DirectLight;
     Entity m_Text3D;
-    Entity m_Cube;
     Entity m_Plane;
-    Entity m_Spheres;
     Entity m_WinterGirl;
 
     TestConfig m_TestConfig = string("TestConfig");
