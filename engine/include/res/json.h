@@ -67,6 +67,10 @@ namespace glm {
     Json(vec2, x, y)
     Json(vec3, x, y, z)
     Json(vec4, x, y, z, w)
+    Json(ivec2, x, y)
+    Json(ivec3, x, y, z)
+    Json(ivec4, x, y, z, w)
+    Json(quat, x, y, z, w)
 
     void to_json(json& j, const glm::mat2& m);
 

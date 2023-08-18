@@ -340,7 +340,7 @@ struct aiNodeAnim {
 
 // ---------------------------------------------------------------------------
 /** Describes vertex-based animations for a single mesh or a group of
- *  meshes. Meshes carry the animation data for each frame in their
+ *  meshes. Skins carry the animation data for each frame in their
  *  aiMesh::mAnimMeshes array. The purpose of aiMeshAnim is to
  *  define keyframes linking each mesh attachment to a particular
  *  point in time. */

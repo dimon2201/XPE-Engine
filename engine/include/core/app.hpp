@@ -35,13 +35,21 @@ namespace xpe {
             virtual void InitRenderer();
 
             Game* m_Game = nullptr;
+
             ecs::MainScene* m_MainScene = nullptr;
-            render::Canvas* m_Canvas = nullptr;
-            render::Renderer* m_Renderer = nullptr;
+
             render::FontStorage* m_FontStorage = nullptr;
             render::GeometryStorage* m_GeometryStorage = nullptr;
             render::MaterialStorage* m_MaterialStorage = nullptr;
             render::TextureStorage* m_TextureStorage = nullptr;
+            render::Canvas* m_Canvas = nullptr;
+            render::Renderer* m_Renderer = nullptr;
+
+            anim::Animator* m_Animator = nullptr;
+            anim::SkeletStorage* m_SkeletStorage = nullptr;
+            anim::SkinStorage* m_SkinStorage = nullptr;
+            anim::AnimStorage* m_AnimStorage = nullptr;
+
         };
 
     }

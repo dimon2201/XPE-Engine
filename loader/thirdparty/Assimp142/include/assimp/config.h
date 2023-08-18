@@ -96,7 +96,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ---------------------------------------------------------------------------
 /** @brief Maximum bone count per mesh for the SplitbyBoneCount step.
  *
- * Meshes are split until the maximum number of bones is reached. The default
+ * Skins are split until the maximum number of bones is reached. The default
  * value is AI_SBBC_DEFAULT_MAX_BONES, which may be altered at
  * compile-time.
  * Property data type: integer.
@@ -183,7 +183,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // ---------------------------------------------------------------------------
 /** @brief Configures the #aiProcess_PreTransformVertices step to
- *  keep the scene hierarchy. Meshes are moved to worldspace, but
+ *  keep the scene hierarchy. Skins are moved to worldspace, but
  *  no optimization is performed (read: meshes with equal materials are not
  *  joined. The total number of meshes won't change).
  *

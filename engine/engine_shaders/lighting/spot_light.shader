@@ -1,4 +1,5 @@
-struct SpotLight {
+struct SpotLight
+{
     float3 Position;
     float3 Direction;
     float3 Color;

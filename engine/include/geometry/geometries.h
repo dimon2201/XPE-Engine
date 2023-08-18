@@ -13,13 +13,28 @@ namespace xpe {
 
         using namespace render;
 
+        JsonEnum(ePrimitiveTopology, {
+            { ePrimitiveTopology::DEFAULT, "DEFAULT" },
+            { ePrimitiveTopology::TRIANGLE_LIST, "TRIANGLE_LIST" },
+            { ePrimitiveTopology::TRIANGLE_STRIP, "TRIANGLE_STRIP" },
+            { ePrimitiveTopology::POINT_LIST, "POINT_LIST" },
+            { ePrimitiveTopology::LINE_LIST, "LINE_LIST" },
+            { ePrimitiveTopology::LINE_STRIP, "LINE_STRIP" },
+        })
+
         Json(VertexArray<Vertex2D>, Data)
         Json(VertexArray<Vertex3D>, Data)
+        Json(VertexArray<SkeletalVertex>, Data)
+
         Json(IndexArray, Data)
-        Json(GeometryVertexed<Vertex2D>, Vertices)
-        Json(GeometryVertexed<Vertex3D>, Vertices)
-        Json(GeometryIndexed<Vertex2D>, Vertices, Indices)
-        Json(GeometryIndexed<Vertex3D>, Vertices, Indices)
+
+        Json(GeometryVertexed<Vertex2D>, PrimitiveTopology, Vertices)
+        Json(GeometryVertexed<Vertex3D>, PrimitiveTopology, Vertices)
+        Json(GeometryVertexed<SkeletalVertex>, PrimitiveTopology, Vertices)
+
+        Json(GeometryIndexed<Vertex2D>, PrimitiveTopology, Vertices, Indices)
+        Json(GeometryIndexed<Vertex3D>, PrimitiveTopology, Vertices, Indices)
+        Json(GeometryIndexed<SkeletalVertex>, PrimitiveTopology, Vertices, Indices)
 
         ENGINE_API GeometryVertexed<Vertex2D> Triangle2D();
         ENGINE_API GeometryVertexed<Vertex3D> Triangle();
@@ -147,8 +162,10 @@ namespace xpe {
             Ref<Material> Material;
 
             Mesh() = default;
-            Mesh(usize vertexCount, usize indexCount);
+            Mesh(usize vertexCount, usize indexCount) : GeometryIndexed<Vertex3D>(vertexCount, indexCount) {}
         };
+
+        Json(Mesh, PrimitiveTopology, Vertices, Indices)
 
         struct ENGINE_API Model3D : public Object
         {
@@ -158,7 +175,7 @@ namespace xpe {
             inline Mesh& operator [](u32 i) { return Meshes[i]; }
         };
 
-        Json(Model3D, Meshes)
+        Json(Model3D, PrimitiveTopology, Meshes)
 
     }
 

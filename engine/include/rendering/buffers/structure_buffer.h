@@ -134,7 +134,7 @@ namespace xpe {
         template<typename T>
         void StructureBuffer<T>::Resize(const usize count)
         {
-            Recreate(count);
+            m_List.resize(count);
         }
 
         template<typename T>

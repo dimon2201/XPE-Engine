@@ -31,7 +31,9 @@ namespace xpe {
         template<typename T>
         Scope<T>::~Scope()
         {
-            dealloc(m_Ptr);
+            if (m_Ptr != nullptr) {
+                dealloc(m_Ptr);
+            }
             m_Ptr = nullptr;
         }
 
@@ -105,7 +107,9 @@ namespace xpe {
         template<typename T>
         HotScope<T>::~HotScope()
         {
-            dehalloc(m_Ptr);
+            if (m_Ptr != nullptr) {
+                dehalloc(m_Ptr);
+            }
             m_Ptr = nullptr;
         }
 

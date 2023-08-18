@@ -5,7 +5,8 @@
 #include <rendering/materials/material.h>
 #include <rendering/font/font.hpp>
 
-#include <geometry/geometries.h>
+#include <anim/skin.h>
+#include <anim/skelet.h>
 
 namespace xpe
 {
@@ -14,6 +15,7 @@ namespace xpe
         using namespace core;
         using namespace render;
         using namespace math;
+        using namespace anim;
 
         struct ENGINE_API CameraComponent : Component
         {
@@ -214,6 +216,65 @@ namespace xpe
             JsonClass(
                 ModelListComponent,
                 Transforms
+            )
+        };
+
+        struct ENGINE_API SkinComponent : Component
+        {
+            math::Transform Transform;
+            Ref<Skin> Skin;
+            Ref<Skelet> Skelet;
+
+            JsonClass(
+                SkinComponent,
+                Transform
+            )
+        };
+
+        struct ENGINE_API SkinListComponent : Component
+        {
+            vector<Transform> Transforms;
+            Ref<Skin> Skin;
+            Ref<Skelet> Skelet;
+
+            JsonClass(
+                SkinListComponent,
+                Transforms
+            )
+        };
+
+        struct ENGINE_API SkinModelComponent : Component
+        {
+            math::Transform Transform;
+            Ref<SkinModel> Model;
+            Ref<Skelet> Skelet;
+
+            JsonClass(
+                SkinModelComponent,
+                Transform
+            )
+        };
+
+        struct ENGINE_API SkinModelListComponent : Component
+        {
+            vector<Transform> Transforms;
+            Ref<SkinModel> Model;
+            Ref<Skelet> Skelet;
+
+            JsonClass(
+                SkinModelListComponent,
+                Transforms
+            )
+        };
+
+        struct ENGINE_API SkeletalAnimationComponent : Component
+        {
+            Ref<Skelet> Skelet;
+            Ref<Animation> Animation;
+
+            JsonClass(
+                SkeletalAnimationComponent,
+                m_Tag
             )
         };
 

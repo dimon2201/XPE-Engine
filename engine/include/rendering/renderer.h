@@ -9,21 +9,27 @@ namespace xpe {
 
     namespace render {
 
-        class CameraBuffer;
-        class Drawer;
         class RenderTarget;
+
+        class Drawer;
+
+        class CameraBuffer;
+
+        class DirectLightBuffer;
+        class PointLightBuffer;
+        class SpotLightBuffer;
 
         class ENGINE_API Renderer : public core::Object
         {
 
         public:
+            render::CameraBuffer* CameraBuffer;
+            render::DirectLightBuffer* DirectLightBuffer;
+            render::PointLightBuffer* PointLightBuffer;
+            render::SpotLightBuffer* SpotLightBuffer;
+
             Renderer();
             ~Renderer();
-
-            inline CameraBuffer* GetCameraBuffer()
-            {
-                return m_CameraBuffer;
-            }
 
             template<typename T, typename ... Args>
             void AddDrawer(Args &&... args);
@@ -33,7 +39,8 @@ namespace xpe {
             void Render(ecs::Scene* scene, RenderTarget* renderTarget);
 
         private:
-            CameraBuffer* m_CameraBuffer = nullptr;
+            void FlushLights(ecs::Scene* scene);
+
             core::vector<Drawer*> m_Drawers;
         };
 

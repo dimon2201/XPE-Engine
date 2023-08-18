@@ -120,8 +120,6 @@ namespace xpe {
 
             ParseMeshes(scene->mRootNode, scene, model, directory, flags);
 
-            m_Scenes.insert({ filepath, scene });
-
             return m_Storage->AddModel(filepath, model);
         }
 

@@ -670,7 +670,7 @@ struct aiMesh {
      * The array contains normalized vectors, nullptr if not present.
      * The array is mNumVertices in size. Normals are undefined for
      * point and line primitives. A mesh consisting of points and
-     * lines only may not have normal vectors. Meshes with mixed
+     * lines only may not have normal vectors. Skins with mixed
      * primitive types (i.e. lines and triangles) may have normals,
      * but the normals for vertices that are only referenced by
      * point or line primitives are undefined and set to QNaN (WARN:
@@ -694,7 +694,7 @@ struct aiMesh {
      * The tangent of a vertex points in the direction of the positive
      * X texture axis. The array contains normalized vectors, nullptr if
      * not present. The array is mNumVertices in size. A mesh consisting
-     * of points and lines only may not have normal vectors. Meshes with
+     * of points and lines only may not have normal vectors. Skins with
      * mixed primitive types (i.e. lines and triangles) may have
      * normals, but the normals for vertices that are only referenced by
      * point or line primitives are undefined and set to qNaN.  See
@@ -776,7 +776,7 @@ struct aiMesh {
     unsigned int mMaterialIndex;
 
     /**
-     *  Name of the mesh. Meshes can be named, but this is not a
+     *  Name of the mesh. Skins can be named, but this is not a
      *  requirement and leaving this field empty is totally fine.
      *  There are mainly three uses for mesh names:
      *   - some formats name nodes and meshes independently.

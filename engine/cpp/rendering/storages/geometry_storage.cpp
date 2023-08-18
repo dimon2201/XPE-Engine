@@ -181,7 +181,8 @@ namespace xpe {
             }
         }
 
-        void GeometryStorage::Clear() {
+        void GeometryStorage::Clear()
+        {
             m_GeometryVertexed2D.clear();
             m_GeometryVertexed3D.clear();
             m_GeometryIndexed2D.clear();

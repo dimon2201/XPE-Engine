@@ -1,15 +1,9 @@
 #pragma once
 
 #include <build.h>
+#include <assimp_types.h>
 
 #include <rendering/storages/geometry_storage.h>
-
-#include <assimp/Importer.hpp>
-#include <assimp/Exporter.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-
-class aiScene;
 
 namespace xpe {
 
@@ -31,8 +25,7 @@ namespace xpe {
                 OPTIMIZE_MESHES
             };
 
-            ModelLoader(GeometryStorage* geometryStorage)
-            : m_Storage(geometryStorage) {}
+            ModelLoader(GeometryStorage* geometryStorage) : m_Storage(geometryStorage) {}
 
             Ref<Model3D> Load(const char* filepath, const vector<eOption>& options = {
                     eOption::TRIANGULATE,
@@ -41,8 +34,7 @@ namespace xpe {
             });
 
         private:
-            GeometryStorage* m_Storage = nullptr;
-            unordered_map<hstring, const aiScene*> m_Scenes;
+            GeometryStorage* m_Storage;
         };
 
     }

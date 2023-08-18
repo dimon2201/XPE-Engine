@@ -1,4 +1,5 @@
-struct DirectLight {
+struct DirectLight
+{
     float3 Position;
     float3 Color;
 };

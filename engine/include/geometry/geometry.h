@@ -14,17 +14,21 @@ namespace xpe {
         {
             vector<T> Data;
 
-            inline usize Size() const { return Data.size() * sizeof(T); }
+            VertexArray() = default;
 
-            inline usize Count() const { return Data.size(); }
+            VertexArray(usize count) { Init(count); }
 
-            inline float* ToFloat() const { return (float*) Data.data(); }
+            [[nodiscard]] inline usize Size() const { return Data.size() * sizeof(T); }
+
+            [[nodiscard]] inline usize Count() const { return Data.size(); }
+
+            [[nodiscard]] inline float* ToFloat() const { return (float*) Data.data(); }
 
             inline const T* GetData() const { return Data.data(); }
 
             inline T& operator [](int i) { return Data[i]; }
 
-            inline usize Capacity() const { return Data.capacity(); }
+            [[nodiscard]] inline usize Capacity() const { return Data.capacity(); }
 
             void Init(usize count);
             void Reserve(usize count);
@@ -106,15 +110,19 @@ namespace xpe {
         {
             vector<u32> Data;
 
-            inline usize Size() const { return Data.size() * sizeof(u32); }
+            IndexArray() = default;
 
-            inline usize Count() const { return Data.size(); }
+            IndexArray(usize count) { Init(count); }
 
-            inline const u32* GetData() const { return Data.data(); }
+            [[nodiscard]] inline usize Size() const { return Data.size() * sizeof(u32); }
+
+            [[nodiscard]] inline usize Count() const { return Data.size(); }
+
+            [[nodiscard]] inline const u32* GetData() const { return Data.data(); }
 
             inline u32& operator [](int i) { return Data[i]; }
 
-            inline usize Capacity() const { return Data.capacity(); }
+            [[nodiscard]] inline usize Capacity() const { return Data.capacity(); }
 
             void Init(usize count);
             void Reserve(usize count);
@@ -126,6 +134,9 @@ namespace xpe {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             VertexArray<T> Vertices;
             IndexArray Indices;
+
+            GeometryIndexed() = default;
+            GeometryIndexed(usize vertexCount, usize indexCount) : Vertices(vertexCount), Indices(indexCount) {}
         };
 
         template<typename T>
@@ -133,6 +144,9 @@ namespace xpe {
         {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             VertexArray<T> Vertices;
+
+            GeometryVertexed() = default;
+            GeometryVertexed(usize vertexCount) : Vertices(vertexCount) {}
         };
 
     }

@@ -19,10 +19,22 @@ namespace xpe {
                     FLOAT = 4,      // 4 bytes
                     BOOL = 4,       // 4 bytes
                     INT = 4,        // 4 bytes
+                    UINT = 4,       // 4 bytes
 
-                    VEC2 = 8,       // 8 bytes
-                    VEC3 = 12,      // 12 bytes
-                    VEC4 = 16,      // 16 bytes
+                    VEC2_FLOAT = 8,     // 8 bytes
+                    VEC2_UINT = 8,    // 8 bytes
+                    VEC2_INT = 8,       // 8 bytes
+                    VEC2_TYPELESS = 8,  // 8 bytes
+
+                    VEC3_FLOAT = 12,     // 12 bytes
+                    VEC3_UINT = 12,      // 12 bytes
+                    VEC3_INT = 12,       // 12 bytes
+                    VEC3_TYPELESS = 12,  // 12 bytes
+
+                    VEC4_FLOAT = 16,     // 16 bytes
+                    VEC4_UINT = 16,      // 16 bytes
+                    VEC4_INT = 16,       // 16 bytes
+                    VEC4_TYPELESS = 16,  // 16 bytes
 
                     MAT2X2 = 16,    // 16 bytes
                     MAT3X3 = 36,    // 36 bytes
@@ -47,14 +59,14 @@ namespace xpe {
         // define here any custom attributes that you want to use in your vertex shader
         struct ENGINE_API Attributes final
         {
-            static constexpr VertexFormat::Attribute POS2 = { 0, "XPE_POSITION_2D", VertexFormat::Attribute::eFormat::VEC2 };
-            static constexpr VertexFormat::Attribute POS3 = { 0, "XPE_POSITION", VertexFormat::Attribute::eFormat::VEC3 };
-            static constexpr VertexFormat::Attribute UV = { 1, "XPE_UV", VertexFormat::Attribute::eFormat::VEC2 };
-            static constexpr VertexFormat::Attribute NORMAL = { 2, "XPE_NORMAL", VertexFormat::Attribute::eFormat::VEC3 };
-            static constexpr VertexFormat::Attribute TANGENT = { 3, "XPE_TANGENT", VertexFormat::Attribute::eFormat::VEC3 };
-            static constexpr VertexFormat::Attribute BITANGENT = { 4, "XPE_BITANGENT", VertexFormat::Attribute::eFormat::VEC3 };
-            static constexpr VertexFormat::Attribute BONE_ID = { 5, "XPE_BONE_ID", VertexFormat::Attribute::eFormat::INT };
-            static constexpr VertexFormat::Attribute BONE_WEIGHT = {6, "XPE_BONE_WEIGHT", VertexFormat::Attribute::eFormat::FLOAT };
+            static constexpr VertexFormat::Attribute POS2 = { 0, "XPE_POSITION_2D", VertexFormat::Attribute::eFormat::VEC2_FLOAT };
+            static constexpr VertexFormat::Attribute POS3 = { 0, "XPE_POSITION", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
+            static constexpr VertexFormat::Attribute UV = { 1, "XPE_UV", VertexFormat::Attribute::eFormat::VEC2_FLOAT };
+            static constexpr VertexFormat::Attribute NORMAL = { 2, "XPE_NORMAL", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
+            static constexpr VertexFormat::Attribute TANGENT = { 3, "XPE_TANGENT", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
+            static constexpr VertexFormat::Attribute BITANGENT = { 4, "XPE_BITANGENT", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
+            static constexpr VertexFormat::Attribute BONE_IDS = { 5, "XPE_BONE_IDS", VertexFormat::Attribute::eFormat::VEC4_INT };
+            static constexpr VertexFormat::Attribute BONE_WEIGHTS = {6, "XPE_BONE_WEIGHTS", VertexFormat::Attribute::eFormat::VEC4_FLOAT };
         };
 
     }

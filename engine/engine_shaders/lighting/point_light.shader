@@ -1,4 +1,5 @@
-struct PointLight {
+struct PointLight
+{
     float3 Position;
     float3 Color;
     float Constant;
