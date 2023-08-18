@@ -271,6 +271,7 @@ namespace xpe
         {
             Ref<Skelet> Skelet;
             Ref<Animation> Animation;
+            bool Play = false;
 
             JsonClass(
                 SkeletalAnimationComponent,

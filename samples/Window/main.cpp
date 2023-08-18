@@ -324,6 +324,12 @@ private:
         {
             pos.x += 1;
         }
+
+        if (key == eKey::P)
+        {
+            auto* winterGirlAnim = m_WinterGirl.GetComponent<SkeletalAnimationComponent>("A_WinterGirl");
+            winterGirlAnim->Play = !winterGirlAnim->Play;
+        }
     }
 
     void Simulate()

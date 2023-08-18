@@ -11,7 +11,9 @@ namespace xpe {
         {
             scene->EachComponent<SkeletalAnimationComponent>([this, dt](SkeletalAnimationComponent* component)
             {
-                AnimateSkelet(component->Skelet, component->Animation, dt);
+                if (component->Play) {
+                    AnimateSkelet(component->Skelet, component->Animation, dt);
+                }
             });
         }
 
