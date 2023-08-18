@@ -2,6 +2,8 @@
 
 #include <anim/anim.h>
 
+#include <rendering/buffers/bone_buffer.h>
+
 namespace xpe {
 
     namespace anim {
@@ -22,6 +24,7 @@ namespace xpe {
         struct ENGINE_API Skelet final
         {
             unordered_map<string, Bone> Bones;
+            render::BoneBuffer BoneBuffer;
         };
 
         Json(Skelet, Bones)

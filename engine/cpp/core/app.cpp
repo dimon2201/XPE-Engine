@@ -6,15 +6,14 @@
 
 #include <rendering/core/debugger.h>
 #include <rendering/renderer.h>
+#include <rendering/buffers/light_buffers.h>
 #include <rendering/draw/canvas.hpp>
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/draw/instance_drawer.h>
+#include <rendering/draw/skeletal_anim_drawer.h>
 #include <rendering/storages/texture_storage.h>
-#include <rendering/storages/material_storage.h>
 #include <rendering/storages/font_storage.h>
 
 #include <anim/animator.h>
-#include <anim/storages/skelet_storage.h>
-#include <anim/storages/skin_storage.h>
 #include <anim/storages/anim_storage.h>
 
 namespace xpe {
@@ -93,7 +92,7 @@ namespace xpe {
 
                 CurrentTime = cpuTimer.GetStartTime();
 
-//                m_Animator->Animate(m_MainScene, 1);
+                m_Animator->Animate(m_MainScene, DeltaTime.Millis());
 
                 Update();
 
@@ -182,13 +181,46 @@ namespace xpe {
 
         void Application::InitRenderer()
         {
-            // Canvas
+            // Canvas drawing
             {
                 Shader* shader = ShaderManager::CreateShader("canvas");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/canvas.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/canvas.ps");
                 ShaderManager::BuildShader(shader);
                 m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
+            }
+            // Instance drawing for 3D
+            {
+                Shader* shader = ShaderManager::CreateShader("instance_drawer");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/instance_drawer.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/instance_drawer.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<InstanceDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_GeometryStorage,
+                        m_MaterialStorage,
+                        m_Renderer->DirectLightBuffer,
+                        m_Renderer->PointLightBuffer,
+                        m_Renderer->SpotLightBuffer
+                );
+            }
+            // Instance drawing for 3D skeletal skin
+            {
+                Shader* shader = ShaderManager::CreateShader("skeletal_anim_drawer");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<SkeletalAnimDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_MaterialStorage,
+                        m_Renderer->DirectLightBuffer,
+                        m_Renderer->PointLightBuffer,
+                        m_Renderer->SpotLightBuffer,
+                        m_SkeletStorage,
+                        m_SkinStorage
+                );
             }
         }
 

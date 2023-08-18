@@ -11,10 +11,6 @@ namespace xpe {
 
         struct ENGINE_API GeometryStorage : public Object
         {
-            inline VertexBuffer<Vertex2D>& GetVertexBuffer2D(void* geometryAddress) { return *m_VertexBuffers2D[geometryAddress]; }
-            inline VertexBuffer<Vertex3D>& GetVertexBuffer3D(void* geometryAddress) { return *m_VertexBuffers3D[geometryAddress]; }
-            inline IndexBuffer& GetIndexBuffer(void* geometryAddress) { return *m_IndexBuffers[geometryAddress]; }
-
             Ref<GeometryVertexed<Vertex2D>> AddGeometryVertexed2D(const string& name, const GeometryVertexed<Vertex2D>& geometry);
             Ref<GeometryVertexed<Vertex3D>> AddGeometryVertexed3D(const string& name, const GeometryVertexed<Vertex3D>& geometry);
             Ref<GeometryIndexed<Vertex2D>> AddGeometryIndexed2D(const string& name, const GeometryIndexed<Vertex2D>& geometry);
@@ -49,10 +45,6 @@ namespace xpe {
 
             unordered_map<string, Ref<Mesh>> m_Meshes;
             unordered_map<string, Ref<Model3D>> m_Models;
-
-            unordered_map<void*, Ref<VertexBuffer<Vertex2D>>> m_VertexBuffers2D;
-            unordered_map<void*, Ref<VertexBuffer<Vertex3D>>> m_VertexBuffers3D;
-            unordered_map<void*, Ref<IndexBuffer>> m_IndexBuffers;
         };
 
     }

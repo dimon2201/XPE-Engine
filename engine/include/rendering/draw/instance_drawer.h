@@ -1,15 +1,10 @@
 #pragma once
 
 #include <rendering/draw/drawer.h>
-
 #include <rendering/buffers/instance_buffer.h>
 #include <rendering/buffers/transform_buffer.h>
-
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/storages/material_storage.h>
-
-#include <anim/storages/skelet_storage.h>
-#include <anim/storages/skin_storage.h>
 
 namespace xpe {
 
@@ -23,7 +18,6 @@ namespace xpe {
         using namespace core;
         using namespace math;
         using namespace ecs;
-        using namespace anim;
 
         class DirectLightBuffer;
         class PointLightBuffer;
@@ -36,14 +30,11 @@ namespace xpe {
             InstanceDrawer(
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
-                const VertexFormat& vertexFormat,
                 GeometryStorage* geometryStorage,
                 MaterialStorage* materialStorage,
                 DirectLightBuffer* directLightBuffer,
                 PointLightBuffer* pointLightBuffer,
-                SpotLightBuffer* spotLightBuffer,
-                SkeletStorage* skeletStorage,
-                SkinStorage* skinStorage
+                SpotLightBuffer* spotLightBuffer
             );
 
             ~InstanceDrawer() override;
@@ -63,17 +54,9 @@ namespace xpe {
             void DrawModel(const Ref<Model3D>& model, const Transform& transform);
             void DrawModelList(const Ref<Model3D>& model, const vector<Transform>& transforms);
 
-            void DrawSkin(const Ref<Skin>& skin, const Ref<Skelet>& skelet, const Transform& transform);
-            void DrawSkinList(const Ref<Skin>& skin, const Ref<Skelet>& skelet, const vector<Transform>& transforms);
-
-            void DrawSkinModel(const Ref<SkinModel>& model, const Ref<Skelet>& skelet, const Transform& transform);
-            void DrawSkinModelList(const Ref<SkinModel>& model, const Ref<Skelet>& skelet, const vector<Transform>& transforms);
-
         protected:
             GeometryStorage* m_GeometryStorage;
             MaterialStorage* m_MaterialStorage;
-            SkinStorage* m_SkinStorage;
-            SkeletStorage* m_SkeletStorage;
 
             InstanceBuffer m_InstanceBuffer;
             TransformBuffer m_TransformBuffer;

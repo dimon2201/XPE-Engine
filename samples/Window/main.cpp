@@ -1,11 +1,6 @@
 #include <core/app.hpp>
 #include <launcher.h>
 
-#include <rendering/renderer.h>
-#include <rendering/buffers/camera_buffer.h>
-#include <rendering/buffers/light_buffers.h>
-#include <rendering/draw/instance_drawer.h>
-
 #include <ecs/entities.hpp>
 #include <ecs/scenes.hpp>
 
@@ -16,6 +11,8 @@
 #include <skin_loader.h>
 #include <skelet_loader.h>
 #include <anim_loader.h>
+
+#include <rendering/storages/material_storage.h>
 
 #include "test_config.h"
 
@@ -37,46 +34,6 @@ protected:
     void InitRenderer() override
     {
         Application::InitRenderer();
-
-        // 3D instance drawing
-//        {
-//            Shader* shader = ShaderManager::CreateShader("window");
-//            ShaderManager::AddVertexStageFromFile(shader, "shaders/window.vs");
-//            ShaderManager::AddPixelStageFromFile(shader, "shaders/window.ps");
-//            ShaderManager::BuildShader(shader);
-//            m_Renderer->AddDrawer<InstanceDrawer>(
-//                    m_Renderer->CameraBuffer,
-//                    shader,
-//                    Vertex3D::Format,
-//                    m_GeometryStorage,
-//                    m_MaterialStorage,
-//                    m_Renderer->DirectLightBuffer,
-//                    m_Renderer->PointLightBuffer,
-//                    m_Renderer->SpotLightBuffer,
-//                    m_SkeletStorage,
-//                    m_SkinStorage
-//            );
-//        }
-
-        // 3D skeletal instance drawing
-        {
-            Shader* shader = ShaderManager::CreateShader("skeletal_anim");
-            ShaderManager::AddVertexStageFromFile(shader, "shaders/skeletal_anim.vs");
-            ShaderManager::AddPixelStageFromFile(shader, "shaders/skeletal_anim.ps");
-            ShaderManager::BuildShader(shader);
-            m_Renderer->AddDrawer<InstanceDrawer>(
-                    m_Renderer->CameraBuffer,
-                    shader,
-                    SkeletalVertex::Format,
-                    m_GeometryStorage,
-                    m_MaterialStorage,
-                    m_Renderer->DirectLightBuffer,
-                    m_Renderer->PointLightBuffer,
-                    m_Renderer->SpotLightBuffer,
-                    m_SkeletStorage,
-                    m_SkinStorage
-            );
-        }
     }
 
 public:
@@ -144,19 +101,19 @@ public:
         }
 
         // setup plane
-//        {
-//            m_Plane = { "Plane", m_MainScene };
-//
-//            GeometryIndexed3DComponent plane("G_Plane");
-//            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Plane", Cube());
-//            plane.Instance.Transform.Position = { 0, -10, 0 };
-//            plane.Instance.Transform.Scale = { 100, 0.01, 100 };
-//            plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
-//            plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
-//            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
-//
-//            m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
-//        }
+        {
+            m_Plane = { "Plane", m_MainScene };
+
+            GeometryIndexed3DComponent plane("G_Plane");
+            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Plane", Cube());
+            plane.Instance.Transform.Position = { 0, -10, 0 };
+            plane.Instance.Transform.Scale = { 100, 0.01, 100 };
+            plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
+            plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
+            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
+
+            m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
+        }
 
         // setup direct light
         {

@@ -21,8 +21,8 @@ namespace xpe {
             m_CurrentAnimation = animation;
             m_CurrentTime += m_CurrentAnimation->TicksPerSecond * dt;
             m_CurrentTime = fmod(m_CurrentTime, m_CurrentAnimation->Duration);
+            auto& boneBuffer = skelet->BoneBuffer;
 
-            auto& boneBuffer = m_SkeletStorage->GetBoneBuffer(skelet.Get());
             boneBuffer.Resize(skelet->Bones.size());
 
             UpdateSkeletTransform(skelet, boneBuffer, m_CurrentAnimation->Root, glm::mat4(1.0f));
@@ -42,7 +42,7 @@ namespace xpe {
         {
             usize count = bone.KeyPositions.size();
 
-            for (int i = 0; i < count - 1; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (time < bone.KeyPositions[i + 1].Timestamp) {
                     return i;
@@ -56,7 +56,7 @@ namespace xpe {
         {
             usize count = bone.KeyRotations.size();
 
-            for (int i = 0; i < count - 1; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (time < bone.KeyRotations[i + 1].Timestamp) {
                     return i;
@@ -70,7 +70,7 @@ namespace xpe {
         {
             usize count = bone.KeyScales.size();
 
-            for (int i = 0; i < count - 1; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (time < bone.KeyScales[i + 1].Timestamp) {
                     return i;
@@ -92,6 +92,10 @@ namespace xpe {
         glm::mat4 Animator::InterpolatePosition(Bone &bone, float time)
         {
             auto& positions = bone.KeyPositions;
+
+            if (positions.empty()) {
+                return glm::mat4(1.0f);
+            }
 
             if (positions.size() == 1) {
                 return glm::translate(glm::mat4(1.0f), positions[0].Position);
@@ -118,6 +122,10 @@ namespace xpe {
         glm::mat4 Animator::InterpolateRotation(Bone &bone, float time)
         {
             auto& rotations = bone.KeyRotations;
+
+            if (rotations.empty()) {
+                return glm::mat4(1.0f);
+            }
 
             if (rotations.size() == 1)
             {
@@ -148,6 +156,10 @@ namespace xpe {
         glm::mat4 Animator::InterpolateScale(Bone &bone, float time)
         {
             auto& scales = bone.KeyScales;
+
+            if (scales.empty()) {
+                return glm::mat4(1.0f);
+            }
 
             if (scales.size() == 1) {
                 return glm::scale(glm::mat4(1.0f), scales[0].Scale);

@@ -13,9 +13,6 @@ namespace xpe {
 
         struct ENGINE_API SkinStorage : public Object
         {
-            inline VertexBuffer<SkeletalVertex>& GetVertexBuffer(void* skinAddress) { return *m_VertexBuffers[skinAddress]; }
-            inline IndexBuffer& GetIndexBuffer(void* skinAddress) { return *m_IndexBuffers[skinAddress]; }
-
             Ref<Skin> AddSkin(const string& name, const Skin& skin);
             Ref<SkinModel> AddModel(const string& name, const SkinModel& model);
 
@@ -30,9 +27,6 @@ namespace xpe {
         private:
             unordered_map<string, Ref<Skin>> m_Skins;
             unordered_map<string, Ref<SkinModel>> m_Models;
-
-            unordered_map<void*, Ref<VertexBuffer<SkeletalVertex>>> m_VertexBuffers;
-            unordered_map<void*, Ref<IndexBuffer>> m_IndexBuffers;
         };
 
     }

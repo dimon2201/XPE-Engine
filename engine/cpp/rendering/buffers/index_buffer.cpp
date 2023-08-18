@@ -7,19 +7,19 @@ namespace xpe {
 
         IndexBuffer::IndexBuffer(const usize indexCount)
         {
-            m_IndexArray.Init(indexCount);
+            List.resize(indexCount);
             Type = eBufferType::INDEX;
             StructureSize = sizeof(u32);
             NumElements = indexCount;
             context::CreateBuffer(*this);
         }
 
-        IndexBuffer::IndexBuffer(const IndexArray& indexArray)
+        IndexBuffer::IndexBuffer(const vector<u32>& indexArray)
         {
-            m_IndexArray.Init(indexArray.Count());
+            List.resize(indexArray.size());
             Type = eBufferType::INDEX;
             StructureSize = sizeof(u32);
-            NumElements = indexArray.Count();
+            NumElements = indexArray.size();
             context::CreateBuffer(*this);
             FlushIndices(indexArray);
         }
@@ -31,51 +31,51 @@ namespace xpe {
 
         void IndexBuffer::Flush()
         {
-            context::CopyBuffer(*this, m_IndexArray.GetData(), m_IndexArray.Size());
+            usize size = List.size();
+            if (size != NumElements) {
+                Recreate(size);
+            }
+            else {
+                context::CopyBuffer(*this, List.data(), ByteSize());
+            }
         }
 
-        void IndexBuffer::FlushIndices(const IndexArray &indices)
+        void IndexBuffer::FlushIndices(const vector<u32> &indices)
         {
-            if (indices.Size() > ByteSize()) {
-                Resize(indices.Count());
+            if (sizeof(indices) > ByteSize()) {
+                Resize(indices.size());
             }
-            memcpy((void*)m_IndexArray.GetData(), (const void*)indices.GetData(), indices.Size());
+            memcpy((void*)List.data(), (const void*)indices.data(), indices.size());
             Flush();
         }
 
         void IndexBuffer::FlushIndex(u32 i, u32 index)
         {
-            if (i >= m_IndexArray.Count()) {
+            if (i >= List.size()) {
                 Resize(i + 1);
             }
-            m_IndexArray[i] = index;
-            context::MoveBufferOffset(*this, StructureSize * i, &m_IndexArray.Data.back(), StructureSize);
+            List[i] = index;
+            context::MoveBufferOffset(*this, StructureSize * i, &List.back(), StructureSize);
         }
 
         void IndexBuffer::Recreate(const usize indexCount)
         {
+            Type = eBufferType::INDEX;
             NumElements = indexCount;
+            StructureSize = sizeof(u32);
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
-            Flush();
+            context::CopyBuffer(*this, List.data(), ByteSize());
         }
 
         void IndexBuffer::Resize(const usize indexCount)
         {
-            usize capacity = m_IndexArray.Capacity();
-            m_IndexArray.Init(indexCount);
-            if (capacity < indexCount * StructureSize) {
-                Recreate(indexCount);
-            }
+            List.resize(indexCount);
         }
 
         void IndexBuffer::Reserve(const usize indexCount)
         {
-            usize capacity = m_IndexArray.Capacity();
-            m_IndexArray.Reserve(indexCount);
-            if (capacity < indexCount) {
-                Recreate(indexCount);
-            }
+            List.reserve(indexCount);
         }
 
     }

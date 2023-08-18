@@ -4,12 +4,8 @@ namespace xpe {
 
     namespace res {
 
-        static Bone NewBone(const string& name, int id, const aiNodeAnim* channel)
+        static void SetKeyFrames(Bone& bone, const aiNodeAnim* channel)
         {
-            Bone bone;
-            bone.ID = id;
-            bone.Name = name;
-
             for (int i = 0; i < channel->mNumPositionKeys; i++)
             {
                 aiVector3D aiPosition = channel->mPositionKeys[i].mValue;
@@ -30,8 +26,6 @@ namespace xpe {
                 float timestamp = channel->mScalingKeys[i].mTime;
                 bone.KeyScales.emplace_back(timestamp, AssimpConversion::ToVec3(aiScale));
             }
-
-            return bone;
         }
 
         static const std::unordered_map<SkeletLoader::eOption, aiPostProcessSteps> s_SkeletOptions =
@@ -62,9 +56,16 @@ namespace xpe {
             {
                 auto channel = animation->mChannels[i];
                 string boneName = channel->mNodeName.data;
+
                 auto it = bones.find(boneName);
-                s32 boneId = it != bones.end() ? it->second.ID : boneCount++;
-                bones.insert({ boneName, NewBone(boneName, boneId, channel) });
+                if (it == bones.end()) {
+                    Bone bone;
+                    bone.ID = boneCount++;
+                    bone.Name = boneName;
+                    bones.insert({ boneName, bone });
+                }
+
+                SetKeyFrames(bones[boneName], channel);
             }
         }
 
@@ -119,8 +120,8 @@ namespace xpe {
                 return {};
             }
 
-            ParseSkeletFromAnim(scene->mAnimations[0], skelet);
             ParseSkeletFromScene(scene->mRootNode, scene, skelet);
+            ParseSkeletFromAnim(scene->mAnimations[0], skelet);
 
             return m_Storage->Add(filepath, skelet);
         }

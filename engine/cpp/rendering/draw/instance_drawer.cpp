@@ -1,5 +1,4 @@
 #include <rendering/draw/instance_drawer.h>
-
 #include <rendering/buffers/light_buffers.h>
 
 #include <ecs/scenes.hpp>
@@ -11,27 +10,20 @@ namespace xpe {
         InstanceDrawer::InstanceDrawer(
             CameraBuffer* cameraBuffer,
             Shader* shader,
-            const VertexFormat& vertexFormat,
             GeometryStorage* geometryStorage,
             MaterialStorage* materialStorage,
             DirectLightBuffer* directLightBuffer,
             PointLightBuffer* pointLightBuffer,
-            SpotLightBuffer* spotLightBuffer,
-            SkeletStorage* skeletStorage,
-            SkinStorage* skinStorage
+            SpotLightBuffer* spotLightBuffer
         ) : Drawer(cameraBuffer, shader),
         m_GeometryStorage(geometryStorage),
-        m_MaterialStorage(materialStorage),
-        m_SkeletStorage(skeletStorage),
-        m_SkinStorage(skinStorage)
+        m_MaterialStorage(materialStorage)
 
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);
 
-            m_Pipeline->InputLayout.Format = vertexFormat;
-            m_Pipeline->VSBuffers.emplace_back(&m_InstanceBuffer);
-            m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
+            m_Pipeline->InputLayout.Format = Vertex3D::Format;
 
             materialStorage->BindPipeline(*m_Pipeline);
 
@@ -92,26 +84,6 @@ namespace xpe {
             {
                 DrawModelList(component->Model, component->Transforms);
             });
-
-            scene->EachComponent<SkinComponent>([this](SkinComponent* component)
-            {
-                DrawSkin(component->Skin, component->Skelet, component->Transform);
-            });
-
-            scene->EachComponent<SkinListComponent>([this](SkinListComponent* component)
-            {
-                DrawSkinList(component->Skin, component->Skelet, component->Transforms);
-            });
-
-            scene->EachComponent<SkinModelComponent>([this](SkinModelComponent* component)
-            {
-                DrawSkinModel(component->Model, component->Skelet, component->Transform);
-            });
-
-            scene->EachComponent<SkinModelListComponent>([this](SkinModelListComponent* component)
-            {
-                DrawSkinModelList(component->Model, component->Skelet, component->Transforms);
-            });
         }
 
         void InstanceDrawer::DrawGeometryVertexed(
@@ -133,13 +105,11 @@ namespace xpe {
             m_TransformBuffer.AddTransform(materialInstance.Transform);
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
+            context::BindVertexBuffer(&geometry->Vertices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawVertexed(0, vertexBuffer.NumElements, 1);
+            context::DrawVertexed(0, geometry->Vertices.NumElements, 1);
         }
 
         void InstanceDrawer::DrawGeometryIndexed(
@@ -161,15 +131,12 @@ namespace xpe {
             m_TransformBuffer.AddTransform(materialInstance.Transform);
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(geometry.Get());
-
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
+            context::BindVertexBuffer(&geometry->Vertices);
+            context::BindIndexBuffer(&geometry->Indices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, 1);
+            context::DrawIndexed(0, 0, geometry->Indices.NumElements, 1);
         }
 
         void InstanceDrawer::DrawGeometryVertexedList(
@@ -196,13 +163,11 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
+            context::BindVertexBuffer(&geometry->Vertices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawVertexed(0, vertexBuffer.NumElements, instanceCount);
+            context::DrawVertexed(0, geometry->Vertices.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawGeometryIndexedList(
@@ -229,15 +194,12 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(geometry.Get());
-            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(geometry.Get());
-
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
+            context::BindVertexBuffer(&geometry->Vertices);
+            context::BindIndexBuffer(&geometry->Indices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
+            context::DrawIndexed(0, 0, geometry->Indices.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawMesh(const Ref<Mesh> &mesh, const Transform &transform)
@@ -257,15 +219,12 @@ namespace xpe {
             m_TransformBuffer.AddTransform(transform);
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(mesh.Get());
-            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(mesh.Get());
-
             context::BindPrimitiveTopology(mesh->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
+            context::BindVertexBuffer(&mesh->Vertices);
+            context::BindIndexBuffer(&mesh->Indices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, 1);
+            context::DrawIndexed(0, 0, mesh->Indices.NumElements, 1);
         }
 
         void InstanceDrawer::DrawMeshList(const Ref<Mesh> &mesh, const vector<Transform> &transforms)
@@ -288,15 +247,12 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(mesh.Get());
-            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(mesh.Get());
-
             context::BindPrimitiveTopology(mesh->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
+            context::BindVertexBuffer(&mesh->Vertices);
+            context::BindIndexBuffer(&mesh->Indices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
+            context::DrawIndexed(0, 0, mesh->Indices.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawModel(const Ref<Model3D> &model, const Transform &transform)
@@ -319,15 +275,12 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(model.Get());
-            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(model.Get());
-
             context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
+            context::BindVertexBuffer(&model->Vertices);
+            context::BindIndexBuffer(&model->Indices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
+            context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
         }
 
         void InstanceDrawer::DrawModelList(const Ref<Model3D> &model, const vector<Transform> &transforms)
@@ -356,161 +309,12 @@ namespace xpe {
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
 
-            auto& vertexBuffer = m_GeometryStorage->GetVertexBuffer3D(model.Get());
-            auto& indexBuffer = m_GeometryStorage->GetIndexBuffer(model.Get());
-
             context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
+            context::BindVertexBuffer(&model->Vertices);
+            context::BindIndexBuffer(&model->Indices);
             context::BindVSBuffer(&m_InstanceBuffer);
             context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
-        }
-
-        void InstanceDrawer::DrawSkin(const Ref<Skin> &skin, const Ref<Skelet>& skelet, const Transform &transform)
-        {
-            if (skin.Get() == nullptr) return;
-
-            RenderInstance instance;
-            instance.TransformIndex = 0;
-            instance.CameraIndex = 0;
-            instance.MaterialIndex = m_MaterialStorage->GetIndex(skin->Material.Get());
-
-            m_InstanceBuffer.Clear();
-            m_InstanceBuffer.Add(instance);
-            m_InstanceBuffer.Flush();
-
-            m_TransformBuffer.Clear();
-            m_TransformBuffer.AddTransform(transform);
-            m_TransformBuffer.Flush();
-
-            auto& vertexBuffer = m_SkinStorage->GetVertexBuffer(skin.Get());
-            auto& indexBuffer = m_SkinStorage->GetIndexBuffer(skin.Get());
-
-            if (skelet.Get() != nullptr) {
-                auto& boneBuffer = m_SkeletStorage->GetBoneBuffer(skelet.Get());
-                context::BindVSBuffer(&boneBuffer);
-            }
-
-            context::BindPrimitiveTopology(skin->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, 1);
-        }
-
-        void InstanceDrawer::DrawSkinList(const Ref<Skin> &skin, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
-        {
-            if (skin.Get() == nullptr) return;
-
-            usize instanceCount = transforms.size();
-            m_InstanceBuffer.Clear();
-            m_TransformBuffer.Clear();
-            for (usize i = 0 ; i < instanceCount ; i++)
-            {
-                RenderInstance instance;
-                instance.TransformIndex = i;
-                instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(skin->Material.Get());
-
-                m_InstanceBuffer.Add(instance);
-                m_TransformBuffer.AddTransform(transforms[i]);
-            }
-            m_InstanceBuffer.Flush();
-            m_TransformBuffer.Flush();
-
-            auto& vertexBuffer = m_SkinStorage->GetVertexBuffer(skin.Get());
-            auto& indexBuffer = m_SkinStorage->GetIndexBuffer(skin.Get());
-
-            if (skelet.Get() != nullptr) {
-                auto& boneBuffer = m_SkeletStorage->GetBoneBuffer(skelet.Get());
-                context::BindVSBuffer(&boneBuffer);
-            }
-
-            context::BindPrimitiveTopology(skin->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
-        }
-
-        void InstanceDrawer::DrawSkinModel(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const Transform &transform)
-        {
-            if (model.Get() == nullptr) return;
-
-            u32 instanceCount = model->Skins.size();
-            m_InstanceBuffer.Clear();
-            m_TransformBuffer.Clear();
-            for (usize i = 0 ; i < instanceCount ; i++)
-            {
-                RenderInstance instance;
-                instance.TransformIndex = i;
-                instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Skins[i].Material.Get());
-
-                m_InstanceBuffer.Add(instance);
-                m_TransformBuffer.AddTransform(transform);
-            }
-            m_InstanceBuffer.Flush();
-            m_TransformBuffer.Flush();
-
-            auto& vertexBuffer = m_SkinStorage->GetVertexBuffer(model.Get());
-            auto& indexBuffer = m_SkinStorage->GetIndexBuffer(model.Get());
-
-            if (skelet.Get() != nullptr) {
-                auto& boneBuffer = m_SkeletStorage->GetBoneBuffer(skelet.Get());
-                context::BindVSBuffer(&boneBuffer);
-            }
-
-            context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
-        }
-
-        void InstanceDrawer::DrawSkinModelList(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
-        {
-            if (model.Get() == nullptr) return;
-
-            u32 skinCount = model->Skins.size();
-            u32 transformCount = transforms.size();
-            u32 instanceCount = skinCount * transformCount;
-            m_InstanceBuffer.Clear();
-            m_TransformBuffer.Clear();
-            for (usize i = 0 ; i < transformCount ; i++)
-            {
-                RenderInstance instance;
-                instance.TransformIndex = i;
-
-                for (usize j = 0 ; j < skinCount ; j++)
-                {
-                    instance.CameraIndex = 0;
-                    instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Skins[j].Material.Get());
-                    m_InstanceBuffer.Add(instance);
-                }
-
-                m_TransformBuffer.AddTransform(transforms[i]);
-            }
-            m_InstanceBuffer.Flush();
-            m_TransformBuffer.Flush();
-
-            auto& vertexBuffer = m_SkinStorage->GetVertexBuffer(model.Get());
-            auto& indexBuffer = m_SkinStorage->GetIndexBuffer(model.Get());
-            if (skelet.Get() != nullptr) {
-                auto& boneBuffer = m_SkeletStorage->GetBoneBuffer(skelet.Get());
-                context::BindVSBuffer(&boneBuffer);
-            }
-
-            context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&vertexBuffer);
-            context::BindIndexBuffer(&indexBuffer);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
-            context::DrawIndexed(0, 0, indexBuffer.NumElements, instanceCount);
+            context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
         }
 
     }

@@ -41,11 +41,11 @@ namespace xpe {
             Mesh result;
             vector<u32> indices;
 
-            result.Vertices.Init(mesh->mNumVertices);
+            result.Vertices.List.resize(mesh->mNumVertices);
 
             for (int i = 0 ; i < mesh->mNumVertices ; i++)
             {
-                result.Vertices[i] = ParseVertex(mesh, i);
+                result.Vertices.List[i] = ParseVertex(mesh, i);
             }
 
             for (u32 i = 0 ; i < mesh->mNumFaces ; i++)
@@ -57,10 +57,10 @@ namespace xpe {
                 }
             }
 
-            result.Indices.Init((int) indices.size());
+            result.Indices.List.resize((int) indices.size());
             for (int i = 0 ; i < indices.size() ; i++)
             {
-                result.Indices[i] = indices[i];
+                result.Indices.List[i] = indices[i];
             }
 
             return result;

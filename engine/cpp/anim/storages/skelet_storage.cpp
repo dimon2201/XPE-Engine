@@ -8,12 +8,8 @@ namespace xpe {
         {
             Ref<Skelet> skeletRef;
             skeletRef.Create(skelet);
+            skeletRef->BoneBuffer.Resize(skelet.Bones.size());
             m_Skelets.insert({ name, skeletRef });
-
-            Ref<BoneBuffer> boneBuffer;
-            boneBuffer.Create(skelet.Bones.size());
-            m_BoneBuffers.insert({ skeletRef.Get(), boneBuffer });
-
             return skeletRef;
         }
 
@@ -21,7 +17,6 @@ namespace xpe {
         {
             auto it = m_Skelets.find(name);
             if (it != m_Skelets.end()) {
-                m_BoneBuffers.erase(it->second.Get());
                 m_Skelets.erase(it);
             }
         }
@@ -29,7 +24,6 @@ namespace xpe {
         void SkeletStorage::Clear()
         {
             m_Skelets.clear();
-            m_BoneBuffers.clear();
         }
 
     }

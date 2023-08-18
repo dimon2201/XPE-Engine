@@ -1,7 +1,7 @@
-#include ../engine_shaders/types.shader
-#include ../engine_shaders/batching.shader
-#include ../engine_shaders/transforming.shader
-#include ../engine_shaders/controls/camera.shader
+#include ../types.shader
+#include ../batching.shader
+#include ../transforming.shader
+#include ../controls/camera.shader
 
 struct VSIn
 {

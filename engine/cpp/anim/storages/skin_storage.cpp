@@ -8,16 +8,9 @@ namespace xpe {
         {
             Ref<Skin> meshRef;
             meshRef.Create(skin);
-            m_Skins.insert({name, meshRef });
-
-            Ref<VertexBuffer<SkeletalVertex>> vertexBuffer;
-            vertexBuffer.Create(skin.Vertices);
-            m_VertexBuffers.insert({ meshRef.Get(), vertexBuffer });
-
-            Ref<IndexBuffer> indexBuffer;
-            indexBuffer.Create(skin.Indices);
-            m_IndexBuffers.insert({ meshRef.Get(), indexBuffer });
-
+            meshRef->Vertices.Flush();
+            meshRef->Indices.Flush();
+            m_Skins.insert({ name, meshRef });
             return meshRef;
         }
 
@@ -25,36 +18,28 @@ namespace xpe {
         {
             Ref<SkinModel> newModel;
             newModel.Create(model);
+            newModel->Vertices.Reserve(100000);
+            newModel->Indices.Reserve(100000);
             m_Models.insert({ name, newModel });
-
-            VertexArray<SkeletalVertex> vertexArray;
-            vertexArray.Reserve(100000);
-            IndexArray indexArray;
-            indexArray.Reserve(100000);
 
             u32 modelVertexCount = 0;
             for (auto& mesh : model.Skins)
             {
-                for (auto& vertex : mesh.Vertices.Data)
+                for (auto& vertex : mesh.Vertices.List)
                 {
-                    vertexArray.Data.emplace_back(vertex);
+                    newModel->Vertices.List.emplace_back(vertex);
                 }
 
-                for (auto& index : mesh.Indices.Data)
+                for (auto& index : mesh.Indices.List)
                 {
-                    indexArray.Data.emplace_back(index + modelVertexCount);
+                    newModel->Indices.List.emplace_back(index + modelVertexCount);
                 }
 
-                modelVertexCount += mesh.Vertices.Count();
+                modelVertexCount += mesh.Vertices.List.size();
             }
 
-            Ref<VertexBuffer<SkeletalVertex>> vertexBuffer;
-            vertexBuffer.Create(vertexArray);
-            m_VertexBuffers.insert({ newModel.Get(), vertexBuffer });
-
-            Ref<IndexBuffer> indexBuffer;
-            indexBuffer.Create(indexArray);
-            m_IndexBuffers.insert({ newModel.Get(), indexBuffer });
+            newModel->Vertices.Flush();
+            newModel->Indices.Flush();
 
             return newModel;
         }
@@ -63,8 +48,6 @@ namespace xpe {
         {
             auto it = m_Skins.find(name);
             if (it != m_Skins.end()) {
-                m_VertexBuffers.erase(it->second.Get());
-                m_IndexBuffers.erase(it->second.Get());
                 m_Skins.erase(it);
             }
         }
@@ -73,8 +56,6 @@ namespace xpe {
         {
             auto it = m_Models.find(name);
             if (it != m_Models.end()) {
-                m_VertexBuffers.erase(it->second.Get());
-                m_IndexBuffers.erase(it->second.Get());
                 m_Models.erase(it);
             }
         }
@@ -83,9 +64,6 @@ namespace xpe {
         {
             m_Skins.clear();
             m_Models.clear();
-
-            m_VertexBuffers.clear();
-            m_IndexBuffers.clear();
         }
 
     }

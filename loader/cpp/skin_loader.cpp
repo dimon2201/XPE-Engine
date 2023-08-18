@@ -57,11 +57,11 @@ namespace xpe {
             vector<u32> indices;
             int boneCounter = 0;
 
-            skin.Vertices.Init(mesh->mNumVertices);
+            skin.Vertices.List.resize(mesh->mNumVertices);
 
             for (int i = 0 ; i < mesh->mNumVertices ; i++)
             {
-                skin.Vertices[i] = ParseVertex(mesh, i);
+                skin.Vertices.List[i] = ParseVertex(mesh, i);
             }
 
             for (u32 i = 0 ; i < mesh->mNumFaces ; i++)
@@ -73,10 +73,10 @@ namespace xpe {
                 }
             }
 
-            skin.Indices.Init((int) indices.size());
+            skin.Indices.List.resize((int) indices.size());
             for (int i = 0 ; i < indices.size() ; i++)
             {
-                skin.Indices[i] = indices[i];
+                skin.Indices.List[i] = indices[i];
             }
 
             Skelet skelet;
@@ -108,7 +108,7 @@ namespace xpe {
                 {
                     int vertexId = weights[wi].mVertexId;
                     float weight = weights[wi].mWeight;
-                    SetSkeletalVertex(skin.Vertices[vertexId], boneID, weight);
+                    SetSkeletalVertex(skin.Vertices.List[vertexId], boneID, weight);
                 }
             }
 
