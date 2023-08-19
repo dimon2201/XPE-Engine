@@ -110,7 +110,7 @@ public:
             plane.Instance.Transform.Scale = { 100, 0.01, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
             plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
-            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
+//            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
         }

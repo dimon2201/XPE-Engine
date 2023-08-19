@@ -59,7 +59,7 @@ namespace xpe {
             Ref<Material> materialRef;
             materialRef.Create(std::forward<Args>(args)...);
 
-            m_Materials.insert({ name, materialRef });
+            m_Materials[name] = materialRef;
             m_MaterialIndices.insert({ materialRef.Get(), m_MaterialIndices.size() });
 
             Material& material = *materialRef;
