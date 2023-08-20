@@ -48,6 +48,8 @@ namespace xpe {
             m_Ptr = alloc_construct_args(T, std::forward<Args>(args)...);
         }
 
+        static std::unordered_map<void*, s64> RefCountTable = {};
+
         template<typename T>
         class Ref final
         {
@@ -85,28 +87,24 @@ namespace xpe {
             inline bool operator!=(const T* other) { return m_Ptr != other; }
 
         private:
-            T* m_Ptr = nullptr;
-            static std::unordered_map<void*, s64> s_CountTable;
-        };
+            void AddCount(T* ptr);
 
-        template<typename T>
-        std::unordered_map<void*, s64> Ref<T>::s_CountTable = {};
+            T* m_Ptr = nullptr;
+        };
 
         template<typename T>
         template<typename... Args>
         void Ref<T>::Create(Args &&... args)
         {
             m_Ptr = alloc_construct_args(T, std::forward<Args>(args)...);
-            s_CountTable.insert({ m_Ptr, 1 });
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
+            RefCountTable.insert({ m_Ptr, 1 });
         }
 
         template<typename T>
         Ref<T>::~Ref()
         {
-            s_CountTable[m_Ptr] -= 1;
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
-            if (s_CountTable[m_Ptr] < 0) {
+            RefCountTable[m_Ptr] -= 1;
+            if (RefCountTable[m_Ptr] <= 0) {
                 if (m_Ptr != nullptr) {
                     dealloc(m_Ptr);
                 }
@@ -115,52 +113,51 @@ namespace xpe {
         }
 
         template<typename T>
-        Ref<T>::Ref(T* ptr)
+        void Ref<T>::AddCount(T* ptr)
         {
             m_Ptr = ptr;
-            s_CountTable[m_Ptr] += 1;
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
+            auto& count = RefCountTable[m_Ptr];
+            if (count == 0) {
+                count = 1;
+            }
+            ++count;
+        }
+
+        template<typename T>
+        Ref<T>::Ref(T* ptr)
+        {
+            AddCount(ptr);
         }
 
         template<typename T>
         Ref<T>::Ref(const Ref<T> &other)
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
+            AddCount(other.m_Ptr);
         }
 
         template<typename T>
         Ref<T>& Ref<T>::operator=(const Ref<T> &other)
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
+            AddCount(other.m_Ptr);
             return *this;
         }
 
         template<typename T>
         Ref<T>::Ref(Ref<T> &other)
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
+            AddCount(other.m_Ptr);
         }
 
         template<typename T>
         Ref<T>::Ref(Ref<T> &&other) noexcept
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
+            AddCount(other.m_Ptr);
         }
 
         template<typename T>
         Ref<T>& Ref<T>::operator=(Ref<T> &&other) noexcept
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
-            std::cout << "Ref = " << m_Ptr << ", count = " << s_CountTable[m_Ptr] << std::endl;
+            AddCount(other.m_Ptr);
             return *this;
         }
 
@@ -220,20 +217,24 @@ namespace xpe {
 
             ~HotRef();
 
+            HotRef(T* ptr);
+
             HotRef(const HotRef<T>& other);
             HotRef<T>& operator =(const HotRef<T>& other);
 
             HotRef(HotRef<T>& other);
 
-            HotRef(HotRef<T>&& other) noexcept;
+            HotRef(Ref<T>&& other) noexcept;
             HotRef<T>& operator =(HotRef<T>&& other) noexcept;
 
             template<typename... Args>
             void Create(Args &&... args);
 
             inline T* Get() const noexcept { return m_Ptr; }
+
             inline T& operator*() const noexcept { return *m_Ptr; }
             inline T* operator->() const noexcept { return m_Ptr; }
+
             inline explicit operator bool() const noexcept { return m_Ptr; }
 
             inline bool operator==(const HotRef<T>& other) { return m_Ptr == other.m_Ptr; }
@@ -243,26 +244,24 @@ namespace xpe {
             inline bool operator!=(const T* other) { return m_Ptr != other; }
 
         private:
-            T* m_Ptr = nullptr;
-            static std::unordered_map<void*, s64> s_CountTable;
-        };
+            void AddCount(T* ptr);
 
-        template<typename T>
-        std::unordered_map<void*, s64> HotRef<T>::s_CountTable = {};
+            T* m_Ptr = nullptr;
+        };
 
         template<typename T>
         template<typename... Args>
         void HotRef<T>::Create(Args &&... args)
         {
             m_Ptr = halloc_construct_args(T, std::forward<Args>(args)...);
-            s_CountTable.insert({ m_Ptr, 1 });
+            RefCountTable.insert({ m_Ptr, 1 });
         }
 
         template<typename T>
         HotRef<T>::~HotRef()
         {
-            s_CountTable[m_Ptr] -= 1;
-            if (s_CountTable[m_Ptr] < 0) {
+            RefCountTable[m_Ptr] -= 1;
+            if (RefCountTable[m_Ptr] <= 0) {
                 if (m_Ptr != nullptr) {
                     dehalloc(m_Ptr);
                 }
@@ -271,40 +270,52 @@ namespace xpe {
         }
 
         template<typename T>
+        void HotRef<T>::AddCount(T* ptr)
+        {
+            m_Ptr = ptr;
+            auto& count = RefCountTable[m_Ptr];
+            if (count == 0) {
+                count = 1;
+            }
+            ++count;
+        }
+
+        template<typename T>
+        HotRef<T>::HotRef(T* ptr)
+        {
+            AddCount(ptr);
+        }
+
+        template<typename T>
         HotRef<T>::HotRef(const HotRef<T> &other)
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
+            AddCount(other.m_Ptr);
         }
 
         template<typename T>
         HotRef<T>& HotRef<T>::operator=(const HotRef<T> &other)
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
-            return *this;
-        }
-
-        template<typename T>
-        HotRef<T>::HotRef(HotRef<T> &&other) noexcept
-        {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
-        }
-
-        template<typename T>
-        HotRef<T>& HotRef<T>::operator=(HotRef<T> &&other) noexcept
-        {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
+            AddCount(other.m_Ptr);
             return *this;
         }
 
         template<typename T>
         HotRef<T>::HotRef(HotRef<T> &other)
         {
-            m_Ptr = other.m_Ptr;
-            s_CountTable[m_Ptr] += 1;
+            AddCount(other.m_Ptr);
+        }
+
+        template<typename T>
+        HotRef<T>::HotRef(Ref<T> &&other) noexcept
+        {
+            AddCount(other.m_Ptr);
+        }
+
+        template<typename T>
+        HotRef<T>& HotRef<T>::operator=(HotRef<T> &&other) noexcept
+        {
+            AddCount(other.m_Ptr);
+            return *this;
         }
 
     }
