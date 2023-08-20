@@ -7,9 +7,9 @@ namespace xpe {
         GeometryVertexed<Vertex2D> Triangle2D()
         {
             GeometryVertexed<Vertex2D> geometry;
-            auto& vertices = geometry.Vertices;
+            auto& vertices = geometry.Vertices.List;
 
-            vertices.Init(3);
+            vertices.resize(3);
 
             vertices[0].Position = { -0.5f, -0.5f };
             vertices[1].Position = { 0.5f, -0.5f };
@@ -27,9 +27,9 @@ namespace xpe {
         GeometryVertexed<Vertex3D> Triangle()
         {
             GeometryVertexed<Vertex3D> geometry;
-            auto& vertices = geometry.Vertices;
+            auto& vertices = geometry.Vertices.List;
 
-            vertices.Init(3);
+            vertices.resize(3);
 
             vertices[0].Position = { -0.5f, -0.5f, 0 };
             vertices[1].Position = { 0.5f, -0.5f, 0 };
@@ -49,11 +49,11 @@ namespace xpe {
         GeometryIndexed<Vertex2D> Quad2D()
         {
             GeometryIndexed<Vertex2D> geometry;
-            auto& vertices = geometry.Vertices;
-            auto& indices = geometry.Indices;
+            auto& vertices = geometry.Vertices.List;
+            auto& indices = geometry.Indices.List;
 
-            vertices.Init(4);
-            indices.Init(6);
+            vertices.resize(4);
+            indices.resize(6);
 
             vertices[0].Position = { -0.5f, -0.5f };
             vertices[1].Position = { -0.5f, 0.5f };
@@ -62,7 +62,7 @@ namespace xpe {
 
             InitUV(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
 
-            indices.Data = { 0, 1, 2, 2, 3, 0 };
+            indices = { 0, 1, 2, 2, 3, 0 };
 
             geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
 
@@ -72,11 +72,11 @@ namespace xpe {
         GeometryIndexed<Vertex3D> Quad()
         {
             GeometryIndexed<Vertex3D> geometry;
-            auto& vertices = geometry.Vertices;
-            auto& indices = geometry.Indices;
+            auto& vertices = geometry.Vertices.List;
+            auto& indices = geometry.Indices.List;
 
-            vertices.Init(4);
-            indices.Init(6);
+            vertices.resize(4);
+            indices.resize(6);
 
             vertices[0].Position = { -0.5f, -0.5f, 0 };
             vertices[1].Position = { -0.5f, 0.5f, 0 };
@@ -86,7 +86,7 @@ namespace xpe {
             InitUV(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
             InitNormal(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
 
-            indices.Data = { 0, 1, 2, 2, 3, 0 };
+            indices = { 0, 1, 2, 2, 3, 0 };
 
             geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
 
@@ -96,11 +96,11 @@ namespace xpe {
         GeometryIndexed<Vertex3D> Cube()
         {
             GeometryIndexed<Vertex3D> geometry;
-            auto& vertices = geometry.Vertices;
-            auto& indices = geometry.Indices;
+            auto& vertices = geometry.Vertices.List;
+            auto& indices = geometry.Indices.List;
 
-            vertices.Init(24);
-            indices.Init(36);
+            vertices.resize(24);
+            indices.resize(36);
 
             vertices[0] = { { -0.5f,0.5f,-0.5f } };
             vertices[1] = { { -0.5f,-0.5f,-0.5f } };
@@ -136,7 +136,7 @@ namespace xpe {
             InitNormal<Vertex3D>(vertices);
             InitTBN<Vertex3D>(vertices);
 
-            indices.Data = {
+            indices = {
                 0,1,3,
                 3,1,2,
                 4,5,7,
@@ -160,7 +160,8 @@ namespace xpe {
         {
             GeometryIndexed<Vertex3D> geometry;
 
-            geometry.Vertices.Init(size * size);
+            auto& vertices = geometry.Vertices.List;
+            vertices.resize(size * size);
 
             float shiftX = -size / 2.0f;
             float shiftZ = shiftX;
@@ -169,16 +170,16 @@ namespace xpe {
             // TODO: we can probably speed up this generation time
             for (int i = 0 ; i < size ; i++) {
                 for (int j = 0 ; j < size ; j++) {
-                    auto& v = geometry.Vertices[k];
+                    auto& v = vertices[k];
                     v.Position = { shiftX + i, 0, shiftZ + j };
                     v.UV = { (float) i / (float) size, (float) j / (float) size };
 
                     if (k % 3 == 0 && k > 0) {
                         InitNormal(
-                            &geometry.Vertices[k - 3],
-                            &geometry.Vertices[k - 2],
-                            &geometry.Vertices[k - 1],
-                            &geometry.Vertices[k]
+                            &vertices[k - 3],
+                            &vertices[k - 2],
+                            &vertices[k - 1],
+                            &vertices[k]
                         );
                     }
 
@@ -186,7 +187,8 @@ namespace xpe {
                 }
             }
 
-            geometry.Indices.Init((size - 1) * (size - 1) * 6);
+            auto& indices = geometry.Indices.List;
+            indices.resize((size - 1) * (size - 1) * 6);
             k = 0;
 
             // TODO: we can probably speed up this generation time
@@ -197,13 +199,13 @@ namespace xpe {
                     u32 topLeft = (i + 1) * size + j;
                     u32 topRight = (i + 1) * size + j + 1;
                     // top-left triangle
-                    geometry.Indices[k++] = bottomLeft;
-                    geometry.Indices[k++] = topLeft;
-                    geometry.Indices[k++] = topRight;
+                    indices[k++] = bottomLeft;
+                    indices[k++] = topLeft;
+                    indices[k++] = topRight;
                     // bottom-right triangle
-                    geometry.Indices[k++] = bottomLeft;
-                    geometry.Indices[k++] = topRight;
-                    geometry.Indices[k++] = bottomRight;
+                    indices[k++] = bottomLeft;
+                    indices[k++] = topRight;
+                    indices[k++] = bottomRight;
                 }
             }
 
@@ -215,14 +217,15 @@ namespace xpe {
         GeometryIndexed<Vertex3D> Sphere(s32 xSegments, s32 ySegments)
         {
             GeometryIndexed<Vertex3D> geometry;
-            geometry.Vertices.Init((xSegments + 1) * (ySegments + 1));
+            auto& vertices = geometry.Vertices.List;
+            vertices.resize((xSegments + 1) * (ySegments + 1));
 
             int i = 0;
             for (u32 x = 0; x <= xSegments; x++)
             {
                 for (u32 y = 0; y <= ySegments; y++)
                 {
-                    auto& V = geometry.Vertices[i];
+                    auto& V = vertices[i];
 
                     float xSegment = (float)x / (float)xSegments;
                     float ySegment = (float)y / (float)ySegments;
@@ -274,18 +277,10 @@ namespace xpe {
                 oddRow = !oddRow;
             }
 
-            geometry.Indices.Init(indexList.size());
-            geometry.Indices.Data = indexList;
-
+            geometry.Indices.List = indexList;
             geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
             return geometry;
-        }
-
-        Mesh::Mesh(usize vertexCount, usize indexCount)
-        {
-            Vertices.Init(vertexCount);
-            Indices.Init(indexCount);
         }
 
     }

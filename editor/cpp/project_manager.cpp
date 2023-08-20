@@ -190,8 +190,6 @@ namespace focus {
             const string& filepath
     ) {
         LogInfo("ProjectManager: Game code of {} has been changed!", filepath);
-//        hstring dllName = FileManager::GetFullFileName(filepath.c_str());
-//        FileManager::CopyFile(filepath.c_str(), dllName.c_str());
         ProjectManager::LoadGameCode(filepath);
     }
 

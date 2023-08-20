@@ -13,13 +13,28 @@ namespace xpe {
 
         using namespace render;
 
-        Json(VertexArray<Vertex2D>, Data)
-        Json(VertexArray<Vertex3D>, Data)
-        Json(IndexArray, Data)
-        Json(GeometryVertexed<Vertex2D>, Vertices)
-        Json(GeometryVertexed<Vertex3D>, Vertices)
-        Json(GeometryIndexed<Vertex2D>, Vertices, Indices)
-        Json(GeometryIndexed<Vertex3D>, Vertices, Indices)
+        JsonEnum(ePrimitiveTopology, {
+            { ePrimitiveTopology::DEFAULT, "DEFAULT" },
+            { ePrimitiveTopology::TRIANGLE_LIST, "TRIANGLE_LIST" },
+            { ePrimitiveTopology::TRIANGLE_STRIP, "TRIANGLE_STRIP" },
+            { ePrimitiveTopology::POINT_LIST, "POINT_LIST" },
+            { ePrimitiveTopology::LINE_LIST, "LINE_LIST" },
+            { ePrimitiveTopology::LINE_STRIP, "LINE_STRIP" },
+        })
+
+        Json(VertexBuffer<Vertex2D>, List)
+        Json(VertexBuffer<Vertex3D>, List)
+        Json(VertexBuffer<SkeletalVertex>, List)
+
+        Json(IndexBuffer, List)
+
+        Json(GeometryVertexed<Vertex2D>, PrimitiveTopology, Vertices)
+        Json(GeometryVertexed<Vertex3D>, PrimitiveTopology, Vertices)
+        Json(GeometryVertexed<SkeletalVertex>, PrimitiveTopology, Vertices)
+
+        Json(GeometryIndexed<Vertex2D>, PrimitiveTopology, Vertices, Indices.List)
+        Json(GeometryIndexed<Vertex3D>, PrimitiveTopology, Vertices, Indices.List)
+        Json(GeometryIndexed<SkeletalVertex>, PrimitiveTopology, Vertices, Indices.List)
 
         ENGINE_API GeometryVertexed<Vertex2D> Triangle2D();
         ENGINE_API GeometryVertexed<Vertex3D> Triangle();
@@ -34,7 +49,7 @@ namespace xpe {
         ENGINE_API GeometryIndexed<Vertex3D> Sphere(s32 xSegments = 64, s32 ySegments = 64);
 
         template<typename T>
-        static void InitUV(VertexArray<T>& vertices)
+        static void InitUV(vector<T>& vertices)
         {
             vertices[0].UV = { 0, 0 };
             vertices[1].UV = { 0, 1 };
@@ -68,7 +83,7 @@ namespace xpe {
         }
 
         template<typename T>
-        static void InitNormal(VertexArray<T>& vertices)
+        static void InitNormal(vector<T>& vertices)
         {
             glm::vec3 normal1 = -glm::normalize(glm::cross(
                     vertices[1].Position - vertices[0].Position,
@@ -132,7 +147,7 @@ namespace xpe {
         }
 
         template<typename T>
-        static void InitTBN(VertexArray<T>& vertices)
+        static void InitTBN(vector<T>& vertices)
         {
             InitTBN(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
             InitTBN(&vertices[4], &vertices[5], &vertices[6], &vertices[7]);
@@ -147,18 +162,22 @@ namespace xpe {
             Ref<Material> Material;
 
             Mesh() = default;
-            Mesh(usize vertexCount, usize indexCount);
+            Mesh(usize vertexCount, usize indexCount) : GeometryIndexed<Vertex3D>(vertexCount, indexCount) {}
         };
+
+        Json(Mesh, PrimitiveTopology, Vertices, Indices.List)
 
         struct ENGINE_API Model3D : public Object
         {
             ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
             vector<Mesh> Meshes;
+            render::VertexBuffer<Vertex3D> Vertices;
+            render::IndexBuffer Indices;
 
             inline Mesh& operator [](u32 i) { return Meshes[i]; }
         };
 
-        Json(Model3D, Meshes)
+        Json(Model3D, PrimitiveTopology, Meshes)
 
     }
 

@@ -50,6 +50,11 @@
 // Core
 #include <core/build.h>
 #include <core/types.hpp>
+#include <core/memory_pool.hpp>
+#include <core/main_allocator.h>
+#include <core/hot_allocator.h>
+#include <core/stack_allocator.h>
+#include <core/pointers.h>
 #include <core/object.h>
 #include <core/keycodes.h>
 #include <core/mousecodes.h>
@@ -58,17 +63,12 @@
 #include <res/json.h>
 #include <core/config.h>
 #include <os/hardware_config.h>
-#include <core/memory_pool.hpp>
-#include <core/main_allocator.h>
-#include <core/hot_allocator.h>
-#include <core/stack_allocator.h>
 
 // Rendering core types
 #include <rendering/core/types.h>
 #include <rendering/core/slots.h>
 
 // STL customization
-#include <stl/pointers.h>
 #include <stl/string.h>
 #include <stl/vector.h>
 #include <stl/unordered_map.h>

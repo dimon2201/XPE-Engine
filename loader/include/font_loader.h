@@ -23,7 +23,7 @@ namespace xpe {
             Ref<Font> Resize(const char* filepath, usize glyphSize);
 
         private:
-            FontStorage* m_Storage = nullptr;
+            FontStorage* m_Storage;
         };
 
     }

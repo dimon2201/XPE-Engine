@@ -1,46 +1,14 @@
 #pragma once
 
 #include <rendering/core/vertex.h>
-#include <rendering/core/core.h>
+#include <rendering/buffers/vertex_buffer.h>
+#include <rendering/buffers/index_buffer.h>
 
 namespace xpe {
 
     namespace math {
 
         using namespace core;
-
-        template<typename T>
-        struct VertexArray final
-        {
-            vector<T> Data;
-
-            inline usize Size() const { return Data.size() * sizeof(T); }
-
-            inline usize Count() const { return Data.size(); }
-
-            inline float* ToFloat() const { return (float*) Data.data(); }
-
-            inline const T* GetData() const { return Data.data(); }
-
-            inline T& operator [](int i) { return Data[i]; }
-
-            inline usize Capacity() const { return Data.capacity(); }
-
-            void Init(usize count);
-            void Reserve(usize count);
-        };
-
-        template<typename T>
-        void VertexArray<T>::Init(usize count)
-        {
-            Data.resize(count);
-        }
-
-        template<typename T>
-        void VertexArray<T>::Reserve(usize count)
-        {
-            Data.reserve(count);
-        }
 
         template<typename T>
         static void InitUV(T* v0, T* v1, T* v2, T* v3)
@@ -102,37 +70,25 @@ namespace xpe {
             v3->Tangent = tangent;
         }
 
-        struct ENGINE_API IndexArray final
+        template<typename T>
+        struct GeometryVertexed : public Object
         {
-            vector<u32> Data;
+            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
+            render::VertexBuffer<T> Vertices;
 
-            inline usize Size() const { return Data.size() * sizeof(u32); }
-
-            inline usize Count() const { return Data.size(); }
-
-            inline const u32* GetData() const { return Data.data(); }
-
-            inline u32& operator [](int i) { return Data[i]; }
-
-            inline usize Capacity() const { return Data.capacity(); }
-
-            void Init(usize count);
-            void Reserve(usize count);
+            GeometryVertexed() = default;
+            GeometryVertexed(usize vertexCount) : Vertices(vertexCount) {}
         };
 
         template<typename T>
         struct GeometryIndexed : public Object
         {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            VertexArray<T> Vertices;
-            IndexArray Indices;
-        };
+            render::VertexBuffer<T> Vertices;
+            render::IndexBuffer Indices;
 
-        template<typename T>
-        struct GeometryVertexed : public Object
-        {
-            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            VertexArray<T> Vertices;
+            GeometryIndexed() = default;
+            GeometryIndexed(usize vertexCount, usize indexCount) : Vertices(vertexCount), Indices(indexCount) {}
         };
 
     }

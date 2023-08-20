@@ -1,11 +1,8 @@
 #include <material_loader.h>
 #include <texture_loader.h>
+#include <assimp_types.h>
 
 #include <rendering/storages/material_storage.h>
-
-#include <assimp/Importer.hpp>
-#include <assimp/Exporter.hpp>
-#include <assimp/scene.h>
 
 namespace xpe {
 

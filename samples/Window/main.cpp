@@ -1,10 +1,6 @@
 #include <core/app.hpp>
 #include <launcher.h>
 
-#include <rendering/renderer.h>
-
-#include <rendering/draw/instance_drawer.h>
-
 #include <ecs/entities.hpp>
 #include <ecs/scenes.hpp>
 
@@ -12,6 +8,11 @@
 #include <material_loader.h>
 #include <font_loader.h>
 #include <texture_loader.h>
+#include <skin_loader.h>
+#include <skelet_loader.h>
+#include <anim_loader.h>
+
+#include <rendering/storages/material_storage.h>
 
 #include "test_config.h"
 
@@ -33,17 +34,6 @@ protected:
     void InitRenderer() override
     {
         Application::InitRenderer();
-
-        Shader* shader = ShaderManager::CreateShader("window");
-        ShaderManager::AddVertexStageFromFile(shader, "shaders/window.vs");
-        ShaderManager::AddPixelStageFromFile(shader, "shaders/window.ps");
-        ShaderManager::BuildShader(shader);
-        m_Renderer->AddDrawer<InstanceDrawer>(
-                m_Renderer->GetCameraBuffer(),
-                shader,
-                m_GeometryStorage,
-                m_MaterialStorage
-        );
     }
 
 public:
@@ -66,6 +56,9 @@ public:
         m_MaterialLoader.Create(m_MaterialStorage);
         m_TextureLoader.Create(m_TextureStorage);
         m_FontLoader.Create(m_FontStorage);
+        m_SkeletLoader.Create(m_SkeletStorage);
+        m_SkinLoader.Create(m_SkinStorage);
+        m_AnimLoader.Create(m_AnimStorage);
 
         InitCamera();
         InitCamera2D();
@@ -117,7 +110,7 @@ public:
             plane.Instance.Transform.Scale = { 100, 0.01, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
             plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
-            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
+//            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
         }
@@ -137,40 +130,45 @@ public:
         {
             m_WinterGirl = { "WinterGirl", m_MainScene };
 
-            ModelListComponent winterGirlModel("M_WinterGirl");
-            winterGirlModel.Model = m_ModelLoader->Load("res/models/winter-girl/source/winter_girl.fbx");
+            SkinModelListComponent winterGirlModel("M_WinterGirl");
+            winterGirlModel.Model = m_SkinLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
+            winterGirlModel.Skelet = m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
+
+            SkeletalAnimationComponent winterGirlAnimation("A_WinterGirl");
+            winterGirlAnimation.Skelet = winterGirlModel.Skelet;
+            winterGirlAnimation.Animation = m_AnimLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
 
             {
                 Transform transform;
                 transform.Position = { -2, -10, -2 };
-                transform.Rotation = { -90, 0, 0 };
-                transform.Scale = { 0.25, 0.25, 0.25 };
+                transform.Rotation = { 0, 0, 0 };
+                transform.Scale = { 0.1, 0.1, 0.1 };
                 winterGirlModel.Transforms.emplace_back(transform);
             }
 
-            {
-                Transform transform;
-                transform.Position = { -2, -10, 2 };
-                transform.Rotation = { -90, 0, 0 };
-                transform.Scale = { 0.25, 0.25, 0.25 };
-                winterGirlModel.Transforms.emplace_back(transform);
-            }
-
-            {
-                Transform transform;
-                transform.Position = { 2, -10, -2 };
-                transform.Rotation = { -90, 0, 0 };
-                transform.Scale = { 0.25, 0.25, 0.25 };
-                winterGirlModel.Transforms.emplace_back(transform);
-            }
-
-            {
-                Transform transform;
-                transform.Position = { 2, -10, 2 };
-                transform.Rotation = { -90, 0, 0 };
-                transform.Scale = { 0.25, 0.25, 0.25 };
-                winterGirlModel.Transforms.emplace_back(transform);
-            }
+//            {
+//                Transform transform;
+//                transform.Position = { -2, -10, 2 };
+//                transform.Rotation = { 0, 0, 0 };
+//                transform.Scale = { 0.25, 0.25, 0.25 };
+//                winterGirlModel.Transforms.emplace_back(transform);
+//            }
+//
+//            {
+//                Transform transform;
+//                transform.Position = { 2, -10, -2 };
+//                transform.Rotation = { 0, 0, 0 };
+//                transform.Scale = { 0.25, 0.25, 0.25 };
+//                winterGirlModel.Transforms.emplace_back(transform);
+//            }
+//
+//            {
+//                Transform transform;
+//                transform.Position = { 2, -10, 2 };
+//                transform.Rotation = { 0, 0, 0 };
+//                transform.Scale = { 0.25, 0.25, 0.25 };
+//                winterGirlModel.Transforms.emplace_back(transform);
+//            }
 
             {
                 MaterialFilepath materialFilepath;
@@ -179,7 +177,7 @@ public:
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_niz_Normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_niz_Metallic.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_niz_Roughness.png";
-                winterGirlModel.Model->Meshes[0].Material = m_MaterialLoader->Load(materialFilepath);
+                winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             {
@@ -189,7 +187,7 @@ public:
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_04_Normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_04_Metallic.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_04_Roughness.png";
-                winterGirlModel.Model->Meshes[1].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[1].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             {
@@ -199,7 +197,7 @@ public:
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_R1_Normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_R1_Metallic.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_R1_Roughness.png";
-                winterGirlModel.Model->Meshes[2].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[2].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             {
@@ -209,17 +207,18 @@ public:
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_verx_Normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_verx_Metallic.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_verx_Roughness.png";
-                winterGirlModel.Model->Meshes[3].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[3].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             {
                 MaterialFilepath materialFilepath;
                 materialFilepath.Name = "pngegg";
                 materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/pngegg.png";
-                winterGirlModel.Model->Meshes[4].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[4].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
-            m_WinterGirl.AddComponent<ModelListComponent>(winterGirlModel);
+            m_WinterGirl.AddComponent<SkinModelListComponent>(winterGirlModel);
+            m_WinterGirl.AddComponent<SkeletalAnimationComponent>(winterGirlAnimation);
         }
     }
 
@@ -325,6 +324,12 @@ private:
         {
             pos.x += 1;
         }
+
+        if (key == eKey::P)
+        {
+            auto* winterGirlAnim = m_WinterGirl.GetComponent<SkeletalAnimationComponent>("A_WinterGirl");
+            winterGirlAnim->Play = !winterGirlAnim->Play;
+        }
     }
 
     void Simulate()
@@ -350,6 +355,9 @@ private:
     Ref<MaterialLoader> m_MaterialLoader;
     Ref<TextureLoader> m_TextureLoader;
     Ref<FontLoader> m_FontLoader;
+    Ref<SkeletLoader> m_SkeletLoader;
+    Ref<SkinLoader> m_SkinLoader;
+    Ref<AnimLoader> m_AnimLoader;
 
     Entity m_DirectLight;
     Entity m_Text3D;

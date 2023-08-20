@@ -1,8 +1,9 @@
 #include <rendering/renderer.h>
 #include <rendering/draw/drawer.h>
 #include <rendering/buffers/camera_buffer.h>
+#include <rendering/buffers/light_buffers.h>
 
-#include <ecs/scene.h>
+#include <ecs/scenes.hpp>
 
 namespace xpe {
 
@@ -12,12 +13,25 @@ namespace xpe {
         {
             context::Init();
             ShaderManager::Init();
-            m_CameraBuffer = new CameraBuffer();
+
+            CameraBuffer = new render::CameraBuffer();
+
+            DirectLightBuffer = new render::DirectLightBuffer();
+            DirectLightBuffer->Reserve(1000);
+
+            PointLightBuffer = new render::PointLightBuffer();
+            PointLightBuffer->Reserve(1000);
+
+            SpotLightBuffer = new render::SpotLightBuffer();
+            SpotLightBuffer->Reserve(1000);
         }
 
         Renderer::~Renderer()
         {
-            delete m_CameraBuffer;
+            delete CameraBuffer;
+            delete DirectLightBuffer;
+            delete PointLightBuffer;
+            delete SpotLightBuffer;
 
             for (Drawer* drawer : m_Drawers) {
                 delete drawer;
@@ -25,7 +39,6 @@ namespace xpe {
             m_Drawers.clear();
 
             ShaderManager::Free();
-
             context::Free();
         }
 
@@ -40,6 +53,8 @@ namespace xpe {
 
         void Renderer::Render(Scene* scene, RenderTarget* renderTarget)
         {
+            FlushLights(scene);
+
             for (Drawer* drawer : m_Drawers) {
                 drawer->Draw(scene, renderTarget);
             }
@@ -67,6 +82,27 @@ namespace xpe {
 //
 //                m_Text3DRenderer->Draw(text3D, m_Text3dTransform, m_Font);
 //            }
+        }
+
+        void Renderer::FlushLights(Scene* scene)
+        {
+            this->DirectLightBuffer->Clear();
+            scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component) {
+                this->DirectLightBuffer->AddComponent(*component);
+            });
+            this->DirectLightBuffer->Flush();
+
+            this->PointLightBuffer->Clear();
+            scene->EachComponent<PointLightComponent>([this](PointLightComponent* component) {
+                this->PointLightBuffer->AddComponent(*component);
+            });
+            this->PointLightBuffer->Flush();
+
+            this->SpotLightBuffer->Clear();
+            scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component) {
+                this->SpotLightBuffer->AddComponent(*component);
+            });
+            this->SpotLightBuffer->Flush();
         }
 
     }

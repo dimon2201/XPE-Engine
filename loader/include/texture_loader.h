@@ -51,7 +51,7 @@ namespace xpe {
             void Save(const char* filepath, const Texture& texture, const Texture::eFileFormat& fileFormat);
 
         private:
-            TextureStorage* m_Storage = nullptr;
+            TextureStorage* m_Storage;
         };
 
     }

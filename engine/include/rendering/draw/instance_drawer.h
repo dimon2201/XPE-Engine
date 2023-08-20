@@ -1,11 +1,8 @@
 #pragma once
 
 #include <rendering/draw/drawer.h>
-
 #include <rendering/buffers/instance_buffer.h>
 #include <rendering/buffers/transform_buffer.h>
-#include <rendering/buffers/light_buffers.h>
-
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/storages/material_storage.h>
 
@@ -22,16 +19,24 @@ namespace xpe {
         using namespace math;
         using namespace ecs;
 
+        class DirectLightBuffer;
+        class PointLightBuffer;
+        class SpotLightBuffer;
+
         class ENGINE_API InstanceDrawer : public Drawer
         {
 
         public:
             InstanceDrawer(
-                    CameraBuffer* cameraBuffer,
-                    Shader* shader,
-                    GeometryStorage* geometryStorage,
-                    MaterialStorage* materialStorage
+                CameraBuffer* cameraBuffer,
+                Shader* shader,
+                GeometryStorage* geometryStorage,
+                MaterialStorage* materialStorage,
+                DirectLightBuffer* directLightBuffer,
+                PointLightBuffer* pointLightBuffer,
+                SpotLightBuffer* spotLightBuffer
             );
+
             ~InstanceDrawer() override;
 
             void Draw(Scene* scene, RenderTarget* renderTarget) override;
@@ -49,19 +54,12 @@ namespace xpe {
             void DrawModel(const Ref<Model3D>& model, const Transform& transform);
             void DrawModelList(const Ref<Model3D>& model, const vector<Transform>& transforms);
 
-            void FlushLights(Scene* scene);
-
         protected:
-            GeometryStorage* m_GeometryStorage = nullptr;
-            MaterialStorage* m_MaterialStorage = nullptr;
+            GeometryStorage* m_GeometryStorage;
+            MaterialStorage* m_MaterialStorage;
 
             InstanceBuffer m_InstanceBuffer;
-
             TransformBuffer m_TransformBuffer;
-
-            DirectLightBuffer m_DirectLightBuffer;
-            PointLightBuffer m_PointLightBuffer;
-            SpotLightBuffer m_SpotLightBuffer;
         };
 
     }

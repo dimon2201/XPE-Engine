@@ -10,6 +10,7 @@
 #define K_SLOT_TEXT_GLYPHS             register(t5)
 #define K_SLOT_TEXT_GLYPH_INSTANCES    register(t6)
 #define K_SLOT_VIEWPORT                register(t7)
+#define K_SLOT_BONES                   register(t8)
 
 // ---------- For Pixel Stage --------------- //
 

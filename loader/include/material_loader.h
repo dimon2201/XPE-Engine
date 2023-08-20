@@ -41,7 +41,7 @@ namespace xpe {
             Ref<Material> Load(const MaterialFilepath& filepath);
 
         private:
-            MaterialStorage* m_Storage = nullptr;
+            MaterialStorage* m_Storage;
         };
 
     }

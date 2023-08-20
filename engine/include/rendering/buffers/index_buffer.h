@@ -1,6 +1,5 @@
 #pragma once
 
-#include <geometry/geometry.h>
 #include <rendering/core/core.h>
 
 namespace xpe {
@@ -16,15 +15,17 @@ namespace xpe {
         {
 
         public:
+            vector<u32> List;
+
             IndexBuffer() = default;
             IndexBuffer(const usize indexCount);
-            IndexBuffer(const IndexArray& indexArray);
+            IndexBuffer(const vector<u32>& indexArray);
             ~IndexBuffer();
 
         public:
             void Flush();
 
-            void FlushIndices(const IndexArray& indices);
+            void FlushIndices(const vector<u32>& indices);
 
             void FlushIndex(u32 i, u32 index);
 
@@ -34,25 +35,20 @@ namespace xpe {
 
             void Recreate(const usize count);
 
-            inline u32* GetIndex(const u32 i) {
+            inline u32* GetIndex(const u32 i)
+            {
                 // check if index is in the size bounds
                 // if not, then resize to index + 1
                 if (i >= Count()) {
                     Resize(i + 1);
                 }
-                return &m_IndexArray[i];
-            }
-
-            inline IndexArray& GetIndexArray() {
-                return m_IndexArray;
+                return &List[i];
             }
 
             inline usize Count() {
-                return m_IndexArray.Count();
+                return List.size();
             }
 
-        protected:
-            IndexArray m_IndexArray;
         };
 
     }

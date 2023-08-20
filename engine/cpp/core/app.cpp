@@ -5,20 +5,22 @@
 #include <ecs/entities.hpp>
 
 #include <rendering/core/debugger.h>
-
 #include <rendering/renderer.h>
-
+#include <rendering/buffers/light_buffers.h>
 #include <rendering/draw/canvas.hpp>
-
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/draw/instance_drawer.h>
+#include <rendering/draw/skeletal_anim_drawer.h>
 #include <rendering/storages/texture_storage.h>
-#include <rendering/storages/material_storage.h>
 #include <rendering/storages/font_storage.h>
+
+#include <anim/animator.h>
+#include <anim/storages/anim_storage.h>
 
 namespace xpe {
 
     using namespace render;
     using namespace ecs;
+    using namespace anim;
 
     namespace core {
 
@@ -55,11 +57,16 @@ namespace xpe {
             m_MaterialStorage = new MaterialStorage();
             m_TextureStorage = new TextureStorage();
 
+            m_SkeletStorage = new SkeletStorage();
+            m_SkinStorage = new SkinStorage();
+            m_AnimStorage = new AnimStorage();
+            m_Animator = new Animator(m_SkeletStorage);
+
             InitRenderer();
 
             m_MainScene = new MainScene();
-            m_MainScene->PerspectiveCamera->Buffer = m_Renderer->GetCameraBuffer();
-            m_MainScene->OrthoCamera->Buffer = m_Renderer->GetCameraBuffer();
+            m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;
+            m_MainScene->OrthoCamera->Buffer = m_Renderer->CameraBuffer;
 
             Init();
             m_Game = CreateGame();
@@ -85,6 +92,8 @@ namespace xpe {
 
                 CurrentTime = cpuTimer.GetStartTime();
 
+                m_Animator->Animate(m_MainScene, DeltaTime.Millis());
+
                 Update();
 
                 m_Game->Update();
@@ -109,11 +118,19 @@ namespace xpe {
             m_Game->Free();
             delete m_Game;
             Free();
+
             delete m_MainScene;
+
             delete m_FontStorage;
             delete m_GeometryStorage;
             delete m_MaterialStorage;
             delete m_TextureStorage;
+
+            delete m_AnimStorage;
+            delete m_SkinStorage;
+            delete m_SkeletStorage;
+            delete m_Animator;
+
             delete m_Canvas;
             delete m_Renderer;
 
@@ -138,13 +155,22 @@ namespace xpe {
             m_Game->CPUTime = &CPUTime;
             m_Game->DeltaTime = &DeltaTime;
             m_Game->CurrentTime = &CurrentTime;
+
             m_Game->Config = &Config;
+
+            m_Game->MainScene = m_MainScene;
+
             m_Game->Renderer = m_Renderer;
             m_Game->FontStorage = m_FontStorage;
             m_Game->MaterialStorage = m_MaterialStorage;
             m_Game->GeometryStorage = m_GeometryStorage;
             m_Game->TextureStorage = m_TextureStorage;
-            m_Game->MainScene = m_MainScene;
+
+            m_Game->SkeletStorage = m_SkeletStorage;
+            m_Game->SkinStorage = m_SkinStorage;
+            m_Game->AnimStorage = m_AnimStorage;
+            m_Game->Animator = m_Animator;
+
             m_Game->Init();
         }
 
@@ -155,13 +181,46 @@ namespace xpe {
 
         void Application::InitRenderer()
         {
-            // Canvas
+            // Canvas drawing
             {
                 Shader* shader = ShaderManager::CreateShader("canvas");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/canvas.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/canvas.ps");
                 ShaderManager::BuildShader(shader);
                 m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
+            }
+            // Instance drawing for 3D
+            {
+                Shader* shader = ShaderManager::CreateShader("instance_drawer");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/instance_drawer.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/instance_drawer.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<InstanceDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_GeometryStorage,
+                        m_MaterialStorage,
+                        m_Renderer->DirectLightBuffer,
+                        m_Renderer->PointLightBuffer,
+                        m_Renderer->SpotLightBuffer
+                );
+            }
+            // Instance drawing for 3D skeletal skin
+            {
+                Shader* shader = ShaderManager::CreateShader("skeletal_anim_drawer");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<SkeletalAnimDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_MaterialStorage,
+                        m_Renderer->DirectLightBuffer,
+                        m_Renderer->PointLightBuffer,
+                        m_Renderer->SpotLightBuffer,
+                        m_SkeletStorage,
+                        m_SkinStorage
+                );
             }
         }
 

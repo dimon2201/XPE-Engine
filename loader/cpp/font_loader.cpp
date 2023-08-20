@@ -173,7 +173,6 @@ namespace xpe {
         Ref<Font> FontLoader::Resize(const char *filepath, usize glyphSize)
         {
             auto& fontRef = m_Storage->Get(filepath);
-            fontRef.Reset();
             auto& font = *fontRef;
 
             FT_Face& fontFace = s_FontFaces->at(filepath);

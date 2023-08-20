@@ -77,10 +77,23 @@ namespace xpe {
             {
                     { VertexFormat::Attribute::eFormat::BOOL, DXGI_FORMAT_R32_UINT },
                     { VertexFormat::Attribute::eFormat::INT, DXGI_FORMAT_R32_SINT },
+                    { VertexFormat::Attribute::eFormat::UINT, DXGI_FORMAT_R32_UINT },
                     { VertexFormat::Attribute::eFormat::FLOAT, DXGI_FORMAT_R32_FLOAT },
-                    { VertexFormat::Attribute::eFormat::VEC2, DXGI_FORMAT_R32G32_FLOAT },
-                    { VertexFormat::Attribute::eFormat::VEC3, DXGI_FORMAT_R32G32B32_FLOAT },
-                    { VertexFormat::Attribute::eFormat::VEC4, DXGI_FORMAT_R32G32B32A32_FLOAT },
+
+                    { VertexFormat::Attribute::eFormat::VEC2_FLOAT, DXGI_FORMAT_R32G32_FLOAT },
+                    { VertexFormat::Attribute::eFormat::VEC2_UINT, DXGI_FORMAT_R32G32_UINT },
+                    { VertexFormat::Attribute::eFormat::VEC2_INT, DXGI_FORMAT_R32G32_SINT },
+                    { VertexFormat::Attribute::eFormat::VEC2_TYPELESS, DXGI_FORMAT_R32G32_TYPELESS },
+
+                    { VertexFormat::Attribute::eFormat::VEC3_FLOAT, DXGI_FORMAT_R32G32B32_FLOAT },
+                    { VertexFormat::Attribute::eFormat::VEC3_UINT, DXGI_FORMAT_R32G32B32_UINT },
+                    { VertexFormat::Attribute::eFormat::VEC3_INT, DXGI_FORMAT_R32G32B32_SINT },
+                    { VertexFormat::Attribute::eFormat::VEC3_TYPELESS, DXGI_FORMAT_R32G32B32_TYPELESS },
+
+                    { VertexFormat::Attribute::eFormat::VEC4_FLOAT, DXGI_FORMAT_R32G32B32A32_FLOAT },
+                    { VertexFormat::Attribute::eFormat::VEC4_UINT, DXGI_FORMAT_R32G32B32A32_UINT },
+                    { VertexFormat::Attribute::eFormat::VEC4_INT, DXGI_FORMAT_R32G32B32A32_SINT },
+                    { VertexFormat::Attribute::eFormat::VEC4_TYPELESS, DXGI_FORMAT_R32G32B32A32_TYPELESS },
             };
 
             static const std::unordered_map<ePrimitiveTopology, D3D11_PRIMITIVE_TOPOLOGY> s_PrimitiveTopologyTable =

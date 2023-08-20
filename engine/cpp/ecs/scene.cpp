@@ -38,9 +38,23 @@ namespace xpe {
         Scene::~Scene()
         {
             m_Entities.clear();
+
+            for (auto& address : m_ComponentAddresses)
+            {
+                for (auto& entityComponent : address.second)
+                {
+                    for (auto& component : entityComponent.second)
+                    {
+                        component.second->~Component();
+                    }
+                }
+            }
             m_ComponentAddresses.clear();
+
             m_ComponentStorages.clear();
-            for (auto& global : m_Globals) {
+
+            for (auto& global : m_Globals)
+            {
                 delete global.second;
             }
             m_Globals.clear();
