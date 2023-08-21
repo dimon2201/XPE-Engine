@@ -11,6 +11,8 @@ namespace xpe {
 
         struct ENGINE_API Pipeline final
         {
+            render::Shader* Shader = nullptr;
+            render::RenderTarget* RenderTarget = nullptr;
             ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
             render::InputLayout InputLayout;
             Buffer* VertexBuffer = nullptr;
@@ -19,8 +21,6 @@ namespace xpe {
             vector<Buffer*> PSBuffers; // buffers defined in pixel shader
             vector<Texture*> Textures;
             vector<TextureSampler*> Samplers;
-            render::Shader* Shader = nullptr;
-            render::RenderTarget* RenderTarget = nullptr;
             render::DepthStencilState DepthStencilState;
             render::BlendState BlendState;
             render::Rasterizer Rasterizer;

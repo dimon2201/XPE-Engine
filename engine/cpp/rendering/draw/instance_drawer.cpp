@@ -40,11 +40,8 @@ namespace xpe {
 
         InstanceDrawer::~InstanceDrawer() {}
 
-        void InstanceDrawer::Draw(Scene* scene, RenderTarget* renderTarget)
+        void InstanceDrawer::Draw(Scene* scene)
         {
-            m_Pipeline->RenderTarget = renderTarget;
-            Bind();
-
             scene->EachComponent<GeometryVertexed3DComponent>([this](GeometryVertexed3DComponent* component)
             {
                 DrawGeometryVertexed(component->Geometry, component->Instance);
@@ -106,10 +103,12 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&geometry->Vertices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(geometry->Vertices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawVertexed(0, geometry->Vertices.NumElements, 1);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void InstanceDrawer::DrawGeometryIndexed(
@@ -132,11 +131,13 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&geometry->Vertices);
-            context::BindIndexBuffer(&geometry->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(geometry->Vertices);
+            context::BindIndexBuffer(geometry->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, geometry->Indices.NumElements, 1);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void InstanceDrawer::DrawGeometryVertexedList(
@@ -164,10 +165,12 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&geometry->Vertices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(geometry->Vertices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawVertexed(0, geometry->Vertices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void InstanceDrawer::DrawGeometryIndexedList(
@@ -195,11 +198,13 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(geometry->PrimitiveTopology);
-            context::BindVertexBuffer(&geometry->Vertices);
-            context::BindIndexBuffer(&geometry->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(geometry->Vertices);
+            context::BindIndexBuffer(geometry->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, geometry->Indices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void InstanceDrawer::DrawMesh(const Ref<Mesh> &mesh, const Transform &transform)
@@ -220,11 +225,13 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(mesh->PrimitiveTopology);
-            context::BindVertexBuffer(&mesh->Vertices);
-            context::BindIndexBuffer(&mesh->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(mesh->Vertices);
+            context::BindIndexBuffer(mesh->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, mesh->Indices.NumElements, 1);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void InstanceDrawer::DrawMeshList(const Ref<Mesh> &mesh, const vector<Transform> &transforms)
@@ -248,11 +255,13 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(mesh->PrimitiveTopology);
-            context::BindVertexBuffer(&mesh->Vertices);
-            context::BindIndexBuffer(&mesh->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(mesh->Vertices);
+            context::BindIndexBuffer(mesh->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, mesh->Indices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void InstanceDrawer::DrawModel(const Ref<Model3D> &model, const Transform &transform)
@@ -276,11 +285,13 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&model->Vertices);
-            context::BindIndexBuffer(&model->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(model->Vertices);
+            context::BindIndexBuffer(model->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void InstanceDrawer::DrawModelList(const Ref<Model3D> &model, const vector<Transform> &transforms)
@@ -310,11 +321,13 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&model->Vertices);
-            context::BindIndexBuffer(&model->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(model->Vertices);
+            context::BindIndexBuffer(model->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
     }

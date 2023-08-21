@@ -20,14 +20,13 @@ namespace xpe {
         void Animator::AnimateSkelet(const Ref<Skelet> &skelet, const Ref<Animation> &animation, float dt)
         {
             m_DeltaTime = dt;
-            m_CurrentAnimation = animation;
-            m_CurrentTime += m_CurrentAnimation->TicksPerSecond * dt;
-            m_CurrentTime = fmod(m_CurrentTime, m_CurrentAnimation->Duration);
+            m_CurrentTime += animation->TicksPerSecond * dt;
+            m_CurrentTime = fmod(m_CurrentTime, animation->Duration);
             auto& boneBuffer = skelet->BoneBuffer;
 
             boneBuffer.Resize(skelet->Bones.size());
 
-            UpdateSkeletTransform(skelet, boneBuffer, m_CurrentAnimation->Root, glm::mat4(1.0f));
+            UpdateSkeletTransform(skelet, boneBuffer, animation->Root, glm::mat4(1.0f));
 
             boneBuffer.Flush();
         }

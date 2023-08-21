@@ -17,8 +17,9 @@ namespace xpe {
 
             s_Storage = new ShaderStorage();
             os::FileManager::CreateDir("generated");
-            os::FileManager::CreateDir("generated/engine_shaders");
             os::FileManager::CreateDir("generated/shaders");
+            os::FileManager::CreateDir("generated/engine_shaders");
+            os::FileManager::CreateDir("generated/engine_shaders/draw");
 
             LogInfo("ShaderManager initialized");
         }

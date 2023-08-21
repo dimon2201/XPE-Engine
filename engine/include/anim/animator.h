@@ -57,7 +57,6 @@ namespace xpe {
             SkeletStorage* m_SkeletStorage;
             float m_CurrentTime = 0;
             float m_DeltaTime = 0;
-            Ref<Animation> m_CurrentAnimation;
         };
 
     }

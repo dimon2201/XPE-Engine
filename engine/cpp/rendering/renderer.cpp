@@ -54,34 +54,11 @@ namespace xpe {
         void Renderer::Render(Scene* scene, RenderTarget* renderTarget)
         {
             FlushLights(scene);
-
             for (Drawer* drawer : m_Drawers) {
-                drawer->Draw(scene, renderTarget);
+                drawer->Begin(renderTarget);
+                drawer->Draw(scene);
+                drawer->End();
             }
-
-//            // Render 2D text
-//            {
-//                Text2DComponent text2D("Text2D");
-//                stringstream ss;
-//                ss << "CPU: " << CPUTime << "\n";
-//                ss << "FPS: " << DeltaTime << "\n";
-//                ss << "Current Time: " << CurrentTime << "\n";
-//                text2D.Text = ss.str();
-//
-//                m_Text2DRenderer->Draw(text2D, m_Text2dTransform, m_Font);
-//            }
-//
-//            // Render 3D text
-//            {
-//                Text3DComponent text3D("Text3D");
-//                stringstream ss;
-//                ss << "CPU: " << CPUTime << "\n";
-//                ss << "FPS: " << DeltaTime << "\n";
-//                ss << "Current Time: " << CurrentTime << "\n";
-//                text3D.Text = ss.str();
-//
-//                m_Text3DRenderer->Draw(text3D, m_Text3dTransform, m_Font);
-//            }
         }
 
         void Renderer::FlushLights(Scene* scene)

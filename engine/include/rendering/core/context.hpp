@@ -55,7 +55,7 @@ namespace xpe {
 
             ENGINE_API void CreateShader(Shader& shader);
             ENGINE_API void CompileShader(Shader& shader);
-            ENGINE_API void BindShader(const Shader* shader);
+            ENGINE_API void BindShader(const Shader& shader);
             ENGINE_API void FreeShader(Shader& shader);
 
             ENGINE_API void CompileShaderStage(ShaderStage& stage);
@@ -72,23 +72,27 @@ namespace xpe {
             ENGINE_API void CreateTextureCube(Texture& texture);
             ENGINE_API void CreateTextureDepthStencil(Texture& texture);
 
-            ENGINE_API void BindTexture(const Texture* texture);
+            ENGINE_API void BindTexture(const Texture& texture);
             ENGINE_API void BindTextureSlot(u32 slot);
+            ENGINE_API void UnbindTexture(const Texture& texture);
             ENGINE_API void FreeTexture(Texture& texture);
             ENGINE_API void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index = 0);
 
             ENGINE_API void GenerateMips(const Texture& texture);
 
             ENGINE_API void CreateSampler(TextureSampler& sampler);
-            ENGINE_API void BindSampler(const TextureSampler* sampler);
+            ENGINE_API void BindSampler(const TextureSampler& sampler);
+            ENGINE_API void UnbindSampler(const TextureSampler& sampler);
             ENGINE_API void FreeSampler(TextureSampler& sampler);
 
             ENGINE_API void CreateBuffer(Buffer& buffer);
-            ENGINE_API void BindVertexBuffer(const Buffer* buffer);
-            ENGINE_API void BindIndexBuffer(const Buffer* buffer);
-            ENGINE_API void BindVSBuffer(const Buffer* buffer);
-            ENGINE_API void BindPSBuffer(const Buffer* buffer);
             ENGINE_API void FreeBuffer(const Buffer& buffer);
+            ENGINE_API void BindVertexBuffer(const Buffer& buffer);
+            ENGINE_API void BindIndexBuffer(const Buffer& buffer);
+            ENGINE_API void BindVSBuffer(const Buffer& buffer);
+            ENGINE_API void UnbindVSBuffer(const Buffer& buffer);
+            ENGINE_API void BindPSBuffer(const Buffer& buffer);
+            ENGINE_API void UnbindPSBuffer(const Buffer& buffer);
 
             ENGINE_API void CopyBuffer(const Buffer& buffer, const void* data, usize dataByteSize);
             ENGINE_API void CopyBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize);
@@ -108,6 +112,7 @@ namespace xpe {
 
             ENGINE_API void CreatePipeline(Pipeline& pipeline);
             ENGINE_API void BindPipeline(const Pipeline& pipeline);
+            ENGINE_API void UnbindPipeline(const Pipeline& pipeline);
             ENGINE_API void FreePipeline(Pipeline& pipeline);
 
             ENGINE_API void CreateDepthStencilState(DepthStencilState& state);
