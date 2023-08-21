@@ -10,6 +10,8 @@
 #include <rendering/draw/canvas.hpp>
 #include <rendering/draw/instance_drawer.h>
 #include <rendering/draw/skeletal_anim_drawer.h>
+#include <rendering/draw/text2d_drawer.h>
+#include <rendering/draw/text3d_drawer.h>
 #include <rendering/storages/texture_storage.h>
 #include <rendering/storages/font_storage.h>
 
@@ -220,6 +222,31 @@ namespace xpe {
                         m_Renderer->SpotLightBuffer,
                         m_SkeletStorage,
                         m_SkinStorage
+                );
+            }
+            // Text 2D drawing
+            {
+                Shader* shader = ShaderManager::CreateShader("text2d_drawer");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/text2d_drawer.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/text2d_drawer.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<Text2DDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_GeometryStorage,
+                        m_Canvas->GetBuffer()
+                );
+            }
+            // Text 3D drawing
+            {
+                Shader* shader = ShaderManager::CreateShader("text3d_drawer");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/text3d_drawer.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/text3d_drawer.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<Text3DDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_GeometryStorage
                 );
             }
         }

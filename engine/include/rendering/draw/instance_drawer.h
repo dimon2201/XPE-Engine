@@ -39,7 +39,7 @@ namespace xpe {
 
             ~InstanceDrawer() override;
 
-            void Draw(Scene* scene, RenderTarget* renderTarget) override;
+            void Draw(Scene* scene) override;
 
         private:
             void DrawGeometryVertexed(const Ref<GeometryVertexed<Vertex3D>>& geometry, const MaterialInstance& instance);

@@ -18,14 +18,20 @@ namespace xpe {
             delete m_Pipeline;
         }
 
+        void Drawer::Begin(RenderTarget *renderTarget)
+        {
+            m_Pipeline->RenderTarget = renderTarget;
+            context::BindPipeline(*m_Pipeline);
+        }
+
+        void Drawer::End()
+        {
+            context::UnbindPipeline(*m_Pipeline);
+        }
+
         void Drawer::Init()
         {
             context::CreatePipeline(*m_Pipeline);
-        }
-
-        void Drawer::Bind()
-        {
-            context::BindPipeline(*m_Pipeline);
         }
 
     }

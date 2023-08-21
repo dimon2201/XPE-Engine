@@ -19,6 +19,7 @@ namespace xpe {
         {
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
+            void* NullInstance = nullptr;
         };
 
         enum class ePrimitiveTopology

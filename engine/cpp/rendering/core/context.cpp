@@ -65,11 +65,13 @@ namespace xpe {
                 }
             }
 
-            void BindShader(const Shader* shader)
+            void BindShader(const Shader& shader)
             {
-                for (const auto* stage : shader->Stages)
+                for (const auto* stage : shader.Stages)
                 {
-                    BindShaderStage(*stage);
+                    if (stage != nullptr) {
+                        BindShaderStage(*stage);
+                    }
                 }
             }
 
@@ -148,45 +150,82 @@ namespace xpe {
 
             void BindPipeline(const Pipeline& pipeline)
             {
-                BindPrimitiveTopology(pipeline.PrimitiveTopology);
-
-                BindInputLayout(pipeline.InputLayout);
-
-                if (pipeline.VertexBuffer != nullptr) {
-                    BindVertexBuffer(pipeline.VertexBuffer);
-                }
-
-                if (pipeline.IndexBuffer != nullptr) {
-                    BindIndexBuffer(pipeline.IndexBuffer);
-                }
-
-                for (const auto* buffer : pipeline.VSBuffers) {
-                    BindVSBuffer(buffer);
-                }
-
-                for (const auto* buffer : pipeline.PSBuffers) {
-                    BindPSBuffer(buffer);
-                }
-
-                for (const auto* texture : pipeline.Textures) {
-                    BindTexture(texture);
-                }
-
-                for (const auto* sampler : pipeline.Samplers) {
-                    BindSampler(sampler);
-                }
-
                 if (pipeline.Shader != nullptr) {
-                    BindShader(pipeline.Shader);
+                    BindShader(*pipeline.Shader);
                 }
 
                 if (pipeline.RenderTarget != nullptr) {
                     BindRenderTarget(pipeline.RenderTarget->ColorTargetView, pipeline.RenderTarget->DepthTargetView);
                 }
 
+                BindPrimitiveTopology(pipeline.PrimitiveTopology);
+
+                BindInputLayout(pipeline.InputLayout);
+
+                if (pipeline.VertexBuffer != nullptr) {
+                    BindVertexBuffer(*pipeline.VertexBuffer);
+                }
+
+                if (pipeline.IndexBuffer != nullptr) {
+                    BindIndexBuffer(*pipeline.IndexBuffer);
+                }
+
+                for (const auto* buffer : pipeline.VSBuffers) {
+                    if (buffer != nullptr) {
+                        BindVSBuffer(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.PSBuffers) {
+                    if (buffer != nullptr) {
+                        BindPSBuffer(*buffer);
+                    }
+                }
+
+                for (const auto* texture : pipeline.Textures) {
+                    if (texture != nullptr) {
+                        BindTexture(*texture);
+                    }
+                }
+
+                for (const auto* sampler : pipeline.Samplers) {
+                    if (sampler != nullptr) {
+                        BindSampler(*sampler);
+                    }
+                }
+
                 BindDepthStencilState(pipeline.DepthStencilState);
                 BindBlendState(pipeline.BlendState);
                 BindRasterizer(pipeline.Rasterizer);
+            }
+
+            void UnbindPipeline(const Pipeline &pipeline)
+            {
+                UnbindRenderTarget();
+
+                for (const auto* buffer : pipeline.VSBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindVSBuffer(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.PSBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindPSBuffer(*buffer);
+                    }
+                }
+
+                for (const auto* texture : pipeline.Textures) {
+                    if (texture != nullptr) {
+                        UnbindTexture(*texture);
+                    }
+                }
+
+                for (const auto* sampler : pipeline.Samplers) {
+                    if (sampler != nullptr) {
+                        UnbindSampler(*sampler);
+                    }
+                }
             }
 
             void FreePipeline(Pipeline& pipeline)

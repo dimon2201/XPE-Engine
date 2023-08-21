@@ -19,13 +19,15 @@ namespace xpe {
             u32 CameraIndex = 0;
         };
 
-        struct ENGINE_API InstanceBuffer : public StructureBuffer<RenderInstance> {
+        struct ENGINE_API InstanceBuffer : public StructureBuffer<RenderInstance>
+        {
 
             InstanceBuffer(usize count = 0) : StructureBuffer<RenderInstance>(count, K_SLOT_INSTANCES) {}
 
         };
 
-        struct ENGINE_API InstanceBuffer2d : public StructureBuffer<RenderInstance2d> {
+        struct ENGINE_API InstanceBuffer2d : public StructureBuffer<RenderInstance2d>
+        {
 
             InstanceBuffer2d(usize count = 0) : StructureBuffer<RenderInstance2d>(count, K_SLOT_INSTANCES2D) {}
 

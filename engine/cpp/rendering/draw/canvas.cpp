@@ -42,9 +42,9 @@ namespace xpe {
         {
             context::BindRenderTarget(m_PresentTarget.ColorTargetView, m_PresentTarget.DepthTargetView);
             context::BindViewport(&m_ViewportBuffer.Item);
-            context::BindShader(m_Shader);
-            context::BindTexture(m_RenderTarget.ColorTexture);
-            context::BindSampler(&m_PresentSampler);
+            context::BindShader(*m_Shader);
+            context::BindTexture(*m_RenderTarget.ColorTexture);
+            context::BindSampler(m_PresentSampler);
 
             context::ClearColorTarget(m_ClearColor);
 

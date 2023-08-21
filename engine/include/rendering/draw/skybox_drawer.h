@@ -22,7 +22,7 @@ namespace xpe {
             SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader);
             ~SkyboxDrawer() override;
 
-            void Draw(Scene* scene, RenderTarget* renderTarget) override;
+            void Draw(Scene* scene) override;
 
         protected:
             Scope<VertexBuffer<Vertex3D>> m_VertexBuffer;

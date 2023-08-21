@@ -82,9 +82,9 @@ namespace xpe
 
             JsonClass(
                 Text3DComponent,
-                Transform,
                 Text,
-                FontResFilepath
+                FontResFilepath,
+                Transform
             )
         };
 

@@ -42,11 +42,8 @@ namespace xpe {
 
         SkeletalAnimDrawer::~SkeletalAnimDrawer() {}
 
-        void SkeletalAnimDrawer::Draw(Scene* scene, RenderTarget* renderTarget)
+        void SkeletalAnimDrawer::Draw(Scene* scene)
         {
-            m_Pipeline->RenderTarget = renderTarget;
-            Bind();
-
             scene->EachComponent<SkinComponent>([this](SkinComponent* component)
             {
                 DrawSkin(component->Skin, component->Skelet, component->Transform);
@@ -86,15 +83,21 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             if (skelet.Get() != nullptr) {
-                context::BindVSBuffer(&skelet->BoneBuffer);
+                context::BindVSBuffer(skelet->BoneBuffer);
             }
 
             context::BindPrimitiveTopology(skin->PrimitiveTopology);
-            context::BindVertexBuffer(&skin->Vertices);
-            context::BindIndexBuffer(&skin->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(skin->Vertices);
+            context::BindIndexBuffer(skin->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, skin->Indices.NumElements, 1);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
+
+            if (skelet.Get() != nullptr) {
+                context::UnbindVSBuffer(skelet->BoneBuffer);
+            }
         }
 
         void SkeletalAnimDrawer::DrawSkinList(const Ref<Skin> &skin, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
@@ -118,15 +121,21 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             if (skelet.Get() != nullptr) {
-                context::BindVSBuffer(&skelet->BoneBuffer);
+                context::BindVSBuffer(skelet->BoneBuffer);
             }
 
             context::BindPrimitiveTopology(skin->PrimitiveTopology);
-            context::BindVertexBuffer(&skin->Vertices);
-            context::BindIndexBuffer(&skin->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(skin->Vertices);
+            context::BindIndexBuffer(skin->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, skin->Indices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
+
+            if (skelet.Get() != nullptr) {
+                context::UnbindVSBuffer(skelet->BoneBuffer);
+            }
         }
 
         void SkeletalAnimDrawer::DrawSkinModel(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const Transform &transform)
@@ -150,15 +159,21 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             if (skelet.Get() != nullptr) {
-                context::BindVSBuffer(&skelet->BoneBuffer);
+                context::BindVSBuffer(skelet->BoneBuffer);
             }
 
             context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&model->Vertices);
-            context::BindIndexBuffer(&model->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(model->Vertices);
+            context::BindIndexBuffer(model->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
+
+            if (skelet.Get() != nullptr) {
+                context::UnbindVSBuffer(skelet->BoneBuffer);
+            }
         }
 
         void SkeletalAnimDrawer::DrawSkinModelList(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
@@ -188,15 +203,21 @@ namespace xpe {
             m_TransformBuffer.Flush();
 
             if (skelet.Get() != nullptr) {
-                context::BindVSBuffer(&skelet->BoneBuffer);
+                context::BindVSBuffer(skelet->BoneBuffer);
             }
 
             context::BindPrimitiveTopology(model->PrimitiveTopology);
-            context::BindVertexBuffer(&model->Vertices);
-            context::BindIndexBuffer(&model->Indices);
-            context::BindVSBuffer(&m_InstanceBuffer);
-            context::BindVSBuffer(&m_TransformBuffer);
+            context::BindVertexBuffer(model->Vertices);
+            context::BindIndexBuffer(model->Indices);
+            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindVSBuffer(m_TransformBuffer);
             context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindVSBuffer(m_TransformBuffer);
+
+            if (skelet.Get() != nullptr) {
+                context::UnbindVSBuffer(skelet->BoneBuffer);
+            }
         }
 
     }

@@ -44,8 +44,8 @@ VSOut vs_main(VSIn vsIn)
         if (boneIds[i] == -1 || boneIds[i] >= bonesCount)
             continue;
 
-        positionBone += mul(Bones[boneIds[i]].Transform, float4(vsIn.positionLocal, 1.0)) * boneWeights[i];
-        normalBone += mul(Bones[boneIds[i]].Transform, vsIn.normal);
+        positionBone += float4(vsIn.positionLocal, 1.0) * boneWeights[i];
+        normalBone += vsIn.normal;
     }
 
     RenderInstance instance = Instances[vsIn.instanceIndex];

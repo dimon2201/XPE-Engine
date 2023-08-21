@@ -31,7 +31,7 @@ namespace xpe {
             geometryRef.Create(geometry);
             geometryRef->Vertices.Flush();
             geometryRef->Indices.Flush();
-            m_GeometryIndexed2D.insert({name, geometryRef });
+            m_GeometryIndexed2D.insert({ name, geometryRef });
             return geometryRef;
         }
 
@@ -42,7 +42,7 @@ namespace xpe {
             geometryRef.Create(geometry);
             geometryRef->Vertices.Flush();
             geometryRef->Indices.Flush();
-            m_GeometryIndexed3D.insert({name, geometryRef });
+            m_GeometryIndexed3D.insert({ name, geometryRef });
             return geometryRef;
         }
 

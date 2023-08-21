@@ -43,7 +43,7 @@ namespace xpe {
 
             ~SkeletalAnimDrawer() override;
 
-            void Draw(Scene* scene, RenderTarget* renderTarget) override;
+            void Draw(Scene* scene) override;
 
         private:
             void DrawSkin(const Ref<Skin>& skin, const Ref<Skelet>& skelet, const Transform& transform);

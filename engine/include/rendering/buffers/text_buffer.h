@@ -1,12 +1,12 @@
 #pragma once
 
-#include <rendering/buffers/instance_buffer.h>
+#include <rendering/buffers/structure_buffer.h>
 
 namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API TextGlyphInstance final
+        struct ENGINE_API Character final
         {
             u32 TransformIndex = 0;
             u32 CameraIndex = 0;
@@ -21,10 +21,10 @@ namespace xpe {
             f32 AtlasYOffset = 0;
         };
 
-        struct ENGINE_API TextGlyphInstanceBuffer : public StructureBuffer<TextGlyphInstance>
+        struct ENGINE_API TextBuffer : public StructureBuffer<Character>
         {
 
-            TextGlyphInstanceBuffer(usize count = 0) : StructureBuffer<TextGlyphInstance>(count, K_SLOT_TEXT_GLYPH_INSTANCES) {}
+            TextBuffer(usize count = 0) : StructureBuffer<Character>(count, K_SLOT_TEXT_CHARS) {}
 
         };
 

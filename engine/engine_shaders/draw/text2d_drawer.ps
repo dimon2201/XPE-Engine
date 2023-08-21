@@ -1,9 +1,8 @@
 #include ../types.shader
-#include atlas.shader
+#include ../text/atlas.shader
 
 struct VSOut
 {
-    float3 positionWorld : XPE_POSITION_WORLD;
     float2 texcoord : XPE_UV2;
     float3 normal : XPE_NORMAL2;  // normalized
     float4 positionClip : SV_POSITION;
@@ -16,13 +15,13 @@ float4 ps_main(VSOut psIn) : SV_TARGET
 {
     uint width = 0;
     uint height = 0;
-    M_Atlas.GetDimensions(width, height);
+    T_Atlas.GetDimensions(width, height);
     float2 atlasSize = float2(width, height);
     float2 fGlyphSize = psIn.glyphSize / atlasSize;
     float2 fOffset = psIn.glyphAtlasOffset / atlasSize;
     float2 texcoord = fOffset + (float2(psIn.texcoord.x, 1.0 - psIn.texcoord.y) * fGlyphSize);
 
-    float value = M_Atlas.Sample(S_Atlas, texcoord).x;
+    float value = T_Atlas.Sample(S_Atlas, texcoord).x;
     if (value == 0.0) {
         discard;
     }

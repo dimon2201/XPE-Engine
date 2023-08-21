@@ -23,11 +23,13 @@ namespace xpe {
             Drawer(CameraBuffer* cameraBuffer, Shader* shader);
             virtual ~Drawer();
 
-            virtual void Draw(Scene* scene, RenderTarget* renderTarget) = 0;
+            virtual void Draw(Scene* scene) = 0;
+
+            void Begin(RenderTarget* renderTarget);
+            void End();
 
         protected:
             void Init();
-            void Bind();
 
             Pipeline* m_Pipeline = nullptr;
         };

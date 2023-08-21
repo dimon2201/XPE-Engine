@@ -22,7 +22,7 @@ namespace xpe {
             m_Pipeline->IndexBuffer = m_IndexBuffer.Get();
             m_Pipeline->DepthStencilState.UseDepthTest = K_TRUE;
             m_Pipeline->BlendState.UseBlending = K_TRUE;
-            m_Pipeline->Textures.resize(1);
+            m_Pipeline->Textures.emplace_back(nullptr);
             m_Pipeline->Samplers.emplace_back(&m_Sampler);
 
             Init();
@@ -33,12 +33,10 @@ namespace xpe {
             context::FreeSampler(m_Sampler);
         }
 
-        void SkyboxDrawer::Draw(Scene* scene, RenderTarget* renderTarget)
+        void SkyboxDrawer::Draw(Scene* scene)
         {
             Skybox* skybox = scene->GetGlobal<Skybox>();
-            m_Pipeline->RenderTarget = renderTarget;
             m_Pipeline->Textures[0] = skybox->CubeTexture.Get();
-            Bind();
             context::DrawIndexed(0, 0, skybox->Cube.Indices.Count(), 1);
         }
 

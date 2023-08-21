@@ -3,6 +3,8 @@
 #include <rendering/core/debugger.h>
 #include <d3dcompiler.h>
 #include <d3d11.h>
+#include <rendering/core/context.hpp>
+
 
 namespace xpe {
 
@@ -802,18 +804,22 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindTexture(const Texture* texture)
+            void BindTexture(const Texture& texture)
             {
-                if (texture != nullptr) {
-                    s_ImmContext->PSSetShaderResources(texture->Slot, 1, (ID3D11ShaderResourceView**)&texture->ViewInstance);
-                    LogDebugMessage();
-                }
+                s_ImmContext->PSSetShaderResources(texture.Slot, 1, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+                LogDebugMessage();
             }
 
             void BindTextureSlot(u32 slot)
             {
                 ID3D11ShaderResourceView* views = nullptr;
                 s_ImmContext->PSSetShaderResources(slot, 1, &views);
+                LogDebugMessage();
+            }
+
+            void UnbindTexture(const Texture& texture)
+            {
+                s_ImmContext->PSSetShaderResources(texture.Slot, 1, (ID3D11ShaderResourceView**)&texture.NullInstance);
                 LogDebugMessage();
             }
 
@@ -918,9 +924,15 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindSampler(const TextureSampler* sampler)
+            void BindSampler(const TextureSampler& sampler)
             {
-                s_ImmContext->PSSetSamplers(sampler->Slot, 1, (ID3D11SamplerState**)&sampler->Instance);
+                s_ImmContext->PSSetSamplers(sampler.Slot, 1, (ID3D11SamplerState**)&sampler.Instance);
+                LogDebugMessage();
+            }
+
+            void UnbindSampler(const TextureSampler& sampler)
+            {
+                s_ImmContext->PSSetSamplers(sampler.Slot, 1, (ID3D11SamplerState**)&sampler.NullInstance);
                 LogDebugMessage();
             }
 
@@ -990,47 +1002,75 @@ namespace xpe {
                 }
             }
 
-            void BindVertexBuffer(const Buffer *buffer)
+            void BindVertexBuffer(const Buffer& buffer)
             {
-                UINT stride = buffer->StructureSize;
+                UINT stride = buffer.StructureSize;
                 UINT offset = 0;
-                s_ImmContext->IASetVertexBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance, &stride, &offset);
+                s_ImmContext->IASetVertexBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance, &stride, &offset);
                 LogDebugMessage();
             }
 
-            void BindIndexBuffer(const Buffer *buffer)
+            void BindIndexBuffer(const Buffer& buffer)
             {
                 // we can skip 16-bit index type
                 // it's very rare that we will bind index buffer with index range [0, ~65555]
                 DXGI_FORMAT format = DXGI_FORMAT_R32_UINT;
-                s_ImmContext->IASetIndexBuffer((ID3D11Buffer*)buffer->Instance, format, 0);
+                s_ImmContext->IASetIndexBuffer((ID3D11Buffer*)buffer.Instance, format, 0);
                 LogDebugMessage();
             }
 
-            void BindVSBuffer(const Buffer *buffer)
+            void BindVSBuffer(const Buffer& buffer)
             {
-                if (buffer->Type == eBufferType::STRUCTURED)
+                if (buffer.Type == eBufferType::STRUCTURED)
                 {
-                    s_ImmContext->VSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->ViewInstance);
+                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
                     LogDebugMessage();
                 }
-                else if (buffer->Type == eBufferType::CONSTANT)
+                else if (buffer.Type == eBufferType::CONSTANT)
                 {
-                    s_ImmContext->VSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance);
+                    s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
                     LogDebugMessage();
                 }
             }
 
-            void BindPSBuffer(const Buffer *buffer)
+            void UnbindVSBuffer(const Buffer& buffer)
             {
-                if (buffer->Type == eBufferType::STRUCTURED)
+                if (buffer.Type == eBufferType::STRUCTURED)
                 {
-                    s_ImmContext->PSSetShaderResources(buffer->Slot, 1, (ID3D11ShaderResourceView**)&buffer->ViewInstance);
+                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.NullInstance);
                     LogDebugMessage();
                 }
-                else if (buffer->Type == eBufferType::CONSTANT)
+                else if (buffer.Type == eBufferType::CONSTANT)
                 {
-                    s_ImmContext->PSSetConstantBuffers(buffer->Slot, 1, (ID3D11Buffer**)&buffer->Instance);
+                    s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.NullInstance);
+                    LogDebugMessage();
+                }
+            }
+
+            void BindPSBuffer(const Buffer& buffer)
+            {
+                if (buffer.Type == eBufferType::STRUCTURED)
+                {
+                    s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                    LogDebugMessage();
+                }
+                else if (buffer.Type == eBufferType::CONSTANT)
+                {
+                    s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
+                    LogDebugMessage();
+                }
+            }
+
+            void UnbindPSBuffer(const Buffer& buffer)
+            {
+                if (buffer.Type == eBufferType::STRUCTURED)
+                {
+                    s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.NullInstance);
+                    LogDebugMessage();
+                }
+                else if (buffer.Type == eBufferType::CONSTANT)
+                {
+                    s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.NullInstance);
                     LogDebugMessage();
                 }
             }

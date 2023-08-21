@@ -1,7 +1,7 @@
 #include ../types.shader
-#include ../batching.shader
 #include ../transforming.shader
 #include ../controls/camera.shader
+#include ../text/text.shader
 
 struct VSIn
 {
@@ -26,21 +26,21 @@ VSOut vs_main(VSIn vsIn)
 {
     VSOut vsOut = (VSOut)0;
 
-    TextGlyphInstance instance = TextGlyphs[vsIn.instanceIndex];
-    Transform transform = Transforms[instance.TransformIndex];
-    Camera camera = Cameras[instance.CameraIndex];
+    Character character = Text[vsIn.instanceIndex];
+    Transform transform = Transforms[character.TransformIndex];
+    Camera camera = Cameras[character.CameraIndex];
 
-    float2 offsetScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(instance.Left, instance.Top);
-    float2 sizeScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(instance.Width, instance.Height);
+    float2 offsetScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(character.Left, character.Top);
+    float2 sizeScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(character.Width, character.Height);
 
     float3 positionLocal = (vsIn.positionLocal * 0.5f) + 0.25f;
 
     float4 positionWorld = float4(positionLocal, 1.0f);
-    positionWorld *= float4(instance.Width, instance.Height, 1.0f, 1.0f);
+    positionWorld *= float4(character.Width, character.Height, 1.0f, 1.0f);
     positionWorld = mul(transform.ModelMatrix, positionWorld);
 
-    positionWorld.x += 0.5f * (offsetScaled.x + instance.AdvanceX);
-    positionWorld.y -= 0.5f * ((sizeScaled.y - offsetScaled.y) + instance.AdvanceY);
+    positionWorld.x += 0.5f * (offsetScaled.x + character.AdvanceX);
+    positionWorld.y -= 0.5f * ((sizeScaled.y - offsetScaled.y) + character.AdvanceY);
 
     float4 positionView = mul(camera.View, positionWorld);
     float4 positionClip = mul(camera.Projection, positionView);
@@ -50,8 +50,8 @@ VSOut vs_main(VSIn vsIn)
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = normalize(vsIn.normal);
     vsOut.positionClip = positionClip;
-    vsOut.glyphSize = float2(instance.Width, instance.Height);
-    vsOut.glyphAtlasOffset = float2(instance.AtlasXOffset, instance.AtlasYOffset);
+    vsOut.glyphSize = float2(character.Width, character.Height);
+    vsOut.glyphAtlasOffset = float2(character.AtlasXOffset, character.AtlasYOffset);
 
     return vsOut;
 }
