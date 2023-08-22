@@ -92,7 +92,7 @@ namespace xpe {
             RenderInstance instance;
             instance.TransformIndex = 0;
             instance.CameraIndex = 0;
-            instance.MaterialIndex = m_MaterialStorage->GetIndex(materialInstance.Material.Get());
+            instance.MaterialIndex = materialInstance.Material->Index;
 
             m_InstanceBuffer.Clear();
             m_InstanceBuffer.Add(instance);
@@ -120,7 +120,7 @@ namespace xpe {
             RenderInstance instance;
             instance.TransformIndex = 0;
             instance.CameraIndex = 0;
-            instance.MaterialIndex = m_MaterialStorage->GetIndex(materialInstance.Material.Get());
+            instance.MaterialIndex = materialInstance.Material->Index;
 
             m_InstanceBuffer.Clear();
             m_InstanceBuffer.Add(instance);
@@ -156,7 +156,7 @@ namespace xpe {
                 RenderInstance instance;
                 instance.TransformIndex = i;
                 instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(materialInstance.Material.Get());
+                instance.MaterialIndex = materialInstance.Material->Index;
 
                 m_InstanceBuffer.Add(instance);
                 m_TransformBuffer.AddTransform(materialInstance.Transform);
@@ -189,7 +189,7 @@ namespace xpe {
                 RenderInstance instance;
                 instance.TransformIndex = i;
                 instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(materialInstance.Material.Get());
+                instance.MaterialIndex = materialInstance.Material->Index;
 
                 m_InstanceBuffer.Add(instance);
                 m_TransformBuffer.AddTransform(materialInstance.Transform);
@@ -214,7 +214,7 @@ namespace xpe {
             RenderInstance instance;
             instance.TransformIndex = 0;
             instance.CameraIndex = 0;
-            instance.MaterialIndex = m_MaterialStorage->GetIndex(mesh->Material.Get());
+            instance.MaterialIndex = mesh->Material->Index;
 
             m_InstanceBuffer.Clear();
             m_InstanceBuffer.Add(instance);
@@ -246,7 +246,7 @@ namespace xpe {
                 RenderInstance instance;
                 instance.TransformIndex = i;
                 instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(mesh->Material.Get());
+                instance.MaterialIndex = mesh->Material->Index;
 
                 m_InstanceBuffer.Add(instance);
                 m_TransformBuffer.AddTransform(transforms[i]);
@@ -276,7 +276,7 @@ namespace xpe {
                 RenderInstance instance;
                 instance.TransformIndex = i;
                 instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Meshes[i].Material.Get());
+                instance.MaterialIndex = model->Meshes[i].Material->Index;
 
                 m_InstanceBuffer.Add(instance);
                 m_TransformBuffer.AddTransform(transform);
@@ -311,7 +311,7 @@ namespace xpe {
                 for (usize j = 0 ; j < meshCount ; j++)
                 {
                     instance.CameraIndex = 0;
-                    instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Meshes[j].Material.Get());
+                    instance.MaterialIndex = model->Meshes[j].Material->Index;
                     m_InstanceBuffer.Add(instance);
                 }
 

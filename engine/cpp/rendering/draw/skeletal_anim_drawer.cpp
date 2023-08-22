@@ -72,7 +72,7 @@ namespace xpe {
             RenderInstance instance;
             instance.TransformIndex = 0;
             instance.CameraIndex = 0;
-            instance.MaterialIndex = m_MaterialStorage->GetIndex(skin->Material.Get());
+            instance.MaterialIndex = skin->Material->Index;
 
             m_InstanceBuffer.Clear();
             m_InstanceBuffer.Add(instance);
@@ -112,7 +112,7 @@ namespace xpe {
                 RenderInstance instance;
                 instance.TransformIndex = i;
                 instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(skin->Material.Get());
+                instance.MaterialIndex = skin->Material->Index;
 
                 m_InstanceBuffer.Add(instance);
                 m_TransformBuffer.AddTransform(transforms[i]);
@@ -150,7 +150,7 @@ namespace xpe {
                 RenderInstance instance;
                 instance.TransformIndex = i;
                 instance.CameraIndex = 0;
-                instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Skins[i].Material.Get());
+                instance.MaterialIndex = model->Skins[i].Material->Index;
 
                 m_InstanceBuffer.Add(instance);
                 m_TransformBuffer.AddTransform(transform);
@@ -193,7 +193,7 @@ namespace xpe {
                 for (usize j = 0 ; j < skinCount ; j++)
                 {
                     instance.CameraIndex = 0;
-                    instance.MaterialIndex = m_MaterialStorage->GetIndex(model->Skins[j].Material.Get());
+                    instance.MaterialIndex = model->Skins[j].Material->Index;
                     m_InstanceBuffer.Add(instance);
                 }
 

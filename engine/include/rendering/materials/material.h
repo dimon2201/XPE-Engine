@@ -26,6 +26,7 @@ namespace xpe {
             static const MaterialFormat K_AO_FORMAT;
             static const MaterialFormat K_EMISSION_FORMAT;
 
+            u32 Index = 0;
             TextureLayer Albedo;
             TextureLayer Bumping;
             TextureLayer Parallax;
