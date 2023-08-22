@@ -51,23 +51,11 @@ namespace xpe {
             return texture;
         }
 
-        u32 MaterialStorage::GetIndex(Material* material)
-        {
-            if (material == nullptr) return 0;
-
-            auto it = m_MaterialIndices.find(material);
-            if (it != m_MaterialIndices.end()) {
-                return it->second;
-            }
-
-            return 0;
-        }
-
         void MaterialStorage::Remove(const string &name)
         {
             auto it = m_Materials.find(name);
             if (it != m_Materials.end()) {
-                u32 index = m_MaterialIndices[it->second.Get()];
+                u32 index = it->second->Index;
                 m_Materials.erase(it);
 
                 m_DataBuffer.RemoveAt(index);
@@ -99,7 +87,6 @@ namespace xpe {
         void MaterialStorage::Clear()
         {
             m_Materials.clear();
-            m_MaterialIndices.clear();
 
             m_DataBuffer.Clear();
             m_DataBuffer.Flush();

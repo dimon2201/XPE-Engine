@@ -28,8 +28,6 @@ namespace xpe {
 
             inline Ref<Material>& Get(const string& name) { return m_Materials[name]; }
 
-            u32 GetIndex(Material* material);
-
             void Remove(const string& name);
 
             void Clear();
@@ -45,7 +43,6 @@ namespace xpe {
             void SetLayer(Texture& texture, TextureLayer& layer, u32 layerIndex);
 
             unordered_map<string, Ref<Material>> m_Materials;
-            unordered_map<Material*, u32> m_MaterialIndices;
             MaterialDataBuffer m_DataBuffer;
         };
 
@@ -58,9 +55,9 @@ namespace xpe {
 
             Ref<Material> materialRef;
             materialRef.Create(std::forward<Args>(args)...);
+            materialRef->Index = m_DataBuffer.Size();
 
             m_Materials[name] = materialRef;
-            m_MaterialIndices.insert({ materialRef.Get(), m_MaterialIndices.size() });
 
             Material& material = *materialRef;
 
@@ -84,17 +81,16 @@ namespace xpe {
             auto& materialRef = Get(name);
             Material& material = *materialRef;
             material = Material(std::forward<Args>(args)...);
-            u32 materialIndex = m_MaterialIndices[materialRef.Get()];
 
-            m_DataBuffer.FlushItem(materialIndex, material);
+            m_DataBuffer.FlushItem(material.Index, material);
 
-            SetLayer(*AlbedoArray, material.Albedo, materialIndex);
-            SetLayer(*BumpArray, material.Bumping, materialIndex);
-            SetLayer(*ParallaxArray, material.Parallax, materialIndex);
-            SetLayer(*MetallicArray, material.Metallic, materialIndex);
-            SetLayer(*RoughnessArray, material.Roughness, materialIndex);
-            SetLayer(*AOArray, material.AO, materialIndex);
-            SetLayer(*EmissionArray, material.Emission, materialIndex);
+            SetLayer(*AlbedoArray, material.Albedo, material.Index);
+            SetLayer(*BumpArray, material.Bumping, material.Index);
+            SetLayer(*ParallaxArray, material.Parallax, material.Index);
+            SetLayer(*MetallicArray, material.Metallic, material.Index);
+            SetLayer(*RoughnessArray, material.Roughness, material.Index);
+            SetLayer(*AOArray, material.AO, material.Index);
+            SetLayer(*EmissionArray, material.Emission, material.Index);
 
             return materialRef;
         }

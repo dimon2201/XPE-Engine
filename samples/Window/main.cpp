@@ -150,10 +150,11 @@ public:
             SkeletalAnimationComponent winterGirlAnimation("A_WinterGirl");
             winterGirlAnimation.Skelet = winterGirlModel.Skelet;
             winterGirlAnimation.Animation = m_AnimLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
+            winterGirlAnimation.Play = true;
 
             {
                 Transform transform;
-                transform.Position = { -2, -10, -2 };
+                transform.Position = { -4, -10, -4 };
                 transform.Rotation = { 0, 0, 0 };
                 transform.Scale = { 5, 5, 5 };
                 winterGirlModel.Transforms.emplace_back(transform);
@@ -161,7 +162,7 @@ public:
 
             {
                 Transform transform;
-                transform.Position = { -2, -10, 2 };
+                transform.Position = { -4, -10, 4 };
                 transform.Rotation = { 0, 0, 0 };
                 transform.Scale = { 5, 5, 5 };
                 winterGirlModel.Transforms.emplace_back(transform);
@@ -169,7 +170,7 @@ public:
 
             {
                 Transform transform;
-                transform.Position = { 2, -10, -2 };
+                transform.Position = { 4, -10, -4 };
                 transform.Rotation = { 0, 0, 0 };
                 transform.Scale = { 5, 5, 5 };
                 winterGirlModel.Transforms.emplace_back(transform);
@@ -177,7 +178,7 @@ public:
 
             {
                 Transform transform;
-                transform.Position = { 2, -10, 2 };
+                transform.Position = { 4, -10, 4 };
                 transform.Rotation = { 0, 0, 0 };
                 transform.Scale = { 5, 5, 5 };
                 winterGirlModel.Transforms.emplace_back(transform);
