@@ -27,11 +27,13 @@ namespace xpe {
                     mesh->mNormals[i].z
             };
 
-            vertex.Tangent = {
-                    mesh->mTangents[i].x,
-                    mesh->mTangents[i].y,
-                    mesh->mTangents[i].z,
-            };
+            if (mesh->mTangents != nullptr) {
+                vertex.Tangent = {
+                        mesh->mTangents[i].x,
+                        mesh->mTangents[i].y,
+                        mesh->mTangents[i].z,
+                };
+            }
 
             return vertex;
         }
@@ -86,31 +88,13 @@ namespace xpe {
             }
         }
 
-        static const std::unordered_map<ModelLoader::eOption, aiPostProcessSteps> s_ModelOptions =
-        {
-                { ModelLoader::eOption::TRIANGULATE, aiProcess_Triangulate },
-                { ModelLoader::eOption::FLIP_UV, aiProcess_FlipUVs },
-                { ModelLoader::eOption::CALC_TANGENTS, aiProcess_CalcTangentSpace },
-                { ModelLoader::eOption::OPTIMIZE_MESHES, aiProcess_OptimizeMeshes }
-        };
-
-        static u32 GetModelFlags(const vector<ModelLoader::eOption>& options)
-        {
-            u32 flags = 0;
-            for (const auto& option : options)
-            {
-                flags |= s_ModelOptions.at(option);
-            }
-            return flags;
-        }
-
-        Ref<Model3D> ModelLoader::Load(const char* filepath, const vector<ModelLoader::eOption>& options)
+        Ref<Model3D> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             Model3D model;
             hstring directory = os::FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
-            u32 flags = GetModelFlags(options);
+            u32 flags = AssimpConversion::GetLoadFlags(options);
             const aiScene* scene = importer.ReadFile(filepath, flags);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {

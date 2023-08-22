@@ -31,21 +31,30 @@ VSOut vs_main(VSIn vsIn)
 {
     VSOut vsOut = (VSOut)0;
 
-    float4 positionBone = float4(vsIn.positionLocal, 1.0);
-    float3 normalBone   = vsIn.normal;
-    int4 boneIds        = vsIn.boneIds;
-    float4 boneWeights      = vsIn.boneWeights;
-    uint bonesCount = 0;
-    uint bonesStride = 0;
+    float4 positionTotal = float4(0, 0, 0, 0);
+    float4 positionBone  = float4(vsIn.positionLocal, 1.0);
+    float3 normalTotal   = float3(0, 0, 0);
+    float3 normalBone    = vsIn.normal;
+    int4 boneIds         = vsIn.boneIds;
+    float4 boneWeights   = vsIn.boneWeights;
+    uint bonesCount      = 0;
+    uint bonesStride     = 0;
     Bones.GetDimensions(bonesCount, bonesStride);
 
     for (int i = 0 ; i < 4 ; i++)
     {
-        if (boneIds[i] == -1 || boneIds[i] >= bonesCount)
+        int boneID = boneIds[i];
+        float boneWeight = boneWeights[i];
+
+        if (boneID == -1 || boneID >= bonesCount)
             continue;
 
-        positionBone += float4(vsIn.positionLocal, 1.0) * boneWeights[i];
-        normalBone += vsIn.normal;
+        float4x4 boneTransform = Bones[boneID].Transform;
+
+        positionTotal += mul(boneTransform, float4(vsIn.positionLocal, 1.0)) * boneWeight;
+        positionBone = positionTotal;
+        normalTotal += mul(boneTransform, vsIn.normal);
+        normalBone = normalTotal;
     }
 
     RenderInstance instance = Instances[vsIn.instanceIndex];

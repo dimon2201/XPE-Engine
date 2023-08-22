@@ -48,8 +48,8 @@ namespace xpe {
             glm::vec2 UV = { 0, 0 };
             glm::vec3 Normal = { 0, 0, 0 };
             glm::vec3 Tangent = { 0, 0, 0 };
-            glm::ivec4 BoneIDs = {-1, -1, -1, -1 };
-            glm::vec4 BoneWeights = {0, 0, 0, 0 };
+            glm::ivec4 BoneIDs = { -1, -1, -1, -1 };
+            glm::vec4 BoneWeights = { 0, 0, 0, 0 };
         };
 
         Json(

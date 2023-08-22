@@ -20,7 +20,7 @@ namespace xpe {
             return ss.str();
         }
 
-        Ref<Material> MaterialLoader::Load(const aiScene* scene, aiMesh* mesh, const hstring& directory, u32 flags)
+        Ref<Material> MaterialLoader::Load(const aiScene* scene, aiMesh* mesh, const hstring& directory)
         {
             if (mesh->mMaterialIndex >= 0) {
                 aiMaterial* assimpMaterial = scene->mMaterials[mesh->mMaterialIndex];

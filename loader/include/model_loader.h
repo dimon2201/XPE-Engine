@@ -17,20 +17,15 @@ namespace xpe {
         {
 
         public:
-            enum class eOption
-            {
-                TRIANGULATE,
-                FLIP_UV,
-                CALC_TANGENTS,
-                OPTIMIZE_MESHES
-            };
-
             ModelLoader(GeometryStorage* geometryStorage) : m_Storage(geometryStorage) {}
 
-            Ref<Model3D> Load(const char* filepath, const vector<eOption>& options = {
-                    eOption::TRIANGULATE,
-                    eOption::CALC_TANGENTS,
-                    eOption::OPTIMIZE_MESHES,
+            Ref<Model3D> Load(const char* filepath, const vector<eLoadOption>& options = {
+                    eLoadOption::TRIANGULATE,
+                    eLoadOption::FLIP_UV,
+                    eLoadOption::CALC_TANGENTS,
+                    eLoadOption::OPTIMIZE_MESHES,
+                    eLoadOption::GEN_NORMAL,
+                    eLoadOption::JOIN_VERTICES
             });
 
         private:
