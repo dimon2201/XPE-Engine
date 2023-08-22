@@ -28,7 +28,7 @@ namespace xpe {
                 return instance;
             }
 
-            const unordered_map<eLoadOption, aiPostProcessSteps> LoadOptions =
+            const std::unordered_map<eLoadOption, aiPostProcessSteps> LoadOptions =
             {
                     { eLoadOption::TRIANGULATE, aiProcess_Triangulate },
                     { eLoadOption::FLIP_UV, aiProcess_FlipUVs },

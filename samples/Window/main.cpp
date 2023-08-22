@@ -159,29 +159,29 @@ public:
                 winterGirlModel.Transforms.emplace_back(transform);
             }
 
-//            {
-//                Transform transform;
-//                transform.Position = { -2, -10, 2 };
-//                transform.Rotation = { 0, 0, 0 };
-//                transform.Scale = { 0.25, 0.25, 0.25 };
-//                winterGirlModel.Transforms.emplace_back(transform);
-//            }
-//
-//            {
-//                Transform transform;
-//                transform.Position = { 2, -10, -2 };
-//                transform.Rotation = { 0, 0, 0 };
-//                transform.Scale = { 0.25, 0.25, 0.25 };
-//                winterGirlModel.Transforms.emplace_back(transform);
-//            }
-//
-//            {
-//                Transform transform;
-//                transform.Position = { 2, -10, 2 };
-//                transform.Rotation = { 0, 0, 0 };
-//                transform.Scale = { 0.25, 0.25, 0.25 };
-//                winterGirlModel.Transforms.emplace_back(transform);
-//            }
+            {
+                Transform transform;
+                transform.Position = { -2, -10, 2 };
+                transform.Rotation = { 0, 0, 0 };
+                transform.Scale = { 5, 5, 5 };
+                winterGirlModel.Transforms.emplace_back(transform);
+            }
+
+            {
+                Transform transform;
+                transform.Position = { 2, -10, -2 };
+                transform.Rotation = { 0, 0, 0 };
+                transform.Scale = { 5, 5, 5 };
+                winterGirlModel.Transforms.emplace_back(transform);
+            }
+
+            {
+                Transform transform;
+                transform.Position = { 2, -10, 2 };
+                transform.Rotation = { 0, 0, 0 };
+                transform.Scale = { 5, 5, 5 };
+                winterGirlModel.Transforms.emplace_back(transform);
+            }
 
             {
                 MaterialFilepath materialFilepath;
