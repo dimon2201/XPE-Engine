@@ -68,11 +68,11 @@ public:
             m_Text2D = { "Text2D", m_MainScene };
 
             Text2DComponent text("Text2D");
-            text.FontResFilepath = "res/fonts/Roboto-Italic.ttf";
-            text.Font = m_FontLoader->Load(text.FontResFilepath.c_str(), 44);
-            text.Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
+            text.FontResFilepath = "res/fonts/Roboto-Bold.ttf";
+            text.Font = m_FontLoader->Load(text.FontResFilepath.c_str(), 32);
+            text.Text = "FPS: \n CPU: \n";
             text.Font->NewLineOffset = 1.0f;
-            text.Transform.Position = { WindowManager::GetWidth() / 2, WindowManager::GetHeight() / 2, 0 };
+            text.Transform.Position = { 0, WindowManager::GetHeight() - text.Font->GlyphSize, 0 };
             text.Transform.Scale = { 1, 1, 1 };
 
             m_Text2D.AddComponent<Text2DComponent>(text);
@@ -124,8 +124,6 @@ public:
             plane.Instance.Transform.Position = { 0, -10, 0 };
             plane.Instance.Transform.Scale = { 100, 0.01, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
-            plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
-//            m_MaterialStorage->Set("MT_Plane", *plane.Instance.Material);
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
         }
@@ -146,7 +144,7 @@ public:
             m_WinterGirl = { "WinterGirl", m_MainScene };
 
             SkinModelListComponent winterGirlModel("M_WinterGirl");
-            winterGirlModel.Model = m_SkinLoader->Load("res/models/winter-girl/source/winter_girl.fbx");
+            winterGirlModel.Model = m_SkinLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
             winterGirlModel.Skelet = m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
 
             SkeletalAnimationComponent winterGirlAnimation("A_WinterGirl");
@@ -157,7 +155,7 @@ public:
                 Transform transform;
                 transform.Position = { -2, -10, -2 };
                 transform.Rotation = { 0, 0, 0 };
-                transform.Scale = { 0.1, 0.1, 0.1 };
+                transform.Scale = { 5, 5, 5 };
                 winterGirlModel.Transforms.emplace_back(transform);
             }
 
@@ -188,10 +186,10 @@ public:
             {
                 MaterialFilepath materialFilepath;
                 materialFilepath.Name = "niz";
-                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_niz_BaseColor.png";
-                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_niz_Normal.png";
-                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_niz_Metallic.png";
-                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_niz_Roughness.png";
+                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
+                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
+//                materialFilepath.EmissionFilepath = "res/models/winter-girl/textures/Vampire_emission.png";
                 winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
@@ -202,7 +200,7 @@ public:
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_04_Normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_04_Metallic.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_04_Roughness.png";
-                winterGirlModel.Model->Skins[1].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[1].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             {
@@ -212,7 +210,7 @@ public:
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_R1_Normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_R1_Metallic.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_R1_Roughness.png";
-                winterGirlModel.Model->Skins[2].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[2].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             {
@@ -222,14 +220,14 @@ public:
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_verx_Normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_verx_Metallic.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_verx_Roughness.png";
-                winterGirlModel.Model->Skins[3].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[3].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             {
                 MaterialFilepath materialFilepath;
                 materialFilepath.Name = "pngegg";
                 materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/pngegg.png";
-                winterGirlModel.Model->Skins[4].Material = m_MaterialLoader->Load(materialFilepath);
+//                winterGirlModel.Model->Skins[4].Material = m_MaterialLoader->Load(materialFilepath);
             }
 
             m_WinterGirl.AddComponent<SkinModelListComponent>(winterGirlModel);
@@ -362,6 +360,9 @@ private:
 
             tick++;
         }
+
+        auto& text2D = m_Text2D.GetComponent<Text2DComponent>("Text2D")->Text;
+        text2D = "XPE-Engine \n FPS: " + std::to_string(CPUTime.Fps()) + "\n CPU: " + std::to_string(CPUTime.Millis());
     }
 
 private:

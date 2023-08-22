@@ -94,7 +94,7 @@ namespace xpe {
 
                 CurrentTime = cpuTimer.GetStartTime();
 
-                m_Animator->Animate(m_MainScene, DeltaTime.Millis());
+                m_Animator->Animate(m_MainScene, DeltaTime);
 
                 Update();
 

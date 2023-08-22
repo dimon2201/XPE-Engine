@@ -30,10 +30,10 @@ namespace xpe {
         public:
             Animator(SkeletStorage* skeletStorage) : m_SkeletStorage(skeletStorage) {}
 
-            void Animate(ecs::Scene* scene, float dt);
+            void Animate(ecs::Scene* scene, const Time& dt);
 
         private:
-            void AnimateSkelet(const Ref<Skelet>& skelet, const Ref<Animation>& animation, float dt);
+            void AnimateSkelet(const Ref<Skelet>& skelet, const Ref<Animation>& animation, const Time& dt);
 
             void AnimateBone(Bone& bone, float time);
 
@@ -55,8 +55,8 @@ namespace xpe {
             );
 
             SkeletStorage* m_SkeletStorage;
-            float m_CurrentTime = 0;
-            float m_DeltaTime = 0;
+            float m_CurrentSeconds = 0;
+            float m_DeltaSeconds = 0;
         };
 
     }

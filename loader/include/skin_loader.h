@@ -17,20 +17,15 @@ namespace xpe {
         {
 
         public:
-            enum class eOption
-            {
-                TRIANGULATE,
-                FLIP_UV,
-                CALC_TANGENTS,
-                OPTIMIZE_MESHES
-            };
-
             SkinLoader(SkinStorage* skinStorage) : m_Storage(skinStorage) {}
 
-            Ref<SkinModel> Load(const char* filepath, const vector<eOption>& options = {
-                    eOption::TRIANGULATE,
-                    eOption::CALC_TANGENTS,
-                    eOption::OPTIMIZE_MESHES,
+            Ref<SkinModel> Load(const char* filepath, const vector<eLoadOption>& options = {
+                    eLoadOption::TRIANGULATE,
+                    eLoadOption::CALC_TANGENTS,
+                    eLoadOption::FLIP_UV,
+                    eLoadOption::OPTIMIZE_MESHES,
+                    eLoadOption::GEN_NORMAL,
+                    eLoadOption::JOIN_VERTICES
             });
 
         private:

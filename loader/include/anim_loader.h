@@ -17,18 +17,10 @@ namespace xpe {
         {
 
         public:
-            enum class eOption
-            {
-                TRIANGULATE,
-                FLIP_UV,
-                CALC_TANGENTS,
-                OPTIMIZE_MESHES
-            };
-
             AnimLoader(AnimStorage* animStorage) : m_Storage(animStorage) {}
 
-            Ref<Animation> Load(const char* filepath, const vector<eOption>& options = {
-                    eOption::TRIANGULATE
+            Ref<Animation> Load(const char* filepath, const vector<eLoadOption>& options = {
+                    eLoadOption::TRIANGULATE
             });
 
         private:

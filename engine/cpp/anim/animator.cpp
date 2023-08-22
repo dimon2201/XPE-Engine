@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace anim {
 
-        void Animator::Animate(ecs::Scene *scene, float dt)
+        void Animator::Animate(ecs::Scene *scene, const Time& dt)
         {
             scene->EachComponent<SkeletalAnimationComponent>([this, dt](SkeletalAnimationComponent* component)
             {
@@ -17,11 +17,11 @@ namespace xpe {
             });
         }
 
-        void Animator::AnimateSkelet(const Ref<Skelet> &skelet, const Ref<Animation> &animation, float dt)
+        void Animator::AnimateSkelet(const Ref<Skelet> &skelet, const Ref<Animation> &animation, const Time& dt)
         {
-            m_DeltaTime = dt;
-            m_CurrentTime += animation->TicksPerSecond * dt;
-            m_CurrentTime = fmod(m_CurrentTime, animation->Duration);
+            m_DeltaSeconds = dt.Seconds();
+            m_CurrentSeconds += animation->TicksPerSecond * m_DeltaSeconds;
+            m_CurrentSeconds = fmod(m_CurrentSeconds, animation->Duration);
             auto& boneBuffer = skelet->BoneBuffer;
 
             boneBuffer.Resize(skelet->Bones.size());
@@ -43,7 +43,7 @@ namespace xpe {
         {
             usize count = bone.KeyPositions.size();
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count; ++i)
             {
                 if (time < bone.KeyPositions[i + 1].Timestamp) {
                     return i;
@@ -57,7 +57,7 @@ namespace xpe {
         {
             usize count = bone.KeyRotations.size();
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count; ++i)
             {
                 if (time < bone.KeyRotations[i + 1].Timestamp) {
                     return i;
@@ -71,7 +71,7 @@ namespace xpe {
         {
             usize count = bone.KeyScales.size();
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count; ++i)
             {
                 if (time < bone.KeyScales[i + 1].Timestamp) {
                     return i;
@@ -200,7 +200,7 @@ namespace xpe {
             }
 
             if (bone != nullptr) {
-                AnimateBone(*bone, m_CurrentTime);
+                AnimateBone(*bone, m_CurrentSeconds);
                 nodeTransform = bone->Transform;
             }
 

@@ -77,6 +77,22 @@ namespace xpe {
                 return t1.m_Millis / t2.m_Millis;
             }
 
+            friend inline void operator+=(Time& t1, const Time& t2) {
+                t1.m_Millis += t2.m_Millis;
+            }
+
+            friend inline void operator-=(Time& t1, const Time& t2) {
+                t1.m_Millis -= t2.m_Millis;
+            }
+
+            friend inline void operator*=(Time& t1, const Time& t2) {
+                t1.m_Millis *= t2.m_Millis;
+            }
+
+            friend inline void operator/=(Time& t1, const Time& t2) {
+                t1.m_Millis /= t2.m_Millis;
+            }
+
             friend inline float operator+(const Time& t1, float t2) {
                 return t1.m_Millis + t2;
             }
@@ -91,6 +107,22 @@ namespace xpe {
 
             friend inline float operator/(const Time& t1, float t2) {
                 return t1.m_Millis / t2;
+            }
+
+            friend inline void operator+=(Time& t1, float t2) {
+                t1.m_Millis += t2;
+            }
+
+            friend inline void operator-=(Time& t1, float t2) {
+                t1.m_Millis -= t2;
+            }
+
+            friend inline void operator*=(Time& t1, float t2) {
+                t1.m_Millis *= t2;
+            }
+
+            friend inline void operator/=(Time& t1, float t2) {
+                t1.m_Millis /= t2;
             }
 
             inline Time& operator=(float f) {

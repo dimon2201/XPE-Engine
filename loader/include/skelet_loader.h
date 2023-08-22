@@ -17,18 +17,10 @@ namespace xpe {
         {
 
         public:
-            enum class eOption
-            {
-                TRIANGULATE,
-                FLIP_UV,
-                CALC_TANGENTS,
-                OPTIMIZE_MESHES
-            };
-
             SkeletLoader(SkeletStorage* skeletStorage) : m_Storage(skeletStorage) {}
 
-            Ref<Skelet> Load(const char* filepath, const vector<eOption>& options = {
-                    eOption::TRIANGULATE
+            Ref<Skelet> Load(const char* filepath, const vector<eLoadOption>& options = {
+                    eLoadOption::TRIANGULATE
             });
 
         private:

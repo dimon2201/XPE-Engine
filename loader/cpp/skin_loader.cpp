@@ -29,24 +29,28 @@ namespace xpe {
                     mesh->mVertices[i].z
             };
 
-            if (mesh->mTextureCoords[0]) {
+            if (mesh->mTextureCoords[0] != nullptr) {
                 vertex.UV = {
                         mesh->mTextureCoords[0][i].x,
                         mesh->mTextureCoords[0][i].y
                 };
             }
 
-            vertex.Normal = {
-                    mesh->mNormals[i].x,
-                    mesh->mNormals[i].y,
-                    mesh->mNormals[i].z
-            };
+            if (mesh->mNormals != nullptr) {
+                vertex.Normal = {
+                        mesh->mNormals[i].x,
+                        mesh->mNormals[i].y,
+                        mesh->mNormals[i].z
+                };
+            }
 
-            vertex.Tangent = {
-                    mesh->mTangents[i].x,
-                    mesh->mTangents[i].y,
-                    mesh->mTangents[i].z,
-            };
+            if (mesh->mTangents != nullptr) {
+                vertex.Tangent = {
+                        mesh->mTangents[i].x,
+                        mesh->mTangents[i].y,
+                        mesh->mTangents[i].z,
+                };
+            }
 
             return vertex;
         }
@@ -55,7 +59,6 @@ namespace xpe {
         {
             Skin skin;
             vector<u32> indices;
-            int boneCounter = 0;
 
             skin.Vertices.List.resize(mesh->mNumVertices);
 
@@ -81,17 +84,19 @@ namespace xpe {
 
             Skelet skelet;
             auto& bones = skelet.Bones;
+            int boneCounter = 0;
             for (int i = 0; i < mesh->mNumBones; i++)
             {
                 int boneID;
-                string boneName = mesh->mBones[i]->mName.C_Str();
+                aiBone* bone = mesh->mBones[i];
+                string boneName = bone->mName.C_Str();
 
                 if (bones.find(boneName) == bones.end())
                 {
                     Bone newBone;
                     newBone.ID = boneCounter;
                     newBone.Name = boneName;
-                    newBone.Offset = AssimpConversion::ToMat4(mesh->mBones[i]->mOffsetMatrix);
+                    newBone.Offset = AssimpConversion::ToMat4(bone->mOffsetMatrix);
                     bones.insert({ boneName, newBone });
                     boneID = boneCounter;
                     boneCounter++;
@@ -101,8 +106,8 @@ namespace xpe {
                     boneID = bones[boneName].ID;
                 }
 
-                auto weights = mesh->mBones[i]->mWeights;
-                int numWeights = mesh->mBones[i]->mNumWeights;
+                auto weights = bone->mWeights;
+                int numWeights = bone->mNumWeights;
 
                 for (int wi = 0; wi < numWeights; wi++)
                 {
@@ -135,31 +140,13 @@ namespace xpe {
             }
         }
 
-        static const std::unordered_map<SkinLoader::eOption, aiPostProcessSteps> s_SkinOptions =
-        {
-            { SkinLoader::eOption::TRIANGULATE, aiProcess_Triangulate },
-            { SkinLoader::eOption::FLIP_UV, aiProcess_FlipUVs },
-            { SkinLoader::eOption::CALC_TANGENTS, aiProcess_CalcTangentSpace },
-            { SkinLoader::eOption::OPTIMIZE_MESHES, aiProcess_OptimizeMeshes }
-        };
-
-        static u32 GetSkinFlags(const vector<SkinLoader::eOption>& options)
-        {
-            u32 flags = 0;
-            for (const auto& option : options)
-            {
-                flags |= s_SkinOptions.at(option);
-            }
-            return flags;
-        }
-
-        Ref<SkinModel> SkinLoader::Load(const char* filepath, const vector<SkinLoader::eOption>& options)
+        Ref<SkinModel> SkinLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             SkinModel model;
             hstring directory = os::FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
-            u32 flags = GetSkinFlags(options);
+            u32 flags = AssimpConversion::GetLoadFlags(options);
             const aiScene* scene = importer.ReadFile(filepath, flags);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {

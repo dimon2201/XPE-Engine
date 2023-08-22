@@ -28,24 +28,6 @@ namespace xpe {
             }
         }
 
-        static const std::unordered_map<SkeletLoader::eOption, aiPostProcessSteps> s_SkeletOptions =
-        {
-                { SkeletLoader::eOption::TRIANGULATE, aiProcess_Triangulate },
-                { SkeletLoader::eOption::FLIP_UV, aiProcess_FlipUVs },
-                { SkeletLoader::eOption::CALC_TANGENTS, aiProcess_CalcTangentSpace },
-                { SkeletLoader::eOption::OPTIMIZE_MESHES, aiProcess_OptimizeMeshes }
-        };
-
-        static u32 GetSkeletFlags(const vector<SkeletLoader::eOption>& options)
-        {
-            u32 flags = 0;
-            for (const auto& option : options)
-            {
-                flags |= s_SkeletOptions.at(option);
-            }
-            return flags;
-        }
-
         static void ParseSkeletFromAnim(const aiAnimation* animation, Skelet& skelet)
         {
             int size = animation->mNumChannels;
@@ -107,13 +89,12 @@ namespace xpe {
             }
         }
 
-        Ref<Skelet> SkeletLoader::Load(const char* filepath, const vector<SkeletLoader::eOption>& options)
+        Ref<Skelet> SkeletLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             Skelet skelet;
 
             Assimp::Importer importer;
-            u32 flags = GetSkeletFlags(options);
-            const aiScene* scene = importer.ReadFile(filepath, flags);
+            const aiScene* scene = importer.ReadFile(filepath, AssimpConversion::GetLoadFlags(options));
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
                 LogError("Failed to import 3D skelet model file {0}", filepath);

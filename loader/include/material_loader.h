@@ -36,7 +36,7 @@ namespace xpe {
         public:
             MaterialLoader(MaterialStorage* materialStorage) : m_Storage(materialStorage) {}
 
-            Ref<Material> Load(const aiScene* scene, aiMesh* mesh, const hstring& directory, u32 flags);
+            Ref<Material> Load(const aiScene* scene, aiMesh* mesh, const hstring& directory);
 
             Ref<Material> Load(const MaterialFilepath& filepath);
 
