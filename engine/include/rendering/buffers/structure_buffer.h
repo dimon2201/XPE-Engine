@@ -37,6 +37,11 @@ namespace xpe {
 
             void Clear();
 
+            inline vector<T>& GetList()
+            {
+                return m_List;
+            }
+
             inline usize Size() const
             {
                 return m_List.size();

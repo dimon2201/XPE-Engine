@@ -20,11 +20,11 @@ namespace xpe {
 
             void WindowFrameResized(s32 width, s32 height);
 
-            inline RenderTarget* GetRenderTarget() { return &m_RenderTarget; }
+            inline RenderTarget* GetRenderTarget() { return &m_RenderPass->Target; }
             inline Shader* GetShader() { return m_Shader; }
-            inline void SetViewport(const Viewport& viewport) { m_ViewportBuffer.FlushItem(viewport); }
+            inline void SetViewport(const Viewport& viewport) { m_ViewportBuffer.FlushItem(m_BoundTargetIndex, viewport); }
             inline void SetClearColor(const glm::vec4& color) { m_ClearColor = color; }
-            inline glm::vec2 GetDimension() { return { m_ViewportBuffer.Item.Width, m_ViewportBuffer.Item.Height }; }
+            inline glm::vec2 GetDimension() { return { m_ViewportBuffer[m_BoundTargetIndex]->Width, m_ViewportBuffer[m_BoundTargetIndex]->Height }; }
             inline ViewportBuffer* GetBuffer() { return &m_ViewportBuffer; }
 
         private:
@@ -36,12 +36,11 @@ namespace xpe {
         private:
             ViewportBuffer m_ViewportBuffer;
             glm::vec4 m_ClearColor = { 0.0f, 0.0f, 0.0f, 1.0f };
-            RenderTarget m_RenderTarget;
+            Scope<RenderPass> m_RenderPass;
             Shader* m_Shader = nullptr;
-            Texture m_ColorTexture;
-            Texture m_DepthTexture;
             TextureSampler m_PresentSampler;
             RenderTarget m_PresentTarget;
+            u32 m_BoundTargetIndex = 0;
         };
 
     }

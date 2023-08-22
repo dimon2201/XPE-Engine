@@ -15,7 +15,7 @@ namespace xpe {
             WRITE_DISCARD
         };
 
-        struct ENGINE_API GPUResource
+        struct ENGINE_API GPUResource : public core::Object
         {
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
@@ -63,7 +63,7 @@ namespace xpe {
             }
         };
 
-        struct ENGINE_API Blob final
+        struct ENGINE_API Blob : public core::Object
         {
             void* Instance = nullptr;
             void* ByteCode = nullptr;

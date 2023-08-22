@@ -155,7 +155,7 @@ namespace xpe {
                 }
 
                 if (pipeline.RenderTarget != nullptr) {
-                    BindRenderTarget(pipeline.RenderTarget->ColorTargetView, pipeline.RenderTarget->DepthTargetView);
+                    BindRenderTarget(pipeline.RenderTarget->ColorViews, pipeline.RenderTarget->DepthStencilView);
                 }
 
                 BindPrimitiveTopology(pipeline.PrimitiveTopology);
@@ -234,6 +234,22 @@ namespace xpe {
                 FreeDepthStencilState(pipeline.DepthStencilState);
                 FreeBlendState(pipeline.BlendState);
                 FreeRasterizer(pipeline.Rasterizer);
+            }
+
+            void FreeRenderTarget(RenderTarget& renderTarget)
+            {
+                FreeRenderTargetColors(renderTarget.Colors);
+                FreeRenderTargetColorViews(renderTarget.ColorViews);
+                FreeRenderTargetDepth(&renderTarget.DepthStencil);
+                FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
+            }
+
+            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport> *viewports)
+            {
+                BindRenderTarget(colorViews, depthView);
+                if (viewports != nullptr) {
+                    BindViewports(*viewports);
+                }
             }
 
         }

@@ -5,7 +5,7 @@ namespace xpe {
     namespace core {
 
         template<typename T>
-        class Scope final
+        class Scope : public Object
         {
 
         public:
@@ -51,7 +51,7 @@ namespace xpe {
         static std::unordered_map<void*, s64> RefCountTable = {};
 
         template<typename T>
-        class Ref final
+        class Ref : public Object
         {
 
         public:
@@ -162,7 +162,7 @@ namespace xpe {
         }
 
         template<typename T>
-        class HotScope final
+        class HotScope : public HotObject
         {
 
         public:
@@ -208,7 +208,7 @@ namespace xpe {
         }
 
         template<typename T>
-        class HotRef final
+        class HotRef : public HotObject
         {
 
         public:

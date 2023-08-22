@@ -26,7 +26,7 @@ struct VSOut
 
 VSOut vs_main(VSIn vsIn)
 {
-    VSOut vsOut = (VSOut)0;
+    VSOut vsOut;
 
     RenderInstance instance = Instances[vsIn.instanceIndex];
     float4x4 worldMatrix = Transforms[instance.TransformIndex].ModelMatrix;

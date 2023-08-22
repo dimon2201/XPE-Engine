@@ -1,14 +1,16 @@
 #pragma once
 
 #include <rendering/core/viewport.h>
-#include <rendering/buffers/item_buffer.h>
+#include <rendering/buffers/structure_buffer.h>
 
 namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API ViewportBuffer : public ItemBuffer<Viewport> {
-            ViewportBuffer() : ItemBuffer<Viewport>(K_SLOT_VIEWPORT) {}
+        struct ENGINE_API ViewportBuffer : public StructureBuffer<Viewport> {
+
+            ViewportBuffer(usize count = 0) : StructureBuffer<Viewport>(count, K_SLOT_VIEWPORT) {}
+
         };
 
     }

@@ -186,8 +186,8 @@ namespace xpe {
             // Canvas drawing
             {
                 Shader* shader = ShaderManager::CreateShader("canvas");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/canvas.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/canvas.ps");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/canvas.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/canvas.ps");
                 ShaderManager::BuildShader(shader);
                 m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
             }

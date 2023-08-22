@@ -280,26 +280,27 @@ namespace xpe {
 
             void ResizeSwapchain(RenderTarget& renderTarget, int width, int height)
             {
-                s_ImmContext->OMSetRenderTargets(0, 0, 0);
+                UnbindRenderTarget();
 
-                ((ID3D11RenderTargetView*) renderTarget.ColorTargetView)->Release();
+                FreeRenderTargetColorViews(renderTarget.ColorViews);
 
                 s_SwapChain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
                 LogDebugMessage();
 
                 CreateSwapchainTargetView();
-                renderTarget.ColorTargetView = SwapchainTargetView;
+                renderTarget.ColorViews[0] = SwapchainTargetView;
 
-                s_ImmContext->OMSetRenderTargets(
-                        1,
-                        (ID3D11RenderTargetView**) &renderTarget.ColorTargetView,
-                        NULL
-                );
-                LogDebugMessage();
+                BindRenderTarget(renderTarget.ColorViews, renderTarget.DepthStencilView);
 
-                BoundViewport->Width = width;
-                BoundViewport->Height = height;
-                BindViewport(BoundViewport);
+                if (renderTarget.Viewports != nullptr)
+                {
+                    for (auto& viewport : *renderTarget.Viewports)
+                    {
+                        viewport.Width = width;
+                        viewport.Height = height;
+                    }
+                    BindViewports(*renderTarget.Viewports);
+                }
             }
 
             void CreateSwapchainTargetView()
@@ -321,122 +322,159 @@ namespace xpe {
 
             void CreateRenderTarget(RenderTarget& renderTarget)
             {
-                if (renderTarget.ColorTexture != nullptr && renderTarget.ColorTexture->Instance == nullptr)
+                u32 colorCount = renderTarget.Colors.size();
+                for (u32 i = 0 ; i < colorCount ; i++)
                 {
-                    CreateTexture(*renderTarget.ColorTexture);
+                    auto& color = renderTarget.Colors[i];
+                    auto& colorView = renderTarget.ColorViews[i];
+
+                    if (color != nullptr && color->Instance == nullptr)
+                    {
+                        CreateTexture(*color);
+                    }
+
+                    if (color != nullptr && colorView == nullptr)
+                    {
+                        D3D11_RENDER_TARGET_VIEW_DESC desc = {};
+                        desc.Format = s_TextureFormatTable.at(color->Format);
+                        desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+                        desc.Texture2D.MipSlice = 0;
+
+                        s_Device->CreateRenderTargetView(
+                                (ID3D11Resource*) color->Instance,
+                                &desc,
+                                (ID3D11RenderTargetView**) &colorView
+                        );
+                        LogDebugMessage();
+                    }
                 }
 
-                if (renderTarget.DepthTexture != nullptr && renderTarget.DepthTexture->Instance == nullptr)
+                auto& depth = renderTarget.DepthStencil;
+                auto& depthView = renderTarget.DepthStencilView;
+
+                if (depth != nullptr && depth->Instance == nullptr)
                 {
-                    CreateTextureDepthStencil(*renderTarget.DepthTexture);
+                    CreateTextureDepthStencil(*depth);
                 }
 
-                if (renderTarget.ColorTexture != nullptr && renderTarget.ColorTargetView == nullptr)
-                {
-                    D3D11_RENDER_TARGET_VIEW_DESC desc = {};
-                    desc.Format = s_TextureFormatTable.at(renderTarget.ColorTexture->Format);
-                    desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
-                    desc.Texture2D.MipSlice = 0;
-
-                    s_Device->CreateRenderTargetView(
-                            (ID3D11Resource*)renderTarget.ColorTexture->Instance,
-                            &desc,
-                            (ID3D11RenderTargetView**)&renderTarget.ColorTargetView
-                    );
-                    LogDebugMessage();
-                }
-
-                if (renderTarget.DepthTexture != nullptr && renderTarget.DepthTargetView == nullptr)
+                if (depth != nullptr && depthView == nullptr)
                 {
                     D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
                     desc.Format = DXGI_FORMAT_D32_FLOAT;
-                    desc.Texture2D.MipSlice = 0;
                     desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                    desc.Texture2D.MipSlice = 0;
 
                     s_Device->CreateDepthStencilView(
-                            (ID3D11Resource*)renderTarget.DepthTexture->Instance,
+                            (ID3D11Resource*) depth->Instance,
                             &desc,
-                            (ID3D11DepthStencilView**)&renderTarget.DepthTargetView
+                            (ID3D11DepthStencilView**) &depthView
                     );
                     LogDebugMessage();
                 }
             }
 
-            void BindRenderTarget(void *colorTargetView, void *depthTargetView)
+            void BindRenderTarget(const vector<void*>& colorViews, void* depthView)
             {
-                BoundColorTargetView = colorTargetView;
-                BoundDepthTargetView = depthTargetView;
                 s_ImmContext->OMSetRenderTargets(
-                        1,
-                        (ID3D11RenderTargetView**)&colorTargetView,
-                        (ID3D11DepthStencilView*)depthTargetView
+                        colorViews.size(),
+                        colorViews.empty() ? nullptr : (ID3D11RenderTargetView**) &colorViews[0],
+                        (ID3D11DepthStencilView*) depthView
                 );
                 LogDebugMessage();
             }
 
             void UnbindRenderTarget()
             {
-                BoundColorTargetView = nullptr;
-                BoundDepthTargetView = nullptr;
-                s_ImmContext->OMSetRenderTargets(0, 0, 0);
+                s_ImmContext->OMSetRenderTargets(0, nullptr, nullptr);
                 LogDebugMessage();
             }
 
-            void ClearColorTarget(const glm::vec4 &color)
+            void ClearColorTarget(void* colorView, const glm::vec4 &color)
             {
-                s_ImmContext->ClearRenderTargetView((ID3D11RenderTargetView*)BoundColorTargetView, &color.x);
+                s_ImmContext->ClearRenderTargetView((ID3D11RenderTargetView*) colorView, &color.x);
                 LogDebugMessage();
             }
 
-            void ClearDepthTarget(const f32 depth)
+            void ClearDepthTarget(void *depthView, const f32 depth)
             {
-                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*)BoundDepthTargetView, D3D11_CLEAR_DEPTH, depth, 0);
+                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*) depthView, D3D11_CLEAR_DEPTH, depth, 0);
                 LogDebugMessage();
             }
 
-            void FreeRenderTarget(RenderTarget& renderTarget)
+            void ClearStencilTarget(void *depthView, const u8 stencil)
             {
-                if (renderTarget.ColorTargetView != nullptr)
+                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*) depthView, D3D11_CLEAR_STENCIL, 0, stencil);
+                LogDebugMessage();
+            }
+
+            void ClearDepthStencilTarget(void *depthView, const f32 depth, const u8 stencil)
+            {
+                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*) depthView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, depth, stencil);
+                LogDebugMessage();
+            }
+
+            void FreeRenderTargetColors(vector<Texture*> &colors)
+            {
+                for (auto& color : colors)
                 {
-                    ((ID3D11RenderTargetView*)renderTarget.ColorTargetView)->Release();
+                    if (color != nullptr)
+                    {
+                        FreeTexture(*color);
+                    }
+                }
+            }
+
+            void FreeRenderTargetColorViews(vector<void*> &colorViews)
+            {
+                for (auto& colorView : colorViews)
+                {
+                    if (colorView != nullptr)
+                    {
+                        ((ID3D11RenderTargetView*) colorView)->Release();
+                        LogDebugMessage();
+                        colorView = nullptr;
+                    }
+                }
+            }
+
+            void FreeRenderTargetDepth(Texture **depth)
+            {
+                if (*depth != nullptr)
+                {
+                    FreeTexture(**depth);
+                }
+            }
+
+            void FreeRenderTargetDepthView(void **depthView)
+            {
+                auto& out = *depthView;
+                if (out != nullptr)
+                {
+                    ((ID3D11DepthStencilView*) out)->Release();
                     LogDebugMessage();
-                    renderTarget.ColorTargetView = nullptr;
-                }
-
-                if (renderTarget.ColorTexture != nullptr)
-                {
-                    FreeTexture(*renderTarget.ColorTexture);
-                }
-
-                if (renderTarget.DepthTargetView != nullptr)
-                {
-                    ((ID3D11DepthStencilView*)renderTarget.DepthTargetView)->Release();
-                    LogDebugMessage();
-                    renderTarget.DepthTargetView = nullptr;
-                }
-
-                if (renderTarget.DepthTexture != nullptr)
-                {
-                    FreeTexture(*renderTarget.DepthTexture);
+                    out = nullptr;
                 }
             }
 
             void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height)
             {
                 UnbindRenderTarget();
-
                 FreeRenderTarget(renderTarget);
 
-                if (renderTarget.ColorTexture != nullptr) {
-                    renderTarget.ColorTexture->Width = width;
-                    renderTarget.ColorTexture->Height = height;
-                    renderTarget.ColorTexture->Instance = nullptr;
+                for (auto& color : renderTarget.Colors)
+                {
+                    if (color != nullptr) {
+                        color->Width = width;
+                        color->Height = height;
+                        color->Instance = nullptr;
+                    }
                 }
 
-                if (renderTarget.DepthTexture != nullptr) {
-                    renderTarget.DepthTexture->Width = width;
-                    renderTarget.DepthTexture->Height = height;
-                    renderTarget.DepthTexture->Instance = nullptr;
+                auto& depthStencil = renderTarget.DepthStencil;
+                if (depthStencil != nullptr) {
+                    depthStencil->Width = width;
+                    depthStencil->Height = height;
+                    depthStencil->Instance = nullptr;
                 }
 
                 CreateRenderTarget(renderTarget);
@@ -1145,18 +1183,35 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindViewport(Viewport* viewport) {
-                BoundViewport = viewport;
+            void BindViewports(const vector<Viewport>& viewports) {
+                if (viewports.empty()) {
+                    UnbindViewports();
+                    return;
+                }
 
-                D3D11_VIEWPORT v = {};
-                v.TopLeftX = viewport->TopLeftX;
-                v.TopLeftY = viewport->TopLeftY;
-                v.Width = viewport->Width;
-                v.Height = viewport->Height;
-                v.MinDepth = viewport->MinDepth;
-                v.MaxDepth = viewport->MaxDepth;
+                usize viewportCount = viewports.size();
+                D3D11_VIEWPORT* vs = sallocT(D3D11_VIEWPORT, viewportCount);
 
-                s_ImmContext->RSSetViewports(1, &v);
+                for (u32 i = 0 ; i < viewportCount ; i++)
+                {
+                    auto& v = vs[i];
+                    auto& viewport = viewports[i];
+                    v = {};
+                    v.TopLeftX = viewport.TopLeftX;
+                    v.TopLeftY = viewport.TopLeftY;
+                    v.Width = viewport.Width;
+                    v.Height = viewport.Height;
+                    v.MinDepth = viewport.MinDepth;
+                    v.MaxDepth = viewport.MaxDepth;
+                }
+
+                s_ImmContext->RSSetViewports(viewportCount, vs);
+                LogDebugMessage();
+            }
+
+            void UnbindViewports()
+            {
+                s_ImmContext->RSSetViewports(0, nullptr);
                 LogDebugMessage();
             }
 

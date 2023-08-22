@@ -19,8 +19,16 @@ struct VSOut
     float gamma : XPE_GAMMA;
 };
 
-float4 ps_main(VSOut psIn) : SV_TARGET
+struct PSOut
 {
+    float4 color : SV_Target0;
+    float3 normal : SV_Target1;
+};
+
+PSOut ps_main(VSOut psIn)
+{
+    PSOut psOut;
+
     W = psIn.positionWorld;
     V = normalize(psIn.viewPosition - psIn.positionWorld);
     N = GetNormal(psIn.materialIndex, psIn.uv, psIn.normal, psIn.tbn);
@@ -52,5 +60,8 @@ float4 ps_main(VSOut psIn) : SV_TARGET
         color = albedo.rgb * (ambient + diffuse + specular) * lightColor;
     }
 
-    return float4(color, 1.0);
+    psOut.color = float4(color, 1.0);
+    psOut.normal = N;
+
+    return psOut;
 }
