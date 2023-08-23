@@ -9,7 +9,7 @@ namespace xpe {
             ALL = 1
         };
 
-        enum class eCompareFunc {
+        enum class eDepthStencilFunc {
             NEVER = 1,
             LESS = 2,
             EQUAL = 3,
@@ -20,7 +20,7 @@ namespace xpe {
             ALWAYS = 8,
         };
 
-        enum class eStencilOp {
+        enum class eDepthStencilOp {
             KEEP = 1,
             ZERO = 2,
             REPLACE = 3,
@@ -33,10 +33,10 @@ namespace xpe {
 
         struct ENGINE_API StencilTest : public core::Object
         {
-            eStencilOp StencilFailOp = eStencilOp::KEEP;
-            eStencilOp StencilDepthFailOp = eStencilOp::KEEP;
-            eStencilOp StencilPassOp = eStencilOp::KEEP;
-            eCompareFunc StencilFunc = eCompareFunc::ALWAYS;
+            eDepthStencilOp StencilFailOp = eDepthStencilOp::KEEP;
+            eDepthStencilOp StencilDepthFailOp = eDepthStencilOp::KEEP;
+            eDepthStencilOp StencilPassOp = eDepthStencilOp::KEEP;
+            eDepthStencilFunc StencilFunc = eDepthStencilFunc::ALWAYS;
         };
 
         struct ENGINE_API DepthStencilMode : public core::Object
@@ -44,7 +44,7 @@ namespace xpe {
             void* State = nullptr;
             bool EnableDepth = true;
             eDepthWriteMask DepthWriteMask = eDepthWriteMask::ALL;
-            eCompareFunc DepthFunc = eCompareFunc::LESS;
+            eDepthStencilFunc DepthFunc = eDepthStencilFunc::LESS;
             bool EnableStencil = false;
             u8 StencilReadMask = 0xff;
             u8 StencilWriteMask = 0xff;
