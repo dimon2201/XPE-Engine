@@ -70,6 +70,7 @@
 
 // STL customization
 #include <stl/string.h>
+#include <stl/array.h>
 #include <stl/vector.h>
 #include <stl/unordered_map.h>
 #include <stl/map.h>

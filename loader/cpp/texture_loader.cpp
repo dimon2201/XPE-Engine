@@ -138,12 +138,12 @@ namespace xpe {
             );
 
             textureCube->Layers = {
-                    front,
-                    back,
-                    right,
-                    left,
-                    top,
-                    bottom,
+                front,
+                back,
+                right,
+                left,
+                top,
+                bottom,
             };
 
             textureCube->Init();

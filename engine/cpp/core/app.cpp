@@ -5,13 +5,18 @@
 #include <ecs/entities.hpp>
 
 #include <rendering/core/debugger.h>
+
 #include <rendering/renderer.h>
+
 #include <rendering/buffers/light_buffers.h>
+
 #include <rendering/draw/canvas.hpp>
 #include <rendering/draw/instance_drawer.h>
 #include <rendering/draw/skeletal_anim_drawer.h>
 #include <rendering/draw/text2d_drawer.h>
 #include <rendering/draw/text3d_drawer.h>
+#include <rendering/draw/skybox_drawer.h>
+
 #include <rendering/storages/texture_storage.h>
 #include <rendering/storages/font_storage.h>
 
@@ -190,6 +195,18 @@ namespace xpe {
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/canvas.ps");
                 ShaderManager::BuildShader(shader);
                 m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
+            }
+            // Skybox drawing
+            {
+                Shader* shader = ShaderManager::CreateShader("skybox_drawer");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skybox_drawer.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skybox_drawer.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<SkyboxDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_GeometryStorage
+                );
             }
             // Instance drawing for 3D
             {

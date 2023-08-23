@@ -31,10 +31,6 @@ namespace xpe {
             m_Pipeline->PSBuffers.emplace_back(pointLightBuffer);
             m_Pipeline->PSBuffers.emplace_back(spotLightBuffer);
 
-            m_Pipeline->DepthStencilState.UseDepthTest = K_TRUE;
-            m_Pipeline->BlendState.UseBlending = K_TRUE;
-            m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
-
             Init();
         }
 

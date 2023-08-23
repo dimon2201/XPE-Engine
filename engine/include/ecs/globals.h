@@ -13,7 +13,6 @@ namespace xpe {
         struct ENGINE_API Skybox : public Global
         {
             Ref<render::Texture> CubeTexture;
-            math::GeometryIndexed<math::Vertex3D> Cube;
             string FrontResFilepath;
             string BackResFilepath;
             string TopResFilepath;

@@ -7,18 +7,6 @@ namespace xpe {
 
     namespace render {
 
-    struct ENGINE_API DepthStencilState : public core::Object
-        {
-            void* State = nullptr;
-            Boolean UseDepthTest;
-        };
-
-        struct ENGINE_API BlendState : public core::Object
-        {
-            void* State = nullptr;
-            Boolean UseBlending;
-        };
-
         struct ENGINE_API RenderTarget : public core::Object
         {
             vector<Texture*> Colors;
@@ -34,6 +22,9 @@ namespace xpe {
             Texture DepthStencil;
             vector<Viewport> Viewports;
             RenderTarget Target;
+
+            RenderPass(const vector<Texture>& colors);
+            RenderPass(const vector<Texture>& colors, const Texture& depthStencil);
 
             RenderPass(const vector<Texture>& colors, const Viewport& viewport);
             RenderPass(const vector<Texture>& colors, const vector<Viewport>& viewports);

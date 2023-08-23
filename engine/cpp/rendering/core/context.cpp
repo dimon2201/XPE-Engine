@@ -140,12 +140,9 @@ namespace xpe {
 
                 pipeline.InputLayout.VertexBlob = vertexBlob;
                 CreateInputLayout(pipeline.InputLayout);
-
-                CreateDepthStencilState(pipeline.DepthStencilState);
-
-                CreateBlendState(pipeline.BlendState);
-
                 CreateRasterizer(pipeline.Rasterizer);
+                CreateDepthStencilMode(pipeline.DepthStencil);
+                CreateBlendMode(pipeline.Blending);
             }
 
             void BindPipeline(const Pipeline& pipeline)
@@ -194,9 +191,9 @@ namespace xpe {
                     }
                 }
 
-                BindDepthStencilState(pipeline.DepthStencilState);
-                BindBlendState(pipeline.BlendState);
-                BindRasterizer(pipeline.Rasterizer);
+                BindRasterizer(pipeline.Rasterizer.State);
+                BindDepthStencilMode(pipeline.DepthStencil.State);
+                BindBlendMode(pipeline.Blending.State);
             }
 
             void UnbindPipeline(const Pipeline &pipeline)
@@ -231,9 +228,9 @@ namespace xpe {
             void FreePipeline(Pipeline& pipeline)
             {
                 FreeInputLayout(pipeline.InputLayout);
-                FreeDepthStencilState(pipeline.DepthStencilState);
-                FreeBlendState(pipeline.BlendState);
                 FreeRasterizer(pipeline.Rasterizer);
+                FreeDepthStencilMode(pipeline.DepthStencil);
+                FreeBlendMode(pipeline.Blending);
             }
 
             void FreeRenderTarget(RenderTarget& renderTarget)

@@ -9,25 +9,6 @@ namespace xpe {
 
     namespace render {
 
-        class RenderTarget;
-
-        class Shader;
-        class ShaderStage;
-        enum class eShaderType;
-
-        class InputLayout;
-
-        class Texture;
-        class TextureSampler;
-
-        class Pipeline;
-
-        class DepthStencilState;
-
-        class BlendState;
-
-        class Rasterizer;
-
         namespace context {
 
             extern void* SwapchainTargetView;
@@ -120,17 +101,17 @@ namespace xpe {
             ENGINE_API void UnbindPipeline(const Pipeline& pipeline);
             ENGINE_API void FreePipeline(Pipeline& pipeline);
 
-            ENGINE_API void CreateDepthStencilState(DepthStencilState& state);
-            ENGINE_API void BindDepthStencilState(const DepthStencilState& state);
-            ENGINE_API void FreeDepthStencilState(DepthStencilState& state);
+            ENGINE_API void CreateDepthStencilMode(DepthStencilMode& depthStencilMode);
+            ENGINE_API void BindDepthStencilMode(void* state);
+            ENGINE_API void FreeDepthStencilMode(DepthStencilMode& depthStencilMode);
+
+            ENGINE_API void CreateBlendMode(BlendMode& blendMode);
+            ENGINE_API void BindBlendMode(void* state);
+            ENGINE_API void FreeBlendMode(BlendMode& blendMode);
 
             ENGINE_API void CreateRasterizer(Rasterizer& rasterizer);
-            ENGINE_API void BindRasterizer(const Rasterizer& rasterizer);
+            ENGINE_API void BindRasterizer(void* state);
             ENGINE_API void FreeRasterizer(Rasterizer& rasterizer);
-
-            ENGINE_API void CreateBlendState(BlendState& state);
-            ENGINE_API void BindBlendState(const BlendState& state);
-            ENGINE_API void FreeBlendState(BlendState& state);
 
             ENGINE_API void DrawIndexed(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount);
             ENGINE_API void DrawVertexed(usize vertexOffset, usize vertexCount, usize instanceCount);

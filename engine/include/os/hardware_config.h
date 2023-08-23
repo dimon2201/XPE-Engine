@@ -21,7 +21,7 @@ namespace xpe {
         {
             usize MaxTexture2dArray;
             usize MaxAnisotropyLevel;
-            usize MaxRenderTargetsPerShader;
+            usize MaxRenderTargetsPerStage;
         };
 
         class ENGINE_API HardwareConfig final {

@@ -19,7 +19,8 @@ namespace xpe {
             DEFAULT = NONE,
         };
 
-        struct ENGINE_API Rasterizer final {
+        struct ENGINE_API Rasterizer : public core::Object
+        {
             void*     State = nullptr;
             eFillMode FillMode = eFillMode::DEFAULT;
             eCullMode CullMode = eCullMode::DEFAULT;
@@ -27,7 +28,7 @@ namespace xpe {
             int       DepthBias = 0;
             float     DepthBiasClamp = 0;
             float     SlopeScaledDepthBias = 0;
-            bool      DepthClipEnable = false;
+            bool      DepthClipEnable = true;
             bool      ScissorEnable = false;
             bool      MultisampleEnable = false;
             bool      AntialiasedLineEnable = false;
