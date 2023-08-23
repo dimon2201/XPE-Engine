@@ -43,7 +43,7 @@ namespace xpe {
         }
 
         template<typename T>
-        static void InitTBN(T* v0, T* v1, T* v2, T* v3)
+        static void InitTangent(T* v0, T* v1, T* v2, T* v3)
         {
             glm::vec3& pos0 = v0->Position;
             glm::vec3& pos1 = v1->Position;

@@ -134,7 +134,7 @@ namespace xpe {
 
             InitUV<Vertex3D>(vertices);
             InitNormal<Vertex3D>(vertices);
-            InitTBN<Vertex3D>(vertices);
+            InitTangent<Vertex3D>(vertices);
 
             indices = {
                 0,1,3,

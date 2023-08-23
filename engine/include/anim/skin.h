@@ -25,8 +25,8 @@ namespace xpe {
         {
             ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
             vector<Skin> Skins;
-            render::VertexBuffer<SkeletalVertex> Vertices;
-            render::IndexBuffer Indices;
+            VertexBuffer<SkeletalVertex> Vertices;
+            IndexBuffer Indices;
 
             inline Skin& operator [](u32 i) { return Skins[i]; }
         };

@@ -135,28 +135,28 @@ namespace xpe {
                     { eDepthWriteMask::ALL, D3D11_DEPTH_WRITE_MASK_ALL },
             };
 
-            static const std::unordered_map<eCompareFunc, D3D11_COMPARISON_FUNC> s_CompareFuncTable =
+            static const std::unordered_map<eDepthStencilFunc, D3D11_COMPARISON_FUNC> s_CompareFuncTable =
             {
-                    { eCompareFunc::NEVER, D3D11_COMPARISON_NEVER },
-                    { eCompareFunc::LESS, D3D11_COMPARISON_LESS },
-                    { eCompareFunc::EQUAL, D3D11_COMPARISON_EQUAL },
-                    { eCompareFunc::LESS_EQUAL, D3D11_COMPARISON_LESS_EQUAL },
-                    { eCompareFunc::GREATER, D3D11_COMPARISON_GREATER },
-                    { eCompareFunc::NOT_EQUAL, D3D11_COMPARISON_NOT_EQUAL },
-                    { eCompareFunc::GREATER_EQUAL, D3D11_COMPARISON_GREATER_EQUAL },
-                    { eCompareFunc::ALWAYS, D3D11_COMPARISON_ALWAYS }
+                    {eDepthStencilFunc::NEVER,         D3D11_COMPARISON_NEVER },
+                    {eDepthStencilFunc::LESS,          D3D11_COMPARISON_LESS },
+                    {eDepthStencilFunc::EQUAL,         D3D11_COMPARISON_EQUAL },
+                    {eDepthStencilFunc::LESS_EQUAL,    D3D11_COMPARISON_LESS_EQUAL },
+                    {eDepthStencilFunc::GREATER,       D3D11_COMPARISON_GREATER },
+                    {eDepthStencilFunc::NOT_EQUAL,     D3D11_COMPARISON_NOT_EQUAL },
+                    {eDepthStencilFunc::GREATER_EQUAL, D3D11_COMPARISON_GREATER_EQUAL },
+                    {eDepthStencilFunc::ALWAYS,        D3D11_COMPARISON_ALWAYS }
             };
 
-            static const std::unordered_map<eStencilOp, D3D11_STENCIL_OP> s_StencilOpTable =
+            static const std::unordered_map<eDepthStencilOp, D3D11_STENCIL_OP> s_StencilOpTable =
             {
-                    { eStencilOp::KEEP, D3D11_STENCIL_OP_KEEP },
-                    { eStencilOp::ZERO, D3D11_STENCIL_OP_ZERO },
-                    { eStencilOp::REPLACE, D3D11_STENCIL_OP_REPLACE },
-                    { eStencilOp::INCR_SAT, D3D11_STENCIL_OP_INCR_SAT },
-                    { eStencilOp::DECR_SAT, D3D11_STENCIL_OP_DECR_SAT },
-                    { eStencilOp::INVERT, D3D11_STENCIL_OP_INVERT },
-                    { eStencilOp::INCR, D3D11_STENCIL_OP_INCR },
-                    { eStencilOp::DECR, D3D11_STENCIL_OP_DECR }
+                    {eDepthStencilOp::KEEP,     D3D11_STENCIL_OP_KEEP },
+                    {eDepthStencilOp::ZERO,     D3D11_STENCIL_OP_ZERO },
+                    {eDepthStencilOp::REPLACE,  D3D11_STENCIL_OP_REPLACE },
+                    {eDepthStencilOp::INCR_SAT, D3D11_STENCIL_OP_INCR_SAT },
+                    {eDepthStencilOp::DECR_SAT, D3D11_STENCIL_OP_DECR_SAT },
+                    {eDepthStencilOp::INVERT,   D3D11_STENCIL_OP_INVERT },
+                    {eDepthStencilOp::INCR,     D3D11_STENCIL_OP_INCR },
+                    {eDepthStencilOp::DECR,     D3D11_STENCIL_OP_DECR }
             };
 
             static const std::unordered_map<eBlend, D3D11_BLEND> s_BlendTable =

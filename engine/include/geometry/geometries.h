@@ -147,14 +147,14 @@ namespace xpe {
         }
 
         template<typename T>
-        static void InitTBN(vector<T>& vertices)
+        static void InitTangent(vector<T>& vertices)
         {
-            InitTBN(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
-            InitTBN(&vertices[4], &vertices[5], &vertices[6], &vertices[7]);
-            InitTBN(&vertices[8], &vertices[9], &vertices[10], &vertices[11]);
-            InitTBN(&vertices[12], &vertices[13], &vertices[14], &vertices[15]);
-            InitTBN(&vertices[16], &vertices[17], &vertices[18], &vertices[19]);
-            InitTBN(&vertices[20], &vertices[21], &vertices[22], &vertices[23]);
+            InitTangent(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
+            InitTangent(&vertices[4], &vertices[5], &vertices[6], &vertices[7]);
+            InitTangent(&vertices[8], &vertices[9], &vertices[10], &vertices[11]);
+            InitTangent(&vertices[12], &vertices[13], &vertices[14], &vertices[15]);
+            InitTangent(&vertices[16], &vertices[17], &vertices[18], &vertices[19]);
+            InitTangent(&vertices[20], &vertices[21], &vertices[22], &vertices[23]);
         }
 
         struct ENGINE_API Mesh : GeometryIndexed<Vertex3D>
@@ -171,8 +171,8 @@ namespace xpe {
         {
             ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
             vector<Mesh> Meshes;
-            render::VertexBuffer<Vertex3D> Vertices;
-            render::IndexBuffer Indices;
+            VertexBuffer<Vertex3D> Vertices;
+            IndexBuffer Indices;
 
             inline Mesh& operator [](u32 i) { return Meshes[i]; }
         };
