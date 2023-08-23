@@ -15,18 +15,18 @@ namespace xpe {
         using namespace ecs;
         using namespace math;
 
+        class GeometryStorage;
+
         class ENGINE_API SkyboxDrawer : public Drawer
         {
 
         public:
-            SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader);
+            SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader, GeometryStorage* geometryStorage);
             ~SkyboxDrawer() override;
 
             void Draw(Scene* scene) override;
 
         protected:
-            Scope<VertexBuffer<Vertex3D>> m_VertexBuffer;
-            Scope<IndexBuffer> m_IndexBuffer;
             TextureSampler m_Sampler;
         };
 

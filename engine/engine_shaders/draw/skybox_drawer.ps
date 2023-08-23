@@ -1,0 +1,24 @@
+#include ../types.shader
+
+struct VSOut
+{
+    float4 positionClip : SV_POSITION;
+    float3 positionLocal : XPE_POSITION_LOCAL;
+};
+
+SamplerState S_Cube : register(s0);
+TextureCube  T_Cube : register(t0);
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn)
+{
+    PSOut psOut;
+
+    psOut.color = float4(1, 1, 0, 1);
+
+    return psOut;
+}

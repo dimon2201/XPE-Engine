@@ -9,31 +9,9 @@ namespace xpe {
 
     namespace render {
 
-        class RenderTarget;
-
-        class Shader;
-        class ShaderStage;
-        enum class eShaderType;
-
-        class InputLayout;
-
-        class Texture;
-        class TextureSampler;
-
-        class Pipeline;
-
-        class DepthStencilState;
-
-        class BlendState;
-
-        class Rasterizer;
-
         namespace context {
 
             extern void* SwapchainTargetView;
-            extern Viewport* BoundViewport;
-            extern void* BoundColorTargetView;
-            extern void* BoundDepthTargetView;
 
             ENGINE_API void Init();
             ENGINE_API void Free();
@@ -44,11 +22,18 @@ namespace xpe {
             ENGINE_API void CreateSwapchainTargetView();
 
             ENGINE_API void CreateRenderTarget(RenderTarget& renderTarget);
-            ENGINE_API void BindRenderTarget(void* colorTargetView, void* depthTargetView);
+            ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView);
+            ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView, const vector<Viewport>* viewports);
             ENGINE_API void UnbindRenderTarget();
-            ENGINE_API void ClearColorTarget(const glm::vec4& color);
-            ENGINE_API void ClearDepthTarget(const f32 depth);
+            ENGINE_API void ClearColorTarget(void* colorView, const glm::vec4& color);
+            ENGINE_API void ClearDepthTarget(void* depthView, const f32 depth);
+            ENGINE_API void ClearStencilTarget(void* depthView, const u8 stencil);
+            ENGINE_API void ClearDepthStencilTarget(void* depthView, const f32 depth, const u8 stencil);
             ENGINE_API void FreeRenderTarget(RenderTarget& renderTarget);
+            ENGINE_API void FreeRenderTargetColors(vector<Texture*>& colors);
+            ENGINE_API void FreeRenderTargetColorViews(vector<void*>& colorViews);
+            ENGINE_API void FreeRenderTargetDepth(Texture** depth);
+            ENGINE_API void FreeRenderTargetDepthView(void** depthView);
             ENGINE_API void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height);
 
             ENGINE_API void Present();
@@ -108,24 +93,25 @@ namespace xpe {
 
             ENGINE_API void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology);
 
-            ENGINE_API void BindViewport(Viewport* viewport);
+            ENGINE_API void BindViewports(const vector<Viewport>& viewports);
+            ENGINE_API void UnbindViewports();
 
             ENGINE_API void CreatePipeline(Pipeline& pipeline);
             ENGINE_API void BindPipeline(const Pipeline& pipeline);
             ENGINE_API void UnbindPipeline(const Pipeline& pipeline);
             ENGINE_API void FreePipeline(Pipeline& pipeline);
 
-            ENGINE_API void CreateDepthStencilState(DepthStencilState& state);
-            ENGINE_API void BindDepthStencilState(const DepthStencilState& state);
-            ENGINE_API void FreeDepthStencilState(DepthStencilState& state);
+            ENGINE_API void CreateDepthStencilMode(DepthStencilMode& depthStencilMode);
+            ENGINE_API void BindDepthStencilMode(void* state);
+            ENGINE_API void FreeDepthStencilMode(DepthStencilMode& depthStencilMode);
+
+            ENGINE_API void CreateBlendMode(BlendMode& blendMode);
+            ENGINE_API void BindBlendMode(void* state);
+            ENGINE_API void FreeBlendMode(BlendMode& blendMode);
 
             ENGINE_API void CreateRasterizer(Rasterizer& rasterizer);
-            ENGINE_API void BindRasterizer(const Rasterizer& rasterizer);
+            ENGINE_API void BindRasterizer(void* state);
             ENGINE_API void FreeRasterizer(Rasterizer& rasterizer);
-
-            ENGINE_API void CreateBlendState(BlendState& state);
-            ENGINE_API void BindBlendState(const BlendState& state);
-            ENGINE_API void FreeBlendState(BlendState& state);
 
             ENGINE_API void DrawIndexed(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount);
             ENGINE_API void DrawVertexed(usize vertexOffset, usize vertexCount, usize instanceCount);

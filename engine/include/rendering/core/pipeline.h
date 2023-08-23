@@ -4,6 +4,8 @@
 #include <rendering/core/shader.h>
 #include <rendering/core/render_target.h>
 #include <rendering/core/rasterizer.h>
+#include <rendering/core/depth_stencil_mode.h>
+#include <rendering/core/blend_mode.h>
 
 namespace xpe {
 
@@ -21,9 +23,9 @@ namespace xpe {
             vector<Buffer*> PSBuffers; // buffers defined in pixel shader
             vector<Texture*> Textures;
             vector<TextureSampler*> Samplers;
-            render::DepthStencilState DepthStencilState;
-            render::BlendState BlendState;
             render::Rasterizer Rasterizer;
+            DepthStencilMode DepthStencil;
+            BlendMode Blending;
         };
 
     }

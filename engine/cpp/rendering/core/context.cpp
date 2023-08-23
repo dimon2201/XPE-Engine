@@ -140,12 +140,9 @@ namespace xpe {
 
                 pipeline.InputLayout.VertexBlob = vertexBlob;
                 CreateInputLayout(pipeline.InputLayout);
-
-                CreateDepthStencilState(pipeline.DepthStencilState);
-
-                CreateBlendState(pipeline.BlendState);
-
                 CreateRasterizer(pipeline.Rasterizer);
+                CreateDepthStencilMode(pipeline.DepthStencil);
+                CreateBlendMode(pipeline.Blending);
             }
 
             void BindPipeline(const Pipeline& pipeline)
@@ -155,7 +152,7 @@ namespace xpe {
                 }
 
                 if (pipeline.RenderTarget != nullptr) {
-                    BindRenderTarget(pipeline.RenderTarget->ColorTargetView, pipeline.RenderTarget->DepthTargetView);
+                    BindRenderTarget(pipeline.RenderTarget->ColorViews, pipeline.RenderTarget->DepthStencilView);
                 }
 
                 BindPrimitiveTopology(pipeline.PrimitiveTopology);
@@ -194,9 +191,9 @@ namespace xpe {
                     }
                 }
 
-                BindDepthStencilState(pipeline.DepthStencilState);
-                BindBlendState(pipeline.BlendState);
-                BindRasterizer(pipeline.Rasterizer);
+                BindRasterizer(pipeline.Rasterizer.State);
+                BindDepthStencilMode(pipeline.DepthStencil.State);
+                BindBlendMode(pipeline.Blending.State);
             }
 
             void UnbindPipeline(const Pipeline &pipeline)
@@ -231,9 +228,25 @@ namespace xpe {
             void FreePipeline(Pipeline& pipeline)
             {
                 FreeInputLayout(pipeline.InputLayout);
-                FreeDepthStencilState(pipeline.DepthStencilState);
-                FreeBlendState(pipeline.BlendState);
                 FreeRasterizer(pipeline.Rasterizer);
+                FreeDepthStencilMode(pipeline.DepthStencil);
+                FreeBlendMode(pipeline.Blending);
+            }
+
+            void FreeRenderTarget(RenderTarget& renderTarget)
+            {
+                FreeRenderTargetColors(renderTarget.Colors);
+                FreeRenderTargetColorViews(renderTarget.ColorViews);
+                FreeRenderTargetDepth(&renderTarget.DepthStencil);
+                FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
+            }
+
+            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport> *viewports)
+            {
+                BindRenderTarget(colorViews, depthView);
+                if (viewports != nullptr) {
+                    BindViewports(*viewports);
+                }
             }
 
         }

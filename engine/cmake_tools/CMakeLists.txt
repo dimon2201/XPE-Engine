@@ -30,6 +30,9 @@ endmacro()
 macro(add_engine_definitions)
     add_engine_configs()
     add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
+    if(DEBUG)
+        add_definitions(-DDEBUG=1)
+    endif(DEBUG)
 endmacro()
 
 # copying target dir to destination dir. If destination does not exist, create it.

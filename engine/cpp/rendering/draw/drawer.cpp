@@ -10,6 +10,9 @@ namespace xpe {
             m_Pipeline = new Pipeline();
             m_Pipeline->VSBuffers.emplace_back(cameraBuffer);
             m_Pipeline->Shader = shader;
+            m_Pipeline->Blending.Targets[0].Enable = true;
+            m_Pipeline->Blending.Targets[0].Src = eBlend::SRC_ALPHA;
+            m_Pipeline->Blending.Targets[0].Dest = eBlend::INV_SRC_ALPHA;
         }
 
         Drawer::~Drawer()

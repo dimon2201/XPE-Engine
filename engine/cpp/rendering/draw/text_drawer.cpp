@@ -30,10 +30,6 @@ namespace xpe {
             m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
             m_Pipeline->Textures.emplace_back(nullptr);
 
-            m_Pipeline->DepthStencilState.UseDepthTest = K_TRUE;
-            m_Pipeline->BlendState.UseBlending = K_TRUE;
-            m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
-
             Init();
         }
 

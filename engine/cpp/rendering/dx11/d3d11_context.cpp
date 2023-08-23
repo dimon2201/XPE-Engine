@@ -129,6 +129,66 @@ namespace xpe {
                     { eMapType::WRITE_DISCARD, D3D11_MAP_WRITE_DISCARD },
             };
 
+            static const std::unordered_map<eDepthWriteMask, D3D11_DEPTH_WRITE_MASK> s_DepthWriteMaskTable =
+            {
+                    { eDepthWriteMask::ZERO, D3D11_DEPTH_WRITE_MASK_ZERO },
+                    { eDepthWriteMask::ALL, D3D11_DEPTH_WRITE_MASK_ALL },
+            };
+
+            static const std::unordered_map<eCompareFunc, D3D11_COMPARISON_FUNC> s_CompareFuncTable =
+            {
+                    { eCompareFunc::NEVER, D3D11_COMPARISON_NEVER },
+                    { eCompareFunc::LESS, D3D11_COMPARISON_LESS },
+                    { eCompareFunc::EQUAL, D3D11_COMPARISON_EQUAL },
+                    { eCompareFunc::LESS_EQUAL, D3D11_COMPARISON_LESS_EQUAL },
+                    { eCompareFunc::GREATER, D3D11_COMPARISON_GREATER },
+                    { eCompareFunc::NOT_EQUAL, D3D11_COMPARISON_NOT_EQUAL },
+                    { eCompareFunc::GREATER_EQUAL, D3D11_COMPARISON_GREATER_EQUAL },
+                    { eCompareFunc::ALWAYS, D3D11_COMPARISON_ALWAYS }
+            };
+
+            static const std::unordered_map<eStencilOp, D3D11_STENCIL_OP> s_StencilOpTable =
+            {
+                    { eStencilOp::KEEP, D3D11_STENCIL_OP_KEEP },
+                    { eStencilOp::ZERO, D3D11_STENCIL_OP_ZERO },
+                    { eStencilOp::REPLACE, D3D11_STENCIL_OP_REPLACE },
+                    { eStencilOp::INCR_SAT, D3D11_STENCIL_OP_INCR_SAT },
+                    { eStencilOp::DECR_SAT, D3D11_STENCIL_OP_DECR_SAT },
+                    { eStencilOp::INVERT, D3D11_STENCIL_OP_INVERT },
+                    { eStencilOp::INCR, D3D11_STENCIL_OP_INCR },
+                    { eStencilOp::DECR, D3D11_STENCIL_OP_DECR }
+            };
+
+            static const std::unordered_map<eBlend, D3D11_BLEND> s_BlendTable =
+            {
+                    { eBlend::ZERO, D3D11_BLEND_ZERO },
+                    { eBlend::ONE, D3D11_BLEND_ONE },
+                    { eBlend::SRC_COLOR, D3D11_BLEND_SRC_COLOR },
+                    { eBlend::INV_SRC_COLOR, D3D11_BLEND_INV_SRC_COLOR },
+                    { eBlend::SRC_ALPHA, D3D11_BLEND_SRC_ALPHA },
+                    { eBlend::INV_SRC_ALPHA, D3D11_BLEND_INV_SRC_ALPHA },
+                    { eBlend::DEST_ALPHA, D3D11_BLEND_DEST_ALPHA },
+                    { eBlend::INV_DEST_ALPHA, D3D11_BLEND_INV_DEST_ALPHA },
+                    { eBlend::DEST_COLOR, D3D11_BLEND_DEST_COLOR },
+                    { eBlend::INV_DEST_COLOR, D3D11_BLEND_INV_DEST_COLOR },
+                    { eBlend::SRC_ALPHA_SAT, D3D11_BLEND_SRC_ALPHA_SAT },
+                    { eBlend::BLEND_FACTOR, D3D11_BLEND_BLEND_FACTOR },
+                    { eBlend::INV_BLEND_FACTOR, D3D11_BLEND_INV_BLEND_FACTOR },
+                    { eBlend::SRC1_COLOR, D3D11_BLEND_SRC1_COLOR },
+                    { eBlend::INV_SRC1_COLOR, D3D11_BLEND_INV_SRC1_COLOR },
+                    { eBlend::SRC1_ALPHA, D3D11_BLEND_SRC1_ALPHA },
+                    { eBlend::INV_SRC1_ALPHA, D3D11_BLEND_INV_SRC1_ALPHA }
+            };
+
+            static const std::unordered_map<eBlendOp, D3D11_BLEND_OP> s_BlendOpTable =
+            {
+                    { eBlendOp::ADD, D3D11_BLEND_OP_ADD },
+                    { eBlendOp::SUBTRACT, D3D11_BLEND_OP_SUBTRACT },
+                    { eBlendOp::REV_SUBTRACT, D3D11_BLEND_OP_REV_SUBTRACT },
+                    { eBlendOp::MIN, D3D11_BLEND_OP_MIN },
+                    { eBlendOp::MAX, D3D11_BLEND_OP_MAX }
+            };
+
             static D3D11_SUBRESOURCE_DATA* InitTextureData(const Texture& texture, const u32 arraySize, const u32 mipLevels)
             {
                 D3D11_SUBRESOURCE_DATA* initialData = nullptr;
@@ -280,26 +340,27 @@ namespace xpe {
 
             void ResizeSwapchain(RenderTarget& renderTarget, int width, int height)
             {
-                s_ImmContext->OMSetRenderTargets(0, 0, 0);
+                UnbindRenderTarget();
 
-                ((ID3D11RenderTargetView*) renderTarget.ColorTargetView)->Release();
+                FreeRenderTargetColorViews(renderTarget.ColorViews);
 
                 s_SwapChain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
                 LogDebugMessage();
 
                 CreateSwapchainTargetView();
-                renderTarget.ColorTargetView = SwapchainTargetView;
+                renderTarget.ColorViews[0] = SwapchainTargetView;
 
-                s_ImmContext->OMSetRenderTargets(
-                        1,
-                        (ID3D11RenderTargetView**) &renderTarget.ColorTargetView,
-                        NULL
-                );
-                LogDebugMessage();
+                BindRenderTarget(renderTarget.ColorViews, renderTarget.DepthStencilView);
 
-                BoundViewport->Width = width;
-                BoundViewport->Height = height;
-                BindViewport(BoundViewport);
+                if (renderTarget.Viewports != nullptr)
+                {
+                    for (auto& viewport : *renderTarget.Viewports)
+                    {
+                        viewport.Width = width;
+                        viewport.Height = height;
+                    }
+                    BindViewports(*renderTarget.Viewports);
+                }
             }
 
             void CreateSwapchainTargetView()
@@ -321,122 +382,159 @@ namespace xpe {
 
             void CreateRenderTarget(RenderTarget& renderTarget)
             {
-                if (renderTarget.ColorTexture != nullptr && renderTarget.ColorTexture->Instance == nullptr)
+                u32 colorCount = renderTarget.Colors.size();
+                for (u32 i = 0 ; i < colorCount ; i++)
                 {
-                    CreateTexture(*renderTarget.ColorTexture);
+                    auto& color = renderTarget.Colors[i];
+                    auto& colorView = renderTarget.ColorViews[i];
+
+                    if (color != nullptr && color->Instance == nullptr)
+                    {
+                        CreateTexture(*color);
+                    }
+
+                    if (color != nullptr && colorView == nullptr)
+                    {
+                        D3D11_RENDER_TARGET_VIEW_DESC desc = {};
+                        desc.Format = s_TextureFormatTable.at(color->Format);
+                        desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+                        desc.Texture2D.MipSlice = 0;
+
+                        s_Device->CreateRenderTargetView(
+                                (ID3D11Resource*) color->Instance,
+                                &desc,
+                                (ID3D11RenderTargetView**) &colorView
+                        );
+                        LogDebugMessage();
+                    }
                 }
 
-                if (renderTarget.DepthTexture != nullptr && renderTarget.DepthTexture->Instance == nullptr)
+                auto& depth = renderTarget.DepthStencil;
+                auto& depthView = renderTarget.DepthStencilView;
+
+                if (depth != nullptr && depth->Instance == nullptr)
                 {
-                    CreateTextureDepthStencil(*renderTarget.DepthTexture);
+                    CreateTextureDepthStencil(*depth);
                 }
 
-                if (renderTarget.ColorTexture != nullptr && renderTarget.ColorTargetView == nullptr)
-                {
-                    D3D11_RENDER_TARGET_VIEW_DESC desc = {};
-                    desc.Format = s_TextureFormatTable.at(renderTarget.ColorTexture->Format);
-                    desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
-                    desc.Texture2D.MipSlice = 0;
-
-                    s_Device->CreateRenderTargetView(
-                            (ID3D11Resource*)renderTarget.ColorTexture->Instance,
-                            &desc,
-                            (ID3D11RenderTargetView**)&renderTarget.ColorTargetView
-                    );
-                    LogDebugMessage();
-                }
-
-                if (renderTarget.DepthTexture != nullptr && renderTarget.DepthTargetView == nullptr)
+                if (depth != nullptr && depthView == nullptr)
                 {
                     D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
                     desc.Format = DXGI_FORMAT_D32_FLOAT;
-                    desc.Texture2D.MipSlice = 0;
                     desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                    desc.Texture2D.MipSlice = 0;
 
                     s_Device->CreateDepthStencilView(
-                            (ID3D11Resource*)renderTarget.DepthTexture->Instance,
+                            (ID3D11Resource*) depth->Instance,
                             &desc,
-                            (ID3D11DepthStencilView**)&renderTarget.DepthTargetView
+                            (ID3D11DepthStencilView**) &depthView
                     );
                     LogDebugMessage();
                 }
             }
 
-            void BindRenderTarget(void *colorTargetView, void *depthTargetView)
+            void BindRenderTarget(const vector<void*>& colorViews, void* depthView)
             {
-                BoundColorTargetView = colorTargetView;
-                BoundDepthTargetView = depthTargetView;
                 s_ImmContext->OMSetRenderTargets(
-                        1,
-                        (ID3D11RenderTargetView**)&colorTargetView,
-                        (ID3D11DepthStencilView*)depthTargetView
+                        colorViews.size(),
+                        colorViews.empty() ? nullptr : (ID3D11RenderTargetView**) &colorViews[0],
+                        (ID3D11DepthStencilView*) depthView
                 );
                 LogDebugMessage();
             }
 
             void UnbindRenderTarget()
             {
-                BoundColorTargetView = nullptr;
-                BoundDepthTargetView = nullptr;
-                s_ImmContext->OMSetRenderTargets(0, 0, 0);
+                s_ImmContext->OMSetRenderTargets(0, nullptr, nullptr);
                 LogDebugMessage();
             }
 
-            void ClearColorTarget(const glm::vec4 &color)
+            void ClearColorTarget(void* colorView, const glm::vec4 &color)
             {
-                s_ImmContext->ClearRenderTargetView((ID3D11RenderTargetView*)BoundColorTargetView, &color.x);
+                s_ImmContext->ClearRenderTargetView((ID3D11RenderTargetView*) colorView, &color.x);
                 LogDebugMessage();
             }
 
-            void ClearDepthTarget(const f32 depth)
+            void ClearDepthTarget(void *depthView, const f32 depth)
             {
-                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*)BoundDepthTargetView, D3D11_CLEAR_DEPTH, depth, 0);
+                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*) depthView, D3D11_CLEAR_DEPTH, depth, 0);
                 LogDebugMessage();
             }
 
-            void FreeRenderTarget(RenderTarget& renderTarget)
+            void ClearStencilTarget(void *depthView, const u8 stencil)
             {
-                if (renderTarget.ColorTargetView != nullptr)
+                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*) depthView, D3D11_CLEAR_STENCIL, 0, stencil);
+                LogDebugMessage();
+            }
+
+            void ClearDepthStencilTarget(void *depthView, const f32 depth, const u8 stencil)
+            {
+                s_ImmContext->ClearDepthStencilView((ID3D11DepthStencilView*) depthView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, depth, stencil);
+                LogDebugMessage();
+            }
+
+            void FreeRenderTargetColors(vector<Texture*> &colors)
+            {
+                for (auto& color : colors)
                 {
-                    ((ID3D11RenderTargetView*)renderTarget.ColorTargetView)->Release();
+                    if (color != nullptr)
+                    {
+                        FreeTexture(*color);
+                    }
+                }
+            }
+
+            void FreeRenderTargetColorViews(vector<void*> &colorViews)
+            {
+                for (auto& colorView : colorViews)
+                {
+                    if (colorView != nullptr)
+                    {
+                        ((ID3D11RenderTargetView*) colorView)->Release();
+                        LogDebugMessage();
+                        colorView = nullptr;
+                    }
+                }
+            }
+
+            void FreeRenderTargetDepth(Texture **depth)
+            {
+                if (*depth != nullptr)
+                {
+                    FreeTexture(**depth);
+                }
+            }
+
+            void FreeRenderTargetDepthView(void **depthView)
+            {
+                auto& out = *depthView;
+                if (out != nullptr)
+                {
+                    ((ID3D11DepthStencilView*) out)->Release();
                     LogDebugMessage();
-                    renderTarget.ColorTargetView = nullptr;
-                }
-
-                if (renderTarget.ColorTexture != nullptr)
-                {
-                    FreeTexture(*renderTarget.ColorTexture);
-                }
-
-                if (renderTarget.DepthTargetView != nullptr)
-                {
-                    ((ID3D11DepthStencilView*)renderTarget.DepthTargetView)->Release();
-                    LogDebugMessage();
-                    renderTarget.DepthTargetView = nullptr;
-                }
-
-                if (renderTarget.DepthTexture != nullptr)
-                {
-                    FreeTexture(*renderTarget.DepthTexture);
+                    out = nullptr;
                 }
             }
 
             void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height)
             {
                 UnbindRenderTarget();
-
                 FreeRenderTarget(renderTarget);
 
-                if (renderTarget.ColorTexture != nullptr) {
-                    renderTarget.ColorTexture->Width = width;
-                    renderTarget.ColorTexture->Height = height;
-                    renderTarget.ColorTexture->Instance = nullptr;
+                for (auto& color : renderTarget.Colors)
+                {
+                    if (color != nullptr) {
+                        color->Width = width;
+                        color->Height = height;
+                        color->Instance = nullptr;
+                    }
                 }
 
-                if (renderTarget.DepthTexture != nullptr) {
-                    renderTarget.DepthTexture->Width = width;
-                    renderTarget.DepthTexture->Height = height;
-                    renderTarget.DepthTexture->Instance = nullptr;
+                auto& depthStencil = renderTarget.DepthStencil;
+                if (depthStencil != nullptr) {
+                    depthStencil->Width = width;
+                    depthStencil->Height = height;
+                    depthStencil->Instance = nullptr;
                 }
 
                 CreateRenderTarget(renderTarget);
@@ -1145,18 +1243,35 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindViewport(Viewport* viewport) {
-                BoundViewport = viewport;
+            void BindViewports(const vector<Viewport>& viewports) {
+                if (viewports.empty()) {
+                    UnbindViewports();
+                    return;
+                }
 
-                D3D11_VIEWPORT v = {};
-                v.TopLeftX = viewport->TopLeftX;
-                v.TopLeftY = viewport->TopLeftY;
-                v.Width = viewport->Width;
-                v.Height = viewport->Height;
-                v.MinDepth = viewport->MinDepth;
-                v.MaxDepth = viewport->MaxDepth;
+                usize viewportCount = viewports.size();
+                D3D11_VIEWPORT* vs = sallocT(D3D11_VIEWPORT, viewportCount);
 
-                s_ImmContext->RSSetViewports(1, &v);
+                for (u32 i = 0 ; i < viewportCount ; i++)
+                {
+                    auto& v = vs[i];
+                    auto& viewport = viewports[i];
+                    v = {};
+                    v.TopLeftX = viewport.TopLeftX;
+                    v.TopLeftY = viewport.TopLeftY;
+                    v.Width = viewport.Width;
+                    v.Height = viewport.Height;
+                    v.MinDepth = viewport.MinDepth;
+                    v.MaxDepth = viewport.MaxDepth;
+                }
+
+                s_ImmContext->RSSetViewports(viewportCount, vs);
+                LogDebugMessage();
+            }
+
+            void UnbindViewports()
+            {
+                s_ImmContext->RSSetViewports(0, nullptr);
                 LogDebugMessage();
             }
 
@@ -1170,65 +1285,87 @@ namespace xpe {
                 }
             }
 
-            void CreateDepthStencilState(DepthStencilState& state)
+            void CreateDepthStencilMode(DepthStencilMode &depthStencilMode)
             {
-                D3D11_DEPTH_STENCIL_DESC dsDesc = {};
-                dsDesc.DepthEnable = state.UseDepthTest == K_TRUE ? TRUE : FALSE;
-                dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-                dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
-                dsDesc.StencilEnable = FALSE;
+                D3D11_DEPTH_STENCIL_DESC desc = {};
+                desc.DepthEnable = depthStencilMode.EnableDepth;
+                desc.DepthWriteMask = s_DepthWriteMaskTable.at(depthStencilMode.DepthWriteMask);
+                desc.DepthFunc = s_CompareFuncTable.at(depthStencilMode.DepthFunc);
+                desc.StencilEnable = depthStencilMode.EnableStencil;
+                desc.StencilReadMask = depthStencilMode.StencilReadMask;
+                desc.StencilWriteMask = depthStencilMode.StencilWriteMask;
 
-                s_Device->CreateDepthStencilState(&dsDesc, (ID3D11DepthStencilState**) &state.State);
+                D3D11_DEPTH_STENCILOP_DESC frontFaceDesc = {};
+                frontFaceDesc.StencilFailOp = s_StencilOpTable.at(depthStencilMode.FrontFace.StencilFailOp);
+                frontFaceDesc.StencilDepthFailOp = s_StencilOpTable.at(depthStencilMode.FrontFace.StencilDepthFailOp);
+                frontFaceDesc.StencilPassOp = s_StencilOpTable.at(depthStencilMode.FrontFace.StencilPassOp);
+                frontFaceDesc.StencilFunc = s_CompareFuncTable.at(depthStencilMode.FrontFace.StencilFunc);
+
+                D3D11_DEPTH_STENCILOP_DESC backFaceDesc = {};
+                backFaceDesc.StencilFailOp = s_StencilOpTable.at(depthStencilMode.BackFace.StencilFailOp);
+                backFaceDesc.StencilDepthFailOp = s_StencilOpTable.at(depthStencilMode.BackFace.StencilDepthFailOp);
+                backFaceDesc.StencilPassOp = s_StencilOpTable.at(depthStencilMode.BackFace.StencilPassOp);
+                backFaceDesc.StencilFunc = s_CompareFuncTable.at(depthStencilMode.BackFace.StencilFunc);
+
+                desc.FrontFace = frontFaceDesc;
+                desc.BackFace = backFaceDesc;
+                s_Device->CreateDepthStencilState(&desc, (ID3D11DepthStencilState**) &depthStencilMode.State);
                 LogDebugMessage();
             }
 
-            void BindDepthStencilState(const DepthStencilState& state)
+            void BindDepthStencilMode(void* state)
             {
-                s_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*) state.State, 0);
+                s_ImmContext->OMSetDepthStencilState((ID3D11DepthStencilState*) state, 0);
                 LogDebugMessage();
             }
 
-            void FreeDepthStencilState(DepthStencilState& state)
+            void FreeDepthStencilMode(DepthStencilMode &depthStencilMode)
             {
-                if (state.State != nullptr)
+                if (depthStencilMode.State != nullptr)
                 {
-                    ((ID3D11DepthStencilState*) state.State)->Release();
+                    ((ID3D11DepthStencilState*) depthStencilMode.State)->Release();
                     LogDebugMessage();
-                    state.State = nullptr;
+                    depthStencilMode.State = nullptr;
                 }
             }
 
-            void CreateBlendState(BlendState& state)
+            void CreateBlendMode(BlendMode &blendMode)
             {
-                D3D11_BLEND_DESC bsDesc = {};
-                bsDesc.AlphaToCoverageEnable = false;
-                bsDesc.IndependentBlendEnable = false;
-                bsDesc.RenderTarget[0].BlendEnable = state.UseBlending == K_TRUE ? TRUE : FALSE;
-                bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-                bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-                bsDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-                bsDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-                bsDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-                bsDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-                bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+                D3D11_BLEND_DESC desc = {};
+                desc.AlphaToCoverageEnable = blendMode.AlphaToCoverageEnable;
+                desc.IndependentBlendEnable = blendMode.IndependentBlendEnable;
 
-                s_Device->CreateBlendState(&bsDesc, (ID3D11BlendState**) &state.State);
-                LogDebugMessage();
-            }
-
-            void BindBlendState(const BlendState& state)
-            {
-                s_ImmContext->OMSetBlendState((ID3D11BlendState*) state.State, nullptr, 0xffffffff);
-                LogDebugMessage();
-            }
-
-            void FreeBlendState(BlendState& state)
-            {
-                if (state.State != nullptr)
+                u32 blendTargetSize = blendMode.Targets.size();
+                for (u32 i = 0 ; i < blendTargetSize ; i++)
                 {
-                    ((ID3D11BlendState*)state.State)->Release();
+                    auto& blendTarget = blendMode.Targets[i];
+                    desc.RenderTarget[i].BlendEnable = blendTarget.Enable;
+                    desc.RenderTarget[i].SrcBlend = s_BlendTable.at(blendTarget.Src);
+                    desc.RenderTarget[i].DestBlend = s_BlendTable.at(blendTarget.Dest);
+                    desc.RenderTarget[i].BlendOp = s_BlendOpTable.at(blendTarget.BlendOp);
+                    desc.RenderTarget[i].SrcBlendAlpha = s_BlendTable.at(blendTarget.SrcAlpha);
+                    desc.RenderTarget[i].DestBlendAlpha = s_BlendTable.at(blendTarget.DestAlpha);
+                    desc.RenderTarget[i].BlendOpAlpha = s_BlendOpTable.at(blendTarget.BlendOpAlpha);
+                    desc.RenderTarget[i].RenderTargetWriteMask = blendTarget.RenderTargetWriteMask;
+                }
+
+                s_Device->CreateBlendState(&desc, (ID3D11BlendState**) &blendMode.State);
+                LogDebugMessage();
+            }
+
+            void BindBlendMode(void* state)
+            {
+                s_ImmContext->OMSetBlendState((ID3D11BlendState*) state, nullptr, 0xffffffff);
+                LogDebugMessage();
+            }
+
+            void FreeBlendMode(BlendMode &blendMode)
+            {
+                if (blendMode.State != nullptr)
+                {
+                    ((ID3D11BlendState*)blendMode.State)->Release();
                     LogDebugMessage();
-                    state.State = nullptr;
+                    blendMode.State = nullptr;
                 }
             }
 
@@ -1251,9 +1388,9 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindRasterizer(const Rasterizer& rasterizer)
+            void BindRasterizer(void* state)
             {
-                s_ImmContext->RSSetState((ID3D11RasterizerState*) rasterizer.State);
+                s_ImmContext->RSSetState((ID3D11RasterizerState*) state);
                 LogDebugMessage();
             }
 

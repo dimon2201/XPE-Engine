@@ -54,8 +54,8 @@
 #include <core/main_allocator.h>
 #include <core/hot_allocator.h>
 #include <core/stack_allocator.h>
-#include <core/pointers.h>
 #include <core/object.h>
+#include <core/pointers.h>
 #include <core/keycodes.h>
 #include <core/mousecodes.h>
 #include <core/gamepadcodes.h>
@@ -70,6 +70,7 @@
 
 // STL customization
 #include <stl/string.h>
+#include <stl/array.h>
 #include <stl/vector.h>
 #include <stl/unordered_map.h>
 #include <stl/map.h>

@@ -1,16 +1,27 @@
-struct VSOut {
+struct VSOut
+{
     float4 positionClip : SV_POSITION;
     float2 texcoord : XPE_UV;
 };
 
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
 Texture2D<float4> Texture : register(t0);
 
-float4 ps_main(VSOut psIn) : SV_TARGET {
+PSOut ps_main(VSOut psIn)
+{
+    PSOut psOut;
+
     uint textureWidth = 0;
     uint textureHeight = 0;
 
     Texture.GetDimensions(textureWidth, textureHeight);
     float3 texcoordWorld = float3(float(textureWidth) * psIn.texcoord.x, float(textureHeight) * psIn.texcoord.y, 0);
 
-    return Texture.Load(int3(texcoordWorld));
+    psOut.color = Texture.Load(int3(texcoordWorld));
+
+    return psOut;
 }
