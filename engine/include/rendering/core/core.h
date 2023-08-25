@@ -6,6 +6,13 @@ namespace xpe {
 
         using namespace core;
 
+        struct ENGINE_API GPUResource : public core::Object
+        {
+            void* Instance = nullptr;
+            void* ViewInstance = nullptr;
+            void* NullInstance = nullptr;
+        };
+
         enum class eMapType
         {
             READ,
@@ -13,13 +20,6 @@ namespace xpe {
             READ_WRITE,
             WRITE_NO_OVERWRITE,
             WRITE_DISCARD
-        };
-
-        struct ENGINE_API GPUResource : public core::Object
-        {
-            void* Instance = nullptr;
-            void* ViewInstance = nullptr;
-            void* NullInstance = nullptr;
         };
 
         enum class ePrimitiveTopology

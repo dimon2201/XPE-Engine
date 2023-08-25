@@ -122,7 +122,7 @@ public:
             GeometryIndexed3DComponent plane("G_Plane");
             plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Plane", Cube());
             plane.Instance.Transform.Position = { 0, -10, 0 };
-            plane.Instance.Transform.Scale = { 100, 0.01, 100 };
+            plane.Instance.Transform.Scale = { 100, 0.1, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);

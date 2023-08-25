@@ -64,19 +64,22 @@ namespace xpe {
         void Renderer::FlushLights(Scene* scene)
         {
             this->DirectLightBuffer->Clear();
-            scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component) {
+            scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
+            {
                 this->DirectLightBuffer->AddComponent(*component);
             });
             this->DirectLightBuffer->Flush();
 
             this->PointLightBuffer->Clear();
-            scene->EachComponent<PointLightComponent>([this](PointLightComponent* component) {
+            scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
+            {
                 this->PointLightBuffer->AddComponent(*component);
             });
             this->PointLightBuffer->Flush();
 
             this->SpotLightBuffer->Clear();
-            scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component) {
+            scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
+            {
                 this->SpotLightBuffer->AddComponent(*component);
             });
             this->SpotLightBuffer->Flush();

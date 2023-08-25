@@ -55,9 +55,6 @@ namespace xpe {
             void DrawModelList(const Ref<Model3D>& model, const vector<Transform>& transforms);
 
         protected:
-            GeometryStorage* m_GeometryStorage;
-            MaterialStorage* m_MaterialStorage;
-
             InstanceBuffer m_InstanceBuffer;
             TransformBuffer m_TransformBuffer;
         };

@@ -7,6 +7,20 @@ namespace xpe {
 
     namespace render {
 
+        struct ENGINE_API ColorAttachment : public GPUResource
+        {
+            int Width = 0;
+            int Height = 0;
+            eTextureFormat Format = eTextureFormat::DEFAULT;
+        };
+
+        struct ENGINE_API DepthStencilAttachment : public GPUResource
+        {
+            int Width = 0;
+            int Height = 0;
+            eTextureFormat Format = eTextureFormat::DEFAULT;
+        };
+
         struct ENGINE_API RenderTarget : public core::Object
         {
             vector<Texture*> Colors;

@@ -390,6 +390,8 @@ namespace xpe {
 
                     if (color != nullptr && color->Instance == nullptr)
                     {
+                        color->InitializeData = false;
+                        color->EnableRenderTarget = true;
                         CreateTexture(*color);
                     }
 
@@ -414,6 +416,8 @@ namespace xpe {
 
                 if (depth != nullptr && depth->Instance == nullptr)
                 {
+                    depth->InitializeData = false;
+                    depth->EnableRenderTarget = true;
                     CreateTextureDepthStencil(*depth);
                 }
 
