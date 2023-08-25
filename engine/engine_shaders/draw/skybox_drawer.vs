@@ -4,8 +4,10 @@
 struct VSIn
 {
     float3 positionLocal : XPE_POSITION;
-    float2 texcoord : XPE_UV;
-    float3 normal : XPE_NORMAL;
+    float2 uv : XPE_UV;
+    float3 normal : XPE_NORMAL; // normalized
+    float3 tangent : XPE_TANGENT; // normalized
+    uint instanceIndex : SV_InstanceID;
 };
 
 struct VSOut
@@ -29,7 +31,7 @@ VSOut vs_main(VSIn vsIn)
     float4 positionView  = mul(camera.View, float4(vsIn.positionLocal, 1.0));
     float4 positionClip  = mul(camera.Projection, positionView);
 
-    vsOut.positionClip = float4(positionClip.x, positionClip.y, positionClip.w, positionClip.w);
+    vsOut.positionClip = positionClip;
     vsOut.positionLocal = vsIn.positionLocal;
 
     return vsOut;

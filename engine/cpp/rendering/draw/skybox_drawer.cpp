@@ -25,7 +25,9 @@ namespace xpe {
             m_Pipeline->Textures.emplace_back(nullptr);
             m_Pipeline->Samplers.emplace_back(&m_Sampler);
 
+            m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
+            m_Pipeline->Blending.Targets[0].Enable = false;
 
             Init();
         }

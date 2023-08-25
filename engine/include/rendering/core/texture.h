@@ -13,7 +13,9 @@ namespace xpe {
             R8, R16, R32, R32_TYPELESS,
             RG8, RG16, RG32,
             RGB8, RGB16, RGB32,
-            RGBA8, RGBA16, RGBA32
+            RGBA8, RGBA16, RGBA32,
+
+            DEFAULT = RGBA8
         };
 
         struct ENGINE_API Mip final

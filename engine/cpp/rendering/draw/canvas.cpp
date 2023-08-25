@@ -63,8 +63,6 @@ namespace xpe {
             color.Width = width;
             color.Height = height;
             color.Format = eTextureFormat::RGBA8;
-            color.InitializeData = false;
-            color.EnableRenderTarget = true;
 
             Texture depth;
             depth.Width = width;
