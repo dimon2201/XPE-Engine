@@ -38,7 +38,9 @@ namespace xpe {
                 PointLightBuffer* pointLightBuffer,
                 SpotLightBuffer* spotLightBuffer,
                 SkeletStorage* skeletStorage,
-                SkinStorage* skinStorage
+                SkinStorage* skinStorage,
+                RenderTarget* renderTarget,
+                Viewport* viewport
             );
 
             ~SkeletalAnimDrawer() override;

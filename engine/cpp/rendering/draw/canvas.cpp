@@ -59,18 +59,16 @@ namespace xpe {
 
         void Canvas::CreateRenderTarget(int width, int height)
         {
-            Texture color;
-            color.Width = width;
-            color.Height = height;
-            color.Format = eTextureFormat::RGBA8;
+            m_ColorTarget.Width = width;
+            m_ColorTarget.Height = height;
+            m_ColorTarget.Format = eTextureFormat::RGBA8;
 
-            Texture depth;
-            depth.Width = width;
-            depth.Height = height;
+            m_DepthTarget.Width = width;
+            m_DepthTarget.Height = height;
 
             m_RenderPass.Create(
-                vector<Texture> { color },
-                depth,
+                vector<Texture*> { &m_ColorTarget },
+                &m_DepthTarget,
                 m_ViewportBuffer.GetList()
             );
         }

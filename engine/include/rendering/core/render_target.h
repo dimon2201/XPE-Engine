@@ -32,22 +32,22 @@ namespace xpe {
 
         struct ENGINE_API RenderPass : public core::Object
         {
-            vector<Texture> Colors;
-            Texture DepthStencil;
             vector<Viewport> Viewports;
             RenderTarget Target;
 
-            RenderPass(const vector<Texture>& colors);
-            RenderPass(const vector<Texture>& colors, const Texture& depthStencil);
+            RenderPass(const vector<Texture*>& colors);
+            RenderPass(const vector<Texture*>& colors, const Texture* depthStencil);
 
-            RenderPass(const vector<Texture>& colors, const Viewport& viewport);
-            RenderPass(const vector<Texture>& colors, const vector<Viewport>& viewports);
+            RenderPass(const vector<Texture*>& colors, const Viewport& viewport);
+            RenderPass(const vector<Texture*>& colors, const vector<Viewport>& viewports);
 
-            RenderPass(const Texture& depthStencil, const Viewport& viewport);
-            RenderPass(const Texture& depthStencil, const vector<Viewport>& viewports);
+            RenderPass(const Texture* depthStencil, const Viewport& viewport);
+            RenderPass(const Texture* depthStencil, const vector<Viewport>& viewports);
 
-            RenderPass(const vector<Texture>& colors, const Texture& depthStencil, const Viewport& viewport);
-            RenderPass(const vector<Texture>& colors, const Texture& depthStencil, const vector<Viewport>& viewports);
+            RenderPass(const vector<Texture*>& colors, const Texture* depthStencil, const Viewport& viewport);
+            RenderPass(const vector<Texture*>& colors, const Texture* depthStencil, const vector<Viewport>& viewports);
+
+            RenderPass(RenderTarget* renderTarget, Viewport* viewport);
 
             ~RenderPass();
 

@@ -9,8 +9,8 @@ namespace xpe {
 
     namespace render {
 
-        Text2DDrawer::Text2DDrawer(CameraBuffer *cameraBuffer, Shader *shader, GeometryStorage *geometryStorage, ViewportBuffer* viewportBuffer)
-        : TextDrawer(cameraBuffer, shader, geometryStorage)
+        Text2DDrawer::Text2DDrawer(CameraBuffer *cameraBuffer, Shader *shader, GeometryStorage *geometryStorage, ViewportBuffer* viewportBuffer, RenderTarget* renderTarget, Viewport* viewport)
+        : TextDrawer(cameraBuffer, shader, geometryStorage, renderTarget, viewport)
         {
             m_Pipeline->VSBuffers.emplace_back(viewportBuffer);
         }

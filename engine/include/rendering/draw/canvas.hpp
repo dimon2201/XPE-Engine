@@ -36,6 +36,8 @@ namespace xpe {
         private:
             ViewportBuffer m_ViewportBuffer;
             glm::vec4 m_ClearColor = { 0.0f, 0.0f, 0.0f, 1.0f };
+            Texture m_ColorTarget;
+            Texture m_DepthTarget;
             Scope<RenderPass> m_RenderPass;
             Shader* m_Shader = nullptr;
             TextureSampler m_PresentSampler;

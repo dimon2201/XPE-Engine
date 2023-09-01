@@ -196,6 +196,8 @@ namespace xpe {
                 ShaderManager::BuildShader(shader);
                 m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
             }
+            RenderTarget* rt = m_Canvas->GetRenderTarget();
+            Viewport* viewport = &m_Canvas->GetBuffer()->GetList()[0];
             // Skybox drawing
             {
                 Shader* shader = ShaderManager::CreateShader("skybox_drawer");
@@ -205,7 +207,9 @@ namespace xpe {
                 m_Renderer->AddDrawer<SkyboxDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
-                        m_GeometryStorage
+                        m_GeometryStorage,
+                        rt,
+                        viewport
                 );
             }
             // Instance drawing for 3D
@@ -221,7 +225,9 @@ namespace xpe {
                         m_MaterialStorage,
                         m_Renderer->DirectLightBuffer,
                         m_Renderer->PointLightBuffer,
-                        m_Renderer->SpotLightBuffer
+                        m_Renderer->SpotLightBuffer,
+                        rt,
+                        viewport
                 );
             }
             // Instance drawing for 3D skeletal skin
@@ -238,7 +244,9 @@ namespace xpe {
                         m_Renderer->PointLightBuffer,
                         m_Renderer->SpotLightBuffer,
                         m_SkeletStorage,
-                        m_SkinStorage
+                        m_SkinStorage,
+                        rt,
+                        viewport
                 );
             }
             // Text 2D drawing
@@ -251,7 +259,9 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        m_Canvas->GetBuffer()
+                        m_Canvas->GetBuffer(),
+                        rt,
+                        viewport
                 );
             }
             // Text 3D drawing
@@ -263,7 +273,9 @@ namespace xpe {
                 m_Renderer->AddDrawer<Text3DDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
-                        m_GeometryStorage
+                        m_GeometryStorage,
+                        rt,
+                        viewport
                 );
             }
         }

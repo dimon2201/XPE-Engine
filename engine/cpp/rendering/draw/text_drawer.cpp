@@ -11,9 +11,11 @@ namespace xpe {
         TextDrawer::TextDrawer(
                 CameraBuffer *cameraBuffer,
                 Shader *shader,
-                GeometryStorage *geometryStorage
+                GeometryStorage *geometryStorage,
+                RenderTarget* renderTarget,
+                Viewport* viewport
         )
-        : Drawer(cameraBuffer, shader)
+        : Drawer(cameraBuffer, shader, renderTarget, viewport)
         {
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);

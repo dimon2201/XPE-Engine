@@ -5,7 +5,7 @@ namespace xpe {
 
     namespace render {
 
-        Drawer::Drawer(CameraBuffer* cameraBuffer, Shader* shader)
+        Drawer::Drawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget, Viewport* viewport)
         {
             m_Pipeline = new Pipeline();
             m_Pipeline->VSBuffers.emplace_back(cameraBuffer);
@@ -13,6 +13,7 @@ namespace xpe {
             m_Pipeline->Blending.Targets[0].Enable = true;
             m_Pipeline->Blending.Targets[0].Src = eBlend::SRC_ALPHA;
             m_Pipeline->Blending.Targets[0].Dest = eBlend::INV_SRC_ALPHA;
+            m_RenderPass = new RenderPass(renderTarget, viewport);
         }
 
         Drawer::~Drawer()
