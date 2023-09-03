@@ -12,10 +12,9 @@ namespace xpe {
                 CameraBuffer *cameraBuffer,
                 Shader *shader,
                 GeometryStorage *geometryStorage,
-                RenderTarget* renderTarget,
-                Viewport* viewport
+                RenderTarget* renderTarget
         )
-        : Drawer(cameraBuffer, shader, renderTarget, viewport)
+        : Drawer(cameraBuffer, shader, renderTarget)
         {
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);

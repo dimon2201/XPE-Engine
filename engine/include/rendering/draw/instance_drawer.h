@@ -35,8 +35,7 @@ namespace xpe {
                 DirectLightBuffer* directLightBuffer,
                 PointLightBuffer* pointLightBuffer,
                 SpotLightBuffer* spotLightBuffer,
-                RenderTarget* renderTarget,
-                Viewport* viewport
+                RenderTarget* renderTarget
             );
 
             ~InstanceDrawer() override;

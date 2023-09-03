@@ -14,7 +14,6 @@ namespace xpe {
         struct CameraBuffer;
         struct Shader;
         struct RenderTarget;
-        struct Viewport;
         struct Pipeline;
         struct RenderPass;
 
@@ -22,7 +21,7 @@ namespace xpe {
         {
 
         public:
-            Drawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget, Viewport* viewport);
+            Drawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget);
             virtual ~Drawer();
 
             virtual void Draw(Scene* scene) = 0;
@@ -34,7 +33,7 @@ namespace xpe {
             void Init();
 
             Pipeline* m_Pipeline = nullptr;
-            RenderPass* m_RenderPass = nullptr;
+            RenderTarget* m_RenderTarget = nullptr;
         };
 
     }

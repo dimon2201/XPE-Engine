@@ -1,0 +1,17 @@
+struct VSOut
+{
+    float4 positionClip : SV_POSITION;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn)
+{
+    PSOut psOut;
+    psOut.color = float4(1.0, 1.0, 1.0, 1.0);
+
+    return psOut;
+}

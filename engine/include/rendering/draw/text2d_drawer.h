@@ -18,8 +18,7 @@ namespace xpe {
                 Shader* shader,
                 GeometryStorage* geometryStorage,
                 ViewportBuffer* viewportBuffer,
-                RenderTarget* renderTarget,
-                Viewport* viewport
+                RenderTarget* renderTarget
             );
 
             ~Text2DDrawer() override;

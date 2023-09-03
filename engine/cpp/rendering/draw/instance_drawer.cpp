@@ -15,9 +15,8 @@ namespace xpe {
             DirectLightBuffer* directLightBuffer,
             PointLightBuffer* pointLightBuffer,
             SpotLightBuffer* spotLightBuffer,
-            RenderTarget* renderTarget,
-            Viewport* viewport
-        ) : Drawer(cameraBuffer, shader, renderTarget, viewport)
+            RenderTarget* renderTarget
+        ) : Drawer(cameraBuffer, shader, renderTarget)
 
         {
             m_InstanceBuffer.Reserve(1000);

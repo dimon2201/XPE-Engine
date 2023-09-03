@@ -16,9 +16,8 @@ namespace xpe {
             SpotLightBuffer* spotLightBuffer,
             SkeletStorage* skeletStorage,
             SkinStorage* skinStorage,
-            RenderTarget* renderTarget,
-            Viewport* viewport
-        ) : Drawer(cameraBuffer, shader, renderTarget, viewport),
+            RenderTarget* renderTarget
+        ) : Drawer(cameraBuffer, shader, renderTarget),
             m_MaterialStorage(materialStorage),
             m_SkeletStorage(skeletStorage),
             m_SkinStorage(skinStorage)
