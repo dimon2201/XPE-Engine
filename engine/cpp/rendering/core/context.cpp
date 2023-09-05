@@ -237,16 +237,27 @@ namespace xpe {
             {
                 FreeRenderTargetColors(renderTarget.Colors);
                 FreeRenderTargetColorViews(renderTarget.ColorViews);
-                FreeRenderTargetDepth(&renderTarget.DepthStencil);
+                FreeRenderTargetDepth(renderTarget.DepthStencil);
                 FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
             }
 
-            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport> *viewports)
+            void FreeRenderTargetColors(vector<Texture>& colors)
+            {
+                for (auto& color : colors)
+                {
+                    FreeTexture(color);
+                }
+            }
+
+            void FreeRenderTargetDepth(Texture& depth)
+            {
+                FreeTexture(depth);
+            }
+
+            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport>& viewports)
             {
                 BindRenderTarget(colorViews, depthView);
-                if (viewports != nullptr) {
-                    BindViewports(*viewports);
-                }
+                BindViewports(viewports);
             }
 
         }
