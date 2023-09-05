@@ -78,7 +78,7 @@ namespace xpe {
         void Canvas::CreatePresentTarget()
         {
             m_PresentTarget.ColorViews.emplace_back(context::SwapchainTargetView);
-            m_PresentTarget.Viewports = &m_ViewportBuffer.GetList();
+            m_PresentTarget.Viewports = m_ViewportBuffer.GetList();
         }
 
         void Canvas::CreatePresentSampler()

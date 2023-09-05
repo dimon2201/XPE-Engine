@@ -352,15 +352,12 @@ namespace xpe {
 
                 BindRenderTarget(renderTarget.ColorViews, renderTarget.DepthStencilView);
 
-                if (renderTarget.Viewports != nullptr)
+                for (auto& viewport : renderTarget.Viewports)
                 {
-                    for (auto& viewport : *renderTarget.Viewports)
-                    {
-                        viewport.Width = width;
-                        viewport.Height = height;
-                    }
-                    BindViewports(*renderTarget.Viewports);
+                    viewport.Width = width;
+                    viewport.Height = height;
                 }
+                BindViewports(renderTarget.Viewports);
             }
 
             void CreateSwapchainTargetView()
@@ -388,22 +385,22 @@ namespace xpe {
                     auto& color = renderTarget.Colors[i];
                     auto& colorView = renderTarget.ColorViews[i];
 
-                    if (color != nullptr && color->Instance == nullptr)
+                    if (color.Instance == nullptr)
                     {
-                        color->InitializeData = false;
-                        color->EnableRenderTarget = true;
-                        CreateTexture(*color);
+                        color.InitializeData = false;
+                        color.EnableRenderTarget = true;
+                        CreateTexture(color);
                     }
 
-                    if (color != nullptr && colorView == nullptr)
+                    if (colorView == nullptr)
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
-                        desc.Format = s_TextureFormatTable.at(color->Format);
+                        desc.Format = s_TextureFormatTable.at(color.Format);
                         desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateRenderTargetView(
-                                (ID3D11Resource*) color->Instance,
+                                (ID3D11Resource*) color.Instance,
                                 &desc,
                                 (ID3D11RenderTargetView**) &colorView
                         );
@@ -414,26 +411,29 @@ namespace xpe {
                 auto& depth = renderTarget.DepthStencil;
                 auto& depthView = renderTarget.DepthStencilView;
 
-                if (depth != nullptr && depth->Instance == nullptr)
+                if (depth.Width != 0 && depth.Height != 0)
                 {
-                    depth->InitializeData = false;
-                    depth->EnableRenderTarget = true;
-                    CreateTextureDepthStencil(*depth);
-                }
+                    if (depth.Instance == nullptr)
+                    {
+                        depth.InitializeData = false;
+                        depth.EnableRenderTarget = true;
+                        CreateTextureDepthStencil(depth);
+                    }
 
-                if (depth != nullptr && depthView == nullptr)
-                {
-                    D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
-                    desc.Format = DXGI_FORMAT_D32_FLOAT;
-                    desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-                    desc.Texture2D.MipSlice = 0;
+                    if (depthView == nullptr)
+                    {
+                        D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
+                        desc.Format = DXGI_FORMAT_D32_FLOAT;
+                        desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                        desc.Texture2D.MipSlice = 0;
 
-                    s_Device->CreateDepthStencilView(
-                            (ID3D11Resource*) depth->Instance,
-                            &desc,
-                            (ID3D11DepthStencilView**) &depthView
-                    );
-                    LogDebugMessage();
+                        s_Device->CreateDepthStencilView(
+                                (ID3D11Resource*) depth.Instance,
+                                &desc,
+                                (ID3D11DepthStencilView**) &depthView
+                        );
+                        LogDebugMessage();
+                    }
                 }
             }
 
@@ -477,17 +477,6 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void FreeRenderTargetColors(vector<Texture*> &colors)
-            {
-                for (auto& color : colors)
-                {
-                    if (color != nullptr)
-                    {
-                        FreeTexture(*color);
-                    }
-                }
-            }
-
             void FreeRenderTargetColorViews(vector<void*> &colorViews)
             {
                 for (auto& colorView : colorViews)
@@ -498,14 +487,6 @@ namespace xpe {
                         LogDebugMessage();
                         colorView = nullptr;
                     }
-                }
-            }
-
-            void FreeRenderTargetDepth(Texture **depth)
-            {
-                if (*depth != nullptr)
-                {
-                    FreeTexture(**depth);
                 }
             }
 
@@ -527,18 +508,17 @@ namespace xpe {
 
                 for (auto& color : renderTarget.Colors)
                 {
-                    if (color != nullptr) {
-                        color->Width = width;
-                        color->Height = height;
-                        color->Instance = nullptr;
-                    }
+                    color.Width = width;
+                    color.Height = height;
+                    color.Instance = nullptr;
                 }
 
                 auto& depthStencil = renderTarget.DepthStencil;
-                if (depthStencil != nullptr) {
-                    depthStencil->Width = width;
-                    depthStencil->Height = height;
-                    depthStencil->Instance = nullptr;
+                if (depthStencil.Width != 0 && depthStencil.Height != 0)
+                {
+                    depthStencil.Width = width;
+                    depthStencil.Height = height;
+                    depthStencil.Instance = nullptr;
                 }
 
                 CreateRenderTarget(renderTarget);
