@@ -9,6 +9,7 @@ struct VSIn
 struct VSOut
 {
     float4 positionClip : SV_POSITION;
+    float2 uv : XPE_UV;
 };
 
 VSOut vs_main(VSIn vsIn)
@@ -17,6 +18,7 @@ VSOut vs_main(VSIn vsIn)
 
     VSOut vsOut;
     vsOut.positionClip = float4(position, 0.0, 1.0);
+    vsOut.uv = vsIn.uv;
 
     return vsOut;
 }

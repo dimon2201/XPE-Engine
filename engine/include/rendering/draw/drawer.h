@@ -28,6 +28,7 @@ namespace xpe {
 
             void Begin(RenderTarget* renderTarget);
             void End();
+            inline RenderTarget* GetRenderTarget() { return m_RenderTarget; }
 
         protected:
             void Init();

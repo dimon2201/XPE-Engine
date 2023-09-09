@@ -51,13 +51,17 @@ namespace xpe {
             }
         }
 
-        void Renderer::Render(Scene* scene, RenderTarget* renderTarget)
+        void Renderer::Render(Scene* scene)
         {
             FlushLights(scene);
             for (Drawer* drawer : m_Drawers) {
-                drawer->Begin(renderTarget);
-                drawer->Draw(scene);
-                drawer->End();
+                auto renderTarget = drawer->GetRenderTarget();
+                if (renderTarget != nullptr)
+                {
+                    drawer->Begin(renderTarget);
+                    drawer->Draw(scene);
+                    drawer->End();
+                }
             }
         }
 

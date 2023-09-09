@@ -288,6 +288,7 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
+                        rt->DepthStencil,
                         rt
                 );
             }
@@ -296,7 +297,7 @@ namespace xpe {
         void Application::Render()
         {
             m_Canvas->Clear(ClearColor);
-            m_Renderer->Render(m_MainScene, m_Canvas->GetRenderTarget());
+            m_Renderer->Render(m_MainScene);
             m_Canvas->Present();
         }
 
