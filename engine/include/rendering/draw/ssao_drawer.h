@@ -14,11 +14,11 @@ namespace xpe {
 
         class GeometryStorage;
 
-        class ENGINE_API PostProcessDrawer : public Drawer
+        class ENGINE_API SSAODrawer : public Drawer
         {
 
         public:
-            PostProcessDrawer(
+            SSAODrawer(
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
                 GeometryStorage* geometryStorage,
@@ -26,7 +26,7 @@ namespace xpe {
                 RenderTarget* renderTarget
             );
 
-            ~PostProcessDrawer() override;
+            ~SSAODrawer() override;
 
             void Draw(Scene* scene);
 

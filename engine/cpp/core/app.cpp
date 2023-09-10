@@ -16,7 +16,7 @@
 #include <rendering/draw/text2d_drawer.h>
 #include <rendering/draw/text3d_drawer.h>
 #include <rendering/draw/skybox_drawer.h>
-#include <rendering/draw/post_process_drawer.h>
+#include <rendering/draw/ssao_drawer.h>
 
 #include <rendering/storages/texture_storage.h>
 #include <rendering/storages/font_storage.h>
@@ -197,9 +197,22 @@ namespace xpe {
                 ShaderManager::BuildShader(shader);
                 m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
             }
-            RenderTarget* rt = m_Canvas->GetRenderTarget();
+
+            // Canvas render target
+            RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* viewport = &m_Canvas->GetBuffer()->GetList()[0];
-            rt->Viewports->emplace_back(*viewport);
+            canvasRT->Viewports->emplace_back(*viewport);
+
+            // Main render target
+            RenderTarget* mainRT = new RenderTarget;
+            context::CreateRenderTarget(*mainRT);
+            mainRT->Viewports->emplace_back(*viewport);
+
+            // SSAO render target
+            RenderTarget* ssaoRT = new RenderTarget;
+            context::CreateRenderTarget(*ssaoRT);
+            ssaoRT->Viewports->emplace_back(*viewport);
+            
             // Skybox drawing
             {
                 Shader* shader = ShaderManager::CreateShader("skybox_drawer");
@@ -210,7 +223,7 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        rt
+                        mainRT
                 );
             }
             // Instance drawing for 3D
@@ -227,7 +240,7 @@ namespace xpe {
                         m_Renderer->DirectLightBuffer,
                         m_Renderer->PointLightBuffer,
                         m_Renderer->SpotLightBuffer,
-                        rt
+                        mainRT
                 );
             }
             // Instance drawing for 3D skeletal skin
@@ -245,7 +258,7 @@ namespace xpe {
                         m_Renderer->SpotLightBuffer,
                         m_SkeletStorage,
                         m_SkinStorage,
-                        rt
+                        mainRT
                 );
             }
             // Text 2D drawing
@@ -259,7 +272,7 @@ namespace xpe {
                         shader,
                         m_GeometryStorage,
                         m_Canvas->GetBuffer(),
-                        rt
+                        mainRT
                 );
             }
             // Text 3D drawing
@@ -272,24 +285,24 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        rt
+                        mainRT
                 );
             }
-            // Post process drawing
+            // SSAO drawing
             {
                 GeometryIndexed<Vertex2D> quad = Quad2D();
-                m_GeometryStorage->AddGeometryIndexed2D("PostProcessQuad", quad);
+                m_GeometryStorage->AddGeometryIndexed2D("SSAODrawerQuad", quad);
 
                 Shader* shader = ShaderManager::CreateShader("ssao_drawer");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/ssao_drawer.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/ssao_drawer.ps");
                 ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<PostProcessDrawer>(
+                m_Renderer->AddDrawer<SSAODrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        rt->DepthStencil,
-                        rt
+                        mainRT->DepthStencil,
+                        ssaoRT
                 );
             }
         }
