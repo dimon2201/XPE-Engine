@@ -59,8 +59,9 @@ namespace xpe {
             Type = eBufferType::VERTEX;
             StructureSize = sizeof(T);
             NumElements = vertexCount;
-            context::CreateBuffer(*this);
             List.resize(vertexCount);
+            InitialData = List.data();
+            context::CreateBuffer(*this);
         }
 
         template<typename T>
@@ -69,8 +70,9 @@ namespace xpe {
             Type = eBufferType::VERTEX;
             StructureSize = sizeof(T);
             NumElements = vertexArray.size();
+            InitialData = List.data();
             context::CreateBuffer(*this);
-            FlushVertices(vertexArray);
+            Flush();
         }
 
         template<typename T>
@@ -117,6 +119,7 @@ namespace xpe {
             Type = eBufferType::VERTEX;
             NumElements = vertexCount;
             StructureSize = sizeof(T);
+            InitialData = List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
             context::CopyBuffer(*this, List.data(), ByteSize());

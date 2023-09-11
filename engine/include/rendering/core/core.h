@@ -10,7 +10,7 @@ namespace xpe {
         {
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
-            void* NullInstance = nullptr;
+            void* NullInstance = nullptr; // immutable field and MUST BE always NULL
         };
 
         enum class eMapType
@@ -43,19 +43,20 @@ namespace xpe {
 
         enum class eBufferUsage
         {
+            DEFAULT,
             STATIC,
             DYNAMIC,
-
-            DEFAULT = STATIC
+            STAGING
         };
 
         struct ENGINE_API Buffer : public GPUResource
         {
             eBufferType Type;
-            eBufferUsage Usage;
+            eBufferUsage Usage = eBufferUsage::DYNAMIC;
             usize StructureSize = 0;
             u32 NumElements = 0;
             u32 Slot = 0;
+            void* InitialData = nullptr;
 
             [[nodiscard]] inline usize ByteSize() const
             {

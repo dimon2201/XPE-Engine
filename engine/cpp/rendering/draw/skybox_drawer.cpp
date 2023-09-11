@@ -9,8 +9,8 @@ namespace xpe {
 
     namespace render {
 
-        SkyboxDrawer::SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader, GeometryStorage* geometryStorage)
-        : Drawer(cameraBuffer, shader)
+        SkyboxDrawer::SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget, GeometryStorage* geometryStorage)
+        : Drawer(cameraBuffer, shader, renderTarget)
         {
             auto& cube = geometryStorage->GetGeometryIndexed3D("SkyCube");
             if (cube.Get() == nullptr) {

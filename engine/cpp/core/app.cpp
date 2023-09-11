@@ -205,6 +205,7 @@ namespace xpe {
                 m_Renderer->AddDrawer<SkyboxDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        m_Canvas->GetRenderTarget(),
                         m_GeometryStorage
                 );
             }
@@ -217,6 +218,7 @@ namespace xpe {
                 m_Renderer->AddDrawer<InstanceDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        m_Canvas->GetRenderTarget(),
                         m_GeometryStorage,
                         m_MaterialStorage,
                         m_Renderer->DirectLightBuffer,
@@ -233,6 +235,7 @@ namespace xpe {
                 m_Renderer->AddDrawer<SkeletalAnimDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        m_Canvas->GetRenderTarget(),
                         m_MaterialStorage,
                         m_Renderer->DirectLightBuffer,
                         m_Renderer->PointLightBuffer,
@@ -250,6 +253,7 @@ namespace xpe {
                 m_Renderer->AddDrawer<Text2DDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        m_Canvas->GetRenderTarget(),
                         m_GeometryStorage,
                         m_Canvas->GetBuffer()
                 );
@@ -263,6 +267,7 @@ namespace xpe {
                 m_Renderer->AddDrawer<Text3DDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        m_Canvas->GetRenderTarget(),
                         m_GeometryStorage
                 );
             }
@@ -271,7 +276,7 @@ namespace xpe {
         void Application::Render()
         {
             m_Canvas->Clear(ClearColor);
-            m_Renderer->Render(m_MainScene, m_Canvas->GetRenderTarget());
+            m_Renderer->Render(m_MainScene);
             m_Canvas->Present();
         }
 

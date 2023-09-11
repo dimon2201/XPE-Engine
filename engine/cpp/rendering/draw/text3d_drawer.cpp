@@ -8,8 +8,8 @@ namespace xpe {
 
     namespace render {
 
-        Text3DDrawer::Text3DDrawer(CameraBuffer *cameraBuffer, Shader *shader, GeometryStorage *geometryStorage)
-        : TextDrawer(cameraBuffer, shader, geometryStorage) {}
+        Text3DDrawer::Text3DDrawer(CameraBuffer *cameraBuffer, Shader *shader, RenderTarget* renderTarget, GeometryStorage *geometryStorage)
+        : TextDrawer(cameraBuffer, shader, renderTarget, geometryStorage) {}
 
         Text3DDrawer::~Text3DDrawer() {}
 

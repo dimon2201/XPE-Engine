@@ -179,7 +179,7 @@ namespace xpe {
 
         void Texture::FlushLayer(u32 index)
         {
-            context::WriteTexture(
+            context::CopyTexture(
                     *this,
                     Layers[index].Pixels,
                     Width * Height * BPPTable.at(Format),
@@ -189,14 +189,18 @@ namespace xpe {
 
         void Texture::Flush()
         {
-            // todo(cheerwizard): crashes sometimes in WriteTexture, so need to be fixed, before using it.
-//            u32 layerCount = Layers.size();
-//            for (u32 i = 0 ; i < layerCount ; i++)
-//            {
-//                FlushLayer(i);
+//            if (Instance == nullptr) {
+                context::FreeTexture(*this);
+                context::CreateTexture(*this);
 //            }
-            context::FreeTexture(*this);
-            context::CreateTexture(*this);
+
+//            else {
+//                u32 layerCount = Layers.size();
+//                for (u32 i = 0 ; i < layerCount ; i++)
+//                {
+//                    FlushLayer(i);
+//                }
+//            }
         }
 
         void TextureLayer::Free()
