@@ -11,17 +11,18 @@ namespace xpe {
             Type = eBufferType::INDEX;
             StructureSize = sizeof(u32);
             NumElements = indexCount;
+            InitialData = List.data();
             context::CreateBuffer(*this);
         }
 
-        IndexBuffer::IndexBuffer(const vector<u32>& indexArray)
+        IndexBuffer::IndexBuffer(const vector<u32>& indexArray) : List(indexArray)
         {
-            List.resize(indexArray.size());
             Type = eBufferType::INDEX;
             StructureSize = sizeof(u32);
             NumElements = indexArray.size();
+            InitialData = List.data();
             context::CreateBuffer(*this);
-            FlushIndices(indexArray);
+            Flush();
         }
 
         IndexBuffer::~IndexBuffer()
@@ -63,6 +64,7 @@ namespace xpe {
             Type = eBufferType::INDEX;
             NumElements = indexCount;
             StructureSize = sizeof(u32);
+            InitialData = List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
             context::CopyBuffer(*this, List.data(), ByteSize());

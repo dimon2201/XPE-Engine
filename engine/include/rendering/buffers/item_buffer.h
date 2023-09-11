@@ -32,6 +32,7 @@ namespace xpe {
             Slot = slot;
             StructureSize = sizeof(T);
             NumElements = 1;
+            InitialData = &Item;
             context::CreateBuffer(*this);
             context::CopyBuffer(*this, &Item, StructureSize);
         }

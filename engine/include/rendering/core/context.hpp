@@ -61,7 +61,10 @@ namespace xpe {
             ENGINE_API void BindTextureSlot(u32 slot);
             ENGINE_API void UnbindTexture(const Texture& texture);
             ENGINE_API void FreeTexture(Texture& texture);
-            ENGINE_API void WriteTexture(const Texture& texture, const void* pixels, usize pixelsSize, u32 index = 0);
+            ENGINE_API void CopyTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex = 0);
+            ENGINE_API void CopyTextureOffset(const Texture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex = 0);
+            ENGINE_API void MoveTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex = 0);
+            ENGINE_API void MoveTextureOffset(const Texture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex = 0);
 
             ENGINE_API void GenerateMips(const Texture& texture);
 
@@ -86,6 +89,7 @@ namespace xpe {
 
             ENGINE_API void* Map(const GPUResource& resource, u32 subresourceIndex, eMapType mapType);
             ENGINE_API void Unmap(const GPUResource& resource);
+            ENGINE_API void UpdateSubData(const GPUResource& resource, u32 subresourceIndex, const void* data, u32 rowPitch, u32 depthPitch);
 
             ENGINE_API void CreateInputLayout(InputLayout& inputLayout);
             ENGINE_API void BindInputLayout(const InputLayout& inputLayout);

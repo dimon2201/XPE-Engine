@@ -10,17 +10,17 @@ namespace xpe {
         SkeletalAnimDrawer::SkeletalAnimDrawer(
             CameraBuffer* cameraBuffer,
             Shader* shader,
+            RenderTarget* renderTarget,
             MaterialStorage* materialStorage,
             DirectLightBuffer* directLightBuffer,
             PointLightBuffer* pointLightBuffer,
             SpotLightBuffer* spotLightBuffer,
             SkeletStorage* skeletStorage,
             SkinStorage* skinStorage
-        ) : Drawer(cameraBuffer, shader),
+        ) : Drawer(cameraBuffer, shader, renderTarget),
             m_MaterialStorage(materialStorage),
             m_SkeletStorage(skeletStorage),
             m_SkinStorage(skinStorage)
-
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);

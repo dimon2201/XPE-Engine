@@ -78,6 +78,7 @@ namespace xpe {
             Slot = slot;
             StructureSize = sizeof(T);
             NumElements = count;
+            InitialData = m_List.data();
             if (count > 0)
             {
                 m_List.resize(count);
@@ -131,6 +132,7 @@ namespace xpe {
         {
             m_List.resize(count);
             NumElements = count;
+            InitialData = m_List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
             context::CopyBuffer(*this, m_List.data(), ByteSize());

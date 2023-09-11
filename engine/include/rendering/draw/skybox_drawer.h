@@ -21,7 +21,7 @@ namespace xpe {
         {
 
         public:
-            SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader, GeometryStorage* geometryStorage);
+            SkyboxDrawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget, GeometryStorage* geometryStorage);
             ~SkyboxDrawer() override;
 
             void Draw(Scene* scene) override;

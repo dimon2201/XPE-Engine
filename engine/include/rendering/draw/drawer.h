@@ -20,13 +20,15 @@ namespace xpe {
         {
 
         public:
-            Drawer(CameraBuffer* cameraBuffer, Shader* shader);
+            Drawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget);
             virtual ~Drawer();
 
             virtual void Draw(Scene* scene) = 0;
 
-            void Begin(RenderTarget* renderTarget);
+            void Begin();
             void End();
+
+            RenderTarget* GetRenderTarget();
 
         protected:
             void Init();

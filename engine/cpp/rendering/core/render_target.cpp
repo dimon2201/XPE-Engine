@@ -7,128 +7,148 @@ namespace xpe {
 
     namespace render {
 
-        RenderPass::RenderPass(const vector<Texture> &colors, const Viewport &viewport)
+        RenderTarget::RenderTarget(const vector<Texture> &colors, const Viewport &viewport)
         {
-            Target.Colors.reserve(colors.size());
-            Target.ColorViews.reserve(colors.size());
+            Colors.reserve(colors.size());
+            ColorViews.reserve(colors.size());
             for (auto& color : colors)
             {
-                Target.Colors.emplace_back(color);
-                Target.ColorViews.emplace_back(nullptr);
+                Colors.emplace_back(color);
+                ColorViews.emplace_back(nullptr);
             }
-            Target.Viewports.emplace_back(viewport);
+            Viewports.emplace_back(viewport);
             Init();
         }
 
-        RenderPass::RenderPass(const vector<Texture> &colors, const vector<Viewport> &viewports)
+        RenderTarget::RenderTarget(const vector<Texture> &colors, const vector<Viewport> &viewports)
         {
-            Target.Colors.reserve(colors.size());
-            Target.ColorViews.reserve(colors.size());
+            Colors.reserve(colors.size());
+            ColorViews.reserve(colors.size());
             for (auto& color : colors)
             {
-                Target.Colors.emplace_back(color);
-                Target.ColorViews.emplace_back(nullptr);
+                Colors.emplace_back(color);
+                ColorViews.emplace_back(nullptr);
             }
-            Target.Viewports = viewports;
+            Viewports = viewports;
             Init();
         }
 
-        RenderPass::RenderPass(const Texture &depthStencil, const Viewport &viewport)
+        RenderTarget::RenderTarget(const Texture &depthStencil, const Viewport &viewport)
         {
-            Target.DepthStencil = depthStencil;
-            Target.DepthStencilView = nullptr;
-            Target.Viewports.emplace_back(viewport);
+            DepthStencil = depthStencil;
+            DepthStencilView = nullptr;
+            Viewports.emplace_back(viewport);
             Init();
         }
 
-        RenderPass::RenderPass(const Texture &depthStencil, const vector<Viewport> &viewports)
+        RenderTarget::RenderTarget(const Texture &depthStencil, const vector<Viewport> &viewports)
         {
-            Target.DepthStencil = depthStencil;
-            Target.DepthStencilView = nullptr;
-            Target.Viewports = viewports;
+            DepthStencil = depthStencil;
+            DepthStencilView = nullptr;
+            Viewports = viewports;
             Init();
         }
 
-        RenderPass::RenderPass(
+        RenderTarget::RenderTarget(
             const vector<Texture> &colors,
             const Texture &depthStencil,
             const Viewport& viewport
         ) {
-            Target.Colors.reserve(colors.size());
-            Target.ColorViews.reserve(colors.size());
+            Colors.reserve(colors.size());
+            ColorViews.reserve(colors.size());
             for (auto& color : colors)
             {
-                Target.Colors.emplace_back(color);
-                Target.ColorViews.emplace_back(nullptr);
+                Colors.emplace_back(color);
+                ColorViews.emplace_back(nullptr);
             }
-            Target.DepthStencil = depthStencil;
-            Target.DepthStencilView = nullptr;
-            Target.Viewports.emplace_back(viewport);
+            DepthStencil = depthStencil;
+            DepthStencilView = nullptr;
+            Viewports.emplace_back(viewport);
             Init();
         }
 
-        RenderPass::RenderPass(
+        RenderTarget::RenderTarget(
             const vector<Texture> &colors,
             const Texture &depthStencil,
             const vector<Viewport> &viewports
         ) {
-            Target.Colors.reserve(colors.size());
-            Target.ColorViews.reserve(colors.size());
+            Colors.reserve(colors.size());
+            ColorViews.reserve(colors.size());
             for (auto& color : colors)
             {
-                Target.Colors.emplace_back(color);
-                Target.ColorViews.emplace_back(nullptr);
+                Colors.emplace_back(color);
+                ColorViews.emplace_back(nullptr);
             }
-            Target.DepthStencil = depthStencil;
-            Target.DepthStencilView = nullptr;
-            Target.Viewports = viewports;
+            DepthStencil = depthStencil;
+            DepthStencilView = nullptr;
+            Viewports = viewports;
             Init();
         }
 
-        RenderPass::~RenderPass()
+        RenderTarget::RenderTarget(const vector<void*> &colorViews, const Viewport &viewport)
         {
-            context::FreeRenderTarget(Target);
+            ColorViews.reserve(colorViews.size());
+            for (auto& colorView : colorViews)
+            {
+                ColorViews.emplace_back(colorView);
+            }
+            Viewports.emplace_back(viewport);
         }
 
-        void RenderPass::Init()
+        RenderTarget::RenderTarget(const vector<void*> &colorViews, const vector <Viewport> &viewports)
         {
-            context::CreateRenderTarget(Target);
-            AddWindowFrameResized(RenderPass, 1);
+            ColorViews.reserve(colorViews.size());
+            for (auto& colorView : colorViews)
+            {
+                ColorViews.emplace_back(colorView);
+            }
+            Viewports = viewports;
         }
 
-        void RenderPass::Resize(s32 width, s32 height)
+        RenderTarget::~RenderTarget()
         {
-            context::ResizeRenderTarget(Target, width, height);
+            context::FreeRenderTarget(*this);
         }
 
-        void RenderPass::WindowFrameResized(s32 width, s32 height)
+        void RenderTarget::Init()
+        {
+            context::CreateRenderTarget(*this);
+            AddWindowFrameResized(RenderTarget, 1);
+        }
+
+        void RenderTarget::Resize(s32 width, s32 height)
+        {
+            context::ResizeRenderTarget(*this, width, height);
+        }
+
+        void RenderTarget::WindowFrameResized(s32 width, s32 height)
         {
             Resize(width, height);
         }
 
-        void RenderPass::Bind()
+        void RenderTarget::Bind()
         {
-            context::BindRenderTarget(Target.ColorViews, Target.DepthStencilView);
+            context::BindRenderTarget(ColorViews, DepthStencilView);
         }
 
-        void RenderPass::BindColor(u32 index)
+        void RenderTarget::BindColor(u32 index)
         {
-            context::BindTexture(Target.Colors[index]);
+            context::BindTexture(Colors[index]);
         }
 
-        void RenderPass::BindDepth()
+        void RenderTarget::BindDepth()
         {
-            context::BindTexture(Target.DepthStencil);
+            context::BindTexture(DepthStencil);
         }
 
-        void RenderPass::ClearColor(u32 index, const glm::vec4 &color)
+        void RenderTarget::ClearColor(u32 index, const glm::vec4 &color)
         {
-            context::ClearColorTarget(Target.ColorViews[index], color);
+            context::ClearColorTarget(ColorViews[index], color);
         }
 
-        void RenderPass::ClearDepth(const float depth)
+        void RenderTarget::ClearDepth(const float depth)
         {
-            context::ClearDepthTarget(Target.DepthStencilView, depth);
+            context::ClearDepthTarget(DepthStencilView, depth);
         }
 
     }
