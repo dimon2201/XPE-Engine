@@ -16,9 +16,9 @@ namespace xpe {
             Text2DDrawer(
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
+                RenderTarget* renderTarget,
                 GeometryStorage* geometryStorage,
-                ViewportBuffer* viewportBuffer,
-                RenderTarget* renderTarget
+                ViewportBuffer* viewportBuffer
             );
 
             ~Text2DDrawer() override;

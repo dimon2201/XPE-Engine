@@ -33,13 +33,13 @@ namespace xpe {
             SkeletalAnimDrawer(
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
+                RenderTarget* renderTarget,
                 MaterialStorage* materialStorage,
                 DirectLightBuffer* directLightBuffer,
                 PointLightBuffer* pointLightBuffer,
                 SpotLightBuffer* spotLightBuffer,
                 SkeletStorage* skeletStorage,
-                SkinStorage* skinStorage,
-                RenderTarget* renderTarget
+                SkinStorage* skinStorage
             );
 
             ~SkeletalAnimDrawer() override;

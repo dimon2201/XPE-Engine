@@ -10,23 +10,27 @@ namespace xpe {
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
                 GeometryStorage* geometryStorage,
+                Texture* colorTexture,
                 RenderTarget* renderTarget
         ) : Drawer(cameraBuffer, shader, renderTarget)
         {
-            m_Quad = geometryStorage->GetGeometryIndexed2D("CanvasOutputDrawerQuad");
             m_Pipeline->InputLayout.Format = Vertex3D::Format;
-            m_Pipeline->VertexBuffer = &m_Quad->Vertices;
-            m_Pipeline->IndexBuffer = &m_Quad->Indices;
             m_Pipeline->Shader = shader;
+            m_Pipeline->Textures.emplace_back(colorTexture);
             m_Pipeline->RenderTarget = renderTarget;
 
             Init();
         }
 
-        CanvasOutputDrawer::~CanvasOutputDrawer() {}
-
-        void CanvasOutputDrawer::Draw(Scene *scene)
+        CanvasOutputDrawer::~CanvasOutputDrawer()
         {
+        }
+
+        void CanvasOutputDrawer::Draw(Scene* scene)
+        {
+            m_Pipeline->Textures[0]->Slot = 0;
+            context::BindPrimitiveTopology(ePrimitiveTopology::TRIANGLE_STRIP);
+            context::DrawVertexed(0, 4, 1);
         }
 
     }

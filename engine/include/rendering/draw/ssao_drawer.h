@@ -31,7 +31,6 @@ namespace xpe {
             void Draw(Scene* scene);
 
         private:
-            RenderTarget m_Output;
             Ref<GeometryIndexed<Vertex2D>> m_Quad;
 
         };

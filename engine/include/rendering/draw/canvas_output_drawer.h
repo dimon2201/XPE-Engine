@@ -20,14 +20,16 @@ namespace xpe {
         {
 
         public:
-            CanvasOutputDrawer(CameraBuffer* cameraBuffer, Shader* shader, GeometryStorage* geometryStorage, RenderTarget* renderTarget);
+            CanvasOutputDrawer(
+                    CameraBuffer* cameraBuffer,
+                    Shader* shader,
+                    GeometryStorage* geometryStorage,
+                    Texture* colorTexture,
+                    RenderTarget* renderTarget
+            );
             virtual ~CanvasOutputDrawer();
 
             void Draw(Scene* scene) override;
-
-        private:
-            RenderTarget m_Output;
-            Ref<GeometryIndexed<Vertex2D>> m_Quad;
 
         };
 

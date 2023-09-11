@@ -26,25 +26,24 @@ namespace xpe {
         Canvas::~Canvas()
         {
             context::FreeSampler(m_PresentSampler);
-            FreePresentTarget();
         }
 
         void Canvas::Clear(const glm::vec4& color)
         {
             context::BindTextureSlot(0);
-            m_RenderPass->Bind();
-            m_RenderPass->ClearColor(m_BoundTargetIndex, color);
-            m_RenderPass->ClearDepth(1.0f);
+            m_RenderTarget->Bind();
+            m_RenderTarget->ClearColor(m_BoundTargetIndex, color);
+            m_RenderTarget->ClearDepth(1.0f);
         }
 
         void Canvas::Present()
         {
-            context::BindRenderTarget(m_PresentTarget.ColorViews, m_PresentTarget.DepthStencilView, m_PresentTarget.Viewports);
+            context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewports);
             context::BindShader(*m_Shader);
             context::BindSampler(m_PresentSampler);
-            m_RenderPass->BindColor(m_BoundTargetIndex);
+            m_RenderTarget->BindColor(m_BoundTargetIndex);
 
-            context::ClearColorTarget(m_PresentTarget.ColorViews[m_BoundTargetIndex], m_ClearColor);
+            context::ClearColorTarget(m_PresentTarget->ColorViews[m_BoundTargetIndex], m_ClearColor);
 
             context::DrawQuad();
 
@@ -53,30 +52,34 @@ namespace xpe {
 
         void Canvas::WindowFrameResized(s32 width, s32 height)
         {
-            context::ResizeSwapchain(m_PresentTarget, width, height);
+            context::ResizeSwapchain(*m_PresentTarget, width, height);
             m_ViewportBuffer.Flush();
         }
 
         void Canvas::CreateRenderTarget(int width, int height)
         {
-            m_ColorTarget.Width = width;
-            m_ColorTarget.Height = height;
-            m_ColorTarget.Format = eTextureFormat::RGBA8;
+            Texture color;
+            color.Width = width;
+            color.Height = height;
+            color.Format = eTextureFormat::RGBA8;
 
-            m_DepthTarget.Width = width;
-            m_DepthTarget.Height = height;
+            Texture depth;
+            depth.Width = width;
+            depth.Height = height;
 
-            m_RenderPass.Create(
-                vector<Texture*> { &m_ColorTarget },
-                &m_DepthTarget,
+            m_RenderTarget.Create(
+                vector<Texture> { color },
+                depth,
                 m_ViewportBuffer.GetList()
             );
         }
 
         void Canvas::CreatePresentTarget()
         {
-            m_PresentTarget.ColorViews.emplace_back(context::SwapchainTargetView);
-            m_PresentTarget.Viewports = &m_ViewportBuffer.GetList();
+            m_PresentTarget.Create(
+                    vector<void*> { context::SwapchainTargetView },
+                    m_ViewportBuffer.GetList()
+            );
         }
 
         void Canvas::CreatePresentSampler()
@@ -88,11 +91,6 @@ namespace xpe {
             m_PresentSampler.AnisotropyLevel = 1;
 
             context::CreateSampler(m_PresentSampler);
-        }
-
-        void Canvas::FreePresentTarget()
-        {
-            context::FreeRenderTarget(m_PresentTarget);
         }
 
     }

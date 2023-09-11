@@ -55,13 +55,9 @@ namespace xpe {
         {
             FlushLights(scene);
             for (Drawer* drawer : m_Drawers) {
-                auto renderTarget = drawer->GetRenderTarget();
-                if (renderTarget != nullptr)
-                {
-                    drawer->Begin(renderTarget);
-                    drawer->Draw(scene);
-                    drawer->End();
-                }
+                drawer->Begin();
+                drawer->Draw(scene);
+                drawer->End();
             }
         }
 

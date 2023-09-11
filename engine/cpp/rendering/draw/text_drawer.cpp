@@ -9,10 +9,10 @@ namespace xpe {
     namespace render {
 
         TextDrawer::TextDrawer(
-                CameraBuffer *cameraBuffer,
-                Shader *shader,
-                GeometryStorage *geometryStorage,
-                RenderTarget* renderTarget
+                CameraBuffer* cameraBuffer,
+                Shader* shader,
+                RenderTarget* renderTarget,
+                GeometryStorage* geometryStorage
         )
         : Drawer(cameraBuffer, shader, renderTarget)
         {

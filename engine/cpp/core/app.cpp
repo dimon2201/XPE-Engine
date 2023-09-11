@@ -17,6 +17,7 @@
 #include <rendering/draw/text3d_drawer.h>
 #include <rendering/draw/skybox_drawer.h>
 #include <rendering/draw/ssao_drawer.h>
+#include <rendering/draw/canvas_output_drawer.h>
 
 #include <rendering/storages/texture_storage.h>
 #include <rendering/storages/font_storage.h>
@@ -189,30 +190,28 @@ namespace xpe {
 
         void Application::InitRenderer()
         {
-            // Canvas drawing
-            {
-                Shader* shader = ShaderManager::CreateShader("canvas");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/canvas.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/canvas.ps");
-                ShaderManager::BuildShader(shader);
-                m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
-            }
+            // Canvas
+            Shader* shader = ShaderManager::CreateShader("canvas");
+            ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/canvas.vs");
+            ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/canvas.ps");
+            ShaderManager::BuildShader(shader);
+            m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
 
-            // Canvas render target
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
-            Viewport* viewport = &m_Canvas->GetBuffer()->GetList()[0];
-            canvasRT->Viewports->emplace_back(*viewport);
+            Viewport* canvasViewport = m_Canvas->GetBuffer()->Get(0);
 
             // Main render target
-            RenderTarget* mainRT = new RenderTarget;
-            context::CreateRenderTarget(*mainRT);
-            mainRT->Viewports->emplace_back(*viewport);
+            Texture mainColor = {};
+            mainColor.Width = m_Canvas->GetDimension().x;
+            mainColor.Height = m_Canvas->GetDimension().y;
+            mainColor.Format = eTextureFormat::RGBA8;
+            mainColor.EnableRenderTarget = true;
+            Texture mainDepth = {};
+            mainDepth.Width = m_Canvas->GetDimension().x;
+            mainDepth.Height = m_Canvas->GetDimension().y;
+            mainDepth.EnableRenderTarget = true;
+            RenderTarget* mainRT = new RenderTarget({ mainColor }, mainDepth, *canvasViewport);
 
-            // SSAO render target
-            RenderTarget* ssaoRT = new RenderTarget;
-            context::CreateRenderTarget(*ssaoRT);
-            ssaoRT->Viewports->emplace_back(*viewport);
-            
             // Skybox drawing
             {
                 Shader* shader = ShaderManager::CreateShader("skybox_drawer");
@@ -222,8 +221,8 @@ namespace xpe {
                 m_Renderer->AddDrawer<SkyboxDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
-                        m_GeometryStorage,
-                        mainRT
+                        mainRT,
+                        m_GeometryStorage
                 );
             }
             // Instance drawing for 3D
@@ -235,12 +234,12 @@ namespace xpe {
                 m_Renderer->AddDrawer<InstanceDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        mainRT,
                         m_GeometryStorage,
                         m_MaterialStorage,
                         m_Renderer->DirectLightBuffer,
                         m_Renderer->PointLightBuffer,
-                        m_Renderer->SpotLightBuffer,
-                        mainRT
+                        m_Renderer->SpotLightBuffer
                 );
             }
             // Instance drawing for 3D skeletal skin
@@ -252,13 +251,13 @@ namespace xpe {
                 m_Renderer->AddDrawer<SkeletalAnimDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        mainRT,
                         m_MaterialStorage,
                         m_Renderer->DirectLightBuffer,
                         m_Renderer->PointLightBuffer,
                         m_Renderer->SpotLightBuffer,
                         m_SkeletStorage,
-                        m_SkinStorage,
-                        mainRT
+                        m_SkinStorage
                 );
             }
             // Text 2D drawing
@@ -270,9 +269,9 @@ namespace xpe {
                 m_Renderer->AddDrawer<Text2DDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
+                        mainRT,
                         m_GeometryStorage,
-                        m_Canvas->GetBuffer(),
-                        mainRT
+                        m_Canvas->GetBuffer()
                 );
             }
             // Text 3D drawing
@@ -284,14 +283,23 @@ namespace xpe {
                 m_Renderer->AddDrawer<Text3DDrawer>(
                         m_Renderer->CameraBuffer,
                         shader,
-                        m_GeometryStorage,
-                        mainRT
+                        mainRT,
+                        m_GeometryStorage
                 );
             }
             // SSAO drawing
             {
-                GeometryIndexed<Vertex2D> quad = Quad2D();
-                m_GeometryStorage->AddGeometryIndexed2D("SSAODrawerQuad", quad);
+                Texture ssaoColor = {};
+                ssaoColor.Width = m_Canvas->GetDimension().x;
+                ssaoColor.Height = m_Canvas->GetDimension().y;
+                ssaoColor.Format = eTextureFormat::RGBA8;
+                Texture ssaoDepth = {};
+                ssaoDepth.Width = m_Canvas->GetDimension().x;
+                ssaoDepth.Height = m_Canvas->GetDimension().y;
+
+                RenderTarget* ssaoRT = new RenderTarget({ ssaoColor }, ssaoDepth, *canvasViewport);
+
+                m_GeometryStorage->AddGeometryIndexed2D("SSAODrawerQuad", Quad2D());
 
                 Shader* shader = ShaderManager::CreateShader("ssao_drawer");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/ssao_drawer.vs");
@@ -301,8 +309,22 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        mainRT->DepthStencil,
+                        &mainRT->Colors[0],
                         ssaoRT
+                );
+            }
+            // Output to canvas
+            {
+                Shader* shader = ShaderManager::CreateShader("canvas_output");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/canvas_output.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/canvas_output.ps");
+                ShaderManager::BuildShader(shader);
+                m_Renderer->AddDrawer<CanvasOutputDrawer>(
+                        m_Renderer->CameraBuffer,
+                        shader,
+                        m_GeometryStorage,
+                        &mainRT->Colors[0],
+                        canvasRT
                 );
             }
         }

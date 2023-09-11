@@ -7,24 +7,33 @@ namespace xpe {
         namespace context {
 
             void* SwapchainTargetView = nullptr;
-            Viewport* BoundViewport = nullptr;
-            void* BoundColorTargetView = nullptr;
-            void* BoundDepthTargetView = nullptr;
 
             void CopyBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr) return;
+                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
-                void* mappedData = Map(buffer, 0, eMapType::WRITE_DISCARD);
+                eMapType mapType = eMapType::WRITE;
+
+                if (buffer.Usage == eBufferUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_DISCARD;
+                }
+
+                void* mappedData = Map(buffer, 0, mapType);
                 memcpy(mappedData, data, dataByteSize);
                 Unmap(buffer);
             }
 
             void CopyBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr) return;
+                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
-                void* mappedData = Map(buffer, 0, eMapType::WRITE_NO_OVERWRITE);
+                eMapType mapType = eMapType::WRITE;
+
+                if (buffer.Usage == eBufferUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_NO_OVERWRITE;
+                }
+
+                void* mappedData = Map(buffer, 0, mapType);
                 void* dst = (void*)((u8*)mappedData + offset);
                 memcpy(dst, data, dataByteSize);
                 Unmap(buffer);
@@ -32,21 +41,123 @@ namespace xpe {
 
             void MoveBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr) return;
+                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
-                void* mappedData = Map(buffer, 0, eMapType::WRITE_DISCARD);
+                eMapType mapType = eMapType::WRITE;
+
+                if (buffer.Usage == eBufferUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_DISCARD;
+                }
+
+                void* mappedData = Map(buffer, 0, mapType);
                 memmove(mappedData, data, dataByteSize);
                 Unmap(buffer);
             }
 
             void MoveBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr) return;
+                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
-                void* mappedData = Map(buffer, 0, eMapType::WRITE_NO_OVERWRITE);
+                eMapType mapType = eMapType::WRITE;
+
+                if (buffer.Usage == eBufferUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_NO_OVERWRITE;
+                }
+
+                void* mappedData = Map(buffer, 0, mapType);
                 void* dst = (void*)((u8*)mappedData + offset);
                 memmove(dst, data, dataByteSize);
                 Unmap(buffer);
+            }
+
+            void CopyTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex)
+            {
+                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+
+                eMapType mapType = eMapType::WRITE;
+
+                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_DISCARD;
+                }
+
+                void* mappedData = Map(texture, layerIndex, mapType);
+                if (mappedData == nullptr) {
+                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 depthPitch = dataByteSize;
+                    UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
+                }
+                else {
+                    memcpy(mappedData, data, dataByteSize);
+                    Unmap(texture);
+                }
+            }
+
+            void CopyTextureOffset(const Texture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
+            {
+                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+
+                eMapType mapType = eMapType::WRITE;
+
+                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_DISCARD;
+                }
+
+                void* mappedData = Map(texture, layerIndex, mapType);
+                if (mappedData == nullptr) {
+                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 depthPitch = dataByteSize;
+                    UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
+                }
+                else {
+                    void* dst = (void*)((u8*)mappedData + offset);
+                    memcpy(dst, data, dataByteSize);
+                    Unmap(texture);
+                }
+            }
+
+            void MoveTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex)
+            {
+                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+
+                eMapType mapType = eMapType::WRITE;
+
+                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_DISCARD;
+                }
+
+                void* mappedData = Map(texture, layerIndex, mapType);
+                if (mappedData == nullptr) {
+                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 depthPitch = dataByteSize;
+                    UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
+                }
+                else {
+                    memmove(mappedData, data, dataByteSize);
+                    Unmap(texture);
+                }
+            }
+
+            void MoveTextureOffset(const Texture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
+            {
+                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+
+                eMapType mapType = eMapType::WRITE;
+
+                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                    mapType = eMapType::WRITE_DISCARD;
+                }
+
+                void* mappedData = Map(texture, layerIndex, mapType);
+                if (mappedData == nullptr) {
+                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 depthPitch = dataByteSize;
+                    UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
+                }
+                else {
+                    void* dst = (void*)((u8*)mappedData + offset);
+                    memmove(dst, data, dataByteSize);
+                    Unmap(texture);
+                }
             }
 
             void CreateShader(Shader& shader)
@@ -237,16 +348,27 @@ namespace xpe {
             {
                 FreeRenderTargetColors(renderTarget.Colors);
                 FreeRenderTargetColorViews(renderTarget.ColorViews);
-                FreeRenderTargetDepth(&renderTarget.DepthStencil);
+                FreeRenderTargetDepth(renderTarget.DepthStencil);
                 FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
             }
 
-            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport> *viewports)
+            void FreeRenderTargetColors(vector<Texture>& colors)
+            {
+                for (auto& color : colors)
+                {
+                    FreeTexture(color);
+                }
+            }
+
+            void FreeRenderTargetDepth(Texture& depth)
+            {
+                FreeTexture(depth);
+            }
+
+            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport>& viewports)
             {
                 BindRenderTarget(colorViews, depthView);
-                if (viewports != nullptr) {
-                    BindViewports(*viewports);
-                }
+                BindViewports(viewports);
             }
 
         }

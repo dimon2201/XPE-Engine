@@ -14,8 +14,8 @@ namespace xpe {
             Text3DDrawer(
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
-                GeometryStorage* geometryStorage,
-                RenderTarget* renderTarget
+                RenderTarget* renderTarget,
+                GeometryStorage* geometryStorage
             );
 
             ~Text3DDrawer() override;

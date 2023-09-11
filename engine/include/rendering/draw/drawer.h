@@ -26,15 +26,14 @@ namespace xpe {
 
             virtual void Draw(Scene* scene) = 0;
 
-            void Begin(RenderTarget* renderTarget);
+            void Begin();
             void End();
-            inline RenderTarget* GetRenderTarget() { return m_RenderTarget; }
+            RenderTarget* GetRenderTarget();
 
         protected:
             void Init();
 
             Pipeline* m_Pipeline = nullptr;
-            RenderTarget* m_RenderTarget = nullptr;
         };
 
     }
