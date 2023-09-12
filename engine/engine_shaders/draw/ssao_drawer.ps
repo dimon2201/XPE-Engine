@@ -9,12 +9,14 @@ struct PSOut
     float4 color : SV_Target0;
 };
 
-Texture2D<float4> DepthTexture : register(t0);
+Texture2D<float4> PositionTexture : register(t0);
+Texture2D<float> DepthTexture : register(t1);
+SamplerState Sampler : register(s0);
 
 PSOut ps_main(VSOut psIn)
 {
     PSOut psOut;
-    psOut.color = DepthTexture.Load(int3(psIn.uv, 0.0));
+    psOut.color = PositionTexture.Sample(Sampler, psIn.uv);
 
     return psOut;
 }

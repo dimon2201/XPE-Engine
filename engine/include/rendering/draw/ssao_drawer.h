@@ -22,6 +22,7 @@ namespace xpe {
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
                 GeometryStorage* geometryStorage,
+                Texture* positionTexture,
                 Texture* depthTexture,
                 RenderTarget* renderTarget
             );
@@ -31,6 +32,7 @@ namespace xpe {
             void Draw(Scene* scene);
 
         private:
+            TextureSampler m_Sampler;
             Ref<GeometryIndexed<Vertex2D>> m_Quad;
 
         };

@@ -25,6 +25,9 @@
 #include <anim/animator.h>
 #include <anim/storages/anim_storage.h>
 
+xpe::render::RenderTarget* mainRT;
+xpe::render::RenderTarget* ssaoRT;
+
 namespace xpe {
 
     using namespace render;
@@ -206,11 +209,26 @@ namespace xpe {
             mainColor.Height = m_Canvas->GetDimension().y;
             mainColor.Format = eTextureFormat::RGBA8;
             mainColor.EnableRenderTarget = true;
+            Texture mainPosition = {};
+            mainPosition.Width = m_Canvas->GetDimension().x;
+            mainPosition.Height = m_Canvas->GetDimension().y;
+            mainPosition.Format = eTextureFormat::RGBA32;
+            mainPosition.EnableRenderTarget = true;
             Texture mainDepth = {};
             mainDepth.Width = m_Canvas->GetDimension().x;
             mainDepth.Height = m_Canvas->GetDimension().y;
             mainDepth.EnableRenderTarget = true;
-            RenderTarget* mainRT = new RenderTarget({ mainColor }, mainDepth, *canvasViewport);
+            mainRT = new RenderTarget({ mainColor, mainPosition }, mainDepth, *canvasViewport);
+
+            // SSAO render target
+            Texture ssaoColor = {};
+            ssaoColor.Width = m_Canvas->GetDimension().x;
+            ssaoColor.Height = m_Canvas->GetDimension().y;
+            ssaoColor.Format = eTextureFormat::RGBA8;
+            Texture ssaoDepth = {};
+            ssaoDepth.Width = m_Canvas->GetDimension().x;
+            ssaoDepth.Height = m_Canvas->GetDimension().y;
+            ssaoRT = new RenderTarget({ ssaoColor }, ssaoDepth, *canvasViewport);
 
             // Skybox drawing
             {
@@ -289,16 +307,6 @@ namespace xpe {
             }
             // SSAO drawing
             {
-                Texture ssaoColor = {};
-                ssaoColor.Width = m_Canvas->GetDimension().x;
-                ssaoColor.Height = m_Canvas->GetDimension().y;
-                ssaoColor.Format = eTextureFormat::RGBA8;
-                Texture ssaoDepth = {};
-                ssaoDepth.Width = m_Canvas->GetDimension().x;
-                ssaoDepth.Height = m_Canvas->GetDimension().y;
-
-                RenderTarget* ssaoRT = new RenderTarget({ ssaoColor }, ssaoDepth, *canvasViewport);
-
                 m_GeometryStorage->AddGeometryIndexed2D("SSAODrawerQuad", Quad2D());
 
                 Shader* shader = ShaderManager::CreateShader("ssao_drawer");
@@ -309,7 +317,8 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        &mainRT->Colors[0],
+                        &mainRT->Colors[1],
+                        &mainRT->DepthStencil,
                         ssaoRT
                 );
             }
@@ -324,6 +333,7 @@ namespace xpe {
                         shader,
                         m_GeometryStorage,
                         &mainRT->Colors[0],
+                        &ssaoRT->Colors[0],
                         canvasRT
                 );
             }
@@ -331,6 +341,12 @@ namespace xpe {
 
         void Application::Render()
         {
+            context::ClearColorTarget((void*)mainRT->ColorViews[0], glm::vec4(1.0f));
+            context::ClearColorTarget((void*)mainRT->ColorViews[1], glm::vec4(1.0f));
+            context::ClearDepthTarget((void*)mainRT->DepthStencilView, 1.0f);
+            context::ClearColorTarget((void*)ssaoRT->ColorViews[0], glm::vec4(1.0f));
+            context::ClearDepthTarget((void*)ssaoRT->DepthStencilView, 1.0f);
+
             m_Canvas->Clear(ClearColor);
             m_Renderer->Render(m_MainScene);
             m_Canvas->Present();

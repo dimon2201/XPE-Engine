@@ -10,6 +10,7 @@ struct PSOut
 };
 
 Texture2D<float4> ColorTexture : register(t0);
+Texture2D<float4> AOTexture : register(t1);
 
 PSOut ps_main(VSOut psIn)
 {

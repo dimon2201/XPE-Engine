@@ -25,6 +25,7 @@ namespace xpe {
                     Shader* shader,
                     GeometryStorage* geometryStorage,
                     Texture* colorTexture,
+                    Texture* aoTexture,
                     RenderTarget* renderTarget
             );
             virtual ~CanvasOutputDrawer();
