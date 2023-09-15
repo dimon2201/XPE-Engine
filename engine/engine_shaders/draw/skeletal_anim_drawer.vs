@@ -24,7 +24,6 @@ struct VSOut
     float3 viewPosition : XPE_VIEW_POSITION;
     uint materialIndex : XPE_MATERIAL_INDEX;
     float3x3 tbn : XPE_TBN;
-    float gamma : XPE_GAMMA;
 };
 
 VSOut vs_main(VSIn vsIn)
@@ -79,7 +78,6 @@ VSOut vs_main(VSIn vsIn)
     vsOut.viewPosition = camera.Position;
     vsOut.materialIndex = instance.MaterialIndex;
     vsOut.tbn = float3x3(tangentWorld, bitangentWorld, normalWorld);
-    vsOut.gamma = camera.Gamma;
 
     return vsOut;
 }

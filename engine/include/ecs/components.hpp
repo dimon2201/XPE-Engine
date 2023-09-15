@@ -25,7 +25,6 @@ namespace xpe
             glm::vec3 Front = { 0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
 
-            float Gamma = 2.2f;
             float Exposure = 1.0f;
 
             JsonClass(
@@ -33,7 +32,6 @@ namespace xpe
                 Position,
                 Front,
                 Up,
-                Gamma,
                 Exposure
             )
         };

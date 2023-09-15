@@ -55,6 +55,57 @@ float3 GetNormal(uint materialIndex, float2 uv, float3 normal, float3x3 tbn) {
     return normal;
 }
 
+float2 GetParallax(uint materialIndex, float2 uv) {
+    float mId = float(materialIndex);
+    Material material = Materials[materialIndex];
+    if (material.EnableParallax) {
+        float heightScale = material.HeightScale;
+        float minLayers = material.ParallaxMinLayers;
+        float maxLayers = material.ParallaxMaxLayers;
+        float layers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), V)));
+
+        // calculate the size of each layer
+        float layerDepth = 1.0 / layers;
+
+        // depth of current layer
+        float currentLayerDepth = 0.0;
+
+        // the amount to shift the texture coordinates per layer (from vector P)
+        float2 P = V.xy / V.z * heightScale;
+        float2 deltaUV = P / layers;
+        float2 currentUV = uv;
+        float currentParallaxValue = M_Parallax.Sample(S_Material, float3(currentUV, mId)).r;
+
+        // todo(cheerwizard): too many iterations ~1024, need to be fixed!
+//        while (currentLayerDepth < currentParallaxValue) {
+//            // shift texture coordinates along direction of P
+//            currentUV -= deltaUV;
+//            // get depthmap value at current texture coordinates
+//            currentParallaxValue = M_Parallax.Sample(S_Material, float3(currentUV, mId)).r;
+//            // get depth of next layer
+//            currentLayerDepth += layerDepth;
+//        }
+
+        // get texture coordinates before collision (reverse operations)
+        float2 prevUV = currentUV + deltaUV;
+
+        // get depth after and before collision for linear interpolation
+        float afterDepth = currentParallaxValue - currentLayerDepth;
+        float beforeDepth = M_Parallax.Sample(S_Material, float3(prevUV, mId)).r - currentLayerDepth + layerDepth;
+
+        // interpolation of texture coordinates
+        float weight = afterDepth / (afterDepth - beforeDepth);
+
+        float2 result = prevUV * weight + currentUV * (1.0 - weight);
+
+        if (result.x > 1.0 || result.y > 1.0 || result.x < 0.0 || result.y < 0.0)
+            discard;
+
+        return result;
+    }
+    return uv;
+}
+
 float GetMetallic(uint materialIndex, float2 uv) {
     float mId = float(materialIndex);
     Material material = Materials[materialIndex];
@@ -83,4 +134,14 @@ float GetAO(uint materialIndex, float2 uv) {
         ao *= M_AO.Sample(S_Material, float3(uv, mId)).r;
     }
     return ao;
+}
+
+float3 GetEmission(uint materialIndex, float2 uv) {
+    float mId = float(materialIndex);
+    Material material = Materials[materialIndex];
+    float3 emission = material.EmissionColor;
+    if (material.EnableEmission) {
+        emission *= M_Emission.Sample(S_Material, float3(uv, mId)).rgb;
+    }
+    return emission;
 }

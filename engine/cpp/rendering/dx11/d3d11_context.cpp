@@ -696,12 +696,11 @@ namespace xpe {
                 if (stage.Blob.Instance != nullptr) {
                     ((ID3DBlob*) stage.Blob.Instance)->Release();
                     LogDebugMessage();
+                    stage.Blob.Instance = nullptr;
                 }
 
                 if (stage.Resource.Instance != nullptr) {
-
                     switch (stage.Type) {
-
                         case eShaderType::VERTEX:
                             ((ID3D11VertexShader*) stage.Resource.Instance)->Release();
                             LogDebugMessage();
@@ -721,9 +720,8 @@ namespace xpe {
                             ((ID3D11ComputeShader*) stage.Resource.Instance)->Release();
                             LogDebugMessage();
                             break;
-
                     }
-
+                    stage.Resource.Instance = nullptr;
                 }
             }
 
@@ -1038,6 +1036,7 @@ namespace xpe {
                 {
                     ((ID3D11SamplerState*)sampler.Instance)->Release();
                     LogDebugMessage();
+                    sampler.Instance = nullptr;
                 }
             }
 
@@ -1192,12 +1191,13 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void FreeBuffer(const Buffer& buffer)
+            void FreeBuffer(Buffer& buffer)
             {
                 if (buffer.Instance != nullptr)
                 {
                     ((ID3D11Buffer*)buffer.Instance)->Release();
                     LogDebugMessage();
+                    buffer.Instance = nullptr;
                 }
             }
 

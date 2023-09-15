@@ -32,6 +32,7 @@ namespace xpe {
         const core::u32 K_SLOT_POINT_LIGHTS            = 9;
         const core::u32 K_SLOT_SPOT_LIGHTS             = 10;
         const core::u32 K_SLOT_ENV_LIGHTS              = 11;
+        const core::u32 K_SLOT_MONITOR                 = 12;
 
         // ---------- For Constant Buffer --------------- //
 

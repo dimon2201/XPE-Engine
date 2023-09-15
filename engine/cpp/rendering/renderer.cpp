@@ -1,5 +1,6 @@
 #include <rendering/renderer.h>
 #include <rendering/draw/drawer.h>
+#include <rendering/buffers/monitor_buffer.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
 
@@ -13,6 +14,8 @@ namespace xpe {
         {
             context::Init();
             ShaderManager::Init();
+
+            MonitorBuffer = new render::MonitorBuffer();
 
             CameraBuffer = new render::CameraBuffer();
 
@@ -28,6 +31,7 @@ namespace xpe {
 
         Renderer::~Renderer()
         {
+            delete MonitorBuffer;
             delete CameraBuffer;
             delete DirectLightBuffer;
             delete PointLightBuffer;

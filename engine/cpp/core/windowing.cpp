@@ -4,6 +4,8 @@
 
 #include <core/windowing.hpp>
 
+#include <rendering/buffers/monitor_buffer.h>
+
 namespace xpe {
 
     namespace core {
@@ -32,6 +34,8 @@ namespace xpe {
         int WindowManager::s_WindowModeHeight = 0;
 
         bool WindowManager::s_EnableFullscreen = false;
+
+        render::MonitorBuffer* WindowManager::s_MonitorBuffer = nullptr;
 
         void WindowManager::Init() {
             LogInfo("WindowManager::Init()");
@@ -106,6 +110,21 @@ namespace xpe {
             return s_Window.Descriptor.Y;
         }
 
+        float WindowManager::GetGamma() {
+            const GLFWgammaramp* ramp = glfwGetGammaRamp(s_PrimaryMonitor);
+
+            float sum = 0.0f;
+            for (int i = 0; i < ramp->size; ++i) {
+                float x = i / (float) (ramp->size - 1u);
+                float y = ramp->green[i] / 65535.0f;
+                sum += log2f(y) / log2f(x);
+            }
+
+            float gamma = sum / ramp->size;
+            s_Window.Descriptor.Gamma = gamma;
+            return gamma;
+        }
+
         const char* WindowManager::GetTitle() {
             return s_Window.Descriptor.Title;
         }
@@ -134,6 +153,13 @@ namespace xpe {
             glfwSetWindowPos(s_WindowHandle, x, y);
             s_Window.Descriptor.X = x;
             s_Window.Descriptor.Y = y;
+        }
+
+        void WindowManager::SetGamma(float gamma) {
+            glfwSetGamma(s_PrimaryMonitor, gamma);
+            s_Window.Descriptor.Gamma = gamma;
+            s_MonitorBuffer->Item.Gamma = gamma;
+            s_MonitorBuffer->Flush();
         }
 
         void WindowManager::SetSize(int w, int h) {
@@ -215,6 +241,10 @@ namespace xpe {
                 SetFullscreen();
             else
                 SetWindowed();
+        }
+
+        void WindowManager::SetMonitorBuffer(render::MonitorBuffer* monitorBuffer) {
+            s_MonitorBuffer = monitorBuffer;
         }
 
         bool WindowManager::IsWindowed() {

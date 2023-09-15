@@ -8,6 +8,7 @@
 
 #include <rendering/renderer.h>
 
+#include <rendering/buffers/monitor_buffer.h>
 #include <rendering/buffers/light_buffers.h>
 
 #include <rendering/draw/canvas.hpp>
@@ -70,6 +71,7 @@ namespace xpe {
             m_Animator = new Animator(m_SkeletStorage);
 
             InitRenderer();
+            WindowManager::SetMonitorBuffer(m_Renderer->MonitorBuffer);
 
             m_MainScene = new MainScene();
             m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;
@@ -213,7 +215,7 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("instance_drawer");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/instance_drawer.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/instance_drawer.ps");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/pbr.ps");
                 ShaderManager::BuildShader(shader);
                 m_Renderer->AddDrawer<InstanceDrawer>(
                         m_Renderer->CameraBuffer,
@@ -230,7 +232,7 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("skeletal_anim_drawer");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.ps");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/pbr.ps");
                 ShaderManager::BuildShader(shader);
                 m_Renderer->AddDrawer<SkeletalAnimDrawer>(
                         m_Renderer->CameraBuffer,

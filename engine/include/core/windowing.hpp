@@ -2,10 +2,13 @@
 
 namespace xpe
 {
+    namespace render
+    {
+        class MonitorBuffer;
+    }
+
     namespace core
     {
-        class Application;
-
         enum class eCursorMode
         {
             NORMAL,
@@ -32,6 +35,7 @@ namespace xpe
             s32 X;
             s32 Y;
             bool VSync;
+            float Gamma = 2.2f; // 2.2 is not default for every monitor
             eCursorMode CursorMode = eCursorMode::DEFAULT;
             eWindowTheme Theme = eWindowTheme::DEFAULT;
         };
@@ -55,11 +59,21 @@ namespace xpe
 
             static const WindowDescriptor& GetDescriptor();
 
+            static bool ShouldClose();
+            static void Close();
+
+            static void PollEvents();
+            static void Swap();
+
+            static bool IsWindowed();
+
             static int GetWidth();
             static int GetHeight();
 
             static int GetPosX();
             static int GetPosY();
+
+            static float GetGamma();
 
             static const char* GetTitle();
 
@@ -72,12 +86,7 @@ namespace xpe
 
             static void SetPos(int x, int y);
             static void SetSize(int w, int h);
-
-            static bool ShouldClose();
-            static void Close();
-
-            static void PollEvents();
-            static void Swap();
+            static void SetGamma(float gamma);
 
             static void SetUserPointer(void* userPtr);
             static void* GetUserPointer();
@@ -89,7 +98,7 @@ namespace xpe
             static void SetFullscreenWindowed();
             static void ToggleWindowMode();
 
-            static bool IsWindowed();
+            static void SetMonitorBuffer(render::MonitorBuffer* monitorBuffer);
 
         private:
             static void CreatePrimaryMonitor();
@@ -100,6 +109,7 @@ namespace xpe
             static int s_WindowModeWidth;
             static int s_WindowModeHeight;
             static bool s_EnableFullscreen;
+            static render::MonitorBuffer* s_MonitorBuffer;
         };
 
     }

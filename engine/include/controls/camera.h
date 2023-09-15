@@ -184,8 +184,6 @@ namespace xpe {
 
             void CursorMoved(const double x, const double y);
 
-            void UpdateGamma(float gamma);
-
             void UpdateExposure(float exposure);
 
         private:

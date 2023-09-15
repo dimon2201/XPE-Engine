@@ -172,6 +172,7 @@ namespace xpe {
             {
                 for (auto* stage : shader.Stages)
                 {
+                    LogInfo("Compiling shader stage {}", stage->ID);
                     CompileShaderStage(*stage);
                 }
             }

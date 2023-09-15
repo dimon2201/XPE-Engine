@@ -5,3 +5,8 @@ struct DirectLight
 };
 
 StructuredBuffer<DirectLight> DirectLights : K_SLOT_DIRECT_LIGHTS;
+
+float Attenuation(DirectLight directLight) {
+    float d = length(directLight.Position - W);
+    return 1.0 / (d * d);
+}

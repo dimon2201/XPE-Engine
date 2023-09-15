@@ -46,7 +46,6 @@ namespace xpe {
             bufferData.Position = Component.Position;
             bufferData.View = math::ViewMatrixUpdate(viewMatrix);
             bufferData.Projection = math::PerspectiveMatrixUpdate(projection);
-            bufferData.Gamma = Component.Gamma;
             bufferData.Exposure = Component.Exposure;
             Buffer->Flush();
 
@@ -169,13 +168,6 @@ namespace xpe {
             Look(x, y);
         }
 
-        void PerspectiveCamera::UpdateGamma(float gamma)
-        {
-            Component.Gamma = gamma;
-            Buffer->Item.Gamma = gamma;
-            Buffer->Flush();
-        }
-
         void PerspectiveCamera::UpdateExposure(float exposure)
         {
             Component.Exposure = exposure;
@@ -233,7 +225,6 @@ namespace xpe {
             bufferData.Position = Component.Position;
             bufferData.View = math::ViewMatrixUpdate(viewMatrix);
             bufferData.Projection = math::OrthoMatrixUpdate(projection);
-            bufferData.Gamma = Component.Gamma;
             bufferData.Exposure = Component.Exposure;
             buffer.Flush();
 

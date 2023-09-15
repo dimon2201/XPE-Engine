@@ -74,7 +74,7 @@ namespace xpe {
             ENGINE_API void FreeSampler(TextureSampler& sampler);
 
             ENGINE_API void CreateBuffer(Buffer& buffer);
-            ENGINE_API void FreeBuffer(const Buffer& buffer);
+            ENGINE_API void FreeBuffer(Buffer& buffer);
             ENGINE_API void BindVertexBuffer(const Buffer& buffer);
             ENGINE_API void BindIndexBuffer(const Buffer& buffer);
             ENGINE_API void BindVSBuffer(const Buffer& buffer);

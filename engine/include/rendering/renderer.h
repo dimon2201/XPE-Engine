@@ -13,6 +13,8 @@ namespace xpe {
 
         class Drawer;
 
+        class MonitorBuffer;
+
         class CameraBuffer;
 
         class DirectLightBuffer;
@@ -23,6 +25,7 @@ namespace xpe {
         {
 
         public:
+            render::MonitorBuffer* MonitorBuffer;
             render::CameraBuffer* CameraBuffer;
             render::DirectLightBuffer* DirectLightBuffer;
             render::PointLightBuffer* PointLightBuffer;
