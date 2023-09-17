@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        RenderTarget::RenderTarget(const vector<Texture> &colors, const Viewport &viewport)
+        RenderTarget::RenderTarget(const vector<Texture*> &colors, const Viewport &viewport)
         {
             Colors.reserve(colors.size());
             ColorViews.reserve(colors.size());
@@ -20,7 +20,7 @@ namespace xpe {
             Init();
         }
 
-        RenderTarget::RenderTarget(const vector<Texture> &colors, const vector<Viewport> &viewports)
+        RenderTarget::RenderTarget(const vector<Texture*> &colors, const vector<Viewport> &viewports)
         {
             Colors.reserve(colors.size());
             ColorViews.reserve(colors.size());
@@ -33,25 +33,25 @@ namespace xpe {
             Init();
         }
 
-        RenderTarget::RenderTarget(const Texture &depthStencil, const Viewport &viewport)
+        RenderTarget::RenderTarget(const Texture* depthStencil, const Viewport &viewport)
         {
-            DepthStencil = depthStencil;
+            DepthStencil = (Texture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports.emplace_back(viewport);
             Init();
         }
 
-        RenderTarget::RenderTarget(const Texture &depthStencil, const vector<Viewport> &viewports)
+        RenderTarget::RenderTarget(const Texture* depthStencil, const vector<Viewport> &viewports)
         {
-            DepthStencil = depthStencil;
+            DepthStencil = (Texture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports = viewports;
             Init();
         }
 
         RenderTarget::RenderTarget(
-            const vector<Texture> &colors,
-            const Texture &depthStencil,
+            const vector<Texture*> &colors,
+            const Texture* depthStencil,
             const Viewport& viewport
         ) {
             Colors.reserve(colors.size());
@@ -61,15 +61,15 @@ namespace xpe {
                 Colors.emplace_back(color);
                 ColorViews.emplace_back(nullptr);
             }
-            DepthStencil = depthStencil;
+            DepthStencil = (Texture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports.emplace_back(viewport);
             Init();
         }
 
         RenderTarget::RenderTarget(
-            const vector<Texture> &colors,
-            const Texture &depthStencil,
+            const vector<Texture*> &colors,
+            const Texture* depthStencil,
             const vector<Viewport> &viewports
         ) {
             Colors.reserve(colors.size());
@@ -79,7 +79,7 @@ namespace xpe {
                 Colors.emplace_back(color);
                 ColorViews.emplace_back(nullptr);
             }
-            DepthStencil = depthStencil;
+            DepthStencil = (Texture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports = viewports;
             Init();
@@ -133,12 +133,12 @@ namespace xpe {
 
         void RenderTarget::BindColor(u32 index)
         {
-            context::BindTexture(Colors[index]);
+            context::BindTexture(*Colors[index]);
         }
 
         void RenderTarget::BindDepth()
         {
-            context::BindTexture(DepthStencil);
+            context::BindTexture(*DepthStencil);
         }
 
         void RenderTarget::ClearColor(u32 index, const glm::vec4 &color)

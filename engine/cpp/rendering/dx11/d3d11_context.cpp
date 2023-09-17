@@ -425,22 +425,15 @@ namespace xpe {
                     auto& color = renderTarget.Colors[i];
                     auto& colorView = renderTarget.ColorViews[i];
 
-                    if (color.Instance == nullptr)
-                    {
-                        color.InitializeData = false;
-                        color.EnableRenderTarget = true;
-                        CreateTexture(color);
-                    }
-
                     if (colorView == nullptr)
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
-                        desc.Format = s_TextureFormatTable.at(color.Format);
+                        desc.Format = s_TextureFormatTable.at(color->Format);
                         desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateRenderTargetView(
-                                (ID3D11Resource*) color.Instance,
+                                (ID3D11Resource*) color->Instance,
                                 &desc,
                                 (ID3D11RenderTargetView**) &colorView
                         );
@@ -451,15 +444,8 @@ namespace xpe {
                 auto& depth = renderTarget.DepthStencil;
                 auto& depthView = renderTarget.DepthStencilView;
 
-                if (depth.Width != 0 && depth.Height != 0)
+                if (depth->Width != 0 && depth->Height != 0)
                 {
-                    if (depth.Instance == nullptr)
-                    {
-                        depth.InitializeData = false;
-                        depth.EnableRenderTarget = true;
-                        CreateTextureDepthStencil(depth);
-                    }
-
                     if (depthView == nullptr)
                     {
                         D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
@@ -468,7 +454,7 @@ namespace xpe {
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateDepthStencilView(
-                                (ID3D11Resource*) depth.Instance,
+                                (ID3D11Resource*) depth->Instance,
                                 &desc,
                                 (ID3D11DepthStencilView**) &depthView
                         );
@@ -548,17 +534,17 @@ namespace xpe {
 
                 for (auto& color : renderTarget.Colors)
                 {
-                    color.Width = width;
-                    color.Height = height;
-                    color.Instance = nullptr;
+                    color->Width = width;
+                    color->Height = height;
+                    color->Instance = nullptr;
                 }
 
                 auto& depthStencil = renderTarget.DepthStencil;
-                if (depthStencil.Width != 0 && depthStencil.Height != 0)
+                if (depthStencil->Width != 0 && depthStencil->Height != 0)
                 {
-                    depthStencil.Width = width;
-                    depthStencil.Height = height;
-                    depthStencil.Instance = nullptr;
+                    depthStencil->Width = width;
+                    depthStencil->Height = height;
+                    depthStencil->Instance = nullptr;
                 }
 
                 CreateRenderTarget(renderTarget);
@@ -910,8 +896,10 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void CreateTextureDepthStencil(Texture &texture) {
+            void CreateTextureDepthStencil(Texture &texture)
+            {
                 D3D11_TEXTURE2D_DESC texDesc = {};
+                D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
 
                 texDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
                 texDesc.Format = DXGI_FORMAT_R32_TYPELESS;
@@ -923,6 +911,14 @@ namespace xpe {
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                 s_Device->CreateTexture2D(&texDesc, nullptr, (ID3D11Texture2D**)&texture.Instance);
+                LogDebugMessage();
+
+                srv.Format = DXGI_FORMAT_R32_FLOAT;
+                srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+                srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
+                srv.Texture2D.MipLevels = 1;
+
+                s_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
                 LogDebugMessage();
             }
 

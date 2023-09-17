@@ -30,7 +30,7 @@ namespace xpe {
             ENGINE_API void ClearStencilTarget(void* depthView, const u8 stencil);
             ENGINE_API void ClearDepthStencilTarget(void* depthView, const f32 depth, const u8 stencil);
             ENGINE_API void FreeRenderTarget(RenderTarget& renderTarget);
-            ENGINE_API void FreeRenderTargetColors(vector<Texture>& colors);
+            ENGINE_API void FreeRenderTargetColors(vector<Texture*>& colors);
             ENGINE_API void FreeRenderTargetColorViews(vector<void*>& colorViews);
             ENGINE_API void FreeRenderTargetDepth(Texture& depth);
             ENGINE_API void FreeRenderTargetDepthView(void** depthView);

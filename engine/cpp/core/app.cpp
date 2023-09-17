@@ -204,30 +204,51 @@ namespace xpe {
             Viewport* canvasViewport = m_Canvas->GetBuffer()->Get(0);
 
             // Main render target
-            Texture mainColor = {};
-            mainColor.Width = m_Canvas->GetDimension().x;
-            mainColor.Height = m_Canvas->GetDimension().y;
-            mainColor.Format = eTextureFormat::RGBA8;
-            mainColor.EnableRenderTarget = true;
-            Texture mainPosition = {};
-            mainPosition.Width = m_Canvas->GetDimension().x;
-            mainPosition.Height = m_Canvas->GetDimension().y;
-            mainPosition.Format = eTextureFormat::RGBA32;
-            mainPosition.EnableRenderTarget = true;
-            Texture mainDepth = {};
-            mainDepth.Width = m_Canvas->GetDimension().x;
-            mainDepth.Height = m_Canvas->GetDimension().y;
-            mainDepth.EnableRenderTarget = true;
-            mainRT = new RenderTarget({ mainColor, mainPosition }, mainDepth, *canvasViewport);
+            Texture* mainColor = new Texture();
+            mainColor->Width = m_Canvas->GetDimension().x;
+            mainColor->Height = m_Canvas->GetDimension().y;
+            mainColor->Format = eTextureFormat::RGBA8;
+            mainColor->InitializeData = false;
+            mainColor->EnableRenderTarget = true;
+            mainColor->Init();
+
+            Texture* mainPosition = new Texture();
+            mainPosition->Width = m_Canvas->GetDimension().x;
+            mainPosition->Height = m_Canvas->GetDimension().y;
+            mainPosition->Format = eTextureFormat::RGBA32;
+            mainPosition->InitializeData = false;
+            mainPosition->EnableRenderTarget = true;
+            mainPosition->Init();
+
+            Texture* mainDepth = new Texture();
+            mainDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            mainDepth->Width = m_Canvas->GetDimension().x;
+            mainDepth->Height = m_Canvas->GetDimension().y;
+            mainDepth->Format = eTextureFormat::R32_TYPELESS;
+            mainDepth->InitializeData = false;
+            mainDepth->EnableRenderTarget = true;
+            mainDepth->Init();
+
+            mainRT = new RenderTarget({ mainColor, mainPosition }, (const Texture*)mainDepth, *canvasViewport);
 
             // SSAO render target
-            Texture ssaoColor = {};
-            ssaoColor.Width = m_Canvas->GetDimension().x;
-            ssaoColor.Height = m_Canvas->GetDimension().y;
-            ssaoColor.Format = eTextureFormat::RGBA8;
-            Texture ssaoDepth = {};
-            ssaoDepth.Width = m_Canvas->GetDimension().x;
-            ssaoDepth.Height = m_Canvas->GetDimension().y;
+            Texture* ssaoColor = new Texture();
+            ssaoColor->Width = m_Canvas->GetDimension().x;
+            ssaoColor->Height = m_Canvas->GetDimension().y;
+            ssaoColor->Format = eTextureFormat::RGBA8;
+            ssaoColor->InitializeData = false;
+            ssaoColor->EnableRenderTarget = true;
+            ssaoColor->Init();
+
+            Texture* ssaoDepth = new Texture();
+            ssaoDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            ssaoDepth->Width = m_Canvas->GetDimension().x;
+            ssaoDepth->Height = m_Canvas->GetDimension().y;
+            ssaoDepth->Format = eTextureFormat::R32_TYPELESS;
+            ssaoDepth->InitializeData = false;
+            ssaoDepth->EnableRenderTarget = true;
+            ssaoDepth->Init();
+
             ssaoRT = new RenderTarget({ ssaoColor }, ssaoDepth, *canvasViewport);
 
             // Skybox drawing
@@ -317,8 +338,8 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        &mainRT->Colors[1],
-                        &mainRT->DepthStencil,
+                        mainRT->Colors[1],
+                        mainRT->DepthStencil,
                         ssaoRT
                 );
             }
@@ -332,8 +353,8 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_GeometryStorage,
-                        &mainRT->Colors[0],
-                        &ssaoRT->Colors[0],
+                        mainRT->Colors[0],
+                        ssaoRT->Colors[0],
                         canvasRT
                 );
             }
