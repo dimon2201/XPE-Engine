@@ -8,6 +8,7 @@
     "WinY": 300,
     "VSync": false,
     "Gamma": 2.2,
+    "Exposure": 1,
 
     "LogTitle": "ExampleWindow",
     "LogBacktrace": 32,

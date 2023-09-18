@@ -38,7 +38,6 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     UV = GetParallax(psIn.materialIndex, psIn.uv);
 
     float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv);
-    albedo = GammaCorrection(albedo, Monitor().Gamma);
     float3 color = albedo.rgb;
 
     float metallic = GetMetallic(psIn.materialIndex, psIn.uv);
@@ -46,7 +45,6 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     float ao = GetAO(psIn.materialIndex, psIn.uv);
 
     float3 emission = GetEmission(psIn.materialIndex, psIn.uv);
-    emission = GammaCorrection(emission, Monitor().Gamma);
 
     // PBR with light sources
     float3 Lo = float3(0, 0, 0);
@@ -72,16 +70,13 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
         Lo += PBR(SpotLights[i], color, metallic, roughness);
     }
 
-    // PBR with emissive light
-    // todo(cheerwizard): approach may be not correct, so it needs more testing.
-    L = N;
-    Lo += PBR(emission, 1.0, color, metallic, roughness);
-
     // PBR with IBL
     // float3 ambient = ibl(NdotV, N, R, color, metallic, roughness);
     float3 ambient = float3(0, 0, 0);
 
     PSOut psOut;
-    psOut.color = float4((Lo + ambient) * ao, albedo.a);
+    psOut.color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
+    psOut.color = float4(ToneMapping(psOut.color.rgb, Monitor().Exposure), psOut.color.a);
+    psOut.color = float4(GammaCorrection(psOut.color.rgb, Monitor().Gamma), psOut.color.a);
     return psOut;
 }

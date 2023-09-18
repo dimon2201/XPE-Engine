@@ -114,6 +114,10 @@ namespace xpe {
             return s_Window.Descriptor.Gamma;
         }
 
+        float WindowManager::GetExposure() {
+            return s_Window.Descriptor.Exposure;
+        }
+
         const char* WindowManager::GetTitle() {
             return s_Window.Descriptor.Title;
         }
@@ -163,6 +167,13 @@ namespace xpe {
             LogInfo("WindowManager::SetGamma(): {}", gamma);
             s_Window.Descriptor.Gamma = gamma;
             s_MonitorBuffer->Item.Gamma = gamma;
+            s_MonitorBuffer->Flush();
+        }
+
+        void WindowManager::SetExposure(float exposure) {
+            LogInfo("WindowManager::SetExposure(): {}", exposure);
+            s_Window.Descriptor.Exposure = exposure;
+            s_MonitorBuffer->Item.Exposure = exposure;
             s_MonitorBuffer->Flush();
         }
 

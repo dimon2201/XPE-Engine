@@ -55,7 +55,7 @@ float3 PBR(float3 lightColor, float radianceFactor, float3 albedo, float metalli
 
     // BRDF Cook-Torrance approximation
     float y = 0.0001; // infinetely small number used when dot product N/V or N/L returns 0
-    float3 specular = (D * G * F) / ( 4.0 * max(dot(N, V), 0) * max(dot(N, L), 0) + y);
+    float3 specular = (D * G * F) / (4.0 * max(dot(N, V), 0) * max(dot(N, L), 0) + y);
 
     // light contribution to reflectance equation
     float3 ks = F;

@@ -124,8 +124,10 @@ public:
             plane.Instance.Transform.Position = { 0, -10, 0 };
             plane.Instance.Transform.Scale = { 100, 0.1, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
-            plane.Instance.Material->MetallicFactor = 0;
-            plane.Instance.Material->RoughnessFactor = 1;
+            plane.Instance.Material->BaseColor = { 1, 0, 0, 1 };
+            plane.Instance.Material->MetallicFactor = 1;
+            plane.Instance.Material->RoughnessFactor = 0.25;
+            plane.Instance.Material->AOFactor = 0;
             plane.Instance.Material->Flush();
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
@@ -147,18 +149,18 @@ public:
             m_PointLight = { "PointLight", m_MainScene };
 
             GeometryIndexed3DComponent pointLightShape("G_Point");
-            pointLightShape.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Point", Cube());
-            pointLightShape.Instance.Transform.Position = { 0, 0, 0 };
-            pointLightShape.Instance.Transform.Scale = { 1, 1, 1 };
+            pointLightShape.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Point", Sphere());
+            pointLightShape.Instance.Transform.Position = { 0, 10, 0 };
+            pointLightShape.Instance.Transform.Scale = { 0.5, 0.5, 0.5 };
             pointLightShape.Instance.Material = m_MaterialStorage->Add("MT_Point", Material());
-            pointLightShape.Instance.Material->BaseColor = { 1, 1, 0, 1 };
+            pointLightShape.Instance.Material->BaseColor = { 253, 251, 211, 1 };
             pointLightShape.Instance.Material->Flush();
             m_PointLight.AddComponent<GeometryIndexed3DComponent>(pointLightShape);
 
-            PointLightComponent pointLight("L_Point");
+            DirectLightComponent pointLight("L_Point");
             pointLight.Position = { 0, 0, 0 };
-            pointLight.Color = { 10, 10, 10 };
-            m_PointLight.AddComponent<PointLightComponent>(pointLight);
+            pointLight.Color = { 25.3, 25.1, 21.1 };
+            m_PointLight.AddComponent<DirectLightComponent>(pointLight);
         }
 
         // setup 3D model
@@ -210,10 +212,15 @@ public:
                 MaterialFilepath materialFilepath;
                 materialFilepath.Name = "niz";
                 materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
 //                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
                 winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
-                winterGirlModel.Model->Skins[0].Material->EmissionColor = { 1, 1, 1 };
+                winterGirlModel.Model->Skins[0].Material->BaseColor = { 1, 1, 1, 1 };
+                winterGirlModel.Model->Skins[0].Material->EmissionColor = { 0, 0, 10 };
+                winterGirlModel.Model->Skins[0].Material->MetallicFactor = 1;
+                winterGirlModel.Model->Skins[0].Material->RoughnessFactor = 1;
+                winterGirlModel.Model->Skins[0].Material->AOFactor = 0;
                 winterGirlModel.Model->Skins[0].Material->Flush();
             }
 
@@ -341,8 +348,8 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto* pointLight = m_PointLight.GetComponent<PointLightComponent>("L_Point");
-        auto& pos = pointLight->Position;
+        auto* pointLight = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
+        auto& pos = pointLight->Instance.Transform.Position;
 
         if (key == eKey::Up)
         {
@@ -363,9 +370,6 @@ private:
         {
             pos.x += 1;
         }
-
-        auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
-        pointLightShape->Instance.Transform.Position = pos;
     }
 
     void PlayAnimations(const eKey key)
@@ -379,6 +383,10 @@ private:
 
     void Simulate()
     {
+        auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
+        auto* pointLight = m_PointLight.GetComponent<DirectLightComponent>("L_Point");
+        pointLight->Position = pointLightShape->Instance.Transform.Position;
+
         if (m_TestConfig.AnimateLight)
         {
             auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");

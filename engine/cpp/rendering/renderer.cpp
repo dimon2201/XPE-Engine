@@ -13,6 +13,7 @@ namespace xpe {
         {
             context::Init();
             ShaderManager::Init();
+            WindowManager::InitMonitorBuffer();
 
             CameraBuffer = new render::CameraBuffer();
 

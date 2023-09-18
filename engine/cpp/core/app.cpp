@@ -47,6 +47,7 @@ namespace xpe {
             winDesc.Y = Config.WinY;
             winDesc.VSync = Config.VSync;
             winDesc.Gamma = Config.Gamma;
+            winDesc.Exposure = Config.Exposure;
 
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
@@ -73,8 +74,8 @@ namespace xpe {
 
             InitRenderer();
 
-            WindowManager::InitMonitorBuffer();
             WindowManager::SetGamma(winDesc.Gamma);
+            WindowManager::SetExposure(winDesc.Exposure);
 
             m_MainScene = new MainScene();
             m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;

@@ -36,6 +36,7 @@ namespace xpe
             s32 Y;
             bool VSync;
             float Gamma = 2.2f; // 2.2 is not default for every monitor
+            float Exposure = 1.0f; // level of camera exposure
             eCursorMode CursorMode = eCursorMode::DEFAULT;
             eWindowTheme Theme = eWindowTheme::DEFAULT;
         };
@@ -74,6 +75,7 @@ namespace xpe
             static int GetPosY();
 
             static float GetGamma();
+            static float GetExposure();
 
             static const char* GetTitle();
 
@@ -91,6 +93,7 @@ namespace xpe
             static void SetPos(int x, int y);
             static void SetSize(int w, int h);
             static void SetGamma(float gamma);
+            static void SetExposure(float exposure);
 
             static void SetUserPointer(void* userPtr);
             static void* GetUserPointer();

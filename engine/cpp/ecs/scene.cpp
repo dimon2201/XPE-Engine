@@ -39,16 +39,6 @@ namespace xpe {
         {
             m_Entities.clear();
 
-            for (auto& address : m_ComponentAddresses)
-            {
-                for (auto& entityComponent : address.second)
-                {
-                    for (auto& component : entityComponent.second)
-                    {
-                        component.second->~Component();
-                    }
-                }
-            }
             m_ComponentAddresses.clear();
 
             m_ComponentStorages.clear();

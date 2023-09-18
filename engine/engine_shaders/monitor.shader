@@ -1,5 +1,6 @@
 struct MonitorData
 {
+    float Exposure;
     float Gamma;
 };
 
