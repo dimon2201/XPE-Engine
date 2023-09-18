@@ -27,6 +27,17 @@ namespace xpe {
             static const MaterialFormat K_EMISSION_FORMAT;
 
             u32 Index = 0;
+
+            Ref<MaterialDataBuffer> Buffer;
+
+            Ref<Texture> AlbedoArray;
+            Ref<Texture> BumpArray;
+            Ref<Texture> ParallaxArray;
+            Ref<Texture> MetallicArray;
+            Ref<Texture> RoughnessArray;
+            Ref<Texture> AOArray;
+            Ref<Texture> EmissionArray;
+
             TextureLayer Albedo;
             TextureLayer Bumping;
             TextureLayer Parallax;
@@ -34,6 +45,7 @@ namespace xpe {
             TextureLayer Roughness;
             TextureLayer AO;
             TextureLayer Emission;
+
             hstring AlbedoPath;
             hstring BumpingPath;
             hstring ParallaxPath;
@@ -44,10 +56,16 @@ namespace xpe {
 
             Material() = default;
             Material(const Material& material) = default;
+
+            void Flush();
+            void AddLayer(Texture& texture, TextureLayer& layer);
+            void SetLayer(Texture& texture, TextureLayer& layer, u32 layerIndex);
+
         };
 
         Json(
             Material,
+            Index,
             BaseColor,
             EnableAlbedo,
             EnableBumping,

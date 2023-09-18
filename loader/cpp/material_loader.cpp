@@ -43,61 +43,59 @@ namespace xpe {
 
         Ref<Material> MaterialLoader::Load(const MaterialFilepath &filepath)
         {
-            Ref<Material> material = m_Storage->Add(filepath.Name, Material());
-
+            Material material;
             int w, h, c;
-            material->Albedo = TextureLoader::LoadLayer(
+
+            material.Albedo = TextureLoader::LoadLayer(
                     filepath.AlbedoFilepath.c_str(),
                     render::Material::K_ALBEDO_FORMAT.Format,
                     w, h, c
             );
-            material->EnableAlbedo = material->Albedo.Pixels != nullptr;
+            material.EnableAlbedo = material.Albedo.Pixels != nullptr;
 
-            material->Bumping = TextureLoader::LoadLayer(
+            material.Bumping = TextureLoader::LoadLayer(
                     filepath.BumpFilepath.c_str(),
                     render::Material::K_BUMP_FORMAT.Format,
                     w, h, c
             );
-            material->EnableBumping = material->Bumping.Pixels != nullptr;
+            material.EnableBumping = material.Bumping.Pixels != nullptr;
 
-            material->Parallax = TextureLoader::LoadLayer(
+            material.Parallax = TextureLoader::LoadLayer(
                     filepath.ParallaxFilepath.c_str(),
                     render::Material::K_PARALLAX_FORMAT.Format,
                     w, h, c
             );
-            material->EnableParallax = material->Parallax.Pixels != nullptr;
+            material.EnableParallax = material.Parallax.Pixels != nullptr;
 
-            material->Metallic = TextureLoader::LoadLayer(
+            material.Metallic = TextureLoader::LoadLayer(
                     filepath.MetallicFilepath.c_str(),
                     render::Material::K_METALLIC_FORMAT.Format,
                     w, h, c
             );
-            material->EnableMetallic = material->Metallic.Pixels != nullptr;
+            material.EnableMetallic = material.Metallic.Pixels != nullptr;
 
-            material->Roughness = TextureLoader::LoadLayer(
+            material.Roughness = TextureLoader::LoadLayer(
                     filepath.RoughnessFilepath.c_str(),
                     render::Material::K_ROUGHNESS_FORMAT.Format,
                     w, h, c
             );
-            material->EnableRoughness = material->Roughness.Pixels != nullptr;
+            material.EnableRoughness = material.Roughness.Pixels != nullptr;
 
-            material->AO = TextureLoader::LoadLayer(
+            material.AO = TextureLoader::LoadLayer(
                     filepath.AOFilepath.c_str(),
                     render::Material::K_AO_FORMAT.Format,
                     w, h, c
             );
-            material->EnableAO = material->AO.Pixels != nullptr;
+            material.EnableAO = material.AO.Pixels != nullptr;
 
-            material->Emission = TextureLoader::LoadLayer(
+            material.Emission = TextureLoader::LoadLayer(
                     filepath.EmissionFilepath.c_str(),
                     render::Material::K_EMISSION_FORMAT.Format,
                     w, h, c
             );
-            material->EnableEmission = material->Emission.Pixels != nullptr;
+            material.EnableEmission = material.Emission.Pixels != nullptr;
 
-            m_Storage->Set(filepath.Name, *material);
-
-            return material;
+            return m_Storage->Add(filepath.Name, material);
         }
 
     }

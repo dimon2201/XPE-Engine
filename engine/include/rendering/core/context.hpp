@@ -48,6 +48,8 @@ namespace xpe {
             ENGINE_API void BindShaderStage(const ShaderStage& stage);
             ENGINE_API void FreeShaderStage(ShaderStage& stage);
 
+            ENGINE_API void FreeShaderResourceView(void* viewInstance);
+
             ENGINE_API void CreateTexture(Texture& texture);
 
             ENGINE_API void CreateTexture1D(Texture& texture);
@@ -60,7 +62,15 @@ namespace xpe {
             ENGINE_API void BindTexture(const Texture& texture);
             ENGINE_API void BindTextureSlot(u32 slot);
             ENGINE_API void UnbindTexture(const Texture& texture);
+
             ENGINE_API void FreeTexture(Texture& texture);
+            ENGINE_API void FreeTexture1D(void* instance);
+            ENGINE_API void FreeTexture2D(void* instance);
+            ENGINE_API void FreeTexture2DArray(void* instance);
+            ENGINE_API void FreeTexture3D(void* instance);
+            ENGINE_API void FreeTextureCube(void* instance);
+            ENGINE_API void FreeTextureDepthStencil(void* instance);
+
             ENGINE_API void CopyTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex = 0);
             ENGINE_API void CopyTextureOffset(const Texture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex = 0);
             ENGINE_API void MoveTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex = 0);

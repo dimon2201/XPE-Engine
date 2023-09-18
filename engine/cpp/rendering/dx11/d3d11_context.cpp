@@ -725,6 +725,12 @@ namespace xpe {
                 }
             }
 
+            void FreeShaderResourceView(void* viewInstance)
+            {
+                ((ID3D11ShaderResourceView*) viewInstance)->Release();
+                LogDebugMessage();
+            }
+
             void CreateTexture1D(Texture &texture)
             {
                 D3D11_TEXTURE1D_DESC texDesc = {};
@@ -908,11 +914,12 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void CreateTextureDepthStencil(Texture &texture) {
+            void CreateTextureDepthStencil(Texture &texture)
+            {
                 D3D11_TEXTURE2D_DESC texDesc = {};
 
                 texDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
-                texDesc.Format = DXGI_FORMAT_R32_TYPELESS;
+                texDesc.Format = s_TextureFormatTable.at(texture.Format);
                 texDesc.Width = texture.Width;
                 texDesc.Height = texture.Height;
                 texDesc.ArraySize = 1;
@@ -943,43 +950,40 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void FreeTexture(Texture& texture)
+            void FreeTexture1D(void* instance)
             {
-                if (texture.Instance != nullptr)
-                {
-                    switch (texture.Type) {
+                ((ID3D11Texture1D*) instance)->Release();
+                LogDebugMessage();
+            }
 
-                        case Texture::eType::TEXTURE_1D:
-                            ((ID3D11Texture1D*) texture.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+            void FreeTexture2D(void* instance)
+            {
+                ((ID3D11Texture2D*) instance)->Release();
+                LogDebugMessage();
+            }
 
-                        case Texture::eType::TEXTURE_2D:
-                            ((ID3D11Texture2D*) texture.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+            void FreeTexture2DArray(void* instance)
+            {
+                ((ID3D11Texture2D*) instance)->Release();
+                LogDebugMessage();
+            }
 
-                        case Texture::eType::TEXTURE_3D:
-                            ((ID3D11Texture3D*) texture.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+            void FreeTexture3D(void* instance)
+            {
+                ((ID3D11Texture3D*) instance)->Release();
+                LogDebugMessage();
+            }
 
-                        case Texture::eType::TEXTURE_CUBE:
-                            ((ID3D11Texture2D*) texture.Instance)->Release();
-                            LogDebugMessage();
-                            break;
+            void FreeTextureCube(void* instance)
+            {
+                ((ID3D11Texture2D*) instance)->Release();
+                LogDebugMessage();
+            }
 
-                    }
-
-                    texture.Instance = nullptr;
-                }
-
-                if (texture.ViewInstance != nullptr)
-                {
-                    ((ID3D11ShaderResourceView*) texture.ViewInstance)->Release();
-                    LogDebugMessage();
-                    texture.ViewInstance = nullptr;
-                }
+            void FreeTextureDepthStencil(void* instance)
+            {
+                ((ID3D11Texture2D*) instance)->Release();
+                LogDebugMessage();
             }
 
             void GenerateMips(const Texture& texture) {

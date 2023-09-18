@@ -66,6 +66,7 @@ namespace xpe {
             Texture depth;
             depth.Width = width;
             depth.Height = height;
+            depth.Format = eTextureFormat::R32_TYPELESS;
 
             m_RenderTarget.Create(
                 vector<Texture> { color },

@@ -24,7 +24,7 @@ namespace xpe {
             m_ComponentAddresses.erase(oldTag);
         }
 
-        Entity *Scene::GetEntity(const string &tag)
+        Entity* Scene::GetEntity(const string &tag)
         {
             auto it = m_Entities.find(tag);
 

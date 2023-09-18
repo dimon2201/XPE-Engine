@@ -33,7 +33,7 @@ Texture2DArray M_Parallax  : K_SLOT_PARALLAX;
 Texture2DArray M_Metallic  : K_SLOT_METALLIC;
 Texture2DArray M_Roughness : K_SLOT_ROUGHNESS;
 Texture2DArray M_AO        : K_SLOT_AO;
-Texture2DArray M_Emission : K_SLOT_EMISSION;
+Texture2DArray M_Emission  : K_SLOT_EMISSION;
 
 float4 GetAlbedo(uint materialIndex, float2 uv) {
     float mId = float(materialIndex);

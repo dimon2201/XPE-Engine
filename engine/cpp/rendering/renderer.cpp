@@ -70,21 +70,21 @@ namespace xpe {
             this->DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
             {
-                this->DirectLightBuffer->AddComponent(*component);
+                this->DirectLightBuffer->Add(*component);
             });
             this->DirectLightBuffer->Flush();
 
             this->PointLightBuffer->Clear();
             scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
             {
-                this->PointLightBuffer->AddComponent(*component);
+                this->PointLightBuffer->Add(*component);
             });
             this->PointLightBuffer->Flush();
 
             this->SpotLightBuffer->Clear();
             scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
             {
-                this->SpotLightBuffer->AddComponent(*component);
+                this->SpotLightBuffer->Add(*component);
             });
             this->SpotLightBuffer->Flush();
         }

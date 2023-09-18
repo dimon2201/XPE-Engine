@@ -57,7 +57,19 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
         Lo += PBR(DirectLights[i], color, metallic, roughness);
     }
 
+    uint pointLightSize = 0;
+    uint pointLightStride = 0;
+    PointLights.GetDimensions(pointLightSize, pointLightStride);
+    for (uint i = 0 ; i < pointLightSize ; i++) {
+        Lo += PBR(PointLights[i], color, metallic, roughness);
+    }
 
+    uint spotLightSize = 0;
+    uint spotLightStride = 0;
+    SpotLights.GetDimensions(spotLightSize, spotLightStride);
+    for (uint i = 0 ; i < spotLightSize ; i++) {
+        Lo += PBR(SpotLights[i], color, metallic, roughness);
+    }
 
     // PBR with emissive light
     // todo(cheerwizard): approach may be not correct, so it needs more testing.
@@ -69,6 +81,6 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     float3 ambient = float3(0, 0, 0);
 
     PSOut psOut;
-    psOut.color = float4(Lo, albedo.a);
+    psOut.color = float4((Lo + ambient) * ao, albedo.a);
     return psOut;
 }

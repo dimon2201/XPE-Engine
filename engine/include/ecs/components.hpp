@@ -4,6 +4,7 @@
 
 #include <rendering/materials/material.h>
 #include <rendering/font/font.hpp>
+#include <rendering/buffers/light_buffers.h>
 
 #include <anim/skin.h>
 #include <anim/skelet.h>
@@ -91,11 +92,8 @@ namespace xpe
             Ref<Texture> Texture;
         };
 
-        struct ENGINE_API DirectLightComponent : Component
+        struct ENGINE_API DirectLightComponent : Component, DirectLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-
             JsonClass(
                 DirectLightComponent,
                 Position,
@@ -103,14 +101,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API PointLightComponent : Component
+        struct ENGINE_API PointLightComponent : Component, PointLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-            float Constant;
-            float Linear;
-            float Quadratic;
-
             JsonClass(
                 PointLightComponent,
                 Position,
@@ -121,14 +113,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SpotLightComponent : Component
+        struct ENGINE_API SpotLightComponent : Component, SpotLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Direction = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-            float Cutoff;
-            float Outer;
-
             JsonClass(
                 SpotLightComponent,
                 Position,
