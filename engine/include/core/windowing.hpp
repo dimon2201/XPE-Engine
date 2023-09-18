@@ -84,6 +84,10 @@ namespace xpe
             static int GetMonitorWidth();
             static int GetMonitorHeight();
 
+            static void InitMonitorBuffer();
+            static void FreeMonitorBuffer();
+            static render::MonitorBuffer* GetMonitorBuffer();
+
             static void SetPos(int x, int y);
             static void SetSize(int w, int h);
             static void SetGamma(float gamma);
@@ -97,8 +101,6 @@ namespace xpe
             static void SetWindowed();
             static void SetFullscreenWindowed();
             static void ToggleWindowMode();
-
-            static void SetMonitorBuffer(render::MonitorBuffer* monitorBuffer);
 
         private:
             static void CreatePrimaryMonitor();

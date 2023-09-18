@@ -6,7 +6,8 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API Monitor : public core::Object {
+        struct ENGINE_API Monitor : public core::Object
+        {
             float Gamma = 2.2f;
         };
 

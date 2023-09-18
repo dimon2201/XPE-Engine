@@ -31,7 +31,6 @@ namespace xpe {
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
                 RenderTarget* renderTarget,
-                GeometryStorage* geometryStorage,
                 MaterialStorage* materialStorage,
                 DirectLightBuffer* directLightBuffer,
                 PointLightBuffer* pointLightBuffer,

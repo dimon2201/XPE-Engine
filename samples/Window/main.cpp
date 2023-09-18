@@ -284,11 +284,13 @@ public:
         }
 
         MoveLight(key);
+        PlayAnimations(key);
     }
 
     void KeyHold(const eKey key)
     {
         MoveLight(key);
+        PlayAnimations(key);
     }
 
     void CursorMoved(const double x, const double y)
@@ -341,8 +343,6 @@ private:
     {
         auto* pointLight = m_PointLight.GetComponent<PointLightComponent>("L_Point");
         auto& pos = pointLight->Position;
-        auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
-        pointLightShape->Instance.Transform.Position = pos;
 
         if (key == eKey::Up)
         {
@@ -364,6 +364,12 @@ private:
             pos.x += 1;
         }
 
+        auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
+        pointLightShape->Instance.Transform.Position = pos;
+    }
+
+    void PlayAnimations(const eKey key)
+    {
         if (key == eKey::P)
         {
             auto* winterGirlAnim = m_WinterGirl.GetComponent<SkeletalAnimationComponent>("A_WinterGirl");
@@ -388,7 +394,9 @@ private:
         }
 
         auto& text2D = m_Text2D.GetComponent<Text2DComponent>("Text2D")->Text;
-        text2D = "XPE-Engine \n FPS: " + std::to_string(CPUTime.Fps()) + "\n CPU: " + std::to_string(CPUTime.Millis());
+        text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
+                "\nCPU: " + std::to_string(CPUTime.Millis()) +
+                "\nGamma: " + std::to_string(WindowManager::GetGamma());
     }
 
 private:

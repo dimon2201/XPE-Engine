@@ -1,5 +1,6 @@
 #include <rendering/draw/drawer.h>
 #include <rendering/buffers/camera_buffer.h>
+#include <rendering/buffers/monitor_buffer.h>
 
 namespace xpe {
 
@@ -9,6 +10,7 @@ namespace xpe {
         {
             m_Pipeline = new Pipeline();
             m_Pipeline->VSBuffers.emplace_back(cameraBuffer);
+            m_Pipeline->PSBuffers.emplace_back(WindowManager::GetMonitorBuffer());
             m_Pipeline->Shader = shader;
             m_Pipeline->RenderTarget = renderTarget;
             m_Pipeline->Blending.Targets[0].Enable = true;

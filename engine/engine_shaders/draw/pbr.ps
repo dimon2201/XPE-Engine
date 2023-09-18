@@ -1,5 +1,6 @@
 #include ../types.shader
 #include ../utils.shader
+#include ../monitor.shader
 
 #include ../materials/material.shader
 
@@ -37,7 +38,7 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     UV = GetParallax(psIn.materialIndex, psIn.uv);
 
     float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv);
-    albedo = GammaCorrection(albedo, 2.2);
+    albedo = GammaCorrection(albedo, Monitor().Gamma);
     float3 color = albedo.rgb;
 
     float metallic = GetMetallic(psIn.materialIndex, psIn.uv);
@@ -45,7 +46,7 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     float ao = GetAO(psIn.materialIndex, psIn.uv);
 
     float3 emission = GetEmission(psIn.materialIndex, psIn.uv);
-    emission = GammaCorrection(emission, 2.2);
+    emission = GammaCorrection(emission, Monitor().Gamma);
 
     // PBR with light sources
     float3 Lo = float3(0, 0, 0);

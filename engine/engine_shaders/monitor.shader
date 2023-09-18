@@ -1,5 +1,11 @@
-struct Monitor {
+struct MonitorData
+{
     float Gamma;
 };
 
-StructuredBuffer<Monitor> Monitors : K_SLOT_MONITOR;
+StructuredBuffer<MonitorData> Monitors : K_SLOT_MONITOR;
+
+MonitorData Monitor()
+{
+    return Monitors[0];
+}

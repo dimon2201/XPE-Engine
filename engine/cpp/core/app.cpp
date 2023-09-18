@@ -46,6 +46,7 @@ namespace xpe {
             winDesc.X = Config.WinX;
             winDesc.Y = Config.WinY;
             winDesc.VSync = Config.VSync;
+            winDesc.Gamma = Config.Gamma;
 
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
@@ -71,7 +72,9 @@ namespace xpe {
             m_Animator = new Animator(m_SkeletStorage);
 
             InitRenderer();
-            WindowManager::SetMonitorBuffer(m_Renderer->MonitorBuffer);
+
+            WindowManager::InitMonitorBuffer();
+            WindowManager::SetGamma(winDesc.Gamma);
 
             m_MainScene = new MainScene();
             m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;
@@ -145,6 +148,7 @@ namespace xpe {
 
             Input::Free();
 
+            WindowManager::FreeMonitorBuffer();
             WindowManager::FreeWindow();
             WindowManager::Free();
 
@@ -221,7 +225,6 @@ namespace xpe {
                         m_Renderer->CameraBuffer,
                         shader,
                         m_Canvas->GetRenderTarget(),
-                        m_GeometryStorage,
                         m_MaterialStorage,
                         m_Renderer->DirectLightBuffer,
                         m_Renderer->PointLightBuffer,

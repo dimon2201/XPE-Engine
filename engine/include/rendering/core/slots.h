@@ -19,20 +19,20 @@ namespace xpe {
 
         // ---------- For Pixel Stage --------------- //
 
-        const core::u32 K_SLOT_MATERIALS               = 0;
-        const core::u32 K_SLOT_ALBEDO                  = 1;
-        const core::u32 K_SLOT_BUMPING                 = 2;
-        const core::u32 K_SLOT_PARALLAX                = 3;
-        const core::u32 K_SLOT_METALLIC                = 4;
-        const core::u32 K_SLOT_ROUGHNESS               = 5;
-        const core::u32 K_SLOT_AO                      = 6;
-        const core::u32 K_SLOT_EMISSION                = 7;
+        const core::u32 K_SLOT_MONITOR                 = 0;
+        const core::u32 K_SLOT_MATERIALS               = 1;
+        const core::u32 K_SLOT_ALBEDO                  = 2;
+        const core::u32 K_SLOT_BUMPING                 = 3;
+        const core::u32 K_SLOT_PARALLAX                = 4;
+        const core::u32 K_SLOT_METALLIC                = 5;
+        const core::u32 K_SLOT_ROUGHNESS               = 6;
+        const core::u32 K_SLOT_AO                      = 7;
+        const core::u32 K_SLOT_EMISSION                = 8;
 
-        const core::u32 K_SLOT_DIRECT_LIGHTS           = 8;
-        const core::u32 K_SLOT_POINT_LIGHTS            = 9;
-        const core::u32 K_SLOT_SPOT_LIGHTS             = 10;
-        const core::u32 K_SLOT_ENV_LIGHTS              = 11;
-        const core::u32 K_SLOT_MONITOR                 = 12;
+        const core::u32 K_SLOT_DIRECT_LIGHTS           = 9;
+        const core::u32 K_SLOT_POINT_LIGHTS            = 10;
+        const core::u32 K_SLOT_SPOT_LIGHTS             = 11;
+        const core::u32 K_SLOT_ENV_LIGHTS              = 12;
 
         // ---------- For Constant Buffer --------------- //
 
