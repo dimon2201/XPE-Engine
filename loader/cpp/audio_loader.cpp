@@ -1,4 +1,4 @@
-#include <stream_audio_loader.h>
+#include <audio_loader.h>
 
 namespace xpe {
 

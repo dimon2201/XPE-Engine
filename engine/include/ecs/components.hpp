@@ -8,7 +8,7 @@
 #include <anim/skin.h>
 #include <anim/skelet.h>
 
-#include <audio/core/openal_context.h>
+#include <audio/core/openal_context.h> // temporarily
 
 namespace xpe
 {

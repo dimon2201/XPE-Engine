@@ -3,7 +3,7 @@
 #include <sndfile.h>
 
 #include <audio/core/openal_context.h>
-#include <audio/storages/stream_audio_storage.h>
+#include <audio/storages/audio_storage.h>
 
 namespace xpe {
 

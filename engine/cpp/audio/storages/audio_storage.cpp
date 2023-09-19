@@ -1,4 +1,4 @@
-#include <audio/storages/stream_audio_storage.h>
+#include <audio/storages/audio_storage.h>
 
 namespace xpe {
 
