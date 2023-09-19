@@ -5,6 +5,7 @@
 #include <rendering/core/texture.h>
 
 #include <geometry/geometries.h>
+#include <ecs/components.hpp>
 
 namespace xpe {
 
@@ -33,6 +34,27 @@ namespace xpe {
             )
         };
 
+        struct ENGINE_API Audio : public Global
+        {
+            void Play()
+            {
+                //(todo) 
+            }
+
+            void Pause() {
+                //(todo) 
+            }
+
+            void Stop()
+            {
+                //(todo) 
+            }
+
+            JsonClass(
+                Audio, 
+                m_Tag
+            )
+        };
     }
 
 }

@@ -50,6 +50,8 @@ namespace xpe {
             anim::SkinStorage* m_SkinStorage = nullptr;
             anim::AnimStorage* m_AnimStorage = nullptr;
 
+            audio::AudioSystem* m_AudioSystem = nullptr;
+            audio::AudioStorage* m_AudioStorage = nullptr;
         };
 
     }
