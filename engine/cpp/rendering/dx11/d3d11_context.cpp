@@ -19,6 +19,22 @@ namespace xpe {
             IDXGIAdapter* s_GIAdapter = nullptr;
             IDXGIFactory* s_GIFactory = nullptr;
 
+            static const std::unordered_map<eBufferUsage, D3D11_USAGE> s_BufferUsages =
+            {
+                    { eBufferUsage::DEFAULT, D3D11_USAGE_DEFAULT },
+                    { eBufferUsage::STATIC, D3D11_USAGE_IMMUTABLE },
+                    { eBufferUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
+                    { eBufferUsage::STAGING, D3D11_USAGE_STAGING }
+            };
+
+            static const std::unordered_map<eBufferUsage, u32> s_BufferCPUFlags =
+            {
+                    { eBufferUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
+                    { eBufferUsage::STATIC, 0 },
+                    { eBufferUsage::DYNAMIC, D3D11_CPU_ACCESS_WRITE },
+                    { eBufferUsage::STAGING, D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE }
+            };
+
             static const std::unordered_map<eTextureFormat, DXGI_FORMAT> s_TextureFormatTable =
             {
                     { eTextureFormat::R8, DXGI_FORMAT_R8_UNORM },
@@ -45,6 +61,14 @@ namespace xpe {
                     { Texture::eUsage::STATIC, D3D11_USAGE_IMMUTABLE },
                     { Texture::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
                     { Texture::eUsage::STAGING, D3D11_USAGE_STAGING }
+            };
+
+            static const std::unordered_map<Texture::eUsage, u32> s_TextureCPUFlags =
+            {
+                    { Texture::eUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
+                    { Texture::eUsage::STATIC, 0 },
+                    { Texture::eUsage::DYNAMIC, D3D11_CPU_ACCESS_WRITE },
+                    { Texture::eUsage::STAGING, D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE }
             };
 
             static const std::unordered_map<TextureSampler::eComparison, D3D11_COMPARISON_FUNC> s_TextureSamplerComparisonTable =
@@ -189,6 +213,27 @@ namespace xpe {
                     { eBlendOp::MAX, D3D11_BLEND_OP_MAX }
             };
 
+            static void FreeInitialData(D3D11_SUBRESOURCE_DATA* initialData)
+            {
+                dealloc(initialData);
+            }
+
+            static D3D11_SUBRESOURCE_DATA* InitBufferData(const Buffer& buffer)
+            {
+                D3D11_SUBRESOURCE_DATA* initialData = nullptr;
+
+                if (buffer.InitialData != nullptr)
+                {
+                    usize bufferSize = buffer.ByteSize();
+                    initialData = allocT(D3D11_SUBRESOURCE_DATA, bufferSize);
+                    initialData->pSysMem = buffer.InitialData;
+                    initialData->SysMemPitch = bufferSize;
+                    initialData->SysMemSlicePitch = 0;
+                }
+
+                return initialData;
+            }
+
             static D3D11_SUBRESOURCE_DATA* InitTextureData(const Texture& texture, const u32 arraySize, const u32 mipLevels)
             {
                 D3D11_SUBRESOURCE_DATA* initialData = nullptr;
@@ -222,11 +267,6 @@ namespace xpe {
                 }
 
                 return initialData;
-            }
-
-            static void FreeTextureData(D3D11_SUBRESOURCE_DATA* initialData)
-            {
-                dealloc(initialData);
             }
 
             static void UpdateTextureFlags(Texture& texture, u32& bindFlags, u32& miscFlags)
@@ -352,15 +392,12 @@ namespace xpe {
 
                 BindRenderTarget(renderTarget.ColorViews, renderTarget.DepthStencilView);
 
-                if (renderTarget.Viewports != nullptr)
+                for (auto& viewport : renderTarget.Viewports)
                 {
-                    for (auto& viewport : *renderTarget.Viewports)
-                    {
-                        viewport.Width = width;
-                        viewport.Height = height;
-                    }
-                    BindViewports(*renderTarget.Viewports);
+                    viewport.Width = width;
+                    viewport.Height = height;
                 }
+                BindViewports(renderTarget.Viewports);
             }
 
             void CreateSwapchainTargetView()
@@ -388,22 +425,22 @@ namespace xpe {
                     auto& color = renderTarget.Colors[i];
                     auto& colorView = renderTarget.ColorViews[i];
 
-                    if (color != nullptr && color->Instance == nullptr)
+                    if (color.Instance == nullptr)
                     {
-                        color->InitializeData = false;
-                        color->EnableRenderTarget = true;
-                        CreateTexture(*color);
+                        color.InitializeData = false;
+                        color.EnableRenderTarget = true;
+                        CreateTexture(color);
                     }
 
-                    if (color != nullptr && colorView == nullptr)
+                    if (colorView == nullptr)
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
-                        desc.Format = s_TextureFormatTable.at(color->Format);
+                        desc.Format = s_TextureFormatTable.at(color.Format);
                         desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateRenderTargetView(
-                                (ID3D11Resource*) color->Instance,
+                                (ID3D11Resource*) color.Instance,
                                 &desc,
                                 (ID3D11RenderTargetView**) &colorView
                         );
@@ -414,26 +451,29 @@ namespace xpe {
                 auto& depth = renderTarget.DepthStencil;
                 auto& depthView = renderTarget.DepthStencilView;
 
-                if (depth != nullptr && depth->Instance == nullptr)
+                if (depth.Width != 0 && depth.Height != 0)
                 {
-                    depth->InitializeData = false;
-                    depth->EnableRenderTarget = true;
-                    CreateTextureDepthStencil(*depth);
-                }
+                    if (depth.Instance == nullptr)
+                    {
+                        depth.InitializeData = false;
+                        depth.EnableRenderTarget = true;
+                        CreateTextureDepthStencil(depth);
+                    }
 
-                if (depth != nullptr && depthView == nullptr)
-                {
-                    D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
-                    desc.Format = DXGI_FORMAT_D32_FLOAT;
-                    desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-                    desc.Texture2D.MipSlice = 0;
+                    if (depthView == nullptr)
+                    {
+                        D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
+                        desc.Format = DXGI_FORMAT_D32_FLOAT;
+                        desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                        desc.Texture2D.MipSlice = 0;
 
-                    s_Device->CreateDepthStencilView(
-                            (ID3D11Resource*) depth->Instance,
-                            &desc,
-                            (ID3D11DepthStencilView**) &depthView
-                    );
-                    LogDebugMessage();
+                        s_Device->CreateDepthStencilView(
+                                (ID3D11Resource*) depth.Instance,
+                                &desc,
+                                (ID3D11DepthStencilView**) &depthView
+                        );
+                        LogDebugMessage();
+                    }
                 }
             }
 
@@ -477,17 +517,6 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void FreeRenderTargetColors(vector<Texture*> &colors)
-            {
-                for (auto& color : colors)
-                {
-                    if (color != nullptr)
-                    {
-                        FreeTexture(*color);
-                    }
-                }
-            }
-
             void FreeRenderTargetColorViews(vector<void*> &colorViews)
             {
                 for (auto& colorView : colorViews)
@@ -498,14 +527,6 @@ namespace xpe {
                         LogDebugMessage();
                         colorView = nullptr;
                     }
-                }
-            }
-
-            void FreeRenderTargetDepth(Texture **depth)
-            {
-                if (*depth != nullptr)
-                {
-                    FreeTexture(**depth);
                 }
             }
 
@@ -527,18 +548,17 @@ namespace xpe {
 
                 for (auto& color : renderTarget.Colors)
                 {
-                    if (color != nullptr) {
-                        color->Width = width;
-                        color->Height = height;
-                        color->Instance = nullptr;
-                    }
+                    color.Width = width;
+                    color.Height = height;
+                    color.Instance = nullptr;
                 }
 
                 auto& depthStencil = renderTarget.DepthStencil;
-                if (depthStencil != nullptr) {
-                    depthStencil->Width = width;
-                    depthStencil->Height = height;
-                    depthStencil->Instance = nullptr;
+                if (depthStencil.Width != 0 && depthStencil.Height != 0)
+                {
+                    depthStencil.Width = width;
+                    depthStencil.Height = height;
+                    depthStencil.Instance = nullptr;
                 }
 
                 CreateRenderTarget(renderTarget);
@@ -723,7 +743,7 @@ namespace xpe {
                 texDesc.ArraySize = arraySize;
                 texDesc.Format = s_TextureFormatTable.at(texture.Format);
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE1D;
@@ -738,7 +758,7 @@ namespace xpe {
 
                 GenerateMips(texture);
 
-                FreeTextureData(initialData);
+                FreeInitialData(initialData);
             }
 
             void CreateTexture2D(Texture &texture)
@@ -760,7 +780,7 @@ namespace xpe {
                 texDesc.SampleDesc.Count = 1;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
@@ -775,7 +795,7 @@ namespace xpe {
 
                 GenerateMips(texture);
 
-                FreeTextureData(initialData);
+                FreeInitialData(initialData);
             }
 
             void CreateTexture2DArray(Texture &texture)
@@ -797,7 +817,7 @@ namespace xpe {
                 texDesc.SampleDesc.Count = 1;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2DARRAY;
@@ -814,7 +834,7 @@ namespace xpe {
 
                 GenerateMips(texture);
 
-                FreeTextureData(initialData);
+                FreeInitialData(initialData);
             }
 
             void CreateTexture3D(Texture &texture)
@@ -834,7 +854,7 @@ namespace xpe {
                 texDesc.MipLevels = mipLevels;
                 texDesc.Format = s_TextureFormatTable.at(texture.Format);
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE3D;
@@ -849,7 +869,7 @@ namespace xpe {
 
                 GenerateMips(texture);
 
-                FreeTextureData(initialData);
+                FreeInitialData(initialData);
             }
 
             void CreateTextureCube(Texture &texture)
@@ -871,7 +891,7 @@ namespace xpe {
                 texDesc.SampleDesc.Count = 1;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
                 texDesc.MiscFlags |= D3D11_RESOURCE_MISC_TEXTURECUBE;
 
                 srv.Format = texDesc.Format;
@@ -887,7 +907,7 @@ namespace xpe {
 
                 GenerateMips(texture);
 
-                FreeTextureData(initialData);
+                FreeInitialData(initialData);
             }
 
             void CreateTextureDepthStencil(Texture &texture) {
@@ -964,32 +984,6 @@ namespace xpe {
                 }
             }
 
-            void WriteTexture(const Texture &texture, const void* pixels, usize pixelsSize, u32 index)
-            {
-                if (texture.Usage == Texture::eUsage::STATIC) {
-                    LogError("Unable to write into DX11 texture, because Usage = STATIC");
-                    return;
-                }
-
-                D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-
-                s_ImmContext->Map((ID3D11Resource*)texture.Instance, index, D3D11_MAP_WRITE, 0, &mappedResource);
-                LogDebugMessage();
-
-                if (mappedResource.pData == nullptr) {
-                    u32 rowPitch = pixelsSize / texture.Height;
-                    u32 depthPitch = pixelsSize;
-                    s_ImmContext->UpdateSubresource((ID3D11Resource*)texture.Instance, index, nullptr, pixels, rowPitch, depthPitch);
-                    LogDebugMessage();
-                }
-
-                else {
-                    memcpy(mappedResource.pData, pixels, pixelsSize);
-                    s_ImmContext->Unmap((ID3D11Resource*)texture.Instance, index);
-                    LogDebugMessage();
-                }
-            }
-
             void GenerateMips(const Texture& texture) {
                 u32 mipLevels = texture.GetMipLevels();
                 if (mipLevels > 1) {
@@ -1054,41 +1048,35 @@ namespace xpe {
 
                 D3D11_BUFFER_DESC bufferDesc = {};
 
+                bufferDesc.ByteWidth = (UINT)byteSize;
+                bufferDesc.Usage = s_BufferUsages.at(buffer.Usage);
+                bufferDesc.CPUAccessFlags = s_BufferCPUFlags.at(buffer.Usage);
+
+                D3D11_SUBRESOURCE_DATA* initialData = InitBufferData(buffer);
+
                 if (bufferType == eBufferType::VERTEX)
                 {
-                    bufferDesc.ByteWidth = (UINT)byteSize;
-                    bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
                     bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-                    bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
                 }
 
                 else if (bufferType == eBufferType::INDEX)
                 {
-                    bufferDesc.ByteWidth = (UINT)byteSize;
-                    bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
                     bufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-                    bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-                }
-
-                else if (bufferType == eBufferType::STRUCTURED)
-                {
-                    bufferDesc.ByteWidth = (UINT)byteSize;
-                    bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-                    bufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-                    bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-                    bufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
-                    bufferDesc.StructureByteStride = buffer.StructureSize;
                 }
 
                 else if (bufferType == eBufferType::CONSTANT)
                 {
-                    bufferDesc.ByteWidth = (UINT)byteSize;
-                    bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
                     bufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-                    bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
                 }
 
-                s_Device->CreateBuffer(&bufferDesc, nullptr, (ID3D11Buffer**)&buffer.Instance);
+                else if (bufferType == eBufferType::STRUCTURED)
+                {
+                    bufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+                    bufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+                    bufferDesc.StructureByteStride = buffer.StructureSize;
+                }
+
+                s_Device->CreateBuffer(&bufferDesc, initialData, (ID3D11Buffer**)&buffer.Instance);
                 LogDebugMessage();
 
                 if (bufferType == eBufferType::STRUCTURED)
@@ -1102,6 +1090,8 @@ namespace xpe {
                     s_Device->CreateShaderResourceView((ID3D11Resource*)buffer.Instance, &srvDesc, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
                     LogDebugMessage();
                 }
+
+                FreeInitialData(initialData);
             }
 
             void BindVertexBuffer(const Buffer& buffer)
@@ -1193,6 +1183,12 @@ namespace xpe {
             void Unmap(const GPUResource& resource)
             {
                 s_ImmContext->Unmap((ID3D11Resource*)resource.Instance, 0);
+                LogDebugMessage();
+            }
+
+            void UpdateSubData(const GPUResource& resource, u32 subresourceIndex, const void* data, u32 rowPitch, u32 depthPitch)
+            {
+                s_ImmContext->UpdateSubresource((ID3D11Resource*) resource.Instance, subresourceIndex, nullptr, data, rowPitch, depthPitch);
                 LogDebugMessage();
             }
 

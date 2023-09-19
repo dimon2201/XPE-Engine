@@ -7,49 +7,30 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API ColorAttachment : public GPUResource
-        {
-            int Width = 0;
-            int Height = 0;
-            eTextureFormat Format = eTextureFormat::DEFAULT;
-        };
-
-        struct ENGINE_API DepthStencilAttachment : public GPUResource
-        {
-            int Width = 0;
-            int Height = 0;
-            eTextureFormat Format = eTextureFormat::DEFAULT;
-        };
-
         struct ENGINE_API RenderTarget : public core::Object
         {
-            vector<Texture*> Colors;
-            Texture* DepthStencil = nullptr;
             vector<void*> ColorViews;
             void* DepthStencilView = nullptr;
-            vector<Viewport>* Viewports = nullptr;
-        };
-
-        struct ENGINE_API RenderPass : public core::Object
-        {
             vector<Texture> Colors;
             Texture DepthStencil;
             vector<Viewport> Viewports;
-            RenderTarget Target;
 
-            RenderPass(const vector<Texture>& colors);
-            RenderPass(const vector<Texture>& colors, const Texture& depthStencil);
+            RenderTarget(const vector<Texture>& colors);
+            RenderTarget(const vector<Texture>& colors, const Texture& depthStencil);
 
-            RenderPass(const vector<Texture>& colors, const Viewport& viewport);
-            RenderPass(const vector<Texture>& colors, const vector<Viewport>& viewports);
+            RenderTarget(const vector<Texture>& colors, const Viewport& viewport);
+            RenderTarget(const vector<Texture>& colors, const vector<Viewport>& viewports);
 
-            RenderPass(const Texture& depthStencil, const Viewport& viewport);
-            RenderPass(const Texture& depthStencil, const vector<Viewport>& viewports);
+            RenderTarget(const Texture& depthStencil, const Viewport& viewport);
+            RenderTarget(const Texture& depthStencil, const vector<Viewport>& viewports);
 
-            RenderPass(const vector<Texture>& colors, const Texture& depthStencil, const Viewport& viewport);
-            RenderPass(const vector<Texture>& colors, const Texture& depthStencil, const vector<Viewport>& viewports);
+            RenderTarget(const vector<Texture>& colors, const Texture& depthStencil, const Viewport& viewport);
+            RenderTarget(const vector<Texture>& colors, const Texture& depthStencil, const vector<Viewport>& viewports);
 
-            ~RenderPass();
+            RenderTarget(const vector<void*>& colorViews, const Viewport& viewport);
+            RenderTarget(const vector<void*>& colorViews, const vector<Viewport>& viewports);
+
+            ~RenderTarget();
 
             void Resize(s32 width, s32 height);
 

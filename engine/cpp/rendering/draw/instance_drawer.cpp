@@ -10,13 +10,13 @@ namespace xpe {
         InstanceDrawer::InstanceDrawer(
             CameraBuffer* cameraBuffer,
             Shader* shader,
+            RenderTarget* renderTarget,
             GeometryStorage* geometryStorage,
             MaterialStorage* materialStorage,
             DirectLightBuffer* directLightBuffer,
             PointLightBuffer* pointLightBuffer,
             SpotLightBuffer* spotLightBuffer
-        ) : Drawer(cameraBuffer, shader)
-
+        ) : Drawer(cameraBuffer, shader, renderTarget)
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);

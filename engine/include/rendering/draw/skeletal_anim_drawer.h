@@ -33,6 +33,7 @@ namespace xpe {
             SkeletalAnimDrawer(
                 CameraBuffer* cameraBuffer,
                 Shader* shader,
+                RenderTarget* renderTarget,
                 MaterialStorage* materialStorage,
                 DirectLightBuffer* directLightBuffer,
                 PointLightBuffer* pointLightBuffer,

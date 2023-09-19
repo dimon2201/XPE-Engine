@@ -36,7 +36,7 @@ namespace xpe {
 
             void RemoveDrawer(Drawer* drawer);
 
-            void Render(ecs::Scene* scene, RenderTarget* renderTarget);
+            void Render(ecs::Scene* scene);
 
         private:
             void FlushLights(ecs::Scene* scene);
