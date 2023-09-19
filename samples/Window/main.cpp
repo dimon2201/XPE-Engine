@@ -12,6 +12,7 @@
 #include <skelet_loader.h>
 #include <anim_loader.h>
 
+#include <rendering/monitor.h>
 #include <rendering/storages/material_storage.h>
 
 #include "test_config.h"
@@ -150,7 +151,7 @@ public:
 
             GeometryIndexed3DComponent pointLightShape("G_Point");
             pointLightShape.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Point", Sphere());
-            pointLightShape.Instance.Transform.Position = { 0, 10, 0 };
+            pointLightShape.Instance.Transform.Position = { 20, 20, -20 };
             pointLightShape.Instance.Transform.Scale = { 0.5, 0.5, 0.5 };
             pointLightShape.Instance.Material = m_MaterialStorage->Add("MT_Point", Material());
             pointLightShape.Instance.Material->BaseColor = { 253, 251, 211, 1 };
@@ -159,7 +160,7 @@ public:
 
             DirectLightComponent pointLight("L_Point");
             pointLight.Position = { 0, 0, 0 };
-            pointLight.Color = { 25.3, 25.1, 21.1 };
+            pointLight.Color = { 153, 151, 111 };
             m_PointLight.AddComponent<DirectLightComponent>(pointLight);
         }
 
@@ -213,7 +214,7 @@ public:
                 materialFilepath.Name = "niz";
                 materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
                 materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
-//                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
+                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
                 winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
                 winterGirlModel.Model->Skins[0].Material->BaseColor = { 1, 1, 1, 1 };
@@ -270,7 +271,8 @@ public:
     {
         LockFPSFromConfig();
         UpdateCamera();
-        Simulate();
+        AnimateLight();
+        DisplayStats();
     }
 
     void Free()
@@ -381,7 +383,7 @@ private:
         }
     }
 
-    void Simulate()
+    void AnimateLight()
     {
         auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
         auto* pointLight = m_PointLight.GetComponent<DirectLightComponent>("L_Point");
@@ -389,8 +391,7 @@ private:
 
         if (m_TestConfig.AnimateLight)
         {
-            auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");
-            auto& pos = directLight->Position;
+            auto& pos = pointLightShape->Instance.Transform.Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -400,11 +401,14 @@ private:
 
             tick++;
         }
+    }
 
+    void DisplayStats() {
         auto& text2D = m_Text2D.GetComponent<Text2DComponent>("Text2D")->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
-                "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                "\nGamma: " + std::to_string(WindowManager::GetGamma());
+                 "\nCPU: " + std::to_string(CPUTime.Millis()) +
+                 "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
+                 "\nExposure: " + std::to_string(Monitor::Get().Exposure);
     }
 
 private:

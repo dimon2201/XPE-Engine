@@ -2,11 +2,6 @@
 
 namespace xpe
 {
-    namespace render
-    {
-        class MonitorBuffer;
-    }
-
     namespace core
     {
         enum class eCursorMode
@@ -74,9 +69,6 @@ namespace xpe
             static int GetPosX();
             static int GetPosY();
 
-            static float GetGamma();
-            static float GetExposure();
-
             static const char* GetTitle();
 
             static void* GetInstance();
@@ -86,14 +78,8 @@ namespace xpe
             static int GetMonitorWidth();
             static int GetMonitorHeight();
 
-            static void InitMonitorBuffer();
-            static void FreeMonitorBuffer();
-            static render::MonitorBuffer* GetMonitorBuffer();
-
             static void SetPos(int x, int y);
             static void SetSize(int w, int h);
-            static void SetGamma(float gamma);
-            static void SetExposure(float exposure);
 
             static void SetUserPointer(void* userPtr);
             static void* GetUserPointer();
@@ -114,7 +100,6 @@ namespace xpe
             static int s_WindowModeWidth;
             static int s_WindowModeHeight;
             static bool s_EnableFullscreen;
-            static render::MonitorBuffer* s_MonitorBuffer;
         };
 
     }

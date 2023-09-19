@@ -35,13 +35,14 @@ Texture2DArray M_Roughness : K_SLOT_ROUGHNESS;
 Texture2DArray M_AO        : K_SLOT_AO;
 Texture2DArray M_Emission  : K_SLOT_EMISSION;
 
-float4 GetAlbedo(uint materialIndex, float2 uv) {
+float4 GetAlbedo(uint materialIndex, float2 uv, in float gamma) {
     float mId = float(materialIndex);
     Material material = Materials[materialIndex];
     float4 albedo = material.BaseColor;
     if (material.EnableAlbedo) {
         albedo *= M_Albedo.Sample(S_Material, float3(uv, mId));
     }
+    albedo = pow(albedo, gamma);
     return albedo;
 }
 
@@ -136,12 +137,13 @@ float GetAO(uint materialIndex, float2 uv) {
     return ao;
 }
 
-float3 GetEmission(uint materialIndex, float2 uv) {
+float3 GetEmission(uint materialIndex, float2 uv, in float gamma) {
     float mId = float(materialIndex);
     Material material = Materials[materialIndex];
     float3 emission = material.EmissionColor;
     if (material.EnableEmission) {
         emission *= M_Emission.Sample(S_Material, float3(uv, mId)).rgb;
     }
+    emission = pow(emission, gamma);
     return emission;
 }

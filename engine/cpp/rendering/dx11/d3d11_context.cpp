@@ -53,6 +53,8 @@ namespace xpe {
                     { eTextureFormat::RGBA8, DXGI_FORMAT_R8G8B8A8_UNORM },
                     { eTextureFormat::RGBA16, DXGI_FORMAT_R16G16B16A16_UNORM },
                     { eTextureFormat::RGBA32, DXGI_FORMAT_R32G32B32A32_FLOAT },
+
+                    { eTextureFormat::SRGBA8, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB }
             };
 
             static const std::unordered_map<Texture::eUsage, D3D11_USAGE> s_TextureUsageTable =

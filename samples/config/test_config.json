@@ -1,7 +1,7 @@
 {
 
   "TestConfig": {
-    "AnimateLight": false,
+    "AnimateLight": true,
     "CameraFar": 1000,
     "CameraMoveSpeed": 0.05,
     "CameraZoomAcceleration": 10.0,

@@ -6,10 +6,8 @@
 
 #include <rendering/core/debugger.h>
 
+#include <rendering/monitor.h>
 #include <rendering/renderer.h>
-
-#include <rendering/buffers/monitor_buffer.h>
-#include <rendering/buffers/light_buffers.h>
 
 #include <rendering/draw/canvas.hpp>
 #include <rendering/draw/instance_drawer.h>
@@ -74,8 +72,8 @@ namespace xpe {
 
             InitRenderer();
 
-            WindowManager::SetGamma(winDesc.Gamma);
-            WindowManager::SetExposure(winDesc.Exposure);
+            Monitor::Get().Exposure = winDesc.Exposure;
+            Monitor::Get().Gamma = winDesc.Gamma;
 
             m_MainScene = new MainScene();
             m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;
@@ -149,7 +147,6 @@ namespace xpe {
 
             Input::Free();
 
-            WindowManager::FreeMonitorBuffer();
             WindowManager::FreeWindow();
             WindowManager::Free();
 

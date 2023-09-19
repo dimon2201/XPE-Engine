@@ -35,8 +35,6 @@ namespace xpe {
 
         bool WindowManager::s_EnableFullscreen = false;
 
-        render::MonitorBuffer* WindowManager::s_MonitorBuffer = nullptr;
-
         void WindowManager::Init() {
             LogInfo("WindowManager::Init()");
 
@@ -110,14 +108,6 @@ namespace xpe {
             return s_Window.Descriptor.Y;
         }
 
-        float WindowManager::GetGamma() {
-            return s_Window.Descriptor.Gamma;
-        }
-
-        float WindowManager::GetExposure() {
-            return s_Window.Descriptor.Exposure;
-        }
-
         const char* WindowManager::GetTitle() {
             return s_Window.Descriptor.Title;
         }
@@ -142,39 +132,10 @@ namespace xpe {
             return s_MonitorTable[s_PrimaryMonitor]->height;
         }
 
-        void WindowManager::InitMonitorBuffer()
-        {
-            s_MonitorBuffer = new render::MonitorBuffer();
-        }
-
-        void WindowManager::FreeMonitorBuffer()
-        {
-            delete s_MonitorBuffer;
-        }
-
-        render::MonitorBuffer* WindowManager::GetMonitorBuffer()
-        {
-            return s_MonitorBuffer;
-        }
-
         void WindowManager::SetPos(int x, int y) {
             glfwSetWindowPos(s_WindowHandle, x, y);
             s_Window.Descriptor.X = x;
             s_Window.Descriptor.Y = y;
-        }
-
-        void WindowManager::SetGamma(float gamma) {
-            LogInfo("WindowManager::SetGamma(): {}", gamma);
-            s_Window.Descriptor.Gamma = gamma;
-            s_MonitorBuffer->Item.Gamma = gamma;
-            s_MonitorBuffer->Flush();
-        }
-
-        void WindowManager::SetExposure(float exposure) {
-            LogInfo("WindowManager::SetExposure(): {}", exposure);
-            s_Window.Descriptor.Exposure = exposure;
-            s_MonitorBuffer->Item.Exposure = exposure;
-            s_MonitorBuffer->Flush();
         }
 
         void WindowManager::SetSize(int w, int h) {

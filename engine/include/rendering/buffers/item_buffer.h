@@ -53,7 +53,7 @@ namespace xpe {
         void ItemBuffer<T>::FlushItem(const T &item)
         {
             Item = item;
-            context::MoveBuffer(*this, &Item, StructureSize);
+            context::CopyBuffer(*this, &Item, StructureSize);
         }
 
     }

@@ -1,6 +1,6 @@
 float3 PBR(DirectLight directLight, float3 albedo, float metallic, float roughness)
 {
-    L = normalize(directLight.Position - W);
+    L = normalize(directLight.Position);
     float3 lightColor = directLight.Color;
     float directShadow = 0;
     float radianceFactor = 1.0 - directShadow;
