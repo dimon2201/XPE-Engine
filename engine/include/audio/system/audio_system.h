@@ -28,7 +28,7 @@ namespace xpe {
 			void Update(Scene* scene);
 
 			void UpdateVoices(Scene* scene);
-			void RecordVoice(VoiceComponent* component);
+			void RecordVoice(VoiceComponent* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
 
 		private:
 

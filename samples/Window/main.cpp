@@ -238,139 +238,139 @@ public:
             m_WinterGirl.AddComponent<SkeletalAnimationComponent>(winterGirlAnimation);
         }
 
-        //// setup audio
-        //{
-        //    //Set listener component
-        //    {
-        //        m_Listener = { "Listener", m_MainScene };
-        //    
-        //        auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
+        // setup audio
+        {
+            //Set listener component
+            {
+                m_Listener = { "Listener", m_MainScene };
+            
+                auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
 
-        //        ListenerComponent component("Listener");
+                ListenerComponent component("Listener");
 
-        //        component.Position = &camera.Component.Position;
-        //        component.Up = camera.Component.Up; 
-        //        component.Look = &camera.Component.Front;
+                component.Position = &camera.Component.Position;
+                component.Up = camera.Component.Up; 
+                component.Look = &camera.Component.Front;
 
-        //        m_Listener.AddComponent<ListenerComponent>(component);
-        //    }
+                m_Listener.AddComponent<ListenerComponent>(component);
+            }
 
-        //    //loading stream audio files
-        //    {
+            //loading stream audio files
+            {
 
-        //        //load test stream audio
-        //        {
-        //            AudioFileComponent component("Test");
-        //            component.File = m_AudioLoader->Load("res/audio/test.wav");
-        //            m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
-        //        }
+                //load test stream audio
+                {
+                    AudioFileComponent component("Test");
+                    component.File = m_AudioLoader->Load("res/audio/test.wav");
+                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                }
 
-        //        //load spell stream audio
-        //        {
-        //            AudioFileComponent component("Magicfail");
-        //            component.File = m_AudioLoader->Load("res/audio/magicfail.ogg");
-        //            m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
-        //        }
+                //load spell stream audio
+                {
+                    AudioFileComponent component("Magicfail");
+                    component.File = m_AudioLoader->Load("res/audio/magicfail.ogg");
+                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                }
 
-        //        //load magicfail stream audio
-        //        {
-        //            AudioFileComponent component("Spell");
-        //            component.File = m_AudioLoader->Load("res/audio/spell.ogg");
-        //            m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
-        //        }
-        //    }
+                //load magicfail stream audio
+                {
+                    AudioFileComponent component("Spell");
+                    component.File = m_AudioLoader->Load("res/audio/spell.ogg");
+                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                }
+            }
+            //temporarily commented
+            //// create voice component
+            //{
+            //    VoiceComponent component("Test");
+            //    m_MainScene->AddComponent<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
+            //}
+        }
 
-        //    // create voice component
-        //    {
-        //        VoiceComponent component("Test");
+        //setup background audio
+        {
+            m_BackgroundAudio = { "BackgroundAudio", m_MainScene };
 
-        //        m_MainScene->AddComponent<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
-        //    }
-        //}
+            //test sources
+            SourceAudioComponent* source;
+            SourceAudioComponent* source1;
+            SourceAudioComponent* source2;
 
-        ////setup background audio
-        //{
-        //    m_BackgroundAudio = { "BackgroundAudio", m_MainScene };
+            //test files //You can use one file for for many sources in one time
+            auto* file = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Spell");
+            auto* file1 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Test");
+            auto* file2 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Magicfail");
 
-        //    SourceAudioComponent* source;
-        //    SourceAudioComponent* source1;
-        //    SourceAudioComponent* source2;
+            //creating source
+            {
+                SourceAudioComponent component("Sound_Test");
 
-        //    auto* file = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Spell");
-        //    auto* file1 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Test");
-        //    auto* file2 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Magicfail");
+                component.Position = { -15.0f, 2.0f, 0.0f };
+                component.Looping = true;
+                component.Gain = 0.5f;
+                component.RefDistance = 10.0f;
+                component.MaxDistance = 100.0f;
+                source = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+            }
 
-        //    //creating source
-        //    {
-        //        SourceAudioComponent component("Sound_Test");
+            //creating stream audio
+            {
+                AudioComponent component("Sound_Test");
 
-        //        component.Position = { -15.0f, 2.0f, 0.0f };
-        //        component.Looping = true;
-        //        component.Gain = 0.5f;
-        //        component.RefDistance = 10.0f;
-        //        component.MaxDistance = 100.0f;
-        //        source = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
-        //    }
+                component.Source = source;
+                component.File = file->File;
 
-        //    //creating stream audio
-        //    {
-        //        AudioComponent component("Sound_Test");
+                m_BackgroundAudio.AddComponent<AudioComponent>(component);
+            }
 
-        //        component.Source = source;
-        //        component.File = file->File;
+            //-------------------------------------
+            //creating source
+            {
+                SourceAudioComponent component("Test");
 
-        //        m_BackgroundAudio.AddComponent<AudioComponent>(component);
-        //    }
+                component.Position = { -5.0f, 2.0f, 0.0f };
+                component.Looping = true; //(todo) Need do some logic to looping the stream audio 
+                component.Gain = 0.2f;
+                component.RefDistance = 10.0f;
+                component.MaxDistance = 100.0f;
+                source1 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+            }
 
-        //    //-------------------------------------
-        //    //creating source
-        //    {
-        //        SourceAudioComponent component("Test");
+            //creating stream audio
+            {
+                StreamAudioComponent component("Test");
 
-        //        component.Position = { -5.0f, 2.0f, 0.0f };
-        //        component.Looping = true; //(todo) Need do some logic to looping the stream audio 
-        //        component.Gain = 0.2f;
-        //        component.RefDistance = 10.0f;
-        //        component.MaxDistance = 100.0f;
-        //        source1 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
-        //    }
+                component.Source = source1;
+                component.File = file1->File;
+                component.BufferSamples = 8192 * 2; //for test
+                component.NumBuffers = 5; //for test
 
-        //    //creating stream audio
-        //    {
-        //        StreamAudioComponent component("Test");
+                m_BackgroundAudio.AddComponent<StreamAudioComponent>(component);
+            }
 
-        //        component.Source = source1;
-        //        component.File = file1->File;
-        //        component.BufferSamples = 8192 * 2; //for test
-        //        component.NumBuffers = 5; //for test
+            //-------------------------------------
+            //creating source
+            {
+                SourceAudioComponent component("Sound_Test1");
 
-        //        m_BackgroundAudio.AddComponent<StreamAudioComponent>(component);
-        //    }
+                component.Position = { 11.0f, 2.0f, 0.0f };
+                component.Looping = true;
+                component.Gain = 0.5f;
+                component.RefDistance = 10.0f;
+                component.MaxDistance = 100.0f;
+                source2 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+            }
 
-        //    //(todo) BUG: If you remove the sound below and the topmost one, it crashes when you press "O". 
-        //    //-------------------------------------
-        //    //creating source
-        //    {
-        //        SourceAudioComponent component("Sound_Test1");
+            //creating stream audio
+            {
+                AudioComponent component("Sound_Test1");
 
-        //        component.Position = { 11.0f, 2.0f, 0.0f };
-        //        component.Looping = true;
-        //        component.Gain = 0.5f;
-        //        component.RefDistance = 10.0f;
-        //        component.MaxDistance = 100.0f;
-        //        source2 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
-        //    }
+                component.Source = source2;
+                component.File = file2->File;
 
-        //    //creating stream audio
-        //    {
-        //        AudioComponent component("Sound_Test1");
-
-        //        component.Source = source2;
-        //        component.File = file2->File;
-
-        //        m_BackgroundAudio.AddComponent<AudioComponent>(component);
-        //    }
-        //}
+                m_BackgroundAudio.AddComponent<AudioComponent>(component);
+            }
+        }
     }
 
     void Update() override final
