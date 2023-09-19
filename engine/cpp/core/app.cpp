@@ -23,11 +23,17 @@
 #include <anim/animator.h>
 #include <anim/storages/anim_storage.h>
 
+#include <audio/system/audio_system.h>
+#include <audio/storages/stream_audio_storage.h>
+
+#include <thread>
+
 namespace xpe {
 
     using namespace render;
     using namespace ecs;
     using namespace anim;
+    using namespace audio;
 
     namespace core {
 
@@ -71,6 +77,9 @@ namespace xpe {
 
             InitRenderer();
 
+            m_AudioSystem = new AudioSystem();
+            m_AudioStorage = new AudioStorage();
+
             m_MainScene = new MainScene();
             m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;
             m_MainScene->OrthoCamera->Buffer = m_Renderer->CameraBuffer;
@@ -78,6 +87,15 @@ namespace xpe {
             Init();
             m_Game = CreateGame();
             InitGame();
+            
+            std::atomic<bool> AudioThreadFlag(true);
+
+            std::thread AudioThread([this, &AudioThreadFlag]() {
+
+                while (AudioThreadFlag) {
+                    m_AudioSystem->Update(m_MainScene);
+                }
+            });
 
             while (!WindowManager::ShouldClose())
             {
@@ -107,6 +125,8 @@ namespace xpe {
 
                 Render();
 
+                m_AudioSystem->UpdateListener(m_MainScene);
+
                 WindowManager::PollEvents();
                 WindowManager::Swap();
 
@@ -121,6 +141,9 @@ namespace xpe {
 #endif
 
             }
+
+            AudioThreadFlag = false;
+            AudioThread.join();
 
             m_Game->Free();
             delete m_Game;
@@ -137,6 +160,9 @@ namespace xpe {
             delete m_SkinStorage;
             delete m_SkeletStorage;
             delete m_Animator;
+
+            delete m_AudioSystem;
+            delete m_AudioStorage;
 
             delete m_Canvas;
             delete m_Renderer;
@@ -177,6 +203,9 @@ namespace xpe {
             m_Game->SkinStorage = m_SkinStorage;
             m_Game->AnimStorage = m_AnimStorage;
             m_Game->Animator = m_Animator;
+
+            m_Game->AudioSystem = m_AudioSystem;
+            m_Game->AudioStorage = m_AudioStorage;
 
             m_Game->Init();
         }
