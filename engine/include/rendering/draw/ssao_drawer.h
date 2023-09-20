@@ -14,6 +14,13 @@ namespace xpe {
 
         class GeometryStorage;
 
+        struct SSAOBufferLayout
+        {
+            float SSAODirectionCount;
+            float SSAOSampleCount;
+            float _pad[2];
+        };
+
         class ENGINE_API SSAODrawer : public Drawer
         {
 
@@ -23,6 +30,7 @@ namespace xpe {
                 Shader* shader,
                 GeometryStorage* geometryStorage,
                 Texture* positionTexture,
+                Texture* normalTexture,
                 Texture* depthTexture,
                 RenderTarget* renderTarget
             );
@@ -32,7 +40,8 @@ namespace xpe {
             void Draw(Scene* scene);
 
         private:
-            TextureSampler m_Sampler;
+            Buffer m_Buffer;
+            SSAOBufferLayout m_BufferData;
             Ref<GeometryIndexed<Vertex2D>> m_Quad;
 
         };

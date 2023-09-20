@@ -19,7 +19,8 @@ PSOut ps_main(VSOut psIn)
     ColorTexture.GetDimensions(width, height);
 
     PSOut psOut;
-    psOut.color = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
+    psOut.color = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0)) *
+                  AOTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
 
     return psOut;
 }

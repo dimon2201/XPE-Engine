@@ -220,6 +220,14 @@ namespace xpe {
             mainPosition->EnableRenderTarget = true;
             mainPosition->Init();
 
+            Texture* mainNormal = new Texture();
+            mainNormal->Width = m_Canvas->GetDimension().x;
+            mainNormal->Height = m_Canvas->GetDimension().y;
+            mainNormal->Format = eTextureFormat::RGBA16;
+            mainNormal->InitializeData = false;
+            mainNormal->EnableRenderTarget = true;
+            mainNormal->Init();
+
             Texture* mainDepth = new Texture();
             mainDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
             mainDepth->Width = m_Canvas->GetDimension().x;
@@ -229,7 +237,7 @@ namespace xpe {
             mainDepth->EnableRenderTarget = true;
             mainDepth->Init();
 
-            mainRT = new RenderTarget({ mainColor, mainPosition }, (const Texture*)mainDepth, *canvasViewport);
+            mainRT = new RenderTarget({ mainColor, mainPosition, mainNormal }, (const Texture*)mainDepth, *canvasViewport);
 
             // SSAO render target
             Texture* ssaoColor = new Texture();
@@ -339,6 +347,7 @@ namespace xpe {
                         shader,
                         m_GeometryStorage,
                         mainRT->Colors[1],
+                        mainRT->Colors[2],
                         mainRT->DepthStencil,
                         ssaoRT
                 );
@@ -363,7 +372,8 @@ namespace xpe {
         void Application::Render()
         {
             context::ClearColorTarget((void*)mainRT->ColorViews[0], glm::vec4(1.0f));
-            context::ClearColorTarget((void*)mainRT->ColorViews[1], glm::vec4(1.0f));
+            context::ClearColorTarget((void*)mainRT->ColorViews[1], glm::vec4(0.0f));
+            context::ClearColorTarget((void*)mainRT->ColorViews[2], glm::vec4(0.0f));
             context::ClearDepthTarget((void*)mainRT->DepthStencilView, 1.0f);
             context::ClearColorTarget((void*)ssaoRT->ColorViews[0], glm::vec4(1.0f));
             context::ClearDepthTarget((void*)ssaoRT->DepthStencilView, 1.0f);

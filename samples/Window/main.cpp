@@ -234,6 +234,19 @@ public:
             m_WinterGirl.AddComponent<SkinModelListComponent>(winterGirlModel);
             m_WinterGirl.AddComponent<SkeletalAnimationComponent>(winterGirlAnimation);
         }
+
+        // setup cube
+        {
+            m_Cube = { "Cube", m_MainScene };
+
+            GeometryIndexed3DComponent cube("Cube");
+            cube.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Cube", Cube());
+            cube.Instance.Transform.Position = { 10, -10, 10 };
+            cube.Instance.Transform.Scale = { 5, 5, 5 };
+            cube.Instance.Material = m_MaterialStorage->Add("Cube", Material());
+
+            m_Cube.AddComponent<GeometryIndexed3DComponent>(cube);
+        }
     }
 
     void Update() override final
@@ -381,6 +394,7 @@ private:
     Entity m_Text3D;
     Entity m_Plane;
     Entity m_WinterGirl;
+    Entity m_Cube;
 
     TestConfig m_TestConfig = string("TestConfig");
 };

@@ -37,13 +37,13 @@ namespace xpe {
                 Recreate(size);
             }
             else {
-                context::CopyBuffer(*this, List.data(), ByteSize());
+                context::CopyBuffer(*this, List.data(), GetByteSize());
             }
         }
 
         void IndexBuffer::FlushIndices(const vector<u32> &indices)
         {
-            if (sizeof(indices) > ByteSize()) {
+            if (sizeof(indices) > GetByteSize()) {
                 Resize(indices.size());
             }
             memcpy((void*)List.data(), (const void*)indices.data(), indices.size());
@@ -67,7 +67,7 @@ namespace xpe {
             InitialData = List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
-            context::CopyBuffer(*this, List.data(), ByteSize());
+            context::CopyBuffer(*this, List.data(), GetByteSize());
         }
 
         void IndexBuffer::Resize(const usize indexCount)

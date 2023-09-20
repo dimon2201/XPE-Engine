@@ -58,7 +58,7 @@ namespace xpe {
             u32 Slot = 0;
             void* InitialData = nullptr;
 
-            [[nodiscard]] inline usize ByteSize() const
+            [[nodiscard]] inline usize GetByteSize() const
             {
                 return NumElements * StructureSize;
             }

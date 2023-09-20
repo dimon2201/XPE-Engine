@@ -224,7 +224,7 @@ namespace xpe {
 
                 if (buffer.InitialData != nullptr)
                 {
-                    usize bufferSize = buffer.ByteSize();
+                    usize bufferSize = buffer.GetByteSize();
                     initialData = allocT(D3D11_SUBRESOURCE_DATA, bufferSize);
                     initialData->pSysMem = buffer.InitialData;
                     initialData->SysMemPitch = bufferSize;
@@ -1040,9 +1040,10 @@ namespace xpe {
             void CreateBuffer(Buffer& buffer)
             {
                 eBufferType bufferType = buffer.Type;
-                usize byteSize = buffer.ByteSize();
+                usize byteSize = buffer.GetByteSize();
 
                 D3D11_BUFFER_DESC bufferDesc = {};
+                memset(&bufferDesc, 0, sizeof(D3D11_BUFFER_DESC));
 
                 bufferDesc.ByteWidth = (UINT)byteSize;
                 bufferDesc.Usage = s_BufferUsages.at(buffer.Usage);
@@ -1431,5 +1432,26 @@ namespace xpe {
 
 }
 
+/*
+ * D3D11 Debug
+ * ID3D11Debug *d3dDebug = nullptr;
+    if (SUCCEEDED(s_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&d3dDebug)))
+    {
+        ID3D11InfoQueue *d3dInfoQueue = nullptr;
+        if (SUCCEEDED(s_Device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&d3dInfoQueue)))
+        {
+            auto n = d3dInfoQueue->GetNumStoredMessages();
+            for (int i = 0; i < n; i++)
+            {
+                SIZE_T msgsz = 0;
+                d3dInfoQueue->GetMessageA(0, nullptr, &msgsz);
+                D3D11_MESSAGE msg = {};
+                d3dInfoQueue->GetMessageA(0, &msg, &msgsz);
+                LogInfo(msg.pDescription);
+            }
+        }
+        d3dDebug->Release();
+    }
+ */
 
 #endif // DX11

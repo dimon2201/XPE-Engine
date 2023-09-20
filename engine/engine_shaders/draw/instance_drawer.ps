@@ -22,7 +22,8 @@ struct VSOut
 struct PSOut
 {
     float4 color : SV_Target0;
-    float3 normal : SV_Target1;
+    float4 positionWorld : SV_Target1;
+    float4 normal : SV_Target2;
 };
 
 PSOut ps_main(VSOut psIn)
@@ -61,7 +62,8 @@ PSOut ps_main(VSOut psIn)
     }
 
     psOut.color = float4(color, 1.0);
-    psOut.normal = N;
+    psOut.positionWorld = float4(W, 1.0);
+    psOut.normal = float4(N, 1.0);
 
     return psOut;
 }
