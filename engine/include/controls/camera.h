@@ -188,7 +188,7 @@ namespace xpe {
 
         private:
             void UpdateProjection();
-            void UpdateView(const glm::vec3& position);
+            void UpdateView(const glm::vec3& position); 
 
         };
 

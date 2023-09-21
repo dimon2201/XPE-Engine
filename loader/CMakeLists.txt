@@ -22,6 +22,7 @@ include_directories(
         thirdparty/Assimp142/include
         thirdparty/Freetype/include
         thirdparty/stbi
+        thirdparty/libsndfile/include
 )
 
 add_engine_definitions()
@@ -29,7 +30,7 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
 # Link libraries
 link_engine(${PROJECT_NAME} ../engine)
-target_link_libraries(${PROJECT_NAME} PUBLIC ../lib/assimp-vc142-mt ../lib/freetype)
+target_link_libraries(${PROJECT_NAME} PUBLIC ../lib/assimp-vc142-mt ../lib/freetype sndfile)
 
 # Copy binaries and libs
 configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib COPYONLY)

@@ -8,6 +8,7 @@ macro(include_loader path)
             ${path}/thirdparty/Assimp142/include
             ${path}/thirdparty/Freetype/include
             ${path}/thirdparty/stbi
+            ${path}/thirdparty/libsndfile/include
     )
 endmacro()
 # link target project with loader

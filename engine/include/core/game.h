@@ -20,6 +20,12 @@ namespace xpe {
         class Animator;
     }
 
+    namespace audio 
+    {
+        class AudioSystem;
+        class AudioStorage;
+    }
+
     namespace ecs
     {
         class MainScene;
@@ -50,6 +56,9 @@ namespace xpe {
             anim::SkeletStorage* SkeletStorage;
             anim::SkinStorage* SkinStorage;
             anim::AnimStorage* AnimStorage;
+
+            audio::AudioSystem* AudioSystem;
+            audio::AudioStorage* AudioStorage;
 
             virtual void Init() {}
             virtual void Update() {}

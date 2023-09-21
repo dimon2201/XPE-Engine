@@ -17,6 +17,7 @@ namespace xpe {
 
         void MainScene::Init()
         {
+            Audio = AddGlobal<ecs::Audio>("Audio");
             Skybox = AddGlobal<ecs::Skybox>("Skybox");
             PerspectiveCamera = AddGlobal<control::PerspectiveCamera>("PerspectiveCamera");
             OrthoCamera = AddGlobal<control::OrthoCamera>("OrthoCamera");
