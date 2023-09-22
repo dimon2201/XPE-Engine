@@ -1,4 +1,4 @@
-#include <rendering/draw/text_drawer.h>
+#include <rendering/draw/text_render_pass.h>
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/font/font.hpp>
 
@@ -8,13 +8,11 @@ namespace xpe {
 
     namespace render {
 
-        TextDrawer::TextDrawer(
-                CameraBuffer* cameraBuffer,
-                Shader* shader,
-                RenderTarget* renderTarget,
-                GeometryStorage* geometryStorage
-        )
-        : Drawer(cameraBuffer, shader, renderTarget)
+        TextRenderPass::TextRenderPass(
+            const core::vector<RenderPassBinding>& bindings,
+            RenderTarget* output,
+            GeometryStorage* geometryStorage
+        ) : RenderPass(bindings, output)
         {
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);
@@ -27,16 +25,13 @@ namespace xpe {
             m_Pipeline->PrimitiveTopology = quad->PrimitiveTopology;
             m_Pipeline->VertexBuffer = &quad->Vertices;
             m_Pipeline->IndexBuffer = &quad->Indices;
-
-            m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
             m_Pipeline->Textures.emplace_back(nullptr);
-
-            Init();
+            m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
         }
 
-        TextDrawer::~TextDrawer() {}
+        TextRenderPass::~TextRenderPass() {}
 
-        void TextDrawer::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)
+        void TextRenderPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)
         {
             if (text.empty()) return;
             

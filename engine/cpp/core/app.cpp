@@ -11,13 +11,13 @@
 #include <rendering/buffers/light_buffers.h>
 
 #include <rendering/draw/canvas.hpp>
-#include <rendering/draw/instance_drawer.h>
-#include <rendering/draw/skeletal_anim_drawer.h>
-#include <rendering/draw/text2d_drawer.h>
-#include <rendering/draw/text3d_drawer.h>
-#include <rendering/draw/skybox_drawer.h>
-#include <rendering/draw/ssao_drawer.h>
-#include <rendering/draw/canvas_output_drawer.h>
+#include <rendering/draw/instance_render_pass.h>
+#include <rendering/draw/skeletal_render_pass.h>
+#include <rendering/draw/text2d_render_pass.h>
+#include <rendering/draw/text3d_render_pass.h>
+#include <rendering/draw/skybox_render_pass.h>
+#include <rendering/draw/merge_render_pass.h>
+#include <rendering/draw/ssao_render_pass.hpp>
 
 #include <rendering/storages/texture_storage.h>
 #include <rendering/storages/font_storage.h>
@@ -27,6 +27,7 @@
 
 xpe::render::RenderTarget* mainRT;
 xpe::render::RenderTarget* ssaoRT;
+xpe::render::RenderPass* ssaoRP;
 
 namespace xpe {
 
@@ -260,33 +261,36 @@ namespace xpe {
             ssaoRT = new RenderTarget({ ssaoColor }, ssaoDepth, *canvasViewport);
 
             // Skybox drawing
-            {
-                Shader* shader = ShaderManager::CreateShader("skybox_drawer");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skybox_drawer.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skybox_drawer.ps");
-                ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<SkyboxDrawer>(
-                        m_Renderer->CameraBuffer,
-                        shader,
-                        mainRT,
-                        m_GeometryStorage
-                );
-            }
+//            {
+//                Shader* shader = ShaderManager::CreateShader("skybox_drawer");
+//                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skybox_drawer.vs");
+//                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skybox_drawer.ps");
+//                ShaderManager::BuildShader(shader);
+//                m_Renderer->AddDrawer<SkyboxDrawer>(
+//                        m_Renderer->CameraBuffer,
+//                        shader,
+//                        mainRT,
+//                        m_GeometryStorage
+//                );
+//            }
             // Instance drawing for 3D
             {
                 Shader* shader = ShaderManager::CreateShader("instance_drawer");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/instance_drawer.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/instance_drawer.ps");
                 ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<InstanceDrawer>(
-                        m_Renderer->CameraBuffer,
-                        shader,
-                        mainRT,
-                        m_GeometryStorage,
-                        m_MaterialStorage,
-                        m_Renderer->DirectLightBuffer,
-                        m_Renderer->PointLightBuffer,
-                        m_Renderer->SpotLightBuffer
+
+                vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
+                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
+                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->DirectLightBuffer },
+                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->PointLightBuffer },
+                        { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->SpotLightBuffer },
+                };
+                m_Renderer->AddRenderPass<InstanceRenderPass>(
+                    bindings,
+                    mainRT,
+                    m_MaterialStorage
                 );
             }
             // Instance drawing for 3D skeletal skin
@@ -295,16 +299,20 @@ namespace xpe {
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.ps");
                 ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<SkeletalAnimDrawer>(
-                        m_Renderer->CameraBuffer,
-                        shader,
-                        mainRT,
-                        m_MaterialStorage,
-                        m_Renderer->DirectLightBuffer,
-                        m_Renderer->PointLightBuffer,
-                        m_Renderer->SpotLightBuffer,
-                        m_SkeletStorage,
-                        m_SkinStorage
+
+                vector<RenderPassBinding> bindings = {
+                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->DirectLightBuffer },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->PointLightBuffer },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->SpotLightBuffer },
+                };
+                m_Renderer->AddRenderPass<SkeletalAnimRenderPass>(
+                    bindings,
+                    mainRT,
+                    m_MaterialStorage,
+                    m_SkeletStorage,
+                    m_SkinStorage
                 );
             }
             // Text 2D drawing
@@ -313,12 +321,16 @@ namespace xpe {
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/text2d_drawer.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/text2d_drawer.ps");
                 ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<Text2DDrawer>(
-                        m_Renderer->CameraBuffer,
-                        shader,
-                        mainRT,
-                        m_GeometryStorage,
-                        m_Canvas->GetBuffer()
+
+                vector<RenderPassBinding> bindings = {
+                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
+                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Canvas->GetBuffer() }
+                };
+                m_Renderer->AddRenderPass<Text2DRenderPass>(
+                    bindings,
+                    mainRT,
+                    m_GeometryStorage
                 );
             }
             // Text 3D drawing
@@ -327,11 +339,16 @@ namespace xpe {
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/text3d_drawer.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/text3d_drawer.ps");
                 ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<Text3DDrawer>(
-                        m_Renderer->CameraBuffer,
-                        shader,
-                        mainRT,
-                        m_GeometryStorage
+
+                vector<RenderPassBinding> bindings = {
+                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
+                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Canvas->GetBuffer() }
+                };
+                m_Renderer->AddRenderPass<Text3DRenderPass>(
+                    bindings,
+                    mainRT,
+                    m_GeometryStorage
                 );
             }
             // SSAO drawing
@@ -342,29 +359,35 @@ namespace xpe {
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/ssao_drawer.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/ssao_drawer.ps");
                 ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<SSAODrawer>(
-                        m_Renderer->CameraBuffer,
-                        shader,
-                        m_GeometryStorage,
-                        mainRT->Colors[1],
-                        mainRT->Colors[2],
-                        mainRT->DepthStencil,
-                        ssaoRT
+
+                vector<RenderPassBinding> bindings = {
+                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
+                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, (GPUResource*)mainRT->Colors[1] },
+                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, (GPUResource*)mainRT->Colors[2] },
+                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, (GPUResource*)mainRT->DepthStencil }
+                };
+                m_Renderer->AddRenderPass<SSAORenderPass>(
+                    m_GeometryStorage,
+                    bindings,
+                    ssaoRT
                 );
             }
             // Output to canvas
             {
-                Shader* shader = ShaderManager::CreateShader("canvas_output");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/canvas_output.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/canvas_output.ps");
+                Shader* shader = ShaderManager::CreateShader("merge");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/merge_render_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/merge_render_pass.ps");
                 ShaderManager::BuildShader(shader);
-                m_Renderer->AddDrawer<CanvasOutputDrawer>(
-                        m_Renderer->CameraBuffer,
-                        shader,
-                        m_GeometryStorage,
-                        mainRT->Colors[0],
-                        ssaoRT->Colors[0],
-                        canvasRT
+
+                vector<RenderPassBinding> bindings = {
+                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, (GPUResource*)mainRT->Colors[0] },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, (GPUResource*)ssaoRT->Colors[0] }
+                };
+                m_Renderer->AddRenderPass<MergeRenderPass>(
+                    bindings,
+                    canvasRT,
+                    m_GeometryStorage
                 );
             }
         }

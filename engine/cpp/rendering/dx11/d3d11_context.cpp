@@ -534,17 +534,31 @@ namespace xpe {
 
                 for (auto& color : renderTarget.Colors)
                 {
+                    delete color;
+
+                    color = new Texture();
                     color->Width = width;
                     color->Height = height;
-                    color->Instance = nullptr;
+                    color->Format = eTextureFormat::RGBA8;
+                    color->InitializeData = false;
+                    color->EnableRenderTarget = true;
+                    color->Init();
                 }
 
                 auto& depthStencil = renderTarget.DepthStencil;
                 if (depthStencil->Width != 0 && depthStencil->Height != 0)
                 {
+                    delete depthStencil;
+
+                    depthStencil = new Texture();
+                    depthStencil->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
                     depthStencil->Width = width;
                     depthStencil->Height = height;
+                    depthStencil->Format = eTextureFormat::R32_TYPELESS;
+                    depthStencil->InitializeData = false;
+                    depthStencil->EnableRenderTarget = true;
                     depthStencil->Instance = nullptr;
+                    depthStencil->Init();
                 }
 
                 CreateRenderTarget(renderTarget);

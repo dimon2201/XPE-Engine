@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/draw/drawer.h>
+#include <rendering/draw/render_pass.h>
 #include <rendering/buffers/transform_buffer.h>
 #include <rendering/buffers/text_buffer.h>
 
@@ -21,25 +21,23 @@ namespace xpe {
         class Font;
         class TextBuffer;
 
-        class ENGINE_API TextDrawer : public Drawer
+        class ENGINE_API TextRenderPass : public RenderPass
         {
 
         public:
-
-            TextDrawer(
-                CameraBuffer* cameraBuffer,
-                Shader* shader,
-                RenderTarget* renderTarget,
+            TextRenderPass(
+                const core::vector<RenderPassBinding>& bindings,
+                RenderTarget* output,
                 GeometryStorage* geometryStorage
             );
-
-            ~TextDrawer() override;
+            ~TextRenderPass() override;
 
         protected:
             void DrawText(const Transform& transform, const string& text, const Ref<Font>& font);
 
             TextBuffer m_TextBuffer;
             TransformBuffer m_TransformBuffer;
+
         };
 
     }

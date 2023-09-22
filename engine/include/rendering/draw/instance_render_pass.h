@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/draw/drawer.h>
+#include <rendering/draw/render_pass.h>
 #include <rendering/buffers/instance_buffer.h>
 #include <rendering/buffers/transform_buffer.h>
 #include <rendering/storages/geometry_storage.h>
@@ -23,24 +23,19 @@ namespace xpe {
         class PointLightBuffer;
         class SpotLightBuffer;
 
-        class ENGINE_API InstanceDrawer : public Drawer
+        class ENGINE_API InstanceRenderPass : public RenderPass
         {
 
         public:
-            InstanceDrawer(
-                CameraBuffer* cameraBuffer,
-                Shader* shader,
-                RenderTarget* renderTarget,
-                GeometryStorage* geometryStorage,
-                MaterialStorage* materialStorage,
-                DirectLightBuffer* directLightBuffer,
-                PointLightBuffer* pointLightBuffer,
-                SpotLightBuffer* spotLightBuffer
+            InstanceRenderPass(
+                const core::vector<RenderPassBinding>& bindings,
+                RenderTarget* output,
+                MaterialStorage* materialStorage
             );
+            ~InstanceRenderPass() override;
 
-            ~InstanceDrawer() override;
-
-            void Draw(Scene* scene) override;
+            virtual void Update(Scene* scene) override final;
+            virtual void Draw(Scene* scene) override final;
 
         private:
             void DrawGeometryVertexed(const Ref<GeometryVertexed<Vertex3D>>& geometry, const MaterialInstance& instance);
@@ -58,6 +53,7 @@ namespace xpe {
         protected:
             InstanceBuffer m_InstanceBuffer;
             TransformBuffer m_TransformBuffer;
+
         };
 
     }
