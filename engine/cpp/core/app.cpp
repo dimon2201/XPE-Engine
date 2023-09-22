@@ -282,10 +282,10 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                         { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
-                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
-                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->DirectLightBuffer },
-                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->PointLightBuffer },
-                        { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->SpotLightBuffer },
+                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->CameraBuffer },
+                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->DirectLightBuffer },
+                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->PointLightBuffer },
+                        { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->SpotLightBuffer },
                 };
                 m_Renderer->AddRenderPass<InstanceRenderPass>(
                     bindings,
@@ -302,10 +302,10 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
-                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->DirectLightBuffer },
-                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->PointLightBuffer },
-                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, (core::u32)-1, (GPUResource*)m_Renderer->SpotLightBuffer },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->CameraBuffer },
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->DirectLightBuffer },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->PointLightBuffer },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->SpotLightBuffer },
                 };
                 m_Renderer->AddRenderPass<SkeletalAnimRenderPass>(
                     bindings,
@@ -324,8 +324,8 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
-                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Canvas->GetBuffer() }
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->CameraBuffer },
+                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Canvas->GetBuffer() }
                 };
                 m_Renderer->AddRenderPass<Text2DRenderPass>(
                     bindings,
@@ -342,8 +342,8 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, (GPUResource*)shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Renderer->CameraBuffer },
-                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, (core::u32)-1, (GPUResource*)m_Canvas->GetBuffer() }
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Renderer->CameraBuffer },
+                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, (GPUResource*)m_Canvas->GetBuffer() }
                 };
                 m_Renderer->AddRenderPass<Text3DRenderPass>(
                     bindings,
