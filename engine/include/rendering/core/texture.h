@@ -69,7 +69,6 @@ namespace xpe {
                 TEXTURE_2D,
                 TEXTURE_2D_DEPTH_STENCIL,
                 TEXTURE_2D_ARRAY,
-                TEXTURE_2D_DEPTH_STENCIL,
                 TEXTURE_3D,
                 TEXTURE_CUBE,
 

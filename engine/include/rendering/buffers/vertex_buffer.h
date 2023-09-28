@@ -106,7 +106,7 @@ namespace xpe {
         template<typename T>
         void VertexBuffer<T>::FlushVertices(const vector<T> &vertices)
         {
-            if (sizeof(vertices) > ByteSize()) {
+            if (sizeof(vertices) > GetByteSize()) {
                 Resize(vertices.size());
             }
             memcpy((void*)List.data(), (const void*)vertices.data(), sizeof(vertices));

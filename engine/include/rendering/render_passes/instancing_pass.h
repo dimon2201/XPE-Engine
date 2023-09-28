@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/draw/render_pass.h>
+#include <rendering/render_passes/render_pass.h>
 #include <rendering/buffers/instance_buffer.h>
 #include <rendering/buffers/transform_buffer.h>
 #include <rendering/storages/geometry_storage.h>
@@ -19,20 +19,16 @@ namespace xpe {
         using namespace math;
         using namespace ecs;
 
-        class DirectLightBuffer;
-        class PointLightBuffer;
-        class SpotLightBuffer;
-
-        class ENGINE_API InstanceRenderPass : public RenderPass
+        class ENGINE_API InstancingPass : public RenderPass
         {
 
         public:
-            InstanceRenderPass(
+            InstancingPass(
                 const core::vector<RenderPassBinding>& bindings,
                 RenderTarget* output,
                 MaterialStorage* materialStorage
             );
-            ~InstanceRenderPass() override;
+            ~InstancingPass() override;
 
             virtual void Update(Scene* scene) override final;
             virtual void Draw(Scene* scene) override final;

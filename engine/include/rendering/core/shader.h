@@ -33,7 +33,7 @@ namespace xpe {
             ShaderStage(const string& id, eShaderType type) : Type(type), ID(id) {}
         };
 
-        struct ENGINE_API Shader
+        struct ENGINE_API Shader : public GPUResource
         {
             string ID = "Untitled";
             vector<ShaderStage*> Stages;

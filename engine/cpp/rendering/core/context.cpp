@@ -217,10 +217,6 @@ namespace xpe {
                         CreateTexture2DArray(texture);
                         break;
 
-                    case Texture::eType::TEXTURE_2D_DEPTH_STENCIL:
-                        CreateTextureDepthStencil(texture);
-                        break;
-
                     case Texture::eType::TEXTURE_3D:
                         CreateTexture3D(texture);
                         break;
@@ -397,7 +393,7 @@ namespace xpe {
             {
                 FreeRenderTargetColors(renderTarget.Colors);
                 FreeRenderTargetColorViews(renderTarget.ColorViews);
-                FreeRenderTargetDepth(*renderTarget.DepthStencil);
+                FreeRenderTargetDepth(renderTarget.DepthStencil);
                 FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
             }
 
@@ -405,13 +401,17 @@ namespace xpe {
             {
                 for (auto& color : colors)
                 {
-                    FreeTexture(*color);
+                    if (color != nullptr) {
+                        FreeTexture(*color);
+                    }
                 }
             }
 
-            void FreeRenderTargetDepth(Texture& depth)
+            void FreeRenderTargetDepth(Texture* depth)
             {
-                FreeTexture(depth);
+                if (depth != nullptr) {
+                    FreeTexture(*depth);
+                }
             }
 
             void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport>& viewports)

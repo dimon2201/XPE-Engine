@@ -26,6 +26,7 @@ namespace xpe {
             inline void SetClearColor(const glm::vec4& color) { m_ClearColor = color; }
             inline glm::vec2 GetDimension() { return { m_ViewportBuffer[m_BoundTargetIndex]->Width, m_ViewportBuffer[m_BoundTargetIndex]->Height }; }
             inline ViewportBuffer* GetBuffer() { return &m_ViewportBuffer; }
+            inline Viewport* GetViewport(u32 index) { return GetBuffer()->Get(index); }
 
         private:
             void CreateRenderTarget(int width, int height);

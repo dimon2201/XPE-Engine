@@ -32,7 +32,7 @@ namespace xpe {
             ENGINE_API void FreeRenderTarget(RenderTarget& renderTarget);
             ENGINE_API void FreeRenderTargetColors(vector<Texture*>& colors);
             ENGINE_API void FreeRenderTargetColorViews(vector<void*>& colorViews);
-            ENGINE_API void FreeRenderTargetDepth(Texture& depth);
+            ENGINE_API void FreeRenderTargetDepth(Texture* depth);
             ENGINE_API void FreeRenderTargetDepthView(void** depthView);
             ENGINE_API void ResizeRenderTarget(RenderTarget& renderTarget, int width, int height);
 
