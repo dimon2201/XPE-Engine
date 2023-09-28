@@ -1,5 +1,4 @@
-#include <rendering/draw/instance_render_pass.h>
-#include <rendering/buffers/light_buffers.h>
+#include <rendering/render_passes/instancing_pass.h>
 
 #include <ecs/scenes.hpp>
 
@@ -7,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        InstanceRenderPass::InstanceRenderPass(
+        InstancingPass::InstancingPass(
             const core::vector<RenderPassBinding>& bindings,
             RenderTarget* output,
             MaterialStorage* materialStorage
@@ -23,15 +22,15 @@ namespace xpe {
             context::CreatePipeline(*m_Pipeline);
         }
 
-        InstanceRenderPass::~InstanceRenderPass()
+        InstancingPass::~InstancingPass()
         {
         }
 
-        void InstanceRenderPass::Update(Scene* scene)
+        void InstancingPass::Update(Scene* scene)
         {
         }
 
-        void InstanceRenderPass::Draw(Scene* scene)
+        void InstancingPass::Draw(Scene* scene)
         {
             scene->EachComponent<GeometryVertexed3DComponent>([this](GeometryVertexed3DComponent* component)
             {
@@ -74,7 +73,7 @@ namespace xpe {
             });
         }
 
-        void InstanceRenderPass::DrawGeometryVertexed(
+        void InstancingPass::DrawGeometryVertexed(
                 const Ref<GeometryVertexed<Vertex3D>> &geometry,
                 const MaterialInstance& materialInstance
         ) {
@@ -102,7 +101,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceRenderPass::DrawGeometryIndexed(
+        void InstancingPass::DrawGeometryIndexed(
                 const Ref<GeometryIndexed<Vertex3D>> &geometry,
                 const MaterialInstance& materialInstance
         ) {
@@ -131,7 +130,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceRenderPass::DrawGeometryVertexedList(
+        void InstancingPass::DrawGeometryVertexedList(
                 const Ref<GeometryVertexed<Vertex3D>> &geometry,
                 const vector<MaterialInstance>& instances
         ) {
@@ -164,7 +163,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceRenderPass::DrawGeometryIndexedList(
+        void InstancingPass::DrawGeometryIndexedList(
                 const Ref<GeometryIndexed<Vertex3D>> &geometry,
                 const vector<MaterialInstance>& instances
         ) {
@@ -198,7 +197,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceRenderPass::DrawMesh(const Ref<Mesh> &mesh, const Transform &transform)
+        void InstancingPass::DrawMesh(const Ref<Mesh> &mesh, const Transform &transform)
         {
             if (mesh.Get() == nullptr) return;
 
@@ -225,7 +224,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceRenderPass::DrawMeshList(const Ref<Mesh> &mesh, const vector<Transform> &transforms)
+        void InstancingPass::DrawMeshList(const Ref<Mesh> &mesh, const vector<Transform> &transforms)
         {
             if (mesh.Get() == nullptr) return;
 
@@ -255,7 +254,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceRenderPass::DrawModel(const Ref<Model3D> &model, const Transform &transform)
+        void InstancingPass::DrawModel(const Ref<Model3D> &model, const Transform &transform)
         {
             if (model.Get() == nullptr) return;
 
@@ -285,7 +284,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceRenderPass::DrawModelList(const Ref<Model3D> &model, const vector<Transform> &transforms)
+        void InstancingPass::DrawModelList(const Ref<Model3D> &model, const vector<Transform> &transforms)
         {
             if (model.Get() == nullptr) return;
 

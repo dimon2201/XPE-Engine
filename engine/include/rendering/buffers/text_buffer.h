@@ -23,9 +23,7 @@ namespace xpe {
 
         struct ENGINE_API TextBuffer : public StructureBuffer<Character>
         {
-
             TextBuffer(usize count = 0) : StructureBuffer<Character>(count, K_SLOT_TEXT_CHARS) {}
-
         };
 
     }

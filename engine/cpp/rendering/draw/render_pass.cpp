@@ -1,4 +1,4 @@
-#include <rendering/draw/render_pass.h>
+#include <rendering/render_passes/render_pass.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <geometry/vertices.h>
 

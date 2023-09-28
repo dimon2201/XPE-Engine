@@ -1,4 +1,4 @@
-#include <rendering/draw/skybox_render_pass.h>
+#include <rendering/render_passes/skybox_pass.h>
 
 #include <rendering/storages/geometry_storage.h>
 
@@ -9,7 +9,7 @@ namespace xpe {
 
     namespace render {
 
-        SkyboxRenderPass::SkyboxRenderPass(
+        SkyboxPass::SkyboxPass(
             const core::vector<RenderPassBinding>& bindings,
             RenderTarget* output,
             GeometryStorage* geometryStorage
@@ -24,9 +24,9 @@ namespace xpe {
             m_Pipeline->VertexBuffer = &cube->Vertices;
             m_Pipeline->IndexBuffer = &cube->Indices;
 
-//            context::CreateSampler(m_Sampler);
-//            m_Pipeline->Textures.emplace_back(nullptr);
-//            m_Pipeline->Samplers.emplace_back(&m_Sampler);
+            context::CreateSampler(m_Sampler);
+            m_Pipeline->Textures.emplace_back(nullptr);
+            m_Pipeline->Samplers.emplace_back(&m_Sampler);
 
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
@@ -35,16 +35,16 @@ namespace xpe {
             context::CreatePipeline(*m_Pipeline);
         }
 
-        SkyboxRenderPass::~SkyboxRenderPass()
+        SkyboxPass::~SkyboxPass()
         {
             context::FreeSampler(m_Sampler);
         }
 
-        void SkyboxRenderPass::Update(Scene* scene)
+        void SkyboxPass::Update(Scene* scene)
         {
         }
 
-        void SkyboxRenderPass::Draw(Scene* scene)
+        void SkyboxPass::Draw(Scene* scene)
         {
             Skybox* skybox = scene->GetGlobal<Skybox>();
             m_Pipeline->Textures[0] = skybox->CubeTexture.Get();

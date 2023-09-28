@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/draw/render_pass.h>
+#include <rendering/render_passes/render_pass.h>
 
 #include <rendering/buffers/vertex_buffer.h>
 #include <rendering/buffers/index_buffer.h>
@@ -17,16 +17,16 @@ namespace xpe {
 
         class GeometryStorage;
 
-        class ENGINE_API SkyboxRenderPass : public RenderPass
+        class ENGINE_API SkyboxPass : public RenderPass
         {
 
         public:
-            SkyboxRenderPass(
+            SkyboxPass(
                 const core::vector<RenderPassBinding>& bindings,
                 RenderTarget* output,
                 GeometryStorage* geometryStorage
             );
-            ~SkyboxRenderPass() override;
+            ~SkyboxPass() override;
 
             virtual void Update(Scene* scene) override;
             virtual void Draw(Scene* scene) override;

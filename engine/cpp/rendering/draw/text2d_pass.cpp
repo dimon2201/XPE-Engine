@@ -1,4 +1,4 @@
-#include <rendering/draw/text3d_render_pass.h>
+#include <rendering/render_passes/text2d_pass.h>
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/font/font.hpp>
 
@@ -8,23 +8,24 @@ namespace xpe {
 
     namespace render {
 
-        Text3DRenderPass::Text3DRenderPass(
+        Text2DPass::Text2DPass(
             const core::vector<RenderPassBinding>& bindings,
             RenderTarget* output,
             GeometryStorage* geometryStorage
-        ) : TextRenderPass(bindings, output, geometryStorage)
+        ) : TextPass(bindings, output, geometryStorage)
+        {
+            context::CreatePipeline(*m_Pipeline);
+        }
+
+        Text2DPass::~Text2DPass() {}
+
+        void Text2DPass::Update(Scene* scene)
         {
         }
 
-        Text3DRenderPass::~Text3DRenderPass() {}
-
-        void Text3DRenderPass::Update(Scene* scene)
+        void Text2DPass::Draw(Scene *scene)
         {
-        }
-
-        void Text3DRenderPass::Draw(Scene* scene)
-        {
-            scene->EachComponent<Text3DComponent>([this](Text3DComponent* component)
+            scene->EachComponent<Text2DComponent>([this](Text2DComponent* component)
             {
                 DrawText(component->Transform, component->Text, component->Font);
             });

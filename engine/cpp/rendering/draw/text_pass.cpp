@@ -1,4 +1,4 @@
-#include <rendering/draw/text_render_pass.h>
+#include <rendering/render_passes/text_pass.h>
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/font/font.hpp>
 
@@ -8,7 +8,7 @@ namespace xpe {
 
     namespace render {
 
-        TextRenderPass::TextRenderPass(
+        TextPass::TextPass(
             const core::vector<RenderPassBinding>& bindings,
             RenderTarget* output,
             GeometryStorage* geometryStorage
@@ -29,9 +29,9 @@ namespace xpe {
             m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
         }
 
-        TextRenderPass::~TextRenderPass() {}
+        TextPass::~TextPass() {}
 
-        void TextRenderPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)
+        void TextPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)
         {
             if (text.empty()) return;
             

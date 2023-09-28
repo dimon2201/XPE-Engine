@@ -1,7 +1,6 @@
 #include <rendering/renderer.h>
-#include <rendering/draw/render_pass.h>
+#include <rendering/render_passes/render_pass.h>
 #include <rendering/monitor.h>
-#include <rendering/draw/drawer.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
 #include <rendering/shadow/shadow.h>
@@ -61,11 +60,6 @@ namespace xpe {
         void Renderer::Render(Scene* scene)
         {
             FlushLights(scene);
-//            for (Drawer* drawer : m_Drawers) {
-//                drawer->Begin();
-//                drawer->Draw(scene);
-//                drawer->End();
-//            }
             for (RenderPass* rp : m_RenderPasses)
             {
                 rp->Update(scene);
