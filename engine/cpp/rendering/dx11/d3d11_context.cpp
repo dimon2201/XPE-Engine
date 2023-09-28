@@ -224,7 +224,7 @@ namespace xpe {
 
                 if (buffer.InitialData != nullptr)
                 {
-                    usize bufferSize = buffer.ByteSize();
+                    usize bufferSize = buffer.GetByteSize();
                     initialData = allocT(D3D11_SUBRESOURCE_DATA, bufferSize);
                     initialData->pSysMem = buffer.InitialData;
                     initialData->SysMemPitch = bufferSize;
@@ -425,22 +425,15 @@ namespace xpe {
                     auto& color = renderTarget.Colors[i];
                     auto& colorView = renderTarget.ColorViews[i];
 
-                    if (color.Instance == nullptr)
-                    {
-                        color.InitializeData = false;
-                        color.EnableRenderTarget = true;
-                        CreateTexture(color);
-                    }
-
                     if (colorView == nullptr)
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
-                        desc.Format = s_TextureFormatTable.at(color.Format);
+                        desc.Format = s_TextureFormatTable.at(color->Format);
                         desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateRenderTargetView(
-                                (ID3D11Resource*) color.Instance,
+                                (ID3D11Resource*) color->Instance,
                                 &desc,
                                 (ID3D11RenderTargetView**) &colorView
                         );
@@ -451,15 +444,8 @@ namespace xpe {
                 auto& depth = renderTarget.DepthStencil;
                 auto& depthView = renderTarget.DepthStencilView;
 
-                if (depth.Width != 0 && depth.Height != 0)
+                if (depth->Width != 0 && depth->Height != 0)
                 {
-                    if (depth.Instance == nullptr)
-                    {
-                        depth.InitializeData = false;
-                        depth.EnableRenderTarget = true;
-                        CreateTextureDepthStencil(depth);
-                    }
-
                     if (depthView == nullptr)
                     {
                         D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
@@ -468,7 +454,7 @@ namespace xpe {
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateDepthStencilView(
-                                (ID3D11Resource*) depth.Instance,
+                                (ID3D11Resource*) depth->Instance,
                                 &desc,
                                 (ID3D11DepthStencilView**) &depthView
                         );
@@ -548,17 +534,31 @@ namespace xpe {
 
                 for (auto& color : renderTarget.Colors)
                 {
-                    color.Width = width;
-                    color.Height = height;
-                    color.Instance = nullptr;
+                    delete color;
+
+                    color = new Texture();
+                    color->Width = width;
+                    color->Height = height;
+                    color->Format = eTextureFormat::RGBA8;
+                    color->InitializeData = false;
+                    color->EnableRenderTarget = true;
+                    color->Init();
                 }
 
                 auto& depthStencil = renderTarget.DepthStencil;
-                if (depthStencil.Width != 0 && depthStencil.Height != 0)
+                if (depthStencil->Width != 0 && depthStencil->Height != 0)
                 {
-                    depthStencil.Width = width;
-                    depthStencil.Height = height;
-                    depthStencil.Instance = nullptr;
+                    delete depthStencil;
+
+                    depthStencil = new Texture();
+                    depthStencil->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+                    depthStencil->Width = width;
+                    depthStencil->Height = height;
+                    depthStencil->Format = eTextureFormat::R32_TYPELESS;
+                    depthStencil->InitializeData = false;
+                    depthStencil->EnableRenderTarget = true;
+                    depthStencil->Instance = nullptr;
+                    depthStencil->Init();
                 }
 
                 CreateRenderTarget(renderTarget);
@@ -917,6 +917,7 @@ namespace xpe {
             void CreateTextureDepthStencil(Texture &texture)
             {
                 D3D11_TEXTURE2D_DESC texDesc = {};
+                D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
 
                 texDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
                 texDesc.Format = s_TextureFormatTable.at(texture.Format);
@@ -928,6 +929,14 @@ namespace xpe {
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
 
                 s_Device->CreateTexture2D(&texDesc, nullptr, (ID3D11Texture2D**)&texture.Instance);
+                LogDebugMessage();
+
+                srv.Format = DXGI_FORMAT_R32_FLOAT;
+                srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+                srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
+                srv.Texture2D.MipLevels = 1;
+
+                s_Device->CreateShaderResourceView((ID3D11Texture2D*)texture.Instance, &srv, (ID3D11ShaderResourceView**)&texture.ViewInstance);
                 LogDebugMessage();
             }
 
@@ -1047,9 +1056,10 @@ namespace xpe {
             void CreateBuffer(Buffer& buffer)
             {
                 eBufferType bufferType = buffer.Type;
-                usize byteSize = buffer.ByteSize();
+                usize byteSize = buffer.GetByteSize();
 
                 D3D11_BUFFER_DESC bufferDesc = {};
+                memset(&bufferDesc, 0, sizeof(D3D11_BUFFER_DESC));
 
                 bufferDesc.ByteWidth = (UINT)byteSize;
                 bufferDesc.Usage = s_BufferUsages.at(buffer.Usage);
@@ -1438,5 +1448,27 @@ namespace xpe {
     }
 
 }
+
+/*
+ * D3D11 Debug
+ * ID3D11Debug *d3dDebug = nullptr;
+    if (SUCCEEDED(s_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&d3dDebug)))
+    {
+        ID3D11InfoQueue *d3dInfoQueue = nullptr;
+        if (SUCCEEDED(s_Device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&d3dInfoQueue)))
+        {
+            auto n = d3dInfoQueue->GetNumStoredMessages();
+            for (int i = 0; i < n; i++)
+            {
+                SIZE_T msgsz = 0;
+                d3dInfoQueue->GetMessageA(0, nullptr, &msgsz);
+                D3D11_MESSAGE msg = {};
+                d3dInfoQueue->GetMessageA(0, &msg, &msgsz);
+                LogInfo(msg.pDescription);
+            }
+        }
+        d3dDebug->Release();
+    }
+ */
 
 #endif // DX11

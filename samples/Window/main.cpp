@@ -105,7 +105,7 @@ public:
             m_MainScene->Skybox->LeftResFilepath = "res/skybox/left.jpg";
             m_MainScene->Skybox->TopResFilepath = "res/skybox/top.jpg";
             m_MainScene->Skybox->BottomResFilepath = "res/skybox/bottom.jpg";
-            
+
             TextureCubeFilepath skyboxPath;
             skyboxPath.Name = m_MainScene->Skybox->GetTag();
             skyboxPath.FrontFilepath = m_MainScene->Skybox->FrontResFilepath;
@@ -270,18 +270,31 @@ public:
             m_WinterGirl.AddComponent<SkeletalAnimationComponent>(winterGirlAnimation);
         }
 
+        // setup cube
+        {
+            m_Cube = { "Cube", m_MainScene };
+
+            GeometryIndexed3DComponent cube("Cube");
+            cube.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Cube", Cube());
+            cube.Instance.Transform.Position = { 10, -10, 10 };
+            cube.Instance.Transform.Scale = { 5, 5, 5 };
+            cube.Instance.Material = m_MaterialStorage->Add("Cube", Material());
+
+            m_Cube.AddComponent<GeometryIndexed3DComponent>(cube);
+        }
+
         // setup audio
         {
             //Set listener component
             {
                 m_Listener = { "Listener", m_MainScene };
-            
+
                 auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
 
                 ListenerComponent component("Listener");
 
                 component.Position = &camera.Component.Position;
-                component.Up = camera.Component.Up; 
+                component.Up = camera.Component.Up;
                 component.Look = &camera.Component.Front;
 
                 m_Listener.AddComponent<ListenerComponent>(component);
@@ -361,7 +374,7 @@ public:
                 SourceAudioComponent component("Test");
 
                 component.Position = { -5.0f, 2.0f, 0.0f };
-                component.Looping = true; //(todo) Need do some logic to looping the stream audio 
+                component.Looping = true; //(todo) Need do some logic to looping the stream audio
                 component.Gain = 0.2f;
                 component.RefDistance = 10.0f;
                 component.MaxDistance = 100.0f;
@@ -566,6 +579,7 @@ private:
     Entity m_Text3D;
     Entity m_Plane;
     Entity m_WinterGirl;
+    Entity m_Cube;
     Entity m_Listener;
     Entity m_BackgroundAudio;
 

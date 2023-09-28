@@ -89,7 +89,7 @@ namespace xpe {
                 Recreate(size);
             }
             else {
-                context::CopyBuffer(*this, List.data(), ByteSize());
+                context::CopyBuffer(*this, List.data(), GetByteSize());
             }
         }
 
@@ -122,7 +122,7 @@ namespace xpe {
             InitialData = List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
-            context::CopyBuffer(*this, List.data(), ByteSize());
+            context::CopyBuffer(*this, List.data(), GetByteSize());
         }
 
         template<typename T>

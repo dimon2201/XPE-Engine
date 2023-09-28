@@ -9,9 +9,9 @@
 #include <rendering/renderer.h>
 
 #include <rendering/draw/canvas.hpp>
-#include <rendering/draw/instance_drawer.h>
+#include <rendering/draw/instance_render_pass.h>
 #include <rendering/draw/font_drawer.h>
-#include <rendering/draw/skybox_drawer.h>
+#include <rendering/draw/skybox_render_pass.h>
 
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/storages/texture_storage.h>

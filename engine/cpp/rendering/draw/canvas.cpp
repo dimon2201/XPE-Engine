@@ -58,18 +58,25 @@ namespace xpe {
 
         void Canvas::CreateRenderTarget(int width, int height)
         {
-            Texture color;
-            color.Width = width;
-            color.Height = height;
-            color.Format = eTextureFormat::RGBA16;
+            Texture* color = new Texture();
+            color->Width = width;
+            color->Height = height;
+            color->Format = eTextureFormat::RGBA8;
+            color->InitializeData = false;
+            color->EnableRenderTarget = true;
+            color->Init();
 
-            Texture depth;
-            depth.Width = width;
-            depth.Height = height;
-            depth.Format = eTextureFormat::R32_TYPELESS;
+            Texture* depth = new Texture();
+            depth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            depth->Width = width;
+            depth->Height = height;
+            depth->Format = eTextureFormat::R32_TYPELESS;
+            depth->InitializeData = false;
+            depth->EnableRenderTarget = true;
+            depth->Init();
 
             m_RenderTarget.Create(
-                vector<Texture> { color },
+                vector<Texture*> { color },
                 depth,
                 m_ViewportBuffer.GetList()
             );

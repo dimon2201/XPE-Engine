@@ -1,5 +1,4 @@
-#include <rendering/draw/skeletal_anim_drawer.h>
-#include <rendering/buffers/light_buffers.h>
+#include <rendering/draw/skeletal_render_pass.h>
 
 #include <ecs/scenes.hpp>
 
@@ -7,17 +6,15 @@ namespace xpe {
 
     namespace render {
 
-        SkeletalAnimDrawer::SkeletalAnimDrawer(
-            Shader* shader,
-            RenderTarget* renderTarget,
-            MaterialStorage* materialStorage,
-            SkeletStorage* skeletStorage,
-            SkinStorage* skinStorage,
-            const vector<Buffer*>& VSBuffers,
-            const vector<Buffer*>& PSBuffers
-        ) : Drawer(shader, renderTarget, VSBuffers, PSBuffers),
+        SkeletalAnimRenderPass::SkeletalAnimRenderPass(
+                const core::vector<RenderPassBinding>& bindings,
+                RenderTarget* output,
+                MaterialStorage* materialStorage,
+                SkeletStorage* skeletonStorage,
+                SkinStorage* skinStorage
+        ) : RenderPass(bindings, output),
             m_MaterialStorage(materialStorage),
-            m_SkeletStorage(skeletStorage),
+            m_SkeletStorage(skeletonStorage),
             m_SkinStorage(skinStorage)
         {
             m_InstanceBuffer.Reserve(1000);
@@ -27,12 +24,18 @@ namespace xpe {
 
             materialStorage->BindPipeline(*m_Pipeline);
 
-            Init();
+            context::CreatePipeline(*m_Pipeline);
         }
 
-        SkeletalAnimDrawer::~SkeletalAnimDrawer() {}
+        SkeletalAnimRenderPass::~SkeletalAnimRenderPass()
+        {
+        }
 
-        void SkeletalAnimDrawer::Draw(Scene* scene)
+        void SkeletalAnimRenderPass::Update(Scene* scene)
+        {
+        }
+
+        void SkeletalAnimRenderPass::Draw(Scene* scene)
         {
             scene->EachComponent<SkinComponent>([this](SkinComponent* component)
             {
@@ -55,7 +58,7 @@ namespace xpe {
             });
         }
 
-        void SkeletalAnimDrawer::DrawSkin(const Ref<Skin> &skin, const Ref<Skelet>& skelet, const Transform &transform)
+        void SkeletalAnimRenderPass::DrawSkin(const Ref<Skin> &skin, const Ref<Skelet>& skelet, const Transform &transform)
         {
             if (skin.Get() == nullptr) return;
 
@@ -90,7 +93,7 @@ namespace xpe {
             }
         }
 
-        void SkeletalAnimDrawer::DrawSkinList(const Ref<Skin> &skin, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
+        void SkeletalAnimRenderPass::DrawSkinList(const Ref<Skin> &skin, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
         {
             if (skin.Get() == nullptr) return;
 
@@ -128,7 +131,7 @@ namespace xpe {
             }
         }
 
-        void SkeletalAnimDrawer::DrawSkinModel(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const Transform &transform)
+        void SkeletalAnimRenderPass::DrawSkinModel(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const Transform &transform)
         {
             if (model.Get() == nullptr) return;
 
@@ -166,7 +169,7 @@ namespace xpe {
             }
         }
 
-        void SkeletalAnimDrawer::DrawSkinModelList(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
+        void SkeletalAnimRenderPass::DrawSkinModelList(const Ref<SkinModel> &model, const Ref<Skelet>& skelet, const vector<Transform> &transforms)
         {
             if (model.Get() == nullptr) return;
 
@@ -209,7 +212,6 @@ namespace xpe {
                 context::UnbindVSBuffer(skelet->BoneBuffer);
             }
         }
-
     }
 
 }

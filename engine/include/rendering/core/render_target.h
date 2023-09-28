@@ -11,21 +11,18 @@ namespace xpe {
         {
             vector<void*> ColorViews;
             void* DepthStencilView = nullptr;
-            vector<Texture> Colors;
-            Texture DepthStencil;
+            vector<Texture*> Colors;
+            Texture* DepthStencil;
             vector<Viewport> Viewports;
 
-            RenderTarget(const vector<Texture>& colors);
-            RenderTarget(const vector<Texture>& colors, const Texture& depthStencil);
+            RenderTarget(const vector<Texture*>& colors, const Viewport& viewport);
+            RenderTarget(const vector<Texture*>& colors, const vector<Viewport>& viewports);
 
-            RenderTarget(const vector<Texture>& colors, const Viewport& viewport);
-            RenderTarget(const vector<Texture>& colors, const vector<Viewport>& viewports);
+            RenderTarget(const Texture* depthStencil, const Viewport& viewport);
+            RenderTarget(const Texture* depthStencil, const vector<Viewport>& viewports);
 
-            RenderTarget(const Texture& depthStencil, const Viewport& viewport);
-            RenderTarget(const Texture& depthStencil, const vector<Viewport>& viewports);
-
-            RenderTarget(const vector<Texture>& colors, const Texture& depthStencil, const Viewport& viewport);
-            RenderTarget(const vector<Texture>& colors, const Texture& depthStencil, const vector<Viewport>& viewports);
+            RenderTarget(const vector<Texture*>& colors, const Texture* depthStencil, const Viewport& viewport);
+            RenderTarget(const vector<Texture*>& colors, const Texture* depthStencil, const vector<Viewport>& viewports);
 
             RenderTarget(const vector<void*>& colorViews, const Viewport& viewport);
             RenderTarget(const vector<void*>& colorViews, const vector<Viewport>& viewports);

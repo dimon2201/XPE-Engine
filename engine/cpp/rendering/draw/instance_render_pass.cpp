@@ -1,4 +1,5 @@
-#include <rendering/draw/instance_drawer.h>
+#include <rendering/draw/instance_render_pass.h>
+#include <rendering/buffers/light_buffers.h>
 
 #include <ecs/scenes.hpp>
 
@@ -6,13 +7,11 @@ namespace xpe {
 
     namespace render {
 
-        InstanceDrawer::InstanceDrawer(
-            Shader* shader,
-            RenderTarget* renderTarget,
-            MaterialStorage* materialStorage,
-            const vector<Buffer*>& VSBuffers,
-            const vector<Buffer*>& PSBuffers
-        ) : Drawer(shader, renderTarget, VSBuffers, PSBuffers)
+        InstanceRenderPass::InstanceRenderPass(
+            const core::vector<RenderPassBinding>& bindings,
+            RenderTarget* output,
+            MaterialStorage* materialStorage
+        ) : RenderPass(bindings, output)
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);
@@ -21,12 +20,18 @@ namespace xpe {
 
             materialStorage->BindPipeline(*m_Pipeline);
 
-            Init();
+            context::CreatePipeline(*m_Pipeline);
         }
 
-        InstanceDrawer::~InstanceDrawer() {}
+        InstanceRenderPass::~InstanceRenderPass()
+        {
+        }
 
-        void InstanceDrawer::Draw(Scene* scene)
+        void InstanceRenderPass::Update(Scene* scene)
+        {
+        }
+
+        void InstanceRenderPass::Draw(Scene* scene)
         {
             scene->EachComponent<GeometryVertexed3DComponent>([this](GeometryVertexed3DComponent* component)
             {
@@ -69,7 +74,7 @@ namespace xpe {
             });
         }
 
-        void InstanceDrawer::DrawGeometryVertexed(
+        void InstanceRenderPass::DrawGeometryVertexed(
                 const Ref<GeometryVertexed<Vertex3D>> &geometry,
                 const MaterialInstance& materialInstance
         ) {
@@ -97,7 +102,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceDrawer::DrawGeometryIndexed(
+        void InstanceRenderPass::DrawGeometryIndexed(
                 const Ref<GeometryIndexed<Vertex3D>> &geometry,
                 const MaterialInstance& materialInstance
         ) {
@@ -126,7 +131,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceDrawer::DrawGeometryVertexedList(
+        void InstanceRenderPass::DrawGeometryVertexedList(
                 const Ref<GeometryVertexed<Vertex3D>> &geometry,
                 const vector<MaterialInstance>& instances
         ) {
@@ -159,7 +164,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceDrawer::DrawGeometryIndexedList(
+        void InstanceRenderPass::DrawGeometryIndexedList(
                 const Ref<GeometryIndexed<Vertex3D>> &geometry,
                 const vector<MaterialInstance>& instances
         ) {
@@ -193,7 +198,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceDrawer::DrawMesh(const Ref<Mesh> &mesh, const Transform &transform)
+        void InstanceRenderPass::DrawMesh(const Ref<Mesh> &mesh, const Transform &transform)
         {
             if (mesh.Get() == nullptr) return;
 
@@ -220,7 +225,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceDrawer::DrawMeshList(const Ref<Mesh> &mesh, const vector<Transform> &transforms)
+        void InstanceRenderPass::DrawMeshList(const Ref<Mesh> &mesh, const vector<Transform> &transforms)
         {
             if (mesh.Get() == nullptr) return;
 
@@ -250,7 +255,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceDrawer::DrawModel(const Ref<Model3D> &model, const Transform &transform)
+        void InstanceRenderPass::DrawModel(const Ref<Model3D> &model, const Transform &transform)
         {
             if (model.Get() == nullptr) return;
 
@@ -280,7 +285,7 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstanceDrawer::DrawModelList(const Ref<Model3D> &model, const vector<Transform> &transforms)
+        void InstanceRenderPass::DrawModelList(const Ref<Model3D> &model, const vector<Transform> &transforms)
         {
             if (model.Get() == nullptr) return;
 
