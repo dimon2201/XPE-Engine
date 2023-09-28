@@ -9,11 +9,12 @@ namespace xpe {
 
     namespace render {
 
-        Text2DDrawer::Text2DDrawer(CameraBuffer *cameraBuffer, Shader *shader, RenderTarget* renderTarget, GeometryStorage *geometryStorage, ViewportBuffer* viewportBuffer)
-        : TextDrawer(cameraBuffer, shader, renderTarget, geometryStorage)
-        {
-            m_Pipeline->VSBuffers.emplace_back(viewportBuffer);
-        }
+        Text2DDrawer::Text2DDrawer(
+                Shader* shader, RenderTarget* renderTarget,
+                GeometryStorage* geometryStorage,
+                const vector<Buffer*>& VSBuffers,
+                const vector<Buffer*>& PSBuffers
+        ) : TextDrawer(shader, renderTarget, geometryStorage, VSBuffers, PSBuffers) {}
 
         Text2DDrawer::~Text2DDrawer() {}
 

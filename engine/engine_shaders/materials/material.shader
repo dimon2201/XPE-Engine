@@ -25,7 +25,7 @@ struct Material {
 
 StructuredBuffer<Material> Materials : K_SLOT_MATERIALS;
 
-SamplerState S_Material : register(s0);
+SamplerState S_Material    : K_SLOT_MATERIAL_SAMPLER;
 
 Texture2DArray M_Albedo    : K_SLOT_ALBEDO;
 Texture2DArray M_Bump      : K_SLOT_BUMPING;

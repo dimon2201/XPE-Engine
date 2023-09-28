@@ -5,6 +5,8 @@
 
 #include ../materials/material.shader
 
+#include ../shadow/shadow.shader
+
 #include ../pbr.shader
 #include ../lighting/direct_light.shader
 #include ../lighting/point_light.shader
@@ -14,12 +16,13 @@
 struct VSOut
 {
     float3 positionWorld : XPE_POSITION_WORLD;
-    float2 uv : XPE_UV2;
-    float3 normal : XPE_NORMAL_WORLD;  // normalized
-    float4 positionClip : SV_POSITION;
-    float3 viewPosition : XPE_VIEW_POSITION;
-    uint materialIndex : XPE_MATERIAL_INDEX;
-    float3x3 tbn : XPE_TBN;
+    float2 uv            : XPE_UV2;
+    float3 normal        : XPE_NORMAL_WORLD;
+    float4 positionClip  : SV_POSITION;
+    float3 viewPosition  : XPE_VIEW_POSITION;
+    uint materialIndex   : XPE_MATERIAL_INDEX;
+    float3x3 tbn         : XPE_TBN;
+    float3 positionDLS   : XPE_POSITION_DLS;
 };
 
 struct PSOut

@@ -1,18 +1,20 @@
 #include <rendering/draw/drawer.h>
 #include <rendering/monitor.h>
-#include <rendering/buffers/camera_buffer.h>
 
 namespace xpe {
 
     namespace render {
 
-        Drawer::Drawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget)
-        {
+        Drawer::Drawer(
+                Shader* shader, RenderTarget* renderTarget,
+                const vector<Buffer*> &VSBuffers,
+                const vector<Buffer*> &PSBuffers
+        ) {
             m_Pipeline = new Pipeline();
-            m_Pipeline->VSBuffers.emplace_back(cameraBuffer);
-            m_Pipeline->PSBuffers.emplace_back(Monitor::Get().GetBuffer());
             m_Pipeline->Shader = shader;
             m_Pipeline->RenderTarget = renderTarget;
+            m_Pipeline->VSBuffers = VSBuffers;
+            m_Pipeline->PSBuffers = PSBuffers;
             m_Pipeline->Blending.Targets[0].Enable = true;
             m_Pipeline->Blending.Targets[0].Src = eBlend::SRC_ALPHA;
             m_Pipeline->Blending.Targets[0].Dest = eBlend::INV_SRC_ALPHA;
@@ -32,11 +34,6 @@ namespace xpe {
         void Drawer::End()
         {
             context::UnbindPipeline(*m_Pipeline);
-        }
-
-        RenderTarget* Drawer::GetRenderTarget()
-        {
-            return m_Pipeline->RenderTarget;
         }
 
         void Drawer::Init()

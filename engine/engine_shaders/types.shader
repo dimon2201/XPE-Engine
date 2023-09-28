@@ -13,7 +13,10 @@
 
 // ---------- For Pixel Stage --------------- //
 
+// core
 #define K_SLOT_MONITOR                 register(t0)
+
+// materials
 #define K_SLOT_MATERIALS               register(t1)
 #define K_SLOT_ALBEDO                  register(t2)
 #define K_SLOT_BUMPING                 register(t3)
@@ -23,10 +26,23 @@
 #define K_SLOT_AO                      register(t7)
 #define K_SLOT_EMISSION                register(t8)
 
+// lights
 #define K_SLOT_DIRECT_LIGHTS           register(t9)
 #define K_SLOT_POINT_LIGHTS            register(t10)
 #define K_SLOT_SPOT_LIGHTS             register(t11)
-#define K_SLOT_ENV_LIGHTS              register(t12)
+
+// shadows
+#define K_SLOT_SHADOW_FILTER           register(t12)
+#define K_SLOT_SHADOW_MAP              register(t13)
+#define K_SLOT_SHADOW_COORDS           register(t14)
+
+// ------------ For Samplers ----------------- //
+
+// materials
+#define K_SLOT_MATERIAL_SAMPLER        register(s0)
+
+// shadows
+#define K_SLOT_SHADOW_SAMPLER          register(s1)
 
 // ---------- For Constant Buffer --------------- //
 

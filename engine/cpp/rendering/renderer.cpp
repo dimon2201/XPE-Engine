@@ -3,6 +3,7 @@
 #include <rendering/draw/drawer.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
+#include <rendering/shadow/shadow.h>
 
 #include <ecs/scenes.hpp>
 
@@ -15,6 +16,7 @@ namespace xpe {
             context::Init();
             ShaderManager::Init();
             Monitor::Init();
+            Shadow::Init();
 
             CameraBuffer = new render::CameraBuffer();
 
@@ -40,6 +42,7 @@ namespace xpe {
             }
             m_Drawers.clear();
 
+            Shadow::Free();
             Monitor::Free();
             ShaderManager::Free();
             context::Free();

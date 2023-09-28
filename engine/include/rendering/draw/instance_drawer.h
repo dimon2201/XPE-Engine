@@ -28,13 +28,11 @@ namespace xpe {
 
         public:
             InstanceDrawer(
-                CameraBuffer* cameraBuffer,
                 Shader* shader,
                 RenderTarget* renderTarget,
                 MaterialStorage* materialStorage,
-                DirectLightBuffer* directLightBuffer,
-                PointLightBuffer* pointLightBuffer,
-                SpotLightBuffer* spotLightBuffer
+                const vector<Buffer*>& VSBuffers = {},
+                const vector<Buffer*>& PSBuffers = {}
             );
 
             ~InstanceDrawer() override;

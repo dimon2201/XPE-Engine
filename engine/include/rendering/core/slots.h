@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace render {
 
-        // ---------- For Structure Buffer --------------- //
+        // ---------- For Structure Buffers --------------- //
 
         // ---------- For Vertex Stage --------------- //
 
@@ -19,7 +19,10 @@ namespace xpe {
 
         // ---------- For Pixel Stage --------------- //
 
+        // core
         const core::u32 K_SLOT_MONITOR                 = 0;
+
+        // materials
         const core::u32 K_SLOT_MATERIALS               = 1;
         const core::u32 K_SLOT_ALBEDO                  = 2;
         const core::u32 K_SLOT_BUMPING                 = 3;
@@ -29,12 +32,25 @@ namespace xpe {
         const core::u32 K_SLOT_AO                      = 7;
         const core::u32 K_SLOT_EMISSION                = 8;
 
+        // lights
         const core::u32 K_SLOT_DIRECT_LIGHTS           = 9;
         const core::u32 K_SLOT_POINT_LIGHTS            = 10;
         const core::u32 K_SLOT_SPOT_LIGHTS             = 11;
-        const core::u32 K_SLOT_ENV_LIGHTS              = 12;
 
-        // ---------- For Constant Buffer --------------- //
+        // shadows
+        const core::u32 K_SLOT_SHADOW_FILTER           = 12;
+        const core::u32 K_SLOT_SHADOW_MAP              = 13;
+        const core::u32 K_SLOT_SHADOW_COORDS           = 14;
+
+        // ---------- For Samplers --------------- //
+
+        // materials
+        const core::u32 K_SLOT_MATERIAL_SAMPLER        = 0;
+
+        // shadows
+        const core::u32 K_SLOT_SHADOW_SAMPLER          = 1;
+
+        // ---------- For Constant Buffers --------------- //
 
     }
 

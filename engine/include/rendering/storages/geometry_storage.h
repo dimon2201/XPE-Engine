@@ -2,9 +2,6 @@
 
 #include <geometry/geometries.h>
 
-#include <rendering/buffers/vertex_buffer.h>
-#include <rendering/buffers/index_buffer.h>
-
 namespace xpe {
 
     namespace render {

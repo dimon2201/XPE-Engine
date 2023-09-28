@@ -8,16 +8,14 @@ namespace xpe {
     namespace render {
 
         SkeletalAnimDrawer::SkeletalAnimDrawer(
-            CameraBuffer* cameraBuffer,
             Shader* shader,
             RenderTarget* renderTarget,
             MaterialStorage* materialStorage,
-            DirectLightBuffer* directLightBuffer,
-            PointLightBuffer* pointLightBuffer,
-            SpotLightBuffer* spotLightBuffer,
             SkeletStorage* skeletStorage,
-            SkinStorage* skinStorage
-        ) : Drawer(cameraBuffer, shader, renderTarget),
+            SkinStorage* skinStorage,
+            const vector<Buffer*>& VSBuffers,
+            const vector<Buffer*>& PSBuffers
+        ) : Drawer(shader, renderTarget, VSBuffers, PSBuffers),
             m_MaterialStorage(materialStorage),
             m_SkeletStorage(skeletStorage),
             m_SkinStorage(skinStorage)
@@ -28,10 +26,6 @@ namespace xpe {
             m_Pipeline->InputLayout.Format = SkeletalVertex::Format;
 
             materialStorage->BindPipeline(*m_Pipeline);
-
-            m_Pipeline->PSBuffers.emplace_back(directLightBuffer);
-            m_Pipeline->PSBuffers.emplace_back(pointLightBuffer);
-            m_Pipeline->PSBuffers.emplace_back(spotLightBuffer);
 
             Init();
         }

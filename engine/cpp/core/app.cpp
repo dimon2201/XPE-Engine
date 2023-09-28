@@ -16,6 +16,8 @@
 #include <rendering/draw/text3d_drawer.h>
 #include <rendering/draw/skybox_drawer.h>
 
+#include <rendering/shadow/shadow.h>
+
 #include <rendering/storages/texture_storage.h>
 #include <rendering/storages/font_storage.h>
 
@@ -207,10 +209,10 @@ namespace xpe {
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skybox_drawer.ps");
                 ShaderManager::BuildShader(shader);
                 m_Renderer->AddDrawer<SkyboxDrawer>(
-                        m_Renderer->CameraBuffer,
                         shader,
                         m_Canvas->GetRenderTarget(),
-                        m_GeometryStorage
+                        m_GeometryStorage,
+                        vector<Buffer*> { m_Renderer->CameraBuffer }
                 );
             }
             // Instance drawing for 3D
@@ -220,13 +222,19 @@ namespace xpe {
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/pbr.ps");
                 ShaderManager::BuildShader(shader);
                 m_Renderer->AddDrawer<InstanceDrawer>(
-                        m_Renderer->CameraBuffer,
                         shader,
                         m_Canvas->GetRenderTarget(),
                         m_MaterialStorage,
-                        m_Renderer->DirectLightBuffer,
-                        m_Renderer->PointLightBuffer,
-                        m_Renderer->SpotLightBuffer
+                        vector<Buffer*> {
+                            m_Renderer->CameraBuffer
+                        },
+                        vector<Buffer*> {
+                            m_Renderer->DirectLightBuffer,
+                            m_Renderer->PointLightBuffer,
+                            m_Renderer->SpotLightBuffer,
+                            Shadow::Get().GetBuffer(),
+                            Monitor::Get().GetBuffer()
+                        }
                 );
             }
             // Instance drawing for 3D skeletal skin
@@ -236,15 +244,21 @@ namespace xpe {
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/pbr.ps");
                 ShaderManager::BuildShader(shader);
                 m_Renderer->AddDrawer<SkeletalAnimDrawer>(
-                        m_Renderer->CameraBuffer,
                         shader,
                         m_Canvas->GetRenderTarget(),
                         m_MaterialStorage,
-                        m_Renderer->DirectLightBuffer,
-                        m_Renderer->PointLightBuffer,
-                        m_Renderer->SpotLightBuffer,
                         m_SkeletStorage,
-                        m_SkinStorage
+                        m_SkinStorage,
+                        vector<Buffer*> {
+                            m_Renderer->CameraBuffer
+                        },
+                        vector<Buffer*> {
+                            m_Renderer->DirectLightBuffer,
+                            m_Renderer->PointLightBuffer,
+                            m_Renderer->SpotLightBuffer,
+                            Shadow::Get().GetBuffer(),
+                            Monitor::Get().GetBuffer()
+                        }
                 );
             }
             // Text 2D drawing
@@ -254,11 +268,10 @@ namespace xpe {
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/text2d_drawer.ps");
                 ShaderManager::BuildShader(shader);
                 m_Renderer->AddDrawer<Text2DDrawer>(
-                        m_Renderer->CameraBuffer,
                         shader,
                         m_Canvas->GetRenderTarget(),
                         m_GeometryStorage,
-                        m_Canvas->GetBuffer()
+                        vector<Buffer*> { m_Renderer->CameraBuffer, m_Canvas->GetBuffer() }
                 );
             }
             // Text 3D drawing
@@ -268,10 +281,10 @@ namespace xpe {
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/text3d_drawer.ps");
                 ShaderManager::BuildShader(shader);
                 m_Renderer->AddDrawer<Text3DDrawer>(
-                        m_Renderer->CameraBuffer,
                         shader,
                         m_Canvas->GetRenderTarget(),
-                        m_GeometryStorage
+                        m_GeometryStorage,
+                        vector<Buffer*> { m_Renderer->CameraBuffer }
                 );
             }
         }
