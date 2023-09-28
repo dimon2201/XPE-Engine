@@ -22,6 +22,7 @@ include_directories(
         thirdparty/json/include
         thirdparty/spdlog/include
         thirdparty/stbi
+        thirdparty/openal/include/AL
 )
 
 # Create shared dynamic library
@@ -35,10 +36,12 @@ add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/glfw)
 add_subdirectory(thirdparty/glm)
 add_subdirectory(thirdparty/json)
+add_subdirectory(thirdparty/openal)
+add_subdirectory(thirdparty/libsndfile)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile)
 
 # Move shaders into bin folder
 copy_engine_shaders(engine)
