@@ -10,6 +10,7 @@ namespace xpe {
         class TextureStorage;
         class MaterialStorage;
         class FontStorage;
+        class RenderTarget;
     }
 
     namespace anim

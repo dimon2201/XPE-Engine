@@ -52,6 +52,9 @@ namespace xpe {
 
             audio::AudioSystem* m_AudioSystem = nullptr;
             audio::AudioStorage* m_AudioStorage = nullptr;
+
+            render::RenderTarget* MainRT = nullptr;
+            render::RenderTarget* SsaoRT = nullptr;
         };
 
     }
