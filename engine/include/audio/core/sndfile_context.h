@@ -1,5 +1,6 @@
 #pragma once
-#include <../thirdparty/libsndfile/include/sndfile.h> //(todo) do something with this trash...
+
+#include <sndfile.h>
 
 namespace xpe {
 

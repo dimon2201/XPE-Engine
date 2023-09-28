@@ -1,9 +1,7 @@
-#include <audio/system/audio_system.h>
-
-#include <audio/core/openal_context.h>
+#include <audio/audio_system.h>
+#include <audio/core/context.h>
 
 #include <ecs/scenes.hpp>
-#include <ecs/components.hpp>
 
 using namespace xpe::audio::context;
 
@@ -24,7 +22,7 @@ namespace xpe {
 		// Update listener's position, velocity and orientation
 		void AudioSystem::UpdateListener(Scene* scene)
 		{
-			// (todo) Maybe, if do it global, it will be better then now. And I dont need use EachComponent :|
+			// todo : Maybe, if do it global, it will be better then now. And I dont need use EachComponent :|
 			scene->EachComponent<ListenerComponent>([scene](ListenerComponent* component) {
 				SetListenerPosition(*component->Position);
 				SetListenerVelocity(component->Velocity);
@@ -44,13 +42,13 @@ namespace xpe {
 		{
 			scene->EachComponent<VoiceComponent>([this](VoiceComponent* component) {
 
-				if (component->State != AUDIO_PLAYING) {
+				if (component->State != eAudioState::PLAYING) {
 					VoiceInit(component);
 				}
 
 				RecordVoice(component);
 
-				GetState(component->SourceID, &component->State);
+				GetState(component->SourceID, component->State);
 				if (component->Frames > 0) {
 					UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(), component->Samples, SAMPLE_RATE);
 				}
@@ -107,12 +105,12 @@ namespace xpe {
 		void AudioSystem::AudioSet(AudioComponent* component)
 		{
 			AudioInit(component);
-			PlaySource(component->Source->SourceID, component->Source->State);
+			PlaySource(component->Source->SourceID);
 		}
 
 		void AudioSystem::AudioUpdate(AudioComponent* component)
 		{
-			GetState(component->Source->SourceID, &component->Source->State);
+			GetState(component->Source->SourceID, component->Source->State);
 		}
 
 		void AudioSystem::AudioStop(AudioComponent* component)
@@ -129,16 +127,20 @@ namespace xpe {
 		void AudioSystem::UpdateAudios(Scene* scene)
 		{
 			scene->EachComponent<AudioComponent>([this](AudioComponent* component) {
-				if (component->Status == AUDIO_PLAYING) {
+
+				if (component->State == eAudioState::PLAYING) {
 					AudioUpdate(component);
 				}
-				else if (component->Status == AUDIO_INITIAL) {
+
+				else if (component->State == eAudioState::INITIAL) {
 					AudioSet(component);
-					component->Status = AUDIO_PLAYING;
+					component->State = eAudioState::PLAYING;
 				}
-				else if (component->Status == AUDIO_STOPPED) {
+
+				else if (component->State == eAudioState::STOPPED) {
 					AudioStop(component);
 				}
+
 			});
 		}
 
@@ -177,7 +179,7 @@ namespace xpe {
 				component->CurrentFrame += component->BufferSamples;
 			}
 
-			PlaySource(component->Source->SourceID, component->Source->State);
+			PlaySource(component->Source->SourceID);
 		}
 
 		void AudioSystem::AudioUpdate(StreamAudioComponent* component)
@@ -185,9 +187,9 @@ namespace xpe {
 			s32 processed;
 
 			GetProcessed(component->Source->SourceID, &processed);
-			GetState(component->Source->SourceID, &component->Source->State);
+			GetState(component->Source->SourceID, component->Source->State);
 
-			if (alGetError() == AL_NO_ERROR) {
+			if (GetError() == eAudioError::NONE) {
 
 				for (s32 i = 0; i < component->NumBuffers && component->CurrentFrame < component->File->Info.frames && processed > 0; ++i) {
 
@@ -199,8 +201,9 @@ namespace xpe {
 					--processed;
 				}
 			}
+
 			else {
-				LogInfo("Error checking music source state");
+				LogError("Error checking music source state");
 			}
 		}
 
@@ -217,18 +220,22 @@ namespace xpe {
 
 		void AudioSystem::UpdateStreamAudios(Scene* scene)
 		{
-			// Need fix Looping 
+			// todo : Need to fix Looping
 			scene->EachComponent<StreamAudioComponent>([this](StreamAudioComponent* component) {
-				if (component->Status == AUDIO_PLAYING) {
+
+				if (component->State == eAudioState::PLAYING) {
 					AudioUpdate(component);
 				}
-				else if (component->Status == AUDIO_INITIAL) {
+
+				else if (component->State == eAudioState::INITIAL) {
 					AudioSet(component);
-					component->Status = AUDIO_PLAYING;
+					component->State = eAudioState::PLAYING;
 				}
-				else if(component->Status == AUDIO_STOPPED) {
+
+				else if (component->State == eAudioState::STOPPED) {
 					AudioStop(component);
 				}
+
 			});
 		}
 	}

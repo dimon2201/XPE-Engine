@@ -24,7 +24,7 @@
 #include <anim/animator.h>
 #include <anim/storages/anim_storage.h>
 
-#include <audio/system/audio_system.h>
+#include <audio/audio_system.h>
 #include <audio/storages/audio_storage.h>
 
 #include <thread>

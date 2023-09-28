@@ -9,7 +9,7 @@
 #include <anim/skin.h>
 #include <anim/skelet.h>
 
-#include <audio/core/openal_context.h> // temporarily
+#include <audio/core/context.h>
 
 namespace xpe
 {
@@ -289,7 +289,8 @@ namespace xpe
         struct ENGINE_API SourceAudioComponent : Component
         {
             u32 SourceID = 0;
-            s32 State = 0;
+
+            eAudioState State = eAudioState::INITIAL;
 
             glm::vec3 Position = { 0.0f, 0.0f, 0.0f };
             glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
@@ -323,7 +324,7 @@ namespace xpe
         {
             SourceAudioComponent* Source = nullptr;
 
-            u32 Status = AUDIO_INITIAL;
+            eAudioState State = eAudioState::INITIAL;
 
             u32 BufferID = 0;
             Ref<AudioFile> File = nullptr;
@@ -338,7 +339,7 @@ namespace xpe
         {
             SourceAudioComponent* Source = nullptr;
 
-            u32 Status = AUDIO_INITIAL;
+            eAudioState State = eAudioState::INITIAL;
 
             u32 NumBuffers = 4;
             u32 BufferSamples = 8192;
@@ -357,7 +358,8 @@ namespace xpe
         struct ENGINE_API VoiceComponent : Component
         {
             u32 SourceID = 0;
-            s32 State = AUDIO_INITIAL;
+
+            eAudioState State = eAudioState::INITIAL;
 
             vector<u32> BufferID;
 

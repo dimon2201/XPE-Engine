@@ -3,8 +3,6 @@
 #include <rendering/core/debugger.h>
 #include <d3dcompiler.h>
 #include <d3d11.h>
-#include <rendering/core/context.hpp>
-
 
 namespace xpe {
 
@@ -1440,6 +1438,5 @@ namespace xpe {
     }
 
 }
-
 
 #endif // DX11

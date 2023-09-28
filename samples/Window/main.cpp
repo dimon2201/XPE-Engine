@@ -157,13 +157,14 @@ public:
             pointLightShape.Instance.Transform.Position = { 20, 20, -20 };
             pointLightShape.Instance.Transform.Scale = { 0.5, 0.5, 0.5 };
             pointLightShape.Instance.Material = m_MaterialStorage->Add("MT_Point", Material());
-            pointLightShape.Instance.Material->BaseColor = { 253, 251, 211, 1 };
+            pointLightShape.Instance.Material->BaseColor = { 1, 0, 0, 1 };
             pointLightShape.Instance.Material->Flush();
             m_PointLight.AddComponent<GeometryIndexed3DComponent>(pointLightShape);
 
             DirectLightComponent pointLight("L_Point");
             pointLight.Position = { 0, 0, 0 };
             pointLight.Color = { 153, 151, 111 };
+            pointLight.Color *= 0.1;
             m_PointLight.AddComponent<DirectLightComponent>(pointLight);
         }
 
