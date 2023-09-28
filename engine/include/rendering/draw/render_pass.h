@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stl/vector.h"
-
 namespace xpe {
 
     namespace ecs
@@ -11,6 +9,7 @@ namespace xpe {
 
     namespace render {
 
+        using namespace core;
         using namespace ecs;
 
         struct CameraBuffer;
@@ -35,25 +34,28 @@ namespace xpe {
                 PIXEL = 1
             };
 
-            static constexpr core::u32 SLOT_DEFAULT = UINT32_MAX;
+            static constexpr u32 SLOT_DEFAULT = UINT32_MAX;
 
-            RenderPassBinding(const core::string& tag, const eType& type, const eStage& stage, const core::u32 slot, GPUResource* resource)
-                : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource)
-            {
-            }
+            RenderPassBinding(
+                const string& tag,
+                const eType& type,
+                const eStage& stage,
+                const u32 slot,
+                GPUResource* resource
+            ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource) {}
 
-            core::string Tag;
+            string Tag;
             eType Type;
             eStage Stage;
-            core::u32 Slot;
+            u32 Slot;
             GPUResource* Resource;
         };
 
-        class ENGINE_API RenderPass : public core::Object
+        class ENGINE_API RenderPass : public Object
         {
 
         public:
-            RenderPass(const core::vector<RenderPassBinding>& bindings, RenderTarget* output);
+            RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* output);
             virtual ~RenderPass();
 
             virtual void Update(Scene* scene) = 0;
@@ -63,7 +65,7 @@ namespace xpe {
             void Unbind();
 
         protected:
-            core::vector<RenderPassBinding> m_Bindings;
+            vector<RenderPassBinding> m_Bindings;
             Pipeline* m_Pipeline = nullptr;
 
         };
