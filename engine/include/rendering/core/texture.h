@@ -14,6 +14,7 @@ namespace xpe {
             RG8, RG16, RG32,
             RGB8, RGB16, RGB32,
             RGBA8, RGBA16, RGBA32,
+            SRGBA8,
 
             DEFAULT = RGBA8
         };
@@ -67,6 +68,7 @@ namespace xpe {
                 TEXTURE_1D,
                 TEXTURE_2D,
                 TEXTURE_2D_ARRAY,
+                TEXTURE_2D_DEPTH_STENCIL,
                 TEXTURE_3D,
                 TEXTURE_CUBE,
 

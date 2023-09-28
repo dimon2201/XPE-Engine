@@ -14,6 +14,8 @@ namespace xpe {
                 WinX,
                 WinY,
                 VSync,
+                Gamma,
+                Exposure,
                 LogTitle,
                 LogBacktrace,
                 DebugErrors,
@@ -31,6 +33,8 @@ namespace xpe {
             s32 WinX = 0;
             s32 WinY = 0;
             bool VSync = false;
+            float Gamma = 2.2f;
+            float Exposure = 1;
 
             string LogTitle;
             s32 LogBacktrace = 32;

@@ -1,17 +1,12 @@
 #pragma once
 
 #include <build.h>
+#include <rendering/storages/material_storage.h>
 
 class aiScene;
 class aiMesh;
 
 namespace xpe {
-
-    namespace render
-    {
-        class MaterialStorage;
-        class Material;
-    }
 
     namespace res {
 

@@ -172,6 +172,7 @@ namespace xpe {
             {
                 for (auto* stage : shader.Stages)
                 {
+                    LogInfo("Compiling shader stage {}", stage->ID);
                     CompileShaderStage(*stage);
                 }
             }
@@ -198,8 +199,7 @@ namespace xpe {
             void CreateTexture(Texture& texture)
             {
 
-                switch (texture.Type)
-                {
+                switch (texture.Type) {
 
                     case Texture::eType::TEXTURE_1D:
                         CreateTexture1D(texture);
@@ -213,6 +213,10 @@ namespace xpe {
                         CreateTexture2DArray(texture);
                         break;
 
+                    case Texture::eType::TEXTURE_2D_DEPTH_STENCIL:
+                        CreateTextureDepthStencil(texture);
+                        break;
+
                     case Texture::eType::TEXTURE_3D:
                         CreateTexture3D(texture);
                         break;
@@ -223,6 +227,47 @@ namespace xpe {
 
                 }
 
+            }
+
+            void FreeTexture(Texture& texture)
+            {
+                if (texture.Instance != nullptr) {
+
+                    switch (texture.Type) {
+
+                        case Texture::eType::TEXTURE_1D:
+                            FreeTexture1D(texture.Instance);
+                            break;
+
+                        case Texture::eType::TEXTURE_2D:
+                            FreeTexture2D(texture.Instance);
+                            break;
+
+                        case Texture::eType::TEXTURE_2D_ARRAY:
+                            FreeTexture2DArray(texture.Instance);
+                            break;
+
+                        case Texture::eType::TEXTURE_2D_DEPTH_STENCIL:
+                            FreeTextureDepthStencil(texture.Instance);
+                            break;
+
+                        case Texture::eType::TEXTURE_3D:
+                            FreeTexture3D(texture.Instance);
+                            break;
+
+                        case Texture::eType::TEXTURE_CUBE:
+                            FreeTextureCube(texture.Instance);
+                            break;
+
+                    }
+
+                    texture.Instance = nullptr;
+                }
+
+                if (texture.ViewInstance != nullptr) {
+                    FreeShaderResourceView(texture.ViewInstance);
+                    texture.ViewInstance = nullptr;
+                }
             }
 
             void CreatePipeline(Pipeline& pipeline)

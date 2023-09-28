@@ -1,8 +1,6 @@
 #pragma once
-#include <build.h>
-#include <sndfile.h>
 
-#include <audio/core/openal_context.h>
+#include <build.h>
 #include <audio/storages/audio_storage.h>
 
 namespace xpe {
@@ -14,15 +12,15 @@ namespace xpe {
 
 		class LOADER_API AudioLoader : public Object
 		{
-		public:
 
+		public:
 			AudioLoader(AudioStorage* audioStorage) : m_Storage(audioStorage) {}
 
 			Ref<AudioFile> Load(const char* filepath);
 
 		protected:
+			AudioStorage* m_Storage = nullptr;
 
-			AudioStorage* m_Storage;
 		};
 	}
 }

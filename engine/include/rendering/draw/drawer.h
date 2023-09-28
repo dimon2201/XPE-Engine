@@ -1,5 +1,7 @@
 #pragma once
 
+#include <rendering/core/core.h>
+
 namespace xpe {
 
     namespace ecs
@@ -11,7 +13,6 @@ namespace xpe {
 
         using namespace ecs;
 
-        struct CameraBuffer;
         struct Shader;
         struct RenderTarget;
         struct Pipeline;
@@ -20,15 +21,17 @@ namespace xpe {
         {
 
         public:
-            Drawer(CameraBuffer* cameraBuffer, Shader* shader, RenderTarget* renderTarget);
+            Drawer(Shader* shader, RenderTarget* renderTarget,
+                   const vector<Buffer*>& VSBuffers = {},
+                   const vector<Buffer*>& PSBuffers = {}
+            );
+
             virtual ~Drawer();
 
             virtual void Draw(Scene* scene) = 0;
 
             void Begin();
             void End();
-
-            RenderTarget* GetRenderTarget();
 
         protected:
             void Init();

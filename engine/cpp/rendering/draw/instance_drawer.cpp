@@ -1,5 +1,4 @@
 #include <rendering/draw/instance_drawer.h>
-#include <rendering/buffers/light_buffers.h>
 
 #include <ecs/scenes.hpp>
 
@@ -8,15 +7,12 @@ namespace xpe {
     namespace render {
 
         InstanceDrawer::InstanceDrawer(
-            CameraBuffer* cameraBuffer,
             Shader* shader,
             RenderTarget* renderTarget,
-            GeometryStorage* geometryStorage,
             MaterialStorage* materialStorage,
-            DirectLightBuffer* directLightBuffer,
-            PointLightBuffer* pointLightBuffer,
-            SpotLightBuffer* spotLightBuffer
-        ) : Drawer(cameraBuffer, shader, renderTarget)
+            const vector<Buffer*>& VSBuffers,
+            const vector<Buffer*>& PSBuffers
+        ) : Drawer(shader, renderTarget, VSBuffers, PSBuffers)
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);
@@ -24,10 +20,6 @@ namespace xpe {
             m_Pipeline->InputLayout.Format = Vertex3D::Format;
 
             materialStorage->BindPipeline(*m_Pipeline);
-
-            m_Pipeline->PSBuffers.emplace_back(directLightBuffer);
-            m_Pipeline->PSBuffers.emplace_back(pointLightBuffer);
-            m_Pipeline->PSBuffers.emplace_back(spotLightBuffer);
 
             Init();
         }

@@ -27,10 +27,11 @@ namespace xpe {
         public:
 
             TextDrawer(
-                CameraBuffer* cameraBuffer,
                 Shader* shader,
                 RenderTarget* renderTarget,
-                GeometryStorage* geometryStorage
+                GeometryStorage* geometryStorage,
+                const vector<Buffer*>& VSBuffers = {},
+                const vector<Buffer*>& PSBuffers = {}
             );
 
             ~TextDrawer() override;

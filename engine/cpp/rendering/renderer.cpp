@@ -1,7 +1,9 @@
 #include <rendering/renderer.h>
+#include <rendering/monitor.h>
 #include <rendering/draw/drawer.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
+#include <rendering/shadow/shadow.h>
 
 #include <ecs/scenes.hpp>
 
@@ -13,6 +15,8 @@ namespace xpe {
         {
             context::Init();
             ShaderManager::Init();
+            Monitor::Init();
+            Shadow::Init();
 
             CameraBuffer = new render::CameraBuffer();
 
@@ -38,6 +42,8 @@ namespace xpe {
             }
             m_Drawers.clear();
 
+            Shadow::Free();
+            Monitor::Free();
             ShaderManager::Free();
             context::Free();
         }
@@ -66,21 +72,21 @@ namespace xpe {
             this->DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
             {
-                this->DirectLightBuffer->AddComponent(*component);
+                this->DirectLightBuffer->Add(*component);
             });
             this->DirectLightBuffer->Flush();
 
             this->PointLightBuffer->Clear();
             scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
             {
-                this->PointLightBuffer->AddComponent(*component);
+                this->PointLightBuffer->Add(*component);
             });
             this->PointLightBuffer->Flush();
 
             this->SpotLightBuffer->Clear();
             scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
             {
-                this->SpotLightBuffer->AddComponent(*component);
+                this->SpotLightBuffer->Add(*component);
             });
             this->SpotLightBuffer->Flush();
         }

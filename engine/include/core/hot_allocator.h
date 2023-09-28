@@ -5,6 +5,9 @@
 #define halloc_construct(T) xpe::core::MemoryPoolManager::HotPools->AllocateConstruct<T>()
 #define halloc_construct_args(T, ...) xpe::core::MemoryPoolManager::HotPools->AllocateConstructArgs<T>(__VA_ARGS__)
 #define dehalloc(addr) xpe::core::MemoryPoolManager::HotPools->Free(addr)
+#define hdestruct(T, addr) \
+addr->~T();                \
+dehalloc(addr)
 
 namespace xpe {
 

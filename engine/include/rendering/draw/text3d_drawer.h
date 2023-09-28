@@ -12,10 +12,11 @@ namespace xpe {
         public:
 
             Text3DDrawer(
-                CameraBuffer* cameraBuffer,
                 Shader* shader,
                 RenderTarget* renderTarget,
-                GeometryStorage* geometryStorage
+                GeometryStorage* geometryStorage,
+                const vector<Buffer*>& VSBuffers = {},
+                const vector<Buffer*>& PSBuffers = {}
             );
 
             ~Text3DDrawer() override;

@@ -1,0 +1,82 @@
+#include ../types.shader
+#include ../utils.shader
+#include ../monitor.shader
+#include ../tonemap.shader
+
+#include ../materials/material.shader
+
+#include ../shadow/shadow.shader
+
+#include ../pbr.shader
+#include ../lighting/direct_light.shader
+#include ../lighting/point_light.shader
+#include ../lighting/spot_light.shader
+#include ../pbr_light.shader
+
+struct VSOut
+{
+    float3 positionWorld : XPE_POSITION_WORLD;
+    float2 uv            : XPE_UV2;
+    float3 normal        : XPE_NORMAL_WORLD;
+    float4 positionClip  : SV_POSITION;
+    float3 viewPosition  : XPE_VIEW_POSITION;
+    uint materialIndex   : XPE_MATERIAL_INDEX;
+    float3x3 tbn         : XPE_TBN;
+    float3 positionDLS   : XPE_POSITION_DLS;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn) : SV_TARGET
+{
+    UV = psIn.uv;
+    W = psIn.positionWorld;
+    V = normalize(psIn.viewPosition - psIn.positionWorld);
+    N = GetNormal(psIn.materialIndex, psIn.uv, psIn.normal, psIn.tbn);
+    float NdotV = max(dot(N, V), 0.0);
+    R = reflect(-V, N);
+
+    UV = GetParallax(psIn.materialIndex, psIn.uv);
+
+    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv, Monitor().Gamma);
+    float metallic = GetMetallic(psIn.materialIndex, psIn.uv);
+    float roughness = GetRoughness(psIn.materialIndex, psIn.uv);
+    float ao = GetAO(psIn.materialIndex, psIn.uv);
+    float3 emission = GetEmission(psIn.materialIndex, psIn.uv, Monitor().Gamma);
+
+    // PBR with light sources
+    float3 Lo = float3(0, 0, 0);
+
+    uint directLightSize = 0;
+    uint directLightStride = 0;
+    DirectLights.GetDimensions(directLightSize, directLightStride);
+    for (uint i = 0 ; i < directLightSize ; i++) {
+        Lo += PBR(DirectLights[i], albedo.rgb, metallic, roughness);
+    }
+
+    uint pointLightSize = 0;
+    uint pointLightStride = 0;
+    PointLights.GetDimensions(pointLightSize, pointLightStride);
+    for (uint i = 0 ; i < pointLightSize ; i++) {
+        Lo += PBR(PointLights[i], albedo.rgb, metallic, roughness);
+    }
+
+    uint spotLightSize = 0;
+    uint spotLightStride = 0;
+    SpotLights.GetDimensions(spotLightSize, spotLightStride);
+    for (uint i = 0 ; i < spotLightSize ; i++) {
+        Lo += PBR(SpotLights[i], albedo.rgb, metallic, roughness);
+    }
+
+    // PBR with IBL
+    // float3 ambient = ibl(NdotV, N, R, albedo.rgb, metallic, roughness);
+    float3 ambient = float3(0, 0, 0);
+
+    PSOut psOut;
+    psOut.color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
+    psOut.color = float4(TonemapExp(psOut.color.rgb, Monitor().Gamma, Monitor().Exposure), psOut.color.a);
+    return psOut;
+}

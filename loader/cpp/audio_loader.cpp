@@ -1,4 +1,5 @@
 #include <audio_loader.h>
+#include <audio/core/context.h>
 
 namespace xpe {
 
@@ -11,12 +12,13 @@ namespace xpe {
 
 			file.File = sf_open(filepath, SFM_READ, &file.Info);
 			if (!fileRef->File) {
-				LogInfo("Ñould not open provided audio file");
+				LogError("Unable to open file {}", filepath);
 			}
 
-			file.Info.format = xpe::audio::context::GetFormat(file, file.Info.channels);
+			file.Info.format = context::GetFormat(file, file.Info.channels);
 
 			return fileRef;
 		}
+
 	}
 }

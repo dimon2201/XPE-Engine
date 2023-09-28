@@ -4,11 +4,12 @@
 
 #include <rendering/materials/material.h>
 #include <rendering/font/font.hpp>
+#include <rendering/buffers/light_buffers.h>
 
 #include <anim/skin.h>
 #include <anim/skelet.h>
 
-#include <audio/core/openal_context.h> // temporarily
+#include <audio/core/context.h>
 
 namespace xpe
 {
@@ -28,16 +29,11 @@ namespace xpe
             glm::vec3 Front = { 0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
 
-            float Gamma = 2.2f;
-            float Exposure = 1.0f;
-
             JsonClass(
                 CameraComponent,
                 Position,
                 Front,
-                Up,
-                Gamma,
-                Exposure
+                Up
             )
         };
 
@@ -96,11 +92,8 @@ namespace xpe
             Ref<Texture> Texture;
         };
 
-        struct ENGINE_API DirectLightComponent : Component
+        struct ENGINE_API DirectLightComponent : Component, DirectLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-
             JsonClass(
                 DirectLightComponent,
                 Position,
@@ -108,14 +101,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API PointLightComponent : Component
+        struct ENGINE_API PointLightComponent : Component, PointLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-            float Constant;
-            float Linear;
-            float Quadratic;
-
             JsonClass(
                 PointLightComponent,
                 Position,
@@ -126,14 +113,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SpotLightComponent : Component
+        struct ENGINE_API SpotLightComponent : Component, SpotLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Direction = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-            float Cutoff;
-            float Outer;
-
             JsonClass(
                 SpotLightComponent,
                 Position,
@@ -308,7 +289,8 @@ namespace xpe
         struct ENGINE_API SourceAudioComponent : Component
         {
             u32 SourceID = 0;
-            s32 State = 0;
+
+            eAudioState State = eAudioState::INITIAL;
 
             glm::vec3 Position = { 0.0f, 0.0f, 0.0f };
             glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
@@ -342,7 +324,7 @@ namespace xpe
         {
             SourceAudioComponent* Source = nullptr;
 
-            u32 Status = AUDIO_INITIAL;
+            eAudioState State = eAudioState::INITIAL;
 
             u32 BufferID = 0;
             Ref<AudioFile> File = nullptr;
@@ -357,7 +339,7 @@ namespace xpe
         {
             SourceAudioComponent* Source = nullptr;
 
-            u32 Status = AUDIO_INITIAL;
+            eAudioState State = eAudioState::INITIAL;
 
             u32 NumBuffers = 4;
             u32 BufferSamples = 8192;
@@ -376,7 +358,8 @@ namespace xpe
         struct ENGINE_API VoiceComponent : Component
         {
             u32 SourceID = 0;
-            s32 State = AUDIO_INITIAL;
+
+            eAudioState State = eAudioState::INITIAL;
 
             vector<u32> BufferID;
 

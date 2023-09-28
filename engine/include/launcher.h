@@ -7,8 +7,8 @@ using namespace xpe::core;
 int main(int argc, char** argv) {
 
     // pull hardware config
-    xpe::os::HardwareConfig::UpdateMemoryStats();
-    xpe::os::HardwareConfig::UpdateVideoStats();
+    xpe::os::Hardware::UpdateMemoryStats();
+    xpe::os::Hardware::UpdateVideoStats();
 
     // init memory pools
     MemoryPoolManager::Init();

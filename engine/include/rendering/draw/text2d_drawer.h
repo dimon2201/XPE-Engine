@@ -14,11 +14,11 @@ namespace xpe {
         public:
 
             Text2DDrawer(
-                CameraBuffer* cameraBuffer,
                 Shader* shader,
                 RenderTarget* renderTarget,
                 GeometryStorage* geometryStorage,
-                ViewportBuffer* viewportBuffer
+                const vector<Buffer*>& VSBuffers = {},
+                const vector<Buffer*>& PSBuffers = {}
             );
 
             ~Text2DDrawer() override;

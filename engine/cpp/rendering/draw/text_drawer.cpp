@@ -9,12 +9,13 @@ namespace xpe {
     namespace render {
 
         TextDrawer::TextDrawer(
-                CameraBuffer* cameraBuffer,
-                Shader* shader,
-                RenderTarget* renderTarget,
-                GeometryStorage* geometryStorage
+            Shader* shader,
+            RenderTarget* renderTarget,
+            GeometryStorage* geometryStorage,
+            const vector<Buffer*>& VSBuffers,
+            const vector<Buffer*>& PSBuffers
         )
-        : Drawer(cameraBuffer, shader, renderTarget)
+        : Drawer(shader, renderTarget, VSBuffers, PSBuffers)
         {
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);

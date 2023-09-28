@@ -6,6 +6,7 @@ namespace xpe {
 
         MaterialStorage::MaterialStorage()
         {
+            m_DataBuffer.Create();
             InitSampler();
             AlbedoArray = InitTextureArray(Material::K_ALBEDO_FORMAT);
             BumpArray = InitTextureArray(Material::K_BUMP_FORMAT);
@@ -23,12 +24,12 @@ namespace xpe {
 
         void MaterialStorage::InitSampler()
         {
-            TextureSampler& materialSampler = Sampler;
-            materialSampler.Filter          = TextureSampler::eFilter::ANISOTROPIC;
-            materialSampler.AnisotropyLevel = os::HardwareConfig::GetVideoStats().MaxAnisotropyLevel;
-            materialSampler.AddressU        = TextureSampler::eAddress::WRAP;
-            materialSampler.AddressV        = TextureSampler::eAddress::WRAP;
-            materialSampler.AddressW        = TextureSampler::eAddress::WRAP;
+            Sampler.Slot            = K_SLOT_MATERIAL_SAMPLER;
+            Sampler.Filter          = TextureSampler::eFilter::ANISOTROPIC;
+            Sampler.AnisotropyLevel = os::Hardware::GetVideoStats().MaxAnisotropyLevel;
+            Sampler.AddressU        = TextureSampler::eAddress::WRAP;
+            Sampler.AddressV        = TextureSampler::eAddress::WRAP;
+            Sampler.AddressW        = TextureSampler::eAddress::WRAP;
 
             context::CreateSampler(Sampler);
         }
@@ -46,7 +47,7 @@ namespace xpe {
             texture->Height = materialFormat.Height;
             texture->Slot = materialFormat.Slot;
             texture->Channels = Texture::ChannelTable.at(materialFormat.Format);
-            texture->Layers.reserve(os::HardwareConfig::GetVideoStats().MaxTexture2dArray);
+            texture->Layers.reserve(os::Hardware::GetVideoStats().MaxTexture2dArray);
 
             return texture;
         }
@@ -58,8 +59,8 @@ namespace xpe {
                 u32 index = it->second->Index;
                 m_Materials.erase(it);
 
-                m_DataBuffer.RemoveAt(index);
-                m_DataBuffer.Flush();
+                m_DataBuffer->RemoveAt(index);
+                m_DataBuffer->Flush();
 
                 AlbedoArray->RemoveLayerAt(index);
                 AlbedoArray->Flush();
@@ -88,8 +89,8 @@ namespace xpe {
         {
             m_Materials.clear();
 
-            m_DataBuffer.Clear();
-            m_DataBuffer.Flush();
+            m_DataBuffer->Clear();
+            m_DataBuffer->Flush();
 
             AlbedoArray->Layers.clear();
             AlbedoArray->Flush();
@@ -115,7 +116,7 @@ namespace xpe {
 
         void MaterialStorage::BindPipeline(Pipeline& pipeline)
         {
-            pipeline.PSBuffers.emplace_back(&m_DataBuffer);
+            pipeline.PSBuffers.emplace_back(m_DataBuffer.Get());
 
             pipeline.Samplers.emplace_back(&Sampler);
 
@@ -126,35 +127,6 @@ namespace xpe {
             pipeline.Textures.emplace_back(RoughnessArray.Get());
             pipeline.Textures.emplace_back(AOArray.Get());
             pipeline.Textures.emplace_back(EmissionArray.Get());
-        }
-
-        void MaterialStorage::AddLayer(Texture &texture, TextureLayer &layer)
-        {
-            if (layer.Pixels == nullptr) {
-                layer = texture.CreateLayer();
-            }
-
-//            if (layer.Mips.empty()) {
-//                layer.GenerateMips(texture.Width, texture.Height, texture.Format);
-//            }
-
-            texture.Layers.emplace_back(layer);
-            texture.Flush();
-        }
-
-        void MaterialStorage::SetLayer(Texture &texture, TextureLayer &layer, u32 layerIndex)
-        {
-            if (layer.Pixels == nullptr) {
-                layer = texture.CreateLayer();
-            }
-
-//            if (layer.Mips.empty()) {
-//                layer.GenerateMips(texture.Width, texture.Height, texture.Format);
-//            }
-
-            texture.Layers[layerIndex].Free();
-            texture.Layers[layerIndex] = layer;
-            texture.Flush();
         }
 
     }

@@ -13,6 +13,7 @@
 #include <anim_loader.h>
 #include <audio_loader.h>
 
+#include <rendering/monitor.h>
 #include <rendering/storages/material_storage.h>
 
 #include "test_config.h"
@@ -114,7 +115,7 @@ public:
             skyboxPath.TopFilepath = m_MainScene->Skybox->TopResFilepath;
             skyboxPath.BottomFilepath = m_MainScene->Skybox->BottomResFilepath;
 
-            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
+//            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
 //            m_MainScene->Skybox->CubeTexture->GenerateMips();
         }
 
@@ -127,6 +128,11 @@ public:
             plane.Instance.Transform.Position = { 0, -10, 0 };
             plane.Instance.Transform.Scale = { 100, 0.1, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
+            plane.Instance.Material->BaseColor = { 1, 0, 0, 1 };
+            plane.Instance.Material->MetallicFactor = 1;
+            plane.Instance.Material->RoughnessFactor = 0.25;
+            plane.Instance.Material->AOFactor = 0;
+            plane.Instance.Material->Flush();
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
         }
@@ -136,10 +142,30 @@ public:
             m_DirectLight = { "DirectLight", m_MainScene };
 
             DirectLightComponent directLight("L_Direct");
-            directLight.Position = { 0, 0, 0 };
-            directLight.Color = { 1, 1, 1 };
+            directLight.Position = { 0, -5, 0 };
+            directLight.Color = { 0, 0, 0 };
 
             m_DirectLight.AddComponent<DirectLightComponent>(directLight);
+        }
+
+        // setup point light
+        {
+            m_PointLight = { "PointLight", m_MainScene };
+
+            GeometryIndexed3DComponent pointLightShape("G_Point");
+            pointLightShape.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Point", Sphere());
+            pointLightShape.Instance.Transform.Position = { 20, 20, -20 };
+            pointLightShape.Instance.Transform.Scale = { 0.5, 0.5, 0.5 };
+            pointLightShape.Instance.Material = m_MaterialStorage->Add("MT_Point", Material());
+            pointLightShape.Instance.Material->BaseColor = { 1, 0, 0, 1 };
+            pointLightShape.Instance.Material->Flush();
+            m_PointLight.AddComponent<GeometryIndexed3DComponent>(pointLightShape);
+
+            DirectLightComponent pointLight("L_Point");
+            pointLight.Position = { 0, 0, 0 };
+            pointLight.Color = { 153, 151, 111 };
+            pointLight.Color *= 0.1;
+            m_PointLight.AddComponent<DirectLightComponent>(pointLight);
         }
 
         // setup 3D model
@@ -191,10 +217,16 @@ public:
                 MaterialFilepath materialFilepath;
                 materialFilepath.Name = "niz";
                 materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
-//                materialFilepath.EmissionFilepath = "res/models/winter-girl/textures/Vampire_emission.png";
                 winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
+                winterGirlModel.Model->Skins[0].Material->BaseColor = { 1, 1, 1, 1 };
+                winterGirlModel.Model->Skins[0].Material->EmissionColor = { 0, 0, 10 };
+                winterGirlModel.Model->Skins[0].Material->MetallicFactor = 1;
+                winterGirlModel.Model->Skins[0].Material->RoughnessFactor = 1;
+                winterGirlModel.Model->Skins[0].Material->AOFactor = 0;
+                winterGirlModel.Model->Skins[0].Material->Flush();
             }
 
             {
@@ -377,7 +409,8 @@ public:
     {
         LockFPSFromConfig();
         UpdateCamera();
-        Simulate();
+        AnimateLight();
+        DisplayStats();
     }
 
     void Free()
@@ -398,11 +431,13 @@ public:
         }
 
         MoveLight(key);
+        PlayAnimations(key);
     }
 
     void KeyHold(const eKey key)
     {
         MoveLight(key);
+        PlayAnimations(key);
     }
 
     void CursorMoved(const double x, const double y)
@@ -453,8 +488,8 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");
-        auto& pos = directLight->Position;
+        auto* pointLight = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
+        auto& pos = pointLight->Instance.Transform.Position;
 
         if (key == eKey::Up)
         {
@@ -475,7 +510,10 @@ private:
         {
             pos.x += 1;
         }
+    }
 
+    void PlayAnimations(const eKey key)
+    {
         if (key == eKey::P)
         {
             auto* winterGirlAnim = m_WinterGirl.GetComponent<SkeletalAnimationComponent>("A_WinterGirl");
@@ -483,12 +521,15 @@ private:
         }
     }
 
-    void Simulate()
+    void AnimateLight()
     {
+        auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
+        auto* pointLight = m_PointLight.GetComponent<DirectLightComponent>("L_Point");
+        pointLight->Position = pointLightShape->Instance.Transform.Position;
+
         if (m_TestConfig.AnimateLight)
         {
-            auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");
-            auto& pos = directLight->Position;
+            auto& pos = pointLightShape->Instance.Transform.Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -498,9 +539,14 @@ private:
 
             tick++;
         }
+    }
 
+    void DisplayStats() {
         auto& text2D = m_Text2D.GetComponent<Text2DComponent>("Text2D")->Text;
-        text2D = "XPE-Engine \n FPS: " + std::to_string(CPUTime.Fps()) + "\n CPU: " + std::to_string(CPUTime.Millis());
+        text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
+                 "\nCPU: " + std::to_string(CPUTime.Millis()) +
+                 "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
+                 "\nExposure: " + std::to_string(Monitor::Get().Exposure);
     }
 
 private:
@@ -515,6 +561,7 @@ private:
     Ref<AudioLoader> m_AudioLoader;
 
     Entity m_DirectLight;
+    Entity m_PointLight;
     Entity m_Text2D;
     Entity m_Text3D;
     Entity m_Plane;
