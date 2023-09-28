@@ -6,13 +6,11 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API CameraData final
+        struct ENGINE_API CameraData : public core::Object
         {
             glm::vec3 Position;
             glm::mat4 View;
             glm::mat4 Projection;
-            float Gamma = 2.2f;
-            float Exposure = 1.0f;
         };
 
         struct ENGINE_API CameraBuffer : public ItemBuffer<CameraData>

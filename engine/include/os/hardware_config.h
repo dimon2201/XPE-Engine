@@ -24,7 +24,7 @@ namespace xpe {
             usize MaxRenderTargetsPerStage;
         };
 
-        class ENGINE_API HardwareConfig final {
+        class ENGINE_API Hardware final {
 
         public:
             static void UpdateMemoryStats();

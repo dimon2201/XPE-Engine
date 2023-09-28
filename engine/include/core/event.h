@@ -106,9 +106,11 @@ namespace xpe {
         {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
-            for (vector<Event<EventFunction>>::iterator it = m_Events.begin(); it != m_Events.end(); it++) {
-                if (thiz == it->Thiz) {
-                    m_Events.erase(it);
+            usize size = m_Events.size();
+            for (int i = 0 ; i < size ; i++) {
+                auto& event = m_Events[i];
+                if (thiz == event->Thiz) {
+                    m_Events.erase(event);
                     break;
                 }
             }

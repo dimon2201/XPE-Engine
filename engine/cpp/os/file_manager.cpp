@@ -38,7 +38,7 @@ namespace xpe {
                     // By using recursion, the new include file can be extracted
                     // and inserted at this location in the mShader source code
                     recursive = true;
-                    fullSrc += ReadFileWithIncludes(lineBuffer, includeIdentifier);
+                    fullSrc += ReadFileWithIncludes(lineBuffer, includeIdentifier) + '\n';
 
                     // Do not add this line to the mShader source code, as the include
                     // path would generate a compilation issue in the final source code

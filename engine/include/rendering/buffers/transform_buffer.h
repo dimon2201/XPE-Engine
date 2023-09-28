@@ -12,8 +12,9 @@ namespace xpe {
 
         struct ENGINE_API TransformData final
         {
-            glm::mat4 ModelMatrix;
-            glm::mat4 NormalMatrix;
+            glm::mat4 ModelMatrix;  // position world space
+            glm::mat4 NormalMatrix; // normal world space
+            glm::mat4 DLSMatrix;    // direct light space
         };
 
         struct ENGINE_API TransformBuffer : public StructureBuffer<TransformData>

@@ -4,9 +4,12 @@
 
 #include <rendering/materials/material.h>
 #include <rendering/font/font.hpp>
+#include <rendering/buffers/light_buffers.h>
 
 #include <anim/skin.h>
 #include <anim/skelet.h>
+
+#include <audio/core/context.h>
 
 namespace xpe
 {
@@ -16,6 +19,7 @@ namespace xpe
         using namespace render;
         using namespace math;
         using namespace anim;
+        using namespace audio;
 
         struct ENGINE_API CameraComponent : Component
         {
@@ -25,16 +29,11 @@ namespace xpe
             glm::vec3 Front = { 0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
 
-            float Gamma = 2.2f;
-            float Exposure = 1.0f;
-
             JsonClass(
                 CameraComponent,
                 Position,
                 Front,
-                Up,
-                Gamma,
-                Exposure
+                Up
             )
         };
 
@@ -93,11 +92,8 @@ namespace xpe
             Ref<Texture> Texture;
         };
 
-        struct ENGINE_API DirectLightComponent : Component
+        struct ENGINE_API DirectLightComponent : Component, DirectLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-
             JsonClass(
                 DirectLightComponent,
                 Position,
@@ -105,14 +101,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API PointLightComponent : Component
+        struct ENGINE_API PointLightComponent : Component, PointLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-            float Constant;
-            float Linear;
-            float Quadratic;
-
             JsonClass(
                 PointLightComponent,
                 Position,
@@ -123,14 +113,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SpotLightComponent : Component
+        struct ENGINE_API SpotLightComponent : Component, SpotLightBufferData
         {
-            glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Direction = { 0, 0, 0 };
-            glm::vec3 Color = { 1, 1, 1 };
-            float Cutoff;
-            float Outer;
-
             JsonClass(
                 SpotLightComponent,
                 Position,
@@ -275,6 +259,120 @@ namespace xpe
 
             JsonClass(
                 SkeletalAnimationComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API ListenerComponent : Component
+        {
+            glm::vec3* Position;// = { 0.0f, 0.0f, 0.0f };
+            glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
+            glm::vec3 Up = { 0.0f, 1.0f, 0.0f };
+            glm::vec3* Look;
+
+            JsonClass(
+                ListenerComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API AudioFileComponent : Component
+        {
+            Ref<AudioFile> File = nullptr;
+
+            JsonClass(
+                AudioFileComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API SourceAudioComponent : Component
+        {
+            u32 SourceID = 0;
+
+            eAudioState State = eAudioState::INITIAL;
+
+            glm::vec3 Position = { 0.0f, 0.0f, 0.0f };
+            glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
+
+            f32 Gain = 1;                   // affects audio volume
+            f32 Pitch = 1;                  // affects playback speed 
+
+            f32 RefDistance = 1.0f;         // Distance at which the sound is heard clearly   
+            f32 MaxDistance = 100.0f;       // Maximum distance at which the sound is heard
+            f32 RollOffFactor = 1.0f;       // Volume reduction factor with distance
+            f32 ConeInnerAngle = 180.0f;    // Angle of the inner zone of the cone
+            f32 ConeOuterAngle = 180.0f;    // Angle of the outer zone of the cone                            
+
+            bool Looping = false;
+
+            JsonClass(
+                SourceAudioComponent,
+                SourceID,
+                State,
+                Position, 
+                Velocity, 
+                Gain, 
+                Pitch, 
+                RefDistance, 
+                MaxDistance,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API AudioComponent : Component
+        {
+            SourceAudioComponent* Source = nullptr;
+
+            eAudioState State = eAudioState::INITIAL;
+
+            u32 BufferID = 0;
+            Ref<AudioFile> File = nullptr;
+
+            JsonClass(
+                AudioComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API StreamAudioComponent : Component
+        {
+            SourceAudioComponent* Source = nullptr;
+
+            eAudioState State = eAudioState::INITIAL;
+
+            u32 NumBuffers = 4;
+            u32 BufferSamples = 8192;
+            s64 CurrentFrame = 0;
+
+            vector<u32> BufferID;
+            vector<short> Data;
+            Ref<AudioFile> File = nullptr;
+
+            JsonClass(
+                StreamAudioComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API VoiceComponent : Component
+        {
+            u32 SourceID = 0;
+
+            eAudioState State = eAudioState::INITIAL;
+
+            vector<u32> BufferID;
+
+            u32 NumBuffers = 4;
+            s32 Samples = 0;
+            s32 Frames = 0;
+
+            bool Recording = false;
+
+            vector<short> Data;
+
+            JsonClass(
+                VoiceComponent,
                 m_Tag
             )
         };

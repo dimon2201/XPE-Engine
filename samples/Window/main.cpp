@@ -11,7 +11,9 @@
 #include <skin_loader.h>
 #include <skelet_loader.h>
 #include <anim_loader.h>
+#include <audio_loader.h>
 
+#include <rendering/monitor.h>
 #include <rendering/storages/material_storage.h>
 
 #include "test_config.h"
@@ -22,6 +24,7 @@ using namespace xpe::render;
 using namespace xpe::control;
 using namespace xpe::math;
 using namespace xpe::res;
+using namespace xpe::audio;
 
 class GameApp : public Application
 {
@@ -59,6 +62,7 @@ public:
         m_SkeletLoader.Create(m_SkeletStorage);
         m_SkinLoader.Create(m_SkinStorage);
         m_AnimLoader.Create(m_AnimStorage);
+        m_AudioLoader.Create(m_AudioStorage);
 
         InitCamera();
         InitCamera2D();
@@ -111,7 +115,7 @@ public:
             skyboxPath.TopFilepath = m_MainScene->Skybox->TopResFilepath;
             skyboxPath.BottomFilepath = m_MainScene->Skybox->BottomResFilepath;
 
-            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
+//            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
 //            m_MainScene->Skybox->CubeTexture->GenerateMips();
         }
 
@@ -124,6 +128,11 @@ public:
             plane.Instance.Transform.Position = { 0, -10, 0 };
             plane.Instance.Transform.Scale = { 100, 0.1, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
+            plane.Instance.Material->BaseColor = { 1, 0, 0, 1 };
+            plane.Instance.Material->MetallicFactor = 1;
+            plane.Instance.Material->RoughnessFactor = 0.25;
+            plane.Instance.Material->AOFactor = 0;
+            plane.Instance.Material->Flush();
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
         }
@@ -133,10 +142,30 @@ public:
             m_DirectLight = { "DirectLight", m_MainScene };
 
             DirectLightComponent directLight("L_Direct");
-            directLight.Position = { 0, 0, 0 };
-            directLight.Color = { 1, 1, 1 };
+            directLight.Position = { 0, -5, 0 };
+            directLight.Color = { 0, 0, 0 };
 
             m_DirectLight.AddComponent<DirectLightComponent>(directLight);
+        }
+
+        // setup point light
+        {
+            m_PointLight = { "PointLight", m_MainScene };
+
+            GeometryIndexed3DComponent pointLightShape("G_Point");
+            pointLightShape.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Point", Sphere());
+            pointLightShape.Instance.Transform.Position = { 20, 20, -20 };
+            pointLightShape.Instance.Transform.Scale = { 0.5, 0.5, 0.5 };
+            pointLightShape.Instance.Material = m_MaterialStorage->Add("MT_Point", Material());
+            pointLightShape.Instance.Material->BaseColor = { 1, 0, 0, 1 };
+            pointLightShape.Instance.Material->Flush();
+            m_PointLight.AddComponent<GeometryIndexed3DComponent>(pointLightShape);
+
+            DirectLightComponent pointLight("L_Point");
+            pointLight.Position = { 0, 0, 0 };
+            pointLight.Color = { 153, 151, 111 };
+            pointLight.Color *= 0.1;
+            m_PointLight.AddComponent<DirectLightComponent>(pointLight);
         }
 
         // setup 3D model
@@ -188,10 +217,16 @@ public:
                 MaterialFilepath materialFilepath;
                 materialFilepath.Name = "niz";
                 materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
                 materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
-//                materialFilepath.EmissionFilepath = "res/models/winter-girl/textures/Vampire_emission.png";
                 winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
+                winterGirlModel.Model->Skins[0].Material->BaseColor = { 1, 1, 1, 1 };
+                winterGirlModel.Model->Skins[0].Material->EmissionColor = { 0, 0, 10 };
+                winterGirlModel.Model->Skins[0].Material->MetallicFactor = 1;
+                winterGirlModel.Model->Skins[0].Material->RoughnessFactor = 1;
+                winterGirlModel.Model->Skins[0].Material->AOFactor = 0;
+                winterGirlModel.Model->Skins[0].Material->Flush();
             }
 
             {
@@ -247,13 +282,148 @@ public:
 
             m_Cube.AddComponent<GeometryIndexed3DComponent>(cube);
         }
+
+        // setup audio
+        {
+            //Set listener component
+            {
+                m_Listener = { "Listener", m_MainScene };
+
+                auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
+
+                ListenerComponent component("Listener");
+
+                component.Position = &camera.Component.Position;
+                component.Up = camera.Component.Up;
+                component.Look = &camera.Component.Front;
+
+                m_Listener.AddComponent<ListenerComponent>(component);
+            }
+
+            //loading stream audio files
+            {
+
+                //load test stream audio
+                {
+                    AudioFileComponent component("Test");
+                    component.File = m_AudioLoader->Load("res/audio/test.wav");
+                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                }
+
+                //load spell stream audio
+                {
+                    AudioFileComponent component("Magicfail");
+                    component.File = m_AudioLoader->Load("res/audio/magicfail.ogg");
+                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                }
+
+                //load magicfail stream audio
+                {
+                    AudioFileComponent component("Spell");
+                    component.File = m_AudioLoader->Load("res/audio/spell.ogg");
+                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                }
+            }
+            //temporarily commented
+            //// create voice component
+            //{
+            //    VoiceComponent component("Test");
+            //    m_MainScene->AddComponent<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
+            //}
+        }
+
+        //setup background audio
+        {
+            m_BackgroundAudio = { "BackgroundAudio", m_MainScene };
+
+            //test sources
+            SourceAudioComponent* source;
+            SourceAudioComponent* source1;
+            SourceAudioComponent* source2;
+
+            //test files //You can use one file for for many sources in one time
+            auto* file = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Spell");
+            auto* file1 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Test");
+            auto* file2 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Magicfail");
+
+            //creating source
+            {
+                SourceAudioComponent component("Sound_Test");
+
+                component.Position = { -15.0f, 2.0f, 0.0f };
+                component.Looping = true;
+                component.Gain = 0.5f;
+                component.RefDistance = 10.0f;
+                component.MaxDistance = 100.0f;
+                source = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+            }
+
+            //creating stream audio
+            {
+                AudioComponent component("Sound_Test");
+
+                component.Source = source;
+                component.File = file->File;
+
+                m_BackgroundAudio.AddComponent<AudioComponent>(component);
+            }
+
+            //-------------------------------------
+            //creating source
+            {
+                SourceAudioComponent component("Test");
+
+                component.Position = { -5.0f, 2.0f, 0.0f };
+                component.Looping = true; //(todo) Need do some logic to looping the stream audio
+                component.Gain = 0.2f;
+                component.RefDistance = 10.0f;
+                component.MaxDistance = 100.0f;
+                source1 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+            }
+
+            //creating stream audio
+            {
+                StreamAudioComponent component("Test");
+
+                component.Source = source1;
+                component.File = file1->File;
+                component.BufferSamples = 8192 * 2; //for test
+                component.NumBuffers = 5; //for test
+
+                m_BackgroundAudio.AddComponent<StreamAudioComponent>(component);
+            }
+
+            //-------------------------------------
+            //creating source
+            {
+                SourceAudioComponent component("Sound_Test1");
+
+                component.Position = { 11.0f, 2.0f, 0.0f };
+                component.Looping = true;
+                component.Gain = 0.5f;
+                component.RefDistance = 10.0f;
+                component.MaxDistance = 100.0f;
+                source2 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+            }
+
+            //creating stream audio
+            {
+                AudioComponent component("Sound_Test1");
+
+                component.Source = source2;
+                component.File = file2->File;
+
+                m_BackgroundAudio.AddComponent<AudioComponent>(component);
+            }
+        }
     }
 
     void Update() override final
     {
         LockFPSFromConfig();
         UpdateCamera();
-        Simulate();
+        AnimateLight();
+        DisplayStats();
     }
 
     void Free()
@@ -274,11 +444,13 @@ public:
         }
 
         MoveLight(key);
+        PlayAnimations(key);
     }
 
     void KeyHold(const eKey key)
     {
         MoveLight(key);
+        PlayAnimations(key);
     }
 
     void CursorMoved(const double x, const double y)
@@ -329,8 +501,8 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");
-        auto& pos = directLight->Position;
+        auto* pointLight = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
+        auto& pos = pointLight->Instance.Transform.Position;
 
         if (key == eKey::Up)
         {
@@ -351,7 +523,10 @@ private:
         {
             pos.x += 1;
         }
+    }
 
+    void PlayAnimations(const eKey key)
+    {
         if (key == eKey::P)
         {
             auto* winterGirlAnim = m_WinterGirl.GetComponent<SkeletalAnimationComponent>("A_WinterGirl");
@@ -359,12 +534,15 @@ private:
         }
     }
 
-    void Simulate()
+    void AnimateLight()
     {
+        auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
+        auto* pointLight = m_PointLight.GetComponent<DirectLightComponent>("L_Point");
+        pointLight->Position = pointLightShape->Instance.Transform.Position;
+
         if (m_TestConfig.AnimateLight)
         {
-            auto* directLight = m_DirectLight.GetComponent<DirectLightComponent>("L_Direct");
-            auto& pos = directLight->Position;
+            auto& pos = pointLightShape->Instance.Transform.Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -374,9 +552,14 @@ private:
 
             tick++;
         }
+    }
 
+    void DisplayStats() {
         auto& text2D = m_Text2D.GetComponent<Text2DComponent>("Text2D")->Text;
-        text2D = "XPE-Engine \n FPS: " + std::to_string(CPUTime.Fps()) + "\n CPU: " + std::to_string(CPUTime.Millis());
+        text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
+                 "\nCPU: " + std::to_string(CPUTime.Millis()) +
+                 "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
+                 "\nExposure: " + std::to_string(Monitor::Get().Exposure);
     }
 
 private:
@@ -388,13 +571,17 @@ private:
     Ref<SkeletLoader> m_SkeletLoader;
     Ref<SkinLoader> m_SkinLoader;
     Ref<AnimLoader> m_AnimLoader;
+    Ref<AudioLoader> m_AudioLoader;
 
     Entity m_DirectLight;
+    Entity m_PointLight;
     Entity m_Text2D;
     Entity m_Text3D;
     Entity m_Plane;
     Entity m_WinterGirl;
     Entity m_Cube;
+    Entity m_Listener;
+    Entity m_BackgroundAudio;
 
     TestConfig m_TestConfig = string("TestConfig");
 };

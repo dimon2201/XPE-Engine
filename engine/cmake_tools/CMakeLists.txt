@@ -172,11 +172,13 @@ endmacro()
 macro(include_engine path)
     add_definitions(-DENGINE_DLL=1)
     include_directories(
-            ${path}/include
-            ${path}/thirdparty/spdlog/include
-            ${path}/thirdparty/glfw/include
-            ${path}/thirdparty/glm/glm
-            ${path}/thirdparty/json/include
+        ${path}/include
+        ${path}/thirdparty/spdlog/include
+        ${path}/thirdparty/glfw/include
+        ${path}/thirdparty/glm/glm
+        ${path}/thirdparty/json/include
+        ${path}/thirdparty/openal-soft/include
+        ${path}/thirdparty/libsndfile/include
     )
 endmacro()
 

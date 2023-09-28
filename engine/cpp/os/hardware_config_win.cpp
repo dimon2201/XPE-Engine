@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace os {
 
-        void HardwareConfig::UpdateMemoryStats()
+        void Hardware::UpdateMemoryStats()
         {
             MEMORYSTATUSEX memStatus;
             memStatus.dwLength = sizeof(memStatus);

@@ -3,11 +3,9 @@
 #include <geometry/geometry.h>
 #include <geometry/vertices.h>
 
-namespace xpe {
+#include <rendering/materials/material.h>
 
-    namespace render {
-        class Material;
-    }
+namespace xpe {
 
     namespace math {
 
@@ -163,6 +161,7 @@ namespace xpe {
 
             Mesh() = default;
             Mesh(usize vertexCount, usize indexCount) : GeometryIndexed<Vertex3D>(vertexCount, indexCount) {}
+            ~Mesh() = default;
         };
 
         Json(Mesh, PrimitiveTopology, Vertices, Indices.List)

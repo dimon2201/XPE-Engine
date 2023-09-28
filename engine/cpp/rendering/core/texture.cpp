@@ -13,7 +13,6 @@ namespace xpe {
 
         const std::unordered_map<eTextureFormat, int> Texture::ChannelTable =
         {
-
                 { eTextureFormat::R8, 1 },
                 { eTextureFormat::R16, 1 },
                 { eTextureFormat::R32, 1 },
@@ -28,13 +27,13 @@ namespace xpe {
 
                 { eTextureFormat::RGBA8, 4 },
                 { eTextureFormat::RGBA16, 4 },
-                { eTextureFormat::RGBA32, 4 }
+                { eTextureFormat::RGBA32, 4 },
 
+                { eTextureFormat::SRGBA8, 4 }
         };
 
         const std::unordered_map<eTextureFormat, int> Texture::BPPTable =
         {
-
                 { eTextureFormat::R8, 1 },
                 { eTextureFormat::R16, 2 },
                 { eTextureFormat::R32, 4 },
@@ -49,8 +48,9 @@ namespace xpe {
 
                 { eTextureFormat::RGBA8, 4 },
                 { eTextureFormat::RGBA16, 8 },
-                { eTextureFormat::RGBA32, 16 }
+                { eTextureFormat::RGBA32, 16 },
 
+                { eTextureFormat::SRGBA8, 4 },
         };
 
         Texture::~Texture()

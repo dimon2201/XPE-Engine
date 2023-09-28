@@ -83,6 +83,10 @@ namespace xpe {
                     layer.Pixels = stbi_loadf(filepath, &w, &h, &c, desiredChannels);
                     break;
 
+                case eTextureFormat::SRGBA8:
+                    layer.Pixels = stbi_load(filepath, &w, &h, &c, desiredChannels);
+                    break;
+
             }
 
             width = w;

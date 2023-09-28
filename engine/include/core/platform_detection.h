@@ -8,6 +8,7 @@
 /* Windows x64  */
 #define WINDOWS
 #define DX11
+#define OPENAL
 
 #else
 /* Windows x86 */
@@ -16,6 +17,7 @@
 #endif
 
 #elif defined(__APPLE__) || defined(__MACH__)
+#define OPENAL
 
 #include <TargetConditionals.h>
 
@@ -28,14 +30,15 @@
 		#error "IOS simulator is not supported!"
 
 	#elif TARGET_OS_IPHONE == 1
-		#define HZ_PLATFORM_IOS
+		#define IOS
 		#error "IOS is not supported!"
 
 	#elif TARGET_OS_MAC == 1
-		#define HZ_PLATFORM_MACOS
+		#define MACOS
+        #define OPENAL
 		#error "MacOS is not supported!"
 
-	#else
+    #else
 		#error "Unknown Apple platform!"
 
     #endif
@@ -45,14 +48,14 @@
  * it has __linux__ defined */
 
 #elif defined(__ANDROID__)
-
 #define ANDROID
-	#error "Android is not supported!"
+#define OPENAL
+#error "Android is not supported!"
 
 #elif defined(__linux__)
 
 #define LINUX
-
+#define OPENAL
 #else
 
 /* Unknown compiler/platform */
@@ -69,3 +72,6 @@
 
 #ifdef OGL
 #endif // OGL
+
+#ifdef OPENAL
+#endif // OPENAL

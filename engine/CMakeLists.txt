@@ -5,8 +5,8 @@ project(xpe_engine)
 # Include CMake helpers
 include(cmake_tools/CMakeLists.txt)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -O3")
 
 # Defines engine as DLL build
 build_engine_dll()
@@ -22,6 +22,8 @@ include_directories(
         thirdparty/json/include
         thirdparty/spdlog/include
         thirdparty/stbi
+        thirdparty/openal-soft/include/AL
+        thirdparty/libsndfile/include
 )
 
 # Create shared dynamic library
@@ -35,10 +37,12 @@ add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/glfw)
 add_subdirectory(thirdparty/glm)
 add_subdirectory(thirdparty/json)
+add_subdirectory(thirdparty/openal-soft)
+add_subdirectory(thirdparty/libsndfile)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile)
 
 # Move shaders into bin folder
 copy_engine_shaders(engine)

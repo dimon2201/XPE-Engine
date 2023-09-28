@@ -1,5 +1,4 @@
 #include <rendering/draw/skeletal_render_pass.h>
-#include <rendering/buffers/light_buffers.h>
 
 #include <ecs/scenes.hpp>
 

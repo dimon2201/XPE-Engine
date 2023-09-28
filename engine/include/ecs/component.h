@@ -10,7 +10,6 @@ namespace xpe {
         {
             Component() = default;
             Component(const string& tag) { m_Tag = tag; }
-            virtual ~Component() = default;
         };
 
         struct ENGINE_API ComponentStorage : public Object

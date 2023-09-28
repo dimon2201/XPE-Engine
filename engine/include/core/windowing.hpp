@@ -4,8 +4,6 @@ namespace xpe
 {
     namespace core
     {
-        class Application;
-
         enum class eCursorMode
         {
             NORMAL,
@@ -32,6 +30,8 @@ namespace xpe
             s32 X;
             s32 Y;
             bool VSync;
+            float Gamma = 2.2f; // 2.2 is not default for every monitor
+            float Exposure = 1.0f; // level of camera exposure
             eCursorMode CursorMode = eCursorMode::DEFAULT;
             eWindowTheme Theme = eWindowTheme::DEFAULT;
         };
@@ -55,6 +55,14 @@ namespace xpe
 
             static const WindowDescriptor& GetDescriptor();
 
+            static bool ShouldClose();
+            static void Close();
+
+            static void PollEvents();
+            static void Swap();
+
+            static bool IsWindowed();
+
             static int GetWidth();
             static int GetHeight();
 
@@ -73,12 +81,6 @@ namespace xpe
             static void SetPos(int x, int y);
             static void SetSize(int w, int h);
 
-            static bool ShouldClose();
-            static void Close();
-
-            static void PollEvents();
-            static void Swap();
-
             static void SetUserPointer(void* userPtr);
             static void* GetUserPointer();
 
@@ -88,8 +90,6 @@ namespace xpe
             static void SetWindowed();
             static void SetFullscreenWindowed();
             static void ToggleWindowMode();
-
-            static bool IsWindowed();
 
         private:
             static void CreatePrimaryMonitor();

@@ -4,6 +4,8 @@
 
 #include <core/windowing.hpp>
 
+#include <rendering/buffers/monitor_buffer.h>
+
 namespace xpe {
 
     namespace core {

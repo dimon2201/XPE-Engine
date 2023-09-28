@@ -11,3 +11,9 @@
 [submodule "engine/thirdparty/json"]
 	path = engine/thirdparty/json
 	url = https://github.com/nlohmann/json
+[submodule "engine/thirdparty/openal-soft"]
+	path = engine/thirdparty/openal-soft
+	url = https://github.com/kcat/openal-soft
+[submodule "engine/thirdparty/libsndfile"]
+	path = engine/thirdparty/libsndfile
+	url = https://github.com/libsndfile/libsndfile

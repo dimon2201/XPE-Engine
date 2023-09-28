@@ -5,6 +5,9 @@
 #define alloc_construct(T) xpe::core::MemoryPoolManager::MainPools->AllocateConstruct<T>()
 #define alloc_construct_args(T, ...) xpe::core::MemoryPoolManager::MainPools->AllocateConstructArgs<T>(__VA_ARGS__)
 #define dealloc(addr) xpe::core::MemoryPoolManager::MainPools->Free(addr)
+#define destruct(T, addr) \
+addr->~T();               \
+dealloc(addr)
 
 namespace xpe {
 

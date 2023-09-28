@@ -6,9 +6,8 @@
 
 #include <rendering/core/debugger.h>
 
+#include <rendering/monitor.h>
 #include <rendering/renderer.h>
-
-#include <rendering/buffers/light_buffers.h>
 
 #include <rendering/draw/canvas.hpp>
 #include <rendering/draw/instance_render_pass.h>
@@ -19,21 +18,28 @@
 #include <rendering/draw/merge_render_pass.h>
 #include <rendering/draw/ssao_render_pass.hpp>
 
+#include <rendering/shadow/shadow.h>
+
 #include <rendering/storages/texture_storage.h>
 #include <rendering/storages/font_storage.h>
 
 #include <anim/animator.h>
 #include <anim/storages/anim_storage.h>
 
+#include <audio/audio_system.h>
+#include <audio/storages/audio_storage.h>
+
+#include <thread>
+
 xpe::render::RenderTarget* mainRT;
 xpe::render::RenderTarget* ssaoRT;
-xpe::render::RenderPass* ssaoRP;
 
 namespace xpe {
 
     using namespace render;
     using namespace ecs;
     using namespace anim;
+    using namespace audio;
 
     namespace core {
 
@@ -51,6 +57,8 @@ namespace xpe {
             winDesc.X = Config.WinX;
             winDesc.Y = Config.WinY;
             winDesc.VSync = Config.VSync;
+            winDesc.Gamma = Config.Gamma;
+            winDesc.Exposure = Config.Exposure;
 
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
@@ -77,6 +85,12 @@ namespace xpe {
 
             InitRenderer();
 
+            Monitor::Get().Exposure = winDesc.Exposure;
+            Monitor::Get().Gamma = winDesc.Gamma;
+
+            m_AudioSystem = new AudioSystem();
+            m_AudioStorage = new AudioStorage();
+
             m_MainScene = new MainScene();
             m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;
             m_MainScene->OrthoCamera->Buffer = m_Renderer->CameraBuffer;
@@ -84,6 +98,13 @@ namespace xpe {
             Init();
             m_Game = CreateGame();
             InitGame();
+
+            std::atomic<bool> AudioThreadFlag(true);
+            std::thread AudioThread([this, &AudioThreadFlag]() {
+                while (AudioThreadFlag) {
+                    m_AudioSystem->Update(m_MainScene);
+                }
+            });
 
             while (!WindowManager::ShouldClose())
             {
@@ -113,6 +134,8 @@ namespace xpe {
 
                 Render();
 
+                m_AudioSystem->UpdateListener(m_MainScene);
+
                 WindowManager::PollEvents();
                 WindowManager::Swap();
 
@@ -127,6 +150,9 @@ namespace xpe {
 #endif
 
             }
+
+            AudioThreadFlag = false;
+            AudioThread.join();
 
             m_Game->Free();
             delete m_Game;
@@ -143,6 +169,9 @@ namespace xpe {
             delete m_SkinStorage;
             delete m_SkeletStorage;
             delete m_Animator;
+
+            delete m_AudioSystem;
+            delete m_AudioStorage;
 
             delete m_Canvas;
             delete m_Renderer;
@@ -183,6 +212,9 @@ namespace xpe {
             m_Game->SkinStorage = m_SkinStorage;
             m_Game->AnimStorage = m_AnimStorage;
             m_Game->Animator = m_Animator;
+
+            m_Game->AudioSystem = m_AudioSystem;
+            m_Game->AudioStorage = m_AudioStorage;
 
             m_Game->Init();
         }
@@ -260,24 +292,11 @@ namespace xpe {
 
             ssaoRT = new RenderTarget({ ssaoColor }, ssaoDepth, *canvasViewport);
 
-            // Skybox drawing
-//            {
-//                Shader* shader = ShaderManager::CreateShader("skybox_drawer");
-//                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skybox_drawer.vs");
-//                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skybox_drawer.ps");
-//                ShaderManager::BuildShader(shader);
-//                m_Renderer->AddDrawer<SkyboxDrawer>(
-//                        m_Renderer->CameraBuffer,
-//                        shader,
-//                        mainRT,
-//                        m_GeometryStorage
-//                );
-//            }
             // Instance drawing for 3D
             {
                 Shader* shader = ShaderManager::CreateShader("instance_drawer");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/instance_drawer.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/instance_drawer.ps");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/pbr.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -297,7 +316,7 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("skeletal_anim_drawer");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/skeletal_anim_drawer.ps");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/draw/pbr.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -394,12 +413,13 @@ namespace xpe {
 
         void Application::Render()
         {
-            context::ClearColorTarget((void*)mainRT->ColorViews[0], glm::vec4(1.0f));
-            context::ClearColorTarget((void*)mainRT->ColorViews[1], glm::vec4(0.0f));
-            context::ClearColorTarget((void*)mainRT->ColorViews[2], glm::vec4(0.0f));
-            context::ClearDepthTarget((void*)mainRT->DepthStencilView, 1.0f);
-            context::ClearColorTarget((void*)ssaoRT->ColorViews[0], glm::vec4(1.0f));
-            context::ClearDepthTarget((void*)ssaoRT->DepthStencilView, 1.0f);
+            mainRT->ClearColor(0, { 1, 1, 1, 1 });
+            mainRT->ClearColor(1, { 0, 0, 0, 0 });
+            mainRT->ClearColor(2, { 0, 0, 0, 0 });
+            mainRT->ClearDepth(1);
+
+            ssaoRT->ClearColor(0, { 1, 1, 1, 1 });
+            ssaoRT->ClearDepth(1);
 
             m_Canvas->Clear(ClearColor);
             m_Renderer->Render(m_MainScene);

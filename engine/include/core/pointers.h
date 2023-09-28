@@ -35,9 +35,8 @@ namespace xpe {
         template<typename T>
         Scope<T>::~Scope()
         {
-            if (m_Ptr != nullptr) {
-                dealloc(m_Ptr);
-            }
+            if (m_Ptr != nullptr)
+                destruct(T, m_Ptr);
             m_Ptr = nullptr;
         }
 
@@ -105,9 +104,8 @@ namespace xpe {
         {
             RefCountTable[m_Ptr] -= 1;
             if (RefCountTable[m_Ptr] <= 0) {
-                if (m_Ptr != nullptr) {
-                    dealloc(m_Ptr);
-                }
+                if (m_Ptr != nullptr)
+                    destruct(T, m_Ptr);
                 m_Ptr = nullptr;
             }
         }
@@ -194,9 +192,8 @@ namespace xpe {
         template<typename T>
         HotScope<T>::~HotScope()
         {
-            if (m_Ptr != nullptr) {
-                dehalloc(m_Ptr);
-            }
+            if (m_Ptr != nullptr)
+                hdestruct(T, m_Ptr);
             m_Ptr = nullptr;
         }
 
@@ -262,9 +259,8 @@ namespace xpe {
         {
             RefCountTable[m_Ptr] -= 1;
             if (RefCountTable[m_Ptr] <= 0) {
-                if (m_Ptr != nullptr) {
-                    dehalloc(m_Ptr);
-                }
+                if (m_Ptr != nullptr)
+                    hdestruct(T, m_Ptr);
                 m_Ptr = nullptr;
             }
         }
