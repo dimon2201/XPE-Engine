@@ -223,7 +223,7 @@ namespace xpe {
 
         void Application::InitRenderer()
         {
-            // Canvas
+            // Canvas pass
             Shader* shader = ShaderManager::CreateShader("canvas");
             ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/canvas.vs");
             ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/canvas.ps");
@@ -379,8 +379,6 @@ namespace xpe {
 
             // SSAO pass
             {
-                m_GeometryStorage->AddGeometryIndexed2D("SSAOQuad", Quad2D());
-
                 Shader* shader = ShaderManager::CreateShader("ssao");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/ssao_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/ssao_pass.ps");
@@ -400,7 +398,7 @@ namespace xpe {
                 );
             }
 
-            // Canvas pass
+            // SSAO Merge pass
             {
                 Shader* shader = ShaderManager::CreateShader("merge");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/merge_pass.vs");
