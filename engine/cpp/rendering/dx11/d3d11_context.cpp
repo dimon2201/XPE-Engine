@@ -429,7 +429,7 @@ namespace xpe {
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
                         desc.Format = s_TextureFormatTable.at(color->Format);
-                        desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+                        desc.ViewDimension = color->SampleCount > 1 ? D3D11_RTV_DIMENSION_TEXTURE2DMS : D3D11_RTV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateRenderTargetView(
@@ -450,7 +450,7 @@ namespace xpe {
                     {
                         D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
                         desc.Format = DXGI_FORMAT_D32_FLOAT;
-                        desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                        desc.ViewDimension = depth->SampleCount > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateDepthStencilView(
@@ -781,13 +781,13 @@ namespace xpe {
                 texDesc.MipLevels = mipLevels;
                 texDesc.ArraySize = arraySize;
                 texDesc.Format = s_TextureFormatTable.at(texture.Format);
-                texDesc.SampleDesc.Count = 1;
+                texDesc.SampleDesc.Count = texture.SampleCount;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
+                texDesc.CPUAccessFlags = texture.SampleCount == 1 ? s_TextureCPUFlags.at(texture.Usage) : 0;
 
                 srv.Format = texDesc.Format;
-                srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+                srv.ViewDimension = texture.SampleCount > 1 ? D3D11_SRV_DIMENSION_TEXTURE2DMS : D3D11_SRV_DIMENSION_TEXTURE2D;
                 srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
                 srv.Texture2D.MipLevels = mipLevels;
 
@@ -924,15 +924,17 @@ namespace xpe {
                 texDesc.Width = texture.Width;
                 texDesc.Height = texture.Height;
                 texDesc.ArraySize = 1;
-                texDesc.SampleDesc.Count = 1;
+                texDesc.SampleDesc.Count = texture.SampleCount;
+                texDesc.SampleDesc.Quality = 0;
                 texDesc.MipLevels = 1;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
+                texDesc.CPUAccessFlags = 0;
 
                 s_Device->CreateTexture2D(&texDesc, nullptr, (ID3D11Texture2D**)&texture.Instance);
                 LogDebugMessage();
 
                 srv.Format = DXGI_FORMAT_R32_FLOAT;
-                srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+                srv.ViewDimension = texture.SampleCount == 1 ? D3D11_SRV_DIMENSION_TEXTURE2D : D3D11_SRV_DIMENSION_TEXTURE2DMS;
                 srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
                 srv.Texture2D.MipLevels = 1;
 

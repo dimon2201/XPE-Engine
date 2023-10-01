@@ -239,6 +239,7 @@ namespace xpe {
             mainColor->Width = m_Canvas->GetDimension().x;
             mainColor->Height = m_Canvas->GetDimension().y;
             mainColor->Format = eTextureFormat::RGBA8;
+            mainColor->SampleCount = 2;
             mainColor->InitializeData = false;
             mainColor->EnableRenderTarget = true;
             mainColor->Init();
@@ -247,6 +248,7 @@ namespace xpe {
             mainPosition->Width = m_Canvas->GetDimension().x;
             mainPosition->Height = m_Canvas->GetDimension().y;
             mainPosition->Format = eTextureFormat::RGBA32;
+            mainPosition->SampleCount = 2;
             mainPosition->InitializeData = false;
             mainPosition->EnableRenderTarget = true;
             mainPosition->Init();
@@ -255,6 +257,7 @@ namespace xpe {
             mainNormal->Width = m_Canvas->GetDimension().x;
             mainNormal->Height = m_Canvas->GetDimension().y;
             mainNormal->Format = eTextureFormat::RGBA16;
+            mainNormal->SampleCount = 2;
             mainNormal->InitializeData = false;
             mainNormal->EnableRenderTarget = true;
             mainNormal->Init();
@@ -264,6 +267,7 @@ namespace xpe {
             mainDepth->Width = m_Canvas->GetDimension().x;
             mainDepth->Height = m_Canvas->GetDimension().y;
             mainDepth->Format = eTextureFormat::R32_TYPELESS;
+            mainDepth->SampleCount = 2;
             mainDepth->InitializeData = false;
             mainDepth->EnableRenderTarget = true;
             mainDepth->Init();
@@ -379,46 +383,46 @@ namespace xpe {
             }
 
             // SSAO pass
-            {
-                m_GeometryStorage->AddGeometryIndexed2D("SSAOQuad", Quad2D());
-
-                Shader* shader = ShaderManager::CreateShader("ssao");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/ssao_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/ssao_pass.ps");
-                ShaderManager::BuildShader(shader);
-
-                vector<RenderPassBinding> bindings = {
-                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[1] },
-                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, MainRT->Colors[2] },
-                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, MainRT->DepthStencil }
-                };
-
-                m_Renderer->AddRenderPass<SSAOPass>(
-                    m_GeometryStorage,
-                    bindings,
-                    SsaoRT
-                );
-            }
+//            {
+//                m_GeometryStorage->AddGeometryIndexed2D("SSAOQuad", Quad2D());
+//
+//                Shader* shader = ShaderManager::CreateShader("ssao");
+//                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/ssao_pass.vs");
+//                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/ssao_pass.ps");
+//                ShaderManager::BuildShader(shader);
+//
+//                vector<RenderPassBinding> bindings = {
+//                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
+//                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[1] },
+//                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, MainRT->Colors[2] },
+//                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, MainRT->DepthStencil }
+//                };
+//
+//                m_Renderer->AddRenderPass<SSAOPass>(
+//                    m_GeometryStorage,
+//                    bindings,
+//                    SsaoRT
+//                );
+//            }
 
             // FXAA pass
-            {
-                Shader* shader = ShaderManager::CreateShader("fxaa");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
-                ShaderManager::BuildShader(shader);
-
-                vector<RenderPassBinding> bindings = {
-                        { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                        { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[0] }
-                };
-
-                m_FXAAPass = m_Renderer->AddRenderPass<FXAAPass>(
-                    bindings,
-                    m_Canvas->GetDimension(),
-                    canvasViewport
-                );
-            }
+//            {
+//                Shader* shader = ShaderManager::CreateShader("fxaa");
+//                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
+//                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
+//                ShaderManager::BuildShader(shader);
+//
+//                vector<RenderPassBinding> bindings = {
+//                        { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
+//                        { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[0] }
+//                };
+//
+//                m_FXAAPass = m_Renderer->AddRenderPass<FXAAPass>(
+//                    bindings,
+//                    m_Canvas->GetDimension(),
+//                    canvasViewport
+//                );
+//            }
 
             // Canvas pass
             {
@@ -429,7 +433,7 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, m_FXAAPass->GetRenderTarget()->Colors[0] },
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[0] },
                     { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, SsaoRT->Colors[0] }
                 };
 
@@ -451,8 +455,8 @@ namespace xpe {
             SsaoRT->ClearColor(0, { 1, 1, 1, 1 });
             SsaoRT->ClearDepth(1);
 
-            m_FXAAPass->GetRenderTarget()->ClearColor(0, { 0, 0, 0, 0 });
-            m_FXAAPass->GetRenderTarget()->ClearDepth(1);
+//            m_FXAAPass->GetRenderTarget()->ClearColor(0, { 0, 0, 0, 0 });
+//            m_FXAAPass->GetRenderTarget()->ClearDepth(1);
 
             m_Canvas->Clear(ClearColor);
             m_Renderer->Render(m_MainScene);

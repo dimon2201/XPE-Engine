@@ -15,6 +15,7 @@ namespace xpe {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);
 
+            m_Pipeline->Rasterizer.MultisampleEnable = true;
             m_Pipeline->InputLayout.Format = SkeletalVertex::Format;
 
             materialStorage->BindPipeline(*m_Pipeline);

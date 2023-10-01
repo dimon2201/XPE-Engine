@@ -67,6 +67,7 @@ namespace xpe {
             {
                 TEXTURE_1D,
                 TEXTURE_2D,
+                TEXTURE_2D_MS,
                 TEXTURE_2D_DEPTH_STENCIL,
                 TEXTURE_2D_ARRAY,
                 TEXTURE_3D,
@@ -105,6 +106,7 @@ namespace xpe {
             s32 Depth = 1;
             s32 Channels;
             eTextureFormat Format;
+            s32 SampleCount = 1;
 
             bool EnableRenderTarget = false;
 
