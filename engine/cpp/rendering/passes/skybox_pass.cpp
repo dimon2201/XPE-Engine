@@ -1,4 +1,4 @@
-#include <rendering/render_passes/skybox_pass.h>
+#include <rendering/passes/skybox_pass.h>
 
 #include <rendering/storages/geometry_storage.h>
 

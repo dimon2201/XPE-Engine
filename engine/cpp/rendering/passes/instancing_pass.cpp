@@ -1,4 +1,4 @@
-#include <rendering/render_passes/instancing_pass.h>
+#include <rendering/passes/instancing_pass.h>
 
 #include <ecs/scenes.hpp>
 

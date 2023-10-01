@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/render_pass.h>
+#include <rendering/passes/render_pass.h>
 #include <geometry/geometries.h>
 
 namespace xpe

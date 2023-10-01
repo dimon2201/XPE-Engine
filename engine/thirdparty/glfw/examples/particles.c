@@ -91,9 +91,9 @@ struct {
     double    t;         // Time (s)
     float     dt;        // Time since last frame (s)
     int       p_frame;   // Particle physics frame number
-    int       d_frame;   // Particle draw frame number
+    int       d_frame;   // Particle passess frame number
     cnd_t     p_done;    // Condition: particle physics done
-    cnd_t     d_done;    // Condition: particle draw done
+    cnd_t     d_done;    // Condition: particle passess done
     mtx_t     particles_lock; // Particles data sharing mutex
 } thread_sync;
 
@@ -387,7 +387,7 @@ static void particle_engine(double t, float dt)
 // arrays for this in order to accelerate the drawing.
 //========================================================================
 
-#define BATCH_PARTICLES 70  // Number of particles to draw in each batch
+#define BATCH_PARTICLES 70  // Number of particles to passess in each batch
                             // (70 corresponds to 7.5 KB = will not blow
                             // the L1 data cache on most CPUs)
 #define PARTICLE_VERTS  4   // Number of vertices per particle
@@ -538,7 +538,7 @@ static void draw_particles(GLFWwindow* window, double t, float dt)
             particle_count ++;
         }
 
-        // If we have filled up one batch of particles, draw it as a set
+        // If we have filled up one batch of particles, passess it as a set
         // of quads using glDrawArrays.
         if (particle_count >= BATCH_PARTICLES)
         {

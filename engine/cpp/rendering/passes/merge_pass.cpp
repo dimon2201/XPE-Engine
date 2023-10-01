@@ -1,4 +1,4 @@
-#include <rendering/render_passes/merge_pass.h>
+#include <rendering/passes/merge_pass.h>
 #include <rendering/storages/geometry_storage.h>
 #include <ecs/scenes.hpp>
 

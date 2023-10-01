@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/render_pass.h>
+#include <rendering/passes/render_pass.h>
 #include <rendering/buffers/transform_buffer.h>
 #include <rendering/buffers/text_buffer.h>
 

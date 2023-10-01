@@ -9,14 +9,15 @@
 #include <rendering/monitor.h>
 #include <rendering/renderer.h>
 
-#include <rendering/render_passes/canvas.hpp>
-#include <rendering/render_passes/instancing_pass.h>
-#include <rendering/render_passes/skeletal_anim_pass.h>
-#include <rendering/render_passes/text2d_pass.h>
-#include <rendering/render_passes/text3d_pass.h>
-#include <rendering/render_passes/skybox_pass.h>
-#include <rendering/render_passes/merge_pass.h>
-#include <rendering/render_passes/ssao_pass.hpp>
+#include <rendering/passes/canvas.hpp>
+#include <rendering/passes/instancing_pass.h>
+#include <rendering/passes/skeletal_anim_pass.h>
+#include <rendering/passes/text2d_pass.h>
+#include <rendering/passes/text3d_pass.h>
+#include <rendering/passes/skybox_pass.h>
+#include <rendering/passes/merge_pass.h>
+#include <rendering/passes/ssao_pass.hpp>
+#include <rendering/passes/fxaa_pass.hpp>
 
 #include <rendering/shadow/shadow.h>
 
@@ -225,8 +226,8 @@ namespace xpe {
         {
             // Canvas
             Shader* shader = ShaderManager::CreateShader("canvas");
-            ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/canvas.vs");
-            ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/canvas.ps");
+            ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/canvas.vs");
+            ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
             ShaderManager::BuildShader(shader);
             m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
 
@@ -292,8 +293,8 @@ namespace xpe {
             // Instancing pass
             {
                 Shader* shader = ShaderManager::CreateShader("instancing");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/instancing_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/pbr_pass.ps");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/instancing_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -316,8 +317,8 @@ namespace xpe {
             // Skeletal animation pass
             {
                 Shader* shader = ShaderManager::CreateShader("skeletal_anim");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/skeletal_anim_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/pbr_pass.ps");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeletal_anim_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -340,8 +341,8 @@ namespace xpe {
             // Text 2D pass
             {
                 Shader* shader = ShaderManager::CreateShader("text2d");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/text2d_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/text2d_pass.ps");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text2d_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text2d_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -360,8 +361,8 @@ namespace xpe {
             // Text 3D pass
             {
                 Shader* shader = ShaderManager::CreateShader("text3d");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/text3d_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/text3d_pass.ps");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text3d_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text3d_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -382,8 +383,8 @@ namespace xpe {
                 m_GeometryStorage->AddGeometryIndexed2D("SSAOQuad", Quad2D());
 
                 Shader* shader = ShaderManager::CreateShader("ssao");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/ssao_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/ssao_pass.ps");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/ssao_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/ssao_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -400,17 +401,37 @@ namespace xpe {
                 );
             }
 
+            // FXAA pass
+            fxaaPass = nullptr;
+            {
+                Shader* shader = ShaderManager::CreateShader("fxaa");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
+                        { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[0] }
+                };
+
+                fxaaPass = m_Renderer->AddRenderPass<FXAAPass>(
+                    bindings,
+                    m_Canvas->GetDimension(),
+                    canvasViewport
+                );
+            }
+
             // Canvas pass
             {
                 Shader* shader = ShaderManager::CreateShader("merge");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/render_passes/merge_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/render_passes/merge_pass.ps");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/merge_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[0] },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, SsaoRT->Colors[0] }
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, fxaaPass->GetRenderTarget()->Colors[0] },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, SsaoRT->Colors[0] }
                 };
 
                 m_Renderer->AddRenderPass<MergePass>(
@@ -430,6 +451,9 @@ namespace xpe {
 
             SsaoRT->ClearColor(0, { 1, 1, 1, 1 });
             SsaoRT->ClearDepth(1);
+
+            fxaaPass->GetRenderTarget()->ClearColor(0, { 0, 0, 0, 0 });
+            fxaaPass->GetRenderTarget()->ClearDepth(1);
 
             m_Canvas->Clear(ClearColor);
             m_Renderer->Render(m_MainScene);

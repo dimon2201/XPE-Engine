@@ -1,5 +1,5 @@
 #include <rendering/renderer.h>
-#include <rendering/render_passes/render_pass.h>
+#include <rendering/passes/render_pass.h>
 #include <rendering/monitor.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>

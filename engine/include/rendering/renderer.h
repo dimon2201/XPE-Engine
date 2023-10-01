@@ -33,7 +33,7 @@ namespace xpe {
             void AddDrawer(Args &&... args);
 
             template<typename T, typename ... Args>
-            void AddRenderPass(Args &&... args);
+            T* AddRenderPass(Args &&... args);
 
             void RemoveDrawer(Drawer* drawer);
 
@@ -53,9 +53,12 @@ namespace xpe {
         }
 
         template<typename T, typename... Args>
-        void Renderer::AddRenderPass(Args &&... args)
+        T* Renderer::AddRenderPass(Args &&... args)
         {
-            m_RenderPasses.emplace_back(new T(std::forward<Args>(args)...));
+            T* pass = new T(std::forward<Args>(args)...);
+            m_RenderPasses.emplace_back(pass);
+
+            return pass;
         }
 
     }

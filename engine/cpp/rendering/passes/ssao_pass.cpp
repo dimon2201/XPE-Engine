@@ -1,4 +1,4 @@
-#include <rendering/render_passes/ssao_pass.hpp>
+#include <rendering/passes/ssao_pass.hpp>
 #include <rendering/storages/geometry_storage.h>
 #include <ecs/scene.h>
 
@@ -31,6 +31,8 @@ namespace xpe
         void SSAOPass::Update(Scene* scene)
         {
             // TODO: very strange buffer update. In that case, better to replace CONSTANT buffer with STRUCTURED buffer.
+            m_BufferData.SSAODirectionCount = 4;
+            m_BufferData.SSAOSampleCount = 4;
             void* memory = context::Map(m_Buffer, 0, eMapType::WRITE_DISCARD);
             memcpy(memory, &m_BufferData, sizeof(SSAOBufferLayout));
             context::Unmap(m_Buffer);

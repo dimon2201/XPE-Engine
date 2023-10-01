@@ -1,4 +1,4 @@
-#include <rendering/render_passes/skeletal_anim_pass.h>
+#include <rendering/passes/skeletal_anim_pass.h>
 
 #include <ecs/scenes.hpp>
 

@@ -28,6 +28,8 @@ struct VSOut
 struct PSOut
 {
     float4 color : SV_Target0;
+    float4 position : SV_Target1;
+    float4 normal : SV_Target2;
 };
 
 PSOut ps_main(VSOut psIn) : SV_TARGET
@@ -78,5 +80,7 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     PSOut psOut;
     psOut.color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
     psOut.color = float4(TonemapExp(psOut.color.rgb, Monitor().Gamma, Monitor().Exposure), psOut.color.a);
+    psOut.position = float4(W, 1.0);
+    psOut.normal = float4(N, 1.0);
     return psOut;
 }

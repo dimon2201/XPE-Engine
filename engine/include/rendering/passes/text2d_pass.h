@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/text_pass.h>
+#include <rendering/passes/text_pass.h>
 
 namespace xpe {
 

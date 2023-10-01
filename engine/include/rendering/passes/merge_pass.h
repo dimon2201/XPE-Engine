@@ -1,21 +1,31 @@
 #pragma once
 
-#include <rendering/render_passes/text_pass.h>
+#include <rendering/passes/render_pass.h>
+#include <geometry/geometries.h>
 
 namespace xpe {
 
+    namespace ecs
+    {
+        class Scene;
+    }
+
     namespace render {
 
-        class ENGINE_API Text3DPass : public TextPass
+        using namespace ecs;
+
+        class GeometryStorage;
+
+        class ENGINE_API MergePass : public RenderPass
         {
 
         public:
-            Text3DPass(
+            MergePass(
                 const core::vector<RenderPassBinding>& bindings,
                 RenderTarget* output,
                 GeometryStorage* geometryStorage
             );
-            ~Text3DPass() override;
+            virtual ~MergePass();
 
             virtual void Update(Scene* scene) override;
             virtual void Draw(Scene* scene) override;

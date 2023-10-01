@@ -57,7 +57,7 @@ namespace xpe {
             void* State = nullptr;
             bool AlphaToCoverageEnable = false;
             bool IndependentBlendEnable = false;
-            // blend mode can only have maximum 8 targets per draw
+            // blend mode can only have maximum 8 targets per passess
             array<BlendTarget, 8> Targets;
         };
 

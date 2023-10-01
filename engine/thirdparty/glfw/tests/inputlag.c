@@ -284,7 +284,7 @@ int main(int argc, char** argv)
             nk_label(nk, "After swap:", align_left);
             nk_checkbox_label(nk, "glClear", &swap_clear);
             nk_checkbox_label(nk, "glFinish", &swap_finish);
-            nk_checkbox_label(nk, "draw with occlusion query", &swap_occlusion_query);
+            nk_checkbox_label(nk, "passess with occlusion query", &swap_occlusion_query);
             nk_checkbox_label(nk, "glReadPixels", &swap_read_pixels);
         }
 

@@ -1,4 +1,4 @@
-#include <rendering/render_passes/text_pass.h>
+#include <rendering/passes/text_pass.h>
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/font/font.hpp>
 

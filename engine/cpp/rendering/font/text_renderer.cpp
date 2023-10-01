@@ -1,7 +1,7 @@
 //#include <rendering/text/text_renderer.hpp>
 //#include <rendering/text/ttf_manager.hpp>
 //#include <rendering/text/text_batching.hpp>
-//#include <rendering/draw/canvas.hpp>
+//#include <rendering/passess/canvas.hpp>
 //#include <rendering/camera/camera_manager.h>
 //#include <rendering/transforming/transforming.h>
 //

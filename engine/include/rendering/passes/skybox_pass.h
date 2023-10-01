@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/render_pass.h>
+#include <rendering/passes/render_pass.h>
 
 #include <rendering/buffers/vertex_buffer.h>
 #include <rendering/buffers/index_buffer.h>

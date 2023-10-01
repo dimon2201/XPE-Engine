@@ -220,7 +220,7 @@ FT_BEGIN_HEADER
    *   thing to note is that the preset hook and the render hook often need
    *   to do the same operations; therefore, it's better to cache the
    *   intermediate data in a state structure to avoid calculating it twice.
-   *   For example, in the preset hook one can draw the glyph on a recorder
+   *   For example, in the preset hook one can passess the glyph on a recorder
    *   surface and later create a bitmap surface from it in the render hook.
    *
    *   All four hooks must be non-NULL.

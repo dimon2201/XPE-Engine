@@ -19,7 +19,7 @@ namespace xpe {
             os::FileManager::CreateDir("generated");
             os::FileManager::CreateDir("generated/shaders");
             os::FileManager::CreateDir("generated/engine_shaders");
-            os::FileManager::CreateDir("generated/engine_shaders/render_passes");
+            os::FileManager::CreateDir("generated/engine_shaders/passes");
 
             LogInfo("ShaderManager initialized");
         }
