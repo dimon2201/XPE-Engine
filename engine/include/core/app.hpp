@@ -55,7 +55,7 @@ namespace xpe {
 
             render::RenderTarget* MainRT = nullptr;
             render::RenderTarget* SsaoRT = nullptr;
-            render::FXAAPass* fxaaPass = nullptr;
+            render::FXAAPass* m_FXAAPass = nullptr;
         };
 
     }

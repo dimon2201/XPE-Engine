@@ -402,7 +402,6 @@ namespace xpe {
             }
 
             // FXAA pass
-            fxaaPass = nullptr;
             {
                 Shader* shader = ShaderManager::CreateShader("fxaa");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
@@ -414,7 +413,7 @@ namespace xpe {
                         { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[0] }
                 };
 
-                fxaaPass = m_Renderer->AddRenderPass<FXAAPass>(
+                m_FXAAPass = m_Renderer->AddRenderPass<FXAAPass>(
                     bindings,
                     m_Canvas->GetDimension(),
                     canvasViewport
@@ -430,7 +429,7 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, fxaaPass->GetRenderTarget()->Colors[0] },
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, m_FXAAPass->GetRenderTarget()->Colors[0] },
                     { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, SsaoRT->Colors[0] }
                 };
 
@@ -452,8 +451,8 @@ namespace xpe {
             SsaoRT->ClearColor(0, { 1, 1, 1, 1 });
             SsaoRT->ClearDepth(1);
 
-            fxaaPass->GetRenderTarget()->ClearColor(0, { 0, 0, 0, 0 });
-            fxaaPass->GetRenderTarget()->ClearDepth(1);
+            m_FXAAPass->GetRenderTarget()->ClearColor(0, { 0, 0, 0, 0 });
+            m_FXAAPass->GetRenderTarget()->ClearDepth(1);
 
             m_Canvas->Clear(ClearColor);
             m_Renderer->Render(m_MainScene);
