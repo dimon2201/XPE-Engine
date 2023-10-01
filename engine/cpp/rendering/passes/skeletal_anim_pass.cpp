@@ -9,13 +9,14 @@ namespace xpe {
         SkeletalAnimPass::SkeletalAnimPass(
             const core::vector<RenderPassBinding>& bindings,
             RenderTarget* output,
-            MaterialStorage* materialStorage
+            MaterialStorage* materialStorage,
+            core::Boolean useMSAA
         ) : RenderPass(bindings, output)
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);
 
-            m_Pipeline->Rasterizer.MultisampleEnable = true;
+            m_Pipeline->Rasterizer.MultisampleEnable = useMSAA;
             m_Pipeline->InputLayout.Format = SkeletalVertex::Format;
 
             materialStorage->BindPipeline(*m_Pipeline);

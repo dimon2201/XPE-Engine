@@ -234,12 +234,14 @@ namespace xpe {
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
 
+            const core::Boolean useMSAA = core::K_FALSE; // TODO: remove this variable after testing MSAA
+
             // Main render target
             Texture* mainColor = new Texture();
             mainColor->Width = m_Canvas->GetDimension().x;
             mainColor->Height = m_Canvas->GetDimension().y;
             mainColor->Format = eTextureFormat::RGBA8;
-            mainColor->SampleCount = 2;
+            mainColor->SampleCount = useMSAA == core::K_TRUE ? 4 : 1;
             mainColor->InitializeData = false;
             mainColor->EnableRenderTarget = true;
             mainColor->Init();
@@ -248,7 +250,7 @@ namespace xpe {
             mainPosition->Width = m_Canvas->GetDimension().x;
             mainPosition->Height = m_Canvas->GetDimension().y;
             mainPosition->Format = eTextureFormat::RGBA32;
-            mainPosition->SampleCount = 2;
+            mainPosition->SampleCount = useMSAA == core::K_TRUE ? 4 : 1;
             mainPosition->InitializeData = false;
             mainPosition->EnableRenderTarget = true;
             mainPosition->Init();
@@ -257,7 +259,7 @@ namespace xpe {
             mainNormal->Width = m_Canvas->GetDimension().x;
             mainNormal->Height = m_Canvas->GetDimension().y;
             mainNormal->Format = eTextureFormat::RGBA16;
-            mainNormal->SampleCount = 2;
+            mainNormal->SampleCount = useMSAA == core::K_TRUE ? 4 : 1;
             mainNormal->InitializeData = false;
             mainNormal->EnableRenderTarget = true;
             mainNormal->Init();
@@ -267,7 +269,7 @@ namespace xpe {
             mainDepth->Width = m_Canvas->GetDimension().x;
             mainDepth->Height = m_Canvas->GetDimension().y;
             mainDepth->Format = eTextureFormat::R32_TYPELESS;
-            mainDepth->SampleCount = 2;
+            mainDepth->SampleCount = useMSAA == core::K_TRUE ? 4 : 1;
             mainDepth->InitializeData = false;
             mainDepth->EnableRenderTarget = true;
             mainDepth->Init();
@@ -314,7 +316,8 @@ namespace xpe {
                 m_Renderer->AddRenderPass<InstancingPass>(
                     bindings,
                     MainRT,
-                    m_MaterialStorage
+                    m_MaterialStorage,
+                    useMSAA
                 );
             }
 
@@ -338,7 +341,8 @@ namespace xpe {
                 m_Renderer->AddRenderPass<SkeletalAnimPass>(
                     bindings,
                     MainRT,
-                    m_MaterialStorage
+                    m_MaterialStorage,
+                    useMSAA
                 );
             }
 

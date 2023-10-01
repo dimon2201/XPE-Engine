@@ -5,6 +5,7 @@
 #include <rendering/buffers/transform_buffer.h>
 #include <rendering/storages/geometry_storage.h>
 #include <rendering/storages/material_storage.h>
+#include <core/types.hpp>
 
 namespace xpe {
 
@@ -26,7 +27,8 @@ namespace xpe {
             InstancingPass(
                 const core::vector<RenderPassBinding>& bindings,
                 RenderTarget* output,
-                MaterialStorage* materialStorage
+                MaterialStorage* materialStorage,
+                core::Boolean useMSAA
             );
             ~InstancingPass() override;
 
