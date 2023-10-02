@@ -26,7 +26,7 @@ namespace xpe {
         void MergePass::Draw(Scene* scene)
         {
             context::BindPrimitiveTopology(ePrimitiveTopology::TRIANGLE_STRIP);
-            context::DrawVertexed(0, 4, 1);
+            context::DrawVertexed(4);
         }
 
     }

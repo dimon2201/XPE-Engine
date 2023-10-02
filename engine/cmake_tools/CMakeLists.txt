@@ -179,6 +179,9 @@ macro(include_engine path)
         ${path}/thirdparty/json/include
         ${path}/thirdparty/openal-soft/include
         ${path}/thirdparty/libsndfile/include
+        ${path}/thirdparty/PhysX/physx/include
+        ${path}/thirdparty/PhysX/blast/include
+        ${path}/thirdparty/PhysX/flow/include
     )
 endmacro()
 

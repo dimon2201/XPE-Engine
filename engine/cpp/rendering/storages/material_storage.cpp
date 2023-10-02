@@ -8,13 +8,13 @@ namespace xpe {
         {
             m_DataBuffer.Create();
             InitSampler();
-            AlbedoArray = InitTextureArray(Material::K_ALBEDO_FORMAT);
-            BumpArray = InitTextureArray(Material::K_BUMP_FORMAT);
-            ParallaxArray = InitTextureArray(Material::K_PARALLAX_FORMAT);
-            MetallicArray = InitTextureArray(Material::K_METALLIC_FORMAT);
-            RoughnessArray = InitTextureArray(Material::K_ROUGHNESS_FORMAT);
-            AOArray = InitTextureArray(Material::K_AO_FORMAT);
-            EmissionArray = InitTextureArray(Material::K_EMISSION_FORMAT);
+            AlbedoAtlas = InitTextureArray(Material::K_ALBEDO_FORMAT);
+            NormalAtlas = InitTextureArray(Material::K_BUMP_FORMAT);
+            ParallaxAtlas = InitTextureArray(Material::K_PARALLAX_FORMAT);
+            MetalAtlas = InitTextureArray(Material::K_METALLIC_FORMAT);
+            RoughnessAtlas = InitTextureArray(Material::K_ROUGHNESS_FORMAT);
+            AOAtlas = InitTextureArray(Material::K_AO_FORMAT);
+            EmissionAtlas = InitTextureArray(Material::K_EMISSION_FORMAT);
         }
 
         MaterialStorage::~MaterialStorage()
@@ -62,26 +62,26 @@ namespace xpe {
                 m_DataBuffer->RemoveAt(index);
                 m_DataBuffer->Flush();
 
-                AlbedoArray->RemoveLayerAt(index);
-                AlbedoArray->Flush();
+                AlbedoAtlas->RemoveLayerAt(index);
+                AlbedoAtlas->Flush();
 
-                BumpArray->RemoveLayerAt(index);
-                BumpArray->Flush();
+                NormalAtlas->RemoveLayerAt(index);
+                NormalAtlas->Flush();
 
-                ParallaxArray->RemoveLayerAt(index);
-                ParallaxArray->Flush();
+                ParallaxAtlas->RemoveLayerAt(index);
+                ParallaxAtlas->Flush();
 
-                MetallicArray->RemoveLayerAt(index);
-                MetallicArray->Flush();
+                MetalAtlas->RemoveLayerAt(index);
+                MetalAtlas->Flush();
 
-                RoughnessArray->RemoveLayerAt(index);
-                RoughnessArray->Flush();
+                RoughnessAtlas->RemoveLayerAt(index);
+                RoughnessAtlas->Flush();
 
-                AOArray->RemoveLayerAt(index);
-                AOArray->Flush();
+                AOAtlas->RemoveLayerAt(index);
+                AOAtlas->Flush();
 
-                EmissionArray->RemoveLayerAt(index);
-                EmissionArray->Flush();
+                EmissionAtlas->RemoveLayerAt(index);
+                EmissionAtlas->Flush();
             }
         }
 
@@ -92,26 +92,26 @@ namespace xpe {
             m_DataBuffer->Clear();
             m_DataBuffer->Flush();
 
-            AlbedoArray->Layers.clear();
-            AlbedoArray->Flush();
+            AlbedoAtlas->Layers.clear();
+            AlbedoAtlas->Flush();
 
-            BumpArray->Layers.clear();
-            BumpArray->Flush();
+            NormalAtlas->Layers.clear();
+            NormalAtlas->Flush();
 
-            ParallaxArray->Layers.clear();
-            ParallaxArray->Flush();
+            ParallaxAtlas->Layers.clear();
+            ParallaxAtlas->Flush();
 
-            MetallicArray->Layers.clear();
-            MetallicArray->Flush();
+            MetalAtlas->Layers.clear();
+            MetalAtlas->Flush();
 
-            RoughnessArray->Layers.clear();
-            RoughnessArray->Flush();
+            RoughnessAtlas->Layers.clear();
+            RoughnessAtlas->Flush();
 
-            AOArray->Layers.clear();
-            AOArray->Flush();
+            AOAtlas->Layers.clear();
+            AOAtlas->Flush();
 
-            EmissionArray->Layers.clear();
-            EmissionArray->Flush();
+            EmissionAtlas->Layers.clear();
+            EmissionAtlas->Flush();
         }
 
         void MaterialStorage::BindPipeline(Pipeline& pipeline)
@@ -120,13 +120,13 @@ namespace xpe {
 
             pipeline.Samplers.emplace_back(&Sampler);
 
-            pipeline.Textures.emplace_back(AlbedoArray.Get());
-            pipeline.Textures.emplace_back(BumpArray.Get());
-            pipeline.Textures.emplace_back(ParallaxArray.Get());
-            pipeline.Textures.emplace_back(MetallicArray.Get());
-            pipeline.Textures.emplace_back(RoughnessArray.Get());
-            pipeline.Textures.emplace_back(AOArray.Get());
-            pipeline.Textures.emplace_back(EmissionArray.Get());
+            pipeline.Textures.emplace_back(AlbedoAtlas.Get());
+            pipeline.Textures.emplace_back(NormalAtlas.Get());
+            pipeline.Textures.emplace_back(ParallaxAtlas.Get());
+            pipeline.Textures.emplace_back(MetalAtlas.Get());
+            pipeline.Textures.emplace_back(RoughnessAtlas.Get());
+            pipeline.Textures.emplace_back(AOAtlas.Get());
+            pipeline.Textures.emplace_back(EmissionAtlas.Get());
         }
 
     }

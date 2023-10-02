@@ -8,3 +8,13 @@ struct SpotLight
 };
 
 StructuredBuffer<SpotLight> SpotLights : K_SLOT_SPOT_LIGHTS;
+
+float Attenuation(SpotLight spotLight) {
+    float3 lightDir     = normalize(spotLight.Position - W);
+    float3 spotDir      = normalize(-spotLight.Direction);
+    float theta         = dot(lightDir, spotDir);
+    float cutoff        = spotLight.Cutoff;
+    float gamma         = spotLight.Outer;
+    float epsilon       = cutoff - gamma;
+    return clamp((theta - gamma) / epsilon, 0.0, 1.0);
+}

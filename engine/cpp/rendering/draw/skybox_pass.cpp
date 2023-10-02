@@ -48,7 +48,7 @@ namespace xpe {
         {
             Skybox* skybox = scene->GetGlobal<Skybox>();
             m_Pipeline->Textures[0] = skybox->CubeTexture.Get();
-            context::DrawIndexed(0, 0, 36, 1);
+            context::DrawIndexed(36);
         }
 
     }

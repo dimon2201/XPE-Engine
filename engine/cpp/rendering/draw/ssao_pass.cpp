@@ -39,7 +39,7 @@ namespace xpe
         void SSAOPass::Draw(Scene* scene)
         {
             context::BindPrimitiveTopology(m_Quad->PrimitiveTopology);
-            context::DrawIndexed(0, 0, m_Quad->Indices.NumElements, 1);
+            context::DrawIndexed(m_Quad->Indices.NumElements);
         }
     }
 }

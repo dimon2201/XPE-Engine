@@ -96,7 +96,7 @@ namespace xpe {
             context::BindVertexBuffer(geometry->Vertices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawVertexed(0, geometry->Vertices.NumElements, 1);
+            context::DrawVertexed(geometry->Vertices.NumElements);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }
@@ -125,7 +125,7 @@ namespace xpe {
             context::BindIndexBuffer(geometry->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, geometry->Indices.NumElements, 1);
+            context::DrawIndexed(geometry->Indices.NumElements);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }
@@ -158,7 +158,7 @@ namespace xpe {
             context::BindVertexBuffer(geometry->Vertices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawVertexed(0, geometry->Vertices.NumElements, instanceCount);
+            context::DrawVertexed(geometry->Vertices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }
@@ -192,7 +192,7 @@ namespace xpe {
             context::BindIndexBuffer(geometry->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, geometry->Indices.NumElements, instanceCount);
+            context::DrawIndexed(geometry->Indices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }
@@ -219,7 +219,7 @@ namespace xpe {
             context::BindIndexBuffer(mesh->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, mesh->Indices.NumElements, 1);
+            context::DrawIndexed(mesh->Indices.NumElements);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }
@@ -249,7 +249,7 @@ namespace xpe {
             context::BindIndexBuffer(mesh->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, mesh->Indices.NumElements, instanceCount);
+            context::DrawIndexed(mesh->Indices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }
@@ -279,7 +279,7 @@ namespace xpe {
             context::BindIndexBuffer(model->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::DrawIndexed(model->Indices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }
@@ -315,7 +315,7 @@ namespace xpe {
             context::BindIndexBuffer(model->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::DrawIndexed(model->Indices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
         }

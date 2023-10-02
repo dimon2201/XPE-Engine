@@ -534,31 +534,25 @@ namespace xpe {
 
                 for (auto& color : renderTarget.Colors)
                 {
-                    delete color;
-
-                    color = new Texture();
                     color->Width = width;
                     color->Height = height;
-                    color->Format = eTextureFormat::RGBA8;
-                    color->InitializeData = false;
-                    color->EnableRenderTarget = true;
+                    color->Free();
                     color->Init();
                 }
 
                 auto& depthStencil = renderTarget.DepthStencil;
                 if (depthStencil->Width != 0 && depthStencil->Height != 0)
                 {
-                    delete depthStencil;
-
-                    depthStencil = new Texture();
-                    depthStencil->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
                     depthStencil->Width = width;
                     depthStencil->Height = height;
-                    depthStencil->Format = eTextureFormat::R32_TYPELESS;
-                    depthStencil->InitializeData = false;
-                    depthStencil->EnableRenderTarget = true;
-                    depthStencil->Instance = nullptr;
+                    depthStencil->Free();
                     depthStencil->Init();
+                }
+
+                for (auto& viewport : renderTarget.Viewports)
+                {
+                    viewport.Width = width;
+                    viewport.Height = height;
                 }
 
                 CreateRenderTarget(renderTarget);
@@ -1417,15 +1411,15 @@ namespace xpe {
                 }
             }
 
-            void DrawIndexed(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount)
+            void DrawIndexed(usize indexCount, usize instanceCount, usize vertexOffset, usize indexOffset, usize instanceOffset)
             {
-                s_ImmContext->DrawIndexedInstanced(indexCount, instanceCount, 0, vertexOffset, indexOffset);
+                s_ImmContext->DrawIndexedInstanced(indexCount, instanceCount, indexOffset, vertexOffset, instanceOffset);
                 LogDebugMessage();
             }
 
-            void DrawVertexed(usize vertexOffset, usize vertexCount, usize instanceCount)
+            void DrawVertexed(usize vertexCount, usize instanceCount, usize vertexOffset, usize instanceOffset)
             {
-                s_ImmContext->DrawInstanced(vertexCount, instanceCount, 0, vertexOffset);
+                s_ImmContext->DrawInstanced(vertexCount, instanceCount, vertexOffset, instanceOffset);
                 LogDebugMessage();
             }
 
@@ -1448,27 +1442,5 @@ namespace xpe {
     }
 
 }
-
-/*
- * D3D11 Debug
- * ID3D11Debug *d3dDebug = nullptr;
-    if (SUCCEEDED(s_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&d3dDebug)))
-    {
-        ID3D11InfoQueue *d3dInfoQueue = nullptr;
-        if (SUCCEEDED(s_Device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&d3dInfoQueue)))
-        {
-            auto n = d3dInfoQueue->GetNumStoredMessages();
-            for (int i = 0; i < n; i++)
-            {
-                SIZE_T msgsz = 0;
-                d3dInfoQueue->GetMessageA(0, nullptr, &msgsz);
-                D3D11_MESSAGE msg = {};
-                d3dInfoQueue->GetMessageA(0, &msg, &msgsz);
-                LogInfo(msg.pDescription);
-            }
-        }
-        d3dDebug->Release();
-    }
- */
 
 #endif // DX11

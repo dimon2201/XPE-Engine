@@ -9,7 +9,7 @@ namespace xpe {
     namespace render {
 
         TextPass::TextPass(
-            const core::vector<RenderPassBinding>& bindings,
+            const vector<RenderPassBinding>& bindings,
             RenderTarget* output,
             GeometryStorage* geometryStorage
         ) : RenderPass(bindings, output)
@@ -43,13 +43,12 @@ namespace xpe {
             for (usize i = 0; i < charsCount; i++)
             {
                 char c = chars[i];
-                // todo unused variable
-//                char prevCharacter = i > 0 ? chars[i - 1] : 0;
+
+                // find glyph by char
                 auto it = font->AlphaBet.find(c);
                 if (it == font->AlphaBet.end()) {
                     continue;
                 }
-
                 Font::Glyph glyph = it->second;
 
                 xpe::render::Character character;
@@ -93,7 +92,7 @@ namespace xpe {
             m_Pipeline->Textures[0] = &font->Atlas;
 
             context::BindVSBuffer(m_TextBuffer);
-            context::DrawIndexed(0, 0, 6, charsCount);
+            context::DrawIndexed(6, charsCount);
             context::UnbindVSBuffer(m_TextBuffer);
         }
 

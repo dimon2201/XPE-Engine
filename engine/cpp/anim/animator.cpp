@@ -190,7 +190,7 @@ namespace xpe {
             const AnimationNode& animationNode,
             const glm::mat4 &parentTransform
         ) {
-            string nodeName = animationNode.Name;
+            const string& nodeName = animationNode.Name;
             glm::mat4 nodeTransform = animationNode.Transform;
 
             Bone* bone = nullptr;

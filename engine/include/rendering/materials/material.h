@@ -30,21 +30,21 @@ namespace xpe {
 
             Ref<MaterialDataBuffer> Buffer;
 
-            Ref<Texture> AlbedoArray;
-            Ref<Texture> BumpArray;
-            Ref<Texture> ParallaxArray;
-            Ref<Texture> MetallicArray;
-            Ref<Texture> RoughnessArray;
-            Ref<Texture> AOArray;
-            Ref<Texture> EmissionArray;
+            Ref<Texture> AlbedoAtlas;
+            Ref<Texture> NormalAtlas;
+            Ref<Texture> ParallaxAtlas;
+            Ref<Texture> MetalAtlas;
+            Ref<Texture> RoughnessAtlas;
+            Ref<Texture> AOAtlas;
+            Ref<Texture> EmissionAtlas;
 
-            TextureLayer Albedo;
-            TextureLayer Bumping;
-            TextureLayer Parallax;
-            TextureLayer Metallic;
-            TextureLayer Roughness;
-            TextureLayer AO;
-            TextureLayer Emission;
+            TextureLayer AlbedoMap;
+            TextureLayer NormalMap;
+            TextureLayer ParallaxMap;
+            TextureLayer MetalMap;
+            TextureLayer RoughnessMap;
+            TextureLayer AOMap;
+            TextureLayer EmissionMap;
 
             hstring AlbedoPath;
             hstring BumpingPath;
@@ -66,21 +66,21 @@ namespace xpe {
         Json(
             Material,
             Index,
-            BaseColor,
-            EnableAlbedo,
-            EnableBumping,
-            EnableParallax,
-            HeightScale,
+            Albedo,
+            EnableAlbedoMap,
+            EnableNormalMap,
+            EnableParallaxMap,
+            ParallaxHeightScale,
             ParallaxMinLayers,
             ParallaxMaxLayers,
-            MetallicFactor,
-            EnableMetallic,
-            RoughnessFactor,
-            EnableRoughness,
-            AOFactor,
-            EnableAO,
-            EmissionColor,
-            EnableEmission,
+            Metallness,
+            EnableMetalMap,
+            Roughness,
+            EnableRoughnessMap,
+            AO,
+            EnableAOMap,
+            Emission,
+            EnableEmissionMap,
             AlbedoPath,
             BumpingPath,
             ParallaxPath,

@@ -94,7 +94,7 @@ namespace xpe {
             hstring directory = os::FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
-            u32 flags = AssimpConversion::GetLoadFlags(options);
+            u32 flags = AssimpManager::GetLoadFlags(options);
             const aiScene* scene = importer.ReadFile(filepath, flags);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {

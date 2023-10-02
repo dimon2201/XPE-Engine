@@ -9,13 +9,13 @@ namespace xpe {
         struct ENGINE_API MaterialStorage : public Object
         {
             TextureSampler Sampler;
-            Ref<Texture> AlbedoArray;
-            Ref<Texture> BumpArray;
-            Ref<Texture> ParallaxArray;
-            Ref<Texture> MetallicArray;
-            Ref<Texture> RoughnessArray;
-            Ref<Texture> AOArray;
-            Ref<Texture> EmissionArray;
+            Ref<Texture> AlbedoAtlas;
+            Ref<Texture> NormalAtlas;
+            Ref<Texture> ParallaxAtlas;
+            Ref<Texture> MetalAtlas;
+            Ref<Texture> RoughnessAtlas;
+            Ref<Texture> AOAtlas;
+            Ref<Texture> EmissionAtlas;
 
             MaterialStorage();
             ~MaterialStorage();
@@ -48,13 +48,13 @@ namespace xpe {
             materialRef.Create(std::forward<Args>(args)...);
             materialRef->Index = m_DataBuffer->Size();
             materialRef->Buffer = m_DataBuffer;
-            materialRef->AlbedoArray = AlbedoArray;
-            materialRef->BumpArray = BumpArray;
-            materialRef->ParallaxArray = ParallaxArray;
-            materialRef->MetallicArray = MetallicArray;
-            materialRef->RoughnessArray = RoughnessArray;
-            materialRef->AOArray = AOArray;
-            materialRef->EmissionArray = EmissionArray;
+            materialRef->AlbedoAtlas = AlbedoAtlas;
+            materialRef->NormalAtlas = NormalAtlas;
+            materialRef->ParallaxAtlas = ParallaxAtlas;
+            materialRef->MetalAtlas = MetalAtlas;
+            materialRef->RoughnessAtlas = RoughnessAtlas;
+            materialRef->AOAtlas = AOAtlas;
+            materialRef->EmissionAtlas = EmissionAtlas;
 
             m_Materials[name] = materialRef;
 
@@ -62,13 +62,13 @@ namespace xpe {
 
             m_DataBuffer->Add(material);
 
-            material.AddLayer(*material.AlbedoArray, material.Albedo);
-            material.AddLayer(*material.BumpArray, material.Bumping);
-            material.AddLayer(*material.ParallaxArray, material.Parallax);
-            material.AddLayer(*material.MetallicArray, material.Metallic);
-            material.AddLayer(*material.RoughnessArray, material.Roughness);
-            material.AddLayer(*material.AOArray, material.AO);
-            material.AddLayer(*material.EmissionArray, material.Emission);
+            material.AddLayer(*material.AlbedoAtlas, material.AlbedoMap);
+            material.AddLayer(*material.NormalAtlas, material.NormalMap);
+            material.AddLayer(*material.ParallaxAtlas, material.ParallaxMap);
+            material.AddLayer(*material.MetalAtlas, material.MetalMap);
+            material.AddLayer(*material.RoughnessAtlas, material.RoughnessMap);
+            material.AddLayer(*material.AOAtlas, material.AOMap);
+            material.AddLayer(*material.EmissionAtlas, material.EmissionMap);
 
             m_DataBuffer->Flush();
 

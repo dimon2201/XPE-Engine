@@ -127,8 +127,8 @@ namespace xpe {
             ENGINE_API void BindRasterizer(void* state);
             ENGINE_API void FreeRasterizer(Rasterizer& rasterizer);
 
-            ENGINE_API void DrawIndexed(usize vertexOffset, usize indexOffset, usize indexCount, usize instanceCount);
-            ENGINE_API void DrawVertexed(usize vertexOffset, usize vertexCount, usize instanceCount);
+            ENGINE_API void DrawIndexed(usize indexCount, usize instanceCount = 1, usize vertexOffset = 0, usize indexOffset = 0, usize instanceOffset = 0);
+            ENGINE_API void DrawVertexed(usize vertexCount, usize instanceCount = 1, usize vertexOffset = 0, usize instanceOffset = 0);
 
             ENGINE_API void DrawQuad();
 

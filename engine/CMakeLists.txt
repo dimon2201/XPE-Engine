@@ -24,6 +24,9 @@ include_directories(
         thirdparty/stbi
         thirdparty/openal-soft/include/AL
         thirdparty/libsndfile/include
+        thirdparty/PhysX/physx/include
+        thirdparty/PhysX/blast/include
+        thirdparty/PhysX/flow/include
 )
 
 # Create shared dynamic library
@@ -40,9 +43,15 @@ add_subdirectory(thirdparty/json)
 add_subdirectory(thirdparty/openal-soft)
 add_subdirectory(thirdparty/libsndfile)
 
+# Copy binaries and libs
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/PhysX_64.lib ${CMAKE_BINARY_DIR}/lib/PhysX_64.lib COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/debug/PhysX_64.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysX_64.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/PhysX_64.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysX_64.dll COPYONLY)
+
 # Link libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
+target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler )
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile)
+target_link_libraries(${PROJECT_NAME} PUBLIC ../lib/PhysX_64)
 
 # Move shaders into bin folder
 copy_engine_shaders(engine)

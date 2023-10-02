@@ -10,10 +10,13 @@
 	url = https://github.com/g-truc/glm.git
 [submodule "engine/thirdparty/json"]
 	path = engine/thirdparty/json
-	url = https://github.com/nlohmann/json
+	url = https://github.com/nlohmann/json.git
 [submodule "engine/thirdparty/openal-soft"]
 	path = engine/thirdparty/openal-soft
-	url = https://github.com/CheerWizard/openal-soft
+	url = https://github.com/CheerWizard/openal-soft.git
 [submodule "engine/thirdparty/libsndfile"]
 	path = engine/thirdparty/libsndfile
-	url = https://github.com/libsndfile/libsndfile
+	url = https://github.com/libsndfile/libsndfile.git
+[submodule "engine/thirdparty/PhysX"]
+	path = engine/thirdparty/PhysX
+	url = https://github.com/CheerWizard/PhysX.git
