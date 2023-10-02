@@ -21,10 +21,10 @@ namespace xpe {
             JOIN_VERTICES
         };
 
-        struct LOADER_API AssimpConversion final
+        struct LOADER_API AssimpManager final
         {
-            static inline AssimpConversion& Get() {
-                static AssimpConversion instance;
+            static inline AssimpManager& Get() {
+                static AssimpManager instance;
                 return instance;
             }
 

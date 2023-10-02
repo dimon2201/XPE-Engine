@@ -9,11 +9,12 @@ namespace xpe {
     namespace render {
 
         Text3DPass::Text3DPass(
-            const core::vector<RenderPassBinding>& bindings,
+            const vector<RenderPassBinding>& bindings,
             RenderTarget* output,
             GeometryStorage* geometryStorage
         ) : TextPass(bindings, output, geometryStorage)
         {
+            context::CreatePipeline(*m_Pipeline);
         }
 
         Text3DPass::~Text3DPass() {}

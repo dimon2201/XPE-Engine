@@ -14,7 +14,6 @@
 #include <audio_loader.h>
 
 #include <rendering/monitor.h>
-#include <rendering/storages/material_storage.h>
 
 #include "test_config.h"
 
@@ -128,10 +127,10 @@ public:
             plane.Instance.Transform.Position = { 0, -10, 0 };
             plane.Instance.Transform.Scale = { 100, 0.1, 100 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
-            plane.Instance.Material->BaseColor = { 1, 0, 0, 1 };
-            plane.Instance.Material->MetallicFactor = 1;
-            plane.Instance.Material->RoughnessFactor = 0.25;
-            plane.Instance.Material->AOFactor = 0;
+            plane.Instance.Material->Albedo = {1, 0, 0, 1 };
+            plane.Instance.Material->Metallness = 1;
+            plane.Instance.Material->Roughness = 0.25;
+            plane.Instance.Material->AO = 0;
             plane.Instance.Material->Flush();
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
@@ -157,7 +156,7 @@ public:
             pointLightShape.Instance.Transform.Position = { 20, 20, -20 };
             pointLightShape.Instance.Transform.Scale = { 0.5, 0.5, 0.5 };
             pointLightShape.Instance.Material = m_MaterialStorage->Add("MT_Point", Material());
-            pointLightShape.Instance.Material->BaseColor = { 1, 0, 0, 1 };
+            pointLightShape.Instance.Material->Albedo = {1, 0, 0, 1 };
             pointLightShape.Instance.Material->Flush();
             m_PointLight.AddComponent<GeometryIndexed3DComponent>(pointLightShape);
 
@@ -217,16 +216,45 @@ public:
                 MaterialFilepath materialFilepath;
                 materialFilepath.Name = "niz";
                 materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
-                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
                 materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
-                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
+//                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+//                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
                 winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
-                winterGirlModel.Model->Skins[0].Material->BaseColor = { 1, 1, 1, 1 };
-                winterGirlModel.Model->Skins[0].Material->EmissionColor = { 0, 0, 10 };
-                winterGirlModel.Model->Skins[0].Material->MetallicFactor = 1;
-                winterGirlModel.Model->Skins[0].Material->RoughnessFactor = 1;
-                winterGirlModel.Model->Skins[0].Material->AOFactor = 0;
+                winterGirlModel.Model->Skins[0].Material->Albedo = { 1, 1, 1, 1 };
+                winterGirlModel.Model->Skins[0].Material->Emission = { 0, 0, 10 };
+                winterGirlModel.Model->Skins[0].Material->Metallness = 1;
+                winterGirlModel.Model->Skins[0].Material->Roughness = 1;
+                winterGirlModel.Model->Skins[0].Material->AO = 0;
+                winterGirlModel.Model->Skins[0].Material->EnableAlbedoMap = true;
+                winterGirlModel.Model->Skins[0].Material->EnableNormalMap = true;
+                winterGirlModel.Model->Skins[0].Material->EnableRoughnessMap = false;
+                winterGirlModel.Model->Skins[0].Material->EnableMetalMap = false;
+                winterGirlModel.Model->Skins[0].Material->EnableAOMap = false;
                 winterGirlModel.Model->Skins[0].Material->Flush();
+
+                TextureLoader::SaveLayer(
+                        "generated/Vampire_diffuse_resized.png",
+                        winterGirlModel.Model->Skins[0].Material->AlbedoMap,
+                        Texture::eFileFormat::PNG
+                );
+
+                TextureLoader::SaveLayer(
+                        "generated/Vampire_normal_resized.png",
+                        winterGirlModel.Model->Skins[0].Material->NormalMap,
+                        Texture::eFileFormat::PNG
+                );
+
+                TextureLoader::SaveLayer(
+                        "generated/Vampire_roughness_resized.png",
+                        winterGirlModel.Model->Skins[0].Material->RoughnessMap,
+                        Texture::eFileFormat::PNG
+                );
+
+                TextureLoader::SaveLayer(
+                        "generated/Vampire_metallic_resized.png",
+                        winterGirlModel.Model->Skins[0].Material->MetalMap,
+                        Texture::eFileFormat::PNG
+                );
             }
 
             {
@@ -557,6 +585,12 @@ private:
     void DisplayStats() {
         auto& text2D = m_Text2D.GetComponent<Text2DComponent>("Text2D")->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
+                 "\nCPU: " + std::to_string(CPUTime.Millis()) +
+                 "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
+                 "\nExposure: " + std::to_string(Monitor::Get().Exposure);
+
+        auto& text3D = m_Text3D.GetComponent<Text3DComponent>("Text3D")->Text;
+        text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
                  "\nExposure: " + std::to_string(Monitor::Get().Exposure);

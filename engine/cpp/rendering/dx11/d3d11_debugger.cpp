@@ -108,10 +108,10 @@ namespace xpe {
             static DebugMessage GetDebugMessage(int index)
             {
                 SIZE_T messageSize = 0;
-                s_InfoQueue->GetMessage(index, nullptr, &messageSize);
+                s_InfoQueue->GetMessageA(index, nullptr, &messageSize);
 
                 D3D11_MESSAGE* message = (D3D11_MESSAGE*) salloc(messageSize);
-                s_InfoQueue->GetMessage(index, message, &messageSize);
+                s_InfoQueue->GetMessageA(index, message, &messageSize);
 
                 DebugMessage debugMessage = ToDebugMessage(*message);
 
@@ -132,7 +132,7 @@ namespace xpe {
             bool GetLastMessage(DebugMessage& message) {
                 auto messageCount = s_InfoQueue->GetNumStoredMessages();
                 if (messageCount > 0) {
-                    message = GetDebugMessage(messageCount - 1);
+                    message = GetDebugMessage(0);
                     s_InfoQueue->ClearStoredMessages();
                     return true;
                 }

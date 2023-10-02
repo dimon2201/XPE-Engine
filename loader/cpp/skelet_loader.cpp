@@ -10,21 +10,21 @@ namespace xpe {
             {
                 aiVector3D aiPosition = channel->mPositionKeys[i].mValue;
                 float timestamp = channel->mPositionKeys[i].mTime;
-                bone.KeyPositions.emplace_back(timestamp, AssimpConversion::ToVec3(aiPosition));
+                bone.KeyPositions.emplace_back(timestamp, AssimpManager::ToVec3(aiPosition));
             }
 
             for (int i = 0; i < channel->mNumRotationKeys; i++)
             {
                 aiQuaternion aiOrienation = channel->mRotationKeys[i].mValue;
                 float timestamp = channel->mRotationKeys[i].mTime;
-                bone.KeyRotations.emplace_back(timestamp, AssimpConversion::ToQuat(aiOrienation));
+                bone.KeyRotations.emplace_back(timestamp, AssimpManager::ToQuat(aiOrienation));
             }
 
             for (int i = 0; i < channel->mNumScalingKeys; i++)
             {
                 aiVector3D aiScale = channel->mScalingKeys[i].mValue;
                 float timestamp = channel->mScalingKeys[i].mTime;
-                bone.KeyScales.emplace_back(timestamp, AssimpConversion::ToVec3(aiScale));
+                bone.KeyScales.emplace_back(timestamp, AssimpManager::ToVec3(aiScale));
             }
         }
 
@@ -65,7 +65,7 @@ namespace xpe {
                     Bone newBone;
                     newBone.ID = boneCounter;
                     newBone.Name = boneName;
-                    newBone.Offset = AssimpConversion::ToMat4(mesh->mBones[i]->mOffsetMatrix);
+                    newBone.Offset = AssimpManager::ToMat4(mesh->mBones[i]->mOffsetMatrix);
                     bones.insert({ boneName, newBone });
                     boneCounter++;
                 }
@@ -94,7 +94,7 @@ namespace xpe {
             Skelet skelet;
 
             Assimp::Importer importer;
-            const aiScene* scene = importer.ReadFile(filepath, AssimpConversion::GetLoadFlags(options));
+            const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
                 LogError("Failed to import 3D skelet model file {0}", filepath);

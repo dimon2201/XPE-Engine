@@ -16,13 +16,15 @@ namespace xpe {
         {
             if (layer.Pixels == nullptr) {
                 layer = texture.CreateLayer();
+            } else {
+//                layer.Resize(texture.Format, texture.Width, texture.Height);
             }
+            texture.Layers.emplace_back(layer);
 
 //            if (layer.Mips.empty()) {
-//                layer.GenerateMips(texture.Width, texture.Height, texture.Format);
+//                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
 //            }
 
-            texture.Layers.emplace_back(layer);
             texture.Flush();
         }
 
@@ -30,13 +32,15 @@ namespace xpe {
         {
             if (layer.Pixels == nullptr) {
                 layer = texture.CreateLayer();
+            } else {
+//                layer.Resize(texture.Format, texture.Width, texture.Height);
             }
+            texture.Layers[layerIndex] = layer;
 
 //            if (layer.Mips.empty()) {
-//                layer.GenerateMips(texture.Width, texture.Height, texture.Format);
+//                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
 //            }
 
-            texture.Layers[layerIndex] = layer;
             texture.Flush();
         }
 

@@ -28,14 +28,6 @@ namespace xpe {
 
         public:
 
-            enum class eOption
-            {
-                TRIANGULATE,
-                FLIP_UV,
-                CALC_TANGENTS,
-                OPTIMIZE_MESHES
-            };
-
             TextureLoader(TextureStorage* textureStorage) : m_Storage(textureStorage) {}
 
             Ref<Texture> Load(const char* filepath, const eTextureFormat& format);
@@ -48,7 +40,8 @@ namespace xpe {
                     int& width, int& height, int& channels
             );
 
-            void Save(const char* filepath, const Texture& texture, const Texture::eFileFormat& fileFormat);
+            static bool Save(const char* filepath, const Texture& texture, const Texture::eFileFormat& fileFormat);
+            static bool SaveLayer(const char* filepath, const TextureLayer& textureLayer, const Texture::eFileFormat& fileFormat);
 
         private:
             TextureStorage* m_Storage;

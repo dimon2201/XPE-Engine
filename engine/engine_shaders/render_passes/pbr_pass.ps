@@ -7,11 +7,11 @@
 
 #include ../shadow/shadow.shader
 
-#include ../pbr.shader
 #include ../lighting/direct_light.shader
 #include ../lighting/point_light.shader
 #include ../lighting/spot_light.shader
-#include ../pbr_light.shader
+
+#include ../pbr.shader
 
 struct VSOut
 {
@@ -42,7 +42,7 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     UV = GetParallax(psIn.materialIndex, psIn.uv);
 
     float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv, Monitor().Gamma);
-    float metallic = GetMetallic(psIn.materialIndex, psIn.uv);
+    float metallness = GetMetallness(psIn.materialIndex, psIn.uv);
     float roughness = GetRoughness(psIn.materialIndex, psIn.uv);
     float ao = GetAO(psIn.materialIndex, psIn.uv);
     float3 emission = GetEmission(psIn.materialIndex, psIn.uv, Monitor().Gamma);
@@ -54,25 +54,25 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     uint directLightStride = 0;
     DirectLights.GetDimensions(directLightSize, directLightStride);
     for (uint i = 0 ; i < directLightSize ; i++) {
-        Lo += PBR(DirectLights[i], albedo.rgb, metallic, roughness);
+        Lo += PBR(DirectLights[i], albedo.rgb, metallness, roughness);
     }
 
     uint pointLightSize = 0;
     uint pointLightStride = 0;
     PointLights.GetDimensions(pointLightSize, pointLightStride);
     for (uint i = 0 ; i < pointLightSize ; i++) {
-        Lo += PBR(PointLights[i], albedo.rgb, metallic, roughness);
+        Lo += PBR(PointLights[i], albedo.rgb, metallness, roughness);
     }
 
     uint spotLightSize = 0;
     uint spotLightStride = 0;
     SpotLights.GetDimensions(spotLightSize, spotLightStride);
     for (uint i = 0 ; i < spotLightSize ; i++) {
-        Lo += PBR(SpotLights[i], albedo.rgb, metallic, roughness);
+        Lo += PBR(SpotLights[i], albedo.rgb, metallness, roughness);
     }
 
     // PBR with IBL
-    // float3 ambient = ibl(NdotV, N, R, albedo.rgb, metallic, roughness);
+    // float3 ambient = ibl(NdotV, N, R, albedo.rgb, metallness, roughness);
     float3 ambient = float3(0, 0, 0);
 
     PSOut psOut;

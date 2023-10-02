@@ -8,28 +8,28 @@ namespace xpe {
 
         struct ENGINE_API MaterialData
         {
-            // base color
-            glm::vec4 BaseColor = { 0.9, 0.9, 0.9, 1 };
-            Bool EnableAlbedo = false;
-            // bumping
-            Bool EnableBumping = false;
-            // parallax
-            Bool EnableParallax = false;
-            float HeightScale = 0.1;
+            // albedo mapping
+            glm::vec4 Albedo = {0.9, 0.9, 0.9, 1 };
+            Bool EnableAlbedoMap = false;
+            // normal mapping
+            Bool EnableNormalMap = false;
+            // parallax occlusion mapping
+            Bool EnableParallaxMap = false;
+            float ParallaxHeightScale = 0.1;
             float ParallaxMinLayers = 8;
             float ParallaxMaxLayers = 32;
-            // metallic
-            float MetallicFactor = 0.5f;
-            Bool EnableMetallic = false;
-            // roughness
-            float RoughnessFactor = 0.5f;
-            Bool EnableRoughness = false;
-            // ambient occlusion
-            float AOFactor = 0.5f;
-            Bool EnableAO = false;
-            // emission
-            glm::vec3 EmissionColor = { 0, 0, 0 };
-            Bool EnableEmission = false;
+            // metal mapping
+            float Metallness = 0.5f;
+            Bool EnableMetalMap = false;
+            // roughness mapping
+            float Roughness = 0.5f;
+            Bool EnableRoughnessMap = false;
+            // ambient occlusion mapping
+            float AO = 0.5f;
+            Bool EnableAOMap = false;
+            // emission mapping
+            glm::vec3 Emission = {0, 0, 0 };
+            Bool EnableEmissionMap = false;
         };
 
         struct ENGINE_API MaterialDataBuffer : public StructureBuffer<MaterialData>

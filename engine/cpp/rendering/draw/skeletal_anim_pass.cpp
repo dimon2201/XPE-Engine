@@ -79,7 +79,7 @@ namespace xpe {
             context::BindIndexBuffer(skin->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, skin->Indices.NumElements, 1);
+            context::DrawIndexed(skin->Indices.NumElements);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
 
@@ -117,7 +117,7 @@ namespace xpe {
             context::BindIndexBuffer(skin->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, skin->Indices.NumElements, instanceCount);
+            context::DrawIndexed(skin->Indices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
 
@@ -155,7 +155,7 @@ namespace xpe {
             context::BindIndexBuffer(model->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::DrawIndexed(model->Indices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
 
@@ -199,7 +199,7 @@ namespace xpe {
             context::BindIndexBuffer(model->Indices);
             context::BindVSBuffer(m_InstanceBuffer);
             context::BindVSBuffer(m_TransformBuffer);
-            context::DrawIndexed(0, 0, model->Indices.NumElements, instanceCount);
+            context::DrawIndexed(model->Indices.NumElements, instanceCount);
             context::UnbindVSBuffer(m_InstanceBuffer);
             context::UnbindVSBuffer(m_TransformBuffer);
 
