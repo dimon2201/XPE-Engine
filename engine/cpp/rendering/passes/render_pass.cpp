@@ -6,8 +6,9 @@ namespace xpe {
 
     namespace render {
 
-        RenderPass::RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* output)
+        RenderPass::RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* target)
         {
+            m_UseMainTarget = target == nullptr ? core::K_FALSE : core::K_TRUE;
             m_Bindings = bindings;
             m_Pipeline = new Pipeline();
 
@@ -57,7 +58,9 @@ namespace xpe {
             }
 
             m_Pipeline->InputLayout.Format = math::Vertex3D::Format;
-            m_Pipeline->RenderTarget = output;
+            if (m_UseMainTarget == core::K_TRUE) {
+                m_Pipeline->RenderTarget = target;
+            }
             m_Pipeline->Blending.Targets[0].Enable = true;
             m_Pipeline->Blending.Targets[0].Src = eBlend::SRC_ALPHA;
             m_Pipeline->Blending.Targets[0].Dest = eBlend::INV_SRC_ALPHA;
@@ -75,6 +78,16 @@ namespace xpe {
         void RenderPass::Unbind()
         {
             context::UnbindPipeline(*m_Pipeline);
+        }
+
+        RenderTarget* RenderPass::GetRenderTarget()
+        {
+            return m_Pipeline->RenderTarget;
+        }
+
+        void RenderPass::SetRenderTarget(RenderTarget* target)
+        {
+            m_Pipeline->RenderTarget = target;
         }
 
     }

@@ -12,8 +12,8 @@ namespace xpe {
         public:
             Text3DPass(
                 const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                GeometryStorage* geometryStorage
+                GeometryStorage* geometryStorage,
+                RenderTarget* output
             );
             ~Text3DPass() override;
 

@@ -42,7 +42,9 @@ namespace xpe {
                 const eStage& stage,
                 const u32 slot,
                 GPUResource* resource
-            ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource) {}
+            ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource)
+            {
+            }
 
             string Tag;
             eType Type;
@@ -55,7 +57,7 @@ namespace xpe {
         {
 
         public:
-            RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* output);
+            RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* target);
             virtual ~RenderPass();
 
             virtual void Update(Scene* scene) = 0;
@@ -64,7 +66,11 @@ namespace xpe {
             void Bind();
             void Unbind();
 
+            RenderTarget* GetRenderTarget();
+            void SetRenderTarget(RenderTarget* target);
+
         protected:
+            core::Boolean m_UseMainTarget;
             vector<RenderPassBinding> m_Bindings;
             Pipeline* m_Pipeline = nullptr;
 

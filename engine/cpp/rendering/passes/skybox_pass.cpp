@@ -13,7 +13,7 @@ namespace xpe {
             const core::vector<RenderPassBinding>& bindings,
             RenderTarget* output,
             GeometryStorage* geometryStorage
-        ) : RenderPass(bindings, output)
+        ) : RenderPass(bindings, nullptr)
         {
             auto& cube = geometryStorage->GetGeometryIndexed3D("SkyCube");
             if (cube.Get() == nullptr) {

@@ -12,8 +12,8 @@ namespace xpe {
         public:
             Text2DPass(
                 const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                GeometryStorage* geometryStorage
+                GeometryStorage* geometryStorage,
+                RenderTarget* output
             );
             ~Text2DPass() override;
 

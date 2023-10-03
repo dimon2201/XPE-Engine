@@ -1,5 +1,7 @@
 #pragma once
 
+#include "passes/render_pass.h"
+
 namespace xpe {
 
     namespace ecs
@@ -9,9 +11,8 @@ namespace xpe {
 
     namespace render {
 
+        struct Viewport;
         class RenderTarget;
-        class Drawer;
-        class RenderPass;
         class CameraBuffer;
         class DirectLightBuffer;
         class PointLightBuffer;
@@ -26,37 +27,33 @@ namespace xpe {
             render::PointLightBuffer* PointLightBuffer;
             render::SpotLightBuffer* SpotLightBuffer;
 
-            Renderer();
+            Renderer(Viewport* viewport, core::Boolean useMSAA, core::usize msaaSampleCount);
             ~Renderer();
 
             template<typename T, typename ... Args>
-            void AddDrawer(Args &&... args);
-
-            template<typename T, typename ... Args>
             T* AddRenderPass(Args &&... args);
-
-            void RemoveDrawer(Drawer* drawer);
-
+            void RemoveRenderPass(RenderPass* pass);
+            void ClearRenderTargets();
             void Render(ecs::Scene* scene);
+
+            RenderTarget* GetRenderTarget();
+            void SetMSAA(core::Boolean value) { m_UseMSAA = value; }
+            void SetMSAASampleCount(core::usize count) { m_MSAASampleCount = count; }
 
         private:
             void FlushLights(ecs::Scene* scene);
 
-            core::vector<Drawer*> m_Drawers;
+            core::Boolean m_UseMSAA;
+            core::usize m_MSAASampleCount;
+            RenderTarget* m_Main;
             core::vector<RenderPass*> m_RenderPasses;
         };
-
-        template<typename T, typename... Args>
-        void Renderer::AddDrawer(Args &&... args)
-        {
-            m_Drawers.emplace_back(new T(std::forward<Args>(args)...));
-        }
 
         template<typename T, typename... Args>
         T* Renderer::AddRenderPass(Args &&... args)
         {
             T* pass = new T(std::forward<Args>(args)...);
-            m_RenderPasses.emplace_back(pass);
+            m_RenderPasses.emplace_back(new T(std::forward<Args>(args)...));
 
             return pass;
         }

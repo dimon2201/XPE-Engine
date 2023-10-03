@@ -38,6 +38,9 @@ namespace xpe {
 
             ecs::MainScene* m_MainScene = nullptr;
 
+            core::Boolean m_UseMSAA = core::K_FALSE;
+            core::usize m_MSAASampleCount = 0;
+
             render::FontStorage* m_FontStorage = nullptr;
             render::GeometryStorage* m_GeometryStorage = nullptr;
             render::MaterialStorage* m_MaterialStorage = nullptr;
@@ -53,8 +56,7 @@ namespace xpe {
             audio::AudioSystem* m_AudioSystem = nullptr;
             audio::AudioStorage* m_AudioStorage = nullptr;
 
-            render::RenderTarget* MainRT = nullptr;
-            render::RenderTarget* SsaoRT = nullptr;
+            render::SSAOPass* m_SSAOPass = nullptr;
             render::FXAAPass* m_FXAAPass = nullptr;
         };
 

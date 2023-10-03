@@ -1,16 +1,16 @@
 #include <rendering/passes/ssao_pass.hpp>
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/core/context.hpp>
+#include <rendering/core/viewport.h>
+#include <rendering/core/pipeline.h>
 #include <ecs/scene.h>
 
 namespace xpe
 {
     namespace render
     {
-        SSAOPass::SSAOPass(GeometryStorage* geometry, const core::vector<RenderPassBinding>& bindings, RenderTarget* output)
-            : RenderPass(bindings, output)
+        SSAOPass::SSAOPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport, core::Boolean useMSAA, core::usize msaaSampleCount)
+            : RenderPass(bindings, nullptr)
         {
-            m_Quad = geometry->AddGeometryIndexed2D("SSAOQuad", Quad2D());
-
             m_Buffer.Type = eBufferType::CONSTANT;
             m_Buffer.Usage = eBufferUsage::DYNAMIC;
             m_Buffer.NumElements = 1;
@@ -20,6 +20,27 @@ namespace xpe
             context::CreateBuffer(m_Buffer);
 
             m_Pipeline->VSBuffers.emplace_back(&m_Buffer);
+
+            Texture* color = new Texture();
+            color->Width = viewport->Width;
+            color->Height = viewport->Height;
+            color->Format = eTextureFormat::RGBA8;
+            color->SampleCount = useMSAA == core::K_TRUE ? msaaSampleCount : 1;
+            color->InitializeData = false;
+            color->EnableRenderTarget = true;
+            color->Init();
+
+            Texture* depth = new Texture();
+            depth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            depth->Width = viewport->Width;
+            depth->Height = viewport->Height;
+            depth->Format = eTextureFormat::R32_TYPELESS;
+            depth->SampleCount = useMSAA == core::K_TRUE ? msaaSampleCount : 1;
+            depth->InitializeData = false;
+            depth->EnableRenderTarget = true;
+            depth->Init();
+
+            m_Pipeline->RenderTarget = new RenderTarget({ color }, depth, *viewport);
 
             context::CreatePipeline(*m_Pipeline);
         }
@@ -40,8 +61,7 @@ namespace xpe
 
         void SSAOPass::Draw(Scene* scene)
         {
-            context::BindPrimitiveTopology(m_Quad->PrimitiveTopology);
-            context::DrawIndexed(0, 0, m_Quad->Indices.NumElements, 1);
+            context::DrawQuad();
         }
     }
 }

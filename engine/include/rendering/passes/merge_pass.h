@@ -22,8 +22,7 @@ namespace xpe {
         public:
             MergePass(
                 const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                GeometryStorage* geometryStorage
+                RenderTarget* output
             );
             virtual ~MergePass();
 

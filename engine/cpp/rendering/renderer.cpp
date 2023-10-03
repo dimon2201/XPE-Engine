@@ -4,14 +4,14 @@
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
 #include <rendering/shadow/shadow.h>
-
+#include <rendering/core/viewport.h>
 #include <ecs/scenes.hpp>
 
 namespace xpe {
 
     namespace render {
 
-        Renderer::Renderer()
+        Renderer::Renderer(Viewport* viewport, core::Boolean useMSAA, core::usize msaaSampleCount)
         {
             context::Init();
             ShaderManager::Init();
@@ -28,6 +28,48 @@ namespace xpe {
 
             SpotLightBuffer = new render::SpotLightBuffer();
             SpotLightBuffer->Reserve(1000);
+
+            m_UseMSAA = useMSAA;
+            m_MSAASampleCount = msaaSampleCount;
+
+            Texture* color = new Texture();
+            color->Width = viewport->Width;
+            color->Height = viewport->Height;
+            color->Format = eTextureFormat::RGBA8;
+            color->SampleCount = m_UseMSAA == core::K_TRUE ? m_MSAASampleCount : 1;
+            color->InitializeData = false;
+            color->EnableRenderTarget = true;
+            color->Init();
+
+            Texture* position = new Texture();
+            position->Width = viewport->Width;
+            position->Height = viewport->Height;
+            position->Format = eTextureFormat::RGBA32;
+            position->SampleCount = m_UseMSAA == core::K_TRUE ? m_MSAASampleCount : 1;
+            position->InitializeData = false;
+            position->EnableRenderTarget = true;
+            position->Init();
+
+            Texture* normal = new Texture();
+            normal->Width = viewport->Width;
+            normal->Height = viewport->Height;
+            normal->Format = eTextureFormat::RGBA16;
+            normal->SampleCount = m_UseMSAA == core::K_TRUE ? m_MSAASampleCount : 1;
+            normal->InitializeData = false;
+            normal->EnableRenderTarget = true;
+            normal->Init();
+
+            Texture* depth = new Texture();
+            depth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            depth->Width = viewport->Width;
+            depth->Height = viewport->Height;
+            depth->Format = eTextureFormat::R32_TYPELESS;
+            depth->SampleCount = m_UseMSAA == core::K_TRUE ? m_MSAASampleCount : 1;
+            depth->InitializeData = false;
+            depth->EnableRenderTarget = true;
+            depth->Init();
+
+            m_Main = new RenderTarget({ color, position, normal }, depth, *viewport);
         }
 
         Renderer::~Renderer()
@@ -37,10 +79,15 @@ namespace xpe {
             delete PointLightBuffer;
             delete SpotLightBuffer;
 
-            for (Drawer* drawer : m_Drawers) {
-                delete drawer;
+            for (RenderPass* pass : m_RenderPasses) {
+                delete pass;
             }
-            m_Drawers.clear();
+            m_RenderPasses.clear();
+
+            for (auto texture : m_Main->Colors) {
+                delete texture;
+            }
+            delete m_Main->DepthStencil;
 
             Shadow::Free();
             Monitor::Free();
@@ -48,11 +95,11 @@ namespace xpe {
             context::Free();
         }
 
-        void Renderer::RemoveDrawer(Drawer* drawer)
+        void Renderer::RemoveRenderPass(RenderPass* pass)
         {
-            auto it = std::find(m_Drawers.begin(), m_Drawers.end(), drawer);
-            if (it != m_Drawers.end()) {
-                m_Drawers.erase(it);
+            auto it = std::find(m_RenderPasses.begin(), m_RenderPasses.end(), pass);
+            if (it != m_RenderPasses.end()) {
+                m_RenderPasses.erase(it);
                 delete it.operator->();
             }
         }
@@ -67,6 +114,23 @@ namespace xpe {
                 rp->Draw(scene);
                 rp->Unbind();
             }
+        }
+
+        void Renderer::ClearRenderTargets()
+        {
+            for (auto pass : m_RenderPasses)
+            {
+                for (core::s32 i = 0; i < pass->GetRenderTarget()->Colors.size(); i++) {
+                    pass->GetRenderTarget()->ClearColor(i, glm::vec4(0.0f));
+                }
+
+                pass->GetRenderTarget()->ClearDepth(1.0f);
+            }
+        }
+
+        RenderTarget* Renderer::GetRenderTarget()
+        {
+            return m_Main;
         }
 
         void Renderer::FlushLights(Scene* scene)

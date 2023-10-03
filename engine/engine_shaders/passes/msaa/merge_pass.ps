@@ -1,3 +1,5 @@
+#include msaa_sampling.shader
+
 struct VSOut
 {
     float4 positionClip : SV_POSITION;
@@ -9,17 +11,20 @@ struct PSOut
     float4 color : SV_Target0;
 };
 
-Texture2D<float4> ColorTexture : register(t0);
+Texture2DMS<float4> ColorTexture : register(t0);
 Texture2D<float4> AOTexture : register(t1);
 
 PSOut ps_main(VSOut psIn)
 {
     uint width = 0;
     uint height = 0;
-    ColorTexture.GetDimensions(width, height);
+    uint sampleCount = 0;
+    ColorTexture.GetDimensions(width, height, sampleCount);
+
+    float3 averageColor = SampleMSAATexture(ColorTexture, psIn.texcoord);
 
     PSOut psOut;
-    psOut.color = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0)) *
+    psOut.color = float4(averageColor, 1.0) *
                   AOTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
 
     return psOut;

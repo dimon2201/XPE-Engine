@@ -10,8 +10,8 @@ namespace xpe {
 
         TextPass::TextPass(
             const core::vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            GeometryStorage* geometryStorage
+            GeometryStorage* geometryStorage,
+            RenderTarget* output
         ) : RenderPass(bindings, output)
         {
             m_TextBuffer.Reserve(1000);

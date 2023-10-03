@@ -8,8 +8,7 @@ namespace xpe {
 
         MergePass::MergePass(
             const core::vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            GeometryStorage* geometryStorage
+            RenderTarget* output
         ) : RenderPass(bindings, output)
         {
             context::CreatePipeline(*m_Pipeline);
@@ -25,8 +24,7 @@ namespace xpe {
 
         void MergePass::Draw(Scene* scene)
         {
-            context::BindPrimitiveTopology(ePrimitiveTopology::TRIANGLE_STRIP);
-            context::DrawVertexed(0, 4, 1);
+            context::DrawQuad();
         }
 
     }

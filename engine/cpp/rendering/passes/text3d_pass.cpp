@@ -10,9 +10,9 @@ namespace xpe {
 
         Text3DPass::Text3DPass(
             const core::vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            GeometryStorage* geometryStorage
-        ) : TextPass(bindings, output, geometryStorage)
+            GeometryStorage* geometryStorage,
+            RenderTarget* output
+        ) : TextPass(bindings, geometryStorage, output)
         {
         }
 

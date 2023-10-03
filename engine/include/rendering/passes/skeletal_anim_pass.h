@@ -28,9 +28,9 @@ namespace xpe {
         public:
             SkeletalAnimPass(
                 const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
                 MaterialStorage* materialStorage,
-                core::Boolean useMSAA
+                core::Boolean useMSAA,
+                RenderTarget* output
             );
             ~SkeletalAnimPass();
 

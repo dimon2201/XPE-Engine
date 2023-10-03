@@ -1,12 +1,13 @@
 #pragma once
 
+#include <rendering/core/core.h>
 #include <rendering/passes/render_pass.h>
-#include <geometry/geometries.h>
 
 namespace xpe
 {
     namespace render
     {
+        struct Viewport;
         class GeometryStorage;
 
         struct SSAOBufferLayout
@@ -20,7 +21,7 @@ namespace xpe
         {
 
         public:
-            SSAOPass(GeometryStorage* geometry, const core::vector<RenderPassBinding>& bindings, RenderTarget* output);
+            SSAOPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport, core::Boolean useMSAA, core::usize msaaSampleCount);
             ~SSAOPass();
 
             virtual void Update(Scene* scene) override final;
@@ -29,7 +30,7 @@ namespace xpe
         private:
             Buffer m_Buffer;
             SSAOBufferLayout m_BufferData;
-            Ref<GeometryIndexed<Vertex2D>> m_Quad;
+
         };
     }
 }

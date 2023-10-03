@@ -1,11 +1,3 @@
-struct VSIn
-{
-    float3 positionLocal : XPE_POSITION;
-    float2 uv : XPE_UV;
-    float3 normal : XPE_NORMAL; // normalized
-    float3 tangent : XPE_TANGENT; // normalized
-};
-
 struct VSOut
 {
     float4 positionClip : SV_POSITION;
@@ -14,20 +6,22 @@ struct VSOut
     float ssaoSampleCount : XPE_SSAO_SAMPLE_COUNT;
 };
 
-cbuffer SSAOBuffer : register(b1)
+cbuffer SSAOBuffer : register(b0)
 {
     float SSAODirectionCount;
     float SSAOSampleCount;
     float _pad[2];
 };
 
-VSOut vs_main(VSIn vsIn)
+VSOut vs_main(uint vertexIndex : SV_VertexID)
 {
-    float2 position = vsIn.positionLocal.xy * 2.0;
-
     VSOut vsOut;
-    vsOut.positionClip = float4(position, 0.0, 1.0);
-    vsOut.uv = float2(position.x * 0.5 + 0.5, 1.0 - (position.y * 0.5 + 0.5));
+
+    if (vertexIndex == 0) { vsOut.positionClip = float4(-1.0, -1.0, 0.0, 1.0); vsOut.uv = float2(0.0, 1.0); }
+    if (vertexIndex == 1) { vsOut.positionClip = float4(-1.0, 1.0, 0.0, 1.0); vsOut.uv = float2(0.0, 0.0); }
+    if (vertexIndex == 2) { vsOut.positionClip = float4(1.0, -1.0, 0.0, 1.0); vsOut.uv = float2(1.0, 1.0); }
+    if (vertexIndex == 3) { vsOut.positionClip = float4(1.0, 1.0, 0.0, 1.0); vsOut.uv = float2(1.0, 0.0); }
+
     vsOut.ssaoDirectionCount = SSAODirectionCount;
     vsOut.ssaoSampleCount = SSAOSampleCount;
 

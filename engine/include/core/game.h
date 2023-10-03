@@ -11,6 +11,7 @@ namespace xpe {
         class MaterialStorage;
         class FontStorage;
         class RenderTarget;
+        class SSAOPass;
         class FXAAPass;
     }
 
