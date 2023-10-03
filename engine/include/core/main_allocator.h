@@ -1,13 +1,13 @@
 #pragma once
 
-#define alloc(size) xpe::core::MemoryPoolManager::MainPools->Allocate(size)
-#define allocT(T, count) static_cast<T*>(alloc(sizeof(T) * count))
-#define alloc_construct(T) xpe::core::MemoryPoolManager::MainPools->AllocateConstruct<T>()
-#define alloc_construct_args(T, ...) xpe::core::MemoryPoolManager::MainPools->AllocateConstructArgs<T>(__VA_ARGS__)
-#define dealloc(addr) xpe::core::MemoryPoolManager::MainPools->Free(addr)
-#define destruct(T, addr) \
+#define main_alloc(size) xpe::core::MemoryPoolManager::MainPools->Allocate(size)
+#define main_allocT(T, count) static_cast<T*>(main_alloc(sizeof(T) * count))
+#define main_construct(T) xpe::core::MemoryPoolManager::MainPools->AllocateConstruct<T>()
+#define main_construct_args(T, ...) xpe::core::MemoryPoolManager::MainPools->AllocateConstructArgs<T>(__VA_ARGS__)
+#define main_free(addr) xpe::core::MemoryPoolManager::MainPools->Free(addr)
+#define main_destruct(T, addr) \
 addr->~T();               \
-dealloc(addr)
+main_free(addr)
 
 namespace xpe {
 
@@ -26,12 +26,12 @@ namespace xpe {
 
             [[nodiscard]] T* allocate(std::size_t count)
             {
-                return static_cast<T*>(alloc(sizeof(T) * count));
+                return static_cast<T*>(main_alloc(sizeof(T) * count));
             }
 
             void deallocate(T* element, std::size_t count) noexcept
             {
-                dealloc(element);
+                main_free(element);
             }
         };
 

@@ -7,7 +7,7 @@ namespace xpe {
         Font::~Font()
         {
             for (auto& glyph : AlphaBet) {
-                dealloc(glyph.second.BitmapData);
+                main_free(glyph.second.BitmapData);
                 glyph.second.BitmapData = nullptr;
             }
             AlphaBet.clear();

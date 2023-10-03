@@ -77,7 +77,7 @@ namespace xpe {
         {
             TextureLayer layer;
             layer.RowByteSize = Width * BPPTable.at(Format);
-            layer.Pixels = alloc(layer.RowByteSize * Height);
+            layer.Pixels = main_alloc(layer.RowByteSize * Height);
             layer.Width = Width;
             layer.Height = Height;
             layer.Channels = Channels;
@@ -208,7 +208,7 @@ namespace xpe {
         void TextureLayer::Free()
         {
             if (Pixels != nullptr) {
-                dealloc(Pixels);
+                main_free(Pixels);
                 FreeMips();
             }
         }
@@ -295,7 +295,7 @@ namespace xpe {
         void TextureLayer::FreeMips() {
             for (auto& mip : Mips) {
                 if (mip.Pixels != nullptr) {
-                    dealloc(mip.Pixels);
+                    main_free(mip.Pixels);
                 }
             }
             Mips.clear();
@@ -382,7 +382,7 @@ namespace xpe {
                 const void* inputPixels, int inputWidth, int inputHeight, int channels,
                 int outputWidth, int outputHeight
         ) {
-            auto* output = allocT(u8, outputWidth * outputHeight * channels);
+            auto* output = main_allocT(u8, outputWidth * outputHeight * channels);
             stbir_resize_uint8(
                     (const u8*) inputPixels,
                     inputWidth, inputHeight, 0,
@@ -397,7 +397,7 @@ namespace xpe {
                 const void* inputPixels, int inputWidth, int inputHeight, int channels,
                 int outputWidth, int outputHeight
         ) {
-            auto* output = allocT(float, outputWidth * outputHeight * channels);
+            auto* output = main_allocT(float, outputWidth * outputHeight * channels);
             stbir_resize_float(
                     (const float*) inputPixels,
                     inputWidth, inputHeight, 0,

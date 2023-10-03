@@ -21,7 +21,7 @@ namespace xpe {
             if (FT_Init_FreeType(&s_Lib)) {
                 LogError("Failed to initialize FreeType library!");
             }
-            s_FontFaces = ::new (alloc(sizeof(unordered_map<string, FT_Face>))) unordered_map<string, FT_Face>();
+            s_FontFaces = ::new (main_alloc(sizeof(unordered_map<string, FT_Face>))) unordered_map<string, FT_Face>();
         }
 
         FontLoader::~FontLoader()
@@ -30,7 +30,7 @@ namespace xpe {
             {
                 FreeFontFace(font.second);
             }
-            dealloc(s_FontFaces);
+            main_free(s_FontFaces);
             FT_Done_FreeType(s_Lib);
         }
 
@@ -71,7 +71,7 @@ namespace xpe {
                             glyph.Top = fontFace->glyph->bitmap_top;
                             glyph.AdvanceX = fontFace->glyph->advance.x;
                             glyph.AdvanceY = 0.0f;
-                            glyph.BitmapData = alloc(glyph.Width * glyph.Height);
+                            glyph.BitmapData = main_alloc(glyph.Width * glyph.Height);
 
                             int x = 0;
                             int y = 0;
@@ -115,7 +115,7 @@ namespace xpe {
                     font.Atlas.MostDetailedMip = 0;
                     font.Atlas.Layers.push_back({});
                     font.Atlas.Layers[0].RowByteSize = font.Atlas.Width;
-                    font.Atlas.Layers[0].Pixels = alloc(font.Atlas.Width * font.Atlas.Height);
+                    font.Atlas.Layers[0].Pixels = main_alloc(font.Atlas.Width * font.Atlas.Height);
                     memset(font.Atlas.Layers[0].Pixels, 0, font.Atlas.Width * font.Atlas.Height);
                     const TextureLayer& layer = font.Atlas.Layers[0];
 
@@ -206,7 +206,7 @@ namespace xpe {
                         glyph.Top = fontFace->glyph->bitmap_top;
                         glyph.AdvanceX = fontFace->glyph->advance.x;
                         glyph.AdvanceY = 0.0f;
-                        glyph.BitmapData = alloc(glyph.Width * glyph.Height);
+                        glyph.BitmapData = main_alloc(glyph.Width * glyph.Height);
                         memset(glyph.BitmapData, 0, glyph.Width * glyph.Height);
 
                         int x = 0;
@@ -251,7 +251,7 @@ namespace xpe {
                 font.Atlas.MostDetailedMip = 0;
                 font.Atlas.Layers.push_back({});
                 font.Atlas.Layers[0].RowByteSize = font.Atlas.Width;
-                font.Atlas.Layers[0].Pixels = alloc(font.Atlas.Width * font.Atlas.Height);
+                font.Atlas.Layers[0].Pixels = main_alloc(font.Atlas.Width * font.Atlas.Height);
                 memset(font.Atlas.Layers[0].Pixels, 0, font.Atlas.Width * font.Atlas.Height);
                 const render::TextureLayer& layer = font.Atlas.Layers[0];
 
