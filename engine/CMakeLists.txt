@@ -46,7 +46,19 @@ add_subdirectory(thirdparty/PhysX/physx/compiler/public)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile PhysX)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile)
+
+# Link PhysX SDK
+target_link_libraries(${PROJECT_NAME} PUBLIC
+        PhysXExtensions
+        PhysX
+        PhysXPvdSDK
+        PhysXVehicle
+        PhysXCharacterKinematic
+        PhysXCooking
+        PhysXCommon
+        PhysXFoundation
+)
 
 # Move shaders into bin folder
 copy_engine_shaders(engine)
