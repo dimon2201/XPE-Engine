@@ -215,7 +215,7 @@ namespace xpe {
 
             static void FreeInitialData(D3D11_SUBRESOURCE_DATA* initialData)
             {
-                dealloc(initialData);
+                main_free(initialData);
             }
 
             static D3D11_SUBRESOURCE_DATA* InitBufferData(const Buffer& buffer)
@@ -225,7 +225,7 @@ namespace xpe {
                 if (buffer.InitialData != nullptr)
                 {
                     usize bufferSize = buffer.GetByteSize();
-                    initialData = allocT(D3D11_SUBRESOURCE_DATA, bufferSize);
+                    initialData = main_allocT(D3D11_SUBRESOURCE_DATA, bufferSize);
                     initialData->pSysMem = buffer.InitialData;
                     initialData->SysMemPitch = bufferSize;
                     initialData->SysMemSlicePitch = 0;
@@ -242,7 +242,7 @@ namespace xpe {
 
                 if (texture.InitializeData)
                 {
-                    initialData = allocT(D3D11_SUBRESOURCE_DATA, initialDataSize);
+                    initialData = main_allocT(D3D11_SUBRESOURCE_DATA, initialDataSize);
 
                     for (int i = 0; i < arraySize; i++)
                     {
@@ -1214,7 +1214,7 @@ namespace xpe {
                 VertexFormat& vertexFormat = inputLayout.Format;
                 usize attributeCount = vertexFormat.Attributes.size();
                 usize attributeOffset = 0;
-                auto* attributes = allocT(D3D11_INPUT_ELEMENT_DESC, attributeCount);
+                auto* attributes = main_allocT(D3D11_INPUT_ELEMENT_DESC, attributeCount);
 
                 for (u32 i = 0 ; i < attributeCount ; i++)
                 {
@@ -1237,7 +1237,7 @@ namespace xpe {
                 );
                 LogDebugMessage();
 
-                dealloc(attributes);
+                main_free(attributes);
             }
 
             void BindInputLayout(const InputLayout& inputLayout)

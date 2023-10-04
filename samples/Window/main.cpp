@@ -25,6 +25,26 @@ using namespace xpe::math;
 using namespace xpe::res;
 using namespace xpe::audio;
 
+#include <PxPhysicsAPI.h>
+
+using namespace physx;
+
+class PhysicsErrorCallback : public PxErrorCallback {
+
+public:
+
+    ~PhysicsErrorCallback() override {
+
+    }
+
+    void reportError(PxErrorCode::Enum code, const char *message, const char *file, int line) override {
+
+    }
+
+};
+
+static PhysicsErrorCallback s_PhysicsErrorCallback;
+
 class GameApp : public Application
 {
 public:

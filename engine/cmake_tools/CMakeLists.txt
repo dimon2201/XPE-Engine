@@ -11,6 +11,14 @@ macro(add_engine_configs)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_PATH})
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_PATH})
 
+    set(PHYSX_ROOT_DIR ${CMAKE_SOURCE_DIR}/engine/thirdparty/PhysX/physx)
+    set(PX_OUTPUT_LIB_DIR ${LIB_PATH})
+    set(PX_OUTPUT_BIN_DIR ${BIN_PATH})
+
+    set(TARGET_BUILD_PLATFORM "windows")
+
+    set(NV_USE_STATIC_WINCRT TRUE)
+
     message(STATUS "Setting configuration types : ${CMAKE_CONFIGURATION_TYPES}")
 
     foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
@@ -32,6 +40,9 @@ macro(add_engine_definitions)
     add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
     if(DEBUG)
         add_definitions(-DDEBUG=1)
+        add_definitions(-DPX_DEBUG=1)
+        add_definitions(-DPX_CHECKED=1)
+        add_definitions(-DPX_DEBUG_CRT=1)
     endif(DEBUG)
 endmacro()
 
