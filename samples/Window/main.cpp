@@ -50,6 +50,25 @@ public:
 
 static PhysicsErrorCallback s_PhysicsErrorCallback;
 
+class PhysicsAllocator : public PxAllocatorCallback {
+
+public:
+    ~PhysicsAllocator() override {}
+
+    void* allocate(size_t size, const char* typeName, const char* filename, int line) override {
+        LogInfo("PhysicsAllocator: allocate size={}, typename={}, filename={}, line={}", size, typeName, filename, line);
+        return main_alloc(size);
+    }
+
+    void deallocate(void* ptr) override {
+        LogInfo("PhysicsAllocator: free address={}", ptr);
+        main_free(ptr);
+    }
+
+};
+
+static PhysicsAllocator s_PhysicsAllocator;
+
 class GameApp : public Application
 {
 public:
