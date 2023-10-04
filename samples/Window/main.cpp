@@ -17,6 +17,14 @@
 
 #include "test_config.h"
 
+using namespace xpe::core;
+using namespace xpe::ecs;
+using namespace xpe::render;
+using namespace xpe::control;
+using namespace xpe::math;
+using namespace xpe::res;
+using namespace xpe::audio;
+
 #include <PxPhysicsAPI.h>
 
 using namespace physx;
@@ -35,109 +43,7 @@ public:
 
 };
 
-static PhysicsErrorCallback     gErrorCallback;
-static PxDefaultAllocator		gAllocator;
-static PxFoundation*			gFoundation = NULL;
-static PxPhysics*				gPhysics	= NULL;
-static PxDefaultCpuDispatcher*	gDispatcher = NULL;
-static PxScene*					gScene		= NULL;
-static PxMaterial*				gMaterial	= NULL;
-static PxPvd*					gPvd        = NULL;
-static PxVehicleWheels*         vehicleWheels = NULL;
-
-static PxReal stackZ = 10.0f;
-
-using namespace xpe::core;
-using namespace xpe::ecs;
-using namespace xpe::render;
-using namespace xpe::control;
-using namespace xpe::math;
-using namespace xpe::res;
-using namespace xpe::audio;
-
-static void createStack(const PxTransform& t, PxU32 size, PxReal halfExtent)
-{
-    PxShape* shape = gPhysics->createShape(PxBoxGeometry(halfExtent, halfExtent, halfExtent), *gMaterial);
-    for(PxU32 i=0; i<size;i++)
-    {
-        for(PxU32 j=0;j<size-i;j++)
-        {
-            PxTransform localTm(PxVec3(PxReal(j*2) - PxReal(size-i), PxReal(i*2+1), 0) * halfExtent);
-            PxRigidDynamic* body = gPhysics->createRigidDynamic(t.transform(localTm));
-            body->attachShape(*shape);
-            PxRigidBodyExt::updateMassAndInertia(*body, 10.0f);
-            gScene->addActor(*body);
-        }
-    }
-    shape->release();
-}
-
-static PxRigidDynamic* createDynamic(const PxTransform& t, const PxGeometry& geometry, const PxVec3& velocity=PxVec3(0))
-{
-    PxRigidDynamic* dynamic = PxCreateDynamic(*gPhysics, t, geometry, *gMaterial, 10.0f);
-    dynamic->setAngularDamping(0.5f);
-    dynamic->setLinearVelocity(velocity);
-    gScene->addActor(*dynamic);
-    return dynamic;
-}
-
-void initPhysics(bool interactive)
-{
-    gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
-
-    gPvd = PxCreatePvd(*gFoundation);
-    PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
-    gPvd->connect(*transport,PxPvdInstrumentationFlag::eALL);
-
-    gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(),true,gPvd);
-
-    PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-    sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
-    gDispatcher = PxDefaultCpuDispatcherCreate(2);
-    sceneDesc.cpuDispatcher	= gDispatcher;
-    sceneDesc.filterShader	= PxDefaultSimulationFilterShader;
-    gScene = gPhysics->createScene(sceneDesc);
-
-    PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
-    if(pvdClient)
-    {
-        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
-        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
-        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
-    }
-    gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
-
-    PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(0,1,0,0), *gMaterial);
-    gScene->addActor(*groundPlane);
-
-    for(PxU32 i=0;i<5;i++)
-        createStack(PxTransform(PxVec3(0,0,stackZ-=10.0f)), 10, 2.0f);
-
-    if(!interactive)
-        createDynamic(PxTransform(PxVec3(0,40,100)), PxSphereGeometry(10), PxVec3(0,-50,-100));
-}
-
-void stepPhysics(bool /*interactive*/)
-{
-    gScene->simulate(1.0f/60.0f);
-    gScene->fetchResults(true);
-}
-
-void cleanupPhysics(bool /*interactive*/)
-{
-    PX_RELEASE(gScene);
-    PX_RELEASE(gDispatcher);
-    PX_RELEASE(gPhysics);
-    if(gPvd)
-    {
-        PxPvdTransport* transport = gPvd->getTransport();
-        gPvd->release();	gPvd = NULL;
-        PX_RELEASE(transport);
-    }
-    PX_RELEASE(gFoundation);
-
-    printf("SnippetHelloWorld done.\n");
-}
+static PhysicsErrorCallback s_PhysicsErrorCallback;
 
 class GameApp : public Application
 {
@@ -179,8 +85,6 @@ public:
 
         InitCamera();
         InitCamera2D();
-
-        initPhysics(false);
 
         // setup text 2D entity
         {
@@ -568,13 +472,11 @@ public:
         UpdateCamera();
         AnimateLight();
         DisplayStats();
-        stepPhysics(false);
     }
 
     void Free()
     {
         LogInfo("GameApp::Free()");
-        cleanupPhysics(false);
     }
 
     void WindowClosed()

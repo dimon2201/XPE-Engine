@@ -50,15 +50,46 @@ target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenA
 
 # Link PhysX SDK
 target_link_libraries(${PROJECT_NAME} PUBLIC
-        PhysXExtensions
         PhysX
-        PhysXPvdSDK
-        PhysXVehicle
-        PhysXCharacterKinematic
-        PhysXCooking
         PhysXCommon
         PhysXFoundation
+        PhysXCooking
+        PhysXVehicle
+        PhysXCharacterKinematic
 )
+
+# Copy PhysX binaries
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysX.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysX.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysX.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysX.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysX.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysX.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCommon.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCommon.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysXCommon.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCommon.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCommon.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCommon.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCooking.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCooking.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCooking.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCooking.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCooking.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCooking.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXFoundation.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXFoundation.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysXFoundation.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXFoundation.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXFoundation.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXFoundation.dll COPYONLY)
+endif()
 
 # Move shaders into bin folder
 copy_engine_shaders(engine)
