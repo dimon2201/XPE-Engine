@@ -5,8 +5,8 @@ project(xpe_engine)
 # Include CMake helpers
 include(cmake_tools/CMakeLists.txt)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -O3")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 
 # Defines engine as DLL build
 build_engine_dll()
@@ -59,6 +59,22 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 )
 
 # Copy PhysX binaries
+if(EXISTS ${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/debug/freeglutd.dll)
+    configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/debug/freeglutd.dll ${CMAKE_BINARY_DIR}/bin/debug/freeglutd.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/freeglut.dll)
+    configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/freeglut.dll ${CMAKE_BINARY_DIR}/bin/release/freeglut.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/debug/PhysXDevice64.dll)
+    configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/debug/PhysXDevice64.dll ${CMAKE_BINARY_DIR}/bin/debug/PhysXDevice64.dll COPYONLY)
+endif()
+
+if(EXISTS ${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/PhysXDevice64.dll)
+    configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/PhysXDevice64.dll ${CMAKE_BINARY_DIR}/bin/release/PhysXDevice64.dll COPYONLY)
+endif()
+
 if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysX.dll)
     configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysX.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysX.dll COPYONLY)
 endif()

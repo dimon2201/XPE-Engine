@@ -13,11 +13,9 @@ macro(add_engine_configs)
 
     set(PHYSX_ROOT_DIR ${CMAKE_SOURCE_DIR}/engine/thirdparty/PhysX/physx)
     set(PX_OUTPUT_LIB_DIR ${LIB_PATH})
-    set(PX_OUTPUT_BIN_DIR ${BIN_PATH})
-
-    set(TARGET_BUILD_PLATFORM "windows")
-
+    set(PX_OUTPUT_BIN_DIR ${LIB_PATH})
     set(NV_USE_STATIC_WINCRT TRUE)
+    set(TARGET_BUILD_PLATFORM "windows")
 
     message(STATUS "Setting configuration types : ${CMAKE_CONFIGURATION_TYPES}")
 
