@@ -26,6 +26,11 @@ using namespace xpe::res;
 using namespace xpe::audio;
 
 #include <PxPhysicsAPI.h>
+#include <PxActor.h>
+#include <PxParticleGpu.h>
+#include <vehicle2/PxVehicleAPI.h>
+#include <vehicle/PxVehicleSDK.h>
+#include <characterkinematic/PxController.h>
 
 using namespace physx;
 
