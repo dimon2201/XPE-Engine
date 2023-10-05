@@ -11,7 +11,7 @@ namespace xpe {
         class ENGINE_API TaskDispatcher : public Object {
 
         public:
-            TaskDispatcher(u32 workerSize, const Thread::Format& threadFormat, usize taskBufferSize);
+            TaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, Thread::ePriority priority);
 
             // executes single task in a single worker thread
             void Dispatch(const Task& task);
@@ -23,26 +23,30 @@ namespace xpe {
 
             inline bool IsBusy();
 
+            inline u32 GetWorkerCount() const;
+
             void Wait();
 
-        private:
+        protected:
             // wakes only one worker
             // allows caller-thread to be rescheduled by OS
             inline void Poll();
 
-            void InitThread(u32 workerId, const Thread::Format& threadFormat);
+            void InitThread(u32 workerId, const char* name, Thread::ePriority priority);
 
             RingBuffer<Task> m_TaskBuffer;
             std::condition_variable m_WakeCondition;
             std::mutex m_WakeMutex;
             u64 m_TasksTodo;
             std::atomic<u64> m_TasksDone;
+            u32 m_WorkerCount;
         };
 
         class ENGINE_API TaskManager final {
 
         public:
             static void Init();
+            static void Init(TaskDispatcher* dispatcher);
             static void Free();
 
             static void SubmitTask(const Task& task);

@@ -12,7 +12,7 @@ namespace xpe {
         public:
             static bool EnableMemoryProfiling;
 
-            static void Init();
+            static void Init(PxCpuDispatcher* dispatcher);
             static void Free();
 
             static void EnableLoggingInfo(bool enable);
@@ -25,6 +25,7 @@ namespace xpe {
 
             static PxFoundation* s_Foundation;
             static PxPhysics* s_Physics;
+            static PxCpuDispatcher* s_Dispatcher;
 
         };
 

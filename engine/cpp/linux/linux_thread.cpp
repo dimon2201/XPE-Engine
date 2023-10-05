@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace core {
 
-        void Thread::SetFormat(const Thread::Format &format)
+        void Thread::SetFormat(const char* name, ePriority priority)
         {
             #define handle_error_en(en, msg) \
                do { errno = en; perror(msg); } while (0)
@@ -23,7 +23,7 @@ namespace xpe {
             }
 
 			// Set name
-			ret = pthread_setname_np(m_Thread.native_handle(), format.Name.c_str());
+			ret = pthread_setname_np(m_Thread.native_handle(), name);
             if (ret != 0) {
 				handle_error_en(ret, std::string(" pthread_setname_np[" + std::to_string(m_ID) + ']').c_str());
             }

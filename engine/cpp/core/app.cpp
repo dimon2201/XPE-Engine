@@ -31,6 +31,8 @@
 
 #include <physics/physics.h>
 
+#include <dispatcher/main_dispatcher.h>
+
 namespace xpe {
 
     using namespace render;
@@ -61,14 +63,20 @@ namespace xpe {
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
 
-            TaskManager::Init();
+            MainDispatcher* mainDispatcher = new MainDispatcher(
+                    Hardware::GetCpuStats().Cores,
+                    100,
+                    "Worker",
+                    Thread::ePriority::NORMAL
+            );
+
+            TaskManager::Init(mainDispatcher);
+            PhysicsManager::Init(mainDispatcher);
 
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
 
             Input::Init();
-
-            PhysicsManager::Init();
 
             debugger::DebugErrors = Config.DebugErrors;
             debugger::DebugWarnings = Config.DebugWarnings;

@@ -4,13 +4,14 @@ namespace xpe {
 
         TaskDispatcher* TaskManager::s_Dispatcher = nullptr;
 
-        TaskDispatcher::TaskDispatcher(u32 workerSize, const Thread::Format &threadFormat, usize taskBufferSize)
+        TaskDispatcher::TaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, Thread::ePriority priority)
         {
             m_TasksTodo = 0;
             m_TasksDone.store(0);
+            m_WorkerCount = workerSize;
             m_TaskBuffer.Resize(taskBufferSize);
             for (int i = 0; i < workerSize ; i++) {
-                InitThread(i, threadFormat);
+                InitThread(i, name, priority);
             }
         }
 
@@ -58,6 +59,11 @@ namespace xpe {
             return m_TasksDone.load() < m_TasksTodo;
         }
 
+        u32 TaskDispatcher::GetWorkerCount() const
+        {
+            return m_WorkerCount;
+        }
+
         void TaskDispatcher::Wait()
         {
             while (IsBusy()) {
@@ -71,7 +77,7 @@ namespace xpe {
             std::this_thread::yield();
         }
 
-        void TaskDispatcher::InitThread(u32 workerId, const Thread::Format &threadFormat)
+        void TaskDispatcher::InitThread(u32 workerId, const char* name, Thread::ePriority priority)
         {
             std::thread worker([this]() {
                 Task task;
@@ -88,13 +94,18 @@ namespace xpe {
                 }
             });
             Thread thread = { workerId, worker };
-            thread.SetFormat(threadFormat);
+            thread.SetFormat(name, priority);
             worker.detach();
         }
 
         void TaskManager::Init()
         {
-            s_Dispatcher = new TaskDispatcher(Hardware::GetCpuStats().Cores, { Thread::ePriority::NORMAL, "Worker" }, 100);
+            s_Dispatcher = new TaskDispatcher(Hardware::GetCpuStats().Cores, 100, "Worker", Thread::ePriority::NORMAL);
+        }
+
+        void TaskManager::Init(TaskDispatcher* dispatcher)
+        {
+            s_Dispatcher = dispatcher;
         }
 
         void TaskManager::Free()

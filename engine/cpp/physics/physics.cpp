@@ -11,6 +11,7 @@ namespace xpe {
 
         PxFoundation* PhysicsManager::s_Foundation = nullptr;
         PxPhysics* PhysicsManager::s_Physics = nullptr;
+        PxCpuDispatcher* PhysicsManager::s_Dispatcher = nullptr;
 
         void PhysicsManager::EnableLoggingInfo(bool enable) {
             s_ErrorCallback.EnableInfo = enable;
@@ -24,8 +25,10 @@ namespace xpe {
             s_ErrorCallback.EnableError = enable;
         }
 
-        void PhysicsManager::Init()
+        void PhysicsManager::Init(PxCpuDispatcher* dispatcher)
         {
+            s_Dispatcher = dispatcher;
+
             s_Foundation = PxCreateFoundation(
                     PX_PHYSICS_VERSION,
                     s_Allocator,
