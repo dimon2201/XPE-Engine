@@ -10,26 +10,28 @@ namespace xpe {
         {
             // base color
             glm::vec4 BaseColor = { 0.9, 0.9, 0.9, 1 };
-            Bool EnableAlbedo = false;
+            core::Boolean EnableAlbedo = core::K_FALSE;
             // bumping
-            Bool EnableBumping = false;
+            core::Boolean EnableBumping = core::K_FALSE;
             // parallax
-            Bool EnableParallax = false;
+            core::Boolean EnableParallax = core::K_FALSE;
             float HeightScale = 0.1;
             float ParallaxMinLayers = 8;
             float ParallaxMaxLayers = 32;
             // metallic
             float MetallicFactor = 0.5f;
-            Bool EnableMetallic = false;
+            core::Boolean EnableMetallic = core::K_FALSE;
             // roughness
             float RoughnessFactor = 0.5f;
-            Bool EnableRoughness = false;
+            core::Boolean EnableRoughness = core::K_FALSE;
             // ambient occlusion
             float AOFactor = 0.5f;
-            Bool EnableAO = false;
+            core::Boolean EnableAO = core::K_FALSE;
             // emission
             glm::vec3 EmissionColor = { 0, 0, 0 };
-            Bool EnableEmission = false;
+            core::Boolean EnableEmission = core::K_FALSE;
+            // transparency
+            core::Boolean EnableTransparency = core::K_FALSE;
         };
 
         struct ENGINE_API MaterialDataBuffer : public StructureBuffer<MaterialData>

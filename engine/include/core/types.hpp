@@ -35,7 +35,7 @@ namespace xpe
 
         #endif
 
-        using Boolean = uword;
+        using Boolean = u32;
 
         constexpr Boolean K_TRUE                    = 1;
         constexpr Boolean K_FALSE                   = 0;

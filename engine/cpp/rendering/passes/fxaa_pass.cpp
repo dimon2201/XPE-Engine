@@ -7,15 +7,12 @@ namespace xpe
 {
     namespace render
     {
-        FXAAPass::FXAAPass(
-            const core::vector<RenderPassBinding>& bindings,
-            const glm::vec2& canvasSize,
-            Viewport* canvasViewport
-        ) : RenderPass(bindings, nullptr)
+        FXAAPass::FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport)
+            : RenderPass(bindings, nullptr)
         {
             Texture* color = new Texture();
-            color->Width = canvasSize.x;
-            color->Height = canvasSize.y;
+            color->Width = viewport->Width;
+            color->Height = viewport->Height;
             color->Format = eTextureFormat::RGBA8;
             color->InitializeData = false;
             color->EnableRenderTarget = true;
@@ -23,14 +20,14 @@ namespace xpe
 
             Texture* depth = new Texture();
             depth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            depth->Width = canvasSize.x;
-            depth->Height = canvasSize.y;
+            depth->Width = viewport->Width;
+            depth->Height = viewport->Height;
             depth->Format = eTextureFormat::R32_TYPELESS;
             depth->InitializeData = false;
             depth->EnableRenderTarget = true;
             depth->Init();
 
-            m_Pipeline->RenderTarget = new RenderTarget({ color }, depth, *canvasViewport);
+            m_Pipeline->RenderTarget = new RenderTarget({ color }, depth, *viewport);
 
             m_Sampler.Slot = 0;
             context::CreateSampler(m_Sampler);

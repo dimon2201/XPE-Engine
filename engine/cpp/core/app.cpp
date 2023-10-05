@@ -242,8 +242,6 @@ namespace xpe {
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
 
-            const core::Boolean useMSAA = core::K_FALSE; // TODO: remove this variable after testing MSAA
-
             // Instancing pass
             {
                 Shader* shader = ShaderManager::CreateShader("instancing");
@@ -289,7 +287,7 @@ namespace xpe {
                 m_Renderer->AddRenderPass<SkeletalAnimPass>(
                     bindings,
                     m_MaterialStorage,
-                    useMSAA,
+                    m_UseMSAA,
                     m_Renderer->GetRenderTarget()
                 );
             }
@@ -338,14 +336,13 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("ssao");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/ssao_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/ssao_pass.ps");
+                ShaderManager::AddPixelStageFromFile(shader, m_UseMSAA == core::K_TRUE ? "engine_shaders/passes/msaa/ssao_pass.ps" : "engine_shaders/passes/ssao_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, m_Renderer->GetRenderTarget()->Colors[1] },
-                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, m_Renderer->GetRenderTarget()->Colors[2] },
-                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, m_Renderer->GetRenderTarget()->DepthStencil }
+                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, m_Renderer->GetRenderTarget()->Colors[3] },
+                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, m_Renderer->GetRenderTarget()->Colors[4] }
                 };
 
                 m_SSAOPass = m_Renderer->AddRenderPass<SSAOPass>(
@@ -379,13 +376,15 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("merge");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/merge_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_pass.ps");
+                ShaderManager::AddPixelStageFromFile(shader, m_UseMSAA == core::K_TRUE ? "engine_shaders/passes/msaa/merge_pass.ps" : "engine_shaders/passes/merge_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
                     { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, m_Renderer->GetRenderTarget()->Colors[0] },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, m_SSAOPass->GetRenderTarget()->Colors[0] }
+                    { "AccumTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, m_Renderer->GetRenderTarget()->Colors[1] },
+                    { "RevealTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, m_Renderer->GetRenderTarget()->Colors[2] },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 3, m_SSAOPass->GetRenderTarget()->Colors[0] }
                 };
 
                 m_Renderer->AddRenderPass<MergePass>(
@@ -397,9 +396,11 @@ namespace xpe {
 
         void Application::Render()
         {
-            m_Renderer->GetRenderTarget()->ClearColor(0, glm::vec4(0.0f));
+            m_Renderer->GetRenderTarget()->ClearColor(0, glm::vec4(1.0f));
             m_Renderer->GetRenderTarget()->ClearColor(1, glm::vec4(0.0f));
             m_Renderer->GetRenderTarget()->ClearColor(2, glm::vec4(0.0f));
+            m_Renderer->GetRenderTarget()->ClearColor(3, glm::vec4(0.0f));
+            m_Renderer->GetRenderTarget()->ClearColor(4, glm::vec4(0.0f));
             m_Renderer->GetRenderTarget()->ClearDepth(1.0f);
             m_SSAOPass->GetRenderTarget()->ClearColor(0, glm::vec4(0.0f));
             m_SSAOPass->GetRenderTarget()->ClearDepth(1.0f);

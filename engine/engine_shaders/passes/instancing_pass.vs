@@ -15,6 +15,7 @@ struct VSIn
 struct VSOut
 {
     float3 positionWorld : XPE_POSITION_WORLD;
+    float zView          : XPE_Z_VIEW;
     float2 uv            : XPE_UV2;
     float3 normal        : XPE_NORMAL_WORLD;
     float4 positionClip  : SV_POSITION;
@@ -46,13 +47,14 @@ VSOut vs_main(VSIn vsIn)
     float3 bitangentWorld = -cross(normalWorld, tangentWorld);
 
     vsOut.positionWorld = positionWorld.xyz;
-    vsOut.uv = vsIn.uv;
-    vsOut.normal = normalWorld.xyz;
-    vsOut.positionClip = positionClip;
-    vsOut.viewPosition = camera.Position;
+    vsOut.zView         = positionView.z;
+    vsOut.uv            = vsIn.uv;
+    vsOut.normal        = normalWorld.xyz;
+    vsOut.positionClip  = positionClip;
+    vsOut.viewPosition  = camera.Position;
     vsOut.materialIndex = instance.MaterialIndex;
-    vsOut.tbn = float3x3(tangentWorld, bitangentWorld, normalWorld);
-    vsOut.positionDLS = positionDLS.xyz;
+    vsOut.tbn           = float3x3(tangentWorld, bitangentWorld, normalWorld);
+    vsOut.positionDLS   = positionDLS.xyz;
 
     return vsOut;
 }

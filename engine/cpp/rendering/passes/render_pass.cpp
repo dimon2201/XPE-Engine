@@ -64,6 +64,12 @@ namespace xpe {
             m_Pipeline->Blending.Targets[0].Enable = true;
             m_Pipeline->Blending.Targets[0].Src = eBlend::SRC_ALPHA;
             m_Pipeline->Blending.Targets[0].Dest = eBlend::INV_SRC_ALPHA;
+            m_Pipeline->Blending.Targets[1].Enable = true;
+            m_Pipeline->Blending.Targets[1].Src = eBlend::ONE;
+            m_Pipeline->Blending.Targets[1].Dest = eBlend::ONE;
+            m_Pipeline->Blending.Targets[2].Enable = true;
+            m_Pipeline->Blending.Targets[2].Src = eBlend::ZERO;
+            m_Pipeline->Blending.Targets[2].Dest = eBlend::INV_SRC_ALPHA;
         }
 
         RenderPass::~RenderPass()

@@ -60,12 +60,12 @@
 #include <core/mousecodes.h>
 #include <core/gamepadcodes.h>
 #include <core/singleton.h>
+#include <core/types.hpp>
 #include <res/json.h>
 #include <core/config.h>
 #include <os/hardware_config.h>
 
 // Rendering core types
-#include <rendering/core/types.h>
 #include <rendering/core/slots.h>
 
 // STL customization

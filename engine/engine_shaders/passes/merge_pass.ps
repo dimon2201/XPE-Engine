@@ -10,7 +10,9 @@ struct PSOut
 };
 
 Texture2D<float4> ColorTexture : register(t0);
-Texture2D<float4> AOTexture : register(t1);
+Texture2D<float4> AccumTexture : register(t1);
+Texture2D<float> RevealTexture : register(t2);
+Texture2D<float4> AOTexture : register(t3);
 
 PSOut ps_main(VSOut psIn)
 {
@@ -18,9 +20,19 @@ PSOut ps_main(VSOut psIn)
     uint height = 0;
     ColorTexture.GetDimensions(width, height);
 
+    float4 color = float4(0.0);
+    float4 accum = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
+    float reveal = RevealTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
+    if (dot(accum, accum) == 0.0) {
+        color = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
+    } else {
+        color = float4(accum.xyz / max(accum.a, 1e-5), reveal);
+    }
+
+    color *= AOTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
+
     PSOut psOut;
-    psOut.color = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0)) *
-                  AOTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
+    psOut.color = color;
 
     return psOut;
 }

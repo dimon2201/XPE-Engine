@@ -12,7 +12,9 @@ struct PSOut
 };
 
 Texture2DMS<float4> ColorTexture : register(t0);
-Texture2D<float4> AOTexture : register(t1);
+Texture2DMS<float4> AccumTexture : register(t1);
+Texture2DMS<float> RevealTexture : register(t2);
+Texture2DMS<float4> AOTexture : register(t3);
 
 PSOut ps_main(VSOut psIn)
 {
@@ -22,10 +24,10 @@ PSOut ps_main(VSOut psIn)
     ColorTexture.GetDimensions(width, height, sampleCount);
 
     float3 averageColor = SampleMSAATexture(ColorTexture, psIn.texcoord);
+    float3 averageAO = SampleMSAATexture(AOTexture, psIn.texcoord);
 
     PSOut psOut;
-    psOut.color = float4(averageColor, 1.0) *
-                  AOTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
+    psOut.color = float4(averageColor, 1.0) * float4(averageAO, 1.0);
 
     return psOut;
 }

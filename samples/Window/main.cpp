@@ -1,4 +1,5 @@
 #include <core/app.hpp>
+#include <core/types.hpp>
 #include <launcher.h>
 
 #include <ecs/entities.hpp>
@@ -132,9 +133,29 @@ public:
             plane.Instance.Material->MetallicFactor = 1;
             plane.Instance.Material->RoughnessFactor = 0.25;
             plane.Instance.Material->AOFactor = 0;
+            plane.Instance.Material->EnableTransparency = xpe::core::K_TRUE;
             plane.Instance.Material->Flush();
 
             m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
+        }
+
+        // setup transparent plane
+        {
+            m_TransparentPlane = { "TransparentPlane", m_MainScene };
+
+            GeometryIndexed3DComponent plane("G_TransparentPlane");
+            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_TransparentPlane", Plane());
+            plane.Instance.Transform.Position = { -5, 1, 0 };
+            plane.Instance.Transform.Scale = { 1, 0.1, 1 };
+            plane.Instance.Material = m_MaterialStorage->Add("MT_TransparentPlane", Material());
+            plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
+            plane.Instance.Material->MetallicFactor = 0.0;
+            plane.Instance.Material->RoughnessFactor = 0.25;
+            plane.Instance.Material->AOFactor = 0;
+            plane.Instance.Material->EnableTransparency = xpe::core::K_TRUE;
+            plane.Instance.Material->Flush();
+
+            m_TransparentPlane.AddComponent<GeometryIndexed3DComponent>(plane);
         }
 
         // setup direct light
@@ -578,6 +599,7 @@ private:
     Entity m_Text2D;
     Entity m_Text3D;
     Entity m_Plane;
+    Entity m_TransparentPlane;
     Entity m_WinterGirl;
     Entity m_Cube;
     Entity m_Listener;

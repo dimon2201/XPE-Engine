@@ -1,26 +1,28 @@
 struct Material {
     // base color
     float4 BaseColor;
-    bool EnableAlbedo;
+    uint EnableAlbedo;
     // bumping
-    bool EnableBumping;
+    uint EnableBumping;
     // parallax
-    bool EnableParallax;
+    uint EnableParallax;
     float HeightScale;
     float ParallaxMinLayers;
     float ParallaxMaxLayers;
     // metallic
     float MetallicFactor;
-    bool EnableMetallic;
+    uint EnableMetallic;
     // roughness
     float RoughnessFactor;
-    bool EnableRoughness;
+    uint EnableRoughness;
     // ambient occlusion
     float AOFactor;
-    bool EnableAO;
+    uint EnableAO;
     // emission
     float3 EmissionColor;
-    bool EnableEmission;
+    uint EnableEmission;
+    // transparency
+    uint EnableTransparency;
 };
 
 StructuredBuffer<Material> Materials : K_SLOT_MATERIALS;
@@ -146,4 +148,10 @@ float3 GetEmission(uint materialIndex, float2 uv, in float gamma) {
     }
     emission = pow(emission, gamma);
     return emission;
+}
+
+bool GetTransparencyEnabled(uint materialIndex) {
+    float mId = float(materialIndex);
+    Material material = Materials[materialIndex];
+    return material.EnableTransparency;
 }

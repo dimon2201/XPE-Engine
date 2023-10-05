@@ -53,7 +53,7 @@ namespace xpe {
         T* Renderer::AddRenderPass(Args &&... args)
         {
             T* pass = new T(std::forward<Args>(args)...);
-            m_RenderPasses.emplace_back(new T(std::forward<Args>(args)...));
+            m_RenderPasses.emplace_back(pass);
 
             return pass;
         }

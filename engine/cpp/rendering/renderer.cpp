@@ -41,6 +41,24 @@ namespace xpe {
             color->EnableRenderTarget = true;
             color->Init();
 
+            Texture* accum = new Texture();
+            accum->Width = viewport->Width;
+            accum->Height = viewport->Height;
+            accum->Format = eTextureFormat::RGBA16;
+            accum->SampleCount = m_UseMSAA == core::K_TRUE ? m_MSAASampleCount : 1;
+            accum->InitializeData = false;
+            accum->EnableRenderTarget = true;
+            accum->Init();
+
+            Texture* reveal = new Texture();
+            reveal->Width = viewport->Width;
+            reveal->Height = viewport->Height;
+            reveal->Format = eTextureFormat::R8;
+            reveal->SampleCount = m_UseMSAA == core::K_TRUE ? m_MSAASampleCount : 1;
+            reveal->InitializeData = false;
+            reveal->EnableRenderTarget = true;
+            reveal->Init();
+
             Texture* position = new Texture();
             position->Width = viewport->Width;
             position->Height = viewport->Height;
@@ -69,7 +87,7 @@ namespace xpe {
             depth->EnableRenderTarget = true;
             depth->Init();
 
-            m_Main = new RenderTarget({ color, position, normal }, depth, *viewport);
+            m_Main = new RenderTarget({ color, accum, reveal, position, normal }, depth, *viewport);
         }
 
         Renderer::~Renderer()

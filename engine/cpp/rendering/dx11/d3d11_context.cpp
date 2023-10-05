@@ -446,7 +446,7 @@ namespace xpe {
 
                 if (depth->Width != 0 && depth->Height != 0)
                 {
-                    if (depthView == nullptr)
+                    if (depthView == nullptr && depth->Instance != nullptr)
                     {
                         D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
                         desc.Format = DXGI_FORMAT_D32_FLOAT;
