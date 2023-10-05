@@ -2,9 +2,7 @@
 
 namespace xpe {
 
-    namespace os {
-
-        using namespace core;
+    namespace core {
 
         struct ENGINE_API MemoryStats final
         {
@@ -24,6 +22,11 @@ namespace xpe {
             usize MaxRenderTargetsPerStage;
         };
 
+        struct ENGINE_API CpuStats final
+        {
+            u32 Cores = 1;
+        };
+
         class ENGINE_API Hardware final {
 
         public:
@@ -33,9 +36,13 @@ namespace xpe {
             static void UpdateVideoStats();
             static VideoStats GetVideoStats();
 
+            static void UpdateCpuStats();
+            static CpuStats GetCpuStats();
+
         private:
             static MemoryStats s_MemoryStats;
             static VideoStats s_VideoStats;
+            static CpuStats s_CpuStats;
         };
 
     }

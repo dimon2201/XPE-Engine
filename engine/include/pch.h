@@ -37,6 +37,8 @@
 #include <chrono>
 #include <iostream>
 #include <regex>
+#include <atomic>
+#include <condition_variable>
 
 // GLM
 #include <glm.hpp>
@@ -54,6 +56,7 @@
 #include <core/main_allocator.h>
 #include <core/hot_allocator.h>
 #include <core/stack_allocator.h>
+#include <core/align16_allocator.h>
 #include <core/object.h>
 #include <core/pointers.h>
 #include <core/keycodes.h>
@@ -62,7 +65,7 @@
 #include <core/singleton.h>
 #include <res/json.h>
 #include <core/config.h>
-#include <os/hardware_config.h>
+#include <core/hardware.h>
 
 // Rendering core types
 #include <rendering/core/types.h>
@@ -75,12 +78,16 @@
 #include <stl/unordered_map.h>
 #include <stl/map.h>
 #include <stl/sstream.h>
+#include <stl/ring_buffer.h>
 
 // Core
+#include <core/thread.h>
 #include <core/time.h>
 #include <core/timer.hpp>
 #include <core/logger.h>
 #include <core/debug_break.h>
+#include <core/task_manager.h>
+#include <core/file_manager.h>
 
 // Math
 #include <math/math.h>
@@ -88,6 +95,3 @@
 #include <math/matrices.h>
 #include <math/sphere.h>
 #include <math/raycast.h>
-
-// OS tools
-#include <os/file_manager.h>

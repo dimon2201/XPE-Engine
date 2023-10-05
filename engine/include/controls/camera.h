@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/user_input.hpp>
+#include <core/input.h>
 
 #include <rendering/buffers/camera_buffer.h>
 

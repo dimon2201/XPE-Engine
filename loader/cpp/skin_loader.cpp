@@ -143,7 +143,7 @@ namespace xpe {
         Ref<SkinModel> SkinLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             SkinModel model;
-            hstring directory = os::FileManager::GetDirectory(filepath);
+            hstring directory = FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
             u32 flags = AssimpManager::GetLoadFlags(options);

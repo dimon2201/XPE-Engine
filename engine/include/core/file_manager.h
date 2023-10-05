@@ -2,9 +2,7 @@
 
 namespace xpe {
 
-    namespace os {
-
-        using namespace core;
+    namespace core {
 
         namespace fs = std::filesystem;
 

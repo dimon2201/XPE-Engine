@@ -25,50 +25,6 @@ using namespace xpe::math;
 using namespace xpe::res;
 using namespace xpe::audio;
 
-#include <PxPhysicsAPI.h>
-#include <PxActor.h>
-#include <PxParticleGpu.h>
-#include <vehicle2/PxVehicleAPI.h>
-#include <vehicle/PxVehicleSDK.h>
-#include <characterkinematic/PxController.h>
-
-using namespace physx;
-
-class PhysicsErrorCallback : public PxErrorCallback {
-
-public:
-
-    ~PhysicsErrorCallback() override {
-
-    }
-
-    void reportError(PxErrorCode::Enum code, const char *message, const char *file, int line) override {
-
-    }
-
-};
-
-static PhysicsErrorCallback s_PhysicsErrorCallback;
-
-class PhysicsAllocator : public PxAllocatorCallback {
-
-public:
-    ~PhysicsAllocator() override {}
-
-    void* allocate(size_t size, const char* typeName, const char* filename, int line) override {
-        LogInfo("PhysicsAllocator: allocate size={}, typename={}, filename={}, line={}", size, typeName, filename, line);
-        return main_alloc(size);
-    }
-
-    void deallocate(void* ptr) override {
-        LogInfo("PhysicsAllocator: free address={}", ptr);
-        main_free(ptr);
-    }
-
-};
-
-static PhysicsAllocator s_PhysicsAllocator;
-
 class GameApp : public Application
 {
 public:

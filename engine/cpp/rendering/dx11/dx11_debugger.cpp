@@ -1,6 +1,7 @@
 #ifdef DX11
 
 #include <rendering/core/debugger.h>
+
 #include <d3d11.h>
 
 namespace xpe {

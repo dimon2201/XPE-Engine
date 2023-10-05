@@ -1,6 +1,6 @@
 #include <rendering/render_passes/canvas.hpp>
 
-#include <core/user_input.hpp>
+#include <core/input.h>
 
 namespace xpe {
 

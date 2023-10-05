@@ -29,7 +29,7 @@
 #include <audio/audio_system.h>
 #include <audio/storages/audio_storage.h>
 
-#include <thread>
+#include <physics/physics.h>
 
 namespace xpe {
 
@@ -37,6 +37,7 @@ namespace xpe {
     using namespace ecs;
     using namespace anim;
     using namespace audio;
+    using namespace physics;
 
     namespace core {
 
@@ -60,10 +61,14 @@ namespace xpe {
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
 
+            TaskManager::Init();
+
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
 
             Input::Init();
+
+            PhysicsManager::Init();
 
             debugger::DebugErrors = Config.DebugErrors;
             debugger::DebugWarnings = Config.DebugWarnings;
@@ -97,11 +102,13 @@ namespace xpe {
             InitGame();
 
             std::atomic<bool> AudioThreadFlag(true);
-            std::thread AudioThread([this, &AudioThreadFlag]() {
+            Task audioTask;
+            audioTask.Runnable = [this, &AudioThreadFlag]() {
                 while (AudioThreadFlag) {
                     m_AudioSystem->Update(m_MainScene);
                 }
-            });
+            };
+            TaskManager::SubmitTask(audioTask);
 
             while (!WindowManager::ShouldClose())
             {
@@ -149,7 +156,6 @@ namespace xpe {
             }
 
             AudioThreadFlag = false;
-            AudioThread.join();
 
             m_Game->Free();
             delete m_Game;
@@ -173,10 +179,14 @@ namespace xpe {
             delete m_Canvas;
             delete m_Renderer;
 
+            PhysicsManager::Free();
+
             Input::Free();
 
             WindowManager::FreeWindow();
             WindowManager::Free();
+
+            TaskManager::Free();
 
             FreeLogger();
         }

@@ -1,9 +1,6 @@
-
-#include <os/file_manager.h>
-
 namespace xpe {
 
-    namespace os {
+    namespace core {
 
         bool FileManager::CreateDir(const char* dirName) {
             return fs::create_directory(dirName);

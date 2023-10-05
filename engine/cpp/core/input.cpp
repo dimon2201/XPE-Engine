@@ -1,6 +1,6 @@
 #include <glfw3.h>
 
-#include <core/user_input.hpp>
+#include <core/input.h>
 #include <core/windowing.hpp>
 
 namespace xpe {

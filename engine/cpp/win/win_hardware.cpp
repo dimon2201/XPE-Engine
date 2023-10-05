@@ -1,11 +1,11 @@
 #ifdef WINDOWS
 
-#define _WIN32_WINNT  0x0501
-#include <windows.h>
+#define _WIN32_WINNT 0x0501
+#include <Windows.h>
 
 namespace xpe {
 
-    namespace os {
+    namespace core {
 
         void Hardware::UpdateMemoryStats()
         {
@@ -19,6 +19,13 @@ namespace xpe {
             s_MemoryStats.TotalVirtual = memStatus.ullTotalVirtual;
             s_MemoryStats.AvailableVirtual = memStatus.ullAvailVirtual;
             s_MemoryStats.AvailableVirtualExtended = memStatus.ullAvailExtendedVirtual;
+        }
+
+        void Hardware::UpdateCpuStats()
+        {
+            SYSTEM_INFO sysinfo;
+            GetSystemInfo(&sysinfo);
+            s_CpuStats.Cores = sysinfo.dwNumberOfProcessors;
         }
 
     }

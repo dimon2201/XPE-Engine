@@ -91,7 +91,7 @@ namespace xpe {
         Ref<Model3D> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             Model3D model;
-            hstring directory = os::FileManager::GetDirectory(filepath);
+            hstring directory = FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
             u32 flags = AssimpManager::GetLoadFlags(options);

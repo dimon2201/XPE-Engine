@@ -4,7 +4,7 @@
 
 namespace xpe {
 
-    namespace os {
+    namespace core {
 
         void Hardware::UpdateVideoStats()
         {

@@ -20,4 +20,17 @@
        char _f[20-2*sizeof(long)-sizeof(int)]; /* Padding for libc5 */
    };
 
+   namespace xpe {
+
+       namespace core {
+
+           void Hardware::UpdateCpuStats()
+           {
+               s_CpuStats.Cores = sysconf(_SC_NPROCESSORS_ONLN);
+           }
+
+       }
+
+   }
+
 #endif // LINUX
