@@ -25,50 +25,6 @@ using namespace xpe::math;
 using namespace xpe::res;
 using namespace xpe::audio;
 
-#include <PxPhysicsAPI.h>
-#include <PxActor.h>
-#include <PxParticleGpu.h>
-#include <vehicle2/PxVehicleAPI.h>
-#include <vehicle/PxVehicleSDK.h>
-#include <characterkinematic/PxController.h>
-
-using namespace physx;
-
-class PhysicsErrorCallback : public PxErrorCallback {
-
-public:
-
-    ~PhysicsErrorCallback() override {
-
-    }
-
-    void reportError(PxErrorCode::Enum code, const char *message, const char *file, int line) override {
-
-    }
-
-};
-
-static PhysicsErrorCallback s_PhysicsErrorCallback;
-
-class PhysicsAllocator : public PxAllocatorCallback {
-
-public:
-    ~PhysicsAllocator() override {}
-
-    void* allocate(size_t size, const char* typeName, const char* filename, int line) override {
-        LogInfo("PhysicsAllocator: allocate size={}, typename={}, filename={}, line={}", size, typeName, filename, line);
-        return main_alloc(size);
-    }
-
-    void deallocate(void* ptr) override {
-        LogInfo("PhysicsAllocator: free address={}", ptr);
-        main_free(ptr);
-    }
-
-};
-
-static PhysicsAllocator s_PhysicsAllocator;
-
 class GameApp : public Application
 {
 public:
@@ -98,12 +54,12 @@ public:
         AddKeyHold(GameApp, 1);
         AddCursorMove(GameApp, 1);
 
-        m_ModelLoader.Create(m_GeometryStorage);
+        m_ModelLoader.Create();
         m_MaterialLoader.Create(m_MaterialStorage);
         m_TextureLoader.Create(m_TextureStorage);
         m_FontLoader.Create(m_FontStorage);
         m_SkeletLoader.Create(m_SkeletStorage);
-        m_SkinLoader.Create(m_SkinStorage);
+        m_SkinLoader.Create();
         m_AnimLoader.Create(m_AnimStorage);
         m_AudioLoader.Create(m_AudioStorage);
 
@@ -112,32 +68,32 @@ public:
 
         // setup text 2D entity
         {
-            m_Text2D = { "Text2D", m_MainScene };
+            m_Text2D = new Entity("Text2D", m_MainScene);
+            m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
+            m_Text2D->Transform.Scale = { 1, 1, 1 };
 
-            Text2DComponent text("Text2D");
-            text.FontResFilepath = "res/fonts/Roboto-Bold.ttf";
-            text.Font = m_FontLoader->Load(text.FontResFilepath.c_str(), 32);
-            text.Text = "FPS: \n CPU: \n";
-            text.Font->NewLineOffset = 1.0f;
-            text.Transform.Position = { 0, WindowManager::GetHeight() - text.Font->GlyphSize, 0 };
-            text.Transform.Scale = { 1, 1, 1 };
+            auto* textComponent = m_Text2D->AddComponent<Text2DComponent>(
+                    "Text2D",
+                    m_FontLoader->Load("res/fonts/Roboto-Bold.ttf", 32),
+                    "FPS: \n CPU: \n"
+            );
+            textComponent->Font->NewLineOffset = 1.0f;
 
-            m_Text2D.AddComponent<Text2DComponent>(text);
+            m_Text2D->Transform.Position.y -= textComponent->Font->GlyphSize;
         }
 
         // setup text 3D entity
         {
-            m_Text3D = { "Text3D", m_MainScene };
+            m_Text3D = new Entity("Text3D", m_MainScene);
+            m_Text3D->Transform.Position = {0, -10, 0 };
+            m_Text3D->Transform.Scale = {10, 10, 1 };
 
-            Text3DComponent text("Text3D");
-            text.FontResFilepath = "res/fonts/Roboto-Bold.ttf";
-            text.Font = m_FontLoader->Load(text.FontResFilepath.c_str(), 44);
-            text.Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
-            text.Font->NewLineOffset = 1.0f;
-            text.Transform.Position = { 0, -10, 0 };
-            text.Transform.Scale = {10, 10, 1 };
-
-            m_Text3D.AddComponent<Text3DComponent>(text);
+            auto* textComponent = m_Text3D->AddComponent<Text3DComponent>(
+                    "Text3D",
+                    m_FontLoader->Load("res/fonts/Roboto-Bold.ttf", 44),
+                    "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine"
+            );
+            textComponent->Font->NewLineOffset = 1.0f;
         }
 
         // setup skybox global
@@ -158,208 +114,187 @@ public:
             skyboxPath.TopFilepath = m_MainScene->Skybox->TopResFilepath;
             skyboxPath.BottomFilepath = m_MainScene->Skybox->BottomResFilepath;
 
-//            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
-//            m_MainScene->Skybox->CubeTexture->GenerateMips();
+            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
+            m_MainScene->Skybox->CubeTexture->GenerateMips();
         }
 
         // setup plane
         {
-            m_Plane = { "Plane", m_MainScene };
+            m_Plane = new Entity("Plane", m_MainScene);
+            m_Plane->Transform.Position = { 0, -10, 0 };
+            m_Plane->Transform.Scale = { 100, 0.1, 100 };
 
-            GeometryIndexed3DComponent plane("G_Plane");
-            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Plane", Cube());
-            plane.Instance.Transform.Position = { 0, -10, 0 };
-            plane.Instance.Transform.Scale = { 100, 0.1, 100 };
-            plane.Instance.Material = m_MaterialStorage->Add("MT_Plane", Material());
-            plane.Instance.Material->Albedo = {1, 0, 0, 1 };
-            plane.Instance.Material->Metallness = 1;
-            plane.Instance.Material->Roughness = 0.25;
-            plane.Instance.Material->AO = 0;
-            plane.Instance.Material->Flush();
-
-            m_Plane.AddComponent<GeometryIndexed3DComponent>(plane);
+            m_Plane->AddComponent<GeometryComponent<Vertex3D>>("G_Plane", GeometryManager::AddGeometry(Cube()));
+            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", m_MaterialStorage->Add("PlaneMaterial", Material()))->Material;
+            planeMaterial->Albedo = { 1, 0, 0, 1 };
+            planeMaterial->Metallness = 1;
+            planeMaterial->Roughness = 0.25;
+            planeMaterial->AO = 0;
+            planeMaterial->Flush();
         }
 
         // setup direct light
         {
-            m_DirectLight = { "DirectLight", m_MainScene };
+            m_DirectLight = new Entity("DirectLight", m_MainScene);
 
             DirectLightComponent directLight("L_Direct");
             directLight.Position = { 0, -5, 0 };
             directLight.Color = { 0, 0, 0 };
 
-            m_DirectLight.AddComponent<DirectLightComponent>(directLight);
+            m_DirectLight->AddComponent<DirectLightComponent>(directLight);
         }
 
         // setup point light
         {
-            m_PointLight = { "PointLight", m_MainScene };
+            m_PointLight = new Entity("PointLight", m_MainScene);
+            m_PointLight->Transform.Position = {20, 20, -20 };
+            m_PointLight->Transform.Scale = {0.5, 0.5, 0.5 };
 
-            GeometryIndexed3DComponent pointLightShape("G_Point");
-            pointLightShape.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_Point", Sphere());
-            pointLightShape.Instance.Transform.Position = { 20, 20, -20 };
-            pointLightShape.Instance.Transform.Scale = { 0.5, 0.5, 0.5 };
-            pointLightShape.Instance.Material = m_MaterialStorage->Add("MT_Point", Material());
-            pointLightShape.Instance.Material->Albedo = {1, 0, 0, 1 };
-            pointLightShape.Instance.Material->Flush();
-            m_PointLight.AddComponent<GeometryIndexed3DComponent>(pointLightShape);
-
-            DirectLightComponent pointLight("L_Point");
-            pointLight.Position = { 0, 0, 0 };
-            pointLight.Color = { 153, 151, 111 };
-            pointLight.Color *= 0.1;
-            m_PointLight.AddComponent<DirectLightComponent>(pointLight);
+            m_PointLight->AddComponent<GeometryComponent<Vertex3D>>("G_Point", GeometryManager::AddGeometry(Sphere()));
+            m_PointLight->AddComponent<MaterialComponent>("PointLight", m_MaterialStorage->Add("MT_PointLight", Material()));
+            auto& material = m_PointLight->GetComponent<MaterialComponent>("PointLight")->Material;
+            material->Albedo = { 1, 0, 0, 1 };
+            material->Flush();
+            m_PointLight->AddComponent<DirectLightComponent>("L_Point", glm::vec3(0, 0, 0), glm::vec3(15.3, 15.1, 11.1));
         }
 
-        // setup 3D model
+        // setup goblins
         {
-            m_WinterGirl = { "WinterGirl", m_MainScene };
+            m_Goblin1 = new Entity("Goblin1", m_MainScene);
+            m_Goblin1->Transform.Position = {-4, -10, -4 };
+            m_Goblin1->Transform.Rotation = {0, 0, 0 };
+            m_Goblin1->Transform.Scale = {5, 5, 5 };
 
-            SkinModelListComponent winterGirlModel("M_WinterGirl");
-            winterGirlModel.Model = m_SkinLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
-            winterGirlModel.Skelet = m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
+            m_Goblin2 = new Entity("Goblin2", m_MainScene);
+            m_Goblin2->Transform.Position = {-4, -10, 4 };
+            m_Goblin2->Transform.Rotation = {0, 0, 0 };
+            m_Goblin2->Transform.Scale = {5, 5, 5 };
 
-            SkeletalAnimationComponent winterGirlAnimation("A_WinterGirl");
-            winterGirlAnimation.Skelet = winterGirlModel.Skelet;
-            winterGirlAnimation.Animation = m_AnimLoader->Load("res/models/winter-girl/source/dancing_vampire.dae");
-            winterGirlAnimation.Play = true;
+            m_Goblin3 = new Entity("Goblin3", m_MainScene);
+            m_Goblin3->Transform.Position = {4, -10, -4 };
+            m_Goblin3->Transform.Rotation = {0, 0, 0 };
+            m_Goblin3->Transform.Scale = {5, 5, 5 };
 
-            {
-                Transform transform;
-                transform.Position = { -4, -10, -4 };
-                transform.Rotation = { 0, 0, 0 };
-                transform.Scale = { 5, 5, 5 };
-                winterGirlModel.Transforms.emplace_back(transform);
-            }
+            m_Goblin4 = new Entity("Goblin4", m_MainScene);
+            m_Goblin4->Transform.Position = {4, -10, 4 };
+            m_Goblin4->Transform.Rotation = {0, 0, 0 };
+            m_Goblin4->Transform.Scale = {5, 5, 5 };
 
-            {
-                Transform transform;
-                transform.Position = { -4, -10, 4 };
-                transform.Rotation = { 0, 0, 0 };
-                transform.Scale = { 5, 5, 5 };
-                winterGirlModel.Transforms.emplace_back(transform);
-            }
+            auto* goblinModel = m_Goblin1->AddComponent<SkinModelComponent>(
+                "GoblinModel",
+                m_SkinLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
+                m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
+                vector<Entity*> { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 }
+            );
 
-            {
-                Transform transform;
-                transform.Position = { 4, -10, -4 };
-                transform.Rotation = { 0, 0, 0 };
-                transform.Scale = { 5, 5, 5 };
-                winterGirlModel.Transforms.emplace_back(transform);
-            }
+            auto* goblinAnimation = m_Goblin1->AddComponent<SkeletalAnimationComponent>(
+                "GoblinAnimation",
+                goblinModel->Skelet,
+                m_AnimLoader->Load("res/models/winter-girl/source/dancing_vampire.dae")
+            );
 
-            {
-                Transform transform;
-                transform.Position = { 4, -10, 4 };
-                transform.Rotation = { 0, 0, 0 };
-                transform.Scale = { 5, 5, 5 };
-                winterGirlModel.Transforms.emplace_back(transform);
-            }
+            goblinAnimation->Play = true;
 
-            {
-                MaterialFilepath materialFilepath;
-                materialFilepath.Name = "niz";
-                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
-                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
+            MaterialFilepath materialFilepath;
+            materialFilepath.Name = "niz";
+            materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+            materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
 //                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
 //                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
-                winterGirlModel.Model->Skins[0].Material = m_MaterialLoader->Load(materialFilepath);
-                winterGirlModel.Model->Skins[0].Material->Albedo = { 1, 1, 1, 1 };
-                winterGirlModel.Model->Skins[0].Material->Emission = { 0, 0, 10 };
-                winterGirlModel.Model->Skins[0].Material->Metallness = 1;
-                winterGirlModel.Model->Skins[0].Material->Roughness = 1;
-                winterGirlModel.Model->Skins[0].Material->AO = 0;
-                winterGirlModel.Model->Skins[0].Material->EnableAlbedoMap = true;
-                winterGirlModel.Model->Skins[0].Material->EnableNormalMap = true;
-                winterGirlModel.Model->Skins[0].Material->EnableRoughnessMap = false;
-                winterGirlModel.Model->Skins[0].Material->EnableMetalMap = false;
-                winterGirlModel.Model->Skins[0].Material->EnableAOMap = false;
-                winterGirlModel.Model->Skins[0].Material->Flush();
 
-                TextureLoader::SaveLayer(
-                        "generated/Vampire_diffuse_resized.png",
-                        winterGirlModel.Model->Skins[0].Material->AlbedoMap,
-                        Texture::eFileFormat::PNG
-                );
+            auto& material1 = m_Goblin1->AddComponent<MaterialComponent>(m_Goblin1->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            material1->Albedo = { 1, 1, 1, 1 };
+            material1->Emission = { 0, 0, 10 };
+            material1->Metallness = 1;
+            material1->Roughness = 1;
+            material1->AO = 0;
+            material1->EnableAlbedoMap = true;
+            material1->EnableNormalMap = true;
+            material1->EnableRoughnessMap = false;
+            material1->EnableMetalMap = false;
+            material1->EnableAOMap = false;
+            material1->Flush();
 
-                TextureLoader::SaveLayer(
-                        "generated/Vampire_normal_resized.png",
-                        winterGirlModel.Model->Skins[0].Material->NormalMap,
-                        Texture::eFileFormat::PNG
-                );
+            auto& material2 = m_Goblin2->AddComponent<MaterialComponent>(m_Goblin2->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            material2->Albedo = { 1, 1, 1, 1 };
+            material2->Emission = { 0, 0, 10 };
+            material2->Metallness = 1;
+            material2->Roughness = 1;
+            material2->AO = 0;
+            material2->EnableAlbedoMap = true;
+            material2->EnableNormalMap = true;
+            material2->EnableRoughnessMap = false;
+            material2->EnableMetalMap = false;
+            material2->EnableAOMap = false;
+            material2->Flush();
 
-                TextureLoader::SaveLayer(
-                        "generated/Vampire_roughness_resized.png",
-                        winterGirlModel.Model->Skins[0].Material->RoughnessMap,
-                        Texture::eFileFormat::PNG
-                );
+            auto& material3 = m_Goblin3->AddComponent<MaterialComponent>(m_Goblin3->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            material3->Albedo = { 1, 1, 1, 1 };
+            material3->Emission = { 0, 0, 10 };
+            material3->Metallness = 1;
+            material3->Roughness = 1;
+            material3->AO = 0;
+            material3->EnableAlbedoMap = true;
+            material3->EnableNormalMap = true;
+            material3->EnableRoughnessMap = false;
+            material3->EnableMetalMap = false;
+            material3->EnableAOMap = false;
+            material3->Flush();
 
-                TextureLoader::SaveLayer(
-                        "generated/Vampire_metallic_resized.png",
-                        winterGirlModel.Model->Skins[0].Material->MetalMap,
-                        Texture::eFileFormat::PNG
-                );
-            }
+            auto& material4 = m_Goblin4->AddComponent<MaterialComponent>(m_Goblin4->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            material4->Albedo = { 1, 1, 1, 1 };
+            material4->Emission = { 0, 0, 10 };
+            material4->Metallness = 1;
+            material4->Roughness = 1;
+            material4->AO = 0;
+            material4->EnableAlbedoMap = true;
+            material4->EnableNormalMap = true;
+            material4->EnableRoughnessMap = false;
+            material4->EnableMetalMap = false;
+            material4->EnableAOMap = false;
+            material4->Flush();
 
-            {
-                MaterialFilepath materialFilepath;
-                materialFilepath.Name = "04";
-                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_04_BaseColor.png";
-                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_04_Normal.png";
-                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_04_Metallic.png";
-                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_04_Roughness.png";
-//                winterGirlModel.Model->Skins[1].Material = m_MaterialLoader->Load(materialFilepath);
-            }
+            // for testing image resizing on CPU, we can write resized image into file
 
-            {
-                MaterialFilepath materialFilepath;
-                materialFilepath.Name = "R1";
-                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_R1_BaseColor.png";
-                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_R1_Normal.png";
-                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_R1_Metallic.png";
-                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_R1_Roughness.png";
-//                winterGirlModel.Model->Skins[2].Material = m_MaterialLoader->Load(materialFilepath);
-            }
+            TextureLoader::SaveLayer(
+                    "generated/Vampire_diffuse_resized.png",
+                    material1->AlbedoMap,
+                    Texture::eFileFormat::PNG
+            );
 
-            {
-                MaterialFilepath materialFilepath;
-                materialFilepath.Name = "verx";
-                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/LOW_verx_BaseColor.png";
-                materialFilepath.BumpFilepath = "res/models/winter-girl/textures/LOW_verx_Normal.png";
-                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/LOW_verx_Metallic.png";
-                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/LOW_verx_Roughness.png";
-//                winterGirlModel.Model->Skins[3].Material = m_MaterialLoader->Load(materialFilepath);
-            }
+            TextureLoader::SaveLayer(
+                    "generated/Vampire_normal_resized.png",
+                    material1->NormalMap,
+                    Texture::eFileFormat::PNG
+            );
 
-            {
-                MaterialFilepath materialFilepath;
-                materialFilepath.Name = "pngegg";
-                materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/pngegg.png";
-//                winterGirlModel.Model->Skins[4].Material = m_MaterialLoader->Load(materialFilepath);
-            }
+            TextureLoader::SaveLayer(
+                    "generated/Vampire_roughness_resized.png",
+                    material1->RoughnessMap,
+                    Texture::eFileFormat::PNG
+            );
 
-            m_WinterGirl.AddComponent<SkinModelListComponent>(winterGirlModel);
-            m_WinterGirl.AddComponent<SkeletalAnimationComponent>(winterGirlAnimation);
+            TextureLoader::SaveLayer(
+                    "generated/Vampire_metallic_resized.png",
+                    material1->MetalMap,
+                    Texture::eFileFormat::PNG
+            );
         }
 
         // setup cube
         {
-            m_Cube = { "Cube", m_MainScene };
-
-            GeometryIndexed3DComponent cube("Cube");
-            cube.Geometry = m_GeometryStorage->AddGeometryIndexed3D("Cube", Cube());
-            cube.Instance.Transform.Position = { 10, -10, 10 };
-            cube.Instance.Transform.Scale = { 5, 5, 5 };
-            cube.Instance.Material = m_MaterialStorage->Add("Cube", Material());
-
-            m_Cube.AddComponent<GeometryIndexed3DComponent>(cube);
+            m_Cube = new Entity("Cube", m_MainScene);
+            m_Cube->Transform.Position = {10, -10, 10 };
+            m_Cube->Transform.Scale = {5, 5, 5 };
+            m_Cube->AddComponent<GeometryComponent<Vertex3D>>("G_Cube", GeometryManager::AddGeometry(Cube()));
+            m_Cube->AddComponent<MaterialComponent>("Cube", m_MaterialStorage->Add("MT_Cube", Material()));
         }
 
         // setup audio
         {
             //Set listener component
             {
-                m_Listener = { "Listener", m_MainScene };
+                m_Listener = new Entity("Listener", m_MainScene);
 
                 auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
 
@@ -369,7 +304,7 @@ public:
                 component.Up = camera.Component.Up;
                 component.Look = &camera.Component.Front;
 
-                m_Listener.AddComponent<ListenerComponent>(component);
+                m_Listener->AddComponent<ListenerComponent>(component);
             }
 
             //loading stream audio files
@@ -406,7 +341,7 @@ public:
 
         //setup background audio
         {
-            m_BackgroundAudio = { "BackgroundAudio", m_MainScene };
+            m_BackgroundAudio = new Entity("BackgroundAudio", m_MainScene);
 
             //test sources
             SourceAudioComponent* source;
@@ -427,7 +362,7 @@ public:
                 component.Gain = 0.5f;
                 component.RefDistance = 10.0f;
                 component.MaxDistance = 100.0f;
-                source = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+                source = m_BackgroundAudio->AddComponent<SourceAudioComponent>(component);
             }
 
             //creating stream audio
@@ -437,7 +372,7 @@ public:
                 component.Source = source;
                 component.File = file->File;
 
-                m_BackgroundAudio.AddComponent<AudioComponent>(component);
+                m_BackgroundAudio->AddComponent<AudioComponent>(component);
             }
 
             //-------------------------------------
@@ -450,7 +385,7 @@ public:
                 component.Gain = 0.2f;
                 component.RefDistance = 10.0f;
                 component.MaxDistance = 100.0f;
-                source1 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+                source1 = m_BackgroundAudio->AddComponent<SourceAudioComponent>(component);
             }
 
             //creating stream audio
@@ -462,7 +397,7 @@ public:
                 component.BufferSamples = 8192 * 2; //for test
                 component.NumBuffers = 5; //for test
 
-                m_BackgroundAudio.AddComponent<StreamAudioComponent>(component);
+                m_BackgroundAudio->AddComponent<StreamAudioComponent>(component);
             }
 
             //-------------------------------------
@@ -475,7 +410,7 @@ public:
                 component.Gain = 0.5f;
                 component.RefDistance = 10.0f;
                 component.MaxDistance = 100.0f;
-                source2 = m_BackgroundAudio.AddComponent<SourceAudioComponent>(component);
+                source2 = m_BackgroundAudio->AddComponent<SourceAudioComponent>(component);
             }
 
             //creating stream audio
@@ -485,7 +420,7 @@ public:
                 component.Source = source2;
                 component.File = file2->File;
 
-                m_BackgroundAudio.AddComponent<AudioComponent>(component);
+                m_BackgroundAudio->AddComponent<AudioComponent>(component);
             }
         }
     }
@@ -501,6 +436,18 @@ public:
     void Free()
     {
         LogInfo("GameApp::Free()");
+        delete m_DirectLight;
+        delete m_PointLight;
+        delete m_Text2D;
+        delete m_Text3D;
+        delete m_Plane;
+        delete m_Goblin1;
+        delete m_Goblin2;
+        delete m_Goblin3;
+        delete m_Goblin4;
+        delete m_Cube;
+        delete m_Listener;
+        delete m_BackgroundAudio;
     }
 
     void WindowClosed()
@@ -573,8 +520,7 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto* pointLight = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
-        auto& pos = pointLight->Instance.Transform.Position;
+        auto& pos = m_PointLight->Transform.Position;
 
         if (key == eKey::Up)
         {
@@ -601,20 +547,16 @@ private:
     {
         if (key == eKey::P)
         {
-            auto* winterGirlAnim = m_WinterGirl.GetComponent<SkeletalAnimationComponent>("A_WinterGirl");
-            winterGirlAnim->Play = !winterGirlAnim->Play;
+            auto* goblinAnimation = m_Goblin1->GetComponent<SkeletalAnimationComponent>("GoblinAnimation");
+            goblinAnimation->Play = !goblinAnimation->Play;
         }
     }
 
     void AnimateLight()
     {
-        auto* pointLightShape = m_PointLight.GetComponent<GeometryIndexed3DComponent>("G_Point");
-        auto* pointLight = m_PointLight.GetComponent<DirectLightComponent>("L_Point");
-        pointLight->Position = pointLightShape->Instance.Transform.Position;
-
         if (m_TestConfig.AnimateLight)
         {
-            auto& pos = pointLightShape->Instance.Transform.Position;
+            auto& pos = m_PointLight->Transform.Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -627,13 +569,13 @@ private:
     }
 
     void DisplayStats() {
-        auto& text2D = m_Text2D.GetComponent<Text2DComponent>("Text2D")->Text;
+        auto& text2D = m_Text2D->GetComponent<Text2DComponent>("Text2D")->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
                  "\nExposure: " + std::to_string(Monitor::Get().Exposure);
 
-        auto& text3D = m_Text3D.GetComponent<Text3DComponent>("Text3D")->Text;
+        auto& text3D = m_Text3D->GetComponent<Text3DComponent>("Text3D")->Text;
         text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
@@ -641,7 +583,6 @@ private:
     }
 
 private:
-
     Ref<ModelLoader> m_ModelLoader;
     Ref<MaterialLoader> m_MaterialLoader;
     Ref<TextureLoader> m_TextureLoader;
@@ -651,15 +592,18 @@ private:
     Ref<AnimLoader> m_AnimLoader;
     Ref<AudioLoader> m_AudioLoader;
 
-    Entity m_DirectLight;
-    Entity m_PointLight;
-    Entity m_Text2D;
-    Entity m_Text3D;
-    Entity m_Plane;
-    Entity m_WinterGirl;
-    Entity m_Cube;
-    Entity m_Listener;
-    Entity m_BackgroundAudio;
+    Entity* m_DirectLight;
+    Entity* m_PointLight;
+    Entity* m_Text2D;
+    Entity* m_Text3D;
+    Entity* m_Plane;
+    Entity* m_Goblin1;
+    Entity* m_Goblin2;
+    Entity* m_Goblin3;
+    Entity* m_Goblin4;
+    Entity* m_Cube;
+    Entity* m_Listener;
+    Entity* m_BackgroundAudio;
 
     TestConfig m_TestConfig = string("TestConfig");
 };

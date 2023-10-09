@@ -315,14 +315,6 @@ namespace xpe {
 
                 BindInputLayout(pipeline.InputLayout);
 
-                if (pipeline.VertexBuffer != nullptr) {
-                    BindVertexBuffer(*pipeline.VertexBuffer);
-                }
-
-                if (pipeline.IndexBuffer != nullptr) {
-                    BindIndexBuffer(*pipeline.IndexBuffer);
-                }
-
                 for (const auto* buffer : pipeline.VSBuffers) {
                     if (buffer != nullptr) {
                         BindVSBuffer(*buffer);

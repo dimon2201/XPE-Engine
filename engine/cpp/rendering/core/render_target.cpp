@@ -1,7 +1,7 @@
 #include <rendering/core/render_target.h>
 #include <rendering/core/context.hpp>
 
-#include <core/user_input.hpp>
+#include <core/input.h>
 
 namespace xpe {
 

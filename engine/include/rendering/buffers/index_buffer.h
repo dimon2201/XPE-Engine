@@ -35,6 +35,9 @@ namespace xpe {
 
             void Recreate(const usize count);
 
+            // returns index offset of added indices
+            usize AddIndices(const vector<u32>& indices);
+
             inline u32* GetIndex(const u32 i)
             {
                 // check if index is in the size bounds

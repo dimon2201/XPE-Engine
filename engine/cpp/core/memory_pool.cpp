@@ -1,22 +1,30 @@
-
-#include <core/memory_pool.hpp>
-
 namespace xpe {
 
     namespace core {
 
-        void MemoryPool::Init(const usize byteSize, const usize allocs)
+        void MemoryPool::Init(const usize byteSize, const usize allocs, const usize alignment)
         {
+            if (alignment == 0) {
+                m_Memory = malloc(byteSize);
+            } else {
+                m_Memory = _aligned_malloc(byteSize, alignment);
+            }
+
             m_ByteSize = byteSize;
-            m_Memory = malloc(m_ByteSize);
             m_LastAddress = m_Memory;
             m_MaxAddress = (void*)(((u64)m_Memory) + ((u64)byteSize));
             m_Allocs.reserve(allocs);
+            m_Alignment = alignment;
         }
 
         void MemoryPool::Release()
         {
-            free(m_Memory);
+            if (m_Alignment == 0) {
+                free(m_Memory);
+            } else {
+                _aligned_free(m_Memory);
+            }
+
             m_Allocs.clear();
         }
 
@@ -90,14 +98,20 @@ namespace xpe {
             return false;
         }
 
-        MemoryPoolStorage::MemoryPoolStorage(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocs)
-        : USID(usid), PoolByteSize(poolByteSize), PoolAllocs(poolAllocs)
+        MemoryPoolStorage::MemoryPoolStorage
+        (
+            const char* usid,
+            usize poolCount,
+            usize poolByteSize,
+            usize poolAllocs,
+            const usize alignment
+        ) : USID(usid), PoolByteSize(poolByteSize), PoolAllocs(poolAllocs), Alignment(alignment)
         {
             Pools.reserve(poolCount);
             for (u32 i = 0 ; i < poolCount ; i++)
             {
                 MemoryPool pool;
-                pool.Init(poolByteSize, poolAllocs);
+                pool.Init(poolByteSize, poolAllocs, alignment);
                 Pools.emplace_back(pool);
             }
             TotalBytes = poolCount * poolByteSize;
@@ -106,7 +120,7 @@ namespace xpe {
         MemoryPoolStorage::~MemoryPoolStorage() {
             for (auto& pool : Pools)
             {
-                // todo (CheerWizard): Heap corruption will happen here when we have more than 1 pool here!
+                // todo(CheerWizard): Heap corruption will happen here when we have more than 1 pool here!
                 pool.Release();
             }
             Pools.clear();
@@ -131,7 +145,7 @@ namespace xpe {
             TotalBytes += poolSize;
 
             MemoryPool newPool;
-            newPool.Init(poolSize, PoolAllocs);
+            newPool.Init(poolSize, PoolAllocs, Alignment);
             newAddress = newPool.Allocate(size);
 
             Pools.emplace_back(newPool);
@@ -186,13 +200,13 @@ namespace xpe {
         MemoryPoolStorage* MemoryPoolManager::HotPools = nullptr;
 
         void MemoryPoolManager::Init() {
-            // use by default 15% of TOTAL PHYSICAL RAM memory for main pre-allocation
-            usize mainMemorySize = os::Hardware::GetMemoryStats().TotalPhysical * 0.15;
-            MainPools = new MemoryPoolStorage("MainMemory", 1, mainMemorySize, 1000);
+            // use by default 15% of TOTAL PHYSICAL RAM for main pre-allocation
+            usize mainMemorySize = Hardware::GetMemoryStats().TotalPhysical * 0.15;
+            MainPools = new MemoryPoolStorage("MainMemory", 1, mainMemorySize, 1000, 0);
 
             // use by default 1MB for hot memory pre-allocation
             usize hotMemorySize = K_MEMORY_MIB;
-            HotPools = new MemoryPoolStorage("HotMemory", 1, hotMemorySize, 1000);
+            HotPools = new MemoryPoolStorage("HotMemory", 1, hotMemorySize, 1000, 0);
         }
 
         void MemoryPoolManager::Free() {
@@ -203,26 +217,6 @@ namespace xpe {
         void MemoryPoolManager::LogPools() {
             MainPools->LogPools();
             HotPools->LogPools();
-        }
-
-        void* MemoryPoolManager::AllocMainMemory(usize size)
-        {
-            return MainPools->Allocate(size);
-        }
-
-        void* MemoryPoolManager::AllocHotMemory(usize size)
-        {
-            return HotPools->Allocate(size);
-        }
-
-        void MemoryPoolManager::FreeMainMemory(void* address)
-        {
-            MainPools->Free(address);
-        }
-
-        void MemoryPoolManager::FreeHotMemory(void* address)
-        {
-            HotPools->Free(address);
         }
 
     }

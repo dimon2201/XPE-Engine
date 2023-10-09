@@ -36,6 +36,9 @@ namespace xpe {
 
             void Clear();
 
+            // returns vertex offset of added vertices
+            usize AddVertices(const vector<T>& vertices);
+
             inline T* GetVertex(const u32 index)
             {
                 // check if index is in the size bounds
@@ -141,6 +144,15 @@ namespace xpe {
         void VertexBuffer<T>::Clear()
         {
             List.clear();
+        }
+
+        template<typename T>
+        usize VertexBuffer<T>::AddVertices(const vector<T>& vertices)
+        {
+            usize vertexOffset = List.size();
+            List.resize(List.size() + vertices.size());
+            memcpy(&List[vertexOffset], vertices.data(), vertices.size() * sizeof(T));
+            return vertexOffset;
         }
 
     }

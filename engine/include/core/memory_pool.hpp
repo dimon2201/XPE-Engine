@@ -27,7 +27,7 @@ namespace xpe
             public:
                 // byte size - actual size in bytes of malloc
                 // allocs - count of allocations that will be reserved for later use
-                void Init(const usize byteSize, const usize allocs);
+                void Init(const usize byteSize, const usize allocs, const usize alignment);
                 void Release();
 
                 void* Allocate(const usize size);
@@ -62,6 +62,7 @@ namespace xpe
                 usize m_BytesOccupied = 0;
                 usize m_BytesFreed = 0;
                 usize m_LastFreedBytes = 0;
+                usize m_Alignment = 0;
         };
 
         struct ENGINE_API MemoryPoolStorage final {
@@ -73,9 +74,10 @@ namespace xpe
             usize TotalBytes = 0;
             usize TotalBytesOccupied = 0;
             usize TotalBytesFreed = 0;
+            usize Alignment = 0;
             const char* USID = nullptr;
 
-            MemoryPoolStorage(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocs);
+            MemoryPoolStorage(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocs, const usize alignment);
 
             ~MemoryPoolStorage();
 
@@ -126,18 +128,12 @@ namespace xpe
         {
 
         public:
-
             static MemoryPoolStorage* MainPools;
             static MemoryPoolStorage* HotPools;
 
             static void Init();
             static void Free();
-            static void* AllocMainMemory(usize size);
-            static void* AllocHotMemory(usize size);
-            static void FreeMainMemory(void* address);
-            static void FreeHotMemory(void* address);
             static void LogPools();
-
         };
 
     }

@@ -46,6 +46,8 @@ namespace xpe {
             template<typename T>
             void RemoveComponent(const string& entityTag, const string& componentTag);
 
+            void RemoveComponents(const string& entityTag);
+
             template<typename T>
             void RenameComponent(const string& oldTag, const string& newTag);
 

@@ -90,19 +90,6 @@ namespace xpe {
             EmissionPath
         )
 
-        struct ENGINE_API MaterialInstance : public Object
-        {
-            math::Transform Transform;
-            Ref<Material> Material;
-
-            MaterialInstance() = default;
-
-            MaterialInstance(const math::Transform& transform, const Ref<render::Material>& material)
-            : Transform(transform), Material(material) {}
-        };
-
-        Json(MaterialInstance, Transform)
-
     }
 
 }

@@ -1,5 +1,5 @@
 #include <rendering/renderer.h>
-#include <rendering/render_passes/render_pass.h>
+#include <rendering/passes/render_pass.h>
 #include <rendering/monitor.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
@@ -15,6 +15,7 @@ namespace xpe {
         {
             context::Init();
             ShaderManager::Init();
+            GeometryManager::Init();
             Monitor::Init();
             Shadow::Init();
 
@@ -44,6 +45,7 @@ namespace xpe {
 
             Shadow::Free();
             Monitor::Free();
+            GeometryManager::Free();
             ShaderManager::Free();
             context::Free();
         }
@@ -59,6 +61,7 @@ namespace xpe {
 
         void Renderer::Render(Scene* scene)
         {
+            GeometryManager::BindIndexBuffer();
             FlushLights(scene);
             for (RenderPass* rp : m_RenderPasses)
             {
@@ -74,21 +77,36 @@ namespace xpe {
             this->DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
             {
-                this->DirectLightBuffer->Add(*component);
+                DirectLightBufferData light;
+                light.Position = component->Entity->Transform.Position;
+                light.Color = component->Color;
+                this->DirectLightBuffer->Add(light);
             });
             this->DirectLightBuffer->Flush();
 
             this->PointLightBuffer->Clear();
             scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
             {
-                this->PointLightBuffer->Add(*component);
+                PointLightBufferData light;
+                light.Position = component->Entity->Transform.Position;
+                light.Color = component->Color;
+                light.Constant = component->Constant;
+                light.Linear = component->Constant;
+                light.Quadratic = component->Constant;
+                this->PointLightBuffer->Add(light);
             });
             this->PointLightBuffer->Flush();
 
             this->SpotLightBuffer->Clear();
             scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
             {
-                this->SpotLightBuffer->Add(*component);
+                SpotLightBufferData light;
+                light.Position = component->Entity->Transform.Position;
+                light.Color = component->Color;
+                light.Direction = component->Direction;
+                light.Outer = component->Outer;
+                light.Cutoff = component->Cutoff;
+                this->SpotLightBuffer->Add(light);
             });
             this->SpotLightBuffer->Flush();
         }

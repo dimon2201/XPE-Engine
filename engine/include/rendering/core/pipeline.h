@@ -15,17 +15,15 @@ namespace xpe {
         {
             render::Shader* Shader = nullptr;
             render::RenderTarget* RenderTarget = nullptr;
-            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
+            render::ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
             render::InputLayout InputLayout;
-            Buffer* VertexBuffer = nullptr;
-            Buffer* IndexBuffer = nullptr;
             vector<Buffer*> VSBuffers; // buffers defined in vertex shader
             vector<Buffer*> PSBuffers; // buffers defined in pixel shader
             vector<Texture*> Textures;
             vector<TextureSampler*> Samplers;
             render::Rasterizer Rasterizer;
-            DepthStencilMode DepthStencil;
-            BlendMode Blending;
+            render::DepthStencilMode DepthStencil;
+            render::BlendMode Blending;
         };
 
     }

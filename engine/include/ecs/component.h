@@ -6,15 +6,19 @@ namespace xpe {
 
         using namespace core;
 
+        class Entity;
+
         struct ENGINE_API Component : public Object, res::JsonObject
         {
+            ecs::Entity* Entity = nullptr;
+
             Component() = default;
+
             Component(const string& tag) { m_Tag = tag; }
         };
 
         struct ENGINE_API ComponentStorage : public Object
         {
-
             template<typename T>
             [[nodiscard]] inline size_t GetSize() const
             {

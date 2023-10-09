@@ -43,11 +43,11 @@ namespace xpe {
             Mesh result;
             vector<u32> indices;
 
-            result.Vertices.List.resize(mesh->mNumVertices);
+            result.Vertices.resize(mesh->mNumVertices);
 
             for (int i = 0 ; i < mesh->mNumVertices ; i++)
             {
-                result.Vertices.List[i] = ParseVertex(mesh, i);
+                result.Vertices[i] = ParseVertex(mesh, i);
             }
 
             for (u32 i = 0 ; i < mesh->mNumFaces ; i++)
@@ -59,11 +59,8 @@ namespace xpe {
                 }
             }
 
-            result.Indices.List.resize((int) indices.size());
-            for (int i = 0 ; i < indices.size() ; i++)
-            {
-                result.Indices.List[i] = indices[i];
-            }
+            result.Indices.resize(indices.size());
+            memcpy(result.Indices.data(), indices.data(), indices.size() * sizeof(u32));
 
             return result;
         }
@@ -91,7 +88,7 @@ namespace xpe {
         Ref<Model3D> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             Model3D model;
-            hstring directory = os::FileManager::GetDirectory(filepath);
+            hstring directory = FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
             u32 flags = AssimpManager::GetLoadFlags(options);
@@ -104,7 +101,7 @@ namespace xpe {
 
             ParseMeshes(scene->mRootNode, scene, model, directory, flags);
 
-            return m_Storage->AddModel(filepath, model);
+            return GeometryManager::AddModel(model);
         }
 
     }
