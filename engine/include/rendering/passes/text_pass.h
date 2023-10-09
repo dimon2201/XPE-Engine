@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/render_pass.h>
+#include <rendering/passes/render_pass.h>
 #include <rendering/buffers/transform_buffer.h>
 #include <rendering/buffers/text_buffer.h>
 
@@ -10,7 +10,6 @@ namespace xpe {
 
         using namespace core;
 
-        class GeometryStorage;
         class Font;
 
         class ENGINE_API TextPass : public RenderPass
@@ -18,17 +17,19 @@ namespace xpe {
 
         public:
             TextPass(
-                const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                GeometryStorage* geometryStorage
+                    const vector<RenderPassBinding>& bindings,
+                    RenderTarget* output
             );
             ~TextPass() override;
+
+            virtual void Update(Scene* scene) override;
 
         protected:
             void DrawText(const Transform& transform, const string& text, const Ref<Font>& font);
 
             TextBuffer m_TextBuffer;
             TransformBuffer m_TransformBuffer;
+            Ref<Geometry<Vertex3D>> m_Quad;
         };
 
     }

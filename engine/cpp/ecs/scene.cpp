@@ -61,6 +61,11 @@ namespace xpe {
             }
         }
 
+        void Scene::RemoveComponents(const string& entityTag)
+        {
+            m_ComponentAddresses.erase(entityTag);
+        }
+
     }
 
 }

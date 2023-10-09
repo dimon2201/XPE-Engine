@@ -1,5 +1,7 @@
 #pragma once
 
+#include <geometry/geometry_manager.h>
+
 namespace xpe {
 
     namespace ecs

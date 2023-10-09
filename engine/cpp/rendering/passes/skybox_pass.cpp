@@ -1,6 +1,4 @@
-#include <rendering/render_passes/skybox_pass.h>
-
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/passes/skybox_pass.h>
 
 #include <ecs/scene.h>
 #include <ecs/globals.h>
@@ -10,19 +8,14 @@ namespace xpe {
     namespace render {
 
         SkyboxPass::SkyboxPass(
-            const core::vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            GeometryStorage* geometryStorage
+                const vector<RenderPassBinding>& bindings,
+                RenderTarget* output
         ) : RenderPass(bindings, output)
         {
-            auto& cube = geometryStorage->GetGeometryIndexed3D("SkyCube");
-            if (cube.Get() == nullptr) {
-                cube = geometryStorage->AddGeometryIndexed3D("SkyCube", Cube());
-            }
+            m_Cube = GeometryManager::AddGeometry(Cube());
+
             m_Pipeline->InputLayout.Format = Vertex3D::Format;
-            m_Pipeline->PrimitiveTopology = cube->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &cube->Vertices;
-            m_Pipeline->IndexBuffer = &cube->Indices;
+            m_Pipeline->PrimitiveTopology = m_Cube->PrimitiveTopology;
 
             context::CreateSampler(m_Sampler);
             m_Pipeline->Textures.emplace_back(nullptr);

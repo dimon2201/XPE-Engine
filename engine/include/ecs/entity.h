@@ -8,9 +8,14 @@ namespace xpe {
 
         struct ENGINE_API Entity : public Object, res::JsonObject
         {
+            math::Transform Transform;
+            ecs::Entity* Parent = nullptr;
+            vector<ecs::Entity*> Children;
+
             JsonClass(
                 Entity,
-                m_Tag
+                m_Tag,
+                Transform
             )
 
             Entity(const string& tag, Scene* scene);
@@ -29,6 +34,9 @@ namespace xpe {
             template<typename T>
             T* GetComponent(const string& componentTag);
 
+            template<typename T>
+            T* GetComponent();
+
             template<typename T, typename... Args>
             T* AddComponent(Args &&... args);
 
@@ -37,6 +45,8 @@ namespace xpe {
 
             template<typename T>
             void RenameComponent(const string& oldTag, const string& newTag);
+
+            void RemoveComponents();
 
             template<typename T>
             bool ValidComponent(const string& componentTag);
@@ -59,10 +69,18 @@ namespace xpe {
             return m_Scene->GetComponent<T>(m_Tag, componentTag);
         }
 
+        template<typename T>
+        T* Entity::GetComponent()
+        {
+            return m_Scene->GetComponent<T>(m_Tag, m_Tag);
+        }
+
         template<typename T, typename... Args>
         T* Entity::AddComponent(Args &&... args)
         {
-            return m_Scene->AddComponent<T>(m_Tag, std::forward<Args>(args)...);
+            T* newComponent = m_Scene->AddComponent<T>(m_Tag, std::forward<Args>(args)...);
+            newComponent->Entity = this;
+            return newComponent;
         }
 
         template<typename T>

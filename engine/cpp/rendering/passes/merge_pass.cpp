@@ -1,5 +1,5 @@
-#include <rendering/render_passes/merge_pass.h>
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/passes/merge_pass.h>
+
 #include <ecs/scenes.hpp>
 
 namespace xpe {
@@ -7,9 +7,8 @@ namespace xpe {
     namespace render {
 
         MergePass::MergePass(
-            const core::vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            GeometryStorage* geometryStorage
+                const vector<RenderPassBinding>& bindings,
+                RenderTarget* output
         ) : RenderPass(bindings, output)
         {
             context::CreatePipeline(*m_Pipeline);

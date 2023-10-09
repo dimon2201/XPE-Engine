@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace res {
 
-        static void SetSkeletalVertex(SkeletalVertex& vertex, int boneID, float weight)
+        static void SetSkeletalVertex(VertexSkeletal& vertex, int boneID, float weight)
         {
             for (int i = 0; i < 4; ++i)
             {
@@ -19,9 +19,9 @@ namespace xpe {
             }
         }
 
-        static SkeletalVertex ParseVertex(aiMesh* mesh, u32 i)
+        static VertexSkeletal ParseVertex(aiMesh* mesh, u32 i)
         {
-            SkeletalVertex vertex;
+            VertexSkeletal vertex;
 
             vertex.Position = {
                     mesh->mVertices[i].x,
@@ -60,11 +60,11 @@ namespace xpe {
             Skin skin;
             vector<u32> indices;
 
-            skin.Vertices.List.resize(mesh->mNumVertices);
+            skin.Vertices.resize(mesh->mNumVertices);
 
             for (int i = 0 ; i < mesh->mNumVertices ; i++)
             {
-                skin.Vertices.List[i] = ParseVertex(mesh, i);
+                skin.Vertices[i] = ParseVertex(mesh, i);
             }
 
             for (u32 i = 0 ; i < mesh->mNumFaces ; i++)
@@ -76,11 +76,8 @@ namespace xpe {
                 }
             }
 
-            skin.Indices.List.resize((int) indices.size());
-            for (int i = 0 ; i < indices.size() ; i++)
-            {
-                skin.Indices.List[i] = indices[i];
-            }
+            skin.Indices.resize(indices.size());
+            memcpy(skin.Indices.data(), indices.data(), indices.size() * sizeof(u32));
 
             Skelet skelet;
             auto& bones = skelet.Bones;
@@ -113,7 +110,7 @@ namespace xpe {
                 {
                     int vertexId = weights[wi].mVertexId;
                     float weight = weights[wi].mWeight;
-                    SetSkeletalVertex(skin.Vertices.List[vertexId], boneID, weight);
+                    SetSkeletalVertex(skin.Vertices[vertexId], boneID, weight);
                 }
             }
 
@@ -156,7 +153,7 @@ namespace xpe {
 
             ParseSkins(scene->mRootNode, scene, model, directory, flags);
 
-            return m_Storage->AddModel(filepath, model);
+            return GeometryManager::AddSkinModel(model);
         }
 
     }

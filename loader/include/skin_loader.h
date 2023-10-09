@@ -3,7 +3,7 @@
 #include <build.h>
 #include <assimp_types.h>
 
-#include <anim/storages/skin_storage.h>
+#include <geometry/geometry_manager.h>
 
 namespace xpe {
 
@@ -17,8 +17,6 @@ namespace xpe {
         {
 
         public:
-            SkinLoader(SkinStorage* skinStorage) : m_Storage(skinStorage) {}
-
             Ref<SkinModel> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE,
                     eLoadOption::CALC_TANGENTS,
@@ -28,8 +26,6 @@ namespace xpe {
                     eLoadOption::JOIN_VERTICES
             });
 
-        private:
-            SkinStorage* m_Storage;
         };
 
     }

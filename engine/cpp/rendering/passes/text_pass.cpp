@@ -1,5 +1,4 @@
-#include <rendering/render_passes/text_pass.h>
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/passes/text_pass.h>
 #include <rendering/font/font.hpp>
 
 #include <ecs/scenes.hpp>
@@ -9,27 +8,25 @@ namespace xpe {
     namespace render {
 
         TextPass::TextPass(
-            const vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            GeometryStorage* geometryStorage
+                const vector<RenderPassBinding>& bindings,
+                RenderTarget* output
         ) : RenderPass(bindings, output)
         {
+            m_Quad = GeometryManager::AddGeometry<Vertex3D>(Quad());
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);
-
-            auto& quad = geometryStorage->GetGeometryIndexed3D("TextQuad");
-            if (quad.Get() == nullptr) {
-                quad = geometryStorage->AddGeometryIndexed3D("TextQuad", Quad());
-            }
             m_Pipeline->InputLayout.Format = Vertex3D::Format;
-            m_Pipeline->PrimitiveTopology = quad->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &quad->Vertices;
-            m_Pipeline->IndexBuffer = &quad->Indices;
+            m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
             m_Pipeline->Textures.emplace_back(nullptr);
             m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
         }
 
         TextPass::~TextPass() {}
+
+        void TextPass::Update(Scene *scene)
+        {
+            GeometryManager::BindVertexBuffer3D();
+        }
 
         void TextPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)
         {
@@ -92,7 +89,7 @@ namespace xpe {
             m_Pipeline->Textures[0] = &font->Atlas;
 
             context::BindVSBuffer(m_TextBuffer);
-            context::DrawIndexed(6, charsCount);
+            context::DrawIndexed(m_Quad->Indices.size(), charsCount, m_Quad->VertexOffset, m_Quad->IndexOffset);
             context::UnbindVSBuffer(m_TextBuffer);
         }
 

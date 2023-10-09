@@ -103,10 +103,10 @@ namespace xpe {
         Ref<T>::~Ref()
         {
             RefCountTable[m_Ptr] -= 1;
-            if (RefCountTable[m_Ptr] <= 0) {
-                if (m_Ptr != nullptr)
-                    main_destruct(T, m_Ptr);
-                m_Ptr = nullptr;
+            if (RefCountTable[m_Ptr] < 0) {
+//                if (m_Ptr != nullptr)
+//                    main_destruct(T, m_Ptr);
+//                m_Ptr = nullptr;
             }
         }
 

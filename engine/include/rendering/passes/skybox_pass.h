@@ -1,11 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/render_pass.h>
-
-#include <rendering/buffers/vertex_buffer.h>
-#include <rendering/buffers/index_buffer.h>
-
-#include <geometry/vertices.h>
+#include <rendering/passes/render_pass.h>
 
 namespace xpe {
 
@@ -15,16 +10,13 @@ namespace xpe {
         using namespace ecs;
         using namespace math;
 
-        class GeometryStorage;
-
         class ENGINE_API SkyboxPass : public RenderPass
         {
 
         public:
             SkyboxPass(
-                const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                GeometryStorage* geometryStorage
+                    const vector<RenderPassBinding>& bindings,
+                    RenderTarget* output
             );
             ~SkyboxPass() override;
 
@@ -33,6 +25,7 @@ namespace xpe {
 
         protected:
             TextureSampler m_Sampler;
+            Ref<Geometry<Vertex3D>> m_Cube;
         };
 
     }

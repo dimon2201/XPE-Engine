@@ -93,5 +93,4 @@
 #include <math/math.h>
 #include <math/transform.h>
 #include <math/matrices.h>
-#include <math/sphere.h>
 #include <math/raycast.h>

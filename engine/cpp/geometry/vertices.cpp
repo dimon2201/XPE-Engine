@@ -18,7 +18,7 @@ namespace xpe {
              Attributes::TANGENT
          }};
 
-        VertexFormat SkeletalVertex::Format =
+        VertexFormat VertexSkeletal::Format =
         {{
              Attributes::POS3,
              Attributes::UV,

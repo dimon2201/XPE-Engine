@@ -1,6 +1,4 @@
-#include <rendering/render_passes/render_pass.h>
-#include <rendering/buffers/camera_buffer.h>
-#include <geometry/vertices.h>
+#include <rendering/passes/render_pass.h>
 
 namespace xpe {
 
@@ -65,6 +63,7 @@ namespace xpe {
 
         RenderPass::~RenderPass()
         {
+            delete m_Pipeline;
         }
 
         void RenderPass::Bind()

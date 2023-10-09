@@ -3,7 +3,7 @@
 #include <build.h>
 #include <assimp_types.h>
 
-#include <rendering/storages/geometry_storage.h>
+#include <geometry/geometry_manager.h>
 
 namespace xpe {
 
@@ -17,8 +17,6 @@ namespace xpe {
         {
 
         public:
-            ModelLoader(GeometryStorage* geometryStorage) : m_Storage(geometryStorage) {}
-
             Ref<Model3D> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE,
                     eLoadOption::FLIP_UV,
@@ -28,8 +26,6 @@ namespace xpe {
                     eLoadOption::JOIN_VERTICES
             });
 
-        private:
-            GeometryStorage* m_Storage;
         };
 
     }

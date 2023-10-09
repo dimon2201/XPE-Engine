@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ecs/component.h>
+#include <ecs/entity.h>
 
 #include <rendering/materials/material.h>
 #include <rendering/font/font.hpp>
@@ -59,41 +60,57 @@ namespace xpe
 
         struct ENGINE_API Text2DComponent : Component
         {
-            math::Transform Transform;
             string Text;
             Ref<Font> Font;
             string FontResFilepath;
 
+            Text2DComponent(const string& tag, const Ref<render::Font>& font, const string& text)
+            : Component(tag), Font(font), Text(text) {}
+
             JsonClass(
                 Text2DComponent,
                 Text,
-                FontResFilepath,
-                Transform
+                FontResFilepath
             )
         };
 
         struct ENGINE_API Text3DComponent : Component
         {
-            math::Transform Transform;
             string Text;
             Ref<Font> Font;
             string FontResFilepath;
 
+            Text3DComponent(const string& tag, const Ref<render::Font>& font, const string& text)
+            : Component(tag), Font(font), Text(text) {}
+
             JsonClass(
                 Text3DComponent,
                 Text,
-                FontResFilepath,
-                Transform
+                FontResFilepath
             )
         };
 
-        struct ENGINE_API TextureComponent : Component
+        struct ENGINE_API MaterialComponent : Component
         {
-            Ref<Texture> Texture;
+            Ref<render::Material> Material;
+
+            MaterialComponent(const string& tag, const Ref<render::Material>& material)
+            : Component(tag), Material(material) {}
+
+            JsonClass(
+                MaterialComponent,
+                m_Tag
+            )
         };
 
         struct ENGINE_API DirectLightComponent : Component, DirectLightBufferData
         {
+            DirectLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
+            : Component(tag) {
+                Position = position;
+                Color = color;
+            }
+
             JsonClass(
                 DirectLightComponent,
                 Position,
@@ -103,6 +120,12 @@ namespace xpe
 
         struct ENGINE_API PointLightComponent : Component, PointLightBufferData
         {
+            PointLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
+            : Component(tag) {
+                Position = position;
+                Color = color;
+            }
+
             JsonClass(
                 PointLightComponent,
                 Position,
@@ -115,6 +138,12 @@ namespace xpe
 
         struct ENGINE_API SpotLightComponent : Component, SpotLightBufferData
         {
+            SpotLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
+            : Component(tag) {
+                Position = position;
+                Color = color;
+            }
+
             JsonClass(
                 SpotLightComponent,
                 Position,
@@ -125,137 +154,88 @@ namespace xpe
             )
         };
 
-        template<class GeometryType>
+        template<typename V>
         struct GeometryComponent : Component
         {
-            Ref<GeometryType> Geometry;
-            MaterialInstance Instance;
+            Ref<math::Geometry<V>> Geometry;
+            vector<ecs::Entity*> Entities;
+
+            GeometryComponent(const string& tag, const Ref<math::Geometry<V>>& geometry, const vector<ecs::Entity*>& entities = {})
+            : Component(tag), Geometry(geometry), Entities(entities) {}
 
             JsonClass(
                 GeometryComponent,
-                Instance
+                m_Tag
             )
         };
-
-        typedef GeometryComponent<GeometryVertexed<Vertex2D>> GeometryVertexed2DComponent;
-        typedef GeometryComponent<GeometryIndexed<Vertex2D>> GeometryIndexed2DComponent;
-        typedef GeometryComponent<GeometryVertexed<Vertex3D>> GeometryVertexed3DComponent;
-        typedef GeometryComponent<GeometryIndexed<Vertex3D>> GeometryIndexed3DComponent;
-
-        template<class GeometryType>
-        struct GeometryListComponent : Component
-        {
-            Ref<GeometryType> Geometry;
-            vector<MaterialInstance> Instances;
-
-            JsonClass(
-                GeometryListComponent,
-                Instances
-            )
-        };
-
-        typedef GeometryListComponent<GeometryVertexed<Vertex2D>> GeometryVertexed2DListComponent;
-        typedef GeometryListComponent<GeometryIndexed<Vertex2D>> GeometryIndexed2DListComponent;
-        typedef GeometryListComponent<GeometryVertexed<Vertex3D>> GeometryVertexed3DListComponent;
-        typedef GeometryListComponent<GeometryIndexed<Vertex3D>> GeometryIndexed3DListComponent;
 
         struct ENGINE_API MeshComponent : Component
         {
-            math::Transform Transform;
-            Ref<Mesh> Mesh;
+            Ref<math::Mesh> Mesh;
+            vector<ecs::Entity*> Entities;
+
+            MeshComponent(const string& tag, const Ref<math::Mesh>& mesh, const vector<ecs::Entity*>& entities = {})
+            : Component(tag), Mesh(mesh), Entities(entities) {}
 
             JsonClass(
                 MeshComponent,
-                Transform
-            )
-        };
-
-        struct ENGINE_API MeshListComponent : Component
-        {
-            vector<Transform> Transforms;
-            Ref<Mesh> Mesh;
-
-            JsonClass(
-                MeshListComponent,
-                Transforms
+                m_Tag
             )
         };
 
         struct ENGINE_API ModelComponent : Component
         {
-            math::Transform Transform;
             Ref<Model3D> Model;
+            vector<ecs::Entity*> Entities;
+
+            ModelComponent(const string& tag, const Ref<Model3D>& model, const vector<ecs::Entity*>& entities = {})
+            : Component(tag), Model(model), Entities(entities) {}
 
             JsonClass(
                 ModelComponent,
-                Transform
-            )
-        };
-
-        struct ENGINE_API ModelListComponent : Component
-        {
-            vector<Transform> Transforms;
-            Ref<Model3D> Model;
-
-            JsonClass(
-                ModelListComponent,
-                Transforms
+                m_Tag
             )
         };
 
         struct ENGINE_API SkinComponent : Component
         {
-            math::Transform Transform;
-            Ref<Skin> Skin;
-            Ref<Skelet> Skelet;
+            Ref<anim::Skin> Skin;
+            Ref<anim::Skelet> Skelet;
+
+            SkinComponent(const string& tag, const Ref<anim::Skin>& skin, const Ref<anim::Skelet>& skelet, const vector<ecs::Entity*>& entities = {})
+            : Component(tag), Skin(skin), Skelet(skelet), Entities(entities) {}
+
+            vector<ecs::Entity*> Entities;
 
             JsonClass(
                 SkinComponent,
-                Transform
-            )
-        };
-
-        struct ENGINE_API SkinListComponent : Component
-        {
-            vector<Transform> Transforms;
-            Ref<Skin> Skin;
-            Ref<Skelet> Skelet;
-
-            JsonClass(
-                SkinListComponent,
-                Transforms
+                m_Tag
             )
         };
 
         struct ENGINE_API SkinModelComponent : Component
         {
-            math::Transform Transform;
             Ref<SkinModel> Model;
             Ref<Skelet> Skelet;
+            vector<ecs::Entity*> Entities;
+
+            SkinModelComponent(const string& tag, const Ref<anim::SkinModel>& model, const Ref<anim::Skelet>& skelet, const vector<ecs::Entity*>& entities = {})
+            : Component(tag), Model(model), Skelet(skelet), Entities(entities) {}
 
             JsonClass(
                 SkinModelComponent,
-                Transform
-            )
-        };
-
-        struct ENGINE_API SkinModelListComponent : Component
-        {
-            vector<Transform> Transforms;
-            Ref<SkinModel> Model;
-            Ref<Skelet> Skelet;
-
-            JsonClass(
-                SkinModelListComponent,
-                Transforms
+                m_Tag
             )
         };
 
         struct ENGINE_API SkeletalAnimationComponent : Component
         {
-            Ref<Skelet> Skelet;
-            Ref<Animation> Animation;
+            Ref<anim::Skelet> Skelet;
+            Ref<anim::Animation> Animation;
             bool Play = false;
+
+            SkeletalAnimationComponent(const string& tag, const Ref<anim::Skelet>& skelet, const Ref<anim::Animation>& animation)
+            : Component(tag), Skelet(skelet), Animation(animation) {}
 
             JsonClass(
                 SkeletalAnimationComponent,

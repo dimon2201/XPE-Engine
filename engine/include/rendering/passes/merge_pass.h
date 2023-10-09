@@ -1,7 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/render_pass.h>
-#include <geometry/geometries.h>
+#include <rendering/passes/render_pass.h>
 
 namespace xpe {
 
@@ -14,16 +13,13 @@ namespace xpe {
 
         using namespace ecs;
 
-        class GeometryStorage;
-
         class ENGINE_API MergePass : public RenderPass
         {
 
         public:
             MergePass(
-                const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                GeometryStorage* geometryStorage
+                    const vector<RenderPassBinding>& bindings,
+                    RenderTarget* output
             );
             virtual ~MergePass();
 

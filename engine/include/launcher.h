@@ -5,7 +5,6 @@
 using namespace xpe::core;
 
 int main(int argc, char** argv) {
-
     // pull hardware config
     xpe::core::Hardware::UpdateMemoryStats();
     xpe::core::Hardware::UpdateVideoStats();

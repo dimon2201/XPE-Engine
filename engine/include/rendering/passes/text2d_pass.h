@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/render_passes/text_pass.h>
+#include <rendering/passes/text_pass.h>
 
 namespace xpe {
 
@@ -11,13 +11,11 @@ namespace xpe {
 
         public:
             Text2DPass(
-                const core::vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                GeometryStorage* geometryStorage
+                    const vector<RenderPassBinding>& bindings,
+                    RenderTarget* output
             );
             ~Text2DPass() override;
 
-            virtual void Update(Scene *scene) override;
             virtual void Draw(Scene *scene) override;
 
         };

@@ -1,15 +1,14 @@
-#include <rendering/render_passes/ssao_pass.hpp>
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/passes/ssao_pass.hpp>
+
 #include <ecs/scene.h>
 
 namespace xpe
 {
     namespace render
     {
-        SSAOPass::SSAOPass(GeometryStorage* geometry, const core::vector<RenderPassBinding>& bindings, RenderTarget* output)
-            : RenderPass(bindings, output)
+        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, RenderTarget* output) : RenderPass(bindings, output)
         {
-            m_Quad = geometry->AddGeometryIndexed2D("SSAOQuad", Quad2D());
+            m_Quad = GeometryManager::AddGeometry(Quad2D());
 
             m_Buffer.Type = eBufferType::CONSTANT;
             m_Buffer.Usage = eBufferUsage::DYNAMIC;
@@ -39,7 +38,7 @@ namespace xpe
         void SSAOPass::Draw(Scene* scene)
         {
             context::BindPrimitiveTopology(m_Quad->PrimitiveTopology);
-            context::DrawIndexed(m_Quad->Indices.NumElements);
+            context::DrawIndexed(m_Quad->Indices.size());
         }
     }
 }
