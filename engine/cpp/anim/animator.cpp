@@ -27,8 +27,6 @@ namespace xpe {
             boneBuffer.Resize(skelet->Bones.size());
 
             UpdateSkeletTransform(skelet, boneBuffer, animation->Root, glm::mat4(1.0f));
-
-            boneBuffer.Flush();
         }
 
         void Animator::AnimateBone(Bone &bone, float time)

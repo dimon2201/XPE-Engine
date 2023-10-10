@@ -201,7 +201,7 @@ namespace xpe {
 
         void MemoryPoolManager::Init() {
             // use by default 15% of TOTAL PHYSICAL RAM for main pre-allocation
-            usize mainMemorySize = Hardware::GetMemoryStats().TotalPhysical * 0.15;
+            usize mainMemorySize = Hardware::Memory.TotalPhysical * 0.15;
             MainPools = new MemoryPoolStorage("MainMemory", 1, mainMemorySize, 1000, 0);
 
             // use by default 1MB for hot memory pre-allocation

@@ -25,7 +25,7 @@ namespace xpe {
                 }
             }
 
-            s_CpuStats.Cores = numCPU;
+            CPU.Cores = numCPU;
         }
 
     }

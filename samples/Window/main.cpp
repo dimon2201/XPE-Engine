@@ -208,8 +208,8 @@ public:
             material1->Metallness = 1;
             material1->Roughness = 1;
             material1->AO = 0;
-            material1->EnableAlbedoMap = true;
-            material1->EnableNormalMap = true;
+            material1->EnableAlbedoMap = false;
+            material1->EnableNormalMap = false;
             material1->EnableRoughnessMap = false;
             material1->EnableMetalMap = false;
             material1->EnableAOMap = false;
@@ -221,8 +221,8 @@ public:
             material2->Metallness = 1;
             material2->Roughness = 1;
             material2->AO = 0;
-            material2->EnableAlbedoMap = true;
-            material2->EnableNormalMap = true;
+            material2->EnableAlbedoMap = false;
+            material2->EnableNormalMap = false;
             material2->EnableRoughnessMap = false;
             material2->EnableMetalMap = false;
             material2->EnableAOMap = false;
@@ -234,8 +234,8 @@ public:
             material3->Metallness = 1;
             material3->Roughness = 1;
             material3->AO = 0;
-            material3->EnableAlbedoMap = true;
-            material3->EnableNormalMap = true;
+            material3->EnableAlbedoMap = false;
+            material3->EnableNormalMap = false;
             material3->EnableRoughnessMap = false;
             material3->EnableMetalMap = false;
             material3->EnableAOMap = false;
@@ -247,8 +247,8 @@ public:
             material4->Metallness = 1;
             material4->Roughness = 1;
             material4->AO = 0;
-            material4->EnableAlbedoMap = true;
-            material4->EnableNormalMap = true;
+            material4->EnableAlbedoMap = false;
+            material4->EnableNormalMap = false;
             material4->EnableRoughnessMap = false;
             material4->EnableMetalMap = false;
             material4->EnableAOMap = false;

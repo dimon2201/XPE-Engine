@@ -9,7 +9,7 @@ namespace xpe {
         void MainDispatcher::submitTask(PxBaseTask& pxTask)
         {
             Task task;
-            task.Runnable = [&pxTask]() {
+            task.Todo = [&pxTask]() {
                 pxTask.run();
                 pxTask.release();
             };

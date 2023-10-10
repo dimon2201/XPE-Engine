@@ -61,7 +61,7 @@ namespace xpe {
             CPUTime = DeltaTime;
 
             MainDispatcher* mainDispatcher = new MainDispatcher(
-                    Hardware::GetCpuStats().Cores,
+                    Hardware::CPU.Cores,
                     100,
                     "Worker",
                     Thread::ePriority::NORMAL
@@ -105,12 +105,21 @@ namespace xpe {
             InitGame();
 
             Task audioTask;
-            audioTask.Runnable = [this]() {
+            audioTask.Todo = [this]() {
                 while (m_IsOpen) {
                     m_AudioSystem->Update(m_MainScene);
+                    m_AudioSystem->UpdateListener(m_MainScene);
                 }
             };
             TaskManager::SubmitTask(audioTask);
+
+            Task animationTask;
+            animationTask.Todo = [this]() {
+                while (m_IsOpen) {
+                    m_Animator->Animate(m_MainScene, DeltaTime);
+                }
+            };
+            TaskManager::SubmitTask(animationTask);
 
             while (m_IsOpen)
             {
@@ -132,15 +141,10 @@ namespace xpe {
 
                 CurrentTime = cpuTimer.GetStartTime();
 
-                m_Animator->Animate(m_MainScene, DeltaTime);
-
                 Update();
-
                 m_Game->Update();
 
                 Render();
-
-                m_AudioSystem->UpdateListener(m_MainScene);
 
                 WindowManager::PollEvents();
                 WindowManager::Swap();

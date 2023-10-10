@@ -26,7 +26,7 @@ namespace xpe {
         {
             Sampler.Slot            = K_SLOT_MATERIAL_SAMPLER;
             Sampler.Filter          = TextureSampler::eFilter::ANISOTROPIC;
-            Sampler.AnisotropyLevel = Hardware::GetVideoStats().MaxAnisotropyLevel;
+            Sampler.AnisotropyLevel = Hardware::GPU.MaxAnisotropyLevel;
             Sampler.AddressU        = TextureSampler::eAddress::WRAP;
             Sampler.AddressV        = TextureSampler::eAddress::WRAP;
             Sampler.AddressW        = TextureSampler::eAddress::WRAP;
@@ -47,7 +47,7 @@ namespace xpe {
             texture->Height = materialFormat.Height;
             texture->Slot = materialFormat.Slot;
             texture->Channels = Texture::ChannelTable.at(materialFormat.Format);
-            texture->Layers.reserve(Hardware::GetVideoStats().MaxTexture2dArray);
+            texture->Layers.reserve(Hardware::GPU.MaxTexture2dArray);
 
             return texture;
         }

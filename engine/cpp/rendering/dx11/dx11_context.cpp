@@ -12,6 +12,7 @@ namespace xpe {
 
             ID3D11Device* s_Device = nullptr;
             ID3D11DeviceContext* s_ImmContext = nullptr;
+            ID3D11DeviceContext* s_DefContext = nullptr;
             IDXGISwapChain* s_SwapChain = nullptr;
             IDXGIDevice* s_GIDevice = nullptr;
             IDXGIAdapter* s_GIAdapter = nullptr;
@@ -307,6 +308,12 @@ namespace xpe {
 
                 InitDebugger();
 
+                s_Device->CreateDeferredContext(0, &s_DefContext);
+                LogDebugMessage();
+
+                Hardware::UpdateGpuStats(s_Device);
+                LogDebugMessage();
+
                 s_Device->QueryInterface(__uuidof(IDXGIDevice), (void **)&s_GIDevice);
                 LogDebugMessage();
 
@@ -324,6 +331,9 @@ namespace xpe {
             void Free()
             {
                 LogInfo("D3D11Context::Free()");
+
+                s_DefContext->Release();
+                LogDebugMessage();
 
                 s_ImmContext->Release();
                 LogDebugMessage();

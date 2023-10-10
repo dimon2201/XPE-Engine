@@ -15,11 +15,13 @@ namespace xpe {
             usize AvailableVirtualExtended = 0;
         };
 
-        struct ENGINE_API VideoStats final
+        struct ENGINE_API GpuStats final
         {
             usize MaxTexture2dArray;
             usize MaxAnisotropyLevel;
             usize MaxRenderTargetsPerStage;
+            bool IsConcurrentCreatesSupported;
+            bool IsCommandListSupported;
         };
 
         struct ENGINE_API CpuStats final
@@ -27,22 +29,16 @@ namespace xpe {
             u32 Cores = 1;
         };
 
-        class ENGINE_API Hardware final {
+        struct ENGINE_API Hardware final {
 
-        public:
+            static MemoryStats Memory;
+            static CpuStats CPU;
+            static GpuStats GPU;
+
             static void UpdateMemoryStats();
-            static MemoryStats GetMemoryStats();
-
-            static void UpdateVideoStats();
-            static VideoStats GetVideoStats();
-
             static void UpdateCpuStats();
-            static CpuStats GetCpuStats();
+            static void UpdateGpuStats(void* device);
 
-        private:
-            static MemoryStats s_MemoryStats;
-            static VideoStats s_VideoStats;
-            static CpuStats s_CpuStats;
         };
 
     }

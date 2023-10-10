@@ -12,20 +12,20 @@ namespace xpe {
             MEMORYSTATUSEX memStatus;
             memStatus.dwLength = sizeof(memStatus);
             GlobalMemoryStatusEx(&memStatus);
-            s_MemoryStats.TotalPhysical = memStatus.ullTotalPhys;
-            s_MemoryStats.AvailablePhysical = memStatus.ullAvailPhys;
-            s_MemoryStats.TotalPageFile = memStatus.ullTotalPageFile;
-            s_MemoryStats.AvailablePageFile = memStatus.ullAvailPageFile;
-            s_MemoryStats.TotalVirtual = memStatus.ullTotalVirtual;
-            s_MemoryStats.AvailableVirtual = memStatus.ullAvailVirtual;
-            s_MemoryStats.AvailableVirtualExtended = memStatus.ullAvailExtendedVirtual;
+            Memory.TotalPhysical = memStatus.ullTotalPhys;
+            Memory.AvailablePhysical = memStatus.ullAvailPhys;
+            Memory.TotalPageFile = memStatus.ullTotalPageFile;
+            Memory.AvailablePageFile = memStatus.ullAvailPageFile;
+            Memory.TotalVirtual = memStatus.ullTotalVirtual;
+            Memory.AvailableVirtual = memStatus.ullAvailVirtual;
+            Memory.AvailableVirtualExtended = memStatus.ullAvailExtendedVirtual;
         }
 
         void Hardware::UpdateCpuStats()
         {
             SYSTEM_INFO sysinfo;
             GetSystemInfo(&sysinfo);
-            s_CpuStats.Cores = sysinfo.dwNumberOfProcessors;
+            CPU.Cores = sysinfo.dwNumberOfProcessors;
         }
 
     }

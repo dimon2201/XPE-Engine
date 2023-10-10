@@ -5,9 +5,8 @@
 using namespace xpe::core;
 
 int main(int argc, char** argv) {
-    // pull hardware config
+    // pull OS hardware params
     xpe::core::Hardware::UpdateMemoryStats();
-    xpe::core::Hardware::UpdateVideoStats();
     xpe::core::Hardware::UpdateCpuStats();
 
     // init memory pools
