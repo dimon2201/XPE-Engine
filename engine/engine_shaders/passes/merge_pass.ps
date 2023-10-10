@@ -22,10 +22,13 @@ PSOut ps_main(VSOut psIn)
 
     float4 color = float4(0.0);
     float4 accum = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
-    float reveal = RevealTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
-    if (dot(accum, accum) == 0.0) {
+    if (dot(accum, accum) == 0.0)
+    {
         color = ColorTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
-    } else {
+    }
+    else
+    {
+        float reveal = RevealTexture.Load(int3(psIn.texcoord * float2(width, height), 0));
         color = float4(accum.xyz / max(accum.a, 1e-5), reveal);
     }
 

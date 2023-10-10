@@ -144,11 +144,11 @@ public:
             m_TransparentPlane = { "TransparentPlane", m_MainScene };
 
             GeometryIndexed3DComponent plane("G_TransparentPlane");
-            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_TransparentPlane", Plane());
-            plane.Instance.Transform.Position = { -5, 1, 0 };
+            plane.Geometry = m_GeometryStorage->AddGeometryIndexed3D("G_TransparentPlane", Cube());
+            plane.Instance.Transform.Position = { 5, 1, 0 };
             plane.Instance.Transform.Scale = { 1, 0.1, 1 };
             plane.Instance.Material = m_MaterialStorage->Add("MT_TransparentPlane", Material());
-            plane.Instance.Material->BaseColor = { 0, 1, 0, 1 };
+            plane.Instance.Material->BaseColor = { 0, 1, 0, 0.5 };
             plane.Instance.Material->MetallicFactor = 0.0;
             plane.Instance.Material->RoughnessFactor = 0.25;
             plane.Instance.Material->AOFactor = 0;
