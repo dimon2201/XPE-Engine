@@ -6,11 +6,16 @@ namespace xpe {
 
     namespace core {
 
-        void Hardware::UpdateVideoStats()
+        void Hardware::UpdateGpuStats(void* device)
         {
-            s_VideoStats.MaxTexture2dArray  = D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION;
-            s_VideoStats.MaxAnisotropyLevel = D3D11_REQ_MAXANISOTROPY;
-            s_VideoStats.MaxRenderTargetsPerStage = D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT;
+            GPU.MaxTexture2dArray  = D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION;
+            GPU.MaxAnisotropyLevel = D3D11_REQ_MAXANISOTROPY;
+            GPU.MaxRenderTargetsPerStage = D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT;
+
+            D3D11_FEATURE_DATA_THREADING featureThreading = {};
+            ((ID3D11Device*) device)->CheckFeatureSupport(D3D11_FEATURE_THREADING, &featureThreading, sizeof(featureThreading));
+            GPU.IsConcurrentCreatesSupported = featureThreading.DriverConcurrentCreates == TRUE;
+            GPU.IsCommandListSupported = featureThreading.DriverCommandLists == TRUE;
         }
 
     }

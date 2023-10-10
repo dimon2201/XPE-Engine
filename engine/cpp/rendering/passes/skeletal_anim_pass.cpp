@@ -34,6 +34,7 @@ namespace xpe {
                     auto& skelet = component->Skelet;
 
                     if (skelet.Get() != nullptr) {
+                        skelet->BoneBuffer.Flush();
                         context::BindVSBuffer(skelet->BoneBuffer);
                     }
 
@@ -60,6 +61,7 @@ namespace xpe {
                     auto& skelet = component->Skelet;
 
                     if (skelet.Get() != nullptr) {
+                        skelet->BoneBuffer.Flush();
                         context::BindVSBuffer(skelet->BoneBuffer);
                     }
 

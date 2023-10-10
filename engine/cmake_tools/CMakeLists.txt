@@ -12,6 +12,7 @@ macro(add_engine_configs)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_PATH})
 
     set(PHYSX_ROOT_DIR ${CMAKE_SOURCE_DIR}/engine/thirdparty/PhysX/physx)
+    message("PHYSX_ROOT_DIR: " ${PHYSX_ROOT_DIR})
     set(PX_OUTPUT_LIB_DIR ${LIB_PATH})
     set(PX_OUTPUT_BIN_DIR ${LIB_PATH})
     set(NV_USE_STATIC_WINCRT TRUE)

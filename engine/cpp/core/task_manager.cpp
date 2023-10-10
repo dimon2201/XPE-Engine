@@ -2,6 +2,21 @@ namespace xpe {
 
     namespace core {
 
+        void Task::DoWork()
+        {
+            Todo();
+        }
+
+        void Task::DoAll()
+        {
+            DoWork();
+            Task* nextTask = Next;
+            while (nextTask != nullptr) {
+                nextTask->DoWork();
+                nextTask = nextTask->Next;
+            }
+        }
+
         TaskDispatcher* TaskManager::s_Dispatcher = nullptr;
 
         TaskDispatcher::TaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, Thread::ePriority priority)
@@ -15,7 +30,7 @@ namespace xpe {
             }
         }
 
-        void TaskDispatcher::Dispatch(const Task &task)
+        void TaskDispatcher::Dispatch(Task task)
         {
             m_TasksTodo += 1;
             // try to push a new task until it is pushed
@@ -25,7 +40,7 @@ namespace xpe {
             m_WakeCondition.notify_one();
         }
 
-        void TaskDispatcher::Dispatch(u32 tasksPerThread, u32 taskSize, const Task &task)
+        void TaskDispatcher::Dispatch(u32 tasksPerThread, u32 taskSize, Task task)
         {
             if (taskSize == 0 || tasksPerThread == 0) {
                 return;
@@ -37,11 +52,11 @@ namespace xpe {
             for (u32 i = 0; i < taskGroups; ++i) {
                 // create task group
                 Task taskGroup;
-                taskGroup.Runnable = [i, task, taskSize, tasksPerThread]() {
+                taskGroup.Todo = [i, task, taskSize, tasksPerThread]() {
                     u32 groupJobOffset = i * taskSize;
                     u32 groupJobEnd = std::min(groupJobOffset + taskSize, tasksPerThread);
                     for (u32 j = groupJobOffset; j < groupJobEnd; ++j) {
-                        task.Runnable();
+                        ((Task) task).DoAll();
                     }
                 };
 
@@ -84,7 +99,7 @@ namespace xpe {
                 while (true) {
                     if (m_TaskBuffer.Pop(task)) {
                         // execute job and update worker label state
-                        task.Runnable();
+                        task.DoAll();
                         m_TasksDone.fetch_add(1);
                     } else {
                         // no job, put thread to sleep
@@ -100,7 +115,7 @@ namespace xpe {
 
         void TaskManager::Init()
         {
-            s_Dispatcher = new TaskDispatcher(Hardware::GetCpuStats().Cores, 100, "Worker", Thread::ePriority::NORMAL);
+            s_Dispatcher = new TaskDispatcher(Hardware::CPU.Cores, 100, "Worker", Thread::ePriority::NORMAL);
         }
 
         void TaskManager::Init(TaskDispatcher* dispatcher)

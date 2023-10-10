@@ -5,7 +5,15 @@ namespace xpe {
     namespace core {
 
         struct ENGINE_API Task : public Object {
-            std::function<void()> Runnable;
+            std::function<void()> Todo;
+            Task* Next = nullptr;
+
+            Task() = default;
+            Task(const std::function<void()>& todo) : Todo(todo) {}
+
+            virtual void DoWork();
+
+            void DoAll();
         };
 
         class ENGINE_API TaskDispatcher : public Object {
@@ -14,12 +22,12 @@ namespace xpe {
             TaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, Thread::ePriority priority);
 
             // executes single task in a single worker thread
-            void Dispatch(const Task& task);
+            void Dispatch(Task task);
 
             // executes multiple tasks with multiple amount of workers per task
             // taskSize - count of inner tasks inside single task
             // tasksPerThread - count of tasks for each worker thread
-            void Dispatch(u32 tasksPerThread, u32 taskSize, const Task& task);
+            void Dispatch(u32 tasksPerThread, u32 taskSize, Task task);
 
             inline bool IsBusy();
 

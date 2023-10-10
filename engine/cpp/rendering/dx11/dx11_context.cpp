@@ -307,6 +307,9 @@ namespace xpe {
 
                 InitDebugger();
 
+                Hardware::UpdateGpuStats(s_Device);
+                LogDebugMessage();
+
                 s_Device->QueryInterface(__uuidof(IDXGIDevice), (void **)&s_GIDevice);
                 LogDebugMessage();
 

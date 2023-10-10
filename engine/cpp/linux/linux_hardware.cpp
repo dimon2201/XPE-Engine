@@ -26,7 +26,7 @@
 
            void Hardware::UpdateCpuStats()
            {
-               s_CpuStats.Cores = sysconf(_SC_NPROCESSORS_ONLN);
+               CPU.Cores = sysconf(_SC_NPROCESSORS_ONLN);
            }
 
        }
