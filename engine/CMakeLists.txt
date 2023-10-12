@@ -21,12 +21,12 @@ include_directories(
         thirdparty/glm/glm
         thirdparty/json/include
         thirdparty/spdlog/include
-        thirdparty/stbi
         thirdparty/openal-soft/include/AL
         thirdparty/libsndfile/include
         thirdparty/PhysX/physx/include
         thirdparty/PhysX/blast/include
         thirdparty/PhysX/flow/include
+        thirdparty/stbi
 )
 
 # Create shared dynamic library

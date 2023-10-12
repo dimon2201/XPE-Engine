@@ -126,10 +126,10 @@ public:
 
             m_Plane->AddComponent<GeometryComponent<Vertex3D>>("G_Plane", GeometryManager::AddGeometry(Cube()));
             auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", m_MaterialStorage->Add("PlaneMaterial", Material()))->Material;
-            planeMaterial->Albedo = { 1, 0, 0, 1 };
-            planeMaterial->Metallness = 1;
-            planeMaterial->Roughness = 0.25;
-            planeMaterial->AO = 0;
+            planeMaterial->Albedo = { 1, 1, 1, 1 };
+            planeMaterial->Metallness = 0.5;
+            planeMaterial->Roughness = 0.5;
+            planeMaterial->AO = 0.5;
             planeMaterial->Flush();
         }
 
@@ -205,9 +205,9 @@ public:
             auto& material1 = m_Goblin1->AddComponent<MaterialComponent>(m_Goblin1->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
             material1->Albedo = { 1, 1, 1, 1 };
             material1->Emission = { 0, 0, 10 };
-            material1->Metallness = 1;
-            material1->Roughness = 1;
-            material1->AO = 0;
+            material1->Metallness = 0.5;
+            material1->Roughness = 0.5;
+            material1->AO = 0.5;
             material1->EnableAlbedoMap = false;
             material1->EnableNormalMap = false;
             material1->EnableRoughnessMap = false;
@@ -218,9 +218,9 @@ public:
             auto& material2 = m_Goblin2->AddComponent<MaterialComponent>(m_Goblin2->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
             material2->Albedo = { 1, 1, 1, 1 };
             material2->Emission = { 0, 0, 10 };
-            material2->Metallness = 1;
-            material2->Roughness = 1;
-            material2->AO = 0;
+            material2->Metallness = 0.5;
+            material2->Roughness = 0.5;
+            material2->AO = 0.5;
             material2->EnableAlbedoMap = false;
             material2->EnableNormalMap = false;
             material2->EnableRoughnessMap = false;
@@ -231,9 +231,9 @@ public:
             auto& material3 = m_Goblin3->AddComponent<MaterialComponent>(m_Goblin3->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
             material3->Albedo = { 1, 1, 1, 1 };
             material3->Emission = { 0, 0, 10 };
-            material3->Metallness = 1;
-            material3->Roughness = 1;
-            material3->AO = 0;
+            material3->Metallness = 0.5;
+            material3->Roughness = 0.5;
+            material3->AO = 0.5;
             material3->EnableAlbedoMap = false;
             material3->EnableNormalMap = false;
             material3->EnableRoughnessMap = false;
@@ -244,9 +244,9 @@ public:
             auto& material4 = m_Goblin4->AddComponent<MaterialComponent>(m_Goblin4->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
             material4->Albedo = { 1, 1, 1, 1 };
             material4->Emission = { 0, 0, 10 };
-            material4->Metallness = 1;
-            material4->Roughness = 1;
-            material4->AO = 0;
+            material4->Metallness = 0.5;
+            material4->Roughness = 0.5;
+            material4->AO = 0.5;
             material4->EnableAlbedoMap = false;
             material4->EnableNormalMap = false;
             material4->EnableRoughnessMap = false;
