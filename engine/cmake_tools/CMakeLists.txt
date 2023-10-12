@@ -189,6 +189,7 @@ macro(include_engine path)
         ${path}/thirdparty/PhysX/physx/include
         ${path}/thirdparty/PhysX/blast/include
         ${path}/thirdparty/PhysX/flow/include
+        ${path}/thirdparty/stbi
     )
 endmacro()
 

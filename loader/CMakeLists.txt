@@ -21,7 +21,6 @@ include_directories(
         include
         thirdparty/Assimp142/include
         thirdparty/Freetype/include
-        thirdparty/stbi
         thirdparty/libsndfile/include
 )
 

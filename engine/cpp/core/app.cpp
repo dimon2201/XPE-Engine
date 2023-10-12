@@ -104,23 +104,6 @@ namespace xpe {
             m_Game = CreateGame();
             InitGame();
 
-            Task audioTask;
-            audioTask.Todo = [this]() {
-                while (m_IsOpen) {
-                    m_AudioSystem->Update(m_MainScene);
-                    m_AudioSystem->UpdateListener(m_MainScene);
-                }
-            };
-            TaskManager::SubmitTask(audioTask);
-
-            Task animationTask;
-            animationTask.Todo = [this]() {
-                while (m_IsOpen) {
-                    m_Animator->Animate(m_MainScene, DeltaTime);
-                }
-            };
-            TaskManager::SubmitTask(animationTask);
-
             while (m_IsOpen)
             {
 
@@ -143,6 +126,17 @@ namespace xpe {
 
                 Update();
                 m_Game->Update();
+
+                // submit audio task with current scene state
+                TaskManager::SubmitTask({[this]() {
+                    m_AudioSystem->Update(m_MainScene);
+                    m_AudioSystem->UpdateListener(m_MainScene);
+                }});
+
+                // submit animation task with current scene state
+                TaskManager::SubmitTask({[this]() {
+                    m_Animator->Animate(m_MainScene, DeltaTime);
+                }});
 
                 Render();
 
