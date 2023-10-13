@@ -43,6 +43,12 @@ namespace xpe {
 
         Ref<Material> MaterialLoader::Load(const MaterialFilepath &filepath)
         {
+            if (m_Storage->Has(filepath.Name)) {
+                Ref<Material> materialRef;
+                materialRef.Create(*m_Storage->Get(filepath.Name));
+                return materialRef;
+            }
+
             Material material;
             int w, h, c;
 

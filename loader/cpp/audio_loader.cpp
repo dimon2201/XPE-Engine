@@ -7,6 +7,12 @@ namespace xpe {
 
 		Ref<AudioFile> AudioLoader::Load(const char* filepath)
 		{
+            if (m_Storage->Has(filepath)) {
+                Ref<AudioFile> audioFileRef;
+                audioFileRef.Create(*m_Storage->Get(filepath));
+                return audioFileRef;
+            }
+
 			Ref<AudioFile> fileRef = m_Storage->Add(filepath, AudioFile());
 			AudioFile& file = *fileRef;
 

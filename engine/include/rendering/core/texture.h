@@ -37,6 +37,10 @@ namespace xpe {
 
             void Free();
 
+            void CopyFrom(const TextureLayer& other);
+
+            TextureLayer Clone() const;
+
             void GenerateMips(const eTextureFormat& format, int width, int height);
 
             void GenerateMipsU8(int width, int height, int bpp, int channels);

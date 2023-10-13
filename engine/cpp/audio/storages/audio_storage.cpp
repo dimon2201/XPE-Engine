@@ -8,21 +8,21 @@ namespace xpe {
         {
             Ref<AudioFile> audioRef;
             audioRef.Create(audio);
-            m_Audio.insert({ filepath, audioRef });
+            m_Map.insert({filepath, audioRef });
             return audioRef;
         }
 
         void AudioStorage::Remove(const string& filepath)
         {
-            auto it = m_Audio.find(filepath);
-            if (it != m_Audio.end()) {
-                m_Audio.erase(it);
+            auto it = m_Map.find(filepath);
+            if (it != m_Map.end()) {
+                m_Map.erase(it);
             }
         }
 
         void AudioStorage::Clear()
         {
-            m_Audio.clear();
+            m_Map.clear();
         }
 
     }

@@ -213,6 +213,24 @@ namespace xpe {
             }
         }
 
+        void TextureLayer::CopyFrom(const TextureLayer &other)
+        {
+            Width = other.Width;
+            Height = other.Height;
+            Channels = other.Channels;
+            RowByteSize = other.RowByteSize;
+            main_free(Pixels);
+            Pixels = main_alloc(RowByteSize * Height);
+            memcpy(Pixels, other.Pixels, RowByteSize * Height);
+        }
+
+        TextureLayer TextureLayer::Clone() const
+        {
+            TextureLayer clone;
+            clone.CopyFrom(*this);
+            return clone;
+        }
+
         void TextureLayer::GenerateMips(const eTextureFormat &format, int width, int height)
         {
             if (Pixels == nullptr) return;

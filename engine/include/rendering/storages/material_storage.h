@@ -23,7 +23,7 @@ namespace xpe {
             template<typename... Args>
             Ref<Material> Add(const string& name, Args&&... args);
 
-            inline Ref<Material>& Get(const string& name) { return m_Materials[name]; }
+            inline Ref<Material>& Get(const string& name) { return m_Map[name]; }
 
             void Remove(const string& name);
 
@@ -31,12 +31,14 @@ namespace xpe {
 
             void BindPipeline(Pipeline& pipeline);
 
+            inline bool Has(const string& name) { return m_Map.find(name) != m_Map.end(); }
+
         private:
             void InitSampler();
 
             Ref<Texture> InitTextureArray(const MaterialFormat& materialFormat);
 
-            unordered_map<string, Ref<Material>> m_Materials;
+            unordered_map<string, Ref<Material>> m_Map;
             Ref<MaterialDataBuffer> m_DataBuffer;
         };
 
@@ -56,7 +58,7 @@ namespace xpe {
             materialRef->AOAtlas = AOAtlas;
             materialRef->EmissionAtlas = EmissionAtlas;
 
-            m_Materials[name] = materialRef;
+            m_Map[name] = materialRef;
 
             Material& material = *materialRef;
 

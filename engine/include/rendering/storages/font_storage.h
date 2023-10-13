@@ -13,7 +13,7 @@ namespace xpe {
 
             void Remove(const string& name);
 
-            inline Ref<Font>& Get(const string& name) { return m_Fonts[name]; }
+            inline Ref<Font>& Get(const string& name) { return m_Map[name]; }
 
             void Flush(Font& font);
 
@@ -29,8 +29,10 @@ namespace xpe {
                 return Get(name);
             }
 
+            inline bool Has(const string& name) { return m_Map.find(name) != m_Map.end(); }
+
         private:
-            unordered_map<string, Ref<Font>> m_Fonts;
+            unordered_map<string, Ref<Font>> m_Map;
         };
 
     }
