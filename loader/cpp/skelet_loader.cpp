@@ -91,6 +91,12 @@ namespace xpe {
 
         Ref<Skelet> SkeletLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
+            if (m_Storage->Has(filepath)) {
+                Ref<Skelet> skeletRef;
+                skeletRef.Create(*m_Storage->Get(filepath));
+                return skeletRef;
+            }
+
             Skelet skelet;
 
             Assimp::Importer importer;

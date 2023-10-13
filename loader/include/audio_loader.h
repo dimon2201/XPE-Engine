@@ -20,7 +20,6 @@ namespace xpe {
 
 		protected:
 			AudioStorage* m_Storage = nullptr;
-
 		};
 	}
 }

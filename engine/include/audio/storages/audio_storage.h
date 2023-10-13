@@ -16,14 +16,16 @@ namespace xpe {
 
             void Remove(const string& filepath);
 
-            inline Ref<AudioFile>& Get(const string& filepath) { return m_Audio[filepath]; }
+            inline Ref<AudioFile>& Get(const string& filepath) { return m_Map[filepath]; }
 
             void Clear();
 
             inline Ref<AudioFile>& operator[](const string& ffilepath) { return Get(ffilepath); }
 
+            inline bool Has(const string& name) { return m_Map.find(name) != m_Map.end(); }
+
         protected:
-            unordered_map<string, Ref<AudioFile>> m_Audio;
+            unordered_map<string, Ref<AudioFile>> m_Map;
         };
     }
 }

@@ -54,10 +54,10 @@ namespace xpe {
 
         void MaterialStorage::Remove(const string &name)
         {
-            auto it = m_Materials.find(name);
-            if (it != m_Materials.end()) {
+            auto it = m_Map.find(name);
+            if (it != m_Map.end()) {
                 u32 index = it->second->Index;
-                m_Materials.erase(it);
+                m_Map.erase(it);
 
                 m_DataBuffer->RemoveAt(index);
                 m_DataBuffer->Flush();
@@ -87,7 +87,7 @@ namespace xpe {
 
         void MaterialStorage::Clear()
         {
-            m_Materials.clear();
+            m_Map.clear();
 
             m_DataBuffer->Clear();
             m_DataBuffer->Flush();

@@ -9,21 +9,21 @@ namespace xpe {
             Ref<Skelet> skeletRef;
             skeletRef.Create(skelet);
             skeletRef->BoneBuffer.Resize(skelet.Bones.size());
-            m_Skelets.insert({ name, skeletRef });
+            m_Map.insert({name, skeletRef });
             return skeletRef;
         }
 
         void SkeletStorage::Remove(const string &name)
         {
-            auto it = m_Skelets.find(name);
-            if (it != m_Skelets.end()) {
-                m_Skelets.erase(it);
+            auto it = m_Map.find(name);
+            if (it != m_Map.end()) {
+                m_Map.erase(it);
             }
         }
 
         void SkeletStorage::Clear()
         {
-            m_Skelets.clear();
+            m_Map.clear();
         }
 
     }

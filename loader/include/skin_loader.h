@@ -26,6 +26,8 @@ namespace xpe {
                     eLoadOption::JOIN_VERTICES
             });
 
+        private:
+            unordered_map<string, Ref<SkinModel>> m_Map;
         };
 
     }

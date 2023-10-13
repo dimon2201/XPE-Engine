@@ -20,6 +20,12 @@ namespace xpe {
 
         Ref<Animation> AnimLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
+            if (m_Storage->Has(filepath)) {
+                Ref<Animation> animRef;
+                animRef.Create(*m_Storage->Get(filepath));
+                return animRef;
+            }
+
             Animation animation;
 
             Assimp::Importer importer;

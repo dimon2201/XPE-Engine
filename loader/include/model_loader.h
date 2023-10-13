@@ -26,6 +26,9 @@ namespace xpe {
                     eLoadOption::JOIN_VERTICES
             });
 
+        private:
+            unordered_map<string, Ref<Model3D>> m_Map;
+
         };
 
     }

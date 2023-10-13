@@ -11,6 +11,8 @@ namespace xpe {
 
     namespace res {
 
+        unordered_map<string, TextureLayer>* TextureLoader::s_Layers = nullptr;
+
         Ref<Texture> TextureLoader::Load(const char* filepath, const eTextureFormat &format)
         {
             Ref<Texture> texture = m_Storage->Add(filepath, {});
@@ -27,6 +29,14 @@ namespace xpe {
                 const eTextureFormat &format,
                 int &width, int &height, int &channels
         ) {
+            if (s_Layers == nullptr) {
+                s_Layers = new unordered_map<string, TextureLayer>();
+            }
+
+            if (s_Layers->find(filepath) != s_Layers->end()) {
+                return s_Layers->at(filepath).Clone();
+            }
+
             int desiredChannels = Texture::ChannelTable.at(format);
             TextureLayer layer;
             int w;

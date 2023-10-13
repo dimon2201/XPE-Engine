@@ -45,6 +45,7 @@ namespace xpe {
 
         private:
             TextureStorage* m_Storage;
+            static unordered_map<string, TextureLayer>* s_Layers;
         };
 
     }

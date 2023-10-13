@@ -36,6 +36,12 @@ namespace xpe {
 
         Ref<Font> FontLoader::Load(const char* filepath, usize glyphSize)
         {
+            if (m_Storage->Has(filepath)) {
+                Ref<Font> fontRef;
+                fontRef.Create(*m_Storage->Get(filepath));
+                return fontRef;
+            }
+
             Ref<Font> fontRef = m_Storage->Add(filepath, Font());
             Font& font = *fontRef;
             FT_Face fontFace = {};

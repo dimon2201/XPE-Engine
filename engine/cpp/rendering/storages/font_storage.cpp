@@ -8,13 +8,13 @@ namespace xpe {
         {
             Ref<Font> fontRef;
             fontRef.Create(font);
-            m_Fonts.insert({ name, fontRef });
+            m_Map.insert({name, fontRef });
             return fontRef;
         }
 
         void FontStorage::Remove(const string &name)
         {
-            m_Fonts.erase(name);
+            m_Map.erase(name);
         }
 
         void FontStorage::Flush(Font &font)
@@ -24,7 +24,7 @@ namespace xpe {
 
         void FontStorage::Clear()
         {
-            m_Fonts.clear();
+            m_Map.clear();
         }
 
     }

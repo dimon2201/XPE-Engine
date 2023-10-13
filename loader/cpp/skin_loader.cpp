@@ -139,6 +139,12 @@ namespace xpe {
 
         Ref<SkinModel> SkinLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
+            if (m_Map.find(filepath) != m_Map.end()) {
+                Ref<SkinModel> skinRef;
+                skinRef.Create(*m_Map[filepath]);
+                return skinRef;
+            }
+
             SkinModel model;
             hstring directory = FileManager::GetDirectory(filepath);
 
@@ -153,7 +159,9 @@ namespace xpe {
 
             ParseSkins(scene->mRootNode, scene, model, directory, flags);
 
-            return GeometryManager::AddSkinModel(model);
+            Ref<SkinModel> skinRef = GeometryManager::AddSkinModel(model);
+            m_Map.insert({ filepath, skinRef });
+            return skinRef;
         }
 
     }

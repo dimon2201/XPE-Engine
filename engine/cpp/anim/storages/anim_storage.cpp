@@ -8,21 +8,21 @@ namespace xpe {
         {
             Ref<Animation> animRef;
             animRef.Create(animation);
-            m_Anims.insert({ name, animRef });
+            m_Map.insert({name, animRef });
             return animRef;
         }
 
         void AnimStorage::Remove(const string &name)
         {
-            auto it = m_Anims.find(name);
-            if (it != m_Anims.end()) {
-                m_Anims.erase(it);
+            auto it = m_Map.find(name);
+            if (it != m_Map.end()) {
+                m_Map.erase(it);
             }
         }
 
         void AnimStorage::Clear()
         {
-            m_Anims.clear();
+            m_Map.clear();
         }
 
     }
