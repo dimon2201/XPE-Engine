@@ -18,9 +18,7 @@ namespace xpe
 
         public:
             SSAOPass(const vector<RenderPassBinding>& bindings, RenderTarget* output);
-            ~SSAOPass();
 
-            virtual void Update(Scene* scene) override final;
             virtual void Draw(Scene* scene) override final;
 
         private:

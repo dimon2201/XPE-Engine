@@ -40,6 +40,11 @@ namespace xpe {
             InitNormal<Vertex3D>(&vertices[0], &vertices[1], &vertices[2]);
         }
 
+        Line::Line()
+        {
+            PrimitiveTopology = ePrimitiveTopology::LINE_LIST;
+        }
+
         Quad2D::Quad2D()
         {
             PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;

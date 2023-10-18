@@ -7,22 +7,12 @@ namespace xpe {
     namespace render {
 
         SkeletalAnimPass::SkeletalAnimPass(
-            const vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            MaterialStorage* materialStorage
-        ) : InstancingPass(bindings, output, materialStorage)
+                const vector <RenderPassBinding> &bindings,
+                RenderTarget *output,
+                MaterialStorage *materialStorage
+        ) : InstancingPass(bindings, output)
         {
-            m_Pipeline->InputLayout.Format = VertexSkeletal::Format;
-            context::CreatePipeline(*m_Pipeline);
-        }
-
-        SkeletalAnimPass::~SkeletalAnimPass()
-        {
-        }
-
-        void SkeletalAnimPass::Update(Scene* scene)
-        {
-            GeometryManager::BindVertexBufferSkeletal();
+            materialStorage->BindPipeline(*m_Pipeline);
         }
 
         void SkeletalAnimPass::Draw(Scene* scene)

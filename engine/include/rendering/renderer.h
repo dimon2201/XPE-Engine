@@ -10,7 +10,6 @@ namespace xpe {
     namespace render {
 
         class RenderTarget;
-        class Drawer;
         class RenderPass;
         class CameraBuffer;
         class DirectLightBuffer;
@@ -30,32 +29,22 @@ namespace xpe {
             ~Renderer();
 
             template<typename T, typename ... Args>
-            void AddDrawer(Args &&... args);
-
-            template<typename T, typename ... Args>
             void AddRenderPass(Args &&... args);
-
-            void RemoveDrawer(Drawer* drawer);
 
             void Render(ecs::Scene* scene);
 
         private:
             void FlushLights(ecs::Scene* scene);
 
-            core::vector<Drawer*> m_Drawers;
             core::vector<RenderPass*> m_RenderPasses;
         };
 
         template<typename T, typename... Args>
-        void Renderer::AddDrawer(Args &&... args)
-        {
-            m_Drawers.emplace_back(new T(std::forward<Args>(args)...));
-        }
-
-        template<typename T, typename... Args>
         void Renderer::AddRenderPass(Args &&... args)
         {
-            m_RenderPasses.emplace_back(new T(std::forward<Args>(args)...));
+            T* renderPass = new T(std::forward<Args>(args)...);
+            renderPass->Init();
+            m_RenderPasses.emplace_back(renderPass);
         }
 
     }

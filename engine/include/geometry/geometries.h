@@ -38,6 +38,10 @@ namespace xpe {
             Triangle();
         };
 
+        struct Line : public Geometry<Vertex3D> {
+            Line();
+        };
+
         struct ENGINE_API Quad2D : public Geometry<Vertex2D> {
             Quad2D();
         };

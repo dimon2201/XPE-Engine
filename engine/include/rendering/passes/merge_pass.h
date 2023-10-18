@@ -20,10 +20,8 @@ namespace xpe {
             MergePass(
                     const vector<RenderPassBinding>& bindings,
                     RenderTarget* output
-            );
-            virtual ~MergePass();
+            ) : RenderPass(bindings, output) {}
 
-            virtual void Update(Scene* scene) override;
             virtual void Draw(Scene* scene) override;
 
         };

@@ -16,28 +16,20 @@ namespace xpe
             m_Buffer.StructureSize = sizeof(SSAOBufferLayout);
             m_Buffer.InitialData = nullptr;
             m_Buffer.Slot = 0;
+
             context::CreateBuffer(m_Buffer);
 
+            m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
             m_Pipeline->VSBuffers.emplace_back(&m_Buffer);
-
-            context::CreatePipeline(*m_Pipeline);
         }
 
-        SSAOPass::~SSAOPass()
-        {
-        }
-
-        void SSAOPass::Update(Scene* scene)
+        void SSAOPass::Draw(Scene* scene)
         {
             // TODO: very strange buffer update. In that case, better to replace CONSTANT buffer with STRUCTURED buffer.
             void* memory = context::Map(m_Buffer, 0, eMapType::WRITE_DISCARD);
             memcpy(memory, &m_BufferData, sizeof(SSAOBufferLayout));
             context::Unmap(m_Buffer);
-        }
 
-        void SSAOPass::Draw(Scene* scene)
-        {
-            context::BindPrimitiveTopology(m_Quad->PrimitiveTopology);
             context::DrawIndexed(m_Quad->Indices.size());
         }
     }

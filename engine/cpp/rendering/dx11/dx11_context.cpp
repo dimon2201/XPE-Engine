@@ -1402,7 +1402,7 @@ namespace xpe {
                 desc.MultisampleEnable = rasterizer.MultisampleEnable;
                 desc.AntialiasedLineEnable = rasterizer.AntialiasedLineEnable;
 
-                s_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**) &rasterizer.State);
+                s_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**) &rasterizer.Instance);
                 LogDebugMessage();
             }
 
@@ -1414,10 +1414,10 @@ namespace xpe {
 
             void FreeRasterizer(Rasterizer& rasterizer)
             {
-                if (rasterizer.State != nullptr) {
-                    ((ID3D11RasterizerState*) rasterizer.State)->Release();
+                if (rasterizer.Instance != nullptr) {
+                    ((ID3D11RasterizerState*) rasterizer.Instance)->Release();
                     LogDebugMessage();
-                    rasterizer.State = nullptr;
+                    rasterizer.Instance = nullptr;
                 }
             }
 

@@ -20,9 +20,6 @@ namespace xpe {
                     const vector<RenderPassBinding>& bindings,
                     RenderTarget* output
             );
-            ~TextPass() override;
-
-            virtual void Update(Scene* scene) override;
 
         protected:
             void DrawText(const Transform& transform, const string& text, const Ref<Font>& font);

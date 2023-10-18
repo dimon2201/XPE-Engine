@@ -75,36 +75,36 @@ if(EXISTS ${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/PhysXDevice64.d
     configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/binaries/release/PhysXDevice64.dll ${CMAKE_BINARY_DIR}/bin/release/PhysXDevice64.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysX.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysX.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysX.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysX.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysX.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysX.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysX.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysX.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysX.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysX.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysX.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysX.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCommon.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCommon.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysXCommon.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysXCommon.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysXCommon.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysXCommon.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCommon.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCommon.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCommon.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysXCommon.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysXCommon.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCommon.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCooking.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXCooking.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCooking.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysXCooking.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysXCooking.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCooking.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCooking.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXCooking.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCooking.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysXCooking.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysXCooking.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXCooking.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXFoundation.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/debug/PhysXFoundation.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysXFoundation.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysXFoundation.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/debug/PhysXFoundation.dll ${CMAKE_BINARY_DIR}/bin/Debug/PhysXFoundation.dll COPYONLY)
 endif()
 
-if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXFoundation.dll)
-    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXFoundation.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXFoundation.dll COPYONLY)
+if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysXFoundation.dll)
+    configure_file(${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.md/release/PhysXFoundation.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXFoundation.dll COPYONLY)
 endif()
 
 # Move shaders into bin folder

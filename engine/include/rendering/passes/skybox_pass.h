@@ -20,7 +20,6 @@ namespace xpe {
             );
             ~SkyboxPass() override;
 
-            virtual void Update(Scene* scene) override;
             virtual void Draw(Scene* scene) override;
 
         protected:

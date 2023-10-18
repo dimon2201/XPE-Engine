@@ -14,7 +14,6 @@ namespace xpe {
         {
             m_Cube = GeometryManager::AddGeometry(Cube());
 
-            m_Pipeline->InputLayout.Format = Vertex3D::Format;
             m_Pipeline->PrimitiveTopology = m_Cube->PrimitiveTopology;
 
             context::CreateSampler(m_Sampler);
@@ -24,17 +23,11 @@ namespace xpe {
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
             m_Pipeline->Blending.Targets[0].Enable = false;
-
-            context::CreatePipeline(*m_Pipeline);
         }
 
         SkyboxPass::~SkyboxPass()
         {
             context::FreeSampler(m_Sampler);
-        }
-
-        void SkyboxPass::Update(Scene* scene)
-        {
         }
 
         void SkyboxPass::Draw(Scene* scene)

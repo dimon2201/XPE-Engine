@@ -38,25 +38,11 @@ namespace xpe {
             delete PointLightBuffer;
             delete SpotLightBuffer;
 
-            for (Drawer* drawer : m_Drawers) {
-                delete drawer;
-            }
-            m_Drawers.clear();
-
             Shadow::Free();
             Monitor::Free();
             GeometryManager::Free();
             ShaderManager::Free();
             context::Free();
-        }
-
-        void Renderer::RemoveDrawer(Drawer* drawer)
-        {
-            auto it = std::find(m_Drawers.begin(), m_Drawers.end(), drawer);
-            if (it != m_Drawers.end()) {
-                m_Drawers.erase(it);
-                delete it.operator->();
-            }
         }
 
         void Renderer::Render(Scene* scene)
@@ -65,7 +51,6 @@ namespace xpe {
             FlushLights(scene);
             for (RenderPass* rp : m_RenderPasses)
             {
-                rp->Update(scene);
                 rp->Bind();
                 rp->Draw(scene);
                 rp->Unbind();

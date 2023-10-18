@@ -25,11 +25,8 @@ namespace xpe {
         public:
             InstancingPass(
                 const vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                MaterialStorage* materialStorage
+                RenderTarget* output
             );
-
-            ~InstancingPass() override;
 
         protected:
             void DrawInstanced(

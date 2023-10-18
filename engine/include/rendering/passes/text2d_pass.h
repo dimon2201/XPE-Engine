@@ -13,8 +13,7 @@ namespace xpe {
             Text2DPass(
                     const vector<RenderPassBinding>& bindings,
                     RenderTarget* output
-            );
-            ~Text2DPass() override;
+            ) : TextPass(bindings, output) {}
 
             virtual void Draw(Scene *scene) override;
 

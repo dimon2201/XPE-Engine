@@ -339,7 +339,7 @@ namespace xpe {
                     }
                 }
 
-                BindRasterizer(pipeline.Rasterizer.State);
+                BindRasterizer(pipeline.Rasterizer.Instance);
                 BindDepthStencilMode(pipeline.DepthStencil.State);
                 BindBlendMode(pipeline.Blending.State);
             }

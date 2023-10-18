@@ -19,9 +19,7 @@ namespace xpe {
                 RenderTarget* output,
                 MaterialStorage* materialStorage
             );
-            ~SkeletalAnimPass();
 
-            virtual void Update(Scene* scene) override final;
             virtual void Draw(Scene* scene) override final;
 
         };

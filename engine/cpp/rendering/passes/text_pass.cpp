@@ -15,17 +15,9 @@ namespace xpe {
             m_Quad = GeometryManager::AddGeometry<Vertex3D>(Quad());
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);
-            m_Pipeline->InputLayout.Format = Vertex3D::Format;
             m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
             m_Pipeline->Textures.emplace_back(nullptr);
             m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
-        }
-
-        TextPass::~TextPass() {}
-
-        void TextPass::Update(Scene *scene)
-        {
-            GeometryManager::BindVertexBuffer3D();
         }
 
         void TextPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)

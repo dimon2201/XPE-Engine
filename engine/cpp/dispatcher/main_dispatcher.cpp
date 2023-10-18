@@ -8,12 +8,10 @@ namespace xpe {
 
         void MainDispatcher::submitTask(PxBaseTask& pxTask)
         {
-            Task task;
-            task.Todo = [&pxTask]() {
+            Dispatch({ [&pxTask]() {
                 pxTask.run();
                 pxTask.release();
-            };
-            Dispatch(task);
+            }});
         }
 
         uint32_t MainDispatcher::getWorkerCount() const

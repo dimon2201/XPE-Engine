@@ -7,20 +7,12 @@ namespace xpe {
     namespace render {
 
         MainPass::MainPass(
-            const vector<RenderPassBinding> &bindings,
-            RenderTarget *output,
-            MaterialStorage *materialStorage
-        ) : InstancingPass(bindings, output, materialStorage)
+                const vector<RenderPassBinding> &bindings,
+                RenderTarget *output,
+                MaterialStorage *materialStorage
+        ) : InstancingPass(bindings, output)
         {
-            m_Pipeline->InputLayout.Format = Vertex3D::Format;
-            context::CreatePipeline(*m_Pipeline);
-        }
-
-        MainPass::~MainPass() {}
-
-        void MainPass::Update(Scene *scene)
-        {
-            GeometryManager::BindVertexBuffer3D();
+            materialStorage->BindPipeline(*m_Pipeline);
         }
 
         void MainPass::Draw(Scene* scene)

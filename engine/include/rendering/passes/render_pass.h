@@ -27,11 +27,18 @@ namespace xpe {
                 BUFFER = 0,
                 TEXTURE = 1,
                 SAMPLER = 2,
-                SHADER = 3
+                SHADER = 3,
+                RASTERIZER = 4,
+                DEPTH_STENCIL = 5,
+                BLENDING = 6,
+                VERTEX_2D = 7,
+                VERTEX_3D = 8,
+                VERTEX_SKELETAL = 9,
             };
 
             enum eStage
             {
+                NONE = -1,
                 VERTEX = 0,
                 PIXEL = 1
             };
@@ -41,9 +48,9 @@ namespace xpe {
             RenderPassBinding(
                 const string& tag,
                 const eType& type,
-                const eStage& stage,
-                const u32 slot,
-                GPUResource* resource
+                GPUResource* resource = nullptr,
+                const eStage& stage = eStage::NONE,
+                const u32 slot = 0
             ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource) {}
 
             string Tag;
@@ -60,14 +67,15 @@ namespace xpe {
             RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* output);
             virtual ~RenderPass();
 
-            virtual void Update(Scene* scene) = 0;
             virtual void Draw(Scene* scene) = 0;
 
+            void Init();
             void Bind();
             void Unbind();
 
         protected:
             vector<RenderPassBinding> m_Bindings;
+            RenderPassBinding* m_VertexBinding = nullptr;
             Pipeline* m_Pipeline = nullptr;
 
         };
