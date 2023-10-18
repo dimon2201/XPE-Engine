@@ -190,6 +190,7 @@ macro(include_engine path)
         ${path}/thirdparty/PhysX/blast/include
         ${path}/thirdparty/PhysX/flow/include
         ${path}/thirdparty/stbi
+        ${path}/thirdparty/pugixml/src
     )
 endmacro()
 

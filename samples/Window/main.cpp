@@ -49,6 +49,12 @@ public:
             LogError("test_config.json file not found in config/test_config.json path.");
         }
 
+        // read xml configs from file
+        if (!m_XmlConfig.LoadFile("config/xml_config.xml"))
+        {
+            LogError("xml_config.xml file not found in config/xml_config.xml path.");
+        }
+
         AddWindowClosed(GameApp, 1);
         AddKeyPressed(GameApp, 1);
         AddKeyHold(GameApp, 1);
@@ -606,6 +612,7 @@ private:
     Entity* m_BackgroundAudio;
 
     TestConfig m_TestConfig = string("TestConfig");
+    XmlConfig  m_XmlConfig = string("XmlConfig");
 };
 
 Application* CreateApplication() {

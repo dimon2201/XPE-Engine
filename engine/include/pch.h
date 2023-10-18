@@ -64,6 +64,7 @@
 #include <core/gamepadcodes.h>
 #include <core/singleton.h>
 #include <res/json.h>
+#include <res/xml.h>
 #include <core/config.h>
 #include <core/hardware.h>
 

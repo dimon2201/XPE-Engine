@@ -1,0 +1,10 @@
+<XmlConfig
+    Name="XmlConfig"
+    AnimateLight="true"
+    CameraFar="1000"
+    CameraMoveSpeed="0.05"
+    CameraZoomAcceleration="10.0"
+    CameraPanAcceleration="5.0"
+    CameraHorizontalSens="0.005"
+    CameraVerticalSens="0.005">
+</XmlConfig>

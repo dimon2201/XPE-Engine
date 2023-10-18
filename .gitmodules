@@ -20,3 +20,6 @@
 [submodule "engine/thirdparty/PhysX"]
 	path = engine/thirdparty/PhysX
 	url = https://github.com/CheerWizard/PhysX.git
+[submodule "engine/thirdparty/pugixml"]
+	path = engine/thirdparty/pugixml
+	url = https://github.com/zeux/pugixml.git

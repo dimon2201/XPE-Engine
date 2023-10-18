@@ -28,6 +28,7 @@ include_directories(
         thirdparty/PhysX/blast/include
         thirdparty/PhysX/flow/include
         thirdparty/stbi
+        thirdparty/pugixml/src
 )
 
 # Create shared dynamic library
@@ -44,10 +45,11 @@ add_subdirectory(thirdparty/json)
 add_subdirectory(thirdparty/openal-soft)
 add_subdirectory(thirdparty/libsndfile)
 add_subdirectory(thirdparty/PhysX/physx/compiler/public)
+add_subdirectory(thirdparty/pugixml)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile)
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile pugixml)
 
 # Link PhysX SDK
 target_link_libraries(${PROJECT_NAME} PUBLIC
