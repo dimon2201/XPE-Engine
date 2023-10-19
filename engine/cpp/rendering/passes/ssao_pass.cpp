@@ -23,13 +23,16 @@ namespace xpe
             m_Pipeline->VSBuffers.emplace_back(&m_Buffer);
         }
 
-        void SSAOPass::Draw(Scene* scene)
+        void SSAOPass::Update(Scene *scene)
         {
             // TODO: very strange buffer update. In that case, better to replace CONSTANT buffer with STRUCTURED buffer.
             void* memory = context::Map(m_Buffer, 0, eMapType::WRITE_DISCARD);
             memcpy(memory, &m_BufferData, sizeof(SSAOBufferLayout));
             context::Unmap(m_Buffer);
+        }
 
+        void SSAOPass::Draw(Scene* scene)
+        {
             context::DrawIndexed(m_Quad->Indices.size());
         }
     }

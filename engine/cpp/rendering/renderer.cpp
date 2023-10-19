@@ -51,6 +51,7 @@ namespace xpe {
             FlushLights(scene);
             for (RenderPass* rp : m_RenderPasses)
             {
+                rp->Update(scene);
                 rp->Bind();
                 rp->Draw(scene);
                 rp->Unbind();

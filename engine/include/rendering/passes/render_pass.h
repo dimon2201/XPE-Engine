@@ -67,6 +67,7 @@ namespace xpe {
             RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* output);
             virtual ~RenderPass();
 
+            virtual void Update(Scene* scene) {}
             virtual void Draw(Scene* scene) = 0;
 
             void Init();

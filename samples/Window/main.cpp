@@ -55,6 +55,12 @@ public:
             LogError("xml_config.xml file not found in config/xml_config.xml path.");
         }
 
+        // save xml configs from file
+        if (!m_XmlConfig.SaveFile("config/xml_config_saved.xml"))
+        {
+            LogError("xml_config_saved.xml file not found in config/xml_config_saved.xml path.");
+        }
+
         AddWindowClosed(GameApp, 1);
         AddKeyPressed(GameApp, 1);
         AddKeyHold(GameApp, 1);

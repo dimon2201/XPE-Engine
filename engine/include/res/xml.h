@@ -36,6 +36,10 @@ namespace xpe {
 
         protected:
             pugi::xml_document m_Doc;
+
+        private:
+            void FromXmlChildren(xml& root, xpe::core::vector<XmlObject*>& children);
+            void ToXmlChildren(xml& root, xpe::core::vector<XmlObject*>& children);
         };
 
     }

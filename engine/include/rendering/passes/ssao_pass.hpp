@@ -21,6 +21,8 @@ namespace xpe
 
             virtual void Draw(Scene* scene) override final;
 
+            void Update(Scene *scene) override;
+
         private:
             Buffer m_Buffer;
             SSAOBufferLayout m_BufferData;
