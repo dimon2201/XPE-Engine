@@ -1,8 +1,6 @@
 #include <core/app.hpp>
-#include <core/windowing.hpp>
 
 #include <ecs/scenes.hpp>
-#include <ecs/entities.hpp>
 
 #include <rendering/core/debugger.h>
 
@@ -10,14 +8,13 @@
 #include <rendering/renderer.h>
 
 #include <rendering/passes/canvas.hpp>
-#include <rendering/passes/instancing_pass.h>
+#include <rendering/passes/opaque_pass.h>
+#include <rendering/passes/transparent_pass.h>
 #include <rendering/passes/skeletal_anim_pass.h>
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
-#include <rendering/passes/skybox_pass.h>
 #include <rendering/passes/merge_pass.h>
 #include <rendering/passes/ssao_pass.hpp>
-#include <rendering/passes/fxaa_pass.hpp>
 
 #include <rendering/shadow/shadow.h>
 
@@ -30,7 +27,9 @@
 #include <audio/audio_system.h>
 #include <audio/storages/audio_storage.h>
 
-#include <thread>
+#include <physics/physics.h>
+
+#include <dispatcher/main_dispatcher.h>
 
 namespace xpe {
 
@@ -38,6 +37,7 @@ namespace xpe {
     using namespace ecs;
     using namespace anim;
     using namespace audio;
+    using namespace physics;
 
     namespace core {
 
@@ -61,6 +61,16 @@ namespace xpe {
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
 
+            MainDispatcher* mainDispatcher = new MainDispatcher(
+                    Hardware::CPU.Cores,
+                    100,
+                    "Worker",
+                    Thread::ePriority::NORMAL
+            );
+
+            TaskManager::Init(mainDispatcher);
+            PhysicsManager::Init(mainDispatcher);
+
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
 
@@ -70,22 +80,16 @@ namespace xpe {
             debugger::DebugWarnings = Config.DebugWarnings;
             debugger::DebugInfo = Config.DebugInfo;
 
-            Viewport viewport;
-            viewport.Width = winDesc.Width;
-            viewport.Height = winDesc.Height;
-            viewport.MinDepth = 0.0f;
-            viewport.MaxDepth = 1.0f;
-            viewport.TopLeftX = 0.0f;
-            viewport.TopLeftY = 0.0f;
+            Viewport* viewport = new Viewport();
+            viewport->Width = winDesc.Width;
+            viewport->Height = winDesc.Height;
 
-            m_Renderer = new Renderer(&viewport, m_UseMSAA, m_MSAASampleCount);
+            m_Renderer = new Renderer(viewport, m_UseMSAA, m_MSAASampleCount);
             m_FontStorage = new FontStorage();
-            m_GeometryStorage = new GeometryStorage();
             m_MaterialStorage = new MaterialStorage();
             m_TextureStorage = new TextureStorage();
 
             m_SkeletStorage = new SkeletStorage();
-            m_SkinStorage = new SkinStorage();
             m_AnimStorage = new AnimStorage();
             m_Animator = new Animator(m_SkeletStorage);
 
@@ -105,14 +109,7 @@ namespace xpe {
             m_Game = CreateGame();
             InitGame();
 
-            std::atomic<bool> AudioThreadFlag(true);
-            std::thread AudioThread([this, &AudioThreadFlag]() {
-                while (AudioThreadFlag) {
-                    m_AudioSystem->Update(m_MainScene);
-                }
-            });
-
-            while (!WindowManager::ShouldClose())
+            while (m_IsOpen)
             {
 
                 // measure cpu ticks in seconds and log CPU time
@@ -132,18 +129,26 @@ namespace xpe {
 
                 CurrentTime = cpuTimer.GetStartTime();
 
-                m_Animator->Animate(m_MainScene, DeltaTime);
-
                 Update();
-
                 m_Game->Update();
+
+                // submit audio task with current scene state
+                TaskManager::SubmitTask({[this]() {
+                    m_AudioSystem->Update(m_MainScene);
+                    m_AudioSystem->UpdateListener(m_MainScene);
+                }});
+
+                // submit animation task with current scene state
+                TaskManager::SubmitTask({[this]() {
+                    m_Animator->Animate(m_MainScene, DeltaTime);
+                }});
 
                 Render();
 
-                m_AudioSystem->UpdateListener(m_MainScene);
-
                 WindowManager::PollEvents();
                 WindowManager::Swap();
+
+                m_IsOpen = !WindowManager::ShouldClose();
 
                 // measure delta ticks in seconds and log delta
 #ifdef DEBUG
@@ -157,9 +162,6 @@ namespace xpe {
 
             }
 
-            AudioThreadFlag = false;
-            AudioThread.join();
-
             m_Game->Free();
             delete m_Game;
             Free();
@@ -167,12 +169,10 @@ namespace xpe {
             delete m_MainScene;
 
             delete m_FontStorage;
-            delete m_GeometryStorage;
             delete m_MaterialStorage;
             delete m_TextureStorage;
 
             delete m_AnimStorage;
-            delete m_SkinStorage;
             delete m_SkeletStorage;
             delete m_Animator;
 
@@ -182,10 +182,14 @@ namespace xpe {
             delete m_Canvas;
             delete m_Renderer;
 
+            PhysicsManager::Free();
+
             Input::Free();
 
             WindowManager::FreeWindow();
             WindowManager::Free();
+
+            TaskManager::Free();
 
             FreeLogger();
         }
@@ -211,11 +215,9 @@ namespace xpe {
             m_Game->Renderer = m_Renderer;
             m_Game->FontStorage = m_FontStorage;
             m_Game->MaterialStorage = m_MaterialStorage;
-            m_Game->GeometryStorage = m_GeometryStorage;
             m_Game->TextureStorage = m_TextureStorage;
 
             m_Game->SkeletStorage = m_SkeletStorage;
-            m_Game->SkinStorage = m_SkinStorage;
             m_Game->AnimStorage = m_AnimStorage;
             m_Game->Animator = m_Animator;
 
@@ -232,7 +234,7 @@ namespace xpe {
 
         void Application::InitRenderer()
         {
-            // Canvas
+            // Canvas pass
             Shader* shader = ShaderManager::CreateShader("canvas");
             ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/canvas.vs");
             ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
@@ -241,29 +243,30 @@ namespace xpe {
 
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
+            RenderTarget* rendererRT = m_Renderer->GetRenderTarget();
 
-            // Instancing pass
+            // Main pass
             {
-                Shader* shader = ShaderManager::CreateShader("instancing");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/instancing_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass.ps");
+                Shader* shader = ShaderManager::CreateShader("main");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/main_opaque_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
-                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, m_Renderer->CameraBuffer },
-                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, m_Renderer->DirectLightBuffer },
-                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, m_Renderer->PointLightBuffer },
-                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, m_Renderer->SpotLightBuffer },
-                    { "MonitorBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, Monitor::Get().GetBuffer() },
-                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, Shadow::Get().GetBuffer() }
+                        { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->DirectLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->PointLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                        { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->SpotLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                        { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, Shadow::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_Renderer->AddRenderPass<InstancingPass>(
+                m_Renderer->AddRenderPass<OpaquePass>(
                     bindings,
                     m_MaterialStorage,
-                    m_UseMSAA,
-                    m_Renderer->GetRenderTarget()
+                    rendererRT
                 );
             }
 
@@ -271,24 +274,24 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("skeletal_anim");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeletal_anim_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass.ps");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/main_opaque_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
-                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, m_Renderer->CameraBuffer },
-                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, m_Renderer->DirectLightBuffer },
-                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, m_Renderer->PointLightBuffer },
-                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, m_Renderer->SpotLightBuffer },
-                    { "MonitorBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, Monitor::Get().GetBuffer() },
-                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT, Shadow::Get().GetBuffer() }
+                    { "VertexSkeletal", RenderPassBinding::eType::VERTEX_SKELETAL },
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->DirectLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->PointLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->SpotLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, Shadow::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT }
                 };
 
                 m_Renderer->AddRenderPass<SkeletalAnimPass>(
                     bindings,
                     m_MaterialStorage,
-                    m_UseMSAA,
-                    m_Renderer->GetRenderTarget()
+                    rendererRT
                 );
             }
 
@@ -300,15 +303,15 @@ namespace xpe {
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
-                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, m_Renderer->CameraBuffer },
-                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, m_Canvas->GetBuffer() }
+                    { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, m_Canvas->GetBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT }
                 };
 
                 m_Renderer->AddRenderPass<Text2DPass>(
                     bindings,
-                    m_GeometryStorage,
-                    m_Renderer->GetRenderTarget()
+                    rendererRT
                 );
             }
 
@@ -320,15 +323,14 @@ namespace xpe {
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
-                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, m_Renderer->CameraBuffer },
-                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, m_Canvas->GetBuffer() }
+                    { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                 };
 
                 m_Renderer->AddRenderPass<Text3DPass>(
                     bindings,
-                    m_GeometryStorage,
-                    m_Renderer->GetRenderTarget()
+                    rendererRT
                 );
             }
 
@@ -336,13 +338,19 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("ssao");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/ssao_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, m_UseMSAA == core::K_TRUE ? "engine_shaders/passes/msaa/ssao_pass.ps" : "engine_shaders/passes/ssao_pass.ps");
+                if (m_UseMSAA == core::K_FALSE) {
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/ssao_pass.ps");
+                } else if (m_UseMSAA == core::K_TRUE) {
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/msaa/ssao_pass.ps");
+                }
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
-                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, m_Renderer->GetRenderTarget()->Colors[3] },
-                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, m_Renderer->GetRenderTarget()->Colors[4] }
+                    { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, rendererRT->Colors[3], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, rendererRT->Colors[4], RenderPassBinding::eStage::PIXEL, 1 },
+                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, rendererRT->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
                 m_SSAOPass = m_Renderer->AddRenderPass<SSAOPass>(
@@ -353,41 +361,21 @@ namespace xpe {
                 );
             }
 
-            // FXAA pass
-            {
-                if (m_UseMSAA == core::K_FALSE)
-                {
-                    Shader* shader = ShaderManager::CreateShader("fxaa");
-                    ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
-                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
-                    ShaderManager::BuildShader(shader);
-
-                    vector<RenderPassBinding> bindings = {
-                        { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                        { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, MainRT->Colors[0] }
-                    };
-
-                    m_FXAAPass = m_Renderer->AddRenderPass<FXAAPass>(
-                        bindings,
-                        m_Canvas->GetDimension(),
-                        canvasViewport
-                    );
-                }
-            }
-
             // Merge pass
             {
                 Shader* shader = ShaderManager::CreateShader("merge");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/merge_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, m_UseMSAA == core::K_TRUE ? "engine_shaders/passes/msaa/merge_pass.ps" : "engine_shaders/passes/merge_pass.ps");
+                if (m_UseMSAA == core::K_FALSE) {
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_pass.ps");
+                } else if(m_UseMSAA == core::K_TRUE) {
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/msaa/merge_pass.ps");
+                }
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
-                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 0, m_Renderer->GetRenderTarget()->Colors[0] },
-                    { "AccumTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 1, m_Renderer->GetRenderTarget()->Colors[1] },
-                    { "RevealTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 2, m_Renderer->GetRenderTarget()->Colors[2] },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, RenderPassBinding::eStage::PIXEL, 3, m_SSAOPass->GetRenderTarget()->Colors[0] }
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, rendererRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SSAOPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 3}
                 };
 
                 m_Renderer->AddRenderPass<MergePass>(
@@ -399,7 +387,7 @@ namespace xpe {
 
         void Application::Render()
         {
-            m_Renderer->GetRenderTarget()->ClearColor(0, glm::vec4(1.0f));
+            m_Renderer->GetRenderTarget()->ClearColor(0, glm::vec4(0.0f));
             m_Renderer->GetRenderTarget()->ClearColor(1, glm::vec4(0.0f));
             m_Renderer->GetRenderTarget()->ClearColor(2, glm::vec4(0.0f));
             m_Renderer->GetRenderTarget()->ClearColor(3, glm::vec4(0.0f));
