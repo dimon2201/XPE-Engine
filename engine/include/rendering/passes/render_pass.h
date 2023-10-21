@@ -1,5 +1,7 @@
 #pragma once
 
+#include <geometry/geometry_manager.h>
+
 namespace xpe {
 
     namespace ecs
@@ -25,11 +27,19 @@ namespace xpe {
                 BUFFER = 0,
                 TEXTURE = 1,
                 SAMPLER = 2,
-                SHADER = 3
+                SHADER = 3,
+                RASTERIZER = 4,
+                DEPTH_STENCIL = 5,
+                BLENDING = 6,
+                VERTEX_2D = 7,
+                VERTEX_3D = 8,
+                VERTEX_SKELETAL = 9,
+                RENDER_TARGET = 10
             };
 
             enum eStage
             {
+                NONE = -1,
                 VERTEX = 0,
                 PIXEL = 1
             };
@@ -39,39 +49,43 @@ namespace xpe {
             RenderPassBinding(
                 const string& tag,
                 const eType& type,
-                const eStage& stage,
-                const u32 slot,
-                GPUResource* resource
-            ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource)
-            {
-            }
+                void* instance = nullptr,
+                const eStage& stage = eStage::NONE,
+                const u32 slot = 0
+            ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Instance(instance) {}
 
             string Tag;
             eType Type;
             eStage Stage;
             u32 Slot;
-            GPUResource* Resource;
+            void* Instance;
         };
 
         class ENGINE_API RenderPass : public Object
         {
 
         public:
-            RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* target);
+            enum eType
+            {
+                OPAQUE = 0,
+                TRANSPARENT = 1,
+                GUI = 2
+            };
+
+            RenderPass(const vector<RenderPassBinding>& bindings);
             virtual ~RenderPass();
 
-            virtual void Update(Scene* scene) = 0;
             virtual void Draw(Scene* scene) = 0;
 
+            void Init();
             void Bind();
             void Unbind();
 
-            RenderTarget* GetRenderTarget();
-            void SetRenderTarget(RenderTarget* target);
+            inline RenderTarget* GetRenderTarget() { return m_Pipeline->RenderTarget; }
 
         protected:
-            core::Boolean m_UseMainTarget;
             vector<RenderPassBinding> m_Bindings;
+            RenderPassBinding* m_VertexBinding = nullptr;
             Pipeline* m_Pipeline = nullptr;
 
         };

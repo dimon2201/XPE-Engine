@@ -16,10 +16,10 @@ namespace xpe {
             LogInfo("ShaderManager::Init()");
 
             s_Storage = new ShaderStorage();
-            os::FileManager::CreateDir("generated");
-            os::FileManager::CreateDir("generated/shaders");
-            os::FileManager::CreateDir("generated/engine_shaders");
-            os::FileManager::CreateDir("generated/engine_shaders/passes");
+            FileManager::CreateDir("generated");
+            FileManager::CreateDir("generated/shaders");
+            FileManager::CreateDir("generated/engine_shaders");
+            FileManager::CreateDir("generated/engine_shaders/passes");
 
             LogInfo("ShaderManager initialized");
         }
@@ -45,7 +45,7 @@ namespace xpe {
                 return;
             }
 
-            string src = os::FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Vertex stage from filepath {}", filepath);
@@ -65,7 +65,7 @@ namespace xpe {
                 return;
             }
 
-            string src = os::FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Pixel stage from filepath {}", filepath);
@@ -85,7 +85,7 @@ namespace xpe {
                 return;
             }
 
-            string src = os::FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add GeometryInstances stage from filepath {}", filepath);
@@ -105,7 +105,7 @@ namespace xpe {
                 return;
             }
 
-            string src = os::FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Tesselation Control stage from filepath {}", filepath);
@@ -125,7 +125,7 @@ namespace xpe {
                 return;
             }
 
-            string src = os::FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Tesselation Evaluation stage from filepath {}", filepath);
@@ -145,7 +145,7 @@ namespace xpe {
                 return;
             }
 
-            string src = os::FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Compute stage from filepath {}", filepath);
@@ -256,7 +256,7 @@ namespace xpe {
 
             auto it = stages.find(filepath);
             if (it != stages.end()) {
-                string src = os::FileManager::ReadFileWithIncludes(filepath, "#include");
+                string src = FileManager::ReadFileWithIncludes(filepath, "#include");
 
                 if (src.empty()) {
                     LogError("Failed to read shader stage source from {}", filepath);
@@ -305,7 +305,7 @@ namespace xpe {
             hstringstream ss;
             ss << "generated/" << filepath;
             hstring generatedFilepath = ss.str();
-            os::FileManager::WriteFile(generatedFilepath.c_str(), src);
+            FileManager::WriteFile(generatedFilepath.c_str(), src);
         }
 
     }

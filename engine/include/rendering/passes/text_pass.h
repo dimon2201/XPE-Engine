@@ -10,25 +10,20 @@ namespace xpe {
 
         using namespace core;
 
-        class GeometryStorage;
         class Font;
 
         class ENGINE_API TextPass : public RenderPass
         {
 
         public:
-            TextPass(
-                const core::vector<RenderPassBinding>& bindings,
-                GeometryStorage* geometryStorage,
-                RenderTarget* output
-            );
-            ~TextPass() override;
+            TextPass(const vector<RenderPassBinding>& bindings);
 
         protected:
             void DrawText(const Transform& transform, const string& text, const Ref<Font>& font);
 
             TextBuffer m_TextBuffer;
             TransformBuffer m_TransformBuffer;
+            Ref<Geometry<Vertex3D>> m_Quad;
         };
 
     }

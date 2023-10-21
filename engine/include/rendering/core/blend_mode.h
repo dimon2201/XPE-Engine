@@ -57,8 +57,17 @@ namespace xpe {
             void* State = nullptr;
             bool AlphaToCoverageEnable = false;
             bool IndependentBlendEnable = false;
-            // blend mode can only have maximum 8 targets per passess
-            array<BlendTarget, 8> Targets;
+            // blend mode can only have maximum 8 targets per passes
+            vector<BlendTarget> Targets;
+
+            BlendMode() = default;
+            BlendMode(const vector<BlendTarget>& targets);
+            ~BlendMode();
+
+            void Bind();
+
+        private:
+            void Init();
         };
 
     }

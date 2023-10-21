@@ -4,22 +4,22 @@ namespace xpe {
 
         void* Object::operator new(usize byteSize)
         {
-            return alloc(byteSize);
+            return main_alloc(byteSize);
         }
 
         void Object::operator delete(void* address)
         {
-            return dealloc(address);
+            return main_free(address);
         }
 
         void* HotObject::operator new(usize byteSize)
         {
-            return halloc(byteSize);
+            return hot_alloc(byteSize);
         }
 
         void HotObject::operator delete(void* address)
         {
-            return dehalloc(address);
+            return hot_free(address);
         }
 
     }

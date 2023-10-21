@@ -9,7 +9,7 @@ namespace xpe
     namespace render
     {
         SSAOPass::SSAOPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport, core::Boolean useMSAA, core::usize msaaSampleCount)
-            : RenderPass(bindings, nullptr)
+            : RenderPass(bindings)
         {
             m_Buffer.Type = eBufferType::CONSTANT;
             m_Buffer.Usage = eBufferUsage::DYNAMIC;
@@ -42,21 +42,15 @@ namespace xpe
 
             m_Pipeline->RenderTarget = new RenderTarget({ color }, depth, *viewport);
 
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+
             context::CreatePipeline(*m_Pipeline);
         }
 
         SSAOPass::~SSAOPass()
         {
-        }
-
-        void SSAOPass::Update(Scene* scene)
-        {
-            // TODO: very strange buffer update. In that case, better to replace CONSTANT buffer with STRUCTURED buffer.
-            m_BufferData.SSAODirectionCount = 4;
-            m_BufferData.SSAOSampleCount = 4;
-            void* memory = context::Map(m_Buffer, 0, eMapType::WRITE_DISCARD);
-            memcpy(memory, &m_BufferData, sizeof(SSAOBufferLayout));
-            context::Unmap(m_Buffer);
         }
 
         void SSAOPass::Draw(Scene* scene)

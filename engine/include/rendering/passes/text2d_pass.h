@@ -10,14 +10,8 @@ namespace xpe {
         {
 
         public:
-            Text2DPass(
-                const core::vector<RenderPassBinding>& bindings,
-                GeometryStorage* geometryStorage,
-                RenderTarget* output
-            );
-            ~Text2DPass() override;
+            Text2DPass(const vector<RenderPassBinding>& bindings) : TextPass(bindings) {}
 
-            virtual void Update(Scene *scene) override;
             virtual void Draw(Scene *scene) override;
 
         };

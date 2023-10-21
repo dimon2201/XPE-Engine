@@ -21,10 +21,14 @@ namespace xpe
         {
 
         public:
-            SSAOPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport, core::Boolean useMSAA, core::usize msaaSampleCount);
+            SSAOPass(
+                const core::vector<RenderPassBinding>& bindings,
+                Viewport* viewport,
+                core::Boolean useMSAA,
+                core::usize msaaSampleCount
+            );
             ~SSAOPass();
 
-            virtual void Update(Scene* scene) override final;
             virtual void Draw(Scene* scene) override final;
 
         private:

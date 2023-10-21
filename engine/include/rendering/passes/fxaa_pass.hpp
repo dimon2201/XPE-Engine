@@ -16,7 +16,6 @@ namespace xpe
             FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport);
             ~FXAAPass();
 
-            virtual void Update(Scene* scene) override final;
             virtual void Draw(Scene* scene) override final;
 
             inline RenderTarget* GetRenderTarget() { return m_Pipeline->RenderTarget; }

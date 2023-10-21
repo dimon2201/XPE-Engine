@@ -70,25 +70,14 @@ namespace xpe {
             v3->Tangent = tangent;
         }
 
-        template<typename T>
-        struct GeometryVertexed : public Object
+        template<typename V>
+        struct Geometry : public Object
         {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            render::VertexBuffer<T> Vertices;
-
-            GeometryVertexed() = default;
-            GeometryVertexed(usize vertexCount) : Vertices(vertexCount) {}
-        };
-
-        template<typename T>
-        struct GeometryIndexed : public Object
-        {
-            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            render::VertexBuffer<T> Vertices;
-            render::IndexBuffer Indices;
-
-            GeometryIndexed() = default;
-            GeometryIndexed(usize vertexCount, usize indexCount) : Vertices(vertexCount), Indices(indexCount) {}
+            usize VertexOffset = 0;
+            vector<V> Vertices;
+            usize IndexOffset = 0;
+            vector<u32> Indices;
         };
 
     }

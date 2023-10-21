@@ -6,9 +6,9 @@ namespace xpe {
         static std::shared_ptr<spdlog::logger> s_Tracer;
         static std::shared_ptr<spdlog::logger> s_MemLogger;
         // [DateTime][Hours:Minutes:Seconds:Milliseconds]: Message
-        static const char* s_LogPattern = "[%D][%H:%M:%S.%e]: %^%v%$";
+        static const char* s_LogPattern = "[%l][%D][%H:%M:%S.%e]: %^%v%$";
         // [DateTime][Hours:Minutes:Seconds:Milliseconds] FunctionName(FileName:CodeLine) Message
-        static const char* s_TracePattern = "[%D][%H:%M:%S.%e] %^%!(%s:%#) %v%$";
+        static const char* s_TracePattern = "[%l][%D][%H:%M:%S.%e] %^%!(%s:%#) %v%$";
 
         using LogSinkColor = spdlog::sinks::stdout_color_sink_mt;
         using ErrorSinkColor = spdlog::sinks::stderr_color_sink_mt;
@@ -44,7 +44,7 @@ namespace xpe {
                 ss << name << "_Logger";
                 hstring logName = ss.str();
                 ss = {};
-                ss << "logs/" << name << ".log";
+                ss << "logs/" << name << ".logs";
                 hstring filepath = ss.str();
                 ss = {};
                 s_Logger = CreateLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);
@@ -52,7 +52,7 @@ namespace xpe {
                 ss << name << "_Tracer";
                 logName = ss.str();
                 ss = {};
-                ss << "logs/" << name << ".trace";
+                ss << "logs/" << name << ".logs";
                 filepath = ss.str();
                 ss = {};
                 s_Tracer = CreateLogger(logName.c_str(), filepath.c_str(), s_TracePattern, backtrace);
@@ -60,7 +60,7 @@ namespace xpe {
                 ss << name << "_Memory";
                 logName = ss.str();
                 ss = {};
-                ss << "logs/" << name << ".memory";
+                ss << "logs/" << name << ".logs";
                 filepath = ss.str();
                 ss = {};
                 s_MemLogger = CreateLogger(logName.c_str(), filepath.c_str(), s_LogPattern, backtrace);

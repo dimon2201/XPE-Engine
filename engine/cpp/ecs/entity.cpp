@@ -1,5 +1,3 @@
-#pragma once
-
 #include <ecs/entity.h>
 
 namespace xpe {
@@ -18,7 +16,13 @@ namespace xpe {
         {
             if (m_Scene != nullptr) {
                 m_Scene->RemoveEntity(m_Tag);
+                m_Scene->RemoveComponents(m_Tag);
             }
+        }
+
+        void Entity::RemoveComponents()
+        {
+            m_Scene->RemoveComponents(m_Tag);
         }
 
     }

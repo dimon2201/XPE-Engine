@@ -1,7 +1,5 @@
 #include <rendering/passes/skybox_pass.h>
 
-#include <rendering/storages/geometry_storage.h>
-
 #include <ecs/scene.h>
 #include <ecs/globals.h>
 
@@ -10,19 +8,12 @@ namespace xpe {
     namespace render {
 
         SkyboxPass::SkyboxPass(
-            const core::vector<RenderPassBinding>& bindings,
-            RenderTarget* output,
-            GeometryStorage* geometryStorage
-        ) : RenderPass(bindings, nullptr)
+                const vector<RenderPassBinding>& bindings
+        ) : RenderPass(bindings)
         {
-            auto& cube = geometryStorage->GetGeometryIndexed3D("SkyCube");
-            if (cube.Get() == nullptr) {
-                cube = geometryStorage->AddGeometryIndexed3D("SkyCube", Cube());
-            }
-            m_Pipeline->InputLayout.Format = Vertex3D::Format;
-            m_Pipeline->PrimitiveTopology = cube->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &cube->Vertices;
-            m_Pipeline->IndexBuffer = &cube->Indices;
+            m_Cube = GeometryManager::AddGeometry(Cube());
+
+            m_Pipeline->PrimitiveTopology = m_Cube->PrimitiveTopology;
 
             context::CreateSampler(m_Sampler);
             m_Pipeline->Textures.emplace_back(nullptr);
@@ -30,7 +21,10 @@ namespace xpe {
 
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
-            m_Pipeline->Blending.Targets[0].Enable = false;
+            
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
 
             context::CreatePipeline(*m_Pipeline);
         }
@@ -40,15 +34,11 @@ namespace xpe {
             context::FreeSampler(m_Sampler);
         }
 
-        void SkyboxPass::Update(Scene* scene)
-        {
-        }
-
         void SkyboxPass::Draw(Scene* scene)
         {
             Skybox* skybox = scene->GetGlobal<Skybox>();
             m_Pipeline->Textures[0] = skybox->CubeTexture.Get();
-            context::DrawIndexed(0, 0, 36, 1);
+            context::DrawIndexed(36);
         }
 
     }

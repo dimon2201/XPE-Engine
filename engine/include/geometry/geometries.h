@@ -22,29 +22,48 @@ namespace xpe {
 
         Json(VertexBuffer<Vertex2D>, List)
         Json(VertexBuffer<Vertex3D>, List)
-        Json(VertexBuffer<SkeletalVertex>, List)
+        Json(VertexBuffer<VertexSkeletal>, List)
 
         Json(IndexBuffer, List)
 
-        Json(GeometryVertexed<Vertex2D>, PrimitiveTopology, Vertices)
-        Json(GeometryVertexed<Vertex3D>, PrimitiveTopology, Vertices)
-        Json(GeometryVertexed<SkeletalVertex>, PrimitiveTopology, Vertices)
+        Json(Geometry<Vertex2D>, PrimitiveTopology, VertexOffset, Vertices, IndexOffset, Indices)
+        Json(Geometry<Vertex3D>, PrimitiveTopology, VertexOffset, Vertices, IndexOffset, Indices)
+        Json(Geometry<VertexSkeletal>, PrimitiveTopology, VertexOffset, Vertices, IndexOffset, Indices)
 
-        Json(GeometryIndexed<Vertex2D>, PrimitiveTopology, Vertices, Indices.List)
-        Json(GeometryIndexed<Vertex3D>, PrimitiveTopology, Vertices, Indices.List)
-        Json(GeometryIndexed<SkeletalVertex>, PrimitiveTopology, Vertices, Indices.List)
+        struct ENGINE_API Triangle2D : public Geometry<Vertex2D> {
+            Triangle2D();
+        };
 
-        ENGINE_API GeometryVertexed<Vertex2D> Triangle2D();
-        ENGINE_API GeometryVertexed<Vertex3D> Triangle();
+        struct ENGINE_API Triangle : public Geometry<Vertex3D> {
+            Triangle();
+        };
 
-        ENGINE_API GeometryIndexed<Vertex2D> Quad2D();
-        ENGINE_API GeometryIndexed<Vertex3D> Quad();
+        struct Line : public Geometry<Vertex3D> {
+            Line();
+        };
 
-        ENGINE_API GeometryIndexed<Vertex3D> Cube();
+        struct ENGINE_API Quad2D : public Geometry<Vertex2D> {
+            Quad2D();
+        };
 
-        ENGINE_API GeometryIndexed<Vertex3D> Plane(s32 size = 16);
+        struct ENGINE_API Quad : public Geometry<Vertex3D> {
+            Quad();
+        };
 
-        ENGINE_API GeometryIndexed<Vertex3D> Sphere(s32 xSegments = 64, s32 ySegments = 64);
+        struct ENGINE_API Cube : public Geometry<Vertex3D> {
+            Cube();
+        };
+
+        struct ENGINE_API Plane : public Geometry<Vertex3D> {
+            Plane(s32 size = 16);
+        };
+
+        struct ENGINE_API Sphere : public Geometry<Vertex3D> {
+            glm::vec3 Center;
+            float Radius;
+
+            Sphere(s32 xSegments = 64, s32 ySegments = 64);
+        };
 
         template<typename T>
         static void InitUV(vector<T>& vertices)
@@ -155,28 +174,21 @@ namespace xpe {
             InitTangent(&vertices[20], &vertices[21], &vertices[22], &vertices[23]);
         }
 
-        struct ENGINE_API Mesh : GeometryIndexed<Vertex3D>
-        {
-            Ref<Material> Material;
-
-            Mesh() = default;
-            Mesh(usize vertexCount, usize indexCount) : GeometryIndexed<Vertex3D>(vertexCount, indexCount) {}
-            ~Mesh() = default;
-        };
-
-        Json(Mesh, PrimitiveTopology, Vertices, Indices.List)
+        typedef Geometry<Vertex3D> Mesh;
 
         struct ENGINE_API Model3D : public Object
         {
             ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
             vector<Mesh> Meshes;
-            VertexBuffer<Vertex3D> Vertices;
-            IndexBuffer Indices;
+            usize VertexOffset = 0;
+            usize VertexCount = 0;
+            usize IndexOffset = 0;
+            vector<u32> Indices;
 
             inline Mesh& operator [](u32 i) { return Meshes[i]; }
         };
 
-        Json(Model3D, PrimitiveTopology, Meshes)
+        Json(Model3D, PrimitiveTopology, Meshes, VertexOffset, VertexCount, IndexOffset, Indices)
 
     }
 

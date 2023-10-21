@@ -8,10 +8,31 @@ namespace xpe {
 
         TransparentPass::TransparentPass(
             const vector<RenderPassBinding>& bindings,
-            MaterialStorage* materialStorage,
-            RenderTarget* output
-        ) : InstancingPass(bindings, output)
+            MaterialStorage* materialStorage
+        ) : InstancingPass(bindings)
         {
+            m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ZERO;
+
+            BlendTarget target;
+            target.Enable = true;
+            target.Src = eBlend::ONE;
+            target.Dest = eBlend::ONE;
+            target.BlendOp = eBlendOp::ADD;
+            target.SrcAlpha = eBlend::ONE;
+            target.DestAlpha = eBlend::ONE;
+            target.BlendOpAlpha = eBlendOp::ADD;
+            m_Pipeline->Blending.Targets.push_back(target);
+            target.Enable = true;
+            target.Src = eBlend::ZERO;
+            target.Dest = eBlend::INV_SRC_COLOR;
+            target.BlendOp = eBlendOp::ADD;
+            target.SrcAlpha = eBlend::ZERO;
+            target.DestAlpha = eBlend::INV_SRC_COLOR;
+            target.BlendOpAlpha = eBlendOp::ADD;
+            m_Pipeline->Blending.Targets.push_back(target);
+
+            context::CreatePipeline(*m_Pipeline);
+
             materialStorage->BindPipeline(*m_Pipeline);
         }
 
@@ -19,7 +40,7 @@ namespace xpe {
         {
             scene->EachComponent<GeometryComponent<Vertex3D>>([this](GeometryComponent<Vertex3D>* component)
                 {
-                    if (component->Entity->GetComponent<TransparentComponent>() != nullptr &&
+                    if (component->Entity->GetComponent<TransparentComponent>("Transparent") != nullptr &&
                         component->Geometry.Get() != nullptr) {
                         auto& geometry = *component->Geometry;
                         DrawInstanced(
@@ -36,7 +57,7 @@ namespace xpe {
 
             scene->EachComponent<MeshComponent>([this](MeshComponent* component)
                 {
-                    if (component->Entity->GetComponent<TransparentComponent>() != nullptr &&
+                    if (component->Entity->GetComponent<TransparentComponent>("Transparent") != nullptr &&
                         component->Mesh.Get() != nullptr) {
                         auto& mesh = *component->Mesh;
                         DrawInstanced(
@@ -53,7 +74,7 @@ namespace xpe {
 
             scene->EachComponent<ModelComponent>([this](ModelComponent* component)
                 {
-                    if (component->Entity->GetComponent<TransparentComponent>() != nullptr &&
+                    if (component->Entity->GetComponent<TransparentComponent>("Transparent") != nullptr &&
                         component->Model.Get() != nullptr) {
                         auto& model = *component->Model;
                         DrawInstanced(

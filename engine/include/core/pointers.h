@@ -36,7 +36,7 @@ namespace xpe {
         Scope<T>::~Scope()
         {
             if (m_Ptr != nullptr)
-                destruct(T, m_Ptr);
+                main_destruct(T, m_Ptr);
             m_Ptr = nullptr;
         }
 
@@ -44,7 +44,7 @@ namespace xpe {
         template<typename... Args>
         void Scope<T>::Create(Args &&... args)
         {
-            m_Ptr = alloc_construct_args(T, std::forward<Args>(args)...);
+            m_Ptr = main_construct_args(T, std::forward<Args>(args)...);
         }
 
         static std::unordered_map<void*, s64> RefCountTable = {};
@@ -95,7 +95,7 @@ namespace xpe {
         template<typename... Args>
         void Ref<T>::Create(Args &&... args)
         {
-            m_Ptr = alloc_construct_args(T, std::forward<Args>(args)...);
+            m_Ptr = main_construct_args(T, std::forward<Args>(args)...);
             RefCountTable.insert({ m_Ptr, 1 });
         }
 
@@ -103,10 +103,10 @@ namespace xpe {
         Ref<T>::~Ref()
         {
             RefCountTable[m_Ptr] -= 1;
-            if (RefCountTable[m_Ptr] <= 0) {
-                if (m_Ptr != nullptr)
-                    destruct(T, m_Ptr);
-                m_Ptr = nullptr;
+            if (RefCountTable[m_Ptr] < 0) {
+//                if (m_Ptr != nullptr)
+//                    main_destruct(T, m_Ptr);
+//                m_Ptr = nullptr;
             }
         }
 
@@ -193,7 +193,7 @@ namespace xpe {
         HotScope<T>::~HotScope()
         {
             if (m_Ptr != nullptr)
-                hdestruct(T, m_Ptr);
+                hot_destruct(T, m_Ptr);
             m_Ptr = nullptr;
         }
 
@@ -201,7 +201,7 @@ namespace xpe {
         template<typename... Args>
         void HotScope<T>::Create(Args &&... args)
         {
-            m_Ptr = halloc_construct_args(T, std::forward<Args>(args)...);
+            m_Ptr = hot_construct_args(T, std::forward<Args>(args)...);
         }
 
         template<typename T>
@@ -250,7 +250,7 @@ namespace xpe {
         template<typename... Args>
         void HotRef<T>::Create(Args &&... args)
         {
-            m_Ptr = halloc_construct_args(T, std::forward<Args>(args)...);
+            m_Ptr = hot_construct_args(T, std::forward<Args>(args)...);
             RefCountTable.insert({ m_Ptr, 1 });
         }
 
@@ -260,7 +260,7 @@ namespace xpe {
             RefCountTable[m_Ptr] -= 1;
             if (RefCountTable[m_Ptr] <= 0) {
                 if (m_Ptr != nullptr)
-                    hdestruct(T, m_Ptr);
+                    hot_destruct(T, m_Ptr);
                 m_Ptr = nullptr;
             }
         }

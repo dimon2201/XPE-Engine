@@ -31,29 +31,35 @@ namespace xpe {
         struct ENGINE_API TextureLayer final
         {
             void* Pixels = nullptr;
+            s32 Width, Height, Channels = 0;
             u32 RowByteSize = 0;
-            core::Boolean FromFile = K_FALSE;
             vector<Mip> Mips;
 
             void Free();
-            void GenerateMips(int width, int height, const eTextureFormat& format);
+
+            void CopyFrom(const TextureLayer& other);
+
+            TextureLayer Clone() const;
+
+            void GenerateMips(const eTextureFormat& format, int width, int height);
+
             void GenerateMipsU8(int width, int height, int bpp, int channels);
+
             void GenerateMipsFloat(int width, int height, int bpp, int channels);
+
             void FreeMips();
 
-            void ResizeU8(
-                    int inputWidth, int inputHeight, int channels,
-                    int outputWidth, int outputHeight
-            );
-            void ResizeFloat(
-                    int inputWidth, int inputHeight, int channels,
-                    int outputWidth, int outputHeight
-            );
+            void Resize(const eTextureFormat& format, s32 width, s32 height);
+
+            void ResizeU8(s32 width, s32 height);
+
+            void ResizeFloat(s32 width, s32 height);
 
             void* ResizePixelsU8(
                     const void* inputPixels, int inputWidth, int inputHeight, int channels,
                     int outputWidth, int outputHeight
             );
+
             void* ResizePixelsFloat(
                     const void* inputPixels, int inputWidth, int inputHeight, int channels,
                     int outputWidth, int outputHeight
@@ -120,6 +126,7 @@ namespace xpe {
             ~Texture();
 
             void Init();
+            void Free();
 
             TextureLayer CreateLayer() const;
 

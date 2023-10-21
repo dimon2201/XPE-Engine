@@ -4,10 +4,11 @@ namespace xpe {
 
     namespace math {
 
-        GeometryVertexed<Vertex2D> Triangle2D()
+        Triangle2D::Triangle2D()
         {
-            GeometryVertexed<Vertex2D> geometry;
-            auto& vertices = geometry.Vertices.List;
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+
+            auto& vertices = Vertices;
 
             vertices.resize(3);
 
@@ -18,16 +19,13 @@ namespace xpe {
             vertices[0].UV = { 0, 1 };
             vertices[1].UV = { 1, 0 };
             vertices[2].UV = { 1, 1 };
-
-            geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-
-            return geometry;
         }
 
-        GeometryVertexed<Vertex3D> Triangle()
+        Triangle::Triangle()
         {
-            GeometryVertexed<Vertex3D> geometry;
-            auto& vertices = geometry.Vertices.List;
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+
+            auto& vertices = Vertices;
 
             vertices.resize(3);
 
@@ -40,17 +38,19 @@ namespace xpe {
             vertices[2].UV = { 1, 1 };
 
             InitNormal<Vertex3D>(&vertices[0], &vertices[1], &vertices[2]);
-
-            geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-
-            return geometry;
         }
 
-        GeometryIndexed<Vertex2D> Quad2D()
+        Line::Line()
         {
-            GeometryIndexed<Vertex2D> geometry;
-            auto& vertices = geometry.Vertices.List;
-            auto& indices = geometry.Indices.List;
+            PrimitiveTopology = ePrimitiveTopology::LINE_LIST;
+        }
+
+        Quad2D::Quad2D()
+        {
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+
+            auto& vertices = Vertices;
+            auto& indices = Indices;
 
             vertices.resize(4);
             indices.resize(6);
@@ -63,17 +63,14 @@ namespace xpe {
             InitUV(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
 
             indices = { 0, 1, 2, 2, 3, 0 };
-
-            geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-
-            return geometry;
         }
 
-        GeometryIndexed<Vertex3D> Quad()
+        Quad::Quad()
         {
-            GeometryIndexed<Vertex3D> geometry;
-            auto& vertices = geometry.Vertices.List;
-            auto& indices = geometry.Indices.List;
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+
+            auto& vertices = Vertices;
+            auto& indices = Indices;
 
             vertices.resize(4);
             indices.resize(6);
@@ -87,17 +84,14 @@ namespace xpe {
             InitNormal(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
 
             indices = { 0, 1, 2, 2, 3, 0 };
-
-            geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-
-            return geometry;
         }
 
-        GeometryIndexed<Vertex3D> Cube()
+        Cube::Cube()
         {
-            GeometryIndexed<Vertex3D> geometry;
-            auto& vertices = geometry.Vertices.List;
-            auto& indices = geometry.Indices.List;
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
+
+            auto& vertices = Vertices;
+            auto& indices = Indices;
 
             vertices.resize(24);
             indices.resize(36);
@@ -150,17 +144,13 @@ namespace xpe {
                 20,21,23,
                 23,21,22
             };
-
-            geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-
-            return geometry;
         }
 
-        GeometryIndexed<Vertex3D> Plane(s32 size)
+        Plane::Plane(s32 size)
         {
-            GeometryIndexed<Vertex3D> geometry;
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
-            auto& vertices = geometry.Vertices.List;
+            auto& vertices = Vertices;
             vertices.resize(size * size);
 
             float shiftX = -size / 2.0f;
@@ -187,7 +177,7 @@ namespace xpe {
                 }
             }
 
-            auto& indices = geometry.Indices.List;
+            auto& indices = Indices;
             indices.resize((size - 1) * (size - 1) * 6);
             k = 0;
 
@@ -208,16 +198,13 @@ namespace xpe {
                     indices[k++] = bottomRight;
                 }
             }
-
-            geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-
-            return geometry;
         }
 
-        GeometryIndexed<Vertex3D> Sphere(s32 xSegments, s32 ySegments)
+        Sphere::Sphere(s32 xSegments, s32 ySegments)
         {
-            GeometryIndexed<Vertex3D> geometry;
-            auto& vertices = geometry.Vertices.List;
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+
+            auto& vertices = Vertices;
             vertices.resize((xSegments + 1) * (ySegments + 1));
 
             int i = 0;
@@ -277,10 +264,7 @@ namespace xpe {
                 oddRow = !oddRow;
             }
 
-            geometry.Indices.List = indexList;
-            geometry.PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-
-            return geometry;
+            Indices = indexList;
         }
 
     }

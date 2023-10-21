@@ -19,9 +19,8 @@ namespace xpe {
             DEFAULT = NONE,
         };
 
-        struct ENGINE_API Rasterizer : public core::Object
+        struct ENGINE_API Rasterizer : public GPUResource
         {
-            void*     State = nullptr;
             eFillMode FillMode = eFillMode::DEFAULT;
             eCullMode CullMode = eCullMode::DEFAULT;
             bool      FrontCounterClockwise = false;

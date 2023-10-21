@@ -70,6 +70,14 @@ namespace xpe {
             context::CopyBuffer(*this, List.data(), GetByteSize());
         }
 
+        usize IndexBuffer::AddIndices(const vector<u32>& indices)
+        {
+            usize indexOffset = List.size();
+            List.resize(List.size() + indices.size());
+            memcpy(&List[indexOffset], indices.data(), indices.size() * sizeof(u32));
+            return indexOffset;
+        }
+
         void IndexBuffer::Resize(const usize indexCount)
         {
             List.resize(indexCount);

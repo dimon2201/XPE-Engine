@@ -12,8 +12,7 @@ namespace xpe {
         public:
             TransparentPass(
                     const vector<RenderPassBinding>& bindings,
-                    MaterialStorage* materialStorage,
-                    RenderTarget* output
+                    MaterialStorage* materialStorage
             );
 
             virtual void Draw(Scene* scene) override;

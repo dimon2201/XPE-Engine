@@ -1,5 +1,4 @@
 #include <rendering/passes/text_pass.h>
-#include <rendering/storages/geometry_storage.h>
 #include <rendering/font/font.hpp>
 
 #include <ecs/scenes.hpp>
@@ -8,28 +7,21 @@ namespace xpe {
 
     namespace render {
 
-        TextPass::TextPass(
-            const core::vector<RenderPassBinding>& bindings,
-            GeometryStorage* geometryStorage,
-            RenderTarget* output
-        ) : RenderPass(bindings, output)
+        TextPass::TextPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
         {
+            m_Quad = GeometryManager::AddGeometry<Vertex3D>(Quad());
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);
-
-            auto& quad = geometryStorage->GetGeometryIndexed3D("TextQuad");
-            if (quad.Get() == nullptr) {
-                quad = geometryStorage->AddGeometryIndexed3D("TextQuad", Quad());
-            }
-            m_Pipeline->InputLayout.Format = Vertex3D::Format;
-            m_Pipeline->PrimitiveTopology = quad->PrimitiveTopology;
-            m_Pipeline->VertexBuffer = &quad->Vertices;
-            m_Pipeline->IndexBuffer = &quad->Indices;
+            m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
             m_Pipeline->Textures.emplace_back(nullptr);
             m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
-        }
 
-        TextPass::~TextPass() {}
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+
+            context::CreatePipeline(*m_Pipeline);
+        }
 
         void TextPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)
         {
@@ -43,13 +35,12 @@ namespace xpe {
             for (usize i = 0; i < charsCount; i++)
             {
                 char c = chars[i];
-                // todo unused variable
-//                char prevCharacter = i > 0 ? chars[i - 1] : 0;
+
+                // find glyph by char
                 auto it = font->AlphaBet.find(c);
                 if (it == font->AlphaBet.end()) {
                     continue;
                 }
-
                 Font::Glyph glyph = it->second;
 
                 xpe::render::Character character;
@@ -93,7 +84,7 @@ namespace xpe {
             m_Pipeline->Textures[0] = &font->Atlas;
 
             context::BindVSBuffer(m_TextBuffer);
-            context::DrawIndexed(0, 0, 6, charsCount);
+            context::DrawIndexed(m_Quad->Indices.size(), charsCount, m_Quad->VertexOffset, m_Quad->IndexOffset);
             context::UnbindVSBuffer(m_TextBuffer);
         }
 

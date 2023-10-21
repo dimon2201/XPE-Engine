@@ -40,7 +40,7 @@ namespace xpe {
             Tangent
         )
 
-        struct ENGINE_API SkeletalVertex final
+        struct ENGINE_API VertexSkeletal final
         {
             static VertexFormat Format;
 
@@ -53,13 +53,13 @@ namespace xpe {
         };
 
         Json(
-            SkeletalVertex,
-            Position,
-            UV,
-            Normal,
-            Tangent,
-            BoneIDs,
-            BoneWeights
+                VertexSkeletal,
+                Position,
+                UV,
+                Normal,
+                Tangent,
+                BoneIDs,
+                BoneWeights
         )
 
     }

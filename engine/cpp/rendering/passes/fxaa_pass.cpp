@@ -1,6 +1,5 @@
 #include "rendering/passes/fxaa_pass.hpp"
 #include "rendering/core/context.hpp"
-#include "rendering/storages/geometry_storage.h"
 #include "ecs/scene.h"
 
 namespace xpe
@@ -8,7 +7,7 @@ namespace xpe
     namespace render
     {
         FXAAPass::FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport)
-            : RenderPass(bindings, nullptr)
+            : RenderPass(bindings)
         {
             Texture* color = new Texture();
             color->Width = viewport->Width;
@@ -33,16 +32,16 @@ namespace xpe
             context::CreateSampler(m_Sampler);
             m_Pipeline->Samplers.emplace_back(&m_Sampler);
 
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+
             context::CreatePipeline(*m_Pipeline);
         }
 
         FXAAPass::~FXAAPass()
         {
             delete m_Pipeline->RenderTarget;
-        }
-
-        void FXAAPass::Update(Scene* scene)
-        {
         }
 
         void FXAAPass::Draw(Scene* scene)

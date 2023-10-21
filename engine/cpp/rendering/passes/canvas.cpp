@@ -1,6 +1,6 @@
 #include <rendering/passes/canvas.hpp>
 
-#include <core/user_input.hpp>
+#include <core/input.h>
 
 namespace xpe {
 
@@ -53,7 +53,6 @@ namespace xpe {
         void Canvas::WindowFrameResized(s32 width, s32 height)
         {
             context::ResizeSwapchain(*m_PresentTarget, width, height);
-            m_ViewportBuffer.Flush();
         }
 
         void Canvas::CreateRenderTarget(int width, int height)

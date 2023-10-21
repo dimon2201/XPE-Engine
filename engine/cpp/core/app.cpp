@@ -5,7 +5,7 @@
 #include <rendering/core/debugger.h>
 
 #include <rendering/monitor.h>
-#include <rendering/renderer.h>
+#include <rendering/render_manager.h>
 
 #include <rendering/passes/canvas.hpp>
 #include <rendering/passes/opaque_pass.h>
@@ -13,7 +13,8 @@
 #include <rendering/passes/skeletal_anim_pass.h>
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
-#include <rendering/passes/merge_pass.h>
+#include <rendering/passes/composite_transparent_pass.h>
+#include <rendering/passes/composite_final_pass.h>
 #include <rendering/passes/ssao_pass.hpp>
 
 #include <rendering/shadow/shadow.h>
@@ -74,17 +75,18 @@ namespace xpe {
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
 
+            render::context::Init();
+            ShaderManager::Init();
+            GeometryManager::Init();
+            Monitor::Init();
+            Shadow::Init();
+
             Input::Init();
 
             debugger::DebugErrors = Config.DebugErrors;
             debugger::DebugWarnings = Config.DebugWarnings;
             debugger::DebugInfo = Config.DebugInfo;
 
-            Viewport* viewport = new Viewport();
-            viewport->Width = winDesc.Width;
-            viewport->Height = winDesc.Height;
-
-            m_Renderer = new Renderer(viewport, m_UseMSAA, m_MSAASampleCount);
             m_FontStorage = new FontStorage();
             m_MaterialStorage = new MaterialStorage();
             m_TextureStorage = new TextureStorage();
@@ -92,6 +94,12 @@ namespace xpe {
             m_SkeletStorage = new SkeletStorage();
             m_AnimStorage = new AnimStorage();
             m_Animator = new Animator(m_SkeletStorage);
+
+            Viewport* viewport = new Viewport();
+            viewport->Width = winDesc.Width;
+            viewport->Height = winDesc.Height;
+
+            RenderManager::Init(viewport, m_UseMSAA, m_MSAASampleCount);
 
             InitRenderer();
 
@@ -102,8 +110,8 @@ namespace xpe {
             m_AudioStorage = new AudioStorage();
 
             m_MainScene = new MainScene();
-            m_MainScene->PerspectiveCamera->Buffer = m_Renderer->CameraBuffer;
-            m_MainScene->OrthoCamera->Buffer = m_Renderer->CameraBuffer;
+            m_MainScene->PerspectiveCamera->Buffer = RenderManager::GetCameraBuffer();
+            m_MainScene->OrthoCamera->Buffer = RenderManager::GetCameraBuffer();
 
             Init();
             m_Game = CreateGame();
@@ -133,15 +141,15 @@ namespace xpe {
                 m_Game->Update();
 
                 // submit audio task with current scene state
-                TaskManager::SubmitTask({[this]() {
-                    m_AudioSystem->Update(m_MainScene);
-                    m_AudioSystem->UpdateListener(m_MainScene);
-                }});
+                //TaskManager::SubmitTask({[this]() {
+                //    m_AudioSystem->Update(m_MainScene);
+                //    m_AudioSystem->UpdateListener(m_MainScene);
+                //}});
 
                 // submit animation task with current scene state
-                TaskManager::SubmitTask({[this]() {
-                    m_Animator->Animate(m_MainScene, DeltaTime);
-                }});
+                //TaskManager::SubmitTask({[this]() {
+                //    m_Animator->Animate(m_MainScene, DeltaTime);
+                //}});
 
                 Render();
 
@@ -243,30 +251,32 @@ namespace xpe {
 
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
-            RenderTarget* rendererRT = m_Renderer->GetRenderTarget();
+            RenderTarget* opaqueRT = RenderManager::GetOpaqueRenderTarget();
+            RenderTarget* transparentRT = RenderManager::GetTransparentRenderTarget();
 
-            // Main pass
+            // Main opaque pass
             {
-                Shader* shader = ShaderManager::CreateShader("main");
+                Shader* shader = ShaderManager::CreateShader("main_opaque");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/main_opaque_pass.ps");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/main_pass_opaque.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
-                        { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
-                        { "Shader", RenderPassBinding::eType::SHADER, shader },
-                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->DirectLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->PointLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->SpotLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, Shadow::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT }
+                    { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT},
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, Shadow::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT, RenderPassBinding::eStage::NONE, RenderPassBinding::SLOT_DEFAULT },
                 };
 
-                m_Renderer->AddRenderPass<OpaquePass>(
+                RenderManager::AddRenderPass<OpaquePass>(
+                    RenderPass::eType::OPAQUE,
                     bindings,
-                    m_MaterialStorage,
-                    rendererRT
+                    m_MaterialStorage
                 );
             }
 
@@ -274,24 +284,76 @@ namespace xpe {
             {
                 Shader* shader = ShaderManager::CreateShader("skeletal_anim");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeletal_anim_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/main_opaque_pass.ps");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/main_pass_opaque.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "VertexSkeletal", RenderPassBinding::eType::VERTEX_SKELETAL },
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->DirectLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->PointLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->SpotLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT},
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
                     { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, Shadow::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT }
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, Shadow::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT, RenderPassBinding::eStage::NONE, RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_Renderer->AddRenderPass<SkeletalAnimPass>(
+                RenderManager::AddRenderPass<SkeletalAnimPass>(
+                    RenderPass::eType::OPAQUE,
                     bindings,
-                    m_MaterialStorage,
-                    rendererRT
+                    m_MaterialStorage
+                );
+            }
+
+            // Main transparent pass
+            {
+                Shader* shader = ShaderManager::CreateShader("main_transparent");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/main_pass_transparent.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                    { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT},
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, Shadow::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, transparentRT, RenderPassBinding::eStage::NONE, RenderPassBinding::SLOT_DEFAULT },
+                };
+
+                RenderManager::AddRenderPass<TransparentPass>(
+                    RenderPass::eType::TRANSPARENT,
+                    bindings,
+                    m_MaterialStorage
+                );
+            }
+
+            // Composite transparent pass
+            {
+                Shader* shader = ShaderManager::CreateShader("composite_transparent");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/composite_pass.vs");
+                if (m_UseMSAA == core::K_FALSE) {
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_transparent_pass.ps");
+                }
+                else if (m_UseMSAA == core::K_TRUE) {
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/msaa/composite_pass_transparent.ps");
+                }
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                    { "Shader", RenderPassBinding::eType::SHADER, shader },
+                    { "AccumTexture", RenderPassBinding::eType::TEXTURE, transparentRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "RevealTexture", RenderPassBinding::eType::TEXTURE, transparentRT->Colors[1], RenderPassBinding::eStage::PIXEL, 1 },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT, RenderPassBinding::eStage::NONE, RenderPassBinding::SLOT_DEFAULT },
+                };
+
+                RenderManager::AddRenderPass<CompositeTransparentPass>(
+                    RenderPass::eType::TRANSPARENT,
+                    bindings
                 );
             }
 
@@ -305,32 +367,14 @@ namespace xpe {
                 vector<RenderPassBinding> bindings = {
                     { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, m_Canvas->GetBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT }
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderManager::GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT},
+                    { "ViewportBuffer", RenderPassBinding::eType::BUFFER, m_Canvas->GetBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT, RenderPassBinding::eStage::NONE, RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_Renderer->AddRenderPass<Text2DPass>(
-                    bindings,
-                    rendererRT
-                );
-            }
-
-            // Text 3D pass
-            {
-                Shader* shader = ShaderManager::CreateShader("text3d");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text3d_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text3d_pass.ps");
-                ShaderManager::BuildShader(shader);
-
-                vector<RenderPassBinding> bindings = {
-                    { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
-                    { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_Renderer->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                };
-
-                m_Renderer->AddRenderPass<Text3DPass>(
-                    bindings,
-                    rendererRT
+                RenderManager::AddRenderPass<Text2DPass>(
+                    RenderPass::eType::GUI,
+                    bindings
                 );
             }
 
@@ -348,12 +392,12 @@ namespace xpe {
                 vector<RenderPassBinding> bindings = {
                     { "Vertex3D", RenderPassBinding::eType::VERTEX_3D },
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, rendererRT->Colors[3], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, rendererRT->Colors[4], RenderPassBinding::eStage::PIXEL, 1 },
-                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, rendererRT->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
+                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[1], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[2], RenderPassBinding::eStage::PIXEL, 1 },
                 };
 
-                m_SSAOPass = m_Renderer->AddRenderPass<SSAOPass>(
+                m_SSAOPass = RenderManager::AddRenderPass<SSAOPass>(
+                    RenderPass::eType::GUI,
                     bindings,
                     canvasViewport,
                     m_UseMSAA,
@@ -361,43 +405,38 @@ namespace xpe {
                 );
             }
 
-            // Merge pass
+            // Merge GUI and post-process effects pass
             {
-                Shader* shader = ShaderManager::CreateShader("merge");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/merge_pass.vs");
+                Shader* shader = ShaderManager::CreateShader("composite_final");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/composite_pass.vs");
                 if (m_UseMSAA == core::K_FALSE) {
                     ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_pass.ps");
-                } else if(m_UseMSAA == core::K_TRUE) {
-                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/msaa/merge_pass.ps");
+                } else if (m_UseMSAA == core::K_TRUE) {
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/msaa/composite_pass_final.ps");
                 }
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, rendererRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SSAOPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 3}
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SSAOPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 1 },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, canvasRT, RenderPassBinding::eStage::NONE, RenderPassBinding::SLOT_DEFAULT },
                 };
 
-                m_Renderer->AddRenderPass<MergePass>(
-                    bindings,
-                    canvasRT
+                RenderManager::AddRenderPass<CompositeFinalPass>(
+                    RenderPass::eType::GUI,
+                    bindings
                 );
             }
         }
 
         void Application::Render()
         {
-            m_Renderer->GetRenderTarget()->ClearColor(0, glm::vec4(0.0f));
-            m_Renderer->GetRenderTarget()->ClearColor(1, glm::vec4(0.0f));
-            m_Renderer->GetRenderTarget()->ClearColor(2, glm::vec4(0.0f));
-            m_Renderer->GetRenderTarget()->ClearColor(3, glm::vec4(0.0f));
-            m_Renderer->GetRenderTarget()->ClearColor(4, glm::vec4(0.0f));
-            m_Renderer->GetRenderTarget()->ClearDepth(1.0f);
             m_SSAOPass->GetRenderTarget()->ClearColor(0, glm::vec4(0.0f));
             m_SSAOPass->GetRenderTarget()->ClearDepth(1.0f);
 
             m_Canvas->Clear(ClearColor);
-            m_Renderer->Render(m_MainScene);
+            RenderManager::Render(m_MainScene);
             m_Canvas->Present();
         }
 

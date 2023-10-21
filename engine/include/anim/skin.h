@@ -11,22 +11,21 @@ namespace xpe {
         using namespace render;
         using namespace math;
 
-        struct ENGINE_API Skin : GeometryIndexed<SkeletalVertex>
+        struct ENGINE_API Skin : Geometry<VertexSkeletal>
         {
             Ref<Material> Material;
-
-            Skin() = default;
-            Skin(usize vertexCount, usize indexCount) : GeometryIndexed<SkeletalVertex>(vertexCount, indexCount) {}
         };
 
-        Json(Skin, PrimitiveTopology, Vertices, Indices.List)
+        Json(Skin, PrimitiveTopology, VertexOffset, Vertices, IndexOffset, Indices)
 
         struct ENGINE_API SkinModel : public Object
         {
             ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
             vector<Skin> Skins;
-            VertexBuffer<SkeletalVertex> Vertices;
-            IndexBuffer Indices;
+            usize VertexOffset = 0;
+            usize VertexCount = 0;
+            usize IndexOffset = 0;
+            vector<u32> Indices;
 
             inline Skin& operator [](u32 i) { return Skins[i]; }
         };

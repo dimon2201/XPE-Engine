@@ -315,14 +315,6 @@ namespace xpe {
 
                 BindInputLayout(pipeline.InputLayout);
 
-                if (pipeline.VertexBuffer != nullptr) {
-                    BindVertexBuffer(*pipeline.VertexBuffer);
-                }
-
-                if (pipeline.IndexBuffer != nullptr) {
-                    BindIndexBuffer(*pipeline.IndexBuffer);
-                }
-
                 for (const auto* buffer : pipeline.VSBuffers) {
                     if (buffer != nullptr) {
                         BindVSBuffer(*buffer);
@@ -347,9 +339,9 @@ namespace xpe {
                     }
                 }
 
-                BindRasterizer(pipeline.Rasterizer.State);
+                BindRasterizer(pipeline.Rasterizer.Instance);
                 BindDepthStencilMode(pipeline.DepthStencil.State);
-                BindBlendMode(pipeline.Blending.State);
+                //BindBlendMode(pipeline.Blending.State);
             }
 
             void UnbindPipeline(const Pipeline &pipeline)
