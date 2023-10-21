@@ -1,8 +1,34 @@
 #pragma once
 
-#include <core/game.h>
-
 namespace xpe {
+
+    namespace render
+    {
+        class Canvas;
+        class Renderer;
+        class TextureStorage;
+        class MaterialStorage;
+        class FontStorage;
+        class RenderTarget;
+    }
+
+    namespace anim
+    {
+        class SkeletStorage;
+        class AnimStorage;
+        class Animator;
+    }
+
+    namespace audio
+    {
+        class AudioSystem;
+        class AudioStorage;
+    }
+
+    namespace ecs
+    {
+        class MainScene;
+    }
 
     namespace core {
 
@@ -29,14 +55,9 @@ namespace xpe {
             virtual void Free() {}
             virtual void Render();
 
-            virtual Game* CreateGame();
-            void InitGame();
-
             virtual void InitRenderer();
 
             std::atomic_bool m_IsOpen = true;
-
-            Game* m_Game = nullptr;
 
             ecs::MainScene* m_MainScene = nullptr;
 

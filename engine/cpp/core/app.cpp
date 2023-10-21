@@ -101,8 +101,6 @@ namespace xpe {
             m_MainScene->OrthoCamera->Buffer = m_Renderer->CameraBuffer;
 
             Init();
-            m_Game = CreateGame();
-            InitGame();
 
             while (m_IsOpen)
             {
@@ -125,7 +123,6 @@ namespace xpe {
                 CurrentTime = cpuTimer.GetStartTime();
 
                 Update();
-                m_Game->Update();
 
                 // submit audio task with current scene state
                 TaskManager::SubmitTask({[this]() {
@@ -157,8 +154,6 @@ namespace xpe {
 
             }
 
-            m_Game->Free();
-            delete m_Game;
             Free();
 
             delete m_MainScene;
@@ -195,36 +190,6 @@ namespace xpe {
             {
                 DeltaTime.SetFps(Config.FPS);
             }
-        }
-
-        void Application::InitGame()
-        {
-            m_Game->CPUTime = &CPUTime;
-            m_Game->DeltaTime = &DeltaTime;
-            m_Game->CurrentTime = &CurrentTime;
-
-            m_Game->Config = &Config;
-
-            m_Game->MainScene = m_MainScene;
-
-            m_Game->Renderer = m_Renderer;
-            m_Game->FontStorage = m_FontStorage;
-            m_Game->MaterialStorage = m_MaterialStorage;
-            m_Game->TextureStorage = m_TextureStorage;
-
-            m_Game->SkeletStorage = m_SkeletStorage;
-            m_Game->AnimStorage = m_AnimStorage;
-            m_Game->Animator = m_Animator;
-
-            m_Game->AudioSystem = m_AudioSystem;
-            m_Game->AudioStorage = m_AudioStorage;
-
-            m_Game->Init();
-        }
-
-        Game* Application::CreateGame()
-        {
-            return new Game();
         }
 
         void Application::InitRenderer()

@@ -2,7 +2,7 @@
 
 struct TestConfig : xpe::res::JsonObject
 {
-    JsonFields(
+    JsonClass(
         TestConfig,
         AnimateLight,
         CameraFar,

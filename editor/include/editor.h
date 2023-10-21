@@ -27,7 +27,7 @@ namespace focus {
         void Free();
 
     private:
-        void LoadGame(Game* game);
+        void LoadGame(Application* game);
 
     };
 

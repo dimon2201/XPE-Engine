@@ -326,7 +326,7 @@ namespace focus {
 
     void ProjectManager::LoadGameCode(const string &dllpath)
     {
-        Game* game = Process::LoadObjectFromDLL<Game>(dllpath.c_str(), "CreateGame");
+        Application* game = Process::LoadObjectFromDLL<Application>(dllpath.c_str(), "CreateGame");
         if (game == nullptr) {
             LogError("Failed to load game code from DLL {}", dllpath);
             return;
