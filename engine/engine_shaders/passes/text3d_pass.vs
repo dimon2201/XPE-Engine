@@ -13,7 +13,6 @@ struct VSIn
 
 struct VSOut
 {
-    float3 positionWorld : XPE_POSITION_WORLD;
     float2 texcoord : XPE_UV2;
     float3 normal : XPE_NORMAL2;
     float4 positionClip : SV_POSITION;
@@ -45,7 +44,6 @@ VSOut vs_main(VSIn vsIn)
     float4 positionView = mul(camera.View, positionWorld);
     float4 positionClip = mul(camera.Projection, positionView);
 
-    vsOut.positionWorld = positionWorld.xyz;
     vsOut.viewPosition = camera.Position;
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = normalize(vsIn.normal);

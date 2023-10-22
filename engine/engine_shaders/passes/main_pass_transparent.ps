@@ -7,11 +7,11 @@
 
 #include ../shadow/shadow.shader
 
-#include ../pbr.shader
 #include ../lighting/direct_light.shader
 #include ../lighting/point_light.shader
 #include ../lighting/spot_light.shader
-#include ../pbr_light.shader
+
+#include ../pbr.shader
 
 struct VSOut
 {
@@ -28,11 +28,8 @@ struct VSOut
 
 struct PSOut
 {
-    float4 color : SV_Target0;
-    float4 accum : SV_Target1;
-    float reveal : SV_Target2;
-    float4 position : SV_Target3;
-    float4 normal : SV_Target4;
+    float4 accum : SV_Target0;
+    float reveal : SV_Target1;
 };
 
 PSOut ps_main(VSOut psIn) : SV_TARGET
@@ -47,7 +44,7 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     UV = GetParallax(psIn.materialIndex, psIn.uv);
 
     float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv, Monitor().Gamma);
-    float metallic = GetMetallic(psIn.materialIndex, psIn.uv);
+    float metallness = GetMetallness(psIn.materialIndex, psIn.uv);
     float roughness = GetRoughness(psIn.materialIndex, psIn.uv);
     float ao = GetAO(psIn.materialIndex, psIn.uv);
     float3 emission = GetEmission(psIn.materialIndex, psIn.uv, Monitor().Gamma);
@@ -59,46 +56,39 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     uint directLightStride = 0;
     DirectLights.GetDimensions(directLightSize, directLightStride);
     for (uint i = 0 ; i < directLightSize ; i++) {
-        Lo += PBR(DirectLights[i], albedo.rgb, metallic, roughness);
+        Lo += PBR(DirectLights[i], albedo.rgb, metallness, roughness);
     }
 
     uint pointLightSize = 0;
     uint pointLightStride = 0;
     PointLights.GetDimensions(pointLightSize, pointLightStride);
     for (uint i = 0 ; i < pointLightSize ; i++) {
-        Lo += PBR(PointLights[i], albedo.rgb, metallic, roughness);
+        Lo += PBR(PointLights[i], albedo.rgb, metallness, roughness);
     }
 
     uint spotLightSize = 0;
     uint spotLightStride = 0;
     SpotLights.GetDimensions(spotLightSize, spotLightStride);
     for (uint i = 0 ; i < spotLightSize ; i++) {
-        Lo += PBR(SpotLights[i], albedo.rgb, metallic, roughness);
+        Lo += PBR(SpotLights[i], albedo.rgb, metallness, roughness);
     }
 
     // PBR with IBL
-    // float3 ambient = ibl(NdotV, N, R, albedo.rgb, metallic, roughness);
+    // float3 ambient = ibl(NdotV, N, R, albedo.rgb, metallness, roughness);
     float3 ambient = float3(0, 0, 0);
 
     // Color
-    float4 color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
+    float4 color = albedo;
 
     // Weighted blended
-    PSOut psOut;
-    if (GetTransparencyEnabled(psIn.materialIndex) == true)
-    {
-        float weight =
-            max(min(1.0, max(max(color.r, color.g), color.b) * color.a), color.a) *
-            clamp(0.03 / (1e-5 + pow(psIn.zView / 200, 4.0)), 1e-2, 3e3);
-        float4 accum = float4(color.rgb * color.a, color.a) * weight;
-        float reveal = color.a;
-        psOut.accum = accum;
-        psOut.reveal = reveal;
-    }
+    float weight = max(min(1.0, max(max(color.r, color.g), color.b) * color.a), color.a) *
+        clamp(0.03 / (K_EPSILON + (psIn.zView / 200.0)), 1e-2, 3e3);
+    float4 accum = float4(color.rgb * color.a, color.a) * weight;
+    float reveal = color.a;
 
-    psOut.color = float4(TonemapExp(color.rgb, Monitor().Gamma, Monitor().Exposure), color.a);
-    psOut.position = float4(W, 1.0);
-    psOut.normal = float4(N, 1.0);
+    PSOut psOut;
+    psOut.accum = accum;
+    psOut.reveal = reveal;
 
     return psOut;
 }

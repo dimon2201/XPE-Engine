@@ -1,0 +1,28 @@
+struct VSOut
+{
+    float4 positionClip : SV_POSITION;
+    float2 texcoord : XPE_UV;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+Texture2D<float4> ColorTexture : register(t0);
+Texture2D<float4> AOTexture : register(t1);
+
+PSOut ps_main(VSOut psIn)
+{
+    uint width = 0;
+    uint height = 0;
+    ColorTexture.GetDimensions(width, height);
+
+    float3 color = ColorTexture.Load(int3(float2(width, height) * psIn.texcoord, 0));
+    float3 ao = AOTexture.Load(int3(float2(width, height) * psIn.texcoord, 0));
+
+    PSOut psOut;
+    psOut.color = float4(color, 1.0) * float4(ao, 1.0);
+
+    return psOut;
+}

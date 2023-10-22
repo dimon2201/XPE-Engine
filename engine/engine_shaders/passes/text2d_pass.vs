@@ -1,8 +1,8 @@
 #include ../types.shader
 #include ../transforming.shader
 #include ../controls/camera.shader
-#include ../viewport.shader
 #include ../text/text.shader
+#include ../viewport.shader
 
 struct VSIn
 {

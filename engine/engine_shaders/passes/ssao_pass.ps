@@ -13,13 +13,12 @@ struct PSOut
 
 Texture2D<float4> PositionTexture : register(t0);
 Texture2D<float4> NormalTexture : register(t1);
-Texture2D<float> DepthTexture : register(t2);
 
 PSOut ps_main(VSOut psIn)
 {
     uint width = 0;
     uint height = 0;
-    DepthTexture.GetDimensions(width, height);
+    PositionTexture.GetDimensions(width, height);
 
     int2 sampleDirections[4] =
     {
@@ -31,7 +30,6 @@ PSOut ps_main(VSOut psIn)
 
     float occlusion = 0.0;
     int2 curCoord = int2(psIn.uv * float2(width, height));
-    float curDepth = DepthTexture.Load(int3(curCoord, 0));
     float3 curPos = PositionTexture.Load(int3(curCoord, 0)).xyz;
     float3 curNormal = NormalTexture.Load(int3(curCoord, 0)).xyz;
     for (int dir = 0; dir < int(4); dir++)
