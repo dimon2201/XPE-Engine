@@ -27,9 +27,10 @@ namespace xpe {
             target.Dest = eBlend::INV_SRC_COLOR;
             target.BlendOp = eBlendOp::ADD;
             target.SrcAlpha = eBlend::ZERO;
-            target.DestAlpha = eBlend::INV_SRC_COLOR;
+            target.DestAlpha = eBlend::ZERO;
             target.BlendOpAlpha = eBlendOp::ADD;
             m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
 
             context::CreatePipeline(*m_Pipeline);
 

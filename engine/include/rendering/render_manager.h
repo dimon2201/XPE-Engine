@@ -67,7 +67,7 @@ namespace xpe {
                 break;
 
             case RenderPass::eType::TRANSPARENT:
-                m_TransparentRenderPasses->push_back(renderPass);
+                m_TransparentRenderPasses->emplace_back(renderPass);
                 break;
 
             case RenderPass::eType::GUI:

@@ -95,11 +95,11 @@ namespace xpe {
             m_AnimStorage = new AnimStorage();
             m_Animator = new Animator(m_SkeletStorage);
 
-            Viewport* viewport = new Viewport();
-            viewport->Width = winDesc.Width;
-            viewport->Height = winDesc.Height;
+            Viewport viewport;
+            viewport.Width = winDesc.Width;
+            viewport.Height = winDesc.Height;
 
-            RenderManager::Init(viewport, m_UseMSAA, m_MSAASampleCount);
+            RenderManager::Init(&viewport, m_UseMSAA, m_MSAASampleCount);
 
             InitRenderer();
 
@@ -337,7 +337,7 @@ namespace xpe {
                 Shader* shader = ShaderManager::CreateShader("composite_transparent");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/composite_pass.vs");
                 if (m_UseMSAA == core::K_FALSE) {
-                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_transparent_pass.ps");
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/composite_pass_transparent.ps");
                 }
                 else if (m_UseMSAA == core::K_TRUE) {
                     ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/msaa/composite_pass_transparent.ps");
@@ -410,7 +410,7 @@ namespace xpe {
                 Shader* shader = ShaderManager::CreateShader("composite_final");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/composite_pass.vs");
                 if (m_UseMSAA == core::K_FALSE) {
-                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_pass.ps");
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/composite_pass_final.ps");
                 } else if (m_UseMSAA == core::K_TRUE) {
                     ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/msaa/composite_pass_final.ps");
                 }

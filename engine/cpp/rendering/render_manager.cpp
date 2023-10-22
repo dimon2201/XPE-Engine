@@ -36,6 +36,7 @@ namespace xpe {
 
             m_OpaqueRenderPasses = new vector<RenderPass*>();
             m_TransparentRenderPasses = new vector<RenderPass*>();
+            m_TransparentRenderPasses->reserve(2);
             m_GUIRenderPasses = new vector<RenderPass*>();
 
             // Shared depth texture for opaque and transparent render targets
@@ -128,7 +129,7 @@ namespace xpe {
 
             // Transparent
             m_TransparentRenderTarget->ClearColor(0, glm::vec4(0.0f));
-            m_TransparentRenderTarget->ClearColor(1, glm::vec4(0.0f));
+            m_TransparentRenderTarget->ClearColor(1, glm::vec4(1.0f));
             m_TransparentRenderTarget->ClearDepth(1.0f);
             for (RenderPass* rp : *m_TransparentRenderPasses)
             {

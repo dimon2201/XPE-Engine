@@ -9,8 +9,6 @@ namespace xpe {
             const core::vector<RenderPassBinding>& bindings
         ) : RenderPass(bindings)
         {
-            m_VertexBinding = nullptr;
-
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ZERO;
 
             BlendTarget target;
@@ -22,6 +20,11 @@ namespace xpe {
             target.DestAlpha = eBlend::INV_SRC_ALPHA;
             target.BlendOpAlpha = eBlendOp::ADD;
             m_Pipeline->Blending.Targets.push_back(target);
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
 
             context::CreatePipeline(*m_Pipeline);
         }

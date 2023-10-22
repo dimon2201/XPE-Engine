@@ -40,8 +40,8 @@ namespace xpe {
 
             ecs::MainScene* m_MainScene = nullptr;
 
-            core::Boolean m_UseMSAA = core::K_TRUE;
-            core::usize m_MSAASampleCount = 4;
+            core::Boolean m_UseMSAA = core::K_FALSE;
+            core::usize m_MSAASampleCount = 1;
 
             render::FontStorage* m_FontStorage = nullptr;
             render::MaterialStorage* m_MaterialStorage = nullptr;

@@ -341,7 +341,7 @@ namespace xpe {
 
                 BindRasterizer(pipeline.Rasterizer.Instance);
                 BindDepthStencilMode(pipeline.DepthStencil.State);
-                //BindBlendMode(pipeline.Blending.State);
+                BindBlendMode(pipeline.Blending.State);
             }
 
             void UnbindPipeline(const Pipeline &pipeline)

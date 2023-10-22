@@ -18,6 +18,7 @@ namespace xpe {
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
 
             context::CreatePipeline(*m_Pipeline);
 
