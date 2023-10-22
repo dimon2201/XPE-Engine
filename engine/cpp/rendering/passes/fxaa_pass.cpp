@@ -13,6 +13,7 @@ namespace xpe
             color->Width = viewport->Width;
             color->Height = viewport->Height;
             color->Format = eTextureFormat::RGBA8;
+            color->SampleCount = 1;
             color->InitializeData = false;
             color->EnableRenderTarget = true;
             color->Init();
@@ -22,6 +23,7 @@ namespace xpe
             depth->Width = viewport->Width;
             depth->Height = viewport->Height;
             depth->Format = eTextureFormat::R32_TYPELESS;
+            depth->SampleCount = 1;
             depth->InitializeData = false;
             depth->EnableRenderTarget = true;
             depth->Init();
@@ -35,7 +37,7 @@ namespace xpe
             BlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
-            m_Pipeline->Blending.IndependentBlendEnable = true;
+            m_Pipeline->Blending.IndependentBlendEnable = false;
 
             context::CreatePipeline(*m_Pipeline);
         }

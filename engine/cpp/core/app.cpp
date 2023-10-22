@@ -16,6 +16,7 @@
 #include <rendering/passes/composite_transparent_pass.h>
 #include <rendering/passes/composite_final_pass.h>
 #include <rendering/passes/ssao_pass.hpp>
+#include <rendering/passes/fxaa_pass.hpp>
 
 #include <rendering/shadow/shadow.h>
 
@@ -378,6 +379,28 @@ namespace xpe {
                 );
             }
 
+            // FXAA pass
+            {
+                if (m_UseMSAA == core::K_FALSE)
+                {
+                    Shader* shader = ShaderManager::CreateShader("fxaa");
+                    ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
+                    ShaderManager::BuildShader(shader);
+
+                    vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "ColorTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    };
+
+                    m_FXAAPass = RenderManager::AddRenderPass<FXAAPass>(
+                        RenderPass::eType::GUI,
+                        bindings,
+                        canvasViewport
+                    );
+                }
+            }
+
             // SSAO pass
             {
                 Shader* shader = ShaderManager::CreateShader("ssao");
@@ -418,7 +441,7 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, m_UseMSAA == core::K_TRUE ? opaqueRT->Colors[0] : m_FXAAPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 0},
                     { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SSAOPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 1 },
                     { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, canvasRT, RenderPassBinding::eStage::NONE, RenderPassBinding::SLOT_DEFAULT },
                 };
@@ -434,6 +457,11 @@ namespace xpe {
         {
             m_SSAOPass->GetRenderTarget()->ClearColor(0, glm::vec4(0.0f));
             m_SSAOPass->GetRenderTarget()->ClearDepth(1.0f);
+            if (m_UseMSAA == core::K_FALSE)
+            {
+                m_FXAAPass->GetRenderTarget()->ClearColor(0, glm::vec4(0.0f));
+                m_FXAAPass->GetRenderTarget()->ClearDepth(1.0f);
+            }
 
             m_Canvas->Clear(ClearColor);
             RenderManager::Render(m_MainScene);
