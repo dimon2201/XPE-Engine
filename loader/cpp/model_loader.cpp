@@ -4,9 +4,9 @@ namespace xpe {
 
     namespace res {
 
-        static Vertex3D ParseVertex(aiMesh* mesh, u32 i)
+        static Vertex ParseVertex(aiMesh* mesh, u32 i)
         {
-            Vertex3D vertex;
+            Vertex vertex;
 
             vertex.Position = {
                     mesh->mVertices[i].x,
@@ -38,9 +38,9 @@ namespace xpe {
             return vertex;
         }
 
-        static Mesh ParseMesh(aiMesh *mesh)
+        static Geometry ParseMesh(aiMesh *mesh)
         {
-            Mesh result;
+            Geometry result;
             vector<u32> indices;
 
             result.Vertices.resize(mesh->mNumVertices);
@@ -75,7 +75,7 @@ namespace xpe {
             for (u32 i = 0 ; i < node->mNumMeshes ; i++)
             {
                 aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-                Mesh result = ParseMesh(mesh);
+                Geometry result = ParseMesh(mesh);
                 meshes.push_back(result);
             }
 
@@ -85,10 +85,10 @@ namespace xpe {
             }
         }
 
-        Ref<Model3D> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        Ref<Model> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             if (m_Map.find(filepath) != m_Map.end()) {
-                Ref<Model3D> modelRef;
+                Ref<Model> modelRef;
                 modelRef.Create(*m_Map[filepath]);
                 return modelRef;
             }
@@ -106,7 +106,7 @@ namespace xpe {
             }
 
             ParseMeshes(scene->mRootNode, scene, model, directory, flags);
-            Ref<Model3D> modelRef = GeometryManager::AddModel(model);
+            Ref<Model> modelRef = GeometryManager::AddModel(model);
             m_Map.insert({ filepath, modelRef });
             return modelRef;
         }

@@ -323,7 +323,7 @@ namespace xpe {
                 s_GIAdapter->GetParent(__uuidof(IDXGIFactory), (void **)&s_GIFactory);
                 LogDebugMessage();
 
-                CreateSwapchain(WindowManager::GetWidth(), WindowManager::GetHeight());
+                CreateSwapchain(Windowing::GetWidth(), Windowing::GetHeight());
 
                 LogInfo("D3D11Context initialized");
             }
@@ -360,7 +360,7 @@ namespace xpe {
                 DXGI_MODE_DESC bufferDesc = {};
                 bufferDesc.Width = width;
                 bufferDesc.Height = height;
-                bufferDesc.RefreshRate.Numerator = WindowManager::GetRefreshRate();
+                bufferDesc.RefreshRate.Numerator = Windowing::GetRefreshRate();
                 bufferDesc.RefreshRate.Denominator = 1;
                 bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
                 bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
@@ -372,8 +372,8 @@ namespace xpe {
                 swapChainDesc.SampleDesc.Quality = 0;
                 swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
                 swapChainDesc.BufferCount = 1;
-                swapChainDesc.OutputWindow = (HWND)WindowManager::GetWin32Instance();
-                swapChainDesc.Windowed = WindowManager::IsWindowed();
+                swapChainDesc.OutputWindow = (HWND)Windowing::GetWin32Instance();
+                swapChainDesc.Windowed = Windowing::IsWindowed();
                 swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
                 s_GIFactory->CreateSwapChain(s_Device, &swapChainDesc, &s_SwapChain);

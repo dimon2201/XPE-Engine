@@ -43,7 +43,7 @@ namespace xpe
             WindowDescriptor Descriptor;
         };
 
-        class ENGINE_API WindowManager final
+        class ENGINE_API Windowing final
         {
 
         public:

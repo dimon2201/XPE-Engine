@@ -12,6 +12,16 @@ namespace xpe {
             }
         }
 
+        VertexFormat Vertex::Format =
+        {{
+             Attributes::POS3,
+             Attributes::UV,
+             Attributes::NORMAL,
+             Attributes::TANGENT,
+             Attributes::BONE_IDS,
+             Attributes::BONE_WEIGHTS,
+         }};
+
     }
 
 }

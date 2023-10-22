@@ -28,7 +28,7 @@ namespace xpe {
             }
         }
 
-        static void ParseSkeletFromAnim(const aiAnimation* animation, Skelet& skelet)
+        static void ParseSkeletFromAnim(const aiAnimation* animation, Skeleton& skelet)
         {
             int size = animation->mNumChannels;
             auto& bones = skelet.Bones;
@@ -51,7 +51,7 @@ namespace xpe {
             }
         }
 
-        static void ParseSkeletFromMesh(aiMesh* mesh, Skelet& skelet)
+        static void ParseSkeletFromMesh(aiMesh* mesh, Skeleton& skelet)
         {
             s32 boneCounter = 0;
             auto& bones = skelet.Bones;
@@ -75,7 +75,7 @@ namespace xpe {
         static void ParseSkeletFromScene(
                 aiNode* node,
                 const aiScene* scene,
-                Skelet& skelet
+                Skeleton& skelet
         ) {
             for (u32 i = 0 ; i < node->mNumMeshes ; i++)
             {
@@ -89,15 +89,15 @@ namespace xpe {
             }
         }
 
-        Ref<Skelet> SkeletLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        Ref<Skeleton> SkeletLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             if (m_Storage->Has(filepath)) {
-                Ref<Skelet> skeletRef;
+                Ref<Skeleton> skeletRef;
                 skeletRef.Create(*m_Storage->Get(filepath));
                 return skeletRef;
             }
 
-            Skelet skelet;
+            Skeleton skelet;
 
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));

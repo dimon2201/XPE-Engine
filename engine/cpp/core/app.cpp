@@ -67,7 +67,7 @@ namespace xpe {
                     Thread::ePriority::NORMAL
             );
 
-            TaskManager::Init(mainDispatcher);
+            Threading::Init(mainDispatcher);
             PhysicsManager::Init(mainDispatcher);
 
             WindowManager::Init();
@@ -93,7 +93,7 @@ namespace xpe {
             Monitor::Get().Exposure = winDesc.Exposure;
             Monitor::Get().Gamma = winDesc.Gamma;
 
-            m_AudioSystem = new AudioSystem();
+            m_AudioSystem = new AudioManager();
             m_AudioStorage = new AudioStorage();
 
             m_MainScene = new MainScene();
@@ -125,13 +125,13 @@ namespace xpe {
                 Update();
 
                 // submit audio task with current scene state
-                TaskManager::SubmitTask({[this]() {
+                Threading::SubmitTask({[this]() {
                     m_AudioSystem->Update(m_MainScene);
                     m_AudioSystem->UpdateListener(m_MainScene);
                 }});
 
                 // submit animation task with current scene state
-                TaskManager::SubmitTask({[this]() {
+                Threading::SubmitTask({[this]() {
                     m_Animator->Animate(m_MainScene, DeltaTime);
                 }});
 
@@ -179,7 +179,7 @@ namespace xpe {
             WindowManager::FreeWindow();
             WindowManager::Free();
 
-            TaskManager::Free();
+            Threading::Free();
 
             FreeLogger();
         }

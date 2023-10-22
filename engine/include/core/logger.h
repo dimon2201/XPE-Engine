@@ -5,33 +5,6 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/async.h>
 
-namespace xpe {
-
-    namespace core {
-
-        struct ENGINE_API LoggerDescriptor final {
-            const char* Name;
-            int Backtrace;
-        };
-
-        class ENGINE_API Logger final {
-
-        public:
-            static void Init(const LoggerDescriptor& descriptor);
-            static void Free();
-
-            static spdlog::logger* GetLogger();
-            static spdlog::logger* GetTracer();
-            static spdlog::logger* GetMemLogger();
-
-            static void DumpBacktrace();
-
-        };
-
-    }
-
-}
-
 #ifdef DEBUG
 
 #define InitLogger(desc) xpe::core::Logger::Init(desc)
@@ -70,3 +43,30 @@ LogInfo("{}: {}", name, glm::to_string(v))
 #define LogGLM(name, v)
 
 #endif
+
+namespace xpe {
+
+    namespace core {
+
+        struct ENGINE_API LoggerDescriptor final {
+            const char* Name;
+            int Backtrace;
+        };
+
+        class ENGINE_API Logger final {
+
+        public:
+            static void Init(const LoggerDescriptor& descriptor);
+            static void Free();
+
+            static spdlog::logger* GetLogger();
+            static spdlog::logger* GetTracer();
+            static spdlog::logger* GetMemLogger();
+
+            static void DumpBacktrace();
+
+        };
+
+    }
+
+}

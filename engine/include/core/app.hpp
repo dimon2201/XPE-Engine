@@ -72,7 +72,7 @@ namespace xpe {
             anim::SkeletStorage* m_SkeletStorage = nullptr;
             anim::AnimStorage* m_AnimStorage = nullptr;
 
-            audio::AudioSystem* m_AudioSystem = nullptr;
+            audio::AudioManager* m_AudioSystem = nullptr;
             audio::AudioStorage* m_AudioStorage = nullptr;
 
             render::RenderTarget* MainRT = nullptr;

@@ -7,7 +7,7 @@
 #pragma warning(disable : 4251) // dll-interface warning
 
 // Platform Detection macros
-#include <core/platform_detection.h>
+#include <core/macro_platform.h>
 
 // STL
 #define _ENFORCE_MATCHING_ALLOCATORS 0
@@ -50,22 +50,17 @@
 #include <gtx/string_cast.hpp>
 
 // Core
-#include <core/build.h>
+#include <core/macro_build.h>
 #include <core/types.hpp>
-#include <core/memory_pool.hpp>
-#include <core/main_allocator.h>
-#include <core/hot_allocator.h>
-#include <core/stack_allocator.h>
-#include <core/align16_allocator.h>
-#include <core/object.h>
-#include <core/pointers.h>
-#include <core/keycodes.h>
-#include <core/mousecodes.h>
-#include <core/gamepadcodes.h>
-#include <core/singleton.h>
+#include <core/memory.hpp>
+#include <core/allocators.h>
+#include <core/smart_pointers.h>
+#include <core/codes_keyboard.h>
+#include <core/codes_mouse.h>
+#include <core/codes_gamepad.h>
 #include <res/json.h>
 #include <res/xml.h>
-#include <core/config.h>
+#include <core/app_config.h>
 #include <core/hardware.h>
 
 // Rendering core types
@@ -83,15 +78,17 @@
 
 // Core
 #include <core/thread.h>
-#include <core/time.h>
-#include <core/timer.hpp>
+#include <core/timing.hpp>
 #include <core/logger.h>
-#include <core/debug_break.h>
-#include <core/task_manager.h>
-#include <core/file_manager.h>
+#include <core/macro_debugbreak.h>
+#include <core/threading.h>
+#include <core/file_system.h>
 
 // Math
 #include <math/math.h>
 #include <math/transform.h>
 #include <math/matrices.h>
 #include <math/raycast.h>
+
+// ECS
+#include <ecs/ecs.h>

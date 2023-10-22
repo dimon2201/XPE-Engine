@@ -19,7 +19,7 @@ namespace xpe {
         public:
             SkeletLoader(SkeletStorage* skeletStorage) : m_Storage(skeletStorage) {}
 
-            Ref<Skelet> Load(const char* filepath, const vector<eLoadOption>& options = {
+            Ref<Skeleton> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE
             });
 

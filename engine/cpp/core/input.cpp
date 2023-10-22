@@ -216,13 +216,13 @@ namespace xpe {
 
             glm::vec2 cursorPosition = { x, y };
 
-//            if (x >= WindowManager::GetWidth()) {
+//            if (x >= Windowing::GetWidth()) {
 //                s_Cursor.Delta.x += 1;
 //                s_Cursor.Position = cursorPosition;
 //                return;
 //            }
 //
-//            if (y >= WindowManager::GetHeight()) {
+//            if (y >= Windowing::GetHeight()) {
 //                s_Cursor.Delta.y += 1;
 //                s_Cursor.Position = cursorPosition;
 //                return;

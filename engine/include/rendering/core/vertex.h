@@ -69,6 +69,28 @@ namespace xpe {
             static constexpr VertexFormat::Attribute BONE_WEIGHTS = {6, "XPE_BONE_WEIGHTS", VertexFormat::Attribute::eFormat::VEC4_FLOAT };
         };
 
+        struct ENGINE_API Vertex final
+        {
+            static VertexFormat Format;
+
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec2 UV = { 0, 0 };
+            glm::vec3 Normal = { 0, 0, 0 };
+            glm::vec3 Tangent = { 0, 0, 0 };
+            glm::ivec4 BoneIDs = { -1, -1, -1, -1 };
+            glm::vec4 BoneWeights = { 0, 0, 0, 0 };
+        };
+
+        Json(
+            Vertex,
+            Position,
+            UV,
+            Normal,
+            Tangent,
+            BoneIDs,
+            BoneWeights
+        )
+
     }
 
 }

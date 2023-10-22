@@ -1,11 +1,11 @@
 #pragma once
 
-#include <ecs/global.h>
+#include <ecs/ecs.h>
+#include <ecs/components.hpp>
 
 #include <rendering/core/texture.h>
 
 #include <geometry/geometries.h>
-#include <ecs/components.hpp>
 
 namespace xpe {
 

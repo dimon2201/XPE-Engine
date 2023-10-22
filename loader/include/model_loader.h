@@ -17,7 +17,7 @@ namespace xpe {
         {
 
         public:
-            Ref<Model3D> Load(const char* filepath, const vector<eLoadOption>& options = {
+            Ref<Model> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE,
                     eLoadOption::FLIP_UV,
                     eLoadOption::CALC_TANGENTS,
@@ -27,7 +27,7 @@ namespace xpe {
             });
 
         private:
-            unordered_map<string, Ref<Model3D>> m_Map;
+            unordered_map<string, Ref<Model>> m_Map;
 
         };
 

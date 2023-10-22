@@ -79,7 +79,7 @@ namespace xpe {
             skin.Indices.resize(indices.size());
             memcpy(skin.Indices.data(), indices.data(), indices.size() * sizeof(u32));
 
-            Skelet skelet;
+            Skeleton skelet;
             auto& bones = skelet.Bones;
             int boneCounter = 0;
             for (int i = 0; i < mesh->mNumBones; i++)

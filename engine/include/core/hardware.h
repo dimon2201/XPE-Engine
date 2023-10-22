@@ -29,8 +29,9 @@ namespace xpe {
             u32 Cores = 1;
         };
 
-        struct ENGINE_API Hardware final {
+        class ENGINE_API Hardware final {
 
+        public:
             static MemoryStats Memory;
             static CpuStats CPU;
             static GpuStats GPU;
