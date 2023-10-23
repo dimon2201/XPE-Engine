@@ -4,11 +4,6 @@
 
 namespace xpe {
 
-    namespace ecs
-    {
-        class Scene;
-    }
-
     namespace render {
 
         using namespace ecs;

@@ -4,11 +4,11 @@
 
 #ifdef DEBUG
 
-#define InitDebugger() xpe::render::DebugManager::Init()
-#define FreeDebugger() xpe::render::DebugManager::Free()
+#define InitDebugger() xpe::render::Debugger::Init()
+#define FreeDebugger() xpe::render::Debugger::Free()
 
 #define LogDebugMessages() xpe::render::DebugManager::LogMessages()
-#define LogDebugMessage() xpe::render::DebugManager::LogLastMessage()
+#define LogDebugMessage() xpe::render::Debugger::LogLastMessage()
 
 #else
 
@@ -81,15 +81,15 @@ namespace xpe {
 
         typedef void (*DebuggerCallback)(const DebugMessage&);
 
-        namespace debugger {
+        namespace context {
 
             extern DebuggerCallback Callback;
-            extern bool DebugErrors;
-            extern bool DebugWarnings;
-            extern bool DebugInfo;
+            extern bool EnableInfoLog;
+            extern bool EnableWarnLog;
+            extern bool EnableErrorLog;
 
-            ENGINE_API void Init();
-            ENGINE_API void Free();
+            ENGINE_API void InitDebug();
+            ENGINE_API void FreeDebug();
 
             ENGINE_API bool GetLastMessage(DebugMessage& message);
 
@@ -99,7 +99,7 @@ namespace xpe {
 
         }
 
-        class ENGINE_API DebugManager final {
+        class ENGINE_API Debugger final {
 
         public:
             static void Init();

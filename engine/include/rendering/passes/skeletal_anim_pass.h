@@ -2,13 +2,9 @@
 
 #include <rendering/passes/instancing_pass.h>
 
-#include <anim/storages/skelet_storage.h>
-
 namespace xpe {
 
     namespace render {
-
-        using namespace anim;
 
         class SkeletalAnimPass : public InstancingPass
         {
@@ -16,8 +12,7 @@ namespace xpe {
         public:
             SkeletalAnimPass(
                 const vector<RenderPassBinding>& bindings,
-                RenderTarget* output,
-                MaterialStorage* materialStorage
+                RenderTarget* output
             );
 
             virtual void Draw(Scene* scene) override final;

@@ -3,7 +3,7 @@
 #include <build.h>
 #include <assimp_types.h>
 
-#include <anim/storages/skelet_storage.h>
+#include <anim/skeleton.h>
 
 namespace xpe {
 
@@ -13,18 +13,17 @@ namespace xpe {
         using namespace anim;
         using namespace math;
 
-        class LOADER_API SkeletLoader : public Object
+        class LOADER_API SkeletonLoader : public Object
         {
 
         public:
-            SkeletLoader(SkeletStorage* skeletStorage) : m_Storage(skeletStorage) {}
-
             Ref<Skeleton> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE
             });
 
         private:
-            SkeletStorage* m_Storage;
+            unordered_map<string, Ref<Skeleton>> m_Map;
+
         };
 
     }

@@ -33,8 +33,10 @@ namespace xpe {
 
     namespace res {
 
-        struct ENGINE_API JsonObject
+        class ENGINE_API JsonObject
         {
+
+        public:
 
             virtual void ToJson(json& root) = 0;
 

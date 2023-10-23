@@ -1,4 +1,5 @@
 #include <rendering/passes/main_pass.h>
+#include <rendering/material/material_manager.h>
 
 #include <ecs/scenes.hpp>
 
@@ -8,16 +9,15 @@ namespace xpe {
 
         MainPass::MainPass(
                 const vector<RenderPassBinding> &bindings,
-                RenderTarget *output,
-                MaterialStorage *materialStorage
+                RenderTarget *output
         ) : InstancingPass(bindings, output)
         {
-            materialStorage->BindPipeline(*m_Pipeline);
+            MaterialManager::Bind(*m_Pipeline);
         }
 
         void MainPass::Draw(Scene* scene)
         {
-            scene->EachComponent<GeometryComponent<Vertex3D>>([this](GeometryComponent<Vertex3D>* component)
+            scene->EachComponent<GeometryComponent>([this](GeometryComponent* component)
             {
                 if (component->Geometry.Get() != nullptr) {
                     auto& geometry = *component->Geometry;
@@ -29,22 +29,6 @@ namespace xpe {
                         geometry.Indices.size(),
                         component->Entity,
                         component->Entities
-                    );
-                }
-            });
-
-            scene->EachComponent<MeshComponent>([this](MeshComponent* component)
-            {
-                if (component->Mesh.Get() != nullptr) {
-                    auto& mesh = *component->Mesh;
-                    DrawInstanced(
-                            mesh.PrimitiveTopology,
-                            mesh.VertexOffset,
-                            mesh.Vertices.size(),
-                            mesh.IndexOffset,
-                            mesh.Indices.size(),
-                            component->Entity,
-                            component->Entities
                     );
                 }
             });

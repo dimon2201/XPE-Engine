@@ -2,7 +2,7 @@
 
 #ifdef DEBUG
 
-#define LogMemoryPools() xpe::core::MemoryPoolManager::LogPools()
+#define LogMemoryPools() xpe::core::Memory::LogPools()
 
 #else
 

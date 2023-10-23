@@ -1,15 +1,13 @@
 #include <core/app.hpp>
 #include <launcher.h>
 
-#include <ecs/entities.hpp>
 #include <ecs/scenes.hpp>
 
 #include <model_loader.h>
 #include <material_loader.h>
 #include <font_loader.h>
 #include <texture_loader.h>
-#include <skin_loader.h>
-#include <skelet_loader.h>
+#include <skeleton_loader.h>
 #include <anim_loader.h>
 #include <audio_loader.h>
 
@@ -20,7 +18,6 @@
 using namespace xpe::core;
 using namespace xpe::ecs;
 using namespace xpe::render;
-using namespace xpe::control;
 using namespace xpe::math;
 using namespace xpe::res;
 using namespace xpe::audio;
@@ -33,9 +30,9 @@ public:
 
 protected:
 
-    void InitRenderer() override
+    void InitRenderPasses() override
     {
-        Application::InitRenderer();
+        Application::InitRenderPasses();
     }
 
 public:
@@ -67,13 +64,12 @@ public:
         AddCursorMove(GameApp, 1);
 
         m_ModelLoader.Create();
-        m_MaterialLoader.Create(m_MaterialStorage);
-        m_TextureLoader.Create(m_TextureStorage);
-        m_FontLoader.Create(m_FontStorage);
-        m_SkeletLoader.Create(m_SkeletStorage);
-        m_SkinLoader.Create();
-        m_AnimLoader.Create(m_AnimStorage);
-        m_AudioLoader.Create(m_AudioStorage);
+        m_MaterialLoader.Create();
+        m_TextureLoader.Create();
+        m_FontLoader.Create();
+        m_SkeletLoader.Create();
+        m_AnimLoader.Create();
+        m_AudioLoader.Create();
 
         InitCamera();
         InitCamera2D();
@@ -81,7 +77,7 @@ public:
         // setup text 2D entity
         {
             m_Text2D = new Entity("Text2D", m_MainScene);
-            m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
+            m_Text2D->Transform.Position = { 0, Windowing::GetHeight(), 0 };
             m_Text2D->Transform.Scale = { 1, 1, 1 };
 
             auto* textComponent = m_Text2D->AddComponent<Text2DComponent>(
@@ -136,8 +132,8 @@ public:
             m_Plane->Transform.Position = { 0, -10, 0 };
             m_Plane->Transform.Scale = { 100, 0.1, 100 };
 
-            m_Plane->AddComponent<GeometryComponent<Vertex3D>>("G_Plane", GeometryManager::AddGeometry(Cube()));
-            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", m_MaterialStorage->Add("PlaneMaterial", Material()))->Material;
+            m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Cube()));
+            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::Add("PlaneMaterial", Material()))->Material;
             planeMaterial->Albedo = { 1, 1, 1, 1 };
             planeMaterial->Metallness = 0.5;
             planeMaterial->Roughness = 0.5;
@@ -162,8 +158,8 @@ public:
             m_PointLight->Transform.Position = {20, 20, -20 };
             m_PointLight->Transform.Scale = {0.5, 0.5, 0.5 };
 
-            m_PointLight->AddComponent<GeometryComponent<Vertex3D>>("G_Point", GeometryManager::AddGeometry(Sphere()));
-            m_PointLight->AddComponent<MaterialComponent>("PointLight", m_MaterialStorage->Add("MT_PointLight", Material()));
+            m_PointLight->AddComponent<GeometryComponent>("G_Point", GeometryManager::AddGeometry(Sphere()));
+            m_PointLight->AddComponent<MaterialComponent>("PointLight", MaterialManager::Add("MT_PointLight", Material()));
             auto& material = m_PointLight->GetComponent<MaterialComponent>("PointLight")->Material;
             material->Albedo = { 1, 0, 0, 1 };
             material->Flush();
@@ -194,14 +190,14 @@ public:
 
             auto* goblinModel = m_Goblin1->AddComponent<SkinModelComponent>(
                 "GoblinModel",
-                m_SkinLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
+                m_ModelLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
                 m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
                 vector<Entity*> { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 }
             );
 
             auto* goblinAnimation = m_Goblin1->AddComponent<SkeletalAnimationComponent>(
                 "GoblinAnimation",
-                goblinModel->Skelet,
+                goblinModel->Skeleton,
                 m_AnimLoader->Load("res/models/winter-girl/source/dancing_vampire.dae")
             );
 
@@ -297,9 +293,9 @@ public:
         {
             m_Cube = new Entity("Cube", m_MainScene);
             m_Cube->Transform.Position = {10, -10, 10 };
-            m_Cube->Transform.Scale = {5, 5, 5 };
-            m_Cube->AddComponent<GeometryComponent<Vertex3D>>("G_Cube", GeometryManager::AddGeometry(Cube()));
-            m_Cube->AddComponent<MaterialComponent>("Cube", m_MaterialStorage->Add("MT_Cube", Material()));
+            m_Cube->Transform.Scale = { 5, 5, 5 };
+            m_Cube->AddComponent<GeometryComponent>("G_Cube", GeometryManager::AddGeometry(Cube()));
+            m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::Add("MT_Cube", Material()));
         }
 
         // setup audio
@@ -321,27 +317,23 @@ public:
 
             //loading stream audio files
             {
+                m_AudioObject = new Entity("AudioObject", m_MainScene);
 
                 //load test stream audio
                 {
-                    AudioFileComponent component("Test");
-                    component.File = m_AudioLoader->Load("res/audio/test.wav");
-                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                    m_AudioObject->AddComponent<AudioFileComponent>("Test", m_AudioLoader->Load("res/audio/test.wav"));
                 }
 
                 //load spell stream audio
                 {
-                    AudioFileComponent component("Magicfail");
-                    component.File = m_AudioLoader->Load("res/audio/magicfail.ogg");
-                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                    m_AudioObject->AddComponent<AudioFileComponent>("Magicfail", m_AudioLoader->Load("res/audio/magicfail.ogg"));
                 }
 
                 //load magicfail stream audio
                 {
-                    AudioFileComponent component("Spell");
-                    component.File = m_AudioLoader->Load("res/audio/spell.ogg");
-                    m_MainScene->AddComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), component);
+                    m_AudioObject->AddComponent<AudioFileComponent>("Spell", m_AudioLoader->Load("res/audio/spell.ogg"));
                 }
+
             }
             //temporarily commented
             //// create voice component
@@ -361,9 +353,9 @@ public:
             SourceAudioComponent* source2;
 
             //test files //You can use one file for for many sources in one time
-            auto* file = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Spell");
-            auto* file1 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Test");
-            auto* file2 = m_MainScene->GetComponent<AudioFileComponent>(m_MainScene->Audio->GetTag(), "Magicfail");
+            auto* file = m_AudioObject->GetComponent<AudioFileComponent>("Spell");
+            auto* file1 = m_AudioObject->GetComponent<AudioFileComponent>("Test");
+            auto* file2 = m_AudioObject->GetComponent<AudioFileComponent>("Magicfail");
 
             //creating source
             {
@@ -460,6 +452,7 @@ public:
         delete m_Cube;
         delete m_Listener;
         delete m_BackgroundAudio;
+        delete m_AudioObject;
     }
 
     void WindowClosed()
@@ -471,7 +464,7 @@ public:
     {
         if (key == eKey::Esc)
         {
-            WindowManager::Close();
+            Windowing::Close();
         }
 
         MoveLight(key);
@@ -510,7 +503,7 @@ private:
         m_MainScene->PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
         m_MainScene->PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
 
-        m_MainScene->PerspectiveCamera->Init(WindowManager::GetWidth(), WindowManager::GetHeight());
+        m_MainScene->PerspectiveCamera->Init(Windowing::GetWidth(), Windowing::GetHeight());
     }
 
     void InitCamera2D()
@@ -599,8 +592,7 @@ private:
     Ref<MaterialLoader> m_MaterialLoader;
     Ref<TextureLoader> m_TextureLoader;
     Ref<FontLoader> m_FontLoader;
-    Ref<SkeletLoader> m_SkeletLoader;
-    Ref<SkinLoader> m_SkinLoader;
+    Ref<SkeletonLoader> m_SkeletLoader;
     Ref<AnimLoader> m_AnimLoader;
     Ref<AudioLoader> m_AudioLoader;
 
@@ -616,6 +608,7 @@ private:
     Entity* m_Cube;
     Entity* m_Listener;
     Entity* m_BackgroundAudio;
+    Entity* m_AudioObject;
 
     TestConfig m_TestConfig = string("TestConfig");
     XmlConfig  m_XmlConfig = string("XmlConfig");

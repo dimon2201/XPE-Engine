@@ -15,7 +15,8 @@ namespace xpe {
 
         Ref<Texture> TextureLoader::Load(const char* filepath, const eTextureFormat &format)
         {
-            Ref<Texture> texture = m_Storage->Add(filepath, {});
+            Ref<Texture> texture;
+            texture.Create();
             texture->Format = format;
             texture->Depth = 1;
             TextureLayer layer = LoadLayer(filepath, format, texture->Width, texture->Height, texture->Channels);
@@ -113,7 +114,8 @@ namespace xpe {
 
         Ref<Texture> TextureLoader::LoadCube(const TextureCubeFilepath &cubeFilepath, const eTextureFormat &format)
         {
-            Ref<Texture> textureCube = m_Storage->Add(cubeFilepath.Name, {});
+            Ref<Texture> textureCube;
+            textureCube.Create();
             textureCube->Type = Texture::eType::TEXTURE_CUBE;
             textureCube->Format = format;
 

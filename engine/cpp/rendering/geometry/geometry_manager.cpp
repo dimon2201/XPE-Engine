@@ -73,6 +73,18 @@ namespace xpe {
             return indexOffset;
         }
 
+        Ref<Geometry> GeometryManager::AddGeometry(const Geometry& geometry)
+        {
+            Ref<Geometry> geometryRef;
+            geometryRef.Create(geometry);
+
+            geometryRef->IndexOffset = AddIndices(geometry.Indices);
+            geometryRef->VertexOffset = s_VertexBuffer->AddVertices(geometry.Vertices);
+            s_VertexBuffer->Flush();
+
+            return geometryRef;
+        }
+
     }
 
 }

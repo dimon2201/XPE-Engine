@@ -4,7 +4,6 @@
 
 #include <rendering/buffers/camera_buffer.h>
 
-#include <ecs/global.h>
 #include <ecs/components.hpp>
 
 namespace xpe {

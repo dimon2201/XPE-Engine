@@ -2,8 +2,6 @@
 #include <texture_loader.h>
 #include <assimp_types.h>
 
-#include <rendering/storages/material_storage.h>
-
 namespace xpe {
 
     namespace res {
@@ -43,9 +41,9 @@ namespace xpe {
 
         Ref<Material> MaterialLoader::Load(const MaterialFilepath &filepath)
         {
-            if (m_Storage->Has(filepath.Name)) {
+            if (MaterialManager::Has(filepath.Name)) {
                 Ref<Material> materialRef;
-                materialRef.Create(*m_Storage->Get(filepath.Name));
+                materialRef.Create(*MaterialManager::Get(filepath.Name));
                 return materialRef;
             }
 
@@ -101,7 +99,7 @@ namespace xpe {
             );
             material.EnableEmissionMap = material.EmissionMap.Pixels != nullptr;
 
-            return m_Storage->Add(filepath.Name, material);
+            return MaterialManager::Add(filepath.Name, material);
         }
 
     }

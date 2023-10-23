@@ -23,6 +23,8 @@ namespace xpe {
             template<typename... Args>
             void Create(Args &&... args);
 
+            void Destroy();
+
             inline T* Get() const noexcept { return m_Ptr; }
             inline T& operator*() const noexcept { return *m_Ptr; }
             inline T* operator->() const noexcept { return m_Ptr; }
@@ -45,6 +47,12 @@ namespace xpe {
         void Scope<T>::Create(Args &&... args)
         {
             m_Ptr = main_construct_args(T, std::forward<Args>(args)...);
+        }
+
+        template<typename T>
+        void Scope<T>::Destroy()
+        {
+            Scope<T>::~Scope();
         }
 
         static std::unordered_map<void*, s64> RefCountTable = {};
@@ -72,6 +80,10 @@ namespace xpe {
             template<typename... Args>
             void Create(Args &&... args);
 
+            void Reset();
+
+            void Destroy();
+
             inline T* Get() const noexcept { return m_Ptr; }
 
             inline T& operator*() const noexcept { return *m_Ptr; }
@@ -97,6 +109,19 @@ namespace xpe {
         {
             m_Ptr = main_construct_args(T, std::forward<Args>(args)...);
             RefCountTable.insert({ m_Ptr, 1 });
+        }
+
+        template<typename T>
+        void Ref<T>::Destroy()
+        {
+            Reset();
+            Ref<T>::~Ref();
+        }
+
+        template<typename T>
+        void Ref<T>::Reset()
+        {
+            RefCountTable[m_Ptr] = 0;
         }
 
         template<typename T>
@@ -180,6 +205,8 @@ namespace xpe {
             template<typename... Args>
             void Create(Args &&... args);
 
+            void Destroy();
+
             inline T* Get() const noexcept { return m_Ptr; }
             inline T& operator*() const noexcept { return *m_Ptr; }
             inline T* operator->() const noexcept { return m_Ptr; }
@@ -205,6 +232,12 @@ namespace xpe {
         }
 
         template<typename T>
+        void HotScope<T>::Destroy()
+        {
+            HotScope<T>::~HotScope();
+        }
+
+        template<typename T>
         class HotRef : public HotObject
         {
 
@@ -226,6 +259,10 @@ namespace xpe {
 
             template<typename... Args>
             void Create(Args &&... args);
+
+            void Destroy();
+
+            void Reset();
 
             inline T* Get() const noexcept { return m_Ptr; }
 
@@ -252,6 +289,19 @@ namespace xpe {
         {
             m_Ptr = hot_construct_args(T, std::forward<Args>(args)...);
             RefCountTable.insert({ m_Ptr, 1 });
+        }
+
+        template<typename T>
+        void HotRef<T>::Destroy()
+        {
+            Reset();
+            HotRef<T>::~HotRef();
+        }
+
+        template<typename T>
+        void HotRef<T>::Reset()
+        {
+            RefCountTable[m_Ptr] = 0;
         }
 
         template<typename T>

@@ -1,13 +1,13 @@
 #pragma once
 
+#include <rendering/buffers/shadow_filter_buffer.h>
+
 namespace xpe {
 
-    namespace ecs
-    {
-        class Scene;
-    }
-
     namespace render {
+
+        using namespace core;
+        using namespace ecs;
 
         class RenderTarget;
         class RenderPass;
@@ -15,32 +15,43 @@ namespace xpe {
         class DirectLightBuffer;
         class PointLightBuffer;
         class SpotLightBuffer;
+        class Texture;
+        class TextureSampler;
 
-        class ENGINE_API Renderer : public core::Object
+        class ENGINE_API RenderSystem : public System
         {
 
         public:
             render::CameraBuffer* CameraBuffer;
+
             render::DirectLightBuffer* DirectLightBuffer;
             render::PointLightBuffer* PointLightBuffer;
             render::SpotLightBuffer* SpotLightBuffer;
 
-            Renderer();
-            ~Renderer();
+            render::TextureSampler* ShadowSampler;
+            render::Texture* ShadowMap;
+            render::Texture* ShadowCoords;
+            render::ShadowFilterBuffer* ShadowFilterBuffer;
+
+            RenderSystem();
+            ~RenderSystem();
 
             template<typename T, typename ... Args>
             void AddRenderPass(Args &&... args);
 
-            void Render(ecs::Scene* scene);
+            void Update(Scene* scene, const Time& dt) override final;
+
+            void Prepare();
 
         private:
-            void FlushLights(ecs::Scene* scene);
+            void UpdateLight(Scene* scene);
+            void UpdatePasses(Scene* scene);
 
-            core::vector<RenderPass*> m_RenderPasses;
+            vector<RenderPass*> m_RenderPasses;
         };
 
         template<typename T, typename... Args>
-        void Renderer::AddRenderPass(Args &&... args)
+        void RenderSystem::AddRenderPass(Args &&... args)
         {
             T* renderPass = new T(std::forward<Args>(args)...);
             renderPass->Init();

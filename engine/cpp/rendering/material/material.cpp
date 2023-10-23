@@ -1,4 +1,4 @@
-#include <rendering/materials/material.h>
+#include <rendering/material/material.h>
 
 namespace xpe {
 

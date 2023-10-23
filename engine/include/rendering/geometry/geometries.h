@@ -1,7 +1,6 @@
 #pragma once
 
 #include <rendering/geometry/geometry.h>
-#include <rendering/materials/material.h>
 
 namespace xpe {
 
@@ -28,20 +27,12 @@ namespace xpe {
             Indices
         )
 
-        struct ENGINE_API Triangle2D : public Geometry {
-            Triangle2D();
-        };
-
         struct ENGINE_API Triangle : public Geometry {
             Triangle();
         };
 
         struct Line : public Geometry {
             Line();
-        };
-
-        struct ENGINE_API Quad2D : public Geometry {
-            Quad2D();
         };
 
         struct ENGINE_API Quad : public Geometry {

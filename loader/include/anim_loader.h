@@ -21,6 +21,9 @@ namespace xpe {
                     eLoadOption::TRIANGULATE
             });
 
+        private:
+            unordered_map<string, Ref<Animation>> m_Map;
+
         };
 
     }

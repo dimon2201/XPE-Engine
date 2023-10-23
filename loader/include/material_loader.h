@@ -1,7 +1,7 @@
 #pragma once
 
 #include <build.h>
-#include <rendering/storages/material_storage.h>
+#include <rendering/material/material_manager.h>
 
 class aiScene;
 class aiMesh;
@@ -29,14 +29,9 @@ namespace xpe {
         {
 
         public:
-            MaterialLoader(MaterialStorage* materialStorage) : m_Storage(materialStorage) {}
-
             Ref<Material> Load(const aiScene* scene, aiMesh* mesh, const hstring& directory);
-
             Ref<Material> Load(const MaterialFilepath& filepath);
 
-        private:
-            MaterialStorage* m_Storage;
         };
 
     }

@@ -21,7 +21,6 @@ namespace xpe {
 
         struct ENGINE_API MainScene : public Scene
         {
-            ecs::Audio* Audio = nullptr;
             ecs::Skybox* Skybox = nullptr;
             render::PerspectiveCamera* PerspectiveCamera = nullptr;
             render::OrthoCamera* OrthoCamera = nullptr;

@@ -7,7 +7,9 @@ namespace xpe {
 
     namespace physics {
 
-        class ENGINE_API PhysicsManager : public ecs::Manager {
+        using namespace ecs;
+
+        class ENGINE_API PhysicsSystem : public System {
 
         public:
             static bool EnableMemoryProfiling;

@@ -1,6 +1,5 @@
 #include <rendering/passes/ssao_pass.hpp>
-
-#include <ecs/scene.h>
+#include <rendering/geometry/geometry_manager.h>
 
 namespace xpe
 {
@@ -8,7 +7,7 @@ namespace xpe
     {
         SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, RenderTarget* output) : RenderPass(bindings, output)
         {
-            m_Quad = GeometryManager::AddGeometry(Quad2D());
+            m_Quad = GeometryManager::AddGeometry(Quad());
 
             m_Buffer.Type = eBufferType::CONSTANT;
             m_Buffer.Usage = eBufferUsage::DYNAMIC;

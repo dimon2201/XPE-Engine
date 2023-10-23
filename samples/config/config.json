@@ -13,9 +13,9 @@
     "LogTitle": "ExampleWindow",
     "LogBacktrace": 32,
 
-    "DebugErrors": true,
-    "DebugWarnings": false,
-    "DebugInfo": false,
+    "EnableGPUInfoLog": false,
+    "EnableGPUWarnLog": false,
+    "EnableGPUErrorLog": true,
 
     "FPS": 165,
     "LockOnFps": false,

@@ -2,7 +2,8 @@
 
 #include <ecs/ecs.h>
 
-#include <rendering/materials/material.h>
+#include <rendering/geometry/geometries.h>
+#include <rendering/material/material.h>
 #include <rendering/font/font.hpp>
 #include <rendering/buffers/light_buffers.h>
 
@@ -154,10 +155,10 @@ namespace xpe
 
         struct GeometryComponent : Component
         {
-            Ref<math::Geometry> Geometry;
+            Ref<render::Geometry> Geometry;
             vector<ecs::Entity*> Entities;
 
-            GeometryComponent(const string& tag, const Ref<math::Geometry>& geometry, const vector<ecs::Entity*>& entities = {})
+            GeometryComponent(const string& tag, const Ref<render::Geometry>& geometry, const vector<ecs::Entity*>& entities = {})
             : Component(tag), Geometry(geometry), Entities(entities) {}
 
             JsonClass(
@@ -168,10 +169,10 @@ namespace xpe
 
         struct ENGINE_API ModelComponent : Component
         {
-            Ref<math::Model> Model;
+            Ref<render::Model> Model;
             vector<ecs::Entity*> Entities;
 
-            ModelComponent(const string& tag, const Ref<math::Model>& model, const vector<ecs::Entity*>& entities = {})
+            ModelComponent(const string& tag, const Ref<render::Model>& model, const vector<ecs::Entity*>& entities = {})
             : Component(tag), Model(model), Entities(entities) {}
 
             JsonClass(
@@ -182,12 +183,12 @@ namespace xpe
 
         struct ENGINE_API SkinModelComponent : Component
         {
-            Ref<anim::SkinModel> SkinModel;
+            Ref<render::Model> Model;
             Ref<anim::Skeleton> Skeleton;
             vector<ecs::Entity*> Entities;
 
-            SkinModelComponent(const string& tag, const Ref<anim::SkinModel>& model, const Ref<anim::Skeleton>& skeleton, const vector<ecs::Entity*>& entities = {})
-            : Component(tag), SkinModel(model), Skeleton(skeleton), Entities(entities) {}
+            SkinModelComponent(const string& tag, const Ref<render::Model>& model, const Ref<anim::Skeleton>& skeleton, const vector<ecs::Entity*>& entities = {})
+            : Component(tag), Model(model), Skeleton(skeleton), Entities(entities) {}
 
             JsonClass(
                 SkinModelComponent,
@@ -226,6 +227,9 @@ namespace xpe
         struct ENGINE_API AudioFileComponent : Component
         {
             Ref<AudioFile> File = nullptr;
+
+            AudioFileComponent(const string& tag, const Ref<AudioFile>& file)
+            : Component(tag), File(file) {}
 
             JsonClass(
                 AudioFileComponent,

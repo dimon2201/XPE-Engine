@@ -13,18 +13,18 @@ namespace xpe {
                 return audioRef;
             }
 
-			Ref<AudioFile> fileRef;
-            fileRef.Create(AudioFile());
-            m_Map.insert({ filepath, fileRef });
+			Ref<AudioFile> audioRef;
+            audioRef.Create();
 
-            fileRef->File = sf_open(filepath, SFM_READ, &fileRef->Info);
-			if (!fileRef->File) {
+            audioRef->File = sf_open(filepath, SFM_READ, &audioRef->Info);
+			if (!audioRef->File) {
 				LogError("Unable to open file {}", filepath);
 			}
 
-			fileRef->Info.format = context::GetFormat(*fileRef, fileRef->Info.channels);
+            audioRef->Info.format = context::GetFormat(*audioRef, audioRef->Info.channels);
 
-			return fileRef;
+            m_Map.insert({ filepath, audioRef });
+			return audioRef;
 		}
 
 	}

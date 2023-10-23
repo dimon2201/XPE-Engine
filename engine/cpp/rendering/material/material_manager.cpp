@@ -1,12 +1,25 @@
-#include <rendering/storages/material_storage.h>
+#include <rendering/material/material_manager.h>
 
 namespace xpe {
 
     namespace render {
 
-        MaterialStorage::MaterialStorage()
+        unordered_map<string, Ref<Material>>* MaterialManager::s_Map = nullptr;
+        Ref<MaterialDataBuffer> MaterialManager::s_DataBuffer;
+
+        TextureSampler MaterialManager::Sampler;
+        Ref<Texture> MaterialManager::AlbedoAtlas;
+        Ref<Texture> MaterialManager::NormalAtlas;
+        Ref<Texture> MaterialManager::ParallaxAtlas;
+        Ref<Texture> MaterialManager::MetalAtlas;
+        Ref<Texture> MaterialManager::RoughnessAtlas;
+        Ref<Texture> MaterialManager::AOAtlas;
+        Ref<Texture> MaterialManager::EmissionAtlas;
+
+        void MaterialManager::Init()
         {
-            m_DataBuffer.Create();
+            s_Map = new unordered_map<string, Ref<Material>>();
+            s_DataBuffer.Create();
             InitSampler();
             AlbedoAtlas = InitTextureArray(Material::K_ALBEDO_FORMAT);
             NormalAtlas = InitTextureArray(Material::K_BUMP_FORMAT);
@@ -17,12 +30,20 @@ namespace xpe {
             EmissionAtlas = InitTextureArray(Material::K_EMISSION_FORMAT);
         }
 
-        MaterialStorage::~MaterialStorage()
+        void MaterialManager::Free()
         {
+            s_DataBuffer.Destroy();
+            AlbedoAtlas.Destroy();
+            NormalAtlas.Destroy();
+            ParallaxAtlas.Destroy();
+            MetalAtlas.Destroy();
+            RoughnessAtlas.Destroy();
+            AOAtlas.Destroy();
+            EmissionAtlas.Destroy();
             context::FreeSampler(Sampler);
         }
 
-        void MaterialStorage::InitSampler()
+        void MaterialManager::InitSampler()
         {
             Sampler.Slot            = K_SLOT_MATERIAL_SAMPLER;
             Sampler.Filter          = TextureSampler::eFilter::ANISOTROPIC;
@@ -34,7 +55,7 @@ namespace xpe {
             context::CreateSampler(Sampler);
         }
 
-        Ref<Texture> MaterialStorage::InitTextureArray(const MaterialFormat& materialFormat)
+        Ref<Texture> MaterialManager::InitTextureArray(const MaterialFormat& materialFormat)
         {
             Ref<Texture> texture;
             texture.Create();
@@ -52,15 +73,15 @@ namespace xpe {
             return texture;
         }
 
-        void MaterialStorage::Remove(const string &name)
+        void MaterialManager::Remove(const string &name)
         {
-            auto it = m_Map.find(name);
-            if (it != m_Map.end()) {
+            auto it = s_Map->find(name);
+            if (it != s_Map->end()) {
                 u32 index = it->second->Index;
-                m_Map.erase(it);
+                s_Map->erase(it);
 
-                m_DataBuffer->RemoveAt(index);
-                m_DataBuffer->Flush();
+                s_DataBuffer->RemoveAt(index);
+                s_DataBuffer->Flush();
 
                 AlbedoAtlas->RemoveLayerAt(index);
                 AlbedoAtlas->Flush();
@@ -85,12 +106,12 @@ namespace xpe {
             }
         }
 
-        void MaterialStorage::Clear()
+        void MaterialManager::Clear()
         {
-            m_Map.clear();
+            s_Map->clear();
 
-            m_DataBuffer->Clear();
-            m_DataBuffer->Flush();
+            s_DataBuffer->Clear();
+            s_DataBuffer->Flush();
 
             AlbedoAtlas->Layers.clear();
             AlbedoAtlas->Flush();
@@ -114,9 +135,9 @@ namespace xpe {
             EmissionAtlas->Flush();
         }
 
-        void MaterialStorage::BindPipeline(Pipeline& pipeline)
+        void MaterialManager::Bind(Pipeline& pipeline)
         {
-            pipeline.PSBuffers.emplace_back(m_DataBuffer.Get());
+            pipeline.PSBuffers.emplace_back(s_DataBuffer.Get());
 
             pipeline.Samplers.emplace_back(&Sampler);
 

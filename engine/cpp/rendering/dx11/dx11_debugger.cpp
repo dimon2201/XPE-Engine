@@ -8,9 +8,8 @@ namespace xpe {
 
     namespace render {
 
-        namespace debugger {
+        namespace context {
 
-            ID3D11Device* s_Device = nullptr;
             ID3D11Debug* s_Debug = nullptr;
             ID3D11InfoQueue* s_InfoQueue = nullptr;
 
@@ -119,13 +118,13 @@ namespace xpe {
                 return debugMessage;
             }
 
-            void Init() {
-                s_Device = reinterpret_cast<ID3D11Device*>(context::GetDevice());
-                s_Device->QueryInterface(__uuidof(ID3D11Debug), (void**)&s_Debug);
-                s_Device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&s_InfoQueue);
+            void InitDebug() {
+                auto* device = reinterpret_cast<ID3D11Device*>(context::GetDevice());
+                device->QueryInterface(__uuidof(ID3D11Debug), (void**)&s_Debug);
+                device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&s_InfoQueue);
             }
 
-            void Free() {
+            void FreeDebug() {
                 s_Debug->Release();
                 s_InfoQueue->Release();
             }

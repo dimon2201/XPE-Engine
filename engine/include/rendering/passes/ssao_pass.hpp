@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/passes/render_pass.h>
+#include <rendering/geometry/geometry.h>
 
 namespace xpe
 {
@@ -26,7 +27,7 @@ namespace xpe
         private:
             Buffer m_Buffer;
             SSAOBufferLayout m_BufferData;
-            Ref<Geometry<Vertex2D>> m_Quad;
+            Ref<Geometry> m_Quad;
         };
     }
 }

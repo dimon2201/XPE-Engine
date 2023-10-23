@@ -5,24 +5,18 @@ namespace xpe {
     namespace render
     {
         class Canvas;
-        class Renderer;
-        class TextureStorage;
-        class MaterialStorage;
-        class FontStorage;
+        class RenderSystem;
         class RenderTarget;
     }
 
     namespace anim
     {
-        class SkeletStorage;
-        class AnimStorage;
-        class Animator;
+        class AnimSystem;
     }
 
     namespace audio
     {
         class AudioSystem;
-        class AudioStorage;
     }
 
     namespace ecs
@@ -55,26 +49,17 @@ namespace xpe {
             virtual void Free() {}
             virtual void Render();
 
-            virtual void InitRenderer();
+            virtual void InitRenderPasses();
 
             std::atomic_bool m_IsOpen = true;
 
             ecs::MainScene* m_MainScene = nullptr;
 
-            render::FontStorage* m_FontStorage = nullptr;
-            render::MaterialStorage* m_MaterialStorage = nullptr;
-            render::TextureStorage* m_TextureStorage = nullptr;
+            render::RenderSystem* m_RenderSystem = nullptr;
+            anim::AnimSystem* m_AnimSystem = nullptr;
+            audio::AudioSystem* m_AudioSystem = nullptr;
 
             render::Canvas* m_Canvas = nullptr;
-            render::Renderer* m_Renderer = nullptr;
-
-            anim::Animator* m_Animator = nullptr;
-            anim::SkeletStorage* m_SkeletStorage = nullptr;
-            anim::AnimStorage* m_AnimStorage = nullptr;
-
-            audio::AudioManager* m_AudioSystem = nullptr;
-            audio::AudioStorage* m_AudioStorage = nullptr;
-
             render::RenderTarget* MainRT = nullptr;
             render::RenderTarget* SsaoRT = nullptr;
         };

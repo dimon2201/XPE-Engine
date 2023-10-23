@@ -38,7 +38,7 @@ namespace xpe {
         void Input::Init() {
             LogInfo("Input::Init()");
 
-            s_Window = static_cast<GLFWwindow*>(WindowManager::GetInstance());
+            s_Window = static_cast<GLFWwindow*>(Windowing::GetInstance());
 
             WindowClosedEvents = new EventBuffer<WindowClosedFn>;
             WindowResizedEvents = new EventBuffer<WindowResizedFn>;

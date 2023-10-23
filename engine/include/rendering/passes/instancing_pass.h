@@ -3,15 +3,8 @@
 #include <rendering/passes/render_pass.h>
 #include <rendering/buffers/instance_buffer.h>
 #include <rendering/buffers/transform_buffer.h>
-#include <rendering/storages/material_storage.h>
 
 namespace xpe {
-
-    namespace ecs
-    {
-        class Scene;
-        class Entity;
-    }
 
     namespace render {
 

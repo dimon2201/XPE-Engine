@@ -1,6 +1,5 @@
 #pragma once
 
-#include <ecs/manager.h>
 #include <ecs/components.hpp>
 
 namespace xpe {
@@ -10,12 +9,12 @@ namespace xpe {
         using namespace core;
 		using namespace ecs;
 
-		class ENGINE_API AudioManager : public Manager
+		class ENGINE_API AudioSystem : public System
 		{
 
 		public:
-            AudioManager();
-			~AudioManager();
+            AudioSystem();
+			~AudioSystem();
 
 			void UpdateListener(Scene* scene);
 

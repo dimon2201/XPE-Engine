@@ -8,7 +8,7 @@ namespace xpe {
 
         class Entity;
 
-        struct ENGINE_API Component : public Object, res::JsonObject
+        struct ENGINE_API Component : public Object, public res::JsonObject
         {
             ecs::Entity* Entity = nullptr;
 
@@ -206,7 +206,7 @@ namespace xpe {
         typedef usize ComponentType;
         typedef usize GlobalType;
 
-        class ENGINE_API Scene : public Object, res::JsonObject
+        class ENGINE_API Scene : public Object, public res::JsonObject
         {
 
         public:
@@ -396,7 +396,7 @@ namespace xpe {
             return static_cast<T*>(m_Globals[GetGlobalType<T>()]);
         }
 
-        class ENGINE_API Entity : public Object, res::JsonObject
+        class ENGINE_API Entity : public Object, public res::JsonObject
         {
 
         public:
@@ -499,7 +499,7 @@ namespace xpe {
             return GetComponent<T>(componentTag) == nullptr;
         }
 
-        struct ENGINE_API Global : public Object, res::JsonObject
+        struct ENGINE_API Global : public Object, public res::JsonObject
         {
             JsonClass(
                 Global,
@@ -512,7 +512,7 @@ namespace xpe {
             }
         };
 
-        class ENGINE_API Manager : public core::Object {
+        class ENGINE_API System : public Object {
 
         public:
             virtual void Update(Scene* scene, const Time& dt) = 0;

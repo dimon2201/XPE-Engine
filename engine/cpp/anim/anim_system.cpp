@@ -1,4 +1,4 @@
-#include <anim/anim_manager.h>
+#include <anim/anim_system.h>
 
 #include <ecs/scenes.hpp>
 
@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace anim {
 
-        void AnimManager::Update(ecs::Scene *scene, const Time& dt)
+        void AnimSystem::Update(ecs::Scene *scene, const Time& dt)
         {
             scene->EachComponent<SkeletalAnimationComponent>([this, dt](SkeletalAnimationComponent* component)
             {
@@ -16,7 +16,7 @@ namespace xpe {
             });
         }
 
-        void AnimManager::AnimateSkelet(const Ref<Skeleton> &skelet, const Ref<Animation> &animation, const Time& dt)
+        void AnimSystem::AnimateSkelet(const Ref<Skeleton> &skelet, const Ref<Animation> &animation, const Time& dt)
         {
             m_DeltaSeconds = dt.Seconds();
             m_CurrentSeconds += animation->TicksPerSecond * m_DeltaSeconds;
@@ -28,7 +28,7 @@ namespace xpe {
             UpdateSkeletTransform(skelet, boneBuffer, animation->Root, glm::mat4(1.0f));
         }
 
-        void AnimManager::AnimateBone(Bone &bone, float time)
+        void AnimSystem::AnimateBone(Bone &bone, float time)
         {
             glm::mat4 translation = InterpolatePosition(bone, time);
             glm::mat4 rotation = InterpolateRotation(bone, time);
@@ -36,7 +36,7 @@ namespace xpe {
             bone.Transform = translation * rotation * scale;
         }
 
-        int AnimManager::GetPositionIndex(Bone &bone, float time)
+        int AnimSystem::GetPositionIndex(Bone &bone, float time)
         {
             usize count = bone.KeyPositions.size();
 
@@ -50,7 +50,7 @@ namespace xpe {
             return -1;
         }
 
-        int AnimManager::GetRotationIndex(Bone &bone, float time)
+        int AnimSystem::GetRotationIndex(Bone &bone, float time)
         {
             usize count = bone.KeyRotations.size();
 
@@ -64,7 +64,7 @@ namespace xpe {
             return -1;
         }
 
-        int AnimManager::GetScaleIndex(Bone &bone, float time)
+        int AnimSystem::GetScaleIndex(Bone &bone, float time)
         {
             usize count = bone.KeyScales.size();
 
@@ -78,7 +78,7 @@ namespace xpe {
             return -1;
         }
 
-        float AnimManager::GetScaleFactor(float lastTimestamp, float nextTimestamp, float time)
+        float AnimSystem::GetScaleFactor(float lastTimestamp, float nextTimestamp, float time)
         {
             float scaleFactor;
             float midWayLength = time - lastTimestamp;
@@ -87,7 +87,7 @@ namespace xpe {
             return scaleFactor;
         }
 
-        glm::mat4 AnimManager::InterpolatePosition(Bone &bone, float time)
+        glm::mat4 AnimSystem::InterpolatePosition(Bone &bone, float time)
         {
             auto& positions = bone.KeyPositions;
 
@@ -117,7 +117,7 @@ namespace xpe {
             return glm::translate(glm::mat4(1.0f), finalPosition);
         }
 
-        glm::mat4 AnimManager::InterpolateRotation(Bone &bone, float time)
+        glm::mat4 AnimSystem::InterpolateRotation(Bone &bone, float time)
         {
             auto& rotations = bone.KeyRotations;
 
@@ -151,7 +151,7 @@ namespace xpe {
             return glm::toMat4(finalRotation);
         }
 
-        glm::mat4 AnimManager::InterpolateScale(Bone &bone, float time)
+        glm::mat4 AnimSystem::InterpolateScale(Bone &bone, float time)
         {
             auto& scales = bone.KeyScales;
 
@@ -181,7 +181,7 @@ namespace xpe {
             return glm::scale(glm::mat4(1.0f), finalScale);
         }
 
-        void AnimManager::UpdateSkeletTransform(
+        void AnimSystem::UpdateSkeletTransform(
             const Ref<Skeleton>& skelet,
             BoneBuffer& boneBuffer,
             const AnimationNode& animationNode,

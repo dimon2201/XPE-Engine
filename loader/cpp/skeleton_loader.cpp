@@ -1,4 +1,4 @@
-#include <skelet_loader.h>
+#include <skeleton_loader.h>
 
 namespace xpe {
 
@@ -28,7 +28,7 @@ namespace xpe {
             }
         }
 
-        static void ParseSkeletFromAnim(const aiAnimation* animation, Skeleton& skelet)
+        static void ParseSkeletonFromAnim(const aiAnimation* animation, Skeleton& skelet)
         {
             int size = animation->mNumChannels;
             auto& bones = skelet.Bones;
@@ -72,7 +72,7 @@ namespace xpe {
             }
         }
 
-        static void ParseSkeletFromScene(
+        static void ParseSkeletonFromScene(
                 aiNode* node,
                 const aiScene* scene,
                 Skeleton& skelet
@@ -85,19 +85,20 @@ namespace xpe {
 
             for (u32 i = 0 ; i < node->mNumChildren ; i++)
             {
-                ParseSkeletFromScene(node->mChildren[i], scene, skelet);
+                ParseSkeletonFromScene(node->mChildren[i], scene, skelet);
             }
         }
 
-        Ref<Skeleton> SkeletLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        Ref<Skeleton> SkeletonLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            if (m_Storage->Has(filepath)) {
-                Ref<Skeleton> skeletRef;
-                skeletRef.Create(*m_Storage->Get(filepath));
-                return skeletRef;
+            if (m_Map.find(filepath) != m_Map.end()) {
+                Ref<Skeleton> skeletonRef;
+                skeletonRef.Create(*m_Map[filepath]);
+                return skeletonRef;
             }
 
-            Skeleton skelet;
+            Ref<Skeleton> skeletonRef;
+            skeletonRef.Create();
 
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));
@@ -107,10 +108,11 @@ namespace xpe {
                 return {};
             }
 
-            ParseSkeletFromScene(scene->mRootNode, scene, skelet);
-            ParseSkeletFromAnim(scene->mAnimations[0], skelet);
+            ParseSkeletonFromScene(scene->mRootNode, scene, *skeletonRef);
+            ParseSkeletonFromAnim(scene->mAnimations[0], *skeletonRef);
 
-            return m_Storage->Add(filepath, skelet);
+            m_Map.insert({ filepath, skeletonRef });
+            return skeletonRef;
         }
 
     }

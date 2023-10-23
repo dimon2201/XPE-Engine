@@ -11,9 +11,8 @@ namespace xpe {
 
         public:
             MainPass(
-                    const vector<RenderPassBinding>& bindings,
-                    RenderTarget* output,
-                    MaterialStorage* materialStorage
+                const vector<RenderPassBinding>& bindings,
+                RenderTarget* output
             );
 
             virtual void Draw(Scene* scene) override;

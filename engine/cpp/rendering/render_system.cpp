@@ -1,9 +1,11 @@
-#include <rendering/renderer.h>
+#include <rendering/render_system.h>
 #include <rendering/passes/render_pass.h>
 #include <rendering/monitor.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
-#include <rendering/shadow/shadow.h>
+#include <rendering/buffers/shadow_filter_buffer.h>
+#include <rendering/material/material_manager.h>
+#include <rendering/geometry/geometry_manager.h>
 
 #include <ecs/scenes.hpp>
 
@@ -11,13 +13,13 @@ namespace xpe {
 
     namespace render {
 
-        Renderer::Renderer()
+        RenderSystem::RenderSystem()
         {
             context::Init();
             ShaderManager::Init();
-            GeometryManager::Init();
             Monitor::Init();
-            Shadow::Init();
+            GeometryManager::Init();
+            MaterialManager::Init();
 
             CameraBuffer = new render::CameraBuffer();
 
@@ -29,36 +31,46 @@ namespace xpe {
 
             SpotLightBuffer = new render::SpotLightBuffer();
             SpotLightBuffer->Reserve(1000);
+
+            ShadowSampler = new TextureSampler();
+            ShadowMap = new Texture();
+            ShadowCoords = new Texture();
+            ShadowFilterBuffer = new render::ShadowFilterBuffer();
         }
 
-        Renderer::~Renderer()
+        RenderSystem::~RenderSystem()
         {
             delete CameraBuffer;
+
             delete DirectLightBuffer;
             delete PointLightBuffer;
             delete SpotLightBuffer;
 
-            Shadow::Free();
-            Monitor::Free();
+            delete ShadowSampler;
+            delete ShadowMap;
+            delete ShadowCoords;
+            delete ShadowFilterBuffer;
+
+            MaterialManager::Free();
             GeometryManager::Free();
+            Monitor::Free();
             ShaderManager::Free();
             context::Free();
         }
 
-        void Renderer::Render(Scene* scene)
+        void RenderSystem::Prepare()
         {
+            GeometryManager::BindVertexBuffer();
             GeometryManager::BindIndexBuffer();
-            FlushLights(scene);
-            for (RenderPass* rp : m_RenderPasses)
-            {
-                rp->Update(scene);
-                rp->Bind();
-                rp->Draw(scene);
-                rp->Unbind();
-            }
         }
 
-        void Renderer::FlushLights(Scene* scene)
+        void RenderSystem::Update(Scene* scene, const Time& dt)
+        {
+            UpdateLight(scene);
+            UpdatePasses(scene);
+        }
+
+        void RenderSystem::UpdateLight(Scene* scene)
         {
             this->DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
@@ -95,6 +107,17 @@ namespace xpe {
                 this->SpotLightBuffer->Add(light);
             });
             this->SpotLightBuffer->Flush();
+        }
+
+        void RenderSystem::UpdatePasses(xpe::ecs::Scene *scene)
+        {
+            for (RenderPass* rp : m_RenderPasses)
+            {
+                rp->Update(scene);
+                rp->Bind();
+                rp->Draw(scene);
+                rp->Unbind();
+            }
         }
 
     }

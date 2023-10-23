@@ -67,7 +67,7 @@ namespace xpe {
 
         static void ParseMeshes(
                 aiNode* node, const aiScene* scene,
-                Model3D& model,
+                Model& model,
                 const hstring& directory, u32 flags
         ) {
             auto& meshes = model.Meshes;
@@ -93,8 +93,8 @@ namespace xpe {
                 return modelRef;
             }
 
-            Model3D model;
-            hstring directory = FileManager::GetDirectory(filepath);
+            Model model;
+            hstring directory = FileSystem::GetDirectory(filepath);
 
             Assimp::Importer importer;
             u32 flags = AssimpManager::GetLoadFlags(options);

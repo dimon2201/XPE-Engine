@@ -77,7 +77,6 @@
 #include <stl/ring_buffer.h>
 
 // Core
-#include <core/thread.h>
 #include <core/timing.hpp>
 #include <core/logger.h>
 #include <core/macro_debugbreak.h>

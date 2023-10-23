@@ -16,7 +16,7 @@ namespace xpe {
             FT_Done_Face(fontFace);
         }
 
-        FontLoader::FontLoader(FontStorage* storage) : m_Storage(storage)
+        FontLoader::FontLoader()
         {
             if (FT_Init_FreeType(&s_Lib)) {
                 LogError("Failed to initialize FreeType library!");
@@ -36,13 +36,14 @@ namespace xpe {
 
         Ref<Font> FontLoader::Load(const char* filepath, usize glyphSize)
         {
-            if (m_Storage->Has(filepath)) {
+            if (m_Map.find(filepath) != m_Map.end()) {
                 Ref<Font> fontRef;
-                fontRef.Create(*m_Storage->Get(filepath));
+                fontRef.Create(*m_Map[filepath]);
                 return fontRef;
             }
 
-            Ref<Font> fontRef = m_Storage->Add(filepath, Font());
+            Ref<Font> fontRef;
+            fontRef.Create(Font());
             Font& font = *fontRef;
             FT_Face fontFace = {};
 
@@ -167,6 +168,7 @@ namespace xpe {
 
                     font.Atlas.Init();
                     s_FontFaces->insert({ filepath, fontFace });
+                    m_Map.insert({ filepath, fontRef });
                 }
             }
             else {
@@ -178,7 +180,12 @@ namespace xpe {
 
         Ref<Font> FontLoader::Resize(const char *filepath, usize glyphSize)
         {
-            auto& fontRef = m_Storage->Get(filepath);
+            if (m_Map.find(filepath) == m_Map.end()) {
+                LogError("Font doesn't exist in cache.");
+                return { nullptr };
+            }
+
+            auto& fontRef = m_Map[filepath];
             auto& font = *fontRef;
 
             FT_Face& fontFace = s_FontFaces->at(filepath);

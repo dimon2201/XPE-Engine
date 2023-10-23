@@ -1,4 +1,6 @@
 #include <rendering/passes/render_pass.h>
+#include <rendering/core/context.hpp>
+#include <rendering/core/pipeline.h>
 
 namespace xpe {
 
@@ -66,25 +68,11 @@ namespace xpe {
                         m_Pipeline->Blending = *((BlendMode*) binding.Resource);
                         break;
 
-                    case RenderPassBinding::eType::VERTEX_2D:
-                        m_VertexBinding = &binding;
-                        m_Pipeline->InputLayout.Format = Vertex2D::Format;
-                        break;
-
-                    case RenderPassBinding::eType::VERTEX_3D:
-                        m_VertexBinding = &binding;
-                        m_Pipeline->InputLayout.Format = Vertex3D::Format;
-                        break;
-
-                    case RenderPassBinding::eType::VERTEX_SKELETAL:
-                        m_VertexBinding = &binding;
-                        m_Pipeline->InputLayout.Format = VertexSkeletal::Format;
-                        break;
-
                 }
             }
 
             m_Pipeline->RenderTarget = output;
+            m_Pipeline->InputLayout.Format = Vertex::Format;
         }
 
         RenderPass::~RenderPass()
@@ -100,26 +88,6 @@ namespace xpe {
 
         void RenderPass::Bind()
         {
-            if (m_VertexBinding != nullptr) {
-
-                switch (m_VertexBinding->Type) {
-
-                    case RenderPassBinding::eType::VERTEX_2D:
-                        GeometryManager::BindVertexBuffer2D();
-                        break;
-
-                    case RenderPassBinding::eType::VERTEX_3D:
-                        GeometryManager::BindVertexBuffer3D();
-                        break;
-
-                    case RenderPassBinding::eType::VERTEX_SKELETAL:
-                        GeometryManager::BindVertexBufferSkeletal();
-                        break;
-
-                }
-
-            }
-
             context::BindPipeline(*m_Pipeline);
         }
 

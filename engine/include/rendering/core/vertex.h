@@ -59,14 +59,13 @@ namespace xpe {
         // define here any custom attributes that you want to use in your vertex shader
         struct ENGINE_API Attributes final
         {
-            static constexpr VertexFormat::Attribute POS2 = { 0, "XPE_POSITION_2D", VertexFormat::Attribute::eFormat::VEC2_FLOAT };
-            static constexpr VertexFormat::Attribute POS3 = { 0, "XPE_POSITION", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
+            static constexpr VertexFormat::Attribute POS = { 0, "XPE_POSITION", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
             static constexpr VertexFormat::Attribute UV = { 1, "XPE_UV", VertexFormat::Attribute::eFormat::VEC2_FLOAT };
             static constexpr VertexFormat::Attribute NORMAL = { 2, "XPE_NORMAL", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
             static constexpr VertexFormat::Attribute TANGENT = { 3, "XPE_TANGENT", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
             static constexpr VertexFormat::Attribute BITANGENT = { 4, "XPE_BITANGENT", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
             static constexpr VertexFormat::Attribute BONE_IDS = { 5, "XPE_BONE_IDS", VertexFormat::Attribute::eFormat::VEC4_INT };
-            static constexpr VertexFormat::Attribute BONE_WEIGHTS = {6, "XPE_BONE_WEIGHTS", VertexFormat::Attribute::eFormat::VEC4_FLOAT };
+            static constexpr VertexFormat::Attribute BONE_WEIGHTS = { 6, "XPE_BONE_WEIGHTS", VertexFormat::Attribute::eFormat::VEC4_FLOAT };
         };
 
         struct ENGINE_API Vertex final

@@ -1,6 +1,6 @@
 #include <rendering/passes/skybox_pass.h>
+#include <rendering/geometry/geometry_manager.h>
 
-#include <ecs/scene.h>
 #include <ecs/globals.h>
 
 namespace xpe {

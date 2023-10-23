@@ -4,23 +4,6 @@ namespace xpe {
 
     namespace render {
 
-        Triangle2D::Triangle2D()
-        {
-            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
-
-            auto& vertices = Vertices;
-
-            vertices.resize(3);
-
-            vertices[0].Position = { -0.5f, -0.5f };
-            vertices[1].Position = { 0.5f, -0.5f };
-            vertices[2].Position = { 0, 0.5f };
-
-            vertices[0].UV = { 0, 1 };
-            vertices[1].UV = { 1, 0 };
-            vertices[2].UV = { 1, 1 };
-        }
-
         Triangle::Triangle()
         {
             PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
@@ -37,32 +20,12 @@ namespace xpe {
             vertices[1].UV = { 1, 0 };
             vertices[2].UV = { 1, 1 };
 
-            InitNormal<Vertex3D>(&vertices[0], &vertices[1], &vertices[2]);
+            InitNormal(&vertices[0], &vertices[1], &vertices[2]);
         }
 
         Line::Line()
         {
             PrimitiveTopology = ePrimitiveTopology::LINE_LIST;
-        }
-
-        Quad2D::Quad2D()
-        {
-            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-
-            auto& vertices = Vertices;
-            auto& indices = Indices;
-
-            vertices.resize(4);
-            indices.resize(6);
-
-            vertices[0].Position = { -0.5f, -0.5f };
-            vertices[1].Position = { -0.5f, 0.5f };
-            vertices[2].Position = { 0.5f, 0.5f };
-            vertices[3].Position = { 0.5f, -0.5f };
-
-            InitUV(&vertices[0], &vertices[1], &vertices[2], &vertices[3]);
-
-            indices = { 0, 1, 2, 2, 3, 0 };
         }
 
         Quad::Quad()
@@ -126,9 +89,9 @@ namespace xpe {
             vertices[22] = { { 0.5f,-0.5f,-0.5f } };
             vertices[23] = { { 0.5f,-0.5f,0.5f } };
 
-            InitUV<Vertex3D>(vertices);
-            InitNormal<Vertex3D>(vertices);
-            InitTangent<Vertex3D>(vertices);
+            InitUV(vertices);
+            InitNormal(vertices);
+            InitTangent(vertices);
 
             indices = {
                 0,1,3,

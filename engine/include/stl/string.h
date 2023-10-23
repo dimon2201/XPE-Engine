@@ -1,7 +1,6 @@
 #pragma once
 
-#include <core/main_allocator.h>
-#include <core/hot_allocator.h>
+#include <core/allocators.h>
 
 namespace xpe {
 

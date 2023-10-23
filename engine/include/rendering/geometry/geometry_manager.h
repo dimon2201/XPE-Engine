@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/geometry/geometry.h>
+#include <rendering/geometry/geometries.h>
 
 namespace xpe {
 
@@ -23,18 +23,6 @@ namespace xpe {
             static VertexBuffer* s_VertexBuffer;
             static IndexBuffer* s_IndexBuffer;
         };
-
-        Ref<Geometry> GeometryManager::AddGeometry(const Geometry& geometry)
-        {
-            Ref<Geometry> geometryRef;
-            geometryRef.Create(geometry);
-
-            geometryRef->IndexOffset = AddIndices(geometry.Indices);
-            geometryRef->VertexOffset = s_VertexBuffer->AddVertices(geometry.Vertices);
-            s_VertexBuffer->Flush();
-
-            return geometryRef;
-        }
 
     }
 

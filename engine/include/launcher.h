@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     xpe::core::Hardware::UpdateCpuStats();
 
     // init memory pools
-    MemoryPoolManager::Init();
+    Memory::Init();
 
     // run app implementation
     auto* application = CreateApplication();
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     delete application;
 
     // free memory pools
-    MemoryPoolManager::Free();
+    Memory::Free();
 
     return 0;
 }

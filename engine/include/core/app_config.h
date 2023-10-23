@@ -18,9 +18,9 @@ namespace xpe {
                 Exposure,
                 LogTitle,
                 LogBacktrace,
-                DebugErrors,
-                DebugWarnings,
-                DebugInfo,
+                EnableGPUInfoLog,
+                EnableGPUWarnLog,
+                EnableGPUErrorLog,
                 FPS,
                 LogTimeDelaySeconds,
                 LockOnFps,
@@ -39,9 +39,9 @@ namespace xpe {
             string LogTitle;
             s32 LogBacktrace = 32;
 
-            bool DebugErrors = true;
-            bool DebugWarnings = false;
-            bool DebugInfo = false;
+            bool EnableGPUInfoLog = false;
+            bool EnableGPUWarnLog = false;
+            bool EnableGPUErrorLog = true;
 
             float FPS = 165.0f;
 

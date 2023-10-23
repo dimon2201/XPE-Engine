@@ -12,11 +12,11 @@ namespace xpe {
         class ENGINE_API PhysicsErrorCallback : public PxErrorCallback {
 
         public:
-            bool EnableInfo;
-            bool EnableWarning;
-            bool EnableError;
+            bool EnableInfoLog;
+            bool EnableWarningLog;
+            bool EnableErrorLog;
 
-            PhysicsErrorCallback(bool enableInfo = true, bool enableWarning = true, bool enableError = true);
+            PhysicsErrorCallback(bool enableInfoLog = true, bool enableWarningLog = true, bool enableErrorLog = true);
 
             ~PhysicsErrorCallback() override;
 

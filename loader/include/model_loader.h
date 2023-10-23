@@ -3,7 +3,7 @@
 #include <build.h>
 #include <assimp_types.h>
 
-#include <geometry/geometry_manager.h>
+#include <rendering/geometry/geometry_manager.h>
 
 namespace xpe {
 

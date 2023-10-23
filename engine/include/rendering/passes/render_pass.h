@@ -1,13 +1,6 @@
 #pragma once
 
-#include <geometry/geometry_manager.h>
-
 namespace xpe {
-
-    namespace ecs
-    {
-        class Scene;
-    }
 
     namespace render {
 
@@ -30,10 +23,7 @@ namespace xpe {
                 SHADER = 3,
                 RASTERIZER = 4,
                 DEPTH_STENCIL = 5,
-                BLENDING = 6,
-                VERTEX_2D = 7,
-                VERTEX_3D = 8,
-                VERTEX_SKELETAL = 9,
+                BLENDING = 6
             };
 
             enum eStage
@@ -76,7 +66,6 @@ namespace xpe {
 
         protected:
             vector<RenderPassBinding> m_Bindings;
-            RenderPassBinding* m_VertexBinding = nullptr;
             Pipeline* m_Pipeline = nullptr;
 
         };

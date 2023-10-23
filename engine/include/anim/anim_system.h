@@ -10,7 +10,7 @@ namespace xpe {
         using namespace ecs;
         using namespace render;
 
-        class ENGINE_API AnimManager : public Manager
+        class ENGINE_API AnimSystem : public System
         {
 
         public:
