@@ -13,9 +13,8 @@ namespace xpe {
 
         public:
             MergePass(
-                    const vector<RenderPassBinding>& bindings,
-                    RenderTarget* output
-            ) : RenderPass(bindings, output) {}
+                    const vector<RenderPassBinding>& bindings
+            ) : RenderPass(bindings) {}
 
             virtual void Draw(Scene* scene) override;
 

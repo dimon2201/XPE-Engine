@@ -6,10 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        TextPass::TextPass(
-                const vector<RenderPassBinding>& bindings,
-                RenderTarget* output
-        ) : RenderPass(bindings, output)
+        TextPass::TextPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
         {
             m_Quad = GeometryManager::AddGeometry(Quad());
             m_TextBuffer.Reserve(1000);

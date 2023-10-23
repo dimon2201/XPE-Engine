@@ -1,5 +1,6 @@
 #include <rendering/render_system.h>
 #include <rendering/passes/render_pass.h>
+#include <rendering/passes/canvas.hpp>
 #include <rendering/monitor.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
@@ -21,41 +22,80 @@ namespace xpe {
             GeometryManager::Init();
             MaterialManager::Init();
 
-            CameraBuffer = new render::CameraBuffer();
+            m_CameraBuffer = new render::CameraBuffer();
 
-            DirectLightBuffer = new render::DirectLightBuffer();
-            DirectLightBuffer->Reserve(1000);
+            m_DirectLightBuffer = new render::DirectLightBuffer();
+            m_DirectLightBuffer->Reserve(1000);
 
-            PointLightBuffer = new render::PointLightBuffer();
-            PointLightBuffer->Reserve(1000);
+            m_PointLightBuffer = new render::PointLightBuffer();
+            m_PointLightBuffer->Reserve(1000);
 
-            SpotLightBuffer = new render::SpotLightBuffer();
-            SpotLightBuffer->Reserve(1000);
+            m_SpotLightBuffer = new render::SpotLightBuffer();
+            m_SpotLightBuffer->Reserve(1000);
 
-            ShadowSampler = new TextureSampler();
-            ShadowMap = new Texture();
-            ShadowCoords = new Texture();
-            ShadowFilterBuffer = new render::ShadowFilterBuffer();
+            m_ShadowSampler = new TextureSampler();
+            m_ShadowMap = new Texture();
+            m_ShadowCoords = new Texture();
+            m_ShadowFilterBuffer = new render::ShadowFilterBuffer();
         }
 
         RenderSystem::~RenderSystem()
         {
-            delete CameraBuffer;
+            delete m_CameraBuffer;
 
-            delete DirectLightBuffer;
-            delete PointLightBuffer;
-            delete SpotLightBuffer;
+            delete m_DirectLightBuffer;
+            delete m_PointLightBuffer;
+            delete m_SpotLightBuffer;
 
-            delete ShadowSampler;
-            delete ShadowMap;
-            delete ShadowCoords;
-            delete ShadowFilterBuffer;
+            delete m_ShadowSampler;
+            delete m_ShadowMap;
+            delete m_ShadowCoords;
+            delete m_ShadowFilterBuffer;
 
             MaterialManager::Free();
             GeometryManager::Free();
             Monitor::Free();
             ShaderManager::Free();
             context::Free();
+        }
+
+        void RenderSystem::InitRenderTargets(render::Canvas* canvas)
+        {
+            m_Canvas = canvas;
+            Texture* mainColor = new Texture();
+            mainColor->Width = m_Canvas->GetDimension().x;
+            mainColor->Height = m_Canvas->GetDimension().y;
+            mainColor->Format = eTextureFormat::RGBA8;
+            mainColor->InitializeData = false;
+            mainColor->EnableRenderTarget = true;
+            mainColor->Init();
+
+            Texture* mainPosition = new Texture();
+            mainPosition->Width = m_Canvas->GetDimension().x;
+            mainPosition->Height = m_Canvas->GetDimension().y;
+            mainPosition->Format = eTextureFormat::RGBA32;
+            mainPosition->InitializeData = false;
+            mainPosition->EnableRenderTarget = true;
+            mainPosition->Init();
+
+            Texture* mainNormal = new Texture();
+            mainNormal->Width = m_Canvas->GetDimension().x;
+            mainNormal->Height = m_Canvas->GetDimension().y;
+            mainNormal->Format = eTextureFormat::RGBA16;
+            mainNormal->InitializeData = false;
+            mainNormal->EnableRenderTarget = true;
+            mainNormal->Init();
+
+            Texture* mainDepth = new Texture();
+            mainDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            mainDepth->Width = m_Canvas->GetDimension().x;
+            mainDepth->Height = m_Canvas->GetDimension().y;
+            mainDepth->Format = eTextureFormat::R32_TYPELESS;
+            mainDepth->InitializeData = false;
+            mainDepth->EnableRenderTarget = true;
+            mainDepth->Init();
+
+            m_MainRT = new RenderTarget({ mainColor, mainPosition, mainNormal }, mainDepth, *m_Canvas->GetViewport(0));
         }
 
         void RenderSystem::Prepare()
@@ -66,23 +106,27 @@ namespace xpe {
 
         void RenderSystem::Update(Scene* scene, const Time& dt)
         {
+            m_MainRT->ClearColor(0, { 1, 1, 1, 1 });
+            m_MainRT->ClearColor(1, { 0, 0, 0, 0 });
+            m_MainRT->ClearColor(2, { 0, 0, 0, 0 });
+            m_MainRT->ClearDepth(1);
             UpdateLight(scene);
             UpdatePasses(scene);
         }
 
         void RenderSystem::UpdateLight(Scene* scene)
         {
-            this->DirectLightBuffer->Clear();
+            this->m_DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
             {
                 DirectLightBufferData light;
                 light.Position = component->Entity->Transform.Position;
                 light.Color = component->Color;
-                this->DirectLightBuffer->Add(light);
+                this->m_DirectLightBuffer->Add(light);
             });
-            this->DirectLightBuffer->Flush();
+            this->m_DirectLightBuffer->Flush();
 
-            this->PointLightBuffer->Clear();
+            this->m_PointLightBuffer->Clear();
             scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
             {
                 PointLightBufferData light;
@@ -91,11 +135,11 @@ namespace xpe {
                 light.Constant = component->Constant;
                 light.Linear = component->Constant;
                 light.Quadratic = component->Constant;
-                this->PointLightBuffer->Add(light);
+                this->m_PointLightBuffer->Add(light);
             });
-            this->PointLightBuffer->Flush();
+            this->m_PointLightBuffer->Flush();
 
-            this->SpotLightBuffer->Clear();
+            this->m_SpotLightBuffer->Clear();
             scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
             {
                 SpotLightBufferData light;
@@ -104,9 +148,9 @@ namespace xpe {
                 light.Direction = component->Direction;
                 light.Outer = component->Outer;
                 light.Cutoff = component->Cutoff;
-                this->SpotLightBuffer->Add(light);
+                this->m_SpotLightBuffer->Add(light);
             });
-            this->SpotLightBuffer->Flush();
+            this->m_SpotLightBuffer->Flush();
         }
 
         void RenderSystem::UpdatePasses(xpe::ecs::Scene *scene)

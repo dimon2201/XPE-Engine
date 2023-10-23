@@ -23,7 +23,8 @@ namespace xpe {
                 SHADER = 3,
                 RASTERIZER = 4,
                 DEPTH_STENCIL = 5,
-                BLENDING = 6
+                BLENDING = 6,
+                RENDER_TARGET = 7,
             };
 
             enum eStage
@@ -54,7 +55,7 @@ namespace xpe {
         {
 
         public:
-            RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* output);
+            RenderPass(const vector<RenderPassBinding>& bindings);
             virtual ~RenderPass();
 
             virtual void Update(Scene* scene) {}
@@ -63,6 +64,8 @@ namespace xpe {
             void Init();
             void Bind();
             void Unbind();
+
+            RenderTarget* GetRenderTarget();
 
         protected:
             vector<RenderPassBinding> m_Bindings;

@@ -15,10 +15,7 @@ namespace xpe {
         {
 
         public:
-            SkyboxPass(
-                    const vector<RenderPassBinding>& bindings,
-                    RenderTarget* output
-            );
+            SkyboxPass(const vector<RenderPassBinding>& bindings);
             ~SkyboxPass() override;
 
             virtual void Draw(Scene* scene) override;

@@ -7,10 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        SkyboxPass::SkyboxPass(
-                const vector<RenderPassBinding>& bindings,
-                RenderTarget* output
-        ) : RenderPass(bindings, output)
+        SkyboxPass::SkyboxPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
         {
             m_Cube = GeometryManager::AddGeometry(Cube());
 

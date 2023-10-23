@@ -7,10 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        SkeletalAnimPass::SkeletalAnimPass(
-                const vector <RenderPassBinding> &bindings,
-                RenderTarget *output
-        ) : InstancingPass(bindings, output)
+        SkeletalAnimPass::SkeletalAnimPass(const vector<RenderPassBinding>& bindings) : InstancingPass(bindings)
         {
             MaterialManager::Bind(*m_Pipeline);
         }

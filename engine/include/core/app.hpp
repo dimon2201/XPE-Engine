@@ -7,6 +7,7 @@ namespace xpe {
         class Canvas;
         class RenderSystem;
         class RenderTarget;
+        class SSAOPass;
     }
 
     namespace anim
@@ -60,8 +61,7 @@ namespace xpe {
             audio::AudioSystem* m_AudioSystem = nullptr;
 
             render::Canvas* m_Canvas = nullptr;
-            render::RenderTarget* MainRT = nullptr;
-            render::RenderTarget* SsaoRT = nullptr;
+            render::SSAOPass* m_SsaoPass = nullptr;
         };
 
     }

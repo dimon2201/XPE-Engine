@@ -81,8 +81,8 @@ namespace xpe {
             Monitor::Get().Gamma = winDesc.Gamma;
 
             m_MainScene = new MainScene();
-            m_MainScene->PerspectiveCamera->Buffer = m_RenderSystem->CameraBuffer;
-            m_MainScene->OrthoCamera->Buffer = m_RenderSystem->CameraBuffer;
+            m_MainScene->PerspectiveCamera->Buffer = m_RenderSystem->GetCameraBuffer();
+            m_MainScene->OrthoCamera->Buffer = m_RenderSystem->GetCameraBuffer();
 
             Init();
 
@@ -171,7 +171,7 @@ namespace xpe {
 
         void Application::InitRenderPasses()
         {
-            // Canvas pass
+            // Canvas
             Shader* shader = ShaderManager::CreateShader("canvas");
             ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/canvas.vs");
             ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
@@ -181,61 +181,7 @@ namespace xpe {
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
 
-            // Main render target
-            Texture* mainColor = new Texture();
-            mainColor->Width = m_Canvas->GetDimension().x;
-            mainColor->Height = m_Canvas->GetDimension().y;
-            mainColor->Format = eTextureFormat::RGBA8;
-            mainColor->InitializeData = false;
-            mainColor->EnableRenderTarget = true;
-            mainColor->Init();
-
-            Texture* mainPosition = new Texture();
-            mainPosition->Width = m_Canvas->GetDimension().x;
-            mainPosition->Height = m_Canvas->GetDimension().y;
-            mainPosition->Format = eTextureFormat::RGBA32;
-            mainPosition->InitializeData = false;
-            mainPosition->EnableRenderTarget = true;
-            mainPosition->Init();
-
-            Texture* mainNormal = new Texture();
-            mainNormal->Width = m_Canvas->GetDimension().x;
-            mainNormal->Height = m_Canvas->GetDimension().y;
-            mainNormal->Format = eTextureFormat::RGBA16;
-            mainNormal->InitializeData = false;
-            mainNormal->EnableRenderTarget = true;
-            mainNormal->Init();
-
-            Texture* mainDepth = new Texture();
-            mainDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            mainDepth->Width = m_Canvas->GetDimension().x;
-            mainDepth->Height = m_Canvas->GetDimension().y;
-            mainDepth->Format = eTextureFormat::R32_TYPELESS;
-            mainDepth->InitializeData = false;
-            mainDepth->EnableRenderTarget = true;
-            mainDepth->Init();
-
-            MainRT = new RenderTarget({ mainColor, mainPosition, mainNormal }, mainDepth, *canvasViewport);
-
-            // SSAO render target
-            Texture* ssaoColor = new Texture();
-            ssaoColor->Width = m_Canvas->GetDimension().x;
-            ssaoColor->Height = m_Canvas->GetDimension().y;
-            ssaoColor->Format = eTextureFormat::RGBA8;
-            ssaoColor->InitializeData = false;
-            ssaoColor->EnableRenderTarget = true;
-            ssaoColor->Init();
-
-            Texture* ssaoDepth = new Texture();
-            ssaoDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            ssaoDepth->Width = m_Canvas->GetDimension().x;
-            ssaoDepth->Height = m_Canvas->GetDimension().y;
-            ssaoDepth->Format = eTextureFormat::R32_TYPELESS;
-            ssaoDepth->InitializeData = false;
-            ssaoDepth->EnableRenderTarget = true;
-            ssaoDepth->Init();
-
-            SsaoRT = new RenderTarget({ ssaoColor }, ssaoDepth, *canvasViewport);
+            m_RenderSystem->InitRenderTargets(m_Canvas);
 
             // Main pass
             {
@@ -246,18 +192,16 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                         { "Shader", RenderPassBinding::eType::SHADER, shader },
-                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->DirectLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->PointLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->SpotLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->ShadowFilterBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT }
+                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                        { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "m_SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_RenderSystem->AddRenderPass<MainPass>(
-                    bindings,
-                    MainRT
-                );
+                m_RenderSystem->AddRenderPass<MainPass>(bindings);
             }
 
             // Skeletal animation pass
@@ -269,18 +213,16 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->DirectLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->PointLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->SpotLightBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                    { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT },
-                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->ShadowFilterBuffer, RenderPassBinding::eStage::PIXEL, RenderPassBinding::SLOT_DEFAULT }
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                    { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "m_SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "MonitorBuffer", RenderPassBinding::eType::BUFFER, Monitor::Get().GetBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_RenderSystem->AddRenderPass<SkeletalAnimPass>(
-                    bindings,
-                    MainRT
-                );
+                m_RenderSystem->AddRenderPass<SkeletalAnimPass>(bindings);
             }
 
             // Text 2D pass
@@ -292,14 +234,12 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                     { "ViewportBuffer", RenderPassBinding::eType::BUFFER, m_Canvas->GetBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_RenderSystem->AddRenderPass<Text2DPass>(
-                    bindings,
-                    MainRT
-                );
+                m_RenderSystem->AddRenderPass<Text2DPass>(bindings);
             }
 
             // Text 3D pass
@@ -311,13 +251,11 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->CameraBuffer, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                 };
 
-                m_RenderSystem->AddRenderPass<Text3DPass>(
-                    bindings,
-                    MainRT
-                );
+                m_RenderSystem->AddRenderPass<Text3DPass>(bindings);
             }
 
             // SSAO pass
@@ -329,15 +267,13 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, MainRT->Colors[1], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, MainRT->Colors[2], RenderPassBinding::eStage::PIXEL, 1 },
-                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, MainRT->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetSsaoRT() },
+                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->Colors[1], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->Colors[2], RenderPassBinding::eStage::PIXEL, 1 },
+                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
-                m_RenderSystem->AddRenderPass<SSAOPass>(
-                    bindings,
-                    SsaoRT
-                );
+                m_SsaoPass = m_RenderSystem->AddRenderPass<SSAOPass>(bindings, canvasViewport);
             }
 
             // SSAO Merge pass
@@ -349,27 +285,19 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, MainRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, SsaoRT->Colors[0], RenderPassBinding::eStage::PIXEL, 2 }
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, canvasRT },
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetSsaoRT()->Colors[0], RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
-                m_RenderSystem->AddRenderPass<MergePass>(
-                    bindings,
-                    canvasRT
-                );
+                m_RenderSystem->AddRenderPass<MergePass>(bindings);
             }
         }
 
         void Application::Render()
         {
-            MainRT->ClearColor(0, { 1, 1, 1, 1 });
-            MainRT->ClearColor(1, { 0, 0, 0, 0 });
-            MainRT->ClearColor(2, { 0, 0, 0, 0 });
-            MainRT->ClearDepth(1);
-
-            SsaoRT->ClearColor(0, { 1, 1, 1, 1 });
-            SsaoRT->ClearDepth(1);
-
+            m_SsaoPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
+            m_SsaoPass->GetRenderTarget()->ClearDepth(1);
             m_Canvas->Clear(ClearColor);
             m_RenderSystem->Update(m_MainScene, DeltaTime);
             m_Canvas->Present();

@@ -10,10 +10,7 @@ namespace xpe {
         {
 
         public:
-            SkeletalAnimPass(
-                const vector<RenderPassBinding>& bindings,
-                RenderTarget* output
-            );
+            SkeletalAnimPass(const vector<RenderPassBinding>& bindings);
 
             virtual void Draw(Scene* scene) override final;
 

@@ -6,7 +6,13 @@ namespace xpe {
 
     namespace render {
 
-        RenderPass::RenderPass(const vector<RenderPassBinding>& bindings, RenderTarget* output)
+        RenderPass::~RenderPass()
+        {
+            context::FreePipeline(*m_Pipeline);
+            delete m_Pipeline;
+        }
+
+        RenderPass::RenderPass(const vector<RenderPassBinding>& bindings)
         {
             m_Bindings = bindings;
             m_Pipeline = new Pipeline();
@@ -68,17 +74,14 @@ namespace xpe {
                         m_Pipeline->Blending = *((BlendMode*) binding.Resource);
                         break;
 
+                    case RenderPassBinding::eType::RENDER_TARGET:
+                        m_Pipeline->RenderTarget = ((RenderTarget*) binding.Resource);
+                        break;
+
                 }
             }
 
-            m_Pipeline->RenderTarget = output;
             m_Pipeline->InputLayout.Format = Vertex::Format;
-        }
-
-        RenderPass::~RenderPass()
-        {
-            context::FreePipeline(*m_Pipeline);
-            delete m_Pipeline;
         }
 
         void RenderPass::Init()
@@ -94,6 +97,11 @@ namespace xpe {
         void RenderPass::Unbind()
         {
             context::UnbindPipeline(*m_Pipeline);
+        }
+
+        RenderTarget* RenderPass::GetRenderTarget()
+        {
+            return m_Pipeline->RenderTarget;
         }
 
     }

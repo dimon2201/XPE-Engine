@@ -10,10 +10,7 @@ namespace xpe {
         {
 
         public:
-            Text3DPass(
-                const vector<RenderPassBinding>& bindings,
-                RenderTarget* output
-            ) : TextPass(bindings, output) {}
+            Text3DPass(const vector<RenderPassBinding>& bindings) : TextPass(bindings) {}
 
             virtual void Draw(Scene* scene) override;
 

@@ -7,10 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        MainPass::MainPass(
-                const vector<RenderPassBinding> &bindings,
-                RenderTarget *output
-        ) : InstancingPass(bindings, output)
+        MainPass::MainPass(const vector<RenderPassBinding> &bindings) : InstancingPass(bindings)
         {
             MaterialManager::Bind(*m_Pipeline);
         }

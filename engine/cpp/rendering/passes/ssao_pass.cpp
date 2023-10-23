@@ -5,7 +5,7 @@ namespace xpe
 {
     namespace render
     {
-        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, RenderTarget* output) : RenderPass(bindings, output)
+        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport) : RenderPass(bindings)
         {
             m_Quad = GeometryManager::AddGeometry(Quad());
 
@@ -20,6 +20,25 @@ namespace xpe
 
             m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
             m_Pipeline->VSBuffers.emplace_back(&m_Buffer);
+
+            Texture* ssaoColor = new Texture();
+            ssaoColor->Width = viewport->Width;
+            ssaoColor->Height = viewport->Height;
+            ssaoColor->Format = eTextureFormat::RGBA8;
+            ssaoColor->InitializeData = false;
+            ssaoColor->EnableRenderTarget = true;
+            ssaoColor->Init();
+
+            Texture* ssaoDepth = new Texture();
+            ssaoDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            ssaoDepth->Width = viewport->Width;
+            ssaoDepth->Height = viewport->Height;
+            ssaoDepth->Format = eTextureFormat::R32_TYPELESS;
+            ssaoDepth->InitializeData = false;
+            ssaoDepth->EnableRenderTarget = true;
+            ssaoDepth->Init();
+
+            m_Pipeline->RenderTarget = new RenderTarget({ ssaoColor }, ssaoDepth, *viewport);
         }
 
         void SSAOPass::Update(Scene *scene)
