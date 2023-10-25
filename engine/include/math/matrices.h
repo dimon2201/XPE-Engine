@@ -20,22 +20,6 @@ namespace xpe {
 
         glm::mat4 ENGINE_API ModelMatrixUpdate(const ModelMatrix& modelMatrix);
 
-        struct ENGINE_API Model2dMatrix final
-        {
-            glm::vec2 Translation = { 0, 0 };
-            float Rotation = 0;
-            glm::vec2 Scale = { 1, 1 };
-        };
-
-        Json(
-            Model2dMatrix,
-            Translation,
-            Rotation,
-            Scale
-        )
-
-        glm::mat4 ENGINE_API Model2dMatrixUpdate(const Model2dMatrix& model2DMatrix);
-
         struct ENGINE_API ViewMatrix final
         {
             glm::vec3 Position = { 0, 0, 1 };

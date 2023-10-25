@@ -28,7 +28,7 @@ namespace xpe {
             float AO = 0.5f;
             Boolean EnableAOMap = false;
             // emission mapping
-            glm::vec3 Emission = {0, 0, 0 };
+            glm::vec3 Emission = { 0, 0, 0 };
             Boolean EnableEmissionMap = false;
         };
 

@@ -102,8 +102,10 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API DirectLightComponent : Component, DirectLightBufferData
+        struct ENGINE_API DirectLightComponent : Component, DirectLightData
         {
+            OrthoMatrix Projection;
+
             DirectLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
             : Component(tag) {
                 Position = position;
@@ -117,7 +119,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API PointLightComponent : Component, PointLightBufferData
+        struct ENGINE_API PointLightComponent : Component, PointLightData
         {
             PointLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
             : Component(tag) {
@@ -135,8 +137,10 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SpotLightComponent : Component, SpotLightBufferData
+        struct ENGINE_API SpotLightComponent : Component, SpotLightData
         {
+            OrthoMatrix Projection;
+
             SpotLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
             : Component(tag) {
                 Position = position;

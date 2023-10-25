@@ -19,10 +19,11 @@ VSOut vs_main(VSIn vsIn)
 
     RenderInstance instance = Instances[vsIn.instanceIndex];
     float4x4 worldMatrix    = Transforms[instance.TransformIndex].ModelMatrix;
-    float4x4 dlsMatrix      = Transforms[instance.TransformIndex].DLSMatrix;
+    // float4x4 dlsMatrix      = Transforms[instance.TransformIndex].DLSMatrix;
 
     float4 positionWorld    = mul(worldMatrix, float4(vsIn.positionLocal, 1.0));
-    float4 positionDLS      = mul(dlsMatrix, positionWorld);
+    // float4 positionDLS      = mul(dlsMatrix, positionWorld);
+    float4 positionDLS      = float4(0, 0, 0, 0);
 
     vsOut.positionDLS       = positionDLS;
 

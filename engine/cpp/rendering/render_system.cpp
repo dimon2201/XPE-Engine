@@ -135,7 +135,7 @@ namespace xpe {
             m_DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
             {
-                DirectLightBufferData light;
+                DirectLightData light;
                 light.Position = component->Entity->Transform.Position;
                 light.Color = component->Color;
                 m_DirectLightBuffer->Add(light);
@@ -145,7 +145,7 @@ namespace xpe {
             m_PointLightBuffer->Clear();
             scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
             {
-                PointLightBufferData light;
+                PointLightData light;
                 light.Position = component->Entity->Transform.Position;
                 light.Color = component->Color;
                 light.Constant = component->Constant;
@@ -158,7 +158,7 @@ namespace xpe {
             m_SpotLightBuffer->Clear();
             scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
             {
-                SpotLightBufferData light;
+                SpotLightData light;
                 light.Position = component->Entity->Transform.Position;
                 light.Color = component->Color;
                 light.Direction = component->Direction;

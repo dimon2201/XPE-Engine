@@ -8,18 +8,19 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API DirectLightBufferData
+        struct ENGINE_API DirectLightData
         {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Color = { 1, 1, 1 };
+            glm::mat4 DLSMatrix;
         };
 
-        struct ENGINE_API DirectLightBuffer : public StructureBuffer<DirectLightBufferData>
+        struct ENGINE_API DirectLightBuffer : public StructureBuffer<DirectLightData>
         {
-            DirectLightBuffer(usize size = 0) : StructureBuffer<DirectLightBufferData>(size, K_SLOT_DIRECT_LIGHTS) {}
+            DirectLightBuffer(usize size = 0) : StructureBuffer<DirectLightData>(size, K_SLOT_DIRECT_LIGHTS) {}
         };
 
-        struct ENGINE_API PointLightBufferData
+        struct ENGINE_API PointLightData
         {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Color = { 1, 1, 1 };
@@ -28,23 +29,24 @@ namespace xpe {
             float Quadratic = 0.032f;
         };
 
-        struct ENGINE_API PointLightBuffer : public StructureBuffer<PointLightBufferData>
+        struct ENGINE_API PointLightBuffer : public StructureBuffer<PointLightData>
         {
-            PointLightBuffer(usize size = 0) : StructureBuffer<PointLightBufferData>(size, K_SLOT_POINT_LIGHTS) {}
+            PointLightBuffer(usize size = 0) : StructureBuffer<PointLightData>(size, K_SLOT_POINT_LIGHTS) {}
         };
 
-        struct ENGINE_API SpotLightBufferData
+        struct ENGINE_API SpotLightData
         {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Direction = { 1, 1, 1 };
             glm::vec3 Color = { 1, 1, 1 };
             float Cutoff = 1;
             float Outer = 1;
+            glm::mat4 DLSMatrix;
         };
 
-        struct ENGINE_API SpotLightBuffer : public StructureBuffer<SpotLightBufferData>
+        struct ENGINE_API SpotLightBuffer : public StructureBuffer<SpotLightData>
         {
-            SpotLightBuffer(usize size = 0) : StructureBuffer<SpotLightBufferData>(size, K_SLOT_SPOT_LIGHTS) {}
+            SpotLightBuffer(usize size = 0) : StructureBuffer<SpotLightData>(size, K_SLOT_SPOT_LIGHTS) {}
         };
 
     }

@@ -18,19 +18,6 @@ namespace xpe {
             Add(transformData);
         }
 
-        void Transform2DBuffer::AddTransform(const Transform2D& transform)
-        {
-            Model2dMatrix modelMatrix;
-            modelMatrix.Translation = transform.Position;
-            modelMatrix.Rotation = transform.Rotation;
-            modelMatrix.Scale = transform.Scale;
-
-            Transform2DData transformData;
-            transformData.ModelMatrix = Model2dMatrixUpdate(modelMatrix);
-
-            Add(transformData);
-        }
-
     }
 
 }

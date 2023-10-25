@@ -61,13 +61,14 @@ VSOut vs_main(VSIn vsIn)
     RenderInstance instance     = Instances[vsIn.instanceIndex];
     float4x4 worldMatrix        = Transforms[instance.TransformIndex].ModelMatrix;
     float4x4 worldNormalMatrix  = Transforms[instance.TransformIndex].NormalMatrix;
-    float4x4 dlsMatrix          = Transforms[instance.TransformIndex].DLSMatrix;
+    // float4x4 dlsMatrix          = Transforms[instance.TransformIndex].DLSMatrix;
     Camera camera               = Cameras[instance.CameraIndex];
 
     float4 positionWorld = mul(worldMatrix, positionBone);
     float4 positionView  = mul(camera.View, positionWorld);
     float4 positionClip  = mul(camera.Projection, positionView);
-    float4 positionDLS   = mul(dlsMatrix, positionWorld);
+    // float4 positionDLS   = mul(dlsMatrix, positionWorld);
+    float4 positionDLS   = float4(0, 0, 0, 0);
 
     float3 normalWorld   = mul(worldNormalMatrix, normalBone).xyz;
     float3 tangentWorld  = mul(worldNormalMatrix, float4(vsIn.tangent, 1.0)).xyz;
