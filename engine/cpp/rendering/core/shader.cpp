@@ -32,7 +32,7 @@ namespace xpe {
 
         Shader* ShaderManager::CreateShader(const string &id) {
             Shader shader;
-            shader.ID = id;
+            shader.Name = id;
             AddShader(id, shader);
             return GetShader(id);
         }

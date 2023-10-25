@@ -1,15 +1,15 @@
 #pragma once
 
-#include <rendering/passes/render_pass.h>
+#include <rendering/passes/instancing_pass.h>
 
 namespace xpe {
 
     namespace render {
 
-        class ENGINE_API ShadowPass : public RenderPass {
+        class ENGINE_API ShadowPass : public InstancingPass {
 
         public:
-            ShadowPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings) {}
+            ShadowPass(eType type, const vector<RenderPassBinding>& bindings) : InstancingPass(type, bindings) {}
 
             void Draw(Scene* scene) override final;
 

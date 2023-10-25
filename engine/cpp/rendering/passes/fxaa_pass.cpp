@@ -6,7 +6,8 @@ namespace xpe
     namespace render
     {
 
-        FXAAPass::FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport) : RenderPass(bindings)
+        FXAAPass::FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport)
+        : RenderPass(eType::POSTFX, bindings)
         {
             Texture* color = new Texture();
             color->Width = viewport->Width;

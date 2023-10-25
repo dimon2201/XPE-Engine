@@ -12,8 +12,9 @@ namespace xpe {
             delete m_Pipeline;
         }
 
-        RenderPass::RenderPass(const vector<RenderPassBinding>& bindings)
+        RenderPass::RenderPass(eType type, const vector<RenderPassBinding>& bindings)
         {
+            m_Type = type;
             m_Bindings = bindings;
             m_Pipeline = new Pipeline();
 
@@ -84,8 +85,56 @@ namespace xpe {
             m_Pipeline->InputLayout.Format = Vertex::Format;
         }
 
+        void RenderPass::InitOpaque()
+        {
+            m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
+        }
+
+        void RenderPass::InitTransparent()
+        {
+            m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ZERO;
+
+            BlendTarget target;
+            target.Enable = true;
+            target.Src = eBlend::ONE;
+            target.Dest = eBlend::ONE;
+            target.BlendOp = eBlendOp::ADD;
+            target.SrcAlpha = eBlend::ONE;
+            target.DestAlpha = eBlend::ONE;
+            target.BlendOpAlpha = eBlendOp::ADD;
+            m_Pipeline->Blending.Targets.push_back(target);
+
+            target.Enable = true;
+            target.Src = eBlend::ZERO;
+            target.Dest = eBlend::INV_SRC_COLOR;
+            target.BlendOp = eBlendOp::ADD;
+            target.SrcAlpha = eBlend::ZERO;
+            target.DestAlpha = eBlend::ZERO;
+            target.BlendOpAlpha = eBlendOp::ADD;
+            m_Pipeline->Blending.Targets.push_back(target);
+
+            m_Pipeline->Blending.IndependentBlendEnable = true;
+        }
+
         void RenderPass::Init()
         {
+            switch (m_Type) {
+                case RenderPass::eType::OPAQUE:
+                    InitOpaque();
+                    break;
+
+                case RenderPass::eType::TRANSPARENT:
+                    InitTransparent();
+                    break;
+            }
+
             context::CreatePipeline(*m_Pipeline);
         }
 

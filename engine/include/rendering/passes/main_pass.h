@@ -10,9 +10,10 @@ namespace xpe {
         {
 
         public:
-            MainPass(const vector<RenderPassBinding>& bindings);
+            MainPass(eType type, const vector<RenderPassBinding>& bindings);
 
-            virtual void Draw(Scene* scene) override;
+            void DrawOpaque(Scene *scene) override;
+            void DrawTransparent(Scene *scene) override;
 
         };
 

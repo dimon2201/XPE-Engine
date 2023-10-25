@@ -629,7 +629,7 @@ namespace xpe {
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11VertexShader**)&stage.Resource.Instance
+                                    (ID3D11VertexShader**)&stage.Instance
                             );
                             LogDebugMessage();
                             break;
@@ -639,7 +639,7 @@ namespace xpe {
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11PixelShader**)&stage.Resource.Instance
+                                    (ID3D11PixelShader**)&stage.Instance
                             );
                             LogDebugMessage();
                             break;
@@ -649,7 +649,7 @@ namespace xpe {
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11GeometryShader**)&stage.Resource.Instance
+                                    (ID3D11GeometryShader**)&stage.Instance
                             );
                             LogDebugMessage();
                             break;
@@ -659,7 +659,7 @@ namespace xpe {
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11ComputeShader**)&stage.Resource.Instance
+                                    (ID3D11ComputeShader**)&stage.Instance
                             );
                             LogDebugMessage();
                             break;
@@ -673,22 +673,22 @@ namespace xpe {
                 switch (stage.Type) {
 
                     case eShaderType::VERTEX:
-                        s_ImmContext->VSSetShader((ID3D11VertexShader*) stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->VSSetShader((ID3D11VertexShader*) stage.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
                     case eShaderType::PIXEL:
-                        s_ImmContext->PSSetShader((ID3D11PixelShader*) stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->PSSetShader((ID3D11PixelShader*) stage.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
                     case eShaderType::GEOMETRY:
-                        s_ImmContext->GSSetShader((ID3D11GeometryShader*) stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->GSSetShader((ID3D11GeometryShader*) stage.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
                     case eShaderType::COMPUTE:
-                        s_ImmContext->CSSetShader((ID3D11ComputeShader*) stage.Resource.Instance, nullptr, 0);
+                        s_ImmContext->CSSetShader((ID3D11ComputeShader*) stage.Instance, nullptr, 0);
                         LogDebugMessage();
                         break;
 
@@ -703,29 +703,29 @@ namespace xpe {
                     stage.Blob.Instance = nullptr;
                 }
 
-                if (stage.Resource.Instance != nullptr) {
+                if (stage.Instance != nullptr) {
                     switch (stage.Type) {
                         case eShaderType::VERTEX:
-                            ((ID3D11VertexShader*) stage.Resource.Instance)->Release();
+                            ((ID3D11VertexShader*) stage.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case eShaderType::PIXEL:
-                            ((ID3D11PixelShader*) stage.Resource.Instance)->Release();
+                            ((ID3D11PixelShader*) stage.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case eShaderType::GEOMETRY:
-                            ((ID3D11GeometryShader*) stage.Resource.Instance)->Release();
+                            ((ID3D11GeometryShader*) stage.Instance)->Release();
                             LogDebugMessage();
                             break;
 
                         case eShaderType::COMPUTE:
-                            ((ID3D11ComputeShader*) stage.Resource.Instance)->Release();
+                            ((ID3D11ComputeShader*) stage.Instance)->Release();
                             LogDebugMessage();
                             break;
                     }
-                    stage.Resource.Instance = nullptr;
+                    stage.Instance = nullptr;
                 }
             }
 

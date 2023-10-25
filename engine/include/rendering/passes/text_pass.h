@@ -17,7 +17,7 @@ namespace xpe {
         {
 
         public:
-            TextPass(const vector<RenderPassBinding>& bindings);
+            TextPass(eType type, const vector<RenderPassBinding>& bindings);
 
         protected:
             void DrawText(const Transform& transform, const string& text, const Ref<Font>& font);

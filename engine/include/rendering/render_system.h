@@ -28,10 +28,10 @@ namespace xpe {
             ~RenderSystem();
 
             template<typename T, typename ... Args>
-            T* AddRenderPass(const RenderPass::eType& type, Args &&... args);
+            T* AddRenderPass(Args &&... args);
 
             template<typename T>
-            T* GetRenderPass(const RenderPass::eType& type);
+            T* GetRenderPass(RenderPass::eType type);
 
             void Update(Scene* scene, const Time& dt) override final;
 
@@ -62,7 +62,7 @@ namespace xpe {
 
             vector<RenderPass*> m_OpaqueRenderPasses;
             vector<RenderPass*> m_TransparentRenderPasses;
-            vector<RenderPass*> m_GUIRenderPasses;
+            vector<RenderPass*> m_PostFXRenderPasses;
 
             render::Canvas* m_Canvas;
 
@@ -84,12 +84,12 @@ namespace xpe {
         };
 
         template<typename T, typename... Args>
-        T* RenderSystem::AddRenderPass(const RenderPass::eType& type, Args &&... args)
+        T* RenderSystem::AddRenderPass(Args &&... args)
         {
             T* renderPass = new T(std::forward<Args>(args)...);
             renderPass->Init();
 
-            switch (type)
+            switch (renderPass->GetType())
             {
 
                 case RenderPass::eType::OPAQUE:
@@ -100,12 +100,8 @@ namespace xpe {
                     m_TransparentRenderPasses.emplace_back(renderPass);
                     break;
 
-                case RenderPass::eType::GUI:
-                    m_GUIRenderPasses.emplace_back(renderPass);
-                    break;
-
-                default:
-                    m_OpaqueRenderPasses.emplace_back(renderPass);
+                case RenderPass::eType::POSTFX:
+                    m_PostFXRenderPasses.emplace_back(renderPass);
                     break;
 
             }
@@ -114,7 +110,7 @@ namespace xpe {
         }
 
         template<typename T>
-        T* RenderSystem::GetRenderPass(const RenderPass::eType& type)
+        T* RenderSystem::GetRenderPass(RenderPass::eType type)
         {
             T* resultPass = nullptr;
 
@@ -139,17 +135,8 @@ namespace xpe {
                     }
                     break;
 
-                case RenderPass::eType::GUI:
-                    for (auto* renderPass : m_GUIRenderPasses)
-                    {
-                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
-                            return renderPass;
-                        }
-                    }
-                    break;
-
-                default:
-                    for (auto* renderPass : m_OpaqueRenderPasses)
+                case RenderPass::eType::POSTFX:
+                    for (auto* renderPass : m_PostFXRenderPasses)
                     {
                         if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
                             return renderPass;

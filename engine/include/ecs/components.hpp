@@ -153,7 +153,13 @@ namespace xpe
             )
         };
 
-        struct GeometryComponent : Component
+        struct ENGINE_API RenderState
+        {
+            bool Transparent = false;
+            bool Visible = true;
+        };
+
+        struct ENGINE_API GeometryComponent : Component, RenderState
         {
             Ref<render::Geometry> Geometry;
             vector<ecs::Entity*> Entities;
@@ -167,7 +173,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API ModelComponent : Component
+        struct ENGINE_API ModelComponent : Component, RenderState
         {
             Ref<render::Model> Model;
             vector<ecs::Entity*> Entities;
@@ -181,7 +187,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SkinModelComponent : Component
+        struct ENGINE_API SkinModelComponent : Component, RenderState
         {
             Ref<render::Model> Model;
             Ref<anim::Skeleton> Skeleton;
@@ -198,12 +204,12 @@ namespace xpe
 
         struct ENGINE_API SkeletalAnimationComponent : Component
         {
-            Ref<anim::Skeleton> Skelet;
+            Ref<anim::Skeleton> Skeleton;
             Ref<anim::Animation> Animation;
             bool Play = false;
 
-            SkeletalAnimationComponent(const string& tag, const Ref<anim::Skeleton>& skelet, const Ref<anim::Animation>& animation)
-            : Component(tag), Skelet(skelet), Animation(animation) {}
+            SkeletalAnimationComponent(const string& tag, const Ref<anim::Skeleton>& skeleton, const Ref<anim::Animation>& animation)
+            : Component(tag), Skeleton(skeleton), Animation(animation) {}
 
             JsonClass(
                 SkeletalAnimationComponent,
@@ -324,26 +330,6 @@ namespace xpe
 
             JsonClass(
                 VoiceComponent,
-                m_Tag
-            )
-        };
-
-        struct ENGINE_API OpaqueComponent : Component
-        {
-            Boolean IsVisible = true;
-
-            JsonClass(
-                OpaqueComponent,
-                m_Tag
-            )
-        };
-
-        struct ENGINE_API TransparentComponent : Component
-        {
-            Boolean IsVisible = true;
-
-            JsonClass(
-                TransparentComponent,
                 m_Tag
             )
         };

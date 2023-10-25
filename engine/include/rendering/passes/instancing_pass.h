@@ -16,7 +16,7 @@ namespace xpe {
         {
 
         public:
-            InstancingPass(const vector<RenderPassBinding>& bindings);
+            InstancingPass(eType type, const vector<RenderPassBinding>& bindings);
 
         protected:
             void DrawInstanced(

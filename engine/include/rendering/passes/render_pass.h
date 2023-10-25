@@ -55,22 +55,30 @@ namespace xpe {
             {
                 OPAQUE = 0,
                 TRANSPARENT = 1,
-                GUI = 2
+                POSTFX = 2
             };
 
-            RenderPass(const vector<RenderPassBinding>& bindings);
+            RenderPass(eType type, const vector<RenderPassBinding>& bindings);
             virtual ~RenderPass();
 
             virtual void Update(Scene* scene) {}
-            virtual void Draw(Scene* scene) = 0;
+            virtual void Draw(Scene* scene) {}
+            virtual void DrawOpaque(Scene* scene) {}
+            virtual void DrawTransparent(Scene* scene) {}
 
             void Init();
             void Bind();
             void Unbind();
 
             RenderTarget* GetRenderTarget();
+            inline eType GetType() { return m_Type; }
 
         protected:
+
+            virtual void InitOpaque();
+            virtual void InitTransparent();
+
+            eType m_Type;
             vector<RenderPassBinding> m_Bindings;
             Pipeline* m_Pipeline = nullptr;
 

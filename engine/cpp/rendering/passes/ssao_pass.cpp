@@ -1,11 +1,12 @@
 #include <rendering/passes/ssao_pass.hpp>
-#include <rendering/geometry/geometry_manager.h>
+#include <rendering/core/context.hpp>
 
 namespace xpe
 {
     namespace render
     {
-        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport) : RenderPass(bindings)
+        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport)
+        : RenderPass(eType::POSTFX, bindings)
         {
             m_Buffer.Type = eBufferType::CONSTANT;
             m_Buffer.Usage = eBufferUsage::DYNAMIC;

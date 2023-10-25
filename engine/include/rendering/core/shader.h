@@ -16,9 +16,8 @@ namespace xpe {
             COMPUTE = 5,
         };
 
-        struct ENGINE_API ShaderStage final
+        struct ENGINE_API ShaderStage : public GPUResource
         {
-            GPUResource Resource;
             eShaderType Type;
             render::Blob Blob;
             string Source;
@@ -26,16 +25,16 @@ namespace xpe {
             const char* Profile = nullptr;
             uword Flag = 0;
             bool Compiled = false;
-            string ID;
+            string Name;
 
             ShaderStage() = default;
             ShaderStage(eShaderType type) : Type(type) {}
-            ShaderStage(const string& id, eShaderType type) : Type(type), ID(id) {}
+            ShaderStage(const string& name, eShaderType type) : Type(type), Name(name) {}
         };
 
-        struct ENGINE_API Shader : public GPUResource
+        struct ENGINE_API Shader : public Object
         {
-            string ID = "Untitled";
+            string Name = "Untitled";
             vector<ShaderStage*> Stages;
         };
 

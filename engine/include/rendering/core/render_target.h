@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API RenderTarget : public GPUResource
+        struct ENGINE_API RenderTarget : public Object
         {
             vector<void*> ColorViews;
             void* DepthStencilView = nullptr;

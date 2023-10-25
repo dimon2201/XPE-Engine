@@ -306,7 +306,6 @@ public:
             m_Planes[i]->Transform.Scale = { 1, 1, 0.1 };
             m_Planes[i]->AddComponent<GeometryComponent>("G_Plane" + i, GeometryManager::AddGeometry(Cube()));
             m_Planes[i]->AddComponent<MaterialComponent>("Plane" + i, MaterialManager::Add("MT_Plane" + i, Material()));
-            m_Planes[i]->AddComponent<OpaqueComponent>("Opaque");
         }
 
         m_Listener = new Entity("Listener", m_MainScene);

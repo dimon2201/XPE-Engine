@@ -1,7 +1,6 @@
 #pragma once
 
 #include <rendering/passes/render_pass.h>
-#include <rendering/geometry/geometry.h>
 
 namespace xpe
 {
@@ -20,7 +19,7 @@ namespace xpe
         public:
             SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport);
 
-            virtual void Draw(Scene* scene) override final;
+            void Draw(Scene* scene) override final;
 
             void Update(Scene *scene) override;
 

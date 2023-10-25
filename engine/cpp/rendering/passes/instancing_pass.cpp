@@ -7,8 +7,9 @@ namespace xpe {
     namespace render {
 
         InstancingPass::InstancingPass(
+            eType type,
             const vector<RenderPassBinding>& bindings
-        ) : RenderPass(bindings)
+        ) : RenderPass(type, bindings)
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);

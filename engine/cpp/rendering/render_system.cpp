@@ -144,17 +144,17 @@ namespace xpe {
 
         void RenderSystem::UpdateLight(Scene* scene)
         {
-            this->m_DirectLightBuffer->Clear();
+            m_DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
             {
                 DirectLightBufferData light;
                 light.Position = component->Entity->Transform.Position;
                 light.Color = component->Color;
-                this->m_DirectLightBuffer->Add(light);
+                m_DirectLightBuffer->Add(light);
             });
-            this->m_DirectLightBuffer->Flush();
+            m_DirectLightBuffer->Flush();
 
-            this->m_PointLightBuffer->Clear();
+            m_PointLightBuffer->Clear();
             scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
             {
                 PointLightBufferData light;
@@ -163,11 +163,11 @@ namespace xpe {
                 light.Constant = component->Constant;
                 light.Linear = component->Constant;
                 light.Quadratic = component->Constant;
-                this->m_PointLightBuffer->Add(light);
+                m_PointLightBuffer->Add(light);
             });
-            this->m_PointLightBuffer->Flush();
+            m_PointLightBuffer->Flush();
 
-            this->m_SpotLightBuffer->Clear();
+            m_SpotLightBuffer->Clear();
             scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
             {
                 SpotLightBufferData light;
@@ -176,9 +176,9 @@ namespace xpe {
                 light.Direction = component->Direction;
                 light.Outer = component->Outer;
                 light.Cutoff = component->Cutoff;
-                this->m_SpotLightBuffer->Add(light);
+                m_SpotLightBuffer->Add(light);
             });
-            this->m_SpotLightBuffer->Flush();
+            m_SpotLightBuffer->Flush();
         }
 
         void RenderSystem::UpdatePasses(xpe::ecs::Scene *scene)
@@ -192,7 +192,7 @@ namespace xpe {
             {
                 rp->Update(scene);
                 rp->Bind();
-                rp->Draw(scene);
+                rp->DrawOpaque(scene);
                 rp->Unbind();
             }
 
@@ -204,12 +204,12 @@ namespace xpe {
             {
                 rp->Update(scene);
                 rp->Bind();
-                rp->Draw(scene);
+                rp->DrawTransparent(scene);
                 rp->Unbind();
             }
 
-            // GUI
-            for (RenderPass* rp : m_GUIRenderPasses)
+            // PostFX
+            for (RenderPass* rp : m_PostFXRenderPasses)
             {
                 rp->Update(scene);
                 rp->Bind();

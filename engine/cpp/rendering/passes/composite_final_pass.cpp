@@ -1,11 +1,12 @@
 #include <rendering/passes/composite_final_pass.h>
-#include <ecs/scenes.hpp>
+#include <rendering/core/context.hpp>
 
 namespace xpe {
 
     namespace render {
 
-        CompositeFinalPass::CompositeFinalPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
+        CompositeFinalPass::CompositeFinalPass(const vector<RenderPassBinding>& bindings)
+        : RenderPass(eType::POSTFX, bindings)
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
 

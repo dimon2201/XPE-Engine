@@ -12,11 +12,9 @@ namespace xpe {
         {
 
         public:
-            MergePass(
-                    const vector<RenderPassBinding>& bindings
-            ) : RenderPass(bindings) {}
+            MergePass(const vector<RenderPassBinding>& bindings) : RenderPass(eType::POSTFX, bindings) {}
 
-            virtual void Draw(Scene* scene) override;
+            void Draw(Scene* scene) override;
 
         };
 

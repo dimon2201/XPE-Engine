@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace render {
 
-        SkyboxPass::SkyboxPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
+        SkyboxPass::SkyboxPass(eType type, const vector<RenderPassBinding>& bindings) : RenderPass(type, bindings)
         {
             m_Cube = GeometryManager::AddGeometry(Cube());
 
@@ -19,15 +19,6 @@ namespace xpe {
 
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
-
-            BlendTarget target;
-            target.Enable = false;
-            m_Pipeline->Blending.Targets.push_back(target);
-            m_Pipeline->Blending.Targets.push_back(target);
-            m_Pipeline->Blending.Targets.push_back(target);
-            m_Pipeline->Blending.IndependentBlendEnable = true;
-
-            context::CreatePipeline(*m_Pipeline);
         }
 
         SkyboxPass::~SkyboxPass()
@@ -35,7 +26,7 @@ namespace xpe {
             context::FreeSampler(m_Sampler);
         }
 
-        void SkyboxPass::Draw(Scene* scene)
+        void SkyboxPass::DrawOpaque(Scene *scene)
         {
             Skybox* skybox = scene->GetGlobal<Skybox>();
             m_Pipeline->Textures[0] = skybox->CubeTexture.Get();
