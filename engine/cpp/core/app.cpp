@@ -53,19 +53,19 @@ namespace xpe {
             CPUTime = DeltaTime;
 
             MainDispatcher* mainDispatcher = new MainDispatcher(
-                    Hardware::CPU.Cores,
+                    HardwareManager::CPU.Cores,
                     100,
                     "Worker",
                     Thread::ePriority::NORMAL
             );
 
-            Threading::Init(mainDispatcher);
+            TaskManager::Init(mainDispatcher);
             PhysicsSystem::Init(mainDispatcher);
 
-            Windowing::Init();
-            Windowing::InitWindow(winDesc);
+            WindowManager::Init();
+            WindowManager::InitWindow(winDesc);
 
-            Input::Init();
+            InputManager::Init();
 
             render::context::EnableInfoLog = Config.EnableGPUInfoLog;
             render::context::EnableWarnLog = Config.EnableGPUWarnLog;
@@ -103,30 +103,30 @@ namespace xpe {
                 }
 #endif
 
-                Timer cpuTimer(&CPUTime);
-                Timer deltaTimer(&DeltaTime);
+                TimeManager cpuTimer(&CPUTime);
+                TimeManager deltaTimer(&DeltaTime);
 
                 CurrentTime = cpuTimer.GetStartTime();
 
                 Update();
 
                 // submit audio task with current scene state
-                Threading::SubmitTask({[this]() {
+                TaskManager::SubmitTask({[this]() {
                     m_AudioSystem->Update(m_MainScene, DeltaTime);
                     m_AudioSystem->UpdateListener(m_MainScene);
                 }});
 
                 // submit animation task with current scene state
-                Threading::SubmitTask({[this]() {
+                TaskManager::SubmitTask({[this]() {
                     m_AnimSystem->Update(m_MainScene, DeltaTime);
                 }});
 
                 Render();
 
-                Windowing::PollEvents();
-                Windowing::Swap();
+                WindowManager::PollEvents();
+                WindowManager::Swap();
 
-                m_IsOpen = !Windowing::ShouldClose();
+                m_IsOpen = !WindowManager::ShouldClose();
 
                 // measure delta ticks in seconds and log delta
 #ifdef DEBUG
@@ -151,12 +151,12 @@ namespace xpe {
 
             PhysicsSystem::Free();
 
-            Input::Free();
+            InputManager::Free();
 
-            Windowing::FreeWindow();
-            Windowing::Free();
+            WindowManager::FreeWindow();
+            WindowManager::Free();
 
-            Threading::Free();
+            TaskManager::Free();
 
             FreeLogger();
         }
@@ -176,7 +176,7 @@ namespace xpe {
             ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/canvas.vs");
             ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
             ShaderManager::BuildShader(shader);
-            m_Canvas = new Canvas(Windowing::GetWidth(), Windowing::GetHeight(), shader);
+            m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
 
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
@@ -184,6 +184,10 @@ namespace xpe {
             m_RenderSystem->InitRenderTargets(m_Canvas);
 
             // Main pass
+            RenderTarget* opaqueRT = m_RenderSystem->GetOpaqueRT();
+            RenderTarget* transparentRT = m_RenderSystem->GetTransparentRT();
+
+            // Main opaque pass
             {
                 Shader* shader = ShaderManager::CreateShader("main");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass.vs");
@@ -192,7 +196,7 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                         { "Shader", RenderPassBinding::eType::SHADER, shader },
-                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
                         { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                         { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
@@ -201,7 +205,7 @@ namespace xpe {
                         { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_RenderSystem->AddRenderPass<MainPass>(bindings);
+                m_RenderSystem->AddRenderPass<MainPass>(RenderPass::eType::OPAQUE, bindings);
             }
 
             // Skeletal animation pass
@@ -213,7 +217,7 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
                     { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                     { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                     { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
@@ -222,7 +226,7 @@ namespace xpe {
                     { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_RenderSystem->AddRenderPass<SkeletalAnimPass>(bindings);
+                m_RenderSystem->AddRenderPass<SkeletalAnimPass>(RenderPass::eType::OPAQUE, bindings);
             }
 
             // Text 2D pass
@@ -234,12 +238,12 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
                     { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                     { "ViewportBuffer", RenderPassBinding::eType::BUFFER, m_Canvas->GetBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_RenderSystem->AddRenderPass<Text2DPass>(bindings);
+                m_RenderSystem->AddRenderPass<Text2DPass>(RenderPass::eType::OPAQUE, bindings);
             }
 
             // Text 3D pass
@@ -251,11 +255,11 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetMainRT() },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
                     { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                 };
 
-                m_RenderSystem->AddRenderPass<Text3DPass>(bindings);
+                m_RenderSystem->AddRenderPass<Text3DPass>(RenderPass::eType::OPAQUE, bindings);
             }
 
             // SSAO pass
@@ -267,13 +271,12 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, m_RenderSystem->GetSsaoRT() },
-                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->Colors[1], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->Colors[2], RenderPassBinding::eStage::PIXEL, 1 },
-                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
+                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->Colors[1], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->Colors[2], RenderPassBinding::eStage::PIXEL, 1 },
+                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
-                m_SsaoPass = m_RenderSystem->AddRenderPass<SSAOPass>(bindings, canvasViewport);
+                m_SsaoPass = m_RenderSystem->AddRenderPass<SSAOPass>(RenderPass::eType::GUI, bindings, canvasViewport);
             }
 
             // SSAO Merge pass
@@ -286,11 +289,11 @@ namespace xpe {
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
                     { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, canvasRT },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetMainRT()->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetSsaoRT()->Colors[0], RenderPassBinding::eStage::PIXEL, 2 }
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SsaoPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
-                m_RenderSystem->AddRenderPass<MergePass>(bindings);
+                m_RenderSystem->AddRenderPass<MergePass>(RenderPass::eType::GUI, bindings);
             }
         }
 

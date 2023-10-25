@@ -27,7 +27,6 @@ namespace xpe {
         {
 
         public:
-
             Ref<Texture> Load(const char* filepath, const eTextureFormat& format);
 
             Ref<Texture> LoadCube(const TextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
@@ -43,6 +42,7 @@ namespace xpe {
 
         private:
             static unordered_map<string, TextureLayer>* s_Layers;
+
         };
 
     }

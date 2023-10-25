@@ -37,6 +37,8 @@ namespace xpe {
             m_ShadowMap = new Texture();
             m_ShadowCoords = new Texture();
             m_ShadowFilterBuffer = new render::ShadowFilterBuffer();
+
+            m_TransparentRenderPasses.reserve(2);
         }
 
         RenderSystem::~RenderSystem()
@@ -62,40 +64,70 @@ namespace xpe {
         void RenderSystem::InitRenderTargets(render::Canvas* canvas)
         {
             m_Canvas = canvas;
+            Viewport* viewport = canvas->GetViewport(0);
+            s32 msaaSampleCount = canvas->GetMSAA();
+            bool useMSAA = msaaSampleCount > 1;
+            // Shared depth texture for opaque and transparent render targets
+            m_SharedDepthTexture = new Texture();
+            m_SharedDepthTexture->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            m_SharedDepthTexture->Width = viewport->Width;
+            m_SharedDepthTexture->Height = viewport->Height;
+            m_SharedDepthTexture->Format = eTextureFormat::R32_TYPELESS;
+            m_SharedDepthTexture->InitializeData = false;
+            m_SharedDepthTexture->EnableRenderTarget = true;
+            m_SharedDepthTexture->SampleCount = useMSAA ? msaaSampleCount : 1;
+            m_SharedDepthTexture->Init();
+
+            // Opaque render target
             Texture* mainColor = new Texture();
-            mainColor->Width = m_Canvas->GetDimension().x;
-            mainColor->Height = m_Canvas->GetDimension().y;
+            mainColor->Width = viewport->Width;
+            mainColor->Height = viewport->Height;
             mainColor->Format = eTextureFormat::RGBA8;
             mainColor->InitializeData = false;
             mainColor->EnableRenderTarget = true;
+            mainColor->SampleCount = useMSAA ? msaaSampleCount : 1;
             mainColor->Init();
 
             Texture* mainPosition = new Texture();
-            mainPosition->Width = m_Canvas->GetDimension().x;
-            mainPosition->Height = m_Canvas->GetDimension().y;
+            mainPosition->Width = viewport->Width;
+            mainPosition->Height = viewport->Height;
             mainPosition->Format = eTextureFormat::RGBA32;
             mainPosition->InitializeData = false;
             mainPosition->EnableRenderTarget = true;
+            mainPosition->SampleCount = useMSAA ? msaaSampleCount : 1;
             mainPosition->Init();
 
             Texture* mainNormal = new Texture();
-            mainNormal->Width = m_Canvas->GetDimension().x;
-            mainNormal->Height = m_Canvas->GetDimension().y;
+            mainNormal->Width = viewport->Width;
+            mainNormal->Height = viewport->Height;
             mainNormal->Format = eTextureFormat::RGBA16;
             mainNormal->InitializeData = false;
             mainNormal->EnableRenderTarget = true;
+            mainNormal->SampleCount = useMSAA ? msaaSampleCount : 1;
             mainNormal->Init();
 
-            Texture* mainDepth = new Texture();
-            mainDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            mainDepth->Width = m_Canvas->GetDimension().x;
-            mainDepth->Height = m_Canvas->GetDimension().y;
-            mainDepth->Format = eTextureFormat::R32_TYPELESS;
-            mainDepth->InitializeData = false;
-            mainDepth->EnableRenderTarget = true;
-            mainDepth->Init();
+            m_OpaqueRenderTarget = new RenderTarget({ mainColor, mainPosition, mainNormal }, m_SharedDepthTexture, *viewport);
 
-            m_MainRT = new RenderTarget({ mainColor, mainPosition, mainNormal }, mainDepth, *m_Canvas->GetViewport(0));
+            // Transparent render target
+            Texture* mainAccum = new Texture();
+            mainAccum->Width = viewport->Width;
+            mainAccum->Height = viewport->Height;
+            mainAccum->Format = eTextureFormat::RGBA16;
+            mainAccum->InitializeData = false;
+            mainAccum->EnableRenderTarget = true;
+            mainAccum->SampleCount = useMSAA ? msaaSampleCount : 1;
+            mainAccum->Init();
+
+            Texture* mainReveal = new Texture();
+            mainReveal->Width = viewport->Width;
+            mainReveal->Height = viewport->Height;
+            mainReveal->Format = eTextureFormat::R8;
+            mainReveal->InitializeData = false;
+            mainReveal->EnableRenderTarget = true;
+            mainReveal->SampleCount = useMSAA ? msaaSampleCount : 1;
+            mainReveal->Init();
+
+            m_TransparentRenderTarget = new RenderTarget({ mainAccum, mainReveal }, m_SharedDepthTexture, *viewport);
         }
 
         void RenderSystem::Prepare()
@@ -106,10 +138,6 @@ namespace xpe {
 
         void RenderSystem::Update(Scene* scene, const Time& dt)
         {
-            m_MainRT->ClearColor(0, { 1, 1, 1, 1 });
-            m_MainRT->ClearColor(1, { 0, 0, 0, 0 });
-            m_MainRT->ClearColor(2, { 0, 0, 0, 0 });
-            m_MainRT->ClearDepth(1);
             UpdateLight(scene);
             UpdatePasses(scene);
         }
@@ -155,7 +183,33 @@ namespace xpe {
 
         void RenderSystem::UpdatePasses(xpe::ecs::Scene *scene)
         {
-            for (RenderPass* rp : m_RenderPasses)
+            // Opaque
+            m_OpaqueRenderTarget->ClearColor(0, glm::vec4(0.0f));
+            m_OpaqueRenderTarget->ClearColor(1, glm::vec4(0.0f));
+            m_OpaqueRenderTarget->ClearColor(2, glm::vec4(0.0f));
+            m_OpaqueRenderTarget->ClearDepth(1.0f);
+            for (RenderPass* rp : m_OpaqueRenderPasses)
+            {
+                rp->Update(scene);
+                rp->Bind();
+                rp->Draw(scene);
+                rp->Unbind();
+            }
+
+            // Transparent
+            m_TransparentRenderTarget->ClearColor(0, glm::vec4(0.0f));
+            m_TransparentRenderTarget->ClearColor(1, glm::vec4(1.0f));
+            m_TransparentRenderTarget->ClearDepth(1.0f);
+            for (RenderPass* rp : m_TransparentRenderPasses)
+            {
+                rp->Update(scene);
+                rp->Bind();
+                rp->Draw(scene);
+                rp->Unbind();
+            }
+
+            // GUI
+            for (RenderPass* rp : m_GUIRenderPasses)
             {
                 rp->Update(scene);
                 rp->Bind();

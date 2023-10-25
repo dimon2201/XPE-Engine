@@ -1,5 +1,6 @@
 #pragma once
 
+#include <rendering/passes/render_pass.h>
 #include <rendering/buffers/shadow_filter_buffer.h>
 
 namespace xpe {
@@ -27,10 +28,10 @@ namespace xpe {
             ~RenderSystem();
 
             template<typename T, typename ... Args>
-            T* AddRenderPass(Args &&... args);
+            T* AddRenderPass(const RenderPass::eType& type, Args &&... args);
 
             template<typename T>
-            T* GetRenderPass();
+            T* GetRenderPass(const RenderPass::eType& type);
 
             void Update(Scene* scene, const Time& dt) override final;
 
@@ -51,14 +52,17 @@ namespace xpe {
             inline Texture* GetShadowCoords() { return m_ShadowCoords; }
             inline ShadowFilterBuffer* GetShadowFilterBuffer() { return m_ShadowFilterBuffer; }
 
-            inline RenderTarget* GetMainRT() { return m_MainRT; }
-            inline RenderTarget* GetSsaoRT() { return m_SsaoRT; }
+            inline Texture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
+            inline RenderTarget* GetOpaqueRT() { return m_OpaqueRenderTarget; }
+            inline RenderTarget* GetTransparentRT() { return m_TransparentRenderTarget; }
 
         private:
             void UpdateLight(Scene* scene);
             void UpdatePasses(Scene* scene);
 
-            vector<RenderPass*> m_RenderPasses;
+            vector<RenderPass*> m_OpaqueRenderPasses;
+            vector<RenderPass*> m_TransparentRenderPasses;
+            vector<RenderPass*> m_GUIRenderPasses;
 
             render::Canvas* m_Canvas;
 
@@ -73,30 +77,86 @@ namespace xpe {
             render::Texture* m_ShadowCoords;
             render::ShadowFilterBuffer* m_ShadowFilterBuffer;
 
-            render::RenderTarget* m_MainRT;
-            render::RenderTarget* m_SsaoRT;
+            Texture* m_SharedDepthTexture;
+            RenderTarget* m_OpaqueRenderTarget;
+            RenderTarget* m_TransparentRenderTarget;
 
         };
 
         template<typename T, typename... Args>
-        T* RenderSystem::AddRenderPass(Args &&... args)
+        T* RenderSystem::AddRenderPass(const RenderPass::eType& type, Args &&... args)
         {
             T* renderPass = new T(std::forward<Args>(args)...);
             renderPass->Init();
-            m_RenderPasses.emplace_back(renderPass);
+
+            switch (type)
+            {
+
+                case RenderPass::eType::OPAQUE:
+                    m_OpaqueRenderPasses.emplace_back(renderPass);
+                    break;
+
+                case RenderPass::eType::TRANSPARENT:
+                    m_TransparentRenderPasses.emplace_back(renderPass);
+                    break;
+
+                case RenderPass::eType::GUI:
+                    m_GUIRenderPasses.emplace_back(renderPass);
+                    break;
+
+                default:
+                    m_OpaqueRenderPasses.emplace_back(renderPass);
+                    break;
+
+            }
+
             return renderPass;
         }
 
         template<typename T>
-        T* RenderSystem::GetRenderPass()
+        T* RenderSystem::GetRenderPass(const RenderPass::eType& type)
         {
             T* resultPass = nullptr;
 
-            for (auto* renderPass : m_RenderPasses)
+            switch (type)
             {
-                if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
-                    return renderPass;
-                }
+
+                case RenderPass::eType::OPAQUE:
+                    for (auto* renderPass : m_OpaqueRenderPasses)
+                    {
+                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
+                            return renderPass;
+                        }
+                    }
+                    break;
+
+                case RenderPass::eType::TRANSPARENT:
+                    for (auto* renderPass : m_TransparentRenderPasses)
+                    {
+                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
+                            return renderPass;
+                        }
+                    }
+                    break;
+
+                case RenderPass::eType::GUI:
+                    for (auto* renderPass : m_GUIRenderPasses)
+                    {
+                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
+                            return renderPass;
+                        }
+                    }
+                    break;
+
+                default:
+                    for (auto* renderPass : m_OpaqueRenderPasses)
+                    {
+                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
+                            return renderPass;
+                        }
+                    }
+                    break;
+
             }
 
             return resultPass;

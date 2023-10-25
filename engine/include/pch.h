@@ -52,7 +52,7 @@
 // Core
 #include <core/macro_build.h>
 #include <core/types.hpp>
-#include <core/memory.hpp>
+#include <core/memory_manager.hpp>
 #include <core/allocators.h>
 #include <core/smart_pointers.h>
 #include <core/codes_keyboard.h>
@@ -61,10 +61,9 @@
 #include <res/json.h>
 #include <res/xml.h>
 #include <core/app_config.h>
-#include <core/hardware.h>
+#include <core/hardware_manager.h>
 
-// Rendering core types
-#include <rendering/core/types.h>
+// Rendering constants
 #include <rendering/core/slots.h>
 
 // STL customization
@@ -77,11 +76,14 @@
 #include <stl/ring_buffer.h>
 
 // Core
-#include <core/timing.hpp>
-#include <core/logger.h>
+#include <core/time_manager.hpp>
+#include <core/log_manager.h>
 #include <core/macro_debugbreak.h>
-#include <core/threading.h>
-#include <core/file_system.h>
+#include <core/thread.h>
+#include <core/task_manager.h>
+#include <core/file_manager.h>
+#include <core/window_manager.hpp>
+#include <core/input_manager.h>
 
 // Math
 #include <math/math.h>

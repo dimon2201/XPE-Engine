@@ -1,17 +1,13 @@
 #pragma once
 
+#include <rendering/core/pipeline.h>
+
 namespace xpe {
 
     namespace render {
 
         using namespace core;
         using namespace ecs;
-
-        struct CameraBuffer;
-        struct Shader;
-        struct RenderTarget;
-        struct Pipeline;
-        struct GPUResource;
 
         struct ENGINE_API RenderPassBinding
         {
@@ -39,7 +35,7 @@ namespace xpe {
             RenderPassBinding(
                 const string& tag,
                 const eType& type,
-                GPUResource* resource = nullptr,
+                void* resource = nullptr,
                 const eStage& stage = eStage::NONE,
                 const u32 slot = 0
             ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource) {}
@@ -48,13 +44,20 @@ namespace xpe {
             eType Type;
             eStage Stage;
             u32 Slot;
-            GPUResource* Resource;
+            void* Resource;
         };
 
         class ENGINE_API RenderPass : public Object
         {
 
         public:
+            enum eType
+            {
+                OPAQUE = 0,
+                TRANSPARENT = 1,
+                GUI = 2
+            };
+
             RenderPass(const vector<RenderPassBinding>& bindings);
             virtual ~RenderPass();
 

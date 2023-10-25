@@ -18,6 +18,7 @@ struct VSIn
 struct VSOut
 {
     float3 positionWorld : XPE_POSITION_WORLD;
+    float zView          : XPE_Z_VIEW;
     float2 uv            : XPE_UV2;
     float3 normal        : XPE_NORMAL_WORLD;
     float4 positionClip  : SV_POSITION;
@@ -75,6 +76,7 @@ VSOut vs_main(VSIn vsIn)
     float3 bitangentWorld = -cross(normalWorld, tangentWorld);
 
     vsOut.positionWorld = positionWorld.xyz;
+    vsOut.zView         = positionView.z;
     vsOut.uv            = vsIn.uv;
     vsOut.normal        = normalWorld.xyz;
     vsOut.positionClip  = positionClip;

@@ -77,7 +77,7 @@ public:
         // setup text 2D entity
         {
             m_Text2D = new Entity("Text2D", m_MainScene);
-            m_Text2D->Transform.Position = { 0, Windowing::GetHeight(), 0 };
+            m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
             m_Text2D->Transform.Scale = { 1, 1, 1 };
 
             auto* textComponent = m_Text2D->AddComponent<Text2DComponent>(
@@ -298,50 +298,55 @@ public:
             m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::Add("MT_Cube", Material()));
         }
 
-        // setup audio
+        // setup cubes
+        for (s32 i = 0; i < 4; i++)
         {
-            //Set listener component
-            {
-                m_Listener = new Entity("Listener", m_MainScene);
-
-                auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
-
-                ListenerComponent component("Listener");
-
-                component.Position = &camera.Component.Position;
-                component.Up = camera.Component.Up;
-                component.Look = &camera.Component.Front;
-
-                m_Listener->AddComponent<ListenerComponent>(component);
-            }
-
-            //loading stream audio files
-            {
-                m_AudioObject = new Entity("AudioObject", m_MainScene);
-
-                //load test stream audio
-                {
-                    m_AudioObject->AddComponent<AudioFileComponent>("Test", m_AudioLoader->Load("res/audio/test.wav"));
-                }
-
-                //load spell stream audio
-                {
-                    m_AudioObject->AddComponent<AudioFileComponent>("Magicfail", m_AudioLoader->Load("res/audio/magicfail.ogg"));
-                }
-
-                //load magicfail stream audio
-                {
-                    m_AudioObject->AddComponent<AudioFileComponent>("Spell", m_AudioLoader->Load("res/audio/spell.ogg"));
-                }
-
-            }
-            //temporarily commented
-            //// create voice component
-            //{
-            //    VoiceComponent component("Test");
-            //    m_MainScene->AddComponent<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
-            //}
+            m_Planes[i] = new Entity("Plane" + i, m_MainScene);
+            m_Planes[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
+            m_Planes[i]->Transform.Scale = { 1, 1, 0.1 };
+            m_Planes[i]->AddComponent<GeometryComponent>("G_Plane" + i, GeometryManager::AddGeometry(Cube()));
+            m_Planes[i]->AddComponent<MaterialComponent>("Plane" + i, MaterialManager::Add("MT_Plane" + i, Material()));
+            m_Planes[i]->AddComponent<OpaqueComponent>("Opaque");
         }
+
+        m_Listener = new Entity("Listener", m_MainScene);
+
+        auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
+
+        ListenerComponent component("Listener");
+
+        component.Position = &camera.Component.Position;
+        component.Up = camera.Component.Up;
+        component.Look = &camera.Component.Front;
+
+        m_Listener->AddComponent<ListenerComponent>(component);
+
+        //loading stream audio files
+        {
+            m_AudioObject = new Entity("AudioObject", m_MainScene);
+
+            //load test stream audio
+            {
+                m_AudioObject->AddComponent<AudioFileComponent>("Test", m_AudioLoader->Load("res/audio/test.wav"));
+            }
+
+            //load spell stream audio
+            {
+                m_AudioObject->AddComponent<AudioFileComponent>("Magicfail", m_AudioLoader->Load("res/audio/magicfail.ogg"));
+            }
+
+            //load magicfail stream audio
+            {
+                m_AudioObject->AddComponent<AudioFileComponent>("Spell", m_AudioLoader->Load("res/audio/spell.ogg"));
+            }
+
+        }
+        //temporarily commented
+        //// create voice component
+        //{
+        //    VoiceComponent component("Test");
+        //    m_MainScene->AddComponent<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
+        //}
 
         //setup background audio
         {
@@ -453,6 +458,15 @@ public:
         delete m_Listener;
         delete m_BackgroundAudio;
         delete m_AudioObject;
+        delete m_DirectLight;
+        delete m_PointLight;
+        delete m_Text2D;
+        delete m_Text3D;
+        delete m_Plane;
+        delete m_Planes[0];
+        delete m_Planes[1];
+        delete m_Planes[2];
+        delete m_Planes[3];
     }
 
     void WindowClosed()
@@ -464,7 +478,7 @@ public:
     {
         if (key == eKey::Esc)
         {
-            Windowing::Close();
+            WindowManager::Close();
         }
 
         MoveLight(key);
@@ -480,10 +494,10 @@ public:
     void CursorMoved(const double x, const double y)
     {
         auto& camera = *m_MainScene->PerspectiveCamera;
-        if (Input::MousePressed(eMouse::ButtonRight)) {
+        if (InputManager::MousePressed(eMouse::ButtonRight)) {
             camera.EnableLook = false;
-            Input::CaptureCursor(x, y);
-            auto& cursorDelta = Input::GetMouseCursor().Delta;
+            InputManager::CaptureCursor(x, y);
+            auto& cursorDelta = InputManager::GetMouseCursor().Delta;
             camera.Pan(cursorDelta);
         } else {
             camera.EnableLook = true;
@@ -503,7 +517,7 @@ private:
         m_MainScene->PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
         m_MainScene->PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
 
-        m_MainScene->PerspectiveCamera->Init(Windowing::GetWidth(), Windowing::GetHeight());
+        m_MainScene->PerspectiveCamera->Init(WindowManager::GetWidth(), WindowManager::GetHeight());
     }
 
     void InitCamera2D()
@@ -515,7 +529,7 @@ private:
     void UpdateCamera()
     {
         auto& camera = *m_MainScene->PerspectiveCamera;
-        if (Input::MousePressed(eMouse::ButtonLeft)) {
+        if (InputManager::MousePressed(eMouse::ButtonLeft)) {
             camera.LookMode = Camera::eLookMode::EDITOR;
         } else {
             camera.LookMode = Camera::eLookMode::GAME;
@@ -609,6 +623,7 @@ private:
     Entity* m_Listener;
     Entity* m_BackgroundAudio;
     Entity* m_AudioObject;
+    Entity* m_Planes[4];
 
     TestConfig m_TestConfig = string("TestConfig");
     XmlConfig  m_XmlConfig = string("XmlConfig");

@@ -1,19 +1,19 @@
 #pragma once
 
-#define hot_alloc(size) xpe::core::Memory::HotPools->Allocate(size)
+#define hot_alloc(size) xpe::core::MemoryManager::HotPools->Allocate(size)
 #define hot_allocT(T, count) static_cast<T*>(hot_alloc(sizeof(T) * count))
 #define hot_construct(T) xpe::core::Memory::HotPools->AllocateConstruct<T>()
-#define hot_construct_args(T, ...) xpe::core::Memory::HotPools->AllocateConstructArgs<T>(__VA_ARGS__)
-#define hot_free(addr) xpe::core::Memory::HotPools->Free(addr)
+#define hot_construct_args(T, ...) xpe::core::MemoryManager::HotPools->AllocateConstructArgs<T>(__VA_ARGS__)
+#define hot_free(addr) xpe::core::MemoryManager::HotPools->Free(addr)
 #define hot_destruct(T, addr) \
 addr->~T();                \
 hot_free(addr)
 
-#define main_alloc(size) xpe::core::Memory::MainPools->Allocate(size)
+#define main_alloc(size) xpe::core::MemoryManager::MainPools->Allocate(size)
 #define main_allocT(T, count) static_cast<T*>(main_alloc(sizeof(T) * count))
 #define main_construct(T) xpe::core::Memory::MainPools->AllocateConstruct<T>()
-#define main_construct_args(T, ...) xpe::core::Memory::MainPools->AllocateConstructArgs<T>(__VA_ARGS__)
-#define main_free(addr) xpe::core::Memory::MainPools->Free(addr)
+#define main_construct_args(T, ...) xpe::core::MemoryManager::MainPools->AllocateConstructArgs<T>(__VA_ARGS__)
+#define main_free(addr) xpe::core::MemoryManager::MainPools->Free(addr)
 #define main_destruct(T, addr) \
 addr->~T();               \
 main_free(addr)

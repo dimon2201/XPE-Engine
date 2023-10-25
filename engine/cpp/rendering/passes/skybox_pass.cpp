@@ -19,7 +19,15 @@ namespace xpe {
 
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
-            m_Pipeline->Blending.Targets[0].Enable = false;
+
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
+
+            context::CreatePipeline(*m_Pipeline);
         }
 
         SkyboxPass::~SkyboxPass()

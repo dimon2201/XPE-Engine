@@ -14,6 +14,13 @@ namespace xpe {
             m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
             m_Pipeline->Textures.emplace_back(nullptr);
             m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
+
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
         void TextPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)

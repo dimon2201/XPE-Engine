@@ -30,7 +30,7 @@
 /// written in ANSI C and licensed under public domain. It was designed as a simple
 /// embeddable user interface for application and does not have any dependencies,
 /// a default renderbackend or OS window and input handling but instead provides a very modular
-/// library approach by using simple input state for input and draw
+/// library approach by using simple input state for input and passess
 /// commands describing primitive shapes as output. So instead of providing a
 /// layered library that tries to abstract over a number of platform and
 /// render backends it only focuses on the actual UI.
@@ -99,7 +99,7 @@
 /// NK_INCLUDE_DEFAULT_ALLOCATOR    | If defined it will include header `<stdlib.h>` and provide additional functions to use this library without caring for memory allocation control and therefore ease memory management.
 /// NK_INCLUDE_STANDARD_IO          | If defined it will include header `<stdio.h>` and provide additional functions depending on file loading.
 /// NK_INCLUDE_STANDARD_VARARGS     | If defined it will include header <stdio.h> and provide additional functions depending on file loading.
-/// NK_INCLUDE_VERTEX_BUFFER_OUTPUT | Defining this adds a vertex draw command list backend to this library, which allows you to convert queue commands into vertex draw commands. This is mainly if you need a hardware accessible format for OpenGL, DirectX, Vulkan, Metal,...
+/// NK_INCLUDE_VERTEX_BUFFER_OUTPUT | Defining this adds a vertex passess command list backend to this library, which allows you to convert queue commands into vertex passess commands. This is mainly if you need a hardware accessible format for OpenGL, DirectX, Vulkan, Metal,...
 /// NK_INCLUDE_FONT_BAKING          | Defining this adds `stb_truetype` and `stb_rect_pack` implementation to this library and provides font baking and rendering. If you already have font handling or do not want to use this font handler you don't have to define it.
 /// NK_INCLUDE_DEFAULT_FONT         | Defining this adds the default font: ProggyClean.ttf into this library which can be loaded into a font atlas and allows using this library without having a truetype font
 /// NK_INCLUDE_COMMAND_USERDATA     | Defining this adds a userdata pointer into each command. Can be useful for example if you want to provide custom shaders depending on the used widget. Can be combined with the style structures.
@@ -540,10 +540,10 @@ enum nk_symbol_type {
 /// __nk_init_default__ | Initializes context with standard library memory allocation (malloc,free)
 /// __nk_init_fixed__   | Initializes context from single fixed size memory block
 /// __nk_init__         | Initializes context with memory allocator callbacks for alloc and free
-/// __nk_init_custom__  | Initializes context from two buffers. One for draw commands the other for window/panel/table allocations
+/// __nk_init_custom__  | Initializes context from two buffers. One for passess commands the other for window/panel/table allocations
 /// __nk_clear__        | Called at the end of the frame to reset and prepare the context for the next frame
 /// __nk_free__         | Shutdown and free all memory allocated inside the context
-/// __nk_set_user_data__| Utility function to pass user data to draw command
+/// __nk_set_user_data__| Utility function to pass user data to passess command
  */
 #ifdef NK_INCLUDE_DEFAULT_ALLOCATOR
 /*/// #### nk_init_default
@@ -608,7 +608,7 @@ NK_API int nk_init_fixed(struct nk_context*, void *memory, nk_size size, const s
 NK_API int nk_init(struct nk_context*, struct nk_allocator*, const struct nk_user_font*);
 /*/// #### nk_init_custom
 /// Initializes a `nk_context` struct from two different either fixed or growing
-/// buffers. The first buffer is for allocating draw commands while the second buffer is
+/// buffers. The first buffer is for allocating passess commands while the second buffer is
 /// used for allocating windows, panels and state tables.
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
@@ -618,7 +618,7 @@ NK_API int nk_init(struct nk_context*, struct nk_allocator*, const struct nk_use
 /// Parameter   | Description
 /// ------------|---------------------------------------------------------------
 /// __ctx__     | Must point to an either stack or heap allocated `nk_context` struct
-/// __cmds__    | Must point to a previously initialized memory buffer either fixed or dynamic to store draw commands into
+/// __cmds__    | Must point to a previously initialized memory buffer either fixed or dynamic to store passess commands into
 /// __pool__    | Must point to a previously initialized memory buffer either fixed or dynamic to store windows, panels and tables
 /// __font__    | Must point to a previously initialized font handle for more info look at font documentation
 ///
@@ -654,7 +654,7 @@ NK_API void nk_clear(struct nk_context*);
 NK_API void nk_free(struct nk_context*);
 #ifdef NK_INCLUDE_COMMAND_USERDATA
 /*/// #### nk_set_user_data
-/// Sets the currently passed userdata passed down into each draw command.
+/// Sets the currently passed userdata passed down into each passess command.
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// void nk_set_user_data(struct nk_context *ctx, nk_handle data);
@@ -663,7 +663,7 @@ NK_API void nk_free(struct nk_context*);
 /// Parameter   | Description
 /// ------------|--------------------------------------------------------------
 /// __ctx__     | Must point to a previously initialized `nk_context` struct
-/// __data__    | Handle with either pointer or index to be passed into every draw commands
+/// __data__    | Handle with either pointer or index to be passed into every passess commands
 */
 NK_API void nk_set_user_data(struct nk_context*, nk_handle handle);
 #endif
@@ -918,9 +918,9 @@ NK_API void nk_input_end(struct nk_context*);
  * =============================================================================*/
 /*/// ### Drawing
 /// This library was designed to be render backend agnostic so it does
-/// not draw anything to screen directly. Instead all drawn shapes, widgets
+/// not passess anything to screen directly. Instead all drawn shapes, widgets
 /// are made of, are buffered into memory and make up a command queue.
-/// Each frame therefore fills the command buffer with draw commands
+/// Each frame therefore fills the command buffer with passess commands
 /// that then need to be executed by the user and his own render backend.
 /// After that the command buffer needs to be cleared and a new frame can be
 /// started. It is probably important to note that the command buffer is the main
@@ -928,11 +928,11 @@ NK_API void nk_input_end(struct nk_context*);
 /// converts it into a hardware accessible format.
 ///
 /// #### Usage
-/// To draw all draw commands accumulated over a frame you need your own render
-/// backend able to draw a number of 2D primitives. This includes at least
+/// To passess all passess commands accumulated over a frame you need your own render
+/// backend able to passess a number of 2D primitives. This includes at least
 /// filled and stroked rectangles, circles, text, lines, triangles and scissors.
-/// As soon as this criterion is met you can iterate over each draw command
-/// and execute each draw command in a interpreter like fashion:
+/// As soon as this criterion is met you can iterate over each passess command
+/// and execute each passess command in a interpreter like fashion:
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// const struct nk_command *cmd = 0;
@@ -950,10 +950,10 @@ NK_API void nk_input_end(struct nk_context*);
 /// }
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ///
-/// In program flow context draw commands need to be executed after input has been
+/// In program flow context passess commands need to be executed after input has been
 /// gathered and the complete UI with windows and their contained widgets have
 /// been executed and before calling `nk_clear` which frees all previously
-/// allocated draw commands.
+/// allocated passess commands.
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// struct nk_context ctx;
@@ -989,14 +989,14 @@ NK_API void nk_input_end(struct nk_context*);
 /// nk_free(&ctx);
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ///
-/// You probably noticed that you have to draw all of the UI each frame which is
+/// You probably noticed that you have to passess all of the UI each frame which is
 /// quite wasteful. While the actual UI updating loop is quite fast rendering
 /// without actually needing it is not. So there are multiple things you could do.
 ///
 /// First is only update on input. This of course is only an option if your
 /// application only depends on the UI and does not require any outside calculations.
 /// If you actually only update on input make sure to update the UI two times each
-/// frame and call `nk_clear` directly after the first pass and only draw in
+/// frame and call `nk_clear` directly after the first pass and only passess in
 /// the second pass. In addition it is recommended to also add additional timers
 /// to make sure the UI is not drawn more than a fixed number of frames per second.
 ///
@@ -1010,7 +1010,7 @@ NK_API void nk_input_end(struct nk_context*);
 ///     nk_clear(&ctx);
 ///     do_ui(...)
 ///     //
-///     // draw
+///     // passess
 ///     const struct nk_command *cmd = 0;
 ///     nk_foreach(cmd, &ctx) {
 ///     switch (cmd->type) {
@@ -1028,15 +1028,15 @@ NK_API void nk_input_end(struct nk_context*);
 /// nk_free(&ctx);
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ///
-/// The second probably more applicable trick is to only draw if anything changed.
-/// It is not really useful for applications with continuous draw loop but
+/// The second probably more applicable trick is to only passess if anything changed.
+/// It is not really useful for applications with continuous passess loop but
 /// quite useful for desktop applications. To actually get nuklear to only
-/// draw on changes you first have to define `NK_ZERO_COMMAND_MEMORY` and
+/// passess on changes you first have to define `NK_ZERO_COMMAND_MEMORY` and
 /// allocate a memory buffer that will store each unique drawing output.
-/// After each frame you compare the draw command memory inside the library
+/// After each frame you compare the passess command memory inside the library
 /// with your allocated buffer by memcmp. If memcmp detects differences
 /// you have to copy the command buffer into the allocated buffer
-/// and then draw like usual (this example uses fixed memory but you could
+/// and then passess like usual (this example uses fixed memory but you could
 /// use dynamically allocated memory).
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
@@ -1076,14 +1076,14 @@ NK_API void nk_input_end(struct nk_context*);
 /// nk_free(&ctx);
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ///
-/// Finally while using draw commands makes sense for higher abstracted platforms like
+/// Finally while using passess commands makes sense for higher abstracted platforms like
 /// X11 and Win32 or drawing libraries it is often desirable to use graphics
 /// hardware directly. Therefore it is possible to just define
 /// `NK_INCLUDE_VERTEX_BUFFER_OUTPUT` which includes optional vertex output.
-/// To access the vertex output you first have to convert all draw commands into
+/// To access the vertex output you first have to convert all passess commands into
 /// vertexes by calling `nk_convert` which takes in your preferred vertex format.
-/// After successfully converting all draw commands just iterate over and execute all
-/// vertex draw commands:
+/// After successfully converting all passess commands just iterate over and execute all
+/// vertex passess commands:
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// // fill configuration
@@ -1118,7 +1118,7 @@ NK_API void nk_input_end(struct nk_context*);
 /// nk_buffer_init_default(&idx);
 /// nk_convert(&ctx, &cmds, &verts, &idx, &cfg);
 /// //
-/// // draw
+/// // passess
 /// nk_draw_foreach(cmd, &ctx, &cmds) {
 /// if (!cmd->elem_count) continue;
 ///     //[...]
@@ -1131,14 +1131,14 @@ NK_API void nk_input_end(struct nk_context*);
 /// #### Reference
 /// Function            | Description
 /// --------------------|-------------------------------------------------------
-/// __nk__begin__       | Returns the first draw command in the context draw command list to be drawn
-/// __nk__next__        | Increments the draw command iterator to the next command inside the context draw command list
-/// __nk_foreach__      | Iterates over each draw command inside the context draw command list
-/// __nk_convert__      | Converts from the abstract draw commands list into a hardware accessible vertex format
-/// __nk_draw_begin__   | Returns the first vertex command in the context vertex draw list to be executed
+/// __nk__begin__       | Returns the first passess command in the context passess command list to be drawn
+/// __nk__next__        | Increments the passess command iterator to the next command inside the context passess command list
+/// __nk_foreach__      | Iterates over each passess command inside the context passess command list
+/// __nk_convert__      | Converts from the abstract passess commands list into a hardware accessible vertex format
+/// __nk_draw_begin__   | Returns the first vertex command in the context vertex passess list to be executed
 /// __nk__draw_next__   | Increments the vertex command iterator to the next command inside the context vertex command list
-/// __nk__draw_end__    | Returns the end of the vertex draw list
-/// __nk_draw_foreach__ | Iterates over each vertex draw command inside the vertex draw list
+/// __nk__draw_end__    | Returns the end of the vertex passess list
+/// __nk_draw_foreach__ | Iterates over each vertex passess command inside the vertex passess list
 */
 enum nk_anti_aliasing {NK_ANTI_ALIASING_OFF, NK_ANTI_ALIASING_ON};
 enum nk_convert_result {
@@ -1165,7 +1165,7 @@ struct nk_convert_config {
     nk_size vertex_alignment; /* vertex alignment: Can be obtained by NK_ALIGNOF */
 };
 /*/// #### nk__begin
-/// Returns a draw command list iterator to iterate all draw
+/// Returns a passess command list iterator to iterate all passess
 /// commands accumulated over one frame.
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
@@ -1176,11 +1176,11 @@ struct nk_convert_config {
 /// ------------|-----------------------------------------------------------
 /// __ctx__     | must point to an previously initialized `nk_context` struct at the end of a frame
 ///
-/// Returns draw command pointer pointing to the first command inside the draw command list
+/// Returns passess command pointer pointing to the first command inside the passess command list
 */
 NK_API const struct nk_command* nk__begin(struct nk_context*);
 /*/// #### nk__next
-/// Returns draw command pointer pointing to the next command inside the draw command list
+/// Returns passess command pointer pointing to the next command inside the passess command list
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// const struct nk_command* nk__next(struct nk_context*, const struct nk_command*);
@@ -1189,13 +1189,13 @@ NK_API const struct nk_command* nk__begin(struct nk_context*);
 /// Parameter   | Description
 /// ------------|-----------------------------------------------------------
 /// __ctx__     | Must point to an previously initialized `nk_context` struct at the end of a frame
-/// __cmd__     | Must point to an previously a draw command either returned by `nk__begin` or `nk__next`
+/// __cmd__     | Must point to an previously a passess command either returned by `nk__begin` or `nk__next`
 ///
-/// Returns draw command pointer pointing to the next command inside the draw command list
+/// Returns passess command pointer pointing to the next command inside the passess command list
 */
 NK_API const struct nk_command* nk__next(struct nk_context*, const struct nk_command*);
 /*/// #### nk_foreach
-/// Iterates over each draw command inside the context draw command list
+/// Iterates over each passess command inside the context passess command list
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// #define nk_foreach(c, ctx)
@@ -1206,13 +1206,13 @@ NK_API const struct nk_command* nk__next(struct nk_context*, const struct nk_com
 /// __ctx__     | Must point to an previously initialized `nk_context` struct at the end of a frame
 /// __cmd__     | Command pointer initialized to NULL
 ///
-/// Iterates over each draw command inside the context draw command list
+/// Iterates over each passess command inside the context passess command list
 */
 #define nk_foreach(c, ctx) for((c) = nk__begin(ctx); (c) != 0; (c) = nk__next(ctx,c))
 #ifdef NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 /*/// #### nk_convert
-/// Converts all internal draw commands into vertex draw commands and fills
-/// three buffers with vertexes, vertex draw commands and vertex indices. The vertex format
+/// Converts all internal passess commands into vertex passess commands and fills
+/// three buffers with vertexes, vertex passess commands and vertex indices. The vertex format
 /// as well as some other configuration values have to be configured by filling out a
 /// `nk_convert_config` struct.
 ///
@@ -1224,7 +1224,7 @@ NK_API const struct nk_command* nk__next(struct nk_context*, const struct nk_com
 /// Parameter   | Description
 /// ------------|-----------------------------------------------------------
 /// __ctx__     | Must point to an previously initialized `nk_context` struct at the end of a frame
-/// __cmds__    | Must point to a previously initialized buffer to hold converted vertex draw commands
+/// __cmds__    | Must point to a previously initialized buffer to hold converted vertex passess commands
 /// __vertices__| Must point to a previously initialized buffer to hold all produced vertices
 /// __elements__| Must point to a previously initialized buffer to hold all produced vertex indices
 /// __config__  | Must point to a filled out `nk_config` struct to configure the conversion process
@@ -1233,15 +1233,15 @@ NK_API const struct nk_command* nk__next(struct nk_context*, const struct nk_com
 ///
 /// Parameter                       | Description
 /// --------------------------------|-----------------------------------------------------------
-/// NK_CONVERT_SUCCESS              | Signals a successful draw command to vertex buffer conversion
+/// NK_CONVERT_SUCCESS              | Signals a successful passess command to vertex buffer conversion
 /// NK_CONVERT_INVALID_PARAM        | An invalid argument was passed in the function call
-/// NK_CONVERT_COMMAND_BUFFER_FULL  | The provided buffer for storing draw commands is full or failed to allocate more memory
+/// NK_CONVERT_COMMAND_BUFFER_FULL  | The provided buffer for storing passess commands is full or failed to allocate more memory
 /// NK_CONVERT_VERTEX_BUFFER_FULL   | The provided buffer for storing vertices is full or failed to allocate more memory
 /// NK_CONVERT_ELEMENT_BUFFER_FULL  | The provided buffer for storing indicies is full or failed to allocate more memory
 */
 NK_API nk_flags nk_convert(struct nk_context*, struct nk_buffer *cmds, struct nk_buffer *vertices, struct nk_buffer *elements, const struct nk_convert_config*);
 /*/// #### nk__draw_begin
-/// Returns a draw vertex command buffer iterator to iterate over the vertex draw command buffer
+/// Returns a passess vertex command buffer iterator to iterate over the vertex passess command buffer
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// const struct nk_draw_command* nk__draw_begin(const struct nk_context*, const struct nk_buffer*);
@@ -1250,13 +1250,13 @@ NK_API nk_flags nk_convert(struct nk_context*, struct nk_buffer *cmds, struct nk
 /// Parameter   | Description
 /// ------------|-----------------------------------------------------------
 /// __ctx__     | Must point to an previously initialized `nk_context` struct at the end of a frame
-/// __buf__     | Must point to an previously by `nk_convert` filled out vertex draw command buffer
+/// __buf__     | Must point to an previously by `nk_convert` filled out vertex passess command buffer
 ///
-/// Returns vertex draw command pointer pointing to the first command inside the vertex draw command buffer
+/// Returns vertex passess command pointer pointing to the first command inside the vertex passess command buffer
 */
 NK_API const struct nk_draw_command* nk__draw_begin(const struct nk_context*, const struct nk_buffer*);
 /*/// #### nk__draw_end
-/// Returns the vertex draw command at the end of the vertex draw command buffer
+/// Returns the vertex passess command at the end of the vertex passess command buffer
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// const struct nk_draw_command* nk__draw_end(const struct nk_context *ctx, const struct nk_buffer *buf);
@@ -1265,13 +1265,13 @@ NK_API const struct nk_draw_command* nk__draw_begin(const struct nk_context*, co
 /// Parameter   | Description
 /// ------------|-----------------------------------------------------------
 /// __ctx__     | Must point to an previously initialized `nk_context` struct at the end of a frame
-/// __buf__     | Must point to an previously by `nk_convert` filled out vertex draw command buffer
+/// __buf__     | Must point to an previously by `nk_convert` filled out vertex passess command buffer
 ///
-/// Returns vertex draw command pointer pointing to the end of the last vertex draw command inside the vertex draw command buffer
+/// Returns vertex passess command pointer pointing to the end of the last vertex passess command inside the vertex passess command buffer
 */
 NK_API const struct nk_draw_command* nk__draw_end(const struct nk_context*, const struct nk_buffer*);
 /*/// #### nk__draw_next
-/// Increments the vertex draw command buffer iterator
+/// Increments the vertex passess command buffer iterator
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// const struct nk_draw_command* nk__draw_next(const struct nk_draw_command*, const struct nk_buffer*, const struct nk_context*);
@@ -1279,15 +1279,15 @@ NK_API const struct nk_draw_command* nk__draw_end(const struct nk_context*, cons
 ///
 /// Parameter   | Description
 /// ------------|-----------------------------------------------------------
-/// __cmd__     | Must point to an previously either by `nk__draw_begin` or `nk__draw_next` returned vertex draw command
-/// __buf__     | Must point to an previously by `nk_convert` filled out vertex draw command buffer
+/// __cmd__     | Must point to an previously either by `nk__draw_begin` or `nk__draw_next` returned vertex passess command
+/// __buf__     | Must point to an previously by `nk_convert` filled out vertex passess command buffer
 /// __ctx__     | Must point to an previously initialized `nk_context` struct at the end of a frame
 ///
-/// Returns vertex draw command pointer pointing to the end of the last vertex draw command inside the vertex draw command buffer
+/// Returns vertex passess command pointer pointing to the end of the last vertex passess command inside the vertex passess command buffer
 */
 NK_API const struct nk_draw_command* nk__draw_next(const struct nk_draw_command*, const struct nk_buffer*, const struct nk_context*);
 /*/// #### nk_draw_foreach
-/// Iterates over each vertex draw command inside a vertex draw command buffer
+/// Iterates over each vertex passess command inside a vertex passess command buffer
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 /// #define nk_draw_foreach(cmd,ctx, b)
@@ -1296,7 +1296,7 @@ NK_API const struct nk_draw_command* nk__draw_next(const struct nk_draw_command*
 /// Parameter   | Description
 /// ------------|-----------------------------------------------------------
 /// __cmd__     | `nk_draw_command`iterator set to NULL
-/// __buf__     | Must point to an previously by `nk_convert` filled out vertex draw command buffer
+/// __buf__     | Must point to an previously by `nk_convert` filled out vertex passess command buffer
 /// __ctx__     | Must point to an previously initialized `nk_context` struct at the end of a frame
 */
 #define nk_draw_foreach(cmd,ctx, b) for((cmd)=nk__draw_begin(ctx, b); (cmd)!=0; (cmd)=nk__draw_next(cmd, b, ctx))
@@ -1402,7 +1402,7 @@ NK_API const struct nk_draw_command* nk__draw_next(const struct nk_draw_command*
 /// nk_window_get_content_region_min    | Returns the upper rectangle position of the currently visible and non-clipped space inside the currently processed window
 /// nk_window_get_content_region_max    | Returns the upper rectangle position of the currently visible and non-clipped space inside the currently processed window
 /// nk_window_get_content_region_size   | Returns the size of the currently visible and non-clipped space inside the currently processed window
-/// nk_window_get_canvas                | Returns the draw command buffer. Can be used to draw custom widgets
+/// nk_window_get_canvas                | Returns the passess command buffer. Can be used to passess custom widgets
 /// nk_window_get_scroll                | Gets the scroll offset of the current window
 /// nk_window_has_focus                 | Returns if the currently processed window is currently active
 /// nk_window_is_collapsed              | Returns if the window with given name is currently minimized/collapsed
@@ -1703,7 +1703,7 @@ NK_API struct nk_vec2 nk_window_get_content_region_max(struct nk_context*);
 */
 NK_API struct nk_vec2 nk_window_get_content_region_size(struct nk_context*);
 /*/// #### nk_window_get_canvas
-/// Returns the draw command buffer. Can be used to draw custom widgets
+/// Returns the passess command buffer. Can be used to passess custom widgets
 /// !!! WARNING
 ///     Only call this function between calls `nk_begin_xxx` and `nk_end`
 /// !!! WARNING
@@ -3761,7 +3761,7 @@ NK_API const char* nk_utf_at(const char *buffer, int length, int index, nk_rune 
     So first up the easiest way to do font handling is by just providing a
     `nk_user_font` struct which only requires the height in pixel of the used
     font and a callback to calculate the width of a string. This way of handling
-    fonts is best fitted for using the normal draw shape command API where you
+    fonts is best fitted for using the normal passess shape command API where you
     do all the text drawing yourself and the library does not require any kind
     of deeper knowledge about which font handling mechanism you use.
     IMPORTANT: the `nk_user_font` pointer provided to nuklear has to persist
@@ -3788,7 +3788,7 @@ NK_API const char* nk_utf_at(const char *buffer, int length, int index, nk_rune 
     While the first approach works fine if you don't want to use the optional
     vertex buffer output it is not enough if you do. To get font handling working
     for these cases you have to provide two additional parameters inside the
-    `nk_user_font`. First a texture atlas handle used to draw text as subimages
+    `nk_user_font`. First a texture atlas handle used to passess text as subimages
     of a bigger font atlas texture and a callback to query a character's glyph
     information (offset, size, ...). So it is still possible to provide your own
     font and use the vertex buffer output.
@@ -4329,16 +4329,16 @@ NK_API void nk_textedit_redo(struct nk_text_edit*);
  *
  * ===============================================================*/
 /*  This library was designed to be render backend agnostic so it does
-    not draw anything to screen. Instead all drawn shapes, widgets
+    not passess anything to screen. Instead all drawn shapes, widgets
     are made of, are buffered into memory and make up a command queue.
-    Each frame therefore fills the command buffer with draw commands
+    Each frame therefore fills the command buffer with passess commands
     that then need to be executed by the user and his own render backend.
     After that the command buffer needs to be cleared and a new frame can be
     started. It is probably important to note that the command buffer is the main
     drawing API and the optional vertex buffer API only takes this format and
     converts it into a hardware accessible format.
 
-    To use the command queue to draw your own widgets you can access the
+    To use the command queue to passess your own widgets you can access the
     command buffer of each window by calling `nk_window_get_canvas` after
     previously having called `nk_begin`:
 
@@ -4369,7 +4369,7 @@ NK_API void nk_textedit_redo(struct nk_text_edit*);
     but also returns the state of the widget space. If your widget is not seen and does
     not have to be updated it is '0' and you can just return. If it only has
     to be drawn the state will be `NK_WIDGET_ROM` otherwise you can do both
-    update and draw your widget. The reason for separating is to only draw and
+    update and passess your widget. The reason for separating is to only passess and
     update what is actually necessary which is crucial for performance.
 */
 enum nk_command_type {
@@ -4650,16 +4650,16 @@ NK_API int nk_input_is_key_down(const struct nk_input*, enum nk_keys);
  *
  * ===============================================================*/
 #ifdef NK_INCLUDE_VERTEX_BUFFER_OUTPUT
-/*  The optional vertex buffer draw list provides a 2D drawing context
+/*  The optional vertex buffer passess list provides a 2D drawing context
     with antialiasing functionality which takes basic filled or outlined shapes
-    or a path and outputs vertexes, elements and draw commands.
-    The actual draw list API is not required to be used directly while using this
-    library since converting the default library draw command output is done by
+    or a path and outputs vertexes, elements and passess commands.
+    The actual passess list API is not required to be used directly while using this
+    library since converting the default library passess command output is done by
     just calling `nk_convert` but I decided to still make this library accessible
     since it can be useful.
 
-    The draw list is based on a path buffering and polygon and polyline
-    rendering API which allows a lot of ways to draw 2D content to screen.
+    The passess list is based on a path buffering and polygon and polyline
+    rendering API which allows a lot of ways to passess 2D content to screen.
     In fact it is probably more powerful than needed but allows even more crazy
     things than this library provides by default.
 */
@@ -4719,7 +4719,7 @@ struct nk_draw_vertex_layout_element {
 
 struct nk_draw_command {
     unsigned int elem_count;
-    /* number of elements in the current draw batch */
+    /* number of elements in the current passess batch */
     struct nk_rect clip_rect;
     /* current screen clipping rectangle */
     nk_handle texture;
@@ -4754,7 +4754,7 @@ struct nk_draw_list {
 #endif
 };
 
-/* draw list */
+/* passess list */
 NK_API void nk_draw_list_init(struct nk_draw_list*);
 NK_API void nk_draw_list_setup(struct nk_draw_list*, const struct nk_convert_config*, struct nk_buffer *cmds, struct nk_buffer *vertices, struct nk_buffer *elements, enum nk_anti_aliasing line_aa,enum nk_anti_aliasing shape_aa);
 
@@ -5439,7 +5439,7 @@ struct nk_window {
 /* The style modifier stack can be used to temporarily change a
  * property inside `nk_style`. For example if you want a special
  * red button you can temporarily push the old button color onto a stack
- * draw the button with a red color and then you just pop the old color
+ * passess the button with a red color and then you just pop the old color
  * back from the stack:
  *
  *      nk_style_push_style_item(ctx, &ctx->style.button.normal, nk_style_item_color(nk_rgb(255,0,0)));
@@ -5592,7 +5592,7 @@ struct nk_context {
      * each window for temporary use cases, so I only provide *one* instance
      * for all windows. This works because the content is cleared anyway */
     struct nk_text_edit text_edit;
-    /* draw buffer used for overlay drawing operation like cursor */
+    /* passess buffer used for overlay drawing operation like cursor */
     struct nk_command_buffer overlay;
 
     /* windows */
@@ -5838,7 +5838,7 @@ NK_LIB void* nk_buffer_align(void *unaligned, nk_size align, nk_size *alignment,
 NK_LIB void* nk_buffer_alloc(struct nk_buffer *b, enum nk_buffer_allocation_type type, nk_size size, nk_size align);
 NK_LIB void* nk_buffer_realloc(struct nk_buffer *b, nk_size capacity, nk_size *size);
 
-/* draw */
+/* passess */
 NK_LIB void nk_command_buffer_init(struct nk_command_buffer *cb, struct nk_buffer *b, enum nk_command_clipping clip);
 NK_LIB void nk_command_buffer_reset(struct nk_command_buffer *b);
 NK_LIB void* nk_command_buffer_push(struct nk_command_buffer* b, enum nk_command_type t, nk_size size);
@@ -10358,7 +10358,7 @@ nk_draw_list_add_text(struct nk_draw_list *list, const struct nk_user_font *font
     glyph_len = nk_utf_decode(text, &unicode, len);
     if (!glyph_len) return;
 
-    /* draw every glyph image */
+    /* passess every glyph image */
     fg.a = (nk_byte)((float)fg.a * list->config.global_alpha);
     while (text_len < len && glyph_len) {
         float gx, gy, gh, gw;
@@ -10370,7 +10370,7 @@ nk_draw_list_add_text(struct nk_draw_list *list, const struct nk_user_font *font
         font->query(font->userdata, font_height, &g, unicode,
                     (next == NK_UTF_INVALID) ? '\0' : next);
 
-        /* calculate and draw glyph drawing rectangle and image */
+        /* calculate and passess glyph drawing rectangle and image */
         gx = x + g.offset.x;
         gy = rect.y + g.offset.y;
         gw = g.width; gh = g.height;
@@ -15208,7 +15208,7 @@ nk_build(struct nk_context *ctx)
     struct nk_command *cmd = 0;
     nk_byte *buffer = 0;
 
-    /* draw cursor overlay */
+    /* passess cursor overlay */
     if (!ctx->style.cursor_active)
         ctx->style.cursor_active = ctx->style.cursors[NK_CURSOR_ARROW];
     if (ctx->style.cursor_active && !ctx->input.mouse.grabbed && ctx->style.cursor_visible) {
@@ -15225,7 +15225,7 @@ nk_build(struct nk_context *ctx)
         nk_draw_image(&ctx->overlay, mouse_bounds, &cursor->img, nk_white);
         nk_finish_buffer(ctx, &ctx->overlay);
     }
-    /* build one big draw command list out of all window buffers */
+    /* build one big passess command list out of all window buffers */
     it = ctx->begin;
     buffer = (nk_byte*)ctx->memory.memory.ptr;
     while (it != 0) {
@@ -15242,7 +15242,7 @@ nk_build(struct nk_context *ctx)
         if (next) cmd->next = next->buffer.begin;
         cont: it = next;
     }
-    /* append all popup draw commands into lists */
+    /* append all popup passess commands into lists */
     it = ctx->begin;
     while (it != 0) {
         struct nk_window *next = it->next;
@@ -15734,7 +15734,7 @@ nk_panel_begin(struct nk_context *ctx, const char *title, enum nk_panel_type pan
             text.text = style->window.header.label_normal;
         }
 
-        /* draw header background */
+        /* passess header background */
         header.h += 1.0f;
         if (background->type == NK_STYLE_ITEM_IMAGE) {
             text.background = nk_rgba(0,0,0,0);
@@ -15805,7 +15805,7 @@ nk_panel_begin(struct nk_context *ctx, const char *title, enum nk_panel_type pan
         nk_widget_text(out, label,(const char*)title, text_len, &text, NK_TEXT_LEFT, font);}
     }
 
-    /* draw window background */
+    /* passess window background */
     if (!(layout->flags & NK_WINDOW_MINIMIZED) && !(layout->flags & NK_WINDOW_DYNAMIC)) {
         struct nk_rect body;
         body.x = win->bounds.x;
@@ -16025,7 +16025,7 @@ nk_panel_end(struct nk_context *ctx)
         if (layout->flags & NK_WINDOW_NO_SCROLLBAR)
             scaler.x -= scaler.w;
 
-        /* draw scaler */
+        /* passess scaler */
         {const struct nk_style_item *item = &style->window.scaler;
         if (item->type == NK_STYLE_ITEM_IMAGE)
             nk_draw_image(out, scaler, &item->data.image, nk_white);
@@ -16316,7 +16316,7 @@ nk_begin_titled(struct nk_context *ctx, const char *name, const char *title,
         /* If this assert triggers you either:
          *
          * I.) Have more than one window with the same name or
-         * II.) You forgot to actually draw the window.
+         * II.) You forgot to actually passess the window.
          *      More specific you did not call `nk_clear` (nk_clear will be
          *      automatically called for you if you are using one of the
          *      provided demo backends). */
@@ -17677,7 +17677,7 @@ nk_panel_layout(const struct nk_context *ctx, struct nk_window *win,
 
     layout->row.item_offset = 0;
     if (layout->flags & NK_WINDOW_DYNAMIC) {
-        /* draw background for dynamic panels */
+        /* passess background for dynamic panels */
         struct nk_rect background;
         background.x = win->bounds.x;
         background.w = win->bounds.w;
@@ -18380,7 +18380,7 @@ nk_tree_state_base(struct nk_context *ctx, enum nk_tree_type type,
     style = &ctx->style;
     item_spacing = style->window.spacing;
 
-    /* calculate header bounds and draw background */
+    /* calculate header bounds and passess background */
     row_height = style->font->height + 2 * style->tab.padding.y;
     nk_layout_set_min_row_height(ctx, row_height);
     nk_layout_row_dynamic(ctx, row_height, 1);
@@ -18419,7 +18419,7 @@ nk_tree_state_base(struct nk_context *ctx, enum nk_tree_type type,
         else button = &style->tab.node_minimize_button;
     }
 
-    {/* draw triangle button */
+    {/* passess triangle button */
     sym.w = sym.h = style->font->height;
     sym.y = header.y + style->tab.padding.y;
     sym.x = header.x + style->tab.padding.x;
@@ -18427,13 +18427,13 @@ nk_tree_state_base(struct nk_context *ctx, enum nk_tree_type type,
         button, 0, style->font);
 
     if (img) {
-        /* draw optional image icon */
+        /* passess optional image icon */
         sym.x = sym.x + sym.w + 4 * item_spacing.x;
         nk_draw_image(&win->buffer, sym, img, nk_white);
         sym.w = style->font->height + style->tab.spacing.x;}
     }
 
-    {/* draw label */
+    {/* passess label */
     struct nk_rect label;
     header.w = NK_MAX(header.w, sym.w + item_spacing.x);
     label.x = sym.x + sym.w + item_spacing.x;
@@ -18566,7 +18566,7 @@ nk_tree_element_image_push_hashed_base(struct nk_context *ctx, enum nk_tree_type
     item_spacing = style->window.spacing;
     padding = style->selectable.padding;
 
-    /* calculate header bounds and draw background */
+    /* calculate header bounds and passess background */
     row_height = style->font->height + 2 * style->tab.padding.y;
     nk_layout_set_min_row_height(ctx, row_height);
     nk_layout_row_dynamic(ctx, row_height, 1);
@@ -18601,14 +18601,14 @@ nk_tree_element_image_push_hashed_base(struct nk_context *ctx, enum nk_tree_type
             button = &style->tab.tab_minimize_button;
         else button = &style->tab.node_minimize_button;
     }
-    {/* draw triangle button */
+    {/* passess triangle button */
     sym.w = sym.h = style->font->height;
     sym.y = header.y + style->tab.padding.y;
     sym.x = header.x + style->tab.padding.x;
     if (nk_do_button_symbol(&ws, &win->buffer, sym, symbol, NK_BUTTON_DEFAULT, button, in, style->font))
         *state = (*state == NK_MAXIMIZED) ? NK_MINIMIZED : NK_MAXIMIZED;}
 
-    /* draw label */
+    /* passess label */
     {nk_flags dummy = 0;
     struct nk_rect label;
     /* calculate size of the text and tooltip */
@@ -19998,7 +19998,7 @@ nk_do_button_text_symbol(nk_flags *state,
         tri.x = NK_MAX(tri.x, 0);
     } else tri.x = content.x + 2 * style->padding.x;
 
-    /* draw button */
+    /* passess button */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_button_text_symbol(out, &bounds, &content, &tri,
         *state, style, str, len, symbol, font);
@@ -20397,7 +20397,7 @@ nk_draw_checkbox(struct nk_command_buffer *out,
         text.text = style->text_normal;
     }
 
-    /* draw background and cursor */
+    /* passess background and cursor */
     if (background->type == NK_STYLE_ITEM_COLOR) {
         nk_fill_rect(out, *selector, 0, style->border_color);
         nk_fill_rect(out, nk_shrink_rect(*selector, style->border), 0, background->data.color);
@@ -20439,7 +20439,7 @@ nk_draw_option(struct nk_command_buffer *out,
         text.text = style->text_normal;
     }
 
-    /* draw background and cursor */
+    /* passess background and cursor */
     if (background->type == NK_STYLE_ITEM_COLOR) {
         nk_fill_circle(out, *selector, style->border_color);
         nk_fill_circle(out, nk_shrink_rect(*selector, style->border), background->data.color);
@@ -20505,7 +20505,7 @@ nk_do_toggle(nk_flags *state,
     was_active = *active;
     *active = nk_toggle_behavior(in, bounds, state, *active);
 
-    /* draw selector */
+    /* passess selector */
     if (style->draw_begin)
         style->draw_begin(out, style->userdata);
     if (type == NK_TOGGLE_CHECK) {
@@ -20712,7 +20712,7 @@ nk_draw_selectable(struct nk_command_buffer *out,
             text.text = style->text_normal_active;
         }
     }
-    /* draw selectable background and text */
+    /* passess selectable background and text */
     if (background->type == NK_STYLE_ITEM_IMAGE) {
         nk_draw_image(out, *bounds, &background->data.image, nk_white);
         text.background = nk_rgba(0,0,0,0);
@@ -20756,7 +20756,7 @@ nk_do_selectable(nk_flags *state, struct nk_command_buffer *out,
     if (nk_button_behavior(state, touch, in, NK_BUTTON_DEFAULT))
         *value = !(*value);
 
-    /* draw selectable */
+    /* passess selectable */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_selectable(out, *state, style, *value, &bounds, 0,0,NK_SYMBOL_NONE, str, len, align, font);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -20803,7 +20803,7 @@ nk_do_selectable_image(nk_flags *state, struct nk_command_buffer *out,
     icon.w -= 2 * style->image_padding.x;
     icon.h -= 2 * style->image_padding.y;
 
-    /* draw selectable */
+    /* passess selectable */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_selectable(out, *state, style, *value, &bounds, &icon, img, NK_SYMBOL_NONE, str, len, align, font);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -20850,7 +20850,7 @@ nk_do_selectable_symbol(nk_flags *state, struct nk_command_buffer *out,
     icon.w -= 2 * style->image_padding.x;
     icon.h -= 2 * style->image_padding.y;
 
-    /* draw selectable */
+    /* passess selectable */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_selectable(out, *state, style, *value, &bounds, &icon, 0, sym, str, len, align, font);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -21084,7 +21084,7 @@ nk_draw_slider(struct nk_command_buffer *out, nk_flags state,
     fill.y = bar.y;
     fill.h = bar.h;
 
-    /* draw background */
+    /* passess background */
     if (background->type == NK_STYLE_ITEM_IMAGE) {
         nk_draw_image(out, *bounds, &background->data.image, nk_white);
     } else {
@@ -21092,11 +21092,11 @@ nk_draw_slider(struct nk_command_buffer *out, nk_flags state,
         nk_stroke_rect(out, *bounds, style->rounding, style->border, style->border_color);
     }
 
-    /* draw slider bar */
+    /* passess slider bar */
     nk_fill_rect(out, bar, style->rounding, bar_color);
     nk_fill_rect(out, fill, style->rounding, style->bar_filled);
 
-    /* draw cursor */
+    /* passess cursor */
     if (cursor->type == NK_STYLE_ITEM_IMAGE)
         nk_draw_image(out, *visual_cursor, &cursor->data.image, nk_white);
     else nk_fill_circle(out, *visual_cursor, cursor->data.color);
@@ -21184,7 +21184,7 @@ nk_do_slider(nk_flags *state,
         in, bounds, slider_min, slider_max, slider_value, step, slider_steps);
     visual_cursor.x = logical_cursor.x - visual_cursor.w*0.5f;
 
-    /* draw slider */
+    /* passess slider */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_slider(out, *state, style, &bounds, &visual_cursor, slider_min, slider_value, slider_max);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -21296,7 +21296,7 @@ nk_draw_progress(struct nk_command_buffer *out, nk_flags state,
     NK_UNUSED(max);
     NK_UNUSED(value);
 
-    /* select correct colors/images to draw */
+    /* select correct colors/images to passess */
     if (state & NK_WIDGET_STATE_ACTIVED) {
         background = &style->active;
         cursor = &style->cursor_active;
@@ -21308,13 +21308,13 @@ nk_draw_progress(struct nk_command_buffer *out, nk_flags state,
         cursor = &style->cursor_normal;
     }
 
-    /* draw background */
+    /* passess background */
     if (background->type == NK_STYLE_ITEM_COLOR) {
         nk_fill_rect(out, *bounds, style->rounding, background->data.color);
         nk_stroke_rect(out, *bounds, style->rounding, style->border, style->border_color);
     } else nk_draw_image(out, *bounds, &background->data.image, nk_white);
 
-    /* draw cursor */
+    /* passess cursor */
     if (cursor->type == NK_STYLE_ITEM_COLOR) {
         nk_fill_rect(out, *scursor, style->rounding, cursor->data.color);
         nk_stroke_rect(out, *scursor, style->rounding, style->border, style->border_color);
@@ -21345,7 +21345,7 @@ nk_do_progress(nk_flags *state,
     prog_value = nk_progress_behavior(state, in, bounds, cursor,max, prog_value, modifiable);
     cursor.w = cursor.w * prog_scale;
 
-    /* draw progressbar */
+    /* passess progressbar */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_progress(out, *state, style, &bounds, &cursor, value, max);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -21482,7 +21482,7 @@ nk_draw_scrollbar(struct nk_command_buffer *out, nk_flags state,
     const struct nk_style_item *background;
     const struct nk_style_item *cursor;
 
-    /* select correct colors/images to draw */
+    /* select correct colors/images to passess */
     if (state & NK_WIDGET_STATE_ACTIVED) {
         background = &style->active;
         cursor = &style->cursor_active;
@@ -21494,7 +21494,7 @@ nk_draw_scrollbar(struct nk_command_buffer *out, nk_flags state,
         cursor = &style->cursor_normal;
     }
 
-    /* draw background */
+    /* passess background */
     if (background->type == NK_STYLE_ITEM_COLOR) {
         nk_fill_rect(out, *bounds, style->rounding, background->data.color);
         nk_stroke_rect(out, *bounds, style->rounding, style->border, style->border_color);
@@ -21502,7 +21502,7 @@ nk_draw_scrollbar(struct nk_command_buffer *out, nk_flags state,
         nk_draw_image(out, *bounds, &background->data.image, nk_white);
     }
 
-    /* draw cursor */
+    /* passess cursor */
     if (cursor->type == NK_STYLE_ITEM_COLOR) {
         nk_fill_rect(out, *scroll, style->rounding_cursor, cursor->data.color);
         nk_stroke_rect(out, *scroll, style->rounding_cursor, style->border_cursor, style->cursor_border_color);
@@ -21591,7 +21591,7 @@ nk_do_scrollbarv(nk_flags *state,
     scroll_off = scroll_offset / target;
     cursor.y = scroll.y + (scroll_off * scroll.h) + style->border_cursor + style->padding.y;
 
-    /* draw scrollbar */
+    /* passess scrollbar */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_scrollbar(out, *state, style, &scroll, &cursor);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -21679,7 +21679,7 @@ nk_do_scrollbarh(nk_flags *state,
     scroll_off = scroll_offset / target;
     cursor.x = scroll.x + (scroll_off * scroll.w);
 
-    /* draw scrollbar */
+    /* passess scrollbar */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_scrollbar(out, *state, style, &scroll, &cursor);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -22818,7 +22818,7 @@ nk_edit_draw_text(struct nk_command_buffer *out,
     while ((text_len < byte_len) && glyph_len)
     {
         if (unicode == '\n') {
-            /* new line separator so draw previous line */
+            /* new line separator so passess previous line */
             struct nk_rect label;
             label.y = pos_y + line_offset;
             label.h = row_height;
@@ -22827,7 +22827,7 @@ nk_edit_draw_text(struct nk_command_buffer *out,
             if (!line_count)
                 label.x += x_offset;
 
-            if (is_selected) /* selection needs to draw different background color */
+            if (is_selected) /* selection needs to passess different background color */
                 nk_fill_rect(out, label, 0, background);
             nk_widget_text(out, label, line, (int)((text + text_len) - line),
                 &txt, NK_TEXT_CENTERED, font);
@@ -22852,7 +22852,7 @@ nk_edit_draw_text(struct nk_command_buffer *out,
         continue;
     }
     if (line_width > 0) {
-        /* draw last line */
+        /* passess last line */
         struct nk_rect label;
         label.y = pos_y + line_offset;
         label.h = row_height;
@@ -23044,7 +23044,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
         background = &style->hover;
     else background = &style->normal;
 
-    /* draw background frame */
+    /* passess background frame */
     if (background->type == NK_STYLE_ITEM_COLOR) {
         nk_stroke_rect(out, bounds, style->rounding, style->border, style->border_color);
         nk_fill_rect(out, bounds, style->rounding, background->data.color);
@@ -23216,7 +23216,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
             }
         }
 
-        /* draw text */
+        /* passess text */
         {struct nk_color background_color;
         struct nk_color text_color;
         struct nk_color sel_background_color;
@@ -23226,7 +23226,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
         const struct nk_style_item *background;
         nk_push_scissor(out, clip);
 
-        /* select correct colors to draw */
+        /* select correct colors to passess */
         if (*state & NK_WIDGET_STATE_ACTIVED) {
             background = &style->active;
             text_color = style->text_active;
@@ -23255,16 +23255,16 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
 
 
         if (edit->select_start == edit->select_end) {
-            /* no selection so just draw the complete text */
+            /* no selection so just passess the complete text */
             const char *begin = nk_str_get_const(&edit->string);
             int l = nk_str_len_char(&edit->string);
             nk_edit_draw_text(out, style, area.x - edit->scrollbar.x,
                 area.y - edit->scrollbar.y, 0, begin, l, row_height, font,
                 background_color, text_color, nk_false);
         } else {
-            /* edit has selection so draw 1-3 text chunks */
+            /* edit has selection so passess 1-3 text chunks */
             if (edit->select_start != edit->select_end && selection_begin > 0){
-                /* draw unselected text before selection */
+                /* passess unselected text before selection */
                 const char *begin = nk_str_get_const(&edit->string);
                 NK_ASSERT(select_begin_ptr);
                 nk_edit_draw_text(out, style, area.x - edit->scrollbar.x,
@@ -23272,7 +23272,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
                     row_height, font, background_color, text_color, nk_false);
             }
             if (edit->select_start != edit->select_end) {
-                /* draw selected text */
+                /* passess selected text */
                 NK_ASSERT(select_begin_ptr);
                 if (!select_end_ptr) {
                     const char *begin = nk_str_get_const(&edit->string);
@@ -23288,7 +23288,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
             if ((edit->select_start != edit->select_end &&
                 selection_end < edit->string.len))
             {
-                /* draw unselected text after selected text */
+                /* passess unselected text after selected text */
                 const char *begin = select_end_ptr;
                 const char *end = nk_str_get_const(&edit->string) +
                                     nk_str_len_char(&edit->string);
@@ -23307,7 +23307,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
         {
             if (edit->cursor >= nk_str_len(&edit->string) ||
                 (cursor_ptr && *cursor_ptr == '\n')) {
-                /* draw cursor at end of line */
+                /* passess cursor at end of line */
                 struct nk_rect cursor;
                 cursor.w = style->cursor_size;
                 cursor.h = font->height;
@@ -23316,7 +23316,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
                 cursor.y -= edit->scrollbar.y;
                 nk_fill_rect(out, cursor, 0, cursor_color);
             } else {
-                /* draw cursor inside text */
+                /* passess cursor inside text */
                 int glyph_len;
                 struct nk_rect label;
                 struct nk_text txt;
@@ -23338,7 +23338,7 @@ nk_do_edit(nk_flags *state, struct nk_command_buffer *out,
             }
         }}
     } else {
-        /* not active so just draw text */
+        /* not active so just passess text */
         int l = nk_str_len_char(&edit->string);
         const char *begin = nk_str_get_const(&edit->string);
 
@@ -23610,7 +23610,7 @@ nk_draw_property(struct nk_command_buffer *out, const struct nk_style_property *
         text.text = style->label_normal;
     }
 
-    /* draw background */
+    /* passess background */
     if (background->type == NK_STYLE_ITEM_IMAGE) {
         nk_draw_image(out, *bounds, &background->data.image, nk_white);
         text.background = nk_rgba(0,0,0,0);
@@ -23620,7 +23620,7 @@ nk_draw_property(struct nk_command_buffer *out, const struct nk_style_property *
         nk_stroke_rect(out, *bounds, style->rounding, style->border, background->data.color);
     }
 
-    /* draw label */
+    /* passess label */
     text.padding = nk_vec2(0,0);
     nk_widget_text(out, *label, name, len, &text, NK_TEXT_CENTERED, font);
 }
@@ -23716,7 +23716,7 @@ nk_do_property(nk_flags *ws,
     old = (*state == NK_PROPERTY_EDIT);
     nk_property_behavior(ws, in, property, label, edit, empty, state, variant, inc_per_pixel);
 
-    /* draw property */
+    /* passess property */
     if (style->draw_begin) style->draw_begin(out, style->userdata);
     nk_draw_property(out, style, &property, &label, *ws, name, name_len, font);
     if (style->draw_end) style->draw_end(out, style->userdata);
@@ -24076,7 +24076,7 @@ nk_chart_begin_colored(struct nk_context *ctx, enum nk_chart_type type,
     slot->max = NK_MAX(min_value, max_value);
     slot->range = slot->max - slot->min;}
 
-    /* draw chart background */
+    /* passess chart background */
     background = &style->background;
     if (background->type == NK_STYLE_ITEM_IMAGE) {
         nk_draw_image(&win->buffer, bounds, &background->data.image, nk_white);
@@ -24167,7 +24167,7 @@ nk_chart_push_line(struct nk_context *ctx, struct nk_window *win,
         return ret;
     }
 
-    /* draw a line between the last data point and the new one */
+    /* passess a line between the last data point and the new one */
     color = g->slots[slot].color;
     cur.x = g->x + (float)(step * (float)g->slots[slot].index);
     cur.y = (g->y + g->h) - (ratio * (float)g->h);
@@ -24418,7 +24418,7 @@ nk_draw_color_picker(struct nk_command_buffer *o, const struct nk_rect *matrix,
     NK_ASSERT(matrix);
     NK_ASSERT(hue_bar);
 
-    /* draw hue bar */
+    /* passess hue bar */
     nk_colorf_hsva_fv(hsva, col);
     for (i = 0; i < 6; ++i) {
         NK_GLOBAL const struct nk_color hue_colors[] = {
@@ -24434,7 +24434,7 @@ nk_draw_color_picker(struct nk_command_buffer *o, const struct nk_rect *matrix,
     nk_stroke_line(o, hue_bar->x-1, line_y, hue_bar->x + hue_bar->w + 2,
         line_y, 1, nk_rgb(255,255,255));
 
-    /* draw alpha bar */
+    /* passess alpha bar */
     if (alpha_bar) {
         float alpha = NK_SATURATE(col.a);
         line_y = (float)(int)(alpha_bar->y +  (1.0f - alpha) * matrix->h + 0.5f);
@@ -24444,12 +24444,12 @@ nk_draw_color_picker(struct nk_command_buffer *o, const struct nk_rect *matrix,
             line_y, 1, nk_rgb(255,255,255));
     }
 
-    /* draw color matrix */
+    /* passess color matrix */
     temp = nk_hsv_f(hsva[0], 1.0f, 1.0f);
     nk_fill_rect_multi_color(o, *matrix, white, temp, temp, white);
     nk_fill_rect_multi_color(o, *matrix, black_trans, black_trans, black, black);
 
-    /* draw cross-hair */
+    /* passess cross-hair */
     {struct nk_vec2 p; float S = hsva[1]; float V = hsva[2];
     p.x = (float)(int)(matrix->x + S * matrix->w);
     p.y = (float)(int)(matrix->y + (1.0f - V) * matrix->h);
@@ -24614,7 +24614,7 @@ nk_combo_begin_text(struct nk_context *ctx, const char *selected, int len,
     if (nk_button_behavior(&ctx->last_widget_state, header, in, NK_BUTTON_DEFAULT))
         is_clicked = nk_true;
 
-    /* draw combo box header background and border */
+    /* passess combo box header background and border */
     if (ctx->last_widget_state & NK_WIDGET_STATE_ACTIVED) {
         background = &style->combo.active;
         text.text = style->combo.label_active;
@@ -24657,7 +24657,7 @@ nk_combo_begin_text(struct nk_context *ctx, const char *selected, int len,
         content.w = button.w - 2 * style->combo.button.padding.x;
         content.h = button.h - 2 * style->combo.button.padding.y;
 
-        /* draw selected label */
+        /* passess selected label */
         text.padding = nk_vec2(0,0);
         label.x = header.x + style->combo.content_padding.x;
         label.y = header.y + style->combo.content_padding.y;
@@ -24666,7 +24666,7 @@ nk_combo_begin_text(struct nk_context *ctx, const char *selected, int len,
         nk_widget_text(&win->buffer, label, selected, len, &text,
             NK_TEXT_LEFT, ctx->style.font);
 
-        /* draw open/close button */
+        /* passess open/close button */
         nk_draw_button_symbol(&win->buffer, &button, &content, ctx->last_widget_state,
             &ctx->style.combo.button, sym, style->font);
     }
@@ -24705,7 +24705,7 @@ nk_combo_begin_color(struct nk_context *ctx, struct nk_color color, struct nk_ve
     if (nk_button_behavior(&ctx->last_widget_state, header, in, NK_BUTTON_DEFAULT))
         is_clicked = nk_true;
 
-    /* draw combo box header background and border */
+    /* passess combo box header background and border */
     if (ctx->last_widget_state & NK_WIDGET_STATE_ACTIVED)
         background = &style->combo.active;
     else if (ctx->last_widget_state & NK_WIDGET_STATE_HOVER)
@@ -24741,14 +24741,14 @@ nk_combo_begin_color(struct nk_context *ctx, struct nk_color color, struct nk_ve
         content.w = button.w - 2 * style->combo.button.padding.x;
         content.h = button.h - 2 * style->combo.button.padding.y;
 
-        /* draw color */
+        /* passess color */
         bounds.h = header.h - 4 * style->combo.content_padding.y;
         bounds.y = header.y + 2 * style->combo.content_padding.y;
         bounds.x = header.x + 2 * style->combo.content_padding.x;
         bounds.w = (button.x - (style->combo.content_padding.x + style->combo.spacing.x)) - bounds.x;
         nk_fill_rect(&win->buffer, bounds, 0, color);
 
-        /* draw open/close button */
+        /* passess open/close button */
         nk_draw_button_symbol(&win->buffer, &button, &content, ctx->last_widget_state,
             &ctx->style.combo.button, sym, style->font);
     }
@@ -24784,7 +24784,7 @@ nk_combo_begin_symbol(struct nk_context *ctx, enum nk_symbol_type symbol, struct
     if (nk_button_behavior(&ctx->last_widget_state, header, in, NK_BUTTON_DEFAULT))
         is_clicked = nk_true;
 
-    /* draw combo box header background and border */
+    /* passess combo box header background and border */
     if (ctx->last_widget_state & NK_WIDGET_STATE_ACTIVED) {
         background = &style->combo.active;
         symbol_color = style->combo.symbol_active;
@@ -24827,7 +24827,7 @@ nk_combo_begin_symbol(struct nk_context *ctx, enum nk_symbol_type symbol, struct
         content.w = button.w - 2 * style->combo.button.padding.x;
         content.h = button.h - 2 * style->combo.button.padding.y;
 
-        /* draw symbol */
+        /* passess symbol */
         bounds.h = header.h - 2 * style->combo.content_padding.y;
         bounds.y = header.y + style->combo.content_padding.y;
         bounds.x = header.x + style->combo.content_padding.x;
@@ -24835,7 +24835,7 @@ nk_combo_begin_symbol(struct nk_context *ctx, enum nk_symbol_type symbol, struct
         nk_draw_symbol(&win->buffer, symbol, bounds, sym_background, symbol_color,
             1.0f, style->font);
 
-        /* draw open/close button */
+        /* passess open/close button */
         nk_draw_button_symbol(&win->buffer, &bounds, &content, ctx->last_widget_state,
             &ctx->style.combo.button, sym, style->font);
     }
@@ -24871,7 +24871,7 @@ nk_combo_begin_symbol_text(struct nk_context *ctx, const char *selected, int len
     if (nk_button_behavior(&ctx->last_widget_state, header, in, NK_BUTTON_DEFAULT))
         is_clicked = nk_true;
 
-    /* draw combo box header background and border */
+    /* passess combo box header background and border */
     if (ctx->last_widget_state & NK_WIDGET_STATE_ACTIVED) {
         background = &style->combo.active;
         symbol_color = style->combo.symbol_active;
@@ -24919,7 +24919,7 @@ nk_combo_begin_symbol_text(struct nk_context *ctx, const char *selected, int len
         nk_draw_button_symbol(&win->buffer, &button, &content, ctx->last_widget_state,
             &ctx->style.combo.button, sym, style->font);
 
-        /* draw symbol */
+        /* passess symbol */
         image.x = header.x + style->combo.content_padding.x;
         image.y = header.y + style->combo.content_padding.y;
         image.h = header.h - 2 * style->combo.content_padding.y;
@@ -24927,7 +24927,7 @@ nk_combo_begin_symbol_text(struct nk_context *ctx, const char *selected, int len
         nk_draw_symbol(&win->buffer, symbol, image, text.background, symbol_color,
             1.0f, style->font);
 
-        /* draw label */
+        /* passess label */
         text.padding = nk_vec2(0,0);
         label.x = image.x + image.w + style->combo.spacing.x + style->combo.content_padding.x;
         label.y = header.y + style->combo.content_padding.y;
@@ -24965,7 +24965,7 @@ nk_combo_begin_image(struct nk_context *ctx, struct nk_image img, struct nk_vec2
     if (nk_button_behavior(&ctx->last_widget_state, header, in, NK_BUTTON_DEFAULT))
         is_clicked = nk_true;
 
-    /* draw combo box header background and border */
+    /* passess combo box header background and border */
     if (ctx->last_widget_state & NK_WIDGET_STATE_ACTIVED)
         background = &style->combo.active;
     else if (ctx->last_widget_state & NK_WIDGET_STATE_HOVER)
@@ -25001,14 +25001,14 @@ nk_combo_begin_image(struct nk_context *ctx, struct nk_image img, struct nk_vec2
         content.w = button.w - 2 * style->combo.button.padding.x;
         content.h = button.h - 2 * style->combo.button.padding.y;
 
-        /* draw image */
+        /* passess image */
         bounds.h = header.h - 2 * style->combo.content_padding.y;
         bounds.y = header.y + style->combo.content_padding.y;
         bounds.x = header.x + style->combo.content_padding.x;
         bounds.w = (button.x - style->combo.content_padding.y) - bounds.x;
         nk_draw_image(&win->buffer, bounds, &img, nk_white);
 
-        /* draw open/close button */
+        /* passess open/close button */
         nk_draw_button_symbol(&win->buffer, &bounds, &content, ctx->last_widget_state,
             &ctx->style.combo.button, sym, style->font);
     }
@@ -25043,7 +25043,7 @@ nk_combo_begin_image_text(struct nk_context *ctx, const char *selected, int len,
     if (nk_button_behavior(&ctx->last_widget_state, header, in, NK_BUTTON_DEFAULT))
         is_clicked = nk_true;
 
-    /* draw combo box header background and border */
+    /* passess combo box header background and border */
     if (ctx->last_widget_state & NK_WIDGET_STATE_ACTIVED) {
         background = &style->combo.active;
         text.text = style->combo.label_active;
@@ -25088,14 +25088,14 @@ nk_combo_begin_image_text(struct nk_context *ctx, const char *selected, int len,
         nk_draw_button_symbol(&win->buffer, &button, &content, ctx->last_widget_state,
             &ctx->style.combo.button, sym, style->font);
 
-        /* draw image */
+        /* passess image */
         image.x = header.x + style->combo.content_padding.x;
         image.y = header.y + style->combo.content_padding.y;
         image.h = header.h - 2 * style->combo.content_padding.y;
         image.w = image.h;
         nk_draw_image(&win->buffer, image, &img, nk_white);
 
-        /* draw label */
+        /* passess label */
         text.padding = nk_vec2(0,0);
         label.x = image.x + image.w + style->combo.spacing.x + style->combo.content_padding.x;
         label.y = header.y + style->combo.content_padding.y;
@@ -25551,7 +25551,7 @@ nk_tooltipfv(struct nk_context *ctx, const char *fmt, va_list args)
 /// - 2017/03/18 (1.34.3) - Fixed long window header titles.
 /// - 2017/03/04 (1.34.2) - Fixed text edit filtering.
 /// - 2017/03/04 (1.34.1) - Fixed group closable flag.
-/// - 2017/02/25 (1.34.0) - Added custom draw command for better language binding support.
+/// - 2017/02/25 (1.34.0) - Added custom passess command for better language binding support.
 /// - 2017/01/24 (1.33.0) - Added programatic way of remove edit focus.
 /// - 2017/01/24 (1.32.3) - Fixed wrong define for basic type definitions for windows.
 /// - 2017/01/21 (1.32.2) - Fixed input capture from hidden or closed windows.
@@ -25580,7 +25580,7 @@ nk_tooltipfv(struct nk_context *ctx, const char *fmt, va_list args)
 ///                        the memory management for the offset. It could also be helpful
 ///                        if you have a hash collision in `nk_group_begin` but really
 ///                        want the name. In addition I added `nk_list_view` which allows
-///                        to draw big lists inside a group without actually having to
+///                        to passess big lists inside a group without actually having to
 ///                        commit the whole list to nuklear (issue #269).
 /// - 2016/10/30 (1.25.1) - Fixed clipping rectangle bug inside `nk_draw_list`.
 /// - 2016/10/29 (1.25.0) - Pulled `nk_panel` memory management into nuklear and out of

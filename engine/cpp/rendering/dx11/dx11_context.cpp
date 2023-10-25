@@ -311,7 +311,7 @@ namespace xpe {
                 s_Device->CreateDeferredContext(0, &s_DefContext);
                 LogDebugMessage();
 
-                Hardware::UpdateGpuStats(s_Device);
+                HardwareManager::UpdateGpuStats(s_Device);
                 LogDebugMessage();
 
                 s_Device->QueryInterface(__uuidof(IDXGIDevice), (void **)&s_GIDevice);
@@ -323,7 +323,7 @@ namespace xpe {
                 s_GIAdapter->GetParent(__uuidof(IDXGIFactory), (void **)&s_GIFactory);
                 LogDebugMessage();
 
-                CreateSwapchain(Windowing::GetWidth(), Windowing::GetHeight());
+                CreateSwapchain(WindowManager::GetWidth(), WindowManager::GetHeight());
 
                 LogInfo("D3D11Context initialized");
             }
@@ -360,7 +360,7 @@ namespace xpe {
                 DXGI_MODE_DESC bufferDesc = {};
                 bufferDesc.Width = width;
                 bufferDesc.Height = height;
-                bufferDesc.RefreshRate.Numerator = Windowing::GetRefreshRate();
+                bufferDesc.RefreshRate.Numerator = WindowManager::GetRefreshRate();
                 bufferDesc.RefreshRate.Denominator = 1;
                 bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
                 bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
@@ -372,8 +372,8 @@ namespace xpe {
                 swapChainDesc.SampleDesc.Quality = 0;
                 swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
                 swapChainDesc.BufferCount = 1;
-                swapChainDesc.OutputWindow = (HWND)Windowing::GetWin32Instance();
-                swapChainDesc.Windowed = Windowing::IsWindowed();
+                swapChainDesc.OutputWindow = (HWND)WindowManager::GetWin32Instance();
+                swapChainDesc.Windowed = WindowManager::IsWindowed();
                 swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
                 s_GIFactory->CreateSwapChain(s_Device, &swapChainDesc, &s_SwapChain);
@@ -439,7 +439,7 @@ namespace xpe {
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
                         desc.Format = s_TextureFormatTable.at(color->Format);
-                        desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+                        desc.ViewDimension = color->SampleCount > 1 ? D3D11_RTV_DIMENSION_TEXTURE2DMS : D3D11_RTV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateRenderTargetView(
@@ -456,11 +456,11 @@ namespace xpe {
 
                 if (depth->Width != 0 && depth->Height != 0)
                 {
-                    if (depthView == nullptr)
+                    if (depthView == nullptr && depth->Instance != nullptr)
                     {
                         D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
                         desc.Format = DXGI_FORMAT_D32_FLOAT;
-                        desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                        desc.ViewDimension = depth->SampleCount > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateDepthStencilView(
@@ -785,13 +785,13 @@ namespace xpe {
                 texDesc.MipLevels = mipLevels;
                 texDesc.ArraySize = arraySize;
                 texDesc.Format = s_TextureFormatTable.at(texture.Format);
-                texDesc.SampleDesc.Count = 1;
+                texDesc.SampleDesc.Count = texture.SampleCount;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
+                texDesc.CPUAccessFlags = texture.SampleCount == 1 ? s_TextureCPUFlags.at(texture.Usage) : 0;
 
                 srv.Format = texDesc.Format;
-                srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+                srv.ViewDimension = texture.SampleCount > 1 ? D3D11_SRV_DIMENSION_TEXTURE2DMS : D3D11_SRV_DIMENSION_TEXTURE2D;
                 srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
                 srv.Texture2D.MipLevels = mipLevels;
 
@@ -928,15 +928,17 @@ namespace xpe {
                 texDesc.Width = texture.Width;
                 texDesc.Height = texture.Height;
                 texDesc.ArraySize = 1;
-                texDesc.SampleDesc.Count = 1;
+                texDesc.SampleDesc.Count = texture.SampleCount;
+                texDesc.SampleDesc.Quality = 0;
                 texDesc.MipLevels = 1;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
+                texDesc.CPUAccessFlags = 0;
 
                 s_Device->CreateTexture2D(&texDesc, nullptr, (ID3D11Texture2D**)&texture.Instance);
                 LogDebugMessage();
 
                 srv.Format = DXGI_FORMAT_R32_FLOAT;
-                srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+                srv.ViewDimension = texture.SampleCount == 1 ? D3D11_SRV_DIMENSION_TEXTURE2D : D3D11_SRV_DIMENSION_TEXTURE2DMS;
                 srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
                 srv.Texture2D.MipLevels = 1;
 

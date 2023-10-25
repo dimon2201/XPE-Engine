@@ -7,8 +7,6 @@ namespace xpe
     {
         SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport) : RenderPass(bindings)
         {
-            m_Quad = GeometryManager::AddGeometry(Quad());
-
             m_Buffer.Type = eBufferType::CONSTANT;
             m_Buffer.Usage = eBufferUsage::DYNAMIC;
             m_Buffer.NumElements = 1;
@@ -18,7 +16,6 @@ namespace xpe
 
             context::CreateBuffer(m_Buffer);
 
-            m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
             m_Pipeline->VSBuffers.emplace_back(&m_Buffer);
 
             Texture* ssaoColor = new Texture();
@@ -39,6 +36,11 @@ namespace xpe
             ssaoDepth->Init();
 
             m_Pipeline->RenderTarget = new RenderTarget({ ssaoColor }, ssaoDepth, *viewport);
+
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
         void SSAOPass::Update(Scene *scene)
@@ -51,7 +53,7 @@ namespace xpe
 
         void SSAOPass::Draw(Scene* scene)
         {
-            context::DrawIndexed(m_Quad->Indices.size());
+            context::DrawQuad();
         }
     }
 }

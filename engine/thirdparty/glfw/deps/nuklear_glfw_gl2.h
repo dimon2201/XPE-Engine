@@ -123,7 +123,7 @@ nk_glfw3_render(enum nk_anti_aliasing AA)
         size_t vt = offsetof(struct nk_glfw_vertex, uv);
         size_t vc = offsetof(struct nk_glfw_vertex, col);
 
-        /* convert from command queue into draw list and draw to screen */
+        /* convert from command queue into passess list and passess to screen */
         const struct nk_draw_command *cmd;
         const nk_draw_index *offset = NULL;
         struct nk_buffer vbuf, ebuf;
@@ -159,7 +159,7 @@ nk_glfw3_render(enum nk_anti_aliasing AA)
         glTexCoordPointer(2, GL_FLOAT, vs, (const void*)((const nk_byte*)vertices + vt));
         glColorPointer(4, GL_UNSIGNED_BYTE, vs, (const void*)((const nk_byte*)vertices + vc));}
 
-        /* iterate over and execute each draw command */
+        /* iterate over and execute each passess command */
         offset = (const nk_draw_index*)nk_buffer_memory_const(&ebuf);
         nk_draw_foreach(cmd, &glfw.ctx, &dev->cmds)
         {

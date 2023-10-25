@@ -1,0 +1,31 @@
+#include ../types.shader
+#include msaa_sampling.shader
+
+struct VSOut
+{
+    float4 positionClip : SV_POSITION;
+    float2 texcoord : XPE_UV;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+Texture2D<float4> AccumTexture : register(t0);
+Texture2D<float> RevealTexture : register(t1);
+
+PSOut ps_main(VSOut psIn)
+{
+    uint width = 0;
+    uint height = 0;
+    AccumTexture.GetDimensions(width, height);
+
+    float4 accum = AccumTexture.Load(int3(float2(width, height) * psIn.texcoord, 0));
+    float reveal = RevealTexture.Load(int3(float2(width, height) * psIn.texcoord, 0));
+    
+    PSOut psOut;
+    psOut.color = float4(accum.rgb / max(accum.a, K_EPSILON), 1.0 - reveal);
+
+    return psOut;
+}

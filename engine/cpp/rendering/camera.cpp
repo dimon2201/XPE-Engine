@@ -73,22 +73,22 @@ namespace xpe {
             glm::vec3 up = Component.Up;
             glm::vec3 right = glm::cross(front, up);
 
-            if (Input::KeyPressed(KeyMoveForward))
+            if (InputManager::KeyPressed(KeyMoveForward))
             {
                 position = CalculateFrontPosition();
             }
 
-            else if (Input::KeyPressed(KeyMoveLeft))
+            else if (InputManager::KeyPressed(KeyMoveLeft))
             {
                 position = CalculateLeftPosition();
             }
 
-            else if (Input::KeyPressed(KeyMoveBackward))
+            else if (InputManager::KeyPressed(KeyMoveBackward))
             {
                 position = CalculateBackPosition();
             }
 
-            else if (Input::KeyPressed(KeyMoveRight))
+            else if (InputManager::KeyPressed(KeyMoveRight))
             {
                 position = CalculateRightPosition();
             }
@@ -141,8 +141,8 @@ namespace xpe {
             if (!EnableLook)
                 return;
 
-            Input::CaptureCursor(x, y);
-            auto& cursorDelta = Input::GetMouseCursor().Delta;
+            InputManager::CaptureCursor(x, y);
+            auto& cursorDelta = InputManager::GetMouseCursor().Delta;
             float lookSign = (float) LookMode;
             float yawSign = GetUpDirection().y < 0 ? -1.0f : 1.0f;
 

@@ -176,7 +176,7 @@ struct X3DNodeElementTextureCoordinate : X3DNodeElementBase {
 struct X3DNodeElementGeometry2D : X3DNodeElementBase {
     std::list<aiVector3D> Vertices; ///< Vertices list.
     size_t NumIndices; ///< Number of indices in one face.
-    bool Solid; ///< Flag: if true then render must use back-face culling, else render must draw both sides of object.
+    bool Solid; ///< Flag: if true then render must use back-face culling, else render must passess both sides of object.
 
     /// Constructor.
     /// \param [in] pParent - pointer to parent node.
@@ -190,7 +190,7 @@ struct X3DNodeElementGeometry2D : X3DNodeElementBase {
 struct X3DNodeElementGeometry3D : X3DNodeElementBase {
     std::list<aiVector3D> Vertices; ///< Vertices list.
     size_t NumIndices; ///< Number of indices in one face.
-    bool Solid; ///< Flag: if true then render must use back-face culling, else render must draw both sides of object.
+    bool Solid; ///< Flag: if true then render must use back-face culling, else render must passess both sides of object.
 
     /// Constructor.
     /// \param [in] pParent - pointer to parent node.

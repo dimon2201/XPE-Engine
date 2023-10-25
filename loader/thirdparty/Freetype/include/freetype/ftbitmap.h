@@ -228,7 +228,7 @@ FT_BEGIN_HEADER
    *     function will set the lowest six bits to zero to enforce that.
    *
    *   color ::
-   *     The color used to draw `source` onto `target`.
+   *     The color used to passess `source` onto `target`.
    *
    * @inout:
    *   target ::

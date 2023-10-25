@@ -328,5 +328,25 @@ namespace xpe
             )
         };
 
+        struct ENGINE_API OpaqueComponent : Component
+        {
+            Boolean IsVisible = true;
+
+            JsonClass(
+                OpaqueComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API TransparentComponent : Component
+        {
+            Boolean IsVisible = true;
+
+            JsonClass(
+                TransparentComponent,
+                m_Tag
+            )
+        };
+
     }
 }

@@ -27,7 +27,6 @@ namespace xpe
         private:
             Buffer m_Buffer;
             SSAOBufferLayout m_BufferData;
-            Ref<Geometry> m_Quad;
         };
     }
 }

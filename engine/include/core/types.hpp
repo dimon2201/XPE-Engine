@@ -35,10 +35,7 @@ namespace xpe
 
         #endif
 
-        using Boolean = uword;
-
-        constexpr Boolean K_TRUE                    = 1;
-        constexpr Boolean K_FALSE                   = 0;
+        using Boolean = u32;
 
         constexpr usize K_MEMORY_KIB                = 1024;
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;

@@ -16,7 +16,7 @@ float DistributionGGX(float3 H, float roughness)
     float NH2 = NH * NH;
     float x = (NH2 * (a2 - 1.0) + 1.0);
 
-    return a2 / (PI * x * x);
+    return a2 / (K_PI * x * x);
 }
 
 float GeometryShlickGGX(float dotN, float roughness)
@@ -32,7 +32,7 @@ float GeometrySmith(float roughness, float dotNV, float dotNL)
 
 float3 Lambert(float3 kd, float3 albedo)
 {
-    return kd * albedo / PI;
+    return kd * albedo / K_PI;
 }
 
 float3 PBR(float3 lightColor, float radianceFactor, float3 albedo, float metallness, float roughness)

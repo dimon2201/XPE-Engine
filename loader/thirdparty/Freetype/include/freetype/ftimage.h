@@ -874,7 +874,7 @@ FT_BEGIN_HEADER
    *
    * @description:
    *   A function used as a call-back by the anti-aliased renderer in order
-   *   to let client applications draw themselves the pixel spans on each
+   *   to let client applications passess themselves the pixel spans on each
    *   scan line.
    *
    * @input:
@@ -882,10 +882,10 @@ FT_BEGIN_HEADER
    *     The scanline's upward y~coordinate.
    *
    *   count ::
-   *     The number of spans to draw on this scanline.
+   *     The number of spans to passess on this scanline.
    *
    *   spans ::
-   *     A table of `count` spans to draw on the scanline.
+   *     A table of `count` spans to passess on the scanline.
    *
    *   user ::
    *     User-supplied data that is passed to the callback.
@@ -955,7 +955,7 @@ FT_BEGIN_HEADER
    *   FT_RASTER_FLAG_DIRECT ::
    *     This flag is set to indicate direct rendering.  In this mode, client
    *     applications must provide their own span callback.  This lets them
-   *     directly draw or compose over an existing bitmap.  If this bit is
+   *     directly passess or compose over an existing bitmap.  If this bit is
    *     _not_ set, the target pixmap's buffer _must_ be zeroed before
    *     rendering and the output will be clipped to its size.
    *

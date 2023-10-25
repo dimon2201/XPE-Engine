@@ -94,7 +94,7 @@ namespace xpe {
             }
 
             Model model;
-            hstring directory = FileSystem::GetDirectory(filepath);
+            hstring directory = FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
             u32 flags = AssimpManager::GetLoadFlags(options);
