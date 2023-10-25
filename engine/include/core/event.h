@@ -8,7 +8,7 @@ namespace xpe {
         struct Event
         {
 
-            void* Thiz = nullptr;
+            void* This = nullptr;
             EventFunction Function = nullptr;
             int Priority = 0;
 
@@ -17,8 +17,8 @@ namespace xpe {
             Event(EventFunction function, int priority)
             : Function(function), Priority(priority) {}
 
-            Event(void* const thiz, EventFunction function, int priority)
-            : Thiz(thiz), Function(function), Priority(priority) {}
+            Event(void* const _this, EventFunction function, int priority)
+            : This(_this), Function(function), Priority(priority) {}
 
             inline friend bool operator<(const Event<EventFunction>& e1, const Event<EventFunction>& e2)
             {
@@ -32,12 +32,12 @@ namespace xpe {
 
             inline friend bool operator==(const Event<EventFunction>& e1, const Event<EventFunction>& e2)
             {
-                return e1.Thiz == e2.Thiz;
+                return e1.This == e2.This;
             }
 
             inline friend bool operator!=(const Event<EventFunction>& e1, const Event<EventFunction>& e2)
             {
-                return e1.Thiz != e2.Thiz;
+                return e1.This != e2.This;
             }
 
         };
@@ -52,7 +52,7 @@ namespace xpe {
             template<typename... Args>
             void AddEvent(Args &&... eventArgs);
 
-            void RemoveEvent(void* const thiz);
+            void RemoveEvent(void* const _this);
 
             void Clear();
 
@@ -102,14 +102,14 @@ namespace xpe {
         }
 
         template<typename EventFunction>
-        void EventBuffer<EventFunction>::RemoveEvent(void* const thiz)
+        void EventBuffer<EventFunction>::RemoveEvent(void* const _this)
         {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
             usize size = m_Events.size();
             for (int i = 0 ; i < size ; i++) {
                 auto& event = m_Events[i];
-                if (thiz == event->Thiz) {
+                if (_this == event->This) {
                     m_Events.erase(event);
                     break;
                 }
@@ -139,7 +139,7 @@ namespace xpe {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
             for (auto& event : m_Events) {
-                event.Function(event.Thiz, args...);
+                event.Function(event.This, args...);
             }
         }
 

@@ -37,12 +37,31 @@ namespace xpe
 
         using Boolean = u32;
 
-        constexpr Boolean K_TRUE                    = 1;
-        constexpr Boolean K_FALSE                   = 0;
-
         constexpr usize K_MEMORY_KIB                = 1024;
         constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
         constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;
+
+        class ENGINE_API Object
+        {
+
+        public:
+            Object() = default;
+            ~Object() = default;
+
+            void* operator new(usize byteSize);
+            void operator delete(void* address);
+        };
+
+        class ENGINE_API HotObject
+        {
+
+        public:
+            HotObject() = default;
+            ~HotObject() = default;
+
+            void* operator new(usize byteSize);
+            void operator delete(void* address);
+        };
 
     }
 }

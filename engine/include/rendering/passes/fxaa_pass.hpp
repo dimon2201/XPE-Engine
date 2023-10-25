@@ -1,9 +1,4 @@
-#include "core/build.h"
-#include "render_pass.h"
-#include "rendering/core/viewport.h"
-#include "rendering/core/texture.h"
-#include "rendering/core/pipeline.h"
-#include "stl/vector.h"
+#include <rendering/passes/render_pass.h>
 
 namespace xpe
 {
@@ -17,8 +12,6 @@ namespace xpe
             ~FXAAPass();
 
             virtual void Draw(Scene* scene) override final;
-
-            inline RenderTarget* GetRenderTarget() { return m_Pipeline->RenderTarget; }
 
         private:
             TextureSampler m_Sampler;

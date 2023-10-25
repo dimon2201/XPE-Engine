@@ -2,8 +2,6 @@
 #include <texture_loader.h>
 #include <assimp_types.h>
 
-#include <rendering/storages/material_storage.h>
-
 namespace xpe {
 
     namespace res {
@@ -43,59 +41,65 @@ namespace xpe {
 
         Ref<Material> MaterialLoader::Load(const MaterialFilepath &filepath)
         {
+            if (MaterialManager::Has(filepath.Name)) {
+                Ref<Material> materialRef;
+                materialRef.Create(*MaterialManager::Get(filepath.Name));
+                return materialRef;
+            }
+
             Material material;
             int w, h, c;
 
-            material.Albedo = TextureLoader::LoadLayer(
+            material.AlbedoMap = TextureLoader::LoadLayer(
                     filepath.AlbedoFilepath.c_str(),
                     render::Material::K_ALBEDO_FORMAT.Format,
                     w, h, c
             );
-            material.EnableAlbedo = material.Albedo.Pixels != nullptr;
+            material.EnableAlbedoMap = material.AlbedoMap.Pixels != nullptr;
 
-            material.Bumping = TextureLoader::LoadLayer(
+            material.NormalMap = TextureLoader::LoadLayer(
                     filepath.BumpFilepath.c_str(),
                     render::Material::K_BUMP_FORMAT.Format,
                     w, h, c
             );
-            material.EnableBumping = material.Bumping.Pixels != nullptr;
+            material.EnableNormalMap = material.NormalMap.Pixels != nullptr;
 
-            material.Parallax = TextureLoader::LoadLayer(
+            material.ParallaxMap = TextureLoader::LoadLayer(
                     filepath.ParallaxFilepath.c_str(),
                     render::Material::K_PARALLAX_FORMAT.Format,
                     w, h, c
             );
-            material.EnableParallax = material.Parallax.Pixels != nullptr;
+            material.EnableParallaxMap = material.ParallaxMap.Pixels != nullptr;
 
-            material.Metallic = TextureLoader::LoadLayer(
+            material.MetalMap = TextureLoader::LoadLayer(
                     filepath.MetallicFilepath.c_str(),
                     render::Material::K_METALLIC_FORMAT.Format,
                     w, h, c
             );
-            material.EnableMetallic = material.Metallic.Pixels != nullptr;
+            material.EnableMetalMap = material.MetalMap.Pixels != nullptr;
 
-            material.Roughness = TextureLoader::LoadLayer(
+            material.RoughnessMap = TextureLoader::LoadLayer(
                     filepath.RoughnessFilepath.c_str(),
                     render::Material::K_ROUGHNESS_FORMAT.Format,
                     w, h, c
             );
-            material.EnableRoughness = material.Roughness.Pixels != nullptr;
+            material.EnableRoughnessMap = material.RoughnessMap.Pixels != nullptr;
 
-            material.AO = TextureLoader::LoadLayer(
+            material.AOMap = TextureLoader::LoadLayer(
                     filepath.AOFilepath.c_str(),
                     render::Material::K_AO_FORMAT.Format,
                     w, h, c
             );
-            material.EnableAO = material.AO.Pixels != nullptr;
+            material.EnableAOMap = material.AOMap.Pixels != nullptr;
 
-            material.Emission = TextureLoader::LoadLayer(
+            material.EmissionMap = TextureLoader::LoadLayer(
                     filepath.EmissionFilepath.c_str(),
                     render::Material::K_EMISSION_FORMAT.Format,
                     w, h, c
             );
-            material.EnableEmission = material.Emission.Pixels != nullptr;
+            material.EnableEmissionMap = material.EmissionMap.Pixels != nullptr;
 
-            return m_Storage->Add(filepath.Name, material);
+            return MaterialManager::Add(filepath.Name, material);
         }
 
     }

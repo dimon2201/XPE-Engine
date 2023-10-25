@@ -1,6 +1,6 @@
 #include <game.h>
 
-extern "C" GAME_API Game* _cdecl CreateGame() {
+extern "C" GAME_API Application* _cdecl CreateGame() {
     return new TemplateGame();
 }
 

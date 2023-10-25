@@ -7,7 +7,7 @@ namespace xpe {
         static void ParseAnimation(AnimationNode& parent, const aiNode* node)
         {
             parent.Name = node->mName.data;
-            parent.Transform = AssimpConversion::ToMat4(node->mTransformation);
+            parent.Transform = AssimpManager::ToMat4(node->mTransformation);
             parent.Children.reserve(node->mNumChildren);
 
             for (int i = 0; i < node->mNumChildren; i++)
@@ -20,10 +20,17 @@ namespace xpe {
 
         Ref<Animation> AnimLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            Animation animation;
+            if (m_Map.find(filepath) != m_Map.end()) {
+                Ref<Animation> animRef;
+                animRef.Create(*m_Map[filepath]);
+                return animRef;
+            }
+
+            Ref<Animation> animRef;
+            animRef.Create();
 
             Assimp::Importer importer;
-            const aiScene* scene = importer.ReadFile(filepath, AssimpConversion::GetLoadFlags(options));
+            const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
                 LogError("Failed to import 3D animation file {0}", filepath);
@@ -31,12 +38,13 @@ namespace xpe {
             }
 
             auto aiAnim = scene->mAnimations[0];
-            animation.Duration = aiAnim->mDuration;
-            animation.TicksPerSecond = aiAnim->mTicksPerSecond;
+            animRef->Duration = aiAnim->mDuration;
+            animRef->TicksPerSecond = aiAnim->mTicksPerSecond;
 
-            ParseAnimation(animation.Root, scene->mRootNode);
+            ParseAnimation(animRef->Root, scene->mRootNode);
 
-            return m_Storage->Add(filepath, animation);
+            m_Map.insert({ filepath, animRef });
+            return animRef;
         }
 
     }

@@ -3,7 +3,7 @@
 #include <build.h>
 #include <assimp_types.h>
 
-#include <anim/storages/anim_storage.h>
+#include <anim/anim.h>
 
 namespace xpe {
 
@@ -17,14 +17,13 @@ namespace xpe {
         {
 
         public:
-            AnimLoader(AnimStorage* animStorage) : m_Storage(animStorage) {}
-
             Ref<Animation> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE
             });
 
         private:
-            AnimStorage* m_Storage;
+            unordered_map<string, Ref<Animation>> m_Map;
+
         };
 
     }

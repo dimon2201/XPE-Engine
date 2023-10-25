@@ -311,7 +311,7 @@ namespace xpe {
                 s_Device->CreateDeferredContext(0, &s_DefContext);
                 LogDebugMessage();
 
-                Hardware::UpdateGpuStats(s_Device);
+                HardwareManager::UpdateGpuStats(s_Device);
                 LogDebugMessage();
 
                 s_Device->QueryInterface(__uuidof(IDXGIDevice), (void **)&s_GIDevice);

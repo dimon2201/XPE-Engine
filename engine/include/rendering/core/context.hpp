@@ -1,7 +1,5 @@
 #pragma once
 
-#include <core/windowing.hpp>
-
 #include <rendering/core/viewport.h>
 #include <rendering/core/pipeline.h>
 

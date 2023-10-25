@@ -1,7 +1,7 @@
 #pragma once
 
 #include <rendering/passes/render_pass.h>
-#include <geometry/geometries.h>
+#include <rendering/geometry/geometries.h>
 
 namespace xpe {
 

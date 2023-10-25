@@ -38,7 +38,7 @@ namespace focus {
         LogInfo("Editor::LoadGame()");
         m_Game->Free();
         m_Game = game;
-        InitGame();
+        m_Game->Init();
     }
 
 }

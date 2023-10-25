@@ -4,9 +4,9 @@ namespace xpe {
 
     namespace res {
 
-        static Vertex3D ParseVertex(aiMesh* mesh, u32 i)
+        static Vertex ParseVertex(aiMesh* mesh, u32 i)
         {
-            Vertex3D vertex;
+            Vertex vertex;
 
             vertex.Position = {
                     mesh->mVertices[i].x,
@@ -38,16 +38,16 @@ namespace xpe {
             return vertex;
         }
 
-        static Mesh ParseMesh(aiMesh *mesh)
+        static Geometry ParseMesh(aiMesh *mesh)
         {
-            Mesh result;
+            Geometry result;
             vector<u32> indices;
 
-            result.Vertices.List.resize(mesh->mNumVertices);
+            result.Vertices.resize(mesh->mNumVertices);
 
             for (int i = 0 ; i < mesh->mNumVertices ; i++)
             {
-                result.Vertices.List[i] = ParseVertex(mesh, i);
+                result.Vertices[i] = ParseVertex(mesh, i);
             }
 
             for (u32 i = 0 ; i < mesh->mNumFaces ; i++)
@@ -59,18 +59,15 @@ namespace xpe {
                 }
             }
 
-            result.Indices.List.resize((int) indices.size());
-            for (int i = 0 ; i < indices.size() ; i++)
-            {
-                result.Indices.List[i] = indices[i];
-            }
+            result.Indices.resize(indices.size());
+            memcpy(result.Indices.data(), indices.data(), indices.size() * sizeof(u32));
 
             return result;
         }
 
         static void ParseMeshes(
                 aiNode* node, const aiScene* scene,
-                Model3D& model,
+                Model& model,
                 const hstring& directory, u32 flags
         ) {
             auto& meshes = model.Meshes;
@@ -78,7 +75,7 @@ namespace xpe {
             for (u32 i = 0 ; i < node->mNumMeshes ; i++)
             {
                 aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-                Mesh result = ParseMesh(mesh);
+                Geometry result = ParseMesh(mesh);
                 meshes.push_back(result);
             }
 
@@ -88,13 +85,19 @@ namespace xpe {
             }
         }
 
-        Ref<Model3D> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        Ref<Model> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            Model3D model;
-            hstring directory = os::FileManager::GetDirectory(filepath);
+            if (m_Map.find(filepath) != m_Map.end()) {
+                Ref<Model> modelRef;
+                modelRef.Create(*m_Map[filepath]);
+                return modelRef;
+            }
+
+            Model model;
+            hstring directory = FileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
-            u32 flags = AssimpConversion::GetLoadFlags(options);
+            u32 flags = AssimpManager::GetLoadFlags(options);
             const aiScene* scene = importer.ReadFile(filepath, flags);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
@@ -103,8 +106,9 @@ namespace xpe {
             }
 
             ParseMeshes(scene->mRootNode, scene, model, directory, flags);
-
-            return m_Storage->AddModel(filepath, model);
+            Ref<Model> modelRef = GeometryManager::AddModel(model);
+            m_Map.insert({ filepath, modelRef });
+            return modelRef;
         }
 
     }

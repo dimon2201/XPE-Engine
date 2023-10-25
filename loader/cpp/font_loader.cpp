@@ -16,12 +16,12 @@ namespace xpe {
             FT_Done_Face(fontFace);
         }
 
-        FontLoader::FontLoader(FontStorage* storage) : m_Storage(storage)
+        FontLoader::FontLoader()
         {
             if (FT_Init_FreeType(&s_Lib)) {
                 LogError("Failed to initialize FreeType library!");
             }
-            s_FontFaces = ::new (alloc(sizeof(unordered_map<string, FT_Face>))) unordered_map<string, FT_Face>();
+            s_FontFaces = ::new (main_alloc(sizeof(unordered_map<string, FT_Face>))) unordered_map<string, FT_Face>();
         }
 
         FontLoader::~FontLoader()
@@ -30,13 +30,20 @@ namespace xpe {
             {
                 FreeFontFace(font.second);
             }
-            dealloc(s_FontFaces);
+            main_free(s_FontFaces);
             FT_Done_FreeType(s_Lib);
         }
 
         Ref<Font> FontLoader::Load(const char* filepath, usize glyphSize)
         {
-            Ref<Font> fontRef = m_Storage->Add(filepath, Font());
+            if (m_Map.find(filepath) != m_Map.end()) {
+                Ref<Font> fontRef;
+                fontRef.Create(*m_Map[filepath]);
+                return fontRef;
+            }
+
+            Ref<Font> fontRef;
+            fontRef.Create(Font());
             Font& font = *fontRef;
             FT_Face fontFace = {};
 
@@ -71,7 +78,7 @@ namespace xpe {
                             glyph.Top = fontFace->glyph->bitmap_top;
                             glyph.AdvanceX = fontFace->glyph->advance.x;
                             glyph.AdvanceY = 0.0f;
-                            glyph.BitmapData = alloc(glyph.Width * glyph.Height);
+                            glyph.BitmapData = main_alloc(glyph.Width * glyph.Height);
 
                             int x = 0;
                             int y = 0;
@@ -115,7 +122,7 @@ namespace xpe {
                     font.Atlas.MostDetailedMip = 0;
                     font.Atlas.Layers.push_back({});
                     font.Atlas.Layers[0].RowByteSize = font.Atlas.Width;
-                    font.Atlas.Layers[0].Pixels = alloc(font.Atlas.Width * font.Atlas.Height);
+                    font.Atlas.Layers[0].Pixels = main_alloc(font.Atlas.Width * font.Atlas.Height);
                     memset(font.Atlas.Layers[0].Pixels, 0, font.Atlas.Width * font.Atlas.Height);
                     const TextureLayer& layer = font.Atlas.Layers[0];
 
@@ -161,6 +168,7 @@ namespace xpe {
 
                     font.Atlas.Init();
                     s_FontFaces->insert({ filepath, fontFace });
+                    m_Map.insert({ filepath, fontRef });
                 }
             }
             else {
@@ -172,7 +180,12 @@ namespace xpe {
 
         Ref<Font> FontLoader::Resize(const char *filepath, usize glyphSize)
         {
-            auto& fontRef = m_Storage->Get(filepath);
+            if (m_Map.find(filepath) == m_Map.end()) {
+                LogError("Font doesn't exist in cache.");
+                return { nullptr };
+            }
+
+            auto& fontRef = m_Map[filepath];
             auto& font = *fontRef;
 
             FT_Face& fontFace = s_FontFaces->at(filepath);
@@ -206,7 +219,7 @@ namespace xpe {
                         glyph.Top = fontFace->glyph->bitmap_top;
                         glyph.AdvanceX = fontFace->glyph->advance.x;
                         glyph.AdvanceY = 0.0f;
-                        glyph.BitmapData = alloc(glyph.Width * glyph.Height);
+                        glyph.BitmapData = main_alloc(glyph.Width * glyph.Height);
                         memset(glyph.BitmapData, 0, glyph.Width * glyph.Height);
 
                         int x = 0;
@@ -251,7 +264,7 @@ namespace xpe {
                 font.Atlas.MostDetailedMip = 0;
                 font.Atlas.Layers.push_back({});
                 font.Atlas.Layers[0].RowByteSize = font.Atlas.Width;
-                font.Atlas.Layers[0].Pixels = alloc(font.Atlas.Width * font.Atlas.Height);
+                font.Atlas.Layers[0].Pixels = main_alloc(font.Atlas.Width * font.Atlas.Height);
                 memset(font.Atlas.Layers[0].Pixels, 0, font.Atlas.Width * font.Atlas.Height);
                 const render::TextureLayer& layer = font.Atlas.Layers[0];
 

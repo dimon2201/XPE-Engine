@@ -5,9 +5,7 @@ namespace xpe {
 
     namespace render {
 
-        CompositeFinalPass::CompositeFinalPass(
-            const core::vector<RenderPassBinding>& bindings
-        ) : RenderPass(bindings)
+        CompositeFinalPass::CompositeFinalPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
 
@@ -15,12 +13,6 @@ namespace xpe {
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
-
-            context::CreatePipeline(*m_Pipeline);
-        }
-
-        CompositeFinalPass::~CompositeFinalPass()
-        {
         }
 
         void CompositeFinalPass::Draw(Scene* scene)

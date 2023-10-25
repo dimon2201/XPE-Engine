@@ -35,6 +35,11 @@ namespace xpe
             Texture Atlas;
 
             ~Font();
+
+            inline float GetWhitespaceWidth()
+            {
+                return 8.0f * ((float) AlphaBet[0x20].AdvanceX / 64.0f);
+            }
         };
 
         Json(

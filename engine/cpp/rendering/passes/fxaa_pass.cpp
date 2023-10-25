@@ -1,13 +1,12 @@
-#include "rendering/passes/fxaa_pass.hpp"
-#include "rendering/core/context.hpp"
-#include "ecs/scene.h"
+#include <rendering/passes/fxaa_pass.hpp>
+#include <ecs/scenes.hpp>
 
 namespace xpe
 {
     namespace render
     {
-        FXAAPass::FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport)
-            : RenderPass(bindings)
+
+        FXAAPass::FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport) : RenderPass(bindings)
         {
             Texture* color = new Texture();
             color->Width = viewport->Width;
@@ -38,12 +37,11 @@ namespace xpe
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = false;
-
-            context::CreatePipeline(*m_Pipeline);
         }
 
         FXAAPass::~FXAAPass()
         {
+            context::FreeSampler(m_Sampler);
             delete m_Pipeline->RenderTarget;
         }
 
@@ -51,5 +49,6 @@ namespace xpe
         {
             context::DrawQuad();
         }
+
     }
 }

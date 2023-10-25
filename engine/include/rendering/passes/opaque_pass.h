@@ -10,10 +10,7 @@ namespace xpe {
         {
 
         public:
-            OpaquePass(
-                    const vector<RenderPassBinding>& bindings,
-                    MaterialStorage* materialStorage
-            );
+            OpaquePass(const vector<RenderPassBinding>& bindings);
 
             virtual void Draw(Scene* scene) override;
 

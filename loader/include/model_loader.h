@@ -3,7 +3,7 @@
 #include <build.h>
 #include <assimp_types.h>
 
-#include <rendering/storages/geometry_storage.h>
+#include <rendering/geometry/geometry_manager.h>
 
 namespace xpe {
 
@@ -17,9 +17,7 @@ namespace xpe {
         {
 
         public:
-            ModelLoader(GeometryStorage* geometryStorage) : m_Storage(geometryStorage) {}
-
-            Ref<Model3D> Load(const char* filepath, const vector<eLoadOption>& options = {
+            Ref<Model> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE,
                     eLoadOption::FLIP_UV,
                     eLoadOption::CALC_TANGENTS,
@@ -29,7 +27,8 @@ namespace xpe {
             });
 
         private:
-            GeometryStorage* m_Storage;
+            unordered_map<string, Ref<Model>> m_Map;
+
         };
 
     }

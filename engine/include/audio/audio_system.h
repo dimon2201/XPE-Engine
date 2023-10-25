@@ -1,31 +1,24 @@
 #pragma once
 
-namespace xpe {
+#include <ecs/components.hpp>
 
-	namespace ecs
-	{
-		class Scene;
-		class AudioComponent;
-		class StreamAudioComponent;
-		class VoiceComponent;
-	}
+namespace xpe {
 
 	namespace audio {
 
-		using namespace xpe::ecs;
-		using namespace xpe::core;
+        using namespace core;
+		using namespace ecs;
 
-		class ENGINE_API AudioSystem : public core::Object
+		class ENGINE_API AudioSystem : public System
 		{
 
 		public:
-
-			AudioSystem();
+            AudioSystem();
 			~AudioSystem();
 
 			void UpdateListener(Scene* scene);
 
-			void Update(Scene* scene);
+			void Update(Scene* scene, const Time& dt) override final;
 
 			void UpdateVoices(Scene* scene);
 			void RecordVoice(VoiceComponent* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first

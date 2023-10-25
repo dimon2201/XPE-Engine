@@ -1,12 +1,10 @@
 #include <rendering/passes/canvas.hpp>
 
-#include <core/input.h>
-
 namespace xpe {
 
     namespace render {
 
-        Canvas::Canvas(s32 width, s32 height, Shader* shader) : m_Shader(shader)
+        Canvas::Canvas(s32 width, s32 height, Shader* shader, s32 msaaSampleCount) : m_Shader(shader), m_MsaaSampleCount(msaaSampleCount)
         {
             Viewport viewport;
             viewport.Width = width;
@@ -21,7 +19,7 @@ namespace xpe {
             AddWindowFrameResized(Canvas, 1);
         }
 
-        Canvas::Canvas(const glm::ivec2& size, Shader* shader) : Canvas(size.x, size.y, shader) {}
+        Canvas::Canvas(const glm::ivec2& size, Shader* shader, s32 msaaSampleCount) : Canvas(size.x, size.y, shader, msaaSampleCount) {}
 
         Canvas::~Canvas()
         {

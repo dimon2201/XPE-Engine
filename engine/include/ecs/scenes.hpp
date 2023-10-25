@@ -1,16 +1,15 @@
 #pragma once
 
-#include <ecs/scene.h>
+#include <ecs/ecs.h>
 #include <ecs/globals.h>
 
-#include <controls/camera.h>
+#include <rendering/camera.h>
 
 namespace xpe {
 
     namespace ecs {
 
         using namespace core;
-        using namespace control;
 
         template<typename T, typename... Args>
         T* Scene::AddGlobal(Args&&... args)
@@ -22,10 +21,9 @@ namespace xpe {
 
         struct ENGINE_API MainScene : public Scene
         {
-            ecs::Audio* Audio = nullptr;
             ecs::Skybox* Skybox = nullptr;
-            control::PerspectiveCamera* PerspectiveCamera = nullptr;
-            control::OrthoCamera* OrthoCamera = nullptr;
+            render::PerspectiveCamera* PerspectiveCamera = nullptr;
+            render::OrthoCamera* OrthoCamera = nullptr;
 
             MainScene();
 

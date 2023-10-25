@@ -3,6 +3,7 @@
 #include <rendering/passes/render_pass.h>
 #include <rendering/buffers/transform_buffer.h>
 #include <rendering/buffers/text_buffer.h>
+#include <rendering/geometry/geometry.h>
 
 namespace xpe {
 
@@ -23,7 +24,7 @@ namespace xpe {
 
             TextBuffer m_TextBuffer;
             TransformBuffer m_TransformBuffer;
-            Ref<Geometry<Vertex3D>> m_Quad;
+            Ref<Geometry> m_Quad;
         };
 
     }

@@ -1,20 +1,18 @@
 #include <audio/audio_system.h>
 #include <audio/core/context.h>
 
-#include <ecs/scenes.hpp>
-
 using namespace xpe::audio::context;
 
 namespace xpe {
 
 	namespace audio {
 
-		AudioSystem::AudioSystem() 
+        AudioSystem::AudioSystem()
 		{
 			context::InitAudio();
 		}
 
-		AudioSystem::~AudioSystem()
+        AudioSystem::~AudioSystem()
 		{
 			context::FreeAudio();
 		}
@@ -31,7 +29,7 @@ namespace xpe {
 		}
 
 		// It's a cycle. multimedia playback and update audio's states
-		void AudioSystem::Update(ecs::Scene* scene)
+		void AudioSystem::Update(ecs::Scene* scene, const Time& dt)
 		{
 			//UpdateVoices(scene); //temporarily commented to not hearing myself
 			UpdateAudios(scene);

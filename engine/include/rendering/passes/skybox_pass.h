@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/passes/render_pass.h>
+#include <rendering/geometry/geometry.h>
 
 namespace xpe {
 
@@ -14,16 +15,14 @@ namespace xpe {
         {
 
         public:
-            SkyboxPass(
-                    const vector<RenderPassBinding>& bindings
-            );
+            SkyboxPass(const vector<RenderPassBinding>& bindings);
             ~SkyboxPass() override;
 
             virtual void Draw(Scene* scene) override;
 
         protected:
             TextureSampler m_Sampler;
-            Ref<Geometry<Vertex3D>> m_Cube;
+            Ref<Geometry> m_Cube;
         };
 
     }

@@ -115,7 +115,7 @@ namespace xpe {
 
         void TaskManager::Init()
         {
-            s_Dispatcher = new TaskDispatcher(Hardware::CPU.Cores, 100, "Worker", Thread::ePriority::NORMAL);
+            s_Dispatcher = new TaskDispatcher(HardwareManager::CPU.Cores, 100, "Worker", Thread::ePriority::NORMAL);
         }
 
         void TaskManager::Init(TaskDispatcher* dispatcher)

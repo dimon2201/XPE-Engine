@@ -3,7 +3,7 @@
 #include <os/file_watcher.h>
 
 namespace xpe::core {
-    class Game;
+    class Application;
 }
 
 namespace focus {
@@ -31,7 +31,7 @@ namespace focus {
     };
 
     struct ProjectManagerCallback {
-        std::atomic<Game*> GameReloaded;
+        std::atomic<Application*> GameReloaded;
     };
 
     class ProjectManager final {

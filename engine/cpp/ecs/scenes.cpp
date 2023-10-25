@@ -17,10 +17,9 @@ namespace xpe {
 
         void MainScene::Init()
         {
-            Audio = AddGlobal<ecs::Audio>("Audio");
             Skybox = AddGlobal<ecs::Skybox>("Skybox");
-            PerspectiveCamera = AddGlobal<control::PerspectiveCamera>("PerspectiveCamera");
-            OrthoCamera = AddGlobal<control::OrthoCamera>("OrthoCamera");
+            PerspectiveCamera = AddGlobal<render::PerspectiveCamera>("PerspectiveCamera");
+            OrthoCamera = AddGlobal<render::OrthoCamera>("OrthoCamera");
         }
 
         void MainScene::ToJson(json &root)

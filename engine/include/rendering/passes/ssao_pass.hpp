@@ -1,15 +1,12 @@
 #pragma once
 
-#include <rendering/core/core.h>
 #include <rendering/passes/render_pass.h>
+#include <rendering/geometry/geometry.h>
 
 namespace xpe
 {
     namespace render
     {
-        struct Viewport;
-        class GeometryStorage;
-
         struct SSAOBufferLayout
         {
             float SSAODirectionCount;
@@ -21,20 +18,15 @@ namespace xpe
         {
 
         public:
-            SSAOPass(
-                const core::vector<RenderPassBinding>& bindings,
-                Viewport* viewport,
-                core::Boolean useMSAA,
-                core::usize msaaSampleCount
-            );
-            ~SSAOPass();
+            SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport);
 
             virtual void Draw(Scene* scene) override final;
+
+            void Update(Scene *scene) override;
 
         private:
             Buffer m_Buffer;
             SSAOBufferLayout m_BufferData;
-
         };
     }
 }

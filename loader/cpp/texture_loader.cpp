@@ -11,9 +11,12 @@ namespace xpe {
 
     namespace res {
 
+        unordered_map<string, TextureLayer>* TextureLoader::s_Layers = nullptr;
+
         Ref<Texture> TextureLoader::Load(const char* filepath, const eTextureFormat &format)
         {
-            Ref<Texture> texture = m_Storage->Add(filepath, {});
+            Ref<Texture> texture;
+            texture.Create();
             texture->Format = format;
             texture->Depth = 1;
             TextureLayer layer = LoadLayer(filepath, format, texture->Width, texture->Height, texture->Channels);
@@ -27,6 +30,14 @@ namespace xpe {
                 const eTextureFormat &format,
                 int &width, int &height, int &channels
         ) {
+            if (s_Layers == nullptr) {
+                s_Layers = new unordered_map<string, TextureLayer>();
+            }
+
+            if (s_Layers->find(filepath) != s_Layers->end()) {
+                return s_Layers->at(filepath).Clone();
+            }
+
             int desiredChannels = Texture::ChannelTable.at(format);
             TextureLayer layer;
             int w;
@@ -89,19 +100,22 @@ namespace xpe {
 
             }
 
+            layer.RowByteSize = w * Texture::BPPTable.at(format);
+            layer.Width = w;
+            layer.Height = h;
+            layer.Channels = c;
+
             width = w;
             height = h;
             channels = c;
-
-            layer.RowByteSize = width * Texture::BPPTable.at(format);
-            layer.FromFile = K_TRUE;
 
             return layer;
         }
 
         Ref<Texture> TextureLoader::LoadCube(const TextureCubeFilepath &cubeFilepath, const eTextureFormat &format)
         {
-            Ref<Texture> textureCube = m_Storage->Add(cubeFilepath.Name, {});
+            Ref<Texture> textureCube;
+            textureCube.Create();
             textureCube->Type = Texture::eType::TEXTURE_CUBE;
             textureCube->Format = format;
 
@@ -155,33 +169,40 @@ namespace xpe {
             return textureCube;
         }
 
-        void TextureLoader::Save(const char* filepath, const Texture &texture, const Texture::eFileFormat &fileFormat)
-        {
-            void* pixels = texture.Layers.front().Pixels;
+        bool TextureLoader::Save(
+                const char* filepath,
+                const Texture &texture,
+                const Texture::eFileFormat &fileFormat
+        ) {
+            return SaveLayer(filepath, texture.Layers.front(), fileFormat);
+        }
+
+        bool TextureLoader::SaveLayer(
+                const char *filepath,
+                const TextureLayer &textureLayer,
+                const Texture::eFileFormat &fileFormat
+        ) {
 
             switch (fileFormat) {
 
                 case Texture::eFileFormat::PNG:
-                    stbi_write_png(filepath, texture.Width, texture.Height, texture.Channels, pixels, 0);
-                    break;
+                    return stbi_write_png(filepath, textureLayer.Width, textureLayer.Height, textureLayer.Channels, textureLayer.Pixels, 0);
 
                 case Texture::eFileFormat::JPG:
-                    stbi_write_jpg(filepath, texture.Width, texture.Height, texture.Channels, pixels, 3);
-                    break;
+                    return stbi_write_jpg(filepath, textureLayer.Width, textureLayer.Height, textureLayer.Channels, textureLayer.Pixels, 3);
 
                 case Texture::eFileFormat::TGA:
-                    stbi_write_tga(filepath, texture.Width, texture.Height, texture.Channels, pixels);
-                    break;
+                    return stbi_write_tga(filepath, textureLayer.Width, textureLayer.Height, textureLayer.Channels, textureLayer.Pixels);
 
                 case Texture::eFileFormat::HDR:
-                    stbi_write_hdr(filepath, texture.Width, texture.Height, texture.Channels, (float*) pixels);
-                    break;
+                    return stbi_write_hdr(filepath, textureLayer.Width, textureLayer.Height, textureLayer.Channels, (float*) textureLayer.Pixels);
 
                 case Texture::eFileFormat::BMP:
-                    stbi_write_bmp(filepath, texture.Width, texture.Height, texture.Channels, pixels);
-                    break;
+                    return stbi_write_bmp(filepath, textureLayer.Width, textureLayer.Height, textureLayer.Channels, textureLayer.Pixels);
 
             }
+
+            return false;
         }
 
     }

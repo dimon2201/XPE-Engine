@@ -1,15 +1,11 @@
 #include <rendering/passes/ssao_pass.hpp>
-#include <rendering/core/context.hpp>
-#include <rendering/core/viewport.h>
-#include <rendering/core/pipeline.h>
-#include <ecs/scene.h>
+#include <rendering/geometry/geometry_manager.h>
 
 namespace xpe
 {
     namespace render
     {
-        SSAOPass::SSAOPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport, core::Boolean useMSAA, core::usize msaaSampleCount)
-            : RenderPass(bindings)
+        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport) : RenderPass(bindings)
         {
             m_Buffer.Type = eBufferType::CONSTANT;
             m_Buffer.Usage = eBufferUsage::DYNAMIC;
@@ -17,41 +13,42 @@ namespace xpe
             m_Buffer.StructureSize = sizeof(SSAOBufferLayout);
             m_Buffer.InitialData = nullptr;
             m_Buffer.Slot = 0;
+
             context::CreateBuffer(m_Buffer);
 
             m_Pipeline->VSBuffers.emplace_back(&m_Buffer);
 
-            Texture* color = new Texture();
-            color->Width = viewport->Width;
-            color->Height = viewport->Height;
-            color->Format = eTextureFormat::RGBA8;
-            color->SampleCount = useMSAA == core::K_TRUE ? msaaSampleCount : 1;
-            color->InitializeData = false;
-            color->EnableRenderTarget = true;
-            color->Init();
+            Texture* ssaoColor = new Texture();
+            ssaoColor->Width = viewport->Width;
+            ssaoColor->Height = viewport->Height;
+            ssaoColor->Format = eTextureFormat::RGBA8;
+            ssaoColor->InitializeData = false;
+            ssaoColor->EnableRenderTarget = true;
+            ssaoColor->Init();
 
-            Texture* depth = new Texture();
-            depth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            depth->Width = viewport->Width;
-            depth->Height = viewport->Height;
-            depth->Format = eTextureFormat::R32_TYPELESS;
-            depth->SampleCount = useMSAA == core::K_TRUE ? msaaSampleCount : 1;
-            depth->InitializeData = false;
-            depth->EnableRenderTarget = true;
-            depth->Init();
+            Texture* ssaoDepth = new Texture();
+            ssaoDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            ssaoDepth->Width = viewport->Width;
+            ssaoDepth->Height = viewport->Height;
+            ssaoDepth->Format = eTextureFormat::R32_TYPELESS;
+            ssaoDepth->InitializeData = false;
+            ssaoDepth->EnableRenderTarget = true;
+            ssaoDepth->Init();
 
-            m_Pipeline->RenderTarget = new RenderTarget({ color }, depth, *viewport);
+            m_Pipeline->RenderTarget = new RenderTarget({ ssaoColor }, ssaoDepth, *viewport);
 
             BlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
-
-            context::CreatePipeline(*m_Pipeline);
         }
 
-        SSAOPass::~SSAOPass()
+        void SSAOPass::Update(Scene *scene)
         {
+            // TODO: very strange buffer update. In that case, better to replace CONSTANT buffer with STRUCTURED buffer.
+            void* memory = context::Map(m_Buffer, 0, eMapType::WRITE_DISCARD);
+            memcpy(memory, &m_BufferData, sizeof(SSAOBufferLayout));
+            context::Unmap(m_Buffer);
         }
 
         void SSAOPass::Draw(Scene* scene)

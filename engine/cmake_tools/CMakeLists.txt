@@ -11,6 +11,13 @@ macro(add_engine_configs)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_PATH})
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_PATH})
 
+    set(PHYSX_ROOT_DIR ${CMAKE_SOURCE_DIR}/engine/thirdparty/PhysX/physx)
+    message("PHYSX_ROOT_DIR: " ${PHYSX_ROOT_DIR})
+    set(PX_OUTPUT_LIB_DIR ${LIB_PATH})
+    set(PX_OUTPUT_BIN_DIR ${LIB_PATH})
+    set(NV_USE_STATIC_WINCRT TRUE)
+    set(TARGET_BUILD_PLATFORM "windows")
+
     message(STATUS "Setting configuration types : ${CMAKE_CONFIGURATION_TYPES}")
 
     foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
@@ -30,9 +37,9 @@ endmacro()
 macro(add_engine_definitions)
     add_engine_configs()
     add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
-    if(DEBUG)
-        add_definitions(-DDEBUG=1)
-    endif(DEBUG)
+    add_compile_definitions($<$<CONFIG:Debug>:PX_DEBUG>)
+    add_compile_definitions($<$<CONFIG:Debug>:PX_CHECKED>)
+    add_compile_definitions($<$<CONFIG:Debug>:PX_DEBUG_CRT>)
 endmacro()
 
 # copying target dir to destination dir. If destination does not exist, create it.
@@ -179,6 +186,11 @@ macro(include_engine path)
         ${path}/thirdparty/json/include
         ${path}/thirdparty/openal-soft/include
         ${path}/thirdparty/libsndfile/include
+        ${path}/thirdparty/PhysX/physx/include
+        ${path}/thirdparty/PhysX/blast/include
+        ${path}/thirdparty/PhysX/flow/include
+        ${path}/thirdparty/stbi
+        ${path}/thirdparty/pugixml/src
     )
 endmacro()
 

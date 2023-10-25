@@ -1,26 +1,26 @@
 struct Material {
     // albedo mapping
     float4 Albedo;
-    uint EnableAlbedoMap;
+    bool EnableAlbedoMap;
     // normal mapping
-    uint EnableNormalMap;
+    bool EnableNormalMap;
     // parallax occlusion mapping
-    uint EnableParallaxMap;
+    bool EnableParallaxMap;
     float ParallaxHeightScale;
     float ParallaxMinLayers;
     float ParallaxMaxLayers;
     // metal mapping
     float Metallness;
-    uint EnableMetalMap;
+    bool EnableMetalMap;
     // roughness mapping
     float Roughness;
-    uint EnableRoughnessMap;
+    bool EnableRoughnessMap;
     // ambient occlusion mapping
     float AO;
-    uint EnableAOMap;
+    bool EnableAOMap;
     // emission mapping
     float3 Emission;
-    uint EnableEmissionMap;
+    bool EnableEmissionMap;
 };
 
 StructuredBuffer<Material> Materials : K_SLOT_MATERIALS;
@@ -146,9 +146,4 @@ float3 GetEmission(uint materialIndex, float2 uv, in float gamma) {
         emission = pow(emission, gamma);
     }
     return emission;
-}
-
-bool GetTransparencyEnabled(uint materialIndex)
-{
-    return false;
 }

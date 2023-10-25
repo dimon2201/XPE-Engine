@@ -16,15 +16,15 @@ clazz() = default;                                              \
 clazz(const xpe::core::string& name) { Name = name; }           \
                                                                 \
 
-#define XmlEnum(clazz, ...) \
-NLOHMANN_JSON_SERIALIZE_ENUM(clazz, __VA_ARGS__)
-
 namespace xpe {
 
     namespace res {
 
-        struct ENGINE_API XmlObject
+        class ENGINE_API XmlObject
         {
+
+        public:
+
             xpe::core::string Name;
             xpe::core::vector<XmlObject*> Children;
 
@@ -36,6 +36,10 @@ namespace xpe {
 
         protected:
             pugi::xml_document m_Doc;
+
+        private:
+            void FromXmlChildren(xml& root, xpe::core::vector<XmlObject*>& children);
+            void ToXmlChildren(xml& root, xpe::core::vector<XmlObject*>& children);
         };
 
     }

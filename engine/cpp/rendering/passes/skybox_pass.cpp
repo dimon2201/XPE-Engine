@@ -1,15 +1,13 @@
 #include <rendering/passes/skybox_pass.h>
+#include <rendering/geometry/geometry_manager.h>
 
-#include <ecs/scene.h>
 #include <ecs/globals.h>
 
 namespace xpe {
 
     namespace render {
 
-        SkyboxPass::SkyboxPass(
-                const vector<RenderPassBinding>& bindings
-        ) : RenderPass(bindings)
+        SkyboxPass::SkyboxPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
         {
             m_Cube = GeometryManager::AddGeometry(Cube());
 
@@ -21,7 +19,7 @@ namespace xpe {
 
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
-            
+
             BlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);

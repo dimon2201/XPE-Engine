@@ -11,8 +11,8 @@ namespace xpe {
         {
 
         public:
-            Canvas(s32 width, s32 height, Shader* shader);
-            Canvas(const glm::ivec2& size, Shader* shader);
+            Canvas(s32 width, s32 height, Shader* shader, s32 msaaSampleCount = 1);
+            Canvas(const glm::ivec2& size, Shader* shader, s32 msaaSampleCount = 1);
             ~Canvas();
 
             void Clear(const glm::vec4& color);
@@ -27,6 +27,8 @@ namespace xpe {
             inline glm::vec2 GetDimension() { return { m_ViewportBuffer[m_BoundTargetIndex]->Width, m_ViewportBuffer[m_BoundTargetIndex]->Height }; }
             inline ViewportBuffer* GetBuffer() { return &m_ViewportBuffer; }
             inline Viewport* GetViewport(u32 index) { return GetBuffer()->Get(index); }
+            inline s32 GetMSAA() { return m_MsaaSampleCount; }
+            inline void SetMSAA(s32 msaaSampleCount) { m_MsaaSampleCount = msaaSampleCount; }
 
         private:
             void CreateRenderTarget(int width, int height);
@@ -41,6 +43,7 @@ namespace xpe {
             TextureSampler m_PresentSampler;
             Scope<RenderTarget> m_PresentTarget;
             u32 m_BoundTargetIndex = 0;
+            s32 m_MsaaSampleCount = 1;
         };
 
     }

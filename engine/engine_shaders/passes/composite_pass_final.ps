@@ -14,15 +14,21 @@ Texture2D<float4> AOTexture : register(t1);
 
 PSOut ps_main(VSOut psIn)
 {
-    uint width = 0;
-    uint height = 0;
-    ColorTexture.GetDimensions(width, height);
+    uint colorWidth = 0;
+    uint colorHeight = 0;
+    ColorTexture.GetDimensions(colorWidth, colorHeight);
+
+    float4 color = ColorTexture.Load(int3(psIn.texcoord * float2(colorWidth, colorHeight), 0));
 
     float3 color = ColorTexture.Load(int3(float2(width, height) * psIn.texcoord, 0));
     float3 ao = AOTexture.Load(int3(float2(width, height) * psIn.texcoord, 0));
 
     PSOut psOut;
+<<<<<<<< HEAD:engine/engine_shaders/passes/composite_pass_final.ps
     psOut.color = float4(color, 1.0) * float4(ao, 1.0);
+========
+    psOut.color = color;
+>>>>>>>> main:engine/engine_shaders/passes/merge_pass.ps
 
     return psOut;
 }

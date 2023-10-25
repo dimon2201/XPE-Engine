@@ -1,7 +1,7 @@
 #pragma once
 
 #include <build.h>
-#include <audio/storages/audio_storage.h>
+#include <audio/core/sndfile_context.h>
 
 namespace xpe {
 
@@ -14,12 +14,10 @@ namespace xpe {
 		{
 
 		public:
-			AudioLoader(AudioStorage* audioStorage) : m_Storage(audioStorage) {}
-
 			Ref<AudioFile> Load(const char* filepath);
 
-		protected:
-			AudioStorage* m_Storage = nullptr;
+        private:
+            unordered_map<string, Ref<AudioFile>> m_Map;
 
 		};
 	}

@@ -1,8 +1,6 @@
 #include <rendering/core/blend_mode.h>
 #include <rendering/core/context.hpp>
 
-#include <core/input.h>
-
 namespace xpe {
 
     namespace render {

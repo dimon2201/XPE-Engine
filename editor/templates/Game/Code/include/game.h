@@ -10,7 +10,7 @@ using namespace xpe::io;
 using namespace xpe::math;
 using namespace xpe::gltf;
 
-class GAME_API TemplateGame : public Game
+class GAME_API TemplateGame : public Application
 {
 public:
     TemplateGame() {}

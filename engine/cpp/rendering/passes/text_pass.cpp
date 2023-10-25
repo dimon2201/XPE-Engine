@@ -1,7 +1,6 @@
 #include <rendering/passes/text_pass.h>
 #include <rendering/font/font.hpp>
-
-#include <ecs/scenes.hpp>
+#include <rendering/geometry/geometry_manager.h>
 
 namespace xpe {
 
@@ -9,7 +8,7 @@ namespace xpe {
 
         TextPass::TextPass(const vector<RenderPassBinding>& bindings) : RenderPass(bindings)
         {
-            m_Quad = GeometryManager::AddGeometry<Vertex3D>(Quad());
+            m_Quad = GeometryManager::AddGeometry(Quad());
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);
             m_Pipeline->PrimitiveTopology = m_Quad->PrimitiveTopology;
@@ -22,8 +21,6 @@ namespace xpe {
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
-
-            context::CreatePipeline(*m_Pipeline);
         }
 
         void TextPass::DrawText(const Transform &transform, const string &text, const Ref<Font> &font)

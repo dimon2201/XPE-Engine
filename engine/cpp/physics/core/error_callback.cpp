@@ -4,8 +4,8 @@ namespace xpe {
 
     namespace physics {
 
-        PhysicsErrorCallback::PhysicsErrorCallback(bool enableInfo, bool enableWarning, bool enableError)
-        : EnableInfo(enableInfo), EnableWarning(enableWarning), EnableError(enableError) {}
+        PhysicsErrorCallback::PhysicsErrorCallback(bool enableInfoLog, bool enableWarningLog, bool enableErrorLog)
+        : EnableInfoLog(enableInfoLog), EnableWarningLog(enableWarningLog), EnableErrorLog(enableErrorLog) {}
 
         PhysicsErrorCallback::~PhysicsErrorCallback() {}
 
@@ -23,7 +23,7 @@ namespace xpe {
             bool logWarn = false;
             bool logError = false;
 
-            if (EnableInfo) {
+            if (EnableInfoLog) {
 
                 switch (code) {
 
@@ -46,7 +46,7 @@ namespace xpe {
 
             }
 
-            if (EnableWarning) {
+            if (EnableWarningLog) {
 
                 switch (code) {
 
@@ -64,7 +64,7 @@ namespace xpe {
 
             }
 
-            if (EnableError) {
+            if (EnableErrorLog) {
 
                 switch (code) {
 

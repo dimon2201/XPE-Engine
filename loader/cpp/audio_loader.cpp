@@ -7,17 +7,24 @@ namespace xpe {
 
 		Ref<AudioFile> AudioLoader::Load(const char* filepath)
 		{
-			Ref<AudioFile> fileRef = m_Storage->Add(filepath, AudioFile());
-			AudioFile& file = *fileRef;
+            if (m_Map.find(filepath) != m_Map.end()) {
+                Ref<AudioFile> audioRef;
+                audioRef.Create(*m_Map[filepath]);
+                return audioRef;
+            }
 
-			file.File = sf_open(filepath, SFM_READ, &file.Info);
-			if (!fileRef->File) {
+			Ref<AudioFile> audioRef;
+            audioRef.Create();
+
+            audioRef->File = sf_open(filepath, SFM_READ, &audioRef->Info);
+			if (!audioRef->File) {
 				LogError("Unable to open file {}", filepath);
 			}
 
-			file.Info.format = context::GetFormat(file, file.Info.channels);
+            audioRef->Info.format = context::GetFormat(*audioRef, audioRef->Info.channels);
 
-			return fileRef;
+            m_Map.insert({ filepath, audioRef });
+			return audioRef;
 		}
 
 	}
