@@ -1,7 +1,6 @@
 #include <rendering/render_system.h>
 #include <rendering/passes/render_pass.h>
 #include <rendering/passes/canvas.hpp>
-#include <rendering/monitor.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
 #include <rendering/buffers/shadow_filter_buffer.h>
@@ -18,7 +17,6 @@ namespace xpe {
         {
             context::Init();
             ShaderManager::Init();
-            Monitor::Init();
             GeometryManager::Init();
             MaterialManager::Init();
 
@@ -56,7 +54,6 @@ namespace xpe {
 
             MaterialManager::Free();
             GeometryManager::Free();
-            Monitor::Free();
             ShaderManager::Free();
             context::Free();
         }

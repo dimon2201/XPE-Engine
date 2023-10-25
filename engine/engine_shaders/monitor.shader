@@ -6,7 +6,12 @@ struct MonitorData
 
 StructuredBuffer<MonitorData> Monitors : K_SLOT_MONITOR;
 
-MonitorData Monitor()
+float GetGamma()
 {
-    return Monitors[0];
+    return Monitors[0].Gamma;
+}
+
+float GetExposure()
+{
+    return Monitors[0].Exposure;
 }

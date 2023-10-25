@@ -1,5 +1,7 @@
 #pragma once
 
+#include <rendering/buffers/monitor_buffer.h>
+
 namespace xpe
 {
     namespace core
@@ -91,6 +93,14 @@ namespace xpe
             static void SetFullscreenWindowed();
             static void ToggleWindowMode();
 
+            static void InitMonitor();
+            static void FreeMonitor();
+            static void SetExposure(float exposure);
+            static void SetGamma(float gamma);
+            static float GetExposure();
+            static float GetGamma();
+            static render::MonitorBuffer* GetMonitorBuffer();
+
         private:
             static void CreatePrimaryMonitor();
 
@@ -100,6 +110,7 @@ namespace xpe
             static int s_WindowModeWidth;
             static int s_WindowModeHeight;
             static bool s_EnableFullscreen;
+            static render::MonitorBuffer* s_MonitorBuffer;
         };
 
     }

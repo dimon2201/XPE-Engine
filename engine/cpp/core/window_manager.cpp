@@ -35,6 +35,8 @@ namespace xpe {
 
         bool WindowManager::s_EnableFullscreen = false;
 
+        render::MonitorBuffer* WindowManager::s_MonitorBuffer = nullptr;
+
         void WindowManager::Init() {
             LogInfo("WindowManager::Init()");
 
@@ -234,6 +236,36 @@ namespace xpe {
             glfwWindowHint(GLFW_GREEN_BITS, primary_mode->greenBits);
             glfwWindowHint(GLFW_BLUE_BITS, primary_mode->blueBits);
             glfwWindowHint(GLFW_REFRESH_RATE, primary_mode->refreshRate);
+        }
+
+        void WindowManager::InitMonitor() {
+            s_MonitorBuffer = new render::MonitorBuffer();
+        }
+
+        void WindowManager::FreeMonitor() {
+            delete s_MonitorBuffer;
+        }
+
+        void WindowManager::SetExposure(float exposure) {
+            s_MonitorBuffer->Item.Exposure = exposure;
+            s_MonitorBuffer->Flush();
+        }
+
+        void WindowManager::SetGamma(float gamma) {
+            s_MonitorBuffer->Item.Gamma = gamma;
+            s_MonitorBuffer->Flush();
+        }
+
+        float WindowManager::GetExposure() {
+            return s_MonitorBuffer->Item.Exposure;
+        }
+
+        float WindowManager::GetGamma() {
+            return s_MonitorBuffer->Item.Gamma;
+        }
+
+        render::MonitorBuffer* WindowManager::GetMonitorBuffer() {
+            return s_MonitorBuffer;
         }
 
     }

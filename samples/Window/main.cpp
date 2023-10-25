@@ -11,8 +11,6 @@
 #include <anim_loader.h>
 #include <audio_loader.h>
 
-#include <rendering/monitor.h>
-
 #include "test_config.h"
 
 using namespace xpe::core;
@@ -590,14 +588,14 @@ private:
         auto& text2D = m_Text2D->GetComponent<Text2DComponent>("Text2D")->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
-                 "\nExposure: " + std::to_string(Monitor::Get().Exposure);
+                 "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
+                 "\nExposure: " + std::to_string(WindowManager::GetExposure());
 
         auto& text3D = m_Text3D->GetComponent<Text3DComponent>("Text3D")->Text;
         text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(Monitor::Get().Gamma) +
-                 "\nExposure: " + std::to_string(Monitor::Get().Exposure);
+                 "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
+                 "\nExposure: " + std::to_string(WindowManager::GetExposure());
     }
 
 private:

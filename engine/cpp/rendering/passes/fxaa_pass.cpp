@@ -1,5 +1,5 @@
 #include <rendering/passes/fxaa_pass.hpp>
-#include <ecs/scenes.hpp>
+#include <rendering/core/context.hpp>
 
 namespace xpe
 {
