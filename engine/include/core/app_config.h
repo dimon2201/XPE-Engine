@@ -24,7 +24,8 @@ namespace xpe {
                 FPS,
                 LogTimeDelaySeconds,
                 LockOnFps,
-                HotReloadShaders
+                HotReloadShaders,
+                MsaaSampleCount
             )
 
             string WinTitle;
@@ -50,6 +51,8 @@ namespace xpe {
             bool LockOnFps = true;
 
             bool HotReloadShaders = true;
+
+            u32 MsaaSampleCount = 1;
         };
 
     }

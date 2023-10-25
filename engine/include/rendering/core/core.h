@@ -10,7 +10,6 @@ namespace xpe {
         {
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
-            void* NullInstance = nullptr; // immutable field and MUST BE always NULL
         };
 
         enum class eMapType

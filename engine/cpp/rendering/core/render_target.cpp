@@ -111,7 +111,7 @@ namespace xpe {
         void RenderTarget::Init()
         {
             context::CreateRenderTarget(*this);
-            AddWindowFrameResized(RenderTarget, 1);
+            SubscribeEvents();
         }
 
         void RenderTarget::Resize(s32 width, s32 height)
@@ -147,6 +147,16 @@ namespace xpe {
         void RenderTarget::ClearDepth(const float depth)
         {
             context::ClearDepthTarget(DepthStencilView, depth);
+        }
+
+        void RenderTarget::SubscribeEvents()
+        {
+            AddWindowFrameResized(RenderTarget, 1);
+        }
+
+        void RenderTarget::UnsubscribeEvents()
+        {
+            RemoveWindowFrameResized();
         }
 
     }

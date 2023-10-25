@@ -290,7 +290,7 @@ public:
         // setup cube
         {
             m_Cube = new Entity("Cube", m_MainScene);
-            m_Cube->Transform.Position = {10, -10, 10 };
+            m_Cube->Transform.Position = { 10, -10, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
             m_Cube->AddComponent<GeometryComponent>("G_Cube", GeometryManager::AddGeometry(Cube()));
             m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::Add("MT_Cube", Material()));

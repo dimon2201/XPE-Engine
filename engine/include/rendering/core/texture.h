@@ -112,7 +112,7 @@ namespace xpe {
             s32 Depth = 1;
             s32 Channels;
             eTextureFormat Format;
-            s32 SampleCount = 1;
+            u32 SampleCount = 1;
 
             bool EnableRenderTarget = false;
 

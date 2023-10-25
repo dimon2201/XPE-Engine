@@ -8,7 +8,7 @@ namespace xpe {
         {
             for (const auto& attribute : attributes)
             {
-                Stride += (u32) attribute.Format;
+                Stride += attribute.ByteSize;
             }
         }
 

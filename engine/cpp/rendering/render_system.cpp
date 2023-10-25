@@ -1,13 +1,8 @@
 #include <rendering/render_system.h>
-#include <rendering/passes/render_pass.h>
-#include <rendering/passes/canvas.hpp>
-#include <rendering/buffers/camera_buffer.h>
-#include <rendering/buffers/light_buffers.h>
-#include <rendering/buffers/shadow_filter_buffer.h>
 #include <rendering/material/material_manager.h>
 #include <rendering/geometry/geometry_manager.h>
 
-#include <ecs/scenes.hpp>
+#include <ecs/components.hpp>
 
 namespace xpe {
 
@@ -58,12 +53,8 @@ namespace xpe {
             context::Free();
         }
 
-        void RenderSystem::InitRenderTargets(render::Canvas* canvas)
+        void RenderSystem::InitRenderTargets(Viewport* viewport, u32 sampleCount)
         {
-            m_Canvas = canvas;
-            Viewport* viewport = canvas->GetViewport(0);
-            s32 msaaSampleCount = canvas->GetMSAA();
-            bool useMSAA = msaaSampleCount > 1;
             // Shared depth texture for opaque and transparent render targets
             m_SharedDepthTexture = new Texture();
             m_SharedDepthTexture->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
@@ -72,7 +63,7 @@ namespace xpe {
             m_SharedDepthTexture->Format = eTextureFormat::R32_TYPELESS;
             m_SharedDepthTexture->InitializeData = false;
             m_SharedDepthTexture->EnableRenderTarget = true;
-            m_SharedDepthTexture->SampleCount = useMSAA ? msaaSampleCount : 1;
+            m_SharedDepthTexture->SampleCount = sampleCount;
             m_SharedDepthTexture->Init();
 
             // Opaque render target
@@ -82,7 +73,7 @@ namespace xpe {
             mainColor->Format = eTextureFormat::RGBA8;
             mainColor->InitializeData = false;
             mainColor->EnableRenderTarget = true;
-            mainColor->SampleCount = useMSAA ? msaaSampleCount : 1;
+            mainColor->SampleCount = sampleCount;
             mainColor->Init();
 
             Texture* mainPosition = new Texture();
@@ -91,7 +82,7 @@ namespace xpe {
             mainPosition->Format = eTextureFormat::RGBA32;
             mainPosition->InitializeData = false;
             mainPosition->EnableRenderTarget = true;
-            mainPosition->SampleCount = useMSAA ? msaaSampleCount : 1;
+            mainPosition->SampleCount = sampleCount;
             mainPosition->Init();
 
             Texture* mainNormal = new Texture();
@@ -100,7 +91,7 @@ namespace xpe {
             mainNormal->Format = eTextureFormat::RGBA16;
             mainNormal->InitializeData = false;
             mainNormal->EnableRenderTarget = true;
-            mainNormal->SampleCount = useMSAA ? msaaSampleCount : 1;
+            mainNormal->SampleCount = sampleCount;
             mainNormal->Init();
 
             m_OpaqueRenderTarget = new RenderTarget({ mainColor, mainPosition, mainNormal }, m_SharedDepthTexture, *viewport);
@@ -112,7 +103,7 @@ namespace xpe {
             mainAccum->Format = eTextureFormat::RGBA16;
             mainAccum->InitializeData = false;
             mainAccum->EnableRenderTarget = true;
-            mainAccum->SampleCount = useMSAA ? msaaSampleCount : 1;
+            mainAccum->SampleCount = sampleCount;
             mainAccum->Init();
 
             Texture* mainReveal = new Texture();
@@ -121,7 +112,7 @@ namespace xpe {
             mainReveal->Format = eTextureFormat::R8;
             mainReveal->InitializeData = false;
             mainReveal->EnableRenderTarget = true;
-            mainReveal->SampleCount = useMSAA ? msaaSampleCount : 1;
+            mainReveal->SampleCount = sampleCount;
             mainReveal->Init();
 
             m_TransparentRenderTarget = new RenderTarget({ mainAccum, mainReveal }, m_SharedDepthTexture, *viewport);

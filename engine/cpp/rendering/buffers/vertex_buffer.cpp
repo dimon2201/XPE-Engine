@@ -7,7 +7,7 @@ namespace xpe {
         VertexBuffer::VertexBuffer(const usize vertexCount)
         {
             Type = eBufferType::VERTEX;
-            StructureSize = sizeof(T);
+            StructureSize = sizeof(Vertex);
             NumElements = vertexCount;
             List.resize(vertexCount);
             InitialData = List.data();
@@ -17,7 +17,7 @@ namespace xpe {
         VertexBuffer::VertexBuffer(const vector<Vertex>& vertexArray) : List(vertexArray)
         {
             Type = eBufferType::VERTEX;
-            StructureSize = sizeof(T);
+            StructureSize = sizeof(Vertex);
             NumElements = vertexArray.size();
             InitialData = List.data();
             context::CreateBuffer(*this);
@@ -62,7 +62,7 @@ namespace xpe {
         {
             Type = eBufferType::VERTEX;
             NumElements = vertexCount;
-            StructureSize = sizeof(T);
+            StructureSize = sizeof(Vertex);
             InitialData = List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
@@ -88,7 +88,7 @@ namespace xpe {
         {
             usize vertexOffset = List.size();
             List.resize(List.size() + vertices.size());
-            memcpy(&List[vertexOffset], vertices.data(), vertices.size() * sizeof(T));
+            memcpy(&List[vertexOffset], vertices.data(), vertices.size() * sizeof(Vertex));
             return vertexOffset;
         }
 

@@ -182,7 +182,7 @@ namespace xpe {
             RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
 
-            m_RenderSystem->InitRenderTargets(m_Canvas);
+            m_RenderSystem->InitRenderTargets(canvasViewport, Config.MsaaSampleCount);
 
             RenderTarget* opaqueRT = m_RenderSystem->GetOpaqueRT();
             RenderTarget* transparentRT = m_RenderSystem->GetTransparentRT();
@@ -198,11 +198,11 @@ namespace xpe {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
                     { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
                     { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                    { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "m_SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                     { "MonitorBuffer", RenderPassBinding::eType::BUFFER, WindowManager::GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
                 m_RenderSystem->AddRenderPass<MainPass>(RenderPass::eType::OPAQUE, bindings);
@@ -219,11 +219,11 @@ namespace xpe {
                         { "Shader", RenderPassBinding::eType::SHADER, shader },
                         { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, transparentRT },
                         { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                        { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                        { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                        { "m_SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "MonitorBuffer", RenderPassBinding::eType::BUFFER, WindowManager::GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                        { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
                 m_RenderSystem->AddRenderPass<MainPass>(RenderPass::eType::TRANSPARENT, bindings);
@@ -240,11 +240,11 @@ namespace xpe {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
                     { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
                     { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                    { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "m_SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                     { "MonitorBuffer", RenderPassBinding::eType::BUFFER, WindowManager::GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
                 m_RenderSystem->AddRenderPass<SkeletalAnimPass>(RenderPass::eType::OPAQUE, bindings);
@@ -261,11 +261,11 @@ namespace xpe {
                         { "Shader", RenderPassBinding::eType::SHADER, shader },
                         { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, transparentRT },
                         { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
-                        { "m_DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                        { "m_PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "DirectLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "m_SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "MonitorBuffer", RenderPassBinding::eType::BUFFER, WindowManager::GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                        { "m_ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
                 };
 
                 m_RenderSystem->AddRenderPass<SkeletalAnimPass>(RenderPass::eType::TRANSPARENT, bindings);

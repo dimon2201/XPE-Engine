@@ -13,6 +13,17 @@
 
 #define AddScrollChanged(clazz, priority) xpe::core::InputManager::ScrollChangedEvents->AddEvent(this, xpe::core::OnScrollChanged<clazz>, priority)
 
+#define RemoveWindowClose() xpe::core::InputManager::WindowClosedEvents->RemoveEvent(this)
+#define RemoveWindowFrameResized() xpe::core::InputManager::WindowFrameResizedEvents->RemoveEvent(this)
+
+#define RemoveKeyPressed() xpe::core::InputManager::KeyPressedEvents->RemoveEvent(this)
+#define RemoveKeyRelease() xpe::core::InputManager::KeyReleasedEvents->RemoveEvent(this)
+#define RemoveKeyHold() xpe::core::InputManager::KeyHoldEvents->RemoveEvent(this)
+
+#define RemoveCursorMove() xpe::core::InputManager::CursorMovedEvents->RemoveEvent(this)
+
+#define RemoveScrollChanged() xpe::core::InputManager::ScrollChangedEvents->RemoveEvent(this)
+
 namespace xpe {
 
     namespace core {

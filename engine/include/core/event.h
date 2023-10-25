@@ -109,8 +109,8 @@ namespace xpe {
             usize size = m_Events.size();
             for (int i = 0 ; i < size ; i++) {
                 auto& event = m_Events[i];
-                if (_this == event->This) {
-                    m_Events.erase(event);
+                if (_this == event.This) {
+                    m_Events.erase(m_Events.begin() + i);
                     break;
                 }
             }

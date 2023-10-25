@@ -1,6 +1,9 @@
 #pragma once
 
+#include <rendering/core/texture.h>
 #include <rendering/passes/render_pass.h>
+#include <rendering/buffers/camera_buffer.h>
+#include <rendering/buffers/light_buffers.h>
 #include <rendering/buffers/shadow_filter_buffer.h>
 
 namespace xpe {
@@ -9,16 +12,6 @@ namespace xpe {
 
         using namespace core;
         using namespace ecs;
-
-        class Canvas;
-        class RenderTarget;
-        class RenderPass;
-        class CameraBuffer;
-        class DirectLightBuffer;
-        class PointLightBuffer;
-        class SpotLightBuffer;
-        class Texture;
-        class TextureSampler;
 
         class ENGINE_API RenderSystem : public System
         {
@@ -35,11 +28,9 @@ namespace xpe {
 
             void Update(Scene* scene, const Time& dt) override final;
 
-            void InitRenderTargets(render::Canvas* canvas);
+            void InitRenderTargets(Viewport* viewport, u32 sampleCount);
 
             void Prepare();
-
-            inline Canvas* GetCanvas() { return m_Canvas; }
 
             inline CameraBuffer* GetCameraBuffer() { return m_CameraBuffer; }
 
@@ -63,8 +54,6 @@ namespace xpe {
             vector<RenderPass*> m_OpaqueRenderPasses;
             vector<RenderPass*> m_TransparentRenderPasses;
             vector<RenderPass*> m_PostFXRenderPasses;
-
-            render::Canvas* m_Canvas;
 
             render::CameraBuffer* m_CameraBuffer;
 

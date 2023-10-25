@@ -13,38 +13,39 @@ namespace xpe {
             struct ENGINE_API Attribute final
             {
 
-                enum class eFormat : u32
+                enum class eType
                 {
 
-                    FLOAT = 4,      // 4 bytes
-                    BOOL = 4,       // 4 bytes
-                    INT = 4,        // 4 bytes
-                    UINT = 4,       // 4 bytes
+                    FLOAT,          // 4 bytes
+                    BOOL,           // 4 bytes
+                    INT,            // 4 bytes
+                    UINT,           // 4 bytes
 
-                    VEC2_FLOAT = 8,     // 8 bytes
-                    VEC2_UINT = 8,    // 8 bytes
-                    VEC2_INT = 8,       // 8 bytes
-                    VEC2_TYPELESS = 8,  // 8 bytes
+                    VEC2_FLOAT,     // 8 bytes
+                    VEC2_UINT,      // 8 bytes
+                    VEC2_INT,       // 8 bytes
+                    VEC2_TYPELESS,  // 8 bytes
 
-                    VEC3_FLOAT = 12,     // 12 bytes
-                    VEC3_UINT = 12,      // 12 bytes
-                    VEC3_INT = 12,       // 12 bytes
-                    VEC3_TYPELESS = 12,  // 12 bytes
+                    VEC3_FLOAT,     // 12 bytes
+                    VEC3_UINT,      // 12 bytes
+                    VEC3_INT,       // 12 bytes
+                    VEC3_TYPELESS,  // 12 bytes
 
-                    VEC4_FLOAT = 16,     // 16 bytes
-                    VEC4_UINT = 16,      // 16 bytes
-                    VEC4_INT = 16,       // 16 bytes
-                    VEC4_TYPELESS = 16,  // 16 bytes
+                    VEC4_FLOAT,     // 16 bytes
+                    VEC4_UINT,      // 16 bytes
+                    VEC4_INT,       // 16 bytes
+                    VEC4_TYPELESS,  // 16 bytes
 
-                    MAT2X2 = 16,    // 16 bytes
-                    MAT3X3 = 36,    // 36 bytes
-                    MAT4X4 = 64,    // 64 bytes
+                    MAT2X2,         // 16 bytes
+                    MAT3X3,         // 36 bytes
+                    MAT4X4,         // 64 bytes
 
                 };
 
                 u32 Location = 0;
                 const char* Name = nullptr;
-                eFormat Format;
+                eType Format;
+                u8 ByteSize = 0;
 
             };
 
@@ -59,13 +60,12 @@ namespace xpe {
         // define here any custom attributes that you want to use in your vertex shader
         struct ENGINE_API Attributes final
         {
-            static constexpr VertexFormat::Attribute POS = { 0, "XPE_POSITION", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
-            static constexpr VertexFormat::Attribute UV = { 1, "XPE_UV", VertexFormat::Attribute::eFormat::VEC2_FLOAT };
-            static constexpr VertexFormat::Attribute NORMAL = { 2, "XPE_NORMAL", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
-            static constexpr VertexFormat::Attribute TANGENT = { 3, "XPE_TANGENT", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
-            static constexpr VertexFormat::Attribute BITANGENT = { 4, "XPE_BITANGENT", VertexFormat::Attribute::eFormat::VEC3_FLOAT };
-            static constexpr VertexFormat::Attribute BONE_IDS = { 5, "XPE_BONE_IDS", VertexFormat::Attribute::eFormat::VEC4_INT };
-            static constexpr VertexFormat::Attribute BONE_WEIGHTS = { 6, "XPE_BONE_WEIGHTS", VertexFormat::Attribute::eFormat::VEC4_FLOAT };
+            static constexpr VertexFormat::Attribute POS = { 0, "XPE_POSITION", VertexFormat::Attribute::eType::VEC3_FLOAT, 12 };
+            static constexpr VertexFormat::Attribute UV = { 1, "XPE_UV", VertexFormat::Attribute::eType::VEC2_FLOAT, 8 };
+            static constexpr VertexFormat::Attribute NORMAL = { 2, "XPE_NORMAL", VertexFormat::Attribute::eType::VEC3_FLOAT, 12 };
+            static constexpr VertexFormat::Attribute TANGENT = { 3, "XPE_TANGENT", VertexFormat::Attribute::eType::VEC3_FLOAT, 12 };
+            static constexpr VertexFormat::Attribute BONE_IDS = { 4, "XPE_BONE_IDS", VertexFormat::Attribute::eType::VEC4_INT, 16 };
+            static constexpr VertexFormat::Attribute BONE_WEIGHTS = { 5, "XPE_BONE_WEIGHTS", VertexFormat::Attribute::eType::VEC4_FLOAT, 16 };
         };
 
         struct ENGINE_API Vertex final

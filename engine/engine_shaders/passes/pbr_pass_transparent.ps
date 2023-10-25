@@ -43,11 +43,11 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
 
     UV = GetParallax(psIn.materialIndex, psIn.uv);
 
-    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv, Monitor().Gamma);
+    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv, GetGamma());
     float metallness = GetMetallness(psIn.materialIndex, psIn.uv);
     float roughness = GetRoughness(psIn.materialIndex, psIn.uv);
     float ao = GetAO(psIn.materialIndex, psIn.uv);
-    float3 emission = GetEmission(psIn.materialIndex, psIn.uv, Monitor().Gamma);
+    float3 emission = GetEmission(psIn.materialIndex, psIn.uv, GetGamma());
 
     // PBR with light sources
     float3 Lo = float3(0, 0, 0);

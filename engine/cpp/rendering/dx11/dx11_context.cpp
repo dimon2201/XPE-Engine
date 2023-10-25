@@ -100,27 +100,27 @@ namespace xpe {
                     { TextureSampler::eAddress::MIRROR_ONCE, D3D11_TEXTURE_ADDRESS_MIRROR_ONCE }
             };
 
-            static const std::unordered_map<VertexFormat::Attribute::eFormat, DXGI_FORMAT> p_VertexFormatTable =
+            static const std::unordered_map<VertexFormat::Attribute::eType, DXGI_FORMAT> p_VertexFormatTable =
             {
-                    { VertexFormat::Attribute::eFormat::BOOL, DXGI_FORMAT_R32_UINT },
-                    { VertexFormat::Attribute::eFormat::INT, DXGI_FORMAT_R32_SINT },
-                    { VertexFormat::Attribute::eFormat::UINT, DXGI_FORMAT_R32_UINT },
-                    { VertexFormat::Attribute::eFormat::FLOAT, DXGI_FORMAT_R32_FLOAT },
+                    { VertexFormat::Attribute::eType::BOOL,          DXGI_FORMAT_R32_UINT },
+                    { VertexFormat::Attribute::eType::INT,           DXGI_FORMAT_R32_SINT },
+                    { VertexFormat::Attribute::eType::UINT,          DXGI_FORMAT_R32_UINT },
+                    { VertexFormat::Attribute::eType::FLOAT,         DXGI_FORMAT_R32_FLOAT },
 
-                    { VertexFormat::Attribute::eFormat::VEC2_FLOAT, DXGI_FORMAT_R32G32_FLOAT },
-                    { VertexFormat::Attribute::eFormat::VEC2_UINT, DXGI_FORMAT_R32G32_UINT },
-                    { VertexFormat::Attribute::eFormat::VEC2_INT, DXGI_FORMAT_R32G32_SINT },
-                    { VertexFormat::Attribute::eFormat::VEC2_TYPELESS, DXGI_FORMAT_R32G32_TYPELESS },
+                    { VertexFormat::Attribute::eType::VEC2_FLOAT,    DXGI_FORMAT_R32G32_FLOAT },
+                    { VertexFormat::Attribute::eType::VEC2_UINT,     DXGI_FORMAT_R32G32_UINT },
+                    { VertexFormat::Attribute::eType::VEC2_INT,      DXGI_FORMAT_R32G32_SINT },
+                    { VertexFormat::Attribute::eType::VEC2_TYPELESS, DXGI_FORMAT_R32G32_TYPELESS },
 
-                    { VertexFormat::Attribute::eFormat::VEC3_FLOAT, DXGI_FORMAT_R32G32B32_FLOAT },
-                    { VertexFormat::Attribute::eFormat::VEC3_UINT, DXGI_FORMAT_R32G32B32_UINT },
-                    { VertexFormat::Attribute::eFormat::VEC3_INT, DXGI_FORMAT_R32G32B32_SINT },
-                    { VertexFormat::Attribute::eFormat::VEC3_TYPELESS, DXGI_FORMAT_R32G32B32_TYPELESS },
+                    { VertexFormat::Attribute::eType::VEC3_FLOAT,    DXGI_FORMAT_R32G32B32_FLOAT },
+                    { VertexFormat::Attribute::eType::VEC3_UINT,     DXGI_FORMAT_R32G32B32_UINT },
+                    { VertexFormat::Attribute::eType::VEC3_INT,      DXGI_FORMAT_R32G32B32_SINT },
+                    { VertexFormat::Attribute::eType::VEC3_TYPELESS, DXGI_FORMAT_R32G32B32_TYPELESS },
 
-                    { VertexFormat::Attribute::eFormat::VEC4_FLOAT, DXGI_FORMAT_R32G32B32A32_FLOAT },
-                    { VertexFormat::Attribute::eFormat::VEC4_UINT, DXGI_FORMAT_R32G32B32A32_UINT },
-                    { VertexFormat::Attribute::eFormat::VEC4_INT, DXGI_FORMAT_R32G32B32A32_SINT },
-                    { VertexFormat::Attribute::eFormat::VEC4_TYPELESS, DXGI_FORMAT_R32G32B32A32_TYPELESS },
+                    { VertexFormat::Attribute::eType::VEC4_FLOAT,    DXGI_FORMAT_R32G32B32A32_FLOAT },
+                    { VertexFormat::Attribute::eType::VEC4_UINT,     DXGI_FORMAT_R32G32B32A32_UINT },
+                    { VertexFormat::Attribute::eType::VEC4_INT,      DXGI_FORMAT_R32G32B32A32_SINT },
+                    { VertexFormat::Attribute::eType::VEC4_TYPELESS, DXGI_FORMAT_R32G32B32A32_TYPELESS },
             };
 
             static const std::unordered_map<ePrimitiveTopology, D3D11_PRIMITIVE_TOPOLOGY> s_PrimitiveTopologyTable =
@@ -961,7 +961,8 @@ namespace xpe {
 
             void UnbindTexture(const Texture& texture)
             {
-                s_ImmContext->PSSetShaderResources(texture.Slot, 1, (ID3D11ShaderResourceView**)&texture.NullInstance);
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->PSSetShaderResources(texture.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
                 LogDebugMessage();
             }
 
@@ -1045,7 +1046,8 @@ namespace xpe {
 
             void UnbindSampler(const TextureSampler& sampler)
             {
-                s_ImmContext->PSSetSamplers(sampler.Slot, 1, (ID3D11SamplerState**)&sampler.NullInstance);
+                static ID3D11SamplerState* nullInstance = nullptr;
+                s_ImmContext->PSSetSamplers(sampler.Slot, 1, (ID3D11SamplerState**)&nullInstance);
                 LogDebugMessage();
             }
 
@@ -1146,14 +1148,17 @@ namespace xpe {
 
             void UnbindVSBuffer(const Buffer& buffer)
             {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+
                 if (buffer.Type == eBufferType::STRUCTURED)
                 {
-                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.NullInstance);
+                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
                     LogDebugMessage();
                 }
+
                 else if (buffer.Type == eBufferType::CONSTANT)
                 {
-                    s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.NullInstance);
+                    s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
                     LogDebugMessage();
                 }
             }
@@ -1174,14 +1179,17 @@ namespace xpe {
 
             void UnbindPSBuffer(const Buffer& buffer)
             {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+
                 if (buffer.Type == eBufferType::STRUCTURED)
                 {
-                    s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.NullInstance);
+                    s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
                     LogDebugMessage();
                 }
+
                 else if (buffer.Type == eBufferType::CONSTANT)
                 {
-                    s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.NullInstance);
+                    s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
                     LogDebugMessage();
                 }
             }
@@ -1239,7 +1247,7 @@ namespace xpe {
                     dxAttribute.AlignedByteOffset = attributeOffset;
                     dxAttribute.InstanceDataStepRate = D3D11_INPUT_PER_VERTEX_DATA;
 
-                    attributeOffset += (u32) attribute.Format;
+                    attributeOffset += attribute.ByteSize;
                 }
 
                 s_Device->CreateInputLayout(

@@ -40,6 +40,9 @@ namespace xpe {
             void ClearColor(u32 index, const glm::vec4& color);
             void ClearDepth(const float depth);
 
+            void SubscribeEvents();
+            void UnsubscribeEvents();
+
         private:
             void Init();
         };

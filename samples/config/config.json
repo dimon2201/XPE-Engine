@@ -21,7 +21,9 @@
     "LockOnFps": false,
     "LogTimeDelaySeconds": 5,
 
-    "HotReloadShaders": true
+    "HotReloadShaders": true,
+
+    "MsaaSampleCount": 1
   }
 
 }
