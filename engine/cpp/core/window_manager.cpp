@@ -238,12 +238,8 @@ namespace xpe {
             glfwWindowHint(GLFW_REFRESH_RATE, primary_mode->refreshRate);
         }
 
-        void WindowManager::InitMonitor() {
-            s_MonitorBuffer = new render::MonitorBuffer();
-        }
-
-        void WindowManager::FreeMonitor() {
-            delete s_MonitorBuffer;
+        void WindowManager::SetMonitorBuffer(render::MonitorBuffer *monitorBuffer) {
+            s_MonitorBuffer = monitorBuffer;
         }
 
         void WindowManager::SetExposure(float exposure) {
@@ -262,10 +258,6 @@ namespace xpe {
 
         float WindowManager::GetGamma() {
             return s_MonitorBuffer->Item.Gamma;
-        }
-
-        render::MonitorBuffer* WindowManager::GetMonitorBuffer() {
-            return s_MonitorBuffer;
         }
 
     }

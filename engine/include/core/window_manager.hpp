@@ -93,13 +93,11 @@ namespace xpe
             static void SetFullscreenWindowed();
             static void ToggleWindowMode();
 
-            static void InitMonitor();
-            static void FreeMonitor();
+            static void SetMonitorBuffer(render::MonitorBuffer* monitorBuffer);
             static void SetExposure(float exposure);
             static void SetGamma(float gamma);
             static float GetExposure();
             static float GetGamma();
-            static render::MonitorBuffer* GetMonitorBuffer();
 
         private:
             static void CreatePrimaryMonitor();

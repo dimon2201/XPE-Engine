@@ -2,6 +2,7 @@
 
 #include <rendering/core/texture.h>
 #include <rendering/passes/render_pass.h>
+#include <rendering/buffers/monitor_buffer.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
 #include <rendering/buffers/shadow_filter_buffer.h>
@@ -32,6 +33,8 @@ namespace xpe {
 
             void Prepare();
 
+            inline MonitorBuffer* GetMonitorBuffer() { return m_MonitorBuffer; }
+
             inline CameraBuffer* GetCameraBuffer() { return m_CameraBuffer; }
 
             inline DirectLightBuffer* GetDirectLightBuffer() { return m_DirectLightBuffer; }
@@ -54,6 +57,8 @@ namespace xpe {
             vector<RenderPass*> m_OpaqueRenderPasses;
             vector<RenderPass*> m_TransparentRenderPasses;
             vector<RenderPass*> m_PostFXRenderPasses;
+
+            render::MonitorBuffer* m_MonitorBuffer;
 
             render::CameraBuffer* m_CameraBuffer;
 

@@ -15,27 +15,31 @@ namespace xpe {
             GeometryManager::Init();
             MaterialManager::Init();
 
-            m_CameraBuffer = new render::CameraBuffer();
+            m_MonitorBuffer = new MonitorBuffer();
 
-            m_DirectLightBuffer = new render::DirectLightBuffer();
+            m_CameraBuffer = new CameraBuffer();
+
+            m_DirectLightBuffer = new DirectLightBuffer();
             m_DirectLightBuffer->Reserve(1000);
 
-            m_PointLightBuffer = new render::PointLightBuffer();
+            m_PointLightBuffer = new PointLightBuffer();
             m_PointLightBuffer->Reserve(1000);
 
-            m_SpotLightBuffer = new render::SpotLightBuffer();
+            m_SpotLightBuffer = new SpotLightBuffer();
             m_SpotLightBuffer->Reserve(1000);
 
             m_ShadowSampler = new TextureSampler();
             m_ShadowMap = new Texture();
             m_ShadowCoords = new Texture();
-            m_ShadowFilterBuffer = new render::ShadowFilterBuffer();
+            m_ShadowFilterBuffer = new ShadowFilterBuffer();
 
             m_TransparentRenderPasses.reserve(2);
         }
 
         RenderSystem::~RenderSystem()
         {
+            delete m_MonitorBuffer;
+
             delete m_CameraBuffer;
 
             delete m_DirectLightBuffer;
