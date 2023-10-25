@@ -24,11 +24,7 @@ PSOut ps_main(VSOut psIn)
     float3 ao = AOTexture.Load(int3(float2(width, height) * psIn.texcoord, 0));
 
     PSOut psOut;
-<<<<<<<< HEAD:engine/engine_shaders/passes/composite_pass_final.ps
     psOut.color = float4(color, 1.0) * float4(ao, 1.0);
-========
-    psOut.color = color;
->>>>>>>> main:engine/engine_shaders/passes/merge_pass.ps
 
     return psOut;
 }
