@@ -313,13 +313,15 @@ namespace xpe {
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->Colors[1], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->Colors[2], RenderPassBinding::eStage::PIXEL, 1 },
-                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
+                    { "PositionTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[1], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "NormalTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[2], RenderPassBinding::eStage::PIXEL, 1 },
+                    { "DepthTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
                 m_SsaoPass = m_RenderSystem->AddRenderPass<SSAOPass>(bindings, canvasViewport);
             }
+
+            RenderTarget* ssaoRT = m_SsaoPass->GetRenderTarget();
 
             // SSAO Merge pass
             {
@@ -331,8 +333,8 @@ namespace xpe {
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
                     { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, canvasRT },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetOpaqueRT()->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SsaoPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 2 }
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, ssaoRT->Colors[0], RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
                 m_RenderSystem->AddRenderPass<MergePass>(bindings);
