@@ -186,7 +186,7 @@ public:
             m_Goblin4->Transform.Rotation = {0, 0, 0 };
             m_Goblin4->Transform.Scale = {5, 5, 5 };
 
-            auto* goblinModel = m_Goblin1->AddComponent<SkinModelComponent>(
+            auto* goblinModel = m_Goblin1->AddComponent<SkeletonModelComponent>(
                 "GoblinModel",
                 m_ModelLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
                 m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),

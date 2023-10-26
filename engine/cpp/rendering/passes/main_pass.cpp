@@ -126,7 +126,7 @@ namespace xpe {
 
                 scene->EachComponent<GeometryComponent>([this, &lightMatrix](GeometryComponent* component)
                 {
-                    if (!component->EmbeddedShadow && component->Visible && component->Geometry.Get() != nullptr) {
+                    if (component->CastShadow && component->Visible && component->Geometry.Get() != nullptr) {
                         auto& geometry = *component->Geometry;
                         DrawInstanced(
                                 geometry.PrimitiveTopology,
@@ -152,7 +152,7 @@ namespace xpe {
 
                 scene->EachComponent<GeometryComponent>([this, &lightMatrix](GeometryComponent* component)
                 {
-                    if (!component->EmbeddedShadow && component->Visible && component->Geometry.Get() != nullptr) {
+                    if (component->CastShadow && component->Visible && component->Geometry.Get() != nullptr) {
                         auto& geometry = *component->Geometry;
                         DrawInstanced(
                                 geometry.PrimitiveTopology,
@@ -178,7 +178,7 @@ namespace xpe {
 
                 scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (!component->EmbeddedShadow && component->Visible && component->Model.Get() != nullptr) {
+                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
                          auto& model = *component->Model;
                          DrawInstanced(
                                  model.PrimitiveTopology,
@@ -204,7 +204,7 @@ namespace xpe {
 
                 scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (!component->EmbeddedShadow && component->Visible && component->Model.Get() != nullptr) {
+                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
                          auto& model = *component->Model;
                          DrawInstanced(
                                  model.PrimitiveTopology,

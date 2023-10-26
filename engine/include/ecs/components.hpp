@@ -161,9 +161,9 @@ namespace xpe
         {
             bool Transparent = false;    // switch to transparency, that will draw object in transparent passes
             bool Visible = true;         // switch visibility, that will draw or not draw object
-            bool EmbeddedShadow = false; // switch to embedded shadow, that casts shadow only once and doesn't update
+            bool CastShadow = true;      // switch shadow casting, that will draw or not draw shadow of object
         };
-        Json(RenderState, Transparent, Visible, EmbeddedShadow)
+        Json(RenderState, Transparent, Visible, CastShadow)
 
         struct ENGINE_API GeometryComponent : Component, RenderState
         {
@@ -193,17 +193,17 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SkinModelComponent : Component, RenderState
+        struct ENGINE_API SkeletonModelComponent : Component, RenderState
         {
             Ref<render::Model> Model;
             Ref<anim::Skeleton> Skeleton;
             vector<ecs::Entity*> Entities;
 
-            SkinModelComponent(const string& tag, const Ref<render::Model>& model, const Ref<anim::Skeleton>& skeleton, const vector<ecs::Entity*>& entities = {})
+            SkeletonModelComponent(const string& tag, const Ref<render::Model>& model, const Ref<anim::Skeleton>& skeleton, const vector<ecs::Entity*>& entities = {})
             : Component(tag), Model(model), Skeleton(skeleton), Entities(entities) {}
 
             JsonClass(
-                SkinModelComponent,
+                SkeletonModelComponent,
                 m_Tag
             )
         };

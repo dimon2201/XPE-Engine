@@ -25,7 +25,7 @@ namespace xpe {
 
         void SkeletonPass::DrawOpaque(Scene *scene)
         {
-            scene->EachComponent<SkinModelComponent>([this](SkinModelComponent* component)
+            scene->EachComponent<SkeletonModelComponent>([this](SkeletonModelComponent* component)
             {
                  if (!component->Transparent && component->Visible && component->Model.Get() != nullptr) {
                      auto& model = *component->Model;
@@ -61,7 +61,7 @@ namespace xpe {
 
         void SkeletonPass::DrawTransparent(Scene *scene)
         {
-            scene->EachComponent<SkinModelComponent>([this](SkinModelComponent* component)
+            scene->EachComponent<SkeletonModelComponent>([this](SkeletonModelComponent* component)
             {
                  if (component->Transparent && component->Visible && component->Model.Get() != nullptr) {
                      auto& model = *component->Model;
@@ -104,9 +104,9 @@ namespace xpe {
                 lightView.Up = glm::vec3(0, 0, 1);
                 glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
 
-                scene->EachComponent<SkinModelComponent>([this, &lightMatrix](SkinModelComponent* component)
+                scene->EachComponent<SkeletonModelComponent>([this, &lightMatrix](SkeletonModelComponent* component)
                 {
-                     if (!component->EmbeddedShadow && component->Visible && component->Model.Get() != nullptr) {
+                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
                          auto& model = *component->Model;
                          auto& skeleton = component->Skeleton;
 
@@ -141,9 +141,9 @@ namespace xpe {
                 lightView.Up = glm::vec3(0, 0, 1);
                 glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
 
-                scene->EachComponent<SkinModelComponent>([this, &lightMatrix](SkinModelComponent* component)
+                scene->EachComponent<SkeletonModelComponent>([this, &lightMatrix](SkeletonModelComponent* component)
                 {
-                     if (!component->EmbeddedShadow && component->Visible && component->Model.Get() != nullptr) {
+                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
                          auto& model = *component->Model;
                          auto& skeleton = component->Skeleton;
 
