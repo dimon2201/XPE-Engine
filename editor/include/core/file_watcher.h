@@ -4,7 +4,7 @@
 
 namespace focus {
 
-    namespace os {
+    namespace core {
 
         using namespace xpe::core;
 

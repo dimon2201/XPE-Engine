@@ -2,11 +2,11 @@
 
 namespace focus {
 
-    namespace os {
+    namespace core {
 
         typedef long long (*DLLProc)();
 
-        class Process final {
+        class ProcessManager final {
 
         public:
             static void StartExe(const char* path);
@@ -22,7 +22,7 @@ namespace focus {
         };
 
         template<typename T>
-        T* Process::LoadObjectFromDLL(const char *dllpath, const char* objectFactorySignature)
+        T* ProcessManager::LoadObjectFromDLL(const char *dllpath, const char* objectFactorySignature)
         {
             T* object = nullptr;
 

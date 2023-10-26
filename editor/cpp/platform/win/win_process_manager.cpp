@@ -1,12 +1,12 @@
 #ifdef WINDOWS
 
-#include <os/process.h>
+#include <core/process_manager.h>
 
 #include <Windows.h>
 
 namespace focus {
 
-    namespace os {
+    namespace core {
 
         VOID startup(LPCTSTR lpApplicationName)
         {
@@ -37,14 +37,14 @@ namespace focus {
 //            CloseHandle(pi.hThread);
         }
 
-        void Process::StartExe(const char* path)
+        void ProcessManager::StartExe(const char* path)
         {
             ShellExecute(NULL, "open", path, NULL, NULL, SW_SHOWDEFAULT);
         }
 
         static HINSTANCE s_DLL = nullptr;
 
-        bool Process::InitDLL(const char *dllpath)
+        bool ProcessManager::InitDLL(const char *dllpath)
         {
             if (s_DLL != nullptr) {
                 FreeLibrary(s_DLL);
@@ -61,12 +61,12 @@ namespace focus {
             return true;
         }
 
-        void Process::FreeDLL() {
+        void ProcessManager::FreeDLL() {
             FreeLibrary(s_DLL);
             s_DLL = nullptr;
         }
 
-        DLLProc Process::LoadDLLProc(const char* signature)
+        DLLProc ProcessManager::LoadDLLProc(const char* signature)
         {
             return GetProcAddress(s_DLL, signature);
         }

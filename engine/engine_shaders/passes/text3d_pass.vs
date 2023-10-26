@@ -23,11 +23,11 @@ struct VSOut
 
 VSOut vs_main(VSIn vsIn)
 {
-    VSOut vsOut = (VSOut)0;
+    VSOut vsOut;
 
     Character character = Text[vsIn.instanceIndex];
     Transform transform = Transforms[character.TransformIndex];
-    Camera camera = Cameras[character.CameraIndex];
+    Camera camera = Cameras[0];
 
     float2 offsetScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(character.Left, character.Top);
     float2 sizeScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(character.Width, character.Height);

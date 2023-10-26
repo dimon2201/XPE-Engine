@@ -35,8 +35,9 @@ VSOut vs_main(VSIn vsIn)
     float4x4 worldMatrix       = Transforms[instance.TransformIndex].ModelMatrix;
     float4x4 worldNormalMatrix = Transforms[instance.TransformIndex].NormalMatrix;
     float4x4 lightMatrix       = Transforms[instance.TransformIndex].LightMatrix;
-    Camera camera              = Cameras[instance.CameraIndex];
+    Camera camera              = Cameras[0];
 
+    float4 positionLocal = float4(vsIn.positionLocal, 1.0);
     float4 positionWorld = mul(worldMatrix, float4(vsIn.positionLocal, 1.0));
     float4 positionView  = mul(camera.View, positionWorld);
     float4 positionClip  = mul(camera.Projection, positionView);

@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API CameraData : public core::Object
+        struct ENGINE_API CameraData : public Object
         {
             glm::vec3 Position;
             glm::mat4 View;

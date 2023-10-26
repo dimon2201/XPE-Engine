@@ -1,8 +1,8 @@
-#include <os/file_watcher.h>
+#include <core/file_watcher.h>
 
 namespace focus {
 
-    namespace os {
+    namespace core {
 
         void FileWatcher::Notify(FileWatch& watch, const string &watchpath, const string &filepath, FileWatcher::eAction action)
         {
@@ -50,16 +50,11 @@ namespace focus {
         void MultiFileWatcher::Start()
         {
             m_Running = true;
-
-            std::thread thread([this]()
-            {
-                while (m_Running)
-                {
+            TaskManager::SubmitTask({[this]() {
+                while (m_Running) {
                     Update();
                 }
-            });
-
-            thread.detach();
+            }});
         }
 
         void MultiFileWatcher::Stop()
@@ -134,11 +129,8 @@ namespace focus {
         void DirectoryWatcher::Start()
         {
             m_Running = true;
-
-            std::thread thread([this]()
-            {
-                while (m_Running)
-                {
+            TaskManager::SubmitTask({[this]() {
+                while (m_Running) {
                     for (auto& watchpath : m_Paths)
                     {
                         auto& watch = m_Watches[watchpath.first];
@@ -147,9 +139,7 @@ namespace focus {
                         }
                     }
                 }
-            });
-
-            thread.detach();
+            }});
         }
 
         void DirectoryWatcher::Stop()

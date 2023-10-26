@@ -1,7 +1,6 @@
 struct RenderInstance
 {
     uint TransformIndex;
-    uint CameraIndex;
     uint MaterialIndex;
 };
 

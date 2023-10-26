@@ -631,7 +631,7 @@ Application* CreateApplication() {
 
     // read app configs
     app->Config = string("AppConfig");
-    if (!xpe::res::ReadJsonFile("config/config.json", app->Config))
+    if (!xpe::res::ReadJsonFile("config/app_config.json", app->Config))
     {
         FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");
         return 0;

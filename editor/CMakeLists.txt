@@ -3,22 +3,22 @@ cmake_minimum_required(VERSION 3.2)
 project(Focus)
 
 include(../engine/cmake_tools/CMakeLists.txt)
+include(../loader/cmake_tools/CMakeLists.txt)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 
 file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
 
-include_engine(../engine)
 include_directories(include)
-include_directories(thirdparty/assimp/include)
+include_engine(../engine)
+include_loader(../loader)
 
-add_subdirectory(thirdparty/assimp)
-
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 add_engine_definitions()
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 link_engine(${PROJECT_NAME} ../engine)
+link_loader(${PROJECT_NAME} ../loader)
 
 # move resources, shaders, configs into bin folder
 copy_build_dir(editor/config config)

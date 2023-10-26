@@ -11,13 +11,11 @@ namespace xpe {
         // ---------- Vertex Stage --------------- //
 
         const u32 K_SLOT_INSTANCES               = 0;
-        const u32 K_SLOT_INSTANCES2D             = 1;
-        const u32 K_SLOT_TRANSFORMS              = 2;
-        const u32 K_SLOT_TRANSFORMS2D            = 3;
-        const u32 K_SLOT_CAMERA                  = 4;
-        const u32 K_SLOT_TEXT_CHARS              = 5;
-        const u32 K_SLOT_VIEWPORT                = 6;
-        const u32 K_SLOT_BONES                   = 7;
+        const u32 K_SLOT_TRANSFORMS              = 1;
+        const u32 K_SLOT_CAMERA                  = 2;
+        const u32 K_SLOT_TEXT_CHARS              = 3;
+        const u32 K_SLOT_VIEWPORT                = 4;
+        const u32 K_SLOT_BONES                   = 5;
 
         // ---------- Pixel Stage --------------- //
 
