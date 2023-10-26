@@ -8,7 +8,7 @@ namespace xpe {
 
         void AnimSystem::Update(ecs::Scene *scene, const Time& dt)
         {
-            scene->EachComponent<SkeletalAnimationComponent>([this, dt](SkeletalAnimationComponent* component)
+            scene->EachComponent<SkeletonAnimationComponent>([this, dt](SkeletonAnimationComponent* component)
             {
                 if (component->Play) {
                     AnimateSkelet(component->Skeleton, component->Animation, dt);

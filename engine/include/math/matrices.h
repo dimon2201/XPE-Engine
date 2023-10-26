@@ -23,7 +23,7 @@ namespace xpe {
         struct ENGINE_API ViewMatrix final
         {
             glm::vec3 Position = { 0, 0, 1 };
-            glm::vec3 Front = {0, 0, 0 };
+            glm::vec3 Front = { 0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
         };
 
@@ -75,6 +75,8 @@ namespace xpe {
         )
 
         glm::mat4 ENGINE_API PerspectiveMatrixUpdate(const PerspectiveMatrix& perspectiveMatrix);
+
+        glm::mat4 ENGINE_API LightMatrixUpdate(const OrthoMatrix& orthoMatrix, const ViewMatrix& viewMatrix);
 
     }
 

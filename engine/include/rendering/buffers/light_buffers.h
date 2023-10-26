@@ -12,7 +12,6 @@ namespace xpe {
         {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Color = { 1, 1, 1 };
-            glm::mat4 DLSMatrix;
         };
 
         struct ENGINE_API DirectLightBuffer : public StructureBuffer<DirectLightData>
@@ -41,7 +40,6 @@ namespace xpe {
             glm::vec3 Color = { 1, 1, 1 };
             float Cutoff = 1;
             float Outer = 1;
-            glm::mat4 DLSMatrix;
         };
 
         struct ENGINE_API SpotLightBuffer : public StructureBuffer<SpotLightData>

@@ -8,10 +8,6 @@ namespace xpe {
 
     namespace render {
 
-        using namespace core;
-        using namespace math;
-        using namespace ecs;
-
         class ENGINE_API InstancingPass : public RenderPass
         {
 
@@ -26,7 +22,9 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 Entity* entity,
-                const vector<Entity*>& entities
+                const vector<Entity*>& entities,
+                const std::function<void(Entity* entity, RenderInstance&)>& callback = {},
+                const glm::mat4x4& lightMatrix = {}
             );
 
             void DrawSingle(
@@ -35,7 +33,9 @@ namespace xpe {
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
-                Entity* entity
+                Entity* entity,
+                const std::function<void(Entity* entity, RenderInstance&)>& callback = {},
+                const glm::mat4x4& lightMatrix = {}
             );
 
             void DrawMultiple(
@@ -44,7 +44,9 @@ namespace xpe {
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
-                const vector<Entity*>& entities
+                const vector<Entity*>& entities,
+                const std::function<void(Entity* entity, RenderInstance&)>& callback = {},
+                const glm::mat4x4& lightMatrix = {}
             );
 
             InstanceBuffer m_InstanceBuffer;

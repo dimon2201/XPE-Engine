@@ -123,6 +123,10 @@ namespace xpe {
             m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
+        void RenderPass::InitShadow() {
+            m_Pipeline->Rasterizer.CullMode = eCullMode::FRONT;
+        }
+
         void RenderPass::Init()
         {
             switch (m_Type) {
@@ -132,6 +136,10 @@ namespace xpe {
 
                 case RenderPass::eType::TRANSPARENT:
                     InitTransparent();
+                    break;
+
+                case RenderPass::eType::SHADOW:
+                    InitShadow();
                     break;
             }
 

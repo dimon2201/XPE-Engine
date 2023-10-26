@@ -159,9 +159,11 @@ namespace xpe
 
         struct ENGINE_API RenderState
         {
-            bool Transparent = false;
-            bool Visible = true;
+            bool Transparent = false;    // switch to transparency, that will draw object in transparent passes
+            bool Visible = true;         // switch visibility, that will draw or not draw object
+            bool EmbeddedShadow = false; // switch to embedded shadow, that casts shadow only once and doesn't update
         };
+        Json(RenderState, Transparent, Visible, EmbeddedShadow)
 
         struct ENGINE_API GeometryComponent : Component, RenderState
         {
@@ -206,18 +208,18 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SkeletalAnimationComponent : Component
+        struct ENGINE_API SkeletonAnimationComponent : Component
         {
             Ref<anim::Skeleton> Skeleton;
             Ref<anim::Animation> Animation;
             bool Play = false;
 
-            SkeletalAnimationComponent(const string& tag, const Ref<anim::Skeleton>& skeleton, const Ref<anim::Animation>& animation)
+            SkeletonAnimationComponent(const string& tag, const Ref<anim::Skeleton>& skeleton, const Ref<anim::Animation>& animation)
             : Component(tag), Skeleton(skeleton), Animation(animation) {}
 
             JsonClass(
-                SkeletalAnimationComponent,
-                m_Tag
+                    SkeletonAnimationComponent,
+                    m_Tag
             )
         };
 

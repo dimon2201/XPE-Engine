@@ -274,7 +274,7 @@ namespace xpe {
             {
                 if (pipeline.Shader == nullptr)
                 {
-                    LogError("Failed to create render pipeline. Shader does not exist.");
+                    LogError("Failed to create input layout. Shader does not exist.");
                     assert(false);
                     return;
                 }
@@ -289,7 +289,14 @@ namespace xpe {
 
                 if (vertexBlob == nullptr)
                 {
-                    LogError("Failed to create render pipeline. Shader has no Vertex stage.");
+                    LogError("Failed to create input layout. Shader has no Vertex stage.");
+                    assert(false);
+                    return;
+                }
+
+                if (vertexBlob->ByteCode == nullptr || vertexBlob->ByteCodeSize == 0)
+                {
+                    LogError("Failed to create input layout. Vertex shader bytecode is empty.");
                     assert(false);
                     return;
                 }

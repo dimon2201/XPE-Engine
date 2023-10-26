@@ -69,16 +69,16 @@ float3 PBR(float3 lightColor, float radianceFactor, float3 albedo, float metalln
     return (diffuse + specular) * radiance * dotNL;
 }
 
-float3 PBR(DirectLight directLight, float3 albedo, float metallness, float roughness)
+float3 PBR(DirectLight directLight, float3 albedo, float metallness, float roughness, float3 shadowCoords)
 {
     L = normalize(directLight.Position);
     float3 lightColor = directLight.Color;
-    float directShadow = 0;
+    float directShadow = DirectShadow(L, shadowCoords);
     float radianceFactor = 1.0 - directShadow;
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
 }
 
-float3 PBR(PointLight pointLight, float3 albedo, float metallness, float roughness)
+float3 PBR(PointLight pointLight, float3 albedo, float metallness, float roughness, float3 shadowCoords)
 {
     L = normalize(pointLight.Position - W);
     float3 lightColor = pointLight.Color;
@@ -89,12 +89,12 @@ float3 PBR(PointLight pointLight, float3 albedo, float metallness, float roughne
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
 }
 
-float3 PBR(SpotLight spotLight, float3 albedo, float metallness, float roughness)
+float3 PBR(SpotLight spotLight, float3 albedo, float metallness, float roughness, float3 shadowCoords)
 {
     L = normalize(spotLight.Position - W);
     float3 lightColor = spotLight.Color;
     float A = Attenuation(spotLight);
-    float spotShadow = 0;
+    float spotShadow = DirectShadow(L, shadowCoords);
     float radianceFactor = A * (1.0 - spotShadow);
 
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);

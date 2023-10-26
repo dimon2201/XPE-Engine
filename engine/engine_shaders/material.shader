@@ -1,24 +1,24 @@
 struct Material {
-    // albedo mapping
+// albedo mapping
     float4 Albedo;
     bool EnableAlbedoMap;
-    // normal mapping
+// normal mapping
     bool EnableNormalMap;
-    // parallax occlusion mapping
+// parallax occlusion mapping
     bool EnableParallaxMap;
     float ParallaxHeightScale;
     float ParallaxMinLayers;
     float ParallaxMaxLayers;
-    // metal mapping
+// metal mapping
     float Metallness;
     bool EnableMetalMap;
-    // roughness mapping
+// roughness mapping
     float Roughness;
     bool EnableRoughnessMap;
-    // ambient occlusion mapping
+// ambient occlusion mapping
     float AO;
     bool EnableAOMap;
-    // emission mapping
+// emission mapping
     float3 Emission;
     bool EnableEmissionMap;
 };
@@ -78,14 +78,14 @@ float2 GetParallax(uint materialIndex, float2 uv) {
         float currentParallaxValue = ParallaxMap.Sample(MaterialSampler, float3(currentUV, mId)).r;
 
         // todo(cheerwizard): too many iterations ~1024, need to be fixed!
-//        while (currentLayerDepth < currentParallaxValue) {
-//            // shift texture coordinates along direction of P
-//            currentUV -= deltaUV;
-//            // get depthmap value at current texture coordinates
-//            currentParallaxValue = ParallaxMap.Sample(MaterialSampler, float3(currentUV, mId)).r;
-//            // get depth of next layer
-//            currentLayerDepth += layerDepth;
-//        }
+        //        while (currentLayerDepth < currentParallaxValue) {
+        //            // shift texture coordinates along direction of P
+        //            currentUV -= deltaUV;
+        //            // get depthmap value at current texture coordinates
+        //            currentParallaxValue = ParallaxMap.Sample(MaterialSampler, float3(currentUV, mId)).r;
+        //            // get depth of next layer
+        //            currentLayerDepth += layerDepth;
+        //        }
 
         // get texture coordinates before collision (reverse operations)
         float2 prevUV = currentUV + deltaUV;
@@ -100,7 +100,7 @@ float2 GetParallax(uint materialIndex, float2 uv) {
         float2 result = prevUV * weight + currentUV * (1.0 - weight);
 
         if (result.x > 1.0 || result.y > 1.0 || result.x < 0.0 || result.y < 0.0)
-            discard;
+        discard;
 
         return result;
     }

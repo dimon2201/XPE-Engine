@@ -1,5 +1,5 @@
 #include ../types.shader
-#include ../controls/camera.shader
+#include ../camera.shader
 
 struct VSIn
 {

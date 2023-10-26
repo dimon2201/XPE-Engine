@@ -28,10 +28,13 @@ namespace xpe {
             m_SpotLightBuffer = new SpotLightBuffer();
             m_SpotLightBuffer->Reserve(1000);
 
-            m_ShadowSampler = new TextureSampler();
-            m_ShadowMap = new Texture();
-            m_ShadowCoords = new Texture();
             m_ShadowFilterBuffer = new ShadowFilterBuffer();
+
+            m_ShadowSampler = new TextureSampler();
+            m_ShadowSampler->BorderColor = glm::vec4(1, 1, 1, 1);
+            m_ShadowSampler->AddressU = TextureSampler::eAddress::CLAMP;
+            m_ShadowSampler->AddressV = TextureSampler::eAddress::CLAMP;
+            m_ShadowSampler->Slot = K_SLOT_SHADOW_SAMPLER;
 
             m_TransparentRenderPasses.reserve(2);
         }
@@ -39,17 +42,17 @@ namespace xpe {
         RenderSystem::~RenderSystem()
         {
             delete m_MonitorBuffer;
-
             delete m_CameraBuffer;
-
             delete m_DirectLightBuffer;
             delete m_PointLightBuffer;
             delete m_SpotLightBuffer;
+            delete m_ShadowFilterBuffer;
 
             delete m_ShadowSampler;
-            delete m_ShadowMap;
-            delete m_ShadowCoords;
-            delete m_ShadowFilterBuffer;
+
+            delete m_OpaqueRenderTarget;
+            delete m_TransparentRenderTarget;
+            delete m_ShadowRenderTarget;
 
             MaterialManager::Free();
             GeometryManager::Free();
@@ -120,6 +123,20 @@ namespace xpe {
             mainReveal->Init();
 
             m_TransparentRenderTarget = new RenderTarget({ mainAccum, mainReveal }, m_SharedDepthTexture, *viewport);
+
+            // Shadow map as a depth stencil texture output for shadow mapping
+            Texture* shadowMap = new Texture();
+            shadowMap->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            shadowMap->Width = viewport->Width;
+            shadowMap->Height = viewport->Height;
+            shadowMap->Format = eTextureFormat::R32_TYPELESS;
+            shadowMap->InitializeData = false;
+            shadowMap->EnableRenderTarget = true;
+            shadowMap->SampleCount = sampleCount;
+            shadowMap->Slot = K_SLOT_SHADOW_MAP;
+            shadowMap->Init();
+
+            m_ShadowRenderTarget = new RenderTarget(shadowMap, *viewport);
         }
 
         void RenderSystem::Prepare()
@@ -139,8 +156,12 @@ namespace xpe {
             m_DirectLightBuffer->Clear();
             scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
             {
+                if (component->FollowEntity) {
+                    component->Position = component->Entity->Transform.Position;
+                }
+
                 DirectLightData light;
-                light.Position = component->Entity->Transform.Position;
+                light.Position = component->Position;
                 light.Color = component->Color;
                 m_DirectLightBuffer->Add(light);
             });
@@ -149,8 +170,12 @@ namespace xpe {
             m_PointLightBuffer->Clear();
             scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
             {
+                if (component->FollowEntity) {
+                    component->Position = component->Entity->Transform.Position;
+                }
+
                 PointLightData light;
-                light.Position = component->Entity->Transform.Position;
+                light.Position = component->Position;
                 light.Color = component->Color;
                 light.Constant = component->Constant;
                 light.Linear = component->Constant;
@@ -162,8 +187,12 @@ namespace xpe {
             m_SpotLightBuffer->Clear();
             scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
             {
+                if (component->FollowEntity) {
+                    component->Position = component->Entity->Transform.Position;
+                }
+
                 SpotLightData light;
-                light.Position = component->Entity->Transform.Position;
+                light.Position = component->Position;
                 light.Color = component->Color;
                 light.Direction = component->Direction;
                 light.Outer = component->Outer;
@@ -175,6 +204,16 @@ namespace xpe {
 
         void RenderSystem::UpdatePasses(xpe::ecs::Scene *scene)
         {
+            // Shadow
+            m_ShadowRenderTarget->ClearDepth(1.0f);
+            for (RenderPass* rp : m_ShadowRenderPasses)
+            {
+                rp->Update(scene);
+                rp->Bind();
+                rp->DrawShadow(scene);
+                rp->Unbind();
+            }
+
             // Opaque
             m_OpaqueRenderTarget->ClearColor(0, glm::vec4(0.0f));
             m_OpaqueRenderTarget->ClearColor(1, glm::vec4(0.0f));

@@ -11,6 +11,7 @@ namespace xpe {
         struct ENGINE_API Component : public Object, public res::JsonObject
         {
             ecs::Entity* Entity = nullptr;
+            bool FollowEntity = true;
 
             Component() = default;
 

@@ -55,7 +55,8 @@ namespace xpe {
             {
                 OPAQUE = 0,
                 TRANSPARENT = 1,
-                POSTFX = 2
+                POSTFX = 2,
+                SHADOW = 3
             };
 
             RenderPass(eType type, const vector<RenderPassBinding>& bindings);
@@ -65,6 +66,7 @@ namespace xpe {
             virtual void Draw(Scene* scene) {}
             virtual void DrawOpaque(Scene* scene) {}
             virtual void DrawTransparent(Scene* scene) {}
+            virtual void DrawShadow(Scene* scene) {}
 
             void Init();
             void Bind();
@@ -77,6 +79,7 @@ namespace xpe {
 
             virtual void InitOpaque();
             virtual void InitTransparent();
+            virtual void InitShadow();
 
             eType m_Type;
             vector<RenderPassBinding> m_Bindings;

@@ -9,7 +9,7 @@
 
 #include <rendering/passes/canvas.hpp>
 #include <rendering/passes/main_pass.h>
-#include <rendering/passes/skeletal_anim_pass.h>
+#include <rendering/passes/skeleton_pass.h>
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
 #include <rendering/passes/merge_pass.h>
@@ -172,19 +172,22 @@ namespace xpe {
         void Application::InitRenderPasses()
         {
             // Canvas
-            Shader* shader = ShaderManager::CreateShader("canvas");
-            ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/canvas.vs");
-            ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
-            ShaderManager::BuildShader(shader);
-            m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
+            {
+                Shader* shader = ShaderManager::CreateShader("canvas");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/canvas.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
+                ShaderManager::BuildShader(shader);
+                m_Canvas = new Canvas(WindowManager::GetWidth(), WindowManager::GetHeight(), shader);
+            }
 
-            RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             Viewport* canvasViewport = m_Canvas->GetViewport(0);
 
             m_RenderSystem->InitRenderTargets(canvasViewport, Config.MsaaSampleCount);
 
+            RenderTarget* canvasRT = m_Canvas->GetRenderTarget();
             RenderTarget* opaqueRT = m_RenderSystem->GetOpaqueRT();
             RenderTarget* transparentRT = m_RenderSystem->GetTransparentRT();
+            RenderTarget* shadowRT = m_RenderSystem->GetShadowRT();
 
             // Main opaque pass
             {
@@ -201,7 +204,9 @@ namespace xpe {
                     { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                     { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                     { "MonitorBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "ShadowSampler", RenderPassBinding::eType::SAMPLER, m_RenderSystem->GetShadowSampler(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "ShadowMap", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetShadowMap(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                 };
 
                 m_RenderSystem->AddRenderPass<MainPass>(RenderPass::eType::OPAQUE, bindings);
@@ -222,16 +227,33 @@ namespace xpe {
                         { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "MonitorBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "ShadowSampler", RenderPassBinding::eType::SAMPLER, m_RenderSystem->GetShadowSampler(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "ShadowMap", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetShadowMap(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                 };
 
                 m_RenderSystem->AddRenderPass<MainPass>(RenderPass::eType::TRANSPARENT, bindings);
             }
 
-            // Skeletal animation opaque pass
+            // Main shadow pass
             {
-                Shader* shader = ShaderManager::CreateShader("skeletal_anim_opaque");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeletal_anim_pass.vs");
+                Shader* shader = ShaderManager::CreateShader("main_shadow");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass_shadow.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/shadow_pass.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, shadowRT },
+                };
+
+                m_RenderSystem->AddRenderPass<MainPass>(RenderPass::eType::SHADOW, bindings);
+            }
+
+            // Skeleton opaque pass
+            {
+                Shader* shader = ShaderManager::CreateShader("skeleton_opaque");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeleton_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_opaque.ps");
                 ShaderManager::BuildShader(shader);
 
@@ -243,16 +265,18 @@ namespace xpe {
                     { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                     { "SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                     { "MonitorBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                    { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "ShadowSampler", RenderPassBinding::eType::SAMPLER, m_RenderSystem->GetShadowSampler(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                    { "ShadowMap", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetShadowMap(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                 };
 
-                m_RenderSystem->AddRenderPass<SkeletalAnimPass>(RenderPass::eType::OPAQUE, bindings);
+                m_RenderSystem->AddRenderPass<SkeletonPass>(RenderPass::eType::OPAQUE, bindings);
             }
 
-            // Skeletal animation transparent pass
+            // Skeleton transparent pass
             {
-                Shader* shader = ShaderManager::CreateShader("skeletal_anim_transparent");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeletal_anim_pass.vs");
+                Shader* shader = ShaderManager::CreateShader("skeleton_transparent");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeleton_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_transparent.ps");
                 ShaderManager::BuildShader(shader);
 
@@ -264,10 +288,27 @@ namespace xpe {
                         { "PointLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetPointLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "m_SpotLightBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetSpotLightBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                         { "MonitorBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetMonitorBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
-                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT }
+                        { "ShadowFilterBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetShadowFilterBuffer(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "ShadowSampler", RenderPassBinding::eType::SAMPLER, m_RenderSystem->GetShadowSampler(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
+                        { "ShadowMap", RenderPassBinding::eType::TEXTURE, m_RenderSystem->GetShadowMap(), RenderPassBinding::eStage::PIXEL,  RenderPassBinding::SLOT_DEFAULT },
                 };
 
-                m_RenderSystem->AddRenderPass<SkeletalAnimPass>(RenderPass::eType::TRANSPARENT, bindings);
+                m_RenderSystem->AddRenderPass<SkeletonPass>(RenderPass::eType::TRANSPARENT, bindings);
+            }
+
+            // Skeleton shadow pass
+            {
+                Shader* shader = ShaderManager::CreateShader("skeleton_shadow");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeleton_pass_shadow.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/shadow_pass.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, shadowRT },
+                };
+
+                m_RenderSystem->AddRenderPass<SkeletonPass>(RenderPass::eType::SHADOW, bindings);
             }
 
             // Text 2D pass

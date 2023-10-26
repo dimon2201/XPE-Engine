@@ -1,7 +1,5 @@
 #include <rendering/passes/instancing_pass.h>
 
-#include <ecs/scenes.hpp>
-
 namespace xpe {
 
     namespace render {
@@ -22,12 +20,14 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 Entity* entity,
-                const vector<Entity*>& entities
+                const vector<Entity*>& entities,
+                const std::function<void(Entity* entity, RenderInstance&)>& callback,
+                const glm::mat4x4& lightMatrix
         ) {
             if (entities.empty()) {
-                DrawSingle(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entity);
+                DrawSingle(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entity, callback, lightMatrix);
             } else {
-                DrawMultiple(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entities);
+                DrawMultiple(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entities, callback, lightMatrix);
             }
         }
 
@@ -37,7 +37,9 @@ namespace xpe {
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
-                Entity* entity
+                Entity* entity,
+                const std::function<void(Entity* entity, RenderInstance&)>& callback,
+                const glm::mat4x4& lightMatrix
         ) {
             m_InstanceBuffer.Clear();
             m_TransformBuffer.Clear();
@@ -45,13 +47,12 @@ namespace xpe {
             RenderInstance instance;
             instance.CameraIndex = 0;
             instance.TransformIndex = 0;
-            auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
-            if (materialComponent != nullptr) {
-                instance.MaterialIndex = materialComponent->Material->Index;
+            if (callback) {
+                callback(entity, instance);
             }
 
             m_InstanceBuffer.Add(instance);
-            m_TransformBuffer.AddTransform(entity->Transform);
+            m_TransformBuffer.AddTransform(entity->Transform, lightMatrix);
 
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
@@ -76,7 +77,9 @@ namespace xpe {
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
-                const vector<Entity*>& entities
+                const vector<Entity*>& entities,
+                const std::function<void(Entity* entity, RenderInstance&)>& callback,
+                const glm::mat4x4& lightMatrix
         ) {
             usize entityCount = entities.size();
             usize instanceCount = 0;
@@ -89,13 +92,12 @@ namespace xpe {
                 RenderInstance instance;
                 instance.CameraIndex = 0;
                 instance.TransformIndex = i;
-                auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
-                if (materialComponent != nullptr) {
-                    instance.MaterialIndex = materialComponent->Material->Index;
+                if (callback) {
+                    callback(entity, instance);
                 }
 
                 m_InstanceBuffer.Add(instance);
-                m_TransformBuffer.AddTransform(entity->Transform);
+                m_TransformBuffer.AddTransform(entity->Transform, lightMatrix);
 
                 instanceCount++;
             }

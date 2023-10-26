@@ -36,6 +36,10 @@ namespace xpe {
             );
         }
 
+        glm::mat4 LightMatrixUpdate(const OrthoMatrix& orthoMatrix, const ViewMatrix& viewMatrix) {
+            return OrthoMatrixUpdate(orthoMatrix) * ViewMatrixUpdate(viewMatrix);
+        }
+
     }
 
 }

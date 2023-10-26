@@ -42,38 +42,37 @@ namespace xpe {
             inline SpotLightBuffer* GetSpotLightBuffer() { return m_SpotLightBuffer; }
 
             inline TextureSampler* GetShadowSampler() { return m_ShadowSampler; }
-            inline Texture* GetShadowMap() { return m_ShadowMap; }
-            inline Texture* GetShadowCoords() { return m_ShadowCoords; }
             inline ShadowFilterBuffer* GetShadowFilterBuffer() { return m_ShadowFilterBuffer; }
 
             inline Texture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
             inline RenderTarget* GetOpaqueRT() { return m_OpaqueRenderTarget; }
             inline RenderTarget* GetTransparentRT() { return m_TransparentRenderTarget; }
+            inline RenderTarget* GetShadowRT() { return m_ShadowRenderTarget; }
+
+            inline Texture* GetShadowMap() { return m_ShadowRenderTarget->DepthStencil; }
 
         private:
             void UpdateLight(Scene* scene);
             void UpdatePasses(Scene* scene);
 
+            vector<RenderPass*> m_ShadowRenderPasses;
             vector<RenderPass*> m_OpaqueRenderPasses;
             vector<RenderPass*> m_TransparentRenderPasses;
             vector<RenderPass*> m_PostFXRenderPasses;
 
             render::MonitorBuffer* m_MonitorBuffer;
-
             render::CameraBuffer* m_CameraBuffer;
-
             render::DirectLightBuffer* m_DirectLightBuffer;
             render::PointLightBuffer* m_PointLightBuffer;
             render::SpotLightBuffer* m_SpotLightBuffer;
+            render::ShadowFilterBuffer* m_ShadowFilterBuffer;
 
             render::TextureSampler* m_ShadowSampler;
-            render::Texture* m_ShadowMap;
-            render::Texture* m_ShadowCoords;
-            render::ShadowFilterBuffer* m_ShadowFilterBuffer;
 
             Texture* m_SharedDepthTexture;
             RenderTarget* m_OpaqueRenderTarget;
             RenderTarget* m_TransparentRenderTarget;
+            RenderTarget* m_ShadowRenderTarget;
 
         };
 
@@ -85,6 +84,9 @@ namespace xpe {
 
             switch (renderPass->GetType())
             {
+                case RenderPass::eType::SHADOW:
+                    m_ShadowRenderPasses.emplace_back(renderPass);
+                    break;
 
                 case RenderPass::eType::OPAQUE:
                     m_OpaqueRenderPasses.emplace_back(renderPass);
@@ -110,6 +112,14 @@ namespace xpe {
 
             switch (type)
             {
+                case RenderPass::eType::SHADOW:
+                    for (auto* renderPass : m_ShadowRenderPasses)
+                    {
+                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
+                            return renderPass;
+                        }
+                    }
+                    break;
 
                 case RenderPass::eType::OPAQUE:
                     for (auto* renderPass : m_OpaqueRenderPasses)

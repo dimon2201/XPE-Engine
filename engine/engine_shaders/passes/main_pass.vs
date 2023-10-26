@@ -1,7 +1,7 @@
 #include ../types.shader
-#include ../instance.shader
+#include ../instancing.shader
 #include ../transforming.shader
-#include ../controls/camera.shader
+#include ../camera.shader
 
 struct VSIn
 {
@@ -24,7 +24,7 @@ struct VSOut
     float3 viewPosition  : XPE_VIEW_POSITION;
     uint materialIndex   : XPE_MATERIAL_INDEX;
     float3x3 tbn         : XPE_TBN;
-    float3 positionDLS   : XPE_POSITION_DLS;
+    float3 shadowCoords  : XPE_SHADOW_COORDS;
 };
 
 VSOut vs_main(VSIn vsIn)
@@ -34,14 +34,15 @@ VSOut vs_main(VSIn vsIn)
     RenderInstance instance    = Instances[vsIn.instanceIndex];
     float4x4 worldMatrix       = Transforms[instance.TransformIndex].ModelMatrix;
     float4x4 worldNormalMatrix = Transforms[instance.TransformIndex].NormalMatrix;
-    // float4x4 dlsMatrix         = Transforms[instance.TransformIndex].DLSMatrix;
+    float4x4 lightMatrix       = Transforms[instance.TransformIndex].LightMatrix;
     Camera camera              = Cameras[instance.CameraIndex];
 
     float4 positionWorld = mul(worldMatrix, float4(vsIn.positionLocal, 1.0));
     float4 positionView  = mul(camera.View, positionWorld);
     float4 positionClip  = mul(camera.Projection, positionView);
-    // float4 positionDLS   = mul(dlsMatrix, positionWorld);
-    float4 positionDLS   = float4(0, 0, 0, 0);
+    float4 positionLight = mul(lightMatrix, positionWorld);
+    float3 shadowCoords  = positionLight.xyz / positionLight.w;
+    shadowCoords         = shadowCoords * 0.5 + 0.5;
 
     float3 normalWorld   = mul(worldNormalMatrix, float4(vsIn.normal, 1.0)).xyz;
     float3 tangentWorld  = mul(worldNormalMatrix, float4(vsIn.tangent, 1.0)).xyz;
@@ -57,7 +58,7 @@ VSOut vs_main(VSIn vsIn)
     vsOut.viewPosition  = camera.Position;
     vsOut.materialIndex = instance.MaterialIndex;
     vsOut.tbn           = float3x3(tangentWorld, bitangentWorld, normalWorld);
-    vsOut.positionDLS   = positionDLS.xyz;
+    vsOut.shadowCoords  = shadowCoords;
 
     return vsOut;
 }

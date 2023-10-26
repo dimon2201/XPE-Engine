@@ -193,7 +193,7 @@ public:
                 vector<Entity*> { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 }
             );
 
-            auto* goblinAnimation = m_Goblin1->AddComponent<SkeletalAnimationComponent>(
+            auto* goblinAnimation = m_Goblin1->AddComponent<SkeletonAnimationComponent>(
                 "GoblinAnimation",
                 goblinModel->Skeleton,
                 m_AnimLoader->Load("res/models/winter-girl/source/dancing_vampire.dae")
@@ -563,7 +563,7 @@ private:
     {
         if (key == eKey::P)
         {
-            auto* goblinAnimation = m_Goblin1->GetComponent<SkeletalAnimationComponent>("GoblinAnimation");
+            auto* goblinAnimation = m_Goblin1->GetComponent<SkeletonAnimationComponent>("GoblinAnimation");
             goblinAnimation->Play = !goblinAnimation->Play;
         }
     }

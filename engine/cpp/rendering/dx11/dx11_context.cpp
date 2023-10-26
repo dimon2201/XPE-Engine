@@ -18,7 +18,7 @@ namespace xpe {
             IDXGIAdapter* s_GIAdapter = nullptr;
             IDXGIFactory* s_GIFactory = nullptr;
 
-            static const std::unordered_map<eBufferUsage, D3D11_USAGE> s_BufferUsages =
+            static const std::unordered_map<eBufferUsage, D3D11_USAGE> s_BufferUsageTable =
             {
                     { eBufferUsage::DEFAULT, D3D11_USAGE_DEFAULT },
                     { eBufferUsage::STATIC, D3D11_USAGE_IMMUTABLE },
@@ -26,7 +26,7 @@ namespace xpe {
                     { eBufferUsage::STAGING, D3D11_USAGE_STAGING }
             };
 
-            static const std::unordered_map<eBufferUsage, u32> s_BufferCPUFlags =
+            static const std::unordered_map<eBufferUsage, u32> s_BufferCPUFlagTable =
             {
                     { eBufferUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
                     { eBufferUsage::STATIC, 0 },
@@ -64,7 +64,7 @@ namespace xpe {
                     { Texture::eUsage::STAGING, D3D11_USAGE_STAGING }
             };
 
-            static const std::unordered_map<Texture::eUsage, u32> s_TextureCPUFlags =
+            static const std::unordered_map<Texture::eUsage, u32> s_TextureCPUFlagTable =
             {
                     { Texture::eUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
                     { Texture::eUsage::STATIC, 0 },
@@ -145,7 +145,7 @@ namespace xpe {
                     { eCullMode::BACK,  D3D11_CULL_BACK }
             };
 
-            static const std::unordered_map<eMapType, D3D11_MAP> s_MapTypes =
+            static const std::unordered_map<eMapType, D3D11_MAP> s_MapTypeTable =
             {
                     { eMapType::READ, D3D11_MAP_READ },
                     { eMapType::WRITE, D3D11_MAP_WRITE },
@@ -751,7 +751,7 @@ namespace xpe {
                 texDesc.ArraySize = arraySize;
                 texDesc.Format = s_TextureFormatTable.at(texture.Format);
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
+                texDesc.CPUAccessFlags = s_TextureCPUFlagTable.at(texture.Usage);
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE1D;
@@ -788,7 +788,7 @@ namespace xpe {
                 texDesc.SampleDesc.Count = texture.SampleCount;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = texture.SampleCount == 1 ? s_TextureCPUFlags.at(texture.Usage) : 0;
+                texDesc.CPUAccessFlags = texture.SampleCount == 1 ? s_TextureCPUFlagTable.at(texture.Usage) : 0;
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = texture.SampleCount > 1 ? D3D11_SRV_DIMENSION_TEXTURE2DMS : D3D11_SRV_DIMENSION_TEXTURE2D;
@@ -825,7 +825,7 @@ namespace xpe {
                 texDesc.SampleDesc.Count = 1;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
+                texDesc.CPUAccessFlags = s_TextureCPUFlagTable.at(texture.Usage);
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2DARRAY;
@@ -862,7 +862,7 @@ namespace xpe {
                 texDesc.MipLevels = mipLevels;
                 texDesc.Format = s_TextureFormatTable.at(texture.Format);
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
+                texDesc.CPUAccessFlags = s_TextureCPUFlagTable.at(texture.Usage);
 
                 srv.Format = texDesc.Format;
                 srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE3D;
@@ -899,7 +899,7 @@ namespace xpe {
                 texDesc.SampleDesc.Count = 1;
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.Usage = s_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = s_TextureCPUFlags.at(texture.Usage);
+                texDesc.CPUAccessFlags = s_TextureCPUFlagTable.at(texture.Usage);
                 texDesc.MiscFlags |= D3D11_RESOURCE_MISC_TEXTURECUBE;
 
                 srv.Format = texDesc.Format;
@@ -1070,8 +1070,8 @@ namespace xpe {
                 memset(&bufferDesc, 0, sizeof(D3D11_BUFFER_DESC));
 
                 bufferDesc.ByteWidth = (UINT)byteSize;
-                bufferDesc.Usage = s_BufferUsages.at(buffer.Usage);
-                bufferDesc.CPUAccessFlags = s_BufferCPUFlags.at(buffer.Usage);
+                bufferDesc.Usage = s_BufferUsageTable.at(buffer.Usage);
+                bufferDesc.CPUAccessFlags = s_BufferCPUFlagTable.at(buffer.Usage);
 
                 D3D11_SUBRESOURCE_DATA* initialData = InitBufferData(buffer);
 
@@ -1201,7 +1201,7 @@ namespace xpe {
             ) {
                 D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 
-                s_ImmContext->Map((ID3D11Resource*) resource.Instance, subresourceIndex, s_MapTypes.at(mapType), 0, &mappedResource);
+                s_ImmContext->Map((ID3D11Resource*) resource.Instance, subresourceIndex, s_MapTypeTable.at(mapType), 0, &mappedResource);
                 LogDebugMessage();
 
                 return mappedResource.pData;
