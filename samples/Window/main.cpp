@@ -299,11 +299,18 @@ public:
         // setup cubes
         for (s32 i = 0; i < 4; i++)
         {
+            auto mat = Material();
+            if (i == 0) { mat.Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 0.25f); }
+            if (i == 1) { mat.Albedo = glm::vec4(0.0f, 1.0f, 0.0f, 0.25f); }
+            if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.25f); }
+            if (i == 2) { mat.Albedo = glm::vec4(1.0f, 1.0f, 0.0f, 0.25f); }
+
             m_Planes[i] = new Entity("Plane" + i, m_MainScene);
             m_Planes[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
             m_Planes[i]->Transform.Scale = { 1, 1, 0.1 };
             m_Planes[i]->AddComponent<GeometryComponent>("G_Plane" + i, GeometryManager::AddGeometry(Cube()));
-            m_Planes[i]->AddComponent<MaterialComponent>("Plane" + i, MaterialManager::Add("MT_Plane" + i, Material()));
+            m_Planes[i]->AddComponent<MaterialComponent>("Plane" + i, MaterialManager::Add("MT_Plane" + i, mat));
+            m_Planes[i]->GetComponent<GeometryComponent>("G_Plane" + i)->Transparent = true;
         }
 
         m_Listener = new Entity("Listener", m_MainScene);
