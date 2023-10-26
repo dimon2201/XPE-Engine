@@ -129,7 +129,8 @@ namespace xpe {
 
         void RenderPass::Init()
         {
-            switch (m_Type) {
+            switch (m_Type)
+            {
                 case RenderPass::eType::OPAQUE:
                     InitOpaque();
                     break;

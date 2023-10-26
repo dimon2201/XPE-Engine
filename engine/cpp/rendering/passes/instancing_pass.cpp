@@ -45,7 +45,6 @@ namespace xpe {
             m_TransformBuffer.Clear();
 
             RenderInstance instance;
-            instance.CameraIndex = 0;
             instance.TransformIndex = 0;
             if (callback) {
                 callback(entity, instance);
@@ -90,7 +89,6 @@ namespace xpe {
                 auto& entity = entities[i];
 
                 RenderInstance instance;
-                instance.CameraIndex = 0;
                 instance.TransformIndex = i;
                 if (callback) {
                     callback(entity, instance);

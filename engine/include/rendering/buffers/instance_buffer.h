@@ -9,7 +9,6 @@ namespace xpe {
         struct ENGINE_API RenderInstance final
         {
             u32 TransformIndex = 0;
-            u32 CameraIndex = 0;
             u32 MaterialIndex = 0;
         };
 

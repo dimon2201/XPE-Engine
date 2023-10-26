@@ -27,15 +27,21 @@ include_directories(
 add_engine_definitions()
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
+# Copy binaries and libs
+# configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib COPYONLY)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib)
+# configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mt.dll COPYONLY)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mt.dll)
+# configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Release/assimp-vc142-mt.dll COPYONLY)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Release/assimp-vc142-mt.dll)
+
+# configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/lib/freetype.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib COPYONLY)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/lib/freetype.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib)
+# configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Debug/freetype.dll COPYONLY)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Debug/freetype.dll)
+# configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Release/freetype.dll COPYONLY)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Release/freetype.dll)
+
 # Link libraries
 link_engine(${PROJECT_NAME} ../engine)
-target_link_libraries(${PROJECT_NAME} PUBLIC ../lib/assimp-vc142-mt ../lib/freetype sndfile)
-
-# Copy binaries and libs
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mt.dll COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Release/assimp-vc142-mt.dll COPYONLY)
-
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/lib/freetype.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Debug/freetype.dll COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/loader/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Release/freetype.dll COPYONLY)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib sndfile)

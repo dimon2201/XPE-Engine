@@ -8,6 +8,7 @@ namespace xpe {
         class RenderSystem;
         class RenderTarget;
         class SSAOPass;
+        class FXAAPass;
     }
 
     namespace anim
@@ -62,6 +63,7 @@ namespace xpe {
 
             render::Canvas* m_Canvas = nullptr;
             render::SSAOPass* m_SsaoPass = nullptr;
+            render::FXAAPass* m_FxaaPass = nullptr;
         };
 
     }

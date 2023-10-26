@@ -5,7 +5,7 @@ namespace xpe
 {
     namespace render
     {
-        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport)
+        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport, u32 sampleCount)
         : RenderPass(eType::POSTFX, bindings)
         {
             m_Buffer.Type = eBufferType::CONSTANT;
@@ -23,6 +23,7 @@ namespace xpe
             ssaoColor->Width = viewport->Width;
             ssaoColor->Height = viewport->Height;
             ssaoColor->Format = eTextureFormat::RGBA8;
+            ssaoColor->SampleCount = sampleCount;
             ssaoColor->InitializeData = false;
             ssaoColor->EnableRenderTarget = true;
             ssaoColor->Init();
@@ -32,6 +33,7 @@ namespace xpe
             ssaoDepth->Width = viewport->Width;
             ssaoDepth->Height = viewport->Height;
             ssaoDepth->Format = eTextureFormat::R32_TYPELESS;
+            ssaoDepth->SampleCount = sampleCount;
             ssaoDepth->InitializeData = false;
             ssaoDepth->EnableRenderTarget = true;
             ssaoDepth->Init();

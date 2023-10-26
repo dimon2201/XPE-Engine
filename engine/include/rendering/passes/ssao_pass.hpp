@@ -17,7 +17,7 @@ namespace xpe
         {
 
         public:
-            SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport);
+            SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport, u32 sampleCount);
 
             void Draw(Scene* scene) override final;
 

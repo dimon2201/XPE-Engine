@@ -12,8 +12,10 @@
 #include <rendering/passes/skeleton_pass.h>
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
-#include <rendering/passes/merge_pass.h>
+#include <rendering/passes/composite_transparent_pass.h>
+#include <rendering/passes/fxaa_pass.hpp>
 #include <rendering/passes/ssao_pass.hpp>
+#include <rendering/passes/composite_final_pass.h>
 
 #include <anim/anim_system.h>
 
@@ -311,6 +313,23 @@ namespace xpe {
                 m_RenderSystem->AddRenderPass<SkeletonPass>(RenderPass::eType::SHADOW, bindings);
             }
 
+            // Composite transparent pass
+            {
+                Shader* shader = ShaderManager::CreateShader("composite_pass_transparent");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/composite_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/composite_pass_transparent.ps" : "engine_shaders/passes/composite_pass_transparent.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
+                        { "AccumTexture", RenderPassBinding::eType::TEXTURE, transparentRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                        { "RevealTexture", RenderPassBinding::eType::TEXTURE, transparentRT->Colors[1], RenderPassBinding::eStage::PIXEL, 1 }
+                };
+
+                m_RenderSystem->AddRenderPass<CompositeTransparentPass>(bindings);
+            }
+
             // Text 2D pass
             {
                 Shader* shader = ShaderManager::CreateShader("text2d");
@@ -344,11 +363,29 @@ namespace xpe {
                 m_RenderSystem->AddRenderPass<Text3DPass>(RenderPass::eType::OPAQUE, bindings);
             }
 
+            // FXAA pass
+            {
+                if (Config.MsaaSampleCount == 1)
+                {
+                    Shader* shader = ShaderManager::CreateShader("fxaa");
+                    ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
+                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
+                    ShaderManager::BuildShader(shader);
+
+                    vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "ColorTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                    };
+
+                    m_FxaaPass = m_RenderSystem->AddRenderPass<FXAAPass>(bindings, canvasViewport);
+                }
+            }
+
             // SSAO pass
             {
                 Shader* shader = ShaderManager::CreateShader("ssao");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/ssao_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/ssao_pass.ps");
+                ShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/ssao_pass.ps" : "engine_shaders/passes/ssao_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
@@ -358,33 +395,41 @@ namespace xpe {
                     { "DepthTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->DepthStencil, RenderPassBinding::eStage::PIXEL, 2 }
                 };
 
-                m_SsaoPass = m_RenderSystem->AddRenderPass<SSAOPass>(bindings, canvasViewport);
+                m_SsaoPass = m_RenderSystem->AddRenderPass<SSAOPass>(bindings, canvasViewport, Config.MsaaSampleCount);
             }
 
-            RenderTarget* ssaoRT = m_SsaoPass->GetRenderTarget();
-
-            // SSAO Merge pass
+            // Composite final pass
             {
-                Shader* shader = ShaderManager::CreateShader("merge");
-                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/merge_pass.vs");
-                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/merge_pass.ps");
+                Shader* shader = ShaderManager::CreateShader("composite_pass_final");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/composite_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/composite_pass_final.ps" : "engine_shaders/passes/composite_pass_final.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
                     { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, canvasRT },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
-                    { "AOTexture", RenderPassBinding::eType::TEXTURE, ssaoRT->Colors[0], RenderPassBinding::eStage::PIXEL, 2 }
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, Config.MsaaSampleCount > 1 ? opaqueRT->Colors[0] : m_FxaaPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 0},
+                    { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SsaoPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 1 }
                 };
 
-                m_RenderSystem->AddRenderPass<MergePass>(bindings);
+                m_RenderSystem->AddRenderPass<CompositeFinalPass>(bindings);
             }
         }
 
         void Application::Render()
         {
-            m_SsaoPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
-            m_SsaoPass->GetRenderTarget()->ClearDepth(1);
+            if (m_FxaaPass != nullptr)
+            {
+                m_FxaaPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
+                m_FxaaPass->GetRenderTarget()->ClearDepth(1);
+            }
+
+            if (m_SsaoPass != nullptr)
+            {
+                m_SsaoPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
+                m_SsaoPass->GetRenderTarget()->ClearDepth(1);
+            }
+
             m_Canvas->Clear(ClearColor);
             m_RenderSystem->Update(m_MainScene, DeltaTime);
             m_Canvas->Present();
