@@ -62,6 +62,8 @@ namespace xpe {
             RenderPass(eType type, const vector<RenderPassBinding>& bindings);
             virtual ~RenderPass();
 
+            bool Enable = true;
+
             virtual void Update(Scene* scene) {}
             virtual void Draw(Scene* scene) {}
             virtual void DrawOpaque(Scene* scene) {}

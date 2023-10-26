@@ -10,7 +10,8 @@ namespace xpe
         {
             float SSAODirectionCount;
             float SSAOSampleCount;
-            float _pad[2];
+            float SSAOIntensity = 1.0;
+            float _pad[1];
         };
 
         class ENGINE_API SSAOPass : public RenderPass
@@ -22,6 +23,8 @@ namespace xpe
             void Draw(Scene* scene) override final;
 
             void Update(Scene *scene) override;
+
+            inline SSAOBufferLayout& GetData() { return m_BufferData; }
 
         private:
             Buffer m_Buffer;

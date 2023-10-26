@@ -23,7 +23,9 @@
 
     "HotReloadShaders": true,
 
-    "MsaaSampleCount": 1
+    "MsaaSampleCount": 4,
+    "EnableSSAO": true
+
   }
 
 }

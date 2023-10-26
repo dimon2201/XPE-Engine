@@ -5,11 +5,6 @@
 struct VSIn
 {
     float3 positionLocal : XPE_POSITION;
-    float2 uv            : XPE_UV;
-    float3 normal        : XPE_NORMAL; // normalized
-    float3 tangent       : XPE_TANGENT; // normalized
-    int4 boneIds         : XPE_BONE_IDS; // boneId = -1 - bone absent
-    float4 boneWeights   : XPE_BONE_WEIGHTS;
     uint instanceIndex   : SV_InstanceID;
 };
 

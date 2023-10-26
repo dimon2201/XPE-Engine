@@ -110,6 +110,12 @@ namespace xpe
             : Component(tag) {
                 Position = position;
                 Color = color;
+                Projection.Left = -10.0f;
+                Projection.Right = 10.0f;
+                Projection.Bottom = -10.0f;
+                Projection.Top = 10.0f;
+                Projection.Near = 1.0f;
+                Projection.Far = 25.0f;
             }
 
             JsonClass(
@@ -145,6 +151,12 @@ namespace xpe
             : Component(tag) {
                 Position = position;
                 Color = color;
+                Projection.Left = -10.0f;
+                Projection.Right = 10.0f;
+                Projection.Bottom = -10.0f;
+                Projection.Top = 10.0f;
+                Projection.Near = 1.0f;
+                Projection.Far = 25.0f;
             }
 
             JsonClass(

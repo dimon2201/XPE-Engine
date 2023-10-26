@@ -1,2 +1,2 @@
-SamplerState S_Atlas		: register(s0);
-Texture2D T_Atlas			: register(t0);
+SamplerState TextAtlasSampler		: register(s0);
+Texture2D TextAtlas			        : register(t0);

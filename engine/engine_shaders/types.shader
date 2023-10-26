@@ -4,7 +4,7 @@
 
 #define K_SLOT_INSTANCES               register(t0)
 #define K_SLOT_TRANSFORMS              register(t1)
-#define K_SLOT_CAMERA                  register(t2)
+#define K_SLOT_CAMERAS                 register(t2)
 #define K_SLOT_TEXT_CHARS              register(t3)
 #define K_SLOT_VIEWPORT                register(t4)
 #define K_SLOT_BONES                   register(t5)

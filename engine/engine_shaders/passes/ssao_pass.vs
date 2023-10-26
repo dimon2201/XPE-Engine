@@ -4,13 +4,15 @@ struct VSOut
     float2 uv : XPE_UV;
     float ssaoDirectionCount : XPE_SSAO_DIRECTION_COUNT;
     float ssaoSampleCount : XPE_SSAO_SAMPLE_COUNT;
+    float ssaoIntensity : XPE_SSAO_INTENSITY;
 };
 
 cbuffer SSAOBuffer : register(b0)
 {
     float SSAODirectionCount;
     float SSAOSampleCount;
-    float _pad[2];
+    float SSAOIntensity;
+    float _pad[1];
 };
 
 VSOut vs_main(uint vertexIndex : SV_VertexID)
@@ -24,6 +26,7 @@ VSOut vs_main(uint vertexIndex : SV_VertexID)
 
     vsOut.ssaoDirectionCount = SSAODirectionCount;
     vsOut.ssaoSampleCount = SSAOSampleCount;
+    vsOut.ssaoIntensity = SSAOIntensity;
 
     return vsOut;
 }

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <rendering/passes/ssao_pass.hpp>
+#include <rendering/passes/fxaa_pass.hpp>
+
 namespace xpe {
 
     namespace render
@@ -7,8 +10,6 @@ namespace xpe {
         class Canvas;
         class RenderSystem;
         class RenderTarget;
-        class SSAOPass;
-        class FXAAPass;
     }
 
     namespace anim

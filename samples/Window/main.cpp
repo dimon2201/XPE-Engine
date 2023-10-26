@@ -139,29 +139,14 @@ public:
             planeMaterial->Flush();
         }
 
-        // setup direct light
-        {
-            m_DirectLight = new Entity("DirectLight", m_MainScene);
-
-            DirectLightComponent directLight("L_Direct");
-            directLight.Position = { 0, -5, 0 };
-            directLight.Color = { 0, 0, 0 };
-
-            m_DirectLight->AddComponent<DirectLightComponent>(directLight);
-        }
-
         // setup point light
         {
-            m_PointLight = new Entity("PointLight", m_MainScene);
-            m_PointLight->Transform.Position = {20, 20, -20 };
-            m_PointLight->Transform.Scale = {0.5, 0.5, 0.5 };
+            m_SunLight = new Entity("SunLight", m_MainScene);
+            m_SunLight->Transform.Position = { 20, 20, -20 };
 
-            m_PointLight->AddComponent<GeometryComponent>("G_Point", GeometryManager::AddGeometry(Sphere()));
-            m_PointLight->AddComponent<MaterialComponent>("PointLight", MaterialManager::Add("MT_PointLight", Material()));
-            auto& material = m_PointLight->GetComponent<MaterialComponent>("PointLight")->Material;
-            material->Albedo = { 1, 0, 0, 1 };
-            material->Flush();
-            m_PointLight->AddComponent<DirectLightComponent>("L_Point", glm::vec3(0, 0, 0), glm::vec3(15.3, 15.1, 11.1));
+            m_SunLight->AddComponent<GeometryComponent>("G_SunLight", GeometryManager::AddGeometry(Sphere()));
+            m_SunLight->AddComponent<MaterialComponent>("SunLight", MaterialManager::Add("MT_SunLight", Material()));
+            m_SunLight->AddComponent<DirectLightComponent>("L_SunLight", glm::vec3(0, 0, 0), glm::vec3(15.3, 15.1, 11.1));
         }
 
         // setup goblins
@@ -192,6 +177,8 @@ public:
                 m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
                 vector<Entity*> { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 }
             );
+
+            goblinModel->Visible = false;
 
             auto* goblinAnimation = m_Goblin1->AddComponent<SkeletonAnimationComponent>(
                 "GoblinAnimation",
@@ -303,7 +290,7 @@ public:
             if (i == 0) { mat.Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 0.25f); }
             if (i == 1) { mat.Albedo = glm::vec4(0.0f, 1.0f, 0.0f, 0.25f); }
             if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.25f); }
-            if (i == 2) { mat.Albedo = glm::vec4(1.0f, 1.0f, 0.0f, 0.25f); }
+            if (i == 3) { mat.Albedo = glm::vec4(1.0f, 1.0f, 0.0f, 0.25f); }
 
             m_Planes[i] = new Entity("Plane" + i, m_MainScene);
             m_Planes[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
@@ -361,7 +348,7 @@ public:
             SourceAudioComponent* source1;
             SourceAudioComponent* source2;
 
-            //test files //You can use one file for for many sources in one time
+            //test files //You can use one file for many sources in one time
             auto* file = m_AudioObject->GetComponent<AudioFileComponent>("Spell");
             auto* file1 = m_AudioObject->GetComponent<AudioFileComponent>("Test");
             auto* file2 = m_AudioObject->GetComponent<AudioFileComponent>("Magicfail");
@@ -436,6 +423,8 @@ public:
                 m_BackgroundAudio->AddComponent<AudioComponent>(component);
             }
         }
+
+        m_SsaoPass->GetData().SSAOIntensity = 2.0;
     }
 
     void Update() override final
@@ -449,8 +438,7 @@ public:
     void Free()
     {
         LogInfo("GameApp::Free()");
-        delete m_DirectLight;
-        delete m_PointLight;
+        delete m_SunLight;
         delete m_Text2D;
         delete m_Text3D;
         delete m_Plane;
@@ -462,11 +450,6 @@ public:
         delete m_Listener;
         delete m_BackgroundAudio;
         delete m_AudioObject;
-        delete m_DirectLight;
-        delete m_PointLight;
-        delete m_Text2D;
-        delete m_Text3D;
-        delete m_Plane;
         delete m_Planes[0];
         delete m_Planes[1];
         delete m_Planes[2];
@@ -543,7 +526,7 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto& pos = m_PointLight->Transform.Position;
+        auto& pos = m_SunLight->Transform.Position;
 
         if (key == eKey::Up)
         {
@@ -579,7 +562,7 @@ private:
     {
         if (m_TestConfig.AnimateLight)
         {
-            auto& pos = m_PointLight->Transform.Position;
+            auto& pos = m_SunLight->Transform.Position;
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -614,8 +597,7 @@ private:
     Ref<AnimLoader> m_AnimLoader;
     Ref<AudioLoader> m_AudioLoader;
 
-    Entity* m_DirectLight;
-    Entity* m_PointLight;
+    Entity* m_SunLight;
     Entity* m_Text2D;
     Entity* m_Text3D;
     Entity* m_Plane;

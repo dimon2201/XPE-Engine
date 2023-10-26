@@ -11,6 +11,7 @@ namespace xpe {
         RenderSystem::RenderSystem()
         {
             context::Init();
+
             ShaderManager::Init();
             GeometryManager::Init();
             MaterialManager::Init();
@@ -57,6 +58,7 @@ namespace xpe {
             MaterialManager::Free();
             GeometryManager::Free();
             ShaderManager::Free();
+
             context::Free();
         }
 
@@ -132,7 +134,7 @@ namespace xpe {
             shadowMap->Format = eTextureFormat::R32_TYPELESS;
             shadowMap->InitializeData = false;
             shadowMap->EnableRenderTarget = true;
-            shadowMap->SampleCount = sampleCount;
+            shadowMap->SampleCount = 1;
             shadowMap->Slot = K_SLOT_SHADOW_MAP;
             shadowMap->Init();
 
@@ -208,10 +210,12 @@ namespace xpe {
             m_ShadowRenderTarget->ClearDepth(1.0f);
             for (RenderPass* rp : m_ShadowRenderPasses)
             {
-                rp->Update(scene);
-                rp->Bind();
-                rp->DrawShadow(scene);
-                rp->Unbind();
+                if (rp->Enable) {
+                    rp->Update(scene);
+                    rp->Bind();
+                    rp->DrawShadow(scene);
+                    rp->Unbind();
+                }
             }
 
             // Opaque
@@ -221,10 +225,12 @@ namespace xpe {
             m_OpaqueRenderTarget->ClearDepth(1.0f);
             for (RenderPass* rp : m_OpaqueRenderPasses)
             {
-                rp->Update(scene);
-                rp->Bind();
-                rp->DrawOpaque(scene);
-                rp->Unbind();
+                if (rp->Enable) {
+                    rp->Update(scene);
+                    rp->Bind();
+                    rp->DrawOpaque(scene);
+                    rp->Unbind();
+                }
             }
 
             // Transparent
@@ -233,19 +239,23 @@ namespace xpe {
             m_TransparentRenderTarget->ClearDepth(1.0f);
             for (RenderPass* rp : m_TransparentRenderPasses)
             {
-                rp->Update(scene);
-                rp->Bind();
-                rp->DrawTransparent(scene);
-                rp->Unbind();
+                if (rp->Enable) {
+                    rp->Update(scene);
+                    rp->Bind();
+                    rp->DrawTransparent(scene);
+                    rp->Unbind();
+                }
             }
 
             // PostFX
             for (RenderPass* rp : m_PostFXRenderPasses)
             {
-                rp->Update(scene);
-                rp->Bind();
-                rp->Draw(scene);
-                rp->Unbind();
+                if (rp->Enable) {
+                    rp->Update(scene);
+                    rp->Bind();
+                    rp->Draw(scene);
+                    rp->Unbind();
+                }
             }
         }
 

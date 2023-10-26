@@ -18,10 +18,10 @@ namespace xpe {
 
         glm::mat4 OrthoMatrixUpdate(const OrthoMatrix &orthoMatrix) {
             return math::ortho(
-                    orthoMatrix.Left / 100.0f,
-                    orthoMatrix.Right / 100.0f,
-                    orthoMatrix.Bottom / 100.0f,
-                    orthoMatrix.Top / 100.0f,
+                    orthoMatrix.Left,
+                    orthoMatrix.Right,
+                    orthoMatrix.Bottom,
+                    orthoMatrix.Top,
                     orthoMatrix.Near,
                     orthoMatrix.Far
             );

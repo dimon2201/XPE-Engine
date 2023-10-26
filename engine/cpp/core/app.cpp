@@ -13,8 +13,6 @@
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
 #include <rendering/passes/composite_transparent_pass.h>
-#include <rendering/passes/fxaa_pass.hpp>
-#include <rendering/passes/ssao_pass.hpp>
 #include <rendering/passes/composite_final_pass.h>
 
 #include <anim/anim_system.h>
@@ -81,6 +79,9 @@ namespace xpe {
             WindowManager::SetMonitorBuffer(m_RenderSystem->GetMonitorBuffer());
             WindowManager::SetExposure(winDesc.Exposure);
             WindowManager::SetGamma(winDesc.Gamma);
+
+            m_SsaoPass->Enable = Config.EnableSSAO;
+            m_FxaaPass->Enable = Config.MsaaSampleCount == 1;
 
             m_MainScene = new MainScene();
             m_MainScene->PerspectiveCamera->Buffer = m_RenderSystem->GetCameraBuffer();
@@ -365,20 +366,17 @@ namespace xpe {
 
             // FXAA pass
             {
-                if (Config.MsaaSampleCount == 1)
-                {
-                    Shader* shader = ShaderManager::CreateShader("fxaa");
-                    ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
-                    ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
-                    ShaderManager::BuildShader(shader);
+                Shader* shader = ShaderManager::CreateShader("fxaa");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/fxaa_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
+                ShaderManager::BuildShader(shader);
 
-                    vector<RenderPassBinding> bindings = {
+                vector<RenderPassBinding> bindings = {
                         { "Shader", RenderPassBinding::eType::SHADER, shader },
                         { "ColorTexture", RenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
-                    };
+                };
 
-                    m_FxaaPass = m_RenderSystem->AddRenderPass<FXAAPass>(bindings, canvasViewport);
-                }
+                m_FxaaPass = m_RenderSystem->AddRenderPass<FXAAPass>(bindings, canvasViewport);
             }
 
             // SSAO pass
@@ -418,13 +416,13 @@ namespace xpe {
 
         void Application::Render()
         {
-            if (m_FxaaPass != nullptr)
+            if (m_FxaaPass->Enable)
             {
                 m_FxaaPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
                 m_FxaaPass->GetRenderTarget()->ClearDepth(1);
             }
 
-            if (m_SsaoPass != nullptr)
+            if (m_SsaoPass->Enable)
             {
                 m_SsaoPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
                 m_SsaoPass->GetRenderTarget()->ClearDepth(1);

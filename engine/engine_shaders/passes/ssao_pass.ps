@@ -4,6 +4,7 @@ struct VSOut
     float2 uv : XPE_UV;
     float ssaoDirectionCount : XPE_SSAO_DIRECTION_COUNT;
     float ssaoSampleCount : XPE_SSAO_SAMPLE_COUNT;
+    float ssaoIntensity : XPE_SSAO_INTENSITY;
 };
 
 struct PSOut
@@ -32,6 +33,8 @@ PSOut ps_main(VSOut psIn)
     int2 curCoord = int2(psIn.uv * float2(width, height));
     float3 curPos = PositionTexture.Load(int3(curCoord, 0)).xyz;
     float3 curNormal = NormalTexture.Load(int3(curCoord, 0)).xyz;
+    float ssaoIntensity = psIn.ssaoIntensity;
+
     for (int dir = 0; dir < int(4); dir++)
     {
         for (int s = 0; s < int(4); s++)
@@ -45,6 +48,7 @@ PSOut ps_main(VSOut psIn)
         }
     }
     occlusion /= float(4) * float(4);
+    occlusion *= ssaoIntensity;
     occlusion = 1.0 - occlusion;
 
     PSOut psOut;

@@ -25,7 +25,8 @@ namespace xpe {
                 LogTimeDelaySeconds,
                 LockOnFps,
                 HotReloadShaders,
-                MsaaSampleCount
+                MsaaSampleCount,
+                EnableSSAO
             )
 
             string WinTitle;
@@ -53,6 +54,7 @@ namespace xpe {
             bool HotReloadShaders = true;
 
             u32 MsaaSampleCount = 1;
+            bool EnableSSAO = true;
         };
 
     }

@@ -100,8 +100,8 @@ namespace xpe {
             scene->EachComponent<DirectLightComponent>([this, scene](DirectLightComponent* lightComponent) {
                 ViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = -glm::normalize(lightComponent->Position);
-                lightView.Up = glm::vec3(0, 0, 1);
+                lightView.Front = glm::vec3(0, 0, 0);
+                lightView.Up = glm::vec3(0, 1, 0);
                 glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
 
                 scene->EachComponent<SkeletonModelComponent>([this, &lightMatrix](SkeletonModelComponent* component)
@@ -137,8 +137,8 @@ namespace xpe {
             scene->EachComponent<SpotLightComponent>([this, scene](SpotLightComponent* lightComponent) {
                 ViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = lightComponent->Direction;
-                lightView.Up = glm::vec3(0, 0, 1);
+                lightView.Front = glm::vec3(0, 0, 0);
+                lightView.Up = glm::vec3(0, 1, 0);
                 glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
 
                 scene->EachComponent<SkeletonModelComponent>([this, &lightMatrix](SkeletonModelComponent* component)
