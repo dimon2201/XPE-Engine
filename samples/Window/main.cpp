@@ -91,12 +91,12 @@ public:
         // setup text 3D entity
         {
             m_Text3D = new Entity("Text3D", m_MainScene);
-            m_Text3D->Transform.Position = {0, -10, 0 };
-            m_Text3D->Transform.Scale = {10, 10, 1 };
+            m_Text3D->Transform.Position = { 0, 25, 50 };
+            m_Text3D->Transform.Scale = { 0.25, 0.25, 1 };
 
             auto* textComponent = m_Text3D->AddComponent<Text3DComponent>(
                     "Text3D",
-                    m_FontLoader->Load("res/fonts/Roboto-Bold.ttf", 44),
+                    m_FontLoader->Load("res/fonts/Roboto-Bold.ttf", 32),
                     "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine"
             );
             textComponent->Font->NewLineOffset = 1.0f;
@@ -122,14 +122,13 @@ public:
         {
             m_Plane = new Entity("Plane", m_MainScene);
             m_Plane->Transform.Position = { 0, -10, 0 };
-            m_Plane->Transform.Scale = { 100, 0.1, 100 };
+            m_Plane->Transform.Scale = { 1, 1, 1 };
 
-            m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Cube()));
+            m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Plane(100)));
             auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::Add("PlaneMaterial", Material()))->Material;
-            planeMaterial->Albedo = { 1, 1, 1, 1 };
-            planeMaterial->Metallness = 0.5;
-            planeMaterial->Roughness = 0.5;
-            planeMaterial->AO = 0.5;
+            planeMaterial->Metallness = 0;
+            planeMaterial->Roughness = 0.05;
+            planeMaterial->AO = 0;
             planeMaterial->Flush();
         }
 
@@ -271,7 +270,7 @@ public:
         // setup cube
         {
             m_Cube = new Entity("Cube", m_MainScene);
-            m_Cube->Transform.Position = { 10, -10, 10 };
+            m_Cube->Transform.Position = { 10, -8, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
             m_Cube->AddComponent<GeometryComponent>("G_Cube", GeometryManager::AddGeometry(Cube()));
             m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::Add("MT_Cube", Material()));
@@ -286,12 +285,12 @@ public:
             if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.25f); }
             if (i == 3) { mat.Albedo = glm::vec4(1.0f, 1.0f, 0.0f, 0.25f); }
 
-            m_Planes[i] = new Entity("Plane" + i, m_MainScene);
-            m_Planes[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
-            m_Planes[i]->Transform.Scale = { 1, 1, 0.1 };
-            m_Planes[i]->AddComponent<GeometryComponent>("G_Plane" + i, GeometryManager::AddGeometry(Cube()));
-            m_Planes[i]->AddComponent<MaterialComponent>("Plane" + i, MaterialManager::Add("MT_Plane" + i, mat));
-            m_Planes[i]->GetComponent<GeometryComponent>("G_Plane" + i)->Transparent = true;
+            m_Glasses[i] = new Entity("Glass" + i, m_MainScene);
+            m_Glasses[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
+            m_Glasses[i]->Transform.Scale = { 1, 1, 0.1 };
+            m_Glasses[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Sphere()));
+            m_Glasses[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::Add("MT_Glass" + i, mat));
+            m_Glasses[i]->GetComponent<GeometryComponent>("G_Glass" + i)->Transparent = true;
         }
 
         m_Listener = new Entity("Listener", m_MainScene);
@@ -445,10 +444,10 @@ public:
         delete m_Listener;
         delete m_BackgroundAudio;
         delete m_AudioObject;
-        delete m_Planes[0];
-        delete m_Planes[1];
-        delete m_Planes[2];
-        delete m_Planes[3];
+        delete m_Glasses[0];
+        delete m_Glasses[1];
+        delete m_Glasses[2];
+        delete m_Glasses[3];
     }
 
     void WindowClosed()
@@ -604,7 +603,7 @@ private:
     Entity* m_Listener;
     Entity* m_BackgroundAudio;
     Entity* m_AudioObject;
-    Entity* m_Planes[4];
+    Entity* m_Glasses[4];
 
     TestConfig m_TestConfig = string("TestConfig");
     XmlConfig  m_XmlConfig = string("XmlConfig");

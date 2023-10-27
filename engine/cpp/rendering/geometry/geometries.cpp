@@ -126,16 +126,8 @@ namespace xpe {
                     auto& v = vertices[k];
                     v.Position = { shiftX + i, 0, shiftZ + j };
                     v.UV = { (float) i / (float) size, (float) j / (float) size };
-
-                    if (k % 3 == 0 && k > 0) {
-                        InitNormal(
-                            &vertices[k - 3],
-                            &vertices[k - 2],
-                            &vertices[k - 1],
-                            &vertices[k]
-                        );
-                    }
-
+                    v.Normal = { 0, 1, 0 };
+                    v.Tangent = { 0, 0, 1 };
                     k++;
                 }
             }
