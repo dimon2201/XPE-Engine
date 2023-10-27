@@ -1,18 +1,12 @@
 #pragma once
 
 #include <rendering/passes/render_pass.h>
+#include <rendering/buffers/ssao_buffer.h>
 
 namespace xpe
 {
     namespace render
     {
-        struct SSAOBufferLayout
-        {
-            float SSAODirectionCount;
-            float SSAOSampleCount;
-            float SSAOIntensity = 1.0;
-            float _pad[1];
-        };
 
         class ENGINE_API SSAOPass : public RenderPass
         {
@@ -22,13 +16,12 @@ namespace xpe
 
             void Draw(Scene* scene) override final;
 
-            void Update(Scene *scene) override;
-
-            inline SSAOBufferLayout& GetData() { return m_BufferData; }
+            inline SSAOData& GetData() { return m_Buffer.Item; }
+            inline void Flush() { m_Buffer.Flush(); }
 
         private:
-            Buffer m_Buffer;
-            SSAOBufferLayout m_BufferData;
+            SSAOBuffer m_Buffer;
         };
+
     }
 }

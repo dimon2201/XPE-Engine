@@ -11,8 +11,7 @@ namespace xpe {
         {
 
         public:
-            Canvas(s32 width, s32 height, Shader* shader);
-            Canvas(const glm::ivec2& size, Shader* shader);
+            Canvas(Shader* shader, RenderTarget* renderTarget, ViewportBuffer* viewportBuffer);
             ~Canvas();
 
             void Clear(const glm::vec4& color);
@@ -20,27 +19,21 @@ namespace xpe {
 
             void WindowFrameResized(s32 width, s32 height);
 
-            inline RenderTarget* GetRenderTarget() { return m_RenderTarget.Get(); }
-            inline Shader* GetShader() { return m_Shader; }
-            inline void SetViewport(const Viewport& viewport) { m_ViewportBuffer.FlushItem(m_BoundTargetIndex, viewport); }
+            inline void SetRenderTarget(RenderTarget* renderTarget) { m_RenderTarget = renderTarget; }
             inline void SetClearColor(const glm::vec4& color) { m_ClearColor = color; }
-            inline glm::vec2 GetDimension() { return { m_ViewportBuffer[m_BoundTargetIndex]->Width, m_ViewportBuffer[m_BoundTargetIndex]->Height }; }
-            inline ViewportBuffer* GetBuffer() { return &m_ViewportBuffer; }
-            inline Viewport* GetViewport(u32 index) { return GetBuffer()->Get(index); }
 
         private:
-            void CreateRenderTarget(int width, int height);
             void CreatePresentTarget();
             void CreatePresentSampler();
 
         private:
-            ViewportBuffer m_ViewportBuffer;
-            glm::vec4 m_ClearColor = { 0.0f, 0.0f, 0.0f, 1.0f };
-            Scope<RenderTarget> m_RenderTarget;
-            Shader* m_Shader = nullptr;
+            RenderTarget* m_RenderTarget;
+            Shader* m_Shader;
+            ViewportBuffer* m_ViewportBuffer;
             TextureSampler m_PresentSampler;
             Scope<RenderTarget> m_PresentTarget;
             u32 m_BoundTargetIndex = 0;
+            glm::vec4 m_ClearColor = { 0.0f, 0.0f, 0.0f, 1.0f };
         };
 
     }

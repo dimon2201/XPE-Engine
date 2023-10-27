@@ -5,8 +5,6 @@ struct VSIn
 {
     float3 positionLocal : XPE_POSITION;
     float2 uv : XPE_UV;
-    float3 normal : XPE_NORMAL; // normalized
-    float3 tangent : XPE_TANGENT; // normalized
     uint instanceIndex : SV_InstanceID;
 };
 

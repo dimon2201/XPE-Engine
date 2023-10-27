@@ -2,12 +2,11 @@
 
 struct VSOut
 {
-    float4 positionClip : SV_POSITION;
     float3 positionLocal : XPE_POSITION_LOCAL;
 };
 
-SamplerState S_Cube : register(s0);
-TextureCube  T_Cube : register(t0);
+SamplerState TextureSampler : register(s0);
+TextureCube  TextureCube : register(t0);
 
 struct PSOut
 {

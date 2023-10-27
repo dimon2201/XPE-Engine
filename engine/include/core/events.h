@@ -6,142 +6,77 @@ namespace xpe {
 
     namespace core {
 
-        typedef void (*WindowClosedFn)(void* thiz);
-        template<typename T>
-        static void OnWindowClosed(void* const thiz) {
-            ((T*) thiz)->WindowClosed();
-        }
+        event_begin(WindowClosed)
+        event_end(WindowClosed)
 
-        typedef void (*WindowMovedFn)(void* thiz, int x, int y);
-        template<typename T>
-        static void OnWindowMoved(void* const thiz, int x, int y) {
-            ((T*) thiz)->WindowMoved(x, y);
-        }
+        event_begin(WindowMoved, int x, int y)
+        event_end(WindowMoved, x, y)
 
-        typedef void (*WindowResizedFn)(void* thiz, int width, int height);
-        template<typename T>
-        static void OnWindowResized(void* const thiz, int w, int h) {
-            ((T*) thiz)->WindowResized(w, h);
-        }
+        event_begin(WindowResized, int w, int h)
+        event_end(WindowResized, w, h)
 
-        typedef void (*WindowFrameResizedFn)(void* thiz, int width, int height);
-        template<typename T>
-        static void OnWindowFrameResized(void* const thiz, int w, int h) {
-            ((T*) thiz)->WindowFrameResized(w, h);
-        }
+        event_begin(WindowFrameResized, int w, int h)
+        event_end(WindowFrameResized, w, h)
 
-        typedef void (*WindowFocusedFn)(void* thiz);
-        template<typename T>
-        static void OnWindowFocused(void* const thiz) {
-            ((T*) thiz)->WindowFocused();
-        }
+        event_begin(WindowFocused)
+        event_end(WindowFocused)
 
-        typedef void (*WindowFocusLostFn)(void* thiz);
-        template<typename T>
-        static void OnWindowFocusLost(void* const thiz) {
-            ((T*) thiz)->WindowFocusLost();
-        }
+        event_begin(WindowFocusLost)
+        event_end(WindowFocusLost)
 
-        typedef void (*KeyPressedFn)(void* thiz, const eKey key);
-        template<typename T>
-        static void OnKeyPressed(void* const thiz, const eKey key) {
-            ((T*) thiz)->KeyPressed(key);
-        }
+        event_begin(KeyPressed, const eKey key)
+        event_end(KeyPressed, key)
 
-        typedef void (*KeyReleasedFn)(void* thiz, const eKey key);
-        template<typename T>
-        static void OnKeyReleased(void* const thiz, const eKey key) {
-            ((T*) thiz)->KeyReleased(key);
-        }
+        event_begin(KeyReleased, const eKey key)
+        event_end(KeyReleased, key)
 
-        typedef void (*KeyHoldFn)(void* thiz, const eKey key);
-        template<typename T>
-        static void OnKeyHold(void* const thiz, const eKey key) {
-            ((T*) thiz)->KeyHold(key);
-        }
+        event_begin(KeyHold, const eKey key)
+        event_end(KeyHold, key)
 
-        typedef void (*MousePressedFn)(void* thiz, const eMouse mouse);
-        template<typename T>
-        static void OnMousePressed(void* const thiz, const eMouse mouse) {
-            ((T*) thiz)->MousePressed(mouse);
-        }
+        event_begin(MousePressed, const eMouse mouse)
+        event_end(MousePressed, mouse)
 
-        typedef void (*MouseReleasedFn)(void* thiz, const eMouse mouse);
-        template<typename T>
-        static void OnMouseReleased(void* const thiz, const eMouse mouse) {
-            ((T*) thiz)->MouseReleased(mouse);
-        }
+        event_begin(MouseReleased, const eMouse mouse)
+        event_end(MouseReleased, mouse)
 
-        typedef void (*MouseHoldFn)(void* thiz, const eMouse mouse);
-        template<typename T>
-        static void OnMouseHold(void* const thiz, const eMouse mouse) {
-            ((T*) thiz)->MouseHold(mouse);
-        }
+        event_begin(MouseHold, const eMouse mouse)
+        event_end(MouseHold, mouse)
 
-        typedef void (*CursorMovedFn)(void* thiz, const double x, const double y);
-        template<typename T>
-        static void OnCursorMoved(void* const thiz, const double x, const double y) {
-            ((T*) thiz)->CursorMoved(x, y);
-        }
+        event_begin(CursorMoved, const double x, const double y)
+        event_end(CursorMoved, x, y)
 
-        typedef void (*CursorEnteredFn)(void* thiz);
-        template<typename T>
-        static void OnCursorEntered(void* const thiz) {
-            ((T*) thiz)->CursorEntered();
-        }
+        event_begin(CursorEntered)
+        event_end(CursorEntered)
 
-        typedef void (*CursorLeftFn)(void* thiz);
-        template<typename T>
-        static void OnCursorLeft(void* const thiz) {
-            ((T*) thiz)->CursorLeft();
-        }
+        event_begin(CursorLeft)
+        event_end(CursorLeft)
 
-        typedef void (*ScrollChangedFn)(void* thiz, const double x, const double y);
-        template<typename T>
-        static void OnScrollChanged(void* const thiz, const double x, const double y) {
-            ((T*) thiz)->ScrollChanged(x, y);
-        }
+        event_begin(ScrollChanged, const double x, const double y)
+        event_end(ScrollChanged, x, y)
 
-        typedef void (*CharTypedFn)(void* thiz, const u32 charUnicode);
-        template<typename T>
-        static void OnCharTyped(void* const thiz, const u32 charUnicode) {
-            ((T*) thiz)->CharTyped(charUnicode);
-        }
+        event_begin(CharTyped, const u32 charUnicode)
+        event_end(CharTyped, charUnicode)
 
-        typedef void (*CharModsTypedFn)(void* thiz, const u32 charUnicode, const int mods);
-        template<typename T>
-        static void OnCharModsTyped(void* const thiz, const u32 charUnicode, const int mods) {
-            ((T*) thiz)->CharModsTyped(charUnicode, mods);
-        }
+        event_begin(CharModsTyped, const u32 charUnicode, const int mods)
+        event_end(CharModsTyped, charUnicode, mods)
 
-        #define DEFINE_EVENT(e) \
-        struct ENGINE_API e : Event<e##Fn> {  \
-            e(void* const thiz, e##Fn function, int priority) : Event<e##Fn>(thiz, function, priority) {} \
-        }; \
+        event_begin(FileAdded, const string& watchpath, const string& filepath)
+        event_end(FileAdded, watchpath, filepath)
 
-        DEFINE_EVENT(WindowClosed)
-        DEFINE_EVENT(WindowResized)
-        DEFINE_EVENT(WindowMoved)
-        DEFINE_EVENT(WindowFrameResized)
-        DEFINE_EVENT(WindowFocused)
-        DEFINE_EVENT(WindowFocusLost)
+        event_begin(FileDeleted, const string& watchpath, const string& filepath)
+        event_end(FileDeleted, watchpath, filepath)
 
-        DEFINE_EVENT(KeyPressed)
-        DEFINE_EVENT(KeyReleased)
-        DEFINE_EVENT(KeyHold)
+        event_begin(FileModified, const string& watchpath, const string& filepath)
+        event_end(FileModified, watchpath, filepath)
 
-        DEFINE_EVENT(MousePressed)
-        DEFINE_EVENT(MouseReleased)
-        DEFINE_EVENT(MouseHold)
+        event_begin(FileNewName, const string& watchpath, const string& filepath)
+        event_end(FileNewName, watchpath, filepath)
 
-        DEFINE_EVENT(CursorMoved)
-        DEFINE_EVENT(CursorEntered)
-        DEFINE_EVENT(CursorLeft)
+        event_begin(FileOldName, const string& watchpath, const string& filepath)
+        event_end(FileOldName, watchpath, filepath)
 
-        DEFINE_EVENT(ScrollChanged)
-
-        DEFINE_EVENT(CharTyped)
-        DEFINE_EVENT(CharModsTyped)
+        event_begin(SampleCountChanged, u32 sampleCount)
+        event_end(SampleCountChanged, sampleCount)
 
     }
 

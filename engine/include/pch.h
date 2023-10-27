@@ -81,6 +81,8 @@
 #include <core/macro_debugbreak.h>
 #include <core/thread.h>
 #include <core/task_manager.h>
+#include <core/event_manager.h>
+#include <core/observers.h>
 #include <core/file_manager.h>
 #include <core/window_manager.hpp>
 #include <core/input_manager.h>

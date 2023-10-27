@@ -241,7 +241,7 @@ namespace focus {
             hstring gameCodeDllPath = ss.str();
 
             auto& watch = watcher.AddWatch(gameCodeDllPath.c_str());
-            watch.FileModifiedEventBuffer.AddEvent(nullptr, GameCodeDLLModified, 1);
+            watch.FileModifiedEvents.AddEvent(nullptr, GameCodeDLLModified, 1);
         }
 
         void ProjectManager::WatchProjectShaders(DirectoryWatcher& watcher, const string &title)
@@ -251,9 +251,9 @@ namespace focus {
             hstring shadersPath = ss.str();
 
             auto& watch = watcher.AddWatch(shadersPath.c_str());
-            watch.FileModifiedEventBuffer.AddEvent(nullptr, ShaderFileModified, 1);
-            watch.FileAddedEventBuffer.AddEvent(nullptr, ShaderFileModified, 1);
-            watch.FileDeletedEventBuffer.AddEvent(nullptr, ShaderFileModified, 1);
+            watch.FileModifiedEvents.AddEvent(nullptr, ShaderFileModified, 1);
+            watch.FileAddedEvents.AddEvent(nullptr, ShaderFileModified, 1);
+            watch.FileDeletedEvents.AddEvent(nullptr, ShaderFileModified, 1);
         }
 
         void ProjectManager::WatchProjectResources(DirectoryWatcher& watcher, const string &title)
@@ -264,9 +264,9 @@ namespace focus {
 
             {
                 auto& watch = watcher.AddWatch(modelsPath.c_str());
-                watch.FileModifiedEventBuffer.AddEvent(nullptr, ModelFileModified, 1);
-                watch.FileAddedEventBuffer.AddEvent(nullptr, ModelFileModified, 1);
-                watch.FileDeletedEventBuffer.AddEvent(nullptr, ModelFileModified, 1);
+                watch.FileModifiedEvents.AddEvent(nullptr, ModelFileModified, 1);
+                watch.FileAddedEvents.AddEvent(nullptr, ModelFileModified, 1);
+                watch.FileDeletedEvents.AddEvent(nullptr, ModelFileModified, 1);
             }
 
             ss = {};
@@ -275,9 +275,9 @@ namespace focus {
 
             {
                 auto& watch = watcher.AddWatch(fontsPath.c_str());
-                watch.FileModifiedEventBuffer.AddEvent(nullptr, FontFileModified, 1);
-                watch.FileAddedEventBuffer.AddEvent(nullptr, FontFileModified, 1);
-                watch.FileDeletedEventBuffer.AddEvent(nullptr, FontFileModified, 1);
+                watch.FileModifiedEvents.AddEvent(nullptr, FontFileModified, 1);
+                watch.FileAddedEvents.AddEvent(nullptr, FontFileModified, 1);
+                watch.FileDeletedEvents.AddEvent(nullptr, FontFileModified, 1);
             }
 
             ss = {};
@@ -286,9 +286,9 @@ namespace focus {
 
             {
                 auto& watch = watcher.AddWatch(materialsPath.c_str());
-                watch.FileModifiedEventBuffer.AddEvent(nullptr, MaterialFileModified, 1);
-                watch.FileAddedEventBuffer.AddEvent(nullptr, MaterialFileModified, 1);
-                watch.FileDeletedEventBuffer.AddEvent(nullptr, MaterialFileModified, 1);
+                watch.FileModifiedEvents.AddEvent(nullptr, MaterialFileModified, 1);
+                watch.FileAddedEvents.AddEvent(nullptr, MaterialFileModified, 1);
+                watch.FileDeletedEvents.AddEvent(nullptr, MaterialFileModified, 1);
             }
 
             ss = {};
@@ -297,9 +297,9 @@ namespace focus {
 
             {
                 auto& watch = watcher.AddWatch(skyboxPath.c_str());
-                watch.FileModifiedEventBuffer.AddEvent(nullptr, SkyboxFileModified, 1);
-                watch.FileAddedEventBuffer.AddEvent(nullptr, SkyboxFileModified, 1);
-                watch.FileDeletedEventBuffer.AddEvent(nullptr, SkyboxFileModified, 1);
+                watch.FileModifiedEvents.AddEvent(nullptr, SkyboxFileModified, 1);
+                watch.FileAddedEvents.AddEvent(nullptr, SkyboxFileModified, 1);
+                watch.FileDeletedEvents.AddEvent(nullptr, SkyboxFileModified, 1);
             }
         }
 

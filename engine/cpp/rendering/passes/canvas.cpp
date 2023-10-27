@@ -4,22 +4,13 @@ namespace xpe {
 
     namespace render {
 
-        Canvas::Canvas(s32 width, s32 height, Shader* shader) : m_Shader(shader)
+        Canvas::Canvas(Shader* shader, RenderTarget* renderTarget, ViewportBuffer* viewportBuffer)
+        : m_Shader(shader), m_RenderTarget(renderTarget), m_ViewportBuffer(viewportBuffer)
         {
-            Viewport viewport;
-            viewport.Width = width;
-            viewport.Height = height;
-            m_ViewportBuffer.Add(viewport);
-            m_ViewportBuffer.Flush();
-
-            CreateRenderTarget(width, height);
             CreatePresentTarget();
             CreatePresentSampler();
-
             AddWindowFrameResized(Canvas, 1);
         }
-
-        Canvas::Canvas(const glm::ivec2& size, Shader* shader) : Canvas(size.x, size.y, shader) {}
 
         Canvas::~Canvas()
         {
@@ -53,37 +44,11 @@ namespace xpe {
             context::ResizeSwapchain(*m_PresentTarget, width, height);
         }
 
-        void Canvas::CreateRenderTarget(int width, int height)
-        {
-            Texture* color = new Texture();
-            color->Width = width;
-            color->Height = height;
-            color->Format = eTextureFormat::RGBA8;
-            color->InitializeData = false;
-            color->EnableRenderTarget = true;
-            color->Init();
-
-            Texture* depth = new Texture();
-            depth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            depth->Width = width;
-            depth->Height = height;
-            depth->Format = eTextureFormat::R32_TYPELESS;
-            depth->InitializeData = false;
-            depth->EnableRenderTarget = true;
-            depth->Init();
-
-            m_RenderTarget.Create(
-                vector<Texture*> { color },
-                depth,
-                m_ViewportBuffer.GetList()
-            );
-        }
-
         void Canvas::CreatePresentTarget()
         {
             m_PresentTarget.Create(
                     vector<void*> { context::SwapchainTargetView },
-                    m_ViewportBuffer.GetList()
+                    m_ViewportBuffer->GetList()
             );
         }
 

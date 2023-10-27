@@ -8,13 +8,17 @@ namespace xpe {
 
     namespace render {
 
-        RenderSystem::RenderSystem()
+        RenderSystem::RenderSystem(const Viewport& viewport, u32 sampleCount)
         {
             context::Init();
 
             ShaderManager::Init();
             GeometryManager::Init();
             MaterialManager::Init();
+
+            m_ViewportBuffer = new ViewportBuffer();
+            m_ViewportBuffer->Add(viewport);
+            m_ViewportBuffer->Flush();
 
             m_MonitorBuffer = new MonitorBuffer();
 
@@ -38,10 +42,13 @@ namespace xpe {
             m_ShadowSampler->Slot = K_SLOT_SHADOW_SAMPLER;
 
             m_TransparentRenderPasses.reserve(2);
+
+            InitRenderTargets(viewport, sampleCount);
         }
 
         RenderSystem::~RenderSystem()
         {
+            delete m_ViewportBuffer;
             delete m_MonitorBuffer;
             delete m_CameraBuffer;
             delete m_DirectLightBuffer;
@@ -51,6 +58,7 @@ namespace xpe {
 
             delete m_ShadowSampler;
 
+            delete m_CanvasRenderTarget;
             delete m_OpaqueRenderTarget;
             delete m_TransparentRenderTarget;
             delete m_ShadowRenderTarget;
@@ -62,13 +70,33 @@ namespace xpe {
             context::Free();
         }
 
-        void RenderSystem::InitRenderTargets(Viewport* viewport, u32 sampleCount)
+        void RenderSystem::InitRenderTargets(const Viewport& viewport, u32 sampleCount)
         {
+            // Canvas render target
+            Texture* canvasColor = new Texture();
+            canvasColor->Width = viewport.Width;
+            canvasColor->Height = viewport.Height;
+            canvasColor->Format = eTextureFormat::RGBA8;
+            canvasColor->InitializeData = false;
+            canvasColor->EnableRenderTarget = true;
+            canvasColor->Init();
+
+            Texture* canvasDepth = new Texture();
+            canvasDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            canvasDepth->Width = viewport.Width;
+            canvasDepth->Height = viewport.Height;
+            canvasDepth->Format = eTextureFormat::R32_TYPELESS;
+            canvasDepth->InitializeData = false;
+            canvasDepth->EnableRenderTarget = true;
+            canvasDepth->Init();
+
+            m_CanvasRenderTarget = new RenderTarget({ canvasColor }, canvasDepth, m_ViewportBuffer->GetList());
+
             // Shared depth texture for opaque and transparent render targets
             m_SharedDepthTexture = new Texture();
             m_SharedDepthTexture->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            m_SharedDepthTexture->Width = viewport->Width;
-            m_SharedDepthTexture->Height = viewport->Height;
+            m_SharedDepthTexture->Width = viewport.Width;
+            m_SharedDepthTexture->Height = viewport.Height;
             m_SharedDepthTexture->Format = eTextureFormat::R32_TYPELESS;
             m_SharedDepthTexture->InitializeData = false;
             m_SharedDepthTexture->EnableRenderTarget = true;
@@ -77,8 +105,8 @@ namespace xpe {
 
             // Opaque render target
             Texture* mainColor = new Texture();
-            mainColor->Width = viewport->Width;
-            mainColor->Height = viewport->Height;
+            mainColor->Width = viewport.Width;
+            mainColor->Height = viewport.Height;
             mainColor->Format = eTextureFormat::RGBA8;
             mainColor->InitializeData = false;
             mainColor->EnableRenderTarget = true;
@@ -86,8 +114,8 @@ namespace xpe {
             mainColor->Init();
 
             Texture* mainPosition = new Texture();
-            mainPosition->Width = viewport->Width;
-            mainPosition->Height = viewport->Height;
+            mainPosition->Width = viewport.Width;
+            mainPosition->Height = viewport.Height;
             mainPosition->Format = eTextureFormat::RGBA32;
             mainPosition->InitializeData = false;
             mainPosition->EnableRenderTarget = true;
@@ -95,20 +123,20 @@ namespace xpe {
             mainPosition->Init();
 
             Texture* mainNormal = new Texture();
-            mainNormal->Width = viewport->Width;
-            mainNormal->Height = viewport->Height;
+            mainNormal->Width = viewport.Width;
+            mainNormal->Height = viewport.Height;
             mainNormal->Format = eTextureFormat::RGBA16;
             mainNormal->InitializeData = false;
             mainNormal->EnableRenderTarget = true;
             mainNormal->SampleCount = sampleCount;
             mainNormal->Init();
 
-            m_OpaqueRenderTarget = new RenderTarget({ mainColor, mainPosition, mainNormal }, m_SharedDepthTexture, *viewport);
+            m_OpaqueRenderTarget = new RenderTarget({ mainColor, mainPosition, mainNormal }, m_SharedDepthTexture, viewport);
 
             // Transparent render target
             Texture* mainAccum = new Texture();
-            mainAccum->Width = viewport->Width;
-            mainAccum->Height = viewport->Height;
+            mainAccum->Width = viewport.Width;
+            mainAccum->Height = viewport.Height;
             mainAccum->Format = eTextureFormat::RGBA16;
             mainAccum->InitializeData = false;
             mainAccum->EnableRenderTarget = true;
@@ -116,21 +144,21 @@ namespace xpe {
             mainAccum->Init();
 
             Texture* mainReveal = new Texture();
-            mainReveal->Width = viewport->Width;
-            mainReveal->Height = viewport->Height;
+            mainReveal->Width = viewport.Width;
+            mainReveal->Height = viewport.Height;
             mainReveal->Format = eTextureFormat::R8;
             mainReveal->InitializeData = false;
             mainReveal->EnableRenderTarget = true;
             mainReveal->SampleCount = sampleCount;
             mainReveal->Init();
 
-            m_TransparentRenderTarget = new RenderTarget({ mainAccum, mainReveal }, m_SharedDepthTexture, *viewport);
+            m_TransparentRenderTarget = new RenderTarget({ mainAccum, mainReveal }, m_SharedDepthTexture, viewport);
 
             // Shadow map as a depth stencil texture output for shadow mapping
             Texture* shadowMap = new Texture();
             shadowMap->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            shadowMap->Width = viewport->Width;
-            shadowMap->Height = viewport->Height;
+            shadowMap->Width = viewport.Width;
+            shadowMap->Height = viewport.Height;
             shadowMap->Format = eTextureFormat::R32_TYPELESS;
             shadowMap->InitializeData = false;
             shadowMap->EnableRenderTarget = true;
@@ -138,7 +166,7 @@ namespace xpe {
             shadowMap->Slot = K_SLOT_SHADOW_MAP;
             shadowMap->Init();
 
-            m_ShadowRenderTarget = new RenderTarget(shadowMap, *viewport);
+            m_ShadowRenderTarget = new RenderTarget(shadowMap, viewport);
         }
 
         void RenderSystem::Prepare()

@@ -8,58 +8,10 @@ namespace xpe {
 
         MouseCursor InputManager::s_Cursor;
 
-        EventBuffer<WindowClosedFn>* InputManager::WindowClosedEvents = nullptr;
-        EventBuffer<WindowResizedFn>* InputManager::WindowResizedEvents = nullptr;
-        EventBuffer<WindowFrameResizedFn>* InputManager::WindowFrameResizedEvents = nullptr;
-        EventBuffer<WindowMovedFn>* InputManager::WindowMovedEvents = nullptr;
-        EventBuffer<WindowFocusedFn>* InputManager::WindowFocusedEvents = nullptr;
-        EventBuffer<WindowFocusLostFn>* InputManager::WindowFocusLostEvents = nullptr;
-
-        EventBuffer<KeyPressedFn>* InputManager::KeyPressedEvents = nullptr;
-        EventBuffer<KeyReleasedFn>* InputManager::KeyReleasedEvents = nullptr;
-        EventBuffer<KeyHoldFn>* InputManager::KeyHoldEvents = nullptr;
-
-        EventBuffer<MousePressedFn>* InputManager::MousePressedEvents = nullptr;
-        EventBuffer<MouseReleasedFn>* InputManager::MouseReleasedEvents = nullptr;
-        EventBuffer<MouseHoldFn>* InputManager::MouseHoldEvents = nullptr;
-
-        EventBuffer<CursorMovedFn>* InputManager::CursorMovedEvents = nullptr;
-        EventBuffer<CursorEnteredFn>* InputManager::CursorEnteredEvents = nullptr;
-        EventBuffer<CursorLeftFn>* InputManager::CursorLeftEvents = nullptr;
-
-        EventBuffer<ScrollChangedFn>* InputManager::ScrollChangedEvents = nullptr;
-
-        EventBuffer<CharTypedFn>* InputManager::CharTypedEvents = nullptr;
-        EventBuffer<CharModsTypedFn>* InputManager::CharModsTypedEvents = nullptr;
-
         void InputManager::Init() {
             LogInfo("Input::Init()");
 
             s_Window = static_cast<GLFWwindow*>(WindowManager::GetInstance());
-
-            WindowClosedEvents = new EventBuffer<WindowClosedFn>;
-            WindowResizedEvents = new EventBuffer<WindowResizedFn>;
-            WindowFrameResizedEvents = new EventBuffer<WindowFrameResizedFn>;
-            WindowMovedEvents = new EventBuffer<WindowMovedFn>;
-            WindowFocusedEvents = new EventBuffer<WindowFocusedFn>;
-            WindowFocusLostEvents = new EventBuffer<WindowFocusLostFn>;
-
-            KeyPressedEvents = new EventBuffer<KeyPressedFn>;
-            KeyReleasedEvents = new EventBuffer<KeyReleasedFn>;
-            KeyHoldEvents = new EventBuffer<KeyHoldFn>;
-
-            MousePressedEvents = new EventBuffer<MousePressedFn>;
-            MouseReleasedEvents = new EventBuffer<MouseReleasedFn>;
-            MouseHoldEvents = new EventBuffer<MouseHoldFn>;
-
-            CursorMovedEvents = new EventBuffer<CursorMovedFn>;
-            CursorEnteredEvents = new EventBuffer<CursorEnteredFn>;
-            CursorLeftEvents = new EventBuffer<CursorLeftFn>;
-
-            ScrollChangedEvents = new EventBuffer<ScrollChangedFn>;
-
-            CharTypedEvents = new EventBuffer<CharTypedFn>;
-            CharModsTypedEvents = new EventBuffer<CharModsTypedFn>;
 
             InitWindowCallbacks();
             InitKeyCallbacks();
@@ -73,11 +25,11 @@ namespace xpe {
 
         void InputManager::InitWindowCallbacks() {
             glfwSetWindowCloseCallback(s_Window, [](GLFWwindow* window) {
-                InputManager::WindowClosedEvents->NotifyAll();
+                EventManager::Get().WindowClosedEvents.NotifyAll();
             });
 
             glfwSetWindowPosCallback(s_Window, [](GLFWwindow* window, int x, int y) {
-                InputManager::WindowMovedEvents->NotifyAll(x, y);
+                EventManager::Get().WindowMovedEvents.NotifyAll(x, y);
             });
 
             glfwSetWindowSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
@@ -85,7 +37,7 @@ namespace xpe {
                     LogWarning("Window size has invalid width={} height={}. WindowResized event will not be handled!", w, h);
                     return;
                 }
-                InputManager::WindowFrameResizedEvents->NotifyAll(w, h);
+                EventManager::Get().WindowFrameResizedEvents.NotifyAll(w, h);
             });
 
             glfwSetFramebufferSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {
@@ -93,14 +45,14 @@ namespace xpe {
                     LogWarning("Window framebuffer size has invalid width={} height={}. FramebufferResized event will not be handled!", w, h);
                     return;
                 }
-                InputManager::WindowFrameResizedEvents->NotifyAll(w, h);
+                EventManager::Get().WindowFrameResizedEvents.NotifyAll(w, h);
             });
 
             glfwSetWindowFocusCallback(s_Window, [](GLFWwindow* window, int focused) {
                 if (focused == GLFW_TRUE) {
-                    InputManager::WindowFocusedEvents->NotifyAll();
+                    EventManager::Get().WindowFocusedEvents.NotifyAll();
                 } else {
-                    InputManager::WindowFocusLostEvents->NotifyAll();
+                    EventManager::Get().WindowFocusLostEvents.NotifyAll();
                 }
             });
         }
@@ -110,15 +62,15 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        InputManager::KeyPressedEvents->NotifyAll(static_cast<eKey>(key));
+                        EventManager::Get().KeyPressedEvents.NotifyAll(static_cast<eKey>(key));
                         break;
 
                     case GLFW_RELEASE:
-                        InputManager::KeyReleasedEvents->NotifyAll(static_cast<eKey>(key));
+                        EventManager::Get().KeyReleasedEvents.NotifyAll(static_cast<eKey>(key));
                         break;
 
                     case GLFW_REPEAT:
-                        InputManager::KeyHoldEvents->NotifyAll(static_cast<eKey>(key));
+                        EventManager::Get().KeyHoldEvents.NotifyAll(static_cast<eKey>(key));
                         break;
 
                 }
@@ -130,15 +82,15 @@ namespace xpe {
                 switch (action) {
 
                     case GLFW_PRESS:
-                        InputManager::MousePressedEvents->NotifyAll(static_cast<eMouse>(button));
+                        EventManager::Get().MousePressedEvents.NotifyAll(static_cast<eMouse>(button));
                         break;
 
                     case GLFW_RELEASE:
-                        InputManager::MouseReleasedEvents->NotifyAll(static_cast<eMouse>(button));
+                        EventManager::Get().MouseReleasedEvents.NotifyAll(static_cast<eMouse>(button));
                         break;
 
                     case GLFW_REPEAT:
-                        InputManager::MouseHoldEvents->NotifyAll(static_cast<eMouse>(button));
+                        EventManager::Get().MouseHoldEvents.NotifyAll(static_cast<eMouse>(button));
                         break;
 
                 }
@@ -147,59 +99,35 @@ namespace xpe {
 
         void InputManager::InitCursorCallbacks() {
             glfwSetCursorPosCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                InputManager::CursorMovedEvents->NotifyAll(x, y);
+                EventManager::Get().CursorMovedEvents.NotifyAll(x, y);
             });
 
             glfwSetCursorEnterCallback(s_Window, [](GLFWwindow* window, int entered) {
                 if (entered == GLFW_TRUE) {
-                    InputManager::CursorEnteredEvents->NotifyAll();
+                    EventManager::Get().CursorEnteredEvents.NotifyAll();
                 } else {
-                    InputManager::CursorLeftEvents->NotifyAll();
+                    EventManager::Get().CursorLeftEvents.NotifyAll();
                 }
             });
         }
 
         void InputManager::InitScrollCallbacks() {
             glfwSetScrollCallback(s_Window, [](GLFWwindow* window, double x, double y) {
-                InputManager::ScrollChangedEvents->NotifyAll(x, y);
+                EventManager::Get().ScrollChangedEvents.NotifyAll(x, y);
             });
         }
 
         void InputManager::InitCharCallbacks() {
             glfwSetCharCallback(s_Window, [](GLFWwindow* window, u32 charUnicode) {
-                InputManager::CharTypedEvents->NotifyAll(charUnicode);
+                EventManager::Get().CharTypedEvents.NotifyAll(charUnicode);
             });
 
             glfwSetCharModsCallback(s_Window, [](GLFWwindow* window, u32 charUnicode, int mods) {
-                InputManager::CharModsTypedEvents->NotifyAll(charUnicode, mods);
+                EventManager::Get().CharModsTypedEvents.NotifyAll(charUnicode, mods);
             });
         }
 
-        void InputManager::Free() {
-            delete WindowClosedEvents;
-            delete WindowResizedEvents;
-            delete WindowFrameResizedEvents;
-            delete WindowMovedEvents;
-            delete WindowFocusedEvents;
-            delete WindowFocusLostEvents;
-
-            delete KeyPressedEvents;
-            delete KeyReleasedEvents;
-            delete KeyHoldEvents;
-
-            delete MousePressedEvents;
-            delete MouseReleasedEvents;
-            delete MouseHoldEvents;
-
-            delete CursorMovedEvents;
-            delete CursorEnteredEvents;
-            delete CursorLeftEvents;
-
-            delete ScrollChangedEvents;
-
-            delete CharTypedEvents;
-            delete CharModsTypedEvents;
-        }
+        void InputManager::Free() {}
 
         void InputManager::CaptureCursor() {
             double xPos = 0.0;

@@ -9,23 +9,23 @@ namespace focus {
             switch (action) {
 
                 case FileWatcher::eAction::OLD_NAME:
-                    watch.FileOldNameEventBuffer.NotifyAll(watchpath, filepath);
+                    watch.FileOldNameEvents.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::NEW_NAME:
-                    watch.FileNewNameEventBuffer.NotifyAll(watchpath, filepath);
+                    watch.FileNewNameEvents.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::ADDED:
-                    watch.FileAddedEventBuffer.NotifyAll(watchpath, filepath);
+                    watch.FileAddedEvents.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::DELETED:
-                    watch.FileDeletedEventBuffer.NotifyAll(watchpath, filepath);
+                    watch.FileDeletedEvents.NotifyAll(watchpath, filepath);
                     break;
 
                 case FileWatcher::eAction::MODIFIED:
-                    watch.FileModifiedEventBuffer.NotifyAll(watchpath, filepath);
+                    watch.FileModifiedEvents.NotifyAll(watchpath, filepath);
                     break;
 
             }

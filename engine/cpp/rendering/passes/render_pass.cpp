@@ -95,6 +95,8 @@ namespace xpe {
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
+
+            m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
         void RenderPass::InitTransparent()
@@ -121,9 +123,12 @@ namespace xpe {
             m_Pipeline->Blending.Targets.push_back(target);
 
             m_Pipeline->Blending.IndependentBlendEnable = true;
+
+            m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
         void RenderPass::InitShadow() {
+            m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
             m_Pipeline->Rasterizer.CullMode = eCullMode::FRONT;
         }
 

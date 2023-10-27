@@ -1,5 +1,7 @@
 #pragma once
 
+#include <core/observers.h>
+
 namespace xpe {
 
     namespace core {
@@ -25,7 +27,7 @@ namespace xpe {
                 LogTimeDelaySeconds,
                 LockOnFps,
                 HotReloadShaders,
-                MsaaSampleCount,
+                MsaaSampleCount.Value,
                 EnableSSAO
             )
 
@@ -53,8 +55,9 @@ namespace xpe {
 
             bool HotReloadShaders = true;
 
-            u32 MsaaSampleCount = 1;
             bool EnableSSAO = true;
+
+            ObserverSampleCount MsaaSampleCount = 1;
         };
 
     }

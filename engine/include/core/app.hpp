@@ -45,8 +45,6 @@ namespace xpe {
 
         protected:
 
-            void LockFPSFromConfig();
-
             virtual void Init() {}
             virtual void Update() {}
             virtual void Free() {}
@@ -54,15 +52,20 @@ namespace xpe {
 
             virtual void InitRenderPasses();
 
+            void LockFPSFromConfig();
+
             std::atomic_bool m_IsOpen = true;
 
             ecs::MainScene* m_MainScene = nullptr;
+
+            render::Canvas* m_Canvas = nullptr;
+
+            render::Viewport m_Viewport;
 
             render::RenderSystem* m_RenderSystem = nullptr;
             anim::AnimSystem* m_AnimSystem = nullptr;
             audio::AudioSystem* m_AudioSystem = nullptr;
 
-            render::Canvas* m_Canvas = nullptr;
             render::SSAOPass* m_SsaoPass = nullptr;
             render::FXAAPass* m_FxaaPass = nullptr;
         };

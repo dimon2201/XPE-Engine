@@ -1,5 +1,12 @@
 #pragma once
 
+#define event_begin(name, ...) \
+        typedef void (*Event##name)(void* thiz, __VA_ARGS__); \
+        template<typename T> \
+        static void On##name(void* const thiz, __VA_ARGS__) { \
+
+#define event_end(name, ...) ((T*) thiz)->name(__VA_ARGS__); }
+
 namespace xpe {
 
     namespace core {

@@ -424,7 +424,8 @@ public:
             }
         }
 
-        m_SsaoPass->GetData().SSAOIntensity = 2.0;
+        m_SsaoPass->GetData().Intensity = 4;
+        m_SsaoPass->Flush();
     }
 
     void Update() override final

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/event.h>
+#include <core/events.h>
 
 namespace focus {
 
@@ -8,46 +8,16 @@ namespace focus {
 
         using namespace xpe::core;
 
-        typedef void (*FileAddedFn)(void* thiz, const string& watchpath, const string& filepath);
-        template<typename T>
-        static void OnFileAdded(void* const thiz, const string& watchpath, const string& filepath) {
-            ((T*) thiz)->FileAdded(watchpath, filepath);
-        }
-
-        typedef void (*FileDeletedFn)(void* thiz, const string& watchpath, const string& filepath);
-        template<typename T>
-        static void OnFileDeleted(void* const thiz, const string& watchpath, const string& filepath) {
-            ((T*) thiz)->FileDeleted(watchpath, filepath);
-        }
-
-        typedef void (*FileModifiedFn)(void* thiz, const string& watchpath, const string& filepath);
-        template<typename T>
-        static void OnFileModified(void* const thiz, const string& watchpath, const string& filepath) {
-            ((T*) thiz)->FileModified(watchpath, filepath);
-        }
-
-        typedef void (*FileNewNameFn)(void* thiz, const string& watchpath, const string& filepath);
-        template<typename T>
-        static void OnFileNewName(void* const thiz, const string& watchpath, const string& filepath) {
-            ((T*) thiz)->FileNewName(watchpath, filepath);
-        }
-
-        typedef void (*FileOldNameFn)(void* thiz, const string& watchpath, const string& filepath);
-        template<typename T>
-        static void OnFileOldName(void* const thiz, const string& watchpath, const string& filepath) {
-            ((T*) thiz)->FileOldName(watchpath, filepath);
-        }
-
         class FileWatcher;
 
         struct FileWatch final {
             bool DeleteNotified = false;
             std::filesystem::file_time_type Timestamp;
-            EventBuffer<FileAddedFn> FileAddedEventBuffer;
-            EventBuffer<FileDeletedFn> FileDeletedEventBuffer;
-            EventBuffer<FileModifiedFn> FileModifiedEventBuffer;
-            EventBuffer<FileNewNameFn> FileNewNameEventBuffer;
-            EventBuffer<FileOldNameFn> FileOldNameEventBuffer;
+            EventBuffer<EventFileAdded> FileAddedEvents;
+            EventBuffer<EventFileDeleted> FileDeletedEvents;
+            EventBuffer<EventFileModified> FileModifiedEvents;
+            EventBuffer<EventFileNewName> FileNewNameEvents;
+            EventBuffer<EventFileOldName> FileOldNameEvents;
         };
 
         struct FileWatcher : public Object

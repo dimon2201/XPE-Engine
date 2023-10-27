@@ -8,9 +8,7 @@ namespace xpe {
     namespace render {
 
         struct ENGINE_API ViewportBuffer : public StructureBuffer<Viewport> {
-
             ViewportBuffer(usize count = 0) : StructureBuffer<Viewport>(count, K_SLOT_VIEWPORT) {}
-
         };
 
     }

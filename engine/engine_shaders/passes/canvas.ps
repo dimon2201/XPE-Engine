@@ -1,7 +1,7 @@
 struct VSOut
 {
     float4 positionClip : SV_POSITION;
-    float2 texcoord : XPE_UV;
+    float2 uv : XPE_UV;
 };
 
 struct PSOut
@@ -19,9 +19,9 @@ PSOut ps_main(VSOut psIn)
     uint textureHeight = 0;
 
     Texture.GetDimensions(textureWidth, textureHeight);
-    float3 texcoordWorld = float3(float(textureWidth) * psIn.texcoord.x, float(textureHeight) * psIn.texcoord.y, 0);
+    float3 uvWorld = float3(float(textureWidth) * psIn.uv.x, float(textureHeight) * psIn.uv.y, 0);
 
-    psOut.color = Texture.Load(int3(texcoordWorld));
+    psOut.color = Texture.Load(int3(uvWorld));
 
     return psOut;
 }

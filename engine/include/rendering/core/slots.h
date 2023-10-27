@@ -41,6 +41,9 @@ namespace xpe {
         const u32 K_SLOT_SHADOW_FILTER           = 12;
         const u32 K_SLOT_SHADOW_MAP              = 13;
 
+        // SSAO
+        const u32 K_SLOT_SSAO                    = 0;
+
         // ---------- Samplers --------------- //
 
         // materials

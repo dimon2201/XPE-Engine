@@ -1,7 +1,10 @@
 #pragma once
 
 #include <rendering/core/texture.h>
+
 #include <rendering/passes/render_pass.h>
+
+#include <rendering/buffers/viewport_buffer.h>
 #include <rendering/buffers/monitor_buffer.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
@@ -18,7 +21,7 @@ namespace xpe {
         {
 
         public:
-            RenderSystem();
+            RenderSystem(const Viewport& viewport, u32 sampleCount);
             ~RenderSystem();
 
             template<typename T, typename ... Args>
@@ -29,9 +32,9 @@ namespace xpe {
 
             void Update(Scene* scene, const Time& dt) override final;
 
-            void InitRenderTargets(Viewport* viewport, u32 sampleCount);
-
             void Prepare();
+
+            inline ViewportBuffer* GetViewportBuffer() { return m_ViewportBuffer; }
 
             inline MonitorBuffer* GetMonitorBuffer() { return m_MonitorBuffer; }
 
@@ -45,6 +48,7 @@ namespace xpe {
             inline ShadowFilterBuffer* GetShadowFilterBuffer() { return m_ShadowFilterBuffer; }
 
             inline Texture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
+            inline RenderTarget* GetCanvasRT() { return m_CanvasRenderTarget; }
             inline RenderTarget* GetOpaqueRT() { return m_OpaqueRenderTarget; }
             inline RenderTarget* GetTransparentRT() { return m_TransparentRenderTarget; }
             inline RenderTarget* GetShadowRT() { return m_ShadowRenderTarget; }
@@ -52,6 +56,8 @@ namespace xpe {
             inline Texture* GetShadowMap() { return m_ShadowRenderTarget->DepthStencil; }
 
         private:
+            void InitRenderTargets(const Viewport& viewport, u32 sampleCount);
+
             void UpdateLight(Scene* scene);
             void UpdatePasses(Scene* scene);
 
@@ -60,16 +66,19 @@ namespace xpe {
             vector<RenderPass*> m_TransparentRenderPasses;
             vector<RenderPass*> m_PostFXRenderPasses;
 
-            render::MonitorBuffer* m_MonitorBuffer;
-            render::CameraBuffer* m_CameraBuffer;
-            render::DirectLightBuffer* m_DirectLightBuffer;
-            render::PointLightBuffer* m_PointLightBuffer;
-            render::SpotLightBuffer* m_SpotLightBuffer;
-            render::ShadowFilterBuffer* m_ShadowFilterBuffer;
+            ViewportBuffer* m_ViewportBuffer;
+            MonitorBuffer* m_MonitorBuffer;
+            CameraBuffer* m_CameraBuffer;
+            DirectLightBuffer* m_DirectLightBuffer;
+            PointLightBuffer* m_PointLightBuffer;
+            SpotLightBuffer* m_SpotLightBuffer;
+            ShadowFilterBuffer* m_ShadowFilterBuffer;
 
-            render::TextureSampler* m_ShadowSampler;
+            TextureSampler* m_ShadowSampler;
 
             Texture* m_SharedDepthTexture;
+
+            RenderTarget* m_CanvasRenderTarget;
             RenderTarget* m_OpaqueRenderTarget;
             RenderTarget* m_TransparentRenderTarget;
             RenderTarget* m_ShadowRenderTarget;
