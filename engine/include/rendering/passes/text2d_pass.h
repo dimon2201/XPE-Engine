@@ -10,9 +10,9 @@ namespace xpe {
         {
 
         public:
-            Text2DPass(eType type, const vector<RenderPassBinding>& bindings) : TextPass(type, bindings) {}
+            Text2DPass(const vector<RenderPassBinding>& bindings) : TextPass(eType::POSTFX, bindings) {}
 
-            void Draw(Scene *scene) override;
+            void DrawPostFX(Scene* scene) override;
 
         };
 

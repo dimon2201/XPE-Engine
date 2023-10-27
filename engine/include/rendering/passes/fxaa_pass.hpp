@@ -11,8 +11,6 @@ namespace xpe
             FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport);
             ~FXAAPass();
 
-            void Draw(Scene* scene) override final;
-
         private:
             TextureSampler m_Sampler;
 

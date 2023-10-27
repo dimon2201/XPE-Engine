@@ -127,7 +127,17 @@ namespace xpe {
             m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
-        void RenderPass::InitShadow() {
+        void RenderPass::InitPostFX()
+        {
+            m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
+        }
+
+        void RenderPass::InitShadow()
+        {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
             m_Pipeline->Rasterizer.CullMode = eCullMode::FRONT;
         }
@@ -142,6 +152,10 @@ namespace xpe {
 
                 case RenderPass::eType::TRANSPARENT:
                     InitTransparent();
+                    break;
+
+                case RenderPass::eType::POSTFX:
+                    InitPostFX();
                     break;
 
                 case RenderPass::eType::SHADOW:
@@ -165,6 +179,11 @@ namespace xpe {
         RenderTarget* RenderPass::GetRenderTarget()
         {
             return m_Pipeline->RenderTarget;
+        }
+
+        void RenderPass::DrawPostFX(Scene* scene)
+        {
+            context::DrawQuad();
         }
 
     }

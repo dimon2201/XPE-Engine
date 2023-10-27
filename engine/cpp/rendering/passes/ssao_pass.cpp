@@ -8,8 +8,6 @@ namespace xpe
         SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport, u32 sampleCount)
         : RenderPass(eType::POSTFX, bindings)
         {
-            m_Pipeline->PSBuffers.emplace_back(&m_Buffer);
-
             Texture* ssaoColor = new Texture();
             ssaoColor->Width = viewport->Width;
             ssaoColor->Height = viewport->Height;
@@ -31,16 +29,7 @@ namespace xpe
 
             m_Pipeline->RenderTarget = new RenderTarget({ ssaoColor }, ssaoDepth, *viewport);
 
-            BlendTarget target;
-            target.Enable = false;
-            m_Pipeline->Blending.Targets.push_back(target);
-            m_Pipeline->Blending.IndependentBlendEnable = true;
+            m_Pipeline->PSBuffers.emplace_back(&m_Buffer);
         }
-
-        void SSAOPass::Draw(Scene* scene)
-        {
-            context::DrawQuad();
-        }
-
     }
 }

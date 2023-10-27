@@ -281,7 +281,7 @@ namespace xpe {
                 if (rp->Enable) {
                     rp->Update(scene);
                     rp->Bind();
-                    rp->Draw(scene);
+                    rp->DrawPostFX(scene);
                     rp->Unbind();
                 }
             }

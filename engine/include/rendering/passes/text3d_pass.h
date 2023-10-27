@@ -10,9 +10,9 @@ namespace xpe {
         {
 
         public:
-            Text3DPass(eType type, const vector<RenderPassBinding>& bindings) : TextPass(type, bindings) {}
+            Text3DPass(const vector<RenderPassBinding>& bindings) : TextPass(eType::OPAQUE, bindings) {}
 
-            void Draw(Scene* scene) override;
+            void DrawOpaque(Scene* scene) override;
 
         };
 

@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        void Text3DPass::Draw(Scene* scene)
+        void Text3DPass::DrawOpaque(Scene* scene)
         {
             scene->EachComponent<Text3DComponent>([this](Text3DComponent* component)
             {

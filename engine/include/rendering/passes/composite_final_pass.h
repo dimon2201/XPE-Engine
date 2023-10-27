@@ -12,8 +12,6 @@ namespace xpe {
         public:
             CompositeFinalPass(const vector<RenderPassBinding>& bindings);
 
-            void Draw(Scene* scene) override;
-
         };
 
     }

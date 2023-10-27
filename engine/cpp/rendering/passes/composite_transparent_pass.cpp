@@ -6,7 +6,9 @@ namespace xpe {
     namespace render {
 
         CompositeTransparentPass::CompositeTransparentPass(const vector<RenderPassBinding>& bindings)
-        : RenderPass(eType::POSTFX, bindings)
+        : RenderPass(eType::POSTFX, bindings) {}
+
+        void CompositeTransparentPass::InitPostFX()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ZERO;
 
@@ -24,11 +26,6 @@ namespace xpe {
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
-        }
-
-        void CompositeTransparentPass::Draw(Scene* scene)
-        {
-            context::DrawQuad();
         }
 
     }

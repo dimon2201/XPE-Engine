@@ -14,8 +14,6 @@ namespace xpe
         public:
             SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport, u32 sampleCount);
 
-            void Draw(Scene* scene) override final;
-
             inline SSAOData& GetData() { return m_Buffer.Item; }
             inline void Flush() { m_Buffer.Flush(); }
 

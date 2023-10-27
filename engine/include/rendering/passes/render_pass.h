@@ -65,9 +65,9 @@ namespace xpe {
             bool Enable = true;
 
             virtual void Update(Scene* scene) {}
-            virtual void Draw(Scene* scene) {}
             virtual void DrawOpaque(Scene* scene) {}
             virtual void DrawTransparent(Scene* scene) {}
+            virtual void DrawPostFX(Scene* scene);
             virtual void DrawShadow(Scene* scene) {}
 
             void Init();
@@ -81,6 +81,7 @@ namespace xpe {
 
             virtual void InitOpaque();
             virtual void InitTransparent();
+            virtual void InitPostFX();
             virtual void InitShadow();
 
             eType m_Type;

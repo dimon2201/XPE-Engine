@@ -14,7 +14,8 @@ namespace xpe {
         public:
             CompositeTransparentPass(const vector<RenderPassBinding>& bindings);
 
-            void Draw(Scene* scene) override;
+        protected:
+            void InitPostFX() override;
 
         };
 

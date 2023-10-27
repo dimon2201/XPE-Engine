@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        void Text2DPass::Draw(Scene* scene)
+        void Text2DPass::DrawPostFX(Scene* scene)
         {
             scene->EachComponent<Text2DComponent>([this](Text2DComponent* component)
             {

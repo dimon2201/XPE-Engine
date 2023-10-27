@@ -33,22 +33,12 @@ namespace xpe
             m_Sampler.Slot = 0;
             context::CreateSampler(m_Sampler);
             m_Pipeline->Samplers.emplace_back(&m_Sampler);
-
-            BlendTarget target;
-            target.Enable = false;
-            m_Pipeline->Blending.Targets.push_back(target);
-            m_Pipeline->Blending.IndependentBlendEnable = false;
         }
 
         FXAAPass::~FXAAPass()
         {
             context::FreeSampler(m_Sampler);
             delete m_Pipeline->RenderTarget;
-        }
-
-        void FXAAPass::Draw(Scene* scene)
-        {
-            context::DrawQuad();
         }
 
     }

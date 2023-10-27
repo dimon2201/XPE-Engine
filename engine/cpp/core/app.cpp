@@ -331,7 +331,7 @@ namespace xpe {
                     { "ViewportBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetViewportBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT }
                 };
 
-                m_RenderSystem->AddRenderPass<Text2DPass>(RenderPass::eType::OPAQUE, bindings);
+                m_RenderSystem->AddRenderPass<Text2DPass>(bindings);
             }
 
             // Text 3D pass
@@ -347,7 +347,7 @@ namespace xpe {
                     { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                 };
 
-                m_RenderSystem->AddRenderPass<Text3DPass>(RenderPass::eType::OPAQUE, bindings);
+                m_RenderSystem->AddRenderPass<Text3DPass>(bindings);
             }
 
             // FXAA pass
