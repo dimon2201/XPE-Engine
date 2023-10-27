@@ -13,6 +13,8 @@
 #include <anim_loader.h>
 #include <audio_loader.h>
 
+#include <physics/collision_manager.h>
+
 #include <rendering/monitor.h>
 
 #include "test_config.h"
@@ -284,10 +286,23 @@ public:
         // setup cube
         {
             m_Cube = new Entity("Cube", m_MainScene);
-            m_Cube->Transform.Position = {10, -10, 10 };
-            m_Cube->Transform.Scale = {5, 5, 5 };
+            m_Cube->Transform.Position = { 10, -10, 10 };
+            m_Cube->Transform.Scale = { 5, 5, 5 };
             m_Cube->AddComponent<GeometryComponent<Vertex3D>>("G_Cube", GeometryManager::AddGeometry(Cube()));
             m_Cube->AddComponent<MaterialComponent>("Cube", m_MaterialStorage->Add("MT_Cube", Material()));
+        }
+
+        // setup box collision1
+        {
+            m_BoxCollision = new Entity("Collision1", m_MainScene);
+            m_BoxCollision->Transform.Position = { 15, 0, 10 };
+            m_BoxCollision->Transform.Scale = { 1, 1, 1 };
+
+            auto* physObj = m_BoxCollision->AddComponent<DynamicObjectComponent>("PhysObj");
+            physObj->actor = CollisionSystem::AddPhysicDynamicActor( { 15, 0, 10 }, { 0.1, 0, 0 } );
+
+            auto* collision = m_BoxCollision->AddComponent<DynamicCollisionComponent>("Collision");
+            collision->Shapes.push_back(CollisionSystem::AddPhysicShape(physObj->actor, PhysicMaterial(), PhysicShapeData(), { 2, 5, 1 }));
         }
 
         // setup audio
@@ -604,6 +619,7 @@ private:
     Entity* m_Cube;
     Entity* m_Listener;
     Entity* m_BackgroundAudio;
+    Entity* m_BoxCollision;
 
     TestConfig m_TestConfig = string("TestConfig");
 };

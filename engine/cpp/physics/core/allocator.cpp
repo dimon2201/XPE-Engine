@@ -8,14 +8,14 @@ namespace xpe {
 
         void* PhysicsAllocator::allocate(size_t size, const char* typeName, const char* filename, int line)
         {
-            hstringstream ss;
-            ss << "\n--------------------- PhysX Allocator -------------------\n\n";
-            ss << "Type: " << typeName << "\n";
-            ss << "File: " << filename << "\n";
-            ss << "Line: " << line << "\n";
-            ss << "Size: " << size << "\n";
-            ss << "\n---------------------------------------------------------\n";
-            LogInfo(ss.str());
+            //hstringstream ss;
+            //ss << "\n--------------------- PhysX Allocator -------------------\n\n";
+            //ss << "Type: " << typeName << "\n";
+            //ss << "File: " << filename << "\n";
+            //ss << "Line: " << line << "\n";
+            //ss << "Size: " << size << "\n";
+            //ss << "\n---------------------------------------------------------\n";
+            //LogInfo(ss.str());
 
             void* ptr = align16_malloc(size);
             PX_ASSERT((size_t(ptr) & 15)==0)
@@ -31,7 +31,7 @@ namespace xpe {
 
         void PhysicsAllocator::deallocate(void* ptr)
         {
-            LogInfo("PhysX freeing memory {}", ptr);
+            //LogInfo("PhysX freeing memory {}", ptr);
             align16_free(ptr);
         }
 

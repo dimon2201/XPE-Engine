@@ -1,0 +1,24 @@
+
+struct VSOut
+{
+    float3 positionWorld : XPE_POSITION_WORLD;
+    float2 uv            : XPE_UV2;
+    float3 normal        : XPE_NORMAL_WORLD;
+    float4 positionClip  : SV_POSITION;
+    float3 viewPosition  : XPE_VIEW_POSITION;
+    uint materialIndex   : XPE_MATERIAL_INDEX;
+    float3x3 tbn         : XPE_TBN;
+    float3 positionDLS   : XPE_POSITION_DLS;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn) : SV_TARGET
+{
+    PSOut psOut;
+    psOut.color = float4(0.0f, 1.0f, 0.0f, 0.0f);
+    return psOut;
+}

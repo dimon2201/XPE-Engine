@@ -14,6 +14,7 @@
 #include <rendering/passes/text3d_pass.h>
 #include <rendering/passes/merge_pass.h>
 #include <rendering/passes/ssao_pass.hpp>
+#include <rendering/passes/collision_pass.h>
 
 #include <rendering/shadow/shadow.h>
 
@@ -137,6 +138,13 @@ namespace xpe {
                 TaskManager::SubmitTask({[this]() {
                     m_Animator->Animate(m_MainScene, DeltaTime);
                 }});
+                
+                // todo: fix crush when use SubmitTask to update physics
+                //TaskManager::SubmitTask({[this]() {
+                //    PhysicsManager::Update(m_MainScene, DeltaTime); // mb to fix the truble I need to use mutex
+                //}});
+
+                PhysicsManager::Update(m_MainScene, DeltaTime);
 
                 Render();
 
@@ -339,6 +347,25 @@ namespace xpe {
                 m_Renderer->AddRenderPass<SkeletalAnimPass>(
                     bindings,
                     MainRT,
+                    m_MaterialStorage
+                );
+            }
+
+            // Collision pass
+            {
+                Shader* shader = ShaderManager::CreateShader("collison");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/color_pass.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                    { "Shader", RenderPassBinding::eType::SHADER, RenderPassBinding::eStage::VERTEX, 0, shader },
+                    { "CameraBuffer", RenderPassBinding::eType::BUFFER, RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT, m_Renderer->CameraBuffer },
+                };
+
+                m_Renderer->AddRenderPass<CollisionPass>(
+                    bindings,
+                    MainRT, 
                     m_MaterialStorage
                 );
             }

@@ -45,6 +45,7 @@ namespace xpe {
         ) {
             auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
             if (materialComponent == nullptr) {
+                LogInfo("if (materialComponent == nullptr) ");
                 return;
             }
 

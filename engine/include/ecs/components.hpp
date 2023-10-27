@@ -12,6 +12,8 @@
 
 #include <audio/core/context.h>
 
+#include <physics/collision_manager.h>
+
 namespace xpe
 {
     namespace ecs
@@ -21,6 +23,7 @@ namespace xpe
         using namespace math;
         using namespace anim;
         using namespace audio;
+        using namespace physics;
 
         struct ENGINE_API CameraComponent : Component
         {
@@ -357,5 +360,24 @@ namespace xpe
             )
         };
 
+        struct DynamicObjectComponent : Component   // Created to store physical objects
+        {
+            Ref<PhysicDynamicActor> actor;
+
+            JsonClass(
+                DynamicObjectComponent,
+                m_Tag
+            );
+        };
+
+        struct DynamicCollisionComponent : Component // Created for drawing physical objects.
+        {
+            vector<PhysicShapeCollision*> Shapes;
+
+            JsonClass(
+                DynamicCollisionComponent,
+                m_Tag
+            );
+        };
     }
 }
