@@ -104,24 +104,18 @@ public:
 
         // setup skybox global
         {
-            m_MainScene->Skybox->FrontResFilepath = "res/skybox/front.jpg";
-            m_MainScene->Skybox->BackResFilepath = "res/skybox/back.jpg";
-            m_MainScene->Skybox->RightResFilepath = "res/skybox/right.jpg";
-            m_MainScene->Skybox->LeftResFilepath = "res/skybox/left.jpg";
-            m_MainScene->Skybox->TopResFilepath = "res/skybox/top.jpg";
-            m_MainScene->Skybox->BottomResFilepath = "res/skybox/bottom.jpg";
-
             TextureCubeFilepath skyboxPath;
-            skyboxPath.Name = m_MainScene->Skybox->GetTag();
-            skyboxPath.FrontFilepath = m_MainScene->Skybox->FrontResFilepath;
-            skyboxPath.BackFilepath = m_MainScene->Skybox->BackResFilepath;
-            skyboxPath.LeftFilepath = m_MainScene->Skybox->LeftResFilepath;
-            skyboxPath.RightFilepath = m_MainScene->Skybox->RightResFilepath;
-            skyboxPath.TopFilepath = m_MainScene->Skybox->TopResFilepath;
-            skyboxPath.BottomFilepath = m_MainScene->Skybox->BottomResFilepath;
+            skyboxPath.Name = "Skybox";
+            skyboxPath.FrontFilepath = "res/skybox/front.jpg";
+            skyboxPath.BackFilepath = "res/skybox/back.jpg";
+            skyboxPath.LeftFilepath = "res/skybox/left.jpg";
+            skyboxPath.RightFilepath = "res/skybox/right.jpg";
+            skyboxPath.TopFilepath = "res/skybox/top.jpg";
+            skyboxPath.BottomFilepath = "res/skybox/bottom.jpg";
 
-            m_MainScene->Skybox->CubeTexture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
-            m_MainScene->Skybox->CubeTexture->GenerateMips();
+            m_MainScene->Skybox->Geometry = GeometryManager::AddGeometry(Cube());
+            m_MainScene->Skybox->Texture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
+            m_MainScene->Skybox->Texture->GenerateMips();
         }
 
         // setup plane

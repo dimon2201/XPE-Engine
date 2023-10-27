@@ -1,5 +1,4 @@
 #include <rendering/passes/skybox_pass.h>
-#include <rendering/geometry/geometry_manager.h>
 
 #include <ecs/globals.h>
 
@@ -7,18 +6,10 @@ namespace xpe {
 
     namespace render {
 
-        SkyboxPass::SkyboxPass(eType type, const vector<RenderPassBinding>& bindings) : RenderPass(type, bindings)
-        {
-            m_Cube = GeometryManager::AddGeometry(Cube());
-
-            m_Pipeline->PrimitiveTopology = m_Cube->PrimitiveTopology;
-
+        SkyboxPass::SkyboxPass(const vector<RenderPassBinding>& bindings)
+        : RenderPass(eType::OPAQUE, bindings) {
+            m_Sampler.Filter = TextureSampler::eFilter::MIN_MAG_MIP_LINEAR;
             context::CreateSampler(m_Sampler);
-            m_Pipeline->Textures.emplace_back(nullptr);
-            m_Pipeline->Samplers.emplace_back(&m_Sampler);
-
-            m_Pipeline->DepthStencil.EnableDepth = true;
-            m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
         }
 
         SkyboxPass::~SkyboxPass()
@@ -26,11 +17,32 @@ namespace xpe {
             context::FreeSampler(m_Sampler);
         }
 
+        void SkyboxPass::InitOpaque()
+        {
+            RenderPass::InitOpaque();
+            m_Pipeline->Samplers.emplace_back(&m_Sampler);
+            m_Pipeline->DepthStencil.EnableDepth = true;
+            m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
+            m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
+        }
+
         void SkyboxPass::DrawOpaque(Scene *scene)
         {
             Skybox* skybox = scene->GetGlobal<Skybox>();
-            m_Pipeline->Textures[0] = skybox->CubeTexture.Get();
-            context::DrawIndexed(36);
+            if (skybox) {
+                if (skybox->Geometry.Get() && skybox->Texture.Get()) {
+                    Geometry& skyboxGeometry = *skybox->Geometry;
+                    Texture& skyboxTexture = *skybox->Texture;
+                    context::BindPrimitiveTopology(skyboxGeometry.PrimitiveTopology);
+                    context::BindTexture(skyboxTexture);
+                    context::DrawIndexed(
+                            skyboxGeometry.Indices.size(),
+                            1,
+                            skyboxGeometry.VertexOffset,
+                            skyboxGeometry.IndexOffset
+                    );
+                }
+            }
         }
 
     }

@@ -171,8 +171,7 @@ namespace xpe {
 
         void RenderSystem::Prepare()
         {
-            GeometryManager::BindVertexBuffer();
-            GeometryManager::BindIndexBuffer();
+            GeometryManager::Bind();
         }
 
         void RenderSystem::Update(Scene* scene, const Time& dt)

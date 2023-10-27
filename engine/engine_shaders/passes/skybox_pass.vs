@@ -26,10 +26,10 @@ VSOut vs_main(VSIn vsIn)
     view[1] = float4(v[1], 0);
     view[2] = float4(v[2], 0);
     view[3] = float4(0, 0, 0, 1);
-    float4 positionView  = mul(camera.View, float4(vsIn.positionLocal, 1.0));
-    float4 positionClip  = mul(camera.Projection, positionView);
+    float4 positionView = mul(view, float4(vsIn.positionLocal, 1.0));
+    float4 positionClip = mul(camera.Projection, positionView);
 
-    vsOut.positionClip = positionClip;
+    vsOut.positionClip = float4(positionClip.x, positionClip.y, positionClip.w, positionClip.w);
     vsOut.positionLocal = vsIn.positionLocal;
 
     return vsOut;

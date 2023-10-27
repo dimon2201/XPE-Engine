@@ -8,6 +8,7 @@
 #include <rendering/render_system.h>
 
 #include <rendering/passes/canvas.hpp>
+#include <rendering/passes/skybox_pass.h>
 #include <rendering/passes/main_pass.h>
 #include <rendering/passes/skeleton_pass.h>
 #include <rendering/passes/text2d_pass.h>
@@ -193,6 +194,22 @@ namespace xpe {
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
                 ShaderManager::BuildShader(shader);
                 m_Canvas = new Canvas(shader, canvasRT, m_RenderSystem->GetViewportBuffer());
+            }
+
+            // Skybox pass
+            {
+                Shader* shader = ShaderManager::CreateShader("skybox_pass");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skybox_pass.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/skybox_pass.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
+                        { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
+                };
+
+                m_RenderSystem->AddRenderPass<SkyboxPass>(bindings);
             }
 
             // Main opaque pass

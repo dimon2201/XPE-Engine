@@ -10,9 +10,7 @@ namespace xpe {
         {
             static void Init();
             static void Free();
-
-            static void BindVertexBuffer();
-            static void BindIndexBuffer();
+            static void Bind();
 
             static Ref<Geometry> AddGeometry(const Geometry& geometry);
             static Ref<Model> AddModel(const Model& model);

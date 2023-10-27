@@ -15,14 +15,16 @@ namespace xpe {
         {
 
         public:
-            SkyboxPass(eType type, const vector<RenderPassBinding>& bindings);
+            SkyboxPass(const vector<RenderPassBinding>& bindings);
             ~SkyboxPass() override;
 
             void DrawOpaque(Scene *scene) override;
 
         protected:
+            void InitOpaque() override;
+
+        protected:
             TextureSampler m_Sampler;
-            Ref<Geometry> m_Cube;
         };
 
     }

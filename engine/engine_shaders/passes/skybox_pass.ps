@@ -2,11 +2,12 @@
 
 struct VSOut
 {
+    float4 positionClip : SV_POSITION;
     float3 positionLocal : XPE_POSITION_LOCAL;
 };
 
-SamplerState TextureSampler : register(s0);
-TextureCube  TextureCube : register(t0);
+TextureCube  SkyboxTexture : register(t0);
+SamplerState SkyboxSampler : register(s0);
 
 struct PSOut
 {
@@ -17,7 +18,8 @@ PSOut ps_main(VSOut psIn)
 {
     PSOut psOut;
 
-    psOut.color = float4(1, 1, 0, 1);
+    // psOut.color = float4(1, 1, 0, 1);
+    psOut.color = SkyboxTexture.Sample(SkyboxSampler, psIn.positionLocal);
 
     return psOut;
 }

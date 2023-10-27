@@ -155,6 +155,19 @@ namespace xpe {
                     textureCube->Width, textureCube->Height, textureCube->Channels
             );
 
+            // !IMPORTANT!
+            // DX11 has specific order of texture layers for cube mapping
+#ifdef DX11
+            textureCube->Layers = {
+                right,
+                left,
+                top,
+                bottom,
+                front,
+                back,
+            };
+
+#else       // other APIs probably have same order as OpenGL as following
             textureCube->Layers = {
                 front,
                 back,
@@ -163,6 +176,7 @@ namespace xpe {
                 top,
                 bottom,
             };
+#endif
 
             textureCube->Init();
 

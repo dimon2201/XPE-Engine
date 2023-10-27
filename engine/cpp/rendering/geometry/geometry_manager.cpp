@@ -19,13 +19,9 @@ namespace xpe {
             delete s_IndexBuffer;
         }
 
-        void GeometryManager::BindVertexBuffer()
+        void GeometryManager::Bind()
         {
             context::BindVertexBuffer(*s_VertexBuffer);
-        }
-
-        void GeometryManager::BindIndexBuffer()
-        {
             context::BindIndexBuffer(*s_IndexBuffer);
         }
 
