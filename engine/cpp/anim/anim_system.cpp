@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace anim {
 
-        void AnimSystem::Update(ecs::Scene *scene, const Time& dt)
+        void AnimSystem::Update(ecs::Scene *scene, const core::Time& dt)
         {
             scene->EachComponent<SkeletonAnimationComponent>([this, dt](SkeletonAnimationComponent* component)
             {

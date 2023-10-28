@@ -13,6 +13,8 @@
 #include <rendering/passes/skeleton_pass.h>
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
+#include <rendering/passes/fxaa_pass.hpp>
+#include <rendering/passes/ssao_pass.hpp>
 #include <rendering/passes/composite_transparent_pass.h>
 #include <rendering/passes/composite_ao_pass.h>
 #include <rendering/passes/final_pass.h>
@@ -21,7 +23,8 @@
 
 #include <audio/audio_system.h>
 
-//#include <physics/physics_manager.h>
+#include <physics/physics_manager.h>
+#include <physics/physics_system.h>
 
 namespace xpe {
 
@@ -65,7 +68,7 @@ namespace xpe {
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
             InputManager::Init();
-//            PhysicsManager::Init(mainDispatcher);
+            PhysicsManager::Init(mainDispatcher);
 
             render::context::EnableInfoLog = Config.EnableGPUInfoLog;
             render::context::EnableWarnLog = Config.EnableGPUWarnLog;
@@ -77,6 +80,7 @@ namespace xpe {
             m_RenderSystem = new RenderSystem(m_Viewport, Config.MsaaSampleCount);
             m_AnimSystem = new AnimSystem();
             m_AudioSystem = new AudioSystem();
+            m_PhysicsSystem = new PhysicsSystem();
 
             InitRenderPasses();
 
@@ -130,6 +134,11 @@ namespace xpe {
                 }});
 
                 ClearRenderPasses();
+                // submit physics task with current scene state
+                //TaskManager::SubmitTask({ [this]() {
+                    m_PhysicsSystem->Update(m_MainScene, DeltaTime);
+                //}});
+
                 Render();
 
                 WindowManager::PollEvents();
@@ -158,7 +167,7 @@ namespace xpe {
             delete m_Canvas;
             delete m_RenderSystem;
 
-//            PhysicsManager::Free();
+            PhysicsManager::Free();
             InputManager::Free();
             WindowManager::FreeWindow();
             WindowManager::Free();

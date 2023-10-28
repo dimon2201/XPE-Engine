@@ -290,6 +290,7 @@ namespace xpe {
             m_OpaqueRenderTarget->ClearColor(1, glm::vec4(0.0f));
             m_OpaqueRenderTarget->ClearColor(2, glm::vec4(0.0f));
             m_OpaqueRenderTarget->ClearDepth(1.0f);
+
             for (RenderPass* rp : m_OpaqueRenderPasses)
             {
                 if (rp->Enable) {
@@ -303,7 +304,7 @@ namespace xpe {
             // Transparent
             m_TransparentRenderTarget->ClearColor(0, glm::vec4(0.0f));
             m_TransparentRenderTarget->ClearColor(1, glm::vec4(1.0f));
-            m_TransparentRenderTarget->ClearDepth(1.0f);
+
             for (RenderPass* rp : m_TransparentRenderPasses)
             {
                 if (rp->Enable) {

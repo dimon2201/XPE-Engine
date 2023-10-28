@@ -19,6 +19,7 @@ using namespace xpe::render;
 using namespace xpe::math;
 using namespace xpe::res;
 using namespace xpe::audio;
+using namespace xpe::physics;
 
 class GameApp : public Application
 {
@@ -71,6 +72,9 @@ public:
 
         InitCamera();
         InitCamera2D();
+
+        // Create physics scene
+        PhysicsManager::AddScene(m_MainScene);
 
         // Text 2D
         {
@@ -130,6 +134,18 @@ public:
             planeMaterial->Roughness = 0.05f;
             planeMaterial->AO = 0.0f;
             planeMaterial->Flush();
+
+            m_Plane->AddComponent<RigidBodyComponent>(
+                PhysicsManager::AddActor(
+                    m_Plane,
+                    m_MainScene,
+                    sActor::eActorType::RIGID_STATIC,
+                    sActor::eShapeType::BOX,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.0f, 0.0f
+                )
+            );
         }
 
         // Sunlight
@@ -289,12 +305,23 @@ public:
             mat.Roughness = 0.05f;
             mat.AO = 0.0f;
 
-            m_Spheres[i] = new Entity("Glass" + i, m_MainScene);
-            m_Spheres[i]->Transform.Position = {10, 2, 10 + (i * 2)};
-            m_Spheres[i]->Transform.Scale = {1, 1, 1 };
-            m_Spheres[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Sphere()));
-            m_Spheres[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::AddMaterial("MT_Glass" + i, mat));
-            m_Spheres[i]->GetComponent<GeometryComponent>("G_Glass" + i)->Transparent = true;
+            m_Glasses[i] = new Entity("Glass" + i, m_MainScene);
+            m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.7f), 1 + ((float)i * 1.1f), 0};
+            m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
+            m_Glasses[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Cube()));
+            m_Glasses[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::AddMaterial("MT_Glass" + i, mat));
+            m_Glasses[i]->GetComponent<GeometryComponent>("G_Glass" + i)->Transparent = true;
+            m_Glasses[i]->AddComponent<RigidBodyComponent>(
+                PhysicsManager::AddActor(
+                    m_Glasses[i],
+                    m_MainScene,
+                    sActor::eActorType::RIGID_DYNAMIC,
+                    sActor::eShapeType::BOX,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.0f, 0.0f
+                )
+            );
         }
 
         m_Listener = new Entity("Listener", m_MainScene);
@@ -448,10 +475,10 @@ public:
         delete m_Listener;
         delete m_BackgroundAudio;
         delete m_AudioObject;
-        delete m_Spheres[0];
-        delete m_Spheres[1];
-        delete m_Spheres[2];
-        delete m_Spheres[3];
+        delete m_Glasses[0];
+        delete m_Glasses[1];
+        delete m_Glasses[2];
+        delete m_Glasses[3];
     }
 
     void WindowClosed()
@@ -607,7 +634,7 @@ private:
     Entity* m_Listener;
     Entity* m_BackgroundAudio;
     Entity* m_AudioObject;
-    Entity* m_Spheres[4];
+    Entity* m_Glasses[4];
 
     TestConfig m_TestConfig = string("TestConfig");
     XmlConfig  m_XmlConfig = string("XmlConfig");

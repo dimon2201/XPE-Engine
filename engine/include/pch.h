@@ -87,6 +87,9 @@
 #include <core/window_manager.hpp>
 #include <core/input_manager.h>
 
+// Physics
+#include <physics/physics_manager.h>
+
 // Math
 #include <math/math.h>
 #include <math/transform.h>

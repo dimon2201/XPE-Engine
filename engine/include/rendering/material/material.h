@@ -59,11 +59,6 @@ namespace xpe
             hstring AOPath;
             hstring EmissionPath;
 
-            core::f32 PhysicsStaticFriction;
-            core::f32 PhysicsDynamicFriction;
-            core::f32 PhysicsRestitution;
-            physics::sMaterial* PhysicsMaterial;
-
             Material() = default;
             Material(const Material& material) = default;
 
