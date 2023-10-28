@@ -125,7 +125,7 @@ public:
             m_Plane->Transform.Scale = { 100, 0.1, 100 };
 
             m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Cube()));
-            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::Add("PlaneMaterial", Material()))->Material;
+            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::AddMaterial("PlaneMaterial", Material()))->Material;
             planeMaterial->Albedo = { 1, 1, 1, 1 };
             planeMaterial->Metallness = 0.5;
             planeMaterial->Roughness = 0.5;
@@ -139,7 +139,7 @@ public:
             m_SunLight->Transform.Position = { 20, 20, -20 };
 
             m_SunLight->AddComponent<GeometryComponent>("G_SunLight", GeometryManager::AddGeometry(Sphere()));
-            m_SunLight->AddComponent<MaterialComponent>("SunLight", MaterialManager::Add("MT_SunLight", Material()));
+            m_SunLight->AddComponent<MaterialComponent>("SunLight", MaterialManager::AddMaterial("MT_SunLight", Material()));
             m_SunLight->AddComponent<DirectLightComponent>("L_SunLight", glm::vec3(0, 0, 0), glm::vec3(15.3, 15.1, 11.1));
         }
 
@@ -274,7 +274,7 @@ public:
             m_Cube->Transform.Position = { 10, -10, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
             m_Cube->AddComponent<GeometryComponent>("G_Cube", GeometryManager::AddGeometry(Cube()));
-            m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::Add("MT_Cube", Material()));
+            m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::AddMaterial("MT_Cube", Material()));
         }
 
         // setup cubes
@@ -290,7 +290,7 @@ public:
             m_Planes[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
             m_Planes[i]->Transform.Scale = { 1, 1, 0.1 };
             m_Planes[i]->AddComponent<GeometryComponent>("G_Plane" + i, GeometryManager::AddGeometry(Cube()));
-            m_Planes[i]->AddComponent<MaterialComponent>("Plane" + i, MaterialManager::Add("MT_Plane" + i, mat));
+            m_Planes[i]->AddComponent<MaterialComponent>("Plane" + i, MaterialManager::AddMaterial("MT_Plane" + i, mat));
             m_Planes[i]->GetComponent<GeometryComponent>("G_Plane" + i)->Transparent = true;
         }
 

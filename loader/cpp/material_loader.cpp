@@ -43,7 +43,7 @@ namespace xpe {
         {
             if (MaterialManager::Has(filepath.Name)) {
                 Ref<Material> materialRef;
-                materialRef.Create(*MaterialManager::Get(filepath.Name));
+                materialRef.Create(*MaterialManager::GetMaterial(filepath.Name));
                 return materialRef;
             }
 
@@ -99,7 +99,7 @@ namespace xpe {
             );
             material.EnableEmissionMap = material.EmissionMap.Pixels != nullptr;
 
-            return MaterialManager::Add(filepath.Name, material);
+            return MaterialManager::AddMaterial(filepath.Name, material);
         }
 
     }

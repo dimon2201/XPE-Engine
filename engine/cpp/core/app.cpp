@@ -20,7 +20,7 @@
 
 #include <audio/audio_system.h>
 
-#include <physics/physics_system.h>
+#include <physics/physics_manager.h>
 
 namespace xpe {
 
@@ -60,13 +60,11 @@ namespace xpe {
             );
 
             TaskManager::Init(mainDispatcher);
-
             EventManager::Init();
-
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
-
             InputManager::Init();
+            PhysicsManager::Init(mainDispatcher);
 
             render::context::EnableInfoLog = Config.EnableGPUInfoLog;
             render::context::EnableWarnLog = Config.EnableGPUWarnLog;
@@ -78,7 +76,6 @@ namespace xpe {
             m_RenderSystem = new RenderSystem(m_Viewport, Config.MsaaSampleCount);
             m_AnimSystem = new AnimSystem();
             m_AudioSystem = new AudioSystem();
-            PhysicsSystem::Init(mainDispatcher);
 
             InitRenderPasses();
 
@@ -158,15 +155,11 @@ namespace xpe {
             delete m_Canvas;
             delete m_RenderSystem;
 
-            PhysicsSystem::Free();
-
+            PhysicsManager::Free();
             InputManager::Free();
-
             WindowManager::FreeWindow();
             WindowManager::Free();
-
             EventManager::Free();
-
             TaskManager::Free();
 
             FreeLogger();
