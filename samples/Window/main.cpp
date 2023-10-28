@@ -129,7 +129,7 @@ public:
         {
             m_Plane = new Entity("Plane", m_MainScene);
             m_Plane->Transform.Position = { 0, -10, 0 };
-            m_Plane->Transform.Scale = { 1, 1, 1 };
+            m_Plane->Transform.Scale = { 100, 1, 100 };
 
             m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Plane(100)));
             auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::AddMaterial("PlaneMaterial", Material()))->Material;
@@ -146,7 +146,7 @@ public:
                     sActor::eShapeType::BOX,
                     glm::vec3(0.0f),
                     0.5f, 0.5f, 0.5f,
-                    0.01f, 0.0f
+                    0.0f, 0.0f
                 )
             );
         }
@@ -309,11 +309,22 @@ public:
             mat.AO = 0.0f;
 
             m_Glasses[i] = new Entity("Glass" + i, m_MainScene);
-            m_Glasses[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
+            m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.7f), 1 + ((float)i * 1.1f), 0};
             m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
-            m_Glasses[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Sphere()));
-            m_Glasses[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::Add("MT_Glass" + i, mat));
+            m_Glasses[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Cube()));
+            m_Glasses[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::AddMaterial("MT_Glass" + i, mat));
             m_Glasses[i]->GetComponent<GeometryComponent>("G_Glass" + i)->Transparent = true;
+            m_Glasses[i]->AddComponent<RigidBodyComponent>(
+                PhysicsManager::AddActor(
+                    m_Glasses[i],
+                    m_MainScene,
+                    sActor::eActorType::RIGID_DYNAMIC,
+                    sActor::eShapeType::BOX,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.0f, 0.0f
+                )
+            );
         }
 
         m_Listener = new Entity("Listener", m_MainScene);
