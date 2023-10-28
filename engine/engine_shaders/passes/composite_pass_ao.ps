@@ -21,7 +21,7 @@ PSOut ps_main(VSOut psIn)
     ColorTexture.GetDimensions(colorWidth, colorHeight);
 
     float3 color = ColorTexture.Load(int3(float2(colorWidth, colorHeight) * psIn.uv, 0)).xyz;
-    color = TonemapExp(color, 2.2, 2.5);
+    color = TonemapExp(color, 2.5);
     float3 ao = AOTexture.Load(int3(float2(colorWidth, colorHeight) * psIn.uv, 0)).xyz;
 
     PSOut psOut;

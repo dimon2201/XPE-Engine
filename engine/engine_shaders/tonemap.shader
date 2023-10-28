@@ -1,9 +1,9 @@
 // Reinhard Tonemapper
-float3 TonemapReinhard(in float3 color, in float gamma)
+float3 TonemapReinhard(in float3 color)
 {
     color *= 16;
     color = color / (1 + color);
-    return pow(color, 1 / gamma); // gamma
+    return color;
 }
 
 // Uncharted 2 Tonemapper
@@ -20,7 +20,7 @@ float3 TonemapUncharted2(in float3 x)
 }
 
 // UC2 Tonemapper
-float3 TonemapUC2(in float3 color, in float gamma, in float exposure)
+float3 TonemapUC2(in float3 color, in float exposure)
 {
     float w = 11.2;
 
@@ -31,19 +31,27 @@ float3 TonemapUC2(in float3 color, in float gamma, in float exposure)
     float3 whiteScale = 1.0f / TonemapUncharted2(w);
     float3 ccolor = current * whiteScale;
 
-    return pow(abs(ccolor), 1 / gamma); // gamma
+    return ccolor;
 }
 
 // Filmic Tonemapper
-float3 TonemapFilmic(in float3 color, in float gamma)
+float3 TonemapFilmic(in float3 color)
 {
     color = max(0, color - 0.004f);
     color = (color * (6.2f * color + 0.5f)) / (color * (6.2f * color + 1.7f) + 0.06f);
-    return pow(abs(color), 1 / gamma);
+    return color;
 }
 
 // Exp Tonemapper
-float3 TonemapExp(in float3 color, in float gamma, in float exposure) {
+float3 TonemapExp(in float3 color, in float exposure) {
     color = float3(1, 1, 1) - exp(-color * exposure);
     return color;
+}
+
+float3 GammaCorrection(in float3 color, in float gamma) {
+    return pow(abs(color), 1 / gamma);
+}
+
+float4 GammaCorrection(in float4 color, in float gamma) {
+    return float4(pow(abs(color.rgb), 1 / gamma), color.a);
 }

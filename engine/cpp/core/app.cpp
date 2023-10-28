@@ -21,7 +21,7 @@
 
 #include <audio/audio_system.h>
 
-#include <physics/physics_manager.h>
+//#include <physics/physics_manager.h>
 
 namespace xpe {
 
@@ -65,7 +65,7 @@ namespace xpe {
             WindowManager::Init();
             WindowManager::InitWindow(winDesc);
             InputManager::Init();
-            PhysicsManager::Init(mainDispatcher);
+//            PhysicsManager::Init(mainDispatcher);
 
             render::context::EnableInfoLog = Config.EnableGPUInfoLog;
             render::context::EnableWarnLog = Config.EnableGPUWarnLog;
@@ -118,10 +118,11 @@ namespace xpe {
                 Update();
 
                 // submit audio task with current scene state
-                TaskManager::SubmitTask({[this]() {
-                    m_AudioSystem->Update(m_MainScene, DeltaTime);
-                    m_AudioSystem->UpdateListener(m_MainScene);
-                }});
+                // todo(Vitalii A.): Disabled audio system task to investigate heap memory leak
+//                TaskManager::SubmitTask({[this]() {
+//                    m_AudioSystem->Update(m_MainScene, DeltaTime);
+//                    m_AudioSystem->UpdateListener(m_MainScene);
+//                }});
 
                 // submit animation task with current scene state
                 TaskManager::SubmitTask({[this]() {
@@ -157,7 +158,7 @@ namespace xpe {
             delete m_Canvas;
             delete m_RenderSystem;
 
-            PhysicsManager::Free();
+//            PhysicsManager::Free();
             InputManager::Free();
             WindowManager::FreeWindow();
             WindowManager::Free();

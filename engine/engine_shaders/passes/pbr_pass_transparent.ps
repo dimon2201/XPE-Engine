@@ -1,5 +1,6 @@
 #include ../types.shader
 #include ../monitor.shader
+#include ../tonemap.shader
 #include ../material.shader
 #include ../shadow.shader
 #include ../lighting.shader
@@ -72,6 +73,7 @@ PSOut ps_main(VSOut psIn)
 
     // Color
     float4 color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
+    color = GammaCorrection(color, GetGamma());
 
     // Weighted blended
     float weight = max(min(1.0, max(max(color.r, color.g), color.b) * color.a), color.a) *

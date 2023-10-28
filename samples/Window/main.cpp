@@ -72,7 +72,7 @@ public:
         InitCamera();
         InitCamera2D();
 
-        // setup text 2D entity
+        // Text 2D
         {
             m_Text2D = new Entity("Text2D", m_MainScene);
             m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
@@ -88,7 +88,7 @@ public:
             m_Text2D->Transform.Position.y -= textComponent->Font->GlyphSize;
         }
 
-        // setup text 3D entity
+        // Text 3D
         {
             m_Text3D = new Entity("Text3D", m_MainScene);
             m_Text3D->Transform.Position = { 0, 25, 50 };
@@ -102,7 +102,7 @@ public:
             textComponent->Font->NewLineOffset = 1.0f;
         }
 
-        // setup skybox global
+        // Skybox
         {
             TextureCubeFilepath skyboxPath;
             skyboxPath.Name = "Skybox";
@@ -118,7 +118,7 @@ public:
             m_MainScene->Skybox->Texture->GenerateMips();
         }
 
-        // setup plane
+        // Plane
         {
             m_Plane = new Entity("Plane", m_MainScene);
             m_Plane->Transform.Position = { 0, -10, 0 };
@@ -132,17 +132,17 @@ public:
             planeMaterial->Flush();
         }
 
-        // setup point light
+        // Sunlight
         {
             m_SunLight = new Entity("SunLight", m_MainScene);
             m_SunLight->Transform.Position = { 20, 20, -20 };
 
             m_SunLight->AddComponent<GeometryComponent>("G_SunLight", GeometryManager::AddGeometry(Sphere()));
             m_SunLight->AddComponent<MaterialComponent>("SunLight", MaterialManager::AddMaterial("MT_SunLight", Material()));
-            m_SunLight->AddComponent<DirectLightComponent>("L_SunLight", glm::vec3(0, 0, 0), glm::vec3(50, 30, 10));
+            m_SunLight->AddComponent<DirectLightComponent>("L_SunLight", glm::vec3(0, 0, 0), glm::vec3(20, 20, 10));
         }
 
-        // setup goblins
+        // Goblins
         {
             m_Goblin1 = new Entity("Goblin1", m_MainScene);
             m_Goblin1->Transform.Position = {-4, -10, -4 };
@@ -267,7 +267,7 @@ public:
             );
         }
 
-        // setup cube
+        // Cube
         {
             m_Cube = new Entity("Cube", m_MainScene);
             m_Cube->Transform.Position = { 10, -7.6, 10 };
@@ -276,7 +276,7 @@ public:
             m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::AddMaterial("MT_Cube", Material()));
         }
 
-        // setup glasses
+        // Spheres
         for (s32 i = 0; i < 4; i++)
         {
             auto mat = Material();
@@ -289,12 +289,12 @@ public:
             mat.Roughness = 0.05f;
             mat.AO = 0.0f;
 
-            m_Glasses[i] = new Entity("Glass" + i, m_MainScene);
-            m_Glasses[i]->Transform.Position = { 10, 2, 10 + (i * 2)};
-            m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
-            m_Glasses[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Sphere()));
-            m_Glasses[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::Add("MT_Glass" + i, mat));
-            m_Glasses[i]->GetComponent<GeometryComponent>("G_Glass" + i)->Transparent = true;
+            m_Spheres[i] = new Entity("Glass" + i, m_MainScene);
+            m_Spheres[i]->Transform.Position = {10, 2, 10 + (i * 2)};
+            m_Spheres[i]->Transform.Scale = {1, 1, 1 };
+            m_Spheres[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Sphere()));
+            m_Spheres[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::AddMaterial("MT_Glass" + i, mat));
+            m_Spheres[i]->GetComponent<GeometryComponent>("G_Glass" + i)->Transparent = true;
         }
 
         m_Listener = new Entity("Listener", m_MainScene);
@@ -448,10 +448,10 @@ public:
         delete m_Listener;
         delete m_BackgroundAudio;
         delete m_AudioObject;
-        delete m_Glasses[0];
-        delete m_Glasses[1];
-        delete m_Glasses[2];
-        delete m_Glasses[3];
+        delete m_Spheres[0];
+        delete m_Spheres[1];
+        delete m_Spheres[2];
+        delete m_Spheres[3];
     }
 
     void WindowClosed()
@@ -607,7 +607,7 @@ private:
     Entity* m_Listener;
     Entity* m_BackgroundAudio;
     Entity* m_AudioObject;
-    Entity* m_Glasses[4];
+    Entity* m_Spheres[4];
 
     TestConfig m_TestConfig = string("TestConfig");
     XmlConfig  m_XmlConfig = string("XmlConfig");

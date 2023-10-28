@@ -1,5 +1,6 @@
 #include ../types.shader
 #include ../monitor.shader
+#include ../tonemap.shader
 #include ../material.shader
 #include ../shadow.shader
 #include ../lighting.shader
@@ -73,6 +74,7 @@ PSOut ps_main(VSOut psIn)
 
     // Color
     float4 color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
+    color = GammaCorrection(color, GetGamma());
 
     PSOut psOut;
     psOut.color = color;
