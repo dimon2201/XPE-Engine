@@ -1,9 +1,5 @@
 #pragma once
 
-#include <unordered_map>
-
-#include <core/types.hpp>
-
 namespace physx
 {
     class PxActor;
@@ -37,12 +33,14 @@ namespace xpe {
     namespace physics
     {
         using namespace physx;
+        using namespace core;
+        using namespace ecs;
 
         class PhysicsAllocator;
         class PhysicsErrorCallback;
         class PhysicsSimulationEventCallback;
 
-        struct sActor : public core::Object
+        struct sActor : public Object
         {
             enum class eActorType
             {
@@ -67,11 +65,11 @@ namespace xpe {
                 const eActorType& actorType,
                 const eShapeType& shapeType,
                 const glm::vec3& linearVelocity,
-                core::f32 staticFriction,
-                core::f32 dynamicFriction,
-                core::f32 restitution,
-                core::f32 contactOffset,
-                core::f32 restOffset
+                f32 staticFriction,
+                f32 dynamicFriction,
+                f32 restitution,
+                f32 contactOffset,
+                f32 restOffset
             ) :
                 Actor(actor),
                 Material(material),
@@ -93,14 +91,14 @@ namespace xpe {
             eActorType ActorType = eActorType::NONE;
             eShapeType ShapeType = eShapeType::NONE;
             glm::vec3 LinearVelocity = glm::vec3(0.0f);
-            core::f32 StaticFriction = 0.0f;
-            core::f32 DynamicFriction = 0.0f;
-            core::f32 Restitution = 0.0f;
-            core::f32 ContactOffset = 0.0f;
-            core::f32 RestOffset = 0.0f;
+            f32 StaticFriction = 0.0f;
+            f32 DynamicFriction = 0.0f;
+            f32 Restitution = 0.0f;
+            f32 ContactOffset = 0.0f;
+            f32 RestOffset = 0.0f;
         };
 
-        struct sScene : public core::Object
+        struct sScene : public Object
         {
             sScene(PxScene* scene) : Scene(scene)
             {
@@ -113,15 +111,15 @@ namespace xpe {
         {
 
         public:
-            static void Init(core::MainDispatcher* dispatcher);
+            static void Init(MainDispatcher* dispatcher);
             static void Free();
 
             static void EnableLoggingInfo(bool enable);
             static void EnableLoggingWarning(bool enable);
             static void EnableLoggingError(bool enable);
 
-            static sActor* AddActor(ecs::Entity* entity, ecs::Scene* scene, const sActor::eActorType& actorType, const sActor::eShapeType& shapeType, const glm::vec3& linearVelocity, core::f32 staticFriction, core::f32 dynamicFriction, core::f32 restitution, core::f32 contactOffset, core::f32 restOffset);
-            static sScene* AddScene(ecs::Scene* scene);
+            static sActor* AddActor(Entity* entity, Scene* scene, const sActor::eActorType& actorType, const sActor::eShapeType& shapeType, const glm::vec3& linearVelocity, f32 staticFriction, f32 dynamicFriction, f32 restitution, f32 contactOffset, f32 restOffset);
+            static sScene* AddScene(Scene* scene);
 
         private:
             static bool EnableMemoryProfiling;
@@ -133,8 +131,8 @@ namespace xpe {
             static PxPhysics* s_Physics;
             static PxCpuDispatcher* s_Dispatcher;
 
-            static std::unordered_map<core::string, sActor*>* s_Actors;
-            static std::unordered_map<core::string, sScene*>* s_Scenes;
+            static std::unordered_map<string, sActor*>* s_Actors;
+            static std::unordered_map<string, sScene*>* s_Scenes;
         };
 
     }

@@ -13,8 +13,6 @@
 #include <rendering/passes/skeleton_pass.h>
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
-#include <rendering/passes/fxaa_pass.hpp>
-#include <rendering/passes/ssao_pass.hpp>
 #include <rendering/passes/composite_transparent_pass.h>
 #include <rendering/passes/composite_ao_pass.h>
 #include <rendering/passes/final_pass.h>
@@ -133,12 +131,12 @@ namespace xpe {
                     m_AnimSystem->Update(m_MainScene, DeltaTime);
                 }});
 
-                ClearRenderPasses();
                 // submit physics task with current scene state
-                //TaskManager::SubmitTask({ [this]() {
+//                TaskManager::SubmitTask({[this]() {
                     m_PhysicsSystem->Update(m_MainScene, DeltaTime);
-                //}});
+//                }});
 
+                ClearRenderPasses();
                 Render();
 
                 WindowManager::PollEvents();

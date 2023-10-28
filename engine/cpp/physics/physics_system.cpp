@@ -2,30 +2,30 @@
 
 #include <physics/physics_system.h>
 #include <physics/physics_manager.h>
-#include <ecs/ecs.h>
+
 #include <ecs/components.hpp>
 
 namespace xpe
 {
 	namespace physics
 	{
-        glm::vec3 QuatToEuler(core::f32 w, core::f32 x, core::f32 y, core::f32 z)
+        glm::vec3 QuatToEuler(f32 w, f32 x, f32 y, f32 z)
         {
             glm::quat quaternion(w, x, y, z);
 
             return glm::eulerAngles(quaternion);
         }
      
-        void PhysicsSystem::Update(ecs::Scene* scene, const core::Time& dt)
+        void PhysicsSystem::Update(Scene* scene, const Time& dt)
         {
             scene->PhysicsScene->Scene->simulate(1.0f / 60.0f);
             scene->PhysicsScene->Scene->fetchResults(true);
 
-            scene->EachComponent<ecs::RigidBodyComponent>(
+            scene->EachComponent<RigidBodyComponent>(
                 []
-                (ecs::RigidBodyComponent* component)
+                (RigidBodyComponent* component)
                 {
-                    ecs::Entity* entity = component->Entity;
+                    Entity* entity = component->Entity;
 
                     PxTransform actorTransform;
                     

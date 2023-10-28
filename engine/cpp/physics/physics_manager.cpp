@@ -3,10 +3,8 @@
 #include <physics/physics_manager.h>
 #include <physics/allocators.h>
 #include <physics/callbacks.h>
-#include <ecs/ecs.h>
-#include <ecs/components.hpp>
 
-using namespace physx;
+#include <ecs/components.hpp>
 
 namespace xpe
 {
@@ -19,8 +17,8 @@ namespace xpe
         PxFoundation* PhysicsManager::s_Foundation = nullptr;
         PxPhysics* PhysicsManager::s_Physics = nullptr;
         PxCpuDispatcher* PhysicsManager::s_Dispatcher = nullptr;
-        std::unordered_map<core::string, sActor*>* PhysicsManager::s_Actors = nullptr;
-        std::unordered_map<core::string, sScene*>* PhysicsManager::s_Scenes = nullptr;
+        std::unordered_map<string, sActor*>* PhysicsManager::s_Actors = nullptr;
+        std::unordered_map<string, sScene*>* PhysicsManager::s_Scenes = nullptr;
 
         PxFilterFlags FilterShader(
             PxFilterObjectAttributes attributes0, PxFilterData filterData0,
@@ -42,7 +40,7 @@ namespace xpe
             return PxFilterFlag::eDEFAULT;
         }
 
-        void PhysicsManager::Init(core::MainDispatcher* dispatcher)
+        void PhysicsManager::Init(MainDispatcher* dispatcher)
         {
             s_Allocator = new PhysicsAllocator();
             s_ErrorCallback = new PhysicsErrorCallback();
@@ -99,16 +97,16 @@ namespace xpe
         }
 
         sActor* PhysicsManager::AddActor(
-            ecs::Entity* entity,
-            ecs::Scene* scene,
+            Entity* entity,
+            Scene* scene,
             const sActor::eActorType& actorType,
             const sActor::eShapeType& shapeType,
             const glm::vec3& linearVelocity,
-            core::f32 staticFriction,
-            core::f32 dynamicFriction,
-            core::f32 restitution,
-            core::f32 contactOffset,
-            core::f32 restOffset
+            f32 staticFriction,
+            f32 dynamicFriction,
+            f32 restitution,
+            f32 contactOffset,
+            f32 restOffset
         )
         {
             // Creating material
@@ -224,7 +222,7 @@ namespace xpe
             return actor;
         }
 
-        sScene* PhysicsManager::AddScene(ecs::Scene* scene)
+        sScene* PhysicsManager::AddScene(Scene* scene)
         {
             PxSceneDesc sceneDesc(s_Physics->getTolerancesScale());
             sceneDesc.gravity = PxVec3(0.0f, -1.0f, 0.0f);

@@ -14,7 +14,7 @@ namespace xpe {
         {
 
         public:
-            void Update(ecs::Scene* scene, const core::Time& dt) override final;
+            void Update(Scene* scene, const Time& dt) override final;
 
         private:
             void AnimateSkelet(const Ref<Skeleton>& skelet, const Ref<Animation>& animation, const Time& dt);

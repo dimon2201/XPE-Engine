@@ -1,17 +1,14 @@
 #pragma once
 
-#include <ecs/ecs.h>
-#include <core/types.hpp>
-
 namespace xpe
 {
 	namespace physics
 	{
-		class PhysicsSystem : public ecs::System
+		class PhysicsSystem : public System
 		{
 
 		public:
-			void Update(ecs::Scene* scene, const core::Time& dt) override final;
+			void Update(Scene* scene, const Time& dt) override final;
 
 		};
 	}
