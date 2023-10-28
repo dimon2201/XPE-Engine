@@ -13,6 +13,12 @@
 
 namespace xpe
 {
+    namespace physics
+    {
+        struct sActor;
+        struct sShape;
+    }
+
     namespace ecs
     {
         using namespace core;
@@ -348,6 +354,26 @@ namespace xpe
 
             JsonClass(
                 VoiceComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API RigidBodyComponent : Component
+        {
+            physics::sActor* Actor;
+
+            JsonClass(
+                RigidBodyComponent,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API ColliderComponent : Component
+        {
+            physics::sShape* Shape;
+
+            JsonClass(
+                ColliderComponent,
                 m_Tag
             )
         };

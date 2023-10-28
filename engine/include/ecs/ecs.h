@@ -1,9 +1,14 @@
 #pragma once
 
-namespace xpe {
+namespace xpe
+{
+    namespace physics
+    {
+        struct sScene;
+    }
 
-    namespace ecs {
-
+    namespace ecs
+    {
         using namespace core;
 
         class Entity;
@@ -261,7 +266,9 @@ namespace xpe {
             template<typename T>
             usize GetComponentsCount();
 
-            protected:
+            physics::sScene* PhysicsScene;
+
+        protected:
             template<typename T>
             inline ComponentType GetComponentType() { return typeid(T).hash_code(); }
 

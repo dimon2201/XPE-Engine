@@ -23,9 +23,9 @@ namespace xpe {
             static void Free();
 
             template<typename... Args>
-            static Ref<Material> Add(const string& name, Args&&... args);
+            static Ref<Material> AddMaterial(const string& name, Args&&... args);
 
-            static Ref<Material>& Get(const string& name) { return s_Map->at(name); }
+            static Ref<Material>& GetMaterial(const string& name) { return s_Map->at(name); }
 
             static void Remove(const string& name);
 
@@ -45,7 +45,7 @@ namespace xpe {
         };
 
         template<typename... Args>
-        Ref<Material> MaterialManager::Add(const string& name, Args &&... args)
+        Ref<Material> MaterialManager::AddMaterial(const string& name, Args &&... args)
         {
             Ref<Material> materialRef;
 

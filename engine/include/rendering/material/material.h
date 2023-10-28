@@ -2,10 +2,15 @@
 
 #include <rendering/buffers/material_data_buffer.h>
 
-namespace xpe {
+namespace xpe
+{
+    namespace physics
+    {
+        struct sMaterial;
+    }
 
-    namespace render {
-
+    namespace render
+    {
         using namespace core;
 
         struct ENGINE_API MaterialFormat final
@@ -53,6 +58,11 @@ namespace xpe {
             hstring RoughnessPath;
             hstring AOPath;
             hstring EmissionPath;
+
+            core::f32 PhysicsStaticFriction;
+            core::f32 PhysicsDynamicFriction;
+            core::f32 PhysicsRestitution;
+            physics::sMaterial* PhysicsMaterial;
 
             Material() = default;
             Material(const Material& material) = default;

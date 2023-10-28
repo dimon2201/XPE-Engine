@@ -125,7 +125,7 @@ public:
             m_Plane->Transform.Scale = { 1, 1, 1 };
 
             m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Plane(100)));
-            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::Add("PlaneMaterial", Material()))->Material;
+            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::AddMaterial("PlaneMaterial", Material()))->Material;
             planeMaterial->Metallness = 0.0f;
             planeMaterial->Roughness = 0.05f;
             planeMaterial->AO = 0.0f;
@@ -138,7 +138,7 @@ public:
             m_SunLight->Transform.Position = { 20, 20, -20 };
 
             m_SunLight->AddComponent<GeometryComponent>("G_SunLight", GeometryManager::AddGeometry(Sphere()));
-            m_SunLight->AddComponent<MaterialComponent>("SunLight", MaterialManager::Add("MT_SunLight", Material()));
+            m_SunLight->AddComponent<MaterialComponent>("SunLight", MaterialManager::AddMaterial("MT_SunLight", Material()));
             m_SunLight->AddComponent<DirectLightComponent>("L_SunLight", glm::vec3(0, 0, 0), glm::vec3(50, 30, 10));
         }
 
@@ -273,7 +273,7 @@ public:
             m_Cube->Transform.Position = { 10, -7.6, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
             m_Cube->AddComponent<GeometryComponent>("G_Cube", GeometryManager::AddGeometry(Cube()));
-            m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::Add("MT_Cube", Material()));
+            m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::AddMaterial("MT_Cube", Material()));
         }
 
         // setup glasses

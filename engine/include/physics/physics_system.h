@@ -1,36 +1,18 @@
 #pragma once
 
-#include <physics/core/allocator.h>
-#include <physics/core/error_callback.h>
+#include <ecs/ecs.h>
+#include <core/types.hpp>
 
-namespace xpe {
+namespace xpe
+{
+	namespace physics
+	{
+		class PhysicsSystem : public ecs::System
+		{
 
-    namespace physics {
+		public:
+			void Update(ecs::Scene* scene, const core::Time& dt) override final;
 
-        using namespace ecs;
-
-        class ENGINE_API PhysicsSystem : public System {
-
-        public:
-            static bool EnableMemoryProfiling;
-
-            static void Init(PxCpuDispatcher* dispatcher);
-            static void Free();
-
-            static void EnableLoggingInfo(bool enable);
-            static void EnableLoggingWarning(bool enable);
-            static void EnableLoggingError(bool enable);
-
-        private:
-            static PhysicsAllocator s_Allocator;
-            static PhysicsErrorCallback s_ErrorCallback;
-
-            static PxFoundation* s_Foundation;
-            static PxPhysics* s_Physics;
-            static PxCpuDispatcher* s_Dispatcher;
-
-        };
-
-    }
-
+		};
+	}
 }
