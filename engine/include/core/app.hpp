@@ -1,15 +1,14 @@
 #pragma once
 
-#include <rendering/passes/ssao_pass.hpp>
-#include <rendering/passes/fxaa_pass.hpp>
-
-namespace xpe {
-
+namespace xpe
+{
     namespace render
     {
         class Canvas;
         class RenderSystem;
         class RenderTarget;
+        class FXAAPass;
+        class SSAOPass;
     }
 
     namespace anim
@@ -25,6 +24,11 @@ namespace xpe {
     namespace ecs
     {
         class MainScene;
+    }
+
+    namespace physics
+    {
+        class PhysicsSystem;
     }
 
     namespace core {
@@ -65,13 +69,12 @@ namespace xpe {
             render::RenderSystem* m_RenderSystem = nullptr;
             anim::AnimSystem* m_AnimSystem = nullptr;
             audio::AudioSystem* m_AudioSystem = nullptr;
+            physics::PhysicsSystem* m_PhysicsSystem = nullptr;
 
             render::SSAOPass* m_SsaoPass = nullptr;
             render::FXAAPass* m_FxaaPass = nullptr;
         };
-
     }
-
 }
 
 xpe::core::Application* CreateApplication();

@@ -11,6 +11,9 @@
 #include <anim_loader.h>
 #include <audio_loader.h>
 
+#include <rendering/passes/fxaa_pass.hpp>
+#include <rendering/passes/ssao_pass.hpp>
+
 #include "test_config.h"
 
 using namespace xpe::core;
@@ -19,6 +22,7 @@ using namespace xpe::render;
 using namespace xpe::math;
 using namespace xpe::res;
 using namespace xpe::audio;
+using namespace xpe::physics;
 
 class GameApp : public Application
 {
@@ -71,6 +75,9 @@ public:
 
         InitCamera();
         InitCamera2D();
+
+        // Create physics scene
+        PhysicsManager::AddScene(m_MainScene);
 
         // setup text 2D entity
         {
@@ -130,6 +137,18 @@ public:
             planeMaterial->Roughness = 0.05f;
             planeMaterial->AO = 0.0f;
             planeMaterial->Flush();
+
+            m_Plane->AddComponent<RigidBodyComponent>(
+                PhysicsManager::AddActor(
+                    m_Plane,
+                    m_MainScene,
+                    sActor::eActorType::RIGID_STATIC,
+                    sActor::eShapeType::BOX,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.01f, 0.0f
+                )
+            );
         }
 
         // setup point light

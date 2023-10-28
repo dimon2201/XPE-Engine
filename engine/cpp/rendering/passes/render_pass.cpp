@@ -145,6 +145,7 @@ namespace xpe {
         void RenderPass::InitPostFX()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+
             BlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);

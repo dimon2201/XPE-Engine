@@ -358,25 +358,27 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API RigidBodyComponent : Component
+        struct ENGINE_API RigidBodyComponent : Component, physics::sActor
         {
-            physics::sActor* Actor;
+            RigidBodyComponent(physics::sActor* actor)
+            {
+                Actor = actor->Actor;
+                Material = actor->Material;
+                Shape = actor->Shape;
+                ActorType = actor->ActorType;
+                ShapeType = actor->ShapeType;
+                LinearVelocity = actor->LinearVelocity;
+                StaticFriction = actor->StaticFriction;
+                DynamicFriction = actor->DynamicFriction;
+                Restitution = actor->Restitution;
+                ContactOffset = actor->ContactOffset;
+                RestOffset = actor->RestOffset;
+            }
 
             JsonClass(
                 RigidBodyComponent,
                 m_Tag
             )
         };
-
-        struct ENGINE_API ColliderComponent : Component
-        {
-            physics::sShape* Shape;
-
-            JsonClass(
-                ColliderComponent,
-                m_Tag
-            )
-        };
-
     }
 }
