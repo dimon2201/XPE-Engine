@@ -45,5 +45,5 @@ float3 TonemapFilmic(in float3 color, in float gamma)
 // Exp Tonemapper
 float3 TonemapExp(in float3 color, in float gamma, in float exposure) {
     color = float3(1, 1, 1) - exp(-color * exposure);
-    return pow(abs(color), 1 / gamma);
+    return color;
 }

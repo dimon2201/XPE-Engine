@@ -55,7 +55,7 @@ namespace xpe {
 
                     alloc.AllocByteWidth = alloc.OccupiedByteWidth;
 
-                    m_Allocs.push_back(newAlloc);
+                    m_Allocs.emplace_back(newAlloc);
 
                     return newAlloc.Address;
                 }
@@ -68,7 +68,7 @@ namespace xpe {
             newAlloc.AllocByteWidth = size;
             newAlloc.OccupiedByteWidth = size;
             newAlloc.Address = m_LastAddress;
-            m_Allocs.push_back(newAlloc);
+            m_Allocs.emplace_back(newAlloc);
 
             // Update last address
             m_LastAddress = (void*)(((u64)m_LastAddress) + ((u64)size));
@@ -200,8 +200,8 @@ namespace xpe {
         MemoryPoolStack* MemoryManager::HotPools = nullptr;
 
         void MemoryManager::Init() {
-            // use by default 15% of TOTAL PHYSICAL RAM for main pre-allocation
-            usize mainMemorySize = HardwareManager::Memory.TotalPhysical * 0.15;
+            // use by default 1GB of TOTAL PHYSICAL RAM for main pre-allocation
+            usize mainMemorySize = K_MEMORY_GIB;
             MainPools = new MemoryPoolStack("MainMemory", 1, mainMemorySize, 1000, 0);
 
             // use by default 1MB for hot memory pre-allocation

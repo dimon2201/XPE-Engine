@@ -58,6 +58,7 @@ namespace xpe {
             ENGINE_API void CreateTextureDepthStencil(Texture& texture);
 
             ENGINE_API void BindTexture(const Texture& texture);
+            ENGINE_API void BindTexture(const Texture& texture, u32 slot);
             ENGINE_API void BindTextureSlot(u32 slot);
             ENGINE_API void UnbindTexture(const Texture& texture);
 

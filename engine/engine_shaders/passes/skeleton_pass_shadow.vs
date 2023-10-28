@@ -33,7 +33,7 @@ VSOut vs_main(VSIn vsIn)
         int boneID = boneIds[i];
         float boneWeight = boneWeights[i];
 
-        if (boneID == -1 || boneID >= bonesCount)
+        if (boneID == -1 || boneID >= int(bonesCount))
             continue;
 
         float4x4 boneTransform = Bones[boneID].Transform;

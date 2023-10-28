@@ -53,10 +53,12 @@ namespace xpe {
         public:
             enum eType
             {
-                OPAQUE = 0,
-                TRANSPARENT = 1,
-                POSTFX = 2,
-                SHADOW = 3
+                FINAL = 0,
+                SHADOW = 1,
+                OPAQUE = 2,
+                TRANSPARENT = 3,
+                POSTFX = 4,
+                UI = 5,
             };
 
             RenderPass(eType type, const vector<RenderPassBinding>& bindings);
@@ -65,10 +67,12 @@ namespace xpe {
             bool Enable = true;
 
             virtual void Update(Scene* scene) {}
+            virtual void DrawFinal(Scene* scene);
+            virtual void DrawShadow(Scene* scene) {}
             virtual void DrawOpaque(Scene* scene) {}
             virtual void DrawTransparent(Scene* scene) {}
             virtual void DrawPostFX(Scene* scene);
-            virtual void DrawShadow(Scene* scene) {}
+            virtual void DrawUI(Scene* scene) {}
 
             void Init();
             void Bind();
@@ -79,10 +83,12 @@ namespace xpe {
 
         protected:
 
+            virtual void InitFinal();
+            virtual void InitShadow();
             virtual void InitOpaque();
             virtual void InitTransparent();
             virtual void InitPostFX();
-            virtual void InitShadow();
+            virtual void InitUI();
 
             eType m_Type;
             vector<RenderPassBinding> m_Bindings;

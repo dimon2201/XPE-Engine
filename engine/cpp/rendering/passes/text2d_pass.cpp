@@ -6,7 +6,10 @@ namespace xpe {
 
     namespace render {
 
-        void Text2DPass::DrawPostFX(Scene* scene)
+        Text2DPass::Text2DPass(const vector<RenderPassBinding> &bindings)
+        : TextPass(eType::UI, bindings) {}
+
+        void Text2DPass::DrawUI(Scene* scene)
         {
             scene->EachComponent<Text2DComponent>([this](Text2DComponent* component)
             {

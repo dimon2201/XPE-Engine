@@ -435,7 +435,7 @@ namespace xpe {
                     auto& color = renderTarget.Colors[i];
                     auto& colorView = renderTarget.ColorViews[i];
 
-                    if (colorView == nullptr)
+                    if (color && color->Instance && color->Width != 0 && color->Height != 0 && colorView == nullptr)
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
                         desc.Format = s_TextureFormatTable.at(color->Format);
@@ -454,22 +454,19 @@ namespace xpe {
                 auto& depth = renderTarget.DepthStencil;
                 auto& depthView = renderTarget.DepthStencilView;
 
-                if (depth->Width != 0 && depth->Height != 0)
+                if (depth && depth->Instance && depth->Width != 0 && depth->Height != 0 && depthView == nullptr)
                 {
-                    if (depthView == nullptr && depth->Instance != nullptr)
-                    {
-                        D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
-                        desc.Format = DXGI_FORMAT_D32_FLOAT;
-                        desc.ViewDimension = depth->SampleCount > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
-                        desc.Texture2D.MipSlice = 0;
+                    D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
+                    desc.Format = DXGI_FORMAT_D32_FLOAT;
+                    desc.ViewDimension = depth->SampleCount > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
+                    desc.Texture2D.MipSlice = 0;
 
-                        s_Device->CreateDepthStencilView(
-                                (ID3D11Resource*) depth->Instance,
-                                &desc,
-                                (ID3D11DepthStencilView**) &depthView
-                        );
-                        LogDebugMessage();
-                    }
+                    s_Device->CreateDepthStencilView(
+                            (ID3D11Resource*) depth->Instance,
+                            &desc,
+                            (ID3D11DepthStencilView**) &depthView
+                    );
+                    LogDebugMessage();
                 }
             }
 
@@ -952,6 +949,12 @@ namespace xpe {
                 LogDebugMessage();
             }
 
+            void BindTexture(const Texture& texture, u32 slot)
+            {
+                s_ImmContext->PSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&texture.ViewInstance);
+                LogDebugMessage();
+            }
+
             void BindTextureSlot(u32 slot)
             {
                 ID3D11ShaderResourceView* views = nullptr;
@@ -1007,8 +1010,6 @@ namespace xpe {
                 if (mipLevels > 1) {
                     s_ImmContext->GenerateMips((ID3D11ShaderResourceView*) texture.ViewInstance);
                     LogDebugMessage();
-                } else {
-                    LogWarning("Unable to generate mips on GPU for texture with MipLevels={}", mipLevels);
                 }
             }
 

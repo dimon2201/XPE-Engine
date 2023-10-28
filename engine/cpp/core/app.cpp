@@ -14,7 +14,8 @@
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
 #include <rendering/passes/composite_transparent_pass.h>
-#include <rendering/passes/composite_final_pass.h>
+#include <rendering/passes/composite_ao_pass.h>
+#include <rendering/passes/final_pass.h>
 
 #include <anim/anim_system.h>
 
@@ -130,6 +131,7 @@ namespace xpe {
                     m_AnimSystem->Update(m_MainScene, DeltaTime);
                 }});
 
+                ClearRenderPasses();
                 Render();
 
                 WindowManager::PollEvents();
@@ -182,10 +184,12 @@ namespace xpe {
 
         void Application::InitRenderPasses()
         {
-            RenderTarget* canvasRT = m_RenderSystem->GetCanvasRT();
+            RenderTarget* finalRT = m_RenderSystem->GetFinalRT();
+            RenderTarget* sceneRT = m_RenderSystem->GetSceneRT();
+            RenderTarget* shadowRT = m_RenderSystem->GetShadowRT();
             RenderTarget* opaqueRT = m_RenderSystem->GetOpaqueRT();
             RenderTarget* transparentRT = m_RenderSystem->GetTransparentRT();
-            RenderTarget* shadowRT = m_RenderSystem->GetShadowRT();
+            RenderTarget* uiRT = m_RenderSystem->GetUiRT();
 
             // Canvas
             {
@@ -193,7 +197,7 @@ namespace xpe {
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
                 ShaderManager::BuildShader(shader);
-                m_Canvas = new Canvas(shader, canvasRT, m_RenderSystem->GetViewportBuffer());
+                m_Canvas = new Canvas(shader, finalRT, m_RenderSystem->GetViewportBuffer());
             }
 
             // Skybox pass
@@ -214,7 +218,7 @@ namespace xpe {
 
             // Main opaque pass
             {
-                Shader* shader = ShaderManager::CreateShader("main_opaque");
+                Shader* shader = ShaderManager::CreateShader("main_opaque_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_opaque.ps");
                 ShaderManager::BuildShader(shader);
@@ -237,7 +241,7 @@ namespace xpe {
 
             // Main transparent pass
             {
-                Shader* shader = ShaderManager::CreateShader("main_transparent");
+                Shader* shader = ShaderManager::CreateShader("main_transparent_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_transparent.ps");
                 ShaderManager::BuildShader(shader);
@@ -260,7 +264,7 @@ namespace xpe {
 
             // Main shadow pass
             {
-                Shader* shader = ShaderManager::CreateShader("main_shadow");
+                Shader* shader = ShaderManager::CreateShader("main_shadow_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/main_pass_shadow.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/shadow_pass.ps");
                 ShaderManager::BuildShader(shader);
@@ -275,7 +279,7 @@ namespace xpe {
 
             // Skeleton opaque pass
             {
-                Shader* shader = ShaderManager::CreateShader("skeleton_opaque");
+                Shader* shader = ShaderManager::CreateShader("skeleton_opaque_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeleton_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_opaque.ps");
                 ShaderManager::BuildShader(shader);
@@ -298,7 +302,7 @@ namespace xpe {
 
             // Skeleton transparent pass
             {
-                Shader* shader = ShaderManager::CreateShader("skeleton_transparent");
+                Shader* shader = ShaderManager::CreateShader("skeleton_transparent_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeleton_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_transparent.ps");
                 ShaderManager::BuildShader(shader);
@@ -321,7 +325,7 @@ namespace xpe {
 
             // Skeleton shadow pass
             {
-                Shader* shader = ShaderManager::CreateShader("skeleton_shadow");
+                Shader* shader = ShaderManager::CreateShader("skeleton_shadow_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skeleton_pass_shadow.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/shadow_pass.ps");
                 ShaderManager::BuildShader(shader);
@@ -336,14 +340,14 @@ namespace xpe {
 
             // Text 2D pass
             {
-                Shader* shader = ShaderManager::CreateShader("text2d");
+                Shader* shader = ShaderManager::CreateShader("text2d_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text2d_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text2d_pass.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, opaqueRT },
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, uiRT },
                     { "CameraBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetCameraBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT },
                     { "ViewportBuffer", RenderPassBinding::eType::BUFFER, m_RenderSystem->GetViewportBuffer(), RenderPassBinding::eStage::VERTEX, RenderPassBinding::SLOT_DEFAULT }
                 };
@@ -353,7 +357,7 @@ namespace xpe {
 
             // Text 3D pass
             {
-                Shader* shader = ShaderManager::CreateShader("text3d");
+                Shader* shader = ShaderManager::CreateShader("text3d_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text3d_pass.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text3d_pass.ps");
                 ShaderManager::BuildShader(shader);
@@ -369,7 +373,7 @@ namespace xpe {
 
             // FXAA pass
             {
-                Shader* shader = ShaderManager::CreateShader("fxaa");
+                Shader* shader = ShaderManager::CreateShader("fxaa_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
                 ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
                 ShaderManager::BuildShader(shader);
@@ -384,7 +388,7 @@ namespace xpe {
 
             // SSAO pass
             {
-                Shader* shader = ShaderManager::CreateShader("ssao");
+                Shader* shader = ShaderManager::CreateShader("ssao_pass");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
                 ShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/ssao_pass.ps" : "engine_shaders/passes/ssao_pass.ps");
                 ShaderManager::BuildShader(shader);
@@ -416,25 +420,42 @@ namespace xpe {
                 m_RenderSystem->AddRenderPass<CompositeTransparentPass>(bindings);
             }
 
-            // Composite final pass
+            // Composite AO pass
             {
-                Shader* shader = ShaderManager::CreateShader("composite_pass_final");
+                Shader* shader = ShaderManager::CreateShader("composite_pass_ao");
                 ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                ShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/composite_pass_final.ps" : "engine_shaders/passes/composite_pass_final.ps");
+                ShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/composite_pass_ao.ps" : "engine_shaders/passes/composite_pass_ao.ps");
                 ShaderManager::BuildShader(shader);
 
                 vector<RenderPassBinding> bindings = {
                     { "Shader", RenderPassBinding::eType::SHADER, shader },
-                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, canvasRT },
-                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, Config.MsaaSampleCount > 1 ? opaqueRT->Colors[0] : m_FxaaPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 0},
+                    { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, sceneRT },
+                    { "ColorTexture", RenderPassBinding::eType::TEXTURE, Config.MsaaSampleCount > 1 ? opaqueRT->Colors[0] : m_FxaaPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
                     { "AOTexture", RenderPassBinding::eType::TEXTURE, m_SsaoPass->GetRenderTarget()->Colors[0], RenderPassBinding::eStage::PIXEL, 1 }
                 };
 
-                m_RenderSystem->AddRenderPass<CompositeFinalPass>(bindings);
+                m_RenderSystem->AddRenderPass<CompositeAOPass>(bindings);
+            }
+
+            // Final pass
+            {
+                Shader* shader = ShaderManager::CreateShader("final_pass");
+                ShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
+                ShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/final_pass.ps");
+                ShaderManager::BuildShader(shader);
+
+                vector<RenderPassBinding> bindings = {
+                        { "Shader", RenderPassBinding::eType::SHADER, shader },
+                        { "RenderTarget", RenderPassBinding::eType::RENDER_TARGET, finalRT },
+                        { "SceneTexture", RenderPassBinding::eType::TEXTURE, sceneRT->Colors[0], RenderPassBinding::eStage::PIXEL, 0 },
+                        { "UiTexture", RenderPassBinding::eType::TEXTURE, uiRT->Colors[0], RenderPassBinding::eStage::PIXEL, 1 }
+                };
+
+                m_RenderSystem->AddRenderPass<FinalPass>(bindings);
             }
         }
 
-        void Application::Render()
+        void Application::ClearRenderPasses()
         {
             if (m_FxaaPass->Enable)
             {
@@ -447,10 +468,13 @@ namespace xpe {
                 m_SsaoPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
                 m_SsaoPass->GetRenderTarget()->ClearDepth(1);
             }
+        }
 
-            m_Canvas->Clear(ClearColor);
+        void Application::Render()
+        {
             m_RenderSystem->Update(m_MainScene, DeltaTime);
-            m_Canvas->Present();
+            m_Canvas->SetRenderTarget(m_RenderSystem->GetFinalRT());
+            m_Canvas->Draw();
         }
 
     }

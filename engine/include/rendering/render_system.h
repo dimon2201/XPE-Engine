@@ -27,44 +27,44 @@ namespace xpe {
             template<typename T, typename ... Args>
             T* AddRenderPass(Args &&... args);
 
-            template<typename T>
-            T* GetRenderPass(RenderPass::eType type);
-
             void Update(Scene* scene, const Time& dt) override final;
 
             void Prepare();
 
             inline ViewportBuffer* GetViewportBuffer() { return m_ViewportBuffer; }
-
             inline MonitorBuffer* GetMonitorBuffer() { return m_MonitorBuffer; }
-
             inline CameraBuffer* GetCameraBuffer() { return m_CameraBuffer; }
-
             inline DirectLightBuffer* GetDirectLightBuffer() { return m_DirectLightBuffer; }
             inline PointLightBuffer* GetPointLightBuffer() { return m_PointLightBuffer; }
             inline SpotLightBuffer* GetSpotLightBuffer() { return m_SpotLightBuffer; }
-
-            inline TextureSampler* GetShadowSampler() { return m_ShadowSampler; }
             inline ShadowFilterBuffer* GetShadowFilterBuffer() { return m_ShadowFilterBuffer; }
 
-            inline Texture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
-            inline RenderTarget* GetCanvasRT() { return m_CanvasRenderTarget; }
+            inline RenderTarget* GetFinalRT() { return m_FinalRenderTarget; }
+            inline RenderTarget* GetSceneRT() { return m_SceneRenderTarget; }
+            inline RenderTarget* GetShadowRT() { return m_ShadowRenderTarget; }
             inline RenderTarget* GetOpaqueRT() { return m_OpaqueRenderTarget; }
             inline RenderTarget* GetTransparentRT() { return m_TransparentRenderTarget; }
-            inline RenderTarget* GetShadowRT() { return m_ShadowRenderTarget; }
+            inline RenderTarget* GetUiRT() { return m_UiRenderTarget; }
 
+            inline Texture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
             inline Texture* GetShadowMap() { return m_ShadowRenderTarget->DepthStencil; }
 
+            inline TextureSampler* GetShadowSampler() { return m_ShadowSampler; }
+
         private:
+            void InitBuffers(const Viewport& viewport, u32 sampleCount);
+            void InitSamplers(const Viewport& viewport, u32 sampleCount);
             void InitRenderTargets(const Viewport& viewport, u32 sampleCount);
 
             void UpdateLight(Scene* scene);
             void UpdatePasses(Scene* scene);
 
+            vector<RenderPass*> m_FinalRenderPasses;
             vector<RenderPass*> m_ShadowRenderPasses;
             vector<RenderPass*> m_OpaqueRenderPasses;
             vector<RenderPass*> m_TransparentRenderPasses;
             vector<RenderPass*> m_PostFXRenderPasses;
+            vector<RenderPass*> m_UiRenderPasses;
 
             ViewportBuffer* m_ViewportBuffer;
             MonitorBuffer* m_MonitorBuffer;
@@ -74,14 +74,16 @@ namespace xpe {
             SpotLightBuffer* m_SpotLightBuffer;
             ShadowFilterBuffer* m_ShadowFilterBuffer;
 
-            TextureSampler* m_ShadowSampler;
+            RenderTarget* m_SceneRenderTarget;
+            RenderTarget* m_FinalRenderTarget;
+            RenderTarget* m_ShadowRenderTarget;
+            RenderTarget* m_OpaqueRenderTarget;
+            RenderTarget* m_TransparentRenderTarget;
+            RenderTarget* m_UiRenderTarget;
 
             Texture* m_SharedDepthTexture;
 
-            RenderTarget* m_CanvasRenderTarget;
-            RenderTarget* m_OpaqueRenderTarget;
-            RenderTarget* m_TransparentRenderTarget;
-            RenderTarget* m_ShadowRenderTarget;
+            TextureSampler* m_ShadowSampler;
 
         };
 
@@ -93,6 +95,10 @@ namespace xpe {
 
             switch (renderPass->GetType())
             {
+                case RenderPass::eType::FINAL:
+                    m_FinalRenderPasses.emplace_back(renderPass);
+                    break;
+
                 case RenderPass::eType::SHADOW:
                     m_ShadowRenderPasses.emplace_back(renderPass);
                     break;
@@ -109,57 +115,12 @@ namespace xpe {
                     m_PostFXRenderPasses.emplace_back(renderPass);
                     break;
 
+                case RenderPass::eType::UI:
+                    m_UiRenderPasses.emplace_back(renderPass);
+                    break;
             }
 
             return renderPass;
-        }
-
-        template<typename T>
-        T* RenderSystem::GetRenderPass(RenderPass::eType type)
-        {
-            T* resultPass = nullptr;
-
-            switch (type)
-            {
-                case RenderPass::eType::SHADOW:
-                    for (auto* renderPass : m_ShadowRenderPasses)
-                    {
-                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
-                            return renderPass;
-                        }
-                    }
-                    break;
-
-                case RenderPass::eType::OPAQUE:
-                    for (auto* renderPass : m_OpaqueRenderPasses)
-                    {
-                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
-                            return renderPass;
-                        }
-                    }
-                    break;
-
-                case RenderPass::eType::TRANSPARENT:
-                    for (auto* renderPass : m_TransparentRenderPasses)
-                    {
-                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
-                            return renderPass;
-                        }
-                    }
-                    break;
-
-                case RenderPass::eType::POSTFX:
-                    for (auto* renderPass : m_PostFXRenderPasses)
-                    {
-                        if (strcmp(typeid(T).name(), typeid(renderPass).name()) == 0) {
-                            return renderPass;
-                        }
-                    }
-                    break;
-
-            }
-
-            return resultPass;
         }
 
     }

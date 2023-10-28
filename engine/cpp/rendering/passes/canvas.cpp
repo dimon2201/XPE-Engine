@@ -17,22 +17,15 @@ namespace xpe {
             context::FreeSampler(m_PresentSampler);
         }
 
-        void Canvas::Clear(const glm::vec4& color)
+        void Canvas::Draw()
         {
             context::BindTextureSlot(0);
-            m_RenderTarget->Bind();
-            m_RenderTarget->ClearColor(m_BoundTargetIndex, color);
-            m_RenderTarget->ClearDepth(1.0f);
-        }
-
-        void Canvas::Present()
-        {
             context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewports);
             context::BindShader(*m_Shader);
             context::BindSampler(m_PresentSampler);
-            m_RenderTarget->BindColor(m_BoundTargetIndex);
+            context::BindTexture(*m_RenderTarget->Colors[m_BoundTargetIndex], 0);
 
-            context::ClearColorTarget(m_PresentTarget->ColorViews[m_BoundTargetIndex], m_ClearColor);
+            context::ClearColorTarget(m_PresentTarget->ColorViews[m_BoundTargetIndex], glm::vec4(0, 0, 0, 1));
 
             context::DrawQuad();
 

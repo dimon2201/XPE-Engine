@@ -9,19 +9,21 @@ struct PSOut
     float4 color : SV_Target0;
 };
 
-Texture2D<float4> Texture : register(t0);
+Texture2D<float4> ColorTexture : register(t0);
 
 PSOut ps_main(VSOut psIn)
 {
     PSOut psOut;
 
-    uint textureWidth = 0;
-    uint textureHeight = 0;
+    uint width = 0;
+    uint height = 0;
 
-    Texture.GetDimensions(textureWidth, textureHeight);
-    float3 uvWorld = float3(float(textureWidth) * psIn.uv.x, float(textureHeight) * psIn.uv.y, 0);
+    ColorTexture.GetDimensions(width, height);
+    float3 uv = float3(float(width) * psIn.uv.x, float(height) * psIn.uv.y, 0);
 
-    psOut.color = Texture.Load(int3(uvWorld));
+    float4 color = ColorTexture.Load(int3(uv));
+
+    psOut.color = color;
 
     return psOut;
 }

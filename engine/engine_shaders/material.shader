@@ -41,7 +41,7 @@ float4 GetAlbedo(uint materialIndex, float2 uv, in float gamma) {
     float4 albedo = material.Albedo;
     if (material.EnableAlbedoMap) {
         albedo *= AlbedoMap.Sample(MaterialSampler, float3(uv, mId));
-        albedo = pow(albedo, gamma);
+        albedo = pow(abs(albedo), gamma);
     }
     return albedo;
 }
@@ -143,7 +143,7 @@ float3 GetEmission(uint materialIndex, float2 uv, in float gamma) {
     float3 emission = material.Emission;
     if (material.EnableEmissionMap) {
         emission *= EmissionMap.Sample(MaterialSampler, float3(uv, mId)).rgb;
-        emission = pow(emission, gamma);
+        emission = pow(abs(emission), gamma);
     }
     return emission;
 }

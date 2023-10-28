@@ -4,7 +4,7 @@
 struct VSOut
 {
     float4 positionClip : SV_POSITION;
-    float2 texcoord : XPE_UV;
+    float2 uv : XPE_UV;
 };
 
 struct PSOut
@@ -22,8 +22,8 @@ PSOut ps_main(VSOut psIn)
     uint sampleCount = 0;
     AccumTexture.GetDimensions(width, height, sampleCount);
 
-    float4 accum = SampleMSAATextureFloat4(AccumTexture, psIn.texcoord);
-    float reveal = SampleMSAATextureFloat(RevealTexture, psIn.texcoord);
+    float4 accum = SampleMSAATextureFloat4(AccumTexture, psIn.uv);
+    float reveal = SampleMSAATextureFloat(RevealTexture, psIn.uv);
     
     PSOut psOut;
     psOut.color = float4(accum.rgb / max(accum.a, K_EPSILON), 1.0 - reveal);

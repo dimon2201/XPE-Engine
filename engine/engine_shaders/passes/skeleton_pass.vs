@@ -47,14 +47,14 @@ VSOut vs_main(VSIn vsIn)
         int boneID = boneIds[i];
         float boneWeight = boneWeights[i];
 
-        if (boneID == -1 || boneID >= bonesCount)
+        if (boneID == -1 || boneID >= int(bonesCount))
             continue;
 
         float4x4 boneTransform = Bones[boneID].Transform;
 
         positionTotal += mul(boneTransform, float4(vsIn.positionLocal, 1.0)) * boneWeight;
         positionBone = positionTotal;
-        normalTotal += mul(boneTransform, vsIn.normal);
+        normalTotal += mul(boneTransform, float4(vsIn.normal, 1.0)).xyz;
         normalBone = normalTotal;
     }
 
@@ -72,7 +72,7 @@ VSOut vs_main(VSIn vsIn)
     float3 shadowCoords  = positionLight.xyz / positionLight.w;
     shadowCoords         = shadowCoords * 0.5 + 0.5;
 
-    float3 normalWorld   = mul(worldNormalMatrix, normalBone).xyz;
+    float3 normalWorld   = mul(worldNormalMatrix, float4(normalBone, 1.0)).xyz;
     float3 tangentWorld  = mul(worldNormalMatrix, float4(vsIn.tangent, 1.0)).xyz;
     normalWorld = normalize(normalWorld);
     tangentWorld = normalize(tangentWorld);

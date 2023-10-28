@@ -1,9 +1,10 @@
 #include msaa_sampling.shader
+#include ../../tonemap.shader
 
 struct VSOut
 {
     float4 positionClip : SV_POSITION;
-    float2 texcoord : XPE_UV;
+    float2 uv : XPE_UV;
 };
 
 struct PSOut
@@ -21,8 +22,9 @@ PSOut ps_main(VSOut psIn)
     uint sampleCount = 0;
     ColorTexture.GetDimensions(width, height, sampleCount);
 
-    float3 averageColor = SampleMSAATextureFloat3(ColorTexture, psIn.texcoord);
-    float3 averageAO = SampleMSAATextureFloat3(AOTexture, psIn.texcoord);
+    float3 averageColor = SampleMSAATextureFloat3(ColorTexture, psIn.uv);
+    averageColor = TonemapExp(averageColor, 2.2, 2.5);
+    float3 averageAO = SampleMSAATextureFloat3(AOTexture, psIn.uv);
 
     PSOut psOut;
     psOut.color = float4(averageColor, 1.0) * float4(averageAO, 1.0);

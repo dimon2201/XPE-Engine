@@ -12,7 +12,7 @@ namespace xpe {
             vector<void*> ColorViews;
             void* DepthStencilView = nullptr;
             vector<Texture*> Colors;
-            Texture* DepthStencil;
+            Texture* DepthStencil = nullptr;
             vector<Viewport> Viewports;
 
             RenderTarget(const vector<Texture*>& colors, const Viewport& viewport);

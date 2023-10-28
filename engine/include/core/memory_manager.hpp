@@ -16,10 +16,10 @@ namespace xpe
     {
         struct MemoryPoolAllocation final
         {
-            u32 FreeFlag;
-            u32 AllocByteWidth;
-            u32 OccupiedByteWidth;
-            void* Address;
+            u8 FreeFlag = 0;
+            u32 AllocByteWidth = 0;
+            u32 OccupiedByteWidth = 0;
+            void* Address = nullptr;
         };
 
         class ENGINE_API MemoryPool

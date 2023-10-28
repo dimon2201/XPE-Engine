@@ -92,16 +92,6 @@ namespace xpe {
 
             Event<EventFunction> event(std::forward<Args>(eventArgs)...);
 
-            // check if event function already added
-            for (const auto& currentEvent : m_Events)
-            {
-                if (event.Function == currentEvent.Function)
-                {
-                    LogWarning("EventBuffer::AddEvent(): EventFunction is already added!");
-                    return;
-                }
-            }
-
             m_Events.emplace_back(event);
 
             // store event functions by Priority number

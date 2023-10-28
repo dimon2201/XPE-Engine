@@ -32,8 +32,8 @@ PSOut ps_main(VSOut psIn)
 
     float occlusion = 0.0;
     int2 curCoord = int2(psIn.uv * float2(width, height));
-    float3 curPos = PositionTexture.Load(int2(curCoord), 0);
-    float3 curNormal = NormalTexture.Load(int2(curCoord), 0);
+    float3 curPos = PositionTexture.Load(int2(curCoord), 0).xyz;
+    float3 curNormal = NormalTexture.Load(int2(curCoord), 0).xyz;
 
     SSAOData ssao = SSAO[0];
     float intensity = ssao.Intensity;
@@ -45,7 +45,7 @@ PSOut ps_main(VSOut psIn)
         for (int s = 0; s < sampleCount; s++)
         {
             int2 sampleCoord = int2(curCoord + (sampleDirections[dir] * 2 * (s + 1)));
-            float3 samplePos = PositionTexture.Load(int2(sampleCoord), 0);
+            float3 samplePos = PositionTexture.Load(int2(sampleCoord), 0).xyz;
             float3 curToSample = samplePos - curPos;
             if (length(curToSample) < 1.0) {
                 occlusion += max(0.0, pow(dot(curNormal, normalize(curToSample)), 3.0));

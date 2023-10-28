@@ -36,7 +36,6 @@ namespace xpe {
             Time DeltaTime;            // delta CurrentTime ms = end time - begin time
             Time CurrentTime;
             AppConfig Config;
-            glm::vec4 ClearColor = { 1, 1, 1, 1 };
 
             Application() {}
             ~Application() {}
@@ -51,6 +50,7 @@ namespace xpe {
             virtual void Render();
 
             virtual void InitRenderPasses();
+            virtual void ClearRenderPasses();
 
             void LockFPSFromConfig();
 

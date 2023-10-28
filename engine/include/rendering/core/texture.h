@@ -16,7 +16,8 @@ namespace xpe {
             RGBA8, RGBA16, RGBA32,
             SRGBA8,
 
-            DEFAULT = RGBA8
+            DEFAULT = RGBA8,
+            HDR = RGBA16
         };
 
         struct ENGINE_API Mip final

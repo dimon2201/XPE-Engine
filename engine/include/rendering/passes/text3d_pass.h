@@ -8,12 +8,9 @@ namespace xpe {
 
         class ENGINE_API Text3DPass : public TextPass
         {
-
         public:
-            Text3DPass(const vector<RenderPassBinding>& bindings) : TextPass(eType::OPAQUE, bindings) {}
-
+            Text3DPass(const vector<RenderPassBinding>& bindings);
             void DrawOpaque(Scene* scene) override;
-
         };
 
     }

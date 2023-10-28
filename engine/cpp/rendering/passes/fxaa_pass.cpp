@@ -12,7 +12,7 @@ namespace xpe
             Texture* color = new Texture();
             color->Width = viewport->Width;
             color->Height = viewport->Height;
-            color->Format = eTextureFormat::RGBA8;
+            color->Format = eTextureFormat::HDR;
             color->SampleCount = 1;
             color->InitializeData = false;
             color->EnableRenderTarget = true;

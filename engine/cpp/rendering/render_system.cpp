@@ -11,38 +11,11 @@ namespace xpe {
         RenderSystem::RenderSystem(const Viewport& viewport, u32 sampleCount)
         {
             context::Init();
-
             ShaderManager::Init();
             GeometryManager::Init();
             MaterialManager::Init();
-
-            m_ViewportBuffer = new ViewportBuffer();
-            m_ViewportBuffer->Add(viewport);
-            m_ViewportBuffer->Flush();
-
-            m_MonitorBuffer = new MonitorBuffer();
-
-            m_CameraBuffer = new CameraBuffer();
-
-            m_DirectLightBuffer = new DirectLightBuffer();
-            m_DirectLightBuffer->Reserve(1000);
-
-            m_PointLightBuffer = new PointLightBuffer();
-            m_PointLightBuffer->Reserve(1000);
-
-            m_SpotLightBuffer = new SpotLightBuffer();
-            m_SpotLightBuffer->Reserve(1000);
-
-            m_ShadowFilterBuffer = new ShadowFilterBuffer();
-
-            m_ShadowSampler = new TextureSampler();
-            m_ShadowSampler->BorderColor = glm::vec4(1, 1, 1, 1);
-            m_ShadowSampler->AddressU = TextureSampler::eAddress::CLAMP;
-            m_ShadowSampler->AddressV = TextureSampler::eAddress::CLAMP;
-            m_ShadowSampler->Slot = K_SLOT_SHADOW_SAMPLER;
-
-            m_TransparentRenderPasses.reserve(2);
-
+            InitBuffers(viewport, sampleCount);
+            InitSamplers(viewport, sampleCount);
             InitRenderTargets(viewport, sampleCount);
         }
 
@@ -58,10 +31,12 @@ namespace xpe {
 
             delete m_ShadowSampler;
 
-            delete m_CanvasRenderTarget;
+            delete m_FinalRenderTarget;
+            delete m_SceneRenderTarget;
+            delete m_ShadowRenderTarget;
             delete m_OpaqueRenderTarget;
             delete m_TransparentRenderTarget;
-            delete m_ShadowRenderTarget;
+            delete m_UiRenderTarget;
 
             MaterialManager::Free();
             GeometryManager::Free();
@@ -70,27 +45,86 @@ namespace xpe {
             context::Free();
         }
 
+        void RenderSystem::InitBuffers(const Viewport &viewport, u32 sampleCount)
+        {
+            m_ViewportBuffer = new ViewportBuffer();
+            m_ViewportBuffer->Add(viewport);
+            m_ViewportBuffer->Flush();
+            m_MonitorBuffer = new MonitorBuffer();
+            m_CameraBuffer = new CameraBuffer();
+            m_DirectLightBuffer = new DirectLightBuffer();
+            m_DirectLightBuffer->Reserve(1000);
+            m_PointLightBuffer = new PointLightBuffer();
+            m_PointLightBuffer->Reserve(1000);
+            m_SpotLightBuffer = new SpotLightBuffer();
+            m_SpotLightBuffer->Reserve(1000);
+            m_ShadowFilterBuffer = new ShadowFilterBuffer();
+        }
+
+        void RenderSystem::InitSamplers(const Viewport &viewport, u32 sampleCount)
+        {
+            m_ShadowSampler = new TextureSampler();
+            m_ShadowSampler->BorderColor = glm::vec4(1, 1, 1, 1);
+            m_ShadowSampler->AddressU = TextureSampler::eAddress::CLAMP;
+            m_ShadowSampler->AddressV = TextureSampler::eAddress::CLAMP;
+            m_ShadowSampler->Slot = K_SLOT_SHADOW_SAMPLER;
+        }
+
         void RenderSystem::InitRenderTargets(const Viewport& viewport, u32 sampleCount)
         {
-            // Canvas render target
-            Texture* canvasColor = new Texture();
-            canvasColor->Width = viewport.Width;
-            canvasColor->Height = viewport.Height;
-            canvasColor->Format = eTextureFormat::RGBA8;
-            canvasColor->InitializeData = false;
-            canvasColor->EnableRenderTarget = true;
-            canvasColor->Init();
+            // Final render target
+            Texture* finalColor = new Texture();
+            finalColor->Width = viewport.Width;
+            finalColor->Height = viewport.Height;
+            finalColor->Format = eTextureFormat::RGBA8;
+            finalColor->InitializeData = false;
+            finalColor->EnableRenderTarget = true;
+            finalColor->Init();
 
-            Texture* canvasDepth = new Texture();
-            canvasDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            canvasDepth->Width = viewport.Width;
-            canvasDepth->Height = viewport.Height;
-            canvasDepth->Format = eTextureFormat::R32_TYPELESS;
-            canvasDepth->InitializeData = false;
-            canvasDepth->EnableRenderTarget = true;
-            canvasDepth->Init();
+            Texture* finalDepth = new Texture();
+            finalDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            finalDepth->Width = viewport.Width;
+            finalDepth->Height = viewport.Height;
+            finalDepth->Format = eTextureFormat::R32_TYPELESS;
+            finalDepth->InitializeData = false;
+            finalDepth->EnableRenderTarget = true;
+            finalDepth->Init();
 
-            m_CanvasRenderTarget = new RenderTarget({ canvasColor }, canvasDepth, m_ViewportBuffer->GetList());
+            m_FinalRenderTarget = new RenderTarget({ finalColor }, finalDepth, m_ViewportBuffer->GetList());
+
+            // Scene render target
+            Texture* sceneColor = new Texture();
+            sceneColor->Width = viewport.Width;
+            sceneColor->Height = viewport.Height;
+            sceneColor->Format = eTextureFormat::RGBA8;
+            sceneColor->InitializeData = false;
+            sceneColor->EnableRenderTarget = true;
+            sceneColor->Init();
+
+            Texture* sceneDepth = new Texture();
+            sceneDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            sceneDepth->Width = viewport.Width;
+            sceneDepth->Height = viewport.Height;
+            sceneDepth->Format = eTextureFormat::R32_TYPELESS;
+            sceneDepth->InitializeData = false;
+            sceneDepth->EnableRenderTarget = true;
+            sceneDepth->Init();
+
+            m_SceneRenderTarget = new RenderTarget({ sceneColor }, sceneDepth, m_ViewportBuffer->GetList());
+
+            // Shadow map as a depth stencil texture output for shadow mapping
+            Texture* shadowDepth = new Texture();
+            shadowDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            shadowDepth->Width = viewport.Width;
+            shadowDepth->Height = viewport.Height;
+            shadowDepth->Format = eTextureFormat::R32_TYPELESS;
+            shadowDepth->InitializeData = false;
+            shadowDepth->EnableRenderTarget = true;
+            shadowDepth->SampleCount = 1;
+            shadowDepth->Slot = K_SLOT_SHADOW_MAP;
+            shadowDepth->Init();
+
+            m_ShadowRenderTarget = new RenderTarget(shadowDepth, viewport);
 
             // Shared depth texture for opaque and transparent render targets
             m_SharedDepthTexture = new Texture();
@@ -104,69 +138,75 @@ namespace xpe {
             m_SharedDepthTexture->Init();
 
             // Opaque render target
-            Texture* mainColor = new Texture();
-            mainColor->Width = viewport.Width;
-            mainColor->Height = viewport.Height;
-            mainColor->Format = eTextureFormat::RGBA8;
-            mainColor->InitializeData = false;
-            mainColor->EnableRenderTarget = true;
-            mainColor->SampleCount = sampleCount;
-            mainColor->Init();
+            Texture* opaqueColor = new Texture();
+            opaqueColor->Width = viewport.Width;
+            opaqueColor->Height = viewport.Height;
+            opaqueColor->Format = eTextureFormat::HDR;
+            opaqueColor->InitializeData = false;
+            opaqueColor->EnableRenderTarget = true;
+            opaqueColor->SampleCount = sampleCount;
+            opaqueColor->Init();
 
-            Texture* mainPosition = new Texture();
-            mainPosition->Width = viewport.Width;
-            mainPosition->Height = viewport.Height;
-            mainPosition->Format = eTextureFormat::RGBA32;
-            mainPosition->InitializeData = false;
-            mainPosition->EnableRenderTarget = true;
-            mainPosition->SampleCount = sampleCount;
-            mainPosition->Init();
+            Texture* opaquePosition = new Texture();
+            opaquePosition->Width = viewport.Width;
+            opaquePosition->Height = viewport.Height;
+            opaquePosition->Format = eTextureFormat::RGBA32;
+            opaquePosition->InitializeData = false;
+            opaquePosition->EnableRenderTarget = true;
+            opaquePosition->SampleCount = sampleCount;
+            opaquePosition->Init();
 
-            Texture* mainNormal = new Texture();
-            mainNormal->Width = viewport.Width;
-            mainNormal->Height = viewport.Height;
-            mainNormal->Format = eTextureFormat::RGBA16;
-            mainNormal->InitializeData = false;
-            mainNormal->EnableRenderTarget = true;
-            mainNormal->SampleCount = sampleCount;
-            mainNormal->Init();
+            Texture* opaqueNormal = new Texture();
+            opaqueNormal->Width = viewport.Width;
+            opaqueNormal->Height = viewport.Height;
+            opaqueNormal->Format = eTextureFormat::RGBA16;
+            opaqueNormal->InitializeData = false;
+            opaqueNormal->EnableRenderTarget = true;
+            opaqueNormal->SampleCount = sampleCount;
+            opaqueNormal->Init();
 
-            m_OpaqueRenderTarget = new RenderTarget({ mainColor, mainPosition, mainNormal }, m_SharedDepthTexture, viewport);
+            m_OpaqueRenderTarget = new RenderTarget({ opaqueColor, opaquePosition, opaqueNormal }, m_SharedDepthTexture, viewport);
 
             // Transparent render target
-            Texture* mainAccum = new Texture();
-            mainAccum->Width = viewport.Width;
-            mainAccum->Height = viewport.Height;
-            mainAccum->Format = eTextureFormat::RGBA16;
-            mainAccum->InitializeData = false;
-            mainAccum->EnableRenderTarget = true;
-            mainAccum->SampleCount = sampleCount;
-            mainAccum->Init();
+            Texture* transparentAccum = new Texture();
+            transparentAccum->Width = viewport.Width;
+            transparentAccum->Height = viewport.Height;
+            transparentAccum->Format = eTextureFormat::HDR;
+            transparentAccum->InitializeData = false;
+            transparentAccum->EnableRenderTarget = true;
+            transparentAccum->SampleCount = sampleCount;
+            transparentAccum->Init();
 
-            Texture* mainReveal = new Texture();
-            mainReveal->Width = viewport.Width;
-            mainReveal->Height = viewport.Height;
-            mainReveal->Format = eTextureFormat::R8;
-            mainReveal->InitializeData = false;
-            mainReveal->EnableRenderTarget = true;
-            mainReveal->SampleCount = sampleCount;
-            mainReveal->Init();
+            Texture* transparentReveal = new Texture();
+            transparentReveal->Width = viewport.Width;
+            transparentReveal->Height = viewport.Height;
+            transparentReveal->Format = eTextureFormat::R8;
+            transparentReveal->InitializeData = false;
+            transparentReveal->EnableRenderTarget = true;
+            transparentReveal->SampleCount = sampleCount;
+            transparentReveal->Init();
 
-            m_TransparentRenderTarget = new RenderTarget({ mainAccum, mainReveal }, m_SharedDepthTexture, viewport);
+            m_TransparentRenderTarget = new RenderTarget({ transparentAccum, transparentReveal }, m_SharedDepthTexture, viewport);
 
-            // Shadow map as a depth stencil texture output for shadow mapping
-            Texture* shadowMap = new Texture();
-            shadowMap->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            shadowMap->Width = viewport.Width;
-            shadowMap->Height = viewport.Height;
-            shadowMap->Format = eTextureFormat::R32_TYPELESS;
-            shadowMap->InitializeData = false;
-            shadowMap->EnableRenderTarget = true;
-            shadowMap->SampleCount = 1;
-            shadowMap->Slot = K_SLOT_SHADOW_MAP;
-            shadowMap->Init();
+            // UI render target
+            Texture* uiColor = new Texture();
+            uiColor->Width = viewport.Width;
+            uiColor->Height = viewport.Height;
+            uiColor->Format = eTextureFormat::RGBA8;
+            uiColor->InitializeData = false;
+            uiColor->EnableRenderTarget = true;
+            uiColor->Init();
 
-            m_ShadowRenderTarget = new RenderTarget(shadowMap, viewport);
+            Texture* uiDepth = new Texture();
+            uiDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            uiDepth->Width = viewport.Width;
+            uiDepth->Height = viewport.Height;
+            uiDepth->Format = eTextureFormat::R32_TYPELESS;
+            uiDepth->InitializeData = false;
+            uiDepth->EnableRenderTarget = true;
+            uiDepth->Init();
+
+            m_UiRenderTarget = new RenderTarget({ uiColor }, uiDepth, viewport);
         }
 
         void RenderSystem::Prepare()
@@ -275,12 +315,40 @@ namespace xpe {
             }
 
             // PostFX
+            m_SceneRenderTarget->ClearColor(0, glm::vec4(0.0f));
+            m_SceneRenderTarget->ClearDepth(1.0f);
             for (RenderPass* rp : m_PostFXRenderPasses)
             {
                 if (rp->Enable) {
                     rp->Update(scene);
                     rp->Bind();
                     rp->DrawPostFX(scene);
+                    rp->Unbind();
+                }
+            }
+
+            // UI
+            m_UiRenderTarget->ClearColor(0, glm::vec4(0.0f));
+            m_UiRenderTarget->ClearDepth(1.0f);
+            for (RenderPass* rp : m_UiRenderPasses)
+            {
+                if (rp->Enable) {
+                    rp->Update(scene);
+                    rp->Bind();
+                    rp->DrawUI(scene);
+                    rp->Unbind();
+                }
+            }
+
+            // Final
+            m_FinalRenderTarget->ClearColor(0, glm::vec4(0.0f));
+            m_FinalRenderTarget->ClearDepth(1.0f);
+            for (RenderPass* rp : m_FinalRenderPasses)
+            {
+                if (rp->Enable) {
+                    rp->Update(scene);
+                    rp->Bind();
+                    rp->DrawFinal(scene);
                     rp->Unbind();
                 }
             }

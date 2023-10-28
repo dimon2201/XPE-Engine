@@ -9,7 +9,7 @@ namespace xpe {
         struct ENGINE_API MaterialData
         {
             // albedo mapping
-            glm::vec4 Albedo = { 0.9, 0.9, 0.9, 1.0 };
+            glm::vec4 Albedo = { 0.01, 0.01, 0.01, 1.0 };
             Boolean EnableAlbedoMap = false;
             // normal mapping
             Boolean EnableNormalMap = false;

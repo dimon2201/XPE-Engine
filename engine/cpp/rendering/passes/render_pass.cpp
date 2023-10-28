@@ -85,6 +85,21 @@ namespace xpe {
             m_Pipeline->InputLayout.Format = Vertex::Format;
         }
 
+        void RenderPass::InitFinal()
+        {
+            m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
+        }
+
+        void RenderPass::InitShadow()
+        {
+            m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+            m_Pipeline->Rasterizer.CullMode = eCullMode::FRONT;
+        }
+
         void RenderPass::InitOpaque()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
@@ -136,16 +151,27 @@ namespace xpe {
             m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
-        void RenderPass::InitShadow()
+        void RenderPass::InitUI()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
-            m_Pipeline->Rasterizer.CullMode = eCullMode::FRONT;
+            BlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
         void RenderPass::Init()
         {
             switch (m_Type)
             {
+                case RenderPass::eType::FINAL:
+                    InitFinal();
+                    break;
+
+                case RenderPass::eType::SHADOW:
+                    InitShadow();
+                    break;
+
                 case RenderPass::eType::OPAQUE:
                     InitOpaque();
                     break;
@@ -158,8 +184,8 @@ namespace xpe {
                     InitPostFX();
                     break;
 
-                case RenderPass::eType::SHADOW:
-                    InitShadow();
+                case RenderPass::eType::UI:
+                    InitUI();
                     break;
             }
 
@@ -179,6 +205,11 @@ namespace xpe {
         RenderTarget* RenderPass::GetRenderTarget()
         {
             return m_Pipeline->RenderTarget;
+        }
+
+        void RenderPass::DrawFinal(Scene* scene)
+        {
+            context::DrawQuad();
         }
 
         void RenderPass::DrawPostFX(Scene* scene)

@@ -6,6 +6,9 @@ namespace xpe {
 
     namespace render {
 
+        Text3DPass::Text3DPass(const vector<RenderPassBinding> &bindings)
+        : TextPass(eType::OPAQUE, bindings) {}
+
         void Text3DPass::DrawOpaque(Scene* scene)
         {
             scene->EachComponent<Text3DComponent>([this](Text3DComponent* component)

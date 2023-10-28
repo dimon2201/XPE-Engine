@@ -180,7 +180,7 @@ void TemplateGame::Update()
     context->BindPipeline(&m_Pipeline2d);
     m_BatchManager2d->DrawAll();
 
-    m_Canvas->Present();
+    m_Canvas->Draw();
 }
 
 void TemplateGame::Free()

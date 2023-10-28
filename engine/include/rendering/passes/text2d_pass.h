@@ -8,12 +8,9 @@ namespace xpe {
 
         class ENGINE_API Text2DPass : public TextPass
         {
-
         public:
-            Text2DPass(const vector<RenderPassBinding>& bindings) : TextPass(eType::POSTFX, bindings) {}
-
-            void DrawPostFX(Scene* scene) override;
-
+            Text2DPass(const vector<RenderPassBinding>& bindings);
+            void DrawUI(Scene* scene) override;
         };
 
     }

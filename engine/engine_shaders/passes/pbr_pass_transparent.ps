@@ -1,6 +1,5 @@
 #include ../types.shader
 #include ../monitor.shader
-#include ../tonemap.shader
 #include ../material.shader
 #include ../shadow.shader
 #include ../lighting.shader
@@ -25,7 +24,7 @@ struct PSOut
     float reveal : SV_Target1;
 };
 
-PSOut ps_main(VSOut psIn) : SV_TARGET
+PSOut ps_main(VSOut psIn)
 {
     UV = psIn.uv;
     W = psIn.positionWorld;
@@ -56,15 +55,15 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
     uint pointLightSize = 0;
     uint pointLightStride = 0;
     PointLights.GetDimensions(pointLightSize, pointLightStride);
-    for (uint i = 0 ; i < pointLightSize ; i++) {
-        Lo += PBR(PointLights[i], albedo.rgb, metallness, roughness, shadowCoords);
+    for (uint j = 0 ; j < pointLightSize ; j++) {
+        Lo += PBR(PointLights[j], albedo.rgb, metallness, roughness, shadowCoords);
     }
 
     uint spotLightSize = 0;
     uint spotLightStride = 0;
     SpotLights.GetDimensions(spotLightSize, spotLightStride);
-    for (uint i = 0 ; i < spotLightSize ; i++) {
-        Lo += PBR(SpotLights[i], albedo.rgb, metallness, roughness, shadowCoords);
+    for (uint k = 0 ; k < spotLightSize ; k++) {
+        Lo += PBR(SpotLights[k], albedo.rgb, metallness, roughness, shadowCoords);
     }
 
     // PBR with IBL
@@ -73,7 +72,6 @@ PSOut ps_main(VSOut psIn) : SV_TARGET
 
     // Color
     float4 color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
-    color = float4(TonemapExp(color.rgb, GetGamma(), GetExposure()), color.a);
 
     // Weighted blended
     float weight = max(min(1.0, max(max(color.r, color.g), color.b) * color.a), color.a) *

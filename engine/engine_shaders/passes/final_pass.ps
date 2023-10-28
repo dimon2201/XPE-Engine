@@ -1,0 +1,28 @@
+struct VSOut
+{
+    float4 positionClip : SV_POSITION;
+    float2 uv : XPE_UV;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+Texture2D<float4> SceneTexture : register(t0);
+Texture2D<float4> UiTexture    : register(t1);
+
+PSOut ps_main(VSOut psIn)
+{
+    uint colorWidth = 0;
+    uint colorHeight = 0;
+    SceneTexture.GetDimensions(colorWidth, colorHeight);
+
+    float3 scene = SceneTexture.Load(int3(float2(colorWidth, colorHeight) * psIn.uv, 0)).xyz;
+    float3 ui = UiTexture.Load(int3(float2(colorWidth, colorHeight) * psIn.uv, 0)).xyz;
+
+    PSOut psOut;
+    psOut.color = float4(scene, 1.0) + float4(ui, 1.0);
+
+    return psOut;
+}
