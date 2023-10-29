@@ -128,7 +128,7 @@ public:
             m_Plane->Transform.Position = { 0, -10, 0 };
             m_Plane->Transform.Scale = { 1, 1, 1 };
 
-            m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Plane(100)));
+            m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Cube()));
             auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::AddMaterial("PlaneMaterial", Material()))->Material;
             planeMaterial->Metallness = 0.0f;
             planeMaterial->Roughness = 0.05f;
@@ -143,7 +143,7 @@ public:
                     sActor::eShapeType::BOX,
                     glm::vec3(0.0f),
                     0.5f, 0.5f, 0.5f,
-                    0.0f, 0.0f
+                    0.01f, 0.0f
                 )
             );
         }
@@ -306,7 +306,7 @@ public:
             mat.AO = 0.0f;
 
             m_Glasses[i] = new Entity("Glass" + i, m_MainScene);
-            m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.7f), 1 + ((float)i * 1.1f), 0};
+            m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.5f), 1 + ((float)i * 2.0f), 0};
             m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
             m_Glasses[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Cube()));
             m_Glasses[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::AddMaterial("MT_Glass" + i, mat));
@@ -319,7 +319,7 @@ public:
                     sActor::eShapeType::BOX,
                     glm::vec3(0.0f),
                     0.5f, 0.5f, 0.5f,
-                    0.0f, 0.0f
+                    0.01f, 0.0f
                 )
             );
         }

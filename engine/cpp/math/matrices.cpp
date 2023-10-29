@@ -9,7 +9,7 @@ namespace xpe {
             //m = glm::rotate(m, glm::radians(modelMatrix.Rotation.y), glm::vec3(0, 1, 0));
             //m = glm::rotate(m, glm::radians(modelMatrix.Rotation.z), glm::vec3(0, 0, 1));
             m = m * glm::toMat4(glm::quat(modelMatrix.Rotation));
-            m = m * glm::scale(glm::mat4(1.0f), modelMatrix.Scale);
+            m = glm::scale(m, modelMatrix.Scale);
             return m;
         }
 

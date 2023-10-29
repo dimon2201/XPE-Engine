@@ -138,6 +138,7 @@ namespace xpe
                         entity->Transform.Position.z
                     )
                 );
+                ((PxRigidDynamic*)physicsActor)->setAngularDamping(0.75f);
                 ((PxRigidDynamic*)physicsActor)->setLinearVelocity(PxVec3(linearVelocity.x, linearVelocity.y, linearVelocity.z));
                 break;
 
