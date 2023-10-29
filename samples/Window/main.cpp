@@ -117,26 +117,27 @@ public:
         // Plane
         {
             m_Plane = new Entity("Plane", m_MainScene);
-            m_Plane->Transform.Position = { 0, -10, 0 };
-            m_Plane->Transform.Scale = { 1, 1, 1 };
+            m_Plane->Transform.Position = { 0, 0, 0 };
+            m_Plane->Transform.Scale = { 2, 1, 2 };
 
-            m_Plane->Add<GeometryComponent>(GeometryManager::AddGeometry(Plane(100)));
+            m_Plane->Add<GeometryComponent>(GeometryManager::AddGeometry(Plane(10)));
             auto* planeMaterial = m_Plane->Add<MaterialComponent>(MaterialManager::AddMaterial());
             planeMaterial->Metallness = 0.0f;
             planeMaterial->Roughness = 0.05f;
             planeMaterial->AO = 0.0f;
             MaterialManager::Flush(*planeMaterial);
 
+            sPlaneShapeDescriptor planeShapeDesc;
             m_Plane->Add<RigidBodyComponent>(
-                    PhysicsManager::AddActor(
-                            m_Plane,
-                            m_MainScene,
-                            sActor::eActorType::RIGID_STATIC,
-                            sActor::eShapeType::BOX,
-                            glm::vec3(0.0f),
-                            0.5f, 0.5f, 0.5f,
-                            0.0f, 0.0f
-                    )
+                PhysicsManager::AddActor(
+                    m_Plane,
+                    m_MainScene,
+                    sActor::eActorType::RIGID_STATIC,
+                    &planeShapeDesc,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.05f, 0.0f
+                )
             );
         }
 
@@ -282,7 +283,7 @@ public:
         // Cube
         {
             m_Cube = new Entity("Cube", m_MainScene);
-            m_Cube->Transform.Position = { 10, -7.6, 10 };
+            m_Cube->Transform.Position = { 10, 2.5, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
             m_Cube->Add<GeometryComponent>(GeometryManager::AddGeometry(Cube()));
             m_Cube->Add<MaterialComponent>(MaterialManager::AddMaterial());
@@ -302,20 +303,22 @@ public:
             mat.AO = 0.0f;
 
             m_Glasses[i] = new Entity("Glass-" + string(std::to_string(i)), m_MainScene);
-            m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.7f), 1 + ((float)i * 1.1f), 0};
+            m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), 0 };
             m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
-            m_Glasses[i]->Add<GeometryComponent>(GeometryManager::AddGeometry(Cube()));
+            m_Glasses[i]->Add<GeometryComponent>(GeometryManager::AddGeometry(Sphere()));
             m_Glasses[i]->Add<MaterialComponent>(MaterialManager::AddMaterial(mat));
             m_Glasses[i]->Get<GeometryComponent>()->Transparent = true;
+
+            sSphereShapeDescriptor sphereShapeDesc(1.0f);
             m_Glasses[i]->Add<RigidBodyComponent>(
                     PhysicsManager::AddActor(
                             m_Glasses[i],
                             m_MainScene,
                             sActor::eActorType::RIGID_DYNAMIC,
-                            sActor::eShapeType::BOX,
+                            &sphereShapeDesc,
                             glm::vec3(0.0f),
                             0.5f, 0.5f, 0.5f,
-                            0.0f, 0.0f
+                            0.05f, 0.0f
                     )
             );
         }
