@@ -6,10 +6,8 @@ namespace xpe
 	{
 		class PhysicsSystem : public System
 		{
-
 		public:
 			void Update(Scene* scene, const Time& dt) override final;
-
 		};
 	}
 }

@@ -1,5 +1,7 @@
 #include <skeleton_loader.h>
 
+#include <anim/skeleton_manager.h>
+
 namespace xpe {
 
     namespace res {
@@ -89,16 +91,9 @@ namespace xpe {
             }
         }
 
-        Ref<Skeleton> SkeletonLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        Skeleton SkeletonLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            if (m_Map.find(filepath) != m_Map.end()) {
-                Ref<Skeleton> skeletonRef;
-                skeletonRef.Create(*m_Map[filepath]);
-                return skeletonRef;
-            }
-
-            Ref<Skeleton> skeletonRef;
-            skeletonRef.Create();
+            Skeleton skeleton;
 
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));
@@ -108,11 +103,10 @@ namespace xpe {
                 return {};
             }
 
-            ParseSkeletonFromScene(scene->mRootNode, scene, *skeletonRef);
-            ParseSkeletonFromAnim(scene->mAnimations[0], *skeletonRef);
+            ParseSkeletonFromScene(scene->mRootNode, scene, skeleton);
+            ParseSkeletonFromAnim(scene->mAnimations[0], skeleton);
 
-            m_Map.insert({ filepath, skeletonRef });
-            return skeletonRef;
+            return SkeletonManager::AddSkeleton(skeleton);
         }
 
     }

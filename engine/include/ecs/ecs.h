@@ -17,10 +17,6 @@ namespace xpe
         {
             ecs::Entity* Entity = nullptr;
             bool FollowEntity = true;
-
-            Component() = default;
-
-            Component(const string& tag) { m_Tag = tag; }
         };
 
         struct ENGINE_API ComponentStorage : public Object
@@ -51,7 +47,7 @@ namespace xpe
             template<typename T>
             T* Get(const string& tag);
 
-            Component* GetAddress(usize componentSize, const string& tag);
+            Component* GetAddress(usize componentSize, Entity* entity);
 
             template<typename T>
             void Reserve(usize newCapacity);
@@ -66,13 +62,10 @@ namespace xpe
             void Update(T* component, Args &&... args);
 
             template<typename T>
-            void Rename(const string& oldTag, const string& newTag);
-
-            template<typename T>
             void EraseAt(int index, usize typeSize);
 
             template<typename T>
-            void Erase(const string& tag);
+            void Erase(Entity* entity);
 
             template<typename T>
             void ForEach(const std::function<void(T*)> &iterateFunction);
@@ -128,25 +121,6 @@ namespace xpe
         }
 
         template<typename T>
-        void ComponentStorage::Rename(const string &oldTag, const string &newTag)
-        {
-            u64 newId = Hash(newTag);
-            usize size = m_Components.size();
-            usize typeSize = sizeof(T);
-
-            for (usize i = 0; i < size; i += typeSize)
-            {
-                T* component = (T*) &m_Components[i];
-                u64 oldId = Hash(component->GetTag());
-                if (oldId == newId)
-                {
-                    component->SetTag(newTag);
-                    break;
-                }
-            }
-        }
-
-        template<typename T>
         void ComponentStorage::EraseAt(int index, usize typeSize)
         {
             auto begin = m_Components.begin() + (index * typeSize);
@@ -155,17 +129,15 @@ namespace xpe
         }
 
         template<typename T>
-        void ComponentStorage::Erase(const string& tag)
+        void ComponentStorage::Erase(Entity* entity)
         {
-            u64 id = Hash(tag);
             usize size = m_Components.size();
             usize typeSize = sizeof(T);
 
             for (usize i = 0; i < size; i += typeSize)
             {
                 T* component = (T*) &m_Components[i];
-                u64 cid = Hash(component->GetTag());
-                if (cid == id)
+                if (component->Entity == entity)
                 {
                     component->~T();
                     EraseAt<T>(i / typeSize, typeSize);
@@ -244,18 +216,15 @@ namespace xpe
             void ReserveComponents(usize capacity);
 
             template<typename T, typename... Args>
-            T* AddComponent(const string& entityTag, Args&&... args);
+            T* AddComponent(Entity* entity, Args&&... args);
 
             template<typename T>
-            void RemoveComponent(const string& entityTag, const string& componentTag);
+            void RemoveComponent(Entity* entity);
 
-            void RemoveComponents(const string& entityTag);
-
-            template<typename T>
-            void RenameComponent(const string& oldTag, const string& newTag);
+            void RemoveComponents(Entity* entity);
 
             template<typename T>
-            T* GetComponent(const string& entityTag, const string& componentTag);
+            T* GetComponent(Entity* entity);
 
             template<typename T>
             ComponentStorage& GetComponents();
@@ -283,7 +252,7 @@ namespace xpe
         private:
             unordered_map<string, Entity*> m_Entities;
             unordered_map<ComponentType, ComponentStorage> m_ComponentStorages;
-            unordered_map<string, unordered_map<ComponentType, unordered_map<string, Component*>>> m_ComponentAddresses;
+            unordered_map<Entity*, unordered_map<ComponentType, Component*>> m_ComponentAddresses;
             unordered_map<GlobalType, Global*> m_Globals;
         };
 
@@ -296,7 +265,7 @@ namespace xpe
         }
 
         template<typename T, typename... Args>
-        T* Scene::AddComponent(const string& entityTag, Args&&... args)
+        T* Scene::AddComponent(Entity* entity, Args&&... args)
         {
             ComponentType type = GetComponentType<T>();
             T* component;
@@ -305,63 +274,40 @@ namespace xpe
             auto& componentStorage = m_ComponentStorages[type];
             if (!componentStorage.HasCapacity())
             {
-                componentStorage.Reserve<T>(componentStorage.GetSize<T>() * 2 + 1);
+                componentStorage.Reserve<T>(componentStorage.GetSize<T>() * 2);
                 // because component storage memory changed, we need to invalidate all addresses that use it.
                 // it may be expensive operation when scene has a lot of entities,
                 // but it depends only on component storage capacity and reserve weight variables.
                 InvalidateComponentAddresses<T>();
             }
             component = componentStorage.Add<T>(std::forward<Args>(args)...);
-            m_ComponentAddresses[entityTag][type][component->GetTag()] = component;
+            component->Entity = entity;
+            m_ComponentAddresses[entity][type] = component;
 
             return component;
         }
 
         template<typename T>
-        void Scene::RemoveComponent(const string& entityTag, const string& componentTag)
+        void Scene::RemoveComponent(Entity* entity)
         {
             ComponentType type = GetComponentType<T>();
-            Component*& component = m_ComponentAddresses[entityTag][type][componentTag];
+            Component*& component = m_ComponentAddresses[entity][type];
 
             if (component == nullptr)
             {
-                LogWarning("Component for entity {0} does not exist", entityTag);
+                LogWarning("Component for entity {0} does not exist", entity->GetTag());
                 return;
             }
 
             // remove component from storage
-            m_ComponentStorages[type].Erase<T>(entityTag);
+            m_ComponentStorages[type].Erase<T>(entity);
             component = nullptr;
         }
 
         template<typename T>
-        void Scene::RenameComponent(const string &oldTag, const string &newTag)
+        T* Scene::GetComponent(Entity* entity)
         {
-            m_ComponentStorages[GetComponentType<T>()].RenameComponent(oldTag, newTag);
-
-            u64 oldId = Hash(oldTag);
-            for (auto& address : m_ComponentAddresses)
-            {
-                for (auto& entityComponent : address.second)
-                {
-                    for (auto& component : entityComponent.second)
-                    {
-                        u64 cid = Hash(component.first);
-                        if (oldId == cid)
-                        {
-                            auto& components = m_ComponentAddresses[address.first][entityComponent.first];
-                            components.insert({ newTag, components[component.first] });
-                            components.erase(oldTag);
-                        }
-                    }
-                }
-            }
-        }
-
-        template<typename T>
-        T* Scene::GetComponent(const string& entityTag, const string& componentTag)
-        {
-            return (T*) m_ComponentAddresses[entityTag][GetComponentType<T>()][componentTag];
+            return (T*) m_ComponentAddresses[entity][GetComponentType<T>()];
         }
 
         template<typename T>
@@ -431,28 +377,19 @@ namespace xpe
                 m_Scene->RenameEntity(m_Tag, tag);
             }
 
-            template<typename T>
-            T* GetComponent(const string& componentTag);
-
-            template<typename T>
-            T* GetComponent();
-
             template<typename T, typename... Args>
-            T* AddComponent(Args &&... args);
+            T* Add(Args &&... args);
 
             template<typename T>
-            void RemoveComponent(const string& componentTag);
+            T* Get();
 
             template<typename T>
-            void RenameComponent(const string& oldTag, const string& newTag);
+            void Remove();
 
-            void RemoveComponents();
-
-            template<typename T>
-            bool ValidComponent(const string& componentTag);
+            void RemoveAll();
 
             template<typename T>
-            bool InvalidComponent(const string& componentTag);
+            bool Has();
 
             inline bool operator ==(const Entity& other) const
             {
@@ -464,61 +401,31 @@ namespace xpe
         };
 
         template<typename T>
-        T* Entity::GetComponent(const string& componentTag)
+        T* Entity::Get()
         {
-            return m_Scene->GetComponent<T>(m_Tag, componentTag);
-        }
-
-        template<typename T>
-        T* Entity::GetComponent()
-        {
-            return m_Scene->GetComponent<T>(m_Tag, m_Tag);
+            return m_Scene->GetComponent<T>(this);
         }
 
         template<typename T, typename... Args>
-        T* Entity::AddComponent(Args &&... args)
+        T* Entity::Add(Args &&... args)
         {
-            T* newComponent = m_Scene->AddComponent<T>(m_Tag, std::forward<Args>(args)...);
-            newComponent->Entity = this;
-            return newComponent;
+            return m_Scene->AddComponent<T>(this, std::forward<Args>(args)...);
         }
 
         template<typename T>
-        void Entity::RemoveComponent(const string& componentTag)
+        void Entity::Remove()
         {
-            m_Scene->RemoveComponent<T>(m_Tag, componentTag);
+            m_Scene->RemoveComponent<T>(this);
         }
 
         template<typename T>
-        void Entity::RenameComponent(const string &oldTag, const string &newTag)
+        bool Entity::Has()
         {
-            m_Scene->RenameComponent<T>(oldTag, newTag);
-        }
-
-        template<typename T>
-        bool Entity::ValidComponent(const string& componentTag)
-        {
-            return GetComponent<T>(componentTag) != nullptr;
-        }
-
-        template<typename T>
-        bool Entity::InvalidComponent(const string& componentTag)
-        {
-            return GetComponent<T>(componentTag) == nullptr;
+            return Get<T>() != nullptr;
         }
 
         struct ENGINE_API Global : public Object, public res::JsonObject
-        {
-            JsonClass(
-                Global,
-                m_Tag
-            )
-
-            inline bool operator ==(const Global& other) const
-            {
-                return m_Tag == other.GetTag();
-            }
-        };
+        {};
 
         class ENGINE_API System : public Object {
 

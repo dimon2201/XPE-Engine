@@ -16,7 +16,6 @@ namespace xpe {
             ~PhysicsAllocator() override;
 
             void* allocate(size_t size, const char* typeName, const char* filename, int line) override;
-
             void deallocate(void* ptr) override;
 
         };

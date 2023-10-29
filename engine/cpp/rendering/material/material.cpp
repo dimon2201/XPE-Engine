@@ -12,43 +12,6 @@ namespace xpe {
         const MaterialFormat Material::K_AO_FORMAT = { eTextureFormat::R8, 2048, 2048, K_SLOT_AO };
         const MaterialFormat Material::K_EMISSION_FORMAT = { eTextureFormat::SRGBA8, 2048, 2048, K_SLOT_EMISSION };
 
-        void Material::AddLayer(Texture &texture, TextureLayer &layer)
-        {
-            if (layer.Pixels == nullptr) {
-                layer = texture.CreateLayer();
-            } else {
-//                layer.Resize(texture.Format, texture.Width, texture.Height);
-            }
-            texture.Layers.emplace_back(layer);
-
-//            if (layer.Mips.empty()) {
-//                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
-//            }
-
-            texture.Flush();
-        }
-
-        void Material::SetLayer(Texture &texture, TextureLayer &layer, u32 layerIndex)
-        {
-            if (layer.Pixels == nullptr) {
-                layer = texture.CreateLayer();
-            } else {
-//                layer.Resize(texture.Format, texture.Width, texture.Height);
-            }
-            texture.Layers[layerIndex] = layer;
-
-//            if (layer.Mips.empty()) {
-//                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
-//            }
-
-            texture.Flush();
-        }
-
-        void Material::Flush()
-        {
-            Buffer->FlushItem(Index, *this);
-        }
-
     }
 
 }

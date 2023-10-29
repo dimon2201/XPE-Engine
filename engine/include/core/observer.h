@@ -12,7 +12,7 @@ namespace xpe {
             : Value(value), m_OnChanged(onChanged) {}
 
             inline Observer& operator=(const T& other) {
-                if (other != Value) {
+                if (Value != other) {
                     Value = other;
                     m_OnChanged(Value);
                 }

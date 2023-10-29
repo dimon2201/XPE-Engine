@@ -4,22 +4,20 @@ namespace xpe {
 
     namespace render {
 
-        unordered_map<string, Ref<Material>>* MaterialManager::s_Map = nullptr;
-        Ref<MaterialDataBuffer> MaterialManager::s_DataBuffer;
+        MaterialDataBuffer* MaterialManager::s_DataBuffer = nullptr;
 
         TextureSampler MaterialManager::Sampler;
-        Ref<Texture> MaterialManager::AlbedoAtlas;
-        Ref<Texture> MaterialManager::NormalAtlas;
-        Ref<Texture> MaterialManager::ParallaxAtlas;
-        Ref<Texture> MaterialManager::MetalAtlas;
-        Ref<Texture> MaterialManager::RoughnessAtlas;
-        Ref<Texture> MaterialManager::AOAtlas;
-        Ref<Texture> MaterialManager::EmissionAtlas;
+        Texture* MaterialManager::AlbedoAtlas;
+        Texture* MaterialManager::NormalAtlas;
+        Texture* MaterialManager::ParallaxAtlas;
+        Texture* MaterialManager::MetalAtlas;
+        Texture* MaterialManager::RoughnessAtlas;
+        Texture* MaterialManager::AOAtlas;
+        Texture* MaterialManager::EmissionAtlas;
 
         void MaterialManager::Init()
         {
-            s_Map = new unordered_map<string, Ref<Material>>();
-            s_DataBuffer.Create();
+            s_DataBuffer = new MaterialDataBuffer();
             InitSampler();
             AlbedoAtlas = InitTextureArray(Material::K_ALBEDO_FORMAT);
             NormalAtlas = InitTextureArray(Material::K_BUMP_FORMAT);
@@ -32,14 +30,14 @@ namespace xpe {
 
         void MaterialManager::Free()
         {
-            s_DataBuffer.Destroy();
-            AlbedoAtlas.Destroy();
-            NormalAtlas.Destroy();
-            ParallaxAtlas.Destroy();
-            MetalAtlas.Destroy();
-            RoughnessAtlas.Destroy();
-            AOAtlas.Destroy();
-            EmissionAtlas.Destroy();
+            delete s_DataBuffer;
+            delete AlbedoAtlas;
+            delete NormalAtlas;
+            delete ParallaxAtlas;
+            delete MetalAtlas;
+            delete RoughnessAtlas;
+            delete AOAtlas;
+            delete EmissionAtlas;
             context::FreeSampler(Sampler);
         }
 
@@ -55,11 +53,9 @@ namespace xpe {
             context::CreateSampler(Sampler);
         }
 
-        Ref<Texture> MaterialManager::InitTextureArray(const MaterialFormat& materialFormat)
+        Texture* MaterialManager::InitTextureArray(const MaterialFormat& materialFormat)
         {
-            Ref<Texture> texture;
-            texture.Create();
-
+            Texture* texture = new Texture();
             texture->InitializeData = true;
             texture->Type = Texture::eType::TEXTURE_2D_ARRAY;
             texture->Usage = Texture::eUsage::DEFAULT;
@@ -69,47 +65,11 @@ namespace xpe {
             texture->Slot = materialFormat.Slot;
             texture->Channels = Texture::ChannelTable.at(materialFormat.Format);
             texture->Layers.reserve(HardwareManager::GPU.MaxTexture2dArray);
-
             return texture;
-        }
-
-        void MaterialManager::Remove(const string &name)
-        {
-            auto it = s_Map->find(name);
-            if (it != s_Map->end()) {
-                u32 index = it->second->Index;
-                s_Map->erase(it);
-
-                s_DataBuffer->RemoveAt(index);
-                s_DataBuffer->Flush();
-
-                AlbedoAtlas->RemoveLayerAt(index);
-                AlbedoAtlas->Flush();
-
-                NormalAtlas->RemoveLayerAt(index);
-                NormalAtlas->Flush();
-
-                ParallaxAtlas->RemoveLayerAt(index);
-                ParallaxAtlas->Flush();
-
-                MetalAtlas->RemoveLayerAt(index);
-                MetalAtlas->Flush();
-
-                RoughnessAtlas->RemoveLayerAt(index);
-                RoughnessAtlas->Flush();
-
-                AOAtlas->RemoveLayerAt(index);
-                AOAtlas->Flush();
-
-                EmissionAtlas->RemoveLayerAt(index);
-                EmissionAtlas->Flush();
-            }
         }
 
         void MaterialManager::Clear()
         {
-            s_Map->clear();
-
             s_DataBuffer->Clear();
             s_DataBuffer->Flush();
 
@@ -137,17 +97,54 @@ namespace xpe {
 
         void MaterialManager::Bind(Pipeline& pipeline)
         {
-            pipeline.PSBuffers.emplace_back(s_DataBuffer.Get());
+            pipeline.PSBuffers.emplace_back(s_DataBuffer);
 
             pipeline.Samplers.emplace_back(&Sampler);
 
-            pipeline.Textures.emplace_back(AlbedoAtlas.Get());
-            pipeline.Textures.emplace_back(NormalAtlas.Get());
-            pipeline.Textures.emplace_back(ParallaxAtlas.Get());
-            pipeline.Textures.emplace_back(MetalAtlas.Get());
-            pipeline.Textures.emplace_back(RoughnessAtlas.Get());
-            pipeline.Textures.emplace_back(AOAtlas.Get());
-            pipeline.Textures.emplace_back(EmissionAtlas.Get());
+            pipeline.Textures.emplace_back(AlbedoAtlas);
+            pipeline.Textures.emplace_back(NormalAtlas);
+            pipeline.Textures.emplace_back(ParallaxAtlas);
+            pipeline.Textures.emplace_back(MetalAtlas);
+            pipeline.Textures.emplace_back(RoughnessAtlas);
+            pipeline.Textures.emplace_back(AOAtlas);
+            pipeline.Textures.emplace_back(EmissionAtlas);
+        }
+
+        void MaterialManager::Flush(const Material& material)
+        {
+            s_DataBuffer->FlushItem(material.Index, material);
+        }
+
+        void MaterialManager::AddLayer(Texture &texture, TextureLayer &layer)
+        {
+            if (layer.Pixels == nullptr) {
+                layer = texture.CreateLayer();
+            } else {
+//                layer.Resize(texture.Format, texture.Width, texture.Height);
+            }
+            texture.Layers.emplace_back(layer);
+
+//            if (layer.Mips.empty()) {
+//                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
+//            }
+
+            texture.Flush();
+        }
+
+        void MaterialManager::SetLayer(Texture &texture, TextureLayer &layer, u32 layerIndex)
+        {
+            if (layer.Pixels == nullptr) {
+                layer = texture.CreateLayer();
+            } else {
+            //                layer.Resize(texture.Format, texture.Width, texture.Height);
+            }
+            texture.Layers[layerIndex] = layer;
+
+            //            if (layer.Mips.empty()) {
+            //                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
+            //            }
+
+            texture.Flush();
         }
 
     }

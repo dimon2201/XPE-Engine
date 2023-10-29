@@ -1,11 +1,11 @@
 #include <audio/audio_system.h>
 #include <audio/core/context.h>
 
-using namespace xpe::audio::context;
-
 namespace xpe {
 
 	namespace audio {
+
+        using namespace context;
 
         AudioSystem::AudioSystem()
 		{
@@ -21,7 +21,7 @@ namespace xpe {
 		void AudioSystem::UpdateListener(Scene* scene)
 		{
 			// todo : Maybe, if do it global, it will be better then now. And I dont need use EachComponent :|
-			scene->EachComponent<ListenerComponent>([scene](ListenerComponent* component) {
+			scene->EachComponent<ListenerComponent>([](ListenerComponent* component) {
 				SetListenerPosition(*component->Position);
 				SetListenerVelocity(component->Velocity);
 				SetListenerOrientation(*component->Look, component->Up);
@@ -76,50 +76,50 @@ namespace xpe {
 
 		void AudioSystem::AudioInit(AudioComponent* component)
 		{
-			GenSources(1, &component->Source->SourceID);
+			GenSources(1, &component->Source.Id);
 			GenBuffers(1, &component->BufferID);
 			
 			UploadFileToBuffer(*component->File, component->BufferID);
 
-			bindBuffers(component->Source->SourceID, component->BufferID);
+			bindBuffers(component->Source.Id, component->BufferID);
 
-			SetPosition(component->Source->SourceID, component->Source->Position);
-			SetVelocity(component->Source->SourceID, component->Source->Position);
+			SetPosition(component->Source.Id, component->Source.Position);
+			SetVelocity(component->Source.Id, component->Source.Position);
 
-			SetGain(component->Source->SourceID, component->Source->Gain);
-			SetPitch(component->Source->SourceID, component->Source->Pitch);
+			SetGain(component->Source.Id, component->Source.Gain);
+			SetPitch(component->Source.Id, component->Source.Pitch);
 
-			SetRefDistance(component->Source->SourceID, component->Source->RefDistance);
-			SetMaxDistance(component->Source->SourceID, component->Source->MaxDistance);
+			SetRefDistance(component->Source.Id, component->Source.RefDistance);
+			SetMaxDistance(component->Source.Id, component->Source.MaxDistance);
 
-			SetRollOffFactor(component->Source->SourceID, component->Source->RollOffFactor);
+			SetRollOffFactor(component->Source.Id, component->Source.RollOffFactor);
 
-			SetConeInnerAngle(component->Source->SourceID, component->Source->ConeInnerAngle);
-			SetConeOuterAngle(component->Source->SourceID, component->Source->ConeOuterAngle);
+			SetConeInnerAngle(component->Source.Id, component->Source.ConeInnerAngle);
+			SetConeOuterAngle(component->Source.Id, component->Source.ConeOuterAngle);
 
-			SetLooping(component->Source->SourceID, component->Source->Looping);
+			SetLooping(component->Source.Id, component->Source.Looping);
 		}
 
 		void AudioSystem::AudioSet(AudioComponent* component)
 		{
 			AudioInit(component);
-			PlaySource(component->Source->SourceID);
+			PlaySource(component->Source.Id);
 		}
 
 		void AudioSystem::AudioUpdate(AudioComponent* component)
 		{
-			GetState(component->Source->SourceID, component->Source->State);
+			GetState(component->Source.Id, component->Source.State);
 		}
 
 		void AudioSystem::AudioStop(AudioComponent* component)
 		{
-			StopAudio(component->Source->SourceID);
-			UnbindBuffers(component->Source->SourceID);
+			StopAudio(component->Source.Id);
+			UnbindBuffers(component->Source.Id);
 
-			DeleteSources(1, &component->Source->SourceID);
+			DeleteSources(1, &component->Source.Id);
 			DeleteBuffers(1, &component->BufferID);
 
-			component->Source->SourceID = 0;
+			component->Source.Id = 0;
 		}
 
 		void AudioSystem::UpdateAudios(Scene* scene)
@@ -144,26 +144,26 @@ namespace xpe {
 
 		void AudioSystem::AudioInit(StreamAudioComponent* component)
 		{
-			GenSources(1, &component->Source->SourceID);
+			GenSources(1, &component->Source.Id);
 
 			component->BufferID = vector<u32>(component->NumBuffers);
 			GenBuffers(component->NumBuffers, component->BufferID.data());
 
 			component->Data = vector<short>(GetBufferSize(component->File->Info.channels, component->BufferSamples));
 
-			SetPosition(component->Source->SourceID, component->Source->Position);
-			SetVelocity(component->Source->SourceID, component->Source->Position);
+			SetPosition(component->Source.Id, component->Source.Position);
+			SetVelocity(component->Source.Id, component->Source.Position);
 
-			SetGain(component->Source->SourceID, component->Source->Gain);
-			SetPitch(component->Source->SourceID, component->Source->Pitch);
+			SetGain(component->Source.Id, component->Source.Gain);
+			SetPitch(component->Source.Id, component->Source.Pitch);
 
-			SetRefDistance(component->Source->SourceID, component->Source->RefDistance);
-			SetMaxDistance(component->Source->SourceID, component->Source->MaxDistance);
+			SetRefDistance(component->Source.Id, component->Source.RefDistance);
+			SetMaxDistance(component->Source.Id, component->Source.MaxDistance);
 
-			SetRollOffFactor(component->Source->SourceID, component->Source->RollOffFactor);
+			SetRollOffFactor(component->Source.Id, component->Source.RollOffFactor);
 
-			SetConeInnerAngle(component->Source->SourceID, component->Source->ConeInnerAngle);
-			SetConeOuterAngle(component->Source->SourceID, component->Source->ConeOuterAngle);
+			SetConeInnerAngle(component->Source.Id, component->Source.ConeInnerAngle);
+			SetConeOuterAngle(component->Source.Id, component->Source.ConeOuterAngle);
 		}
 
 		void AudioSystem::AudioSet(StreamAudioComponent* component)
@@ -173,19 +173,19 @@ namespace xpe {
 			SetCurrentFrame(component->File->File, component->CurrentFrame);
 
 			for (int i = 0; i < component->NumBuffers; i++) {
-				UpdateBuffer(*component->File, component->Source->SourceID, component->BufferID[i], component->Data.data(), component->BufferSamples, 0);
+				UpdateBuffer(*component->File, component->Source.Id, component->BufferID[i], component->Data.data(), component->BufferSamples, 0);
 				component->CurrentFrame += component->BufferSamples;
 			}
 
-			PlaySource(component->Source->SourceID);
+			PlaySource(component->Source.Id);
 		}
 
 		void AudioSystem::AudioUpdate(StreamAudioComponent* component)
 		{
 			s32 processed;
 
-			GetProcessed(component->Source->SourceID, &processed);
-			GetState(component->Source->SourceID, component->Source->State);
+			GetProcessed(component->Source.Id, &processed);
+			GetState(component->Source.Id, component->Source.State);
 
 			if (GetError() == eAudioError::NONE) {
 
@@ -194,7 +194,7 @@ namespace xpe {
 					SetCurrentFrame(component->File->File, component->CurrentFrame);
 					component->CurrentFrame += component->BufferSamples;
 
-					UpdateBuffer(*component->File, component->Source->SourceID, component->BufferID[i], component->Data.data(), component->BufferSamples, processed);
+					UpdateBuffer(*component->File, component->Source.Id, component->BufferID[i], component->Data.data(), component->BufferSamples, processed);
 					
 					--processed;
 				}
@@ -207,13 +207,13 @@ namespace xpe {
 
 		void AudioSystem::AudioStop(StreamAudioComponent* component)
 		{
-			StopAudio(component->Source->SourceID);
-			UnbindBuffers(component->Source->SourceID);
+			StopAudio(component->Source.Id);
+			UnbindBuffers(component->Source.Id);
 
-			DeleteSources(1, &component->Source->SourceID);
+			DeleteSources(1, &component->Source.Id);
 			DeleteBuffers(component->NumBuffers, component->BufferID.data());
 
-			component->Source->SourceID = 0;
+			component->Source.Id = 0;
 		}
 
 		void AudioSystem::UpdateStreamAudios(Scene* scene)

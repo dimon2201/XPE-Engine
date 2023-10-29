@@ -30,8 +30,8 @@ namespace xpe {
         {
             Skybox* skybox = scene->GetGlobal<Skybox>();
             if (skybox) {
-                if (skybox->Geometry.Get() && skybox->Texture.Get()) {
-                    Geometry& skyboxGeometry = *skybox->Geometry;
+                if (skybox->Texture) {
+                    Geometry& skyboxGeometry = skybox->Geometry;
                     Texture& skyboxTexture = *skybox->Texture;
                     context::BindPrimitiveTopology(skyboxGeometry.PrimitiveTopology);
                     context::BindTexture(skyboxTexture);

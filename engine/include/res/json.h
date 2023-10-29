@@ -12,9 +12,7 @@ using json = nlohmann::json;
                                                                 \
 NLOHMANN_DEFINE_TYPE_INTRUSIVE(clazz, __VA_ARGS__)              \
                                                                 \
-clazz() = default;                                              \
-                                                                \
-clazz(const xpe::core::string& tag) { m_Tag = tag; }            \
+clazz() { m_Tag = #clazz; }                                     \
                                                                 \
 void ToJson(json &root) override                                \
 {                                                               \
@@ -33,6 +31,8 @@ namespace xpe {
 
     namespace res {
 
+        using namespace core;
+
         class ENGINE_API JsonObject
         {
 
@@ -42,18 +42,18 @@ namespace xpe {
 
             virtual void FromJson(json& root) = 0;
 
-            inline void SetTag(const xpe::core::string& tag)
+            inline void SetTag(const string& tag)
             {
                 m_Tag = tag;
             }
 
-            inline const xpe::core::string& GetTag() const
+            inline const string& GetTag() const
             {
                 return m_Tag;
             }
 
         protected:
-            xpe::core::string m_Tag;
+            string m_Tag;
         };
 
         ENGINE_API bool ReadJsonFile(const char* filepath, JsonObject& object);

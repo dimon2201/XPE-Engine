@@ -2,6 +2,8 @@
 #include <rendering/material/material_manager.h>
 #include <rendering/geometry/geometry_manager.h>
 
+#include <anim/skeleton_manager.h>
+
 #include <ecs/components.hpp>
 
 namespace xpe {
@@ -14,6 +16,7 @@ namespace xpe {
             ShaderManager::Init();
             GeometryManager::Init();
             MaterialManager::Init();
+            SkeletonManager::Init();
             InitBuffers(viewport, sampleCount);
             InitSamplers(viewport, sampleCount);
             InitRenderTargets(viewport, sampleCount);
@@ -21,27 +24,13 @@ namespace xpe {
 
         RenderSystem::~RenderSystem()
         {
-            delete m_ViewportBuffer;
-            delete m_MonitorBuffer;
-            delete m_CameraBuffer;
-            delete m_DirectLightBuffer;
-            delete m_PointLightBuffer;
-            delete m_SpotLightBuffer;
-            delete m_ShadowFilterBuffer;
-
-            delete m_ShadowSampler;
-
-            delete m_FinalRenderTarget;
-            delete m_SceneRenderTarget;
-            delete m_ShadowRenderTarget;
-            delete m_OpaqueRenderTarget;
-            delete m_TransparentRenderTarget;
-            delete m_UiRenderTarget;
-
+            FreeBuffers();
+            FreeSamplers();
+            FreeRenderTargets();
+            SkeletonManager::Free();
             MaterialManager::Free();
             GeometryManager::Free();
             ShaderManager::Free();
-
             context::Free();
         }
 
@@ -63,11 +52,12 @@ namespace xpe {
 
         void RenderSystem::InitSamplers(const Viewport &viewport, u32 sampleCount)
         {
-            m_ShadowSampler = new TextureSampler();
-            m_ShadowSampler->BorderColor = glm::vec4(1, 1, 1, 1);
-            m_ShadowSampler->AddressU = TextureSampler::eAddress::CLAMP;
-            m_ShadowSampler->AddressV = TextureSampler::eAddress::CLAMP;
-            m_ShadowSampler->Slot = K_SLOT_SHADOW_SAMPLER;
+            m_ShadowSampler.BorderColor = glm::vec4(1, 1, 1, 1);
+            m_ShadowSampler.AddressU = TextureSampler::eAddress::CLAMP;
+            m_ShadowSampler.AddressV = TextureSampler::eAddress::CLAMP;
+            m_ShadowSampler.Slot = K_SLOT_SHADOW_SAMPLER;
+
+            context::CreateSampler(m_ShadowSampler);
         }
 
         void RenderSystem::InitRenderTargets(const Viewport& viewport, u32 sampleCount)
@@ -207,6 +197,32 @@ namespace xpe {
             uiDepth->Init();
 
             m_UiRenderTarget = new RenderTarget({ uiColor }, uiDepth, viewport);
+        }
+
+        void RenderSystem::FreeBuffers()
+        {
+            delete m_ViewportBuffer;
+            delete m_MonitorBuffer;
+            delete m_CameraBuffer;
+            delete m_DirectLightBuffer;
+            delete m_PointLightBuffer;
+            delete m_SpotLightBuffer;
+            delete m_ShadowFilterBuffer;
+        }
+
+        void RenderSystem::FreeSamplers()
+        {
+            context::FreeSampler(m_ShadowSampler);
+        }
+
+        void RenderSystem::FreeRenderTargets()
+        {
+            delete m_FinalRenderTarget;
+            delete m_SceneRenderTarget;
+            delete m_ShadowRenderTarget;
+            delete m_OpaqueRenderTarget;
+            delete m_TransparentRenderTarget;
+            delete m_UiRenderTarget;
         }
 
         void RenderSystem::Prepare()

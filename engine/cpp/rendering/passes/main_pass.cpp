@@ -26,8 +26,8 @@ namespace xpe {
         void MainPass::DrawOpaque(Scene* scene) {
             scene->EachComponent<GeometryComponent>([this](GeometryComponent* component)
             {
-                if (!component->Transparent && component->Visible && component->Geometry.Get() != nullptr) {
-                    auto& geometry = *component->Geometry;
+                if (!component->Transparent && component->Visible && !component->HasSkeleton) {
+                    auto& geometry = *component;
                     DrawInstanced(
                             geometry.PrimitiveTopology,
                             geometry.VertexOffset,
@@ -37,9 +37,9 @@ namespace xpe {
                             component->Entity,
                             component->Entities,
                             [](Entity* entity, RenderInstance& instance) {
-                                auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
+                                auto* materialComponent = entity->Get<MaterialComponent>();
                                 if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Material->Index;
+                                    instance.MaterialIndex = materialComponent->Index;
                                 }
                             }
                     );
@@ -48,8 +48,8 @@ namespace xpe {
 
             scene->EachComponent<ModelComponent>([this](ModelComponent* component)
             {
-                if (!component->Transparent && component->Visible && component->Model.Get() != nullptr) {
-                    auto& model = *component->Model;
+                if (!component->Transparent && component->Visible && !component->HasSkeleton) {
+                    auto& model = *component;
                     DrawInstanced(
                             model.PrimitiveTopology,
                             model.VertexOffset,
@@ -59,9 +59,9 @@ namespace xpe {
                             component->Entity,
                             component->Entities,
                             [](Entity* entity, RenderInstance& instance) {
-                                auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
+                                auto* materialComponent = entity->Get<MaterialComponent>();
                                 if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Material->Index;
+                                    instance.MaterialIndex = materialComponent->Index;
                                 }
                             }
                     );
@@ -72,8 +72,8 @@ namespace xpe {
         void MainPass::DrawTransparent(Scene* scene) {
             scene->EachComponent<GeometryComponent>([this](GeometryComponent* component)
             {
-                if (component->Transparent && component->Visible && component->Geometry.Get() != nullptr) {
-                    auto& geometry = *component->Geometry;
+                if (component->Transparent && component->Visible && !component->HasSkeleton) {
+                    auto& geometry = *component;
                     DrawInstanced(
                             geometry.PrimitiveTopology,
                             geometry.VertexOffset,
@@ -83,9 +83,9 @@ namespace xpe {
                             component->Entity,
                             component->Entities,
                             [](Entity* entity, RenderInstance& instance) {
-                                auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
+                                auto* materialComponent = entity->Get<MaterialComponent>();
                                 if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Material->Index;
+                                    instance.MaterialIndex = materialComponent->Index;
                                 }
                             }
                     );
@@ -94,8 +94,8 @@ namespace xpe {
 
             scene->EachComponent<ModelComponent>([this](ModelComponent* component)
             {
-                 if (component->Transparent && component->Visible && component->Model.Get() != nullptr) {
-                     auto& model = *component->Model;
+                 if (component->Transparent && component->Visible && !component->HasSkeleton) {
+                     auto& model = *component;
                      DrawInstanced(
                              model.PrimitiveTopology,
                              model.VertexOffset,
@@ -105,9 +105,9 @@ namespace xpe {
                              component->Entity,
                              component->Entities,
                              [](Entity* entity, RenderInstance& instance) {
-                                 auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
+                                 auto* materialComponent = entity->Get<MaterialComponent>();
                                  if (materialComponent != nullptr) {
-                                     instance.MaterialIndex = materialComponent->Material->Index;
+                                     instance.MaterialIndex = materialComponent->Index;
                                  }
                              }
                      );
@@ -122,12 +122,12 @@ namespace xpe {
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
+                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
 
                 scene->EachComponent<GeometryComponent>([this, &lightMatrix](GeometryComponent* component)
                 {
-                    if (component->CastShadow && component->Visible && component->Geometry.Get() != nullptr) {
-                        auto& geometry = *component->Geometry;
+                    if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                        auto& geometry = *component;
                         DrawInstanced(
                                 geometry.PrimitiveTopology,
                                 geometry.VertexOffset,
@@ -148,12 +148,12 @@ namespace xpe {
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
+                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
 
                 scene->EachComponent<GeometryComponent>([this, &lightMatrix](GeometryComponent* component)
                 {
-                    if (component->CastShadow && component->Visible && component->Geometry.Get() != nullptr) {
-                        auto& geometry = *component->Geometry;
+                    if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                        auto& geometry = *component;
                         DrawInstanced(
                                 geometry.PrimitiveTopology,
                                 geometry.VertexOffset,
@@ -174,12 +174,12 @@ namespace xpe {
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
+                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
 
                 scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
-                         auto& model = *component->Model;
+                     if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                         auto& model = *component;
                          DrawInstanced(
                                  model.PrimitiveTopology,
                                  model.VertexOffset,
@@ -200,12 +200,12 @@ namespace xpe {
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
+                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
 
                 scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
-                         auto& model = *component->Model;
+                     if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                         auto& model = *component;
                          DrawInstanced(
                                  model.PrimitiveTopology,
                                  model.VertexOffset,

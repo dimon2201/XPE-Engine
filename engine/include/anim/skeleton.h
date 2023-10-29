@@ -21,10 +21,10 @@ namespace xpe {
 
         Json(Bone, ID, Name, Offset, Transform, KeyPositions, KeyRotations, KeyScales)
 
-        struct ENGINE_API Skeleton final
+        struct ENGINE_API Skeleton
         {
+            u32 Index = 0;
             unordered_map<string, Bone> Bones;
-            render::BoneBuffer BoneBuffer;
         };
 
         Json(Skeleton, Bones)

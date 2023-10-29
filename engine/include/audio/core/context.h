@@ -24,56 +24,56 @@ namespace xpe {
             inline void* PlaybackDevice = nullptr;
             inline void* RecordDevice = nullptr;
 
-            void InitAudio();
-            void FreeAudio();
+            ENGINE_API void InitAudio();
+            ENGINE_API void FreeAudio();
 
-            eAudioError GetError();
+            ENGINE_API eAudioError GetError();
 
-            void GenSources(u32 count, u32* sourceID);
-            void GenBuffers(u32 count, u32* bufferID);
+            ENGINE_API void GenSources(u32 count, u32* sourceID);
+            ENGINE_API void GenBuffers(u32 count, u32* bufferID);
 
-            void DeleteSources(u32 count, u32* sourceID);
-            void DeleteBuffers(u32 count, u32* bufferID);
+            ENGINE_API void DeleteSources(u32 count, u32* sourceID);
+            ENGINE_API void DeleteBuffers(u32 count, u32* bufferID);
 
-            void PlaySource(u32 sourceID);
-            void StopAudio(u32 sourceID);
-            void bindBuffers(u32 sourceID, u32 bufferID);
-            void UnbindBuffers(u32 sourceID);
+            ENGINE_API void PlaySource(u32 sourceID);
+            ENGINE_API void StopAudio(u32 sourceID);
+            ENGINE_API void bindBuffers(u32 sourceID, u32 bufferID);
+            ENGINE_API void UnbindBuffers(u32 sourceID);
 
-            void UploadFileToBuffer(AudioFile& file, u32 bufferID);
-            void UpdateBuffer(const AudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed);
+            ENGINE_API void UploadFileToBuffer(AudioFile& file, u32 bufferID);
+            ENGINE_API void UpdateBuffer(const AudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed);
 
-            void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers);
-            void StopRecord();
-            void GetCaptureSamples(s32 size, s32& samples);
-            void UploadSamplesToBuffer(short* data, s32 samples);
-            void UpdateBuffers(u32 source, u32* buffer, short* data, s32 samples, s32 samplerate);
+            ENGINE_API void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers);
+            ENGINE_API void StopRecord();
+            ENGINE_API void GetCaptureSamples(s32 size, s32& samples);
+            ENGINE_API void UploadSamplesToBuffer(short* data, s32 samples);
+            ENGINE_API void UpdateBuffers(u32 source, u32* buffer, short* data, s32 samples, s32 samplerate);
 
-            void SetListenerPosition(glm::vec3 position);
-            void SetListenerVelocity(glm::vec3 velocity);
-            void SetListenerOrientation(glm::vec3 look, glm::vec3 up);
+            ENGINE_API void SetListenerPosition(glm::vec3 position);
+            ENGINE_API void SetListenerVelocity(glm::vec3 velocity);
+            ENGINE_API void SetListenerOrientation(glm::vec3 look, glm::vec3 up);
 
-            void SetLooping(u32 sourceID, bool Looping);
+            ENGINE_API void SetLooping(u32 sourceID, bool Looping);
 
-            void SetPitch(u32 sourceID, f32 pitch);
-            void SetGain(u32 sourceID, f32 volume);
+            ENGINE_API void SetPitch(u32 sourceID, f32 pitch);
+            ENGINE_API void SetGain(u32 sourceID, f32 volume);
 
-            void SetPosition(u32 sourceID, glm::vec3 position);
-            void SetVelocity(u32 sourceID, glm::vec3 velocity);
+            ENGINE_API void SetPosition(u32 sourceID, glm::vec3 position);
+            ENGINE_API void SetVelocity(u32 sourceID, glm::vec3 velocity);
 
-            void SetRefDistance(u32 sourceID, f32 distance);
-            void SetMaxDistance(u32 sourceID, f32 distance);
+            ENGINE_API void SetRefDistance(u32 sourceID, f32 distance);
+            ENGINE_API void SetMaxDistance(u32 sourceID, f32 distance);
 
-            void SetRollOffFactor(u32 sourceID, f32 rollOffFactor);
+            ENGINE_API void SetRollOffFactor(u32 sourceID, f32 rollOffFactor);
 
-            void SetConeInnerAngle(u32 sourceID, f32 angle);
-            void SetConeOuterAngle(u32 sourceID, f32 angle);
+            ENGINE_API void SetConeInnerAngle(u32 sourceID, f32 angle);
+            ENGINE_API void SetConeOuterAngle(u32 sourceID, f32 angle);
 
-            void GetState(u32 sourceID, eAudioState& state);
-            void GetProcessed(u32 sourceID, s32* processed);
+            ENGINE_API void GetState(u32 sourceID, eAudioState& state);
+            ENGINE_API void GetProcessed(u32 sourceID, s32* processed);
 
-            int ENGINE_API GetFormat(const AudioFile& file, u32 channels);
-            u32 ENGINE_API GetBufferSize(u32 channels, u32 BufferSamples);
+            ENGINE_API int GetFormat(const AudioFile& file, u32 channels);
+            ENGINE_API u32 GetBufferSize(u32 channels, u32 BufferSamples);
         }
     }
 }

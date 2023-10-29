@@ -23,26 +23,20 @@ namespace xpe {
             string BottomFilepath;
         };
 
-        class LOADER_API TextureLoader : public Object
+        class LOADER_API TextureLoader final
         {
-
         public:
-            Ref<Texture> Load(const char* filepath, const eTextureFormat& format);
-
-            Ref<Texture> LoadCube(const TextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
-
+            static void Init();
+            static void Free();
+            static Texture* Load(const char* filepath, const eTextureFormat& format);
+            static Texture* LoadCube(const TextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
             static TextureLayer LoadLayer(
                     const char* filepath,
                     const eTextureFormat& format,
                     int& width, int& height, int& channels
             );
-
             static bool Save(const char* filepath, const Texture& texture, const Texture::eFileFormat& fileFormat);
             static bool SaveLayer(const char* filepath, const TextureLayer& textureLayer, const Texture::eFileFormat& fileFormat);
-
-        private:
-            static unordered_map<string, TextureLayer>* s_Layers;
-
         };
 
     }

@@ -18,16 +18,9 @@ namespace xpe {
             }
         }
 
-        Ref<Animation> AnimLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        Animation AnimLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            if (m_Map.find(filepath) != m_Map.end()) {
-                Ref<Animation> animRef;
-                animRef.Create(*m_Map[filepath]);
-                return animRef;
-            }
-
-            Ref<Animation> animRef;
-            animRef.Create();
+            Animation animation;
 
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));
@@ -38,13 +31,12 @@ namespace xpe {
             }
 
             auto aiAnim = scene->mAnimations[0];
-            animRef->Duration = aiAnim->mDuration;
-            animRef->TicksPerSecond = aiAnim->mTicksPerSecond;
+            animation.Duration = aiAnim->mDuration;
+            animation.TicksPerSecond = aiAnim->mTicksPerSecond;
 
-            ParseAnimation(animRef->Root, scene->mRootNode);
+            ParseAnimation(animation.Root, scene->mRootNode);
 
-            m_Map.insert({ filepath, animRef });
-            return animRef;
+            return animation;
         }
 
     }

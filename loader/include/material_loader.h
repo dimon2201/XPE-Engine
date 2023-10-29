@@ -1,6 +1,7 @@
 #pragma once
 
 #include <build.h>
+
 #include <rendering/material/material_manager.h>
 
 class aiScene;
@@ -25,13 +26,11 @@ namespace xpe {
             string EmissionFilepath;
         };
 
-        class LOADER_API MaterialLoader : public Object
+        class LOADER_API MaterialLoader final
         {
-
         public:
-            Ref<Material> Load(const aiScene* scene, aiMesh* mesh, const hstring& directory);
-            Ref<Material> Load(const MaterialFilepath& filepath);
-
+            static Material Load(const aiScene* scene, aiMesh* mesh, const hstring& directory);
+            static Material Load(const MaterialFilepath& filepath);
         };
 
     }

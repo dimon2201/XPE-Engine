@@ -62,13 +62,9 @@ public:
         AddKeyHold(GameApp, 1);
         AddCursorMove(GameApp, 1);
 
-        m_ModelLoader.Create();
-        m_MaterialLoader.Create();
-        m_TextureLoader.Create();
-        m_FontLoader.Create();
-        m_SkeletLoader.Create();
-        m_AnimLoader.Create();
-        m_AudioLoader.Create();
+        FontLoader::Init();
+        TextureLoader::Init();
+        AudioLoader::Init();
 
         InitCamera();
         InitCamera2D();
@@ -82,11 +78,9 @@ public:
             m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
             m_Text2D->Transform.Scale = { 1, 1, 1 };
 
-            auto* textComponent = m_Text2D->AddComponent<Text2DComponent>(
-                    "Text2D",
-                    m_FontLoader->Load("res/fonts/Roboto-Bold.ttf", 32),
-                    "FPS: \n CPU: \n"
-            );
+            auto* textComponent = m_Text2D->Add<Text2DComponent>();
+            textComponent->Text = "FPS: \n CPU: \n";
+            textComponent->Font = FontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
 
             m_Text2D->Transform.Position.y -= textComponent->Font->GlyphSize;
@@ -98,11 +92,9 @@ public:
             m_Text3D->Transform.Position = { 0, 25, 50 };
             m_Text3D->Transform.Scale = { 0.25, 0.25, 1 };
 
-            auto* textComponent = m_Text3D->AddComponent<Text3DComponent>(
-                    "Text3D",
-                    m_FontLoader->Load("res/fonts/Roboto-Bold.ttf", 32),
-                    "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine"
-            );
+            auto* textComponent = m_Text3D->Add<Text3DComponent>();
+            textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
+            textComponent->Font = FontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
         }
 
@@ -118,7 +110,7 @@ public:
             skyboxPath.BottomFilepath = "res/skybox/bottom.jpg";
 
             m_MainScene->Skybox->Geometry = GeometryManager::AddGeometry(Cube());
-            m_MainScene->Skybox->Texture = m_TextureLoader->LoadCube(skyboxPath, eTextureFormat::RGBA8);
+            m_MainScene->Skybox->Texture = TextureLoader::LoadCube(skyboxPath, eTextureFormat::RGBA8);
             m_MainScene->Skybox->Texture->GenerateMips();
         }
 
@@ -128,23 +120,23 @@ public:
             m_Plane->Transform.Position = { 0, -10, 0 };
             m_Plane->Transform.Scale = { 1, 1, 1 };
 
-            m_Plane->AddComponent<GeometryComponent>("G_Plane", GeometryManager::AddGeometry(Plane(100)));
-            auto& planeMaterial = m_Plane->AddComponent<MaterialComponent>("Plane", MaterialManager::AddMaterial("PlaneMaterial", Material()))->Material;
+            m_Plane->Add<GeometryComponent>(GeometryManager::AddGeometry(Plane(100)));
+            auto* planeMaterial = m_Plane->Add<MaterialComponent>(MaterialManager::AddMaterial());
             planeMaterial->Metallness = 0.0f;
             planeMaterial->Roughness = 0.05f;
             planeMaterial->AO = 0.0f;
-            planeMaterial->Flush();
+            MaterialManager::Flush(*planeMaterial);
 
-            m_Plane->AddComponent<RigidBodyComponent>(
-                PhysicsManager::AddActor(
-                    m_Plane,
-                    m_MainScene,
-                    sActor::eActorType::RIGID_STATIC,
-                    sActor::eShapeType::BOX,
-                    glm::vec3(0.0f),
-                    0.5f, 0.5f, 0.5f,
-                    0.0f, 0.0f
-                )
+            m_Plane->Add<RigidBodyComponent>(
+                    PhysicsManager::AddActor(
+                            m_Plane,
+                            m_MainScene,
+                            sActor::eActorType::RIGID_STATIC,
+                            sActor::eShapeType::BOX,
+                            glm::vec3(0.0f),
+                            0.5f, 0.5f, 0.5f,
+                            0.0f, 0.0f
+                    )
             );
         }
 
@@ -153,9 +145,9 @@ public:
             m_SunLight = new Entity("SunLight", m_MainScene);
             m_SunLight->Transform.Position = { 20, 20, -20 };
 
-            m_SunLight->AddComponent<GeometryComponent>("G_SunLight", GeometryManager::AddGeometry(Sphere()));
-            m_SunLight->AddComponent<MaterialComponent>("SunLight", MaterialManager::AddMaterial("MT_SunLight", Material()));
-            m_SunLight->AddComponent<DirectLightComponent>("L_SunLight", glm::vec3(0, 0, 0), glm::vec3(20, 20, 10));
+            m_SunLight->Add<GeometryComponent>(GeometryManager::AddGeometry(Sphere()));
+            m_SunLight->Add<MaterialComponent>(MaterialManager::AddMaterial());
+            m_SunLight->Add<DirectLightComponent>(glm::vec3(0, 0, 0), glm::vec3(1, 1, 10));
         }
 
         // Goblins
@@ -180,22 +172,26 @@ public:
             m_Goblin4->Transform.Rotation = {0, 0, 0 };
             m_Goblin4->Transform.Scale = {5, 5, 5 };
 
-            auto* goblinModel = m_Goblin1->AddComponent<SkeletonModelComponent>(
-                "GoblinModel",
-                m_ModelLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
-                m_SkeletLoader->Load("res/models/winter-girl/source/dancing_vampire.dae"),
-                vector<Entity*> { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 }
-            );
-
+            auto* goblinModel = m_Goblin1->Add<ModelComponent>(
+                    ModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
             goblinModel->Visible = false;
+            goblinModel->HasSkeleton = true;
+            goblinModel->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
 
-            auto* goblinAnimation = m_Goblin1->AddComponent<SkeletonAnimationComponent>(
-                "GoblinAnimation",
-                goblinModel->Skeleton,
-                m_AnimLoader->Load("res/models/winter-girl/source/dancing_vampire.dae")
-            );
+            m_Goblin1->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblin2->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblin3->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblin4->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
 
-            goblinAnimation->Play = true;
+            m_Goblin1->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblin2->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblin3->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblin4->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+
+            m_Goblin1->Get<AnimationComponent>()->Play = false;
+            m_Goblin2->Get<AnimationComponent>()->Play = false;
+            m_Goblin3->Get<AnimationComponent>()->Play = false;
+            m_Goblin4->Get<AnimationComponent>()->Play = false;
 
             MaterialFilepath materialFilepath;
             materialFilepath.Name = "niz";
@@ -204,7 +200,7 @@ public:
 //                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
 //                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
 
-            auto& material1 = m_Goblin1->AddComponent<MaterialComponent>(m_Goblin1->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            auto* material1 = m_Goblin1->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
             material1->Albedo = { 1, 1, 1, 1 };
             material1->Emission = { 0, 0, 10 };
             material1->Metallness = 0.5;
@@ -215,9 +211,9 @@ public:
             material1->EnableRoughnessMap = false;
             material1->EnableMetalMap = false;
             material1->EnableAOMap = false;
-            material1->Flush();
+            MaterialManager::Flush(*material1);
 
-            auto& material2 = m_Goblin2->AddComponent<MaterialComponent>(m_Goblin2->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            auto* material2 = m_Goblin2->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
             material2->Albedo = { 1, 1, 1, 1 };
             material2->Emission = { 0, 0, 10 };
             material2->Metallness = 0.5;
@@ -228,9 +224,9 @@ public:
             material2->EnableRoughnessMap = false;
             material2->EnableMetalMap = false;
             material2->EnableAOMap = false;
-            material2->Flush();
+            MaterialManager::Flush(*material2);
 
-            auto& material3 = m_Goblin3->AddComponent<MaterialComponent>(m_Goblin3->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            auto* material3 = m_Goblin3->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
             material3->Albedo = { 1, 1, 1, 1 };
             material3->Emission = { 0, 0, 10 };
             material3->Metallness = 0.5;
@@ -241,9 +237,9 @@ public:
             material3->EnableRoughnessMap = false;
             material3->EnableMetalMap = false;
             material3->EnableAOMap = false;
-            material3->Flush();
+            MaterialManager::Flush(*material3);
 
-            auto& material4 = m_Goblin4->AddComponent<MaterialComponent>(m_Goblin4->GetTag(), m_MaterialLoader->Load(materialFilepath))->Material;
+            auto* material4 = m_Goblin4->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
             material4->Albedo = { 1, 1, 1, 1 };
             material4->Emission = { 0, 0, 10 };
             material4->Metallness = 0.5;
@@ -254,7 +250,7 @@ public:
             material4->EnableRoughnessMap = false;
             material4->EnableMetalMap = false;
             material4->EnableAOMap = false;
-            material4->Flush();
+            MaterialManager::Flush(*material4);
 
             // for testing image resizing on CPU, we can write resized image into file
 
@@ -288,8 +284,8 @@ public:
             m_Cube = new Entity("Cube", m_MainScene);
             m_Cube->Transform.Position = { 10, -7.6, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
-            m_Cube->AddComponent<GeometryComponent>("G_Cube", GeometryManager::AddGeometry(Cube()));
-            m_Cube->AddComponent<MaterialComponent>("Cube", MaterialManager::AddMaterial("MT_Cube", Material()));
+            m_Cube->Add<GeometryComponent>(GeometryManager::AddGeometry(Cube()));
+            m_Cube->Add<MaterialComponent>(MaterialManager::AddMaterial());
         }
 
         // Spheres
@@ -305,148 +301,138 @@ public:
             mat.Roughness = 0.05f;
             mat.AO = 0.0f;
 
-            m_Glasses[i] = new Entity("Glass" + i, m_MainScene);
+            m_Glasses[i] = new Entity("Glass-" + string(std::to_string(i)), m_MainScene);
             m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.7f), 1 + ((float)i * 1.1f), 0};
             m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
-            m_Glasses[i]->AddComponent<GeometryComponent>("G_Glass" + i, GeometryManager::AddGeometry(Cube()));
-            m_Glasses[i]->AddComponent<MaterialComponent>("Glass" + i, MaterialManager::AddMaterial("MT_Glass" + i, mat));
-            m_Glasses[i]->GetComponent<GeometryComponent>("G_Glass" + i)->Transparent = true;
-            m_Glasses[i]->AddComponent<RigidBodyComponent>(
-                PhysicsManager::AddActor(
-                    m_Glasses[i],
-                    m_MainScene,
-                    sActor::eActorType::RIGID_DYNAMIC,
-                    sActor::eShapeType::BOX,
-                    glm::vec3(0.0f),
-                    0.5f, 0.5f, 0.5f,
-                    0.0f, 0.0f
-                )
+            m_Glasses[i]->Add<GeometryComponent>(GeometryManager::AddGeometry(Cube()));
+            m_Glasses[i]->Add<MaterialComponent>(MaterialManager::AddMaterial(mat));
+            m_Glasses[i]->Get<GeometryComponent>()->Transparent = true;
+            m_Glasses[i]->Add<RigidBodyComponent>(
+                    PhysicsManager::AddActor(
+                            m_Glasses[i],
+                            m_MainScene,
+                            sActor::eActorType::RIGID_DYNAMIC,
+                            sActor::eShapeType::BOX,
+                            glm::vec3(0.0f),
+                            0.5f, 0.5f, 0.5f,
+                            0.0f, 0.0f
+                    )
             );
         }
 
-        m_Listener = new Entity("Listener", m_MainScene);
-
         auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
 
-        ListenerComponent component("Listener");
-
-        component.Position = &camera.Component.Position;
-        component.Up = camera.Component.Up;
-        component.Look = &camera.Component.Front;
-
-        m_Listener->AddComponent<ListenerComponent>(component);
-
-        //loading stream audio files
-        {
-            m_AudioObject = new Entity("AudioObject", m_MainScene);
-
-            //load test stream audio
-            {
-                m_AudioObject->AddComponent<AudioFileComponent>("Test", m_AudioLoader->Load("res/audio/test.wav"));
-            }
-
-            //load spell stream audio
-            {
-                m_AudioObject->AddComponent<AudioFileComponent>("Magicfail", m_AudioLoader->Load("res/audio/magicfail.ogg"));
-            }
-
-            //load magicfail stream audio
-            {
-                m_AudioObject->AddComponent<AudioFileComponent>("Spell", m_AudioLoader->Load("res/audio/spell.ogg"));
-            }
-
-        }
-        //temporarily commented
-        //// create voice component
-        //{
-        //    VoiceComponent component("Test");
-        //    m_MainScene->AddComponent<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
-        //}
-
-        //setup background audio
-        {
-            m_BackgroundAudio = new Entity("BackgroundAudio", m_MainScene);
-
-            //test sources
-            SourceAudioComponent* source;
-            SourceAudioComponent* source1;
-            SourceAudioComponent* source2;
-
-            //test files //You can use one file for many sources in one time
-            auto* file = m_AudioObject->GetComponent<AudioFileComponent>("Spell");
-            auto* file1 = m_AudioObject->GetComponent<AudioFileComponent>("Test");
-            auto* file2 = m_AudioObject->GetComponent<AudioFileComponent>("Magicfail");
-
-            //creating source
-            {
-                SourceAudioComponent component("Sound_Test");
-
-                component.Position = { -15.0f, 2.0f, 0.0f };
-                component.Looping = true;
-                component.Gain = 0.5f;
-                component.RefDistance = 10.0f;
-                component.MaxDistance = 100.0f;
-                source = m_BackgroundAudio->AddComponent<SourceAudioComponent>(component);
-            }
-
-            //creating stream audio
-            {
-                AudioComponent component("Sound_Test");
-
-                component.Source = source;
-                component.File = file->File;
-
-                m_BackgroundAudio->AddComponent<AudioComponent>(component);
-            }
-
-            //-------------------------------------
-            //creating source
-            {
-                SourceAudioComponent component("Test");
-
-                component.Position = { -5.0f, 2.0f, 0.0f };
-                component.Looping = true; //(todo) Need do some logic to looping the stream audio
-                component.Gain = 0.2f;
-                component.RefDistance = 10.0f;
-                component.MaxDistance = 100.0f;
-                source1 = m_BackgroundAudio->AddComponent<SourceAudioComponent>(component);
-            }
-
-            //creating stream audio
-            {
-                StreamAudioComponent component("Test");
-
-                component.Source = source1;
-                component.File = file1->File;
-                component.BufferSamples = 8192 * 2; //for test
-                component.NumBuffers = 5; //for test
-
-                m_BackgroundAudio->AddComponent<StreamAudioComponent>(component);
-            }
-
-            //-------------------------------------
-            //creating source
-            {
-                SourceAudioComponent component("Sound_Test1");
-
-                component.Position = { 11.0f, 2.0f, 0.0f };
-                component.Looping = true;
-                component.Gain = 0.5f;
-                component.RefDistance = 10.0f;
-                component.MaxDistance = 100.0f;
-                source2 = m_BackgroundAudio->AddComponent<SourceAudioComponent>(component);
-            }
-
-            //creating stream audio
-            {
-                AudioComponent component("Sound_Test1");
-
-                component.Source = source2;
-                component.File = file2->File;
-
-                m_BackgroundAudio->AddComponent<AudioComponent>(component);
-            }
-        }
+//        //loading stream audio files
+//        {
+//            m_AudioObject = new Entity("AudioObject", m_MainScene);
+//
+//            //load test stream audio
+//            {
+//                m_AudioObject->Add<AudioFileComponent>("Test", m_AudioLoader->Load("res/audio/test.wav"));
+//            }
+//
+//            //load spell stream audio
+//            {
+//                m_AudioObject->Add<AudioFileComponent>("Magicfail", m_AudioLoader->Load("res/audio/magicfail.ogg"));
+//            }
+//
+//            //load magicfail stream audio
+//            {
+//                m_AudioObject->Add<AudioFileComponent>("Spell", m_AudioLoader->Load("res/audio/spell.ogg"));
+//            }
+//
+//        }
+//        //temporarily commented
+//        //// create voice component
+//        //{
+//        //    VoiceComponent component("Test");
+//        //    m_MainScene->Add<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
+//        //}
+//
+//        //setup background audio
+//        {
+//            m_BackgroundAudio = new Entity("BackgroundAudio", m_MainScene);
+//
+//            //test sources
+//            SourceAudioComponent* source;
+//            SourceAudioComponent* source1;
+//            SourceAudioComponent* source2;
+//
+//            //test files //You can use one file for many sources in one time
+//            auto* file = m_AudioObject->Get<AudioFileComponent>("Spell");
+//            auto* file1 = m_AudioObject->Get<AudioFileComponent>("Test");
+//            auto* file2 = m_AudioObject->Get<AudioFileComponent>("Magicfail");
+//
+//            //creating source
+//            {
+//                SourceAudioComponent component("Sound_Test");
+//
+//                component.Position = { -15.0f, 2.0f, 0.0f };
+//                component.Looping = true;
+//                component.Gain = 0.5f;
+//                component.RefDistance = 10.0f;
+//                component.MaxDistance = 100.0f;
+//                source = m_BackgroundAudio->Add<SourceAudioComponent>(component);
+//            }
+//
+//            //creating stream audio
+//            {
+//                AudioComponent component("Sound_Test");
+//
+//                component.Source = source;
+//                component.File = file->File;
+//
+//                m_BackgroundAudio->Add<AudioComponent>(component);
+//            }
+//
+//            //-------------------------------------
+//            //creating source
+//            {
+//                SourceAudioComponent component("Test");
+//
+//                component.Position = { -5.0f, 2.0f, 0.0f };
+//                component.Looping = true; //(todo) Need do some logic to looping the stream audio
+//                component.Gain = 0.2f;
+//                component.RefDistance = 10.0f;
+//                component.MaxDistance = 100.0f;
+//                source1 = m_BackgroundAudio->Add<SourceAudioComponent>(component);
+//            }
+//
+//            //creating stream audio
+//            {
+//                StreamAudioComponent component("Test");
+//
+//                component.Source = source1;
+//                component.File = file1->File;
+//                component.BufferSamples = 8192 * 2; //for test
+//                component.NumBuffers = 5; //for test
+//
+//                m_BackgroundAudio->Add<StreamAudioComponent>(component);
+//            }
+//
+//            //-------------------------------------
+//            //creating source
+//            {
+//                SourceAudioComponent component("Sound_Test1");
+//
+//                component.Position = { 11.0f, 2.0f, 0.0f };
+//                component.Looping = true;
+//                component.Gain = 0.5f;
+//                component.RefDistance = 10.0f;
+//                component.MaxDistance = 100.0f;
+//                source2 = m_BackgroundAudio->Add<SourceAudioComponent>(component);
+//            }
+//
+//            //creating stream audio
+//            {
+//                AudioComponent component("Sound_Test1");
+//
+//                component.Source = source2;
+//                component.File = file2->File;
+//
+//                m_BackgroundAudio->Add<AudioComponent>(component);
+//            }
+//        }
 
         m_SsaoPass->GetData().Intensity = 4;
         m_SsaoPass->Flush();
@@ -463,6 +449,11 @@ public:
     void Free()
     {
         LogInfo("GameApp::Free()");
+
+        FontLoader::Free();
+        TextureLoader::Free();
+        AudioLoader::Free();
+
         delete m_SunLight;
         delete m_Text2D;
         delete m_Text3D;
@@ -472,9 +463,8 @@ public:
         delete m_Goblin3;
         delete m_Goblin4;
         delete m_Cube;
-        delete m_Listener;
-        delete m_BackgroundAudio;
-        delete m_AudioObject;
+//        delete m_BackgroundAudio;
+//        delete m_AudioObject;
         delete m_Glasses[0];
         delete m_Glasses[1];
         delete m_Glasses[2];
@@ -519,8 +509,7 @@ public:
 private:
 
     void InitCamera() {
-        m_MainScene->PerspectiveCamera->Component = string("PerspectiveCamera");
-        m_MainScene->PerspectiveCamera->Component.Projection.Far = m_TestConfig.CameraFar;
+        m_MainScene->PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
         // todo(cheerwizard): BUG - after moving camera, the camera resets position
         m_MainScene->PerspectiveCamera->Component.Position = { 5, 5, 20 };
         m_MainScene->PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
@@ -534,7 +523,7 @@ private:
 
     void InitCamera2D()
     {
-        m_MainScene->OrthoCamera->Component = string("OrthoCamera");
+        m_MainScene->OrthoCamera->Component;
         m_MainScene->OrthoCamera->Component.Position = { 0, 0, -1 };
     }
 
@@ -578,8 +567,10 @@ private:
     {
         if (key == eKey::P)
         {
-            auto* goblinAnimation = m_Goblin1->GetComponent<SkeletonAnimationComponent>("GoblinAnimation");
-            goblinAnimation->Play = !goblinAnimation->Play;
+            m_Goblin1->Get<AnimationComponent>()->Play = !m_Goblin1->Get<AnimationComponent>()->Play;
+            m_Goblin2->Get<AnimationComponent>()->Play = !m_Goblin2->Get<AnimationComponent>()->Play;
+            m_Goblin3->Get<AnimationComponent>()->Play = !m_Goblin3->Get<AnimationComponent>()->Play;
+            m_Goblin4->Get<AnimationComponent>()->Play = !m_Goblin4->Get<AnimationComponent>()->Play;
         }
     }
 
@@ -600,13 +591,13 @@ private:
     }
 
     void DisplayStats() {
-        auto& text2D = m_Text2D->GetComponent<Text2DComponent>("Text2D")->Text;
+        auto& text2D = m_Text2D->Get<Text2DComponent>()->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
                  "\nExposure: " + std::to_string(WindowManager::GetExposure());
 
-        auto& text3D = m_Text3D->GetComponent<Text3DComponent>("Text3D")->Text;
+        auto& text3D = m_Text3D->Get<Text3DComponent>()->Text;
         text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
@@ -614,14 +605,6 @@ private:
     }
 
 private:
-    Ref<ModelLoader> m_ModelLoader;
-    Ref<MaterialLoader> m_MaterialLoader;
-    Ref<TextureLoader> m_TextureLoader;
-    Ref<FontLoader> m_FontLoader;
-    Ref<SkeletonLoader> m_SkeletLoader;
-    Ref<AnimLoader> m_AnimLoader;
-    Ref<AudioLoader> m_AudioLoader;
-
     Entity* m_SunLight;
     Entity* m_Text2D;
     Entity* m_Text3D;
@@ -631,20 +614,18 @@ private:
     Entity* m_Goblin3;
     Entity* m_Goblin4;
     Entity* m_Cube;
-    Entity* m_Listener;
     Entity* m_BackgroundAudio;
     Entity* m_AudioObject;
     Entity* m_Glasses[4];
 
-    TestConfig m_TestConfig = string("TestConfig");
-    XmlConfig  m_XmlConfig = string("XmlConfig");
+    TestConfig m_TestConfig;
+    XmlConfig  m_XmlConfig;
 };
 
 Application* CreateApplication() {
     Application* app = new GameApp();
 
     // read app configs
-    app->Config = string("AppConfig");
     if (!xpe::res::ReadJsonFile("config/app_config.json", app->Config))
     {
         FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");

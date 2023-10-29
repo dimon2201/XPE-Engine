@@ -20,11 +20,11 @@ namespace xpe {
             TextPass(eType type, const vector<RenderPassBinding>& bindings);
 
         protected:
-            void DrawText(const Transform& transform, const string& text, const Ref<Font>& font);
+            void DrawText(const Transform& transform, const string& text, Font& font);
 
             TextBuffer m_TextBuffer;
             TransformBuffer m_TransformBuffer;
-            Ref<Geometry> m_Quad;
+            Geometry m_Quad;
         };
 
     }

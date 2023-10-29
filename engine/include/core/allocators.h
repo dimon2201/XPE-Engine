@@ -106,7 +106,7 @@ namespace xpe {
 
         class ENGINE_API StackMemory final
         {
-            public:
+        public:
             static usize TotalAllocCount;
             static usize MemoryOccupiedBytes;
 

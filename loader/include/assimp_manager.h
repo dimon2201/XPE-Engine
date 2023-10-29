@@ -1,5 +1,7 @@
 #pragma once
 
+#include <build.h>
+
 #include <assimp/Importer.hpp>
 #include <assimp/Exporter.hpp>
 #include <assimp/scene.h>
@@ -21,22 +23,11 @@ namespace xpe {
             JOIN_VERTICES
         };
 
-        struct LOADER_API AssimpManager final
+        class LOADER_API AssimpManager final
         {
-            static inline AssimpManager& Get() {
-                static AssimpManager instance;
-                return instance;
-            }
 
-            const std::unordered_map<eLoadOption, aiPostProcessSteps> LoadOptions =
-            {
-                    { eLoadOption::TRIANGULATE, aiProcess_Triangulate },
-                    { eLoadOption::FLIP_UV, aiProcess_FlipUVs },
-                    { eLoadOption::CALC_TANGENTS, aiProcess_CalcTangentSpace },
-                    { eLoadOption::OPTIMIZE_MESHES, aiProcess_OptimizeMeshes },
-                    { eLoadOption::GEN_NORMAL, aiProcess_GenNormals },
-                    { eLoadOption::JOIN_VERTICES, aiProcess_JoinIdenticalVertices }
-            };
+        public:
+            static const std::unordered_map<eLoadOption, aiPostProcessSteps> k_LoadOptions;
 
             inline static glm::vec3 ToVec3(const aiVector3D& vec)
             {
@@ -63,7 +54,7 @@ namespace xpe {
 
                 for (const auto& option : options)
                 {
-                    flags |= Get().LoadOptions.at(option);
+                    flags |= k_LoadOptions.at(option);
                 }
 
                 return flags;

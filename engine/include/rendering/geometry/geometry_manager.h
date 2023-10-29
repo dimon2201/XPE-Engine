@@ -6,14 +6,16 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API GeometryManager : public Object
+        class ENGINE_API GeometryManager final
         {
+
+        public:
             static void Init();
             static void Free();
             static void Bind();
 
-            static Ref<Geometry> AddGeometry(const Geometry& geometry);
-            static Ref<Model> AddModel(const Model& model);
+            static Geometry AddGeometry(const Geometry& _geometry);
+            static Model AddModel(const Model& _model);
 
         private:
             static usize AddIndices(const vector<u32>& indices);

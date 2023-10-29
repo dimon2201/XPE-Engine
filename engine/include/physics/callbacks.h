@@ -18,7 +18,6 @@ namespace xpe {
             bool EnableError;
 
             PhysicsErrorCallback(bool enableInfo = true, bool enableWarning = true, bool enableError = true);
-
             ~PhysicsErrorCallback() override;
 
             void reportError(PxErrorCode::Enum code, const char* message, const char* file, int line) override;

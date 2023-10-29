@@ -25,43 +25,6 @@ namespace xpe {
             context::BindIndexBuffer(*s_IndexBuffer);
         }
 
-        Ref<Model> GeometryManager::AddModel(const Model &model)
-        {
-            if (model.Meshes.empty()) {
-                return { nullptr };
-            }
-
-            Ref<Model> modelRef;
-            modelRef.Create(model);
-
-            modelRef->VertexOffset = s_VertexBuffer->AddVertices(modelRef->Meshes[0].Vertices);
-            for (auto& index : modelRef->Meshes[0].Indices)
-            {
-                modelRef->Indices.emplace_back(index + modelRef->VertexCount);
-            }
-            modelRef->VertexCount += modelRef->Meshes[0].Vertices.size();
-
-            for (u32 i = 1 ; i < modelRef->Meshes.size() ; i++)
-            {
-                auto& mesh = modelRef->Meshes[i];
-
-                for (auto& index : mesh.Indices)
-                {
-                    modelRef->Indices.emplace_back(index + modelRef->VertexCount);
-                }
-                modelRef->VertexCount += mesh.Vertices.size();
-
-                s_VertexBuffer->AddVertices(mesh.Vertices);
-            }
-
-            modelRef->IndexOffset = s_IndexBuffer->AddIndices(modelRef->Indices);
-
-            s_VertexBuffer->Flush();
-            s_IndexBuffer->Flush();
-
-            return modelRef;
-        }
-
         usize GeometryManager::AddIndices(const vector<u32>& indices)
         {
             usize indexOffset = s_IndexBuffer->AddIndices(indices);
@@ -69,16 +32,47 @@ namespace xpe {
             return indexOffset;
         }
 
-        Ref<Geometry> GeometryManager::AddGeometry(const Geometry& geometry)
+        Geometry GeometryManager::AddGeometry(const Geometry& _geometry)
         {
-            Ref<Geometry> geometryRef;
-            geometryRef.Create(geometry);
+            Geometry geometry(_geometry);
 
-            geometryRef->IndexOffset = AddIndices(geometry.Indices);
-            geometryRef->VertexOffset = s_VertexBuffer->AddVertices(geometry.Vertices);
+            geometry.IndexOffset = AddIndices(geometry.Indices);
+            geometry.VertexOffset = s_VertexBuffer->AddVertices(geometry.Vertices);
             s_VertexBuffer->Flush();
 
-            return geometryRef;
+            return geometry;
+        }
+
+        Model GeometryManager::AddModel(const Model& _model)
+        {
+            Model model(_model);
+
+            model.VertexOffset = s_VertexBuffer->AddVertices(model.Meshes[0].Vertices);
+            for (auto& index : model.Meshes[0].Indices)
+            {
+                model.Indices.emplace_back(index + model.VertexCount);
+            }
+            model.VertexCount += model.Meshes[0].Vertices.size();
+
+            for (u32 i = 1 ; i < model.Meshes.size() ; i++)
+            {
+                auto& mesh = model.Meshes[i];
+
+                for (auto& index : mesh.Indices)
+                {
+                    model.Indices.emplace_back(index + model.VertexCount);
+                }
+                model.VertexCount += mesh.Vertices.size();
+
+                s_VertexBuffer->AddVertices(mesh.Vertices);
+            }
+
+            model.IndexOffset = s_IndexBuffer->AddIndices(model.Indices);
+
+            s_VertexBuffer->Flush();
+            s_IndexBuffer->Flush();
+
+            return model;
         }
 
     }

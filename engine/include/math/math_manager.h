@@ -1,16 +1,15 @@
 #pragma once
 
+#include <math/math.h>
+#include <math/ray.h>
+#include <math/matrices.h>
+#include <math/transform.h>
+
 namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API Ray final {
-            glm::vec4 Origin = { 0, 0, 0, 1 };
-            glm::vec4 Direction = { 0, 0, 0, 1 };
-        };
-
-        class ENGINE_API RayCast final {
-
+        class ENGINE_API MathManager final {
         public:
             // world space -> local space
             static Ray ToLocalSpace(const Ray& ray, const glm::mat4& modelMatrix);

@@ -48,8 +48,9 @@ namespace xpe {
 
         Json(AnimationNode, Name, Transform, Children)
 
-        struct ENGINE_API Animation final
+        struct ENGINE_API Animation
         {
+            bool Play;
             float Duration;
             int TicksPerSecond;
             AnimationNode Root;

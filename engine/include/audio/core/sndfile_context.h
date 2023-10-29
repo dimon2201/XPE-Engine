@@ -6,7 +6,7 @@ namespace xpe {
 
 	namespace audio {
 
-		using namespace xpe::core;
+		using namespace core;
 
 		struct ENGINE_API AudioFile : public Object
 		{
@@ -18,13 +18,9 @@ namespace xpe {
 		};
 
 		namespace context {
-
-			void SetCurrentFrame(SNDFILE* file, s64 frame);
-
-			s64 ReadChunk(SNDFILE* m_File, short* data, s64 num_frames);
-
-			bool ENGINE_API isAmbisonic(const AudioFile& file);
-
+            ENGINE_API void SetCurrentFrame(SNDFILE* file, s64 frame);
+            ENGINE_API s64 ReadChunk(SNDFILE* m_File, short* data, s64 num_frames);
+			ENGINE_API bool isAmbisonic(const AudioFile& file);
 		}
 	}
 }

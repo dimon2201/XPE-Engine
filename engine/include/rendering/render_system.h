@@ -49,12 +49,16 @@ namespace xpe {
             inline Texture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
             inline Texture* GetShadowMap() { return m_ShadowRenderTarget->DepthStencil; }
 
-            inline TextureSampler* GetShadowSampler() { return m_ShadowSampler; }
+            inline TextureSampler* GetShadowSampler() { return &m_ShadowSampler; }
 
         private:
             void InitBuffers(const Viewport& viewport, u32 sampleCount);
             void InitSamplers(const Viewport& viewport, u32 sampleCount);
             void InitRenderTargets(const Viewport& viewport, u32 sampleCount);
+
+            void FreeBuffers();
+            void FreeSamplers();
+            void FreeRenderTargets();
 
             void UpdateLight(Scene* scene);
             void UpdatePasses(Scene* scene);
@@ -83,7 +87,7 @@ namespace xpe {
 
             Texture* m_SharedDepthTexture;
 
-            TextureSampler* m_ShadowSampler;
+            TextureSampler m_ShadowSampler;
 
         };
 

@@ -91,10 +91,7 @@
 #include <physics/physics_manager.h>
 
 // Math
-#include <math/math.h>
-#include <math/transform.h>
-#include <math/matrices.h>
-#include <math/raycast.h>
+#include <math/math_manager.h>
 
 // ECS
 #include <ecs/ecs.h>

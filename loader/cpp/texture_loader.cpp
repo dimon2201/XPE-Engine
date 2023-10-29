@@ -11,17 +11,30 @@ namespace xpe {
 
     namespace res {
 
-        unordered_map<string, TextureLayer>* TextureLoader::s_Layers = nullptr;
+        static unordered_map<string, Texture*>* s_Textures = nullptr;
 
-        Ref<Texture> TextureLoader::Load(const char* filepath, const eTextureFormat &format)
+        void TextureLoader::Init()
         {
-            Ref<Texture> texture;
-            texture.Create();
+            s_Textures = new unordered_map<string, Texture*>();
+        }
+
+        void TextureLoader::Free()
+        {
+            for (auto& texture : *s_Textures) {
+                delete texture.second;
+            }
+            delete s_Textures;
+        }
+
+        Texture* TextureLoader::Load(const char* filepath, const eTextureFormat &format)
+        {
+            Texture* texture = new Texture();
             texture->Format = format;
             texture->Depth = 1;
             TextureLayer layer = LoadLayer(filepath, format, texture->Width, texture->Height, texture->Channels);
             texture->Layers.emplace_back(layer);
             texture->Init();
+            s_Textures->insert({ filepath, texture });
             return texture;
         }
 
@@ -30,14 +43,6 @@ namespace xpe {
                 const eTextureFormat &format,
                 int &width, int &height, int &channels
         ) {
-            if (s_Layers == nullptr) {
-                s_Layers = new unordered_map<string, TextureLayer>();
-            }
-
-            if (s_Layers->find(filepath) != s_Layers->end()) {
-                return s_Layers->at(filepath).Clone();
-            }
-
             int desiredChannels = Texture::ChannelTable.at(format);
             TextureLayer layer;
             int w;
@@ -112,10 +117,9 @@ namespace xpe {
             return layer;
         }
 
-        Ref<Texture> TextureLoader::LoadCube(const TextureCubeFilepath &cubeFilepath, const eTextureFormat &format)
+        Texture* TextureLoader::LoadCube(const TextureCubeFilepath &cubeFilepath, const eTextureFormat &format)
         {
-            Ref<Texture> textureCube;
-            textureCube.Create();
+            Texture* textureCube = new Texture();
             textureCube->Type = Texture::eType::TEXTURE_CUBE;
             textureCube->Format = format;
 
@@ -179,7 +183,7 @@ namespace xpe {
 #endif
 
             textureCube->Init();
-
+            s_Textures->insert({ cubeFilepath.Name, textureCube });
             return textureCube;
         }
 
@@ -192,7 +196,7 @@ namespace xpe {
         }
 
         bool TextureLoader::SaveLayer(
-                const char *filepath,
+                const char* filepath,
                 const TextureLayer &textureLayer,
                 const Texture::eFileFormat &fileFormat
         ) {

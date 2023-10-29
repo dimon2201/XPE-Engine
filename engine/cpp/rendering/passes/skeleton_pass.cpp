@@ -1,6 +1,8 @@
 #include <rendering/passes/skeleton_pass.h>
 #include <rendering/material/material_manager.h>
 
+#include <anim/skeleton_manager.h>
+
 #include <ecs/scenes.hpp>
 
 namespace xpe {
@@ -25,16 +27,14 @@ namespace xpe {
 
         void SkeletonPass::DrawOpaque(Scene *scene)
         {
-            scene->EachComponent<SkeletonModelComponent>([this](SkeletonModelComponent* component)
+            scene->EachComponent<ModelComponent>([this](ModelComponent* component)
             {
-                 if (!component->Transparent && component->Visible && component->Model.Get() != nullptr) {
-                     auto& model = *component->Model;
-                     auto& skeleton = component->Skeleton;
+                 if (!component->Transparent && component->Visible && component->HasSkeleton) {
+                     auto& model = *component;
+                     auto* skeleton = component->Entity->Get<SkeletonComponent>();
 
-                     if (skeleton.Get() != nullptr) {
-                         skeleton->BoneBuffer.Flush();
-                         context::BindVSBuffer(skeleton->BoneBuffer);
-                     }
+                     SkeletonManager::Flush(skeleton->Index);
+                     SkeletonManager::Bind(skeleton->Index);
 
                      DrawInstanced(
                              model.PrimitiveTopology,
@@ -45,32 +45,28 @@ namespace xpe {
                              component->Entity,
                              component->Entities,
                              [](Entity* entity, RenderInstance& instance) {
-                                 auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
+                                 auto* materialComponent = entity->Get<MaterialComponent>();
                                  if (materialComponent != nullptr) {
-                                     instance.MaterialIndex = materialComponent->Material->Index;
+                                     instance.MaterialIndex = materialComponent->Index;
                                  }
                              }
                      );
 
-                     if (skeleton.Get() != nullptr) {
-                         context::UnbindVSBuffer(skeleton->BoneBuffer);
-                     }
+                     SkeletonManager::Unbind(skeleton->Index);
                  }
             });
         }
 
         void SkeletonPass::DrawTransparent(Scene *scene)
         {
-            scene->EachComponent<SkeletonModelComponent>([this](SkeletonModelComponent* component)
+            scene->EachComponent<ModelComponent>([this](ModelComponent* component)
             {
-                 if (component->Transparent && component->Visible && component->Model.Get() != nullptr) {
-                     auto& model = *component->Model;
-                     auto& skeleton = component->Skeleton;
+                 if (component->Transparent && component->Visible && component->HasSkeleton) {
+                     auto& model = *component;
+                     auto* skeleton = component->Entity->Get<SkeletonComponent>();
 
-                     if (skeleton.Get() != nullptr) {
-                         skeleton->BoneBuffer.Flush();
-                         context::BindVSBuffer(skeleton->BoneBuffer);
-                     }
+                     SkeletonManager::Flush(skeleton->Index);
+                     SkeletonManager::Bind(skeleton->Index);
 
                      DrawInstanced(
                              model.PrimitiveTopology,
@@ -81,16 +77,14 @@ namespace xpe {
                              component->Entity,
                              component->Entities,
                              [](Entity* entity, RenderInstance& instance) {
-                                 auto* materialComponent = entity->GetComponent<MaterialComponent>(entity->GetTag());
+                                 auto* materialComponent = entity->Get<MaterialComponent>();
                                  if (materialComponent != nullptr) {
-                                     instance.MaterialIndex = materialComponent->Material->Index;
+                                     instance.MaterialIndex = materialComponent->Index;
                                  }
                              }
                      );
 
-                     if (skeleton.Get() != nullptr) {
-                         context::UnbindVSBuffer(skeleton->BoneBuffer);
-                     }
+                     SkeletonManager::Unbind(skeleton->Index);
                  }
             });
         }
@@ -102,18 +96,16 @@ namespace xpe {
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
+                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
 
-                scene->EachComponent<SkeletonModelComponent>([this, &lightMatrix](SkeletonModelComponent* component)
+                scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
-                         auto& model = *component->Model;
-                         auto& skeleton = component->Skeleton;
+                     if (component->CastShadow && component->Visible && component->HasSkeleton) {
+                         auto& model = *component;
+                         auto* skeleton = component->Entity->Get<SkeletonComponent>();
 
-                         if (skeleton.Get() != nullptr) {
-                             skeleton->BoneBuffer.Flush();
-                             context::BindVSBuffer(skeleton->BoneBuffer);
-                         }
+                         SkeletonManager::Flush(skeleton->Index);
+                         SkeletonManager::Bind(skeleton->Index);
 
                          DrawInstanced(
                                  model.PrimitiveTopology,
@@ -127,9 +119,7 @@ namespace xpe {
                                  lightMatrix
                          );
 
-                         if (skeleton.Get() != nullptr) {
-                             context::UnbindVSBuffer(skeleton->BoneBuffer);
-                         }
+                         SkeletonManager::Unbind(skeleton->Index);
                      }
                 });
             });
@@ -139,18 +129,16 @@ namespace xpe {
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(lightComponent->Projection, lightView);
+                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
 
-                scene->EachComponent<SkeletonModelComponent>([this, &lightMatrix](SkeletonModelComponent* component)
+                scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (component->CastShadow && component->Visible && component->Model.Get() != nullptr) {
-                         auto& model = *component->Model;
-                         auto& skeleton = component->Skeleton;
+                     if (component->CastShadow && component->Visible && component->HasSkeleton) {
+                         auto& model = *component;
+                         auto* skeleton = component->Entity->Get<SkeletonComponent>();
 
-                         if (skeleton.Get() != nullptr) {
-                             skeleton->BoneBuffer.Flush();
-                             context::BindVSBuffer(skeleton->BoneBuffer);
-                         }
+                         SkeletonManager::Flush(skeleton->Index);
+                         SkeletonManager::Bind(skeleton->Index);
 
                          DrawInstanced(
                                  model.PrimitiveTopology,
@@ -164,9 +152,7 @@ namespace xpe {
                                  lightMatrix
                          );
 
-                         if (skeleton.Get() != nullptr) {
-                             context::UnbindVSBuffer(skeleton->BoneBuffer);
-                         }
+                         SkeletonManager::Unbind(skeleton->Index);
                      }
                 });
             });

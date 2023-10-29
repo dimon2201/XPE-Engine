@@ -11,72 +11,57 @@ namespace xpe {
 
         public:
             static TextureSampler Sampler;
-            static Ref<Texture> AlbedoAtlas;
-            static Ref<Texture> NormalAtlas;
-            static Ref<Texture> ParallaxAtlas;
-            static Ref<Texture> MetalAtlas;
-            static Ref<Texture> RoughnessAtlas;
-            static Ref<Texture> AOAtlas;
-            static Ref<Texture> EmissionAtlas;
+            static Texture* AlbedoAtlas;
+            static Texture* NormalAtlas;
+            static Texture* ParallaxAtlas;
+            static Texture* MetalAtlas;
+            static Texture* RoughnessAtlas;
+            static Texture* AOAtlas;
+            static Texture* EmissionAtlas;
 
             static void Init();
             static void Free();
 
             template<typename... Args>
-            static Ref<Material> AddMaterial(const string& name, Args&&... args);
-
-            static Ref<Material>& GetMaterial(const string& name) { return s_Map->at(name); }
-
-            static void Remove(const string& name);
+            static Material AddMaterial(Args&&... args);
 
             static void Clear();
 
             static void Bind(Pipeline& pipeline);
 
-            static bool Has(const string& name) { return s_Map->find(name) != s_Map->end(); }
+            static void Flush(const Material& material);
+
+            static void AddLayer(Texture& texture, TextureLayer& layer);
+
+            static void SetLayer(Texture& texture, TextureLayer& layer, u32 layerIndex);
 
         private:
             static void InitSampler();
 
-            static Ref<Texture> InitTextureArray(const MaterialFormat& materialFormat);
+            static Texture* InitTextureArray(const MaterialFormat& materialFormat);
 
-            static unordered_map<string, Ref<Material>>* s_Map;
-            static Ref<MaterialDataBuffer> s_DataBuffer;
+            static MaterialDataBuffer* s_DataBuffer;
         };
 
         template<typename... Args>
-        Ref<Material> MaterialManager::AddMaterial(const string& name, Args &&... args)
+        Material MaterialManager::AddMaterial(Args &&... args)
         {
-            Ref<Material> materialRef;
+            Material material(std::forward<Args>(args)...);
 
-            materialRef.Create(std::forward<Args>(args)...);
-            materialRef->Index = s_DataBuffer->Size();
-            materialRef->Buffer = s_DataBuffer;
-            materialRef->AlbedoAtlas = AlbedoAtlas;
-            materialRef->NormalAtlas = NormalAtlas;
-            materialRef->ParallaxAtlas = ParallaxAtlas;
-            materialRef->MetalAtlas = MetalAtlas;
-            materialRef->RoughnessAtlas = RoughnessAtlas;
-            materialRef->AOAtlas = AOAtlas;
-            materialRef->EmissionAtlas = EmissionAtlas;
-
-            s_Map->operator[](name) = materialRef;
-
-            Material& material = *materialRef;
-
+            material.Index = s_DataBuffer->Size();
             s_DataBuffer->Add(material);
 
-            material.AddLayer(*material.AlbedoAtlas, material.AlbedoMap);
-            material.AddLayer(*material.NormalAtlas, material.NormalMap);
-            material.AddLayer(*material.ParallaxAtlas, material.ParallaxMap);
-            material.AddLayer(*material.MetalAtlas, material.MetalMap);
-            material.AddLayer(*material.RoughnessAtlas, material.RoughnessMap);
-            material.AddLayer(*material.AOAtlas, material.AOMap);
-            material.AddLayer(*material.EmissionAtlas, material.EmissionMap);
+            AddLayer(*AlbedoAtlas, material.AlbedoMap);
+            AddLayer(*NormalAtlas, material.NormalMap);
+            AddLayer(*ParallaxAtlas, material.ParallaxMap);
+            AddLayer(*MetalAtlas, material.MetalMap);
+            AddLayer(*RoughnessAtlas, material.RoughnessMap);
+            AddLayer(*AOAtlas, material.AOMap);
+            AddLayer(*EmissionAtlas, material.EmissionMap);
 
             s_DataBuffer->Flush();
 
-            return materialRef;
+            return material;
         }
 
     }

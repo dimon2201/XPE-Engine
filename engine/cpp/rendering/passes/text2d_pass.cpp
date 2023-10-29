@@ -13,7 +13,7 @@ namespace xpe {
         {
             scene->EachComponent<Text2DComponent>([this](Text2DComponent* component)
             {
-                DrawText(component->Entity->Transform, component->Text, component->Font);
+                DrawText(component->Entity->Transform, component->Text, *component->Font);
             });
         }
 

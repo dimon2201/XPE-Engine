@@ -1,9 +1,9 @@
 #pragma once
 
 #include <build.h>
-#include <assimp_types.h>
+#include <assimp_manager.h>
 
-#include <anim/skeleton.h>
+#include <anim/skeleton_manager.h>
 
 namespace xpe {
 
@@ -13,17 +13,12 @@ namespace xpe {
         using namespace anim;
         using namespace math;
 
-        class LOADER_API SkeletonLoader : public Object
+        class LOADER_API SkeletonLoader final
         {
-
         public:
-            Ref<Skeleton> Load(const char* filepath, const vector<eLoadOption>& options = {
+            static Skeleton Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE
             });
-
-        private:
-            unordered_map<string, Ref<Skeleton>> m_Map;
-
         };
 
     }

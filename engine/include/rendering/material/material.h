@@ -4,11 +4,6 @@
 
 namespace xpe
 {
-    namespace physics
-    {
-        struct sMaterial;
-    }
-
     namespace render
     {
         using namespace core;
@@ -33,16 +28,6 @@ namespace xpe
 
             u32 Index = 0;
 
-            Ref<MaterialDataBuffer> Buffer;
-
-            Ref<Texture> AlbedoAtlas;
-            Ref<Texture> NormalAtlas;
-            Ref<Texture> ParallaxAtlas;
-            Ref<Texture> MetalAtlas;
-            Ref<Texture> RoughnessAtlas;
-            Ref<Texture> AOAtlas;
-            Ref<Texture> EmissionAtlas;
-
             TextureLayer AlbedoMap;
             TextureLayer NormalMap;
             TextureLayer ParallaxMap;
@@ -50,22 +35,6 @@ namespace xpe
             TextureLayer RoughnessMap;
             TextureLayer AOMap;
             TextureLayer EmissionMap;
-
-            hstring AlbedoPath;
-            hstring BumpingPath;
-            hstring ParallaxPath;
-            hstring MetallicPath;
-            hstring RoughnessPath;
-            hstring AOPath;
-            hstring EmissionPath;
-
-            Material() = default;
-            Material(const Material& material) = default;
-
-            void Flush();
-            void AddLayer(Texture& texture, TextureLayer& layer);
-            void SetLayer(Texture& texture, TextureLayer& layer, u32 layerIndex);
-
         };
 
         Json(
@@ -85,14 +54,7 @@ namespace xpe
             AO,
             EnableAOMap,
             Emission,
-            EnableEmissionMap,
-            AlbedoPath,
-            BumpingPath,
-            ParallaxPath,
-            MetallicPath,
-            RoughnessPath,
-            AOPath,
-            EmissionPath
+            EnableEmissionMap
         )
 
     }

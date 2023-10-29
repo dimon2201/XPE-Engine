@@ -1,7 +1,7 @@
 #pragma once
 
 #include <build.h>
-#include <assimp_types.h>
+#include <assimp_manager.h>
 
 #include <anim/anim.h>
 
@@ -12,18 +12,14 @@ namespace xpe {
         using namespace core;
         using namespace anim;
         using namespace math;
+        using namespace ecs;
 
-        class LOADER_API AnimLoader : public Object
+        class LOADER_API AnimLoader final
         {
-
         public:
-            Ref<Animation> Load(const char* filepath, const vector<eLoadOption>& options = {
+            static Animation Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE
             });
-
-        private:
-            unordered_map<string, Ref<Animation>> m_Map;
-
         };
 
     }

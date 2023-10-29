@@ -6,7 +6,7 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API GPUResource : public core::Object
+        struct ENGINE_API GPUResource : public Object
         {
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
@@ -63,7 +63,7 @@ namespace xpe {
             }
         };
 
-        struct ENGINE_API Blob : public core::Object
+        struct ENGINE_API Blob : public Object
         {
             void* Instance = nullptr;
             void* ByteCode = nullptr;

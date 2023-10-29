@@ -1,24 +1,22 @@
 #pragma once
 
 #include <build.h>
+
 #include <audio/core/sndfile_context.h>
 
 namespace xpe {
 
 	namespace res {
 
-		using namespace xpe::audio;
-		using namespace xpe::core;
+		using namespace audio;
+		using namespace core;
 
-		class LOADER_API AudioLoader : public Object
+		class LOADER_API AudioLoader final
 		{
-
 		public:
-			Ref<AudioFile> Load(const char* filepath);
-
-        private:
-            unordered_map<string, Ref<AudioFile>> m_Map;
-
+            static void Init();
+            static void Free();
+			static AudioFile* Load(const char* filepath);
 		};
 	}
 }

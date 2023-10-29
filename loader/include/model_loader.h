@@ -1,7 +1,7 @@
 #pragma once
 
 #include <build.h>
-#include <assimp_types.h>
+#include <assimp_manager.h>
 
 #include <rendering/geometry/geometry_manager.h>
 
@@ -13,11 +13,10 @@ namespace xpe {
         using namespace render;
         using namespace math;
 
-        class LOADER_API ModelLoader : public Object
+        class LOADER_API ModelLoader final
         {
-
         public:
-            Ref<Model> Load(const char* filepath, const vector<eLoadOption>& options = {
+            static Model Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE,
                     eLoadOption::FLIP_UV,
                     eLoadOption::CALC_TANGENTS,
@@ -25,10 +24,6 @@ namespace xpe {
                     eLoadOption::GEN_NORMAL,
                     eLoadOption::JOIN_VERTICES
             });
-
-        private:
-            unordered_map<string, Ref<Model>> m_Map;
-
         };
 
     }

@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API ModelMatrix final
+        struct ENGINE_API ModelMatrix
         {
             glm::vec3 Translation = { 0, 0, 0 };
             glm::vec3 Rotation = { 0, 0, 0 };
@@ -20,7 +20,7 @@ namespace xpe {
 
         glm::mat4 ENGINE_API ModelMatrixUpdate(const ModelMatrix& modelMatrix);
 
-        struct ENGINE_API ViewMatrix final
+        struct ENGINE_API ViewMatrix
         {
             glm::vec3 Position = { 0, 0, 1 };
             glm::vec3 Front = { 0, 0, 0 };
@@ -36,7 +36,7 @@ namespace xpe {
 
         glm::mat4 ENGINE_API ViewMatrixUpdate(const ViewMatrix& viewMatrix);
 
-        struct ENGINE_API OrthoMatrix final
+        struct ENGINE_API OrthoMatrix
         {
             float Left = 0;
             float Right = 1;
@@ -58,7 +58,7 @@ namespace xpe {
 
         glm::mat4 ENGINE_API OrthoMatrixUpdate(const OrthoMatrix& orthoMatrix);
 
-        struct ENGINE_API PerspectiveMatrix final
+        struct ENGINE_API PerspectiveMatrix
         {
             float FovDegree = 45.0f;
             float AspectRatio = 1.0f;

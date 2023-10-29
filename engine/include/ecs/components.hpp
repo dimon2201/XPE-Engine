@@ -1,7 +1,5 @@
 #pragma once
 
-#include <ecs/ecs.h>
-
 #include <rendering/geometry/geometries.h>
 #include <rendering/material/material.h>
 #include <rendering/font/font.hpp>
@@ -43,64 +41,52 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API PerspectiveCameraComponent : CameraComponent
+        struct ENGINE_API PerspectiveCameraComponent : CameraComponent, PerspectiveMatrix
         {
-            math::PerspectiveMatrix Projection;
-
             JsonClass(
                 PerspectiveCameraComponent,
-                Projection
+                m_Tag
             )
         };
 
-        struct ENGINE_API OrthoCameraComponent : CameraComponent
+        struct ENGINE_API OrthoCameraComponent : CameraComponent, OrthoMatrix
         {
-            math::OrthoMatrix Projection;
-
             JsonClass(
                 OrthoCameraComponent,
-                Projection
+                m_Tag
             )
         };
 
         struct ENGINE_API Text2DComponent : Component
         {
             string Text;
-            Ref<Font> Font;
-            string FontResFilepath;
+            render::Font* Font;
 
-            Text2DComponent(const string& tag, const Ref<render::Font>& font, const string& text)
-            : Component(tag), Font(font), Text(text) {}
+            Text2DComponent(const string& text, render::Font* font) : Text(text), Font(font) {}
 
             JsonClass(
                 Text2DComponent,
-                Text,
-                FontResFilepath
+                Text
             )
         };
 
         struct ENGINE_API Text3DComponent : Component
         {
             string Text;
-            Ref<Font> Font;
-            string FontResFilepath;
+            render::Font* Font;
 
-            Text3DComponent(const string& tag, const Ref<render::Font>& font, const string& text)
-            : Component(tag), Font(font), Text(text) {}
+            Text3DComponent(const string& text, render::Font* font) : Text(text), Font(font) {}
 
             JsonClass(
                 Text3DComponent,
-                Text,
-                FontResFilepath
+                Text
             )
         };
 
-        struct ENGINE_API MaterialComponent : Component
+        struct ENGINE_API MaterialComponent : Component, Material
         {
-            Ref<render::Material> Material;
-
-            MaterialComponent(const string& tag, const Ref<render::Material>& material)
-            : Component(tag), Material(material) {}
+            MaterialComponent(const Material& material) : Material(material) {}
+            MaterialComponent(Material&& material) : Material(material) {}
 
             JsonClass(
                 MaterialComponent,
@@ -108,33 +94,37 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API DirectLightComponent : Component, DirectLightData
+        struct ENGINE_API DirectLightComponent : Component, DirectLightData, OrthoMatrix
         {
-            OrthoMatrix Projection;
-
-            DirectLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
-            : Component(tag) {
+            DirectLightComponent(const glm::vec3& position, const glm::vec3& color)
+            {
                 Position = position;
                 Color = color;
-                Projection.Left = -10.0f;
-                Projection.Right = 10.0f;
-                Projection.Bottom = -10.0f;
-                Projection.Top = 10.0f;
-                Projection.Near = 1.0f;
-                Projection.Far = 25.0f;
+                Left = -10.0f;
+                Right = 10.0f;
+                Bottom = -10.0f;
+                Top = 10.0f;
+                Near = 1.0f;
+                Far = 25.0f;
             }
 
             JsonClass(
                 DirectLightComponent,
                 Position,
-                Color
+                Color,
+                Left,
+                Right,
+                Bottom,
+                Top,
+                Near,
+                Far
             )
         };
 
         struct ENGINE_API PointLightComponent : Component, PointLightData
         {
-            PointLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
-            : Component(tag) {
+            PointLightComponent(const glm::vec3& position, const glm::vec3& color)
+            {
                 Position = position;
                 Color = color;
             }
@@ -149,20 +139,18 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SpotLightComponent : Component, SpotLightData
+        struct ENGINE_API SpotLightComponent : Component, SpotLightData, OrthoMatrix
         {
-            OrthoMatrix Projection;
-
-            SpotLightComponent(const string& tag, const glm::vec3& position, const glm::vec3& color)
-            : Component(tag) {
+            SpotLightComponent(const glm::vec3& position, const glm::vec3& color)
+            {
                 Position = position;
                 Color = color;
-                Projection.Left = -10.0f;
-                Projection.Right = 10.0f;
-                Projection.Bottom = -10.0f;
-                Projection.Top = 10.0f;
-                Projection.Near = 1.0f;
-                Projection.Far = 25.0f;
+                Left = -10.0f;
+                Right = 10.0f;
+                Bottom = -10.0f;
+                Top = 10.0f;
+                Near = 1.0f;
+                Far = 25.0f;
             }
 
             JsonClass(
@@ -171,7 +159,13 @@ namespace xpe
                 Direction,
                 Color,
                 Cutoff,
-                Outer
+                Outer,
+                Left,
+                Right,
+                Bottom,
+                Top,
+                Near,
+                Far
             )
         };
 
@@ -180,16 +174,16 @@ namespace xpe
             bool Transparent = false;    // switch to transparency, that will draw object in transparent passes
             bool Visible = true;         // switch visibility, that will draw or not draw object
             bool CastShadow = true;      // switch shadow casting, that will draw or not draw shadow of object
+            bool HasSkeleton = false;    // switch skeleton state, that will draw it animated or not animated
         };
-        Json(RenderState, Transparent, Visible, CastShadow)
+        Json(RenderState, Transparent, Visible, CastShadow, HasSkeleton)
 
-        struct ENGINE_API GeometryComponent : Component, RenderState
+        struct ENGINE_API GeometryComponent : Component, Geometry, RenderState
         {
-            Ref<render::Geometry> Geometry;
             vector<ecs::Entity*> Entities;
 
-            GeometryComponent(const string& tag, const Ref<render::Geometry>& geometry, const vector<ecs::Entity*>& entities = {})
-            : Component(tag), Geometry(geometry), Entities(entities) {}
+            GeometryComponent(const Geometry& geometry) : Geometry(geometry) {}
+            GeometryComponent(Geometry&& geometry) : Geometry(geometry) {}
 
             JsonClass(
                 GeometryComponent,
@@ -197,13 +191,12 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API ModelComponent : Component, RenderState
+        struct ENGINE_API ModelComponent : Component, Model, RenderState
         {
-            Ref<render::Model> Model;
             vector<ecs::Entity*> Entities;
 
-            ModelComponent(const string& tag, const Ref<render::Model>& model, const vector<ecs::Entity*>& entities = {})
-            : Component(tag), Model(model), Entities(entities) {}
+            ModelComponent(const Model& model) : Model(model) {}
+            ModelComponent(Model&& model) : Model(model) {}
 
             JsonClass(
                 ModelComponent,
@@ -211,33 +204,25 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SkeletonModelComponent : Component, RenderState
+        struct ENGINE_API SkeletonComponent : Component, Skeleton
         {
-            Ref<render::Model> Model;
-            Ref<anim::Skeleton> Skeleton;
-            vector<ecs::Entity*> Entities;
-
-            SkeletonModelComponent(const string& tag, const Ref<render::Model>& model, const Ref<anim::Skeleton>& skeleton, const vector<ecs::Entity*>& entities = {})
-            : Component(tag), Model(model), Skeleton(skeleton), Entities(entities) {}
+            SkeletonComponent(const Skeleton& skeleton) : Skeleton(skeleton) {}
+            SkeletonComponent(Skeleton&& skeleton) : Skeleton(skeleton) {}
 
             JsonClass(
-                SkeletonModelComponent,
+                SkeletonComponent,
                 m_Tag
             )
         };
 
-        struct ENGINE_API SkeletonAnimationComponent : Component
+        struct ENGINE_API AnimationComponent : Component, Animation
         {
-            Ref<anim::Skeleton> Skeleton;
-            Ref<anim::Animation> Animation;
-            bool Play = false;
-
-            SkeletonAnimationComponent(const string& tag, const Ref<anim::Skeleton>& skeleton, const Ref<anim::Animation>& animation)
-            : Component(tag), Skeleton(skeleton), Animation(animation) {}
+            AnimationComponent(const Animation& animation) : Animation(animation) {}
+            AnimationComponent(Animation&& animation) : Animation(animation) {}
 
             JsonClass(
-                    SkeletonAnimationComponent,
-                    m_Tag
+                AnimationComponent,
+                m_Tag
             )
         };
 
@@ -254,61 +239,15 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API AudioFileComponent : Component
-        {
-            Ref<AudioFile> File = nullptr;
-
-            AudioFileComponent(const string& tag, const Ref<AudioFile>& file)
-            : Component(tag), File(file) {}
-
-            JsonClass(
-                AudioFileComponent,
-                m_Tag
-            )
-        };
-
-        struct ENGINE_API SourceAudioComponent : Component
-        {
-            u32 SourceID = 0;
-
-            eAudioState State = eAudioState::INITIAL;
-
-            glm::vec3 Position = { 0.0f, 0.0f, 0.0f };
-            glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
-
-            f32 Gain = 1;                   // affects audio volume
-            f32 Pitch = 1;                  // affects playback speed 
-
-            f32 RefDistance = 1.0f;         // Distance at which the sound is heard clearly   
-            f32 MaxDistance = 100.0f;       // Maximum distance at which the sound is heard
-            f32 RollOffFactor = 1.0f;       // Volume reduction factor with distance
-            f32 ConeInnerAngle = 180.0f;    // Angle of the inner zone of the cone
-            f32 ConeOuterAngle = 180.0f;    // Angle of the outer zone of the cone                            
-
-            bool Looping = false;
-
-            JsonClass(
-                SourceAudioComponent,
-                SourceID,
-                State,
-                Position, 
-                Velocity, 
-                Gain, 
-                Pitch, 
-                RefDistance, 
-                MaxDistance,
-                m_Tag
-            )
-        };
-
         struct ENGINE_API AudioComponent : Component
         {
-            SourceAudioComponent* Source = nullptr;
+            AudioSource Source;
 
             eAudioState State = eAudioState::INITIAL;
 
             u32 BufferID = 0;
-            Ref<AudioFile> File = nullptr;
+
+            AudioFile* File = nullptr;
 
             JsonClass(
                 AudioComponent,
@@ -318,7 +257,7 @@ namespace xpe
 
         struct ENGINE_API StreamAudioComponent : Component
         {
-            SourceAudioComponent* Source = nullptr;
+            AudioSource Source;
 
             eAudioState State = eAudioState::INITIAL;
 
@@ -327,8 +266,9 @@ namespace xpe
             s64 CurrentFrame = 0;
 
             vector<u32> BufferID;
-            vector<short> Data;
-            Ref<AudioFile> File = nullptr;
+            vector<s16> Data;
+
+            AudioFile* File = nullptr;
 
             JsonClass(
                 StreamAudioComponent,
@@ -350,7 +290,7 @@ namespace xpe
 
             bool Recording = false;
 
-            vector<short> Data;
+            vector<s16> Data;
 
             JsonClass(
                 VoiceComponent,

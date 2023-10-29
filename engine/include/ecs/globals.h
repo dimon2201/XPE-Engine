@@ -12,12 +12,13 @@ namespace xpe {
 
         struct ENGINE_API Skybox : public Global
         {
-            Ref<render::Geometry> Geometry;
-            Ref<render::Texture> Texture;
+            render::Geometry Geometry;
+            render::Texture* Texture;
 
             JsonClass(
                 Skybox,
-                m_Tag
+                m_Tag,
+                Geometry
             )
         };
 

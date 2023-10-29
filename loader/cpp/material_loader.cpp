@@ -1,6 +1,6 @@
 #include <material_loader.h>
 #include <texture_loader.h>
-#include <assimp_types.h>
+#include <assimp_manager.h>
 
 namespace xpe {
 
@@ -18,7 +18,7 @@ namespace xpe {
             return ss.str();
         }
 
-        Ref<Material> MaterialLoader::Load(const aiScene* scene, aiMesh* mesh, const hstring& directory)
+        Material MaterialLoader::Load(const aiScene* scene, aiMesh* mesh, const hstring& directory)
         {
             if (mesh->mMaterialIndex >= 0) {
                 aiMaterial* assimpMaterial = scene->mMaterials[mesh->mMaterialIndex];
@@ -39,14 +39,8 @@ namespace xpe {
             return {};
         }
 
-        Ref<Material> MaterialLoader::Load(const MaterialFilepath &filepath)
+        Material MaterialLoader::Load(const MaterialFilepath &filepath)
         {
-            if (MaterialManager::Has(filepath.Name)) {
-                Ref<Material> materialRef;
-                materialRef.Create(*MaterialManager::GetMaterial(filepath.Name));
-                return materialRef;
-            }
-
             Material material;
             int w, h, c;
 
@@ -99,7 +93,7 @@ namespace xpe {
             );
             material.EnableEmissionMap = material.EmissionMap.Pixels != nullptr;
 
-            return MaterialManager::AddMaterial(filepath.Name, material);
+            return MaterialManager::AddMaterial(material);
         }
 
     }

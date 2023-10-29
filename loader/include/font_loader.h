@@ -12,19 +12,12 @@ namespace xpe {
         using namespace render;
         using namespace math;
 
-        class LOADER_API FontLoader : public Object
+        class LOADER_API FontLoader final
         {
-
         public:
-            FontLoader();
-            ~FontLoader();
-
-            Ref<Font> Load(const char* filepath, usize glyphSize);
-            Ref<Font> Resize(const char* filepath, usize glyphSize);
-
-        private:
-            unordered_map<string, Ref<Font>> m_Map;
-
+            static void Init();
+            static void Free();
+            static Font* Load(const char* filepath, usize glyphSize);
         };
 
     }

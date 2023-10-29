@@ -5,7 +5,8 @@ namespace xpe {
     namespace core {
 
         template<typename T>
-        class RingBuffer final {
+        class RingBuffer : public Object
+        {
 
         public:
             void Reserve(usize capacity);

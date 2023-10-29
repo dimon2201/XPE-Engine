@@ -5,26 +5,33 @@ namespace xpe {
 
 	namespace res {
 
-		Ref<AudioFile> AudioLoader::Load(const char* filepath)
-		{
-            if (m_Map.find(filepath) != m_Map.end()) {
-                Ref<AudioFile> audioRef;
-                audioRef.Create(*m_Map[filepath]);
-                return audioRef;
+        static unordered_map<string, AudioFile*>* s_AudioFiles = nullptr;
+
+        void AudioLoader::Init()
+        {
+            s_AudioFiles = new unordered_map<string, AudioFile*>();
+        }
+
+        void AudioLoader::Free()
+        {
+            for (auto& audioFile : *s_AudioFiles) {
+                delete audioFile.second;
             }
+            delete s_AudioFiles;
+        }
 
-			Ref<AudioFile> audioRef;
-            audioRef.Create();
+        AudioFile* AudioLoader::Load(const char* filepath)
+		{
+            AudioFile* audioFile = new AudioFile();
 
-            audioRef->File = sf_open(filepath, SFM_READ, &audioRef->Info);
-			if (!audioRef->File) {
-				LogError("Unable to open file {}", filepath);
+            audioFile->File = sf_open(filepath, SFM_READ, &audioFile->Info);
+			if (!audioFile->File) {
+				LogError("Unable to open audio file {}", filepath);
 			}
 
-            audioRef->Info.format = context::GetFormat(*audioRef, audioRef->Info.channels);
-
-            m_Map.insert({ filepath, audioRef });
-			return audioRef;
+            audioFile->Info.format = context::GetFormat(*audioFile, audioFile->Info.channels);
+            s_AudioFiles->insert({ filepath, audioFile });
+			return audioFile;
 		}
 
 	}

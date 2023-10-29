@@ -85,14 +85,8 @@ namespace xpe {
             }
         }
 
-        Ref<Model> ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        Model ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            if (m_Map.find(filepath) != m_Map.end()) {
-                Ref<Model> modelRef;
-                modelRef.Create(*m_Map[filepath]);
-                return modelRef;
-            }
-
             Model model;
             hstring directory = FileManager::GetDirectory(filepath);
 
@@ -106,9 +100,8 @@ namespace xpe {
             }
 
             ParseMeshes(scene->mRootNode, scene, model, directory, flags);
-            Ref<Model> modelRef = GeometryManager::AddModel(model);
-            m_Map.insert({ filepath, modelRef });
-            return modelRef;
+
+            return GeometryManager::AddModel(model);
         }
 
     }

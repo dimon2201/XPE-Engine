@@ -1,4 +1,5 @@
 #include <anim/anim_system.h>
+#include <anim/skeleton_manager.h>
 
 #include <ecs/scenes.hpp>
 
@@ -8,24 +9,27 @@ namespace xpe {
 
         void AnimSystem::Update(Scene* scene, const Time& dt)
         {
-            scene->EachComponent<SkeletonAnimationComponent>([this, dt](SkeletonAnimationComponent* component)
+            scene->EachComponent<AnimationComponent>([this, dt](AnimationComponent* component)
             {
                 if (component->Play) {
-                    AnimateSkelet(component->Skeleton, component->Animation, dt);
+                    auto* skeleton = component->Entity->Get<SkeletonComponent>();
+                    if (skeleton) {
+                        AnimateSkeleton(*skeleton, *component, dt);
+                    }
                 }
             });
         }
 
-        void AnimSystem::AnimateSkelet(const Ref<Skeleton> &skelet, const Ref<Animation> &animation, const Time& dt)
+        void AnimSystem::AnimateSkeleton(Skeleton &skeleton, const Animation &animation, const Time& dt)
         {
             m_DeltaSeconds = dt.Seconds();
-            m_CurrentSeconds += animation->TicksPerSecond * m_DeltaSeconds;
-            m_CurrentSeconds = fmod(m_CurrentSeconds, animation->Duration);
-            auto& boneBuffer = skelet->BoneBuffer;
-
-            boneBuffer.Resize(skelet->Bones.size());
-
-            UpdateSkeletTransform(skelet, boneBuffer, animation->Root, glm::mat4(1.0f));
+            m_CurrentSeconds += animation.TicksPerSecond * m_DeltaSeconds;
+            m_CurrentSeconds = fmod(m_CurrentSeconds, animation.Duration);
+            auto* boneBuffer = SkeletonManager::GetBuffer(skeleton.Index);
+            if (boneBuffer) {
+                boneBuffer->Resize(skeleton.Bones.size());
+                UpdateSkeletonTransform(skeleton, *boneBuffer, animation.Root, glm::mat4(1.0f));
+            }
         }
 
         void AnimSystem::AnimateBone(Bone &bone, float time)
@@ -181,18 +185,18 @@ namespace xpe {
             return glm::scale(glm::mat4(1.0f), finalScale);
         }
 
-        void AnimSystem::UpdateSkeletTransform(
-            const Ref<Skeleton>& skelet,
-            BoneBuffer& boneBuffer,
-            const AnimationNode& animationNode,
-            const glm::mat4 &parentTransform
+        void AnimSystem::UpdateSkeletonTransform(
+                Skeleton &skeleton,
+                BoneBuffer& boneBuffer,
+                const AnimationNode& animationNode,
+                const glm::mat4 &parentTransform
         ) {
             const string& nodeName = animationNode.Name;
             glm::mat4 nodeTransform = animationNode.Transform;
 
             Bone* bone = nullptr;
-            auto it = skelet->Bones.find(nodeName);
-            if (it != skelet->Bones.end()) {
+            auto it = skeleton.Bones.find(nodeName);
+            if (it != skeleton.Bones.end()) {
                 bone = &it->second;
             }
 
@@ -209,7 +213,7 @@ namespace xpe {
 
             for (auto& node : animationNode.Children)
             {
-                UpdateSkeletTransform(skelet, boneBuffer, node, globalTransformation);
+                UpdateSkeletonTransform(skeleton, boneBuffer, node, globalTransformation);
             }
         }
 
