@@ -54,13 +54,13 @@ namespace xpe
                     {
                         std::lock_guard<std::mutex> lock(mtx);
 
-                        entity->Transform.Position.x = actorTransform.p.x;
-                        entity->Transform.Position.y = actorTransform.p.y;
-                        entity->Transform.Position.z = actorTransform.p.z;
+                        entity->Transform.Position.x = actorTransform.p.y;
+                        entity->Transform.Position.y = actorTransform.p.x;
+                        entity->Transform.Position.z = -actorTransform.p.z;
 
-                        entity->Transform.Rotation.x = shapeEuler.x;
-                        entity->Transform.Rotation.y = shapeEuler.y;
-                        entity->Transform.Rotation.z = shapeEuler.z;
+                        entity->Transform.Rotation.x = shapeEuler.y;
+                        entity->Transform.Rotation.y = shapeEuler.x;
+                        entity->Transform.Rotation.z = -shapeEuler.z;
                     }
 
                     //shape.Collision->PosisionX.store(ATransform.p.x + STransform.p.x, std::memory_order_relaxed);

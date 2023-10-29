@@ -100,7 +100,7 @@ namespace xpe
             Entity* entity,
             Scene* scene,
             const sActor::eActorType& actorType,
-            const sActor::eShapeType& shapeType,
+            sShapeDescriptor* shapeDesc,
             const glm::vec3& linearVelocity,
             f32 staticFriction,
             f32 dynamicFriction,
@@ -109,6 +109,12 @@ namespace xpe
             f32 restOffset
         )
         {
+            glm::vec3 position = glm::vec3(
+                entity->Transform.Position.y,
+                entity->Transform.Position.x,
+                -entity->Transform.Position.z
+            );
+            
             // Creating material
             PxMaterial* physicsMaterial = s_Physics->createMaterial(
                 staticFriction, dynamicFriction, restitution
@@ -123,21 +129,12 @@ namespace xpe
             case sActor::eActorType::RIGID_STATIC:
                 physicsActor = s_Physics->createRigidStatic(
                     PxTransform(
-                        entity->Transform.Position.x,
-                        entity->Transform.Position.y,
-                        entity->Transform.Position.z
-                    )
-                );
+                        position.x, position.y, position.z
+                    ));
                 break;
 
             case sActor::eActorType::RIGID_DYNAMIC:
-                physicsActor = s_Physics->createRigidDynamic(
-                    PxTransform(
-                        entity->Transform.Position.x,
-                        entity->Transform.Position.y,
-                        entity->Transform.Position.z
-                    )
-                );
+                physicsActor = s_Physics->createRigidDynamic(PxTransform(position.x, position.y, position.z));
                 ((PxRigidDynamic*)physicsActor)->setAngularDamping(0.75f);
                 ((PxRigidDynamic*)physicsActor)->setLinearVelocity(PxVec3(linearVelocity.x, linearVelocity.y, linearVelocity.z));
                 break;
@@ -154,22 +151,47 @@ namespace xpe
             // Shape creation
             PxShape* physicsShape = nullptr;
 
-            switch (shapeType)
+            switch (shapeDesc->Type)
             {
 
-            case sActor::eShapeType::BOX:
-                physicsShape = s_Physics->createShape(
-                    PxBoxGeometry(entity->Transform.Scale.x * 0.5f, entity->Transform.Scale.y * 0.5f, entity->Transform.Scale.z * 0.5f),
-                    *physicsMaterial
-                );
-                break;
+                case eShapeType::SPHERE:
+                {
+                    sSphereShapeDescriptor* sphereShapeDesc = (sSphereShapeDescriptor*)shapeDesc;
+                    physicsShape = s_Physics->createShape(
+                        PxSphereGeometry(sphereShapeDesc->Radius),
+                        *physicsMaterial
+                    );
+                    break;
+                }
 
-            case sActor::eShapeType::PLANE:
-                physicsShape = s_Physics->createShape(
-                    PxPlaneGeometry(),
-                    *physicsMaterial
-                );
-                break;
+                case eShapeType::CAPSULE:
+                {
+                    sCapsuleShapeDescriptor* capsuleShapeDesc = (sCapsuleShapeDescriptor*)shapeDesc;
+                    physicsShape = s_Physics->createShape(
+                        PxCapsuleGeometry(capsuleShapeDesc->Radius, capsuleShapeDesc->HalfHeight),
+                        *physicsMaterial
+                    );
+                    break;
+                }
+
+                case eShapeType::BOX:
+                {
+                    sBoxShapeDescriptor* boxShapeDesc = (sBoxShapeDescriptor*)shapeDesc;
+                    physicsShape = s_Physics->createShape(
+                        PxBoxGeometry(boxShapeDesc->HalfExtents.y, boxShapeDesc->HalfExtents.x, boxShapeDesc->HalfExtents.z),
+                        *physicsMaterial
+                    );
+                    break;
+                }
+
+                case eShapeType::PLANE:
+                {
+                    physicsShape = s_Physics->createShape(
+                        PxPlaneGeometry(),
+                        *physicsMaterial
+                    );
+                    break;
+                }
 
             }
 
@@ -183,8 +205,8 @@ namespace xpe
             //shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
             //shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 
-            //physicsShape->setContactOffset(contactOffset);
-            //physicsShape->setRestOffset(restOffset);
+            physicsShape->setContactOffset(contactOffset);
+            physicsShape->setRestOffset(restOffset);
 
             PxFilterData FilterData;
             FilterData.word0 = 0; FilterData.word1 = 0; FilterData.word2 = 0; FilterData.word3 = 0;
@@ -209,7 +231,7 @@ namespace xpe
                 physicsMaterial,
                 physicsShape,
                 actorType,
-                shapeType,
+                shapeDesc,
                 linearVelocity,
                 staticFriction,
                 dynamicFriction,
@@ -226,7 +248,7 @@ namespace xpe
         sScene* PhysicsManager::AddScene(Scene* scene)
         {
             PxSceneDesc sceneDesc(s_Physics->getTolerancesScale());
-            sceneDesc.gravity = PxVec3(0.0f, -1.0f, 0.0f);
+            sceneDesc.gravity = PxVec3(-1.0f, 0.0f, 0.0f);
             sceneDesc.cpuDispatcher = s_Dispatcher;
             sceneDesc.simulationEventCallback = s_EventCallback;
             sceneDesc.filterShader = FilterShader;

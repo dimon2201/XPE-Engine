@@ -366,7 +366,7 @@ namespace xpe
                 Material = actor->Material;
                 Shape = actor->Shape;
                 ActorType = actor->ActorType;
-                ShapeType = actor->ShapeType;
+                ShapeDesc = actor->ShapeDesc;
                 LinearVelocity = actor->LinearVelocity;
                 StaticFriction = actor->StaticFriction;
                 DynamicFriction = actor->DynamicFriction;
