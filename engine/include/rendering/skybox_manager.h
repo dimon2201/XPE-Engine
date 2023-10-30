@@ -14,20 +14,15 @@ namespace xpe {
         };
         Json(Skybox, Geometry)
 
-        class ENGINE_API SkyboxManager : public res::JsonObject
+        class ENGINE_API SkyboxManager final
         {
 
         public:
-            render::Skybox Skybox;
-
-            JsonClass(
-                SkyboxManager,
-                SkyboxManager::Skybox
-            )
-
             static void Init();
             static void Free();
             static SkyboxManager& Get();
+
+            render::Skybox Skybox;
 
         private:
             static SkyboxManager* s_Instance;

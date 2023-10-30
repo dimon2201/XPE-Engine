@@ -159,46 +159,34 @@ public:
 
         // Goblins
         {
+            m_Goblins = new Entity("Goblins", m_Scene);
+
             m_Goblin1 = new Entity("Goblin1", m_Scene);
-            m_Goblin1->Transform.Position = {-4, -10, -4 };
+            m_Goblin1->Transform.Position = {-4, 0, -4 };
             m_Goblin1->Transform.Rotation = {0, 0, 0 };
             m_Goblin1->Transform.Scale = {5, 5, 5 };
 
             m_Goblin2 = new Entity("Goblin2", m_Scene);
-            m_Goblin2->Transform.Position = {-4, -10, 4 };
+            m_Goblin2->Transform.Position = {-4, 0, 4 };
             m_Goblin2->Transform.Rotation = {0, 0, 0 };
             m_Goblin2->Transform.Scale = {5, 5, 5 };
 
             m_Goblin3 = new Entity("Goblin3", m_Scene);
-            m_Goblin3->Transform.Position = {4, -10, -4 };
+            m_Goblin3->Transform.Position = {4, 0, -4 };
             m_Goblin3->Transform.Rotation = {0, 0, 0 };
             m_Goblin3->Transform.Scale = {5, 5, 5 };
 
             m_Goblin4 = new Entity("Goblin4", m_Scene);
-            m_Goblin4->Transform.Position = {4, -10, 4 };
+            m_Goblin4->Transform.Position = {4, 0, 4 };
             m_Goblin4->Transform.Rotation = {0, 0, 0 };
             m_Goblin4->Transform.Scale = {5, 5, 5 };
 
-            auto* goblinModel = m_Goblin1->Add<ModelComponent>(
-                    ModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            goblinModel->Visible = false;
-            goblinModel->HasSkeleton = true;
-            goblinModel->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
-
-            m_Goblin1->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            m_Goblin2->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            m_Goblin3->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            m_Goblin4->Add<SkeletonComponent>(SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-
-            m_Goblin1->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            m_Goblin2->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            m_Goblin3->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            m_Goblin4->Add<AnimationComponent>(AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-
-            m_Goblin1->Get<AnimationComponent>()->Play = false;
-            m_Goblin2->Get<AnimationComponent>()->Play = false;
-            m_Goblin3->Get<AnimationComponent>()->Play = false;
-            m_Goblin4->Get<AnimationComponent>()->Play = false;
+            auto* goblins = m_Goblins->Add<SkeletonModelComponent>(ModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            goblins->Visible = true;
+            goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
+            goblins->Skeleton = SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            goblins->Animation = AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            goblins->Animation.Play = true;
 
             MaterialFilepath materialFilepath;
             materialFilepath.Name = "niz";
@@ -207,12 +195,12 @@ public:
 //                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
 //                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
 
-            auto* material1 = m_Goblin1->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
+            auto* material1 = m_Goblin1->Add<MaterialComponent>(MaterialManager::AddMaterial());
             material1->Albedo = { 1, 1, 1, 1 };
             material1->Emission = { 0, 0, 10 };
-            material1->Metallness = 0.5;
-            material1->Roughness = 0.5;
-            material1->AO = 0.5;
+            material1->Metallness = 0.0f;
+            material1->Roughness = 0.05f;
+            material1->AO = 0.0f;
             material1->EnableAlbedoMap = false;
             material1->EnableNormalMap = false;
             material1->EnableRoughnessMap = false;
@@ -220,12 +208,12 @@ public:
             material1->EnableAOMap = false;
             MaterialManager::Flush(*material1);
 
-            auto* material2 = m_Goblin2->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
+            auto* material2 = m_Goblin2->Add<MaterialComponent>(MaterialManager::AddMaterial());
             material2->Albedo = { 1, 1, 1, 1 };
             material2->Emission = { 0, 0, 10 };
-            material2->Metallness = 0.5;
-            material2->Roughness = 0.5;
-            material2->AO = 0.5;
+            material2->Metallness = 0.0f;
+            material2->Roughness = 0.05f;
+            material2->AO = 0.0f;
             material2->EnableAlbedoMap = false;
             material2->EnableNormalMap = false;
             material2->EnableRoughnessMap = false;
@@ -233,12 +221,12 @@ public:
             material2->EnableAOMap = false;
             MaterialManager::Flush(*material2);
 
-            auto* material3 = m_Goblin3->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
+            auto* material3 = m_Goblin3->Add<MaterialComponent>(MaterialManager::AddMaterial());
             material3->Albedo = { 1, 1, 1, 1 };
             material3->Emission = { 0, 0, 10 };
-            material3->Metallness = 0.5;
-            material3->Roughness = 0.5;
-            material3->AO = 0.5;
+            material3->Metallness = 0.0f;
+            material3->Roughness = 0.05f;
+            material3->AO = 0.0f;
             material3->EnableAlbedoMap = false;
             material3->EnableNormalMap = false;
             material3->EnableRoughnessMap = false;
@@ -246,12 +234,12 @@ public:
             material3->EnableAOMap = false;
             MaterialManager::Flush(*material3);
 
-            auto* material4 = m_Goblin4->Add<MaterialComponent>(MaterialLoader::Load(materialFilepath));
+            auto* material4 = m_Goblin4->Add<MaterialComponent>(MaterialManager::AddMaterial());
             material4->Albedo = { 1, 1, 1, 1 };
             material4->Emission = { 0, 0, 10 };
-            material4->Metallness = 0.5;
-            material4->Roughness = 0.5;
-            material4->AO = 0.5;
+            material4->Metallness = 0.0f;
+            material4->Roughness = 0.05f;
+            material4->AO = 0.0f;
             material4->EnableAlbedoMap = false;
             material4->EnableNormalMap = false;
             material4->EnableRoughnessMap = false;
@@ -465,6 +453,7 @@ public:
         delete m_Text2D;
         delete m_Text3D;
         delete m_Plane;
+        delete m_Goblins;
         delete m_Goblin1;
         delete m_Goblin2;
         delete m_Goblin3;
@@ -573,10 +562,7 @@ private:
     {
         if (key == eKey::P)
         {
-            m_Goblin1->Get<AnimationComponent>()->Play = !m_Goblin1->Get<AnimationComponent>()->Play;
-            m_Goblin2->Get<AnimationComponent>()->Play = !m_Goblin2->Get<AnimationComponent>()->Play;
-            m_Goblin3->Get<AnimationComponent>()->Play = !m_Goblin3->Get<AnimationComponent>()->Play;
-            m_Goblin4->Get<AnimationComponent>()->Play = !m_Goblin4->Get<AnimationComponent>()->Play;
+            m_Goblins->Get<SkeletonModelComponent>()->Animation.Play = !m_Goblins->Get<SkeletonModelComponent>()->Animation.Play;
         }
     }
 
@@ -617,6 +603,7 @@ private:
     Entity* m_Text2D;
     Entity* m_Text3D;
     Entity* m_Plane;
+    Entity* m_Goblins;
     Entity* m_Goblin1;
     Entity* m_Goblin2;
     Entity* m_Goblin3;

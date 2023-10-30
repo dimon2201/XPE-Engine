@@ -1,8 +1,23 @@
 #include <model_loader.h>
 
+#include <anim/skeleton.h>
+
 namespace xpe {
 
     namespace res {
+
+        static void SetVertexBoneData(Vertex& vertex, int boneID, float weight)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                if (vertex.BoneIDs[i] < 0)
+                {
+                    vertex.BoneWeights[i] = weight;
+                    vertex.BoneIDs[i] = boneID;
+                    break;
+                }
+            }
+        }
 
         static Vertex ParseVertex(aiMesh* mesh, u32 i)
         {
@@ -21,13 +36,15 @@ namespace xpe {
                 };
             }
 
-            vertex.Normal = {
-                    mesh->mNormals[i].x,
-                    mesh->mNormals[i].y,
-                    mesh->mNormals[i].z
-            };
+            if (mesh->mNormals) {
+                vertex.Normal = {
+                        mesh->mNormals[i].x,
+                        mesh->mNormals[i].y,
+                        mesh->mNormals[i].z
+                };
+            }
 
-            if (mesh->mTangents != nullptr) {
+            if (mesh->mTangents) {
                 vertex.Tangent = {
                         mesh->mTangents[i].x,
                         mesh->mTangents[i].y,
@@ -40,14 +57,14 @@ namespace xpe {
 
         static Geometry ParseMesh(aiMesh *mesh)
         {
-            Geometry result;
+            Geometry geometry;
             vector<u32> indices;
 
-            result.Vertices.resize(mesh->mNumVertices);
+            geometry.Vertices.resize(mesh->mNumVertices);
 
             for (int i = 0 ; i < mesh->mNumVertices ; i++)
             {
-                result.Vertices[i] = ParseVertex(mesh, i);
+                geometry.Vertices[i] = ParseVertex(mesh, i);
             }
 
             for (u32 i = 0 ; i < mesh->mNumFaces ; i++)
@@ -59,24 +76,59 @@ namespace xpe {
                 }
             }
 
-            result.Indices.resize(indices.size());
-            memcpy(result.Indices.data(), indices.data(), indices.size() * sizeof(u32));
+            geometry.Indices.resize(indices.size());
+            memcpy(geometry.Indices.data(), indices.data(), indices.size() * sizeof(u32));
 
-            return result;
+            anim::Skeleton skeleton;
+            auto& bones = skeleton.Bones;
+            int boneCounter = 0;
+            for (int i = 0; i < mesh->mNumBones; i++)
+            {
+                int boneID;
+                aiBone* bone = mesh->mBones[i];
+                string boneName = bone->mName.C_Str();
+
+                if (bones.find(boneName) == bones.end())
+                {
+                    anim::Bone newBone;
+                    newBone.ID = boneCounter;
+                    newBone.Name = boneName;
+                    newBone.Offset = AssimpManager::ToMat4(bone->mOffsetMatrix);
+                    bones.insert({ boneName, newBone });
+                    boneID = boneCounter;
+                    boneCounter++;
+                }
+
+                else {
+                    boneID = bones[boneName].ID;
+                }
+
+                auto weights = bone->mWeights;
+                int numWeights = bone->mNumWeights;
+
+                for (int wi = 0; wi < numWeights; wi++)
+                {
+                    int vertexId = weights[wi].mVertexId;
+                    float weight = weights[wi].mWeight;
+                    SetVertexBoneData(geometry.Vertices[vertexId], boneID, weight);
+                }
+            }
+
+            return geometry;
         }
 
         static void ParseMeshes(
-                aiNode* node, const aiScene* scene,
-                Model& model,
-                const hstring& directory, u32 flags
+            aiNode* node, const aiScene* scene,
+            Model& model,
+            const hstring& directory, u32 flags
         ) {
             auto& meshes = model.Meshes;
 
             for (u32 i = 0 ; i < node->mNumMeshes ; i++)
             {
-                aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-                Geometry result = ParseMesh(mesh);
-                meshes.push_back(result);
+                aiMesh* assimpMesh = scene->mMeshes[node->mMeshes[i]];
+                Geometry mesh = ParseMesh(assimpMesh);
+                meshes.push_back(mesh);
             }
 
             for (u32 i = 0 ; i < node->mNumChildren ; i++)

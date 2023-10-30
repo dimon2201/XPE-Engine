@@ -174,9 +174,8 @@ namespace xpe
             bool Transparent = false;    // switch to transparency, that will draw object in transparent passes
             bool Visible = true;         // switch visibility, that will draw or not draw object
             bool CastShadow = true;      // switch shadow casting, that will draw or not draw shadow of object
-            bool HasSkeleton = false;    // switch skeleton state, that will draw it animated or not animated
         };
-        Json(RenderState, Transparent, Visible, CastShadow, HasSkeleton)
+        Json(RenderState, Transparent, Visible, CastShadow)
 
         struct ENGINE_API GeometryComponent : Component, Geometry, RenderState
         {
@@ -204,25 +203,19 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SkeletonComponent : Component, Skeleton
+        struct ENGINE_API SkeletonModelComponent : Component, Model, RenderState
         {
-            SkeletonComponent(const Skeleton& skeleton) : Skeleton(skeleton) {}
-            SkeletonComponent(Skeleton&& skeleton) : Skeleton(skeleton) {}
+            vector<ecs::Entity*> Entities;
+            anim::Skeleton Skeleton;
+            anim::Animation Animation;
+
+            SkeletonModelComponent(const Model& model) : Model(model) {}
+            SkeletonModelComponent(Model&& model) : Model(model) {}
 
             JsonClass(
-                SkeletonComponent,
-                m_Tag
-            )
-        };
-
-        struct ENGINE_API AnimationComponent : Component, Animation
-        {
-            AnimationComponent(const Animation& animation) : Animation(animation) {}
-            AnimationComponent(Animation&& animation) : Animation(animation) {}
-
-            JsonClass(
-                AnimationComponent,
-                m_Tag
+                SkeletonModelComponent,
+                Skeleton,
+                Animation
             )
         };
 

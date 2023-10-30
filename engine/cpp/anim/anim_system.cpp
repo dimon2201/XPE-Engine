@@ -9,13 +9,10 @@ namespace xpe {
 
         void AnimSystem::Update(Scene* scene, const Time& dt)
         {
-            scene->EachComponent<AnimationComponent>([this, dt](AnimationComponent* component)
+            scene->EachComponent<SkeletonModelComponent>([this, dt](SkeletonModelComponent* component)
             {
-                if (component->Play) {
-                    auto* skeleton = component->Entity->Get<SkeletonComponent>();
-                    if (skeleton) {
-                        AnimateSkeleton(*skeleton, *component, dt);
-                    }
+                if (component->Animation.Play) {
+                    AnimateSkeleton(component->Skeleton, component->Animation, dt);
                 }
             });
         }

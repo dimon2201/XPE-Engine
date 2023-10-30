@@ -26,7 +26,7 @@ namespace xpe {
         void MainPass::DrawOpaque(Scene* scene) {
             scene->EachComponent<GeometryComponent>([this](GeometryComponent* component)
             {
-                if (!component->Transparent && component->Visible && !component->HasSkeleton) {
+                if (component->Visible && !component->Transparent) {
                     auto& geometry = *component;
                     DrawInstanced(
                             geometry.PrimitiveTopology,
@@ -48,7 +48,7 @@ namespace xpe {
 
             scene->EachComponent<ModelComponent>([this](ModelComponent* component)
             {
-                if (!component->Transparent && component->Visible && !component->HasSkeleton) {
+                if (component->Visible && !component->Transparent) {
                     auto& model = *component;
                     DrawInstanced(
                             model.PrimitiveTopology,
@@ -72,7 +72,7 @@ namespace xpe {
         void MainPass::DrawTransparent(Scene* scene) {
             scene->EachComponent<GeometryComponent>([this](GeometryComponent* component)
             {
-                if (component->Transparent && component->Visible && !component->HasSkeleton) {
+                if (component->Visible && component->Transparent) {
                     auto& geometry = *component;
                     DrawInstanced(
                             geometry.PrimitiveTopology,
@@ -94,7 +94,7 @@ namespace xpe {
 
             scene->EachComponent<ModelComponent>([this](ModelComponent* component)
             {
-                 if (component->Transparent && component->Visible && !component->HasSkeleton) {
+                 if (component->Visible && component->Transparent) {
                      auto& model = *component;
                      DrawInstanced(
                              model.PrimitiveTopology,
@@ -126,7 +126,7 @@ namespace xpe {
 
                 scene->EachComponent<GeometryComponent>([this, &lightMatrix](GeometryComponent* component)
                 {
-                    if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                    if (component->Visible && component->CastShadow) {
                         auto& geometry = *component;
                         DrawInstanced(
                                 geometry.PrimitiveTopology,
@@ -152,7 +152,7 @@ namespace xpe {
 
                 scene->EachComponent<GeometryComponent>([this, &lightMatrix](GeometryComponent* component)
                 {
-                    if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                    if (component->Visible && component->CastShadow) {
                         auto& geometry = *component;
                         DrawInstanced(
                                 geometry.PrimitiveTopology,
@@ -178,7 +178,7 @@ namespace xpe {
 
                 scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                     if (component->Visible && component->CastShadow) {
                          auto& model = *component;
                          DrawInstanced(
                                  model.PrimitiveTopology,
@@ -204,7 +204,7 @@ namespace xpe {
 
                 scene->EachComponent<ModelComponent>([this, &lightMatrix](ModelComponent* component)
                 {
-                     if (component->CastShadow && component->Visible && !component->HasSkeleton) {
+                     if (component->Visible && component->CastShadow) {
                          auto& model = *component;
                          DrawInstanced(
                                  model.PrimitiveTopology,
