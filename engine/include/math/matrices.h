@@ -60,7 +60,7 @@ namespace xpe {
 
         struct ENGINE_API PerspectiveMatrix
         {
-            float FovDegree = 45.0f;
+            float FovDegree = 60.0f;
             float AspectRatio = 1.0f;
             float Near = 0.1f;
             float Far = 100.0f;

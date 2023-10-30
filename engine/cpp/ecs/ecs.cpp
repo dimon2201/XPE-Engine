@@ -99,6 +99,16 @@ namespace xpe {
             m_ComponentAddresses.erase(entity);
         }
 
+        void Scene::ToJson(json &root)
+        {
+
+        }
+
+        void Scene::FromJson(json &root)
+        {
+
+        }
+
     }
 
 }

@@ -1,7 +1,7 @@
 #include <anim/anim_system.h>
 #include <anim/skeleton_manager.h>
 
-#include <ecs/scenes.hpp>
+#include <ecs/components.hpp>
 
 namespace xpe {
 

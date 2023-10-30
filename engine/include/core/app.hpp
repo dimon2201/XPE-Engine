@@ -24,7 +24,7 @@ namespace xpe
 
     namespace ecs
     {
-        class MainScene;
+        class Scene;
     }
 
     namespace physics
@@ -61,7 +61,7 @@ namespace xpe
 
             std::atomic_bool m_IsOpen = true;
 
-            ecs::MainScene* m_MainScene = nullptr;
+            ecs::Scene* m_Scene = nullptr;
 
             render::Canvas* m_Canvas = nullptr;
 

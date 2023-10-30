@@ -14,7 +14,9 @@ namespace xpe {
 
         Canvas::~Canvas()
         {
+            delete m_PresentTarget;
             context::FreeSampler(m_PresentSampler);
+            RemoveWindowFrameResized();
         }
 
         void Canvas::Draw()
@@ -39,10 +41,11 @@ namespace xpe {
 
         void Canvas::CreatePresentTarget()
         {
-            m_PresentTarget.Create(
+            m_PresentTarget = new RenderTarget(
                     vector<void*> { context::SwapchainTargetView },
                     m_ViewportBuffer->GetList()
             );
+            m_PresentTarget->RemoveEventListeners();
         }
 
         void Canvas::CreatePresentSampler()

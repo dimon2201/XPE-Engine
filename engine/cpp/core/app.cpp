@@ -1,8 +1,6 @@
 #include <core/app.hpp>
 #include <core/dispatchers.h>
 
-#include <ecs/scenes.hpp>
-
 #include <rendering/core/debugger.h>
 
 #include <rendering/render_system.h>
@@ -48,6 +46,7 @@ namespace xpe {
             winDesc.X = Config.WinX;
             winDesc.Y = Config.WinY;
             winDesc.VSync = Config.VSync;
+            winDesc.Fullscreen = Config.Fullscreen;
             winDesc.Gamma = Config.Gamma;
             winDesc.Exposure = Config.Exposure;
 
@@ -89,9 +88,7 @@ namespace xpe {
             m_SsaoPass->Enable = Config.EnableSSAO;
             m_FxaaPass->Enable = Config.MsaaSampleCount == 1;
 
-            m_MainScene = new MainScene();
-            m_MainScene->PerspectiveCamera->Buffer = m_RenderSystem->GetCameraBuffer();
-            m_MainScene->OrthoCamera->Buffer = m_RenderSystem->GetCameraBuffer();
+            m_Scene = new Scene();
 
             Init();
 
@@ -122,18 +119,18 @@ namespace xpe {
                 // submit audio task with current scene state
                 // todo(Vitalii A.): Disabled audio system task to investigate heap memory leak
 //                TaskManager::SubmitTask({[this]() {
-//                    m_AudioSystem->Update(m_MainScene, DeltaTime);
-//                    m_AudioSystem->UpdateListener(m_MainScene);
+//                    m_AudioSystem->Update(m_Scene, DeltaTime);
+//                    m_AudioSystem->UpdateListener(m_Scene);
 //                }});
 
                 // submit animation task with current scene state
                 TaskManager::SubmitTask({[this]() {
-                    m_AnimSystem->Update(m_MainScene, DeltaTime);
+                    m_AnimSystem->Update(m_Scene, DeltaTime);
                 }});
 
                 // submit physics task with current scene state
 //                TaskManager::SubmitTask({[this]() {
-                    m_PhysicsSystem->Update(m_MainScene, DeltaTime);
+                    m_PhysicsSystem->Update(m_Scene, DeltaTime);
 //                }});
 
                 ClearRenderPasses();
@@ -158,7 +155,7 @@ namespace xpe {
 
             Free();
 
-            delete m_MainScene;
+            delete m_Scene;
 
             delete m_AudioSystem;
             delete m_AnimSystem;
@@ -473,7 +470,7 @@ namespace xpe {
 
         void Application::Render()
         {
-            m_RenderSystem->Update(m_MainScene, DeltaTime);
+            m_RenderSystem->Update(m_Scene, DeltaTime);
             m_Canvas->SetRenderTarget(m_RenderSystem->GetFinalRT());
             m_Canvas->Draw();
         }

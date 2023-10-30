@@ -74,6 +74,11 @@ namespace xpe {
             SetPos(windowDescriptor.X, windowDescriptor.Y);
             SetSize(windowDescriptor.Width, windowDescriptor.Height);
             SetVSync(windowDescriptor.VSync);
+            if (windowDescriptor.Fullscreen) {
+                SetFullscreen();
+            } else {
+                SetWindowed();
+            }
 
             LogInfo("Window initialized");
         }
@@ -223,6 +228,10 @@ namespace xpe {
 
         bool WindowManager::IsWindowed() {
             return !s_EnableFullscreen;
+        }
+
+        bool WindowManager::IsFullscreen() {
+            return s_EnableFullscreen;
         }
 
         void WindowManager::CreatePrimaryMonitor() {

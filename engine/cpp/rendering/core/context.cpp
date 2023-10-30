@@ -7,6 +7,7 @@ namespace xpe {
         namespace context {
 
             void* SwapchainTargetView = nullptr;
+            void* SwapchainTextureInstance = nullptr;
 
             void CopyBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
             {

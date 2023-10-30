@@ -1,7 +1,7 @@
 #include <rendering/passes/main_pass.h>
 #include <rendering/material/material_manager.h>
 
-#include <ecs/scenes.hpp>
+#include <ecs/components.hpp>
 
 namespace xpe {
 

@@ -7,6 +7,7 @@
     "WinX": 400,
     "WinY": 300,
     "VSync": false,
+    "Fullscreen": false,
     "Gamma": 2.2,
     "Exposure": 1.0,
 

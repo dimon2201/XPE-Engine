@@ -1,6 +1,7 @@
 #include <rendering/render_system.h>
 #include <rendering/material/material_manager.h>
 #include <rendering/geometry/geometry_manager.h>
+#include <rendering/skybox_manager.h>
 
 #include <anim/skeleton_manager.h>
 
@@ -13,13 +14,11 @@ namespace xpe {
         RenderSystem::RenderSystem(const Viewport& viewport, u32 sampleCount)
         {
             context::Init();
-            ShaderManager::Init();
-            GeometryManager::Init();
-            MaterialManager::Init();
-            SkeletonManager::Init();
+            InitManagers(viewport, sampleCount);
             InitBuffers(viewport, sampleCount);
             InitSamplers(viewport, sampleCount);
             InitRenderTargets(viewport, sampleCount);
+            AddWindowFrameResized(RenderSystem, 1);
         }
 
         RenderSystem::~RenderSystem()
@@ -27,11 +26,18 @@ namespace xpe {
             FreeBuffers();
             FreeSamplers();
             FreeRenderTargets();
-            SkeletonManager::Free();
-            MaterialManager::Free();
-            GeometryManager::Free();
-            ShaderManager::Free();
+            FreeManagers();
             context::Free();
+            RemoveWindowFrameResized();
+        }
+
+        void RenderSystem::InitManagers(const Viewport &viewport, u32 sampleCount)
+        {
+            ShaderManager::Init();
+            GeometryManager::Init();
+            MaterialManager::Init();
+            SkeletonManager::Init();
+            SkyboxManager::Init();
         }
 
         void RenderSystem::InitBuffers(const Viewport &viewport, u32 sampleCount)
@@ -53,8 +59,10 @@ namespace xpe {
         void RenderSystem::InitSamplers(const Viewport &viewport, u32 sampleCount)
         {
             m_ShadowSampler.BorderColor = glm::vec4(1, 1, 1, 1);
+            m_ShadowSampler.Filter   = TextureSampler::eFilter::MIN_MAG_MIP_LINEAR;
             m_ShadowSampler.AddressU = TextureSampler::eAddress::CLAMP;
             m_ShadowSampler.AddressV = TextureSampler::eAddress::CLAMP;
+            m_ShadowSampler.AddressW = TextureSampler::eAddress::CLAMP;
             m_ShadowSampler.Slot = K_SLOT_SHADOW_SAMPLER;
 
             context::CreateSampler(m_ShadowSampler);
@@ -199,6 +207,15 @@ namespace xpe {
             m_UiRenderTarget = new RenderTarget({ uiColor }, uiDepth, viewport);
         }
 
+        void RenderSystem::FreeManagers()
+        {
+            SkyboxManager::Free();
+            SkeletonManager::Free();
+            MaterialManager::Free();
+            GeometryManager::Free();
+            ShaderManager::Free();
+        }
+
         void RenderSystem::FreeBuffers()
         {
             delete m_ViewportBuffer;
@@ -223,6 +240,14 @@ namespace xpe {
             delete m_OpaqueRenderTarget;
             delete m_TransparentRenderTarget;
             delete m_UiRenderTarget;
+        }
+
+        void RenderSystem::WindowFrameResized(int width, int height)
+        {
+            Viewport* viewport = m_ViewportBuffer->Get(0);
+            viewport->Width = width;
+            viewport->Height = height;
+            m_ViewportBuffer->Flush();
         }
 
         void RenderSystem::Prepare()

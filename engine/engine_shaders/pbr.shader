@@ -73,7 +73,7 @@ float3 PBR(DirectLight directLight, float3 albedo, float metallness, float rough
 {
     L = normalize(directLight.Position);
     float3 lightColor = directLight.Color;
-    float directShadow = 0;
+    float directShadow = DirectShadow(L, shadowCoords);
     float radianceFactor = 1.0 - directShadow;
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
 }
@@ -94,7 +94,7 @@ float3 PBR(SpotLight spotLight, float3 albedo, float metallness, float roughness
     L = normalize(spotLight.Position - W);
     float3 lightColor = spotLight.Color;
     float A = Attenuation(spotLight);
-    float spotShadow = 0;
+    float spotShadow = DirectShadow(L, shadowCoords);
     float radianceFactor = A * (1.0 - spotShadow);
 
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);

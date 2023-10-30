@@ -29,7 +29,7 @@ namespace xpe {
             Shader* m_Shader;
             ViewportBuffer* m_ViewportBuffer;
             TextureSampler m_PresentSampler;
-            Scope<RenderTarget> m_PresentTarget;
+            RenderTarget* m_PresentTarget;
             u32 m_BoundTargetIndex = 0;
         };
 

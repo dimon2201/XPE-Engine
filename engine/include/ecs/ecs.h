@@ -235,6 +235,10 @@ namespace xpe
             template<typename T>
             usize GetComponentsCount();
 
+            void ToJson(json &root) override;
+
+            void FromJson(json &root) override;
+
             physics::sScene* PhysicsScene;
 
         protected:
@@ -426,6 +430,14 @@ namespace xpe
 
         struct ENGINE_API Global : public Object, public res::JsonObject
         {};
+
+        template<typename T, typename... Args>
+        T* Scene::AddGlobal(Args&&... args)
+        {
+            T* global = new T(std::forward<Args>(args)...);
+            m_Globals.insert({ GetGlobalType<T>(), static_cast<Global*>(global) });
+            return global;
+        }
 
         class ENGINE_API System : public Object {
 

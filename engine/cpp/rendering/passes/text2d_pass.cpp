@@ -1,6 +1,6 @@
 #include <rendering/passes/text2d_pass.h>
 
-#include <ecs/scenes.hpp>
+#include <ecs/components.hpp>
 
 namespace xpe {
 

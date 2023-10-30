@@ -16,6 +16,7 @@ namespace xpe {
                 WinX,
                 WinY,
                 VSync,
+                Fullscreen,
                 Gamma,
                 Exposure,
                 LogTitle,
@@ -37,6 +38,7 @@ namespace xpe {
             s32 WinX = 0;
             s32 WinY = 0;
             bool VSync = false;
+            bool Fullscreen = false;
             float Gamma = 2.2f;
             float Exposure = 1;
 

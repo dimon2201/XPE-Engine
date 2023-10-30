@@ -1,7 +1,11 @@
 #include <core/app.hpp>
 #include <launcher.h>
 
-#include <ecs/scenes.hpp>
+#include <rendering/render_system.h>
+#include <rendering/skybox_manager.h>
+#include <rendering/camera.h>
+
+#include <ecs/components.hpp>
 
 #include <model_loader.h>
 #include <material_loader.h>
@@ -67,14 +71,13 @@ public:
         AudioLoader::Init();
 
         InitCamera();
-        InitCamera2D();
 
         // Create physics scene
-        PhysicsManager::AddScene(m_MainScene);
+        PhysicsManager::AddScene(m_Scene);
 
         // Text 2D
         {
-            m_Text2D = new Entity("Text2D", m_MainScene);
+            m_Text2D = new Entity("Text2D", m_Scene);
             m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
             m_Text2D->Transform.Scale = { 1, 1, 1 };
 
@@ -88,7 +91,7 @@ public:
 
         // Text 3D
         {
-            m_Text3D = new Entity("Text3D", m_MainScene);
+            m_Text3D = new Entity("Text3D", m_Scene);
             m_Text3D->Transform.Position = { 0, 25, 50 };
             m_Text3D->Transform.Scale = { 0.25, 0.25, 1 };
 
@@ -109,14 +112,17 @@ public:
             skyboxPath.TopFilepath = "res/skybox/top.jpg";
             skyboxPath.BottomFilepath = "res/skybox/bottom.jpg";
 
-            m_MainScene->Skybox->Geometry = GeometryManager::AddGeometry(Cube());
-            m_MainScene->Skybox->Texture = TextureLoader::LoadCube(skyboxPath, eTextureFormat::RGBA8);
-            m_MainScene->Skybox->Texture->GenerateMips();
+            Skybox skybox;
+            skybox.Geometry = GeometryManager::AddGeometry(Cube());
+            skybox.Texture = TextureLoader::LoadCube(skyboxPath, eTextureFormat::RGBA8);
+            skybox.Texture->GenerateMips();
+
+            SkyboxManager::Get().Skybox = skybox;
         }
 
         // Plane
         {
-            m_Plane = new Entity("Plane", m_MainScene);
+            m_Plane = new Entity("Plane", m_Scene);
             m_Plane->Transform.Position = { 0, 0, 0 };
             m_Plane->Transform.Scale = { 2, 1, 2 };
 
@@ -130,20 +136,20 @@ public:
             sPlaneShapeDescriptor planeShapeDesc;
             m_Plane->Add<RigidBodyComponent>(
                 PhysicsManager::AddActor(
-                    m_Plane,
-                    m_MainScene,
-                    sActor::eActorType::RIGID_STATIC,
-                    &planeShapeDesc,
-                    glm::vec3(0.0f),
-                    0.5f, 0.5f, 0.5f,
-                    0.05f, 0.0f
+                        m_Plane,
+                        m_Scene,
+                        sActor::eActorType::RIGID_STATIC,
+                        &planeShapeDesc,
+                        glm::vec3(0.0f),
+                        0.5f, 0.5f, 0.5f,
+                        0.05f, 0.0f
                 )
             );
         }
 
         // Sunlight
         {
-            m_SunLight = new Entity("SunLight", m_MainScene);
+            m_SunLight = new Entity("SunLight", m_Scene);
             m_SunLight->Transform.Position = { 20, 20, -20 };
 
             m_SunLight->Add<GeometryComponent>(GeometryManager::AddGeometry(Sphere()));
@@ -153,22 +159,22 @@ public:
 
         // Goblins
         {
-            m_Goblin1 = new Entity("Goblin1", m_MainScene);
+            m_Goblin1 = new Entity("Goblin1", m_Scene);
             m_Goblin1->Transform.Position = {-4, -10, -4 };
             m_Goblin1->Transform.Rotation = {0, 0, 0 };
             m_Goblin1->Transform.Scale = {5, 5, 5 };
 
-            m_Goblin2 = new Entity("Goblin2", m_MainScene);
+            m_Goblin2 = new Entity("Goblin2", m_Scene);
             m_Goblin2->Transform.Position = {-4, -10, 4 };
             m_Goblin2->Transform.Rotation = {0, 0, 0 };
             m_Goblin2->Transform.Scale = {5, 5, 5 };
 
-            m_Goblin3 = new Entity("Goblin3", m_MainScene);
+            m_Goblin3 = new Entity("Goblin3", m_Scene);
             m_Goblin3->Transform.Position = {4, -10, -4 };
             m_Goblin3->Transform.Rotation = {0, 0, 0 };
             m_Goblin3->Transform.Scale = {5, 5, 5 };
 
-            m_Goblin4 = new Entity("Goblin4", m_MainScene);
+            m_Goblin4 = new Entity("Goblin4", m_Scene);
             m_Goblin4->Transform.Position = {4, -10, 4 };
             m_Goblin4->Transform.Rotation = {0, 0, 0 };
             m_Goblin4->Transform.Scale = {5, 5, 5 };
@@ -282,7 +288,7 @@ public:
 
         // Cube
         {
-            m_Cube = new Entity("Cube", m_MainScene);
+            m_Cube = new Entity("Cube", m_Scene);
             m_Cube->Transform.Position = { 10, 2.5, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
             m_Cube->Add<GeometryComponent>(GeometryManager::AddGeometry(Cube()));
@@ -302,7 +308,7 @@ public:
             mat.Roughness = 0.05f;
             mat.AO = 0.0f;
 
-            m_Glasses[i] = new Entity("Glass-" + string(std::to_string(i)), m_MainScene);
+            m_Glasses[i] = new Entity("Glass-" + string(std::to_string(i)), m_Scene);
             m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), 0 };
             m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
             m_Glasses[i]->Add<GeometryComponent>(GeometryManager::AddGeometry(Sphere()));
@@ -313,7 +319,7 @@ public:
             m_Glasses[i]->Add<RigidBodyComponent>(
                     PhysicsManager::AddActor(
                             m_Glasses[i],
-                            m_MainScene,
+                            m_Scene,
                             sActor::eActorType::RIGID_DYNAMIC,
                             &sphereShapeDesc,
                             glm::vec3(0.0f),
@@ -323,11 +329,9 @@ public:
             );
         }
 
-        auto& camera = *m_MainScene->PerspectiveCamera; // Get camera to set listener's position, up and look
-
 //        //loading stream audio files
 //        {
-//            m_AudioObject = new Entity("AudioObject", m_MainScene);
+//            m_AudioObject = new Entity("AudioObject", m_Scene);
 //
 //            //load test stream audio
 //            {
@@ -349,12 +353,12 @@ public:
 //        //// create voice component
 //        //{
 //        //    VoiceComponent component("Test");
-//        //    m_MainScene->Add<VoiceComponent>(m_MainScene->Audio->GetTag(), component);
+//        //    m_Scene->Add<VoiceComponent>(m_Scene->Audio->GetTag(), component);
 //        //}
 //
 //        //setup background audio
 //        {
-//            m_BackgroundAudio = new Entity("BackgroundAudio", m_MainScene);
+//            m_BackgroundAudio = new Entity("BackgroundAudio", m_Scene);
 //
 //            //test sources
 //            SourceAudioComponent* source;
@@ -472,6 +476,11 @@ public:
         delete m_Glasses[1];
         delete m_Glasses[2];
         delete m_Glasses[3];
+
+        RemoveWindowClose();
+        RemoveKeyPressed();
+        RemoveKeyHold();
+        RemoveCursorMove();
     }
 
     void WindowClosed()
@@ -498,7 +507,7 @@ public:
 
     void CursorMoved(const double x, const double y)
     {
-        auto& camera = *m_MainScene->PerspectiveCamera;
+        auto& camera = *m_PerspectiveCamera;
         if (InputManager::MousePressed(eMouse::ButtonRight)) {
             camera.EnableLook = false;
             InputManager::CaptureCursor(x, y);
@@ -512,27 +521,21 @@ public:
 private:
 
     void InitCamera() {
-        m_MainScene->PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
+        m_PerspectiveCamera = new PerspectiveCamera(WindowManager::GetWidth(), WindowManager::GetHeight(), m_RenderSystem->GetCameraBuffer());
+        m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
         // todo(cheerwizard): BUG - after moving camera, the camera resets position
-        m_MainScene->PerspectiveCamera->Component.Position = { 5, 5, 20 };
-        m_MainScene->PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
-        m_MainScene->PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
-        m_MainScene->PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
-        m_MainScene->PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
-        m_MainScene->PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
-
-        m_MainScene->PerspectiveCamera->Init(WindowManager::GetWidth(), WindowManager::GetHeight());
-    }
-
-    void InitCamera2D()
-    {
-        m_MainScene->OrthoCamera->Component;
-        m_MainScene->OrthoCamera->Component.Position = { 0, 0, -1 };
+        m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
+        m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
+        m_PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
+        m_PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
+        m_PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
+        m_PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+        m_PerspectiveCamera->Flush();
     }
 
     void UpdateCamera()
     {
-        auto& camera = *m_MainScene->PerspectiveCamera;
+        auto& camera = *m_PerspectiveCamera;
         if (InputManager::MousePressed(eMouse::ButtonLeft)) {
             camera.LookMode = Camera::eLookMode::EDITOR;
         } else {
@@ -608,6 +611,8 @@ private:
     }
 
 private:
+    PerspectiveCamera* m_PerspectiveCamera;
+
     Entity* m_SunLight;
     Entity* m_Text2D;
     Entity* m_Text3D;
@@ -631,7 +636,7 @@ Application* CreateApplication() {
     // read app configs
     if (!xpe::res::ReadJsonFile("config/app_config.json", app->Config))
     {
-        FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");
+        FMT_ASSERT(false, "Failed to read app config from config/app_config.json file. Please provide config file!");
         return 0;
     }
 

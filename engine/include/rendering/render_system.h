@@ -31,6 +31,8 @@ namespace xpe {
 
             void Prepare();
 
+            void WindowFrameResized(int width, int height);
+
             inline ViewportBuffer* GetViewportBuffer() { return m_ViewportBuffer; }
             inline MonitorBuffer* GetMonitorBuffer() { return m_MonitorBuffer; }
             inline CameraBuffer* GetCameraBuffer() { return m_CameraBuffer; }
@@ -52,10 +54,12 @@ namespace xpe {
             inline TextureSampler* GetShadowSampler() { return &m_ShadowSampler; }
 
         private:
+            void InitManagers(const Viewport& viewport, u32 sampleCount);
             void InitBuffers(const Viewport& viewport, u32 sampleCount);
             void InitSamplers(const Viewport& viewport, u32 sampleCount);
             void InitRenderTargets(const Viewport& viewport, u32 sampleCount);
 
+            void FreeManagers();
             void FreeBuffers();
             void FreeSamplers();
             void FreeRenderTargets();

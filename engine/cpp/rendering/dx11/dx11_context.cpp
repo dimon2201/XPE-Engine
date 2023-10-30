@@ -10,13 +10,14 @@ namespace xpe {
 
         namespace context {
 
-            ID3D11Device* s_Device = nullptr;
-            ID3D11DeviceContext* s_ImmContext = nullptr;
-            ID3D11DeviceContext* s_DefContext = nullptr;
-            IDXGISwapChain* s_SwapChain = nullptr;
-            IDXGIDevice* s_GIDevice = nullptr;
-            IDXGIAdapter* s_GIAdapter = nullptr;
-            IDXGIFactory* s_GIFactory = nullptr;
+            static ID3D11Device* s_Device = nullptr;
+            static ID3D11DeviceContext* s_ImmContext = nullptr;
+            static ID3D11DeviceContext* s_DefContext = nullptr;
+            static IDXGISwapChain* s_SwapChain = nullptr;
+            static IDXGIDevice* s_GIDevice = nullptr;
+            static IDXGIAdapter* s_GIAdapter = nullptr;
+            static IDXGIFactory* s_GIFactory = nullptr;
+            static DXGI_MODE_DESC s_GIModeDesc;
 
             static const std::unordered_map<eBufferUsage, D3D11_USAGE> s_BufferUsageTable =
             {
@@ -357,17 +358,17 @@ namespace xpe {
 
             void CreateSwapchain(int width, int height)
             {
-                DXGI_MODE_DESC bufferDesc = {};
-                bufferDesc.Width = width;
-                bufferDesc.Height = height;
-                bufferDesc.RefreshRate.Numerator = WindowManager::GetRefreshRate();
-                bufferDesc.RefreshRate.Denominator = 1;
-                bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-                bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-                bufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+                s_GIModeDesc = {};
+                s_GIModeDesc.Width = width;
+                s_GIModeDesc.Height = height;
+                s_GIModeDesc.RefreshRate.Numerator = WindowManager::GetRefreshRate();
+                s_GIModeDesc.RefreshRate.Denominator = 1;
+                s_GIModeDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+                s_GIModeDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+                s_GIModeDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 
                 DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
-                swapChainDesc.BufferDesc = bufferDesc;
+                swapChainDesc.BufferDesc = s_GIModeDesc;
                 swapChainDesc.SampleDesc.Count = 1;
                 swapChainDesc.SampleDesc.Quality = 0;
                 swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
@@ -378,6 +379,8 @@ namespace xpe {
 
                 s_GIFactory->CreateSwapChain(s_Device, &swapChainDesc, &s_SwapChain);
                 LogDebugMessage();
+
+                s_SwapChain->SetFullscreenState(WindowManager::IsFullscreen(), nullptr);
 
                 CreateSwapchainTargetView();
             }
@@ -391,15 +394,24 @@ namespace xpe {
             void ResizeSwapchain(RenderTarget& renderTarget, int width, int height)
             {
                 UnbindRenderTarget();
-
+                if (SwapchainTextureInstance) {
+                    ((ID3D11Texture2D*) SwapchainTextureInstance)->Release();
+                    SwapchainTextureInstance = nullptr;
+                }
                 FreeRenderTargetColorViews(renderTarget.ColorViews);
 
-                s_SwapChain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+                s_SwapChain->ResizeBuffers(1, 0, 0, DXGI_FORMAT_UNKNOWN, 0ul);
                 LogDebugMessage();
 
-                CreateSwapchainTargetView();
-                renderTarget.ColorViews[0] = SwapchainTargetView;
+                DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
+                s_SwapChain->GetDesc(&swapChainDesc);
+                LogDebugMessage();
 
+                LogWarning("ResizeSwapchain: expected resolution=({}, {}); actual resolution=({}, {})", width, height, swapChainDesc.BufferDesc.Width, swapChainDesc.BufferDesc.Height);
+
+                CreateSwapchainTargetView();
+
+                renderTarget.ColorViews[0] = SwapchainTargetView;
                 BindRenderTarget(renderTarget.ColorViews, renderTarget.DepthStencilView);
 
                 for (auto& viewport : renderTarget.Viewports)
@@ -407,23 +419,24 @@ namespace xpe {
                     viewport.Width = width;
                     viewport.Height = height;
                 }
+
                 BindViewports(renderTarget.Viewports);
             }
 
             void CreateSwapchainTargetView()
             {
-                ID3D11Texture2D* swapchainTexture = nullptr;
-                s_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**) &swapchainTexture);
+                s_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**) &SwapchainTextureInstance);
                 LogDebugMessage();
+
+                D3D11_RENDER_TARGET_VIEW_DESC rtDesc = {};
+                rtDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+                rtDesc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
 
                 s_Device->CreateRenderTargetView(
-                        (ID3D11Texture2D*) swapchainTexture,
-                        NULL,
+                        (ID3D11Texture2D*) SwapchainTextureInstance,
+                        &rtDesc,
                         (ID3D11RenderTargetView**) &SwapchainTargetView
                 );
-                LogDebugMessage();
-
-                ((ID3D11Texture2D*) swapchainTexture)->Release();
                 LogDebugMessage();
             }
 

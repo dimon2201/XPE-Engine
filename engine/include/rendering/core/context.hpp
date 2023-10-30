@@ -10,6 +10,7 @@ namespace xpe {
         namespace context {
 
             extern void* SwapchainTargetView;
+            extern void* SwapchainTextureInstance;
 
             ENGINE_API void Init();
             ENGINE_API void Free();

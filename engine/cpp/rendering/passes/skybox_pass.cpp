@@ -1,6 +1,5 @@
 #include <rendering/passes/skybox_pass.h>
-
-#include <ecs/globals.h>
+#include <rendering/skybox_manager.h>
 
 namespace xpe {
 
@@ -28,20 +27,18 @@ namespace xpe {
 
         void SkyboxPass::DrawOpaque(Scene *scene)
         {
-            Skybox* skybox = scene->GetGlobal<Skybox>();
-            if (skybox) {
-                if (skybox->Texture) {
-                    Geometry& skyboxGeometry = skybox->Geometry;
-                    Texture& skyboxTexture = *skybox->Texture;
-                    context::BindPrimitiveTopology(skyboxGeometry.PrimitiveTopology);
-                    context::BindTexture(skyboxTexture);
-                    context::DrawIndexed(
-                            skyboxGeometry.Indices.size(),
-                            1,
-                            skyboxGeometry.VertexOffset,
-                            skyboxGeometry.IndexOffset
-                    );
-                }
+            auto& skybox = SkyboxManager::Get().Skybox;
+            if (skybox.Texture) {
+                Geometry& skyboxGeometry = skybox.Geometry;
+                Texture& skyboxTexture = *skybox.Texture;
+                context::BindPrimitiveTopology(skyboxGeometry.PrimitiveTopology);
+                context::BindTexture(skyboxTexture);
+                context::DrawIndexed(
+                        skyboxGeometry.Indices.size(),
+                        1,
+                        skyboxGeometry.VertexOffset,
+                        skyboxGeometry.IndexOffset
+                );
             }
         }
 

@@ -32,6 +32,7 @@ namespace xpe
             s32 X;
             s32 Y;
             bool VSync;
+            bool Fullscreen = false;
             float Gamma = 2.2f; // 2.2 is not default for every monitor
             float Exposure = 1.0f; // level of camera exposure
             eCursorMode CursorMode = eCursorMode::DEFAULT;
@@ -64,6 +65,7 @@ namespace xpe
             static void Swap();
 
             static bool IsWindowed();
+            static bool IsFullscreen();
 
             static int GetWidth();
             static int GetHeight();

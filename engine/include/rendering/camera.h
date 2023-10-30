@@ -11,10 +11,12 @@ namespace xpe {
         using namespace core;
         using namespace ecs;
 
-        class ENGINE_API Camera : public Global
+        class ENGINE_API Camera : public res::JsonObject
         {
 
         public:
+            Camera(CameraBuffer* buffer) : m_Buffer(buffer) {}
+
             JsonClass(
                 Camera,
                 KeyMoveForward,
@@ -41,8 +43,6 @@ namespace xpe {
                 EDITOR = 1,
                 GAME = -1,
             };
-
-            render::CameraBuffer* Buffer = nullptr;
 
             eKey KeyMoveForward = eKey::W;
             eKey KeyMoveLeft = eKey::A;
@@ -122,6 +122,7 @@ namespace xpe {
             int m_ViewWidth = 0;
             int m_ViewHeight = 0;
             glm::vec3 m_Position = { 0, 0, 0 };
+            CameraBuffer* m_Buffer;
         };
 
         JsonEnum(Camera::eLookMode, {
@@ -132,6 +133,8 @@ namespace xpe {
         class ENGINE_API PerspectiveCamera : public Camera {
 
         public:
+            PerspectiveCamera(int viewWidth, int viewHeight, CameraBuffer* buffer);
+            ~PerspectiveCamera();
 
             JsonClass(
                 PerspectiveCamera,
@@ -161,25 +164,17 @@ namespace xpe {
             float MinFovDegree = 1.0f;
             PerspectiveCameraComponent Component;
 
-            void Init(int viewWidth, int viewHeight);
-
             void Move();
-
             void Pan(const glm::vec2& delta);
-
             void ZoomIn();
-
             void ZoomOut();
-
             void Look(const double x, const double y);
 
             void ScrollChanged(const double x, const double y);
-
             void WindowFrameResized(int width, int height);
-
             void CursorMoved(const double x, const double y);
 
-            void UpdateExposure(float exposure);
+            void Flush();
 
         private:
             void UpdateProjection();
@@ -190,6 +185,8 @@ namespace xpe {
         class ENGINE_API OrthoCamera : public Camera {
 
         public:
+            OrthoCamera(int viewWidth, int viewHeight, CameraBuffer* buffer);
+            ~OrthoCamera();
 
             JsonClass(
                 OrthoCamera,
@@ -212,20 +209,16 @@ namespace xpe {
 
             OrthoCameraComponent Component;
 
-            void Init(int viewWidth, int viewHeight);
-
             void Move();
-
             void ZoomIn();
             void ZoomOut();
-
             void Look(const double x, const double y);
 
             void WindowFrameResized(int w, int h);
-
             void ScrollChanged(const double x, const double y);
-
             void CursorMoved(const double x, const double y);
+
+            void Flush();
 
         private:
             void UpdateProjection();
