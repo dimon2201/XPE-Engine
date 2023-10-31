@@ -106,18 +106,24 @@ namespace xpe {
         sRenderTarget::~sRenderTarget()
         {
             context::FreeRenderTarget(*this);
-            RemoveEventListeners();
+            RemoveWindowFrameResized();
         }
 
         void sRenderTarget::Init()
         {
             context::CreateRenderTarget(*this);
-            AddEventListeners();
         }
 
         void sRenderTarget::Resize(s32 width, s32 height)
         {
             context::ResizeRenderTarget(*this, width, height);
+        }
+
+        void sRenderTarget::ResizeColors(s32 width, s32 height)
+        {
+            for (auto* color : Colors) {
+                color->Resize(width, height);
+            }
         }
 
         void sRenderTarget::WindowFrameResized(s32 width, s32 height)
@@ -150,14 +156,14 @@ namespace xpe {
             context::ClearDepthTarget(DepthStencilView, depth);
         }
 
-        void sRenderTarget::AddEventListeners()
+        void sRenderTarget::SetResizable(bool resizable)
         {
-            AddWindowFrameResized(sRenderTarget, 1);
-        }
-
-        void sRenderTarget::RemoveEventListeners()
-        {
-            RemoveWindowFrameResized();
+            m_Resizable = resizable;
+            if (resizable) {
+                AddWindowFrameResized(sRenderTarget, eWindowFrameResizedPriority::RENDER_TARGET);
+            } else {
+                RemoveWindowFrameResized();
+            }
         }
 
     }

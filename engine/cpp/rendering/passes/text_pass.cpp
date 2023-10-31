@@ -38,7 +38,6 @@ namespace xpe {
 
                 xpe::render::sChar character;
                 character.TransformIndex = 0;
-                character.CameraIndex = 0;
                 character.GlyphSize = font.GlyphSize;
                 character.Width = glyph.Width;
                 character.Height = glyph.Height;

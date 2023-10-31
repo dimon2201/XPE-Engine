@@ -18,6 +18,13 @@ namespace xpe {
         event_begin(WindowFrameResized, int w, int h)
         event_end(WindowFrameResized, w, h)
 
+        enum eWindowFrameResizedPriority
+        {
+            RENDER_SYSTEM = 1,
+            TEXTURE = 2,
+            RENDER_TARGET = 3,
+        };
+
         event_begin(WindowFocused)
         event_end(WindowFocused)
 

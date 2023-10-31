@@ -120,7 +120,7 @@ namespace xpe {
             if (layer.Pixels == nullptr) {
                 layer = texture.CreateLayer();
             } else {
-//                layer.Resize(texture.Format, texture.Width, texture.Height);
+//                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
             texture.Layers.emplace_back(layer);
 
@@ -136,7 +136,7 @@ namespace xpe {
             if (layer.Pixels == nullptr) {
                 layer = texture.CreateLayer();
             } else {
-            //                layer.Resize(texture.Format, texture.Width, texture.Height);
+            //                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
             texture.Layers[layerIndex] = layer;
 

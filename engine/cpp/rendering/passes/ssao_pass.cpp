@@ -15,6 +15,7 @@ namespace xpe
             ssaoColor->SampleCount = sampleCount;
             ssaoColor->InitializeData = false;
             ssaoColor->EnableRenderTarget = true;
+            ssaoColor->SetResizable(true);
             ssaoColor->Init();
 
             sTexture* ssaoDepth = new sTexture();
@@ -25,9 +26,11 @@ namespace xpe
             ssaoDepth->SampleCount = sampleCount;
             ssaoDepth->InitializeData = false;
             ssaoDepth->EnableRenderTarget = true;
+            ssaoDepth->SetResizable(true);
             ssaoDepth->Init();
 
             m_Pipeline->RenderTarget = new sRenderTarget({ssaoColor }, ssaoDepth, *viewport);
+            m_Pipeline->RenderTarget->SetResizable(true);
 
             m_Pipeline->PSBuffers.emplace_back(&m_Buffer);
         }

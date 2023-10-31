@@ -1179,7 +1179,7 @@ static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM l
             const float xscale = HIWORD(wParam) / (float) USER_DEFAULT_SCREEN_DPI;
             const float yscale = LOWORD(wParam) / (float) USER_DEFAULT_SCREEN_DPI;
 
-            // Resize windowed mode windows that either permit rescaling or that
+            // ResizePixels windowed mode windows that either permit rescaling or that
             // need it to compensate for non-client area scaling
             if (!window->monitor &&
                 (window->win32.scaleToMonitor ||

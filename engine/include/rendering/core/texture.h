@@ -136,7 +136,11 @@ namespace xpe {
             [[nodiscard]] u32 GetMipLevels() const;
             static u32 GetMipsLevels(s32 width);
 
+            void WindowFrameResized(s32 width, s32 height);
+
             void Resize(s32 width, s32 height);
+
+            void ResizePixels(s32 width, s32 height);
 
             void Flip();
 
@@ -146,9 +150,14 @@ namespace xpe {
 
             void Flush();
 
+            void SetResizable(bool resizable);
+            [[nodiscard]] inline bool IsResizable() const { return m_Resizable; }
+
         private:
             void ResizeTextureU8(s32 width, s32 height);
             void ResizeTextureFloat(s32 width, s32 height);
+
+            bool m_Resizable = false;
         };
 
         struct ENGINE_API sSampler : public sResource

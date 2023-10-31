@@ -16,6 +16,7 @@ namespace xpe
             color->SampleCount = 1;
             color->InitializeData = false;
             color->EnableRenderTarget = true;
+            color->SetResizable(true);
             color->Init();
 
             sTexture* depth = new sTexture();
@@ -26,9 +27,11 @@ namespace xpe
             depth->SampleCount = 1;
             depth->InitializeData = false;
             depth->EnableRenderTarget = true;
+            depth->SetResizable(true);
             depth->Init();
 
             m_Pipeline->RenderTarget = new sRenderTarget({color }, depth, *viewport);
+            m_Pipeline->RenderTarget->SetResizable(true);
 
             m_Sampler.Slot = 0;
             context::CreateSampler(m_Sampler);

@@ -30,6 +30,7 @@ namespace xpe {
             ~sRenderTarget();
 
             void Resize(s32 width, s32 height);
+            void ResizeColors(s32 width, s32 height);
 
             void Bind();
             void BindColor(u32 index);
@@ -40,11 +41,13 @@ namespace xpe {
             void ClearColor(u32 index, const glm::vec4& color);
             void ClearDepth(const float depth);
 
-            void AddEventListeners();
-            void RemoveEventListeners();
+            void SetResizable(bool resizable);
+            [[nodiscard]] inline bool IsResizable() const { return m_Resizable; }
 
         private:
             void Init();
+
+            bool m_Resizable = false;
         };
 
     }

@@ -3,6 +3,8 @@
 #include <rendering/core/debugger.h>
 #include <d3dcompiler.h>
 #include <d3d11.h>
+#include <rendering/core/context.hpp>
+
 
 namespace xpe {
 
@@ -551,30 +553,11 @@ namespace xpe {
             {
                 UnbindRenderTarget();
                 FreeRenderTarget(renderTarget);
-
-                for (auto& color : renderTarget.Colors)
-                {
-                    color->Width = width;
-                    color->Height = height;
-                    color->Free();
-                    color->Init();
-                }
-
-                auto& depthStencil = renderTarget.DepthStencil;
-                if (depthStencil->Width != 0 && depthStencil->Height != 0)
-                {
-                    depthStencil->Width = width;
-                    depthStencil->Height = height;
-                    depthStencil->Free();
-                    depthStencil->Init();
-                }
-
                 for (auto& viewport : renderTarget.Viewports)
                 {
                     viewport.Width = width;
                     viewport.Height = height;
                 }
-
                 CreateRenderTarget(renderTarget);
             }
 

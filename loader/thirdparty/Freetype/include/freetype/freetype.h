@@ -2820,7 +2820,7 @@ FT_BEGIN_HEADER
    *   FT_Request_Size
    *
    * @description:
-   *   Resize the scale of the active @FT_Size object in a face.
+   *   ResizePixels the scale of the active @FT_Size object in a face.
    *
    * @inout:
    *   face ::

@@ -6,9 +6,10 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API sChar final
+        struct ENGINE_API sUiData final
         {
             u32 TransformIndex = 0;
+            u32 CameraIndex = 0;
             f32 GlyphSize = 0;
             f32 Width = 0;
             f32 Height = 0;

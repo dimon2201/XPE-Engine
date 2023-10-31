@@ -60,7 +60,7 @@ namespace xpe {
                 layer.Free();
             }
             Layers.clear();
-            context::FreeTexture(*this);
+            Free();
         }
 
         void sTexture::Init()
@@ -71,6 +71,7 @@ namespace xpe {
         void sTexture::Free()
         {
             context::FreeTexture(*this);
+            RemoveWindowFrameResized();
         }
 
         sTextureLayer sTexture::CreateLayer() const
@@ -106,7 +107,20 @@ namespace xpe {
             return (u32)(log(width) / log(2)) + 1;
         }
 
+        void sTexture::WindowFrameResized(s32 width, s32 height)
+        {
+            Resize(width, height);
+        }
+
         void sTexture::Resize(s32 width, s32 height)
+        {
+            context::FreeTexture(*this);
+            Width = width;
+            Height = height;
+            context::CreateTexture(*this);
+        }
+
+        void sTexture::ResizePixels(s32 width, s32 height)
         {
             switch (Format) {
 
@@ -203,6 +217,16 @@ namespace xpe {
 //                    FlushLayer(i);
 //                }
 //            }
+        }
+
+        void sTexture::SetResizable(bool resizable)
+        {
+            m_Resizable = resizable;
+            if (resizable) {
+                AddWindowFrameResized(sTexture, eWindowFrameResizedPriority::TEXTURE);
+            } else {
+                RemoveWindowFrameResized();
+            }
         }
 
         void sTextureLayer::Free()

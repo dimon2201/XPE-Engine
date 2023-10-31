@@ -1,7 +1,6 @@
 struct Character
 {
     uint TransformIndex;
-    uint CameraIndex;
     float GlyphSize;
     float Width;
     float Height;

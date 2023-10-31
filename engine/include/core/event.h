@@ -94,8 +94,8 @@ namespace xpe {
 
             m_Events.emplace_back(event);
 
-            // store event functions by Priority number
-            std::sort(m_Events.begin(), m_Events.end(), [](sEvent<EventFunction>& e1, sEvent<EventFunction>& e2) { return e1 > e2; });
+            // store event functions by Priority in ascending order
+            std::sort(m_Events.begin(), m_Events.end(), [](sEvent<EventFunction>& e1, sEvent<EventFunction>& e2) { return e1 < e2; });
         }
 
         template<typename EventFunction>

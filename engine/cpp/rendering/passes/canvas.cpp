@@ -45,7 +45,7 @@ namespace xpe {
                     vector<void*> { context::SwapchainTargetView },
                     m_ViewportBuffer->GetList()
             );
-            m_PresentTarget->RemoveEventListeners();
+            m_PresentTarget->SetResizable(false);
         }
 
         void cCanvas::CreatePresentSampler()
