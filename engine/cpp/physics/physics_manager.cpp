@@ -39,13 +39,13 @@ namespace xpe
             return PxFilterFlag::eDEFAULT;
         }
 
-        void cPhysicsManager::Init(cMainDispatcher* dispatcher, bool enableMemoryProfiling)
+        void cPhysicsManager::Init(PxCpuDispatcher* dispatcher, bool enableMemoryProfiling)
         {
             s_Allocator = new cPhysicsAllocator();
             s_ErrorCallback = new cPhysicsErrorCallback();
             s_EventCallback = new cPhysicsSimulationEventCallback();
 
-            s_Dispatcher = (PxCpuDispatcher*)dispatcher;
+            s_Dispatcher = dispatcher;
 
             s_Foundation = PxCreateFoundation(
                 PX_PHYSICS_VERSION,

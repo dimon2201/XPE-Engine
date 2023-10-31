@@ -146,7 +146,7 @@ namespace xpe {
         {
 
         public:
-            static void Init(cMainDispatcher* dispatcher, bool enableMemoryProfiling = false);
+            static void Init(PxCpuDispatcher* dispatcher, bool enableMemoryProfiling = false);
             static void Free();
 
             static void EnableLoggingInfo(bool enable);
