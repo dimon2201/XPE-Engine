@@ -4,37 +4,37 @@ namespace xpe {
 
     namespace render {
 
-        VertexBuffer* GeometryManager::s_VertexBuffer = nullptr;
-        IndexBuffer* GeometryManager::s_IndexBuffer = nullptr;
+        sVertexBuffer* cGeometryManager::s_VertexBuffer = nullptr;
+        sIndexBuffer* cGeometryManager::s_IndexBuffer = nullptr;
 
-        void GeometryManager::Init()
+        void cGeometryManager::Init()
         {
-            s_VertexBuffer = new VertexBuffer();
-            s_IndexBuffer = new IndexBuffer();
+            s_VertexBuffer = new sVertexBuffer();
+            s_IndexBuffer = new sIndexBuffer();
         }
 
-        void GeometryManager::Free()
+        void cGeometryManager::Free()
         {
             delete s_VertexBuffer;
             delete s_IndexBuffer;
         }
 
-        void GeometryManager::Bind()
+        void cGeometryManager::Bind()
         {
             context::BindVertexBuffer(*s_VertexBuffer);
             context::BindIndexBuffer(*s_IndexBuffer);
         }
 
-        usize GeometryManager::AddIndices(const vector<u32>& indices)
+        usize cGeometryManager::AddIndices(const vector<u32>& indices)
         {
             usize indexOffset = s_IndexBuffer->AddIndices(indices);
             s_IndexBuffer->Flush();
             return indexOffset;
         }
 
-        Geometry GeometryManager::AddGeometry(const Geometry& _geometry)
+        sGeometry cGeometryManager::AddGeometry(const sGeometry& _geometry)
         {
-            Geometry geometry(_geometry);
+            sGeometry geometry(_geometry);
 
             geometry.IndexOffset = AddIndices(geometry.Indices);
             geometry.VertexOffset = s_VertexBuffer->AddVertices(geometry.Vertices);
@@ -43,9 +43,9 @@ namespace xpe {
             return geometry;
         }
 
-        Model GeometryManager::AddModel(const Model& _model)
+        sModel cGeometryManager::AddModel(const sModel& _model)
         {
-            Model model(_model);
+            sModel model(_model);
 
             model.VertexOffset = s_VertexBuffer->AddVertices(model.Meshes[0].Vertices);
             for (auto& index : model.Meshes[0].Indices)

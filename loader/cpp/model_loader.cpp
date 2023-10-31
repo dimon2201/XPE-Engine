@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace res {
 
-        static void SetVertexBoneData(Vertex& vertex, int boneID, float weight)
+        static void SetVertexBoneData(sVertex& vertex, int boneID, float weight)
         {
             for (int i = 0; i < 4; ++i)
             {
@@ -19,9 +19,9 @@ namespace xpe {
             }
         }
 
-        static Vertex ParseVertex(aiMesh* mesh, u32 i)
+        static sVertex ParseVertex(aiMesh* mesh, u32 i)
         {
-            Vertex vertex;
+            sVertex vertex;
 
             vertex.Position = {
                     mesh->mVertices[i].x,
@@ -55,9 +55,9 @@ namespace xpe {
             return vertex;
         }
 
-        static Geometry ParseMesh(aiMesh *mesh)
+        static sGeometry ParseMesh(aiMesh *mesh)
         {
-            Geometry geometry;
+            sGeometry geometry;
             vector<u32> indices;
 
             geometry.Vertices.resize(mesh->mNumVertices);
@@ -93,7 +93,7 @@ namespace xpe {
                     anim::sBone newBone;
                     newBone.ID = boneCounter;
                     newBone.Name = boneName;
-                    newBone.Offset = AssimpManager::ToMat4(bone->mOffsetMatrix);
+                    newBone.Offset = cAssimpManager::ToMat4(bone->mOffsetMatrix);
                     bones.insert({ boneName, newBone });
                     boneID = boneCounter;
                     boneCounter++;
@@ -118,16 +118,16 @@ namespace xpe {
         }
 
         static void ParseMeshes(
-            aiNode* node, const aiScene* scene,
-            Model& model,
-            const hstring& directory, u32 flags
+                aiNode* node, const aiScene* scene,
+                sModel& model,
+                const hstring& directory, u32 flags
         ) {
             auto& meshes = model.Meshes;
 
             for (u32 i = 0 ; i < node->mNumMeshes ; i++)
             {
                 aiMesh* assimpMesh = scene->mMeshes[node->mMeshes[i]];
-                Geometry mesh = ParseMesh(assimpMesh);
+                sGeometry mesh = ParseMesh(assimpMesh);
                 meshes.push_back(mesh);
             }
 
@@ -137,13 +137,13 @@ namespace xpe {
             }
         }
 
-        Model ModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        sModel cModelLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            Model model;
-            hstring directory = FileManager::GetDirectory(filepath);
+            sModel model;
+            hstring directory = cFileManager::GetDirectory(filepath);
 
             Assimp::Importer importer;
-            u32 flags = AssimpManager::GetLoadFlags(options);
+            u32 flags = cAssimpManager::GetLoadFlags(options);
             const aiScene* scene = importer.ReadFile(filepath, flags);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
@@ -153,7 +153,7 @@ namespace xpe {
 
             ParseMeshes(scene->mRootNode, scene, model, directory, flags);
 
-            return GeometryManager::AddModel(model);
+            return cGeometryManager::AddModel(model);
         }
 
     }

@@ -24,7 +24,7 @@
 
        namespace core {
 
-           void HardwareManager::UpdateCpuStats()
+           void cHardwareManager::UpdateCpuStats()
            {
                CPU.Cores = sysconf(_SC_NPROCESSORS_ONLN);
            }

@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace core {
 
-        void Thread::SetFormat(const char* name, ePriority priority)
+        void cThread::SetFormat(const char* name, ePriority priority)
         {
             HANDLE handle = (HANDLE) m_Thread.native_handle();
 

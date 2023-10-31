@@ -1,9 +1,9 @@
 #pragma once
 
-struct TestConfig : xpe::res::JsonObject
+struct sTestConfig : public cJson
 {
     JsonClass(
-        TestConfig,
+        sTestConfig,
         AnimateLight,
         CameraFar,
         CameraMoveSpeed,
@@ -22,9 +22,9 @@ struct TestConfig : xpe::res::JsonObject
     float CameraVerticalSens = 0.005f;
 };
 
-struct XmlConfig : xpe::res::XmlObject
+struct sXmlConfig : public cXml
 {
-    XmlClass(XmlConfig)
+    XmlClass(sXmlConfig)
 
     bool AnimateLight = false;
     float CameraFar = 1000;

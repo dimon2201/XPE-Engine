@@ -5,23 +5,23 @@ namespace xpe {
 
     namespace render {
 
-        BlendMode::BlendMode(const vector<BlendTarget>& targets)
+        sBlendMode::sBlendMode(const vector<sBlendTarget>& targets)
         {
             Targets = targets;
             Init();
         }
 
-        BlendMode::~BlendMode()
+        sBlendMode::~sBlendMode()
         {
             context::FreeBlendMode(*this);
         }
 
-        void BlendMode::Bind()
+        void sBlendMode::Bind()
         {
             context::BindBlendMode(State);
         }
 
-        void BlendMode::Init()
+        void sBlendMode::Init()
         {
             context::CreateBlendMode(*this);
         }

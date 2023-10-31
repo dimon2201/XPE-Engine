@@ -2041,7 +2041,7 @@ void _glfwPollEventsWin32(void)
         if (msg.message == WM_QUIT)
         {
             // NOTE: While GLFW does not itself post WM_QUIT, other processes
-            //       may post it to this one, for example Task Manager
+            //       may post it to this one, for example sTask Manager
             // HACK: Treat WM_QUIT as a close on all windows
 
             window = _glfw.windowListHead;

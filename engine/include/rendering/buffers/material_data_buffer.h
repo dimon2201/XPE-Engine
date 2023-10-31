@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API MaterialData
+        struct ENGINE_API sMaterialData
         {
             // albedo mapping
             glm::vec4 Albedo = { 0.5, 0.5, 0.5, 1.0 };
@@ -32,9 +32,9 @@ namespace xpe {
             Boolean EnableEmissionMap = false;
         };
 
-        struct ENGINE_API MaterialDataBuffer : public StructureBuffer<MaterialData>
+        struct ENGINE_API sMaterialDataBuffer : public sListBuffer<sMaterialData>
         {
-            MaterialDataBuffer(usize size = 0) : StructureBuffer<MaterialData>(size, K_SLOT_MATERIALS) {}
+            sMaterialDataBuffer(usize size = 0) : sListBuffer<sMaterialData>(size, K_SLOT_MATERIALS) {}
         };
 
     }

@@ -33,13 +33,11 @@ namespace xpe {
 
         using namespace core;
 
-        class ENGINE_API JsonObject
+        class ENGINE_API cJson
         {
 
         public:
-
             virtual void ToJson(json& root) = 0;
-
             virtual void FromJson(json& root) = 0;
 
             inline void SetTag(const string& tag)
@@ -56,8 +54,8 @@ namespace xpe {
             string m_Tag;
         };
 
-        ENGINE_API bool ReadJsonFile(const char* filepath, JsonObject& object);
-        ENGINE_API bool WriteJsonFile(const char* filepath, JsonObject& object);
+        ENGINE_API bool ReadJsonFile(const char* filepath, cJson& object);
+        ENGINE_API bool WriteJsonFile(const char* filepath, cJson& object);
 
     }
 

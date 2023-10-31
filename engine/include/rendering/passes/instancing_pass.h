@@ -8,11 +8,11 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API InstancingPass : public RenderPass
+        class ENGINE_API cInstancingPass : public cRenderPass
         {
 
         public:
-            InstancingPass(eType type, const vector<RenderPassBinding>& bindings);
+            cInstancingPass(eType type, const vector<sRenderPassBinding>& bindings);
 
         protected:
             void DrawInstanced(
@@ -23,7 +23,7 @@ namespace xpe {
                 usize indexCount,
                 cEntity* entity,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, RenderInstance&)>& callback = {},
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {},
                 const glm::mat4x4& lightMatrix = {}
             );
 
@@ -34,7 +34,7 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 cEntity* entity,
-                const std::function<void(cEntity* entity, RenderInstance&)>& callback = {},
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {},
                 const glm::mat4x4& lightMatrix = {}
             );
 
@@ -45,12 +45,12 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, RenderInstance&)>& callback = {},
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {},
                 const glm::mat4x4& lightMatrix = {}
             );
 
-            InstanceBuffer m_InstanceBuffer;
-            TransformBuffer m_TransformBuffer;
+            sInstanceBuffer m_InstanceBuffer;
+            sTransformBuffer m_TransformBuffer;
         };
 
     }

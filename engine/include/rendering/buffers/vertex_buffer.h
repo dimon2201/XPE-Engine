@@ -9,36 +9,29 @@ namespace xpe {
 
         using namespace core;
 
-        class VertexBuffer : public Buffer
+        struct sVertexBuffer : public sBuffer
         {
+            vector<sVertex> List;
 
-        public:
-            vector<Vertex> List;
+            sVertexBuffer() = default;
+            sVertexBuffer(const usize vertexCount);
+            sVertexBuffer(const vector<sVertex>& vertices);
+            ~sVertexBuffer();
 
-            VertexBuffer() = default;
-            VertexBuffer(const usize vertexCount);
-            VertexBuffer(const vector<Vertex>& vertices);
-            ~VertexBuffer();
-
-        public:
             void Flush();
-
-            void FlushVertex(u32 index, const Vertex& item);
-
-            void FlushVertices(const vector<Vertex>& vertices);
+            void FlushVertex(u32 index, const sVertex& item);
+            void FlushVertices(const vector<sVertex>& vertices);
 
             void Resize(const usize count);
-
             void Reserve(const usize count);
-
             void Recreate(const usize count);
 
             void Clear();
 
             // returns vertex offset of added vertices
-            usize AddVertices(const vector<Vertex>& vertices);
+            usize AddVertices(const vector<sVertex>& vertices);
 
-            inline Vertex* GetVertex(const u32 index)
+            inline sVertex* GetVertex(const u32 index)
             {
                 // check if index is in the size bounds
                 // if not, then resize to index + 1

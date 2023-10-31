@@ -208,7 +208,7 @@ _**Contents**_
   * [Usage](#usage)
     * [Unity](#unity)
     * [WASM and JavaScript Decoders](#WASM-and-JavaScript-Decoders)
-    * [Command Line Applications](#command-line-applications)
+    * [Command sLine Applications](#command-line-applications)
     * [Encoding Tool](#encoding-tool)
     * [Encoding Point Clouds](#encoding-point-clouds)
     * [Decoding Tool](#decoding-tool)
@@ -251,7 +251,7 @@ https://www.gstatic.com/draco/v1/decoders/
 
 Users will benefit from having the Draco decoder in cache as more sites start using the static URL.
 
-Command Line Applications
+Command sLine Applications
 ------------------------
 
 The default target created from the build files will be the `draco_encoder`

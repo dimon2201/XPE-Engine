@@ -1,7 +1,7 @@
 #pragma once
 
 #define event_begin(name, ...) \
-        typedef void (*Event##name)(void* thiz, __VA_ARGS__); \
+        typedef void (*e##name)(void* thiz, __VA_ARGS__); \
         template<typename T> \
         static void On##name(void* const thiz, __VA_ARGS__) { \
 
@@ -12,37 +12,37 @@ namespace xpe {
     namespace core {
 
         template<typename EventFunction>
-        struct Event
+        struct sEvent
         {
 
             void* This = nullptr;
             EventFunction Function = nullptr;
             int Priority = 0;
 
-            Event() = default;
+            sEvent() = default;
 
-            Event(EventFunction function, int priority)
+            sEvent(EventFunction function, int priority)
             : Function(function), Priority(priority) {}
 
-            Event(void* const _this, EventFunction function, int priority)
+            sEvent(void* const _this, EventFunction function, int priority)
             : This(_this), Function(function), Priority(priority) {}
 
-            inline friend bool operator<(const Event<EventFunction>& e1, const Event<EventFunction>& e2)
+            inline friend bool operator<(const sEvent<EventFunction>& e1, const sEvent<EventFunction>& e2)
             {
                 return e1.Priority < e2.Priority;
             }
 
-            inline friend bool operator>(const Event<EventFunction>& e1, const Event<EventFunction>& e2)
+            inline friend bool operator>(const sEvent<EventFunction>& e1, const sEvent<EventFunction>& e2)
             {
                 return e1.Priority > e2.Priority;
             }
 
-            inline friend bool operator==(const Event<EventFunction>& e1, const Event<EventFunction>& e2)
+            inline friend bool operator==(const sEvent<EventFunction>& e1, const sEvent<EventFunction>& e2)
             {
                 return e1.This == e2.This;
             }
 
-            inline friend bool operator!=(const Event<EventFunction>& e1, const Event<EventFunction>& e2)
+            inline friend bool operator!=(const sEvent<EventFunction>& e1, const sEvent<EventFunction>& e2)
             {
                 return e1.This != e2.This;
             }
@@ -50,11 +50,11 @@ namespace xpe {
         };
 
         template<typename EventFunction>
-        class EventBuffer : public Object
+        class cEventBuffer : public cObject
         {
 
         public:
-            ~EventBuffer();
+            ~cEventBuffer();
 
             template<typename... Args>
             void AddEvent(Args &&... eventArgs);
@@ -68,38 +68,38 @@ namespace xpe {
             template<typename... Args>
             void NotifyAll(Args &&... args);
 
-            inline const vector<Event<EventFunction>>& GetEvents() const
+            inline const vector<sEvent<EventFunction>>& GetEvents() const
             {
                 return m_Events;
             }
 
         private:
-            vector<Event<EventFunction>> m_Events;
+            vector<sEvent<EventFunction>> m_Events;
             std::mutex m_Mutex;
         };
 
         template<typename EventFunction>
-        EventBuffer<EventFunction>::~EventBuffer()
+        cEventBuffer<EventFunction>::~cEventBuffer()
         {
             m_Events.clear();
         }
 
         template<typename EventFunction>
         template<typename... Args>
-        void EventBuffer<EventFunction>::AddEvent(Args &&... eventArgs)
+        void cEventBuffer<EventFunction>::AddEvent(Args &&... eventArgs)
         {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
-            Event<EventFunction> event(std::forward<Args>(eventArgs)...);
+            sEvent<EventFunction> event(std::forward<Args>(eventArgs)...);
 
             m_Events.emplace_back(event);
 
             // store event functions by Priority number
-            std::sort(m_Events.begin(), m_Events.end(), [](Event<EventFunction>& e1, Event<EventFunction>& e2) { return e1 > e2; });
+            std::sort(m_Events.begin(), m_Events.end(), [](sEvent<EventFunction>& e1, sEvent<EventFunction>& e2) { return e1 > e2; });
         }
 
         template<typename EventFunction>
-        void EventBuffer<EventFunction>::RemoveEvent(void* const _this)
+        void cEventBuffer<EventFunction>::RemoveEvent(void* const _this)
         {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
@@ -114,7 +114,7 @@ namespace xpe {
         }
 
         template<typename EventFunction>
-        void EventBuffer<EventFunction>::Clear()
+        void cEventBuffer<EventFunction>::Clear()
         {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
@@ -122,7 +122,7 @@ namespace xpe {
         }
 
         template<typename EventFunction>
-        void EventBuffer<EventFunction>::Reserve(const usize count)
+        void cEventBuffer<EventFunction>::Reserve(const usize count)
         {
             std::lock_guard<std::mutex> lock(m_Mutex);
 
@@ -131,7 +131,7 @@ namespace xpe {
 
         template<typename EventFunction>
         template<typename... Args>
-        void EventBuffer<EventFunction>::NotifyAll(Args &&... args)
+        void cEventBuffer<EventFunction>::NotifyAll(Args &&... args)
         {
             std::lock_guard<std::mutex> lock(m_Mutex);
 

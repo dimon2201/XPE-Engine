@@ -64,7 +64,7 @@ The following features of _ndk-build_ are not supported by the _android-cmake_ y
 Similarly to the NDK build system _android-cmake_ allows to select between several compiler toolchains and target platforms. Most of the options can be set either as cmake arguments: `-D<NAME>=<VALUE>` or as environment variables:
 
 * **ANDROID_NDK** - path to the Android NDK. If not set then _android-cmake_ will search for the most recent version of supported NDK in commonly used locations;
-* **ANDROID_ABI** - specifies the target Application Binary Interface (ABI). This option nearly matches to the APP_ABI variable used by ndk-build tool from Android NDK. If not specified then set to `armeabi-v7a`. Possible target names are:
+* **ANDROID_ABI** - specifies the target cApp Binary Interface (ABI). This option nearly matches to the APP_ABI variable used by ndk-build tool from Android NDK. If not specified then set to `armeabi-v7a`. Possible target names are:
     * `armeabi` - ARMv5TE based CPU with software floating point operations;
     * **`armeabi-v7a`** - ARMv7 based devices with hardware FPU instructions (VFPv3_D16);
     * `armeabi-v7a with NEON` - same as armeabi-v7a, but sets NEON as floating-point unit;

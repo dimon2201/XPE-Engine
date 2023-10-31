@@ -7,25 +7,25 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API Skybox final
+        struct ENGINE_API sSkybox final
         {
-            render::Geometry Geometry;
-            render::Texture* Texture;
+            sGeometry Geometry;
+            sTexture* Texture;
         };
-        Json(Skybox, Geometry)
+        Json(sSkybox, Geometry)
 
-        class ENGINE_API SkyboxManager final
+        class ENGINE_API cSkyboxManager final
         {
 
         public:
             static void Init();
             static void Free();
-            static SkyboxManager& Get();
+            static cSkyboxManager& Get();
 
-            render::Skybox Skybox;
+            sSkybox Skybox;
 
         private:
-            static SkyboxManager* s_Instance;
+            static cSkyboxManager* s_Instance;
         };
 
     }

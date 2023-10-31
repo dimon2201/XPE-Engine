@@ -5,20 +5,20 @@ namespace xpe {
     namespace core {
 
         template<typename T>
-        class Scope : public Object
+        class cScope : public cObject
         {
 
         public:
 
-            Scope() = default;
-            ~Scope();
+            cScope() = default;
+            ~cScope();
 
-            Scope(const Scope<T>& other) = delete;
-            Scope<T>& operator =(const Scope<T>& other) = delete;
-            Scope<T>& operator =(Scope<T>& other) = delete;
+            cScope(const cScope<T>& other) = delete;
+            cScope<T>& operator =(const cScope<T>& other) = delete;
+            cScope<T>& operator =(cScope<T>& other) = delete;
 
-            Scope(Scope<T>&& other) noexcept = delete;
-            Scope<T>& operator =(Scope<T>&& other) noexcept = delete;
+            cScope(cScope<T>&& other) noexcept = delete;
+            cScope<T>& operator =(cScope<T>&& other) noexcept = delete;
 
             template<typename... Args>
             void Create(Args &&... args);
@@ -35,7 +35,7 @@ namespace xpe {
         };
 
         template<typename T>
-        Scope<T>::~Scope()
+        cScope<T>::~cScope()
         {
             if (m_Ptr != nullptr)
                 main_destruct(T, m_Ptr);
@@ -44,34 +44,34 @@ namespace xpe {
 
         template<typename T>
         template<typename... Args>
-        void Scope<T>::Create(Args &&... args)
+        void cScope<T>::Create(Args &&... args)
         {
             m_Ptr = main_construct_args(T, std::forward<Args>(args)...);
         }
 
         template<typename T>
-        void Scope<T>::Destroy()
+        void cScope<T>::Destroy()
         {
-            Scope<T>::~Scope();
+            cScope<T>::~cScope();
         }
 
         template<typename T>
-        class HotScope : public HotObject
+        class cHotScope : public cHotObject
         {
 
         public:
 
-            HotScope() = default;
-            ~HotScope();
+            cHotScope() = default;
+            ~cHotScope();
 
-            HotScope(const HotScope<T>& other) = delete;
-            HotScope(HotScope<T>& other) = delete;
-            HotScope<T>& operator =(const HotScope<T>& other) = delete;
-            HotScope<T>& operator =(HotScope<T>& other) = delete;
-            HotScope<T>& operator =(HotScope<T> other) = delete;
+            cHotScope(const cHotScope<T>& other) = delete;
+            cHotScope(cHotScope<T>& other) = delete;
+            cHotScope<T>& operator =(const cHotScope<T>& other) = delete;
+            cHotScope<T>& operator =(cHotScope<T>& other) = delete;
+            cHotScope<T>& operator =(cHotScope<T> other) = delete;
 
-            HotScope(HotScope<T>&& other) noexcept = delete;
-            HotScope<T>& operator =(HotScope<T>&& other) noexcept = delete;
+            cHotScope(cHotScope<T>&& other) noexcept = delete;
+            cHotScope<T>& operator =(cHotScope<T>&& other) noexcept = delete;
 
             template<typename... Args>
             void Create(Args &&... args);
@@ -88,7 +88,7 @@ namespace xpe {
         };
 
         template<typename T>
-        HotScope<T>::~HotScope()
+        cHotScope<T>::~cHotScope()
         {
             if (m_Ptr != nullptr)
                 hot_destruct(T, m_Ptr);
@@ -97,15 +97,15 @@ namespace xpe {
 
         template<typename T>
         template<typename... Args>
-        void HotScope<T>::Create(Args &&... args)
+        void cHotScope<T>::Create(Args &&... args)
         {
             m_Ptr = hot_construct_args(T, std::forward<Args>(args)...);
         }
 
         template<typename T>
-        void HotScope<T>::Destroy()
+        void cHotScope<T>::Destroy()
         {
-            HotScope<T>::~HotScope();
+            cHotScope<T>::~cHotScope();
         }
 
     }

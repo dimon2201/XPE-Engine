@@ -120,7 +120,7 @@ enum aiPostProcessSteps
      * By default the imported mesh data might contain faces with more than 3
      * indices. For rendering you'll usually want all faces to be triangles.
      * This post processing step splits up faces with more than 3 indices into
-     * triangles. Line and point primitives are *not* modified! If you want
+     * triangles. sLine and point primitives are *not* modified! If you want
      * 'triangles only' with no other kinds of primitives, try the following
      * solution:
      * <ul>
@@ -136,7 +136,7 @@ enum aiPostProcessSteps
      *
      * The  components to be removed are specified in a separate
      * importer property, <tt>#AI_CONFIG_PP_RVC_FLAGS</tt>. This is quite useful
-     * if you don't need all parts of the output structure. Vertex colors
+     * if you don't need all parts of the output structure. sVertex colors
      * are rarely used today for example... Calling this step to remove unneeded
      * data from the pipeline as early as possible results in increased
      * performance and a more optimized output data structure.
@@ -147,7 +147,7 @@ enum aiPostProcessSteps
      *
      * This flag is a poor one, mainly because its purpose is usually
      * misunderstood. Consider the following case: a 3D model has been exported
-     * from a CAD app, and it has per-face vertex colors. Vertex positions can't be
+     * from a CAD app, and it has per-face vertex colors. sVertex positions can't be
      * shared, thus the #aiProcess_JoinIdenticalVertices step fails to
      * optimize the data because of these nasty little vertex colors.
      * Most apps don't even process them, so it's all for nothing. By using
@@ -160,7 +160,7 @@ enum aiPostProcessSteps
     /** <hr>Generates normals for all faces of all meshes.
      *
      * This is ignored if normals are already there at the time this flag
-     * is evaluated. Model importers try to load them from the source file, so
+     * is evaluated. sModel importers try to load them from the source file, so
      * they're usually already there. Face normals are shared between all points
      * of a single face, so a single point can have multiple normals, which
      * forces the library to duplicate vertices in some cases.
@@ -174,7 +174,7 @@ enum aiPostProcessSteps
     /** <hr>Generates smooth normals for all vertices in the mesh.
     *
     * This is ignored if normals are already there at the time this flag
-    * is evaluated. Model importers try to load them from the source file, so
+    * is evaluated. sModel importers try to load them from the source file, so
     * they're usually already there.
     *
     * This flag may not be specified together with

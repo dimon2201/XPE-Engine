@@ -5,14 +5,14 @@ namespace xpe {
 
     namespace render {
 
-        CompositeTransparentPass::CompositeTransparentPass(const vector<RenderPassBinding>& bindings)
-        : RenderPass(eType::POSTFX, bindings) {}
+        cCompositeTransparentPass::cCompositeTransparentPass(const vector<sRenderPassBinding>& bindings)
+        : cRenderPass(eType::POSTFX, bindings) {}
 
-        void CompositeTransparentPass::InitPostFX()
+        void cCompositeTransparentPass::InitPostFX()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ZERO;
 
-            BlendTarget target;
+            sBlendTarget target;
             target.Src = eBlend::SRC_ALPHA;
             target.Dest = eBlend::INV_SRC_ALPHA;
             target.BlendOp = eBlendOp::ADD;

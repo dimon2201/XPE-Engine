@@ -6,47 +6,47 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API MaterialManager final
+        class ENGINE_API cMaterialManager final
         {
 
         public:
-            static TextureSampler Sampler;
-            static Texture* AlbedoAtlas;
-            static Texture* NormalAtlas;
-            static Texture* ParallaxAtlas;
-            static Texture* MetalAtlas;
-            static Texture* RoughnessAtlas;
-            static Texture* AOAtlas;
-            static Texture* EmissionAtlas;
+            static sSampler Sampler;
+            static sTexture* AlbedoAtlas;
+            static sTexture* NormalAtlas;
+            static sTexture* ParallaxAtlas;
+            static sTexture* MetalAtlas;
+            static sTexture* RoughnessAtlas;
+            static sTexture* AOAtlas;
+            static sTexture* EmissionAtlas;
 
             static void Init();
             static void Free();
 
             template<typename... Args>
-            static Material AddMaterial(Args&&... args);
+            static sMaterial AddMaterial(Args&&... args);
 
             static void Clear();
 
-            static void Bind(Pipeline& pipeline);
+            static void Bind(sPipeline& pipeline);
 
-            static void Flush(const Material& material);
+            static void Flush(const sMaterial& material);
 
-            static void AddLayer(Texture& texture, TextureLayer& layer);
+            static void AddLayer(sTexture& texture, sTextureLayer& layer);
 
-            static void SetLayer(Texture& texture, TextureLayer& layer, u32 layerIndex);
+            static void SetLayer(sTexture& texture, sTextureLayer& layer, u32 layerIndex);
 
         private:
             static void InitSampler();
 
-            static Texture* InitTextureArray(const MaterialFormat& materialFormat);
+            static sTexture* InitTextureArray(const sMaterialFormat& materialFormat);
 
-            static MaterialDataBuffer* s_DataBuffer;
+            static sMaterialDataBuffer* s_DataBuffer;
         };
 
         template<typename... Args>
-        Material MaterialManager::AddMaterial(Args &&... args)
+        sMaterial cMaterialManager::AddMaterial(Args &&... args)
         {
-            Material material(std::forward<Args>(args)...);
+            sMaterial material(std::forward<Args>(args)...);
 
             material.Index = s_DataBuffer->Size();
             s_DataBuffer->Add(material);

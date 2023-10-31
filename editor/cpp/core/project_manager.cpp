@@ -9,22 +9,22 @@ namespace focus {
 
         using namespace xpe::render;
 
-        ProjectStorage* ProjectManager::s_Storage = nullptr;
-        ProjectManagerCallback* ProjectManager::Callback = nullptr;
+        sProjectStorage* cProjectManager::s_Storage = nullptr;
+        sProjectManagerCallback* cProjectManager::Callback = nullptr;
 
-        static const std::unordered_map<Project::eBuildType, const char*> s_BinPathTable = {
-                { Project::eBuildType::DEBUG_VS, "build/bin/Debug" },
-                { Project::eBuildType::RELEASE_VS, "build/bin/Release" },
-                { Project::eBuildType::DEBUG_CLION, "build-debug/bin" },
-                { Project::eBuildType::RELEASE_CLION, "build-release/bin" },
+        static const std::unordered_map<sProject::eBuildType, const char*> s_BinPathTable = {
+                {sProject::eBuildType::DEBUG_VS,      "build/bin/Debug" },
+                {sProject::eBuildType::RELEASE_VS,    "build/bin/Release" },
+                {sProject::eBuildType::DEBUG_CLION,   "build-debug/bin" },
+                {sProject::eBuildType::RELEASE_CLION, "build-release/bin" },
         };
 
-        void ProjectManager::Init()
+        void cProjectManager::Init()
         {
-            s_Storage = new ProjectStorage();
+            s_Storage = new sProjectStorage();
         }
 
-        void ProjectManager::Free()
+        void cProjectManager::Free()
         {
             for (auto& project : s_Storage->Projects) {
                 StopWatching(project.first);
@@ -34,14 +34,14 @@ namespace focus {
             delete s_Storage;
         }
 
-        Project* ProjectManager::CreateProject(const string& title)
+        sProject* cProjectManager::CreateProject(const string& title)
         {
             // create path to project
             hstringstream ss;
             ss << "workspace" << "/" << title;
             hstring projectPath = ss.str();
 
-            if (s_Storage->Projects.find(title) != s_Storage->Projects.end() || FileManager::Exists(projectPath.c_str()))
+            if (s_Storage->Projects.find(title) != s_Storage->Projects.end() || cFileManager::Exists(projectPath.c_str()))
             {
                 LogError("Failed to create project {}. Project already exists.", title);
                 SetupProject(title);
@@ -49,16 +49,16 @@ namespace focus {
             }
 
             // create project folder
-            FileManager::CreateDir(projectPath.c_str());
+            cFileManager::CreateDir(projectPath.c_str());
 
             // copy all from template to new project folder
-            FileManager::CopyDirs("templates/Game", projectPath.c_str());
+            cFileManager::CopyDirs("templates/Game", projectPath.c_str());
 
             // copy engine into new project folder
             ss = {};
             ss << projectPath << "/" << "engine";
             hstring enginePath = ss.str();
-            FileManager::CopyDirs("engine", enginePath.c_str());
+            cFileManager::CopyDirs("engine", enginePath.c_str());
 
             // create path to cmake Launcher
             ss = {};
@@ -89,47 +89,47 @@ namespace focus {
             hstring headerCodePath = ss.str();
 
             // update Launcher CMakeLists file
-            string cmakeLauncher = FileManager::ReadFile(cmakeLauncherPath.c_str());
+            string cmakeLauncher = cFileManager::ReadFile(cmakeLauncherPath.c_str());
             cmakeLauncher = std::regex_replace(cmakeLauncher, std::regex("\\Game"), title);
-            FileManager::WriteFile(cmakeLauncherPath.c_str(), cmakeLauncher);
+            cFileManager::WriteFile(cmakeLauncherPath.c_str(), cmakeLauncher);
 
             // update Launcher cpp file
-            string cppLauncher = FileManager::ReadFile(cppLauncherPath.c_str());
+            string cppLauncher = cFileManager::ReadFile(cppLauncherPath.c_str());
             cppLauncher = std::regex_replace(cppLauncher, std::regex("\\TemplateGame"), title);
             cppLauncher = std::regex_replace(cppLauncher, std::regex("\\Template"), title);
-            FileManager::WriteFile(cppLauncherPath.c_str(), cppLauncher);
+            cFileManager::WriteFile(cppLauncherPath.c_str(), cppLauncher);
 
             // update Code CMakeLists file
-            string cmakeCode = FileManager::ReadFile(cmakeCodePath.c_str());
+            string cmakeCode = cFileManager::ReadFile(cmakeCodePath.c_str());
             cmakeCode = std::regex_replace(cmakeCode, std::regex("\\Game"), title);
-            FileManager::WriteFile(cmakeCodePath.c_str(), cmakeCode);
+            cFileManager::WriteFile(cmakeCodePath.c_str(), cmakeCode);
 
             // update Code cpp file
-            string cppCode = FileManager::ReadFile(cppCodePath.c_str());
+            string cppCode = cFileManager::ReadFile(cppCodePath.c_str());
             cppCode = std::regex_replace(cppCode, std::regex("\\TemplateGame"), title);
-            FileManager::WriteFile(cppCodePath.c_str(), cppCode);
+            cFileManager::WriteFile(cppCodePath.c_str(), cppCode);
 
             // update Code header file
-            string headerCode = FileManager::ReadFile(headerCodePath.c_str());
+            string headerCode = cFileManager::ReadFile(headerCodePath.c_str());
             headerCode = std::regex_replace(headerCode, std::regex("\\TemplateGame"), title);
-            FileManager::WriteFile(headerCodePath.c_str(), headerCode);
+            cFileManager::WriteFile(headerCodePath.c_str(), headerCode);
 
             // update Project CMakeLists file
-            string cmakeProject = FileManager::ReadFile(cmakeProjectPath.c_str());
+            string cmakeProject = cFileManager::ReadFile(cmakeProjectPath.c_str());
             cmakeProject = std::regex_replace(cmakeProject, std::regex("\\Game"), title);
-            FileManager::WriteFile(cmakeProjectPath.c_str(), cmakeProject);
+            cFileManager::WriteFile(cmakeProjectPath.c_str(), cmakeProject);
 
             SetupProject(title);
 
             return &s_Storage->Projects[title];
         }
 
-        void ProjectManager::SetupProject(const string &title)
+        void cProjectManager::SetupProject(const string &title)
         {
-            Project project;
+            sProject project;
             project.Title = title;
-            project.FilesWatcher = new MultiFileWatcher(title);
-            project.DirsWatcher = new DirectoryWatcher(title);
+            project.FilesWatcher = new cMultiFileWatcher(title);
+            project.DirsWatcher = new cDirectoryWatcher(title);
 
             s_Storage->Projects[title] = project;
 
@@ -138,38 +138,38 @@ namespace focus {
             // create build dirs for Visual Studio
             hstringstream ss;
             ss << projectPath << "/build";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss = {};
             ss << projectPath << "/build/bin";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss = {};
             ss << projectPath << "/build/bin/Debug";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss << "/" << title << "Code_Edit.dll";
-            FileManager::WriteFile(ss.str().c_str(), "");
+            cFileManager::WriteFile(ss.str().c_str(), "");
             ss = {};
             ss << projectPath << "/build/bin/Release";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss << "/" << title << "Code_Edit.dll";
-            FileManager::WriteFile(ss.str().c_str(), "");
+            cFileManager::WriteFile(ss.str().c_str(), "");
 
             // create build dirs for CLion
             ss = {};
             ss << projectPath << "/build-debug";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss = {};
             ss << projectPath << "/build-debug/bin";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss << "/" << title << "Code_Edit.dll";
-            FileManager::WriteFile(ss.str().c_str(), "");
+            cFileManager::WriteFile(ss.str().c_str(), "");
             ss = {};
             ss << projectPath << "/build-release";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss = {};
             ss << projectPath << "/build-release/bin";
-            FileManager::CreateDir(ss.str().c_str());
+            cFileManager::CreateDir(ss.str().c_str());
             ss << "/" << title << "Code_Edit.dll";
-            FileManager::WriteFile(ss.str().c_str(), "");
+            cFileManager::WriteFile(ss.str().c_str(), "");
 
             // watch for Visual Studio build
             WatchProjectGameCodeDLL(*project.FilesWatcher, project.Title, "build/bin/Debug");
@@ -189,8 +189,8 @@ namespace focus {
                 const string& watchpath,
                 const string& filepath
         ) {
-            LogInfo("ProjectManager: Game code of {} has been changed!", filepath);
-            ProjectManager::LoadGameCode(filepath);
+            LogInfo("cProjectManager: Game code of {} has been changed!", filepath);
+            cProjectManager::LoadGameCode(filepath);
         }
 
         static void ShaderFileModified(
@@ -198,8 +198,8 @@ namespace focus {
                 const string& watchpath,
                 const string& filepath
         ) {
-            LogInfo("ProjectManager: Shader file {} has been changed!", filepath);
-            ShaderManager::ReloadStage(filepath.c_str());
+            LogInfo("cProjectManager: sShader file {} has been changed!", filepath);
+            cShaderManager::ReloadStage(filepath.c_str());
         }
 
         static void ModelFileModified(
@@ -207,7 +207,7 @@ namespace focus {
                 const string& watchpath,
                 const string& filepath
         ) {
-            LogInfo("ProjectManager: Model file {} has been changed!", filepath);
+            LogInfo("cProjectManager: sModel file {} has been changed!", filepath);
         }
 
         static void FontFileModified(
@@ -215,7 +215,7 @@ namespace focus {
                 const string& watchpath,
                 const string& filepath
         ) {
-            LogInfo("ProjectManager: Font file {} has been changed!", filepath);
+            LogInfo("cProjectManager: sFont file {} has been changed!", filepath);
         }
 
         static void MaterialFileModified(
@@ -223,7 +223,7 @@ namespace focus {
                 const string& watchpath,
                 const string& filepath
         ) {
-            LogInfo("ProjectManager: Material file {} has been changed!", filepath);
+            LogInfo("cProjectManager: Material file {} has been changed!", filepath);
         }
 
         static void SkyboxFileModified(
@@ -231,10 +231,10 @@ namespace focus {
                 const string& watchpath,
                 const string& filepath
         ) {
-            LogInfo("ProjectManager: Skybox file {} has been changed!", filepath);
+            LogInfo("cProjectManager: sSkybox file {} has been changed!", filepath);
         }
 
-        void ProjectManager::WatchProjectGameCodeDLL(MultiFileWatcher& watcher, const string &title, const char* buildPath)
+        void cProjectManager::WatchProjectGameCodeDLL(cMultiFileWatcher& watcher, const string &title, const char* buildPath)
         {
             hstringstream ss;
             ss << "workspace/" << title << "/" << buildPath << "/" << title << "Code_Edit.dll";
@@ -244,7 +244,7 @@ namespace focus {
             watch.FileModifiedEvents.AddEvent(nullptr, GameCodeDLLModified, 1);
         }
 
-        void ProjectManager::WatchProjectShaders(DirectoryWatcher& watcher, const string &title)
+        void cProjectManager::WatchProjectShaders(cDirectoryWatcher& watcher, const string &title)
         {
             hstringstream ss;
             ss << "workspace/" << title << "/" << "shaders";
@@ -256,7 +256,7 @@ namespace focus {
             watch.FileDeletedEvents.AddEvent(nullptr, ShaderFileModified, 1);
         }
 
-        void ProjectManager::WatchProjectResources(DirectoryWatcher& watcher, const string &title)
+        void cProjectManager::WatchProjectResources(cDirectoryWatcher& watcher, const string &title)
         {
             hstringstream ss;
             ss << "workspace/" << title << "/res/" << "models";
@@ -303,30 +303,30 @@ namespace focus {
             }
         }
 
-        hstring ProjectManager::GetProjectPath(const string &title)
+        hstring cProjectManager::GetProjectPath(const string &title)
         {
             hstringstream ss;
             ss << "workspace/" << title;
             return ss.str();
         }
 
-        hstring ProjectManager::GetVSBuildPath(const string &title)
+        hstring cProjectManager::GetVSBuildPath(const string &title)
         {
             hstringstream ss;
             ss << "workspace/" << title << "/build";
             return ss.str();
         }
 
-        hstring ProjectManager::GetLaunchPath(const string &title, Project::eBuildType buildType)
+        hstring cProjectManager::GetLaunchPath(const string &title, sProject::eBuildType buildType)
         {
             hstringstream ss;
             ss << "workspace/" << title << "/" << s_BinPathTable.at(buildType);
             return ss.str();
         }
 
-        void ProjectManager::LoadGameCode(const string &dllpath)
+        void cProjectManager::LoadGameCode(const string &dllpath)
         {
-            Application* game = ProcessManager::LoadObjectFromDLL<Application>(dllpath.c_str(), "CreateGame");
+            cApp* game = cProcessManager::LoadObjectFromDLL<cApp>(dllpath.c_str(), "CreateGame");
             if (game == nullptr) {
                 LogError("Failed to load game code from DLL {}", dllpath);
                 return;
@@ -337,78 +337,78 @@ namespace focus {
             }
         }
 
-        void ProjectManager::OpenInСMake(const string &title)
+        void cProjectManager::OpenInСMake(const string &title)
         {
             std::thread thread([title]() {
                 hstringstream ss;
 
                 hstring projectPath = GetProjectPath(title);
                 hstring buildPath = GetVSBuildPath(title);
-                if (!FileManager::Exists(projectPath.c_str())) {
+                if (!cFileManager::Exists(projectPath.c_str())) {
                     LogError("Failed to open in CMake GUI for a game project {}. Path {} not found", title, projectPath);
                     return;
                 }
 
                 ss << "cmake-gui";
-                ss << " -B " << FileManager::GetAbsolutePath(buildPath.c_str());
-                ss << " -S " << FileManager::GetAbsolutePath(projectPath.c_str());
+                ss << " -B " << cFileManager::GetAbsolutePath(buildPath.c_str());
+                ss << " -S " << cFileManager::GetAbsolutePath(projectPath.c_str());
                 system(ss.str().c_str());
             });
             thread.detach();
         }
 
-        void ProjectManager::OpenInCLion(const string &title)
+        void cProjectManager::OpenInCLion(const string &title)
         {
             std::thread thread([title]() {
                 hstringstream ss;
 
                 hstring projectPath = GetProjectPath(title);
-                if (!FileManager::Exists(projectPath.c_str())) {
+                if (!cFileManager::Exists(projectPath.c_str())) {
                     LogError("Failed to open in CLion IDE a game project {}. Path {} not found", title, projectPath);
                     return;
                 }
 
-                ss << "clion64.exe " << FileManager::GetAbsolutePath(projectPath.c_str());
+                ss << "clion64.exe " << cFileManager::GetAbsolutePath(projectPath.c_str());
                 system(ss.str().c_str());
             });
             thread.detach();
         }
 
-        void ProjectManager::OpenInVS(const string &title)
+        void cProjectManager::OpenInVS(const string &title)
         {
             std::thread thread([title]() {
                 hstringstream ss;
 
                 hstring projectPath = GetProjectPath(title);
-                if (!FileManager::Exists(projectPath.c_str())) {
+                if (!cFileManager::Exists(projectPath.c_str())) {
                     LogError("Failed to open in Visual Studio IDE a game project {}. Path {} not found", title, projectPath);
                     return;
                 }
 
-                ss << "start devenv " << FileManager::GetAbsolutePath(projectPath.c_str());
+                ss << "start devenv " << cFileManager::GetAbsolutePath(projectPath.c_str());
                 system(ss.str().c_str());
             });
             thread.detach();
         }
 
-        void ProjectManager::OpenInVSCode(const string &title)
+        void cProjectManager::OpenInVSCode(const string &title)
         {
             std::thread thread([title]() {
                 hstringstream ss;
 
                 hstring projectPath = GetProjectPath(title);
-                if (!FileManager::Exists(projectPath.c_str())) {
+                if (!cFileManager::Exists(projectPath.c_str())) {
                     LogError("Failed to open in VS Code a game project {}. Path {} not found", title, projectPath);
                     return;
                 }
 
-                ss << "code " << FileManager::GetAbsolutePath(projectPath.c_str());
+                ss << "code " << cFileManager::GetAbsolutePath(projectPath.c_str());
                 system(ss.str().c_str());
             });
             thread.detach();
         }
 
-        void ProjectManager::LaunchGame(const string &title, Project::eBuildType buildType)
+        void cProjectManager::LaunchGame(const string &title, sProject::eBuildType buildType)
         {
             std::thread thread([title, buildType]() {
                 hstringstream ss;
@@ -417,17 +417,17 @@ namespace focus {
                 ss << launchPath << "/" << title << ".exe";
                 hstring exePath = ss.str();
 
-                if (!FileManager::Exists(exePath.c_str())) {
+                if (!cFileManager::Exists(exePath.c_str())) {
                     LogError("Failed to launch a game executable of {}. Path {} not found", title, exePath);
                     return;
                 }
 
-                ProcessManager::StartExe(FileManager::GetAbsolutePath(exePath.c_str()).c_str());
+                cProcessManager::StartExe(cFileManager::GetAbsolutePath(exePath.c_str()).c_str());
             });
             thread.detach();
         }
 
-        void ProjectManager::StartWatching(const string& title)
+        void cProjectManager::StartWatching(const string& title)
         {
             auto project = s_Storage->Projects.find(title);
 
@@ -440,7 +440,7 @@ namespace focus {
             project->second.DirsWatcher->Start();
         }
 
-        void ProjectManager::StopWatching(const string& title)
+        void cProjectManager::StopWatching(const string& title)
         {
             auto project = s_Storage->Projects.find(title);
 

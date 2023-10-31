@@ -14,7 +14,6 @@ namespace xpe
     namespace physics
     {
         struct sActor;
-        struct sShape;
     }
 
     namespace ecs
@@ -24,6 +23,7 @@ namespace xpe
         using namespace math;
         using namespace anim;
         using namespace audio;
+        using namespace physics;
 
         struct ENGINE_API sCCamera : sComponent
         {
@@ -41,7 +41,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCPerspectiveCamera : sCCamera, PerspectiveMatrix
+        struct ENGINE_API sCPerspectiveCamera : sCCamera, sPerspectiveMatrix
         {
             JsonClass(
                 sCPerspectiveCamera,
@@ -49,7 +49,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCOrthoCamera : sCCamera, OrthoMatrix
+        struct ENGINE_API sCOrthoCamera : sCCamera, sOrthoMatrix
         {
             JsonClass(
                 sCOrthoCamera,
@@ -60,9 +60,9 @@ namespace xpe
         struct ENGINE_API sCText2D : sComponent
         {
             string Text;
-            render::Font* Font;
+            sFont* Font;
 
-            sCText2D(const string& text, render::Font* font) : Text(text), Font(font) {}
+            sCText2D(const string& text, sFont* font) : Text(text), Font(font) {}
 
             JsonClass(
                 sCText2D,
@@ -73,9 +73,9 @@ namespace xpe
         struct ENGINE_API sCText3D : sComponent
         {
             string Text;
-            render::Font* Font;
+            sFont* Font;
 
-            sCText3D(const string& text, render::Font* font) : Text(text), Font(font) {}
+            sCText3D(const string& text, sFont* font) : Text(text), Font(font) {}
 
             JsonClass(
                 sCText3D,
@@ -83,10 +83,10 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCMaterial : sComponent, Material
+        struct ENGINE_API sCMaterial : sComponent, sMaterial
         {
-            sCMaterial(const Material& material) : Material(material) {}
-            sCMaterial(Material&& material) : Material(material) {}
+            sCMaterial(const sMaterial& material) : sMaterial(material) {}
+            sCMaterial(sMaterial&& material) : sMaterial(material) {}
 
             JsonClass(
                 sCMaterial,
@@ -94,7 +94,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCDirectionalLight : sComponent, DirectLightData, OrthoMatrix
+        struct ENGINE_API sCDirectionalLight : sComponent, sDirectLightData, sOrthoMatrix
         {
             sCDirectionalLight(const glm::vec3& position, const glm::vec3& color)
             {
@@ -121,7 +121,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCPointLight : sComponent, PointLightData
+        struct ENGINE_API sCPointLight : sComponent, sPointLightData
         {
             sCPointLight(const glm::vec3& position, const glm::vec3& color)
             {
@@ -139,7 +139,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCSpotLight : sComponent, SpotLightData, OrthoMatrix
+        struct ENGINE_API sCSpotLight : sComponent, sSpotLightData, sOrthoMatrix
         {
             sCSpotLight(const glm::vec3& position, const glm::vec3& color)
             {
@@ -177,12 +177,12 @@ namespace xpe
         };
         Json(sRenderState, Transparent, Visible, CastShadow)
 
-        struct ENGINE_API sCGeometry : sComponent, Geometry, sRenderState
+        struct ENGINE_API sCGeometry : sComponent, sGeometry, sRenderState
         {
-            vector<ecs::cEntity*> Entities;
+            vector<cEntity*> Entities;
 
-            sCGeometry(const Geometry& geometry) : Geometry(geometry) {}
-            sCGeometry(Geometry&& geometry) : Geometry(geometry) {}
+            sCGeometry(const sGeometry& geometry) : sGeometry(geometry) {}
+            sCGeometry(sGeometry&& geometry) : sGeometry(geometry) {}
 
             JsonClass(
                 sCGeometry,
@@ -190,12 +190,12 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCModel : sComponent, Model, sRenderState
+        struct ENGINE_API sCModel : sComponent, sModel, sRenderState
         {
-            vector<ecs::cEntity*> Entities;
+            vector<cEntity*> Entities;
 
-            sCModel(const Model& model) : Model(model) {}
-            sCModel(Model&& model) : Model(model) {}
+            sCModel(const sModel& model) : sModel(model) {}
+            sCModel(sModel&& model) : sModel(model) {}
 
             JsonClass(
                 sCModel,
@@ -203,14 +203,14 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCSkeletonModel : sComponent, Model, sRenderState
+        struct ENGINE_API sCSkeletonModel : sComponent, sModel, sRenderState
         {
-            vector<ecs::cEntity*> Entities;
-            anim::sSkeleton Skeleton;
-            anim::sAnimation Animation;
+            vector<cEntity*> Entities;
+            sSkeleton Skeleton;
+            sAnimation Animation;
 
-            sCSkeletonModel(const Model& model) : Model(model) {}
-            sCSkeletonModel(Model&& model) : Model(model) {}
+            sCSkeletonModel(const sModel& model) : sModel(model) {}
+            sCSkeletonModel(sModel&& model) : sModel(model) {}
 
             JsonClass(
                 sCSkeletonModel,
@@ -291,9 +291,9 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCRidigBody : sComponent, physics::sActor
+        struct ENGINE_API sCRigidBody : sComponent, sActor
         {
-            sCRidigBody(physics::sActor* actor)
+            sCRigidBody(sActor* actor)
             {
                 Actor = actor->Actor;
                 Material = actor->Material;
@@ -309,7 +309,7 @@ namespace xpe
             }
 
             JsonClass(
-                sCRidigBody,
+                sCRigidBody,
                 m_Tag
             )
         };

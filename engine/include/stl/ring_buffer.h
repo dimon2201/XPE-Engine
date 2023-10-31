@@ -5,7 +5,7 @@ namespace xpe {
     namespace core {
 
         template<typename T>
-        class RingBuffer : public Object
+        class cRingBuffer : public cObject
         {
 
         public:
@@ -22,19 +22,19 @@ namespace xpe {
         };
 
         template<typename T>
-        void RingBuffer<T>::Reserve(usize capacity)
+        void cRingBuffer<T>::Reserve(usize capacity)
         {
             m_List.reserve(capacity);
         }
 
         template<typename T>
-        void RingBuffer<T>::Resize(usize size)
+        void cRingBuffer<T>::Resize(usize size)
         {
             m_List.resize(size);
         }
 
         template<typename T>
-        bool RingBuffer<T>::Push(const T &item)
+        bool cRingBuffer<T>::Push(const T &item)
         {
             bool pushed = false;
             std::lock_guard<std::mutex> lock(m_Lock);
@@ -48,7 +48,7 @@ namespace xpe {
         }
 
         template<typename T>
-        bool RingBuffer<T>::Pop(T &item)
+        bool cRingBuffer<T>::Pop(T &item)
         {
             bool popped = false;
             std::lock_guard<std::mutex> lock(m_Lock);

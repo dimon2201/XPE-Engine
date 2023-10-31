@@ -6,40 +6,40 @@ namespace xpe {
 
     namespace core {
 
-        class ENGINE_API EventManager final {
+        class ENGINE_API cEventManager final {
 
         public:
             static void Init();
             static void Free();
-            static EventManager& Get();
+            static cEventManager& Get();
 
-            static EventManager* s_Instance;
+            static cEventManager* s_Instance;
 
-            EventBuffer<EventWindowClosed> WindowClosedEvents;
-            EventBuffer<EventWindowResized> WindowResizedEvents;
-            EventBuffer<EventWindowFrameResized> WindowFrameResizedEvents;
-            EventBuffer<EventWindowMoved> WindowMovedEvents;
-            EventBuffer<EventWindowFocused> WindowFocusedEvents;
-            EventBuffer<EventWindowFocusLost> WindowFocusLostEvents;
+            cEventBuffer<eWindowClosed> WindowClosedEvents;
+            cEventBuffer<eWindowResized> WindowResizedEvents;
+            cEventBuffer<eWindowFrameResized> WindowFrameResizedEvents;
+            cEventBuffer<eWindowMoved> WindowMovedEvents;
+            cEventBuffer<eWindowFocused> WindowFocusedEvents;
+            cEventBuffer<eWindowFocusLost> WindowFocusLostEvents;
 
-            EventBuffer<EventKeyPressed> KeyPressedEvents;
-            EventBuffer<EventKeyReleased> KeyReleasedEvents;
-            EventBuffer<EventKeyHold> KeyHoldEvents;
+            cEventBuffer<eKeyPressed> KeyPressedEvents;
+            cEventBuffer<eKeyReleased> KeyReleasedEvents;
+            cEventBuffer<eKeyHold> KeyHoldEvents;
 
-            EventBuffer<EventMousePressed> MousePressedEvents;
-            EventBuffer<EventMouseReleased> MouseReleasedEvents;
-            EventBuffer<EventMouseHold> MouseHoldEvents;
+            cEventBuffer<eMousePressed> MousePressedEvents;
+            cEventBuffer<eMouseReleased> MouseReleasedEvents;
+            cEventBuffer<eMouseHold> MouseHoldEvents;
 
-            EventBuffer<EventCursorMoved> CursorMovedEvents;
-            EventBuffer<EventCursorEntered> CursorEnteredEvents;
-            EventBuffer<EventCursorLeft> CursorLeftEvents;
+            cEventBuffer<eCursorMoved> CursorMovedEvents;
+            cEventBuffer<eCursorEntered> CursorEnteredEvents;
+            cEventBuffer<eCursorLeft> CursorLeftEvents;
 
-            EventBuffer<EventScrollChanged> ScrollChangedEvents;
+            cEventBuffer<eScrollChanged> ScrollChangedEvents;
 
-            EventBuffer<EventCharTyped> CharTypedEvents;
-            EventBuffer<EventCharModsTyped> CharModsTypedEvents;
+            cEventBuffer<eCharTyped> CharTypedEvents;
+            cEventBuffer<eCharModsTyped> CharModsTypedEvents;
 
-            EventBuffer<EventSampleCountChanged> SampleCountChangedEvents;
+            cEventBuffer<eSampleCountChanged> SampleCountChangedEvents;
 
         };
 

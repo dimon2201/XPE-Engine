@@ -1,6 +1,6 @@
 #pragma once
 
-struct TestConfig : xpe::res::JsonObject
+struct sTestConfig : xpe::res::JsonObject
 {
     JsonClass(
         TestConfig,

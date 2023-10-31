@@ -8,18 +8,18 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API DirectLightData
+        struct ENGINE_API sDirectLightData
         {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Color = { 1, 1, 1 };
         };
 
-        struct ENGINE_API DirectLightBuffer : public StructureBuffer<DirectLightData>
+        struct ENGINE_API sDirectLightBuffer : public sListBuffer<sDirectLightData>
         {
-            DirectLightBuffer(usize size = 0) : StructureBuffer<DirectLightData>(size, K_SLOT_DIRECT_LIGHTS) {}
+            sDirectLightBuffer(usize size = 0) : sListBuffer<sDirectLightData>(size, K_SLOT_DIRECT_LIGHTS) {}
         };
 
-        struct ENGINE_API PointLightData
+        struct ENGINE_API sPointLightData
         {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Color = { 1, 1, 1 };
@@ -28,12 +28,12 @@ namespace xpe {
             float Quadratic = 0.032f;
         };
 
-        struct ENGINE_API PointLightBuffer : public StructureBuffer<PointLightData>
+        struct ENGINE_API sPointLightBuffer : public sListBuffer<sPointLightData>
         {
-            PointLightBuffer(usize size = 0) : StructureBuffer<PointLightData>(size, K_SLOT_POINT_LIGHTS) {}
+            sPointLightBuffer(usize size = 0) : sListBuffer<sPointLightData>(size, K_SLOT_POINT_LIGHTS) {}
         };
 
-        struct ENGINE_API SpotLightData
+        struct ENGINE_API sSpotLightData
         {
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Direction = { 1, 1, 1 };
@@ -42,9 +42,9 @@ namespace xpe {
             float Outer = 1;
         };
 
-        struct ENGINE_API SpotLightBuffer : public StructureBuffer<SpotLightData>
+        struct ENGINE_API sSpotLightBuffer : public sListBuffer<sSpotLightData>
         {
-            SpotLightBuffer(usize size = 0) : StructureBuffer<SpotLightData>(size, K_SLOT_SPOT_LIGHTS) {}
+            sSpotLightBuffer(usize size = 0) : sListBuffer<sSpotLightData>(size, K_SLOT_SPOT_LIGHTS) {}
         };
 
     }

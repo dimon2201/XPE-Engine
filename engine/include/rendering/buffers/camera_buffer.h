@@ -6,16 +6,16 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API CameraData : public Object
+        struct ENGINE_API sCameraData : public cObject
         {
             glm::vec3 Position;
             glm::mat4 View;
             glm::mat4 Projection;
         };
 
-        struct ENGINE_API CameraBuffer : public ItemBuffer<CameraData>
+        struct ENGINE_API sCameraBuffer : public sItemBuffer<sCameraData>
         {
-            CameraBuffer() : ItemBuffer<CameraData>(K_SLOT_CAMERA) {}
+            sCameraBuffer() : sItemBuffer<sCameraData>(K_SLOT_CAMERA) {}
         };
 
     }

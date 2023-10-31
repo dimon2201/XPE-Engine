@@ -23,7 +23,7 @@ namespace xpe {
             JOIN_VERTICES
         };
 
-        class LOADER_API AssimpManager final
+        class LOADER_API cAssimpManager final
         {
 
         public:

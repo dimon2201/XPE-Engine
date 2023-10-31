@@ -9,7 +9,7 @@ namespace xpe {
         using namespace core;
         using namespace ecs;
 
-        struct ENGINE_API RenderPassBinding
+        struct ENGINE_API sRenderPassBinding
         {
             enum eType
             {
@@ -30,9 +30,7 @@ namespace xpe {
                 PIXEL = 1
             };
 
-            static constexpr u32 SLOT_DEFAULT = UINT32_MAX;
-
-            RenderPassBinding(
+            sRenderPassBinding(
                 const string& tag,
                 const eType& type,
                 void* resource = nullptr,
@@ -47,7 +45,7 @@ namespace xpe {
             void* Resource;
         };
 
-        class ENGINE_API RenderPass : public Object
+        class ENGINE_API cRenderPass : public cObject
         {
 
         public:
@@ -61,8 +59,8 @@ namespace xpe {
                 UI = 5,
             };
 
-            RenderPass(eType type, const vector<RenderPassBinding>& bindings);
-            virtual ~RenderPass();
+            cRenderPass(eType type, const vector<sRenderPassBinding>& bindings);
+            virtual ~cRenderPass();
 
             bool Enable = true;
 
@@ -78,7 +76,7 @@ namespace xpe {
             void Bind();
             void Unbind();
 
-            RenderTarget* GetRenderTarget();
+            sRenderTarget* GetRenderTarget();
             inline eType GetType() { return m_Type; }
 
         protected:
@@ -91,8 +89,8 @@ namespace xpe {
             virtual void InitUI();
 
             eType m_Type;
-            vector<RenderPassBinding> m_Bindings;
-            Pipeline* m_Pipeline = nullptr;
+            vector<sRenderPassBinding> m_Bindings;
+            sPipeline* m_Pipeline = nullptr;
 
         };
 

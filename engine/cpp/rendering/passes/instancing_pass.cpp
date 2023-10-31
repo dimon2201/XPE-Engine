@@ -4,16 +4,16 @@ namespace xpe {
 
     namespace render {
 
-        InstancingPass::InstancingPass(
+        cInstancingPass::cInstancingPass(
             eType type,
-            const vector<RenderPassBinding>& bindings
-        ) : RenderPass(type, bindings)
+            const vector<sRenderPassBinding>& bindings
+        ) : cRenderPass(type, bindings)
         {
             m_InstanceBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1000);
         }
 
-        void InstancingPass::DrawInstanced(
+        void cInstancingPass::DrawInstanced(
                 ePrimitiveTopology primitiveTopology,
                 usize vertexOffset,
                 usize vertexCount,
@@ -21,7 +21,7 @@ namespace xpe {
                 usize indexCount,
                 cEntity* entity,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, RenderInstance&)>& callback,
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback,
                 const glm::mat4x4& lightMatrix
         ) {
             if (entities.empty()) {
@@ -31,20 +31,20 @@ namespace xpe {
             }
         }
 
-        void InstancingPass::DrawSingle(
+        void cInstancingPass::DrawSingle(
                 ePrimitiveTopology primitiveTopology,
                 usize vertexOffset,
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
                 cEntity* entity,
-                const std::function<void(cEntity* entity, RenderInstance&)>& callback,
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback,
                 const glm::mat4x4& lightMatrix
         ) {
             m_InstanceBuffer.Clear();
             m_TransformBuffer.Clear();
 
-            RenderInstance instance;
+            sRenderInstance instance;
             instance.TransformIndex = 0;
             if (callback) {
                 callback(entity, instance);
@@ -70,14 +70,14 @@ namespace xpe {
             context::UnbindVSBuffer(m_TransformBuffer);
         }
 
-        void InstancingPass::DrawMultiple(
+        void cInstancingPass::DrawMultiple(
                 ePrimitiveTopology primitiveTopology,
                 usize vertexOffset,
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, RenderInstance&)>& callback,
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback,
                 const glm::mat4x4& lightMatrix
         ) {
             usize entityCount = entities.size();
@@ -88,7 +88,7 @@ namespace xpe {
             {
                 auto& entity = entities[i];
 
-                RenderInstance instance;
+                sRenderInstance instance;
                 instance.TransformIndex = i;
                 if (callback) {
                     callback(entity, instance);

@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace res {
 
-        const std::unordered_map<eLoadOption, aiPostProcessSteps> AssimpManager::k_LoadOptions = {
+        const std::unordered_map<eLoadOption, aiPostProcessSteps> cAssimpManager::k_LoadOptions = {
                 { eLoadOption::TRIANGULATE, aiProcess_Triangulate },
                 { eLoadOption::FLIP_UV, aiProcess_FlipUVs },
                 { eLoadOption::CALC_TANGENTS, aiProcess_CalcTangentSpace },

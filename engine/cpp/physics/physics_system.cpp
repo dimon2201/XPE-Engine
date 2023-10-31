@@ -16,14 +16,14 @@ namespace xpe
             return glm::eulerAngles(quaternion);
         }
      
-        void PhysicsSystem::Update(cScene* scene, const Time& dt)
+        void cPhysicsSystem::Update(cScene* scene, const cTime& dt)
         {
-            scene->PhysicsScene->Scene->simulate(1.0f / 60.0f);
-            scene->PhysicsScene->Scene->fetchResults(true);
+            scene->PhysicsScene->simulate(1.0f / 60.0f);
+            scene->PhysicsScene->fetchResults(true);
 
-            scene->EachComponent<sCRidigBody>(
+            scene->EachComponent<sCRigidBody>(
                 []
-                (sCRidigBody* component)
+                (sCRigidBody* component)
                 {
                     cEntity* entity = component->Entity;
 

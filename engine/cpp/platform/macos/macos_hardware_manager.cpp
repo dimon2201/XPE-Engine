@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace core {
 
-        void HardwareManager::UpdateCpuStats()
+        void cHardwareManager::UpdateCpuStats()
         {
             int mib[4];
             int numCPU;

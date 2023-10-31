@@ -6,10 +6,10 @@ namespace xpe
     namespace render
     {
 
-        FXAAPass::FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport)
-        : RenderPass(eType::POSTFX, bindings)
+        cFxaaPass::cFxaaPass(const core::vector<sRenderPassBinding>& bindings, sViewport* viewport)
+        : cRenderPass(eType::POSTFX, bindings)
         {
-            Texture* color = new Texture();
+            sTexture* color = new sTexture();
             color->Width = viewport->Width;
             color->Height = viewport->Height;
             color->Format = eTextureFormat::HDR;
@@ -18,8 +18,8 @@ namespace xpe
             color->EnableRenderTarget = true;
             color->Init();
 
-            Texture* depth = new Texture();
-            depth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            sTexture* depth = new sTexture();
+            depth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
             depth->Width = viewport->Width;
             depth->Height = viewport->Height;
             depth->Format = eTextureFormat::R32_TYPELESS;
@@ -28,14 +28,14 @@ namespace xpe
             depth->EnableRenderTarget = true;
             depth->Init();
 
-            m_Pipeline->RenderTarget = new RenderTarget({ color }, depth, *viewport);
+            m_Pipeline->RenderTarget = new sRenderTarget({color }, depth, *viewport);
 
             m_Sampler.Slot = 0;
             context::CreateSampler(m_Sampler);
             m_Pipeline->Samplers.emplace_back(&m_Sampler);
         }
 
-        FXAAPass::~FXAAPass()
+        cFxaaPass::~cFxaaPass()
         {
             context::FreeSampler(m_Sampler);
             delete m_Pipeline->RenderTarget;

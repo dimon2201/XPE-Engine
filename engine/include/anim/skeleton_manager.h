@@ -8,7 +8,7 @@ namespace xpe {
 
         using namespace ecs;
 
-        class ENGINE_API mSkeletonManager final
+        class ENGINE_API cSkeletonManager final
         {
         public:
             static void Init();
@@ -23,18 +23,18 @@ namespace xpe {
 
             static void RemoveSkeleton(u32 index);
 
-            static render::BoneBuffer* GetBuffer(u32 index);
+            static render::sBoneBuffer* GetBuffer(u32 index);
 
         private:
-            static vector<render::BoneBuffer*>* s_Buffers;
+            static vector<render::sBoneBuffer*>* s_Buffers;
         };
 
         template<typename... Args>
-        sSkeleton mSkeletonManager::AddSkeleton(Args &&... args)
+        sSkeleton cSkeletonManager::AddSkeleton(Args &&... args)
         {
             sSkeleton skeleton(std::forward<Args>(args)...);
             skeleton.Index = s_Buffers->size();
-            s_Buffers->emplace_back(new render::BoneBuffer());
+            s_Buffers->emplace_back(new render::sBoneBuffer());
             return skeleton;
         }
 

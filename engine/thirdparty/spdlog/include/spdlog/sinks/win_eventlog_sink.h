@@ -15,7 +15,7 @@
 
 /*---------------------------------------------------------------------------------------
 
-Windows Registry Editor Version 5.00
+Windows Registry cEditor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\<log_name>]
 

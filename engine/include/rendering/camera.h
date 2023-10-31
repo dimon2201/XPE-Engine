@@ -10,15 +10,16 @@ namespace xpe {
 
         using namespace core;
         using namespace ecs;
+        using namespace res;
 
-        class ENGINE_API Camera : public res::JsonObject
+        class ENGINE_API cCamera : public cJson
         {
 
         public:
-            Camera(CameraBuffer* buffer) : m_Buffer(buffer) {}
+            cCamera(sCameraBuffer* buffer) : m_Buffer(buffer) {}
 
             JsonClass(
-                Camera,
+                cCamera,
                 KeyMoveForward,
                 KeyMoveLeft,
                 KeyMoveBackward,
@@ -122,22 +123,22 @@ namespace xpe {
             int m_ViewWidth = 0;
             int m_ViewHeight = 0;
             glm::vec3 m_Position = { 0, 0, 0 };
-            CameraBuffer* m_Buffer;
+            sCameraBuffer* m_Buffer;
         };
 
-        JsonEnum(Camera::eLookMode, {
-            { Camera::eLookMode::GAME,   "GAME" },
-            { Camera::eLookMode::EDITOR, "EDITOR" }
+        JsonEnum(cCamera::eLookMode, {
+            { cCamera::eLookMode::GAME,   "GAME" },
+            { cCamera::eLookMode::EDITOR, "EDITOR" }
         })
 
-        class ENGINE_API PerspectiveCamera : public Camera {
+        class ENGINE_API cPerspectiveCamera : public cCamera {
 
         public:
-            PerspectiveCamera(int viewWidth, int viewHeight, CameraBuffer* buffer);
-            ~PerspectiveCamera();
+            cPerspectiveCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer);
+            ~cPerspectiveCamera();
 
             JsonClass(
-                PerspectiveCamera,
+                cPerspectiveCamera,
                 KeyMoveForward,
                 KeyMoveLeft,
                 KeyMoveBackward,
@@ -182,14 +183,14 @@ namespace xpe {
 
         };
 
-        class ENGINE_API OrthoCamera : public Camera {
+        class ENGINE_API cOrthoCamera : public cCamera {
 
         public:
-            OrthoCamera(int viewWidth, int viewHeight, CameraBuffer* buffer);
-            ~OrthoCamera();
+            cOrthoCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer);
+            ~cOrthoCamera();
 
             JsonClass(
-                OrthoCamera,
+                cOrthoCamera,
                 KeyMoveForward,
                 KeyMoveLeft,
                 KeyMoveBackward,

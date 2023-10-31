@@ -14,7 +14,7 @@ namespace xpe {
         using namespace math;
         using namespace ecs;
 
-        class LOADER_API AnimLoader final
+        class LOADER_API cAnimLoader final
         {
         public:
             static sAnimation Load(const char* filepath, const vector<eLoadOption>& options = {

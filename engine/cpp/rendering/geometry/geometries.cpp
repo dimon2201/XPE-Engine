@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace render {
 
-        Triangle::Triangle()
+        sTriangle::sTriangle()
         {
             PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
@@ -23,12 +23,12 @@ namespace xpe {
             InitNormal(&vertices[0], &vertices[1], &vertices[2]);
         }
 
-        Line::Line()
+        sLine::sLine()
         {
             PrimitiveTopology = ePrimitiveTopology::LINE_LIST;
         }
 
-        Quad::Quad()
+        sQuad::sQuad()
         {
             PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
 
@@ -49,7 +49,7 @@ namespace xpe {
             indices = { 0, 1, 2, 2, 3, 0 };
         }
 
-        Cube::Cube()
+        sCube::sCube()
         {
             PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
 
@@ -109,7 +109,7 @@ namespace xpe {
             };
         }
 
-        Plane::Plane(s32 size)
+        sPlane::sPlane(s32 size)
         {
             PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
@@ -155,7 +155,7 @@ namespace xpe {
             }
         }
 
-        Sphere::Sphere(s32 xSegments, s32 ySegments)
+        sSphere::sSphere(s32 xSegments, s32 ySegments)
         {
             PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
 
@@ -172,9 +172,9 @@ namespace xpe {
                     float xSegment = (float)x / (float)xSegments;
                     float ySegment = (float)y / (float)ySegments;
 
-                    float xPos = cos(xSegment * 2.0f * PI) * sin(ySegment * PI);
-                    float yPos = cos(ySegment * PI);
-                    float zPos = sin(xSegment * 2.0f * PI) * sin(ySegment * PI);
+                    float xPos = cos(xSegment * 2.0f * K_PI) * sin(ySegment * K_PI);
+                    float yPos = cos(ySegment * K_PI);
+                    float zPos = sin(xSegment * 2.0f * K_PI) * sin(ySegment * K_PI);
 
                     V.Position = { xPos, yPos, zPos };
                     V.UV = { xSegment, ySegment };
@@ -186,7 +186,7 @@ namespace xpe {
                     glm::vec3 tangent;
                     float r = V.Position.length();
                     float theta = acos(zPos / r);
-                    float phi = atan2(yPos, xPos) + PI * 0.5;
+                    float phi = atan2(yPos, xPos) + K_PI * 0.5;
                     tangent.x = sin(theta) * cos(phi);
                     tangent.y = sin(theta) * sin(phi);
                     tangent.z = cos(theta);

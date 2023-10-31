@@ -10,15 +10,14 @@ namespace xpe
 {
     namespace physics
     {
-        bool PhysicsManager::EnableMemoryProfiling = false;
-        PhysicsAllocator* PhysicsManager::s_Allocator = nullptr;
-        PhysicsErrorCallback* PhysicsManager::s_ErrorCallback = nullptr;
-        PhysicsSimulationEventCallback* PhysicsManager::s_EventCallback = nullptr;
-        PxFoundation* PhysicsManager::s_Foundation = nullptr;
-        PxPhysics* PhysicsManager::s_Physics = nullptr;
-        PxCpuDispatcher* PhysicsManager::s_Dispatcher = nullptr;
-        std::unordered_map<string, sActor*>* PhysicsManager::s_Actors = nullptr;
-        std::unordered_map<string, sScene*>* PhysicsManager::s_Scenes = nullptr;
+        cPhysicsAllocator* cPhysicsManager::s_Allocator = nullptr;
+        cPhysicsErrorCallback* cPhysicsManager::s_ErrorCallback = nullptr;
+        cPhysicsSimulationEventCallback* cPhysicsManager::s_EventCallback = nullptr;
+        PxFoundation* cPhysicsManager::s_Foundation = nullptr;
+        PxPhysics* cPhysicsManager::s_Physics = nullptr;
+        PxCpuDispatcher* cPhysicsManager::s_Dispatcher = nullptr;
+        unordered_map<string, sActor*>* cPhysicsManager::s_Actors = nullptr;
+        unordered_map<string, PxScene*>* cPhysicsManager::s_Scenes = nullptr;
 
         PxFilterFlags FilterShader(
             PxFilterObjectAttributes attributes0, PxFilterData filterData0,
@@ -40,11 +39,11 @@ namespace xpe
             return PxFilterFlag::eDEFAULT;
         }
 
-        void PhysicsManager::Init(MainDispatcher* dispatcher)
+        void cPhysicsManager::Init(cMainDispatcher* dispatcher, bool enableMemoryProfiling)
         {
-            s_Allocator = new PhysicsAllocator();
-            s_ErrorCallback = new PhysicsErrorCallback();
-            s_EventCallback = new PhysicsSimulationEventCallback();
+            s_Allocator = new cPhysicsAllocator();
+            s_ErrorCallback = new cPhysicsErrorCallback();
+            s_EventCallback = new cPhysicsSimulationEventCallback();
 
             s_Dispatcher = (PxCpuDispatcher*)dispatcher;
 
@@ -55,7 +54,7 @@ namespace xpe
             );
 
             if (s_Foundation == nullptr) {
-                LogError("PhysicsManager: Failed to initialize PhysXFoundation!");
+                LogError("cPhysicsManager: Failed to initialize PhysXFoundation!");
                 return;
             }
 
@@ -63,20 +62,20 @@ namespace xpe
                 PX_PHYSICS_VERSION,
                 *s_Foundation,
                 PxTolerancesScale(),
-                EnableMemoryProfiling,
+                enableMemoryProfiling,
                 nullptr
             );
 
             if (s_Physics == nullptr) {
-                LogError("PhysicsManager: Failed to initialize PhysXPhysics!");
+                LogError("cPhysicsManager: Failed to initialize PhysXPhysics!");
                 return;
             }
 
-            s_Actors = new std::unordered_map<string, sActor*>;
-            s_Scenes = new std::unordered_map<string, sScene*>;
+            s_Actors = new unordered_map<string, sActor*>;
+            s_Scenes = new unordered_map<string, PxScene*>;
         }
 
-        void PhysicsManager::Free()
+        void cPhysicsManager::Free()
         {
             s_Physics->release();
             s_Foundation->release();
@@ -84,19 +83,19 @@ namespace xpe
             delete s_EventCallback;
         }
 
-        void PhysicsManager::EnableLoggingInfo(bool enable) {
+        void cPhysicsManager::EnableLoggingInfo(bool enable) {
             s_ErrorCallback->EnableInfo = enable;
         }
 
-        void PhysicsManager::EnableLoggingWarning(bool enable) {
+        void cPhysicsManager::EnableLoggingWarning(bool enable) {
             s_ErrorCallback->EnableWarning = enable;
         }
 
-        void PhysicsManager::EnableLoggingError(bool enable) {
+        void cPhysicsManager::EnableLoggingError(bool enable) {
             s_ErrorCallback->EnableError = enable;
         }
 
-        sActor* PhysicsManager::AddActor(
+        sActor* cPhysicsManager::AddActor(
             cEntity* entity,
             cScene* scene,
             const sActor::eActorType& actorType,
@@ -146,7 +145,7 @@ namespace xpe
                 return nullptr;
             }
 
-            scene->PhysicsScene->Scene->addActor(*physicsActor);
+            scene->PhysicsScene->addActor(*physicsActor);
 
             // Shape creation
             PxShape* physicsShape = nullptr;
@@ -245,7 +244,7 @@ namespace xpe
             return actor;
         }
 
-        sScene* PhysicsManager::AddScene(cScene* scene)
+        PxScene* cPhysicsManager::AddScene(const string& tag)
         {
             PxSceneDesc sceneDesc(s_Physics->getTolerancesScale());
             sceneDesc.gravity = PxVec3(-1.0f, 0.0f, 0.0f);
@@ -257,18 +256,15 @@ namespace xpe
 
             if (physicsScene == nullptr)
             {
-                LogError("PhysicsManager: Failed to initialize PhysX scene!");
+                LogError("cPhysicsManager: Failed to create PhysX scene!");
                 return nullptr;
             }
 
-            sScene* subScene = new sScene(physicsScene);
+            s_Scenes->insert({ tag, physicsScene });
 
-            scene->PhysicsScene = subScene;
-
-            s_Scenes->insert({ scene->GetTag(), subScene});
-
-            return subScene;
+            return physicsScene;
         }
+
     }
 
 }

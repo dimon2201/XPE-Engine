@@ -20,13 +20,12 @@ namespace xpe {
 
     namespace res {
 
-        class ENGINE_API XmlObject
+        class ENGINE_API cXml
         {
 
         public:
-
             xpe::core::string Name;
-            xpe::core::vector<XmlObject*> Children;
+            xpe::core::vector<cXml*> Children;
 
             virtual void ToXml(xml& root) = 0;
             virtual void FromXml(xml& root) = 0;
@@ -38,8 +37,8 @@ namespace xpe {
             pugi::xml_document m_Doc;
 
         private:
-            void FromXmlChildren(xml& root, xpe::core::vector<XmlObject*>& children);
-            void ToXmlChildren(xml& root, xpe::core::vector<XmlObject*>& children);
+            void FromXmlChildren(xml& root, xpe::core::vector<cXml*>& children);
+            void ToXmlChildren(xml& root, xpe::core::vector<cXml*>& children);
         };
 
     }

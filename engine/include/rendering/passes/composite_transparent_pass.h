@@ -8,11 +8,11 @@ namespace xpe {
 
         using namespace ecs;
 
-        class ENGINE_API CompositeTransparentPass : public RenderPass
+        class ENGINE_API cCompositeTransparentPass : public cRenderPass
         {
 
         public:
-            CompositeTransparentPass(const vector<RenderPassBinding>& bindings);
+            cCompositeTransparentPass(const vector<sRenderPassBinding>& bindings);
 
         protected:
             void InitPostFX() override;

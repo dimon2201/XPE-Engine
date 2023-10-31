@@ -14,7 +14,7 @@ namespace xpe {
         using namespace core;
         using namespace render;
 
-        struct LOADER_API MaterialFilepath final
+        struct LOADER_API sMaterialFilepath final
         {
             string Name;
             string AlbedoFilepath;
@@ -26,11 +26,11 @@ namespace xpe {
             string EmissionFilepath;
         };
 
-        class LOADER_API MaterialLoader final
+        class LOADER_API cMaterialLoader final
         {
         public:
-            static Material Load(const aiScene* scene, aiMesh* mesh, const hstring& directory);
-            static Material Load(const MaterialFilepath& filepath);
+            static sMaterial Load(const aiScene* scene, aiMesh* mesh, const hstring& directory);
+            static sMaterial Load(const sMaterialFilepath& filepath);
         };
 
     }

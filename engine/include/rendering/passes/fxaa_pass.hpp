@@ -4,15 +4,15 @@ namespace xpe
 {
     namespace render
     {
-        class ENGINE_API FXAAPass : public RenderPass
+        class ENGINE_API cFxaaPass : public cRenderPass
         {
 
         public:
-            FXAAPass(const core::vector<RenderPassBinding>& bindings, Viewport* viewport);
-            ~FXAAPass();
+            cFxaaPass(const core::vector<sRenderPassBinding>& bindings, sViewport* viewport);
+            ~cFxaaPass();
 
         private:
-            TextureSampler m_Sampler;
+            sSampler m_Sampler;
 
         };
     }

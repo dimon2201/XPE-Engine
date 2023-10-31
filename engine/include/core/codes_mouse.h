@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API MouseState final
+        struct ENGINE_API sMouseState final
         {
             bool Pressed = false;
             bool Released = false;

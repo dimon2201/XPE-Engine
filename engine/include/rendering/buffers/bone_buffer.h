@@ -8,14 +8,14 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API BoneData final
+        struct ENGINE_API sBoneData final
         {
             glm::mat4 Transform;
         };
 
-        struct ENGINE_API BoneBuffer : public StructureBuffer<BoneData>
+        struct ENGINE_API sBoneBuffer : public sListBuffer<sBoneData>
         {
-            BoneBuffer(usize size = 0) : StructureBuffer<BoneData>(size, K_SLOT_BONES) {}
+            sBoneBuffer(usize size = 0) : sListBuffer<sBoneData>(size, K_SLOT_BONES) {}
         };
 
     }

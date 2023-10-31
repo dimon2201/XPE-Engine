@@ -5,13 +5,13 @@ namespace xpe {
     namespace core {
 
         template<typename T>
-        struct Observer {
+        struct sObserver {
             T Value;
 
-            Observer(const T& value, const std::function<void(T)> onChanged = {})
+            sObserver(const T& value, const std::function<void(T)> onChanged = {})
             : Value(value), m_OnChanged(onChanged) {}
 
-            inline Observer& operator=(const T& other) {
+            inline sObserver& operator=(const T& other) {
                 if (Value != other) {
                     Value = other;
                     m_OnChanged(Value);

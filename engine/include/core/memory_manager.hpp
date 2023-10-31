@@ -2,7 +2,7 @@
 
 #ifdef DEBUG
 
-#define LogMemoryPools() xpe::core::MemoryManager::LogPools()
+#define LogMemoryPools() xpe::core::cMemoryManager::LogPools()
 
 #else
 
@@ -14,7 +14,7 @@ namespace xpe
 {
     namespace core
     {
-        struct MemoryPoolAllocation final
+        struct sMemoryPoolAllocation final
         {
             u8 FreeFlag = 0;
             u32 AllocByteWidth = 0;
@@ -22,7 +22,7 @@ namespace xpe
             void* Address = nullptr;
         };
 
-        class ENGINE_API MemoryPool
+        class ENGINE_API cMemoryPool
         {
             public:
                 // byte size - actual size in bytes of malloc
@@ -58,17 +58,17 @@ namespace xpe
                 void* m_Memory;
                 void* m_LastAddress;
                 void* m_MaxAddress;
-                std::vector<MemoryPoolAllocation> m_Allocs;
+                std::vector<sMemoryPoolAllocation> m_Allocs;
                 usize m_BytesOccupied = 0;
                 usize m_BytesFreed = 0;
                 usize m_LastFreedBytes = 0;
                 usize m_Alignment = 0;
         };
 
-        class ENGINE_API MemoryPoolStack final {
+        class ENGINE_API cMemoryPoolStack final {
 
         public:
-            std::vector<MemoryPool> Pools;
+            std::vector<cMemoryPool> Pools;
             usize PoolByteSize = 0;
             usize PoolAllocs = 0;
             usize TotalAllocCount = 0;
@@ -79,9 +79,9 @@ namespace xpe
             usize Alignment = 0;
             const char* USID = nullptr;
 
-            MemoryPoolStack(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocs, const usize alignment);
+            cMemoryPoolStack(const char* usid, usize poolCount, usize poolByteSize, usize poolAllocs, const usize alignment);
 
-            ~MemoryPoolStack();
+            ~cMemoryPoolStack();
 
             inline usize GetPoolCount() const
             {
@@ -111,7 +111,7 @@ namespace xpe
         };
 
         template<typename T>
-        T* MemoryPoolStack::AllocateConstruct()
+        T* cMemoryPoolStack::AllocateConstruct()
         {
             T* address = static_cast<T*>(Allocate(sizeof(T)));
             ::new (address) T();
@@ -119,19 +119,19 @@ namespace xpe
         }
 
         template<typename T, typename... Args>
-        T* MemoryPoolStack::AllocateConstructArgs(Args &&... args)
+        T* cMemoryPoolStack::AllocateConstructArgs(Args &&... args)
         {
             T* address = static_cast<T*>(Allocate(sizeof(T)));
             ::new (address) T(std::forward<Args>(args)...);
             return address;
         }
 
-        class ENGINE_API MemoryManager final
+        class ENGINE_API cMemoryManager final
         {
 
         public:
-            static MemoryPoolStack* MainPools;
-            static MemoryPoolStack* HotPools;
+            static cMemoryPoolStack* MainPools;
+            static cMemoryPoolStack* HotPools;
 
             static void Init();
             static void Free();

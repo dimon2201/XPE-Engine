@@ -9,23 +9,23 @@ namespace xpe {
 
     namespace render {
 
-        SkeletonPass::SkeletonPass(eType type, const vector<RenderPassBinding>& bindings) : InstancingPass(type, bindings)
+        cSkeletonPass::cSkeletonPass(eType type, const vector<sRenderPassBinding>& bindings) : cInstancingPass(type, bindings)
         {
         }
 
-        void SkeletonPass::InitOpaque()
+        void cSkeletonPass::InitOpaque()
         {
-            RenderPass::InitOpaque();
-            MaterialManager::Bind(*m_Pipeline);
+            cRenderPass::InitOpaque();
+            cMaterialManager::Bind(*m_Pipeline);
         }
 
-        void SkeletonPass::InitTransparent()
+        void cSkeletonPass::InitTransparent()
         {
-            RenderPass::InitTransparent();
-            MaterialManager::Bind(*m_Pipeline);
+            cRenderPass::InitTransparent();
+            cMaterialManager::Bind(*m_Pipeline);
         }
 
-        void SkeletonPass::DrawOpaque(cScene *scene)
+        void cSkeletonPass::DrawOpaque(cScene *scene)
         {
             scene->EachComponent<sCSkeletonModel>([this](sCSkeletonModel* component)
             {
@@ -33,8 +33,8 @@ namespace xpe {
                      auto& model = *component;
                      auto& skeleton = component->Skeleton;
 
-                     mSkeletonManager::Flush(skeleton.Index);
-                     mSkeletonManager::Bind(skeleton.Index);
+                     cSkeletonManager::Flush(skeleton.Index);
+                     cSkeletonManager::Bind(skeleton.Index);
 
                      DrawInstanced(
                              model.PrimitiveTopology,
@@ -44,7 +44,7 @@ namespace xpe {
                              model.Indices.size(),
                              component->Entity,
                              component->Entities,
-                             [](cEntity* entity, RenderInstance& instance) {
+                             [](cEntity* entity, sRenderInstance& instance) {
                                  auto* materialComponent = entity->Get<sCMaterial>();
                                  if (materialComponent != nullptr) {
                                      instance.MaterialIndex = materialComponent->Index;
@@ -52,12 +52,12 @@ namespace xpe {
                              }
                      );
 
-                     mSkeletonManager::Unbind(skeleton.Index);
+                     cSkeletonManager::Unbind(skeleton.Index);
                  }
             });
         }
 
-        void SkeletonPass::DrawTransparent(cScene *scene)
+        void cSkeletonPass::DrawTransparent(cScene *scene)
         {
             scene->EachComponent<sCSkeletonModel>([this](sCSkeletonModel* component)
             {
@@ -65,8 +65,8 @@ namespace xpe {
                      auto& model = *component;
                      auto& skeleton = component->Skeleton;
 
-                     mSkeletonManager::Flush(skeleton.Index);
-                     mSkeletonManager::Bind(skeleton.Index);
+                     cSkeletonManager::Flush(skeleton.Index);
+                     cSkeletonManager::Bind(skeleton.Index);
 
                      DrawInstanced(
                              model.PrimitiveTopology,
@@ -76,7 +76,7 @@ namespace xpe {
                              model.Indices.size(),
                              component->Entity,
                              component->Entities,
-                             [](cEntity* entity, RenderInstance& instance) {
+                             [](cEntity* entity, sRenderInstance& instance) {
                                  auto* materialComponent = entity->Get<sCMaterial>();
                                  if (materialComponent != nullptr) {
                                      instance.MaterialIndex = materialComponent->Index;
@@ -84,19 +84,19 @@ namespace xpe {
                              }
                      );
 
-                     mSkeletonManager::Unbind(skeleton.Index);
+                     cSkeletonManager::Unbind(skeleton.Index);
                  }
             });
         }
 
-        void SkeletonPass::DrawShadow(cScene* scene)
+        void cSkeletonPass::DrawShadow(cScene* scene)
         {
             scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
-                ViewMatrix lightView;
+                sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)
                 {
@@ -104,8 +104,8 @@ namespace xpe {
                          auto& model = *component;
                          auto& skeleton = component->Skeleton;
 
-                         mSkeletonManager::Flush(skeleton.Index);
-                         mSkeletonManager::Bind(skeleton.Index);
+                         cSkeletonManager::Flush(skeleton.Index);
+                         cSkeletonManager::Bind(skeleton.Index);
 
                          DrawInstanced(
                                  model.PrimitiveTopology,
@@ -119,17 +119,17 @@ namespace xpe {
                                  lightMatrix
                          );
 
-                         mSkeletonManager::Unbind(skeleton.Index);
+                         cSkeletonManager::Unbind(skeleton.Index);
                      }
                 });
             });
 
             scene->EachComponent<sCSpotLight>([this, scene](sCSpotLight* lightComponent) {
-                ViewMatrix lightView;
+                sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)
                 {
@@ -137,8 +137,8 @@ namespace xpe {
                          auto& model = *component;
                          auto& skeleton = component->Skeleton;
 
-                         mSkeletonManager::Flush(skeleton.Index);
-                         mSkeletonManager::Bind(skeleton.Index);
+                         cSkeletonManager::Flush(skeleton.Index);
+                         cSkeletonManager::Bind(skeleton.Index);
 
                          DrawInstanced(
                                  model.PrimitiveTopology,
@@ -152,7 +152,7 @@ namespace xpe {
                                  lightMatrix
                          );
 
-                         mSkeletonManager::Unbind(skeleton.Index);
+                         cSkeletonManager::Unbind(skeleton.Index);
                      }
                 });
             });

@@ -7,29 +7,29 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API Canvas : public Object
+        class ENGINE_API cCanvas : public cObject
         {
 
         public:
-            Canvas(Shader* shader, RenderTarget* renderTarget, ViewportBuffer* viewportBuffer);
-            ~Canvas();
+            cCanvas(sShader* shader, sRenderTarget* renderTarget, sViewportBuffer* viewportBuffer);
+            ~cCanvas();
 
             void Draw();
 
             void WindowFrameResized(s32 width, s32 height);
 
-            inline void SetRenderTarget(RenderTarget* renderTarget) { m_RenderTarget = renderTarget; }
+            inline void SetRenderTarget(sRenderTarget* renderTarget) { m_RenderTarget = renderTarget; }
 
         private:
             void CreatePresentTarget();
             void CreatePresentSampler();
 
         private:
-            RenderTarget* m_RenderTarget;
-            Shader* m_Shader;
-            ViewportBuffer* m_ViewportBuffer;
-            TextureSampler m_PresentSampler;
-            RenderTarget* m_PresentTarget;
+            sRenderTarget* m_RenderTarget;
+            sShader* m_Shader;
+            sViewportBuffer* m_ViewportBuffer;
+            sSampler m_PresentSampler;
+            sRenderTarget* m_PresentTarget;
             u32 m_BoundTargetIndex = 0;
         };
 

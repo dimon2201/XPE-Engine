@@ -14,5 +14,5 @@ add_subdirectory(engine)
 # Add Samples
 add_subdirectory(samples)
 
-# Add Editor
+# Add cEditor
 add_subdirectory(editor)

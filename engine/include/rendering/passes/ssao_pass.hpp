@@ -8,17 +8,17 @@ namespace xpe
     namespace render
     {
 
-        class ENGINE_API SSAOPass : public RenderPass
+        class ENGINE_API cSsaoPass : public cRenderPass
         {
 
         public:
-            SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport, u32 sampleCount);
+            cSsaoPass(const vector<sRenderPassBinding>& bindings, sViewport* viewport, u32 sampleCount);
 
-            inline SSAOData& GetData() { return m_Buffer.Item; }
+            inline sSsaoData& GetData() { return m_Buffer.Item; }
             inline void Flush() { m_Buffer.Flush(); }
 
         private:
-            SSAOBuffer m_Buffer;
+            sSsaoBuffer m_Buffer;
         };
 
     }

@@ -40,7 +40,7 @@ namespace xpe {
             ALL = (((RED | GREEN) | BLUE) | ALPHA)
         };
 
-        struct ENGINE_API BlendTarget : public core::Object
+        struct ENGINE_API sBlendTarget : public cObject
         {
             bool Enable = false;
             eBlend Src = eBlend::ONE;
@@ -52,17 +52,17 @@ namespace xpe {
             u8 RenderTargetWriteMask = eColorWriteEnableMask::ALL;
         };
 
-        struct ENGINE_API BlendMode : public core::Object
+        struct ENGINE_API sBlendMode : public cObject
         {
             void* State = nullptr;
             bool AlphaToCoverageEnable = false;
             bool IndependentBlendEnable = false;
             // blend mode can only have maximum 8 targets per passes
-            vector<BlendTarget> Targets;
+            vector<sBlendTarget> Targets;
 
-            BlendMode() = default;
-            BlendMode(const vector<BlendTarget>& targets);
-            ~BlendMode();
+            sBlendMode() = default;
+            sBlendMode(const vector<sBlendTarget>& targets);
+            ~sBlendMode();
 
             void Bind();
 

@@ -4,9 +4,9 @@ namespace xpe {
 
     namespace core {
 
-        MainDispatcher::~MainDispatcher() {}
+        cMainDispatcher::~cMainDispatcher() {}
 
-        void MainDispatcher::submitTask(PxBaseTask& pxTask)
+        void cMainDispatcher::submitTask(PxBaseTask& pxTask)
         {
             Dispatch({ [&pxTask]() {
                 pxTask.run();
@@ -14,7 +14,7 @@ namespace xpe {
             }});
         }
 
-        uint32_t MainDispatcher::getWorkerCount() const
+        uint32_t cMainDispatcher::getWorkerCount() const
         {
             return GetWorkerCount();
         }

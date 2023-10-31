@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API MemoryStats final
+        struct ENGINE_API sMemoryStats final
         {
             usize TotalPhysical = 0;
             usize AvailablePhysical = 0;
@@ -15,7 +15,7 @@ namespace xpe {
             usize AvailableVirtualExtended = 0;
         };
 
-        struct ENGINE_API GpuStats final
+        struct ENGINE_API sGpuStats final
         {
             usize MaxTexture2dArray;
             usize MaxAnisotropyLevel;
@@ -24,17 +24,17 @@ namespace xpe {
             bool IsCommandListSupported;
         };
 
-        struct ENGINE_API CpuStats final
+        struct ENGINE_API sCpuStats final
         {
             u32 Cores = 1;
         };
 
-        class ENGINE_API HardwareManager final {
+        class ENGINE_API cHardwareManager final {
 
         public:
-            static MemoryStats Memory;
-            static CpuStats CPU;
-            static GpuStats GPU;
+            static sMemoryStats Memory;
+            static sCpuStats CPU;
+            static sGpuStats GPU;
 
             static void UpdateMemoryStats();
             static void UpdateCpuStats();

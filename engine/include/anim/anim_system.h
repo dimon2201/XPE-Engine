@@ -14,10 +14,10 @@ namespace xpe {
         {
 
         public:
-            void Update(cScene* scene, const Time& dt) override final;
+            void Update(cScene* scene, const cTime& dt) override final;
 
         private:
-            void AnimateSkeleton(sSkeleton& skeleton, const sAnimation& animation, const Time& dt);
+            void AnimateSkeleton(sSkeleton& skeleton, const sAnimation& animation, const cTime& dt);
             void AnimateBone(sBone& bone, float time);
 
             glm::mat4 InterpolatePosition(sBone& bone, float time);
@@ -32,7 +32,7 @@ namespace xpe {
 
             void UpdateSkeletonTransform(
                     sSkeleton& skeleton,
-                    BoneBuffer& boneBuffer,
+                    sBoneBuffer& boneBuffer,
                     const sAnimationNode& animationNode,
                     const glm::mat4& parentTransform
             );

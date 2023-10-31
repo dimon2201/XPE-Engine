@@ -10,18 +10,17 @@ namespace xpe {
 
         using namespace math;
 
-        struct ENGINE_API TransformData final
+        struct ENGINE_API sTransformData final
         {
             glm::mat4 ModelMatrix;  // position world space
             glm::mat4 NormalMatrix; // normal world space
             glm::mat4 LightMatrix;  // light space
         };
 
-        struct ENGINE_API TransformBuffer : public StructureBuffer<TransformData>
+        struct ENGINE_API sTransformBuffer : public sListBuffer<sTransformData>
         {
-            TransformBuffer(usize size = 0) : StructureBuffer<TransformData>(size, K_SLOT_TRANSFORMS) {}
-
-            void AddTransform(const Transform& transform, const glm::mat4x4& lightMatrix = {});
+            sTransformBuffer(usize size = 0) : sListBuffer<sTransformData>(size, K_SLOT_TRANSFORMS) {}
+            void AddTransform(const sTransform& transform, const glm::mat4x4& lightMatrix = {});
         };
 
     }

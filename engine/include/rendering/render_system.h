@@ -17,47 +17,47 @@ namespace xpe {
         using namespace core;
         using namespace ecs;
 
-        class ENGINE_API RenderSystem : public cSystem
+        class ENGINE_API cRenderSystem : public cSystem
         {
 
         public:
-            RenderSystem(const Viewport& viewport, u32 sampleCount);
-            ~RenderSystem();
+            cRenderSystem(const sViewport& viewport, u32 sampleCount);
+            ~cRenderSystem();
 
             template<typename T, typename ... Args>
             T* AddRenderPass(Args &&... args);
 
-            void Update(cScene* scene, const Time& dt) override final;
+            void Update(cScene* scene, const cTime& dt) override final;
 
             void Prepare();
 
             void WindowFrameResized(int width, int height);
 
-            inline ViewportBuffer* GetViewportBuffer() { return m_ViewportBuffer; }
-            inline MonitorBuffer* GetMonitorBuffer() { return m_MonitorBuffer; }
-            inline CameraBuffer* GetCameraBuffer() { return m_CameraBuffer; }
-            inline DirectLightBuffer* GetDirectLightBuffer() { return m_DirectLightBuffer; }
-            inline PointLightBuffer* GetPointLightBuffer() { return m_PointLightBuffer; }
-            inline SpotLightBuffer* GetSpotLightBuffer() { return m_SpotLightBuffer; }
-            inline ShadowFilterBuffer* GetShadowFilterBuffer() { return m_ShadowFilterBuffer; }
+            inline sViewportBuffer* GetViewportBuffer() { return m_ViewportBuffer; }
+            inline sMonitorBuffer* GetMonitorBuffer() { return m_MonitorBuffer; }
+            inline sCameraBuffer* GetCameraBuffer() { return m_CameraBuffer; }
+            inline sDirectLightBuffer* GetDirectLightBuffer() { return m_DirectLightBuffer; }
+            inline sPointLightBuffer* GetPointLightBuffer() { return m_PointLightBuffer; }
+            inline sSpotLightBuffer* GetSpotLightBuffer() { return m_SpotLightBuffer; }
+            inline sShadowFilterBuffer* GetShadowFilterBuffer() { return m_ShadowFilterBuffer; }
 
-            inline RenderTarget* GetFinalRT() { return m_FinalRenderTarget; }
-            inline RenderTarget* GetSceneRT() { return m_SceneRenderTarget; }
-            inline RenderTarget* GetShadowRT() { return m_ShadowRenderTarget; }
-            inline RenderTarget* GetOpaqueRT() { return m_OpaqueRenderTarget; }
-            inline RenderTarget* GetTransparentRT() { return m_TransparentRenderTarget; }
-            inline RenderTarget* GetUiRT() { return m_UiRenderTarget; }
+            inline sRenderTarget* GetFinalRT() { return m_FinalRenderTarget; }
+            inline sRenderTarget* GetSceneRT() { return m_SceneRenderTarget; }
+            inline sRenderTarget* GetShadowRT() { return m_ShadowRenderTarget; }
+            inline sRenderTarget* GetOpaqueRT() { return m_OpaqueRenderTarget; }
+            inline sRenderTarget* GetTransparentRT() { return m_TransparentRenderTarget; }
+            inline sRenderTarget* GetUiRT() { return m_UiRenderTarget; }
 
-            inline Texture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
-            inline Texture* GetShadowMap() { return m_ShadowRenderTarget->DepthStencil; }
+            inline sTexture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
+            inline sTexture* GetShadowMap() { return m_ShadowRenderTarget->DepthStencil; }
 
-            inline TextureSampler* GetShadowSampler() { return &m_ShadowSampler; }
+            inline sSampler* GetShadowSampler() { return &m_ShadowSampler; }
 
         private:
-            void InitManagers(const Viewport& viewport, u32 sampleCount);
-            void InitBuffers(const Viewport& viewport, u32 sampleCount);
-            void InitSamplers(const Viewport& viewport, u32 sampleCount);
-            void InitRenderTargets(const Viewport& viewport, u32 sampleCount);
+            void InitManagers(const sViewport& viewport, u32 sampleCount);
+            void InitBuffers(const sViewport& viewport, u32 sampleCount);
+            void InitSamplers(const sViewport& viewport, u32 sampleCount);
+            void InitRenderTargets(const sViewport& viewport, u32 sampleCount);
 
             void FreeManagers();
             void FreeBuffers();
@@ -67,63 +67,63 @@ namespace xpe {
             void UpdateLight(cScene* scene);
             void UpdatePasses(cScene* scene);
 
-            vector<RenderPass*> m_FinalRenderPasses;
-            vector<RenderPass*> m_ShadowRenderPasses;
-            vector<RenderPass*> m_OpaqueRenderPasses;
-            vector<RenderPass*> m_TransparentRenderPasses;
-            vector<RenderPass*> m_PostFXRenderPasses;
-            vector<RenderPass*> m_UiRenderPasses;
+            vector<cRenderPass*> m_FinalRenderPasses;
+            vector<cRenderPass*> m_ShadowRenderPasses;
+            vector<cRenderPass*> m_OpaqueRenderPasses;
+            vector<cRenderPass*> m_TransparentRenderPasses;
+            vector<cRenderPass*> m_PostFXRenderPasses;
+            vector<cRenderPass*> m_UiRenderPasses;
 
-            ViewportBuffer* m_ViewportBuffer;
-            MonitorBuffer* m_MonitorBuffer;
-            CameraBuffer* m_CameraBuffer;
-            DirectLightBuffer* m_DirectLightBuffer;
-            PointLightBuffer* m_PointLightBuffer;
-            SpotLightBuffer* m_SpotLightBuffer;
-            ShadowFilterBuffer* m_ShadowFilterBuffer;
+            sViewportBuffer* m_ViewportBuffer;
+            sMonitorBuffer* m_MonitorBuffer;
+            sCameraBuffer* m_CameraBuffer;
+            sDirectLightBuffer* m_DirectLightBuffer;
+            sPointLightBuffer* m_PointLightBuffer;
+            sSpotLightBuffer* m_SpotLightBuffer;
+            sShadowFilterBuffer* m_ShadowFilterBuffer;
 
-            RenderTarget* m_SceneRenderTarget;
-            RenderTarget* m_FinalRenderTarget;
-            RenderTarget* m_ShadowRenderTarget;
-            RenderTarget* m_OpaqueRenderTarget;
-            RenderTarget* m_TransparentRenderTarget;
-            RenderTarget* m_UiRenderTarget;
+            sRenderTarget* m_SceneRenderTarget;
+            sRenderTarget* m_FinalRenderTarget;
+            sRenderTarget* m_ShadowRenderTarget;
+            sRenderTarget* m_OpaqueRenderTarget;
+            sRenderTarget* m_TransparentRenderTarget;
+            sRenderTarget* m_UiRenderTarget;
 
-            Texture* m_SharedDepthTexture;
+            sTexture* m_SharedDepthTexture;
 
-            TextureSampler m_ShadowSampler;
+            sSampler m_ShadowSampler;
 
         };
 
         template<typename T, typename... Args>
-        T* RenderSystem::AddRenderPass(Args &&... args)
+        T* cRenderSystem::AddRenderPass(Args &&... args)
         {
             T* renderPass = new T(std::forward<Args>(args)...);
             renderPass->Init();
 
             switch (renderPass->GetType())
             {
-                case RenderPass::eType::FINAL:
+                case cRenderPass::eType::FINAL:
                     m_FinalRenderPasses.emplace_back(renderPass);
                     break;
 
-                case RenderPass::eType::SHADOW:
+                case cRenderPass::eType::SHADOW:
                     m_ShadowRenderPasses.emplace_back(renderPass);
                     break;
 
-                case RenderPass::eType::OPAQUE:
+                case cRenderPass::eType::OPAQUE:
                     m_OpaqueRenderPasses.emplace_back(renderPass);
                     break;
 
-                case RenderPass::eType::TRANSPARENT:
+                case cRenderPass::eType::TRANSPARENT:
                     m_TransparentRenderPasses.emplace_back(renderPass);
                     break;
 
-                case RenderPass::eType::POSTFX:
+                case cRenderPass::eType::POSTFX:
                     m_PostFXRenderPasses.emplace_back(renderPass);
                     break;
 
-                case RenderPass::eType::UI:
+                case cRenderPass::eType::UI:
                     m_UiRenderPasses.emplace_back(renderPass);
                     break;
             }

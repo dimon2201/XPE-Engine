@@ -104,28 +104,28 @@ void TemplateGame::Init()
 
 //                    material->Data->EnableAlbedo = false;
 //                    material->AlbedoIndex = textureIndex;
-//                    MaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
+//                    cMaterialManager::AddAlbedoFromFile(*material, "resources/materials/steel/albedo.png");
 //
 //                    material->Data->EnableBumping = false;
 //                    material->BumpingIndex = textureIndex;
-//                    MaterialManager::AddBumpFromFile(*material, "resources/materials/steel/bump.png");
+//                    cMaterialManager::AddBumpFromFile(*material, "resources/materials/steel/bump.png");
 //
 //                    material->Data->EnableMetallic = false;
 //                    material->MetallicIndex = textureIndex;
-//                    MaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
+//                    cMaterialManager::AddMetallicFromFile(*material, "resources/materials/steel/metallic.png");
 //
 //                    material->Data->EnableRoughness = false;
 //                    material->RoughnessIndex = textureIndex;
-//                    MaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
+//                    cMaterialManager::AddRoughnessFromFile(*material, "resources/materials/steel/roughness.png");
 //
 //                    material->Data->EnableAO = false;
 //                    material->AOIndex = textureIndex;
-//                    MaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
+//                    cMaterialManager::AddAOFromFile(*material, "resources/materials/steel/ao.png");
 
                 m_BatchManager->AddInstance("CubeGeometry", instance);
                 m_BatchManager->AddInstance("CubeMesh", instance);
                 m_BatchManager->AddInstance("SphereGeometry", instance);
-                m_BatchManager->AddInstance("Triangle", instance);
+                m_BatchManager->AddInstance("sTriangle", instance);
 
                 transformIndex++;
                 materialIndex++;
@@ -144,7 +144,7 @@ void TemplateGame::Init()
     m_BatchManager->FlushInstances("CubeGeometry");
     m_BatchManager->FlushInstances("CubeMesh");
     m_BatchManager->FlushInstances("SphereGeometry");
-    m_BatchManager->FlushInstances("Triangle");
+    m_BatchManager->FlushInstances("sTriangle");
     m_BatchManager->FlushInstances("PlaneGeometry");
 
     // it will flush all instance 2D data into GPU memory
@@ -256,24 +256,24 @@ void TemplateGame::InitPipeline()
     m_Pipeline.Textures.emplace_back(&MaterialManager::GetStorage()->Textures.EmissionArray);
 
     // setup shader
-    m_Pipeline.Shader = ShaderManager::CreateShader("window");
-    ShaderManager::AddVertexStageFromFile(m_Pipeline.Shader, "shaders/window.vs");
-    ShaderManager::AddPixelStageFromFile(m_Pipeline.Shader, "shaders/window.ps");
-    ShaderManager::BuildShader(m_Pipeline.Shader);
+    m_Pipeline.sShader = ShaderManager::CreateShader("window");
+    ShaderManager::AddVertexStageFromFile(m_Pipeline.sShader, "shaders/window.vs");
+    ShaderManager::AddPixelStageFromFile(m_Pipeline.sShader, "shaders/window.ps");
+    ShaderManager::BuildShader(m_Pipeline.sShader);
 
     // setup input layout
     m_Layout.Format = Vertex3D::Format;
-    m_Pipeline.InputLayout = m_Layout;
+    m_Pipeline.sInputLayout = m_Layout;
 
     // setup render target
-    m_Pipeline.RenderTarget = m_Canvas->GetRenderTarget();
+    m_Pipeline.sRenderTarget = m_Canvas->GetRenderTarget();
 
     // setup depth stencil testing
     m_Pipeline.DepthStencilState.UseDepthTest = K_TRUE;
 
     // setup rasterizer
-    m_Pipeline.Rasterizer.CullMode = eCullMode::DEFAULT;
-    m_Pipeline.Rasterizer.FillMode = eFillMode::DEFAULT;
+    m_Pipeline.sRasterizer.CullMode = eCullMode::DEFAULT;
+    m_Pipeline.sRasterizer.FillMode = eFillMode::DEFAULT;
 
     // init pipeline
     context->CreatePipeline(m_Pipeline);
@@ -286,17 +286,17 @@ void TemplateGame::InitPipeline2D()
     m_Pipeline2d.VSBuffers.emplace_back(TransformManager::GetBuffer2D());
 
     // setup shader
-    m_Pipeline2d.Shader = ShaderManager::CreateShader("window2d");
-    ShaderManager::AddVertexStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.vs");
-    ShaderManager::AddPixelStageFromFile(m_Pipeline2d.Shader, "shaders/window2d.ps");
-    ShaderManager::BuildShader(m_Pipeline2d.Shader);
+    m_Pipeline2d.sShader = ShaderManager::CreateShader("window2d");
+    ShaderManager::AddVertexStageFromFile(m_Pipeline2d.sShader, "shaders/window2d.vs");
+    ShaderManager::AddPixelStageFromFile(m_Pipeline2d.sShader, "shaders/window2d.ps");
+    ShaderManager::BuildShader(m_Pipeline2d.sShader);
 
     // setup input layout
     m_Layout2d.Format = Vertex2D::Format;
-    m_Pipeline2d.InputLayout = m_Layout2d;
+    m_Pipeline2d.sInputLayout = m_Layout2d;
 
     // setup render target
-    m_Pipeline2d.RenderTarget = m_Canvas->GetRenderTarget();
+    m_Pipeline2d.sRenderTarget = m_Canvas->GetRenderTarget();
     m_Pipeline2d.DepthStencilState.UseDepthTest = K_FALSE;
 
     // init pipeline

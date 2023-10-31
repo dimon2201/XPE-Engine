@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace res {
 
-        bool ReadJsonFile(const char* filepath, JsonObject& object)
+        bool ReadJsonFile(const char* filepath, cJson& object)
         {
             std::ifstream file(filepath, std::ios::in | std::ios::binary);
 
@@ -20,7 +20,7 @@ namespace xpe {
             return true;
         }
 
-        bool WriteJsonFile(const char* filepath, JsonObject& object)
+        bool WriteJsonFile(const char* filepath, cJson& object)
         {
             std::ofstream file(filepath, std::ios::out | std::ios::binary);
 

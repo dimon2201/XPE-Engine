@@ -11,7 +11,7 @@ namespace xpe {
             bool EnableErrorLog = true;
         }
 
-        static void ReceiveMessage(const DebugMessage& message)
+        static void ReceiveMessage(const sDebugMessage& message)
         {
             hstringstream ss;
 
@@ -23,7 +23,7 @@ namespace xpe {
             const char* description = message.Description.c_str();
 
             ss << "\n";
-            ss << "--------------- Rendering Debugger ---------------- \n";
+            ss << "--------------- Rendering cDebugManager ---------------- \n";
 
             ss << "ID: " << id << "\n";
 
@@ -48,9 +48,9 @@ namespace xpe {
                 case eDebugCategory::D_NO_CATEGORY:             ss << "Category: None"; break;
                 case eDebugCategory::D_API:                     ss << "Category: API"; break;
                 case eDebugCategory::D_WINDOW_SYSTEM:           ss << "Category: Window System"; break;
-                case eDebugCategory::D_SHADER_COMPILER:         ss << "Category: Shader Compiler"; break;
+                case eDebugCategory::D_SHADER_COMPILER:         ss << "Category: sShader Compiler"; break;
                 case eDebugCategory::D_THIRD_PARTY:             ss << "Category: Third Party"; break;
-                case eDebugCategory::D_APPLICATION:             ss << "Category: Application"; break;
+                case eDebugCategory::D_APPLICATION:             ss << "Category: cApp"; break;
                 case eDebugCategory::D_OTHER:                   ss << "Category: Other"; break;
             }
             ss << "\n";
@@ -128,18 +128,18 @@ namespace xpe {
             }
         }
 
-        void Debugger::Init()
+        void cDebugManager::Init()
         {
             context::InitDebug();
             context::Callback = ReceiveMessage;
         }
 
-        void Debugger::Free()
+        void cDebugManager::Free()
         {
             context::FreeDebug();
         }
 
-        void Debugger::LogMessages()
+        void cDebugManager::LogMessages()
         {
             auto messages = context::GetMessageQueue();
             for (const auto& message : messages)
@@ -148,9 +148,9 @@ namespace xpe {
             }
         }
 
-        void Debugger::LogLastMessage()
+        void cDebugManager::LogLastMessage()
         {
-            DebugMessage message;
+            sDebugMessage message;
             if (context::GetLastMessage(message))
             {
                 ReceiveMessage(message);

@@ -5,32 +5,32 @@ namespace xpe {
 
     namespace render {
 
-        SkyboxPass::SkyboxPass(const vector<RenderPassBinding>& bindings)
-        : RenderPass(eType::OPAQUE, bindings) {
-            m_Sampler.Filter = TextureSampler::eFilter::MIN_MAG_MIP_LINEAR;
+        cSkyboxPass::cSkyboxPass(const vector<sRenderPassBinding>& bindings)
+        : cRenderPass(eType::OPAQUE, bindings) {
+            m_Sampler.Filter = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
             context::CreateSampler(m_Sampler);
         }
 
-        SkyboxPass::~SkyboxPass()
+        cSkyboxPass::~cSkyboxPass()
         {
             context::FreeSampler(m_Sampler);
         }
 
-        void SkyboxPass::InitOpaque()
+        void cSkyboxPass::InitOpaque()
         {
-            RenderPass::InitOpaque();
+            cRenderPass::InitOpaque();
             m_Pipeline->Samplers.emplace_back(&m_Sampler);
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
             m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
-        void SkyboxPass::DrawOpaque(cScene *scene)
+        void cSkyboxPass::DrawOpaque(cScene *scene)
         {
-            auto& skybox = SkyboxManager::Get().Skybox;
+            auto& skybox = cSkyboxManager::Get().Skybox;
             if (skybox.Texture) {
-                Geometry& skyboxGeometry = skybox.Geometry;
-                Texture& skyboxTexture = *skybox.Texture;
+                sGeometry& skyboxGeometry = skybox.Geometry;
+                sTexture& skyboxTexture = *skybox.Texture;
                 context::BindPrimitiveTopology(skyboxGeometry.PrimitiveTopology);
                 context::BindTexture(skyboxTexture);
                 context::DrawIndexed(

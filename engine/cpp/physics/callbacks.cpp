@@ -4,14 +4,14 @@ namespace xpe {
 
     namespace physics {
 
-        PhysicsErrorCallback::PhysicsErrorCallback(bool enableInfo, bool enableWarning, bool enableError)
+        cPhysicsErrorCallback::cPhysicsErrorCallback(bool enableInfo, bool enableWarning, bool enableError)
             : EnableInfo(enableInfo), EnableWarning(enableWarning), EnableError(enableError)
         {}
 
-        PhysicsErrorCallback::~PhysicsErrorCallback()
+        cPhysicsErrorCallback::~cPhysicsErrorCallback()
         {}
 
-        void PhysicsErrorCallback::reportError(
+        void cPhysicsErrorCallback::reportError(
             PxErrorCode::Enum code,
             const char* message,
             const char* file,
@@ -19,7 +19,7 @@ namespace xpe {
         ) {
             hstringstream ss;
 
-            ss << "\n---------------------- PhysX Debugger --------------------\n\n";
+            ss << "\n---------------------- PhysX cDebugManager --------------------\n\n";
 
             bool logInfo = false;
             bool logWarn = false;
@@ -100,7 +100,7 @@ namespace xpe {
             }
 
             ss << "File: " << file << "\n";
-            ss << "Line: " << line << "\n";
+            ss << "sLine: " << line << "\n";
             ss << "Message: " << message << "\n";
 
             ss << "\n----------------------------------------------------------\n";
@@ -119,28 +119,28 @@ namespace xpe {
             }
         }
 
-        void PhysicsSimulationEventCallback::onConstraintBreak(PxConstraintInfo*, PxU32)
+        void cPhysicsSimulationEventCallback::onConstraintBreak(PxConstraintInfo*, PxU32)
         {
         }
 
-        void PhysicsSimulationEventCallback::onWake(PxActor**, PxU32)
+        void cPhysicsSimulationEventCallback::onWake(PxActor**, PxU32)
         {
         }
 
-        void PhysicsSimulationEventCallback::onSleep(PxActor**, PxU32)
+        void cPhysicsSimulationEventCallback::onSleep(PxActor**, PxU32)
         {
         }
 
-        void PhysicsSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 nbPairs)
+        void cPhysicsSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 nbPairs)
         {
             LogInfo("onContact");
         }
 
-        void PhysicsSimulationEventCallback::onTrigger(PxTriggerPair*, PxU32)
+        void cPhysicsSimulationEventCallback::onTrigger(PxTriggerPair*, PxU32)
         {
         }
 
-        void PhysicsSimulationEventCallback::onAdvance(const PxRigidBody* const*, const PxTransform*, const PxU32)
+        void cPhysicsSimulationEventCallback::onAdvance(const PxRigidBody* const*, const PxTransform*, const PxU32)
         {
         }
     }

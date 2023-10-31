@@ -13,9 +13,9 @@ namespace xpe {
             ID3D11Debug* s_Debug = nullptr;
             ID3D11InfoQueue* s_InfoQueue = nullptr;
 
-            static DebugMessage ToDebugMessage(const D3D11_MESSAGE& d3D11Message)
+            static sDebugMessage ToDebugMessage(const D3D11_MESSAGE& d3D11Message)
             {
-                DebugMessage message;
+                sDebugMessage message;
 
                 message.ID = d3D11Message.ID;
                 auto severity = d3D11Message.Severity;
@@ -105,7 +105,7 @@ namespace xpe {
                 return message;
             }
 
-            static DebugMessage GetDebugMessage(int index)
+            static sDebugMessage GetDebugMessage(int index)
             {
                 SIZE_T messageSize = 0;
                 s_InfoQueue->GetMessageA(index, nullptr, &messageSize);
@@ -113,7 +113,7 @@ namespace xpe {
                 D3D11_MESSAGE* message = (D3D11_MESSAGE*) salloc(messageSize);
                 s_InfoQueue->GetMessageA(index, message, &messageSize);
 
-                DebugMessage debugMessage = ToDebugMessage(*message);
+                sDebugMessage debugMessage = ToDebugMessage(*message);
 
                 return debugMessage;
             }
@@ -129,7 +129,7 @@ namespace xpe {
                 s_InfoQueue->Release();
             }
 
-            bool GetLastMessage(DebugMessage& message) {
+            bool GetLastMessage(sDebugMessage& message) {
                 auto messageCount = s_InfoQueue->GetNumStoredMessages();
                 if (messageCount > 0) {
                     message = GetDebugMessage(0);
@@ -139,9 +139,9 @@ namespace xpe {
                 return false;
             }
 
-            vector<DebugMessage> GetMessageQueue() {
+            vector<sDebugMessage> GetMessageQueue() {
                 auto messageCount = s_InfoQueue->GetNumStoredMessages();
-                vector<DebugMessage> messages;
+                vector<sDebugMessage> messages;
                 messages.resize(messageCount);
 
                 for (int i = 0; i < messageCount; i++) {

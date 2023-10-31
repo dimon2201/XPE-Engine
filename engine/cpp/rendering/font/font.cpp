@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace render {
 
-        Font::~Font()
+        sFont::~sFont()
         {
             for (auto& glyph : AlphaBet) {
                 main_free(glyph.second.BitmapData);

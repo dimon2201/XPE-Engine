@@ -5,42 +5,42 @@ namespace focus {
 
     namespace core {
 
-        void Editor::Init()
+        void cEditor::Init()
         {
-            LogInfo("Editor::Init()");
-            ProjectManager::Init();
-            ProjectManager::CreateProject("Chess");
-            ProjectManager::Callback = this;
-            ProjectManager::StartWatching("Chess");
+            LogInfo("cEditor::Init()");
+            cProjectManager::Init();
+            cProjectManager::CreateProject("Chess");
+            cProjectManager::Callback = this;
+            cProjectManager::StartWatching("Chess");
             // todo later I will move it into Input keys and UI
-//        ProjectManager::OpenInCLion("Chess");
-//        ProjectManager::OpenInСMake("Chess");
-//        ProjectManager::OpenInVS("Chess");
-//        ProjectManager::OpenInVSCode("Chess");
-//        ProjectManager::LaunchGame("Chess", Project::eBuildType::DEBUG_VS);
+//        cProjectManager::OpenInCLion("Chess");
+//        cProjectManager::OpenInСMake("Chess");
+//        cProjectManager::OpenInVS("Chess");
+//        cProjectManager::OpenInVSCode("Chess");
+//        cProjectManager::LaunchGame("Chess", Project::eBuildType::DEBUG_VS);
         }
 
-        void Editor::Update()
+        void cEditor::Update()
         {
-            Application* gameReload = GameReloaded.load();
+            cApp* gameReload = GameReloaded.load();
             if (gameReload != nullptr) {
                 GameReloaded.store(nullptr);
             }
         }
 
-        void Editor::Free()
+        void cEditor::Free()
         {
-            LogInfo("Editor::Free()");
-            ProjectManager::Free();
+            LogInfo("cEditor::Free()");
+            cProjectManager::Free();
         }
 
     }
 
 }
 
-xpe::core::Application* CreateApplication()
+xpe::core::cApp* CreateApplication()
 {
-    Application* app = new focus::core::Editor();
+    cApp* app = new focus::core::cEditor();
 
     // read app configs
     // app->Config = string("EditorConfig"); todo: compilator error

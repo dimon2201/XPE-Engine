@@ -6,8 +6,8 @@ namespace xpe {
 
     namespace core {
 
-        struct ObserverSampleCount : public Observer<u32> {
-            ObserverSampleCount(u32 sampleCount);
+        struct sObserverSampleCount : public sObserver<u32> {
+            sObserverSampleCount(u32 sampleCount);
         };
 
     }

@@ -6,15 +6,14 @@ namespace xpe {
 
     namespace render {
 
-        class SkeletonPass : public InstancingPass
+        class cSkeletonPass : public cInstancingPass
         {
 
         public:
-            SkeletonPass(eType type, const vector<RenderPassBinding>& bindings);
+            cSkeletonPass(eType type, const vector<sRenderPassBinding>& bindings);
 
             void DrawOpaque(cScene *scene) override;
             void DrawTransparent(cScene *scene) override;
-
             void DrawShadow(cScene *scene) override;
 
         protected:

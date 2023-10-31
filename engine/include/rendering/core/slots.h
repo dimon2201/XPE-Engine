@@ -1,59 +1,51 @@
 #pragma once
 
-namespace xpe {
+#define K_SLOT_DEFAULT UINT32_MAX
 
-    namespace render {
+// ---------- Structure Buffers --------------- //
 
-        using namespace core;
+// ---------- sVertex Stage --------------- //
 
-        // ---------- Structure Buffers --------------- //
+#define K_SLOT_INSTANCES 0
+#define K_SLOT_TRANSFORMS 1
+#define K_SLOT_CAMERA 2
+#define K_SLOT_TEXT_CHARS 3
+#define K_SLOT_VIEWPORT 4
+#define K_SLOT_BONES 5
 
-        // ---------- Vertex Stage --------------- //
+// ---------- Pixel Stage --------------- //
 
-        const u32 K_SLOT_INSTANCES               = 0;
-        const u32 K_SLOT_TRANSFORMS              = 1;
-        const u32 K_SLOT_CAMERA                  = 2;
-        const u32 K_SLOT_TEXT_CHARS              = 3;
-        const u32 K_SLOT_VIEWPORT                = 4;
-        const u32 K_SLOT_BONES                   = 5;
+// core
+#define K_SLOT_MONITOR 0
 
-        // ---------- Pixel Stage --------------- //
+// materials
+#define K_SLOT_MATERIALS 1
+#define K_SLOT_ALBEDO 2
+#define K_SLOT_BUMPING 3
+#define K_SLOT_PARALLAX 4
+#define K_SLOT_METALLIC 5
+#define K_SLOT_ROUGHNESS 6
+#define K_SLOT_AO 7
+#define K_SLOT_EMISSION 8
 
-        // core
-        const u32 K_SLOT_MONITOR                 = 0;
+// lights
+#define K_SLOT_DIRECT_LIGHTS 9
+#define K_SLOT_POINT_LIGHTS 10
+#define K_SLOT_SPOT_LIGHTS 11
 
-        // materials
-        const u32 K_SLOT_MATERIALS               = 1;
-        const u32 K_SLOT_ALBEDO                  = 2;
-        const u32 K_SLOT_BUMPING                 = 3;
-        const u32 K_SLOT_PARALLAX                = 4;
-        const u32 K_SLOT_METALLIC                = 5;
-        const u32 K_SLOT_ROUGHNESS               = 6;
-        const u32 K_SLOT_AO                      = 7;
-        const u32 K_SLOT_EMISSION                = 8;
+// shadows
+#define K_SLOT_SHADOW_FILTER 12
+#define K_SLOT_SHADOW_MAP 13
 
-        // lights
-        const u32 K_SLOT_DIRECT_LIGHTS           = 9;
-        const u32 K_SLOT_POINT_LIGHTS            = 10;
-        const u32 K_SLOT_SPOT_LIGHTS             = 11;
+// SSAO
+#define K_SLOT_SSAO 0
 
-        // shadows
-        const u32 K_SLOT_SHADOW_FILTER           = 12;
-        const u32 K_SLOT_SHADOW_MAP              = 13;
+// ---------- Samplers --------------- //
 
-        // SSAO
-        const u32 K_SLOT_SSAO                    = 0;
+// materials
+#define K_SLOT_MATERIAL_SAMPLER 0
 
-        // ---------- Samplers --------------- //
+// shadows
+#define K_SLOT_SHADOW_SAMPLER 1
 
-        // materials
-        const u32 K_SLOT_MATERIAL_SAMPLER        = 0;
-
-        // shadows
-        const u32 K_SLOT_SHADOW_SAMPLER          = 1;
-
-        // ---------- Constant Buffers --------------- //
-
-    }
-
-}
+// ---------- Constant Buffers --------------- //

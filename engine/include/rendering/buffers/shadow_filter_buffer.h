@@ -6,14 +6,14 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API ShadowFilter : public core::Object
+        struct ENGINE_API ShadowFilter final
         {
             int FilterSize = 9;
         };
 
-        struct ENGINE_API ShadowFilterBuffer : public ItemBuffer<ShadowFilter>
+        struct ENGINE_API sShadowFilterBuffer : public sItemBuffer<ShadowFilter>
         {
-            ShadowFilterBuffer() : ItemBuffer<ShadowFilter>(K_SLOT_SHADOW_FILTER) {}
+            sShadowFilterBuffer() : sItemBuffer<ShadowFilter>(K_SLOT_SHADOW_FILTER) {}
         };
 
     }

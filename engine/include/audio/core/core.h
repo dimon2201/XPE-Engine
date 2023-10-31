@@ -44,15 +44,15 @@ namespace xpe {
         };
 
         Json(
-                sAudioSource,
-                Id,
-                State,
-                Position,
-                Velocity,
-                Gain,
-                Pitch,
-                RefDistance,
-                MaxDistance
+            sAudioSource,
+            Id,
+            State,
+            Position,
+            Velocity,
+            Gain,
+            Pitch,
+            RefDistance,
+            MaxDistance
         )
 
     }

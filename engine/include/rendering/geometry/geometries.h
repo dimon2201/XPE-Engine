@@ -15,11 +15,11 @@ namespace xpe {
             { ePrimitiveTopology::LINE_STRIP, "LINE_STRIP" },
         })
 
-        Json(VertexBuffer, List)
-        Json(IndexBuffer, List)
+        Json(sVertexBuffer, List)
+        Json(sIndexBuffer, List)
 
         Json(
-            Geometry,
+            sGeometry,
             PrimitiveTopology,
             VertexOffset,
             Vertices,
@@ -27,31 +27,31 @@ namespace xpe {
             Indices
         )
 
-        struct ENGINE_API Triangle : public Geometry {
-            Triangle();
+        struct ENGINE_API sTriangle : public sGeometry {
+            sTriangle();
         };
 
-        struct Line : public Geometry {
-            Line();
+        struct ENGINE_API sLine : public sGeometry {
+            sLine();
         };
 
-        struct ENGINE_API Quad : public Geometry {
-            Quad();
+        struct ENGINE_API sQuad : public sGeometry {
+            sQuad();
         };
 
-        struct ENGINE_API Cube : public Geometry {
-            Cube();
+        struct ENGINE_API sCube : public sGeometry {
+            sCube();
         };
 
-        struct ENGINE_API Plane : public Geometry {
-            Plane(s32 size = 16);
+        struct ENGINE_API sPlane : public sGeometry {
+            sPlane(s32 size = 16);
         };
 
-        struct ENGINE_API Sphere : public Geometry {
+        struct ENGINE_API sSphere : public sGeometry {
             glm::vec3 Center;
             float Radius;
 
-            Sphere(s32 xSegments = 64, s32 ySegments = 64);
+            sSphere(s32 xSegments = 64, s32 ySegments = 64);
         };
 
         template<typename T>
@@ -163,19 +163,19 @@ namespace xpe {
             InitTangent(&vertices[20], &vertices[21], &vertices[22], &vertices[23]);
         }
 
-        struct ENGINE_API Model : public Object
+        struct ENGINE_API sModel : public cObject
         {
             ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-            vector<Geometry> Meshes;
+            vector<sGeometry> Meshes;
             usize VertexOffset = 0;
             usize VertexCount = 0;
             usize IndexOffset = 0;
             vector<u32> Indices;
 
-            inline Geometry& operator [](u32 i) { return Meshes[i]; }
+            inline sGeometry& operator [](u32 i) { return Meshes[i]; }
         };
 
-        Json(Model, PrimitiveTopology, Meshes, VertexOffset, VertexCount, IndexOffset, Indices)
+        Json(sModel, PrimitiveTopology, Meshes, VertexOffset, VertexCount, IndexOffset, Indices)
 
     }
 

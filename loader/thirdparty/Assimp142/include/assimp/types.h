@@ -143,7 +143,7 @@ struct aiPlane {
 
 #endif // !__cplusplus
 
-    //! Plane equation
+    //! sPlane equation
     ai_real a, b, c, d;
 }; // !struct aiPlane
 

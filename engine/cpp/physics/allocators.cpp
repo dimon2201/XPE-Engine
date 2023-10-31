@@ -4,15 +4,15 @@ namespace xpe {
 
     namespace physics {
 
-        PhysicsAllocator::~PhysicsAllocator() {}
+        cPhysicsAllocator::~cPhysicsAllocator() {}
 
-        void* PhysicsAllocator::allocate(size_t size, const char* typeName, const char* filename, int line)
+        void* cPhysicsAllocator::allocate(size_t size, const char* typeName, const char* filename, int line)
         {
             //hstringstream ss;
             //ss << "\n--------------------- PhysX Allocator -------------------\n\n";
             //ss << "Type: " << typeName << "\n";
             //ss << "File: " << filename << "\n";
-            //ss << "Line: " << line << "\n";
+            //ss << "sLine: " << line << "\n";
             //ss << "Size: " << size << "\n";
             //ss << "\n---------------------------------------------------------\n";
             //LogInfo(ss.str());
@@ -29,7 +29,7 @@ namespace xpe {
             return ptr;
         }
 
-        void PhysicsAllocator::deallocate(void* ptr)
+        void cPhysicsAllocator::deallocate(void* ptr)
         {
             //LogInfo("PhysX freeing memory {}", ptr);
             align16_free(ptr);

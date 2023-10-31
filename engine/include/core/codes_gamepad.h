@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API GamepadState final
+        struct ENGINE_API sGamepadState final
         {
             bool Pressed = false;
             bool Released = false;

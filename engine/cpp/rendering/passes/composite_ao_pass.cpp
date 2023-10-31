@@ -4,8 +4,8 @@ namespace xpe {
 
     namespace render {
 
-        CompositeAOPass::CompositeAOPass(const vector<RenderPassBinding>& bindings)
-        : RenderPass(eType::POSTFX, bindings) {}
+        cCompositeAoPass::cCompositeAoPass(const vector<sRenderPassBinding>& bindings)
+        : cRenderPass(eType::POSTFX, bindings) {}
 
     }
 

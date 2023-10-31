@@ -6,9 +6,9 @@ namespace xpe {
 
     namespace render {
 
-        TextPass::TextPass(eType type, const vector<RenderPassBinding>& bindings) : RenderPass(type, bindings)
+        cTextPass::cTextPass(eType type, const vector<sRenderPassBinding>& bindings) : cRenderPass(type, bindings)
         {
-            m_Quad = GeometryManager::AddGeometry(Quad());
+            m_Quad = cGeometryManager::AddGeometry(sQuad());
             m_TextBuffer.Reserve(1000);
             m_TransformBuffer.Reserve(1);
             m_Pipeline->PrimitiveTopology = m_Quad.PrimitiveTopology;
@@ -16,7 +16,7 @@ namespace xpe {
             m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
         }
 
-        void TextPass::DrawText(const Transform &transform, const string &text, Font &font)
+        void cTextPass::DrawText(const sTransform &transform, const string &text, sFont &font)
         {
             if (text.empty()) return;
             
@@ -34,9 +34,9 @@ namespace xpe {
                 if (it == font.AlphaBet.end()) {
                     continue;
                 }
-                Font::Glyph glyph = it->second;
+                sFont::sGlyph glyph = it->second;
 
-                xpe::render::Character character;
+                xpe::render::sChar character;
                 character.TransformIndex = 0;
                 character.CameraIndex = 0;
                 character.GlyphSize = font.GlyphSize;

@@ -10,11 +10,11 @@ namespace xpe
 
         using namespace core;
 
-        struct ENGINE_API Font : public Object
+        struct ENGINE_API sFont : public cObject
         {
-            struct Glyph final
+            struct sGlyph final
             {
-                u8 Character;
+                u8 Char;
                 usize Width;
                 usize Height;
                 ssize Left;
@@ -31,10 +31,10 @@ namespace xpe
             f32 NewLineOffset;
             f32 WhitespaceOffset;
             usize MaxGlyphHeight;
-            unordered_map<char, Font::Glyph> AlphaBet;
-            Texture Atlas;
+            unordered_map<char, sFont::sGlyph> AlphaBet;
+            sTexture Atlas;
 
-            ~Font();
+            ~sFont();
 
             inline float GetWhitespaceWidth()
             {
@@ -43,8 +43,8 @@ namespace xpe
         };
 
         Json(
-            Font::Glyph,
-            Character,
+            sFont::sGlyph,
+            Char,
             Width,
             Height,
             Left,
@@ -56,7 +56,7 @@ namespace xpe
         )
 
         Json(
-            Font,
+            sFont,
             GlyphCount,
             GlyphSize,
             NewLineOffset,

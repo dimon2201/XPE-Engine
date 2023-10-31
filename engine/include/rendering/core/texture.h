@@ -20,27 +20,27 @@ namespace xpe {
             HDR = RGBA16
         };
 
-        struct ENGINE_API Mip final
+        struct ENGINE_API sMip final
         {
             void* Pixels = nullptr;
             u32 RowByteSize = 0;
 
-            Mip() = default;
-            Mip(void* pixels, u32 rowByteSize) : Pixels(pixels), RowByteSize(rowByteSize) {}
+            sMip() = default;
+            sMip(void* pixels, u32 rowByteSize) : Pixels(pixels), RowByteSize(rowByteSize) {}
         };
 
-        struct ENGINE_API TextureLayer final
+        struct ENGINE_API sTextureLayer final
         {
             void* Pixels = nullptr;
             s32 Width, Height, Channels = 0;
             u32 RowByteSize = 0;
-            vector<Mip> Mips;
+            vector<sMip> Mips;
 
             void Free();
 
-            void CopyFrom(const TextureLayer& other);
+            void CopyFrom(const sTextureLayer& other);
 
-            TextureLayer Clone() const;
+            [[nodiscard]] sTextureLayer Clone() const;
 
             void GenerateMips(const eTextureFormat& format, int width, int height);
 
@@ -67,7 +67,7 @@ namespace xpe {
             );
         };
 
-        struct ENGINE_API Texture : public GPUResource
+        struct ENGINE_API sTexture : public sResource
         {
 
             enum class eType
@@ -101,9 +101,9 @@ namespace xpe {
             };
 
             // channels count table for each texture format
-            static const std::unordered_map<eTextureFormat, int> ChannelTable;
+            static const std::unordered_map<eTextureFormat, int> k_ChannelTable;
             // bytes per pixel table for each texture format
-            static const std::unordered_map<eTextureFormat, int> BPPTable;
+            static const std::unordered_map<eTextureFormat, int> k_BppTable;
 
             eType Type = eType::TEXTURE_DEFAULT;
             eUsage Usage = eUsage::DEFAULT;
@@ -122,14 +122,14 @@ namespace xpe {
             u32 MostDetailedMip = 0;
 
             bool InitializeData = true;
-            vector<TextureLayer> Layers;
+            vector<sTextureLayer> Layers;
 
-            ~Texture();
+            ~sTexture();
 
             void Init();
             void Free();
 
-            TextureLayer CreateLayer() const;
+            sTextureLayer CreateLayer() const;
 
             void RemoveLayerAt(u32 index);
 
@@ -151,7 +151,7 @@ namespace xpe {
             void ResizeTextureFloat(s32 width, s32 height);
         };
 
-        struct ENGINE_API TextureSampler : public GPUResource
+        struct ENGINE_API sSampler : public sResource
         {
 
             enum class eComparison

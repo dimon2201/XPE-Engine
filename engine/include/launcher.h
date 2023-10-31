@@ -6,11 +6,11 @@ using namespace xpe::core;
 
 int main(int argc, char** argv) {
     // pull OS hardware params
-    xpe::core::HardwareManager::UpdateMemoryStats();
-    xpe::core::HardwareManager::UpdateCpuStats();
+    xpe::core::cHardwareManager::UpdateMemoryStats();
+    xpe::core::cHardwareManager::UpdateCpuStats();
 
     // init memory pools
-    MemoryManager::Init();
+    cMemoryManager::Init();
 
     // run app implementation
     auto* application = CreateApplication();
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     delete application;
 
     // free memory pools
-    MemoryManager::Free();
+    cMemoryManager::Free();
 
     return 0;
 }

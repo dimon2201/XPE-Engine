@@ -16,7 +16,7 @@ namespace xpe {
 
     namespace core
     {
-        class MainDispatcher;
+        class cMainDispatcher;
     }
 
     namespace ecs
@@ -27,7 +27,7 @@ namespace xpe {
 
     namespace render
     {
-        class Material;
+        class sMaterial;
     }
 
     namespace physics
@@ -36,9 +36,9 @@ namespace xpe {
         using namespace core;
         using namespace ecs;
 
-        class PhysicsAllocator;
-        class PhysicsErrorCallback;
-        class PhysicsSimulationEventCallback;
+        class cPhysicsAllocator;
+        class cPhysicsErrorCallback;
+        class cPhysicsSimulationEventCallback;
 
         enum class eShapeType
         {
@@ -49,7 +49,7 @@ namespace xpe {
             PLANE = 4
         };
 
-        struct ENGINE_API sShapeDescriptor : public Object
+        struct ENGINE_API sShapeDescriptor : public cObject
         {
             sShapeDescriptor(const eShapeType& type)
             {
@@ -91,7 +91,7 @@ namespace xpe {
             sPlaneShapeDescriptor() : sShapeDescriptor(eShapeType::PLANE) {}
         };
 
-        struct ENGINE_API sActor : public Object
+        struct ENGINE_API sActor : public cObject
         {
             enum class eActorType
             {
@@ -142,20 +142,11 @@ namespace xpe {
             f32 RestOffset = 0.0f;
         };
 
-        struct ENGINE_API sScene : public Object
-        {
-            sScene(PxScene* scene) : Scene(scene)
-            {
-            }
-
-            PxScene* Scene;
-        };
-
-        class ENGINE_API PhysicsManager final
+        class ENGINE_API cPhysicsManager final
         {
 
         public:
-            static void Init(MainDispatcher* dispatcher);
+            static void Init(cMainDispatcher* dispatcher, bool enableMemoryProfiling = false);
             static void Free();
 
             static void EnableLoggingInfo(bool enable);
@@ -174,20 +165,20 @@ namespace xpe {
                 f32 contactOffset,
                 f32 restOffset
             );
-            static sScene* AddScene(cScene* scene);
+
+            static PxScene* AddScene(const string& tag);
 
         private:
-            static bool EnableMemoryProfiling;
-            static PhysicsAllocator* s_Allocator;
-            static PhysicsErrorCallback* s_ErrorCallback;
-            static PhysicsSimulationEventCallback* s_EventCallback;
+            static cPhysicsAllocator* s_Allocator;
+            static cPhysicsErrorCallback* s_ErrorCallback;
+            static cPhysicsSimulationEventCallback* s_EventCallback;
 
             static PxFoundation* s_Foundation;
             static PxPhysics* s_Physics;
             static PxCpuDispatcher* s_Dispatcher;
 
-            static std::unordered_map<string, sActor*>* s_Actors;
-            static std::unordered_map<string, sScene*>* s_Scenes;
+            static unordered_map<string, sActor*>* s_Actors;
+            static unordered_map<string, PxScene*>* s_Scenes;
         };
 
     }

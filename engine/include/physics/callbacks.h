@@ -9,7 +9,7 @@ namespace xpe {
         using namespace core;
         using namespace physx;
 
-        class ENGINE_API PhysicsErrorCallback : public PxErrorCallback
+        class ENGINE_API cPhysicsErrorCallback : public PxErrorCallback
         {
 
         public:
@@ -17,14 +17,14 @@ namespace xpe {
             bool EnableWarning;
             bool EnableError;
 
-            PhysicsErrorCallback(bool enableInfo = true, bool enableWarning = true, bool enableError = true);
-            ~PhysicsErrorCallback() override;
+            cPhysicsErrorCallback(bool enableInfo = true, bool enableWarning = true, bool enableError = true);
+            ~cPhysicsErrorCallback() override;
 
             void reportError(PxErrorCode::Enum code, const char* message, const char* file, int line) override;
 
         };
 
-        class PhysicsSimulationEventCallback : public PxSimulationEventCallback
+        class cPhysicsSimulationEventCallback : public PxSimulationEventCallback
         {
         
         public:

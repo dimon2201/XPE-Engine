@@ -8,20 +8,22 @@ namespace focus {
 
         using namespace xpe::core;
 
-        class FileWatcher;
+        class cFileWatcher;
 
-        struct FileWatch final {
+        struct sFileWatch final {
             bool DeleteNotified = false;
             std::filesystem::file_time_type Timestamp;
-            EventBuffer<EventFileAdded> FileAddedEvents;
-            EventBuffer<EventFileDeleted> FileDeletedEvents;
-            EventBuffer<EventFileModified> FileModifiedEvents;
-            EventBuffer<EventFileNewName> FileNewNameEvents;
-            EventBuffer<EventFileOldName> FileOldNameEvents;
+            cEventBuffer<EventFileAdded> FileAddedEvents;
+            cEventBuffer<EventFileDeleted> FileDeletedEvents;
+            cEventBuffer<EventFileModified> FileModifiedEvents;
+            cEventBuffer<EventFileNewName> FileNewNameEvents;
+            cEventBuffer<EventFileOldName> FileOldNameEvents;
         };
 
-        struct FileWatcher : public Object
+        class cFileWatcher : public cObject
         {
+
+        public:
 
             enum class eAction
             {
@@ -34,23 +36,24 @@ namespace focus {
 
             string USID;
 
-            FileWatcher(const string& usid) : USID(usid) {}
+            cFileWatcher(const string& usid) : USID(usid) {}
 
         protected:
             void Notify(
-                    FileWatch& watch,
+                    sFileWatch& watch,
                     const string& watchpath,
                     const string& filepath,
-                    FileWatcher::eAction action
+                    cFileWatcher::eAction action
             );
         };
 
-        struct MultiFileWatcher : public FileWatcher
+        class cMultiFileWatcher : public cFileWatcher
         {
 
-            MultiFileWatcher(const string& usid) : FileWatcher(usid) {}
+        public:
+            cMultiFileWatcher(const string& usid) : cFileWatcher(usid) {}
 
-            FileWatch& AddWatch(const char* path);
+            sFileWatch& AddWatch(const char* path);
             void RemoveWatch(const char* path);
 
             void Start();
@@ -58,20 +61,19 @@ namespace focus {
 
         private:
             void Update();
-
             bool Exists(const string& path);
 
-        private:
             bool m_Running = false;
-            unordered_map<string, FileWatch> m_Paths;
+            unordered_map<string, sFileWatch> m_Paths;
         };
 
-        struct DirectoryWatcher : public FileWatcher
+        class cDirectoryWatcher : public cFileWatcher
         {
 
-            DirectoryWatcher(const string& usid) : FileWatcher(usid) {}
+        public:
+            cDirectoryWatcher(const string& usid) : cFileWatcher(usid) {}
 
-            FileWatch& AddWatch(const char* path);
+            sFileWatch& AddWatch(const char* path);
             void RemoveWatch(const char* path);
 
             void Start();
@@ -80,13 +82,11 @@ namespace focus {
         private:
             bool Exists(const string& watchpath);
             bool Exists(const string& watchpath, const string& filepath);
+            void Update(const string& watchpath, const string& filepath, sFileWatch& watch);
 
-            void Update(const string& watchpath, const string& filepath, FileWatch& watch);
-
-        private:
             bool m_Running = false;
             unordered_map<string, unordered_map<string, std::filesystem::file_time_type>> m_Paths;
-            unordered_map<string, FileWatch> m_Watches;
+            unordered_map<string, sFileWatch> m_Watches;
         };
 
     }

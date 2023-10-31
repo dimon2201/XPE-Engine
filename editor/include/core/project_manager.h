@@ -3,7 +3,7 @@
 #include <core/file_watcher.h>
 
 namespace xpe::core {
-    class Application;
+    class cApp;
 }
 
 namespace focus {
@@ -12,7 +12,7 @@ namespace focus {
 
     namespace core {
 
-        struct Project final {
+        struct sProject final {
 
             enum class eBuildType
             {
@@ -23,28 +23,28 @@ namespace focus {
             };
 
             string Title;
-            MultiFileWatcher* FilesWatcher = nullptr;
-            DirectoryWatcher* DirsWatcher = nullptr;
+            cMultiFileWatcher* FilesWatcher = nullptr;
+            cDirectoryWatcher* DirsWatcher = nullptr;
         };
 
-        struct ProjectStorage : public Object {
-            unordered_map<string, Project> Projects;
+        struct sProjectStorage : public cObject {
+            unordered_map<string, sProject> Projects;
         };
 
-        struct ProjectManagerCallback {
-            std::atomic<Application*> GameReloaded;
+        struct sProjectManagerCallback {
+            std::atomic<cApp*> GameReloaded;
         };
 
-        class ProjectManager final {
+        class cProjectManager final {
 
         public:
-            static ProjectManagerCallback* Callback;
+            static sProjectManagerCallback* Callback;
 
         public:
             static void Init();
             static void Free();
 
-            static Project* CreateProject(const string& title);
+            static sProject* CreateProject(const string& title);
 
             static void StartWatching(const string& title);
             static void StopWatching(const string& title);
@@ -56,21 +56,21 @@ namespace focus {
             static void OpenInVS(const string& title);
             static void OpenInVSCode(const string& title);
 
-            static void LaunchGame(const string& title, Project::eBuildType buildType);
+            static void LaunchGame(const string& title, sProject::eBuildType buildType);
 
         private:
             static hstring GetProjectPath(const string& title);
             static hstring GetVSBuildPath(const string& title);
-            static hstring GetLaunchPath(const string& title, Project::eBuildType buildType);
+            static hstring GetLaunchPath(const string& title, sProject::eBuildType buildType);
 
             static void SetupProject(const string& title);
 
-            static void WatchProjectGameCodeDLL(MultiFileWatcher& watcher, const string& title, const char* buildPath);
-            static void WatchProjectShaders(DirectoryWatcher& watcher, const string& title);
-            static void WatchProjectResources(DirectoryWatcher& watcher, const string& title);
+            static void WatchProjectGameCodeDLL(cMultiFileWatcher& watcher, const string& title, const char* buildPath);
+            static void WatchProjectShaders(cDirectoryWatcher& watcher, const string& title);
+            static void WatchProjectResources(cDirectoryWatcher& watcher, const string& title);
 
         private:
-            static ProjectStorage* s_Storage;
+            static sProjectStorage* s_Storage;
 
         };
 

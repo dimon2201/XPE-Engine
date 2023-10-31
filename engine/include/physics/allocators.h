@@ -9,11 +9,11 @@ namespace xpe {
         using namespace core;
         using namespace physx;
 
-        class ENGINE_API PhysicsAllocator : public physx::PxAllocatorCallback
+        class ENGINE_API cPhysicsAllocator : public physx::PxAllocatorCallback
         {
 
         public:
-            ~PhysicsAllocator() override;
+            ~cPhysicsAllocator() override;
 
             void* allocate(size_t size, const char* typeName, const char* filename, int line) override;
             void deallocate(void* ptr) override;

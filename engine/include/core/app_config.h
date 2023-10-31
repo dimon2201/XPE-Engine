@@ -6,10 +6,10 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API AppConfig : public res::JsonObject
+        struct ENGINE_API sAppConfig : public res::cJson
         {
             JsonClass(
-                AppConfig,
+                sAppConfig,
                 WinTitle,
                 WinWidth,
                 WinHeight,
@@ -59,7 +59,7 @@ namespace xpe {
 
             bool EnableSSAO = true;
 
-            ObserverSampleCount MsaaSampleCount = 1;
+            sObserverSampleCount MsaaSampleCount = 1;
         };
 
     }

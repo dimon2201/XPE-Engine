@@ -12,7 +12,7 @@ namespace xpe {
         using namespace render;
         using namespace math;
 
-        struct LOADER_API TextureCubeFilepath final
+        struct LOADER_API sTextureCubeFilepath final
         {
             string Name;
             string FrontFilepath;
@@ -23,20 +23,20 @@ namespace xpe {
             string BottomFilepath;
         };
 
-        class LOADER_API TextureLoader final
+        class LOADER_API cTextureLoader final
         {
         public:
             static void Init();
             static void Free();
-            static Texture* Load(const char* filepath, const eTextureFormat& format);
-            static Texture* LoadCube(const TextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
-            static TextureLayer LoadLayer(
+            static sTexture* Load(const char* filepath, const eTextureFormat& format);
+            static sTexture* LoadCube(const sTextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
+            static sTextureLayer LoadLayer(
                     const char* filepath,
                     const eTextureFormat& format,
                     int& width, int& height, int& channels
             );
-            static bool Save(const char* filepath, const Texture& texture, const Texture::eFileFormat& fileFormat);
-            static bool SaveLayer(const char* filepath, const TextureLayer& textureLayer, const Texture::eFileFormat& fileFormat);
+            static bool Save(const char* filepath, const sTexture& texture, const sTexture::eFileFormat& fileFormat);
+            static bool SaveLayer(const char* filepath, const sTextureLayer& textureLayer, const sTexture::eFileFormat& fileFormat);
         };
 
     }

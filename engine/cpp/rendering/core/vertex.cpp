@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace render {
 
-        VertexFormat::VertexFormat(const std::vector<VertexFormat::Attribute>& attributes) : Attributes(attributes)
+        sVertexFormat::sVertexFormat(const std::vector<sVertexFormat::sAttribute>& attributes) : Attributes(attributes)
         {
             for (const auto& attribute : attributes)
             {
@@ -12,14 +12,14 @@ namespace xpe {
             }
         }
 
-        VertexFormat Vertex::Format =
+        const sVertexFormat sVertex::k_Format =
         {{
-             Attributes::POS,
-             Attributes::UV,
-             Attributes::NORMAL,
-             Attributes::TANGENT,
-             Attributes::BONE_IDS,
-             Attributes::BONE_WEIGHTS
+             sAttributes::POS,
+             sAttributes::UV,
+             sAttributes::NORMAL,
+             sAttributes::TANGENT,
+             sAttributes::BONE_IDS,
+             sAttributes::BONE_WEIGHTS
          }};
 
     }

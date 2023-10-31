@@ -4,11 +4,11 @@
 
 #ifdef DEBUG
 
-#define InitDebugger() xpe::render::Debugger::Init()
-#define FreeDebugger() xpe::render::Debugger::Free()
+#define InitDebugger() xpe::render::cDebugManager::Init()
+#define FreeDebugger() xpe::render::cDebugManager::Free()
 
-#define LogDebugMessages() xpe::render::DebugManager::LogMessages()
-#define LogDebugMessage() xpe::render::Debugger::LogLastMessage()
+#define LogDebugMessages() xpe::render::cDebugManager::LogMessages()
+#define LogDebugMessage() xpe::render::cDebugManager::LogLastMessage()
 
 #else
 
@@ -70,7 +70,7 @@ namespace xpe {
             D_NOTIFICATION
         };
 
-        struct ENGINE_API DebugMessage final {
+        struct ENGINE_API sDebugMessage final {
             int ID = 0;
             hstring Description = "";
             eDebugType Type = eDebugType::D_NO_TYPE;
@@ -79,7 +79,7 @@ namespace xpe {
             eDebugErrorType ErrorType = eDebugErrorType::D_NO_ERROR_TYPE;
         };
 
-        typedef void (*DebuggerCallback)(const DebugMessage&);
+        typedef void (*DebuggerCallback)(const sDebugMessage&);
 
         namespace context {
 
@@ -91,15 +91,15 @@ namespace xpe {
             ENGINE_API void InitDebug();
             ENGINE_API void FreeDebug();
 
-            ENGINE_API bool GetLastMessage(DebugMessage& message);
+            ENGINE_API bool GetLastMessage(sDebugMessage& message);
 
-            ENGINE_API vector<DebugMessage> GetMessageQueue();
+            ENGINE_API vector<sDebugMessage> GetMessageQueue();
 
             ENGINE_API void ClearMessageQueue();
 
         }
 
-        class ENGINE_API Debugger final {
+        class ENGINE_API cDebugManager final {
 
         public:
             static void Init();

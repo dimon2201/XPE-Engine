@@ -6,10 +6,10 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API Text3DPass : public TextPass
+        class ENGINE_API cText3DPass : public cTextPass
         {
         public:
-            Text3DPass(const vector<RenderPassBinding>& bindings);
+            cText3DPass(const vector<sRenderPassBinding>& bindings);
             void DrawOpaque(cScene* scene) override;
         };
 

@@ -6,105 +6,104 @@ namespace xpe {
 
     namespace render {
 
-        RenderPass::~RenderPass()
+        cRenderPass::~cRenderPass()
         {
             context::FreePipeline(*m_Pipeline);
             delete m_Pipeline;
         }
 
-        RenderPass::RenderPass(eType type, const vector<RenderPassBinding>& bindings)
+        cRenderPass::cRenderPass(eType type, const vector<sRenderPassBinding>& bindings)
         {
             m_Type = type;
             m_Bindings = bindings;
-            m_Pipeline = new Pipeline();
+            m_Pipeline = new sPipeline();
+            m_Pipeline->InputLayout.Format = sVertex::k_Format;
 
             for (auto& binding : m_Bindings)
             {
                 switch (binding.Type) {
 
-                    case RenderPassBinding::eType::BUFFER:
-                        if (binding.Stage == RenderPassBinding::eStage::VERTEX)
+                    case sRenderPassBinding::eType::BUFFER:
+                        if (binding.Stage == sRenderPassBinding::eStage::VERTEX)
                         {
-                            m_Pipeline->VSBuffers.emplace_back((Buffer*)binding.Resource);
-                            if (binding.Slot != RenderPassBinding::SLOT_DEFAULT) {
+                            m_Pipeline->VSBuffers.emplace_back((sBuffer*)binding.Resource);
+                            if (binding.Slot != K_SLOT_DEFAULT) {
                                 m_Pipeline->VSBuffers.back()->Slot = binding.Slot;
                             }
                         }
-                        else if (binding.Stage == RenderPassBinding::eStage::PIXEL)
+                        else if (binding.Stage == sRenderPassBinding::eStage::PIXEL)
                         {
-                            m_Pipeline->PSBuffers.emplace_back((Buffer*)binding.Resource);
-                            if (binding.Slot != RenderPassBinding::SLOT_DEFAULT) {
+                            m_Pipeline->PSBuffers.emplace_back((sBuffer*)binding.Resource);
+                            if (binding.Slot != K_SLOT_DEFAULT) {
                                 m_Pipeline->PSBuffers.back()->Slot = binding.Slot;
                             }
                         }
                         break;
 
-                    case RenderPassBinding::eType::TEXTURE:
-                        if (binding.Stage == RenderPassBinding::eStage::PIXEL)
+                    case sRenderPassBinding::eType::TEXTURE:
+                        if (binding.Stage == sRenderPassBinding::eStage::PIXEL)
                         {
-                            m_Pipeline->Textures.emplace_back((Texture*)binding.Resource);
-                            if (binding.Slot != RenderPassBinding::SLOT_DEFAULT) {
+                            m_Pipeline->Textures.emplace_back((sTexture*)binding.Resource);
+                            if (binding.Slot != K_SLOT_DEFAULT) {
                                 m_Pipeline->Textures.back()->Slot = binding.Slot;
                             }
                         }
                         break;
 
-                    case RenderPassBinding::eType::SAMPLER:
-                        if (binding.Stage == RenderPassBinding::eStage::PIXEL)
+                    case sRenderPassBinding::eType::SAMPLER:
+                        if (binding.Stage == sRenderPassBinding::eStage::PIXEL)
                         {
-                            m_Pipeline->Samplers.emplace_back((TextureSampler*)binding.Resource);
-                            if (binding.Slot != RenderPassBinding::SLOT_DEFAULT) {
+                            m_Pipeline->Samplers.emplace_back((sSampler*)binding.Resource);
+                            if (binding.Slot != K_SLOT_DEFAULT) {
                                 m_Pipeline->Samplers.back()->Slot = binding.Slot;
                             }
                         }
                         break;
 
-                    case RenderPassBinding::eType::SHADER:
-                        m_Pipeline->Shader = (Shader*)binding.Resource;
+                    case sRenderPassBinding::eType::SHADER:
+                        m_Pipeline->Shader = (sShader*)binding.Resource;
                         break;
 
-                    case RenderPassBinding::eType::RASTERIZER:
-                        m_Pipeline->Rasterizer = *((Rasterizer*) binding.Resource);
+                    case sRenderPassBinding::eType::RASTERIZER:
+                        m_Pipeline->Rasterizer = *((sRasterizer*) binding.Resource);
                         break;
 
-                    case RenderPassBinding::eType::DEPTH_STENCIL:
-                        m_Pipeline->DepthStencil = *((DepthStencilMode*) binding.Resource);
+                    case sRenderPassBinding::eType::DEPTH_STENCIL:
+                        m_Pipeline->DepthStencil = *((sDepthStencilMode*) binding.Resource);
                         break;
 
-                    case RenderPassBinding::eType::BLENDING:
-                        m_Pipeline->Blending = *((BlendMode*) binding.Resource);
+                    case sRenderPassBinding::eType::BLENDING:
+                        m_Pipeline->Blending = *((sBlendMode*) binding.Resource);
                         break;
 
-                    case RenderPassBinding::eType::RENDER_TARGET:
-                        m_Pipeline->RenderTarget = ((RenderTarget*) binding.Resource);
+                    case sRenderPassBinding::eType::RENDER_TARGET:
+                        m_Pipeline->RenderTarget = ((sRenderTarget*) binding.Resource);
                         break;
 
                 }
             }
-
-            m_Pipeline->InputLayout.Format = Vertex::Format;
         }
 
-        void RenderPass::InitFinal()
+        void cRenderPass::InitFinal()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
-            BlendTarget target;
+            sBlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
-        void RenderPass::InitShadow()
+        void cRenderPass::InitShadow()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
             m_Pipeline->Rasterizer.CullMode = eCullMode::FRONT;
         }
 
-        void RenderPass::InitOpaque()
+        void cRenderPass::InitOpaque()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
 
-            BlendTarget target;
+            sBlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.Targets.push_back(target);
@@ -114,11 +113,11 @@ namespace xpe {
             m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
-        void RenderPass::InitTransparent()
+        void cRenderPass::InitTransparent()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ZERO;
 
-            BlendTarget target;
+            sBlendTarget target;
             target.Enable = true;
             target.Src = eBlend::ONE;
             target.Dest = eBlend::ONE;
@@ -142,50 +141,50 @@ namespace xpe {
             m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
-        void RenderPass::InitPostFX()
+        void cRenderPass::InitPostFX()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
 
-            BlendTarget target;
+            sBlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
-        void RenderPass::InitUI()
+        void cRenderPass::InitUI()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
-            BlendTarget target;
+            sBlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
         }
 
-        void RenderPass::Init()
+        void cRenderPass::Init()
         {
             switch (m_Type)
             {
-                case RenderPass::eType::FINAL:
+                case cRenderPass::eType::FINAL:
                     InitFinal();
                     break;
 
-                case RenderPass::eType::SHADOW:
+                case cRenderPass::eType::SHADOW:
                     InitShadow();
                     break;
 
-                case RenderPass::eType::OPAQUE:
+                case cRenderPass::eType::OPAQUE:
                     InitOpaque();
                     break;
 
-                case RenderPass::eType::TRANSPARENT:
+                case cRenderPass::eType::TRANSPARENT:
                     InitTransparent();
                     break;
 
-                case RenderPass::eType::POSTFX:
+                case cRenderPass::eType::POSTFX:
                     InitPostFX();
                     break;
 
-                case RenderPass::eType::UI:
+                case cRenderPass::eType::UI:
                     InitUI();
                     break;
             }
@@ -193,27 +192,27 @@ namespace xpe {
             context::CreatePipeline(*m_Pipeline);
         }
 
-        void RenderPass::Bind()
+        void cRenderPass::Bind()
         {
             context::BindPipeline(*m_Pipeline);
         }
 
-        void RenderPass::Unbind()
+        void cRenderPass::Unbind()
         {
             context::UnbindPipeline(*m_Pipeline);
         }
 
-        RenderTarget* RenderPass::GetRenderTarget()
+        sRenderTarget* cRenderPass::GetRenderTarget()
         {
             return m_Pipeline->RenderTarget;
         }
 
-        void RenderPass::DrawFinal(cScene* scene)
+        void cRenderPass::DrawFinal(cScene* scene)
         {
             context::DrawQuad();
         }
 
-        void RenderPass::DrawPostFX(cScene* scene)
+        void cRenderPass::DrawPostFX(cScene* scene)
         {
             context::DrawQuad();
         }

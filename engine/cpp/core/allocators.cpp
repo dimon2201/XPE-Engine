@@ -30,15 +30,15 @@ namespace xpe {
 
         }
 
-        usize StackMemory::TotalAllocCount = 0;
-        usize StackMemory::MemoryOccupiedBytes = 0;
+        usize cMemoryStackManager::TotalAllocCount = 0;
+        usize cMemoryStackManager::MemoryOccupiedBytes = 0;
 
-        void StackMemory::Log() {
+        void cMemoryStackManager::Log() {
             hstringstream ss;
 
             ss << "\n\n----------- Stack Memory -------------\n";
 
-            ss << "Usage = " << (double) MemoryOccupiedBytes / K_MEMORY_KIB << "KB, "
+            ss << "Usage = " << (double) MemoryOccupiedBytes / K_MEMORY_KB << "KB, "
                << "Allocs = " << TotalAllocCount << "\n";
 
             ss << "--------------------------------------\n";
@@ -46,16 +46,16 @@ namespace xpe {
             LogMemory(ss.str());
         }
 
-        StackAllocator::StackAllocator(usize size) : Size(size)
+        sStackAllocator::sStackAllocator(usize size) : Size(size)
         {
-            StackMemory::TotalAllocCount += 1;
-            StackMemory::MemoryOccupiedBytes += size;
+            cMemoryStackManager::TotalAllocCount += 1;
+            cMemoryStackManager::MemoryOccupiedBytes += size;
         }
 
-        StackAllocator::~StackAllocator()
+        sStackAllocator::~sStackAllocator()
         {
-            StackMemory::TotalAllocCount -= 1;
-            StackMemory::MemoryOccupiedBytes -= Size;
+            cMemoryStackManager::TotalAllocCount -= 1;
+            cMemoryStackManager::MemoryOccupiedBytes -= Size;
         }
 
     }

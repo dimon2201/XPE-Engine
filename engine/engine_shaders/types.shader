@@ -1,6 +1,6 @@
 // ---------- For Structure Buffer --------------- //
 
-// ---------- For Vertex Stage --------------- //
+// ---------- For sVertex Stage --------------- //
 
 #define K_SLOT_INSTANCES               register(t0)
 #define K_SLOT_TRANSFORMS              register(t1)

@@ -5,52 +5,52 @@ namespace xpe {
 
     namespace render {
 
-        ShaderStorage* ShaderManager::s_Storage = nullptr;
+        sShaderStorage* cShaderManager::s_Storage = nullptr;
 
-        ShaderStorage::~ShaderStorage() {
+        sShaderStorage::~sShaderStorage() {
             Shaders.clear();
             ShaderStages.clear();
         }
 
-        void ShaderManager::Init() {
-            LogInfo("ShaderManager::Init()");
+        void cShaderManager::Init() {
+            LogInfo("cShaderManager::Init()");
 
-            s_Storage = new ShaderStorage();
-            FileManager::CreateDir("generated");
-            FileManager::CreateDir("generated/shaders");
-            FileManager::CreateDir("generated/engine_shaders");
-            FileManager::CreateDir("generated/engine_shaders/passes");
-            FileManager::CreateDir("generated/engine_shaders/passes/msaa");
-            FileManager::CreateDir("generated/engine_shaders/text");
+            s_Storage = new sShaderStorage();
+            cFileManager::CreateDir("generated");
+            cFileManager::CreateDir("generated/shaders");
+            cFileManager::CreateDir("generated/engine_shaders");
+            cFileManager::CreateDir("generated/engine_shaders/passes");
+            cFileManager::CreateDir("generated/engine_shaders/passes/msaa");
+            cFileManager::CreateDir("generated/engine_shaders/text");
 
-            LogInfo("ShaderManager initialized");
+            LogInfo("cShaderManager initialized");
         }
 
-        void ShaderManager::Free() {
-            LogInfo("ShaderManager::Free()");
+        void cShaderManager::Free() {
+            LogInfo("cShaderManager::Free()");
             FreeShaders();
             delete s_Storage;
         }
 
-        Shader* ShaderManager::CreateShader(const string &id) {
-            Shader shader;
+        sShader* cShaderManager::CreateShader(const string &id) {
+            sShader shader;
             shader.Name = id;
             AddShader(id, shader);
             return GetShader(id);
         }
 
-        void ShaderManager::AddVertexStageFromFile(Shader* const shader, const char *filepath) {
-            ShaderStage* stage = GetShaderStage(filepath);
+        void cShaderManager::AddVertexStageFromFile(sShader* const shader, const char *filepath) {
+            sShaderStage* stage = GetShaderStage(filepath);
 
             if (stage != nullptr) {
                 shader->Stages.emplace_back(stage);
                 return;
             }
 
-            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
-                LogError("Failed to add Vertex stage from filepath {}", filepath);
+                LogError("Failed to add sVertex stage from filepath {}", filepath);
                 return;
             }
 
@@ -59,15 +59,15 @@ namespace xpe {
             AddVertexStage(shader, filepath, src);
         }
 
-        void ShaderManager::AddPixelStageFromFile(Shader* const shader, const char *filepath) {
-            ShaderStage* stage = GetShaderStage(filepath);
+        void cShaderManager::AddPixelStageFromFile(sShader* const shader, const char *filepath) {
+            sShaderStage* stage = GetShaderStage(filepath);
 
             if (stage != nullptr) {
                 shader->Stages.emplace_back(stage);
                 return;
             }
 
-            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Pixel stage from filepath {}", filepath);
@@ -79,15 +79,15 @@ namespace xpe {
             AddPixelStage(shader, filepath, src);
         }
 
-        void ShaderManager::AddGeometryStageFromFile(Shader* const shader, const char *filepath) {
-            ShaderStage* stage = GetShaderStage(filepath);
+        void cShaderManager::AddGeometryStageFromFile(sShader* const shader, const char *filepath) {
+            sShaderStage* stage = GetShaderStage(filepath);
 
             if (stage != nullptr) {
                 shader->Stages.emplace_back(stage);
                 return;
             }
 
-            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add GeometryInstances stage from filepath {}", filepath);
@@ -99,15 +99,15 @@ namespace xpe {
             AddGeometryStage(shader, filepath, src);
         }
 
-        void ShaderManager::AddTessControlStageFromFile(Shader* const shader, const char *filepath) {
-            ShaderStage* stage = GetShaderStage(filepath);
+        void cShaderManager::AddTessControlStageFromFile(sShader* const shader, const char *filepath) {
+            sShaderStage* stage = GetShaderStage(filepath);
 
             if (stage != nullptr) {
                 shader->Stages.emplace_back(stage);
                 return;
             }
 
-            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Tesselation Control stage from filepath {}", filepath);
@@ -119,15 +119,15 @@ namespace xpe {
             AddTessControlStage(shader, filepath, src);
         }
 
-        void ShaderManager::AddTessEvalStageFromFile(Shader* const shader, const char *filepath) {
-            ShaderStage* stage = GetShaderStage(filepath);
+        void cShaderManager::AddTessEvalStageFromFile(sShader* const shader, const char *filepath) {
+            sShaderStage* stage = GetShaderStage(filepath);
 
             if (stage != nullptr) {
                 shader->Stages.emplace_back(stage);
                 return;
             }
 
-            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Tesselation Evaluation stage from filepath {}", filepath);
@@ -139,15 +139,15 @@ namespace xpe {
             AddTessEvalStage(shader, filepath, src);
         }
 
-        void ShaderManager::AddComputeStageFromFile(Shader* const shader, const char *filepath) {
-            ShaderStage* stage = ShaderManager::GetShaderStage(filepath);
+        void cShaderManager::AddComputeStageFromFile(sShader* const shader, const char *filepath) {
+            sShaderStage* stage = cShaderManager::GetShaderStage(filepath);
 
             if (stage != nullptr) {
                 shader->Stages.emplace_back(stage);
                 return;
             }
 
-            string src = FileManager::ReadFileWithIncludes(filepath, "#include");
+            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
 
             if (src.empty()) {
                 LogError("Failed to add Compute stage from filepath {}", filepath);
@@ -159,8 +159,8 @@ namespace xpe {
             AddComputeStage(shader, filepath, src);
         }
 
-        void ShaderManager::AddVertexStage(Shader* const shader, const string& id, const string &source) {
-            ShaderStage stage = { id, eShaderType::VERTEX };
+        void cShaderManager::AddVertexStage(sShader* const shader, const string& id, const string &source) {
+            sShaderStage stage = {id, eShaderType::VERTEX };
             stage.EntryPoint = "vs_main";
             stage.Profile = "vs_5_0";
             stage.Source = source;
@@ -170,8 +170,8 @@ namespace xpe {
             shader->Stages.emplace_back(GetShaderStage(id));
         }
 
-        void ShaderManager::AddPixelStage(Shader* const shader, const string& id, const string &source) {
-            ShaderStage stage = { id, eShaderType::PIXEL };
+        void cShaderManager::AddPixelStage(sShader* const shader, const string& id, const string &source) {
+            sShaderStage stage = {id, eShaderType::PIXEL };
             stage.EntryPoint = "ps_main";
             stage.Profile = "ps_5_0";
             stage.Source = source;
@@ -181,8 +181,8 @@ namespace xpe {
             shader->Stages.emplace_back(GetShaderStage(id));
         }
 
-        void ShaderManager::AddGeometryStage(Shader* const shader, const string& id, const string &source) {
-            ShaderStage stage = { id, eShaderType::GEOMETRY };
+        void cShaderManager::AddGeometryStage(sShader* const shader, const string& id, const string &source) {
+            sShaderStage stage = {id, eShaderType::GEOMETRY };
             stage.EntryPoint = "gs_main";
             stage.Profile = "gs_5_0";
             stage.Source = source;
@@ -192,8 +192,8 @@ namespace xpe {
             shader->Stages.emplace_back(GetShaderStage(id));
         }
 
-        void ShaderManager::AddTessControlStage(Shader* const shader, const string& id, const string &source) {
-            ShaderStage stage = { id, eShaderType::TESS_CONTROL };
+        void cShaderManager::AddTessControlStage(sShader* const shader, const string& id, const string &source) {
+            sShaderStage stage = {id, eShaderType::TESS_CONTROL };
             stage.EntryPoint = "tc_main";
             stage.Profile = "tcs_5_0";
             stage.Source = source;
@@ -203,8 +203,8 @@ namespace xpe {
             shader->Stages.emplace_back(GetShaderStage(id));
         }
 
-        void ShaderManager::AddTessEvalStage(Shader* const shader, const string& id, const string &source) {
-            ShaderStage stage = { id, eShaderType::TESS_EVAL };
+        void cShaderManager::AddTessEvalStage(sShader* const shader, const string& id, const string &source) {
+            sShaderStage stage = {id, eShaderType::TESS_EVAL };
             stage.EntryPoint = "te_main";
             stage.Profile = "tes_5_0";
             stage.Source = source;
@@ -214,8 +214,8 @@ namespace xpe {
             shader->Stages.emplace_back(GetShaderStage(id));
         }
 
-        void ShaderManager::AddComputeStage(Shader* const shader, const string& id, const string &source) {
-            ShaderStage stage = { id, eShaderType::COMPUTE };
+        void cShaderManager::AddComputeStage(sShader* const shader, const string& id, const string &source) {
+            sShaderStage stage = {id, eShaderType::COMPUTE };
             stage.EntryPoint = "cs_main";
             stage.Profile = "cs_5_0";
             stage.Source = source;
@@ -225,24 +225,24 @@ namespace xpe {
             shader->Stages.emplace_back(GetShaderStage(id));
         }
 
-        void ShaderManager::BuildShader(Shader *const shader) {
+        void cShaderManager::BuildShader(sShader *const shader) {
             context::CompileShader(*shader);
             context::CreateShader(*shader);
         }
 
-        void ShaderManager::BuildShader(const string &id) {
+        void cShaderManager::BuildShader(const string &id) {
             BuildShader(GetShader(id));
         }
 
-        void ShaderManager::AddShaderStage(const string& filepath, const ShaderStage &shaderStage) {
+        void cShaderManager::AddShaderStage(const string& filepath, const sShaderStage &shaderStage) {
             s_Storage->ShaderStages.insert({ filepath, shaderStage });
         }
 
-        void ShaderManager::RemoveShaderStage(const string& name) {
+        void cShaderManager::RemoveShaderStage(const string& name) {
             s_Storage->ShaderStages.erase(name);
         }
 
-        ShaderStage* ShaderManager::GetShaderStage(const string &name) {
+        sShaderStage* cShaderManager::GetShaderStage(const string &name) {
             auto& stages = s_Storage->ShaderStages;
             auto it = stages.find(name);
 
@@ -253,12 +253,12 @@ namespace xpe {
             return nullptr;
         }
 
-        void ShaderManager::ReloadStage(const char* filepath) {
+        void cShaderManager::ReloadStage(const char* filepath) {
             auto& stages = s_Storage->ShaderStages;
 
             auto it = stages.find(filepath);
             if (it != stages.end()) {
-                string src = FileManager::ReadFileWithIncludes(filepath, "#include");
+                string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
 
                 if (src.empty()) {
                     LogError("Failed to read shader stage source from {}", filepath);
@@ -273,11 +273,11 @@ namespace xpe {
             }
         }
 
-        void ShaderManager::AddShader(const string &id, const Shader& shader) {
+        void cShaderManager::AddShader(const string &id, const sShader& shader) {
             s_Storage->Shaders[id] = shader;
         }
 
-        void ShaderManager::FreeShader(const string &id) {
+        void cShaderManager::FreeShader(const string &id) {
             auto& shaders = s_Storage->Shaders;
 
             auto it = shaders.find(id);
@@ -286,13 +286,13 @@ namespace xpe {
             }
         }
 
-        void ShaderManager::FreeShaders() {
+        void cShaderManager::FreeShaders() {
             for (auto& shader : s_Storage->Shaders) {
                 context::FreeShader(shader.second);
             }
         }
 
-        Shader* ShaderManager::GetShader(const string &id) {
+        sShader* cShaderManager::GetShader(const string &id) {
             auto& shaders = s_Storage->Shaders;
 
             auto it = shaders.find(id);
@@ -303,11 +303,11 @@ namespace xpe {
             return nullptr;
         }
 
-        void ShaderManager::WriteGeneratedShader(const char *filepath, const string &src) {
+        void cShaderManager::WriteGeneratedShader(const char *filepath, const string &src) {
             hstringstream ss;
             ss << "generated/" << filepath;
             hstring generatedFilepath = ss.str();
-            FileManager::WriteFile(generatedFilepath.c_str(), src);
+            cFileManager::WriteFile(generatedFilepath.c_str(), src);
         }
 
     }

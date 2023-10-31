@@ -11,19 +11,19 @@ namespace focus {
 
     namespace core {
 
-        class Editor : public Application, public ProjectManagerCallback
+        class cEditor : public cApp, public sProjectManagerCallback
         {
 
         public:
-            Editor() {}
-            ~Editor() {}
+            cEditor() {}
+            ~cEditor() {}
 
             void Init() override final;
             void Update() override final;
             void Free() override final;
 
         private:
-            void LoadGame(Application* game);
+            void LoadGame(cApp* game);
 
         };
 

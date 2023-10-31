@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API Viewport : public core::Object
+        struct ENGINE_API sViewport : public core::cObject
         {
             float TopLeftX = 0;
             float TopLeftY = 0;

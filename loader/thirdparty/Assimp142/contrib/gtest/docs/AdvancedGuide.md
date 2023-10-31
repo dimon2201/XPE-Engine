@@ -359,7 +359,7 @@ You might use them like this:
 
 ```
 CComPtr shell;
-ASSERT_HRESULT_SUCCEEDED(shell.CoCreateInstance(L"Shell.Application"));
+ASSERT_HRESULT_SUCCEEDED(shell.CoCreateInstance(L"Shell.cApp"));
 CComVariant empty;
 ASSERT_HRESULT_SUCCEEDED(shell->ShellExecute(CComBSTR(url), empty, empty, empty, empty));
 ```

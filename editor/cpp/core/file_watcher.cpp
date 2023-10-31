@@ -4,70 +4,70 @@ namespace focus {
 
     namespace core {
 
-        void FileWatcher::Notify(FileWatch& watch, const string &watchpath, const string &filepath, FileWatcher::eAction action)
+        void cFileWatcher::Notify(sFileWatch& watch, const string &watchpath, const string &filepath, cFileWatcher::eAction action)
         {
             switch (action) {
 
-                case FileWatcher::eAction::OLD_NAME:
+                case cFileWatcher::eAction::OLD_NAME:
                     watch.FileOldNameEvents.NotifyAll(watchpath, filepath);
                     break;
 
-                case FileWatcher::eAction::NEW_NAME:
+                case cFileWatcher::eAction::NEW_NAME:
                     watch.FileNewNameEvents.NotifyAll(watchpath, filepath);
                     break;
 
-                case FileWatcher::eAction::ADDED:
+                case cFileWatcher::eAction::ADDED:
                     watch.FileAddedEvents.NotifyAll(watchpath, filepath);
                     break;
 
-                case FileWatcher::eAction::DELETED:
+                case cFileWatcher::eAction::DELETED:
                     watch.FileDeletedEvents.NotifyAll(watchpath, filepath);
                     break;
 
-                case FileWatcher::eAction::MODIFIED:
+                case cFileWatcher::eAction::MODIFIED:
                     watch.FileModifiedEvents.NotifyAll(watchpath, filepath);
                     break;
 
             }
         }
 
-        FileWatch& MultiFileWatcher::AddWatch(const char* path)
+        sFileWatch& cMultiFileWatcher::AddWatch(const char* path)
         {
             m_Paths[path].Timestamp = std::filesystem::last_write_time(path);
             return m_Paths[path];
         }
 
-        void MultiFileWatcher::RemoveWatch(const char* path)
+        void cMultiFileWatcher::RemoveWatch(const char* path)
         {
             m_Paths.erase(path);
         }
 
-        bool MultiFileWatcher::Exists(const string &path)
+        bool cMultiFileWatcher::Exists(const string &path)
         {
             return m_Paths.find(path) != m_Paths.end();
         }
 
-        void MultiFileWatcher::Start()
+        void cMultiFileWatcher::Start()
         {
             m_Running = true;
-            TaskManager::SubmitTask({[this]() {
+            cTaskManager::SubmitTask({[this]() {
                 while (m_Running) {
                     Update();
                 }
             }});
         }
 
-        void MultiFileWatcher::Stop()
+        void cMultiFileWatcher::Stop()
         {
             m_Running = false;
         }
 
-        void MultiFileWatcher::Update()
+        void cMultiFileWatcher::Update()
         {
             for (auto& watchpath : m_Paths)
             {
                 auto& filepath = (string&)(watchpath.first);
-                FileWatch& filewatch = m_Paths[filepath];
+                sFileWatch& filewatch = m_Paths[filepath];
 
                 // check if file was deleted
                 if (!std::filesystem::exists(filepath)) {
@@ -98,7 +98,7 @@ namespace focus {
             }
         }
 
-        FileWatch& DirectoryWatcher::AddWatch(const char* path)
+        sFileWatch& cDirectoryWatcher::AddWatch(const char* path)
         {
             m_Paths[path] = {};
 
@@ -110,26 +110,26 @@ namespace focus {
             return m_Watches[path];
         }
 
-        void DirectoryWatcher::RemoveWatch(const char* path)
+        void cDirectoryWatcher::RemoveWatch(const char* path)
         {
             m_Paths.erase(path);
         }
 
-        bool DirectoryWatcher::Exists(const string &watchpath)
+        bool cDirectoryWatcher::Exists(const string &watchpath)
         {
             return m_Paths.find(watchpath) != m_Paths.end();
         }
 
-        bool DirectoryWatcher::Exists(const string &watchpath, const string& filepath)
+        bool cDirectoryWatcher::Exists(const string &watchpath, const string& filepath)
         {
             auto& files = m_Paths[watchpath];
             return files.find(filepath) != files.end();
         }
 
-        void DirectoryWatcher::Start()
+        void cDirectoryWatcher::Start()
         {
             m_Running = true;
-            TaskManager::SubmitTask({[this]() {
+            cTaskManager::SubmitTask({[this]() {
                 while (m_Running) {
                     for (auto& watchpath : m_Paths)
                     {
@@ -142,12 +142,12 @@ namespace focus {
             }});
         }
 
-        void DirectoryWatcher::Stop()
+        void cDirectoryWatcher::Stop()
         {
             m_Running = false;
         }
 
-        void DirectoryWatcher::Update(const string& watchpath, const string& filepath, FileWatch& watch)
+        void cDirectoryWatcher::Update(const string& watchpath, const string& filepath, sFileWatch& watch)
         {
             auto& files = m_Paths[watchpath];
 

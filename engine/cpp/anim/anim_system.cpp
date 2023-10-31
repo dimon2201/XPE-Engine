@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace anim {
 
-        void cAnimSystem::Update(cScene* scene, const Time& dt)
+        void cAnimSystem::Update(cScene* scene, const cTime& dt)
         {
             scene->EachComponent<sCSkeletonModel>([this, dt](sCSkeletonModel* component)
             {
@@ -17,12 +17,12 @@ namespace xpe {
             });
         }
 
-        void cAnimSystem::AnimateSkeleton(sSkeleton &skeleton, const sAnimation &animation, const Time& dt)
+        void cAnimSystem::AnimateSkeleton(sSkeleton &skeleton, const sAnimation &animation, const cTime& dt)
         {
             m_DeltaSeconds = dt.Seconds();
             m_CurrentSeconds += animation.TicksPerSecond * m_DeltaSeconds;
             m_CurrentSeconds = fmod(m_CurrentSeconds, animation.Duration);
-            auto* boneBuffer = mSkeletonManager::GetBuffer(skeleton.Index);
+            auto* boneBuffer = cSkeletonManager::GetBuffer(skeleton.Index);
             if (boneBuffer) {
                 boneBuffer->Resize(skeleton.Bones.size());
                 UpdateSkeletonTransform(skeleton, *boneBuffer, animation.Root, glm::mat4(1.0f));
@@ -184,7 +184,7 @@ namespace xpe {
 
         void cAnimSystem::UpdateSkeletonTransform(
                 sSkeleton &skeleton,
-                BoneBuffer& boneBuffer,
+                sBoneBuffer& boneBuffer,
                 const sAnimationNode& animationNode,
                 const glm::mat4 &parentTransform
         ) {

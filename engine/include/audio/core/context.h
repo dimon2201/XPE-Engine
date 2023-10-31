@@ -13,12 +13,10 @@ namespace xpe {
 
             using namespace xpe::core;
 
-            //record values
-            const u32 SAMPLE_RATE = 22050;
-            const u32 CHANNELS = 1;
-            const f32 DURATION = 0.02;
-
-            const u32 DATA_SIZE = static_cast<unsigned int>(DURATION * SAMPLE_RATE * CHANNELS * 2);
+            const u32 k_SampleRate = 22050;
+            const u32 k_Channels = 1;
+            const f32 k_Duration = 0.02;
+            const u32 k_DataSize = static_cast<unsigned int>(k_Duration * k_SampleRate * k_Channels * 2);
 
             inline void* Context = nullptr;
             inline void* PlaybackDevice = nullptr;

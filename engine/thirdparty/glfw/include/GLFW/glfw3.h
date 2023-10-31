@@ -673,7 +673,7 @@ extern "C" {
  *  This occurs if a GLFW function was called that must not be called unless the
  *  library is [initialized](@ref intro_init).
  *
- *  @analysis Application programmer error.  Initialize GLFW before calling any
+ *  @analysis cApp programmer error.  Initialize GLFW before calling any
  *  function that requires initialization.
  */
 #define GLFW_NOT_INITIALIZED        0x00010001
@@ -683,7 +683,7 @@ extern "C" {
  *  current OpenGL or OpenGL ES context but no context is current on the calling
  *  thread.  One such function is @ref glfwSwapInterval.
  *
- *  @analysis Application programmer error.  Ensure a context is current before
+ *  @analysis cApp programmer error.  Ensure a context is current before
  *  calling functions that require a current context.
  */
 #define GLFW_NO_CURRENT_CONTEXT     0x00010002
@@ -692,7 +692,7 @@ extern "C" {
  *  One of the arguments to the function was an invalid enum value, for example
  *  requesting @ref GLFW_RED_BITS with @ref glfwGetWindowAttrib.
  *
- *  @analysis Application programmer error.  Fix the offending call.
+ *  @analysis cApp programmer error.  Fix the offending call.
  */
 #define GLFW_INVALID_ENUM           0x00010003
 /*! @brief One of the arguments to the function was an invalid value.
@@ -703,7 +703,7 @@ extern "C" {
  *  Requesting a valid but unavailable OpenGL or OpenGL ES version will instead
  *  result in a @ref GLFW_VERSION_UNAVAILABLE error.
  *
- *  @analysis Application programmer error.  Fix the offending call.
+ *  @analysis cApp programmer error.  Fix the offending call.
  */
 #define GLFW_INVALID_VALUE          0x00010004
 /*! @brief A memory allocation failed.
@@ -782,7 +782,7 @@ extern "C" {
  *  A window that does not have an OpenGL or OpenGL ES context was passed to
  *  a function that requires it to have one.
  *
- *  @analysis Application programmer error.  Fix the offending call.
+ *  @analysis cApp programmer error.  Fix the offending call.
  */
 #define GLFW_NO_WINDOW_CONTEXT      0x0001000A
 /*! @brief The specified cursor shape is not available.

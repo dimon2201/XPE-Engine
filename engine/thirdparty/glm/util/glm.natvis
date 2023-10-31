@@ -28,7 +28,7 @@
   
   %USERPROFILE%\Douments\Visual Studio 2019\Visualizers\ (replace '2019' when necessary)
   or
-  %VSINSTALLDIR%\Common7\Packages\Debugger\Visualizers\ (requires admin access)
+  %VSINSTALLDIR%\Common7\Packages\cDebugManager\Visualizers\ (requires admin access)
   
   if you want to use this from every project.
   See also https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects 

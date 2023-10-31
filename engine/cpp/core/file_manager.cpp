@@ -2,11 +2,11 @@ namespace xpe {
 
     namespace core {
 
-        bool FileManager::CreateDir(const char* dirName) {
+        bool cFileManager::CreateDir(const char* dirName) {
             return fs::create_directory(dirName);
         }
 
-        string FileManager::ReadFileWithIncludes(const string& path, string includeIdentifier)
+        string cFileManager::ReadFileWithIncludes(const string& path, string includeIdentifier)
         {
             includeIdentifier += ' ';
             static bool recursive = false;
@@ -55,7 +55,7 @@ namespace xpe {
             return fullSrc;
         }
 
-        void FileManager::GetFilepath(
+        void cFileManager::GetFilepath(
                 const string& fullPath,
                 string& pathWithoutFilename
         )
@@ -65,7 +65,7 @@ namespace xpe {
             pathWithoutFilename = fullPath.substr(0, found + 1);
         }
 
-        string FileManager::ReadFile(const char* filepath)
+        string cFileManager::ReadFile(const char* filepath)
         {
             std::ifstream file;
 
@@ -87,12 +87,12 @@ namespace xpe {
             return buffer;
         }
 
-        bool FileManager::WriteFile(const char* filepath, const string &str)
+        bool cFileManager::WriteFile(const char* filepath, const string &str)
         {
             return WriteFile(filepath, str.c_str(), str.length());
         }
 
-        bool FileManager::WriteFile(const char* filepath, const char* bytes, usize byteSize)
+        bool cFileManager::WriteFile(const char* filepath, const char* bytes, usize byteSize)
         {
             std::ofstream file;
 
@@ -110,7 +110,7 @@ namespace xpe {
             return true;
         }
 
-        void FileManager::CopyFile(const char *srcPath, const char *destPath)
+        void cFileManager::CopyFile(const char *srcPath, const char *destPath)
         {
             if (!fs::exists(destPath)) {
                 WriteFile(destPath, "");
@@ -118,7 +118,7 @@ namespace xpe {
             fs::copy_file(srcPath, destPath, fs::copy_options::overwrite_existing);
         }
 
-        hstring FileManager::GetFullFileName(const char *path)
+        hstring cFileManager::GetFullFileName(const char *path)
         {
             fs::path filepath = path;
             if (filepath.has_filename()) {
@@ -127,7 +127,7 @@ namespace xpe {
             return {};
         }
 
-        hstring FileManager::GetFileName(const char* path)
+        hstring cFileManager::GetFileName(const char* path)
         {
             // todo remove extension from file name
             fs::path filepath = path;
@@ -137,7 +137,7 @@ namespace xpe {
             return {};
         }
 
-        void FileManager::CopyDirs(const char* srcPath, const char* destPath, const bool createRoot)
+        void cFileManager::CopyDirs(const char* srcPath, const char* destPath, const bool createRoot)
         {
             if (createRoot) {
                 fs::create_directory(destPath);
@@ -175,17 +175,17 @@ namespace xpe {
             }
         }
 
-        bool FileManager::Exists(const char *filepath)
+        bool cFileManager::Exists(const char *filepath)
         {
             return fs::exists(filepath);
         }
 
-        string FileManager::GetAbsolutePath(const char* path)
+        string cFileManager::GetAbsolutePath(const char* path)
         {
             return fs::absolute(path).string().c_str();
         }
 
-        hstring FileManager::GetDirectory(const char *filepath)
+        hstring cFileManager::GetDirectory(const char *filepath)
         {
             hstring filepathStr = filepath;
             return filepathStr.substr(0, filepathStr.find_last_of('/'));

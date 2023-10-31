@@ -18,7 +18,7 @@ namespace xpe {
 
 			void UpdateListener(cScene* scene);
 
-			void Update(cScene* scene, const Time& dt) override final;
+			void Update(cScene* scene, const cTime& dt) override final;
 
 			void UpdateVoices(cScene* scene);
 			void RecordVoice(sCVoice* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first

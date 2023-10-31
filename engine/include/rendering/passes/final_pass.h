@@ -6,11 +6,11 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API FinalPass : public RenderPass
+        class ENGINE_API cFinalPass : public cRenderPass
         {
 
         public:
-            FinalPass(const vector<RenderPassBinding>& bindings);
+            cFinalPass(const vector<sRenderPassBinding>& bindings);
 
         };
 

@@ -8,13 +8,13 @@ namespace xpe {
 
         using namespace physx;
 
-        class ENGINE_API MainDispatcher : public TaskDispatcher, public PxCpuDispatcher {
+        class ENGINE_API cMainDispatcher : public cTaskDispatcher, public PxCpuDispatcher {
 
         public:
-            MainDispatcher(usize workerSize, usize taskBufferSize, const char* name, Thread::ePriority priority)
-            : TaskDispatcher(workerSize, taskBufferSize, name, priority) {}
+            cMainDispatcher(usize workerSize, usize taskBufferSize, const char* name, cThread::ePriority priority)
+            : cTaskDispatcher(workerSize, taskBufferSize, name, priority) {}
 
-            ~MainDispatcher() override;
+            ~cMainDispatcher() override;
 
             void submitTask(PxBaseTask& task) override final;
 

@@ -3909,7 +3909,7 @@ FT_BEGIN_HEADER
    *   For variation fonts, this string changes if you select a different
    *   instance, and you have to call `FT_Get_PostScript_Name` again to
    *   retrieve it.  FreeType follows Adobe TechNote #5902, 'Generating
-   *   PostScript Names for Fonts Using OpenType Font Variations'.
+   *   PostScript Names for Fonts Using OpenType sFont Variations'.
    *
    *     https://download.macromedia.com/pub/developer/opentype/tech-notes/5902.AdobePSNameGeneration.html
    *
@@ -4061,7 +4061,7 @@ FT_BEGIN_HEADER
    *
    * @output:
    *   agindex ::
-   *     Glyph index of first character code.  0~if charmap is empty.
+   *     sGlyph index of first character code.  0~if charmap is empty.
    *
    * @return:
    *   The charmap's first character code.
@@ -4120,7 +4120,7 @@ FT_BEGIN_HEADER
    *
    * @output:
    *   agindex ::
-   *     Glyph index of next character code.  0~if charmap is empty.
+   *     sGlyph index of next character code.  0~if charmap is empty.
    *
    * @return:
    *   The charmap's next character code.

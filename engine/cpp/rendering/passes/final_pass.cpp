@@ -4,8 +4,8 @@ namespace xpe {
 
     namespace render {
 
-        FinalPass::FinalPass(const vector<RenderPassBinding>& bindings)
-        : RenderPass(eType::FINAL, bindings) {}
+        cFinalPass::cFinalPass(const vector<sRenderPassBinding>& bindings)
+        : cRenderPass(eType::FINAL, bindings) {}
 
     }
 

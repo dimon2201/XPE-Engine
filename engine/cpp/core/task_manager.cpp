@@ -2,24 +2,24 @@ namespace xpe {
 
     namespace core {
 
-        void Task::DoWork()
+        void sTask::DoWork()
         {
             Todo();
         }
 
-        void Task::DoAll()
+        void sTask::DoAll()
         {
             DoWork();
-            Task* nextTask = Next;
+            sTask* nextTask = Next;
             while (nextTask != nullptr) {
                 nextTask->DoWork();
                 nextTask = nextTask->Next;
             }
         }
 
-        TaskDispatcher* TaskManager::s_Dispatcher = nullptr;
+        cTaskDispatcher* cTaskManager::s_Dispatcher = nullptr;
 
-        TaskDispatcher::TaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, Thread::ePriority priority)
+        cTaskDispatcher::cTaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, cThread::ePriority priority)
         {
             m_TasksTodo = 0;
             m_TasksDone.store(0);
@@ -30,7 +30,7 @@ namespace xpe {
             }
         }
 
-        void TaskDispatcher::Dispatch(Task task)
+        void cTaskDispatcher::Dispatch(sTask task)
         {
             m_TasksTodo += 1;
             // try to push a new task until it is pushed
@@ -40,7 +40,7 @@ namespace xpe {
             m_WakeCondition.notify_one();
         }
 
-        void TaskDispatcher::Dispatch(u32 tasksPerThread, u32 taskSize, Task task)
+        void cTaskDispatcher::Dispatch(u32 tasksPerThread, u32 taskSize, sTask task)
         {
             if (taskSize == 0 || tasksPerThread == 0) {
                 return;
@@ -51,12 +51,12 @@ namespace xpe {
 
             for (u32 i = 0; i < taskGroups; ++i) {
                 // create task group
-                Task taskGroup;
+                sTask taskGroup;
                 taskGroup.Todo = [i, task, taskSize, tasksPerThread]() {
                     u32 groupJobOffset = i * taskSize;
                     u32 groupJobEnd = std::min(groupJobOffset + taskSize, tasksPerThread);
                     for (u32 j = groupJobOffset; j < groupJobEnd; ++j) {
-                        ((Task) task).DoAll();
+                        ((sTask) task).DoAll();
                     }
                 };
 
@@ -69,33 +69,33 @@ namespace xpe {
             }
         }
 
-        bool TaskDispatcher::IsBusy()
+        bool cTaskDispatcher::IsBusy()
         {
             return m_TasksDone.load() < m_TasksTodo;
         }
 
-        u32 TaskDispatcher::GetWorkerCount() const
+        u32 cTaskDispatcher::GetWorkerCount() const
         {
             return m_WorkerCount;
         }
 
-        void TaskDispatcher::Wait()
+        void cTaskDispatcher::Wait()
         {
             while (IsBusy()) {
                 Poll();
             }
         }
 
-        void TaskDispatcher::Poll()
+        void cTaskDispatcher::Poll()
         {
             m_WakeCondition.notify_one();
             std::this_thread::yield();
         }
 
-        void TaskDispatcher::InitThread(u32 workerId, const char* name, Thread::ePriority priority)
+        void cTaskDispatcher::InitThread(u32 workerId, const char* name, cThread::ePriority priority)
         {
             std::thread worker([this]() {
-                Task task;
+                sTask task;
                 while (true) {
                     if (m_TaskBuffer.Pop(task)) {
                         // execute job and update worker label state
@@ -108,37 +108,37 @@ namespace xpe {
                     }
                 }
             });
-            Thread thread = { workerId, worker };
+            cThread thread = {workerId, worker };
             thread.SetFormat(name, priority);
             worker.detach();
         }
 
-        void TaskManager::Init()
+        void cTaskManager::Init()
         {
-            s_Dispatcher = new TaskDispatcher(HardwareManager::CPU.Cores, 100, "Worker", Thread::ePriority::NORMAL);
+            s_Dispatcher = new cTaskDispatcher(cHardwareManager::CPU.Cores, 100, "Worker", cThread::ePriority::NORMAL);
         }
 
-        void TaskManager::Init(TaskDispatcher* dispatcher)
+        void cTaskManager::Init(cTaskDispatcher* dispatcher)
         {
             s_Dispatcher = dispatcher;
         }
 
-        void TaskManager::Free()
+        void cTaskManager::Free()
         {
             delete s_Dispatcher;
         }
 
-        void TaskManager::Wait()
+        void cTaskManager::Wait()
         {
             s_Dispatcher->Wait();
         }
 
-        void TaskManager::SubmitTask(const Task &task)
+        void cTaskManager::SubmitTask(const sTask &task)
         {
             s_Dispatcher->Dispatch(task);
         }
 
-        void TaskManager::SubmitTask(u32 tasksPerThread, u32 totalTasks, const Task &task)
+        void cTaskManager::SubmitTask(u32 tasksPerThread, u32 totalTasks, const sTask &task)
         {
             s_Dispatcher->Dispatch(tasksPerThread, totalTasks, task);
         }

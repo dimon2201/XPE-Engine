@@ -37,14 +37,14 @@ namespace focus {
 //            CloseHandle(pi.hThread);
         }
 
-        void ProcessManager::StartExe(const char* path)
+        void cProcessManager::StartExe(const char* path)
         {
             ShellExecute(NULL, "open", path, NULL, NULL, SW_SHOWDEFAULT);
         }
 
         static HINSTANCE s_DLL = nullptr;
 
-        bool ProcessManager::InitDLL(const char *dllpath)
+        bool cProcessManager::InitDLL(const char *dllpath)
         {
             if (s_DLL != nullptr) {
                 FreeLibrary(s_DLL);
@@ -61,12 +61,12 @@ namespace focus {
             return true;
         }
 
-        void ProcessManager::FreeDLL() {
+        void cProcessManager::FreeDLL() {
             FreeLibrary(s_DLL);
             s_DLL = nullptr;
         }
 
-        DLLProc ProcessManager::LoadDLLProc(const char* signature)
+        DLLProc cProcessManager::LoadDLLProc(const char* signature)
         {
             return GetProcAddress(s_DLL, signature);
         }

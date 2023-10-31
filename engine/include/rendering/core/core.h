@@ -6,7 +6,7 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API GPUResource : public Object
+        struct ENGINE_API sResource : public cObject
         {
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
@@ -48,7 +48,7 @@ namespace xpe {
             STAGING
         };
 
-        struct ENGINE_API Buffer : public GPUResource
+        struct ENGINE_API sBuffer : public sResource
         {
             eBufferType Type;
             eBufferUsage Usage = eBufferUsage::DYNAMIC;
@@ -63,7 +63,7 @@ namespace xpe {
             }
         };
 
-        struct ENGINE_API Blob : public Object
+        struct ENGINE_API sBlob : public cObject
         {
             void* Instance = nullptr;
             void* ByteCode = nullptr;

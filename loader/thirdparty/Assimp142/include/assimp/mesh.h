@@ -232,7 +232,7 @@ struct aiVertexWeight {
 
     //! @brief Initialization from a given index and vertex weight factor
     //! \param pID ID
-    //! \param pWeight Vertex weight factor
+    //! \param pWeight sVertex weight factor
     aiVertexWeight(unsigned int pID, float pWeight) :
             mVertexId(pID), mWeight(pWeight) {
         // empty
@@ -619,7 +619,7 @@ enum aiMorphingMethod {
  *
  * It usually consists of a number of vertices and a series of primitives/faces
  * referencing the vertices. In addition there might be a series of bones, each
- * of them addressing a number of vertices with a certain weight. Vertex data
+ * of them addressing a number of vertices with a certain weight. sVertex data
  * is presented in channels with each channel containing a single per-vertex
  * information such as a set of texture coordinates or a normal vector.
  * If a data pointer is non-null, the corresponding data stream is present.
@@ -657,7 +657,7 @@ struct aiMesh {
     unsigned int mNumFaces;
 
     /**
-     * @brief Vertex positions.
+     * @brief sVertex positions.
      * 
      * This array is always present in a mesh. The array is
      * mNumVertices in size.
@@ -665,7 +665,7 @@ struct aiMesh {
     C_STRUCT aiVector3D *mVertices;
 
     /**
-     * @brief Vertex normals.
+     * @brief sVertex normals.
      * 
      * The array contains normalized vectors, nullptr if not present.
      * The array is mNumVertices in size. Normals are undefined for
@@ -689,7 +689,7 @@ struct aiMesh {
     C_STRUCT aiVector3D *mNormals;
 
     /**
-     * @brief Vertex tangents.
+     * @brief sVertex tangents.
      * 
      * The tangent of a vertex points in the direction of the positive
      * X texture axis. The array contains normalized vectors, nullptr if
@@ -705,7 +705,7 @@ struct aiMesh {
     C_STRUCT aiVector3D *mTangents;
 
     /**
-     * @brief Vertex bitangents.
+     * @brief sVertex bitangents.
      * 
      * The bitangent of a vertex points in the direction of the positive
      * Y texture axis. The array contains normalized vectors, nullptr if not
@@ -716,7 +716,7 @@ struct aiMesh {
     C_STRUCT aiVector3D *mBitangents;
 
     /**
-     * @brief Vertex color sets.
+     * @brief sVertex color sets.
      * 
      * A mesh may contain 0 to #AI_MAX_NUMBER_OF_COLOR_SETS vertex
      * colors per vertex. nullptr if not present. Each array is
@@ -725,7 +725,7 @@ struct aiMesh {
     C_STRUCT aiColor4D *mColors[AI_MAX_NUMBER_OF_COLOR_SETS];
 
     /**
-     * @brief Vertex texture coordinates, also known as UV channels.
+     * @brief sVertex texture coordinates, also known as UV channels.
      * 
      * A mesh may contain 0 to AI_MAX_NUMBER_OF_TEXTURECOORDS per
      * vertex. nullptr if not present. The array is mNumVertices in size.
@@ -785,7 +785,7 @@ struct aiMesh {
      *      the same (dummy) name to each of the result meshes
      *      aids the caller at recovering the original mesh
      *      partitioning.
-     *   - Vertex animations refer to meshes by their names.
+     *   - sVertex animations refer to meshes by their names.
      */
     C_STRUCT aiString mName;
 
@@ -819,7 +819,7 @@ struct aiMesh {
     C_STRUCT aiAABB mAABB;
 
     /**
-     * Vertex UV stream names. Pointer to array of size AI_MAX_NUMBER_OF_TEXTURECOORDS
+     * sVertex UV stream names. Pointer to array of size AI_MAX_NUMBER_OF_TEXTURECOORDS
      */
     C_STRUCT aiString **mTextureCoordsNames;
 

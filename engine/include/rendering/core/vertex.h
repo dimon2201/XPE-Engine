@@ -6,11 +6,11 @@ namespace xpe {
 
         using namespace core;
 
-        // defined statically in Vertex classes for describing "format" of single vertex of geometry
-        struct ENGINE_API VertexFormat final
+        // defined statically in sVertex classes for describing "format" of single vertex of geometry
+        struct ENGINE_API sVertexFormat final
         {
 
-            struct ENGINE_API Attribute final
+            struct ENGINE_API sAttribute final
             {
 
                 enum class eType
@@ -49,28 +49,28 @@ namespace xpe {
 
             };
 
-            std::vector<Attribute> Attributes; // used std::vector, because VertexFormat is always defined as static var in Vertex class
+            std::vector<sAttribute> Attributes; // used std::vector, because sVertexFormat is always defined as static var in sVertex class
             usize Stride = 0;
 
-            VertexFormat() = default;
-            VertexFormat(const std::vector<Attribute>& attributes);
+            sVertexFormat() = default;
+            sVertexFormat(const std::vector<sAttribute>& attributes);
 
         };
 
         // define here any custom attributes that you want to use in your vertex shader
-        struct ENGINE_API Attributes final
+        struct ENGINE_API sAttributes final
         {
-            static constexpr VertexFormat::Attribute POS = { 0, "XPE_POSITION", VertexFormat::Attribute::eType::VEC3_FLOAT, 12 };
-            static constexpr VertexFormat::Attribute UV = { 1, "XPE_UV", VertexFormat::Attribute::eType::VEC2_FLOAT, 8 };
-            static constexpr VertexFormat::Attribute NORMAL = { 2, "XPE_NORMAL", VertexFormat::Attribute::eType::VEC3_FLOAT, 12 };
-            static constexpr VertexFormat::Attribute TANGENT = { 3, "XPE_TANGENT", VertexFormat::Attribute::eType::VEC3_FLOAT, 12 };
-            static constexpr VertexFormat::Attribute BONE_IDS = { 4, "XPE_BONE_IDS", VertexFormat::Attribute::eType::VEC4_INT, 16 };
-            static constexpr VertexFormat::Attribute BONE_WEIGHTS = { 5, "XPE_BONE_WEIGHTS", VertexFormat::Attribute::eType::VEC4_FLOAT, 16 };
+            static constexpr sVertexFormat::sAttribute POS = {0, "XPE_POSITION", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
+            static constexpr sVertexFormat::sAttribute UV = {1, "XPE_UV", sVertexFormat::sAttribute::eType::VEC2_FLOAT, 8 };
+            static constexpr sVertexFormat::sAttribute NORMAL = {2, "XPE_NORMAL", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
+            static constexpr sVertexFormat::sAttribute TANGENT = {3, "XPE_TANGENT", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
+            static constexpr sVertexFormat::sAttribute BONE_IDS = {4, "XPE_BONE_IDS", sVertexFormat::sAttribute::eType::VEC4_INT, 16 };
+            static constexpr sVertexFormat::sAttribute BONE_WEIGHTS = {5, "XPE_BONE_WEIGHTS", sVertexFormat::sAttribute::eType::VEC4_FLOAT, 16 };
         };
 
-        struct ENGINE_API Vertex final
+        struct ENGINE_API sVertex final
         {
-            static VertexFormat Format;
+            static const sVertexFormat k_Format;
 
             glm::vec3 Position = { 0, 0, 0 };
             glm::vec2 UV = { 0, 0 };
@@ -81,7 +81,7 @@ namespace xpe {
         };
 
         Json(
-            Vertex,
+            sVertex,
             Position,
             UV,
             Normal,

@@ -9,24 +9,20 @@ namespace xpe {
         using namespace core;
 
         template<typename T>
-        class ItemBuffer : public Buffer
+        struct sItemBuffer : public sBuffer
         {
-
-        public:
             T Item;
 
-        public:
-            ItemBuffer() = default;
-            ItemBuffer(u32 slot);
-            ~ItemBuffer();
+            sItemBuffer() = default;
+            sItemBuffer(u32 slot);
+            ~sItemBuffer();
 
-        public:
             void Flush();
             void FlushItem(const T& item);
         };
 
         template<typename T>
-        ItemBuffer<T>::ItemBuffer(u32 slot)
+        sItemBuffer<T>::sItemBuffer(u32 slot)
         {
             Type = eBufferType::STRUCTURED;
             Slot = slot;
@@ -38,19 +34,19 @@ namespace xpe {
         }
 
         template<typename T>
-        ItemBuffer<T>::~ItemBuffer()
+        sItemBuffer<T>::~sItemBuffer()
         {
             context::FreeBuffer(*this);
         }
 
         template<typename T>
-        void ItemBuffer<T>::Flush()
+        void sItemBuffer<T>::Flush()
         {
             context::CopyBuffer(*this, &Item, StructureSize);
         }
 
         template<typename T>
-        void ItemBuffer<T>::FlushItem(const T &item)
+        void sItemBuffer<T>::FlushItem(const T &item)
         {
             Item = item;
             context::CopyBuffer(*this, &Item, StructureSize);

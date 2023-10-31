@@ -35,7 +35,7 @@ namespace xpe {
             return logger;
         }
 
-        void LogManager::Init(const LoggerDescriptor& descriptor) {
+        void cLogManager::Init(const sLoggerDescriptor& descriptor) {
             const char* name = descriptor.Name;
             const int backtrace = descriptor.Backtrace;
             hstringstream ss;
@@ -71,25 +71,25 @@ namespace xpe {
             }
         }
 
-        void LogManager::Free() {
+        void cLogManager::Free() {
             s_Tracer->flush();
             s_Logger->flush();
             s_MemLogger->flush();
         }
 
-        void LogManager::DumpBacktrace() {
+        void cLogManager::DumpBacktrace() {
             s_Tracer->dump_backtrace();
         }
 
-        spdlog::logger* LogManager::GetLogger() {
+        spdlog::logger* cLogManager::GetLogger() {
             return s_Logger.get();
         }
 
-        spdlog::logger* LogManager::GetTracer() {
+        spdlog::logger* cLogManager::GetTracer() {
             return s_Tracer.get();
         }
 
-        spdlog::logger* LogManager::GetMemLogger() {
+        spdlog::logger* cLogManager::GetMemLogger() {
             return s_MemLogger.get();
         }
 

@@ -10,24 +10,24 @@ namespace xpe {
         static FT_Library s_Lib;
 
         static unordered_map<string, FT_Face>* s_FontFaces = nullptr;
-        static unordered_map<string, Font*>* s_Fonts = nullptr;
+        static unordered_map<string, sFont*>* s_Fonts = nullptr;
 
         static void FreeFontFace(FT_Face& fontFace)
         {
             FT_Done_Face(fontFace);
         }
 
-        void FontLoader::Init()
+        void cFontLoader::Init()
         {
             if (FT_Init_FreeType(&s_Lib)) {
                 LogError("Failed to initialize FreeType library!");
             }
 
             s_FontFaces = new unordered_map<string, FT_Face>();
-            s_Fonts = new unordered_map<string, Font*>();
+            s_Fonts = new unordered_map<string, sFont*>();
         }
 
-        void FontLoader::Free()
+        void cFontLoader::Free()
         {
             for (auto& font : *s_FontFaces)
             {
@@ -44,9 +44,9 @@ namespace xpe {
             FT_Done_FreeType(s_Lib);
         }
 
-        Font* FontLoader::Load(const char* filepath, usize glyphSize)
+        sFont* cFontLoader::Load(const char* filepath, usize glyphSize)
         {
-            Font* font = new Font();
+            sFont* font = new sFont();
             FT_Face fontFace = {};
 
             if (FT_New_Face(s_Lib, filepath, 0, &fontFace) == 0)
@@ -72,8 +72,8 @@ namespace xpe {
 
                             FT_Render_Glyph(fontFace->glyph, FT_RENDER_MODE_NORMAL);
 
-                            Font::Glyph glyph;
-                            glyph.Character = (char)c;
+                            sFont::sGlyph glyph;
+                            glyph.Char = (char)c;
                             glyph.Width = fontFace->glyph->bitmap.width;
                             glyph.Height = fontFace->glyph->bitmap.rows;
                             glyph.Left = fontFace->glyph->bitmap_left;
@@ -114,7 +114,7 @@ namespace xpe {
                         }
                     }
 
-                    font->Atlas.Type = render::Texture::eType::TEXTURE_2D;
+                    font->Atlas.Type = render::sTexture::eType::TEXTURE_2D;
                     font->Atlas.Width = textureWidth;
                     font->Atlas.Height = textureHeight;
                     font->Atlas.Depth = 1;
@@ -126,7 +126,7 @@ namespace xpe {
                     font->Atlas.Layers[0].RowByteSize = font->Atlas.Width;
                     font->Atlas.Layers[0].Pixels = main_alloc(font->Atlas.Width * font->Atlas.Height);
                     memset(font->Atlas.Layers[0].Pixels, 0, font->Atlas.Width * font->Atlas.Height);
-                    const TextureLayer& layer = font->Atlas.Layers[0];
+                    const sTextureLayer& layer = font->Atlas.Layers[0];
 
                     // Fill atlas texture with glyphs
                     xOffset = 0;

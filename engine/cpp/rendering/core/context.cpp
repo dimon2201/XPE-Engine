@@ -9,7 +9,7 @@ namespace xpe {
             void* SwapchainTargetView = nullptr;
             void* SwapchainTextureInstance = nullptr;
 
-            void CopyBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
+            void CopyBuffer(const sBuffer& buffer, const void* data, usize dataByteSize)
             {
                 if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
@@ -24,7 +24,7 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void CopyBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
+            void CopyBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
                 if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
@@ -40,7 +40,7 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void MoveBuffer(const Buffer& buffer, const void* data, usize dataByteSize)
+            void MoveBuffer(const sBuffer& buffer, const void* data, usize dataByteSize)
             {
                 if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
@@ -55,7 +55,7 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void MoveBufferOffset(const Buffer& buffer, usize offset, const void* data, usize dataByteSize)
+            void MoveBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
                 if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
 
@@ -71,13 +71,13 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void CopyTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex)
+            void CopyTexture(const sTexture& texture, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
                 eMapType mapType = eMapType::WRITE;
 
-                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
                     mapType = eMapType::WRITE_DISCARD;
                 }
 
@@ -93,13 +93,13 @@ namespace xpe {
                 }
             }
 
-            void CopyTextureOffset(const Texture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
+            void CopyTextureOffset(const sTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
                 eMapType mapType = eMapType::WRITE;
 
-                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
                     mapType = eMapType::WRITE_DISCARD;
                 }
 
@@ -116,13 +116,13 @@ namespace xpe {
                 }
             }
 
-            void MoveTexture(const Texture& texture, const void* data, usize dataByteSize, u32 layerIndex)
+            void MoveTexture(const sTexture& texture, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
                 eMapType mapType = eMapType::WRITE;
 
-                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
                     mapType = eMapType::WRITE_DISCARD;
                 }
 
@@ -138,13 +138,13 @@ namespace xpe {
                 }
             }
 
-            void MoveTextureOffset(const Texture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
+            void MoveTextureOffset(const sTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == Texture::eUsage::STATIC) return;
+                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
                 eMapType mapType = eMapType::WRITE;
 
-                if (texture.Usage == Texture::eUsage::DYNAMIC) {
+                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
                     mapType = eMapType::WRITE_DISCARD;
                 }
 
@@ -161,7 +161,7 @@ namespace xpe {
                 }
             }
 
-            void CreateShader(Shader& shader)
+            void CreateShader(sShader& shader)
             {
                 for (auto* stage : shader.Stages)
                 {
@@ -169,7 +169,7 @@ namespace xpe {
                 }
             }
 
-            void CompileShader(Shader& shader)
+            void CompileShader(sShader& shader)
             {
                 for (auto* stage : shader.Stages)
                 {
@@ -178,7 +178,7 @@ namespace xpe {
                 }
             }
 
-            void BindShader(const Shader& shader)
+            void BindShader(const sShader& shader)
             {
                 for (const auto* stage : shader.Stages)
                 {
@@ -188,7 +188,7 @@ namespace xpe {
                 }
             }
 
-            void FreeShader(Shader& shader)
+            void FreeShader(sShader& shader)
             {
                 for (auto* stage : shader.Stages)
                 {
@@ -197,32 +197,32 @@ namespace xpe {
                 shader.Stages.clear();
             }
 
-            void CreateTexture(Texture& texture)
+            void CreateTexture(sTexture& texture)
             {
 
                 switch (texture.Type) {
 
-                    case Texture::eType::TEXTURE_1D:
+                    case sTexture::eType::TEXTURE_1D:
                         CreateTexture1D(texture);
                         break;
 
-                    case Texture::eType::TEXTURE_2D:
+                    case sTexture::eType::TEXTURE_2D:
                         CreateTexture2D(texture);
                         break;
 
-                    case Texture::eType::TEXTURE_2D_DEPTH_STENCIL:
+                    case sTexture::eType::TEXTURE_2D_DEPTH_STENCIL:
                         CreateTextureDepthStencil(texture);
                         break;
 
-                    case Texture::eType::TEXTURE_2D_ARRAY:
+                    case sTexture::eType::TEXTURE_2D_ARRAY:
                         CreateTexture2DArray(texture);
                         break;
 
-                    case Texture::eType::TEXTURE_3D:
+                    case sTexture::eType::TEXTURE_3D:
                         CreateTexture3D(texture);
                         break;
 
-                    case Texture::eType::TEXTURE_CUBE:
+                    case sTexture::eType::TEXTURE_CUBE:
                         CreateTextureCube(texture);
                         break;
 
@@ -230,33 +230,33 @@ namespace xpe {
 
             }
 
-            void FreeTexture(Texture& texture)
+            void FreeTexture(sTexture& texture)
             {
                 if (texture.Instance != nullptr) {
 
                     switch (texture.Type) {
 
-                        case Texture::eType::TEXTURE_1D:
+                        case sTexture::eType::TEXTURE_1D:
                             FreeTexture1D(texture.Instance);
                             break;
 
-                        case Texture::eType::TEXTURE_2D:
+                        case sTexture::eType::TEXTURE_2D:
                             FreeTexture2D(texture.Instance);
                             break;
 
-                        case Texture::eType::TEXTURE_2D_ARRAY:
+                        case sTexture::eType::TEXTURE_2D_ARRAY:
                             FreeTexture2DArray(texture.Instance);
                             break;
 
-                        case Texture::eType::TEXTURE_2D_DEPTH_STENCIL:
+                        case sTexture::eType::TEXTURE_2D_DEPTH_STENCIL:
                             FreeTextureDepthStencil(texture.Instance);
                             break;
 
-                        case Texture::eType::TEXTURE_3D:
+                        case sTexture::eType::TEXTURE_3D:
                             FreeTexture3D(texture.Instance);
                             break;
 
-                        case Texture::eType::TEXTURE_CUBE:
+                        case sTexture::eType::TEXTURE_CUBE:
                             FreeTextureCube(texture.Instance);
                             break;
 
@@ -271,16 +271,16 @@ namespace xpe {
                 }
             }
 
-            void CreatePipeline(Pipeline& pipeline)
+            void CreatePipeline(sPipeline& pipeline)
             {
                 if (pipeline.Shader == nullptr)
                 {
-                    LogError("Failed to create input layout. Shader does not exist.");
+                    LogError("Failed to create input layout. sShader does not exist.");
                     assert(false);
                     return;
                 }
 
-                Blob* vertexBlob = nullptr;
+                sBlob* vertexBlob = nullptr;
                 for (auto* stage : pipeline.Shader->Stages)
                 {
                     if (stage->Type == eShaderType::VERTEX) {
@@ -290,14 +290,14 @@ namespace xpe {
 
                 if (vertexBlob == nullptr)
                 {
-                    LogError("Failed to create input layout. Shader has no Vertex stage.");
+                    LogError("Failed to create input layout. sShader has no sVertex stage.");
                     assert(false);
                     return;
                 }
 
                 if (vertexBlob->ByteCode == nullptr || vertexBlob->ByteCodeSize == 0)
                 {
-                    LogError("Failed to create input layout. Vertex shader bytecode is empty.");
+                    LogError("Failed to create input layout. sVertex shader bytecode is empty.");
                     assert(false);
                     return;
                 }
@@ -309,7 +309,7 @@ namespace xpe {
                 CreateBlendMode(pipeline.Blending);
             }
 
-            void BindPipeline(const Pipeline& pipeline)
+            void BindPipeline(const sPipeline& pipeline)
             {
                 if (pipeline.Shader != nullptr) {
                     BindShader(*pipeline.Shader);
@@ -352,7 +352,7 @@ namespace xpe {
                 BindBlendMode(pipeline.Blending.State);
             }
 
-            void UnbindPipeline(const Pipeline &pipeline)
+            void UnbindPipeline(const sPipeline &pipeline)
             {
                 UnbindRenderTarget();
 
@@ -381,7 +381,7 @@ namespace xpe {
                 }
             }
 
-            void FreePipeline(Pipeline& pipeline)
+            void FreePipeline(sPipeline& pipeline)
             {
                 FreeInputLayout(pipeline.InputLayout);
                 FreeRasterizer(pipeline.Rasterizer);
@@ -389,13 +389,13 @@ namespace xpe {
                 FreeBlendMode(pipeline.Blending);
             }
 
-            void FreeRenderTarget(RenderTarget& renderTarget)
+            void FreeRenderTarget(sRenderTarget& renderTarget)
             {
                 FreeRenderTargetColorViews(renderTarget.ColorViews);
                 FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
             }
 
-            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<Viewport>& viewports)
+            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<sViewport>& viewports)
             {
                 BindRenderTarget(colorViews, depthView);
                 BindViewports(viewports);

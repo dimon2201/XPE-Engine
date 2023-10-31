@@ -4,14 +4,14 @@ namespace xpe {
 
     namespace core {
 
-        class ENGINE_API Thread final {
+        class ENGINE_API cThread final {
 
         public:
             enum ePriority {
                 LOWEST, NORMAL, HIGHEST
             };
 
-            Thread(u32 id, std::thread& thread);
+            cThread(u32 id, std::thread& thread);
 
             static void CurrentSleep(u32 millis);
             static u32 CurrentID();

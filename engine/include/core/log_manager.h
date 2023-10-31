@@ -7,19 +7,19 @@
 
 #ifdef DEBUG
 
-#define InitLogger(desc) xpe::core::LogManager::Init(desc)
-#define FreeLogger() xpe::core::LogManager::Free()
+#define InitLogger(desc) xpe::core::cLogManager::Init(desc)
+#define FreeLogger() xpe::core::cLogManager::Free()
 
-#define LogTrace(...) SPDLOG_LOGGER_TRACE(xpe::core::LogManager::GetTracer(), __VA_ARGS__)
-#define LogVerbose(...) SPDLOG_LOGGER_TRACE(xpe::core::LogManager::GetLogger(), __VA_ARGS__)
-#define LogInfo(...) SPDLOG_LOGGER_INFO(xpe::core::LogManager::GetLogger(), __VA_ARGS__)
-#define LogWarning(...) SPDLOG_LOGGER_WARN(xpe::core::LogManager::GetLogger(), __VA_ARGS__)
-#define LogError(...) SPDLOG_LOGGER_ERROR(xpe::core::LogManager::GetTracer(), __VA_ARGS__)
-#define LogMemory(...) SPDLOG_LOGGER_INFO(xpe::core::LogManager::GetMemLogger(), __VA_ARGS__)
+#define LogTrace(...) SPDLOG_LOGGER_TRACE(xpe::core::cLogManager::GetTracer(), __VA_ARGS__)
+#define LogVerbose(...) SPDLOG_LOGGER_TRACE(xpe::core::cLogManager::GetLogger(), __VA_ARGS__)
+#define LogInfo(...) SPDLOG_LOGGER_INFO(xpe::core::cLogManager::GetLogger(), __VA_ARGS__)
+#define LogWarning(...) SPDLOG_LOGGER_WARN(xpe::core::cLogManager::GetLogger(), __VA_ARGS__)
+#define LogError(...) SPDLOG_LOGGER_ERROR(xpe::core::cLogManager::GetTracer(), __VA_ARGS__)
+#define LogMemory(...) SPDLOG_LOGGER_INFO(xpe::core::cLogManager::GetMemLogger(), __VA_ARGS__)
 
 #define DumpTraceError(...) \
 LogError(__VA_ARGS__); \
-LogManager::DumpBacktrace()
+cLogManager::DumpBacktrace()
 
 #define LogGLM(name, v) \
 LogInfo("{}: {}", name, glm::to_string(v))
@@ -48,15 +48,15 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API LoggerDescriptor final {
+        struct ENGINE_API sLoggerDescriptor final {
             const char* Name;
             int Backtrace;
         };
 
-        class ENGINE_API LogManager final {
+        class ENGINE_API cLogManager final {
 
         public:
-            static void Init(const LoggerDescriptor& descriptor);
+            static void Init(const sLoggerDescriptor& descriptor);
             static void Free();
 
             static spdlog::logger* GetLogger();

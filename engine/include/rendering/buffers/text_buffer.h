@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API Character final
+        struct ENGINE_API sChar final
         {
             u32 TransformIndex = 0;
             u32 CameraIndex = 0;
@@ -21,9 +21,9 @@ namespace xpe {
             f32 AtlasYOffset = 0;
         };
 
-        struct ENGINE_API TextBuffer : public StructureBuffer<Character>
+        struct ENGINE_API sTextBuffer : public sListBuffer<sChar>
         {
-            TextBuffer(usize count = 0) : StructureBuffer<Character>(count, K_SLOT_TEXT_CHARS) {}
+            sTextBuffer(usize count = 0) : sListBuffer<sChar>(count, K_SLOT_TEXT_CHARS) {}
         };
 
     }

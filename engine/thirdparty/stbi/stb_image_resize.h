@@ -89,7 +89,7 @@
                printf("Progress: %f%%\n", progress*100);
             }
 
-      MAX CHANNELS
+      MAX k_Channels
          If your image has more than 64 channels, define STBIR_MAX_CHANNELS
          to the max you'll have.
 

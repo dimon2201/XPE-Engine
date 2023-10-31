@@ -18,11 +18,11 @@ namespace xpe {
             return ss.str();
         }
 
-        Material MaterialLoader::Load(const aiScene* scene, aiMesh* mesh, const hstring& directory)
+        sMaterial cMaterialLoader::Load(const aiScene* scene, aiMesh* mesh, const hstring& directory)
         {
             if (mesh->mMaterialIndex >= 0) {
                 aiMaterial* assimpMaterial = scene->mMaterials[mesh->mMaterialIndex];
-                MaterialFilepath materialFilepath;
+                sMaterialFilepath materialFilepath;
 
                 materialFilepath.Name = directory;
                 materialFilepath.AlbedoFilepath = GetMaterialPath(assimpMaterial, aiTextureType_BASE_COLOR, directory);
@@ -39,61 +39,61 @@ namespace xpe {
             return {};
         }
 
-        Material MaterialLoader::Load(const MaterialFilepath &filepath)
+        sMaterial cMaterialLoader::Load(const sMaterialFilepath &filepath)
         {
-            Material material;
+            sMaterial material;
             int w, h, c;
 
-            material.AlbedoMap = TextureLoader::LoadLayer(
+            material.AlbedoMap = cTextureLoader::LoadLayer(
                     filepath.AlbedoFilepath.c_str(),
-                    render::Material::K_ALBEDO_FORMAT.Format,
+                    render::sMaterial::k_AlbedoFormat.Format,
                     w, h, c
             );
             material.EnableAlbedoMap = material.AlbedoMap.Pixels != nullptr;
 
-            material.NormalMap = TextureLoader::LoadLayer(
+            material.NormalMap = cTextureLoader::LoadLayer(
                     filepath.BumpFilepath.c_str(),
-                    render::Material::K_BUMP_FORMAT.Format,
+                    render::sMaterial::k_NormalFormat.Format,
                     w, h, c
             );
             material.EnableNormalMap = material.NormalMap.Pixels != nullptr;
 
-            material.ParallaxMap = TextureLoader::LoadLayer(
+            material.ParallaxMap = cTextureLoader::LoadLayer(
                     filepath.ParallaxFilepath.c_str(),
-                    render::Material::K_PARALLAX_FORMAT.Format,
+                    render::sMaterial::k_ParallaxFormat.Format,
                     w, h, c
             );
             material.EnableParallaxMap = material.ParallaxMap.Pixels != nullptr;
 
-            material.MetalMap = TextureLoader::LoadLayer(
+            material.MetalMap = cTextureLoader::LoadLayer(
                     filepath.MetallicFilepath.c_str(),
-                    render::Material::K_METALLIC_FORMAT.Format,
+                    render::sMaterial::k_MetalFormat.Format,
                     w, h, c
             );
             material.EnableMetalMap = material.MetalMap.Pixels != nullptr;
 
-            material.RoughnessMap = TextureLoader::LoadLayer(
+            material.RoughnessMap = cTextureLoader::LoadLayer(
                     filepath.RoughnessFilepath.c_str(),
-                    render::Material::K_ROUGHNESS_FORMAT.Format,
+                    render::sMaterial::k_RoughnessFormat.Format,
                     w, h, c
             );
             material.EnableRoughnessMap = material.RoughnessMap.Pixels != nullptr;
 
-            material.AOMap = TextureLoader::LoadLayer(
+            material.AOMap = cTextureLoader::LoadLayer(
                     filepath.AOFilepath.c_str(),
-                    render::Material::K_AO_FORMAT.Format,
+                    render::sMaterial::k_AoFormat.Format,
                     w, h, c
             );
             material.EnableAOMap = material.AOMap.Pixels != nullptr;
 
-            material.EmissionMap = TextureLoader::LoadLayer(
+            material.EmissionMap = cTextureLoader::LoadLayer(
                     filepath.EmissionFilepath.c_str(),
-                    render::Material::K_EMISSION_FORMAT.Format,
+                    render::sMaterial::k_EmissionFormat.Format,
                     w, h, c
             );
             material.EnableEmissionMap = material.EmissionMap.Pixels != nullptr;
 
-            return MaterialManager::AddMaterial(material);
+            return cMaterialManager::AddMaterial(material);
         }
 
     }

@@ -11,7 +11,7 @@ namespace xpe {
 
     namespace render {
 
-        const std::unordered_map<eTextureFormat, int> Texture::ChannelTable =
+        const std::unordered_map<eTextureFormat, int> sTexture::k_ChannelTable =
         {
                 { eTextureFormat::R8, 1 },
                 { eTextureFormat::R16, 1 },
@@ -32,7 +32,7 @@ namespace xpe {
                 { eTextureFormat::SRGBA8, 4 }
         };
 
-        const std::unordered_map<eTextureFormat, int> Texture::BPPTable =
+        const std::unordered_map<eTextureFormat, int> sTexture::k_BppTable =
         {
                 { eTextureFormat::R8, 1 },
                 { eTextureFormat::R16, 2 },
@@ -53,7 +53,7 @@ namespace xpe {
                 { eTextureFormat::SRGBA8, 4 },
         };
 
-        Texture::~Texture()
+        sTexture::~sTexture()
         {
             for (auto& layer : Layers)
             {
@@ -63,20 +63,20 @@ namespace xpe {
             context::FreeTexture(*this);
         }
 
-        void Texture::Init()
+        void sTexture::Init()
         {
             context::CreateTexture(*this);
         }
 
-        void Texture::Free()
+        void sTexture::Free()
         {
             context::FreeTexture(*this);
         }
 
-        TextureLayer Texture::CreateLayer() const
+        sTextureLayer sTexture::CreateLayer() const
         {
-            TextureLayer layer;
-            layer.RowByteSize = Width * BPPTable.at(Format);
+            sTextureLayer layer;
+            layer.RowByteSize = Width * k_BppTable.at(Format);
             layer.Pixels = main_alloc(layer.RowByteSize * Height);
             layer.Width = Width;
             layer.Height = Height;
@@ -84,14 +84,14 @@ namespace xpe {
             return layer;
         }
 
-        void Texture::RemoveLayerAt(u32 index)
+        void sTexture::RemoveLayerAt(u32 index)
         {
             auto& layer = Layers[index];
             layer.Free();
             Layers.erase(Layers.begin() + index);
         }
 
-        u32 Texture::GetMipLevels() const
+        u32 sTexture::GetMipLevels() const
         {
             if (Layers.empty()) {
                 return 1;
@@ -101,12 +101,12 @@ namespace xpe {
             return mips.empty() ? 1 : mips.size();
         }
 
-        u32 Texture::GetMipsLevels(s32 width)
+        u32 sTexture::GetMipsLevels(s32 width)
         {
             return (u32)(log(width) / log(2)) + 1;
         }
 
-        void Texture::Resize(s32 width, s32 height)
+        void sTexture::Resize(s32 width, s32 height)
         {
             switch (Format) {
 
@@ -152,44 +152,44 @@ namespace xpe {
             Height = height;
         }
 
-        void Texture::ResizeTextureU8(s32 width, s32 height) {
+        void sTexture::ResizeTextureU8(s32 width, s32 height) {
             for (auto& layer : Layers) {
                 layer.ResizeU8(width, height);
             }
         }
 
-        void Texture::ResizeTextureFloat(s32 width, s32 height) {
+        void sTexture::ResizeTextureFloat(s32 width, s32 height) {
             for (auto& layer : Layers) {
                 layer.ResizeFloat(width, height);
             }
         }
 
-        void Texture::Flip()
+        void sTexture::Flip()
         {
-            int bpp = BPPTable.at(Format);
+            int bpp = k_BppTable.at(Format);
             for (auto& layer : Layers) {
                 stbi__vertical_flip(layer.Pixels, Width, Height, bpp);
             }
         }
 
-        void Texture::GenerateMips()
+        void sTexture::GenerateMips()
         {
             for (auto& layer : Layers) {
                 layer.GenerateMips(Format, Width, Height);
             }
         }
 
-        void Texture::FlushLayer(u32 index)
+        void sTexture::FlushLayer(u32 index)
         {
             context::CopyTexture(
                     *this,
                     Layers[index].Pixels,
-                    Width * Height * BPPTable.at(Format),
+                    Width * Height * k_BppTable.at(Format),
                     index
             );
         }
 
-        void Texture::Flush()
+        void sTexture::Flush()
         {
 //            if (Instance == nullptr) {
                 context::FreeTexture(*this);
@@ -205,7 +205,7 @@ namespace xpe {
 //            }
         }
 
-        void TextureLayer::Free()
+        void sTextureLayer::Free()
         {
             if (Pixels != nullptr) {
                 main_free(Pixels);
@@ -213,7 +213,7 @@ namespace xpe {
             }
         }
 
-        void TextureLayer::CopyFrom(const TextureLayer &other)
+        void sTextureLayer::CopyFrom(const sTextureLayer &other)
         {
             Width = other.Width;
             Height = other.Height;
@@ -224,19 +224,19 @@ namespace xpe {
             memcpy(Pixels, other.Pixels, RowByteSize * Height);
         }
 
-        TextureLayer TextureLayer::Clone() const
+        sTextureLayer sTextureLayer::Clone() const
         {
-            TextureLayer clone;
+            sTextureLayer clone;
             clone.CopyFrom(*this);
             return clone;
         }
 
-        void TextureLayer::GenerateMips(const eTextureFormat &format, int width, int height)
+        void sTextureLayer::GenerateMips(const eTextureFormat &format, int width, int height)
         {
             if (Pixels == nullptr) return;
 
-            int bpp = Texture::BPPTable.at(format);
-            int channels = Texture::ChannelTable.at(format);
+            int bpp = sTexture::k_BppTable.at(format);
+            int channels = sTexture::k_ChannelTable.at(format);
 
             switch (format) {
 
@@ -283,7 +283,7 @@ namespace xpe {
             }
         }
 
-        void TextureLayer::GenerateMipsU8(int width, int height, int bpp, int channels)
+        void sTextureLayer::GenerateMipsU8(int width, int height, int bpp, int channels)
         {
             void* previousMip = Pixels;
             while (width != 1 && height != 1)
@@ -297,7 +297,7 @@ namespace xpe {
             }
         }
 
-        void TextureLayer::GenerateMipsFloat(int width, int height, int bpp, int channels) {
+        void sTextureLayer::GenerateMipsFloat(int width, int height, int bpp, int channels) {
             void* previousMip = Pixels;
             while (width != 1 && height != 1)
             {
@@ -310,7 +310,7 @@ namespace xpe {
             }
         }
 
-        void TextureLayer::FreeMips() {
+        void sTextureLayer::FreeMips() {
             for (auto& mip : Mips) {
                 if (mip.Pixels != nullptr) {
                     main_free(mip.Pixels);
@@ -319,7 +319,7 @@ namespace xpe {
             Mips.clear();
         }
 
-        void TextureLayer::Resize(const eTextureFormat &format, s32 width, s32 height)
+        void sTextureLayer::Resize(const eTextureFormat &format, s32 width, s32 height)
         {
             switch (format) {
 
@@ -362,7 +362,7 @@ namespace xpe {
             }
         }
 
-        void TextureLayer::ResizeU8(s32 width, s32 height) {
+        void sTextureLayer::ResizeU8(s32 width, s32 height) {
             void* pixels = ResizePixelsU8(
                     Pixels,
                     Width, Height, Channels,
@@ -379,7 +379,7 @@ namespace xpe {
             }
         }
 
-        void TextureLayer::ResizeFloat(s32 width, s32 height) {
+        void sTextureLayer::ResizeFloat(s32 width, s32 height) {
             void* pixels = ResizePixelsFloat(
                     Pixels,
                     Width, Height, Channels,
@@ -396,7 +396,7 @@ namespace xpe {
             }
         }
 
-        void* TextureLayer::ResizePixelsU8(
+        void* sTextureLayer::ResizePixelsU8(
                 const void* inputPixels, int inputWidth, int inputHeight, int channels,
                 int outputWidth, int outputHeight
         ) {
@@ -411,7 +411,7 @@ namespace xpe {
             return output;
         }
 
-        void* TextureLayer::ResizePixelsFloat(
+        void* sTextureLayer::ResizePixelsFloat(
                 const void* inputPixels, int inputWidth, int inputHeight, int channels,
                 int outputWidth, int outputHeight
         ) {

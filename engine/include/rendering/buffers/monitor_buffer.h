@@ -6,15 +6,15 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API MonitorData : public core::Object
+        struct ENGINE_API sMonitorData final
         {
             float Exposure = 1.0f;
             float Gamma = 2.2f;
         };
 
-        struct ENGINE_API MonitorBuffer : public ItemBuffer<MonitorData>
+        struct ENGINE_API sMonitorBuffer : public sItemBuffer<sMonitorData>
         {
-            MonitorBuffer() : ItemBuffer<MonitorData>(K_SLOT_MONITOR) {}
+            sMonitorBuffer() : sItemBuffer<sMonitorData>(K_SLOT_MONITOR) {}
         };
 
     }

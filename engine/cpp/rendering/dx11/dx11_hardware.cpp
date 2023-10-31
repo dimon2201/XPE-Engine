@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace core {
 
-        void HardwareManager::UpdateGpuStats(void* device)
+        void cHardwareManager::UpdateGpuStats(void* device)
         {
             GPU.MaxTexture2dArray  = D3D11_REQ_TEXTURE2D_ARRAY_AXIS_DIMENSION;
             GPU.MaxAnisotropyLevel = D3D11_REQ_MAXANISOTROPY;

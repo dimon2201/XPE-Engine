@@ -6,10 +6,10 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API Text2DPass : public TextPass
+        class ENGINE_API cText2DPass : public cTextPass
         {
         public:
-            Text2DPass(const vector<RenderPassBinding>& bindings);
+            cText2DPass(const vector<sRenderPassBinding>& bindings);
             void DrawUI(cScene* scene) override;
         };
 

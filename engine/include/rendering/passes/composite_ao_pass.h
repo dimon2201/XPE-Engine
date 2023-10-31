@@ -6,11 +6,11 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API CompositeAOPass : public RenderPass
+        class ENGINE_API cCompositeAoPass : public cRenderPass
         {
 
         public:
-            CompositeAOPass(const vector<RenderPassBinding>& bindings);
+            cCompositeAoPass(const vector<sRenderPassBinding>& bindings);
 
         };
 

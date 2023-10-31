@@ -13,7 +13,7 @@ namespace xpe {
         using namespace anim;
         using namespace math;
 
-        class LOADER_API SkeletonLoader final
+        class LOADER_API cSkeletonLoader final
         {
         public:
             static sSkeleton Load(const char* filepath, const vector<eLoadOption>& options = {

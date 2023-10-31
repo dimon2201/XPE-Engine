@@ -5,7 +5,7 @@ namespace xpe {
 
     namespace render {
 
-        IndexBuffer::IndexBuffer(const usize indexCount)
+        sIndexBuffer::sIndexBuffer(const usize indexCount)
         {
             List.resize(indexCount);
             Type = eBufferType::INDEX;
@@ -15,7 +15,7 @@ namespace xpe {
             context::CreateBuffer(*this);
         }
 
-        IndexBuffer::IndexBuffer(const vector<u32>& indexArray) : List(indexArray)
+        sIndexBuffer::sIndexBuffer(const vector<u32>& indexArray) : List(indexArray)
         {
             Type = eBufferType::INDEX;
             StructureSize = sizeof(u32);
@@ -25,12 +25,12 @@ namespace xpe {
             Flush();
         }
 
-        IndexBuffer::~IndexBuffer()
+        sIndexBuffer::~sIndexBuffer()
         {
             context::FreeBuffer(*this);
         }
 
-        void IndexBuffer::Flush()
+        void sIndexBuffer::Flush()
         {
             usize size = List.size();
             if (size != NumElements) {
@@ -41,7 +41,7 @@ namespace xpe {
             }
         }
 
-        void IndexBuffer::FlushIndices(const vector<u32> &indices)
+        void sIndexBuffer::FlushIndices(const vector<u32> &indices)
         {
             if (sizeof(indices) > GetByteSize()) {
                 Resize(indices.size());
@@ -50,7 +50,7 @@ namespace xpe {
             Flush();
         }
 
-        void IndexBuffer::FlushIndex(u32 i, u32 index)
+        void sIndexBuffer::FlushIndex(u32 i, u32 index)
         {
             if (i >= List.size()) {
                 Resize(i + 1);
@@ -59,7 +59,7 @@ namespace xpe {
             context::MoveBufferOffset(*this, StructureSize * i, &List.back(), StructureSize);
         }
 
-        void IndexBuffer::Recreate(const usize indexCount)
+        void sIndexBuffer::Recreate(const usize indexCount)
         {
             Type = eBufferType::INDEX;
             NumElements = indexCount;
@@ -70,7 +70,7 @@ namespace xpe {
             context::CopyBuffer(*this, List.data(), GetByteSize());
         }
 
-        usize IndexBuffer::AddIndices(const vector<u32>& indices)
+        usize sIndexBuffer::AddIndices(const vector<u32>& indices)
         {
             usize indexOffset = List.size();
             List.resize(List.size() + indices.size());
@@ -78,12 +78,12 @@ namespace xpe {
             return indexOffset;
         }
 
-        void IndexBuffer::Resize(const usize indexCount)
+        void sIndexBuffer::Resize(const usize indexCount)
         {
             List.resize(indexCount);
         }
 
-        void IndexBuffer::Reserve(const usize indexCount)
+        void sIndexBuffer::Reserve(const usize indexCount)
         {
             List.reserve(indexCount);
         }

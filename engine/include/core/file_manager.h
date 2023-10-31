@@ -6,7 +6,7 @@ namespace xpe {
 
         namespace fs = std::filesystem;
 
-        class ENGINE_API FileManager final {
+        class ENGINE_API cFileManager final {
 
         public:
             static string ReadFileWithIncludes(const string& filepath, string includeIdentifier = "#include");

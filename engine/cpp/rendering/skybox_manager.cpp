@@ -4,19 +4,19 @@ namespace xpe {
 
     namespace render {
 
-        SkyboxManager* SkyboxManager::s_Instance = nullptr;
+        cSkyboxManager* cSkyboxManager::s_Instance = nullptr;
 
-        void SkyboxManager::Init()
+        void cSkyboxManager::Init()
         {
-            s_Instance = new SkyboxManager();
+            s_Instance = new cSkyboxManager();
         }
 
-        void SkyboxManager::Free()
+        void cSkyboxManager::Free()
         {
             delete s_Instance;
         }
 
-        SkyboxManager &SkyboxManager::Get()
+        cSkyboxManager &cSkyboxManager::Get()
         {
             if (s_Instance == nullptr) {
                 Init();

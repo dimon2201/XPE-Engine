@@ -6,10 +6,10 @@ namespace xpe {
 
     namespace render {
 
-        Text3DPass::Text3DPass(const vector<RenderPassBinding> &bindings)
-        : TextPass(eType::OPAQUE, bindings) {}
+        cText3DPass::cText3DPass(const vector<sRenderPassBinding> &bindings)
+        : cTextPass(eType::OPAQUE, bindings) {}
 
-        void Text3DPass::DrawOpaque(cScene* scene)
+        void cText3DPass::DrawOpaque(cScene* scene)
         {
             scene->EachComponent<sCText3D>([this](sCText3D* component)
             {

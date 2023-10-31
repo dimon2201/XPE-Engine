@@ -6,15 +6,15 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API RenderInstance final
+        struct ENGINE_API sRenderInstance final
         {
             u32 TransformIndex = 0;
             u32 MaterialIndex = 0;
         };
 
-        struct ENGINE_API InstanceBuffer : public StructureBuffer<RenderInstance>
+        struct ENGINE_API sInstanceBuffer : public sListBuffer<sRenderInstance>
         {
-            InstanceBuffer(usize count = 0) : StructureBuffer<RenderInstance>(count, K_SLOT_INSTANCES) {}
+            sInstanceBuffer(usize count = 0) : sListBuffer<sRenderInstance>(count, K_SLOT_INSTANCES) {}
         };
 
     }

@@ -5,7 +5,7 @@ namespace xpe {
 
     namespace render {
 
-        RenderTarget::RenderTarget(const vector<Texture*> &colors, const Viewport &viewport)
+        sRenderTarget::sRenderTarget(const vector<sTexture*> &colors, const sViewport &viewport)
         {
             Colors.reserve(colors.size());
             ColorViews.reserve(colors.size());
@@ -18,7 +18,7 @@ namespace xpe {
             Init();
         }
 
-        RenderTarget::RenderTarget(const vector<Texture*> &colors, const vector<Viewport> &viewports)
+        sRenderTarget::sRenderTarget(const vector<sTexture*> &colors, const vector<sViewport> &viewports)
         {
             Colors.reserve(colors.size());
             ColorViews.reserve(colors.size());
@@ -31,26 +31,26 @@ namespace xpe {
             Init();
         }
 
-        RenderTarget::RenderTarget(const Texture* depthStencil, const Viewport &viewport)
+        sRenderTarget::sRenderTarget(const sTexture* depthStencil, const sViewport &viewport)
         {
-            DepthStencil = (Texture*)depthStencil;
+            DepthStencil = (sTexture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports.emplace_back(viewport);
             Init();
         }
 
-        RenderTarget::RenderTarget(const Texture* depthStencil, const vector<Viewport> &viewports)
+        sRenderTarget::sRenderTarget(const sTexture* depthStencil, const vector<sViewport> &viewports)
         {
-            DepthStencil = (Texture*)depthStencil;
+            DepthStencil = (sTexture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports = viewports;
             Init();
         }
 
-        RenderTarget::RenderTarget(
-            const vector<Texture*> &colors,
-            const Texture* depthStencil,
-            const Viewport& viewport
+        sRenderTarget::sRenderTarget(
+            const vector<sTexture*> &colors,
+            const sTexture* depthStencil,
+            const sViewport& viewport
         ) {
             Colors.reserve(colors.size());
             ColorViews.reserve(colors.size());
@@ -59,16 +59,16 @@ namespace xpe {
                 Colors.emplace_back(color);
                 ColorViews.emplace_back(nullptr);
             }
-            DepthStencil = (Texture*)depthStencil;
+            DepthStencil = (sTexture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports.emplace_back(viewport);
             Init();
         }
 
-        RenderTarget::RenderTarget(
-            const vector<Texture*> &colors,
-            const Texture* depthStencil,
-            const vector<Viewport> &viewports
+        sRenderTarget::sRenderTarget(
+            const vector<sTexture*> &colors,
+            const sTexture* depthStencil,
+            const vector<sViewport> &viewports
         ) {
             Colors.reserve(colors.size());
             ColorViews.reserve(colors.size());
@@ -77,13 +77,13 @@ namespace xpe {
                 Colors.emplace_back(color);
                 ColorViews.emplace_back(nullptr);
             }
-            DepthStencil = (Texture*)depthStencil;
+            DepthStencil = (sTexture*)depthStencil;
             DepthStencilView = nullptr;
             Viewports = viewports;
             Init();
         }
 
-        RenderTarget::RenderTarget(const vector<void*> &colorViews, const Viewport &viewport)
+        sRenderTarget::sRenderTarget(const vector<void*> &colorViews, const sViewport &viewport)
         {
             ColorViews.reserve(colorViews.size());
             for (auto& colorView : colorViews)
@@ -93,7 +93,7 @@ namespace xpe {
             Viewports.emplace_back(viewport);
         }
 
-        RenderTarget::RenderTarget(const vector<void*> &colorViews, const vector <Viewport> &viewports)
+        sRenderTarget::sRenderTarget(const vector<void*> &colorViews, const vector <sViewport> &viewports)
         {
             ColorViews.reserve(colorViews.size());
             for (auto& colorView : colorViews)
@@ -103,59 +103,59 @@ namespace xpe {
             Viewports = viewports;
         }
 
-        RenderTarget::~RenderTarget()
+        sRenderTarget::~sRenderTarget()
         {
             context::FreeRenderTarget(*this);
             RemoveEventListeners();
         }
 
-        void RenderTarget::Init()
+        void sRenderTarget::Init()
         {
             context::CreateRenderTarget(*this);
             AddEventListeners();
         }
 
-        void RenderTarget::Resize(s32 width, s32 height)
+        void sRenderTarget::Resize(s32 width, s32 height)
         {
             context::ResizeRenderTarget(*this, width, height);
         }
 
-        void RenderTarget::WindowFrameResized(s32 width, s32 height)
+        void sRenderTarget::WindowFrameResized(s32 width, s32 height)
         {
             Resize(width, height);
         }
 
-        void RenderTarget::Bind()
+        void sRenderTarget::Bind()
         {
             context::BindRenderTarget(ColorViews, DepthStencilView);
         }
 
-        void RenderTarget::BindColor(u32 index)
+        void sRenderTarget::BindColor(u32 index)
         {
             context::BindTexture(*Colors[index]);
         }
 
-        void RenderTarget::BindDepth()
+        void sRenderTarget::BindDepth()
         {
             context::BindTexture(*DepthStencil);
         }
 
-        void RenderTarget::ClearColor(u32 index, const glm::vec4 &color)
+        void sRenderTarget::ClearColor(u32 index, const glm::vec4 &color)
         {
             context::ClearColorTarget(ColorViews[index], color);
         }
 
-        void RenderTarget::ClearDepth(const float depth)
+        void sRenderTarget::ClearDepth(const float depth)
         {
             context::ClearDepthTarget(DepthStencilView, depth);
         }
 
-        void RenderTarget::AddEventListeners()
+        void sRenderTarget::AddEventListeners()
         {
-            AddWindowFrameResized(RenderTarget, 1);
+            AddWindowFrameResized(sRenderTarget, 1);
         }
 
-        void RenderTarget::RemoveEventListeners()
+        void sRenderTarget::RemoveEventListeners()
         {
             RemoveWindowFrameResized();
         }

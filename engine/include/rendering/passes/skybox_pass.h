@@ -11,12 +11,12 @@ namespace xpe {
         using namespace ecs;
         using namespace math;
 
-        class ENGINE_API SkyboxPass : public RenderPass
+        class ENGINE_API cSkyboxPass : public cRenderPass
         {
 
         public:
-            SkyboxPass(const vector<RenderPassBinding>& bindings);
-            ~SkyboxPass() override;
+            cSkyboxPass(const vector<sRenderPassBinding>& bindings);
+            ~cSkyboxPass() override;
 
             void DrawOpaque(cScene *scene) override;
 
@@ -24,7 +24,7 @@ namespace xpe {
             void InitOpaque() override;
 
         protected:
-            TextureSampler m_Sampler;
+            sSampler m_Sampler;
         };
 
     }

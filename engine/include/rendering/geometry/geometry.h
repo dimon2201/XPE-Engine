@@ -10,7 +10,7 @@ namespace xpe {
         using namespace core;
         using namespace render;
 
-        static void InitUV(Vertex* v0, Vertex* v1, Vertex* v2, Vertex* v3)
+        static void InitUV(sVertex* v0, sVertex* v1, sVertex* v2, sVertex* v3)
         {
             v0->UV = { 0, 0 };
             v1->UV = { 0, 1 };
@@ -18,7 +18,7 @@ namespace xpe {
             v3->UV = { 1, 0 };
         }
 
-        static void InitNormal(Vertex* v0, Vertex* v1, Vertex* v2)
+        static void InitNormal(sVertex* v0, sVertex* v1, sVertex* v2)
         {
             glm::vec3 x1 = v1->Position - v0->Position;
             glm::vec3 x2 = v2->Position - v0->Position;
@@ -28,7 +28,7 @@ namespace xpe {
             v2->Normal = normal;
         }
 
-        static void InitNormal(Vertex* v0, Vertex* v1, Vertex* v2, Vertex* v3)
+        static void InitNormal(sVertex* v0, sVertex* v1, sVertex* v2, sVertex* v3)
         {
             glm::vec3 x1 = v1->Position - v0->Position;
             glm::vec3 x2 = v3->Position - v0->Position;
@@ -39,7 +39,7 @@ namespace xpe {
             v3->Normal = normal;
         }
 
-        static void InitTangent(Vertex* v0, Vertex* v1, Vertex* v2, Vertex* v3)
+        static void InitTangent(sVertex* v0, sVertex* v1, sVertex* v2, sVertex* v3)
         {
             glm::vec3& pos0 = v0->Position;
             glm::vec3& pos1 = v1->Position;
@@ -49,7 +49,7 @@ namespace xpe {
             glm::vec2& uv1 = v1->UV;
             glm::vec2& uv2 = v2->UV;
 
-            // Calculate Triangle edges
+            // Calculate sTriangle edges
             glm::vec3 dpos_1 = pos1 - pos0;
             glm::vec3 dpos_2 = pos2 - pos0;
 
@@ -66,11 +66,11 @@ namespace xpe {
             v3->Tangent = tangent;
         }
 
-        struct Geometry : public Object
+        struct sGeometry : public cObject
         {
             render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
             usize VertexOffset = 0;
-            vector<Vertex> Vertices;
+            vector<sVertex> Vertices;
             usize IndexOffset = 0;
             vector<u32> Indices;
         };

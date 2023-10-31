@@ -29,7 +29,7 @@ namespace xpe {
 		}
 
 		// It's a cycle. multimedia playback and update audio's states
-		void cAudioSystem::Update(ecs::cScene* scene, const Time& dt)
+		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
 		{
 			//UpdateVoices(scene); //temporarily commented to not hearing myself
 			UpdateAudios(scene);
@@ -48,7 +48,7 @@ namespace xpe {
 
 				GetState(component->SourceID, component->State);
 				if (component->Frames > 0) {
-					UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(), component->Samples, SAMPLE_RATE);
+					UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(), component->Samples, k_SampleRate);
 				}
 			});
 		}
@@ -70,7 +70,7 @@ namespace xpe {
 			component->BufferID.reserve(component->NumBuffers);
 			GenBuffers(component->NumBuffers, component->BufferID.data());
 
-			component->Data.reserve(DATA_SIZE);
+			component->Data.reserve(k_DataSize);
 			StartRecord(component->SourceID, component->BufferID.data(), component->State, component->Data.data(), component->NumBuffers);
 		}
 

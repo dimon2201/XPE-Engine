@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        class ENGINE_API GeometryManager final
+        class ENGINE_API cGeometryManager final
         {
 
         public:
@@ -14,14 +14,14 @@ namespace xpe {
             static void Free();
             static void Bind();
 
-            static Geometry AddGeometry(const Geometry& _geometry);
-            static Model AddModel(const Model& _model);
+            static sGeometry AddGeometry(const sGeometry& _geometry);
+            static sModel AddModel(const sModel& _model);
 
         private:
             static usize AddIndices(const vector<u32>& indices);
 
-            static VertexBuffer* s_VertexBuffer;
-            static IndexBuffer* s_IndexBuffer;
+            static sVertexBuffer* s_VertexBuffer;
+            static sIndexBuffer* s_IndexBuffer;
         };
 
     }

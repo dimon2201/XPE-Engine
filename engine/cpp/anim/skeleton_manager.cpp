@@ -5,14 +5,14 @@ namespace xpe {
 
     namespace anim {
 
-        vector<render::BoneBuffer*>* mSkeletonManager::s_Buffers = nullptr;
+        vector<render::sBoneBuffer*>* cSkeletonManager::s_Buffers = nullptr;
 
-        void mSkeletonManager::Init()
+        void cSkeletonManager::Init()
         {
-            s_Buffers = new vector<render::BoneBuffer*>();
+            s_Buffers = new vector<render::sBoneBuffer*>();
         }
 
-        void mSkeletonManager::Free()
+        void cSkeletonManager::Free()
         {
             for (auto* buffer : *s_Buffers) {
                 delete buffer;
@@ -20,28 +20,28 @@ namespace xpe {
             delete s_Buffers;
         }
 
-        void mSkeletonManager::Bind(u32 index)
+        void cSkeletonManager::Bind(u32 index)
         {
             render::context::BindVSBuffer(*s_Buffers->at(index));
         }
 
-        void mSkeletonManager::Unbind(u32 index)
+        void cSkeletonManager::Unbind(u32 index)
         {
             render::context::UnbindVSBuffer(*s_Buffers->at(index));
         }
 
-        void mSkeletonManager::Flush(u32 index)
+        void cSkeletonManager::Flush(u32 index)
         {
             s_Buffers->at(index)->Flush();
         }
 
-        void mSkeletonManager::RemoveSkeleton(u32 index)
+        void cSkeletonManager::RemoveSkeleton(u32 index)
         {
             delete s_Buffers->at(index);
             s_Buffers->at(index) = nullptr;
         }
 
-        render::BoneBuffer* mSkeletonManager::GetBuffer(u32 index)
+        render::sBoneBuffer* cSkeletonManager::GetBuffer(u32 index)
         {
             return s_Buffers->at(index);
         }

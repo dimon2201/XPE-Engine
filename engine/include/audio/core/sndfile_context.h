@@ -8,7 +8,7 @@ namespace xpe {
 
 		using namespace core;
 
-		struct ENGINE_API sAudioFile : public Object
+		struct ENGINE_API sAudioFile : public cObject
 		{
 			SNDFILE* File = nullptr;
 			SF_INFO Info;

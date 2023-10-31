@@ -2,6 +2,12 @@
 
 #define STR(clazz) #clazz
 
+#define K_MEMORY_KB 1024
+#define K_MEMORY_MB 1024 * K_MEMORY_KB
+#define K_MEMORY_GB 1024 * K_MEMORY_MB
+
+#define K_PI 3.14159265359f
+
 namespace xpe
 {
     namespace core
@@ -37,18 +43,14 @@ namespace xpe
 
         using Boolean = u32;
 
-        constexpr usize K_MEMORY_KIB                = 1024;
-        constexpr usize K_MEMORY_MIB                = 1024 * K_MEMORY_KIB;
-        constexpr usize K_MEMORY_GIB                = 1024 * K_MEMORY_MIB;
-
-        class ENGINE_API Object
+        class ENGINE_API cObject
         {
         public:
             void* operator new(usize byteSize);
             void operator delete(void* address);
         };
 
-        class ENGINE_API HotObject
+        class ENGINE_API cHotObject
         {
         public:
             void* operator new(usize byteSize);

@@ -4,31 +4,31 @@ namespace xpe {
 
     namespace render {
 
-        MaterialDataBuffer* MaterialManager::s_DataBuffer = nullptr;
+        sMaterialDataBuffer* cMaterialManager::s_DataBuffer = nullptr;
 
-        TextureSampler MaterialManager::Sampler;
-        Texture* MaterialManager::AlbedoAtlas;
-        Texture* MaterialManager::NormalAtlas;
-        Texture* MaterialManager::ParallaxAtlas;
-        Texture* MaterialManager::MetalAtlas;
-        Texture* MaterialManager::RoughnessAtlas;
-        Texture* MaterialManager::AOAtlas;
-        Texture* MaterialManager::EmissionAtlas;
+        sSampler cMaterialManager::Sampler;
+        sTexture* cMaterialManager::AlbedoAtlas;
+        sTexture* cMaterialManager::NormalAtlas;
+        sTexture* cMaterialManager::ParallaxAtlas;
+        sTexture* cMaterialManager::MetalAtlas;
+        sTexture* cMaterialManager::RoughnessAtlas;
+        sTexture* cMaterialManager::AOAtlas;
+        sTexture* cMaterialManager::EmissionAtlas;
 
-        void MaterialManager::Init()
+        void cMaterialManager::Init()
         {
-            s_DataBuffer = new MaterialDataBuffer();
+            s_DataBuffer = new sMaterialDataBuffer();
             InitSampler();
-            AlbedoAtlas = InitTextureArray(Material::K_ALBEDO_FORMAT);
-            NormalAtlas = InitTextureArray(Material::K_BUMP_FORMAT);
-            ParallaxAtlas = InitTextureArray(Material::K_PARALLAX_FORMAT);
-            MetalAtlas = InitTextureArray(Material::K_METALLIC_FORMAT);
-            RoughnessAtlas = InitTextureArray(Material::K_ROUGHNESS_FORMAT);
-            AOAtlas = InitTextureArray(Material::K_AO_FORMAT);
-            EmissionAtlas = InitTextureArray(Material::K_EMISSION_FORMAT);
+            AlbedoAtlas = InitTextureArray(sMaterial::k_AlbedoFormat);
+            NormalAtlas = InitTextureArray(sMaterial::k_NormalFormat);
+            ParallaxAtlas = InitTextureArray(sMaterial::k_ParallaxFormat);
+            MetalAtlas = InitTextureArray(sMaterial::k_MetalFormat);
+            RoughnessAtlas = InitTextureArray(sMaterial::k_RoughnessFormat);
+            AOAtlas = InitTextureArray(sMaterial::k_AoFormat);
+            EmissionAtlas = InitTextureArray(sMaterial::k_EmissionFormat);
         }
 
-        void MaterialManager::Free()
+        void cMaterialManager::Free()
         {
             delete s_DataBuffer;
             delete AlbedoAtlas;
@@ -41,34 +41,34 @@ namespace xpe {
             context::FreeSampler(Sampler);
         }
 
-        void MaterialManager::InitSampler()
+        void cMaterialManager::InitSampler()
         {
             Sampler.Slot            = K_SLOT_MATERIAL_SAMPLER;
-            Sampler.Filter          = TextureSampler::eFilter::ANISOTROPIC;
-            Sampler.AnisotropyLevel = HardwareManager::GPU.MaxAnisotropyLevel;
-            Sampler.AddressU        = TextureSampler::eAddress::WRAP;
-            Sampler.AddressV        = TextureSampler::eAddress::WRAP;
-            Sampler.AddressW        = TextureSampler::eAddress::WRAP;
+            Sampler.Filter          = sSampler::eFilter::ANISOTROPIC;
+            Sampler.AnisotropyLevel = cHardwareManager::GPU.MaxAnisotropyLevel;
+            Sampler.AddressU        = sSampler::eAddress::WRAP;
+            Sampler.AddressV        = sSampler::eAddress::WRAP;
+            Sampler.AddressW        = sSampler::eAddress::WRAP;
 
             context::CreateSampler(Sampler);
         }
 
-        Texture* MaterialManager::InitTextureArray(const MaterialFormat& materialFormat)
+        sTexture* cMaterialManager::InitTextureArray(const sMaterialFormat& materialFormat)
         {
-            Texture* texture = new Texture();
+            sTexture* texture = new sTexture();
             texture->InitializeData = true;
-            texture->Type = Texture::eType::TEXTURE_2D_ARRAY;
-            texture->Usage = Texture::eUsage::DEFAULT;
+            texture->Type = sTexture::eType::TEXTURE_2D_ARRAY;
+            texture->Usage = sTexture::eUsage::DEFAULT;
             texture->Format = materialFormat.Format;
             texture->Width = materialFormat.Width;
             texture->Height = materialFormat.Height;
             texture->Slot = materialFormat.Slot;
-            texture->Channels = Texture::ChannelTable.at(materialFormat.Format);
-            texture->Layers.reserve(HardwareManager::GPU.MaxTexture2dArray);
+            texture->Channels = sTexture::k_ChannelTable.at(materialFormat.Format);
+            texture->Layers.reserve(cHardwareManager::GPU.MaxTexture2dArray);
             return texture;
         }
 
-        void MaterialManager::Clear()
+        void cMaterialManager::Clear()
         {
             s_DataBuffer->Clear();
             s_DataBuffer->Flush();
@@ -95,7 +95,7 @@ namespace xpe {
             EmissionAtlas->Flush();
         }
 
-        void MaterialManager::Bind(Pipeline& pipeline)
+        void cMaterialManager::Bind(sPipeline& pipeline)
         {
             pipeline.PSBuffers.emplace_back(s_DataBuffer);
 
@@ -110,12 +110,12 @@ namespace xpe {
             pipeline.Textures.emplace_back(EmissionAtlas);
         }
 
-        void MaterialManager::Flush(const Material& material)
+        void cMaterialManager::Flush(const sMaterial& material)
         {
             s_DataBuffer->FlushItem(material.Index, material);
         }
 
-        void MaterialManager::AddLayer(Texture &texture, TextureLayer &layer)
+        void cMaterialManager::AddLayer(sTexture &texture, sTextureLayer &layer)
         {
             if (layer.Pixels == nullptr) {
                 layer = texture.CreateLayer();
@@ -131,7 +131,7 @@ namespace xpe {
             texture.Flush();
         }
 
-        void MaterialManager::SetLayer(Texture &texture, TextureLayer &layer, u32 layerIndex)
+        void cMaterialManager::SetLayer(sTexture &texture, sTextureLayer &layer, u32 layerIndex)
         {
             if (layer.Pixels == nullptr) {
                 layer = texture.CreateLayer();

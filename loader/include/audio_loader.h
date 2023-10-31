@@ -11,7 +11,7 @@ namespace xpe {
 		using namespace audio;
 		using namespace core;
 
-		class LOADER_API AudioLoader final
+		class LOADER_API cAudioLoader final
 		{
 		public:
             static void Init();

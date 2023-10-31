@@ -4,22 +4,22 @@ namespace xpe {
 
     namespace render {
 
-        Canvas::Canvas(Shader* shader, RenderTarget* renderTarget, ViewportBuffer* viewportBuffer)
+        cCanvas::cCanvas(sShader* shader, sRenderTarget* renderTarget, sViewportBuffer* viewportBuffer)
         : m_Shader(shader), m_RenderTarget(renderTarget), m_ViewportBuffer(viewportBuffer)
         {
             CreatePresentTarget();
             CreatePresentSampler();
-            AddWindowFrameResized(Canvas, 1);
+            AddWindowFrameResized(cCanvas, 1);
         }
 
-        Canvas::~Canvas()
+        cCanvas::~cCanvas()
         {
             delete m_PresentTarget;
             context::FreeSampler(m_PresentSampler);
             RemoveWindowFrameResized();
         }
 
-        void Canvas::Draw()
+        void cCanvas::Draw()
         {
             context::BindTextureSlot(0);
             context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewports);
@@ -34,26 +34,26 @@ namespace xpe {
             context::Present();
         }
 
-        void Canvas::WindowFrameResized(s32 width, s32 height)
+        void cCanvas::WindowFrameResized(s32 width, s32 height)
         {
             context::ResizeSwapchain(*m_PresentTarget, width, height);
         }
 
-        void Canvas::CreatePresentTarget()
+        void cCanvas::CreatePresentTarget()
         {
-            m_PresentTarget = new RenderTarget(
+            m_PresentTarget = new sRenderTarget(
                     vector<void*> { context::SwapchainTargetView },
                     m_ViewportBuffer->GetList()
             );
             m_PresentTarget->RemoveEventListeners();
         }
 
-        void Canvas::CreatePresentSampler()
+        void cCanvas::CreatePresentSampler()
         {
-            m_PresentSampler.Filter   = TextureSampler::eFilter::MIN_MAG_MIP_POINT;
-            m_PresentSampler.AddressU = TextureSampler::eAddress::CLAMP;
-            m_PresentSampler.AddressV = TextureSampler::eAddress::CLAMP;
-            m_PresentSampler.AddressW = TextureSampler::eAddress::CLAMP;
+            m_PresentSampler.Filter   = sSampler::eFilter::MIN_MAG_MIP_POINT;
+            m_PresentSampler.AddressU = sSampler::eAddress::CLAMP;
+            m_PresentSampler.AddressV = sSampler::eAddress::CLAMP;
+            m_PresentSampler.AddressW = sSampler::eAddress::CLAMP;
             m_PresentSampler.AnisotropyLevel = 1;
 
             context::CreateSampler(m_PresentSampler);

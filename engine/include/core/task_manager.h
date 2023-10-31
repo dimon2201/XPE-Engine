@@ -4,30 +4,30 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API Task : public Object {
+        struct ENGINE_API sTask : public cObject {
             std::function<void()> Todo;
-            Task* Next = nullptr;
+            sTask* Next = nullptr;
 
-            Task() = default;
-            Task(const std::function<void()>& todo) : Todo(todo) {}
+            sTask() = default;
+            sTask(const std::function<void()>& todo) : Todo(todo) {}
 
             virtual void DoWork();
 
             void DoAll();
         };
 
-        class ENGINE_API TaskDispatcher : public Object {
+        class ENGINE_API cTaskDispatcher : public cObject {
 
         public:
-            TaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, Thread::ePriority priority);
+            cTaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, cThread::ePriority priority);
 
             // executes single task in a single worker thread
-            void Dispatch(Task task);
+            void Dispatch(sTask task);
 
             // executes multiple tasks with multiple amount of workers per task
             // taskSize - count of inner tasks inside single task
             // tasksPerThread - count of tasks for each worker thread
-            void Dispatch(u32 tasksPerThread, u32 taskSize, Task task);
+            void Dispatch(u32 tasksPerThread, u32 taskSize, sTask task);
 
             inline bool IsBusy();
 
@@ -40,9 +40,9 @@ namespace xpe {
             // allows caller-thread to be rescheduled by OS
             inline void Poll();
 
-            void InitThread(u32 workerId, const char* name, Thread::ePriority priority);
+            void InitThread(u32 workerId, const char* name, cThread::ePriority priority);
 
-            RingBuffer<Task> m_TaskBuffer;
+            cRingBuffer<sTask> m_TaskBuffer;
             std::condition_variable m_WakeCondition;
             std::mutex m_WakeMutex;
             u64 m_TasksTodo;
@@ -50,20 +50,20 @@ namespace xpe {
             u32 m_WorkerCount;
         };
 
-        class ENGINE_API TaskManager final {
+        class ENGINE_API cTaskManager final {
 
         public:
             static void Init();
-            static void Init(TaskDispatcher* dispatcher);
+            static void Init(cTaskDispatcher* dispatcher);
             static void Free();
 
-            static void SubmitTask(const Task& task);
-            static void SubmitTask(u32 tasksPerThread, u32 totalTasks, const Task& task);
+            static void SubmitTask(const sTask& task);
+            static void SubmitTask(u32 tasksPerThread, u32 totalTasks, const sTask& task);
 
             static void Wait();
 
         private:
-            static TaskDispatcher* s_Dispatcher;
+            static cTaskDispatcher* s_Dispatcher;
         };
 
     }

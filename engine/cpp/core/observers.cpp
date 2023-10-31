@@ -2,10 +2,10 @@ namespace xpe {
 
     namespace core {
 
-        ObserverSampleCount::ObserverSampleCount(u32 sampleCount) : Observer<u32>(sampleCount)
+        sObserverSampleCount::sObserverSampleCount(u32 sampleCount) : sObserver<u32>(sampleCount)
         {
             m_OnChanged = [](u32 sampleCount) {
-                EventManager::Get().SampleCountChangedEvents.NotifyAll(sampleCount);
+                cEventManager::Get().SampleCountChangedEvents.NotifyAll(sampleCount);
             };
         }
 

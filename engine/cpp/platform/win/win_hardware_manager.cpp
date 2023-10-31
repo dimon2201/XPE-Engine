@@ -7,7 +7,7 @@ namespace xpe {
 
     namespace core {
 
-        void HardwareManager::UpdateMemoryStats()
+        void cHardwareManager::UpdateMemoryStats()
         {
             MEMORYSTATUSEX memStatus;
             memStatus.dwLength = sizeof(memStatus);
@@ -21,7 +21,7 @@ namespace xpe {
             Memory.AvailableVirtualExtended = memStatus.ullAvailExtendedVirtual;
         }
 
-        void HardwareManager::UpdateCpuStats()
+        void cHardwareManager::UpdateCpuStats()
         {
             SYSTEM_INFO sysinfo;
             GetSystemInfo(&sysinfo);

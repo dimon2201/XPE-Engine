@@ -2,7 +2,7 @@ namespace xpe {
 
     namespace core {
 
-        void MemoryPool::Init(const usize byteSize, const usize allocs, const usize alignment)
+        void cMemoryPool::Init(const usize byteSize, const usize allocs, const usize alignment)
         {
             if (alignment == 0) {
                 m_Memory = malloc(byteSize);
@@ -17,7 +17,7 @@ namespace xpe {
             m_Alignment = alignment;
         }
 
-        void MemoryPool::Release()
+        void cMemoryPool::Release()
         {
             if (m_Alignment == 0) {
                 free(m_Memory);
@@ -28,7 +28,7 @@ namespace xpe {
             m_Allocs.clear();
         }
 
-        void* MemoryPool::Allocate(const usize size)
+        void* cMemoryPool::Allocate(const usize size)
         {
 #ifdef DEBUG
             m_BytesOccupied += size;
@@ -47,7 +47,7 @@ namespace xpe {
                 if ((alloc.AllocByteWidth - alloc.OccupiedByteWidth) >= size)
                 {
                     // New allocation
-                    MemoryPoolAllocation newAlloc;
+                    sMemoryPoolAllocation newAlloc;
                     newAlloc.FreeFlag = 0u;
                     newAlloc.AllocByteWidth = alloc.AllocByteWidth - alloc.OccupiedByteWidth;
                     newAlloc.OccupiedByteWidth = size;
@@ -63,7 +63,7 @@ namespace xpe {
 
             if (m_LastAddress >= m_MaxAddress) { return nullptr; }
 
-            MemoryPoolAllocation newAlloc;
+            sMemoryPoolAllocation newAlloc;
             newAlloc.FreeFlag = 0u;
             newAlloc.AllocByteWidth = size;
             newAlloc.OccupiedByteWidth = size;
@@ -76,7 +76,7 @@ namespace xpe {
             return newAlloc.Address;
         }
 
-        bool MemoryPool::Free(void* address)
+        bool cMemoryPool::Free(void* address)
         {
             for (auto& alloc: m_Allocs)
             {
@@ -98,7 +98,7 @@ namespace xpe {
             return false;
         }
 
-        MemoryPoolStack::MemoryPoolStack
+        cMemoryPoolStack::cMemoryPoolStack
         (
             const char* usid,
             usize poolCount,
@@ -110,14 +110,14 @@ namespace xpe {
             Pools.reserve(poolCount);
             for (u32 i = 0 ; i < poolCount ; i++)
             {
-                MemoryPool pool;
+                cMemoryPool pool;
                 pool.Init(poolByteSize, poolAllocs, alignment);
                 Pools.emplace_back(pool);
             }
             TotalBytes = poolCount * poolByteSize;
         }
 
-        MemoryPoolStack::~MemoryPoolStack() {
+        cMemoryPoolStack::~cMemoryPoolStack() {
             for (auto& pool : Pools)
             {
                 // todo(CheerWizard): Heap corruption will happen here when we have more than 1 pool here!
@@ -126,7 +126,7 @@ namespace xpe {
             Pools.clear();
         }
 
-        void* MemoryPoolStack::Allocate(const usize size) {
+        void* cMemoryPoolStack::Allocate(const usize size) {
 #ifdef DEBUG
             TotalAllocCount++;
             TotalBytesOccupied += size;
@@ -144,7 +144,7 @@ namespace xpe {
             usize poolSize = size <= PoolByteSize ? PoolByteSize : size;
             TotalBytes += poolSize;
 
-            MemoryPool newPool;
+            cMemoryPool newPool;
             newPool.Init(poolSize, PoolAllocs, Alignment);
             newAddress = newPool.Allocate(size);
 
@@ -153,7 +153,7 @@ namespace xpe {
             return newAddress;
         }
 
-        void MemoryPoolStack::Free(void *address) {
+        void cMemoryPoolStack::Free(void *address) {
             for (auto& pool : Pools) {
                 if (pool.Free(address)) {
 #ifdef DEBUG
@@ -165,15 +165,15 @@ namespace xpe {
             }
         }
 
-        void MemoryPoolStack::LogPools() {
+        void cMemoryPoolStack::LogPools() {
             usize poolCount = Pools.size();
 
             hstringstream ss;
 
             ss << "\n\n------------------- " << USID << " -------------------\n";
 
-            usize totalMB = TotalBytes / K_MEMORY_MIB;
-            usize totalKB = (TotalBytesOccupied - TotalBytesFreed) / K_MEMORY_KIB;
+            usize totalMB = TotalBytes / K_MEMORY_MB;
+            usize totalKB = (TotalBytesOccupied - TotalBytesFreed) / K_MEMORY_KB;
 
             ss << "Total Size = " << totalMB << "MB, "
             << "Total Usage = " << totalKB << "KB" << "\n"
@@ -182,8 +182,8 @@ namespace xpe {
 
             for (u32 i = 0 ; i < poolCount ; i++) {
                 auto& pool = Pools[i];
-                usize sizeMB = pool.GetByteSize() / K_MEMORY_MIB;
-                usize usageKB = pool.GetBytesUsage() / K_MEMORY_KIB;
+                usize sizeMB = pool.GetByteSize() / K_MEMORY_MB;
+                usize usageKB = pool.GetBytesUsage() / K_MEMORY_KB;
 
                 ss << USID << "Pool-" << i << ": "
                 << "Total = " << sizeMB << "MB, "
@@ -196,25 +196,25 @@ namespace xpe {
             LogMemory(ss.str());
         }
 
-        MemoryPoolStack* MemoryManager::MainPools = nullptr;
-        MemoryPoolStack* MemoryManager::HotPools = nullptr;
+        cMemoryPoolStack* cMemoryManager::MainPools = nullptr;
+        cMemoryPoolStack* cMemoryManager::HotPools = nullptr;
 
-        void MemoryManager::Init() {
+        void cMemoryManager::Init() {
             // use by default 1GB of TOTAL PHYSICAL RAM for main pre-allocation
-            usize mainMemorySize = K_MEMORY_GIB;
-            MainPools = new MemoryPoolStack("MainMemory", 1, mainMemorySize, 1000, 0);
+            usize mainMemorySize = K_MEMORY_GB;
+            MainPools = new cMemoryPoolStack("MainMemory", 1, mainMemorySize, 1000, 0);
 
             // use by default 1MB for hot memory pre-allocation
-            usize hotMemorySize = K_MEMORY_MIB;
-            HotPools = new MemoryPoolStack("HotMemory", 1, hotMemorySize, 1000, 0);
+            usize hotMemorySize = K_MEMORY_MB;
+            HotPools = new cMemoryPoolStack("HotMemory", 1, hotMemorySize, 1000, 0);
         }
 
-        void MemoryManager::Free() {
+        void cMemoryManager::Free() {
             delete HotPools;
             delete MainPools;
         }
 
-        void MemoryManager::LogPools() {
+        void cMemoryManager::LogPools() {
             MainPools->LogPools();
             HotPools->LogPools();
         }

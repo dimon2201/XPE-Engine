@@ -7,12 +7,12 @@ namespace xpe {
 
         static unordered_map<string, sAudioFile*>* s_AudioFiles = nullptr;
 
-        void AudioLoader::Init()
+        void cAudioLoader::Init()
         {
             s_AudioFiles = new unordered_map<string, sAudioFile*>();
         }
 
-        void AudioLoader::Free()
+        void cAudioLoader::Free()
         {
             for (auto& audioFile : *s_AudioFiles) {
                 delete audioFile.second;
@@ -20,7 +20,7 @@ namespace xpe {
             delete s_AudioFiles;
         }
 
-        sAudioFile* AudioLoader::Load(const char* filepath)
+        sAudioFile* cAudioLoader::Load(const char* filepath)
 		{
             sAudioFile* audioFile = new sAudioFile();
 

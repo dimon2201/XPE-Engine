@@ -3,13 +3,15 @@
 #include <rendering/passes/fxaa_pass.hpp>
 #include <rendering/passes/ssao_pass.hpp>
 
+#include <ecs/components.hpp>
+
 namespace xpe
 {
     namespace render
     {
-        class Canvas;
-        class RenderSystem;
-        class RenderTarget;
+        class cCanvas;
+        class cRenderSystem;
+        class sRenderTarget;
     }
 
     namespace anim
@@ -24,26 +26,26 @@ namespace xpe
 
     namespace ecs
     {
-        class Scene;
+        class cScene;
     }
 
     namespace physics
     {
-        class PhysicsSystem;
+        class cPhysicsSystem;
     }
 
     namespace core {
 
-        class ENGINE_API Application : public Object {
+        class ENGINE_API cApp : public cObject {
 
         public:
-            Time CPUTime;              // delta CPU time ms = end time - begin time
-            Time DeltaTime;            // delta CurrentTime ms = end time - begin time
-            Time CurrentTime;
-            AppConfig Config;
+            cTime CPUTime;              // delta CPU time ms = end time - begin time
+            cTime DeltaTime;            // delta CurrentTime ms = end time - begin time
+            cTime CurrentTime;
+            sAppConfig Config;
 
-            Application() {}
-            ~Application() {}
+            cApp() {}
+            ~cApp() {}
 
             void Run();
 
@@ -59,23 +61,23 @@ namespace xpe
 
             void LockFPSFromConfig();
 
-            std::atomic_bool m_IsOpen = true;
+            std::atomic_bool m_Opened = true;
 
-            ecs::cScene* m_Scene = nullptr;
+            cScene* m_Scene = nullptr;
 
-            render::Canvas* m_Canvas = nullptr;
+            cCanvas* m_Canvas = nullptr;
 
-            render::Viewport m_Viewport;
+            sViewport m_Viewport;
 
-            render::RenderSystem* m_RenderSystem = nullptr;
-            anim::cAnimSystem* m_AnimSystem = nullptr;
-            audio::cAudioSystem* m_AudioSystem = nullptr;
-            physics::PhysicsSystem* m_PhysicsSystem = nullptr;
+            cRenderSystem* m_RenderSystem = nullptr;
+            cAnimSystem* m_AnimSystem = nullptr;
+            cAudioSystem* m_AudioSystem = nullptr;
+            cPhysicsSystem* m_PhysicsSystem = nullptr;
 
-            render::SSAOPass* m_SsaoPass = nullptr;
-            render::FXAAPass* m_FxaaPass = nullptr;
+            cSsaoPass* m_SsaoPass = nullptr;
+            cFxaaPass* m_FxaaPass = nullptr;
         };
     }
 }
 
-xpe::core::Application* CreateApplication();
+xpe::core::cApp* CreateApplication();

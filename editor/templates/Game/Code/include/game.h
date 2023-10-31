@@ -63,8 +63,8 @@ private:
 
     DirectLightComponent m_DirectLightComponent = string("DirectLight", 0);
 
-    PerspectiveCameraComponent m_PerspectiveCameraComponent = string("PerspectiveCamera");
-    OrthoCameraComponent m_OrthoCameraComponent = string("OrthoCamera");
+    PerspectiveCameraComponent m_PerspectiveCameraComponent = string("cPerspectiveCamera");
+    OrthoCameraComponent m_OrthoCameraComponent = string("cOrthoCamera");
 
     TestConfig m_TestConfig;
 

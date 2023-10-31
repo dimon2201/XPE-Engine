@@ -48,7 +48,7 @@ namespace xpe {
                     LogError("Failed to make audio context current");
                 }
 
-                RecordDevice = alcCaptureOpenDevice(nullptr, SAMPLE_RATE, AL_FORMAT_MONO16, SAMPLE_RATE/2); // get record device
+                RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2); // get record device
                 if (!RecordDevice) {
                     LogError("Failed to get record device");
                 }
@@ -164,10 +164,10 @@ namespace xpe {
 
             void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers)
             {
-                RecordDevice = alcCaptureOpenDevice(nullptr, SAMPLE_RATE, AL_FORMAT_MONO16, SAMPLE_RATE / 2);
+                RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2);
 
                 for (int i = 0; i < numBuffers; i++) {
-                    alBufferData(buffers[i], AL_FORMAT_MONO16, data, DATA_SIZE, SAMPLE_RATE);
+                    alBufferData(buffers[i], AL_FORMAT_MONO16, data, k_DataSize, k_SampleRate);
                 }
 
                 alSourceQueueBuffers(sourceID, numBuffers, buffers);

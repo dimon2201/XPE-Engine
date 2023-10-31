@@ -1,25 +1,28 @@
 #pragma once
 
+namespace physx
+{
+    struct PxScene;
+}
+
 namespace xpe
 {
-    namespace physics
-    {
-        struct sScene;
-    }
 
     namespace ecs
     {
         using namespace core;
+        using namespace res;
+        using namespace math;
 
         class cEntity;
 
-        struct ENGINE_API sComponent : public Object, public res::JsonObject
+        struct ENGINE_API sComponent : public cObject, public cJson
         {
-            ecs::cEntity* Entity = nullptr;
+            cEntity* Entity = nullptr;
             bool FollowEntity = true;
         };
 
-        struct ENGINE_API sComponentStorage : public Object
+        struct ENGINE_API sComponentStorage : public cObject
         {
             template<typename T>
             [[nodiscard]] inline size_t GetSize() const
@@ -184,7 +187,7 @@ namespace xpe
         typedef usize ComponentType;
         typedef usize GlobalType;
 
-        class ENGINE_API cScene : public Object, public res::JsonObject
+        class ENGINE_API cScene : public cObject, public cJson
         {
 
         public:
@@ -239,7 +242,7 @@ namespace xpe
 
             void FromJson(json &root) override;
 
-            physics::sScene* PhysicsScene;
+            physx::PxScene* PhysicsScene;
 
         protected:
             template<typename T>
@@ -295,7 +298,7 @@ namespace xpe
         void cScene::RemoveComponent(cEntity* entity)
         {
             ComponentType type = GetComponentType<T>();
-            Component*& component = m_ComponentAddresses[entity][type];
+            sComponent*& component = m_ComponentAddresses[entity][type];
 
             if (component == nullptr)
             {
@@ -354,13 +357,13 @@ namespace xpe
             return static_cast<T*>(m_Globals[GetGlobalType<T>()]);
         }
 
-        class ENGINE_API cEntity : public Object, public res::JsonObject
+        class ENGINE_API cEntity : public cObject, public cJson
         {
 
         public:
-            math::Transform Transform;
-            ecs::cEntity* Parent = nullptr;
-            vector<ecs::cEntity*> Children;
+            sTransform Transform;
+            cEntity* Parent = nullptr;
+            vector<cEntity*> Children;
 
             JsonClass(
                 cEntity,
@@ -428,21 +431,21 @@ namespace xpe
             return Get<T>() != nullptr;
         }
 
-        struct ENGINE_API cGlobal : public Object, public res::JsonObject
+        struct ENGINE_API cGlobal : public cObject, public cJson
         {};
 
         template<typename T, typename... Args>
         T* cScene::AddGlobal(Args&&... args)
         {
             T* global = new T(std::forward<Args>(args)...);
-            m_Globals.insert({ GetGlobalType<T>(), static_cast<Global*>(global) });
+            m_Globals.insert({ GetGlobalType<T>(), static_cast<cGlobal*>(global) });
             return global;
         }
 
-        class ENGINE_API cSystem : public Object {
+        class ENGINE_API cSystem : public cObject {
 
         public:
-            virtual void Update(cScene* scene, const Time& dt) = 0;
+            virtual void Update(cScene* scene, const cTime& dt) = 0;
 
         };
 

@@ -31,7 +31,7 @@ namespace xpe {
             DECR = 8
         };
 
-        struct ENGINE_API StencilTest : public core::Object
+        struct ENGINE_API sStencilTest : public cObject
         {
             eDepthStencilOp StencilFailOp = eDepthStencilOp::KEEP;
             eDepthStencilOp StencilDepthFailOp = eDepthStencilOp::KEEP;
@@ -39,7 +39,7 @@ namespace xpe {
             eDepthStencilFunc StencilFunc = eDepthStencilFunc::ALWAYS;
         };
 
-        struct ENGINE_API DepthStencilMode : public core::Object
+        struct ENGINE_API sDepthStencilMode : public cObject
         {
             void* State = nullptr;
             bool EnableDepth = true;
@@ -48,8 +48,8 @@ namespace xpe {
             bool EnableStencil = false;
             u8 StencilReadMask = 0xff;
             u8 StencilWriteMask = 0xff;
-            StencilTest FrontFace;
-            StencilTest BackFace;
+            sStencilTest FrontFace;
+            sStencilTest BackFace;
         };
 
     }

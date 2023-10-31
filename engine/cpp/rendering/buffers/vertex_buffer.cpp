@@ -4,32 +4,32 @@ namespace xpe {
 
     namespace render {
 
-        VertexBuffer::VertexBuffer(const usize vertexCount)
+        sVertexBuffer::sVertexBuffer(const usize vertexCount)
         {
             Type = eBufferType::VERTEX;
-            StructureSize = sizeof(Vertex);
+            StructureSize = sizeof(sVertex);
             NumElements = vertexCount;
             List.resize(vertexCount);
             InitialData = List.data();
             context::CreateBuffer(*this);
         }
 
-        VertexBuffer::VertexBuffer(const vector<Vertex>& vertexArray) : List(vertexArray)
+        sVertexBuffer::sVertexBuffer(const vector<sVertex>& vertexArray) : List(vertexArray)
         {
             Type = eBufferType::VERTEX;
-            StructureSize = sizeof(Vertex);
+            StructureSize = sizeof(sVertex);
             NumElements = vertexArray.size();
             InitialData = List.data();
             context::CreateBuffer(*this);
             Flush();
         }
 
-        VertexBuffer::~VertexBuffer()
+        sVertexBuffer::~sVertexBuffer()
         {
             context::FreeBuffer(*this);
         }
 
-        void VertexBuffer::Flush()
+        void sVertexBuffer::Flush()
         {
             usize size = List.size();
             if (size != NumElements) {
@@ -40,7 +40,7 @@ namespace xpe {
             }
         }
 
-        void VertexBuffer::FlushVertex(u32 index, const Vertex& vertex)
+        void sVertexBuffer::FlushVertex(u32 index, const sVertex& vertex)
         {
             if (index >= List.size()) {
                 Resize(index + 1);
@@ -49,7 +49,7 @@ namespace xpe {
             context::MoveBufferOffset(*this, StructureSize * index, &List.back(), StructureSize);
         }
 
-        void VertexBuffer::FlushVertices(const vector<Vertex> &vertices)
+        void sVertexBuffer::FlushVertices(const vector<sVertex> &vertices)
         {
             if (sizeof(vertices) > GetByteSize()) {
                 Resize(vertices.size());
@@ -58,37 +58,37 @@ namespace xpe {
             Flush();
         }
 
-        void VertexBuffer::Recreate(const usize vertexCount)
+        void sVertexBuffer::Recreate(const usize vertexCount)
         {
             Type = eBufferType::VERTEX;
             NumElements = vertexCount;
-            StructureSize = sizeof(Vertex);
+            StructureSize = sizeof(sVertex);
             InitialData = List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
             context::CopyBuffer(*this, List.data(), GetByteSize());
         }
 
-        void VertexBuffer::Resize(const usize vertexCount)
+        void sVertexBuffer::Resize(const usize vertexCount)
         {
             List.resize(vertexCount);
         }
 
-        void VertexBuffer::Reserve(const usize vertexCount)
+        void sVertexBuffer::Reserve(const usize vertexCount)
         {
             List.reserve(vertexCount);
         }
 
-        void VertexBuffer::Clear()
+        void sVertexBuffer::Clear()
         {
             List.clear();
         }
 
-        usize VertexBuffer::AddVertices(const vector<Vertex>& vertices)
+        usize sVertexBuffer::AddVertices(const vector<sVertex>& vertices)
         {
             usize vertexOffset = List.size();
             List.resize(List.size() + vertices.size());
-            memcpy(&List[vertexOffset], vertices.data(), vertices.size() * sizeof(Vertex));
+            memcpy(&List[vertexOffset], vertices.data(), vertices.size() * sizeof(sVertex));
             return vertexOffset;
         }
 

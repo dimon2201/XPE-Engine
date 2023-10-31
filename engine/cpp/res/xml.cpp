@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace res {
 
-        bool XmlObject::LoadFile(const char *filepath)
+        bool cXml::LoadFile(const char *filepath)
         {
             pugi::xml_parse_result result = m_Doc.load_file(filepath);
             if (!result)
@@ -16,14 +16,14 @@ namespace xpe {
             return true;
         }
 
-        bool XmlObject::SaveFile(const char *filepath)
+        bool cXml::SaveFile(const char *filepath)
         {
             ToXml(m_Doc);
             ToXmlChildren(m_Doc, Children);
             return m_Doc.save_file(filepath);
         }
 
-        void XmlObject::FromXmlChildren(xml &root, xpe::core::vector<XmlObject*>& children)
+        void cXml::FromXmlChildren(xml &root, xpe::core::vector<cXml*>& children)
         {
             for (auto* child : children) {
                 child->FromXml(root);
@@ -31,7 +31,7 @@ namespace xpe {
             }
         }
 
-        void XmlObject::ToXmlChildren(xml &root, xpe::core::vector<XmlObject*>& children)
+        void cXml::ToXmlChildren(xml &root, xpe::core::vector<cXml*>& children)
         {
             for (auto* child : children) {
                 child->ToXml(root);

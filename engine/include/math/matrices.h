@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace math {
 
-        struct ENGINE_API ModelMatrix
+        struct ENGINE_API sModelMatrix
         {
             glm::vec3 Translation = { 0, 0, 0 };
             glm::vec3 Rotation = { 0, 0, 0 };
@@ -12,15 +12,13 @@ namespace xpe {
         };
 
         Json(
-            ModelMatrix,
+            sModelMatrix,
             Translation,
             Rotation,
             Scale
         )
 
-        glm::mat4 ENGINE_API ModelMatrixUpdate(const ModelMatrix& modelMatrix);
-
-        struct ENGINE_API ViewMatrix
+        struct ENGINE_API sViewMatrix
         {
             glm::vec3 Position = { 0, 0, 1 };
             glm::vec3 Front = { 0, 0, 0 };
@@ -28,15 +26,13 @@ namespace xpe {
         };
 
         Json(
-            ViewMatrix,
+            sViewMatrix,
             Position,
             Front,
             Up
         )
 
-        glm::mat4 ENGINE_API ViewMatrixUpdate(const ViewMatrix& viewMatrix);
-
-        struct ENGINE_API OrthoMatrix
+        struct ENGINE_API sOrthoMatrix
         {
             float Left = 0;
             float Right = 1;
@@ -47,7 +43,7 @@ namespace xpe {
         };
 
         Json(
-            OrthoMatrix,
+            sOrthoMatrix,
             Left,
             Right,
             Bottom,
@@ -56,9 +52,7 @@ namespace xpe {
             Far
         )
 
-        glm::mat4 ENGINE_API OrthoMatrixUpdate(const OrthoMatrix& orthoMatrix);
-
-        struct ENGINE_API PerspectiveMatrix
+        struct ENGINE_API sPerspectiveMatrix
         {
             float FovDegree = 60.0f;
             float AspectRatio = 1.0f;
@@ -67,16 +61,12 @@ namespace xpe {
         };
 
         Json(
-            PerspectiveMatrix,
+            sPerspectiveMatrix,
             FovDegree,
             AspectRatio,
             Near,
             Far
         )
-
-        glm::mat4 ENGINE_API PerspectiveMatrixUpdate(const PerspectiveMatrix& perspectiveMatrix);
-
-        glm::mat4 ENGINE_API LightMatrixUpdate(const OrthoMatrix& orthoMatrix, const ViewMatrix& viewMatrix);
 
     }
 

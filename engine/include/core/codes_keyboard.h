@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace core {
 
-        struct ENGINE_API KeyState final
+        struct ENGINE_API sKeyState final
         {
             bool Pressed = false;
             bool Released = false;

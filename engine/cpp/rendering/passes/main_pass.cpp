@@ -6,23 +6,23 @@ namespace xpe {
 
     namespace render {
 
-        MainPass::MainPass(eType type, const vector<RenderPassBinding> &bindings) : InstancingPass(type, bindings)
+        cMainPass::cMainPass(eType type, const vector<sRenderPassBinding> &bindings) : cInstancingPass(type, bindings)
         {
         }
 
-        void MainPass::InitOpaque()
+        void cMainPass::InitOpaque()
         {
-            RenderPass::InitOpaque();
-            MaterialManager::Bind(*m_Pipeline);
+            cRenderPass::InitOpaque();
+            cMaterialManager::Bind(*m_Pipeline);
         }
 
-        void MainPass::InitTransparent()
+        void cMainPass::InitTransparent()
         {
-            RenderPass::InitTransparent();
-            MaterialManager::Bind(*m_Pipeline);
+            cRenderPass::InitTransparent();
+            cMaterialManager::Bind(*m_Pipeline);
         }
 
-        void MainPass::DrawOpaque(cScene* scene) {
+        void cMainPass::DrawOpaque(cScene* scene) {
             scene->EachComponent<sCGeometry>([this](sCGeometry* component)
             {
                 if (component->Visible && !component->Transparent) {
@@ -35,7 +35,7 @@ namespace xpe {
                             geometry.Indices.size(),
                             component->Entity,
                             component->Entities,
-                            [](cEntity* entity, RenderInstance& instance) {
+                            [](cEntity* entity, sRenderInstance& instance) {
                                 auto* materialComponent = entity->Get<sCMaterial>();
                                 if (materialComponent != nullptr) {
                                     instance.MaterialIndex = materialComponent->Index;
@@ -57,7 +57,7 @@ namespace xpe {
                             model.Indices.size(),
                             component->Entity,
                             component->Entities,
-                            [](cEntity* entity, RenderInstance& instance) {
+                            [](cEntity* entity, sRenderInstance& instance) {
                                 auto* materialComponent = entity->Get<sCMaterial>();
                                 if (materialComponent != nullptr) {
                                     instance.MaterialIndex = materialComponent->Index;
@@ -68,7 +68,7 @@ namespace xpe {
             });
         }
 
-        void MainPass::DrawTransparent(cScene* scene) {
+        void cMainPass::DrawTransparent(cScene* scene) {
             scene->EachComponent<sCGeometry>([this](sCGeometry* component)
             {
                 if (component->Visible && component->Transparent) {
@@ -81,7 +81,7 @@ namespace xpe {
                             geometry.Indices.size(),
                             component->Entity,
                             component->Entities,
-                            [](cEntity* entity, RenderInstance& instance) {
+                            [](cEntity* entity, sRenderInstance& instance) {
                                 auto* materialComponent = entity->Get<sCMaterial>();
                                 if (materialComponent != nullptr) {
                                     instance.MaterialIndex = materialComponent->Index;
@@ -103,7 +103,7 @@ namespace xpe {
                              model.Indices.size(),
                              component->Entity,
                              component->Entities,
-                             [](cEntity* entity, RenderInstance& instance) {
+                             [](cEntity* entity, sRenderInstance& instance) {
                                  auto* materialComponent = entity->Get<sCMaterial>();
                                  if (materialComponent != nullptr) {
                                      instance.MaterialIndex = materialComponent->Index;
@@ -114,14 +114,14 @@ namespace xpe {
             });
         }
 
-        void MainPass::DrawShadow(cScene* scene)
+        void cMainPass::DrawShadow(cScene* scene)
         {
             scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
-                ViewMatrix lightView;
+                sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCGeometry>([this, &lightMatrix](sCGeometry* component)
                 {
@@ -143,11 +143,11 @@ namespace xpe {
             });
 
             scene->EachComponent<sCSpotLight>([this, scene](sCSpotLight* lightComponent) {
-                ViewMatrix lightView;
+                sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCGeometry>([this, &lightMatrix](sCGeometry* component)
                 {
@@ -169,11 +169,11 @@ namespace xpe {
             });
 
             scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
-                ViewMatrix lightView;
+                sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCModel>([this, &lightMatrix](sCModel* component)
                 {
@@ -195,11 +195,11 @@ namespace xpe {
             });
 
             scene->EachComponent<sCSpotLight>([this, scene](sCSpotLight* lightComponent) {
-                ViewMatrix lightView;
+                sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
                 lightView.Front = glm::vec3(0, 0, 0);
                 lightView.Up = glm::vec3(0, 1, 0);
-                glm::mat4x4 lightMatrix = LightMatrixUpdate(*lightComponent, lightView);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCModel>([this, &lightMatrix](sCModel* component)
                 {

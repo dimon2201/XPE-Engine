@@ -25,23 +25,23 @@ using namespace xpe::res;
 using namespace xpe::audio;
 using namespace xpe::physics;
 
-class GameApp : public Application
+class cExample : public cApp
 {
 public:
-    GameApp() {}
-    ~GameApp() {}
+    cExample() {}
+    ~cExample() {}
 
 protected:
 
     void InitRenderPasses() override
     {
-        Application::InitRenderPasses();
+        cApp::InitRenderPasses();
     }
 
 public:
 
     void Init() override final {
-        LogInfo("GameApp::Init()");
+        LogInfo("cExample::Init()");
 
         // read test configs from file
         if (!xpe::res::ReadJsonFile("config/test_config.json", m_TestConfig))
@@ -61,29 +61,29 @@ public:
             LogError("xml_config_saved.xml file not found in config/xml_config_saved.xml path.");
         }
 
-        AddWindowClosed(GameApp, 1);
-        AddKeyPressed(GameApp, 1);
-        AddKeyHold(GameApp, 1);
-        AddCursorMove(GameApp, 1);
+        AddWindowClosed(cExample, 1);
+        AddKeyPressed(cExample, 1);
+        AddKeyHold(cExample, 1);
+        AddCursorMove(cExample, 1);
 
-        FontLoader::Init();
-        TextureLoader::Init();
-        AudioLoader::Init();
+        cFontLoader::Init();
+        cTextureLoader::Init();
+        cAudioLoader::Init();
 
         InitCamera();
 
-        // Create physics scene
-        PhysicsManager::AddScene(m_Scene);
+        // Create physics scene and add into current scene
+        m_Scene->PhysicsScene = cPhysicsManager::AddScene(m_Scene->GetTag());
 
         // Text 2D
         {
             m_Text2D = new cEntity("Text2D", m_Scene);
-            m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
+            m_Text2D->Transform.Position = {0, cWindowManager::GetHeight(), 0 };
             m_Text2D->Transform.Scale = { 1, 1, 1 };
 
             auto* textComponent = m_Text2D->Add<sCText2D>();
             textComponent->Text = "FPS: \n CPU: \n";
-            textComponent->Font = FontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
+            textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
 
             m_Text2D->Transform.Position.y -= textComponent->Font->GlyphSize;
@@ -97,14 +97,14 @@ public:
 
             auto* textComponent = m_Text3D->Add<sCText3D>();
             textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
-            textComponent->Font = FontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
+            textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
         }
 
-        // Skybox
+        // sSkybox
         {
-            TextureCubeFilepath skyboxPath;
-            skyboxPath.Name = "Skybox";
+            sTextureCubeFilepath skyboxPath;
+            skyboxPath.Name = "sSkybox";
             skyboxPath.FrontFilepath = "res/skybox/front.jpg";
             skyboxPath.BackFilepath = "res/skybox/back.jpg";
             skyboxPath.LeftFilepath = "res/skybox/left.jpg";
@@ -112,30 +112,30 @@ public:
             skyboxPath.TopFilepath = "res/skybox/top.jpg";
             skyboxPath.BottomFilepath = "res/skybox/bottom.jpg";
 
-            Skybox skybox;
-            skybox.Geometry = GeometryManager::AddGeometry(Cube());
-            skybox.Texture = TextureLoader::LoadCube(skyboxPath, eTextureFormat::RGBA8);
+            sSkybox skybox;
+            skybox.Geometry = cGeometryManager::AddGeometry(sCube());
+            skybox.Texture = cTextureLoader::LoadCube(skyboxPath, eTextureFormat::RGBA8);
             skybox.Texture->GenerateMips();
 
-            SkyboxManager::Get().Skybox = skybox;
+            cSkyboxManager::Get().Skybox = skybox;
         }
 
-        // Plane
+        // sPlane
         {
-            m_Plane = new cEntity("Plane", m_Scene);
+            m_Plane = new cEntity("sPlane", m_Scene);
             m_Plane->Transform.Position = { 0, 0, 0 };
             m_Plane->Transform.Scale = { 2, 1, 2 };
 
-            m_Plane->Add<sCGeometry>(GeometryManager::AddGeometry(Plane(10)));
-            auto* planeMaterial = m_Plane->Add<sCMaterial>(MaterialManager::AddMaterial());
+            m_Plane->Add<sCGeometry>(cGeometryManager::AddGeometry(sPlane(10)));
+            auto* planeMaterial = m_Plane->Add<sCMaterial>(cMaterialManager::AddMaterial());
             planeMaterial->Metallness = 0.0f;
             planeMaterial->Roughness = 0.05f;
             planeMaterial->AO = 0.0f;
-            MaterialManager::Flush(*planeMaterial);
+            cMaterialManager::Flush(*planeMaterial);
 
             sPlaneShapeDescriptor planeShapeDesc;
-            m_Plane->Add<sCRidigBody>(
-                PhysicsManager::AddActor(
+            m_Plane->Add<sCRigidBody>(
+                    cPhysicsManager::AddActor(
                         m_Plane,
                         m_Scene,
                         sActor::eActorType::RIGID_STATIC,
@@ -152,8 +152,8 @@ public:
             m_SunLight = new cEntity("SunLight", m_Scene);
             m_SunLight->Transform.Position = { 20, 20, -20 };
 
-            m_SunLight->Add<sCGeometry>(GeometryManager::AddGeometry(Sphere()));
-            m_SunLight->Add<sCMaterial>(MaterialManager::AddMaterial());
+            m_SunLight->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()));
+            m_SunLight->Add<sCMaterial>(cMaterialManager::AddMaterial());
             m_SunLight->Add<sCDirectionalLight>(glm::vec3(0, 0, 0), glm::vec3(1, 1, 10));
         }
 
@@ -181,21 +181,21 @@ public:
             m_Goblin4->Transform.Rotation = {0, 0, 0 };
             m_Goblin4->Transform.Scale = {5, 5, 5 };
 
-            auto* goblins = m_Goblins->Add<sCSkeletonModel>(ModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
             goblins->Visible = true;
             goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
-            goblins->Skeleton = SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-            goblins->Animation = AnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            goblins->Skeleton = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            goblins->Animation = cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
             goblins->Animation.Play = true;
 
-            MaterialFilepath materialFilepath;
+            sMaterialFilepath materialFilepath;
             materialFilepath.Name = "niz";
             materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
             materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
 //                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
 //                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
 
-            auto* material1 = m_Goblin1->Add<sCMaterial>(MaterialManager::AddMaterial());
+            auto* material1 = m_Goblin1->Add<sCMaterial>(cMaterialManager::AddMaterial());
             material1->Albedo = { 1, 1, 1, 1 };
             material1->Emission = { 0, 0, 10 };
             material1->Metallness = 0.0f;
@@ -206,9 +206,9 @@ public:
             material1->EnableRoughnessMap = false;
             material1->EnableMetalMap = false;
             material1->EnableAOMap = false;
-            MaterialManager::Flush(*material1);
+            cMaterialManager::Flush(*material1);
 
-            auto* material2 = m_Goblin2->Add<sCMaterial>(MaterialManager::AddMaterial());
+            auto* material2 = m_Goblin2->Add<sCMaterial>(cMaterialManager::AddMaterial());
             material2->Albedo = { 1, 1, 1, 1 };
             material2->Emission = { 0, 0, 10 };
             material2->Metallness = 0.0f;
@@ -219,9 +219,9 @@ public:
             material2->EnableRoughnessMap = false;
             material2->EnableMetalMap = false;
             material2->EnableAOMap = false;
-            MaterialManager::Flush(*material2);
+            cMaterialManager::Flush(*material2);
 
-            auto* material3 = m_Goblin3->Add<sCMaterial>(MaterialManager::AddMaterial());
+            auto* material3 = m_Goblin3->Add<sCMaterial>(cMaterialManager::AddMaterial());
             material3->Albedo = { 1, 1, 1, 1 };
             material3->Emission = { 0, 0, 10 };
             material3->Metallness = 0.0f;
@@ -232,9 +232,9 @@ public:
             material3->EnableRoughnessMap = false;
             material3->EnableMetalMap = false;
             material3->EnableAOMap = false;
-            MaterialManager::Flush(*material3);
+            cMaterialManager::Flush(*material3);
 
-            auto* material4 = m_Goblin4->Add<sCMaterial>(MaterialManager::AddMaterial());
+            auto* material4 = m_Goblin4->Add<sCMaterial>(cMaterialManager::AddMaterial());
             material4->Albedo = { 1, 1, 1, 1 };
             material4->Emission = { 0, 0, 10 };
             material4->Metallness = 0.0f;
@@ -245,32 +245,32 @@ public:
             material4->EnableRoughnessMap = false;
             material4->EnableMetalMap = false;
             material4->EnableAOMap = false;
-            MaterialManager::Flush(*material4);
+            cMaterialManager::Flush(*material4);
 
             // for testing image resizing on CPU, we can write resized image into file
 
-            TextureLoader::SaveLayer(
+            cTextureLoader::SaveLayer(
                     "generated/Vampire_diffuse_resized.png",
                     material1->AlbedoMap,
-                    Texture::eFileFormat::PNG
+                    sTexture::eFileFormat::PNG
             );
 
-            TextureLoader::SaveLayer(
+            cTextureLoader::SaveLayer(
                     "generated/Vampire_normal_resized.png",
                     material1->NormalMap,
-                    Texture::eFileFormat::PNG
+                    sTexture::eFileFormat::PNG
             );
 
-            TextureLoader::SaveLayer(
+            cTextureLoader::SaveLayer(
                     "generated/Vampire_roughness_resized.png",
                     material1->RoughnessMap,
-                    Texture::eFileFormat::PNG
+                    sTexture::eFileFormat::PNG
             );
 
-            TextureLoader::SaveLayer(
+            cTextureLoader::SaveLayer(
                     "generated/Vampire_metallic_resized.png",
                     material1->MetalMap,
-                    Texture::eFileFormat::PNG
+                    sTexture::eFileFormat::PNG
             );
         }
 
@@ -279,14 +279,14 @@ public:
             m_Cube = new cEntity("Cube", m_Scene);
             m_Cube->Transform.Position = { 10, 2.5, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
-            m_Cube->Add<sCGeometry>(GeometryManager::AddGeometry(Cube()));
-            m_Cube->Add<sCMaterial>(MaterialManager::AddMaterial());
+            m_Cube->Add<sCGeometry>(cGeometryManager::AddGeometry(sCube()));
+            m_Cube->Add<sCMaterial>(cMaterialManager::AddMaterial());
         }
 
         // Spheres
         for (s32 i = 0; i < 4; i++)
         {
-            auto mat = Material();
+            auto mat = sMaterial();
             if (i == 0) { mat.Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 0.2f); }
             if (i == 1) { mat.Albedo = glm::vec4(0.0f, 1.0f, 0.0f, 0.4f); }
             if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.6f); }
@@ -299,13 +299,13 @@ public:
             m_Glasses[i] = new cEntity("Glass-" + string(std::to_string(i)), m_Scene);
             m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), 0 };
             m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
-            m_Glasses[i]->Add<sCGeometry>(GeometryManager::AddGeometry(Sphere()));
-            m_Glasses[i]->Add<sCMaterial>(MaterialManager::AddMaterial(mat));
+            m_Glasses[i]->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()));
+            m_Glasses[i]->Add<sCMaterial>(cMaterialManager::AddMaterial(mat));
             m_Glasses[i]->Get<sCGeometry>()->Transparent = true;
 
             sSphereShapeDescriptor sphereShapeDesc(1.0f);
-            m_Glasses[i]->Add<sCRidigBody>(
-                    PhysicsManager::AddActor(
+            m_Glasses[i]->Add<sCRigidBody>(
+                    cPhysicsManager::AddActor(
                             m_Glasses[i],
                             m_Scene,
                             sActor::eActorType::RIGID_DYNAMIC,
@@ -443,11 +443,11 @@ public:
 
     void Free()
     {
-        LogInfo("GameApp::Free()");
+        LogInfo("cExample::Free()");
 
-        FontLoader::Free();
-        TextureLoader::Free();
-        AudioLoader::Free();
+        cFontLoader::Free();
+        cTextureLoader::Free();
+        cAudioLoader::Free();
 
         delete m_SunLight;
         delete m_Text2D;
@@ -474,14 +474,14 @@ public:
 
     void WindowClosed()
     {
-        LogWarning("GameApp::WindowClosed()");
+        LogWarning("cExample::WindowClosed()");
     }
 
     void KeyPressed(const eKey key)
     {
         if (key == eKey::Esc)
         {
-            WindowManager::Close();
+            cWindowManager::Close();
         }
 
         MoveLight(key);
@@ -497,10 +497,10 @@ public:
     void CursorMoved(const double x, const double y)
     {
         auto& camera = *m_PerspectiveCamera;
-        if (InputManager::MousePressed(eMouse::ButtonRight)) {
+        if (cInputManager::MousePressed(eMouse::ButtonRight)) {
             camera.EnableLook = false;
-            InputManager::CaptureCursor(x, y);
-            auto& cursorDelta = InputManager::GetMouseCursor().Delta;
+            cInputManager::CaptureCursor(x, y);
+            auto& cursorDelta = cInputManager::GetMouseCursor().Delta;
             camera.Pan(cursorDelta);
         } else {
             camera.EnableLook = true;
@@ -510,7 +510,7 @@ public:
 private:
 
     void InitCamera() {
-        m_PerspectiveCamera = new PerspectiveCamera(WindowManager::GetWidth(), WindowManager::GetHeight(), m_RenderSystem->GetCameraBuffer());
+        m_PerspectiveCamera = new cPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight(), m_RenderSystem->GetCameraBuffer());
         m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
         // todo(cheerwizard): BUG - after moving camera, the camera resets position
         m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
@@ -525,10 +525,10 @@ private:
     void UpdateCamera()
     {
         auto& camera = *m_PerspectiveCamera;
-        if (InputManager::MousePressed(eMouse::ButtonLeft)) {
-            camera.LookMode = Camera::eLookMode::EDITOR;
+        if (cInputManager::MousePressed(eMouse::ButtonLeft)) {
+            camera.LookMode = cCamera::eLookMode::EDITOR;
         } else {
-            camera.LookMode = Camera::eLookMode::GAME;
+            camera.LookMode = cCamera::eLookMode::GAME;
         }
         camera.Move();
     }
@@ -586,18 +586,18 @@ private:
         auto& text2D = m_Text2D->Get<sCText2D>()->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
-                 "\nExposure: " + std::to_string(WindowManager::GetExposure());
+                 "\nGamma: " + std::to_string(cWindowManager::GetGamma()) +
+                 "\nExposure: " + std::to_string(cWindowManager::GetExposure());
 
         auto& text3D = m_Text3D->Get<sCText3D>()->Text;
         text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
-                 "\nExposure: " + std::to_string(WindowManager::GetExposure());
+                 "\nGamma: " + std::to_string(cWindowManager::GetGamma()) +
+                 "\nExposure: " + std::to_string(cWindowManager::GetExposure());
     }
 
 private:
-    PerspectiveCamera* m_PerspectiveCamera;
+    cPerspectiveCamera* m_PerspectiveCamera;
 
     cEntity* m_SunLight;
     cEntity* m_Text2D;
@@ -613,12 +613,12 @@ private:
     cEntity* m_AudioObject;
     cEntity* m_Glasses[4];
 
-    TestConfig m_TestConfig;
-    XmlConfig  m_XmlConfig;
+    sTestConfig m_TestConfig;
+    sXmlConfig  m_XmlConfig;
 };
 
-Application* CreateApplication() {
-    Application* app = new GameApp();
+cApp* CreateApplication() {
+    cApp* app = new cExample();
 
     // read app configs
     if (!xpe::res::ReadJsonFile("config/app_config.json", app->Config))

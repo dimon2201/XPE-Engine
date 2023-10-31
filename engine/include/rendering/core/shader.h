@@ -16,10 +16,10 @@ namespace xpe {
             COMPUTE = 5,
         };
 
-        struct ENGINE_API ShaderStage : public GPUResource
+        struct ENGINE_API sShaderStage : public sResource
         {
             eShaderType Type;
-            render::Blob Blob;
+            render::sBlob Blob;
             string Source;
             const char* EntryPoint = nullptr;
             const char* Profile = nullptr;
@@ -27,68 +27,68 @@ namespace xpe {
             bool Compiled = false;
             string Name;
 
-            ShaderStage() = default;
-            ShaderStage(eShaderType type) : Type(type) {}
-            ShaderStage(const string& name, eShaderType type) : Type(type), Name(name) {}
+            sShaderStage() = default;
+            sShaderStage(eShaderType type) : Type(type) {}
+            sShaderStage(const string& name, eShaderType type) : Type(type), Name(name) {}
         };
 
-        struct ENGINE_API Shader : public Object
+        struct ENGINE_API sShader : public cObject
         {
             string Name = "Untitled";
-            vector<ShaderStage*> Stages;
+            vector<sShaderStage*> Stages;
         };
 
-        struct ENGINE_API ShaderStorage : public Object
+        struct ENGINE_API sShaderStorage : public cObject
         {
-            unordered_map<string, ShaderStage> ShaderStages;
-            unordered_map<string, Shader> Shaders;
+            unordered_map<string, sShaderStage> ShaderStages;
+            unordered_map<string, sShader> Shaders;
 
-            ~ShaderStorage();
+            ~sShaderStorage();
         };
 
-        class ENGINE_API ShaderManager final
+        class ENGINE_API cShaderManager final
         {
 
         public:
             static void Init();
             static void Free();
 
-            static Shader* CreateShader(const string& id);
+            static sShader* CreateShader(const string& id);
 
-            static void AddVertexStageFromFile(Shader* const shader, const char* filepath);
-            static void AddPixelStageFromFile(Shader* const shader, const char* filepath);
-            static void AddGeometryStageFromFile(Shader* const shader, const char* filepath);
-            static void AddTessControlStageFromFile(Shader* const shader, const char* filepath);
-            static void AddTessEvalStageFromFile(Shader* const shader, const char* filepath);
-            static void AddComputeStageFromFile(Shader* const shader, const char* filepath);
+            static void AddVertexStageFromFile(sShader* const shader, const char* filepath);
+            static void AddPixelStageFromFile(sShader* const shader, const char* filepath);
+            static void AddGeometryStageFromFile(sShader* const shader, const char* filepath);
+            static void AddTessControlStageFromFile(sShader* const shader, const char* filepath);
+            static void AddTessEvalStageFromFile(sShader* const shader, const char* filepath);
+            static void AddComputeStageFromFile(sShader* const shader, const char* filepath);
 
-            static void AddVertexStage(Shader* const shader, const string& id, const string& source);
-            static void AddPixelStage(Shader* const shader, const string& id, const string& source);
-            static void AddGeometryStage(Shader* const shader, const string& id, const string& source);
-            static void AddTessControlStage(Shader* const shader, const string& id, const string& source);
-            static void AddTessEvalStage(Shader* const shader, const string& id, const string& source);
-            static void AddComputeStage(Shader* const shader, const string& id, const string& source);
+            static void AddVertexStage(sShader* const shader, const string& id, const string& source);
+            static void AddPixelStage(sShader* const shader, const string& id, const string& source);
+            static void AddGeometryStage(sShader* const shader, const string& id, const string& source);
+            static void AddTessControlStage(sShader* const shader, const string& id, const string& source);
+            static void AddTessEvalStage(sShader* const shader, const string& id, const string& source);
+            static void AddComputeStage(sShader* const shader, const string& id, const string& source);
 
-            static void BuildShader(Shader* const shader);
+            static void BuildShader(sShader* const shader);
             static void BuildShader(const string& id);
 
-            static Shader* GetShader(const string& id);
-            static ShaderStage* GetShaderStage(const string& filepath);
+            static sShader* GetShader(const string& id);
+            static sShaderStage* GetShaderStage(const string& filepath);
 
             static void ReloadStage(const char* filepath);
 
         private:
-            static void AddShader(const string& id, const Shader& shader);
+            static void AddShader(const string& id, const sShader& shader);
             static void FreeShader(const string& id);
             static void FreeShaders();
 
-            static void AddShaderStage(const string& filepath, const ShaderStage& shaderStage);
+            static void AddShaderStage(const string& filepath, const sShaderStage& shaderStage);
             static void RemoveShaderStage(const string& filepath);
 
             static void WriteGeneratedShader(const char* filepath, const string& src);
 
         private:
-            static ShaderStorage* s_Storage;
+            static sShaderStorage* s_Storage;
         };
 
     }

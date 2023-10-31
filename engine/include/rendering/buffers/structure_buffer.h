@@ -9,13 +9,13 @@ namespace xpe {
         using namespace core;
 
         template<typename T>
-        class StructureBuffer : public Buffer
+        class sListBuffer : public sBuffer
         {
 
         public:
-            StructureBuffer() = default;
-            StructureBuffer(usize count, u32 slot);
-            ~StructureBuffer();
+            sListBuffer() = default;
+            sListBuffer(usize count, u32 slot);
+            ~sListBuffer();
 
         public:
             void Flush();
@@ -72,7 +72,7 @@ namespace xpe {
         };
 
         template<typename T>
-        StructureBuffer<T>::StructureBuffer(usize count, u32 slot)
+        sListBuffer<T>::sListBuffer(usize count, u32 slot)
         {
             Type = eBufferType::STRUCTURED;
             Slot = slot;
@@ -88,14 +88,14 @@ namespace xpe {
         }
 
         template<typename T>
-        StructureBuffer<T>::~StructureBuffer()
+        sListBuffer<T>::~sListBuffer()
         {
             context::FreeBuffer(*this);
             m_List.clear();
         }
 
         template<typename T>
-        void StructureBuffer<T>::Flush()
+        void sListBuffer<T>::Flush()
         {
             usize size = m_List.size();
             if (size != NumElements) {
@@ -107,7 +107,7 @@ namespace xpe {
         }
 
         template<typename T>
-        void StructureBuffer<T>::FlushItem(u32 index, const T& newItem)
+        void sListBuffer<T>::FlushItem(u32 index, const T& newItem)
         {
             T* item = operator[](index);
             if (item == nullptr) {
@@ -118,7 +118,7 @@ namespace xpe {
         }
 
         template<typename T>
-        void StructureBuffer<T>::FlushItemAt(u32 index)
+        void sListBuffer<T>::FlushItemAt(u32 index)
         {
             T* item = operator[](index);
             if (item == nullptr) {
@@ -128,7 +128,7 @@ namespace xpe {
         }
 
         template<typename T>
-        void StructureBuffer<T>::Recreate(const usize count)
+        void sListBuffer<T>::Recreate(const usize count)
         {
             m_List.resize(count);
             NumElements = count;
@@ -139,33 +139,33 @@ namespace xpe {
         }
 
         template<typename T>
-        void StructureBuffer<T>::Resize(const usize count)
+        void sListBuffer<T>::Resize(const usize count)
         {
             m_List.resize(count);
         }
 
         template<typename T>
-        void StructureBuffer<T>::Reserve(const usize count)
+        void sListBuffer<T>::Reserve(const usize count)
         {
             m_List.reserve(count);
         }
 
         template<typename T>
-        void StructureBuffer<T>::Clear()
+        void sListBuffer<T>::Clear()
         {
             m_List.clear();
         }
 
         template<typename T>
         template<typename... Args>
-        u32 StructureBuffer<T>::Add(Args &&... args)
+        u32 sListBuffer<T>::Add(Args &&... args)
         {
             m_List.emplace_back(args...);
             return m_List.size() - 1;
         }
 
         template<typename T>
-        void StructureBuffer<T>::RemoveAt(u32 index)
+        void sListBuffer<T>::RemoveAt(u32 index)
         {
             m_List.erase(m_List.begin() + index);
         }

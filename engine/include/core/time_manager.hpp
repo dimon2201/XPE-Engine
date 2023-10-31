@@ -26,16 +26,16 @@ namespace xpe
 
         typedef const std::chrono::duration<double, std::milli> TimeMillis;
 
-        class ENGINE_API Time final {
+        class ENGINE_API cTime final {
 
         public:
-            Time() = default;
+            cTime() = default;
 
-            Time(const float millis) : m_Millis(millis) {
+            cTime(const float millis) : m_Millis(millis) {
                 Update();
             }
 
-            Time(const Time& time) : m_Millis(time) {
+            cTime(const cTime& time) : m_Millis(time) {
                 Update();
             }
 
@@ -64,71 +64,71 @@ namespace xpe
                 Update();
             }
 
-            friend inline Time operator+(const Time& t1, const Time& t2) {
+            friend inline cTime operator+(const cTime& t1, const cTime& t2) {
                 return t1.m_Millis + t2.m_Millis;
             }
 
-            friend inline Time operator-(const Time& t1, const Time& t2) {
+            friend inline cTime operator-(const cTime& t1, const cTime& t2) {
                 return t1.m_Millis - t2.m_Millis;
             }
 
-            friend inline Time operator*(const Time& t1, const Time& t2) {
+            friend inline cTime operator*(const cTime& t1, const cTime& t2) {
                 return t1.m_Millis * t2.m_Millis;
             }
 
-            friend inline Time operator/(const Time& t1, const Time& t2) {
+            friend inline cTime operator/(const cTime& t1, const cTime& t2) {
                 return t1.m_Millis / t2.m_Millis;
             }
 
-            friend inline void operator+=(Time& t1, const Time& t2) {
+            friend inline void operator+=(cTime& t1, const cTime& t2) {
                 t1.m_Millis += t2.m_Millis;
             }
 
-            friend inline void operator-=(Time& t1, const Time& t2) {
+            friend inline void operator-=(cTime& t1, const cTime& t2) {
                 t1.m_Millis -= t2.m_Millis;
             }
 
-            friend inline void operator*=(Time& t1, const Time& t2) {
+            friend inline void operator*=(cTime& t1, const cTime& t2) {
                 t1.m_Millis *= t2.m_Millis;
             }
 
-            friend inline void operator/=(Time& t1, const Time& t2) {
+            friend inline void operator/=(cTime& t1, const cTime& t2) {
                 t1.m_Millis /= t2.m_Millis;
             }
 
-            friend inline float operator+(const Time& t1, float t2) {
+            friend inline float operator+(const cTime& t1, float t2) {
                 return t1.m_Millis + t2;
             }
 
-            friend inline float operator-(const Time& t1, float t2) {
+            friend inline float operator-(const cTime& t1, float t2) {
                 return t1.m_Millis - t2;
             }
 
-            friend inline float operator*(const Time& t1, float t2) {
+            friend inline float operator*(const cTime& t1, float t2) {
                 return t1.m_Millis * t2;
             }
 
-            friend inline float operator/(const Time& t1, float t2) {
+            friend inline float operator/(const cTime& t1, float t2) {
                 return t1.m_Millis / t2;
             }
 
-            friend inline void operator+=(Time& t1, float t2) {
+            friend inline void operator+=(cTime& t1, float t2) {
                 t1.m_Millis += t2;
             }
 
-            friend inline void operator-=(Time& t1, float t2) {
+            friend inline void operator-=(cTime& t1, float t2) {
                 t1.m_Millis -= t2;
             }
 
-            friend inline void operator*=(Time& t1, float t2) {
+            friend inline void operator*=(cTime& t1, float t2) {
                 t1.m_Millis *= t2;
             }
 
-            friend inline void operator/=(Time& t1, float t2) {
+            friend inline void operator/=(cTime& t1, float t2) {
                 t1.m_Millis /= t2;
             }
 
-            inline Time& operator=(float f) {
+            inline cTime& operator=(float f) {
                 m_Millis = f;
                 Update();
                 return *this;
@@ -154,43 +154,41 @@ namespace xpe
             float m_Hours = 0.0f;
         };
 
-        class ENGINE_API TimeManager
+        class ENGINE_API cTimeManager
         {
 
-            public:
-                TimeManager(Time* output)
-                {
-                    _start = system_clock::now();
-                    _output = output;
-                }
+        public:
+            cTimeManager(cTime* output)
+            {
+                m_Start = system_clock::now();
+                m_Output = output;
+            }
 
-                ~TimeManager()
-                {
-                    _end = system_clock::now();
-                    *_output = GetDeltaTime();
-                }
+            ~cTimeManager()
+            {
+                m_End = system_clock::now();
+                *m_Output = GetDeltaTime();
+            }
 
-            public:
-                static Time Now();
-                static Time Cast(const system_clock::time_point& time);
+            static cTime Now();
+            static cTime Cast(const system_clock::time_point& time);
 
-            public:
-                inline Time GetStartTime() {
-                    return Cast(_start);
-                }
+            inline cTime GetStartTime() {
+                return Cast(m_Start);
+            }
 
-                inline Time GetEndTime() {
-                    return Cast(_end);
-                }
+            inline cTime GetEndTime() {
+                return Cast(m_End);
+            }
 
-                inline Time GetDeltaTime() {
-                    return static_cast<float>(duration_cast<duration<float>>(_end - _start).count() * 1000);
-                }
+            inline cTime GetDeltaTime() {
+                return static_cast<float>(duration_cast<duration<float>>(m_End - m_Start).count() * 1000);
+            }
 
-            private:
-                Time* _output;
-                system_clock::time_point _start;
-                system_clock::time_point _end;
+        private:
+            cTime* m_Output;
+            system_clock::time_point m_Start;
+            system_clock::time_point m_End;
         };
     }
 }

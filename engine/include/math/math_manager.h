@@ -12,27 +12,34 @@ namespace xpe {
         class ENGINE_API MathManager final {
         public:
             // world space -> local space
-            static Ray ToLocalSpace(const Ray& ray, const glm::mat4& modelMatrix);
+            static sRay ToLocalSpace(const sRay& ray, const glm::mat4& modelMatrix);
             // local space -> world space
-            static Ray ToWorldSpace(const Ray& ray, const glm::mat4& modelMatrix);
+            static sRay ToWorldSpace(const sRay& ray, const glm::mat4& modelMatrix);
             // view space -> world space
-            static Ray ToWorldSpaceInverse(const Ray& ray, const glm::mat4& viewMatrix);
+            static sRay ToWorldSpaceInverse(const sRay& ray, const glm::mat4& viewMatrix);
             // world space -> view space
-            static Ray ToViewSpace(const Ray& ray, const glm::mat4& viewMatrix);
+            static sRay ToViewSpace(const sRay& ray, const glm::mat4& viewMatrix);
             // clip space -> view space
-            static Ray ToViewSpaceInverse(const Ray& ray, const float fov, const float aspectRatio);
-            static Ray ToViewSpaceInverse(const Ray& ray, const glm::mat4& perspectiveMatrix);
+            static sRay ToViewSpaceInverse(const sRay& ray, const float fov, const float aspectRatio);
+            static sRay ToViewSpaceInverse(const sRay& ray, const glm::mat4& perspectiveMatrix);
             // view space -> clip space
-            static Ray ToClipSpace(const Ray& ray, const float fov, const float aspectRatio);
-            static Ray ToClipSpace(const Ray& ray, const glm::mat4& perspectiveMatrix);
+            static sRay ToClipSpace(const sRay& ray, const float fov, const float aspectRatio);
+            static sRay ToClipSpace(const sRay& ray, const glm::mat4& perspectiveMatrix);
             // NDC space -> clip space
-            static Ray ToClipSpaceInverse(const Ray& ray);
+            static sRay ToClipSpaceInverse(const sRay& ray);
             // clip space -> NDC space
-            static Ray ToNDCSpace(const Ray& ray);
+            static sRay ToNDCSpace(const sRay& ray);
             // screen space -> NDC space
-            static Ray ToNDCSpaceInverse(const Ray& ray, int width, int height);
+            static sRay ToNDCSpaceInverse(const sRay& ray, int width, int height);
             // NDC space -> screen space
-            static Ray ToScreenSpace(const Ray& ray, int width, int height);
+            static sRay ToScreenSpace(const sRay& ray, int width, int height);
+
+            static glm::mat4 UpdateModelMatrix(const sModelMatrix& modelMatrix);
+            static glm::mat4 UpdateViewMatrix(const sViewMatrix& viewMatrix);
+            static glm::mat4 UpdateOrthoMatrix(const sOrthoMatrix& orthoMatrix);
+            static glm::mat4 UpdatePerspectiveMatrix(const sPerspectiveMatrix& perspectiveMatrix);
+            static glm::mat4 UpdateLightMatrix(const sOrthoMatrix& orthoMatrix, const sViewMatrix& viewMatrix);
+
         };
 
     }

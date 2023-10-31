@@ -11,20 +11,20 @@ namespace xpe {
 
         using namespace core;
 
-        class Font;
+        class sFont;
 
-        class ENGINE_API TextPass : public RenderPass
+        class ENGINE_API cTextPass : public cRenderPass
         {
 
         public:
-            TextPass(eType type, const vector<RenderPassBinding>& bindings);
+            cTextPass(eType type, const vector<sRenderPassBinding>& bindings);
 
         protected:
-            void DrawText(const Transform& transform, const string& text, Font& font);
+            void DrawText(const sTransform& transform, const string& text, sFont& font);
 
-            TextBuffer m_TextBuffer;
-            TransformBuffer m_TransformBuffer;
-            Geometry m_Quad;
+            sTextBuffer m_TextBuffer;
+            sTransformBuffer m_TransformBuffer;
+            sGeometry m_Quad;
         };
 
     }

@@ -13,10 +13,10 @@ namespace xpe {
         using namespace render;
         using namespace math;
 
-        class LOADER_API ModelLoader final
+        class LOADER_API cModelLoader final
         {
         public:
-            static Model Load(const char* filepath, const vector<eLoadOption>& options = {
+            static sModel Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE,
                     eLoadOption::FLIP_UV,
                     eLoadOption::CALC_TANGENTS,

@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace render {
 
-        glm::vec2 Camera::GetPanSpeed()
+        glm::vec2 cCamera::GetPanSpeed()
         {
             float panAcc = PanAcceleration;
             int width = m_ViewWidth;
@@ -19,35 +19,35 @@ namespace xpe {
             return { xFactor * panAcc, yFactor * panAcc };
         }
 
-        float Camera::GetZoomSpeed()
+        float cCamera::GetZoomSpeed()
         {
             float distance = MoveSpeed * ZoomAcceleration;
             distance = math::max(distance, 0.0f);
             return distance * distance;
         }
 
-        PerspectiveCamera::PerspectiveCamera(int viewWidth, int viewHeight, CameraBuffer* buffer)
-        : Camera(buffer)
+        cPerspectiveCamera::cPerspectiveCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer)
+        : cCamera(buffer)
         {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
-            AddWindowFrameResized(PerspectiveCamera, 2);
-            AddCursorMove(PerspectiveCamera, 2);
-            AddScrollChanged(PerspectiveCamera, 2);
+            AddWindowFrameResized(cPerspectiveCamera, 2);
+            AddCursorMove(cPerspectiveCamera, 2);
+            AddScrollChanged(cPerspectiveCamera, 2);
         }
 
-        PerspectiveCamera::~PerspectiveCamera()
+        cPerspectiveCamera::~cPerspectiveCamera()
         {
             RemoveWindowFrameResized();
             RemoveCursorMove();
             RemoveScrollChanged();
         }
 
-        void PerspectiveCamera::Flush()
+        void cPerspectiveCamera::Flush()
         {
             MaxFovDegree = Component.FovDegree;
 
-            math::ViewMatrix viewMatrix;
+            math::sViewMatrix viewMatrix;
             viewMatrix.Up = Component.Up;
             viewMatrix.Front = Component.Front;
             viewMatrix.Position = Component.Position;
@@ -56,12 +56,12 @@ namespace xpe {
 
             auto& bufferData = m_Buffer->Item;
             bufferData.Position = Component.Position;
-            bufferData.View = math::ViewMatrixUpdate(viewMatrix);
-            bufferData.Projection = math::PerspectiveMatrixUpdate(Component);
+            bufferData.View = MathManager::UpdateViewMatrix(viewMatrix);
+            bufferData.Projection = MathManager::UpdatePerspectiveMatrix(Component);
             m_Buffer->Flush();
         }
 
-        void PerspectiveCamera::Pan(const glm::vec2 &delta)
+        void cPerspectiveCamera::Pan(const glm::vec2 &delta)
         {
             float distance = MoveSpeed;
             glm::vec3& focalPoint = m_Position;
@@ -74,29 +74,29 @@ namespace xpe {
             m_Buffer->Flush();
         }
 
-        void PerspectiveCamera::Move()
+        void cPerspectiveCamera::Move()
         {
             auto& position = Component.Position;
             glm::vec3 front = Component.Front;
             glm::vec3 up = Component.Up;
             glm::vec3 right = glm::cross(front, up);
 
-            if (InputManager::KeyPressed(KeyMoveForward))
+            if (cInputManager::KeyPressed(KeyMoveForward))
             {
                 position = CalculateFrontPosition();
             }
 
-            else if (InputManager::KeyPressed(KeyMoveLeft))
+            else if (cInputManager::KeyPressed(KeyMoveLeft))
             {
                 position = CalculateLeftPosition();
             }
 
-            else if (InputManager::KeyPressed(KeyMoveBackward))
+            else if (cInputManager::KeyPressed(KeyMoveBackward))
             {
                 position = CalculateBackPosition();
             }
 
-            else if (InputManager::KeyPressed(KeyMoveRight))
+            else if (cInputManager::KeyPressed(KeyMoveRight))
             {
                 position = CalculateRightPosition();
             }
@@ -108,7 +108,7 @@ namespace xpe {
             m_Buffer->Flush();
         }
 
-        void PerspectiveCamera::ZoomIn()
+        void cPerspectiveCamera::ZoomIn()
         {
             auto& cameraBuffer = *m_Buffer;
             auto& fov = Component.FovDegree;
@@ -116,11 +116,11 @@ namespace xpe {
             fov -= (float) GetZoomSpeed();
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            cameraBuffer.Item.Projection = math::PerspectiveMatrixUpdate(Component);
+            cameraBuffer.Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
             cameraBuffer.Flush();
         }
 
-        void PerspectiveCamera::ZoomOut()
+        void cPerspectiveCamera::ZoomOut()
         {
             auto& cameraBuffer = *m_Buffer;
             auto& fov = Component.FovDegree;
@@ -128,11 +128,11 @@ namespace xpe {
             fov += (float) GetZoomSpeed();
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            cameraBuffer.Item.Projection = math::PerspectiveMatrixUpdate(Component);
+            cameraBuffer.Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
             cameraBuffer.Flush();
         }
 
-        void PerspectiveCamera::ScrollChanged(const double x, const double y)
+        void cPerspectiveCamera::ScrollChanged(const double x, const double y)
         {
             auto& cameraBuffer = *m_Buffer;
             auto& fov = Component.FovDegree;
@@ -140,17 +140,17 @@ namespace xpe {
             fov -= (float) y * GetZoomSpeed();
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            cameraBuffer.Item.Projection = math::PerspectiveMatrixUpdate(Component);
+            cameraBuffer.Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
             cameraBuffer.Flush();
         }
 
-        void PerspectiveCamera::Look(const double x, const double y)
+        void cPerspectiveCamera::Look(const double x, const double y)
         {
             if (!EnableLook)
                 return;
 
-            InputManager::CaptureCursor(x, y);
-            auto& cursorDelta = InputManager::GetMouseCursor().Delta;
+            cInputManager::CaptureCursor(x, y);
+            auto& cursorDelta = cInputManager::GetMouseCursor().Delta;
             float lookSign = (float) LookMode;
             float yawSign = GetUpDirection().y < 0 ? -1.0f : 1.0f;
 
@@ -161,27 +161,27 @@ namespace xpe {
             m_Buffer->Flush();
         }
 
-        void PerspectiveCamera::WindowFrameResized(int w, int h)
+        void cPerspectiveCamera::WindowFrameResized(int w, int h)
         {
-            LogInfo("PerspectiveCamera::WindowFrameResized: width={}, height={}", w, h);
+            LogInfo("cPerspectiveCamera::WindowFrameResized: width={}, height={}", w, h);
             m_ViewWidth = w;
             m_ViewHeight = h;
             UpdateProjection();
             m_Buffer->Flush();
         }
 
-        void PerspectiveCamera::CursorMoved(const double x, const double y)
+        void cPerspectiveCamera::CursorMoved(const double x, const double y)
         {
             Look(x, y);
         }
 
-        void PerspectiveCamera::UpdateProjection()
+        void cPerspectiveCamera::UpdateProjection()
         {
             Component.AspectRatio = m_ViewWidth / m_ViewHeight;
-            m_Buffer->Item.Projection = math::PerspectiveMatrixUpdate(Component);
+            m_Buffer->Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
         }
 
-        void PerspectiveCamera::UpdateView(const glm::vec3& position)
+        void cPerspectiveCamera::UpdateView(const glm::vec3& position)
         {
             // m_Yaw = m_Pitch = 0.0f; // Lock the camera's rotation
             glm::quat orientation = GetOrientation();
@@ -195,25 +195,25 @@ namespace xpe {
             m_Buffer->Item.View = viewMatrix;
         }
 
-        OrthoCamera::OrthoCamera(int viewWidth, int viewHeight, CameraBuffer* buffer) : Camera(buffer)
+        cOrthoCamera::cOrthoCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer) : cCamera(buffer)
         {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
-            AddWindowFrameResized(OrthoCamera, 2);
-            AddScrollChanged(OrthoCamera, 2);
-            AddCursorMove(OrthoCamera, 2);
+            AddWindowFrameResized(cOrthoCamera, 2);
+            AddScrollChanged(cOrthoCamera, 2);
+            AddCursorMove(cOrthoCamera, 2);
         }
 
-        OrthoCamera::~OrthoCamera()
+        cOrthoCamera::~cOrthoCamera()
         {
             RemoveWindowFrameResized();
             RemoveScrollChanged();
             RemoveCursorMove();
         }
 
-        void OrthoCamera::Flush()
+        void cOrthoCamera::Flush()
         {
-            math::ViewMatrix viewMatrix;
+            math::sViewMatrix viewMatrix;
             viewMatrix.Position = Component.Position;
             viewMatrix.Front = Component.Front;
             viewMatrix.Up = Component.Up;
@@ -225,56 +225,56 @@ namespace xpe {
 
             auto& bufferData = m_Buffer->Item;
             bufferData.Position = Component.Position;
-            bufferData.View = math::ViewMatrixUpdate(viewMatrix);
-            bufferData.Projection = math::OrthoMatrixUpdate(Component);
+            bufferData.View = MathManager::UpdateViewMatrix(viewMatrix);
+            bufferData.Projection = MathManager::UpdateOrthoMatrix(Component);
             m_Buffer->Flush();
         }
 
-        void OrthoCamera::Move()
+        void cOrthoCamera::Move()
         {
             // todo ortho camera move function
         }
 
-        void OrthoCamera::ZoomIn()
+        void cOrthoCamera::ZoomIn()
         {
             // todo ortho camera zoom in function
         }
 
-        void OrthoCamera::ZoomOut()
+        void cOrthoCamera::ZoomOut()
         {
             // todo ortho camera zoom out function
         }
 
-        void OrthoCamera::Look(const double x, const double y)
+        void cOrthoCamera::Look(const double x, const double y)
         {
             // todo ortho camera look function
         }
 
-        void OrthoCamera::WindowFrameResized(int width, int height)
+        void cOrthoCamera::WindowFrameResized(int width, int height)
         {
-            LogInfo("OrthoCamera::WindowFrameResized: width={}, height={}", width, height);
+            LogInfo("cOrthoCamera::WindowFrameResized: width={}, height={}", width, height);
             m_ViewWidth = width;
             m_ViewHeight = height;
             UpdateProjection();
             m_Buffer->Flush();
         }
 
-        void OrthoCamera::ScrollChanged(const double x, const double y)
+        void cOrthoCamera::ScrollChanged(const double x, const double y)
         {
         }
 
-        void OrthoCamera::CursorMoved(const double x, const double y)
+        void cOrthoCamera::CursorMoved(const double x, const double y)
         {
             Look(x, y);
         }
 
-        void OrthoCamera::UpdateProjection()
+        void cOrthoCamera::UpdateProjection()
         {
             Component.Right = m_ViewWidth;
             Component.Left = -m_ViewWidth;
             Component.Top = m_ViewHeight;
             Component.Bottom = -m_ViewHeight;
-            m_Buffer->Item.Projection = math::OrthoMatrixUpdate(Component);
+            m_Buffer->Item.Projection = MathManager::UpdateOrthoMatrix(Component);
         }
 
     }

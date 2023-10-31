@@ -4,18 +4,18 @@ namespace xpe {
 
     namespace core {
 
-        EventManager* EventManager::s_Instance = nullptr;
+        cEventManager* cEventManager::s_Instance = nullptr;
 
-        void EventManager::Init() {
-            s_Instance = new EventManager();
+        void cEventManager::Init() {
+            s_Instance = new cEventManager();
         }
 
-        void EventManager::Free()
+        void cEventManager::Free()
         {
             delete s_Instance;
         }
 
-        EventManager& EventManager::Get()
+        cEventManager& cEventManager::Get()
         {
             return *s_Instance;
         }

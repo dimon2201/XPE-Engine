@@ -8,7 +8,7 @@ namespace xpe
     {
         using namespace core;
 
-        struct ENGINE_API MaterialFormat final
+        struct ENGINE_API sMaterialFormat final
         {
             eTextureFormat Format;
             usize Width;
@@ -16,29 +16,29 @@ namespace xpe
             u32 Slot;
         };
 
-        struct ENGINE_API Material : public Object, MaterialData
+        struct ENGINE_API sMaterial : public cObject, sMaterialData
         {
-            static const MaterialFormat K_ALBEDO_FORMAT;
-            static const MaterialFormat K_BUMP_FORMAT;
-            static const MaterialFormat K_PARALLAX_FORMAT;
-            static const MaterialFormat K_METALLIC_FORMAT;
-            static const MaterialFormat K_ROUGHNESS_FORMAT;
-            static const MaterialFormat K_AO_FORMAT;
-            static const MaterialFormat K_EMISSION_FORMAT;
+            static const sMaterialFormat k_AlbedoFormat;
+            static const sMaterialFormat k_NormalFormat;
+            static const sMaterialFormat k_ParallaxFormat;
+            static const sMaterialFormat k_MetalFormat;
+            static const sMaterialFormat k_RoughnessFormat;
+            static const sMaterialFormat k_AoFormat;
+            static const sMaterialFormat k_EmissionFormat;
 
             u32 Index = 0;
 
-            TextureLayer AlbedoMap;
-            TextureLayer NormalMap;
-            TextureLayer ParallaxMap;
-            TextureLayer MetalMap;
-            TextureLayer RoughnessMap;
-            TextureLayer AOMap;
-            TextureLayer EmissionMap;
+            sTextureLayer AlbedoMap;
+            sTextureLayer NormalMap;
+            sTextureLayer ParallaxMap;
+            sTextureLayer MetalMap;
+            sTextureLayer RoughnessMap;
+            sTextureLayer AOMap;
+            sTextureLayer EmissionMap;
         };
 
         Json(
-            Material,
+            sMaterial,
             Index,
             Albedo,
             EnableAlbedoMap,

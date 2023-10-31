@@ -5,10 +5,10 @@ namespace xpe
 {
     namespace render
     {
-        SSAOPass::SSAOPass(const vector<RenderPassBinding>& bindings, Viewport* viewport, u32 sampleCount)
-        : RenderPass(eType::POSTFX, bindings)
+        cSsaoPass::cSsaoPass(const vector<sRenderPassBinding>& bindings, sViewport* viewport, u32 sampleCount)
+        : cRenderPass(eType::POSTFX, bindings)
         {
-            Texture* ssaoColor = new Texture();
+            sTexture* ssaoColor = new sTexture();
             ssaoColor->Width = viewport->Width;
             ssaoColor->Height = viewport->Height;
             ssaoColor->Format = eTextureFormat::RGBA8;
@@ -17,8 +17,8 @@ namespace xpe
             ssaoColor->EnableRenderTarget = true;
             ssaoColor->Init();
 
-            Texture* ssaoDepth = new Texture();
-            ssaoDepth->Type = Texture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            sTexture* ssaoDepth = new sTexture();
+            ssaoDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
             ssaoDepth->Width = viewport->Width;
             ssaoDepth->Height = viewport->Height;
             ssaoDepth->Format = eTextureFormat::R32_TYPELESS;
@@ -27,7 +27,7 @@ namespace xpe
             ssaoDepth->EnableRenderTarget = true;
             ssaoDepth->Init();
 
-            m_Pipeline->RenderTarget = new RenderTarget({ ssaoColor }, ssaoDepth, *viewport);
+            m_Pipeline->RenderTarget = new sRenderTarget({ssaoColor }, ssaoDepth, *viewport);
 
             m_Pipeline->PSBuffers.emplace_back(&m_Buffer);
         }

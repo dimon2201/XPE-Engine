@@ -24,7 +24,7 @@ namespace xpe
             DEFAULT = LIGHT
         };
 
-        struct ENGINE_API WindowDescriptor
+        struct ENGINE_API sWindowDescriptor
         {
             const char* Title;
             s32 Width;
@@ -39,24 +39,24 @@ namespace xpe
             eWindowTheme Theme = eWindowTheme::DEFAULT;
         };
 
-        struct ENGINE_API Window final
+        struct ENGINE_API sWindow final
         {
             void* Instance = nullptr;
             void* Win32Instance = nullptr;
-            WindowDescriptor Descriptor;
+            sWindowDescriptor Descriptor;
         };
 
-        class ENGINE_API WindowManager final
+        class ENGINE_API cWindowManager final
         {
 
         public:
             static void Init();
             static void Free();
 
-            static void InitWindow(const WindowDescriptor& windowDescriptor);
+            static void InitWindow(const sWindowDescriptor& windowDescriptor);
             static void FreeWindow();
 
-            static const WindowDescriptor& GetDescriptor();
+            static const sWindowDescriptor& GetDescriptor();
 
             static bool ShouldClose();
             static void Close();
@@ -95,7 +95,7 @@ namespace xpe
             static void SetFullscreenWindowed();
             static void ToggleWindowMode();
 
-            static void SetMonitorBuffer(render::MonitorBuffer* monitorBuffer);
+            static void SetMonitorBuffer(render::sMonitorBuffer* monitorBuffer);
             static void SetExposure(float exposure);
             static void SetGamma(float gamma);
             static float GetExposure();
@@ -104,13 +104,13 @@ namespace xpe
         private:
             static void CreatePrimaryMonitor();
 
-            static Window s_Window;
+            static sWindow s_Window;
             static int s_WindowModeX;
             static int s_WindowModeY;
             static int s_WindowModeWidth;
             static int s_WindowModeHeight;
             static bool s_EnableFullscreen;
-            static render::MonitorBuffer* s_MonitorBuffer;
+            static render::sMonitorBuffer* s_MonitorBuffer;
         };
 
     }

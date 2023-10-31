@@ -95,3 +95,6 @@
 
 // ECS
 #include <ecs/ecs.h>
+
+using namespace xpe::core;
+using namespace xpe::ecs;

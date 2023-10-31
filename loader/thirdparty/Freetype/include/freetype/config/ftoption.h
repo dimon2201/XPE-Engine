@@ -311,7 +311,7 @@ FT_BEGIN_HEADER
 
   /**************************************************************************
    *
-   * Glyph Postscript Names handling
+   * sGlyph Postscript Names handling
    *
    *   By default, FreeType 2 is compiled with the 'psnames' module.  This
    *   module is in charge of converting a glyph name string into a Unicode
@@ -342,9 +342,9 @@ FT_BEGIN_HEADER
    *   Among other things, the module is used to convert a glyph name into a
    *   Unicode value.  This is especially useful in order to synthesize on
    *   the fly a Unicode charmap from the CFF/Type~1 driver through a big
-   *   table named the 'Adobe Glyph List' (AGL).
+   *   table named the 'Adobe sGlyph List' (AGL).
    *
-   *   Undefine this macro if you do not want the Adobe Glyph List compiled
+   *   Undefine this macro if you do not want the Adobe sGlyph List compiled
    *   in your 'psnames' module.  The Type~1 driver will not be able to
    *   synthesize a Unicode charmap out of the glyphs found in the fonts.
    */
@@ -529,7 +529,7 @@ FT_BEGIN_HEADER
 
   /**************************************************************************
    *
-   * OpenType SVG Glyph Support
+   * OpenType SVG sGlyph Support
    *
    *   Setting this macro enables support for OpenType SVG glyphs.  By
    *   default, FreeType can only fetch SVG documents.  However, it can also
@@ -733,7 +733,7 @@ FT_BEGIN_HEADER
    *
    * Define `TT_CONFIG_OPTION_GX_VAR_SUPPORT` if you want to include support
    * for Apple's distortable font technology ('fvar', 'gvar', 'cvar', and
-   * 'avar' tables).  Tagged 'Font Variations', this is now part of OpenType
+   * 'avar' tables).  Tagged 'sFont Variations', this is now part of OpenType
    * also.  This has many similarities to Type~1 Multiple Masters support.
    */
 #define TT_CONFIG_OPTION_GX_VAR_SUPPORT
