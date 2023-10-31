@@ -6,8 +6,13 @@ namespace xpe
 	{
 		class cPhysicsSystem : public cSystem
 		{
+
 		public:
 			void Update(cScene* scene, const cTime& dt) override final;
+
+		private:
+			std::mutex m_Mutex;
+
 		};
 	}
 }

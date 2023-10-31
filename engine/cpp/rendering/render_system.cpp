@@ -296,7 +296,7 @@ namespace xpe {
             scene->EachComponent<sCDirectionalLight>([this](sCDirectionalLight* component)
             {
                 if (component->FollowEntity) {
-                    component->Position = component->Entity->Transform.Position;
+                    component->Position = component->Entity->GetPosition();
                 }
 
                 sDirectLightData light;
@@ -310,7 +310,7 @@ namespace xpe {
             scene->EachComponent<sCPointLight>([this](sCPointLight* component)
             {
                 if (component->FollowEntity) {
-                    component->Position = component->Entity->Transform.Position;
+                    component->Position = component->Entity->GetPosition();
                 }
 
                 sPointLightData light;
@@ -327,7 +327,7 @@ namespace xpe {
             scene->EachComponent<sCSpotLight>([this](sCSpotLight* component)
             {
                 if (component->FollowEntity) {
-                    component->Position = component->Entity->Transform.Position;
+                    component->Position = component->Entity->GetPosition();
                 }
 
                 sSpotLightData light;

@@ -78,22 +78,22 @@ public:
         // Text 2D
         {
             m_Text2D = new cEntity("Text2D", m_Scene);
-            m_Text2D->Transform.Position = {0, cWindowManager::GetHeight(), 0 };
-            m_Text2D->Transform.Scale = { 1, 1, 1 };
+            m_Text2D->SetPosition(glm::vec3(0, cWindowManager::GetHeight(), 0));
+            m_Text2D->SetScale(glm::vec3(1.0f));
 
             auto* textComponent = m_Text2D->Add<sCText2D>();
             textComponent->Text = "FPS: \n CPU: \n";
             textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
 
-            m_Text2D->Transform.Position.y -= textComponent->Font->GlyphSize;
+            m_Text2D->GetPositionRef().y = m_Text2D->GetPosition().y - textComponent->Font->GlyphSize;
         }
 
         // Text 3D
         {
             m_Text3D = new cEntity("Text3D", m_Scene);
-            m_Text3D->Transform.Position = { 0, 25, 50 };
-            m_Text3D->Transform.Scale = { 0.25, 0.25, 1 };
+            m_Text3D->SetPosition(glm::vec3(0, 25, 50));
+            m_Text3D->SetScale(glm::vec3(0.25f, 0.25f, 1.0f));
 
             auto* textComponent = m_Text3D->Add<sCText3D>();
             textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
@@ -123,8 +123,8 @@ public:
         // sPlane
         {
             m_Plane = new cEntity("sPlane", m_Scene);
-            m_Plane->Transform.Position = { 0, 0, 0 };
-            m_Plane->Transform.Scale = { 2, 1, 2 };
+            m_Plane->SetPosition(glm::vec3(0.0f));
+            m_Plane->SetScale(glm::vec3(5.0f, 0.0f, 5.0f));
 
             m_Plane->Add<sCGeometry>(cGeometryManager::AddGeometry(sPlane(10)));
             auto* planeMaterial = m_Plane->Add<sCMaterial>(cMaterialManager::AddMaterial());
@@ -134,11 +134,10 @@ public:
             cMaterialManager::Flush(*planeMaterial);
 
             sPlaneShapeDescriptor planeShapeDesc;
-            m_Plane->Add<sCRigidBody>(
+            m_Plane->Add<sCPhysicsActor>(
                     cPhysicsManager::AddActor(
                         m_Plane,
-                        m_Scene,
-                        sActor::eActorType::RIGID_STATIC,
+                        sCPhysicsActor::eActorType::RIGID_STATIC,
                         &planeShapeDesc,
                         glm::vec3(0.0f),
                         0.5f, 0.5f, 0.5f,
@@ -150,7 +149,7 @@ public:
         // Sunlight
         {
             m_SunLight = new cEntity("SunLight", m_Scene);
-            m_SunLight->Transform.Position = { 20, 20, -20 };
+            m_Plane->SetPosition(glm::vec3(20.0f, 20.0f, -20.0f));
 
             m_SunLight->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()));
             m_SunLight->Add<sCMaterial>(cMaterialManager::AddMaterial());
@@ -158,127 +157,127 @@ public:
         }
 
         // Goblins
-        {
-            m_Goblins = new cEntity("Goblins", m_Scene);
-
-            m_Goblin1 = new cEntity("Goblin1", m_Scene);
-            m_Goblin1->Transform.Position = {-4, 0, -4 };
-            m_Goblin1->Transform.Rotation = {0, 0, 0 };
-            m_Goblin1->Transform.Scale = {5, 5, 5 };
-
-            m_Goblin2 = new cEntity("Goblin2", m_Scene);
-            m_Goblin2->Transform.Position = {-4, 0, 4 };
-            m_Goblin2->Transform.Rotation = {0, 0, 0 };
-            m_Goblin2->Transform.Scale = {5, 5, 5 };
-
-            m_Goblin3 = new cEntity("Goblin3", m_Scene);
-            m_Goblin3->Transform.Position = {4, 0, -4 };
-            m_Goblin3->Transform.Rotation = {0, 0, 0 };
-            m_Goblin3->Transform.Scale = {5, 5, 5 };
-
-            m_Goblin4 = new cEntity("Goblin4", m_Scene);
-            m_Goblin4->Transform.Position = {4, 0, 4 };
-            m_Goblin4->Transform.Rotation = {0, 0, 0 };
-            m_Goblin4->Transform.Scale = {5, 5, 5 };
-
-            auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            goblins->Visible = true;
-            goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
-            goblins->Skeleton = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-            goblins->Animation = cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-            goblins->Animation.Play = true;
-
-            sMaterialFilepath materialFilepath;
-            materialFilepath.Name = "niz";
-            materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
-            materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
+        //{
+        //    m_Goblins = new cEntity("Goblins", m_Scene);
+        //
+        //    m_Goblin1 = new cEntity("Goblin1", m_Scene);
+        //    m_Goblin1->Transform.Position = {-4, 0, -4 };
+        //    m_Goblin1->Transform.Rotation = {0, 0, 0 };
+        //    m_Goblin1->Transform.Scale = {5, 5, 5 };
+        //
+        //    m_Goblin2 = new cEntity("Goblin2", m_Scene);
+        //    m_Goblin2->Transform.Position = {-4, 0, 4 };
+        //    m_Goblin2->Transform.Rotation = {0, 0, 0 };
+        //    m_Goblin2->Transform.Scale = {5, 5, 5 };
+        //
+        //    m_Goblin3 = new cEntity("Goblin3", m_Scene);
+        //    m_Goblin3->Transform.Position = {4, 0, -4 };
+        //    m_Goblin3->Transform.Rotation = {0, 0, 0 };
+        //    m_Goblin3->Transform.Scale = {5, 5, 5 };
+        //
+        //    m_Goblin4 = new cEntity("Goblin4", m_Scene);
+        //    m_Goblin4->Transform.Position = {4, 0, 4 };
+        //    m_Goblin4->Transform.Rotation = {0, 0, 0 };
+        //    m_Goblin4->Transform.Scale = {5, 5, 5 };
+        //
+        //    auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+        //    goblins->Visible = true;
+        //    goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
+        //    goblins->Skeleton = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+        //    goblins->Animation = cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+        //    goblins->Animation.Play = true;
+        //
+        //    sMaterialFilepath materialFilepath;
+        //    materialFilepath.Name = "niz";
+        //    materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+        //    materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
 //                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
 //                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
-
-            auto* material1 = m_Goblin1->Add<sCMaterial>(cMaterialManager::AddMaterial());
-            material1->Albedo = { 1, 1, 1, 1 };
-            material1->Emission = { 0, 0, 10 };
-            material1->Metallness = 0.0f;
-            material1->Roughness = 0.05f;
-            material1->AO = 0.0f;
-            material1->EnableAlbedoMap = false;
-            material1->EnableNormalMap = false;
-            material1->EnableRoughnessMap = false;
-            material1->EnableMetalMap = false;
-            material1->EnableAOMap = false;
-            cMaterialManager::Flush(*material1);
-
-            auto* material2 = m_Goblin2->Add<sCMaterial>(cMaterialManager::AddMaterial());
-            material2->Albedo = { 1, 1, 1, 1 };
-            material2->Emission = { 0, 0, 10 };
-            material2->Metallness = 0.0f;
-            material2->Roughness = 0.05f;
-            material2->AO = 0.0f;
-            material2->EnableAlbedoMap = false;
-            material2->EnableNormalMap = false;
-            material2->EnableRoughnessMap = false;
-            material2->EnableMetalMap = false;
-            material2->EnableAOMap = false;
-            cMaterialManager::Flush(*material2);
-
-            auto* material3 = m_Goblin3->Add<sCMaterial>(cMaterialManager::AddMaterial());
-            material3->Albedo = { 1, 1, 1, 1 };
-            material3->Emission = { 0, 0, 10 };
-            material3->Metallness = 0.0f;
-            material3->Roughness = 0.05f;
-            material3->AO = 0.0f;
-            material3->EnableAlbedoMap = false;
-            material3->EnableNormalMap = false;
-            material3->EnableRoughnessMap = false;
-            material3->EnableMetalMap = false;
-            material3->EnableAOMap = false;
-            cMaterialManager::Flush(*material3);
-
-            auto* material4 = m_Goblin4->Add<sCMaterial>(cMaterialManager::AddMaterial());
-            material4->Albedo = { 1, 1, 1, 1 };
-            material4->Emission = { 0, 0, 10 };
-            material4->Metallness = 0.0f;
-            material4->Roughness = 0.05f;
-            material4->AO = 0.0f;
-            material4->EnableAlbedoMap = false;
-            material4->EnableNormalMap = false;
-            material4->EnableRoughnessMap = false;
-            material4->EnableMetalMap = false;
-            material4->EnableAOMap = false;
-            cMaterialManager::Flush(*material4);
-
+        //
+        //    auto* material1 = m_Goblin1->Add<sCMaterial>(cMaterialManager::AddMaterial());
+        //    material1->Albedo = { 1, 1, 1, 1 };
+        //    material1->Emission = { 0, 0, 10 };
+        //    material1->Metallness = 0.0f;
+        //    material1->Roughness = 0.05f;
+        //    material1->AO = 0.0f;
+        //    material1->EnableAlbedoMap = false;
+        //    material1->EnableNormalMap = false;
+        //    material1->EnableRoughnessMap = false;
+        //    material1->EnableMetalMap = false;
+        //    material1->EnableAOMap = false;
+        //    cMaterialManager::Flush(*material1);
+        //
+        //    auto* material2 = m_Goblin2->Add<sCMaterial>(cMaterialManager::AddMaterial());
+        //    material2->Albedo = { 1, 1, 1, 1 };
+        //    material2->Emission = { 0, 0, 10 };
+        //    material2->Metallness = 0.0f;
+        //    material2->Roughness = 0.05f;
+        //    material2->AO = 0.0f;
+        //    material2->EnableAlbedoMap = false;
+        //    material2->EnableNormalMap = false;
+        //    material2->EnableRoughnessMap = false;
+        //    material2->EnableMetalMap = false;
+        //    material2->EnableAOMap = false;
+        //    cMaterialManager::Flush(*material2);
+        //
+        //    auto* material3 = m_Goblin3->Add<sCMaterial>(cMaterialManager::AddMaterial());
+        //    material3->Albedo = { 1, 1, 1, 1 };
+        //    material3->Emission = { 0, 0, 10 };
+        //    material3->Metallness = 0.0f;
+        //    material3->Roughness = 0.05f;
+        //    material3->AO = 0.0f;
+        //    material3->EnableAlbedoMap = false;
+        //    material3->EnableNormalMap = false;
+        //    material3->EnableRoughnessMap = false;
+        //    material3->EnableMetalMap = false;
+        //    material3->EnableAOMap = false;
+        //    cMaterialManager::Flush(*material3);
+        //
+        //    auto* material4 = m_Goblin4->Add<sCMaterial>(cMaterialManager::AddMaterial());
+        //    material4->Albedo = { 1, 1, 1, 1 };
+        //    material4->Emission = { 0, 0, 10 };
+        //    material4->Metallness = 0.0f;
+        //    material4->Roughness = 0.05f;
+        //    material4->AO = 0.0f;
+        //    material4->EnableAlbedoMap = false;
+        //    material4->EnableNormalMap = false;
+        //    material4->EnableRoughnessMap = false;
+        //    material4->EnableMetalMap = false;
+        //    material4->EnableAOMap = false;
+        //    cMaterialManager::Flush(*material4);
+        //
             // for testing image resizing on CPU, we can write resized image into file
 
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_diffuse_resized.png",
-                    material1->AlbedoMap,
-                    sTexture::eFileFormat::PNG
-            );
-
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_normal_resized.png",
-                    material1->NormalMap,
-                    sTexture::eFileFormat::PNG
-            );
-
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_roughness_resized.png",
-                    material1->RoughnessMap,
-                    sTexture::eFileFormat::PNG
-            );
-
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_metallic_resized.png",
-                    material1->MetalMap,
-                    sTexture::eFileFormat::PNG
-            );
-        }
+        //    cTextureLoader::SaveLayer(
+        //            "generated/Vampire_diffuse_resized.png",
+        //            material1->AlbedoMap,
+        //            sTexture::eFileFormat::PNG
+        //    );
+        //
+        //    cTextureLoader::SaveLayer(
+        //            "generated/Vampire_normal_resized.png",
+        //            material1->NormalMap,
+        //            sTexture::eFileFormat::PNG
+        //    );
+        //
+        //    cTextureLoader::SaveLayer(
+        //            "generated/Vampire_roughness_resized.png",
+        //            material1->RoughnessMap,
+        //            sTexture::eFileFormat::PNG
+        //    );
+        //
+        //    cTextureLoader::SaveLayer(
+        //            "generated/Vampire_metallic_resized.png",
+        //            material1->MetalMap,
+        //            sTexture::eFileFormat::PNG
+        //    );
+        //}
 
         // Cube
         {
             m_Cube = new cEntity("Cube", m_Scene);
-            m_Cube->Transform.Position = { 10, 2.5, 10 };
-            m_Cube->Transform.Scale = { 5, 5, 5 };
+            m_Cube->SetPosition(glm::vec3(10.0f, 2.5f, 10.0f));
+            m_Cube->SetScale(glm::vec3(5.0f));
             m_Cube->Add<sCGeometry>(cGeometryManager::AddGeometry(sCube()));
             m_Cube->Add<sCMaterial>(cMaterialManager::AddMaterial());
         }
@@ -297,18 +296,17 @@ public:
             mat.AO = 0.0f;
 
             m_Glasses[i] = new cEntity("Glass-" + string(std::to_string(i)), m_Scene);
-            m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), 0 };
-            m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
+            m_Glasses[i]->SetPosition(glm::vec3(0 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), -5));
+            m_Glasses[i]->SetScale(glm::vec3(1.0f));
             m_Glasses[i]->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()));
             m_Glasses[i]->Add<sCMaterial>(cMaterialManager::AddMaterial(mat));
             m_Glasses[i]->Get<sCGeometry>()->Transparent = true;
 
             sSphereShapeDescriptor sphereShapeDesc(1.0f);
-            m_Glasses[i]->Add<sCRigidBody>(
+            m_Glasses[i]->Add<sCPhysicsActor>(
                     cPhysicsManager::AddActor(
                             m_Glasses[i],
-                            m_Scene,
-                            sActor::eActorType::RIGID_DYNAMIC,
+                            sCPhysicsActor::eActorType::RIGID_DYNAMIC,
                             &sphereShapeDesc,
                             glm::vec3(0.0f),
                             0.5f, 0.5f, 0.5f,
@@ -454,10 +452,10 @@ public:
         delete m_Text3D;
         delete m_Plane;
         delete m_Goblins;
-        delete m_Goblin1;
-        delete m_Goblin2;
-        delete m_Goblin3;
-        delete m_Goblin4;
+        //delete m_Goblin1;
+        //delete m_Goblin2;
+        //delete m_Goblin3;
+        //delete m_Goblin4;
         delete m_Cube;
 //        delete m_BackgroundAudio;
 //        delete m_AudioObject;
@@ -534,7 +532,7 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto& pos = m_SunLight->Transform.Position;
+        auto& pos = m_SunLight->GetPositionRef();
 
         if (key == eKey::Up)
         {
@@ -569,7 +567,7 @@ private:
     {
         if (m_TestConfig.AnimateLight)
         {
-            auto& pos = m_SunLight->Transform.Position;
+            auto& pos = m_SunLight->GetPositionRef();
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -603,10 +601,10 @@ private:
     cEntity* m_Text3D;
     cEntity* m_Plane;
     cEntity* m_Goblins;
-    cEntity* m_Goblin1;
-    cEntity* m_Goblin2;
-    cEntity* m_Goblin3;
-    cEntity* m_Goblin4;
+    //cEntity* m_Goblin1;
+    //cEntity* m_Goblin2;
+    //cEntity* m_Goblin3;
+    //cEntity* m_Goblin4;
     cEntity* m_Cube;
     cEntity* m_BackgroundAudio;
     cEntity* m_AudioObject;

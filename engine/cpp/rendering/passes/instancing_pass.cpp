@@ -51,7 +51,7 @@ namespace xpe {
             }
 
             m_InstanceBuffer.Add(instance);
-            m_TransformBuffer.AddTransform(entity->Transform, lightMatrix);
+            m_TransformBuffer.AddTransform(entity->GetTransform(), lightMatrix);
 
             m_InstanceBuffer.Flush();
             m_TransformBuffer.Flush();
@@ -95,7 +95,7 @@ namespace xpe {
                 }
 
                 m_InstanceBuffer.Add(instance);
-                m_TransformBuffer.AddTransform(entity->Transform, lightMatrix);
+                m_TransformBuffer.AddTransform(entity->GetTransform(), lightMatrix);
 
                 instanceCount++;
             }

@@ -15,4 +15,4 @@ add_subdirectory(engine)
 add_subdirectory(samples)
 
 # Add cEditor
-add_subdirectory(editor)
+# add_subdirectory(editor)

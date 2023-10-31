@@ -6,6 +6,8 @@
 
 #include <ecs/components.hpp>
 
+#include <gtx/quaternion.hpp>
+
 namespace xpe
 {
     namespace physics
@@ -97,7 +99,6 @@ namespace xpe
 
         sActor* cPhysicsManager::AddActor(
             cEntity* entity,
-            cScene* scene,
             const sActor::eActorType& actorType,
             sShapeDescriptor* shapeDesc,
             const glm::vec3& linearVelocity,
@@ -108,11 +109,8 @@ namespace xpe
             f32 restOffset
         )
         {
-            glm::vec3 position = glm::vec3(
-                entity->Transform.Position.y,
-                entity->Transform.Position.x,
-                -entity->Transform.Position.z
-            );
+            glm::vec3 entityPosition = entity->GetPosition();
+            glm::vec3 position = glm::vec3(entityPosition.y, entityPosition.x, -entityPosition.z);
             
             // Creating material
             PxMaterial* physicsMaterial = s_Physics->createMaterial(
@@ -126,10 +124,7 @@ namespace xpe
             {
 
             case sActor::eActorType::RIGID_STATIC:
-                physicsActor = s_Physics->createRigidStatic(
-                    PxTransform(
-                        position.x, position.y, position.z
-                    ));
+                physicsActor = s_Physics->createRigidStatic(PxTransform(position.x, position.y, position.z));
                 break;
 
             case sActor::eActorType::RIGID_DYNAMIC:
@@ -145,7 +140,7 @@ namespace xpe
                 return nullptr;
             }
 
-            scene->PhysicsScene->addActor(*physicsActor);
+            entity->GetScene()->PhysicsScene->addActor(*physicsActor);
 
             // Shape creation
             PxShape* physicsShape = nullptr;
@@ -244,6 +239,17 @@ namespace xpe
             return actor;
         }
 
+        sRagdoll* cPhysicsManager::AddRagdoll()
+        {
+            vector<sActor*> bodyparts;
+
+            for (s32 i = 0; i < sRagdoll::BODYPART_COUNT; i++)
+            {
+            }
+
+            return nullptr;
+        }
+
         PxScene* cPhysicsManager::AddScene(const string& tag)
         {
             PxSceneDesc sceneDesc(s_Physics->getTolerancesScale());
@@ -263,6 +269,25 @@ namespace xpe
             s_Scenes->insert({ tag, physicsScene });
 
             return physicsScene;
+        }
+
+        void cPhysicsManager::SetActorPose(sActor* actor, sTransform* transform)
+        {
+            switch (actor->ActorType)
+            {
+
+            case sActor::eActorType::RIGID_DYNAMIC:
+                glm::quat rotation = glm::quat(transform->Rotation);
+
+                ((PxRigidDynamic*)actor->Actor)->setGlobalPose(
+                    PxTransform(
+                        PxVec3(transform->Position.y, transform->Position.x, -transform->Position.z),
+                        PxQuat(rotation.x, rotation.y, rotation.z, rotation.w)
+                    )
+                );
+                break;
+
+            }
         }
 
     }

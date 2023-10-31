@@ -291,9 +291,9 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCRigidBody : sComponent, sActor
+        struct ENGINE_API sCPhysicsActor : sComponent, physics::sActor
         {
-            sCRigidBody(sActor* actor)
+            sCPhysicsActor(physics::sActor* actor)
             {
                 Actor = actor->Actor;
                 Material = actor->Material;
@@ -309,7 +309,7 @@ namespace xpe
             }
 
             JsonClass(
-                sCRigidBody,
+                sCPhysicsActor,
                 m_Tag
             )
         };

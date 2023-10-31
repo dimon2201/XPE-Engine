@@ -21,9 +21,9 @@ namespace xpe
             scene->PhysicsScene->simulate(1.0f / 60.0f);
             scene->PhysicsScene->fetchResults(true);
 
-            scene->EachComponent<sCRigidBody>(
-                []
-                (sCRigidBody* component)
+            scene->EachComponent<sCPhysicsActor>(
+                [this]
+                (sCPhysicsActor* component)
                 {
                     cEntity* entity = component->Entity;
 
@@ -44,32 +44,17 @@ namespace xpe
 
                     PxShape* shape = component->Shape;
 
-                    PxTransform shapeTransform = shape->getLocalPose();
                     glm::vec3 shapeEuler = QuatToEuler(
                         actorTransform.q.w, actorTransform.q.x, actorTransform.q.y, actorTransform.q.z
                     );
 
                     // Prevent concurrent access
-                    static std::mutex mtx;
                     {
-                        std::lock_guard<std::mutex> lock(mtx);
+                        std::lock_guard<std::mutex> lock(m_Mutex);
 
-                        entity->Transform.Position.x = actorTransform.p.y;
-                        entity->Transform.Position.y = actorTransform.p.x;
-                        entity->Transform.Position.z = -actorTransform.p.z;
-
-                        entity->Transform.Rotation.x = shapeEuler.y;
-                        entity->Transform.Rotation.y = shapeEuler.x;
-                        entity->Transform.Rotation.z = -shapeEuler.z;
+                        entity->SetPosition(glm::vec3(actorTransform.p.y, actorTransform.p.x, -actorTransform.p.z));
+                        entity->SetRotation(glm::vec3(shapeEuler.y, shapeEuler.x, -shapeEuler.z));
                     }
-
-                    //shape.Collision->PosisionX.store(ATransform.p.x + STransform.p.x, std::memory_order_relaxed);
-                    //shape.Collision->PosisionY.store(ATransform.p.y + STransform.p.y, std::memory_order_relaxed);
-                    //shape.Collision->PosisionZ.store(ATransform.p.z + STransform.p.z, std::memory_order_relaxed);
-
-                    //shape.Collision->RotationX.store(ShapeEuler.x, std::memory_order_relaxed);
-                    //shape.Collision->RotationY.store(ShapeEuler.y, std::memory_order_relaxed);
-                    //shape.Collision->RotationZ.store(ShapeEuler.z, std::memory_order_relaxed);
                 }
             );
         }

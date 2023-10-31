@@ -14,13 +14,6 @@ namespace xpe {
         };
         Json(sTransform, Position, Rotation, Scale)
 
-        struct ENGINE_API sRigidBody : public cObject
-        {
-            glm::vec3 Position;
-            glm::vec3 Rotation;
-        };
-        Json(sRigidBody, Position, Rotation)
-
     }
 
 }

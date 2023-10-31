@@ -30,6 +30,11 @@ namespace xpe {
         class sMaterial;
     }
 
+    namespace math
+    {
+        struct sTransform;
+    }
+
     namespace physics
     {
         using namespace physx;
@@ -142,6 +147,33 @@ namespace xpe {
             f32 RestOffset = 0.0f;
         };
 
+        struct ENGINE_API sRagdoll : public cObject
+        {
+            sRagdoll(const vector<sActor*>& bodyparts) : Bodyparts(bodyparts) {}
+            ~sRagdoll() = default;
+
+            static const usize BODYPART_COUNT = 12;
+
+            enum eBodypart
+            {
+                NONE = 0,
+                HEAD = 1,
+                TORSO_TOP = 2,
+                TORSO_MIDDLE = 3,
+                TORSO_BOTTOM = 4,
+                LEFT_ARM_TOP = 5,
+                LEFT_ARM_BOTTOM = 6,
+                RIGHT_ARM_TOP = 7,
+                RIGHT_ARM_BOTTOM = 8,
+                LEFT_LEG_TOP = 9,
+                LEFT_LEG_BOTTOM = 10,
+                RIGHT_LEG_TOP = 11,
+                RIGHT_LEG_BOTTOM = 12
+            };
+
+            vector<sActor*> Bodyparts;
+        };
+
         class ENGINE_API cPhysicsManager final
         {
 
@@ -155,7 +187,6 @@ namespace xpe {
 
             static sActor* AddActor(
                 cEntity* entity,
-                cScene* scene,
                 const sActor::eActorType& actorType,
                 sShapeDescriptor* shapeDesc,
                 const glm::vec3& linearVelocity,
@@ -165,8 +196,11 @@ namespace xpe {
                 f32 contactOffset,
                 f32 restOffset
             );
-
+            
+            static sRagdoll* AddRagdoll();
             static PxScene* AddScene(const string& tag);
+
+            static void SetActorPose(sActor* actor, math::sTransform* transform);
 
         private:
             static cPhysicsAllocator* s_Allocator;
