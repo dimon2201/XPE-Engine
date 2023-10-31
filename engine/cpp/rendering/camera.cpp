@@ -31,6 +31,7 @@ namespace xpe {
         {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
+            m_Position = Component.Position;
             AddWindowFrameResized(cPerspectiveCamera, 2);
             AddCursorMove(cPerspectiveCamera, 2);
             AddScrollChanged(cPerspectiveCamera, 2);
@@ -45,6 +46,7 @@ namespace xpe {
 
         void cPerspectiveCamera::Flush()
         {
+            m_Position = Component.Position;
             MaxFovDegree = Component.FovDegree;
 
             math::sViewMatrix viewMatrix;
@@ -199,6 +201,7 @@ namespace xpe {
         {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
+            m_Position = Component.Position;
             AddWindowFrameResized(cOrthoCamera, 2);
             AddScrollChanged(cOrthoCamera, 2);
             AddCursorMove(cOrthoCamera, 2);
@@ -213,6 +216,8 @@ namespace xpe {
 
         void cOrthoCamera::Flush()
         {
+            m_Position = Component.Position;
+
             math::sViewMatrix viewMatrix;
             viewMatrix.Position = Component.Position;
             viewMatrix.Front = Component.Front;

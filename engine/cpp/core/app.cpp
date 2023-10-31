@@ -117,11 +117,10 @@ namespace xpe {
                 Update();
 
                 // submit audio task with current scene state
-                // todo(Vitalii A.): Disabled audio system task to investigate heap memory leak
-//                cTaskManager::SubmitTask({[this]() {
-//                    m_AudioSystem->Update(m_Scene, DeltaTime);
-//                    m_AudioSystem->UpdateListener(m_Scene);
-//                }});
+                cTaskManager::SubmitTask({[this]() {
+                    m_AudioSystem->Update(m_Scene, DeltaTime);
+                    m_AudioSystem->UpdateListener(m_Scene);
+                }});
 
                 // submit animation task with current scene state
                 cTaskManager::SubmitTask({[this]() {

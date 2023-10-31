@@ -429,7 +429,7 @@ public:
 //            }
 //        }
 
-        m_SsaoPass->GetData().Intensity = 4;
+        m_SsaoPass->GetData().Intensity = 2;
         m_SsaoPass->Flush();
     }
 
@@ -512,7 +512,6 @@ private:
     void InitCamera() {
         m_PerspectiveCamera = new cPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight(), m_RenderSystem->GetCameraBuffer());
         m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
-        // todo(cheerwizard): BUG - after moving camera, the camera resets position
         m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
         m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
