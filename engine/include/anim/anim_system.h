@@ -10,30 +10,30 @@ namespace xpe {
         using namespace ecs;
         using namespace render;
 
-        class ENGINE_API AnimSystem : public System
+        class ENGINE_API cAnimSystem : public cSystem
         {
 
         public:
-            void Update(Scene* scene, const Time& dt) override final;
+            void Update(cScene* scene, const Time& dt) override final;
 
         private:
-            void AnimateSkeleton(Skeleton& skeleton, const Animation& animation, const Time& dt);
-            void AnimateBone(Bone& bone, float time);
+            void AnimateSkeleton(sSkeleton& skeleton, const sAnimation& animation, const Time& dt);
+            void AnimateBone(sBone& bone, float time);
 
-            glm::mat4 InterpolatePosition(Bone& bone, float time);
-            glm::mat4 InterpolateRotation(Bone& bone, float time);
-            glm::mat4 InterpolateScale(Bone& bone, float time);
+            glm::mat4 InterpolatePosition(sBone& bone, float time);
+            glm::mat4 InterpolateRotation(sBone& bone, float time);
+            glm::mat4 InterpolateScale(sBone& bone, float time);
 
-            int GetPositionIndex(Bone& bone, float time);
-            int GetRotationIndex(Bone& bone, float time);
-            int GetScaleIndex(Bone& bone, float time);
+            int GetPositionIndex(sBone& bone, float time);
+            int GetRotationIndex(sBone& bone, float time);
+            int GetScaleIndex(sBone& bone, float time);
 
             float GetScaleFactor(float lastTimestamp, float nextTimestamp, float time);
 
             void UpdateSkeletonTransform(
-                    Skeleton& skeleton,
+                    sSkeleton& skeleton,
                     BoneBuffer& boneBuffer,
-                    const AnimationNode& animationNode,
+                    const sAnimationNode& animationNode,
                     const glm::mat4& parentTransform
             );
 

@@ -162,7 +162,7 @@ namespace xpe {
 
             float MaxFovDegree = 45.0f;
             float MinFovDegree = 1.0f;
-            PerspectiveCameraComponent Component;
+            sCPerspectiveCamera Component;
 
             void Move();
             void Pan(const glm::vec2& delta);
@@ -207,7 +207,7 @@ namespace xpe {
                 Component
             )
 
-            OrthoCameraComponent Component;
+            sCOrthoCamera Component;
 
             void Move();
             void ZoomIn();

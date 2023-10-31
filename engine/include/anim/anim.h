@@ -6,57 +6,57 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API KeyPosition final
+        struct ENGINE_API sKeyPosition final
         {
             float Timestamp;
             glm::vec3 Position;
 
-            KeyPosition() = default;
-            KeyPosition(float timestamp, const glm::vec3& position) : Timestamp(timestamp), Position(position) {}
+            sKeyPosition() = default;
+            sKeyPosition(float timestamp, const glm::vec3& position) : Timestamp(timestamp), Position(position) {}
         };
 
-        Json(KeyPosition, Timestamp, Position)
+        Json(sKeyPosition, Timestamp, Position)
 
-        struct ENGINE_API KeyRotate final
+        struct ENGINE_API sKeyRotate final
         {
             float Timestamp;
             glm::quat Orientation;
 
-            KeyRotate() = default;
-            KeyRotate(float timestamp, const glm::quat& orientation) : Timestamp(timestamp), Orientation(orientation) {}
+            sKeyRotate() = default;
+            sKeyRotate(float timestamp, const glm::quat& orientation) : Timestamp(timestamp), Orientation(orientation) {}
         };
 
-        Json(KeyRotate, Timestamp, Orientation)
+        Json(sKeyRotate, Timestamp, Orientation)
 
-        struct ENGINE_API KeyScale final
+        struct ENGINE_API sKeyScale final
         {
             float Timestamp;
             glm::vec3 Scale;
 
-            KeyScale() = default;
-            KeyScale(float timestamp, const glm::vec3& scale) : Timestamp(timestamp), Scale(scale) {}
+            sKeyScale() = default;
+            sKeyScale(float timestamp, const glm::vec3& scale) : Timestamp(timestamp), Scale(scale) {}
         };
 
-        Json(KeyScale, Timestamp, Scale)
+        Json(sKeyScale, Timestamp, Scale)
 
-        struct ENGINE_API AnimationNode final
+        struct ENGINE_API sAnimationNode final
         {
             string Name;
             glm::mat4 Transform;
-            vector<AnimationNode> Children;
+            vector<sAnimationNode> Children;
         };
 
-        Json(AnimationNode, Name, Transform, Children)
+        Json(sAnimationNode, Name, Transform, Children)
 
-        struct ENGINE_API Animation
+        struct ENGINE_API sAnimation
         {
             bool Play;
             float Duration;
             int TicksPerSecond;
-            AnimationNode Root;
+            sAnimationNode Root;
         };
 
-        Json(Animation, Duration, TicksPerSecond, Root)
+        Json(sAnimation, Duration, TicksPerSecond, Root)
 
     }
 

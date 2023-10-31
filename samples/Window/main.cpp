@@ -77,11 +77,11 @@ public:
 
         // Text 2D
         {
-            m_Text2D = new Entity("Text2D", m_Scene);
+            m_Text2D = new cEntity("Text2D", m_Scene);
             m_Text2D->Transform.Position = { 0, WindowManager::GetHeight(), 0 };
             m_Text2D->Transform.Scale = { 1, 1, 1 };
 
-            auto* textComponent = m_Text2D->Add<Text2DComponent>();
+            auto* textComponent = m_Text2D->Add<sCText2D>();
             textComponent->Text = "FPS: \n CPU: \n";
             textComponent->Font = FontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
@@ -91,11 +91,11 @@ public:
 
         // Text 3D
         {
-            m_Text3D = new Entity("Text3D", m_Scene);
+            m_Text3D = new cEntity("Text3D", m_Scene);
             m_Text3D->Transform.Position = { 0, 25, 50 };
             m_Text3D->Transform.Scale = { 0.25, 0.25, 1 };
 
-            auto* textComponent = m_Text3D->Add<Text3DComponent>();
+            auto* textComponent = m_Text3D->Add<sCText3D>();
             textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
             textComponent->Font = FontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
@@ -122,19 +122,19 @@ public:
 
         // Plane
         {
-            m_Plane = new Entity("Plane", m_Scene);
+            m_Plane = new cEntity("Plane", m_Scene);
             m_Plane->Transform.Position = { 0, 0, 0 };
             m_Plane->Transform.Scale = { 2, 1, 2 };
 
-            m_Plane->Add<GeometryComponent>(GeometryManager::AddGeometry(Plane(10)));
-            auto* planeMaterial = m_Plane->Add<MaterialComponent>(MaterialManager::AddMaterial());
+            m_Plane->Add<sCGeometry>(GeometryManager::AddGeometry(Plane(10)));
+            auto* planeMaterial = m_Plane->Add<sCMaterial>(MaterialManager::AddMaterial());
             planeMaterial->Metallness = 0.0f;
             planeMaterial->Roughness = 0.05f;
             planeMaterial->AO = 0.0f;
             MaterialManager::Flush(*planeMaterial);
 
             sPlaneShapeDescriptor planeShapeDesc;
-            m_Plane->Add<RigidBodyComponent>(
+            m_Plane->Add<sCRidigBody>(
                 PhysicsManager::AddActor(
                         m_Plane,
                         m_Scene,
@@ -149,39 +149,39 @@ public:
 
         // Sunlight
         {
-            m_SunLight = new Entity("SunLight", m_Scene);
+            m_SunLight = new cEntity("SunLight", m_Scene);
             m_SunLight->Transform.Position = { 20, 20, -20 };
 
-            m_SunLight->Add<GeometryComponent>(GeometryManager::AddGeometry(Sphere()));
-            m_SunLight->Add<MaterialComponent>(MaterialManager::AddMaterial());
-            m_SunLight->Add<DirectLightComponent>(glm::vec3(0, 0, 0), glm::vec3(1, 1, 10));
+            m_SunLight->Add<sCGeometry>(GeometryManager::AddGeometry(Sphere()));
+            m_SunLight->Add<sCMaterial>(MaterialManager::AddMaterial());
+            m_SunLight->Add<sCDirectionalLight>(glm::vec3(0, 0, 0), glm::vec3(1, 1, 10));
         }
 
         // Goblins
         {
-            m_Goblins = new Entity("Goblins", m_Scene);
+            m_Goblins = new cEntity("Goblins", m_Scene);
 
-            m_Goblin1 = new Entity("Goblin1", m_Scene);
+            m_Goblin1 = new cEntity("Goblin1", m_Scene);
             m_Goblin1->Transform.Position = {-4, 0, -4 };
             m_Goblin1->Transform.Rotation = {0, 0, 0 };
             m_Goblin1->Transform.Scale = {5, 5, 5 };
 
-            m_Goblin2 = new Entity("Goblin2", m_Scene);
+            m_Goblin2 = new cEntity("Goblin2", m_Scene);
             m_Goblin2->Transform.Position = {-4, 0, 4 };
             m_Goblin2->Transform.Rotation = {0, 0, 0 };
             m_Goblin2->Transform.Scale = {5, 5, 5 };
 
-            m_Goblin3 = new Entity("Goblin3", m_Scene);
+            m_Goblin3 = new cEntity("Goblin3", m_Scene);
             m_Goblin3->Transform.Position = {4, 0, -4 };
             m_Goblin3->Transform.Rotation = {0, 0, 0 };
             m_Goblin3->Transform.Scale = {5, 5, 5 };
 
-            m_Goblin4 = new Entity("Goblin4", m_Scene);
+            m_Goblin4 = new cEntity("Goblin4", m_Scene);
             m_Goblin4->Transform.Position = {4, 0, 4 };
             m_Goblin4->Transform.Rotation = {0, 0, 0 };
             m_Goblin4->Transform.Scale = {5, 5, 5 };
 
-            auto* goblins = m_Goblins->Add<SkeletonModelComponent>(ModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            auto* goblins = m_Goblins->Add<sCSkeletonModel>(ModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
             goblins->Visible = true;
             goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
             goblins->Skeleton = SkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
@@ -195,7 +195,7 @@ public:
 //                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
 //                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
 
-            auto* material1 = m_Goblin1->Add<MaterialComponent>(MaterialManager::AddMaterial());
+            auto* material1 = m_Goblin1->Add<sCMaterial>(MaterialManager::AddMaterial());
             material1->Albedo = { 1, 1, 1, 1 };
             material1->Emission = { 0, 0, 10 };
             material1->Metallness = 0.0f;
@@ -208,7 +208,7 @@ public:
             material1->EnableAOMap = false;
             MaterialManager::Flush(*material1);
 
-            auto* material2 = m_Goblin2->Add<MaterialComponent>(MaterialManager::AddMaterial());
+            auto* material2 = m_Goblin2->Add<sCMaterial>(MaterialManager::AddMaterial());
             material2->Albedo = { 1, 1, 1, 1 };
             material2->Emission = { 0, 0, 10 };
             material2->Metallness = 0.0f;
@@ -221,7 +221,7 @@ public:
             material2->EnableAOMap = false;
             MaterialManager::Flush(*material2);
 
-            auto* material3 = m_Goblin3->Add<MaterialComponent>(MaterialManager::AddMaterial());
+            auto* material3 = m_Goblin3->Add<sCMaterial>(MaterialManager::AddMaterial());
             material3->Albedo = { 1, 1, 1, 1 };
             material3->Emission = { 0, 0, 10 };
             material3->Metallness = 0.0f;
@@ -234,7 +234,7 @@ public:
             material3->EnableAOMap = false;
             MaterialManager::Flush(*material3);
 
-            auto* material4 = m_Goblin4->Add<MaterialComponent>(MaterialManager::AddMaterial());
+            auto* material4 = m_Goblin4->Add<sCMaterial>(MaterialManager::AddMaterial());
             material4->Albedo = { 1, 1, 1, 1 };
             material4->Emission = { 0, 0, 10 };
             material4->Metallness = 0.0f;
@@ -276,11 +276,11 @@ public:
 
         // Cube
         {
-            m_Cube = new Entity("Cube", m_Scene);
+            m_Cube = new cEntity("Cube", m_Scene);
             m_Cube->Transform.Position = { 10, 2.5, 10 };
             m_Cube->Transform.Scale = { 5, 5, 5 };
-            m_Cube->Add<GeometryComponent>(GeometryManager::AddGeometry(Cube()));
-            m_Cube->Add<MaterialComponent>(MaterialManager::AddMaterial());
+            m_Cube->Add<sCGeometry>(GeometryManager::AddGeometry(Cube()));
+            m_Cube->Add<sCMaterial>(MaterialManager::AddMaterial());
         }
 
         // Spheres
@@ -296,15 +296,15 @@ public:
             mat.Roughness = 0.05f;
             mat.AO = 0.0f;
 
-            m_Glasses[i] = new Entity("Glass-" + string(std::to_string(i)), m_Scene);
+            m_Glasses[i] = new cEntity("Glass-" + string(std::to_string(i)), m_Scene);
             m_Glasses[i]->Transform.Position = { 1 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), 0 };
             m_Glasses[i]->Transform.Scale = { 1, 1, 1 };
-            m_Glasses[i]->Add<GeometryComponent>(GeometryManager::AddGeometry(Sphere()));
-            m_Glasses[i]->Add<MaterialComponent>(MaterialManager::AddMaterial(mat));
-            m_Glasses[i]->Get<GeometryComponent>()->Transparent = true;
+            m_Glasses[i]->Add<sCGeometry>(GeometryManager::AddGeometry(Sphere()));
+            m_Glasses[i]->Add<sCMaterial>(MaterialManager::AddMaterial(mat));
+            m_Glasses[i]->Get<sCGeometry>()->Transparent = true;
 
             sSphereShapeDescriptor sphereShapeDesc(1.0f);
-            m_Glasses[i]->Add<RigidBodyComponent>(
+            m_Glasses[i]->Add<sCRidigBody>(
                     PhysicsManager::AddActor(
                             m_Glasses[i],
                             m_Scene,
@@ -562,7 +562,7 @@ private:
     {
         if (key == eKey::P)
         {
-            m_Goblins->Get<SkeletonModelComponent>()->Animation.Play = !m_Goblins->Get<SkeletonModelComponent>()->Animation.Play;
+            m_Goblins->Get<sCSkeletonModel>()->Animation.Play = !m_Goblins->Get<sCSkeletonModel>()->Animation.Play;
         }
     }
 
@@ -583,13 +583,13 @@ private:
     }
 
     void DisplayStats() {
-        auto& text2D = m_Text2D->Get<Text2DComponent>()->Text;
+        auto& text2D = m_Text2D->Get<sCText2D>()->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
                  "\nExposure: " + std::to_string(WindowManager::GetExposure());
 
-        auto& text3D = m_Text3D->Get<Text3DComponent>()->Text;
+        auto& text3D = m_Text3D->Get<sCText3D>()->Text;
         text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(WindowManager::GetGamma()) +
@@ -599,19 +599,19 @@ private:
 private:
     PerspectiveCamera* m_PerspectiveCamera;
 
-    Entity* m_SunLight;
-    Entity* m_Text2D;
-    Entity* m_Text3D;
-    Entity* m_Plane;
-    Entity* m_Goblins;
-    Entity* m_Goblin1;
-    Entity* m_Goblin2;
-    Entity* m_Goblin3;
-    Entity* m_Goblin4;
-    Entity* m_Cube;
-    Entity* m_BackgroundAudio;
-    Entity* m_AudioObject;
-    Entity* m_Glasses[4];
+    cEntity* m_SunLight;
+    cEntity* m_Text2D;
+    cEntity* m_Text3D;
+    cEntity* m_Plane;
+    cEntity* m_Goblins;
+    cEntity* m_Goblin1;
+    cEntity* m_Goblin2;
+    cEntity* m_Goblin3;
+    cEntity* m_Goblin4;
+    cEntity* m_Cube;
+    cEntity* m_BackgroundAudio;
+    cEntity* m_AudioObject;
+    cEntity* m_Glasses[4];
 
     TestConfig m_TestConfig;
     XmlConfig  m_XmlConfig;

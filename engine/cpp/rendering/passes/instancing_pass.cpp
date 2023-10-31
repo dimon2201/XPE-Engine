@@ -19,9 +19,9 @@ namespace xpe {
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
-                Entity* entity,
-                const vector<Entity*>& entities,
-                const std::function<void(Entity* entity, RenderInstance&)>& callback,
+                cEntity* entity,
+                const vector<cEntity*>& entities,
+                const std::function<void(cEntity* entity, RenderInstance&)>& callback,
                 const glm::mat4x4& lightMatrix
         ) {
             if (entities.empty()) {
@@ -37,8 +37,8 @@ namespace xpe {
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
-                Entity* entity,
-                const std::function<void(Entity* entity, RenderInstance&)>& callback,
+                cEntity* entity,
+                const std::function<void(cEntity* entity, RenderInstance&)>& callback,
                 const glm::mat4x4& lightMatrix
         ) {
             m_InstanceBuffer.Clear();
@@ -76,8 +76,8 @@ namespace xpe {
                 usize vertexCount,
                 usize indexOffset,
                 usize indexCount,
-                const vector<Entity*>& entities,
-                const std::function<void(Entity* entity, RenderInstance&)>& callback,
+                const vector<cEntity*>& entities,
+                const std::function<void(cEntity* entity, RenderInstance&)>& callback,
                 const glm::mat4x4& lightMatrix
         ) {
             usize entityCount = entities.size();

@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace res {
 
-        static void SetKeyFrames(Bone& bone, const aiNodeAnim* channel)
+        static void SetKeyFrames(sBone& bone, const aiNodeAnim* channel)
         {
             for (int i = 0; i < channel->mNumPositionKeys; i++)
             {
@@ -30,7 +30,7 @@ namespace xpe {
             }
         }
 
-        static void ParseSkeletonFromAnim(const aiAnimation* animation, Skeleton& skelet)
+        static void ParseSkeletonFromAnim(const aiAnimation* animation, sSkeleton& skelet)
         {
             int size = animation->mNumChannels;
             auto& bones = skelet.Bones;
@@ -43,7 +43,7 @@ namespace xpe {
 
                 auto it = bones.find(boneName);
                 if (it == bones.end()) {
-                    Bone bone;
+                    sBone bone;
                     bone.ID = boneCount++;
                     bone.Name = boneName;
                     bones.insert({ boneName, bone });
@@ -53,7 +53,7 @@ namespace xpe {
             }
         }
 
-        static void ParseSkeletFromMesh(aiMesh* mesh, Skeleton& skelet)
+        static void ParseSkeletFromMesh(aiMesh* mesh, sSkeleton& skelet)
         {
             s32 boneCounter = 0;
             auto& bones = skelet.Bones;
@@ -64,7 +64,7 @@ namespace xpe {
 
                 if (bones.find(boneName) == bones.end())
                 {
-                    Bone newBone;
+                    sBone newBone;
                     newBone.ID = boneCounter;
                     newBone.Name = boneName;
                     newBone.Offset = AssimpManager::ToMat4(mesh->mBones[i]->mOffsetMatrix);
@@ -77,7 +77,7 @@ namespace xpe {
         static void ParseSkeletonFromScene(
                 aiNode* node,
                 const aiScene* scene,
-                Skeleton& skelet
+                sSkeleton& skelet
         ) {
             for (u32 i = 0 ; i < node->mNumMeshes ; i++)
             {
@@ -91,9 +91,9 @@ namespace xpe {
             }
         }
 
-        Skeleton SkeletonLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        sSkeleton SkeletonLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            Skeleton skeleton;
+            sSkeleton skeleton;
 
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));
@@ -106,7 +106,7 @@ namespace xpe {
             ParseSkeletonFromScene(scene->mRootNode, scene, skeleton);
             ParseSkeletonFromAnim(scene->mAnimations[0], skeleton);
 
-            return SkeletonManager::AddSkeleton(skeleton);
+            return mSkeletonManager::AddSkeleton(skeleton);
         }
 
     }

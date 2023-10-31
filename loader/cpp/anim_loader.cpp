@@ -4,7 +4,7 @@ namespace xpe {
 
     namespace res {
 
-        static void ParseAnimation(AnimationNode& parent, const aiNode* node)
+        static void ParseAnimation(sAnimationNode& parent, const aiNode* node)
         {
             parent.Name = node->mName.data;
             parent.Transform = AssimpManager::ToMat4(node->mTransformation);
@@ -12,15 +12,15 @@ namespace xpe {
 
             for (int i = 0; i < node->mNumChildren; i++)
             {
-                AnimationNode child;
+                sAnimationNode child;
                 ParseAnimation(child, node->mChildren[i]);
                 parent.Children.emplace_back(child);
             }
         }
 
-        Animation AnimLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        sAnimation AnimLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
-            Animation animation;
+            sAnimation animation;
 
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(filepath, AssimpManager::GetLoadFlags(options));

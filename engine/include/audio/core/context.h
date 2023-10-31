@@ -40,8 +40,8 @@ namespace xpe {
             ENGINE_API void bindBuffers(u32 sourceID, u32 bufferID);
             ENGINE_API void UnbindBuffers(u32 sourceID);
 
-            ENGINE_API void UploadFileToBuffer(AudioFile& file, u32 bufferID);
-            ENGINE_API void UpdateBuffer(const AudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed);
+            ENGINE_API void UploadFileToBuffer(sAudioFile& file, u32 bufferID);
+            ENGINE_API void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed);
 
             ENGINE_API void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers);
             ENGINE_API void StopRecord();
@@ -72,7 +72,7 @@ namespace xpe {
             ENGINE_API void GetState(u32 sourceID, eAudioState& state);
             ENGINE_API void GetProcessed(u32 sourceID, s32* processed);
 
-            ENGINE_API int GetFormat(const AudioFile& file, u32 channels);
+            ENGINE_API int GetFormat(const sAudioFile& file, u32 channels);
             ENGINE_API u32 GetBufferSize(u32 channels, u32 BufferSamples);
         }
     }

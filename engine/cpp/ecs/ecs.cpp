@@ -2,14 +2,14 @@ namespace xpe {
 
     namespace ecs {
 
-        Component* ComponentStorage::GetAddress(usize componentSize, Entity* entity)
+        sComponent* sComponentStorage::GetAddress(usize componentSize, cEntity* entity)
         {
             usize size = m_Components.size();
             usize step = componentSize;
 
             for (usize i = 0 ; i < size ; i += step)
             {
-                auto* component = reinterpret_cast<Component*>(&m_Components[i]);
+                auto* component = reinterpret_cast<sComponent*>(&m_Components[i]);
                 if (component->Entity == entity) {
                     return component;
                 }
@@ -18,12 +18,12 @@ namespace xpe {
             return nullptr;
         }
 
-        void ComponentStorage::Clear()
+        void sComponentStorage::Clear()
         {
             m_Components.clear();
         }
 
-        Entity::Entity(const string& tag, Scene* scene) : m_Scene(scene)
+        cEntity::cEntity(const string& tag, cScene* scene) : m_Scene(scene)
         {
             m_Tag = tag;
             if (m_Scene != nullptr) {
@@ -31,7 +31,7 @@ namespace xpe {
             }
         }
 
-        Entity::~Entity()
+        cEntity::~cEntity()
         {
             if (m_Scene != nullptr) {
                 m_Scene->RemoveEntity(m_Tag);
@@ -39,28 +39,28 @@ namespace xpe {
             }
         }
 
-        void Entity::RemoveAll()
+        void cEntity::RemoveAll()
         {
             m_Scene->RemoveComponents(this);
         }
 
-        void Scene::AddEntity(const string& tag, Entity* entity)
+        void cScene::AddEntity(const string& tag, cEntity* entity)
         {
             m_Entities.insert({ tag, entity });
         }
 
-        void Scene::RemoveEntity(const string& tag)
+        void cScene::RemoveEntity(const string& tag)
         {
             m_Entities.erase(tag);
         }
 
-        void Scene::RenameEntity(const string &oldTag, const string& newTag)
+        void cScene::RenameEntity(const string &oldTag, const string& newTag)
         {
             m_Entities.insert({ newTag, m_Entities[oldTag] });
             m_Entities.erase(oldTag);
         }
 
-        Entity* Scene::GetEntity(const string &tag)
+        cEntity* cScene::GetEntity(const string &tag)
         {
             auto it = m_Entities.find(tag);
 
@@ -71,7 +71,7 @@ namespace xpe {
             return nullptr;
         }
 
-        Scene::~Scene()
+        cScene::~cScene()
         {
             m_Entities.clear();
 
@@ -86,7 +86,7 @@ namespace xpe {
             m_Globals.clear();
         }
 
-        void Scene::InvalidateComponentAddresses(ComponentType type, usize componentSize)
+        void cScene::InvalidateComponentAddresses(ComponentType type, usize componentSize)
         {
             for (const auto& entity : m_Entities)
             {
@@ -94,17 +94,17 @@ namespace xpe {
             }
         }
 
-        void Scene::RemoveComponents(Entity* entity)
+        void cScene::RemoveComponents(cEntity* entity)
         {
             m_ComponentAddresses.erase(entity);
         }
 
-        void Scene::ToJson(json &root)
+        void cScene::ToJson(json &root)
         {
 
         }
 
-        void Scene::FromJson(json &root)
+        void cScene::FromJson(json &root)
         {
 
         }

@@ -16,7 +16,7 @@ namespace xpe {
 		public:
             static void Init();
             static void Free();
-			static AudioFile* Load(const char* filepath);
+			static sAudioFile* Load(const char* filepath);
 		};
 	}
 }

@@ -7,21 +7,21 @@ namespace xpe {
 
         using namespace context;
 
-        AudioSystem::AudioSystem()
+        cAudioSystem::cAudioSystem()
 		{
 			context::InitAudio();
 		}
 
-        AudioSystem::~AudioSystem()
+        cAudioSystem::~cAudioSystem()
 		{
 			context::FreeAudio();
 		}
 
 		// Update listener's position, velocity and orientation
-		void AudioSystem::UpdateListener(Scene* scene)
+		void cAudioSystem::UpdateListener(cScene* scene)
 		{
 			// todo : Maybe, if do it global, it will be better then now. And I dont need use EachComponent :|
-			scene->EachComponent<ListenerComponent>([](ListenerComponent* component) {
+			scene->EachComponent<sCListener>([](sCListener* component) {
 				SetListenerPosition(*component->Position);
 				SetListenerVelocity(component->Velocity);
 				SetListenerOrientation(*component->Look, component->Up);
@@ -29,16 +29,16 @@ namespace xpe {
 		}
 
 		// It's a cycle. multimedia playback and update audio's states
-		void AudioSystem::Update(ecs::Scene* scene, const Time& dt)
+		void cAudioSystem::Update(ecs::cScene* scene, const Time& dt)
 		{
 			//UpdateVoices(scene); //temporarily commented to not hearing myself
 			UpdateAudios(scene);
 			UpdateStreamAudios(scene);
 		}
 
-		void AudioSystem::UpdateVoices(Scene* scene)
+		void cAudioSystem::UpdateVoices(cScene* scene)
 		{
-			scene->EachComponent<VoiceComponent>([this](VoiceComponent* component) {
+			scene->EachComponent<sCVoice>([this](sCVoice* component) {
 
 				if (component->State != eAudioState::PLAYING) {
 					VoiceInit(component);
@@ -53,7 +53,7 @@ namespace xpe {
 			});
 		}
 
-		void AudioSystem::RecordVoice(VoiceComponent* component)
+		void cAudioSystem::RecordVoice(sCVoice* component)
 		{
 			GetProcessed(component->SourceID, &component->Frames);
 
@@ -63,7 +63,7 @@ namespace xpe {
 			}
 		}
 
-		void AudioSystem::VoiceInit(VoiceComponent* component)
+		void cAudioSystem::VoiceInit(sCVoice* component)
 		{
 			GenSources(1, &component->SourceID);
 
@@ -74,7 +74,7 @@ namespace xpe {
 			StartRecord(component->SourceID, component->BufferID.data(), component->State, component->Data.data(), component->NumBuffers);
 		}
 
-		void AudioSystem::AudioInit(AudioComponent* component)
+		void cAudioSystem::AudioInit(sCAudio* component)
 		{
 			GenSources(1, &component->Source.Id);
 			GenBuffers(1, &component->BufferID);
@@ -100,18 +100,18 @@ namespace xpe {
 			SetLooping(component->Source.Id, component->Source.Looping);
 		}
 
-		void AudioSystem::AudioSet(AudioComponent* component)
+		void cAudioSystem::AudioSet(sCAudio* component)
 		{
 			AudioInit(component);
 			PlaySource(component->Source.Id);
 		}
 
-		void AudioSystem::AudioUpdate(AudioComponent* component)
+		void cAudioSystem::AudioUpdate(sCAudio* component)
 		{
 			GetState(component->Source.Id, component->Source.State);
 		}
 
-		void AudioSystem::AudioStop(AudioComponent* component)
+		void cAudioSystem::AudioStop(sCAudio* component)
 		{
 			StopAudio(component->Source.Id);
 			UnbindBuffers(component->Source.Id);
@@ -122,9 +122,9 @@ namespace xpe {
 			component->Source.Id = 0;
 		}
 
-		void AudioSystem::UpdateAudios(Scene* scene)
+		void cAudioSystem::UpdateAudios(cScene* scene)
 		{
-			scene->EachComponent<AudioComponent>([this](AudioComponent* component) {
+			scene->EachComponent<sCAudio>([this](sCAudio* component) {
 
 				if (component->State == eAudioState::PLAYING) {
 					AudioUpdate(component);
@@ -142,7 +142,7 @@ namespace xpe {
 			});
 		}
 
-		void AudioSystem::AudioInit(StreamAudioComponent* component)
+		void cAudioSystem::AudioInit(sCStreamAudio* component)
 		{
 			GenSources(1, &component->Source.Id);
 
@@ -166,7 +166,7 @@ namespace xpe {
 			SetConeOuterAngle(component->Source.Id, component->Source.ConeOuterAngle);
 		}
 
-		void AudioSystem::AudioSet(StreamAudioComponent* component)
+		void cAudioSystem::AudioSet(sCStreamAudio* component)
 		{
 			AudioInit(component);
 
@@ -180,7 +180,7 @@ namespace xpe {
 			PlaySource(component->Source.Id);
 		}
 
-		void AudioSystem::AudioUpdate(StreamAudioComponent* component)
+		void cAudioSystem::AudioUpdate(sCStreamAudio* component)
 		{
 			s32 processed;
 
@@ -205,7 +205,7 @@ namespace xpe {
 			}
 		}
 
-		void AudioSystem::AudioStop(StreamAudioComponent* component)
+		void cAudioSystem::AudioStop(sCStreamAudio* component)
 		{
 			StopAudio(component->Source.Id);
 			UnbindBuffers(component->Source.Id);
@@ -216,10 +216,10 @@ namespace xpe {
 			component->Source.Id = 0;
 		}
 
-		void AudioSystem::UpdateStreamAudios(Scene* scene)
+		void cAudioSystem::UpdateStreamAudios(cScene* scene)
 		{
 			// todo : Need to fix Looping
-			scene->EachComponent<StreamAudioComponent>([this](StreamAudioComponent* component) {
+			scene->EachComponent<sCStreamAudio>([this](sCStreamAudio* component) {
 
 				if (component->State == eAudioState::PLAYING) {
 					AudioUpdate(component);

@@ -14,12 +14,12 @@ namespace xpe
 
     namespace anim
     {
-        class AnimSystem;
+        class cAnimSystem;
     }
 
     namespace audio
     {
-        class AudioSystem;
+        class cAudioSystem;
     }
 
     namespace ecs
@@ -61,15 +61,15 @@ namespace xpe
 
             std::atomic_bool m_IsOpen = true;
 
-            ecs::Scene* m_Scene = nullptr;
+            ecs::cScene* m_Scene = nullptr;
 
             render::Canvas* m_Canvas = nullptr;
 
             render::Viewport m_Viewport;
 
             render::RenderSystem* m_RenderSystem = nullptr;
-            anim::AnimSystem* m_AnimSystem = nullptr;
-            audio::AudioSystem* m_AudioSystem = nullptr;
+            anim::cAnimSystem* m_AnimSystem = nullptr;
+            audio::cAudioSystem* m_AudioSystem = nullptr;
             physics::PhysicsSystem* m_PhysicsSystem = nullptr;
 
             render::SSAOPass* m_SsaoPass = nullptr;

@@ -75,8 +75,8 @@ namespace xpe {
             m_Viewport.Height = WindowManager::GetHeight();
 
             m_RenderSystem = new RenderSystem(m_Viewport, Config.MsaaSampleCount);
-            m_AnimSystem = new AnimSystem();
-            m_AudioSystem = new AudioSystem();
+            m_AnimSystem = new cAnimSystem();
+            m_AudioSystem = new cAudioSystem();
             m_PhysicsSystem = new PhysicsSystem();
 
             InitRenderPasses();
@@ -88,7 +88,7 @@ namespace xpe {
             m_SsaoPass->Enable = Config.EnableSSAO;
             m_FxaaPass->Enable = Config.MsaaSampleCount == 1;
 
-            m_Scene = new Scene();
+            m_Scene = new cScene();
 
             Init();
 

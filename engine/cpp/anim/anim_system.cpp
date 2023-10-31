@@ -7,9 +7,9 @@ namespace xpe {
 
     namespace anim {
 
-        void AnimSystem::Update(Scene* scene, const Time& dt)
+        void cAnimSystem::Update(cScene* scene, const Time& dt)
         {
-            scene->EachComponent<SkeletonModelComponent>([this, dt](SkeletonModelComponent* component)
+            scene->EachComponent<sCSkeletonModel>([this, dt](sCSkeletonModel* component)
             {
                 if (component->Animation.Play) {
                     AnimateSkeleton(component->Skeleton, component->Animation, dt);
@@ -17,19 +17,19 @@ namespace xpe {
             });
         }
 
-        void AnimSystem::AnimateSkeleton(Skeleton &skeleton, const Animation &animation, const Time& dt)
+        void cAnimSystem::AnimateSkeleton(sSkeleton &skeleton, const sAnimation &animation, const Time& dt)
         {
             m_DeltaSeconds = dt.Seconds();
             m_CurrentSeconds += animation.TicksPerSecond * m_DeltaSeconds;
             m_CurrentSeconds = fmod(m_CurrentSeconds, animation.Duration);
-            auto* boneBuffer = SkeletonManager::GetBuffer(skeleton.Index);
+            auto* boneBuffer = mSkeletonManager::GetBuffer(skeleton.Index);
             if (boneBuffer) {
                 boneBuffer->Resize(skeleton.Bones.size());
                 UpdateSkeletonTransform(skeleton, *boneBuffer, animation.Root, glm::mat4(1.0f));
             }
         }
 
-        void AnimSystem::AnimateBone(Bone &bone, float time)
+        void cAnimSystem::AnimateBone(sBone &bone, float time)
         {
             glm::mat4 translation = InterpolatePosition(bone, time);
             glm::mat4 rotation = InterpolateRotation(bone, time);
@@ -37,7 +37,7 @@ namespace xpe {
             bone.Transform = translation * rotation * scale;
         }
 
-        int AnimSystem::GetPositionIndex(Bone &bone, float time)
+        int cAnimSystem::GetPositionIndex(sBone &bone, float time)
         {
             usize count = bone.KeyPositions.size();
 
@@ -51,7 +51,7 @@ namespace xpe {
             return -1;
         }
 
-        int AnimSystem::GetRotationIndex(Bone &bone, float time)
+        int cAnimSystem::GetRotationIndex(sBone &bone, float time)
         {
             usize count = bone.KeyRotations.size();
 
@@ -65,7 +65,7 @@ namespace xpe {
             return -1;
         }
 
-        int AnimSystem::GetScaleIndex(Bone &bone, float time)
+        int cAnimSystem::GetScaleIndex(sBone &bone, float time)
         {
             usize count = bone.KeyScales.size();
 
@@ -79,7 +79,7 @@ namespace xpe {
             return -1;
         }
 
-        float AnimSystem::GetScaleFactor(float lastTimestamp, float nextTimestamp, float time)
+        float cAnimSystem::GetScaleFactor(float lastTimestamp, float nextTimestamp, float time)
         {
             float scaleFactor;
             float midWayLength = time - lastTimestamp;
@@ -88,7 +88,7 @@ namespace xpe {
             return scaleFactor;
         }
 
-        glm::mat4 AnimSystem::InterpolatePosition(Bone &bone, float time)
+        glm::mat4 cAnimSystem::InterpolatePosition(sBone &bone, float time)
         {
             auto& positions = bone.KeyPositions;
 
@@ -118,7 +118,7 @@ namespace xpe {
             return glm::translate(glm::mat4(1.0f), finalPosition);
         }
 
-        glm::mat4 AnimSystem::InterpolateRotation(Bone &bone, float time)
+        glm::mat4 cAnimSystem::InterpolateRotation(sBone &bone, float time)
         {
             auto& rotations = bone.KeyRotations;
 
@@ -152,7 +152,7 @@ namespace xpe {
             return glm::toMat4(finalRotation);
         }
 
-        glm::mat4 AnimSystem::InterpolateScale(Bone &bone, float time)
+        glm::mat4 cAnimSystem::InterpolateScale(sBone &bone, float time)
         {
             auto& scales = bone.KeyScales;
 
@@ -182,16 +182,16 @@ namespace xpe {
             return glm::scale(glm::mat4(1.0f), finalScale);
         }
 
-        void AnimSystem::UpdateSkeletonTransform(
-                Skeleton &skeleton,
+        void cAnimSystem::UpdateSkeletonTransform(
+                sSkeleton &skeleton,
                 BoneBuffer& boneBuffer,
-                const AnimationNode& animationNode,
+                const sAnimationNode& animationNode,
                 const glm::mat4 &parentTransform
         ) {
             const string& nodeName = animationNode.Name;
             glm::mat4 nodeTransform = animationNode.Transform;
 
-            Bone* bone = nullptr;
+            sBone* bone = nullptr;
             auto it = skeleton.Bones.find(nodeName);
             if (it != skeleton.Bones.end()) {
                 bone = &it->second;

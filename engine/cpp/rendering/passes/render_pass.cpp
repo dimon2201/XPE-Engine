@@ -208,12 +208,12 @@ namespace xpe {
             return m_Pipeline->RenderTarget;
         }
 
-        void RenderPass::DrawFinal(Scene* scene)
+        void RenderPass::DrawFinal(cScene* scene)
         {
             context::DrawQuad();
         }
 
-        void RenderPass::DrawPostFX(Scene* scene)
+        void RenderPass::DrawPostFX(cScene* scene)
         {
             context::DrawQuad();
         }

@@ -9,9 +9,9 @@ namespace xpe {
         Text3DPass::Text3DPass(const vector<RenderPassBinding> &bindings)
         : TextPass(eType::OPAQUE, bindings) {}
 
-        void Text3DPass::DrawOpaque(Scene* scene)
+        void Text3DPass::DrawOpaque(cScene* scene)
         {
-            scene->EachComponent<Text3DComponent>([this](Text3DComponent* component)
+            scene->EachComponent<sCText3D>([this](sCText3D* component)
             {
                 DrawText(component->Entity->Transform, component->Text, *component->Font);
             });

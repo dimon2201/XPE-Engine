@@ -25,7 +25,7 @@ namespace xpe {
             m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
-        void SkyboxPass::DrawOpaque(Scene *scene)
+        void SkyboxPass::DrawOpaque(cScene *scene)
         {
             auto& skybox = SkyboxManager::Get().Skybox;
             if (skybox.Texture) {

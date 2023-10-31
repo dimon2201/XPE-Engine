@@ -22,7 +22,7 @@ namespace xpe {
             OUT_OF_MEMORY
         };
 
-        struct ENGINE_API AudioSource
+        struct ENGINE_API sAudioSource
         {
             u32 Id = 0;
 
@@ -44,7 +44,7 @@ namespace xpe {
         };
 
         Json(
-                AudioSource,
+                sAudioSource,
                 Id,
                 State,
                 Position,

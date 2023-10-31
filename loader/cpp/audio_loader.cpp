@@ -5,11 +5,11 @@ namespace xpe {
 
 	namespace res {
 
-        static unordered_map<string, AudioFile*>* s_AudioFiles = nullptr;
+        static unordered_map<string, sAudioFile*>* s_AudioFiles = nullptr;
 
         void AudioLoader::Init()
         {
-            s_AudioFiles = new unordered_map<string, AudioFile*>();
+            s_AudioFiles = new unordered_map<string, sAudioFile*>();
         }
 
         void AudioLoader::Free()
@@ -20,9 +20,9 @@ namespace xpe {
             delete s_AudioFiles;
         }
 
-        AudioFile* AudioLoader::Load(const char* filepath)
+        sAudioFile* AudioLoader::Load(const char* filepath)
 		{
-            AudioFile* audioFile = new AudioFile();
+            sAudioFile* audioFile = new sAudioFile();
 
             audioFile->File = sf_open(filepath, SFM_READ, &audioFile->Info);
 			if (!audioFile->File) {

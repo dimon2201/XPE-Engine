@@ -122,7 +122,7 @@ namespace xpe {
                 alSourcei(sourceID, AL_BUFFER, 0);
             }
 
-            void UploadFileToBuffer(AudioFile& file, u32 bufferID)
+            void UploadFileToBuffer(sAudioFile& file, u32 bufferID)
             {
                 s64 chunk, size;
                 vector<short> data;
@@ -141,7 +141,7 @@ namespace xpe {
                 }
             }
 
-            void UpdateBuffer(const AudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed)
+            void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed)
             {
                 s64 chunk, size;
 
@@ -277,7 +277,7 @@ namespace xpe {
                 alGetSourcei(sourceID, AL_BUFFERS_PROCESSED, processed);
             }
 
-            int GetFormat(const AudioFile& file, u32 channels)
+            int GetFormat(const sAudioFile& file, u32 channels)
             {
                 if (channels == 1) {
                     return AL_FORMAT_MONO16;

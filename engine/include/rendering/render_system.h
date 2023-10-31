@@ -17,7 +17,7 @@ namespace xpe {
         using namespace core;
         using namespace ecs;
 
-        class ENGINE_API RenderSystem : public System
+        class ENGINE_API RenderSystem : public cSystem
         {
 
         public:
@@ -27,7 +27,7 @@ namespace xpe {
             template<typename T, typename ... Args>
             T* AddRenderPass(Args &&... args);
 
-            void Update(Scene* scene, const Time& dt) override final;
+            void Update(cScene* scene, const Time& dt) override final;
 
             void Prepare();
 
@@ -64,8 +64,8 @@ namespace xpe {
             void FreeSamplers();
             void FreeRenderTargets();
 
-            void UpdateLight(Scene* scene);
-            void UpdatePasses(Scene* scene);
+            void UpdateLight(cScene* scene);
+            void UpdatePasses(cScene* scene);
 
             vector<RenderPass*> m_FinalRenderPasses;
             vector<RenderPass*> m_ShadowRenderPasses;

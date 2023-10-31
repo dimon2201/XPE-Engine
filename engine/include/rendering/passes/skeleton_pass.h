@@ -12,10 +12,10 @@ namespace xpe {
         public:
             SkeletonPass(eType type, const vector<RenderPassBinding>& bindings);
 
-            void DrawOpaque(Scene *scene) override;
-            void DrawTransparent(Scene *scene) override;
+            void DrawOpaque(cScene *scene) override;
+            void DrawTransparent(cScene *scene) override;
 
-            void DrawShadow(Scene *scene) override;
+            void DrawShadow(cScene *scene) override;
 
         protected:
             void InitOpaque() override;

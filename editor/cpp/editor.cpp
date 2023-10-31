@@ -43,7 +43,7 @@ xpe::core::Application* CreateApplication()
     Application* app = new focus::core::Editor();
 
     // read app configs
-    app->Config = string("EditorConfig");
+    // app->Config = string("EditorConfig"); todo: compilator error
     if (!xpe::res::ReadJsonFile("config/editor_config.json", app->Config))
     {
         FMT_ASSERT(false, "Failed to read app config from config/config.json file. Please provide config file!");

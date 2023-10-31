@@ -21,8 +21,8 @@ namespace xpe {
 
     namespace ecs
     {
-        class Entity;
-        class Scene;
+        class cEntity;
+        class cScene;
     }
 
     namespace render
@@ -163,8 +163,8 @@ namespace xpe {
             static void EnableLoggingError(bool enable);
 
             static sActor* AddActor(
-                Entity* entity,
-                Scene* scene,
+                cEntity* entity,
+                cScene* scene,
                 const sActor::eActorType& actorType,
                 sShapeDescriptor* shapeDesc,
                 const glm::vec3& linearVelocity,
@@ -174,7 +174,7 @@ namespace xpe {
                 f32 contactOffset,
                 f32 restOffset
             );
-            static sScene* AddScene(Scene* scene);
+            static sScene* AddScene(cScene* scene);
 
         private:
             static bool EnableMemoryProfiling;

@@ -36,7 +36,7 @@ namespace xpe {
             ShaderManager::Init();
             GeometryManager::Init();
             MaterialManager::Init();
-            SkeletonManager::Init();
+            mSkeletonManager::Init();
             SkyboxManager::Init();
         }
 
@@ -210,7 +210,7 @@ namespace xpe {
         void RenderSystem::FreeManagers()
         {
             SkyboxManager::Free();
-            SkeletonManager::Free();
+            mSkeletonManager::Free();
             MaterialManager::Free();
             GeometryManager::Free();
             ShaderManager::Free();
@@ -255,16 +255,16 @@ namespace xpe {
             GeometryManager::Bind();
         }
 
-        void RenderSystem::Update(Scene* scene, const Time& dt)
+        void RenderSystem::Update(cScene* scene, const Time& dt)
         {
             UpdateLight(scene);
             UpdatePasses(scene);
         }
 
-        void RenderSystem::UpdateLight(Scene* scene)
+        void RenderSystem::UpdateLight(cScene* scene)
         {
             m_DirectLightBuffer->Clear();
-            scene->EachComponent<DirectLightComponent>([this](DirectLightComponent* component)
+            scene->EachComponent<sCDirectionalLight>([this](sCDirectionalLight* component)
             {
                 if (component->FollowEntity) {
                     component->Position = component->Entity->Transform.Position;
@@ -278,7 +278,7 @@ namespace xpe {
             m_DirectLightBuffer->Flush();
 
             m_PointLightBuffer->Clear();
-            scene->EachComponent<PointLightComponent>([this](PointLightComponent* component)
+            scene->EachComponent<sCPointLight>([this](sCPointLight* component)
             {
                 if (component->FollowEntity) {
                     component->Position = component->Entity->Transform.Position;
@@ -295,7 +295,7 @@ namespace xpe {
             m_PointLightBuffer->Flush();
 
             m_SpotLightBuffer->Clear();
-            scene->EachComponent<SpotLightComponent>([this](SpotLightComponent* component)
+            scene->EachComponent<sCSpotLight>([this](sCSpotLight* component)
             {
                 if (component->FollowEntity) {
                     component->Position = component->Entity->Transform.Position;
@@ -312,7 +312,7 @@ namespace xpe {
             m_SpotLightBuffer->Flush();
         }
 
-        void RenderSystem::UpdatePasses(xpe::ecs::Scene *scene)
+        void RenderSystem::UpdatePasses(xpe::ecs::cScene *scene)
         {
             // Shadow
             m_ShadowRenderTarget->ClearDepth(1.0f);

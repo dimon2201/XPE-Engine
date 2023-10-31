@@ -97,8 +97,8 @@ namespace xpe
         }
 
         sActor* PhysicsManager::AddActor(
-            Entity* entity,
-            Scene* scene,
+            cEntity* entity,
+            cScene* scene,
             const sActor::eActorType& actorType,
             sShapeDescriptor* shapeDesc,
             const glm::vec3& linearVelocity,
@@ -245,7 +245,7 @@ namespace xpe
             return actor;
         }
 
-        sScene* PhysicsManager::AddScene(Scene* scene)
+        sScene* PhysicsManager::AddScene(cScene* scene)
         {
             PxSceneDesc sceneDesc(s_Physics->getTolerancesScale());
             sceneDesc.gravity = PxVec3(-1.0f, 0.0f, 0.0f);

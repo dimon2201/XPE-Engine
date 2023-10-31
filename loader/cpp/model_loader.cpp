@@ -79,7 +79,7 @@ namespace xpe {
             geometry.Indices.resize(indices.size());
             memcpy(geometry.Indices.data(), indices.data(), indices.size() * sizeof(u32));
 
-            anim::Skeleton skeleton;
+            anim::sSkeleton skeleton;
             auto& bones = skeleton.Bones;
             int boneCounter = 0;
             for (int i = 0; i < mesh->mNumBones; i++)
@@ -90,7 +90,7 @@ namespace xpe {
 
                 if (bones.find(boneName) == bones.end())
                 {
-                    anim::Bone newBone;
+                    anim::sBone newBone;
                     newBone.ID = boneCounter;
                     newBone.Name = boneName;
                     newBone.Offset = AssimpManager::ToMat4(bone->mOffsetMatrix);

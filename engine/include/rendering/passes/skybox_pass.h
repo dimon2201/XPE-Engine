@@ -18,7 +18,7 @@ namespace xpe {
             SkyboxPass(const vector<RenderPassBinding>& bindings);
             ~SkyboxPass() override;
 
-            void DrawOpaque(Scene *scene) override;
+            void DrawOpaque(cScene *scene) override;
 
         protected:
             void InitOpaque() override;

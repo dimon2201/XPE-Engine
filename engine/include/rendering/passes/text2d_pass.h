@@ -10,7 +10,7 @@ namespace xpe {
         {
         public:
             Text2DPass(const vector<RenderPassBinding>& bindings);
-            void DrawUI(Scene* scene) override;
+            void DrawUI(cScene* scene) override;
         };
 
     }

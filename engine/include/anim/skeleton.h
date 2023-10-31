@@ -8,26 +8,26 @@ namespace xpe {
 
     namespace anim {
 
-        struct ENGINE_API Bone final
+        struct ENGINE_API sBone final
         {
             s32 ID;
             string Name;
             glm::mat4 Offset;
             glm::mat4 Transform = glm::mat4(1.0);
-            vector<KeyPosition> KeyPositions;
-            vector<KeyRotate> KeyRotations;
-            vector<KeyScale> KeyScales;
+            vector<sKeyPosition> KeyPositions;
+            vector<sKeyRotate> KeyRotations;
+            vector<sKeyScale> KeyScales;
         };
 
-        Json(Bone, ID, Name, Offset, Transform, KeyPositions, KeyRotations, KeyScales)
+        Json(sBone, ID, Name, Offset, Transform, KeyPositions, KeyRotations, KeyScales)
 
-        struct ENGINE_API Skeleton
+        struct ENGINE_API sSkeleton
         {
             u32 Index = 0;
-            unordered_map<string, Bone> Bones;
+            unordered_map<string, sBone> Bones;
         };
 
-        Json(Skeleton, Bones)
+        Json(sSkeleton, Bones)
 
     }
 

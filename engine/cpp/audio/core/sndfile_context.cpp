@@ -4,7 +4,7 @@ namespace xpe {
 
 	namespace audio {
 
-		AudioFile::~AudioFile()
+		sAudioFile::~sAudioFile()
 		{
 			sf_close(File);
 		}
@@ -21,7 +21,7 @@ namespace xpe {
 				return sf_readf_short(m_File, data, num_frames);
 			}
 
-			bool isAmbisonic(const AudioFile& file)
+			bool isAmbisonic(const sAudioFile& file)
 			{
 				return sf_command(file.File, SFC_WAVEX_GET_AMBISONIC, NULL, 0) == SF_AMBISONIC_B_FORMAT;
 			}

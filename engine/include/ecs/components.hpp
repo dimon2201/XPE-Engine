@@ -25,7 +25,7 @@ namespace xpe
         using namespace anim;
         using namespace audio;
 
-        struct ENGINE_API CameraComponent : Component
+        struct ENGINE_API sCCamera : sComponent
         {
             // Position.z = -1 is a default valid value for 2D orthographic view
             // If Position.z >= 0, 2D geometry will not be shown on screen
@@ -34,69 +34,69 @@ namespace xpe
             glm::vec3 Up = { 0, 1, 0 };
 
             JsonClass(
-                CameraComponent,
+                sCCamera,
                 Position,
                 Front,
                 Up
             )
         };
 
-        struct ENGINE_API PerspectiveCameraComponent : CameraComponent, PerspectiveMatrix
+        struct ENGINE_API sCPerspectiveCamera : sCCamera, PerspectiveMatrix
         {
             JsonClass(
-                PerspectiveCameraComponent,
+                sCPerspectiveCamera,
                 m_Tag
             )
         };
 
-        struct ENGINE_API OrthoCameraComponent : CameraComponent, OrthoMatrix
+        struct ENGINE_API sCOrthoCamera : sCCamera, OrthoMatrix
         {
             JsonClass(
-                OrthoCameraComponent,
+                sCOrthoCamera,
                 m_Tag
             )
         };
 
-        struct ENGINE_API Text2DComponent : Component
+        struct ENGINE_API sCText2D : sComponent
         {
             string Text;
             render::Font* Font;
 
-            Text2DComponent(const string& text, render::Font* font) : Text(text), Font(font) {}
+            sCText2D(const string& text, render::Font* font) : Text(text), Font(font) {}
 
             JsonClass(
-                Text2DComponent,
+                sCText2D,
                 Text
             )
         };
 
-        struct ENGINE_API Text3DComponent : Component
+        struct ENGINE_API sCText3D : sComponent
         {
             string Text;
             render::Font* Font;
 
-            Text3DComponent(const string& text, render::Font* font) : Text(text), Font(font) {}
+            sCText3D(const string& text, render::Font* font) : Text(text), Font(font) {}
 
             JsonClass(
-                Text3DComponent,
+                sCText3D,
                 Text
             )
         };
 
-        struct ENGINE_API MaterialComponent : Component, Material
+        struct ENGINE_API sCMaterial : sComponent, Material
         {
-            MaterialComponent(const Material& material) : Material(material) {}
-            MaterialComponent(Material&& material) : Material(material) {}
+            sCMaterial(const Material& material) : Material(material) {}
+            sCMaterial(Material&& material) : Material(material) {}
 
             JsonClass(
-                MaterialComponent,
+                sCMaterial,
                 m_Tag
             )
         };
 
-        struct ENGINE_API DirectLightComponent : Component, DirectLightData, OrthoMatrix
+        struct ENGINE_API sCDirectionalLight : sComponent, DirectLightData, OrthoMatrix
         {
-            DirectLightComponent(const glm::vec3& position, const glm::vec3& color)
+            sCDirectionalLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Position = position;
                 Color = color;
@@ -109,7 +109,7 @@ namespace xpe
             }
 
             JsonClass(
-                DirectLightComponent,
+                sCDirectionalLight,
                 Position,
                 Color,
                 Left,
@@ -121,16 +121,16 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API PointLightComponent : Component, PointLightData
+        struct ENGINE_API sCPointLight : sComponent, PointLightData
         {
-            PointLightComponent(const glm::vec3& position, const glm::vec3& color)
+            sCPointLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Position = position;
                 Color = color;
             }
 
             JsonClass(
-                PointLightComponent,
+                sCPointLight,
                 Position,
                 Color,
                 Constant,
@@ -139,9 +139,9 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API SpotLightComponent : Component, SpotLightData, OrthoMatrix
+        struct ENGINE_API sCSpotLight : sComponent, SpotLightData, OrthoMatrix
         {
-            SpotLightComponent(const glm::vec3& position, const glm::vec3& color)
+            sCSpotLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Position = position;
                 Color = color;
@@ -154,7 +154,7 @@ namespace xpe
             }
 
             JsonClass(
-                SpotLightComponent,
+                sCSpotLight,
                 Position,
                 Direction,
                 Color,
@@ -169,57 +169,57 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API RenderState
+        struct ENGINE_API sRenderState
         {
             bool Transparent = false;    // switch to transparency, that will draw object in transparent passes
             bool Visible = true;         // switch visibility, that will draw or not draw object
             bool CastShadow = true;      // switch shadow casting, that will draw or not draw shadow of object
         };
-        Json(RenderState, Transparent, Visible, CastShadow)
+        Json(sRenderState, Transparent, Visible, CastShadow)
 
-        struct ENGINE_API GeometryComponent : Component, Geometry, RenderState
+        struct ENGINE_API sCGeometry : sComponent, Geometry, sRenderState
         {
-            vector<ecs::Entity*> Entities;
+            vector<ecs::cEntity*> Entities;
 
-            GeometryComponent(const Geometry& geometry) : Geometry(geometry) {}
-            GeometryComponent(Geometry&& geometry) : Geometry(geometry) {}
+            sCGeometry(const Geometry& geometry) : Geometry(geometry) {}
+            sCGeometry(Geometry&& geometry) : Geometry(geometry) {}
 
             JsonClass(
-                GeometryComponent,
+                sCGeometry,
                 m_Tag
             )
         };
 
-        struct ENGINE_API ModelComponent : Component, Model, RenderState
+        struct ENGINE_API sCModel : sComponent, Model, sRenderState
         {
-            vector<ecs::Entity*> Entities;
+            vector<ecs::cEntity*> Entities;
 
-            ModelComponent(const Model& model) : Model(model) {}
-            ModelComponent(Model&& model) : Model(model) {}
+            sCModel(const Model& model) : Model(model) {}
+            sCModel(Model&& model) : Model(model) {}
 
             JsonClass(
-                ModelComponent,
+                sCModel,
                 m_Tag
             )
         };
 
-        struct ENGINE_API SkeletonModelComponent : Component, Model, RenderState
+        struct ENGINE_API sCSkeletonModel : sComponent, Model, sRenderState
         {
-            vector<ecs::Entity*> Entities;
-            anim::Skeleton Skeleton;
-            anim::Animation Animation;
+            vector<ecs::cEntity*> Entities;
+            anim::sSkeleton Skeleton;
+            anim::sAnimation Animation;
 
-            SkeletonModelComponent(const Model& model) : Model(model) {}
-            SkeletonModelComponent(Model&& model) : Model(model) {}
+            sCSkeletonModel(const Model& model) : Model(model) {}
+            sCSkeletonModel(Model&& model) : Model(model) {}
 
             JsonClass(
-                SkeletonModelComponent,
+                sCSkeletonModel,
                 Skeleton,
                 Animation
             )
         };
 
-        struct ENGINE_API ListenerComponent : Component
+        struct ENGINE_API sCListener : sComponent
         {
             glm::vec3* Position;// = { 0.0f, 0.0f, 0.0f };
             glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
@@ -227,30 +227,30 @@ namespace xpe
             glm::vec3* Look;
 
             JsonClass(
-                ListenerComponent,
+                sCListener,
                 m_Tag
             )
         };
 
-        struct ENGINE_API AudioComponent : Component
+        struct ENGINE_API sCAudio : sComponent
         {
-            AudioSource Source;
+            sAudioSource Source;
 
             eAudioState State = eAudioState::INITIAL;
 
             u32 BufferID = 0;
 
-            AudioFile* File = nullptr;
+            sAudioFile* File = nullptr;
 
             JsonClass(
-                AudioComponent,
+                sCAudio,
                 m_Tag
             )
         };
 
-        struct ENGINE_API StreamAudioComponent : Component
+        struct ENGINE_API sCStreamAudio : sComponent
         {
-            AudioSource Source;
+            sAudioSource Source;
 
             eAudioState State = eAudioState::INITIAL;
 
@@ -261,15 +261,15 @@ namespace xpe
             vector<u32> BufferID;
             vector<s16> Data;
 
-            AudioFile* File = nullptr;
+            sAudioFile* File = nullptr;
 
             JsonClass(
-                StreamAudioComponent,
+                sCStreamAudio,
                 m_Tag
             )
         };
 
-        struct ENGINE_API VoiceComponent : Component
+        struct ENGINE_API sCVoice : sComponent
         {
             u32 SourceID = 0;
 
@@ -286,14 +286,14 @@ namespace xpe
             vector<s16> Data;
 
             JsonClass(
-                VoiceComponent,
+                sCVoice,
                 m_Tag
             )
         };
 
-        struct ENGINE_API RigidBodyComponent : Component, physics::sActor
+        struct ENGINE_API sCRidigBody : sComponent, physics::sActor
         {
-            RigidBodyComponent(physics::sActor* actor)
+            sCRidigBody(physics::sActor* actor)
             {
                 Actor = actor->Actor;
                 Material = actor->Material;
@@ -309,7 +309,7 @@ namespace xpe
             }
 
             JsonClass(
-                RigidBodyComponent,
+                sCRidigBody,
                 m_Tag
             )
         };

@@ -11,15 +11,15 @@ namespace xpe
     {
         using namespace core;
 
-        class Entity;
+        class cEntity;
 
-        struct ENGINE_API Component : public Object, public res::JsonObject
+        struct ENGINE_API sComponent : public Object, public res::JsonObject
         {
-            ecs::Entity* Entity = nullptr;
+            ecs::cEntity* Entity = nullptr;
             bool FollowEntity = true;
         };
 
-        struct ENGINE_API ComponentStorage : public Object
+        struct ENGINE_API sComponentStorage : public Object
         {
             template<typename T>
             [[nodiscard]] inline size_t GetSize() const
@@ -47,7 +47,7 @@ namespace xpe
             template<typename T>
             T* Get(const string& tag);
 
-            Component* GetAddress(usize componentSize, Entity* entity);
+            sComponent* GetAddress(usize componentSize, cEntity* entity);
 
             template<typename T>
             void Reserve(usize newCapacity);
@@ -65,7 +65,7 @@ namespace xpe
             void EraseAt(int index, usize typeSize);
 
             template<typename T>
-            void Erase(Entity* entity);
+            void Erase(cEntity* entity);
 
             template<typename T>
             void ForEach(const std::function<void(T*)> &iterateFunction);
@@ -92,19 +92,19 @@ namespace xpe
         };
 
         template<typename T>
-        void ComponentStorage::Reserve(size_t newCapacity)
+        void sComponentStorage::Reserve(size_t newCapacity)
         {
             m_Components.reserve(sizeof(T) * newCapacity);
         }
 
         template<typename T>
-        void ComponentStorage::Resize(size_t newSize)
+        void sComponentStorage::Resize(size_t newSize)
         {
             m_Components.resize(sizeof(T) * newSize);
         }
 
         template<typename T, typename... Args>
-        T* ComponentStorage::Add(Args &&... args)
+        T* sComponentStorage::Add(Args &&... args)
         {
             usize componentsSize = m_Components.size();
             m_Components.resize(componentsSize + sizeof(T));
@@ -114,14 +114,14 @@ namespace xpe
         }
 
         template<typename T, typename... Args>
-        void ComponentStorage::Update(T* component, Args &&... args)
+        void sComponentStorage::Update(T* component, Args &&... args)
         {
             component->~T();
             ::new (component) T(std::forward<Args>(args)...);
         }
 
         template<typename T>
-        void ComponentStorage::EraseAt(int index, usize typeSize)
+        void sComponentStorage::EraseAt(int index, usize typeSize)
         {
             auto begin = m_Components.begin() + (index * typeSize);
             auto end = begin + typeSize;
@@ -129,7 +129,7 @@ namespace xpe
         }
 
         template<typename T>
-        void ComponentStorage::Erase(Entity* entity)
+        void sComponentStorage::Erase(cEntity* entity)
         {
             usize size = m_Components.size();
             usize typeSize = sizeof(T);
@@ -147,7 +147,7 @@ namespace xpe
         }
 
         template<typename T>
-        void ComponentStorage::ForEach(const std::function<void(T*)> &iterateFunction)
+        void sComponentStorage::ForEach(const std::function<void(T*)> &iterateFunction)
         {
             usize size = m_Components.size();
             usize step = sizeof(T);
@@ -160,7 +160,7 @@ namespace xpe
         }
 
         template<typename T>
-        T* ComponentStorage::Get(const string& tag)
+        T* sComponentStorage::Get(const string& tag)
         {
             u64 id = Hash(tag);
             usize size = m_Components.size();
@@ -178,28 +178,28 @@ namespace xpe
             return nullptr;
         }
 
-        class Entity;
-        class Global;
+        class cEntity;
+        class cGlobal;
 
         typedef usize ComponentType;
         typedef usize GlobalType;
 
-        class ENGINE_API Scene : public Object, public res::JsonObject
+        class ENGINE_API cScene : public Object, public res::JsonObject
         {
 
         public:
 
-            virtual ~Scene();
+            virtual ~cScene();
 
-            void AddEntity(const string& tag, Entity* entity);
+            void AddEntity(const string& tag, cEntity* entity);
 
             void RemoveEntity(const string& tag);
 
             void RenameEntity(const string& oldTag, const string& newTag);
 
-            Entity* GetEntity(const string& tag);
+            cEntity* GetEntity(const string& tag);
 
-            inline unordered_map<string, Entity*>& GetEntities() { return m_Entities; }
+            inline unordered_map<string, cEntity*>& GetEntities() { return m_Entities; }
 
             template<typename T, typename... Args>
             T* AddGlobal(Args&&... args);
@@ -210,24 +210,24 @@ namespace xpe
             template<typename T>
             T* GetGlobal();
 
-            inline unordered_map<uword, Global*>& GetGlobals() { return m_Globals; }
+            inline unordered_map<uword, cGlobal*>& GetGlobals() { return m_Globals; }
 
             template<typename T>
             void ReserveComponents(usize capacity);
 
             template<typename T, typename... Args>
-            T* AddComponent(Entity* entity, Args&&... args);
+            T* AddComponent(cEntity* entity, Args&&... args);
 
             template<typename T>
-            void RemoveComponent(Entity* entity);
+            void RemoveComponent(cEntity* entity);
 
-            void RemoveComponents(Entity* entity);
-
-            template<typename T>
-            T* GetComponent(Entity* entity);
+            void RemoveComponents(cEntity* entity);
 
             template<typename T>
-            ComponentStorage& GetComponents();
+            T* GetComponent(cEntity* entity);
+
+            template<typename T>
+            sComponentStorage& GetComponents();
 
             template<typename T>
             void EachComponent(const std::function<void(T*)>& iterateFunction);
@@ -254,14 +254,14 @@ namespace xpe
             void InvalidateComponentAddresses(ComponentType componentType, usize componentSize);
 
         private:
-            unordered_map<string, Entity*> m_Entities;
-            unordered_map<ComponentType, ComponentStorage> m_ComponentStorages;
-            unordered_map<Entity*, unordered_map<ComponentType, Component*>> m_ComponentAddresses;
-            unordered_map<GlobalType, Global*> m_Globals;
+            unordered_map<string, cEntity*> m_Entities;
+            unordered_map<ComponentType, sComponentStorage> m_ComponentStorages;
+            unordered_map<cEntity*, unordered_map<ComponentType, sComponent*>> m_ComponentAddresses;
+            unordered_map<GlobalType, cGlobal*> m_Globals;
         };
 
         template<typename T>
-        void Scene::ReserveComponents(usize capacity)
+        void cScene::ReserveComponents(usize capacity)
         {
             ComponentType type = GetComponentType<T>();
             m_ComponentStorages[type] = {};
@@ -269,7 +269,7 @@ namespace xpe
         }
 
         template<typename T, typename... Args>
-        T* Scene::AddComponent(Entity* entity, Args&&... args)
+        T* cScene::AddComponent(cEntity* entity, Args&&... args)
         {
             ComponentType type = GetComponentType<T>();
             T* component;
@@ -292,7 +292,7 @@ namespace xpe
         }
 
         template<typename T>
-        void Scene::RemoveComponent(Entity* entity)
+        void cScene::RemoveComponent(cEntity* entity)
         {
             ComponentType type = GetComponentType<T>();
             Component*& component = m_ComponentAddresses[entity][type];
@@ -309,37 +309,37 @@ namespace xpe
         }
 
         template<typename T>
-        T* Scene::GetComponent(Entity* entity)
+        T* cScene::GetComponent(cEntity* entity)
         {
             return (T*) m_ComponentAddresses[entity][GetComponentType<T>()];
         }
 
         template<typename T>
-        ComponentStorage& Scene::GetComponents()
+        sComponentStorage& cScene::GetComponents()
         {
             return m_ComponentStorages[GetComponentType<T>()];
         }
 
         template<typename T>
-        void Scene::EachComponent(const std::function<void(T*)>& iterateFunction)
+        void cScene::EachComponent(const std::function<void(T*)>& iterateFunction)
         {
             m_ComponentStorages[GetComponentType<T>()].ForEach<T>(iterateFunction);
         }
 
         template<typename T>
-        void Scene::InvalidateComponentAddresses()
+        void cScene::InvalidateComponentAddresses()
         {
             InvalidateComponentAddresses(GetComponentType<T>(), sizeof(T));
         }
 
         template<typename T>
-        usize Scene::GetComponentsCount()
+        usize cScene::GetComponentsCount()
         {
             return m_ComponentStorages[GetComponentType<T>()].GetSize();
         }
 
         template<typename T>
-        void Scene::RemoveGlobal()
+        void cScene::RemoveGlobal()
         {
             auto it = m_Globals.find(GetGlobalType<T>());
             if (it != m_Globals.end()) {
@@ -349,32 +349,32 @@ namespace xpe
         }
 
         template<typename T>
-        T* Scene::GetGlobal()
+        T* cScene::GetGlobal()
         {
             return static_cast<T*>(m_Globals[GetGlobalType<T>()]);
         }
 
-        class ENGINE_API Entity : public Object, public res::JsonObject
+        class ENGINE_API cEntity : public Object, public res::JsonObject
         {
 
         public:
             math::Transform Transform;
-            ecs::Entity* Parent = nullptr;
-            vector<ecs::Entity*> Children;
+            ecs::cEntity* Parent = nullptr;
+            vector<ecs::cEntity*> Children;
 
             JsonClass(
-                Entity,
+                cEntity,
                 m_Tag,
                 Transform
             )
 
-            Entity(const string& tag, Scene* scene);
+            cEntity(const string& tag, cScene* scene);
 
-            ~Entity();
+            ~cEntity();
 
-            inline void SetScene(Scene* scene) { m_Scene = scene; }
+            inline void SetScene(cScene* scene) { m_Scene = scene; }
 
-            [[nodiscard]] inline const Scene* GetScene() const { return m_Scene; }
+            [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
 
             inline void Rename(const string& tag)
             {
@@ -395,54 +395,54 @@ namespace xpe
             template<typename T>
             bool Has();
 
-            inline bool operator ==(const Entity& other) const
+            inline bool operator ==(const cEntity& other) const
             {
                 return m_Tag == other.GetTag();
             }
 
         protected:
-            Scene* m_Scene = nullptr;
+            cScene* m_Scene = nullptr;
         };
 
         template<typename T>
-        T* Entity::Get()
+        T* cEntity::Get()
         {
             return m_Scene->GetComponent<T>(this);
         }
 
         template<typename T, typename... Args>
-        T* Entity::Add(Args &&... args)
+        T* cEntity::Add(Args &&... args)
         {
             return m_Scene->AddComponent<T>(this, std::forward<Args>(args)...);
         }
 
         template<typename T>
-        void Entity::Remove()
+        void cEntity::Remove()
         {
             m_Scene->RemoveComponent<T>(this);
         }
 
         template<typename T>
-        bool Entity::Has()
+        bool cEntity::Has()
         {
             return Get<T>() != nullptr;
         }
 
-        struct ENGINE_API Global : public Object, public res::JsonObject
+        struct ENGINE_API cGlobal : public Object, public res::JsonObject
         {};
 
         template<typename T, typename... Args>
-        T* Scene::AddGlobal(Args&&... args)
+        T* cScene::AddGlobal(Args&&... args)
         {
             T* global = new T(std::forward<Args>(args)...);
             m_Globals.insert({ GetGlobalType<T>(), static_cast<Global*>(global) });
             return global;
         }
 
-        class ENGINE_API System : public Object {
+        class ENGINE_API cSystem : public Object {
 
         public:
-            virtual void Update(Scene* scene, const Time& dt) = 0;
+            virtual void Update(cScene* scene, const Time& dt) = 0;
 
         };
 

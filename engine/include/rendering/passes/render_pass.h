@@ -66,13 +66,13 @@ namespace xpe {
 
             bool Enable = true;
 
-            virtual void Update(Scene* scene) {}
-            virtual void DrawFinal(Scene* scene);
-            virtual void DrawShadow(Scene* scene) {}
-            virtual void DrawOpaque(Scene* scene) {}
-            virtual void DrawTransparent(Scene* scene) {}
-            virtual void DrawPostFX(Scene* scene);
-            virtual void DrawUI(Scene* scene) {}
+            virtual void Update(cScene* scene) {}
+            virtual void DrawFinal(cScene* scene);
+            virtual void DrawShadow(cScene* scene) {}
+            virtual void DrawOpaque(cScene* scene) {}
+            virtual void DrawTransparent(cScene* scene) {}
+            virtual void DrawPostFX(cScene* scene);
+            virtual void DrawUI(cScene* scene) {}
 
             void Init();
             void Bind();

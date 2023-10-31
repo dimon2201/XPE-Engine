@@ -9,37 +9,37 @@ namespace xpe {
         using namespace core;
 		using namespace ecs;
 
-		class ENGINE_API AudioSystem : public System
+		class ENGINE_API cAudioSystem : public cSystem
 		{
 
 		public:
-            AudioSystem();
-			~AudioSystem();
+            cAudioSystem();
+			~cAudioSystem();
 
-			void UpdateListener(Scene* scene);
+			void UpdateListener(cScene* scene);
 
-			void Update(Scene* scene, const Time& dt) override final;
+			void Update(cScene* scene, const Time& dt) override final;
 
-			void UpdateVoices(Scene* scene);
-			void RecordVoice(VoiceComponent* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
+			void UpdateVoices(cScene* scene);
+			void RecordVoice(sCVoice* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
 
 		private:
 
-			void VoiceInit(VoiceComponent* component);
+			void VoiceInit(sCVoice* component);
 
-			void AudioInit(AudioComponent* component);
-			void AudioSet(AudioComponent* component);
-			void AudioUpdate(AudioComponent* component);
-			void AudioStop(AudioComponent* component);
+			void AudioInit(sCAudio* component);
+			void AudioSet(sCAudio* component);
+			void AudioUpdate(sCAudio* component);
+			void AudioStop(sCAudio* component);
 
-			void UpdateAudios(Scene* scene);
+			void UpdateAudios(cScene* scene);
 
-			void AudioInit(StreamAudioComponent* component);
-			void AudioSet(StreamAudioComponent* component);
-			void AudioUpdate(StreamAudioComponent* component);
-			void AudioStop(StreamAudioComponent* component);
+			void AudioInit(sCStreamAudio* component);
+			void AudioSet(sCStreamAudio* component);
+			void AudioUpdate(sCStreamAudio* component);
+			void AudioStop(sCStreamAudio* component);
 
-			void UpdateStreamAudios(Scene* scene);
+			void UpdateStreamAudios(cScene* scene);
 		};
 	}
 }

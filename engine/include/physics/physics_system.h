@@ -4,10 +4,10 @@ namespace xpe
 {
 	namespace physics
 	{
-		class PhysicsSystem : public System
+		class PhysicsSystem : public cSystem
 		{
 		public:
-			void Update(Scene* scene, const Time& dt) override final;
+			void Update(cScene* scene, const Time& dt) override final;
 		};
 	}
 }

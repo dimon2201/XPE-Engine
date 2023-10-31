@@ -17,7 +17,7 @@ namespace xpe {
         class LOADER_API AnimLoader final
         {
         public:
-            static Animation Load(const char* filepath, const vector<eLoadOption>& options = {
+            static sAnimation Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE
             });
         };
