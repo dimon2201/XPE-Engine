@@ -2,7 +2,6 @@
 
 #include <rendering/passes/render_pass.h>
 #include <rendering/buffers/instance_buffer.h>
-#include <rendering/buffers/transform_buffer.h>
 
 namespace xpe {
 
@@ -50,7 +49,6 @@ namespace xpe {
             );
 
             sInstanceBuffer m_InstanceBuffer;
-            sTransformBuffer m_TransformBuffer;
         };
 
     }

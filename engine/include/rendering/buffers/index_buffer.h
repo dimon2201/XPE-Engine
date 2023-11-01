@@ -9,7 +9,7 @@ namespace xpe {
         using namespace core;
         using namespace math;
 
-        struct sIndexBuffer : public sBuffer
+        struct ENGINE_API sIndexBuffer : public sBuffer
         {
             vector<u32> List;
 

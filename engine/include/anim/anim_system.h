@@ -32,7 +32,7 @@ namespace xpe {
 
             void UpdateSkeletonTransform(
                     sSkeleton& skeleton,
-                    sBoneBuffer& boneBuffer,
+                    sSkeletonBuffer& skeletonBuffer,
                     const sAnimationNode& animationNode,
                     const glm::mat4& parentTransform
             );

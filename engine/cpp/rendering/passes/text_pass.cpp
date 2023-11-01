@@ -10,10 +10,8 @@ namespace xpe {
         {
             m_Quad = cGeometryManager::AddGeometry(sQuad());
             m_TextBuffer.Reserve(1000);
-            m_TransformBuffer.Reserve(1);
             m_Pipeline->PrimitiveTopology = m_Quad.PrimitiveTopology;
             m_Pipeline->Textures.emplace_back(nullptr);
-            m_Pipeline->VSBuffers.emplace_back(&m_TransformBuffer);
         }
 
         void cTextPass::DrawText(const sTransform &transform, const string &text, sFont &font)
@@ -37,7 +35,6 @@ namespace xpe {
                 sFont::sGlyph glyph = it->second;
 
                 xpe::render::sChar character;
-                character.TransformIndex = 0;
                 character.GlyphSize = font.GlyphSize;
                 character.Width = glyph.Width;
                 character.Height = glyph.Height;
@@ -47,6 +44,7 @@ namespace xpe {
                 character.AdvanceY = advance.y;
                 character.AtlasXOffset = glyph.AtlasXOffset;
                 character.AtlasYOffset = glyph.AtlasYOffset;
+                character.ModelMatrix = MathManager::UpdateModelMatrix(transform);
 
                 // Tab
                 if (c == '\t')
@@ -68,10 +66,6 @@ namespace xpe {
                 }
             }
             m_TextBuffer.Flush();
-
-            m_TransformBuffer.Clear();
-            m_TransformBuffer.AddTransform(transform);
-            m_TransformBuffer.Flush();
 
             m_Pipeline->Textures[0] = &font.Atlas;
 

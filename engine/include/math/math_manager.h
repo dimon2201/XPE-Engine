@@ -35,6 +35,7 @@ namespace xpe {
             static sRay ToScreenSpace(const sRay& ray, int width, int height);
 
             static glm::mat4 UpdateModelMatrix(const sModelMatrix& modelMatrix);
+            static glm::mat4 UpdateNormalMatrix(const glm::mat4& modelMatrix);
             static glm::mat4 UpdateViewMatrix(const sViewMatrix& viewMatrix);
             static glm::mat4 UpdateOrthoMatrix(const sOrthoMatrix& orthoMatrix);
             static glm::mat4 UpdatePerspectiveMatrix(const sPerspectiveMatrix& perspectiveMatrix);

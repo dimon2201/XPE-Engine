@@ -1,28 +1,32 @@
-#include <rendering/passes/main_pass.h>
+#include <rendering/passes/geometry_pass.h>
 #include <rendering/material/material_manager.h>
+
+#include <anim/skeleton_manager.h>
+
 #include <ecs/components.hpp>
 
 namespace xpe {
 
     namespace render {
 
-        cMainPass::cMainPass(eType type, const vector<sRenderPassBinding> &bindings) : cInstancingPass(type, bindings)
+        cGeometryPass::cGeometryPass(eType type, const vector<sRenderPassBinding> &bindings) : cInstancingPass(type, bindings)
         {
+            m_Pipeline->VSBuffers.emplace_back(cSkeletonManager::GetBuffer());
         }
 
-        void cMainPass::InitOpaque()
+        void cGeometryPass::InitOpaque()
         {
             cRenderPass::InitOpaque();
             cMaterialManager::Bind(*m_Pipeline);
         }
 
-        void cMainPass::InitTransparent()
+        void cGeometryPass::InitTransparent()
         {
             cRenderPass::InitTransparent();
             cMaterialManager::Bind(*m_Pipeline);
         }
 
-        void cMainPass::DrawOpaque(cScene* scene) {
+        void cGeometryPass::DrawOpaque(cScene* scene) {
             scene->EachComponent<sCGeometry>([this](sCGeometry* component)
             {
                 if (component->Visible && !component->Transparent) {
@@ -66,9 +70,33 @@ namespace xpe {
                     );
                 }
             });
+
+            scene->EachComponent<sCSkeletonModel>([this](sCSkeletonModel* component)
+            {
+                  if (component->Visible && !component->Transparent) {
+                      auto& model = *component;
+                      auto& skeleton = component->Skeleton;
+                      DrawInstanced(
+                              model.PrimitiveTopology,
+                              model.VertexOffset,
+                              model.VertexCount,
+                              model.IndexOffset,
+                              model.Indices.size(),
+                              component->Entity,
+                              component->Entities,
+                              [&skeleton](cEntity* entity, sRenderInstance& instance) {
+                                  auto* materialComponent = entity->Get<sCMaterial>();
+                                  if (materialComponent != nullptr) {
+                                      instance.MaterialIndex = materialComponent->Index;
+                                  }
+                                  instance.SkeletonIndex = skeleton.Index;
+                              }
+                      );
+                  }
+            });
         }
 
-        void cMainPass::DrawTransparent(cScene* scene) {
+        void cGeometryPass::DrawTransparent(cScene* scene) {
             scene->EachComponent<sCGeometry>([this](sCGeometry* component)
             {
                 if (component->Visible && component->Transparent) {
@@ -112,9 +140,33 @@ namespace xpe {
                      );
                  }
             });
+
+            scene->EachComponent<sCSkeletonModel>([this](sCSkeletonModel* component)
+            {
+                  if (component->Visible && component->Transparent) {
+                      auto& model = *component;
+                      auto& skeleton = component->Skeleton;
+                      DrawInstanced(
+                              model.PrimitiveTopology,
+                              model.VertexOffset,
+                              model.VertexCount,
+                              model.IndexOffset,
+                              model.Indices.size(),
+                              component->Entity,
+                              component->Entities,
+                              [&skeleton](cEntity* entity, sRenderInstance& instance) {
+                                  auto* materialComponent = entity->Get<sCMaterial>();
+                                  if (materialComponent != nullptr) {
+                                      instance.MaterialIndex = materialComponent->Index;
+                                  }
+                                  instance.SkeletonIndex = skeleton.Index;
+                              }
+                      );
+                  }
+            });
         }
 
-        void cMainPass::DrawShadow(cScene* scene)
+        void cGeometryPass::DrawShadow(cScene* scene)
         {
             scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
                 sViewMatrix lightView;
@@ -217,6 +269,64 @@ namespace xpe {
                                  lightMatrix
                          );
                      }
+                });
+            });
+
+            scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = glm::vec3(0, 0, 0);
+                lightView.Up = glm::vec3(0, 1, 0);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)
+                {
+                      if (component->Visible && component->CastShadow) {
+                          auto& model = *component;
+                          auto& skeleton = component->Skeleton;
+                          DrawInstanced(
+                                  model.PrimitiveTopology,
+                                  model.VertexOffset,
+                                  model.VertexCount,
+                                  model.IndexOffset,
+                                  model.Indices.size(),
+                                  component->Entity,
+                                  component->Entities,
+                                  [&skeleton](cEntity* entity, sRenderInstance& instance) {
+                                      instance.SkeletonIndex = skeleton.Index;
+                                  },
+                                  lightMatrix
+                          );
+                      }
+                });
+            });
+
+            scene->EachComponent<sCSpotLight>([this, scene](sCSpotLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = glm::vec3(0, 0, 0);
+                lightView.Up = glm::vec3(0, 1, 0);
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)
+                {
+                      if (component->Visible && component->CastShadow) {
+                          auto& model = *component;
+                          auto& skeleton = component->Skeleton;
+                          DrawInstanced(
+                                  model.PrimitiveTopology,
+                                  model.VertexOffset,
+                                  model.VertexCount,
+                                  model.IndexOffset,
+                                  model.Indices.size(),
+                                  component->Entity,
+                                  component->Entities,
+                                  [&skeleton](cEntity* entity, sRenderInstance& instance) {
+                                      instance.SkeletonIndex = skeleton.Index;
+                                  },
+                                  lightMatrix
+                          );
+                      }
                 });
             });
         }

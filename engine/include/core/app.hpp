@@ -76,6 +76,8 @@ namespace xpe
 
             cSsaoPass* m_SsaoPass = nullptr;
             cFxaaPass* m_FxaaPass = nullptr;
+
+            sTexture* m_CanvasTexture = nullptr;
         };
     }
 }

@@ -1,8 +1,6 @@
 #include ../types.shader
-#include ../transforming.shader
 #include ../camera.shader
 #include ../text/text.shader
-#include ../viewport.shader
 
 struct VSIn
 {
@@ -27,25 +25,23 @@ VSOut vs_main(VSIn vsIn)
     VSOut vsOut;
 
     Character character = Text[vsIn.instanceIndex];
-    Transform transform = Transforms[character.TransformIndex];
-    Camera camera = Cameras[0];
 
-    float2 offsetScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(character.Left, character.Top);
-    float2 sizeScaled = float2(transform.ModelMatrix[0][0], transform.ModelMatrix[1][1]) * float2(character.Width, character.Height);
+    float2 offsetScaled = float2(character.ModelMatrix[0][0], character.ModelMatrix[1][1]) * float2(character.Left, character.Top);
+    float2 sizeScaled = float2(character.ModelMatrix[0][0], character.ModelMatrix[1][1]) * float2(character.Width, character.Height);
 
     float3 positionLocal = (vsIn.positionLocal * 0.5f) + 0.25f;
 
     float4 positionNDC = float4(positionLocal, 1.0f);
     positionNDC *= float4(character.Width, character.Height, 1.0f, 1.0f);
-    positionNDC = mul(transform.ModelMatrix, positionNDC);
+    positionNDC = mul(character.ModelMatrix, positionNDC);
 
     positionNDC.x += 0.5f * (offsetScaled.x + character.AdvanceX);
     positionNDC.y -= 0.5f * ((sizeScaled.y - offsetScaled.y) + character.AdvanceY);
 
-    positionNDC.xy /= float2(Viewports[0].Width, Viewports[0].Height);
+    positionNDC.xy /= float2(Width, Height);
     positionNDC.xy = (positionNDC.xy * 2.0f) - 1.0f;
 
-    vsOut.viewPosition = camera.Position;
+    vsOut.viewPosition = CameraPosition;
     vsOut.texcoord = vsIn.texcoord;
     vsOut.normal = normalize(vsIn.normal);
     vsOut.positionClip = positionNDC;

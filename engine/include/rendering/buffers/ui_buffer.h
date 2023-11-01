@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/buffers/structure_buffer.h>
+#include <rendering/buffers/list_buffer.h>
 
 namespace xpe {
 
@@ -8,8 +8,6 @@ namespace xpe {
 
         struct ENGINE_API sUiData final
         {
-            u32 TransformIndex = 0;
-            u32 CameraIndex = 0;
             f32 GlyphSize = 0;
             f32 Width = 0;
             f32 Height = 0;
@@ -21,9 +19,9 @@ namespace xpe {
             f32 AtlasYOffset = 0;
         };
 
-        struct ENGINE_API sTextBuffer : public sListBuffer<sChar>
+        struct ENGINE_API sUiBuffer : public sListBuffer<sUiData>
         {
-            sTextBuffer(usize count = 0) : sListBuffer<sChar>(count, K_SLOT_TEXT_CHARS) {}
+            sUiBuffer(usize count = 0) : sListBuffer<sUiData>(count, K_SLOT_UI) {}
         };
 
     }

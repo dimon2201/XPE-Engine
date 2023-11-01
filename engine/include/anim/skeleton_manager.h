@@ -14,27 +14,25 @@ namespace xpe {
             static void Init();
             static void Free();
 
-            static void Bind(u32 index);
-            static void Unbind(u32 index);
-            static void Flush(u32 index);
+            static void Bind();
+            static void Unbind();
+            static void Flush();
 
             template<typename... Args>
             static sSkeleton AddSkeleton(Args &&... args);
 
-            static void RemoveSkeleton(u32 index);
-
-            static render::sBoneBuffer* GetBuffer(u32 index);
+            static render::sSkeletonBuffer* GetBuffer();
 
         private:
-            static vector<render::sBoneBuffer*>* s_Buffers;
+            static render::sSkeletonBuffer* s_Buffer;
         };
 
         template<typename... Args>
         sSkeleton cSkeletonManager::AddSkeleton(Args &&... args)
         {
             sSkeleton skeleton(std::forward<Args>(args)...);
-            skeleton.Index = s_Buffers->size();
-            s_Buffers->emplace_back(new render::sBoneBuffer());
+            skeleton.Index = s_Buffer->Size();
+            s_Buffer->Resize(s_Buffer->Size() + skeleton.Bones.size());
             return skeleton;
         }
 

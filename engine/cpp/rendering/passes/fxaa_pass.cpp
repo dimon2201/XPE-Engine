@@ -30,7 +30,7 @@ namespace xpe
             depth->SetResizable(true);
             depth->Init();
 
-            m_Pipeline->RenderTarget = new sRenderTarget({color }, depth, *viewport);
+            m_Pipeline->RenderTarget = new sRenderTarget({ color }, depth, viewport);
             m_Pipeline->RenderTarget->SetResizable(true);
 
             m_Sampler.Slot = 0;

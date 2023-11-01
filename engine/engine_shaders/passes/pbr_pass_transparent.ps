@@ -1,5 +1,4 @@
 #include ../types.shader
-#include ../monitor.shader
 #include ../tonemap.shader
 #include ../material.shader
 #include ../shadow.shader
@@ -17,6 +16,7 @@ struct VSOut
     uint materialIndex   : XPE_MATERIAL_INDEX;
     float3x3 tbn         : XPE_TBN;
     float3 shadowCoords  : XPE_SHADOW_COORDS;
+    float gamma          : XPE_GAMMA;
 };
 
 struct PSOut
@@ -36,11 +36,13 @@ PSOut ps_main(VSOut psIn)
 
     UV = GetParallax(psIn.materialIndex, psIn.uv);
 
-    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv, GetGamma());
+    float gamma = psIn.gamma;
+
+    float4 albedo = GetAlbedo(psIn.materialIndex, psIn.uv, gamma);
     float metallness = GetMetallness(psIn.materialIndex, psIn.uv);
     float roughness = GetRoughness(psIn.materialIndex, psIn.uv);
     float ao = GetAO(psIn.materialIndex, psIn.uv);
-    float3 emission = GetEmission(psIn.materialIndex, psIn.uv, GetGamma());
+    float3 emission = GetEmission(psIn.materialIndex, psIn.uv, gamma);
     float3 shadowCoords = psIn.shadowCoords;
 
     // PBR with light sources
@@ -73,7 +75,7 @@ PSOut ps_main(VSOut psIn)
 
     // Color
     float4 color = float4((Lo + ambient) * (1.0 - ao), albedo.a);
-    color = GammaCorrection(color, GetGamma());
+    color = GammaCorrection(color, gamma);
 
     // Weighted blended
     float weight = max(min(1.0, max(max(color.r, color.g), color.b) * color.a), color.a) *

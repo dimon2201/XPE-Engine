@@ -1,6 +1,5 @@
 #include ../types.shader
 #include ../instancing.shader
-#include ../transforming.shader
 #include ../skeleton.shader
 
 struct VSIn
@@ -24,32 +23,30 @@ VSOut vs_main(VSIn vsIn)
     float4 positionBone  = float4(vsIn.positionLocal, 1.0);
     int4 boneIds         = vsIn.boneIds;
     float4 boneWeights   = vsIn.boneWeights;
-    uint bonesCount      = 0;
-    uint bonesStride     = 0;
-    Bones.GetDimensions(bonesCount, bonesStride);
+    RenderInstance instance = Instances[vsIn.instanceIndex];
+    uint skeletonIndex   = instance.SkeletonIndex;
 
     for (int i = 0 ; i < 4 ; i++)
     {
         int boneID = boneIds[i];
         float boneWeight = boneWeights[i];
 
-        if (boneID == -1 || boneID >= int(bonesCount))
+        if (boneID == -1)
             continue;
 
-        float4x4 boneTransform = Bones[boneID].Transform;
+        float4x4 boneTransform = Skeletons[boneID + skeletonIndex].Transform;
 
         positionTotal += mul(boneTransform, float4(vsIn.positionLocal, 1.0)) * boneWeight;
         positionBone = positionTotal;
     }
 
-    RenderInstance instance     = Instances[vsIn.instanceIndex];
-    float4x4 worldMatrix        = Transforms[instance.TransformIndex].ModelMatrix;
-    float4x4 lightMatrix        = Transforms[instance.TransformIndex].LightMatrix;
+    float4x4 worldMatrix        = instance.ModelMatrix;
+    float4x4 lightMatrix        = instance.LightMatrix;
 
     float4 positionWorld = mul(worldMatrix, positionBone);
     float4 positionLight = mul(lightMatrix, positionWorld);
 
-    vsOut.positionLight = positionLight;
+    vsOut.positionLight = positionBone;
 
     return vsOut;
 }

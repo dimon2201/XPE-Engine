@@ -22,10 +22,9 @@ namespace xpe {
             m_DeltaSeconds = dt.Seconds();
             m_CurrentSeconds += animation.TicksPerSecond * m_DeltaSeconds;
             m_CurrentSeconds = fmod(m_CurrentSeconds, animation.Duration);
-            auto* boneBuffer = cSkeletonManager::GetBuffer(skeleton.Index);
-            if (boneBuffer) {
-                boneBuffer->Resize(skeleton.Bones.size());
-                UpdateSkeletonTransform(skeleton, *boneBuffer, animation.Root, glm::mat4(1.0f));
+            auto* skeletonBuffer = cSkeletonManager::GetBuffer();
+            if (skeletonBuffer) {
+                UpdateSkeletonTransform(skeleton, *skeletonBuffer, animation.Root, glm::mat4(1.0f));
             }
         }
 
@@ -184,7 +183,7 @@ namespace xpe {
 
         void cAnimSystem::UpdateSkeletonTransform(
                 sSkeleton &skeleton,
-                sBoneBuffer& boneBuffer,
+                sSkeletonBuffer& skeletonBuffer,
                 const sAnimationNode& animationNode,
                 const glm::mat4 &parentTransform
         ) {
@@ -205,12 +204,12 @@ namespace xpe {
             glm::mat4 globalTransformation = parentTransform * nodeTransform;
 
             if (bone != nullptr) {
-                *boneBuffer[bone->ID] = { globalTransformation * bone->Offset };
+                *skeletonBuffer[bone->ID + skeleton.Index] = { globalTransformation * bone->Offset };
             }
 
             for (auto& node : animationNode.Children)
             {
-                UpdateSkeletonTransform(skeleton, boneBuffer, node, globalTransformation);
+                UpdateSkeletonTransform(skeleton, skeletonBuffer, node, globalTransformation);
             }
         }
 

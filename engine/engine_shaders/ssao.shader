@@ -1,7 +1,6 @@
-struct SSAOData {
-    int DirectionCount;
-    int SampleCount;
-    float Intensity;
+cbuffer SsaoBuffer : K_SLOT_SSAO
+{
+    int SsaoDirectionCount;
+    int SsaoSampleCount;
+    float SsaoIntensity;
 };
-
-StructuredBuffer<SSAOData> SSAO : K_SLOT_SSAO;

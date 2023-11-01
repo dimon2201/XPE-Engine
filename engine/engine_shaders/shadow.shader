@@ -1,10 +1,10 @@
-struct ShadowFilter {
-    int FilterSize;
+cbuffer ShadowBuffer : K_SLOT_SHADOW
+{
+    int ShadowFilterSize;
 };
 
-StructuredBuffer<ShadowFilter> ShadowFilters : K_SLOT_SHADOW_FILTER;
 SamplerState ShadowSampler                   : K_SLOT_SHADOW_SAMPLER;
-Texture2D ShadowMap                          : K_SLOT_SHADOW_MAP;
+Texture2D ShadowAtlas                        : K_SLOT_SHADOW_ATLAS;
 
 float DirectShadow(float3 lightDir, float3 shadowCoords)
 {
@@ -17,7 +17,7 @@ float DirectShadow(float3 lightDir, float3 shadowCoords)
 
     float w;
     float h;
-    ShadowMap.GetDimensions(w, h);
+    ShadowAtlas.GetDimensions(w, h);
     float2 texelSize = 1.0 / float2(w, h);
     float shadow = 0.0;
     int shadowFilterSize = 9;
@@ -27,7 +27,7 @@ float DirectShadow(float3 lightDir, float3 shadowCoords)
     {
         for (int x = -halfFilterSize; x <= -halfFilterSize + shadowFilterSize; x++)
         {
-            float pcf = ShadowMap.Sample(ShadowSampler, shadowCoords.xy + float2(x, y) * texelSize).r;
+            float pcf = ShadowAtlas.Sample(ShadowSampler, shadowCoords.xy + float2(x, y) * texelSize).r;
             shadow += currentDepth - bias > pcf ? 1.0 : 0.0;
         }
     }

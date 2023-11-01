@@ -24,7 +24,7 @@ namespace xpe {
         template<typename T>
         sItemBuffer<T>::sItemBuffer(u32 slot)
         {
-            Type = eBufferType::STRUCTURED;
+            Type = eBufferType::CONSTANT;
             Slot = slot;
             StructureSize = sizeof(T);
             NumElements = 1;

@@ -395,10 +395,10 @@ namespace xpe {
                 FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
             }
 
-            void BindRenderTarget(const vector<void*> &colorViews, void *depthView, const vector<sViewport>& viewports)
+            void BindRenderTarget(const vector<void*> &colorViews, void* depthView, sViewport* viewport)
             {
                 BindRenderTarget(colorViews, depthView);
-                BindViewports(viewports);
+                BindViewport(viewport);
             }
 
         }

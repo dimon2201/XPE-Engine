@@ -10,7 +10,6 @@ namespace xpe {
         ) : cRenderPass(type, bindings)
         {
             m_InstanceBuffer.Reserve(1000);
-            m_TransformBuffer.Reserve(1000);
         }
 
         void cInstancingPass::DrawInstanced(
@@ -42,23 +41,21 @@ namespace xpe {
                 const glm::mat4x4& lightMatrix
         ) {
             m_InstanceBuffer.Clear();
-            m_TransformBuffer.Clear();
 
             sRenderInstance instance;
             instance.TransformIndex = 0;
             if (callback) {
                 callback(entity, instance);
             }
+            instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
+            instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
+            instance.LightMatrix = lightMatrix;
 
             m_InstanceBuffer.Add(instance);
-            m_TransformBuffer.AddTransform(entity->GetTransform(), lightMatrix);
-
             m_InstanceBuffer.Flush();
-            m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(primitiveTopology);
             context::BindVSBuffer(m_InstanceBuffer);
-            context::BindVSBuffer(m_TransformBuffer);
 
             if (indexCount == 0) {
                 context::DrawVertexed(vertexCount, 1, vertexOffset);
@@ -67,7 +64,6 @@ namespace xpe {
             }
 
             context::UnbindVSBuffer(m_InstanceBuffer);
-            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
         void cInstancingPass::DrawMultiple(
@@ -83,7 +79,6 @@ namespace xpe {
             usize entityCount = entities.size();
             usize instanceCount = 0;
             m_InstanceBuffer.Clear();
-            m_TransformBuffer.Clear();
             for (usize i = 0 ; i < entityCount ; i++)
             {
                 auto& entity = entities[i];
@@ -93,18 +88,18 @@ namespace xpe {
                 if (callback) {
                     callback(entity, instance);
                 }
+                instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
+                instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
+                instance.LightMatrix = lightMatrix;
 
                 m_InstanceBuffer.Add(instance);
-                m_TransformBuffer.AddTransform(entity->GetTransform(), lightMatrix);
 
                 instanceCount++;
             }
             m_InstanceBuffer.Flush();
-            m_TransformBuffer.Flush();
 
             context::BindPrimitiveTopology(primitiveTopology);
             context::BindVSBuffer(m_InstanceBuffer);
-            context::BindVSBuffer(m_TransformBuffer);
 
             if (indexCount == 0) {
                 context::DrawVertexed(vertexCount, instanceCount, vertexOffset);
@@ -113,7 +108,6 @@ namespace xpe {
             }
 
             context::UnbindVSBuffer(m_InstanceBuffer);
-            context::UnbindVSBuffer(m_TransformBuffer);
         }
 
     }

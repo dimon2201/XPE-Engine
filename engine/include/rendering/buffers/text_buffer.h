@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/buffers/structure_buffer.h>
+#include <rendering/buffers/list_buffer.h>
 
 namespace xpe {
 
@@ -8,7 +8,6 @@ namespace xpe {
 
         struct ENGINE_API sChar final
         {
-            u32 TransformIndex = 0;
             f32 GlyphSize = 0;
             f32 Width = 0;
             f32 Height = 0;
@@ -18,6 +17,7 @@ namespace xpe {
             f32 AdvanceY = 0;
             f32 AtlasXOffset = 0;
             f32 AtlasYOffset = 0;
+            glm::mat4 ModelMatrix;  // position world space
         };
 
         struct ENGINE_API sTextBuffer : public sListBuffer<sChar>

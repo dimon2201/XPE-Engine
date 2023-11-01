@@ -22,7 +22,7 @@ namespace xpe {
 
             ENGINE_API void CreateRenderTarget(sRenderTarget& renderTarget);
             ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView);
-            ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView, const vector<sViewport>& viewports);
+            ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView, sViewport* viewport);
             ENGINE_API void UnbindRenderTarget();
             ENGINE_API void ClearColorTarget(void* colorView, const glm::vec4& color);
             ENGINE_API void ClearDepthTarget(void* depthView, const f32 depth);
@@ -107,8 +107,8 @@ namespace xpe {
 
             ENGINE_API void BindPrimitiveTopology(const ePrimitiveTopology& primitiveTopology);
 
-            ENGINE_API void BindViewports(const vector<sViewport>& viewports);
-            ENGINE_API void UnbindViewports();
+            ENGINE_API void BindViewport(sViewport* viewport);
+            ENGINE_API void UnbindViewport();
 
             ENGINE_API void CreatePipeline(sPipeline& pipeline);
             ENGINE_API void BindPipeline(const sPipeline& pipeline);

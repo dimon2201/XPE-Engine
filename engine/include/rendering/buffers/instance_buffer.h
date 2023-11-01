@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/buffers/structure_buffer.h>
+#include <rendering/buffers/list_buffer.h>
 
 namespace xpe {
 
@@ -10,6 +10,10 @@ namespace xpe {
         {
             u32 TransformIndex = 0;
             u32 MaterialIndex = 0;
+            u32 SkeletonIndex = 0;
+            glm::mat4 ModelMatrix;  // position world space
+            glm::mat4 NormalMatrix; // normal world space
+            glm::mat4 LightMatrix;  // light space
         };
 
         struct ENGINE_API sInstanceBuffer : public sListBuffer<sRenderInstance>

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <rendering/passes/render_pass.h>
-#include <rendering/buffers/transform_buffer.h>
 #include <rendering/buffers/text_buffer.h>
 #include <rendering/geometry/geometry.h>
 
@@ -23,7 +22,6 @@ namespace xpe {
             void DrawText(const sTransform& transform, const string& text, sFont& font);
 
             sTextBuffer m_TextBuffer;
-            sTransformBuffer m_TransformBuffer;
             sGeometry m_Quad;
         };
 

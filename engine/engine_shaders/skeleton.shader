@@ -3,4 +3,4 @@ struct Bone
     float4x4 Transform;
 };
 
-StructuredBuffer<Bone> Bones : K_SLOT_BONES;
+StructuredBuffer<Bone> Skeletons : K_SLOT_SKELETONS;

@@ -4,8 +4,8 @@ namespace xpe {
 
     namespace render {
 
-        cCanvas::cCanvas(sShader* shader, sRenderTarget* renderTarget, sViewportBuffer* viewportBuffer)
-        : m_Shader(shader), m_RenderTarget(renderTarget), m_ViewportBuffer(viewportBuffer)
+        cCanvas::cCanvas(sShader* shader, sTexture* texture, sViewport* viewport)
+        : m_Shader(shader), m_Texture(texture), m_Viewport(viewport)
         {
             CreatePresentTarget();
             CreatePresentSampler();
@@ -22,10 +22,10 @@ namespace xpe {
         void cCanvas::Draw()
         {
             context::BindTextureSlot(0);
-            context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewports);
+            context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewport);
             context::BindShader(*m_Shader);
             context::BindSampler(m_PresentSampler);
-            context::BindTexture(*m_RenderTarget->Colors[m_BoundTargetIndex], 0);
+            context::BindTexture(*m_Texture, 0);
 
             context::ClearColorTarget(m_PresentTarget->ColorViews[m_BoundTargetIndex], glm::vec4(0, 0, 0, 1));
 
@@ -43,7 +43,7 @@ namespace xpe {
         {
             m_PresentTarget = new sRenderTarget(
                     vector<void*> { context::SwapchainTargetView },
-                    m_ViewportBuffer->GetList()
+                    m_Viewport
             );
             m_PresentTarget->SetResizable(false);
         }

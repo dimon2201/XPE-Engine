@@ -2,6 +2,7 @@
 #include <rendering/material/material_manager.h>
 #include <rendering/geometry/geometry_manager.h>
 #include <rendering/skybox_manager.h>
+#include <rendering/camera_manager.h>
 
 #include <anim/skeleton_manager.h>
 
@@ -11,13 +12,14 @@ namespace xpe {
 
     namespace render {
 
-        cRenderSystem::cRenderSystem(const sViewport& viewport, u32 sampleCount)
+        cRenderSystem::cRenderSystem(sViewport& viewport, u32 sampleCount)
         {
             context::Init();
             InitManagers(viewport, sampleCount);
-            InitBuffers(viewport, sampleCount);
-            InitSamplers(viewport, sampleCount);
-            InitRenderTargets(viewport, sampleCount);
+            cCameraManager::SetViewport(viewport);
+            InitBuffers(*cCameraManager::GetViewport(), sampleCount);
+            InitSamplers(*cCameraManager::GetViewport(), sampleCount);
+            InitRenderTargets(*cCameraManager::GetViewport(), sampleCount);
             AddWindowFrameResized(cRenderSystem, eWindowFrameResizedPriority::RENDER_SYSTEM);
         }
 
@@ -31,32 +33,28 @@ namespace xpe {
             RemoveWindowFrameResized();
         }
 
-        void cRenderSystem::InitManagers(const sViewport &viewport, u32 sampleCount)
+        void cRenderSystem::InitManagers(sViewport &viewport, u32 sampleCount)
         {
             cShaderManager::Init();
+            cCameraManager::Init();
             cGeometryManager::Init();
             cMaterialManager::Init();
             cSkeletonManager::Init();
             cSkyboxManager::Init();
         }
 
-        void cRenderSystem::InitBuffers(const sViewport &viewport, u32 sampleCount)
+        void cRenderSystem::InitBuffers(sViewport &viewport, u32 sampleCount)
         {
-            m_ViewportBuffer = new sViewportBuffer();
-            m_ViewportBuffer->Add(viewport);
-            m_ViewportBuffer->Flush();
-            m_MonitorBuffer = new sMonitorBuffer();
-            m_CameraBuffer = new sCameraBuffer();
             m_DirectLightBuffer = new sDirectLightBuffer();
             m_DirectLightBuffer->Reserve(1000);
             m_PointLightBuffer = new sPointLightBuffer();
             m_PointLightBuffer->Reserve(1000);
             m_SpotLightBuffer = new sSpotLightBuffer();
             m_SpotLightBuffer->Reserve(1000);
-            m_ShadowFilterBuffer = new sShadowFilterBuffer();
+            m_ShadowBuffer = new sShadowBuffer();
         }
 
-        void cRenderSystem::InitSamplers(const sViewport &viewport, u32 sampleCount)
+        void cRenderSystem::InitSamplers(sViewport &viewport, u32 sampleCount)
         {
             m_ShadowSampler.BorderColor = glm::vec4(1, 1, 1, 1);
             m_ShadowSampler.Filter   = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
@@ -68,7 +66,7 @@ namespace xpe {
             context::CreateSampler(m_ShadowSampler);
         }
 
-        void cRenderSystem::InitRenderTargets(const sViewport& viewport, u32 sampleCount)
+        void cRenderSystem::InitRenderTargets(sViewport& viewport, u32 sampleCount)
         {
             // Final render target
             sTexture* finalColor = new sTexture();
@@ -90,7 +88,7 @@ namespace xpe {
             finalDepth->SetResizable(true);
             finalDepth->Init();
 
-            m_FinalRenderTarget = new sRenderTarget({finalColor }, finalDepth, m_ViewportBuffer->GetList());
+            m_FinalRenderTarget = new sRenderTarget({finalColor }, finalDepth, &viewport);
             m_FinalRenderTarget->SetResizable(true);
 
             // Scene render target
@@ -113,10 +111,19 @@ namespace xpe {
             sceneDepth->SetResizable(true);
             sceneDepth->Init();
 
-            m_SceneRenderTarget = new sRenderTarget({sceneColor }, sceneDepth, m_ViewportBuffer->GetList());
+            m_SceneRenderTarget = new sRenderTarget({ sceneColor }, sceneDepth, &viewport);
             m_SceneRenderTarget->SetResizable(true);
 
-            // Shadow map as a depth stencil texture output for shadow mapping
+            // Shadow render target
+            sTexture* shadowColor = new sTexture();
+            shadowColor->Width = viewport.Width;
+            shadowColor->Height = viewport.Height;
+            shadowColor->Format = eTextureFormat::RGBA8;
+            shadowColor->InitializeData = false;
+            shadowColor->EnableRenderTarget = true;
+            shadowColor->SetResizable(true);
+            shadowColor->Init();
+
             sTexture* shadowDepth = new sTexture();
             shadowDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
             shadowDepth->Width = viewport.Width;
@@ -125,11 +132,11 @@ namespace xpe {
             shadowDepth->InitializeData = false;
             shadowDepth->EnableRenderTarget = true;
             shadowDepth->SampleCount = 1;
-            shadowDepth->Slot = K_SLOT_SHADOW_MAP;
+            shadowDepth->Slot = K_SLOT_SHADOW_ATLAS;
             shadowDepth->SetResizable(true);
             shadowDepth->Init();
 
-            m_ShadowRenderTarget = new sRenderTarget(shadowDepth, viewport);
+            m_ShadowRenderTarget = new sRenderTarget({ shadowColor }, shadowDepth, &viewport);
             m_ShadowRenderTarget->SetResizable(true);
 
             // Shared depth texture for opaque and transparent render targets
@@ -175,7 +182,7 @@ namespace xpe {
             opaqueNormal->SetResizable(false);
             opaqueNormal->Init();
 
-            m_OpaqueRenderTarget = new sRenderTarget({opaqueColor, opaquePosition, opaqueNormal }, m_SharedDepthTexture, viewport);
+            m_OpaqueRenderTarget = new sRenderTarget({opaqueColor, opaquePosition, opaqueNormal }, m_SharedDepthTexture, &viewport);
             m_OpaqueRenderTarget->SetResizable(false);
 
             // Transparent render target
@@ -199,7 +206,7 @@ namespace xpe {
             transparentReveal->SetResizable(false);
             transparentReveal->Init();
 
-            m_TransparentRenderTarget = new sRenderTarget({transparentAccum, transparentReveal }, m_SharedDepthTexture, viewport);
+            m_TransparentRenderTarget = new sRenderTarget({transparentAccum, transparentReveal }, m_SharedDepthTexture, &viewport);
             m_TransparentRenderTarget->SetResizable(false);
 
             // UI render target
@@ -222,7 +229,7 @@ namespace xpe {
             uiDepth->SetResizable(true);
             uiDepth->Init();
 
-            m_UiRenderTarget = new sRenderTarget({ uiColor }, uiDepth, viewport);
+            m_UiRenderTarget = new sRenderTarget({ uiColor }, uiDepth, &viewport);
             m_UiRenderTarget->SetResizable(true);
         }
 
@@ -232,18 +239,16 @@ namespace xpe {
             cSkeletonManager::Free();
             cMaterialManager::Free();
             cGeometryManager::Free();
+            cCameraManager::Free();
             cShaderManager::Free();
         }
 
         void cRenderSystem::FreeBuffers()
         {
-            delete m_ViewportBuffer;
-            delete m_MonitorBuffer;
-            delete m_CameraBuffer;
             delete m_DirectLightBuffer;
             delete m_PointLightBuffer;
             delete m_SpotLightBuffer;
-            delete m_ShadowFilterBuffer;
+            delete m_ShadowBuffer;
         }
 
         void cRenderSystem::FreeSamplers()
@@ -263,10 +268,10 @@ namespace xpe {
 
         void cRenderSystem::WindowFrameResized(int width, int height)
         {
-            sViewport* viewport = m_ViewportBuffer->Get(0);
-            viewport->Width = width;
-            viewport->Height = height;
-            m_ViewportBuffer->Flush();
+            sViewport& viewport = cCameraManager::GetBuffer()->Item.Viewport;
+            viewport.Width = width;
+            viewport.Height = height;
+            cCameraManager::Flush();
 
             m_SharedDepthTexture->Resize(width, height);
 
@@ -286,6 +291,7 @@ namespace xpe {
 
         void cRenderSystem::Update(cScene* scene, const cTime& dt)
         {
+            cSkeletonManager::Flush();
             UpdateLight(scene);
             UpdatePasses(scene);
         }

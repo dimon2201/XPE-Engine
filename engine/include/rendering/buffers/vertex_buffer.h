@@ -9,7 +9,7 @@ namespace xpe {
 
         using namespace core;
 
-        struct sVertexBuffer : public sBuffer
+        struct ENGINE_API sVertexBuffer : public sBuffer
         {
             vector<sVertex> List;
 

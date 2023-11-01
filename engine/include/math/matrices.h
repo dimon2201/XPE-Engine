@@ -6,14 +6,14 @@ namespace xpe {
 
         struct ENGINE_API sModelMatrix
         {
-            glm::vec3 Translation = { 0, 0, 0 };
+            glm::vec3 Position = { 0, 0, 0 };
             glm::vec3 Rotation = { 0, 0, 0 };
             glm::vec3 Scale = { 1, 1, 1 };
         };
 
         Json(
             sModelMatrix,
-            Translation,
+            Position,
             Rotation,
             Scale
         )

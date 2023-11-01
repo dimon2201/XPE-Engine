@@ -33,10 +33,9 @@ PSOut ps_main(VSOut psIn)
     float3 curPos = PositionTexture.Load(int3(curCoord, 0)).xyz;
     float3 curNormal = NormalTexture.Load(int3(curCoord, 0)).xyz;
 
-    SSAOData ssao = SSAO[0];
-    float intensity = ssao.Intensity;
-    int directionCount = ssao.DirectionCount;
-    int sampleCount = ssao.SampleCount;
+    int directionCount = SsaoDirectionCount;
+    int sampleCount = SsaoSampleCount;
+    float intensity = SsaoIntensity;
 
     for (int dir = 0; dir < directionCount; dir++)
     {

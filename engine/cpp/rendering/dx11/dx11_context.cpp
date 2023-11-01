@@ -416,13 +416,12 @@ namespace xpe {
                 renderTarget.ColorViews[0] = SwapchainTargetView;
                 BindRenderTarget(renderTarget.ColorViews, renderTarget.DepthStencilView);
 
-                for (auto& viewport : renderTarget.Viewports)
-                {
-                    viewport.Width = width;
-                    viewport.Height = height;
+                if (renderTarget.Viewport) {
+                    renderTarget.Viewport->Width = width;
+                    renderTarget.Viewport->Height = height;
                 }
 
-                BindViewports(renderTarget.Viewports);
+                BindViewport(renderTarget.Viewport);
             }
 
             void CreateSwapchainTargetView()
@@ -553,10 +552,9 @@ namespace xpe {
             {
                 UnbindRenderTarget();
                 FreeRenderTarget(renderTarget);
-                for (auto& viewport : renderTarget.Viewports)
-                {
-                    viewport.Width = width;
-                    viewport.Height = height;
+                if (renderTarget.Viewport) {
+                    renderTarget.Viewport->Width = width;
+                    renderTarget.Viewport->Height = height;
                 }
                 CreateRenderTarget(renderTarget);
             }
@@ -1268,33 +1266,28 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindViewports(const vector<sViewport>& viewports) {
-                if (viewports.empty()) {
-                    UnbindViewports();
+            void BindViewport(sViewport* viewport) {
+                if (viewport == nullptr) {
+                    UnbindViewport();
                     return;
                 }
 
-                usize viewportCount = viewports.size();
-                D3D11_VIEWPORT* vs = sallocT(D3D11_VIEWPORT, viewportCount);
+                D3D11_VIEWPORT* vs = sallocT(D3D11_VIEWPORT, 1);
 
-                for (u32 i = 0 ; i < viewportCount ; i++)
-                {
-                    auto& v = vs[i];
-                    auto& viewport = viewports[i];
-                    v = {};
-                    v.TopLeftX = viewport.TopLeftX;
-                    v.TopLeftY = viewport.TopLeftY;
-                    v.Width = viewport.Width;
-                    v.Height = viewport.Height;
-                    v.MinDepth = viewport.MinDepth;
-                    v.MaxDepth = viewport.MaxDepth;
-                }
+                auto& v = vs[0];
+                v = {};
+                v.TopLeftX = viewport->TopLeftX;
+                v.TopLeftY = viewport->TopLeftY;
+                v.Width = viewport->Width;
+                v.Height = viewport->Height;
+                v.MinDepth = viewport->MinDepth;
+                v.MaxDepth = viewport->MaxDepth;
 
-                s_ImmContext->RSSetViewports(viewportCount, vs);
+                s_ImmContext->RSSetViewports(1, vs);
                 LogDebugMessage();
             }
 
-            void UnbindViewports()
+            void UnbindViewport()
             {
                 s_ImmContext->RSSetViewports(0, nullptr);
                 LogDebugMessage();

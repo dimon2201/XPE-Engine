@@ -23,34 +23,19 @@ namespace xpe {
         {
             sVertex vertex;
 
-            vertex.Position = {
-                    mesh->mVertices[i].x,
-                    mesh->mVertices[i].y,
-                    mesh->mVertices[i].z
-            };
+            auto& pos = mesh->mVertices[i];
+            vertex.Position = { pos.x, pos.y, pos.z };
 
             if (mesh->mTextureCoords[0]) {
-                vertex.UV = {
-                        mesh->mTextureCoords[0][i].x,
-                        mesh->mTextureCoords[0][i].y
-                };
+                auto& uv = mesh->mTextureCoords[0][i];
+                vertex.UV = { uv.x, uv.y };
             }
 
-            if (mesh->mNormals) {
-                vertex.Normal = {
-                        mesh->mNormals[i].x,
-                        mesh->mNormals[i].y,
-                        mesh->mNormals[i].z
-                };
-            }
+            auto& normal = mesh->mNormals[i];
+            vertex.Normal = { normal.x, normal.y, normal.z };
 
-            if (mesh->mTangents) {
-                vertex.Tangent = {
-                        mesh->mTangents[i].x,
-                        mesh->mTangents[i].y,
-                        mesh->mTangents[i].z,
-                };
-            }
+            auto& tangent = mesh->mTangents[i];
+            vertex.Tangent = { tangent.x, tangent.y, tangent.z };
 
             return vertex;
         }

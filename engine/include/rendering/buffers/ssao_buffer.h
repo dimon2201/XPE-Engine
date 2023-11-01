@@ -11,6 +11,7 @@ namespace xpe {
             int DirectionCount = 4;
             int SampleCount = 4;
             float Intensity = 1.0;
+            float _pad0 = 0;
         };
 
         struct ENGINE_API sSsaoBuffer : public sItemBuffer<sSsaoData>

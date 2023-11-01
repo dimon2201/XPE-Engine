@@ -2,7 +2,7 @@
 
 #include <anim/anim.h>
 
-#include <rendering/buffers/bone_buffer.h>
+#include <rendering/buffers/skeleton_buffer.h>
 
 namespace xpe {
 
@@ -18,7 +18,6 @@ namespace xpe {
             vector<sKeyRotate> KeyRotations;
             vector<sKeyScale> KeyScales;
         };
-
         Json(sBone, ID, Name, Offset, Transform, KeyPositions, KeyRotations, KeyScales)
 
         struct ENGINE_API sSkeleton
@@ -26,7 +25,6 @@ namespace xpe {
             u32 Index = 0;
             unordered_map<string, sBone> Bones;
         };
-
         Json(sSkeleton, Bones)
 
     }

@@ -24,7 +24,7 @@
 
     "HotReloadShaders": true,
 
-    "MsaaSampleCount.Value": 4,
+    "MsaaSampleCount.Value": 1,
     "EnableSSAO": true
 
   }

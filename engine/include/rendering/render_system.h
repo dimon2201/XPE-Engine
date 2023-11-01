@@ -4,11 +4,9 @@
 
 #include <rendering/passes/render_pass.h>
 
-#include <rendering/buffers/viewport_buffer.h>
-#include <rendering/buffers/monitor_buffer.h>
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
-#include <rendering/buffers/shadow_filter_buffer.h>
+#include <rendering/buffers/shadow_buffer.h>
 
 namespace xpe {
 
@@ -21,7 +19,7 @@ namespace xpe {
         {
 
         public:
-            cRenderSystem(const sViewport& viewport, u32 sampleCount);
+            cRenderSystem(sViewport& viewport, u32 sampleCount);
             ~cRenderSystem();
 
             template<typename T, typename ... Args>
@@ -33,13 +31,10 @@ namespace xpe {
 
             void WindowFrameResized(int width, int height);
 
-            inline sViewportBuffer* GetViewportBuffer() { return m_ViewportBuffer; }
-            inline sMonitorBuffer* GetMonitorBuffer() { return m_MonitorBuffer; }
-            inline sCameraBuffer* GetCameraBuffer() { return m_CameraBuffer; }
             inline sDirectLightBuffer* GetDirectLightBuffer() { return m_DirectLightBuffer; }
             inline sPointLightBuffer* GetPointLightBuffer() { return m_PointLightBuffer; }
             inline sSpotLightBuffer* GetSpotLightBuffer() { return m_SpotLightBuffer; }
-            inline sShadowFilterBuffer* GetShadowFilterBuffer() { return m_ShadowFilterBuffer; }
+            inline sShadowBuffer* GetShadowBuffer() { return m_ShadowBuffer; }
 
             inline sRenderTarget* GetFinalRT() { return m_FinalRenderTarget; }
             inline sRenderTarget* GetSceneRT() { return m_SceneRenderTarget; }
@@ -49,15 +44,15 @@ namespace xpe {
             inline sRenderTarget* GetUiRT() { return m_UiRenderTarget; }
 
             inline sTexture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
-            inline sTexture* GetShadowMap() { return m_ShadowRenderTarget->DepthStencil; }
+            inline sTexture* GetShadowAtlas() { return m_ShadowRenderTarget->DepthStencil; }
 
             inline sSampler* GetShadowSampler() { return &m_ShadowSampler; }
 
         private:
-            void InitManagers(const sViewport& viewport, u32 sampleCount);
-            void InitBuffers(const sViewport& viewport, u32 sampleCount);
-            void InitSamplers(const sViewport& viewport, u32 sampleCount);
-            void InitRenderTargets(const sViewport& viewport, u32 sampleCount);
+            void InitManagers(sViewport& viewport, u32 sampleCount);
+            void InitBuffers(sViewport& viewport, u32 sampleCount);
+            void InitSamplers(sViewport& viewport, u32 sampleCount);
+            void InitRenderTargets(sViewport& viewport, u32 sampleCount);
 
             void FreeManagers();
             void FreeBuffers();
@@ -74,13 +69,10 @@ namespace xpe {
             vector<cRenderPass*> m_PostFXRenderPasses;
             vector<cRenderPass*> m_UiRenderPasses;
 
-            sViewportBuffer* m_ViewportBuffer;
-            sMonitorBuffer* m_MonitorBuffer;
-            sCameraBuffer* m_CameraBuffer;
             sDirectLightBuffer* m_DirectLightBuffer;
             sPointLightBuffer* m_PointLightBuffer;
             sSpotLightBuffer* m_SpotLightBuffer;
-            sShadowFilterBuffer* m_ShadowFilterBuffer;
+            sShadowBuffer* m_ShadowBuffer;
 
             sRenderTarget* m_SceneRenderTarget;
             sRenderTarget* m_FinalRenderTarget;

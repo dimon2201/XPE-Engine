@@ -13,19 +13,12 @@ namespace xpe {
             void* DepthStencilView = nullptr;
             vector<sTexture*> Colors;
             sTexture* DepthStencil = nullptr;
-            vector<sViewport> Viewports;
+            sViewport* Viewport = nullptr;
 
-            sRenderTarget(const vector<sTexture*>& colors, const sViewport& viewport);
-            sRenderTarget(const vector<sTexture*>& colors, const vector<sViewport>& viewports);
-
-            sRenderTarget(const sTexture* depthStencil, const sViewport& viewport);
-            sRenderTarget(const sTexture* depthStencil, const vector<sViewport>& viewports);
-
-            sRenderTarget(const vector<sTexture*>& colors, const sTexture* depthStencil, const sViewport& viewport);
-            sRenderTarget(const vector<sTexture*>& colors, const sTexture* depthStencil, const vector<sViewport>& viewports);
-
-            sRenderTarget(const vector<void*>& colorViews, const sViewport& viewport);
-            sRenderTarget(const vector<void*>& colorViews, const vector<sViewport>& viewports);
+            sRenderTarget(const vector<sTexture*>& colors, sViewport* viewport);
+            sRenderTarget(const sTexture* depthStencil, sViewport* viewport);
+            sRenderTarget(const vector<sTexture*>& colors, const sTexture* depthStencil, sViewport* viewport);
+            sRenderTarget(const vector<void*>& colorViews, sViewport* viewport);
 
             ~sRenderTarget();
 

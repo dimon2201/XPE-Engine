@@ -1,3 +1,18 @@
-void ps_main() {
-    // just return a depth value
+struct VSOut
+{
+    float4 positionLight : SV_POSITION;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn) {
+    PSOut psOut;
+
+    float depth = 0.5;
+    psOut.color = float4(depth, depth, depth, 1.0);
+
+    return psOut;
 }

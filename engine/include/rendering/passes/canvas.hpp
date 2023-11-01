@@ -1,7 +1,6 @@
 #pragma once
 
 #include <rendering/core/context.hpp>
-#include <rendering/buffers/viewport_buffer.h>
 
 namespace xpe {
 
@@ -11,23 +10,24 @@ namespace xpe {
         {
 
         public:
-            cCanvas(sShader* shader, sRenderTarget* renderTarget, sViewportBuffer* viewportBuffer);
+            cCanvas(sShader* shader, sTexture* texture, sViewport* viewport);
             ~cCanvas();
 
             void Draw();
 
             void WindowFrameResized(s32 width, s32 height);
 
-            inline void SetRenderTarget(sRenderTarget* renderTarget) { m_RenderTarget = renderTarget; }
+            inline void SetTexture(sTexture* texture) { m_Texture = texture; }
+            inline sTexture* GetTexture() { return m_Texture; }
 
         private:
             void CreatePresentTarget();
             void CreatePresentSampler();
 
         private:
-            sRenderTarget* m_RenderTarget;
+            sTexture* m_Texture;
             sShader* m_Shader;
-            sViewportBuffer* m_ViewportBuffer;
+            sViewport* m_Viewport;
             sSampler m_PresentSampler;
             sRenderTarget* m_PresentTarget;
             u32 m_BoundTargetIndex = 0;

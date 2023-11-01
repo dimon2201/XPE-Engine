@@ -3,7 +3,7 @@
 
 #include <rendering/render_system.h>
 #include <rendering/skybox_manager.h>
-#include <rendering/camera.h>
+#include <rendering/camera_manager.h>
 
 #include <ecs/components.hpp>
 
@@ -36,6 +36,7 @@ protected:
     void InitRenderPasses() override
     {
         cApp::InitRenderPasses();
+        m_CanvasTexture = m_RenderSystem->GetFinalRT()->Colors[0];
     }
 
 public:
@@ -122,14 +123,9 @@ public:
         {
             m_Plane = new cEntity("sPlane", m_Scene);
             m_Plane->SetPosition(glm::vec3(0.0f));
-            m_Plane->SetScale(glm::vec3(5.0f, 0.0f, 5.0f));
-
+            m_Plane->SetScale(glm::vec3(5.0f, 1.0f, 5.0f));
             m_Plane->Add<sCGeometry>(cGeometryManager::AddGeometry(sPlane(10)));
-            auto* planeMaterial = m_Plane->Add<sCMaterial>(cMaterialManager::AddMaterial());
-            planeMaterial->Metallness = 0.0f;
-            planeMaterial->Roughness = 0.05f;
-            planeMaterial->AO = 0.0f;
-            cMaterialManager::Flush(*planeMaterial);
+            m_Plane->Add<sCMaterial>(cMaterialManager::AddMaterial());
 
             sPlaneShapeDescriptor planeShapeDesc;
             m_Plane->Add<sCPhysicsActor>(
@@ -154,121 +150,121 @@ public:
         }
 
         // Goblins
-        //{
-        //    m_Goblins = new cEntity("Goblins", m_Scene);
-        //
-        //    m_Goblin1 = new cEntity("Goblin1", m_Scene);
-        //    m_Goblin1->Transform.Position = {-4, 0, -4 };
-        //    m_Goblin1->Transform.Rotation = {0, 0, 0 };
-        //    m_Goblin1->Transform.Scale = {5, 5, 5 };
-        //
-        //    m_Goblin2 = new cEntity("Goblin2", m_Scene);
-        //    m_Goblin2->Transform.Position = {-4, 0, 4 };
-        //    m_Goblin2->Transform.Rotation = {0, 0, 0 };
-        //    m_Goblin2->Transform.Scale = {5, 5, 5 };
-        //
-        //    m_Goblin3 = new cEntity("Goblin3", m_Scene);
-        //    m_Goblin3->Transform.Position = {4, 0, -4 };
-        //    m_Goblin3->Transform.Rotation = {0, 0, 0 };
-        //    m_Goblin3->Transform.Scale = {5, 5, 5 };
-        //
-        //    m_Goblin4 = new cEntity("Goblin4", m_Scene);
-        //    m_Goblin4->Transform.Position = {4, 0, 4 };
-        //    m_Goblin4->Transform.Rotation = {0, 0, 0 };
-        //    m_Goblin4->Transform.Scale = {5, 5, 5 };
-        //
-        //    auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-        //    goblins->Visible = true;
-        //    goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
-        //    goblins->Skeleton = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-        //    goblins->Animation = cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-        //    goblins->Animation.Play = true;
-        //
-        //    sMaterialFilepath materialFilepath;
-        //    materialFilepath.Name = "niz";
-        //    materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
-        //    materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
-//                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
-//                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
-        //
-        //    auto* material1 = m_Goblin1->Add<sCMaterial>(cMaterialManager::AddMaterial());
-        //    material1->Albedo = { 1, 1, 1, 1 };
-        //    material1->Emission = { 0, 0, 10 };
-        //    material1->Metallness = 0.0f;
-        //    material1->Roughness = 0.05f;
-        //    material1->AO = 0.0f;
-        //    material1->EnableAlbedoMap = false;
-        //    material1->EnableNormalMap = false;
-        //    material1->EnableRoughnessMap = false;
-        //    material1->EnableMetalMap = false;
-        //    material1->EnableAOMap = false;
-        //    cMaterialManager::Flush(*material1);
-        //
-        //    auto* material2 = m_Goblin2->Add<sCMaterial>(cMaterialManager::AddMaterial());
-        //    material2->Albedo = { 1, 1, 1, 1 };
-        //    material2->Emission = { 0, 0, 10 };
-        //    material2->Metallness = 0.0f;
-        //    material2->Roughness = 0.05f;
-        //    material2->AO = 0.0f;
-        //    material2->EnableAlbedoMap = false;
-        //    material2->EnableNormalMap = false;
-        //    material2->EnableRoughnessMap = false;
-        //    material2->EnableMetalMap = false;
-        //    material2->EnableAOMap = false;
-        //    cMaterialManager::Flush(*material2);
-        //
-        //    auto* material3 = m_Goblin3->Add<sCMaterial>(cMaterialManager::AddMaterial());
-        //    material3->Albedo = { 1, 1, 1, 1 };
-        //    material3->Emission = { 0, 0, 10 };
-        //    material3->Metallness = 0.0f;
-        //    material3->Roughness = 0.05f;
-        //    material3->AO = 0.0f;
-        //    material3->EnableAlbedoMap = false;
-        //    material3->EnableNormalMap = false;
-        //    material3->EnableRoughnessMap = false;
-        //    material3->EnableMetalMap = false;
-        //    material3->EnableAOMap = false;
-        //    cMaterialManager::Flush(*material3);
-        //
-        //    auto* material4 = m_Goblin4->Add<sCMaterial>(cMaterialManager::AddMaterial());
-        //    material4->Albedo = { 1, 1, 1, 1 };
-        //    material4->Emission = { 0, 0, 10 };
-        //    material4->Metallness = 0.0f;
-        //    material4->Roughness = 0.05f;
-        //    material4->AO = 0.0f;
-        //    material4->EnableAlbedoMap = false;
-        //    material4->EnableNormalMap = false;
-        //    material4->EnableRoughnessMap = false;
-        //    material4->EnableMetalMap = false;
-        //    material4->EnableAOMap = false;
-        //    cMaterialManager::Flush(*material4);
-        //
+        {
+            m_Goblins = new cEntity("Goblins", m_Scene);
+
+            m_Goblin1 = new cEntity("Goblin1", m_Scene);
+            m_Goblin1->GetPosition() = {-4, 0, -4 };
+            m_Goblin1->GetRotation() = {0, 0, 0 };
+            m_Goblin1->GetScale() = {5, 5, 5 };
+
+            m_Goblin2 = new cEntity("Goblin2", m_Scene);
+            m_Goblin2->GetPosition() = {-4, 0, 4 };
+            m_Goblin2->GetRotation() = {0, 0, 0 };
+            m_Goblin2->GetScale() = {5, 5, 5 };
+
+            m_Goblin3 = new cEntity("Goblin3", m_Scene);
+            m_Goblin3->GetPosition() = {4, 0, -4 };
+            m_Goblin3->GetRotation() = {0, 0, 0 };
+            m_Goblin3->GetScale() = {5, 5, 5 };
+
+            m_Goblin4 = new cEntity("Goblin4", m_Scene);
+            m_Goblin4->GetPosition() = {4, 0, 4 };
+            m_Goblin4->GetRotation() = {0, 0, 0 };
+            m_Goblin4->GetScale() = {5, 5, 5 };
+
+            auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            goblins->Visible = true;
+            goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
+            goblins->Skeleton = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            goblins->Animation = cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            goblins->Animation.Play = true;
+
+            sMaterialFilepath materialFilepath;
+            materialFilepath.Name = "niz";
+            materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+            materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
+                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
+
+            auto* material1 = m_Goblin1->Add<sCMaterial>(cMaterialManager::AddMaterial());
+            material1->Albedo = { 1, 1, 1, 1 };
+            material1->Emission = { 0, 0, 10 };
+            material1->Metallness = 0.0f;
+            material1->Roughness = 0.05f;
+            material1->AO = 0.0f;
+            material1->EnableAlbedoMap = false;
+            material1->EnableNormalMap = false;
+            material1->EnableRoughnessMap = false;
+            material1->EnableMetalMap = false;
+            material1->EnableAOMap = false;
+            cMaterialManager::Flush(*material1);
+
+            auto* material2 = m_Goblin2->Add<sCMaterial>(cMaterialManager::AddMaterial());
+            material2->Albedo = { 1, 1, 1, 1 };
+            material2->Emission = { 0, 0, 10 };
+            material2->Metallness = 0.0f;
+            material2->Roughness = 0.05f;
+            material2->AO = 0.0f;
+            material2->EnableAlbedoMap = false;
+            material2->EnableNormalMap = false;
+            material2->EnableRoughnessMap = false;
+            material2->EnableMetalMap = false;
+            material2->EnableAOMap = false;
+            cMaterialManager::Flush(*material2);
+
+            auto* material3 = m_Goblin3->Add<sCMaterial>(cMaterialManager::AddMaterial());
+            material3->Albedo = { 1, 1, 1, 1 };
+            material3->Emission = { 0, 0, 10 };
+            material3->Metallness = 0.0f;
+            material3->Roughness = 0.05f;
+            material3->AO = 0.0f;
+            material3->EnableAlbedoMap = false;
+            material3->EnableNormalMap = false;
+            material3->EnableRoughnessMap = false;
+            material3->EnableMetalMap = false;
+            material3->EnableAOMap = false;
+            cMaterialManager::Flush(*material3);
+
+            auto* material4 = m_Goblin4->Add<sCMaterial>(cMaterialManager::AddMaterial());
+            material4->Albedo = { 1, 1, 1, 1 };
+            material4->Emission = { 0, 0, 10 };
+            material4->Metallness = 0.0f;
+            material4->Roughness = 0.05f;
+            material4->AO = 0.0f;
+            material4->EnableAlbedoMap = false;
+            material4->EnableNormalMap = false;
+            material4->EnableRoughnessMap = false;
+            material4->EnableMetalMap = false;
+            material4->EnableAOMap = false;
+            cMaterialManager::Flush(*material4);
+
             // for testing image resizing on CPU, we can write resized image into file
 
-        //    cTextureLoader::SaveLayer(
-        //            "generated/Vampire_diffuse_resized.png",
-        //            material1->AlbedoMap,
-        //            sTexture::eFileFormat::PNG
-        //    );
-        //
-        //    cTextureLoader::SaveLayer(
-        //            "generated/Vampire_normal_resized.png",
-        //            material1->NormalMap,
-        //            sTexture::eFileFormat::PNG
-        //    );
-        //
-        //    cTextureLoader::SaveLayer(
-        //            "generated/Vampire_roughness_resized.png",
-        //            material1->RoughnessMap,
-        //            sTexture::eFileFormat::PNG
-        //    );
-        //
-        //    cTextureLoader::SaveLayer(
-        //            "generated/Vampire_metallic_resized.png",
-        //            material1->MetalMap,
-        //            sTexture::eFileFormat::PNG
-        //    );
-        //}
+            cTextureLoader::SaveLayer(
+                    "generated/Vampire_diffuse_resized.png",
+                    material1->AlbedoMap,
+                    sTexture::eFileFormat::PNG
+            );
+
+            cTextureLoader::SaveLayer(
+                    "generated/Vampire_normal_resized.png",
+                    material1->NormalMap,
+                    sTexture::eFileFormat::PNG
+            );
+
+            cTextureLoader::SaveLayer(
+                    "generated/Vampire_roughness_resized.png",
+                    material1->RoughnessMap,
+                    sTexture::eFileFormat::PNG
+            );
+
+            cTextureLoader::SaveLayer(
+                    "generated/Vampire_metallic_resized.png",
+                    material1->MetalMap,
+                    sTexture::eFileFormat::PNG
+            );
+        }
 
         // Cube
         {
@@ -448,11 +444,11 @@ public:
         delete m_Text2D;
         delete m_Text3D;
         delete m_Plane;
-//        delete m_Goblins;
-        //delete m_Goblin1;
-        //delete m_Goblin2;
-        //delete m_Goblin3;
-        //delete m_Goblin4;
+        delete m_Goblins;
+        delete m_Goblin1;
+        delete m_Goblin2;
+        delete m_Goblin3;
+        delete m_Goblin4;
         delete m_Cube;
 //        delete m_BackgroundAudio;
 //        delete m_AudioObject;
@@ -505,7 +501,7 @@ public:
 private:
 
     void InitCamera() {
-        m_PerspectiveCamera = new cPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight(), m_RenderSystem->GetCameraBuffer());
+        m_PerspectiveCamera = cCameraManager::AddPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight());
         m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
         m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
         m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
@@ -556,7 +552,7 @@ private:
     {
         if (key == eKey::P)
         {
-//            m_Goblins->Get<sCSkeletonModel>()->Animation.Play = !m_Goblins->Get<sCSkeletonModel>()->Animation.Play;
+            m_Goblins->Get<sCSkeletonModel>()->Animation.Play = !m_Goblins->Get<sCSkeletonModel>()->Animation.Play;
         }
     }
 
@@ -580,14 +576,14 @@ private:
         auto& text2D = m_Text2D->Get<sCText2D>()->Text;
         text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(cWindowManager::GetGamma()) +
-                 "\nExposure: " + std::to_string(cWindowManager::GetExposure());
+                 "\nGamma: " + std::to_string(cCameraManager::GetGamma()) +
+                 "\nExposure: " + std::to_string(cCameraManager::GetExposure());
 
         auto& text3D = m_Text3D->Get<sCText3D>()->Text;
         text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(cWindowManager::GetGamma()) +
-                 "\nExposure: " + std::to_string(cWindowManager::GetExposure());
+                 "\nGamma: " + std::to_string(cCameraManager::GetGamma()) +
+                 "\nExposure: " + std::to_string(cCameraManager::GetExposure());
     }
 
 private:
@@ -597,11 +593,11 @@ private:
     cEntity* m_Text2D;
     cEntity* m_Text3D;
     cEntity* m_Plane;
-    //cEntity* m_Goblins;
-    //cEntity* m_Goblin1;
-    //cEntity* m_Goblin2;
-    //cEntity* m_Goblin3;
-    //cEntity* m_Goblin4;
+    cEntity* m_Goblins;
+    cEntity* m_Goblin1;
+    cEntity* m_Goblin2;
+    cEntity* m_Goblin3;
+    cEntity* m_Goblin4;
     cEntity* m_Cube;
     cEntity* m_BackgroundAudio;
     cEntity* m_AudioObject;

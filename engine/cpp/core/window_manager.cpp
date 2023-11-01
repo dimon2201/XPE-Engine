@@ -4,8 +4,6 @@
 
 #include <core/window_manager.hpp>
 
-#include <rendering/buffers/monitor_buffer.h>
-
 namespace xpe {
 
     namespace core {
@@ -14,14 +12,14 @@ namespace xpe {
         static GLFWmonitor* s_PrimaryMonitor = nullptr;
         static std::unordered_map<GLFWmonitor*, const GLFWvidmode*> s_MonitorTable;
 
-        static const std::unordered_map<eCursorMode, int> s_CursorModeTable = {
+        static const std::unordered_map<eCursorMode, int> k_CursorModeTable = {
                 { eCursorMode::NORMAL, GLFW_CURSOR_NORMAL },
                 { eCursorMode::HIDE, GLFW_CURSOR_HIDDEN },
                 { eCursorMode::DISABLE, GLFW_CURSOR_DISABLED },
                 { eCursorMode::CAPTURED, GLFW_CURSOR_CAPTURED }
         };
 
-        static const std::unordered_map<eWindowTheme, u8> s_WindowThemeTable = {
+        static const std::unordered_map<eWindowTheme, u8> k_WindowThemeTable = {
                 { eWindowTheme::LIGHT, 0 },
                 { eWindowTheme::DARK, 20 }
         };
@@ -34,8 +32,6 @@ namespace xpe {
         int cWindowManager::s_WindowModeHeight = 0;
 
         bool cWindowManager::s_EnableFullscreen = false;
-
-        render::sMonitorBuffer* cWindowManager::s_MonitorBuffer = nullptr;
 
         void cWindowManager::Init() {
             LogInfo("cWindowManager::Init()");
@@ -257,28 +253,6 @@ namespace xpe {
             glfwWindowHint(GLFW_GREEN_BITS, primary_mode->greenBits);
             glfwWindowHint(GLFW_BLUE_BITS, primary_mode->blueBits);
             glfwWindowHint(GLFW_REFRESH_RATE, primary_mode->refreshRate);
-        }
-
-        void cWindowManager::SetMonitorBuffer(render::sMonitorBuffer *monitorBuffer) {
-            s_MonitorBuffer = monitorBuffer;
-        }
-
-        void cWindowManager::SetExposure(float exposure) {
-            s_MonitorBuffer->Item.Exposure = exposure;
-            s_MonitorBuffer->Flush();
-        }
-
-        void cWindowManager::SetGamma(float gamma) {
-            s_MonitorBuffer->Item.Gamma = gamma;
-            s_MonitorBuffer->Flush();
-        }
-
-        float cWindowManager::GetExposure() {
-            return s_MonitorBuffer->Item.Exposure;
-        }
-
-        float cWindowManager::GetGamma() {
-            return s_MonitorBuffer->Item.Gamma;
         }
 
     }

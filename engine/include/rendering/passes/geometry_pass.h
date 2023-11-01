@@ -6,11 +6,11 @@ namespace xpe {
 
     namespace render {
 
-        class cSkeletonPass : public cInstancingPass
+        class ENGINE_API cGeometryPass : public cInstancingPass
         {
 
         public:
-            cSkeletonPass(eType type, const vector<sRenderPassBinding>& bindings);
+            cGeometryPass(eType type, const vector<sRenderPassBinding>& bindings);
 
             void DrawOpaque(cScene *scene) override;
             void DrawTransparent(cScene *scene) override;
