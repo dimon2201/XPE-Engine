@@ -1,4 +1,6 @@
 #include <ecs/components.hpp>
+#include <ecs/ecs.h>
+
 
 namespace xpe {
 
@@ -109,9 +111,9 @@ namespace xpe {
         {
         }
 
-        void cEntity::SetPosition(const glm::vec3& position)
+        void cEntity::SetTranform(const sTransform &transform)
         {
-            m_Transform.Position = position;
+            m_Transform = transform;
 
             sCPhysicsActor* actor = Get<sCPhysicsActor>();
             if (actor != nullptr)
@@ -120,9 +122,16 @@ namespace xpe {
             }
         }
 
+        void cEntity::SetPosition(const glm::vec3& position)
+        {
+            m_Transform.Position = position;
+            SetTranform(m_Transform);
+        }
+
         void cEntity::SetRotation(const glm::vec3& rotation)
         {
             m_Transform.Rotation = rotation;
+            SetTranform(m_Transform);
         }
 
         void cEntity::SetScale(const glm::vec3& scale)

@@ -118,7 +118,7 @@ public:
             cSkyboxManager::Get().Skybox = skybox;
         }
 
-        // sPlane
+        // Plane
         {
             m_Plane = new cEntity("sPlane", m_Scene);
             m_Plane->SetPosition(glm::vec3(0.0f));
@@ -147,8 +147,7 @@ public:
         // Sunlight
         {
             m_SunLight = new cEntity("SunLight", m_Scene);
-            m_Plane->SetPosition(glm::vec3(20.0f, 20.0f, -20.0f));
-
+            m_SunLight->SetPosition(glm::vec3(20.0f, 20.0f, -20.0f));
             m_SunLight->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()));
             m_SunLight->Add<sCMaterial>(cMaterialManager::AddMaterial());
             m_SunLight->Add<sCDirectionalLight>(glm::vec3(0, 0, 0), glm::vec3(1, 1, 10));
@@ -449,7 +448,7 @@ public:
         delete m_Text2D;
         delete m_Text3D;
         delete m_Plane;
-        delete m_Goblins;
+//        delete m_Goblins;
         //delete m_Goblin1;
         //delete m_Goblin2;
         //delete m_Goblin3;
@@ -530,7 +529,7 @@ private:
 
     void MoveLight(const eKey key)
     {
-        auto& pos = m_SunLight->GetPositionRef();
+        auto& pos = m_SunLight->GetPosition();
 
         if (key == eKey::Up)
         {
@@ -557,7 +556,7 @@ private:
     {
         if (key == eKey::P)
         {
-            m_Goblins->Get<sCSkeletonModel>()->Animation.Play = !m_Goblins->Get<sCSkeletonModel>()->Animation.Play;
+//            m_Goblins->Get<sCSkeletonModel>()->Animation.Play = !m_Goblins->Get<sCSkeletonModel>()->Animation.Play;
         }
     }
 
@@ -565,7 +564,7 @@ private:
     {
         if (m_TestConfig.AnimateLight)
         {
-            auto& pos = m_SunLight->GetPositionRef();
+            auto& pos = m_SunLight->GetPosition();
 
             // translation light up and down every N ticks
             static int tick = 1;
@@ -598,7 +597,7 @@ private:
     cEntity* m_Text2D;
     cEntity* m_Text3D;
     cEntity* m_Plane;
-    cEntity* m_Goblins;
+    //cEntity* m_Goblins;
     //cEntity* m_Goblin1;
     //cEntity* m_Goblin2;
     //cEntity* m_Goblin3;

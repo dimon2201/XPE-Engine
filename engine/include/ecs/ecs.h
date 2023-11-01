@@ -326,7 +326,10 @@ namespace xpe
         template<typename T>
         void cScene::EachComponent(const std::function<void(T*)>& iterateFunction)
         {
-            m_ComponentStorages[GetComponentType<T>()].ForEach<T>(iterateFunction);
+            ComponentType componentType = GetComponentType<T>();
+            if (m_ComponentStorages.find(componentType) != m_ComponentStorages.end()) {
+                m_ComponentStorages[componentType].ForEach<T>(iterateFunction);
+            }
         }
 
         template<typename T>
@@ -365,18 +368,16 @@ namespace xpe
             cEntity(const string& tag, cScene* scene);
             ~cEntity();
 
+            void SetTranform(const sTransform& transform);
             void SetPosition(const glm::vec3& position);
             void SetRotation(const glm::vec3& rotation);
             void SetScale(const glm::vec3& scale);
             inline void SetScene(cScene* scene) { m_Scene = scene; }
 
             inline sTransform& GetTransform() { return m_Transform; }
-            inline const glm::vec3& GetPosition() { return m_Transform.Position; }
-            inline glm::vec3& GetPositionRef() { return m_Transform.Position; }
-            inline const glm::vec3& GetRotation() { return m_Transform.Rotation; }
-            inline glm::vec3& GetRotationRef() { return m_Transform.Rotation; }
-            inline const glm::vec3& GetScale() { return m_Transform.Scale; }
-            inline glm::vec3& GetScaleRef() { return m_Transform.Scale; }
+            inline glm::vec3& GetPosition() { return m_Transform.Position; }
+            inline glm::vec3& GetRotation() { return m_Transform.Rotation; }
+            inline glm::vec3& GetScale() { return m_Transform.Scale; }
             [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
 
             inline void Rename(const string& tag)
