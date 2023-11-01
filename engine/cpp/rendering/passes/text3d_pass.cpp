@@ -13,7 +13,7 @@ namespace xpe {
         {
             scene->EachComponent<sCText3D>([this](sCText3D* component)
             {
-                DrawText(component->Entity->Transform, component->Text, *component->Font);
+                DrawText(component->Entity->GetTransform(), component->Text, *component->Font);
             });
         }
 

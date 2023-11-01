@@ -361,22 +361,22 @@ namespace xpe
         {
 
         public:
-            sTransform Transform;
-            cEntity* Parent = nullptr;
-            vector<cEntity*> Children;
-
-            JsonClass(
-                cEntity,
-                m_Tag,
-                Transform
-            )
 
             cEntity(const string& tag, cScene* scene);
-
             ~cEntity();
 
+            void SetPosition(const glm::vec3& position);
+            void SetRotation(const glm::vec3& rotation);
+            void SetScale(const glm::vec3& scale);
             inline void SetScene(cScene* scene) { m_Scene = scene; }
 
+            inline sTransform& GetTransform() { return m_Transform; }
+            inline const glm::vec3& GetPosition() { return m_Transform.Position; }
+            inline glm::vec3& GetPositionRef() { return m_Transform.Position; }
+            inline const glm::vec3& GetRotation() { return m_Transform.Rotation; }
+            inline glm::vec3& GetRotationRef() { return m_Transform.Rotation; }
+            inline const glm::vec3& GetScale() { return m_Transform.Scale; }
+            inline glm::vec3& GetScaleRef() { return m_Transform.Scale; }
             [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
 
             inline void Rename(const string& tag)
@@ -404,7 +404,16 @@ namespace xpe
             }
 
         protected:
+            sTransform m_Transform;
+            cEntity* m_Parent = nullptr;
+            vector<cEntity*> m_Children;
             cScene* m_Scene = nullptr;
+
+            JsonClass(
+                cEntity,
+                m_Tag,
+                m_Transform
+            )
         };
 
         template<typename T>

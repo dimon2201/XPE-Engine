@@ -13,7 +13,7 @@ namespace xpe {
         {
             scene->EachComponent<sCText2D>([this](sCText2D* component)
             {
-                sTransform transform = component->Entity->Transform;
+                sTransform transform = component->Entity->GetTransform();
                 transform.Position = {
                         transform.Position.x * (float) cWindowManager::GetFrameWidth(),
                         transform.Position.y * (float) cWindowManager::GetFrameHeight() - component->Font->GlyphSize,

@@ -1,3 +1,5 @@
+#include <ecs/components.hpp>
+
 namespace xpe {
 
     namespace ecs {
@@ -101,12 +103,31 @@ namespace xpe {
 
         void cScene::ToJson(json &root)
         {
-
         }
 
         void cScene::FromJson(json &root)
         {
+        }
 
+        void cEntity::SetPosition(const glm::vec3& position)
+        {
+            m_Transform.Position = position;
+
+            sCPhysicsActor* actor = Get<sCPhysicsActor>();
+            if (actor != nullptr)
+            {
+                physics::cPhysicsManager::SetActorPose(actor, &m_Transform);
+            }
+        }
+
+        void cEntity::SetRotation(const glm::vec3& rotation)
+        {
+            m_Transform.Rotation = rotation;
+        }
+
+        void cEntity::SetScale(const glm::vec3& scale)
+        {
+            m_Transform.Scale = scale;
         }
 
     }
