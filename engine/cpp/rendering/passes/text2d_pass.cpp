@@ -13,7 +13,13 @@ namespace xpe {
         {
             scene->EachComponent<sCText2D>([this](sCText2D* component)
             {
-                DrawText(component->Entity->Transform, component->Text, *component->Font);
+                sTransform transform = component->Entity->Transform;
+                transform.Position = {
+                        transform.Position.x * (float) cWindowManager::GetFrameWidth(),
+                        transform.Position.y * (float) cWindowManager::GetFrameHeight() - component->Font->GlyphSize,
+                        transform.Position.z
+                };
+                DrawText(transform, component->Text, *component->Font);
             });
         }
 

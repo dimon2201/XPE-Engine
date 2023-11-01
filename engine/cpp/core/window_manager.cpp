@@ -105,6 +105,18 @@ namespace xpe {
             return s_Window.Descriptor.Height;
         }
 
+        int cWindowManager::GetFrameWidth()
+        {
+            glfwGetFramebufferSize(s_WindowHandle, &s_Window.Descriptor.FrameWidth, &s_Window.Descriptor.FrameHeight);
+            return s_Window.Descriptor.FrameWidth;
+        }
+
+        int cWindowManager::GetFrameHeight()
+        {
+            glfwGetFramebufferSize(s_WindowHandle, &s_Window.Descriptor.FrameWidth, &s_Window.Descriptor.FrameHeight);
+            return s_Window.Descriptor.FrameHeight;
+        }
+
         int cWindowManager::GetPosX() {
             glfwGetWindowPos(s_WindowHandle, &s_Window.Descriptor.X, &s_Window.Descriptor.Y);
             return s_Window.Descriptor.X;

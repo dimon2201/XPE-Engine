@@ -78,15 +78,13 @@ public:
         // Text 2D
         {
             m_Text2D = new cEntity("Text2D", m_Scene);
-            m_Text2D->Transform.Position = {0, cWindowManager::GetHeight(), 0 };
+            m_Text2D->Transform.Position = { 0, 1, 0 };
             m_Text2D->Transform.Scale = { 1, 1, 1 };
 
             auto* textComponent = m_Text2D->Add<sCText2D>();
             textComponent->Text = "FPS: \n CPU: \n";
             textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
             textComponent->Font->NewLineOffset = 1.0f;
-
-            m_Text2D->Transform.Position.y -= textComponent->Font->GlyphSize;
         }
 
         // Text 3D

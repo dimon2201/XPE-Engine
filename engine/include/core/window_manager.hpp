@@ -29,6 +29,8 @@ namespace xpe
             const char* Title;
             s32 Width;
             s32 Height;
+            s32 FrameWidth;
+            s32 FrameHeight;
             s32 X;
             s32 Y;
             bool VSync;
@@ -69,6 +71,9 @@ namespace xpe
 
             static int GetWidth();
             static int GetHeight();
+
+            static int GetFrameWidth();
+            static int GetFrameHeight();
 
             static int GetPosX();
             static int GetPosY();
