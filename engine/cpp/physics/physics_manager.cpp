@@ -243,7 +243,7 @@ namespace xpe
         {
             vector<sActor*> bodyparts;
 
-            for (s32 i = 0; i < sRagdoll::BODYPART_COUNT; i++)
+            for (s32 i = 0; i < sRagdoll::k_BodypartCount; i++)
             {
             }
 

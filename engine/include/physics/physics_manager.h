@@ -152,7 +152,7 @@ namespace xpe {
             sRagdoll(const vector<sActor*>& bodyparts) : Bodyparts(bodyparts) {}
             ~sRagdoll() = default;
 
-            static const usize BODYPART_COUNT = 12;
+            static const usize k_BodypartCount = 12;
 
             enum eBodypart
             {

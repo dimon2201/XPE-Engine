@@ -14,12 +14,12 @@ namespace xpe {
 
         const sVertexFormat sVertex::k_Format =
         {{
-             sAttributes::POS,
-             sAttributes::UV,
-             sAttributes::NORMAL,
-             sAttributes::TANGENT,
-             sAttributes::BONE_IDS,
-             sAttributes::BONE_WEIGHTS
+             sAttributes::k_Pos,
+             sAttributes::k_UV,
+             sAttributes::k_Normal,
+             sAttributes::k_Tangent,
+             sAttributes::k_BoneIds,
+             sAttributes::k_BoneWeights
          }};
 
     }

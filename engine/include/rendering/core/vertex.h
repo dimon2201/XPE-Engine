@@ -60,12 +60,12 @@ namespace xpe {
         // define here any custom attributes that you want to use in your vertex shader
         struct ENGINE_API sAttributes final
         {
-            static constexpr sVertexFormat::sAttribute POS = {0, "XPE_POSITION", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
-            static constexpr sVertexFormat::sAttribute UV = {1, "XPE_UV", sVertexFormat::sAttribute::eType::VEC2_FLOAT, 8 };
-            static constexpr sVertexFormat::sAttribute NORMAL = {2, "XPE_NORMAL", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
-            static constexpr sVertexFormat::sAttribute TANGENT = {3, "XPE_TANGENT", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
-            static constexpr sVertexFormat::sAttribute BONE_IDS = {4, "XPE_BONE_IDS", sVertexFormat::sAttribute::eType::VEC4_INT, 16 };
-            static constexpr sVertexFormat::sAttribute BONE_WEIGHTS = {5, "XPE_BONE_WEIGHTS", sVertexFormat::sAttribute::eType::VEC4_FLOAT, 16 };
+            static constexpr sVertexFormat::sAttribute k_Pos = {0, "XPE_POSITION", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
+            static constexpr sVertexFormat::sAttribute k_UV = {1, "XPE_UV", sVertexFormat::sAttribute::eType::VEC2_FLOAT, 8 };
+            static constexpr sVertexFormat::sAttribute k_Normal = {2, "XPE_NORMAL", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
+            static constexpr sVertexFormat::sAttribute k_Tangent = {3, "XPE_TANGENT", sVertexFormat::sAttribute::eType::VEC3_FLOAT, 12 };
+            static constexpr sVertexFormat::sAttribute k_BoneIds = {4, "XPE_BONE_IDS", sVertexFormat::sAttribute::eType::VEC4_INT, 16 };
+            static constexpr sVertexFormat::sAttribute k_BoneWeights = {5, "XPE_BONE_WEIGHTS", sVertexFormat::sAttribute::eType::VEC4_FLOAT, 16 };
         };
 
         struct ENGINE_API sVertex final
