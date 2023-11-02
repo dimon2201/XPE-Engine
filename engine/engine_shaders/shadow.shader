@@ -6,8 +6,11 @@ cbuffer ShadowBuffer : K_SLOT_SHADOW
 SamplerState ShadowSampler                   : K_SLOT_SHADOW_SAMPLER;
 Texture2D ShadowAtlas                        : K_SLOT_SHADOW_ATLAS;
 
-float DirectShadow(float3 lightDir, float3 shadowCoords)
+float DirectShadow(float3 lightDir, float4 positionLightSpace)
 {
+    float3 shadowCoords = positionLightSpace.xyz / positionLightSpace.w;
+    shadowCoords = shadowCoords * 0.5 + 0.5;
+
     if (shadowCoords.z > 1.0)
         return 0;
 

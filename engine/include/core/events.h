@@ -23,7 +23,11 @@ namespace xpe {
             RENDER_SYSTEM = 1,
             TEXTURE = 2,
             RENDER_TARGET = 3,
+            CAMERA = 4
         };
+
+        event_begin(WindowRatioChanged, float ratio)
+        event_end(WindowRatioChanged, ratio)
 
         event_begin(WindowFocused)
         event_end(WindowFocused)

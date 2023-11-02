@@ -173,6 +173,7 @@ namespace xpe {
 
             void ScrollChanged(const double x, const double y);
             void WindowFrameResized(int width, int height);
+            void WindowRatioChanged(float ratio);
             void CursorMoved(const double x, const double y);
 
             void Flush();

@@ -17,7 +17,7 @@ struct VSOut
 
 VSOut vs_main(VSIn vsIn)
 {
-    VSOut vsOut = (VSOut)0;
+    VSOut vsOut;
 
     float4 positionTotal = float4(0, 0, 0, 0);
     float4 positionBone  = float4(vsIn.positionLocal, 1.0);
@@ -46,7 +46,7 @@ VSOut vs_main(VSIn vsIn)
     float4 positionWorld = mul(worldMatrix, positionBone);
     float4 positionLight = mul(lightMatrix, positionWorld);
 
-    vsOut.positionLight = positionBone;
+    vsOut.positionLight = positionLight;
 
     return vsOut;
 }

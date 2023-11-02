@@ -12,10 +12,10 @@ struct VSOut
     float2 uv            : XPE_UV2;
     float3 normal        : XPE_NORMAL_WORLD;
     float4 positionClip  : SV_POSITION;
+    float4 positionLight : XPE_POSITION_LIGHT;
     float3 viewPosition  : XPE_VIEW_POSITION;
     uint materialIndex   : XPE_MATERIAL_INDEX;
     float3x3 tbn         : XPE_TBN;
-    float3 shadowCoords  : XPE_SHADOW_COORDS;
     float gamma          : XPE_GAMMA;
 };
 
@@ -43,7 +43,7 @@ PSOut ps_main(VSOut psIn)
     float roughness = GetRoughness(psIn.materialIndex, psIn.uv);
     float ao = GetAO(psIn.materialIndex, psIn.uv);
     float3 emission = GetEmission(psIn.materialIndex, psIn.uv, gamma);
-    float3 shadowCoords = psIn.shadowCoords;
+    float4 positionLight = psIn.positionLight;
 
     // PBR with light sources
     float3 Lo = float3(0, 0, 0);
@@ -52,25 +52,25 @@ PSOut ps_main(VSOut psIn)
     uint directLightStride = 0;
     DirectLights.GetDimensions(directLightSize, directLightStride);
     for (uint i = 0 ; i < directLightSize ; i++) {
-        Lo += PBR(DirectLights[i], albedo.rgb, metallness, roughness, shadowCoords);
+        Lo += PBR(DirectLights[i], albedo.rgb, metallness, roughness, positionLight);
     }
 
     uint pointLightSize = 0;
     uint pointLightStride = 0;
     PointLights.GetDimensions(pointLightSize, pointLightStride);
     for (uint j = 0 ; j < pointLightSize ; j++) {
-        Lo += PBR(PointLights[j], albedo.rgb, metallness, roughness, shadowCoords);
+        Lo += PBR(PointLights[j], albedo.rgb, metallness, roughness, positionLight);
     }
 
     uint spotLightSize = 0;
     uint spotLightStride = 0;
     SpotLights.GetDimensions(spotLightSize, spotLightStride);
     for (uint k = 0 ; k < spotLightSize ; k++) {
-        Lo += PBR(SpotLights[k], albedo.rgb, metallness, roughness, shadowCoords);
+        Lo += PBR(SpotLights[k], albedo.rgb, metallness, roughness, positionLight);
     }
 
     // PBR with IBL
-    // float3 ambient = ibl(NdotV, N, R, albedo.rgb, metallness, roughness, shadowCoords);
+    // float3 ambient = ibl(NdotV, N, R, albedo.rgb, metallness, roughness, positionLight);
     float3 ambient = float3(0, 0, 0);
 
     // Color

@@ -56,12 +56,12 @@ namespace xpe {
 
         void cRenderSystem::InitSamplers(sViewport &viewport, u32 sampleCount)
         {
+            m_ShadowSampler.Filter      = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
             m_ShadowSampler.BorderColor = glm::vec4(1, 1, 1, 1);
-            m_ShadowSampler.Filter   = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
-            m_ShadowSampler.AddressU = sSampler::eAddress::CLAMP;
-            m_ShadowSampler.AddressV = sSampler::eAddress::CLAMP;
-            m_ShadowSampler.AddressW = sSampler::eAddress::CLAMP;
-            m_ShadowSampler.Slot = K_SLOT_SHADOW_SAMPLER;
+            m_ShadowSampler.AddressU    = sSampler::eAddress::BORDER;
+            m_ShadowSampler.AddressV    = sSampler::eAddress::BORDER;
+            m_ShadowSampler.AddressW    = sSampler::eAddress::BORDER;
+            m_ShadowSampler.Slot        = K_SLOT_SHADOW_SAMPLER;
 
             context::CreateSampler(m_ShadowSampler);
         }
@@ -121,6 +121,7 @@ namespace xpe {
             shadowColor->Format = eTextureFormat::RGBA8;
             shadowColor->InitializeData = false;
             shadowColor->EnableRenderTarget = true;
+            shadowColor->Slot = K_SLOT_SHADOW_ATLAS;
             shadowColor->SetResizable(true);
             shadowColor->Init();
 
@@ -131,7 +132,6 @@ namespace xpe {
             shadowDepth->Format = eTextureFormat::R32_TYPELESS;
             shadowDepth->InitializeData = false;
             shadowDepth->EnableRenderTarget = true;
-            shadowDepth->SampleCount = 1;
             shadowDepth->Slot = K_SLOT_SHADOW_ATLAS;
             shadowDepth->SetResizable(true);
             shadowDepth->Init();
@@ -350,6 +350,7 @@ namespace xpe {
         void cRenderSystem::UpdatePasses(xpe::ecs::cScene *scene)
         {
             // Shadow
+            m_ShadowRenderTarget->ClearColor(0, glm::vec4(0.0f));
             m_ShadowRenderTarget->ClearDepth(1.0f);
             for (cRenderPass* rp : m_ShadowRenderPasses)
             {
@@ -366,7 +367,6 @@ namespace xpe {
             m_OpaqueRenderTarget->ClearColor(1, glm::vec4(0.0f));
             m_OpaqueRenderTarget->ClearColor(2, glm::vec4(0.0f));
             m_OpaqueRenderTarget->ClearDepth(1.0f);
-
             for (cRenderPass* rp : m_OpaqueRenderPasses)
             {
                 if (rp->Enable) {
@@ -380,7 +380,6 @@ namespace xpe {
             // Transparent
             m_TransparentRenderTarget->ClearColor(0, glm::vec4(0.0f));
             m_TransparentRenderTarget->ClearColor(1, glm::vec4(1.0f));
-
             for (cRenderPass* rp : m_TransparentRenderPasses)
             {
                 if (rp->Enable) {

@@ -40,6 +40,7 @@ namespace xpe {
             cEventBuffer<eCharModsTyped> CharModsTypedEvents;
 
             cEventBuffer<eSampleCountChanged> SampleCountChangedEvents;
+            cEventBuffer<eWindowRatioChanged> WindowRatioChangedEvents;
 
         };
 

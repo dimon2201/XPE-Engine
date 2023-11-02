@@ -10,6 +10,7 @@
     "Fullscreen": false,
     "Gamma": 2.2,
     "Exposure": 1.0,
+    "AspectRatio.Value": 1.6,
 
     "LogTitle": "ExampleWindow",
     "LogBacktrace": 32,
@@ -24,9 +25,8 @@
 
     "HotReloadShaders": true,
 
-    "MsaaSampleCount.Value": 1,
+    "MsaaSampleCount.Value": 4,
     "EnableSSAO": true
-
   }
 
 }

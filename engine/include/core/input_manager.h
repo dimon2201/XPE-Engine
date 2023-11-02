@@ -4,6 +4,7 @@
 
 #define AddWindowClosed(clazz, priority) xpe::core::cEventManager::Get().WindowClosedEvents.AddEvent(this, xpe::core::OnWindowClosed<clazz>, priority)
 #define AddWindowFrameResized(clazz, priority) xpe::core::cEventManager::Get().WindowFrameResizedEvents.AddEvent(this, xpe::core::OnWindowFrameResized<clazz>, priority)
+#define AddWindowRatioChanged(clazz, priority) xpe::core::cEventManager::Get().WindowRatioChangedEvents.AddEvent(this, xpe::core::OnWindowRatioChanged<clazz>, priority)
 
 #define AddKeyPressed(clazz, priority) xpe::core::cEventManager::Get().KeyPressedEvents.AddEvent(this, xpe::core::OnKeyPressed<clazz>, priority)
 #define AddKeyRelease(clazz, priority) xpe::core::cEventManager::Get().KeyReleasedEvents.AddEvent(this, xpe::core::OnKeyReleased<clazz>, priority)
@@ -15,6 +16,7 @@
 
 #define RemoveWindowClose() xpe::core::cEventManager::Get().WindowClosedEvents.RemoveEvent(this)
 #define RemoveWindowFrameResized() xpe::core::cEventManager::Get().WindowFrameResizedEvents.RemoveEvent(this)
+#define RemoveWindowRatioChanged() xpe::core::cEventManager::Get().WindowRatioChangedEvents.RemoveEvent(this)
 
 #define RemoveKeyPressed() xpe::core::cEventManager::Get().KeyPressedEvents.RemoveEvent(this)
 #define RemoveKeyRelease() xpe::core::cEventManager::Get().KeyReleasedEvents.RemoveEvent(this)

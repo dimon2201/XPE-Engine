@@ -27,142 +27,196 @@ namespace xpe {
         }
 
         void cGeometryPass::DrawOpaque(cScene* scene) {
-            scene->EachComponent<sCGeometry>([this](sCGeometry* component)
-            {
-                if (component->Visible && !component->Transparent) {
-                    auto& geometry = *component;
-                    DrawInstanced(
-                            geometry.PrimitiveTopology,
-                            geometry.VertexOffset,
-                            geometry.Vertices.size(),
-                            geometry.IndexOffset,
-                            geometry.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [](cEntity* entity, sRenderInstance& instance) {
-                                auto* materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
-                            }
-                    );
-                }
+            scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCGeometry>([this, &lightMatrix](sCGeometry* component)
+                {
+                     if (component->Visible && !component->Transparent) {
+                         auto& geometry = *component;
+                         DrawInstanced(
+                                 geometry.PrimitiveTopology,
+                                 geometry.VertexOffset,
+                                 geometry.Vertices.size(),
+                                 geometry.IndexOffset,
+                                 geometry.Indices.size(),
+                                 component->Entity,
+                                 component->Entities,
+                                 [](cEntity* entity, sRenderInstance& instance) {
+                                     auto* materialComponent = entity->Get<sCMaterial>();
+                                     if (materialComponent != nullptr) {
+                                         instance.MaterialIndex = materialComponent->Index;
+                                     }
+                                 },
+                                 lightMatrix
+                         );
+                     }
+                });
             });
 
-            scene->EachComponent<sCModel>([this](sCModel* component)
-            {
-                if (component->Visible && !component->Transparent) {
-                    auto& model = *component;
-                    DrawInstanced(
-                            model.PrimitiveTopology,
-                            model.VertexOffset,
-                            model.VertexCount,
-                            model.IndexOffset,
-                            model.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [](cEntity* entity, sRenderInstance& instance) {
-                                auto* materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
-                            }
-                    );
-                }
+            scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCModel>([this, &lightMatrix](sCModel* component)
+                {
+                      if (component->Visible && !component->Transparent) {
+                          auto& model = *component;
+                          DrawInstanced(
+                                  model.PrimitiveTopology,
+                                  model.VertexOffset,
+                                  model.VertexCount,
+                                  model.IndexOffset,
+                                  model.Indices.size(),
+                                  component->Entity,
+                                  component->Entities,
+                                  [](cEntity* entity, sRenderInstance& instance) {
+                                      auto* materialComponent = entity->Get<sCMaterial>();
+                                      if (materialComponent != nullptr) {
+                                          instance.MaterialIndex = materialComponent->Index;
+                                      }
+                                  },
+                                  lightMatrix
+                          );
+                      }
+                });
             });
 
-            scene->EachComponent<sCSkeletonModel>([this](sCSkeletonModel* component)
-            {
-                  if (component->Visible && !component->Transparent) {
-                      auto& model = *component;
-                      auto& skeleton = component->Skeleton;
-                      DrawInstanced(
-                              model.PrimitiveTopology,
-                              model.VertexOffset,
-                              model.VertexCount,
-                              model.IndexOffset,
-                              model.Indices.size(),
-                              component->Entity,
-                              component->Entities,
-                              [&skeleton](cEntity* entity, sRenderInstance& instance) {
-                                  auto* materialComponent = entity->Get<sCMaterial>();
-                                  if (materialComponent != nullptr) {
-                                      instance.MaterialIndex = materialComponent->Index;
-                                  }
-                                  instance.SkeletonIndex = skeleton.Index;
-                              }
-                      );
-                  }
+            scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)
+                {
+                      if (component->Visible && !component->Transparent) {
+                          auto& model = *component;
+                          auto& skeleton = component->Skeleton;
+                          DrawInstanced(
+                                  model.PrimitiveTopology,
+                                  model.VertexOffset,
+                                  model.VertexCount,
+                                  model.IndexOffset,
+                                  model.Indices.size(),
+                                  component->Entity,
+                                  component->Entities,
+                                  [&skeleton](cEntity* entity, sRenderInstance& instance) {
+                                      auto* materialComponent = entity->Get<sCMaterial>();
+                                      if (materialComponent != nullptr) {
+                                          instance.MaterialIndex = materialComponent->Index;
+                                      }
+                                      instance.SkeletonIndex = skeleton.Index;
+                                  },
+                                  lightMatrix
+                          );
+                      }
+                });
             });
         }
 
         void cGeometryPass::DrawTransparent(cScene* scene) {
-            scene->EachComponent<sCGeometry>([this](sCGeometry* component)
-            {
-                if (component->Visible && component->Transparent) {
-                    auto& geometry = *component;
-                    DrawInstanced(
-                            geometry.PrimitiveTopology,
-                            geometry.VertexOffset,
-                            geometry.Vertices.size(),
-                            geometry.IndexOffset,
-                            geometry.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [](cEntity* entity, sRenderInstance& instance) {
-                                auto* materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
-                            }
-                    );
-                }
+            scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCGeometry>([this, &lightMatrix](sCGeometry* component)
+                {
+                     if (component->Visible && component->Transparent) {
+                         auto& geometry = *component;
+                         DrawInstanced(
+                                 geometry.PrimitiveTopology,
+                                 geometry.VertexOffset,
+                                 geometry.Vertices.size(),
+                                 geometry.IndexOffset,
+                                 geometry.Indices.size(),
+                                 component->Entity,
+                                 component->Entities,
+                                 [](cEntity* entity, sRenderInstance& instance) {
+                                     auto* materialComponent = entity->Get<sCMaterial>();
+                                     if (materialComponent != nullptr) {
+                                         instance.MaterialIndex = materialComponent->Index;
+                                     }
+                                 },
+                                 lightMatrix
+                         );
+                     }
+                });
             });
 
-            scene->EachComponent<sCModel>([this](sCModel* component)
-            {
-                 if (component->Visible && component->Transparent) {
-                     auto& model = *component;
-                     DrawInstanced(
-                             model.PrimitiveTopology,
-                             model.VertexOffset,
-                             model.VertexCount,
-                             model.IndexOffset,
-                             model.Indices.size(),
-                             component->Entity,
-                             component->Entities,
-                             [](cEntity* entity, sRenderInstance& instance) {
-                                 auto* materialComponent = entity->Get<sCMaterial>();
-                                 if (materialComponent != nullptr) {
-                                     instance.MaterialIndex = materialComponent->Index;
-                                 }
-                             }
-                     );
-                 }
+            scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCModel>([this, &lightMatrix](sCModel* component)
+                {
+                      if (component->Visible && component->Transparent) {
+                          auto& model = *component;
+                          DrawInstanced(
+                                  model.PrimitiveTopology,
+                                  model.VertexOffset,
+                                  model.VertexCount,
+                                  model.IndexOffset,
+                                  model.Indices.size(),
+                                  component->Entity,
+                                  component->Entities,
+                                  [](cEntity* entity, sRenderInstance& instance) {
+                                      auto* materialComponent = entity->Get<sCMaterial>();
+                                      if (materialComponent != nullptr) {
+                                          instance.MaterialIndex = materialComponent->Index;
+                                      }
+                                  },
+                                  lightMatrix
+                          );
+                      }
+                });
             });
 
-            scene->EachComponent<sCSkeletonModel>([this](sCSkeletonModel* component)
-            {
-                  if (component->Visible && component->Transparent) {
-                      auto& model = *component;
-                      auto& skeleton = component->Skeleton;
-                      DrawInstanced(
-                              model.PrimitiveTopology,
-                              model.VertexOffset,
-                              model.VertexCount,
-                              model.IndexOffset,
-                              model.Indices.size(),
-                              component->Entity,
-                              component->Entities,
-                              [&skeleton](cEntity* entity, sRenderInstance& instance) {
-                                  auto* materialComponent = entity->Get<sCMaterial>();
-                                  if (materialComponent != nullptr) {
-                                      instance.MaterialIndex = materialComponent->Index;
-                                  }
-                                  instance.SkeletonIndex = skeleton.Index;
-                              }
-                      );
-                  }
+            scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
+                sViewMatrix lightView;
+                lightView.Position = lightComponent->Position;
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
+                glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
+
+                scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)
+                {
+                      if (component->Visible && component->Transparent) {
+                          auto& model = *component;
+                          auto& skeleton = component->Skeleton;
+                          DrawInstanced(
+                                  model.PrimitiveTopology,
+                                  model.VertexOffset,
+                                  model.VertexCount,
+                                  model.IndexOffset,
+                                  model.Indices.size(),
+                                  component->Entity,
+                                  component->Entities,
+                                  [&skeleton](cEntity* entity, sRenderInstance& instance) {
+                                      auto* materialComponent = entity->Get<sCMaterial>();
+                                      if (materialComponent != nullptr) {
+                                          instance.MaterialIndex = materialComponent->Index;
+                                      }
+                                      instance.SkeletonIndex = skeleton.Index;
+                                  },
+                                  lightMatrix
+                          );
+                      }
+                });
             });
         }
 
@@ -171,8 +225,8 @@ namespace xpe {
             scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
                 sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = glm::vec3(0, 0, 0);
-                lightView.Up = glm::vec3(0, 1, 0);
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
                 glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCGeometry>([this, &lightMatrix](sCGeometry* component)
@@ -197,8 +251,8 @@ namespace xpe {
             scene->EachComponent<sCSpotLight>([this, scene](sCSpotLight* lightComponent) {
                 sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = glm::vec3(0, 0, 0);
-                lightView.Up = glm::vec3(0, 1, 0);
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
                 glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCGeometry>([this, &lightMatrix](sCGeometry* component)
@@ -223,8 +277,8 @@ namespace xpe {
             scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
                 sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = glm::vec3(0, 0, 0);
-                lightView.Up = glm::vec3(0, 1, 0);
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
                 glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCModel>([this, &lightMatrix](sCModel* component)
@@ -249,8 +303,8 @@ namespace xpe {
             scene->EachComponent<sCSpotLight>([this, scene](sCSpotLight* lightComponent) {
                 sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = glm::vec3(0, 0, 0);
-                lightView.Up = glm::vec3(0, 1, 0);
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
                 glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCModel>([this, &lightMatrix](sCModel* component)
@@ -275,8 +329,8 @@ namespace xpe {
             scene->EachComponent<sCDirectionalLight>([this, scene](sCDirectionalLight* lightComponent) {
                 sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = glm::vec3(0, 0, 0);
-                lightView.Up = glm::vec3(0, 1, 0);
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
                 glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)
@@ -304,8 +358,8 @@ namespace xpe {
             scene->EachComponent<sCSpotLight>([this, scene](sCSpotLight* lightComponent) {
                 sViewMatrix lightView;
                 lightView.Position = lightComponent->Position;
-                lightView.Front = glm::vec3(0, 0, 0);
-                lightView.Up = glm::vec3(0, 1, 0);
+                lightView.Front = lightComponent->Front;
+                lightView.Up = lightComponent->Up;
                 glm::mat4x4 lightMatrix = MathManager::UpdateLightMatrix(*lightComponent, lightView);
 
                 scene->EachComponent<sCSkeletonModel>([this, &lightMatrix](sCSkeletonModel* component)

@@ -9,6 +9,13 @@ namespace xpe {
             };
         }
 
+        sObserverWindowRatio::sObserverWindowRatio(float ratio) : sObserver<float>(ratio)
+        {
+            m_OnChanged = [](float ratio) {
+                cEventManager::Get().WindowRatioChangedEvents.NotifyAll(ratio);
+            };
+        }
+
     }
 
 }

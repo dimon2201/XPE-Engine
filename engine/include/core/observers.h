@@ -10,6 +10,10 @@ namespace xpe {
             sObserverSampleCount(u32 sampleCount);
         };
 
+        struct sObserverWindowRatio : public sObserver<float> {
+            sObserverWindowRatio(float ratio);
+        };
+
     }
 
 }

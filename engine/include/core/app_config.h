@@ -9,27 +9,28 @@ namespace xpe {
         struct ENGINE_API sAppConfig : public res::cJson
         {
             JsonClass(
-                sAppConfig,
-                WinTitle,
-                WinWidth,
-                WinHeight,
-                WinX,
-                WinY,
-                VSync,
-                Fullscreen,
-                Gamma,
-                Exposure,
-                LogTitle,
-                LogBacktrace,
-                EnableGPUInfoLog,
-                EnableGPUWarnLog,
-                EnableGPUErrorLog,
-                FPS,
-                LogTimeDelaySeconds,
-                LockOnFps,
-                HotReloadShaders,
-                MsaaSampleCount.Value,
-                EnableSSAO
+                    sAppConfig,
+                    WinTitle,
+                    WinWidth,
+                    WinHeight,
+                    WinX,
+                    WinY,
+                    VSync,
+                    Fullscreen,
+                    Gamma,
+                    Exposure,
+                    AspectRatio.Value,
+                    LogTitle,
+                    LogBacktrace,
+                    EnableGPUInfoLog,
+                    EnableGPUWarnLog,
+                    EnableGPUErrorLog,
+                    FPS,
+                    LogTimeDelaySeconds,
+                    LockOnFps,
+                    HotReloadShaders,
+                    MsaaSampleCount.Value,
+                    EnableSSAO
             )
 
             string WinTitle;
@@ -41,6 +42,7 @@ namespace xpe {
             bool Fullscreen = false;
             float Gamma = 2.2f;
             float Exposure = 1;
+            sObserverWindowRatio AspectRatio = 1.6f;
 
             string LogTitle;
             s32 LogBacktrace = 32;

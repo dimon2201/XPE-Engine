@@ -96,6 +96,14 @@ namespace xpe {
         void cRenderPass::InitShadow()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+
+            sBlendTarget target;
+            target.Enable = false;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.IndependentBlendEnable = true;
+
             m_Pipeline->Rasterizer.CullMode = eCullMode::FRONT;
         }
 

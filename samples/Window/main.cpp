@@ -124,7 +124,7 @@ public:
             m_Plane = new cEntity("sPlane", m_Scene);
             m_Plane->SetPosition(glm::vec3(0.0f));
             m_Plane->SetScale(glm::vec3(5.0f, 1.0f, 5.0f));
-            m_Plane->Add<sCGeometry>(cGeometryManager::AddGeometry(sPlane(10)));
+            m_Plane->Add<sCGeometry>(cGeometryManager::AddGeometry(sPlane(10)))->CastShadow = false;
             m_Plane->Add<sCMaterial>(cMaterialManager::AddMaterial());
 
             sPlaneShapeDescriptor planeShapeDesc;
@@ -144,7 +144,7 @@ public:
         {
             m_SunLight = new cEntity("SunLight", m_Scene);
             m_SunLight->SetPosition(glm::vec3(20.0f, 20.0f, -20.0f));
-            m_SunLight->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()));
+            m_SunLight->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()))->CastShadow = false;
             m_SunLight->Add<sCMaterial>(cMaterialManager::AddMaterial());
             m_SunLight->Add<sCDirectionalLight>(glm::vec3(0, 0, 0), glm::vec3(1, 1, 10));
         }
@@ -477,6 +477,16 @@ public:
 
         MoveLight(key);
         PlayAnimations(key);
+
+        if (key == eKey::R)
+        {
+            m_CanvasTexture = m_RenderSystem->GetShadowRT()->Colors[0];
+        }
+
+        if (key == eKey::T)
+        {
+            m_CanvasTexture = m_RenderSystem->GetFinalRT()->Colors[0];
+        }
     }
 
     void KeyHold(const eKey key)
@@ -504,6 +514,7 @@ private:
         m_PerspectiveCamera = cCameraManager::AddPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight());
         m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
         m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
+        m_PerspectiveCamera->Component.AspectRatio = Config.AspectRatio;
         m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
         m_PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
         m_PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;

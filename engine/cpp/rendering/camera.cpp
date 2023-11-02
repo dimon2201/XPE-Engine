@@ -32,7 +32,8 @@ namespace xpe {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
             m_Position = Component.Position;
-            AddWindowFrameResized(cPerspectiveCamera, 2);
+            AddWindowFrameResized(cPerspectiveCamera, eWindowFrameResizedPriority::CAMERA);
+            AddWindowRatioChanged(cPerspectiveCamera, 1);
             AddCursorMove(cPerspectiveCamera, 2);
             AddScrollChanged(cPerspectiveCamera, 2);
         }
@@ -40,6 +41,7 @@ namespace xpe {
         cPerspectiveCamera::~cPerspectiveCamera()
         {
             RemoveWindowFrameResized();
+            RemoveWindowRatioChanged();
             RemoveCursorMove();
             RemoveScrollChanged();
         }
@@ -50,11 +52,9 @@ namespace xpe {
             MaxFovDegree = Component.FovDegree;
 
             math::sViewMatrix viewMatrix;
-            viewMatrix.Up = Component.Up;
-            viewMatrix.Front = Component.Front;
             viewMatrix.Position = Component.Position;
-
-            Component.AspectRatio = m_ViewWidth / m_ViewHeight;
+            viewMatrix.Front = Component.Front;
+            viewMatrix.Up = Component.Up;
 
             auto& bufferData = m_Buffer->Item;
             bufferData.Position = Component.Position;
@@ -168,6 +168,11 @@ namespace xpe {
             LogInfo("cPerspectiveCamera::WindowFrameResized: width={}, height={}", w, h);
             m_ViewWidth = w;
             m_ViewHeight = h;
+        }
+
+        void cPerspectiveCamera::WindowRatioChanged(float ratio)
+        {
+            Component.AspectRatio = ratio;
             UpdateProjection();
             m_Buffer->Flush();
         }
@@ -179,7 +184,6 @@ namespace xpe {
 
         void cPerspectiveCamera::UpdateProjection()
         {
-            Component.AspectRatio = m_ViewWidth / m_ViewHeight;
             m_Buffer->Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
         }
 
@@ -202,7 +206,7 @@ namespace xpe {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
             m_Position = Component.Position;
-            AddWindowFrameResized(cOrthoCamera, 2);
+            AddWindowFrameResized(cOrthoCamera, eWindowFrameResizedPriority::CAMERA);
             AddScrollChanged(cOrthoCamera, 2);
             AddCursorMove(cOrthoCamera, 2);
         }

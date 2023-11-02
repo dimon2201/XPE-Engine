@@ -21,10 +21,10 @@ struct VSOut
     float2 uv            : XPE_UV2;
     float3 normal        : XPE_NORMAL_WORLD;
     float4 positionClip  : SV_POSITION;
+    float4 positionLight : XPE_POSITION_LIGHT;
     float3 viewPosition  : XPE_VIEW_POSITION;
     uint materialIndex   : XPE_MATERIAL_INDEX;
     float3x3 tbn         : XPE_TBN;
-    float3 shadowCoords  : XPE_SHADOW_COORDS;
     float gamma          : XPE_GAMMA;
 };
 
@@ -61,13 +61,10 @@ VSOut vs_main(VSIn vsIn)
     float4x4 worldNormalMatrix  = instance.NormalMatrix;
     float4x4 lightMatrix        = instance.LightMatrix;
 
-    float4 positionLocal = float4(vsIn.positionLocal, 1.0);
     float4 positionWorld = mul(worldMatrix, positionBone);
     float4 positionView  = mul(View, positionWorld);
     float4 positionClip  = mul(Projection, positionView);
     float4 positionLight = mul(lightMatrix, positionWorld);
-    float3 shadowCoords  = positionLight.xyz / positionLight.w;
-    shadowCoords         = shadowCoords * 0.5 + 0.5;
 
     float3 normalWorld   = mul(worldNormalMatrix, float4(normalBone, 1.0)).xyz;
     float3 tangentWorld  = mul(worldNormalMatrix, float4(vsIn.tangent, 1.0)).xyz;
@@ -80,10 +77,10 @@ VSOut vs_main(VSIn vsIn)
     vsOut.uv            = vsIn.uv;
     vsOut.normal        = normalWorld.xyz;
     vsOut.positionClip  = positionClip;
+    vsOut.positionLight = positionLight;
     vsOut.viewPosition  = CameraPosition;
     vsOut.materialIndex = instance.MaterialIndex;
     vsOut.tbn           = float3x3(tangentWorld, bitangentWorld, normalWorld);
-    vsOut.shadowCoords  = shadowCoords;
     vsOut.gamma         = Gamma;
 
     return vsOut;

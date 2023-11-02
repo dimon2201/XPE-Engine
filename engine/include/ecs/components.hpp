@@ -96,6 +96,9 @@ namespace xpe
 
         struct ENGINE_API sCDirectionalLight : sComponent, sDirectLightData, sOrthoMatrix
         {
+            glm::vec3 Front = { 0, 0, 0 };
+            glm::vec3 Up = { 0, 1, 0 };
+
             sCDirectionalLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Position = position;
@@ -121,7 +124,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCPointLight : sComponent, sPointLightData
+        struct ENGINE_API sCPointLight : sComponent, sPointLightData, sPerspectiveMatrix
         {
             sCPointLight(const glm::vec3& position, const glm::vec3& color)
             {
@@ -141,16 +144,19 @@ namespace xpe
 
         struct ENGINE_API sCSpotLight : sComponent, sSpotLightData, sOrthoMatrix
         {
+            glm::vec3 Front = { 0, 0, 0 };
+            glm::vec3 Up = { 0, 1, 0 };
+
             sCSpotLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Position = position;
                 Color = color;
-                Left = -10.0f;
-                Right = 10.0f;
-                Bottom = -10.0f;
-                Top = 10.0f;
-                Near = 1.0f;
-                Far = 25.0f;
+                Left = -1.0f;
+                Right = 1.0f;
+                Bottom = -1.0f;
+                Top = 1.0f;
+                Near = 0.1f;
+                Far = 100.0f;
             }
 
             JsonClass(

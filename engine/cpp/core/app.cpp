@@ -229,7 +229,7 @@ namespace xpe {
                     { "sSpotLightBuffer",    sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetSpotLightBuffer(),   sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                     { "ShadowBuffer",        sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetShadowBuffer(),      sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                     { "ShadowSampler",       sRenderPassBinding::eType::SAMPLER,       m_RenderSystem->GetShadowSampler(),     sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                    { "ShadowAtlas",           sRenderPassBinding::eType::TEXTURE, m_RenderSystem->GetShadowAtlas(),       sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                    { "ShadowAtlas",         sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowAtlas(),       sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                 };
 
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::OPAQUE, bindings);
@@ -251,7 +251,7 @@ namespace xpe {
                         { "m_SpotLightBuffer",   sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetSpotLightBuffer(),   sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                         { "ShadowBuffer",        sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetShadowBuffer(),      sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                         { "ShadowSampler",       sRenderPassBinding::eType::SAMPLER,       m_RenderSystem->GetShadowSampler(),     sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                        { "ShadowMap",           sRenderPassBinding::eType::TEXTURE, m_RenderSystem->GetShadowAtlas(),       sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                        { "ShadowAtlas",         sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowAtlas(),       sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                 };
 
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::TRANSPARENT, bindings);
