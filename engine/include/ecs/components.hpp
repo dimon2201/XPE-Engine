@@ -111,7 +111,7 @@ namespace xpe
                 Projection.Far = 75.0f;
                 View.Position = position;
                 View.Front = { 0, 0, 0 };
-                View.Up = { 0, 1, 0 };
+                View.Up = { 0, 0, 1 };
             }
 
             JsonClass(
