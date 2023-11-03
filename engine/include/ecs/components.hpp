@@ -94,37 +94,35 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCDirectionalLight : sComponent, sDirectLightData, sOrthoMatrix
+        struct ENGINE_API sCDirectionalLight : sComponent
         {
-            glm::vec3 Front = { 0, 0, 0 };
-            glm::vec3 Up = { 0, 1, 0 };
+            glm::vec3 Color = { 1, 1, 1 };
+            sOrthoMatrix Projection;
+            sViewMatrix View;
 
             sCDirectionalLight(const glm::vec3& position, const glm::vec3& color)
             {
-                Position = position;
                 Color = color;
-                Left = -10.0f;
-                Right = 10.0f;
-                Bottom = -10.0f;
-                Top = 10.0f;
-                Near = 1.0f;
-                Far = 25.0f;
+                Projection.Left = -35.0f;
+                Projection.Right = 35.0f;
+                Projection.Bottom = -35.0f;
+                Projection.Top = 35.0f;
+                Projection.Near = 0.1f;
+                Projection.Far = 75.0f;
+                View.Position = position;
+                View.Front = { 0, 0, 0 };
+                View.Up = { 0, 1, 0 };
             }
 
             JsonClass(
                 sCDirectionalLight,
-                Position,
                 Color,
-                Left,
-                Right,
-                Bottom,
-                Top,
-                Near,
-                Far
+                Projection,
+                View
             )
         };
 
-        struct ENGINE_API sCPointLight : sComponent, sPointLightData, sPerspectiveMatrix
+        struct ENGINE_API sCPointLight : sComponent, sPointLightData
         {
             sCPointLight(const glm::vec3& position, const glm::vec3& color)
             {
@@ -142,21 +140,12 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCSpotLight : sComponent, sSpotLightData, sOrthoMatrix
+        struct ENGINE_API sCSpotLight : sComponent, sSpotLightData
         {
-            glm::vec3 Front = { 0, 0, 0 };
-            glm::vec3 Up = { 0, 1, 0 };
-
             sCSpotLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Position = position;
                 Color = color;
-                Left = -1.0f;
-                Right = 1.0f;
-                Bottom = -1.0f;
-                Top = 1.0f;
-                Near = 0.1f;
-                Far = 100.0f;
             }
 
             JsonClass(
@@ -165,23 +154,16 @@ namespace xpe
                 Direction,
                 Color,
                 Cutoff,
-                Outer,
-                Left,
-                Right,
-                Bottom,
-                Top,
-                Near,
-                Far
+                Outer
             )
         };
 
         struct ENGINE_API sRenderState
         {
             bool Transparent = false;    // switch to transparency, that will draw object in transparent passes
-            bool Visible = true;         // switch visibility, that will draw or not draw object
             bool CastShadow = true;      // switch shadow casting, that will draw or not draw shadow of object
         };
-        Json(sRenderState, Transparent, Visible, CastShadow)
+        Json(sRenderState, Transparent, CastShadow)
 
         struct ENGINE_API sCGeometry : sComponent, sGeometry, sRenderState
         {

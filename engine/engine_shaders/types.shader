@@ -6,6 +6,7 @@
 #define K_SLOT_TEXT_CHARS              register(t1)
 #define K_SLOT_SKELETONS               register(t2)
 #define K_SLOT_UI                      register(t3)
+#define K_SLOT_DIRECT_LIGHT_MATRICES   register(t4)
 
 // ---------- For Pixel Stage --------------- //
 
@@ -41,7 +42,6 @@
 // ---------- For Pixel Stage --------------- //
 
 #define K_SLOT_SSAO                    register(b0)
-#define K_SLOT_SHADOW                  register(b0)
 
 // ----------------- Constants ----------------- //
 

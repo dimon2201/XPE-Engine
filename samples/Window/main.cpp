@@ -157,16 +157,19 @@ public:
             m_Goblin1->GetPosition() = {-4, 0, -4 };
             m_Goblin1->GetRotation() = {0, 0, 0 };
             m_Goblin1->GetScale() = {5, 5, 5 };
+            m_Goblin1->Visible = false;
 
             m_Goblin2 = new cEntity("Goblin2", m_Scene);
             m_Goblin2->GetPosition() = {-4, 0, 4 };
             m_Goblin2->GetRotation() = {0, 0, 0 };
             m_Goblin2->GetScale() = {5, 5, 5 };
+            m_Goblin2->Visible = false;
 
             m_Goblin3 = new cEntity("Goblin3", m_Scene);
             m_Goblin3->GetPosition() = {4, 0, -4 };
             m_Goblin3->GetRotation() = {0, 0, 0 };
             m_Goblin3->GetScale() = {5, 5, 5 };
+            m_Goblin3->Visible = false;
 
             m_Goblin4 = new cEntity("Goblin4", m_Scene);
             m_Goblin4->GetPosition() = {4, 0, 4 };
@@ -174,7 +177,6 @@ public:
             m_Goblin4->GetScale() = {5, 5, 5 };
 
             auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            goblins->Visible = true;
             goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
             goblins->Skeleton = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
             goblins->Animation = cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
@@ -184,8 +186,8 @@ public:
             materialFilepath.Name = "niz";
             materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
             materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
-                materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
-                materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
+            materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
+            materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
 
             auto* material1 = m_Goblin1->Add<sCMaterial>(cMaterialManager::AddMaterial());
             material1->Albedo = { 1, 1, 1, 1 };

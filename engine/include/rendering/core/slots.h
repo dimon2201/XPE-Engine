@@ -11,6 +11,8 @@
 #define K_SLOT_SKELETONS 2
 #define K_SLOT_UI 3
 
+#define K_SLOT_DIRECT_LIGHT_MATRICES 4
+
 // ---------- Pixel Stage --------------- //
 
 // materials
@@ -45,4 +47,3 @@
 // ---------- Pixel Stage --------------- //
 
 #define K_SLOT_SSAO 0
-#define K_SLOT_SHADOW 0

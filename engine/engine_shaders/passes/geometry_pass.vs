@@ -2,6 +2,7 @@
 #include ../instancing.shader
 #include ../camera.shader
 #include ../skeleton.shader
+#include ../lighting_matrices.shader
 
 struct VSIn
 {
@@ -59,7 +60,7 @@ VSOut vs_main(VSIn vsIn)
 
     float4x4 worldMatrix        = instance.ModelMatrix;
     float4x4 worldNormalMatrix  = instance.NormalMatrix;
-    float4x4 lightMatrix        = instance.LightMatrix;
+    float4x4 lightMatrix        = DirectLightMatrices[0].Matrix;
 
     float4 positionWorld = mul(worldMatrix, positionBone);
     float4 positionView  = mul(View, positionWorld);

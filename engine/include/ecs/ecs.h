@@ -364,6 +364,7 @@ namespace xpe
         {
 
         public:
+            bool Visible = true;         // switch visibility, that will draw or not draw this entity
 
             cEntity(const string& tag, cScene* scene);
             ~cEntity();

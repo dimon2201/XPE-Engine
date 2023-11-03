@@ -6,7 +6,6 @@
 
 #include <rendering/buffers/camera_buffer.h>
 #include <rendering/buffers/light_buffers.h>
-#include <rendering/buffers/shadow_buffer.h>
 
 namespace xpe {
 
@@ -32,9 +31,9 @@ namespace xpe {
             void WindowFrameResized(int width, int height);
 
             inline sDirectLightBuffer* GetDirectLightBuffer() { return m_DirectLightBuffer; }
+            inline sDirectLightMatrixBuffer* GetDirectLightMatrixBuffer() { return m_DirectLightMatrixBuffer; }
             inline sPointLightBuffer* GetPointLightBuffer() { return m_PointLightBuffer; }
             inline sSpotLightBuffer* GetSpotLightBuffer() { return m_SpotLightBuffer; }
-            inline sShadowBuffer* GetShadowBuffer() { return m_ShadowBuffer; }
 
             inline sRenderTarget* GetFinalRT() { return m_FinalRenderTarget; }
             inline sRenderTarget* GetSceneRT() { return m_SceneRenderTarget; }
@@ -70,9 +69,9 @@ namespace xpe {
             vector<cRenderPass*> m_UiRenderPasses;
 
             sDirectLightBuffer* m_DirectLightBuffer;
+            sDirectLightMatrixBuffer* m_DirectLightMatrixBuffer;
             sPointLightBuffer* m_PointLightBuffer;
             sSpotLightBuffer* m_SpotLightBuffer;
-            sShadowBuffer* m_ShadowBuffer;
 
             sRenderTarget* m_SceneRenderTarget;
             sRenderTarget* m_FinalRenderTarget;

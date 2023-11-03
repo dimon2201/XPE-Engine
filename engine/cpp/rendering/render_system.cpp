@@ -46,21 +46,21 @@ namespace xpe {
         void cRenderSystem::InitBuffers(sViewport &viewport, u32 sampleCount)
         {
             m_DirectLightBuffer = new sDirectLightBuffer();
-            m_DirectLightBuffer->Reserve(1000);
+            m_DirectLightBuffer->Reserve(10);
+            m_DirectLightMatrixBuffer = new sDirectLightMatrixBuffer();
+            m_DirectLightMatrixBuffer->Reserve(10);
             m_PointLightBuffer = new sPointLightBuffer();
-            m_PointLightBuffer->Reserve(1000);
+            m_PointLightBuffer->Reserve(10);
             m_SpotLightBuffer = new sSpotLightBuffer();
-            m_SpotLightBuffer->Reserve(1000);
-            m_ShadowBuffer = new sShadowBuffer();
+            m_SpotLightBuffer->Reserve(10);
         }
 
         void cRenderSystem::InitSamplers(sViewport &viewport, u32 sampleCount)
         {
-            m_ShadowSampler.Filter      = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
+            m_ShadowSampler.Filter      = sSampler::eFilter::MIN_MAG_MIP_POINT;
             m_ShadowSampler.BorderColor = glm::vec4(1, 1, 1, 1);
             m_ShadowSampler.AddressU    = sSampler::eAddress::BORDER;
             m_ShadowSampler.AddressV    = sSampler::eAddress::BORDER;
-            m_ShadowSampler.AddressW    = sSampler::eAddress::BORDER;
             m_ShadowSampler.Slot        = K_SLOT_SHADOW_SAMPLER;
 
             context::CreateSampler(m_ShadowSampler);
@@ -116,8 +116,8 @@ namespace xpe {
 
             // Shadow render target
             sTexture* shadowColor = new sTexture();
-            shadowColor->Width = viewport.Width;
-            shadowColor->Height = viewport.Height;
+            shadowColor->Width = 1024;
+            shadowColor->Height = 1024;
             shadowColor->Format = eTextureFormat::RGBA8;
             shadowColor->InitializeData = false;
             shadowColor->EnableRenderTarget = true;
@@ -127,8 +127,8 @@ namespace xpe {
 
             sTexture* shadowDepth = new sTexture();
             shadowDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            shadowDepth->Width = viewport.Width;
-            shadowDepth->Height = viewport.Height;
+            shadowDepth->Width = 1024;
+            shadowDepth->Height = 1024;
             shadowDepth->Format = eTextureFormat::R32_TYPELESS;
             shadowDepth->InitializeData = false;
             shadowDepth->EnableRenderTarget = true;
@@ -246,9 +246,9 @@ namespace xpe {
         void cRenderSystem::FreeBuffers()
         {
             delete m_DirectLightBuffer;
+            delete m_DirectLightMatrixBuffer;
             delete m_PointLightBuffer;
             delete m_SpotLightBuffer;
-            delete m_ShadowBuffer;
         }
 
         void cRenderSystem::FreeSamplers()
@@ -299,18 +299,25 @@ namespace xpe {
         void cRenderSystem::UpdateLight(cScene* scene)
         {
             m_DirectLightBuffer->Clear();
+            m_DirectLightMatrixBuffer->Clear();
             scene->EachComponent<sCDirectionalLight>([this](sCDirectionalLight* component)
             {
                 if (component->FollowEntity) {
-                    component->Position = component->Entity->GetPosition();
+                    component->View.Position = component->Entity->GetPosition();
                 }
 
                 sDirectLightData light;
-                light.Position = component->Position;
+                light.Position = component->View.Position;
                 light.Color = component->Color;
+
+                sDirectLightMatrix lightMatrix;
+                lightMatrix.Matrix = MathManager::UpdateLightMatrix(component->Projection, component->View);
+
                 m_DirectLightBuffer->Add(light);
+                m_DirectLightMatrixBuffer->Add(lightMatrix);
             });
             m_DirectLightBuffer->Flush();
+            m_DirectLightMatrixBuffer->Flush();
 
             m_PointLightBuffer->Clear();
             scene->EachComponent<sCPointLight>([this](sCPointLight* component)
@@ -350,7 +357,7 @@ namespace xpe {
         void cRenderSystem::UpdatePasses(xpe::ecs::cScene *scene)
         {
             // Shadow
-            m_ShadowRenderTarget->ClearColor(0, glm::vec4(0.0f));
+            m_ShadowRenderTarget->ClearColor(0, glm::vec4(1.0f));
             m_ShadowRenderTarget->ClearDepth(1.0f);
             for (cRenderPass* rp : m_ShadowRenderPasses)
             {

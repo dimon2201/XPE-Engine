@@ -19,6 +19,16 @@ namespace xpe {
             sDirectLightBuffer(usize size = 0) : sListBuffer<sDirectLightData>(size, K_SLOT_DIRECT_LIGHTS) {}
         };
 
+        struct ENGINE_API sDirectLightMatrix
+        {
+            glm::mat4 Matrix;
+        };
+
+        struct ENGINE_API sDirectLightMatrixBuffer : public sListBuffer<sDirectLightMatrix>
+        {
+            sDirectLightMatrixBuffer(usize size = 0) : sListBuffer<sDirectLightMatrix>(size, K_SLOT_DIRECT_LIGHT_MATRICES) {}
+        };
+
         struct ENGINE_API sPointLightData
         {
             glm::vec3 Position = { 0, 0, 0 };

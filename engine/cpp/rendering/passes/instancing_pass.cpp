@@ -20,13 +20,12 @@ namespace xpe {
                 usize indexCount,
                 cEntity* entity,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback,
-                const glm::mat4x4& lightMatrix
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback
         ) {
             if (entities.empty()) {
-                DrawSingle(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entity, callback, lightMatrix);
+                DrawSingle(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entity, callback);
             } else {
-                DrawMultiple(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entities, callback, lightMatrix);
+                DrawMultiple(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entities, callback);
             }
         }
 
@@ -37,19 +36,19 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 cEntity* entity,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback,
-                const glm::mat4x4& lightMatrix
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback
         ) {
+            if (!entity->Visible)
+                return;
+
             m_InstanceBuffer.Clear();
 
             sRenderInstance instance;
-            instance.TransformIndex = 0;
+            instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
+            instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
             if (callback) {
                 callback(entity, instance);
             }
-            instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
-            instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
-            instance.LightMatrix = lightMatrix;
 
             m_InstanceBuffer.Add(instance);
             m_InstanceBuffer.Flush();
@@ -73,8 +72,7 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback,
-                const glm::mat4x4& lightMatrix
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback
         ) {
             usize entityCount = entities.size();
             usize instanceCount = 0;
@@ -83,14 +81,15 @@ namespace xpe {
             {
                 auto& entity = entities[i];
 
+                if (!entity->Visible)
+                    continue;
+
                 sRenderInstance instance;
-                instance.TransformIndex = i;
+                instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
+                instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
                 if (callback) {
                     callback(entity, instance);
                 }
-                instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
-                instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
-                instance.LightMatrix = lightMatrix;
 
                 m_InstanceBuffer.Add(instance);
 

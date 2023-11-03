@@ -22,8 +22,7 @@ namespace xpe {
                 usize indexCount,
                 cEntity* entity,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {},
-                const glm::mat4x4& lightMatrix = {}
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {}
             );
 
             void DrawSingle(
@@ -33,8 +32,7 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 cEntity* entity,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {},
-                const glm::mat4x4& lightMatrix = {}
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {}
             );
 
             void DrawMultiple(
@@ -44,8 +42,7 @@ namespace xpe {
                 usize indexOffset,
                 usize indexCount,
                 const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {},
-                const glm::mat4x4& lightMatrix = {}
+                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {}
             );
 
             sInstanceBuffer m_InstanceBuffer;

@@ -1,40 +1,36 @@
-cbuffer ShadowBuffer : K_SLOT_SHADOW
-{
-    int ShadowFilterSize;
-};
-
 SamplerState ShadowSampler                   : K_SLOT_SHADOW_SAMPLER;
 Texture2D ShadowAtlas                        : K_SLOT_SHADOW_ATLAS;
 
 float DirectShadow(float3 lightDir, float4 positionLightSpace)
 {
-    float3 shadowCoords = positionLightSpace.xyz / positionLightSpace.w;
-    shadowCoords = shadowCoords * 0.5 + 0.5;
+    float3 lightCoords = positionLightSpace.xyz / positionLightSpace.w;
+    lightCoords = lightCoords * 0.5 + 0.5;
 
-    if (shadowCoords.z > 1.0)
+    if (lightCoords.z > 1.0)
         return 0;
 
-    float currentDepth = shadowCoords.z;
+    float currentDepth = lightCoords.z;
 
-    float bias = max(0.05 * (1.0 - dot(N, lightDir)), 0.005);
+    float bias = max(0.025 * (1.0 - dot(N, lightDir)), 0.0005);
 
     float w;
     float h;
     ShadowAtlas.GetDimensions(w, h);
     float2 texelSize = 1.0 / float2(w, h);
     float shadow = 0.0;
-    int shadowFilterSize = 9;
-    int halfFilterSize = shadowFilterSize / 2;
+    int sampleRadius = 2;
 
-    for (int y = -halfFilterSize; y <= -halfFilterSize + shadowFilterSize; y++)
+    for (int y = -sampleRadius; y <= sampleRadius; y++)
     {
-        for (int x = -halfFilterSize; x <= -halfFilterSize + shadowFilterSize; x++)
+        for (int x = -sampleRadius; x <= sampleRadius; x++)
         {
-            float pcf = ShadowAtlas.Sample(ShadowSampler, shadowCoords.xy + float2(x, y) * texelSize).r;
-            shadow += currentDepth - bias > pcf ? 1.0 : 0.0;
+            float closestDepth = ShadowAtlas.Sample(ShadowSampler, lightCoords.xy + float2(x, y) * texelSize).r;
+            if (currentDepth > closestDepth + bias) {
+                shadow += 1.0;
+            }
         }
     }
-    shadow /= float(pow(shadowFilterSize, 2));
+    shadow /= pow((sampleRadius * 2 + 1), 2);
 
     return shadow;
 }
