@@ -173,10 +173,10 @@ namespace xpe {
             ss << "\n\n------------------- " << USID << " -------------------\n";
 
             usize totalMB = TotalBytes / K_MEMORY_MB;
-            usize totalKB = (TotalBytesOccupied - TotalBytesFreed) / K_MEMORY_KB;
+            usize totalUsageKB = (TotalBytesOccupied - TotalBytesFreed) / K_MEMORY_KB;
 
             ss << "Total Size = " << totalMB << "MB, "
-            << "Total Usage = " << totalKB << "KB" << "\n"
+            << "Total Usage = " << totalUsageKB << "KB" << "\n"
             << "Total Allocs = " << TotalAllocCount
             << ", Total Frees = " << TotalFreeCount << "\n";
 

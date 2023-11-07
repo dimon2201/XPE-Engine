@@ -12,6 +12,12 @@ namespace xpe {
             PAUSED,
             STOPPED
         };
+        JsonEnum(eAudioState, {
+            { eAudioState::INITIAL, "INITIAL" },
+            { eAudioState::PLAYING, "PLAYING" },
+            { eAudioState::PAUSED,  "PAUSED" },
+            { eAudioState::STOPPED, "STOPPED" },
+        })
 
         enum eAudioError {
             NONE,
@@ -21,6 +27,14 @@ namespace xpe {
             INVALID_OPERATION,
             OUT_OF_MEMORY
         };
+        JsonEnum(eAudioError, {
+            { eAudioError::NONE,              "INITIAL" },
+            { eAudioError::INVALID_NAME,      "INVALID_NAME" },
+            { eAudioError::INVALID_ENUM,      "INVALID_ENUM" },
+            { eAudioError::INVALID_VALUE,     "INVALID_VALUE" },
+            { eAudioError::INVALID_OPERATION, "INVALID_OPERATION" },
+            { eAudioError::OUT_OF_MEMORY,     "OUT_OF_MEMORY" },
+        })
 
         struct ENGINE_API sAudioSource
         {
@@ -54,7 +68,6 @@ namespace xpe {
             RefDistance,
             MaxDistance
         )
-
     }
 
 }

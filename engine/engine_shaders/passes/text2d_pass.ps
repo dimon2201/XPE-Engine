@@ -4,9 +4,7 @@
 struct VSOut
 {
     float2 uv : XPE_UV2;
-    float3 normal : XPE_NORMAL2;  // normalized
-    float4 positionClip : SV_POSITION;
-    float3 viewPosition : XPE_VIEW_POSITION;
+    float4 positionNDC : SV_POSITION;
     float2 glyphSize : XPE_GLYPH_SIZE;
     float2 glyphAtlasOffset : XPE_GLYPH_ATLAS_OFFSET;
 };

@@ -56,7 +56,7 @@ public:
             LogError("xml_config.xml file not found in config/xml_config.xml path.");
         }
 
-        // save xml configs from file
+        // save xml configs into file
         if (!m_XmlConfig.SaveFile("config/xml_config_saved.xml"))
         {
             LogError("xml_config_saved.xml file not found in config/xml_config_saved.xml path.");
@@ -75,6 +75,34 @@ public:
 
         // Create physics scene and add into current scene
         m_Scene->PhysicsScene = cPhysicsManager::AddScene(m_Scene->GetTag());
+
+        // Widgets
+        {
+            m_Widget = new cEntity("Widget", m_Scene);
+
+            sWidget* loginLayout = new sWidget();
+            sEditText* emailEdit = new sEditText();
+            emailEdit->Text = "Enter your email";
+            sEditText* passwordEdit = new sEditText();
+            passwordEdit->Text = "Enter your password";
+            sButton* loginButton = new sButton();
+            loginButton->Text = "Log In";
+            sButton* cancelButton = new sButton();
+            cancelButton->Text = "Cancel";
+
+            loginLayout->Children = { emailEdit, passwordEdit, loginButton, cancelButton };
+            loginLayout->UpdateXmlChildren();
+
+            sCWidget* widget = m_Widget->Add<sCWidget>();
+            widget->Children = { loginLayout, new sButton() };
+            widget->UpdateXmlChildren();
+
+            // save widget xml into file
+            if (!widget->SaveFile("config/widget_xml_saved.xml"))
+            {
+                LogError("widget_xml_saved.xml file not found in config/widget_xml_saved.xml path.");
+            }
+        }
 
         // Text 2D
         {
@@ -618,6 +646,8 @@ private:
 
     sTestConfig m_TestConfig;
     sXmlConfig  m_XmlConfig;
+
+    cEntity* m_Widget;
 };
 
 cApp* CreateApplication() {

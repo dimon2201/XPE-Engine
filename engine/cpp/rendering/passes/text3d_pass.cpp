@@ -11,8 +11,7 @@ namespace xpe {
 
         void cText3DPass::DrawOpaque(cScene* scene)
         {
-            scene->EachComponent<sCText3D>([this](sCText3D* component)
-            {
+            scene->ForLoop<sCText3D>([this](sCText3D *component) {
                 DrawText(component->Entity->GetTransform(), component->Text, *component->Font);
             });
         }

@@ -63,8 +63,8 @@ VSOut vs_main(VSIn vsIn)
     float4x4 lightMatrix        = DirectLightMatrices[0].Matrix;
 
     float4 positionWorld = mul(worldMatrix, positionBone);
-    float4 positionView  = mul(View, positionWorld);
-    float4 positionClip  = mul(Projection, positionView);
+    float4 positionView  = mul(CameraView, positionWorld);
+    float4 positionClip  = mul(CameraProjection, positionView);
     float4 positionLight = mul(lightMatrix, positionWorld);
 
     float3 normalWorld   = mul(worldNormalMatrix, float4(normalBone, 1.0)).xyz;
@@ -82,7 +82,7 @@ VSOut vs_main(VSIn vsIn)
     vsOut.viewPosition  = CameraPosition;
     vsOut.materialIndex = instance.MaterialIndex;
     vsOut.tbn           = float3x3(tangentWorld, bitangentWorld, normalWorld);
-    vsOut.gamma         = Gamma;
+    vsOut.gamma         = ViewportGamma;
 
     return vsOut;
 }

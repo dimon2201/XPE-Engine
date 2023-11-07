@@ -32,7 +32,7 @@ namespace xpe {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
             m_Position = Component.Position;
-            AddWindowFrameResized(cPerspectiveCamera, eWindowFrameResizedPriority::CAMERA);
+            AddWindowResized(cPerspectiveCamera, eWindowFrameResizedPriority::CAMERA);
             AddWindowRatioChanged(cPerspectiveCamera, 1);
             AddCursorMove(cPerspectiveCamera, 2);
             AddScrollChanged(cPerspectiveCamera, 2);
@@ -163,15 +163,17 @@ namespace xpe {
             m_Buffer->Flush();
         }
 
-        void cPerspectiveCamera::WindowFrameResized(int w, int h)
+        void cPerspectiveCamera::WindowResized(int w, int h)
         {
-            LogInfo("cPerspectiveCamera::WindowFrameResized: width={}, height={}", w, h);
+            LogInfo("cPerspectiveCamera::WindowResized: width={}, height={}", w, h);
             m_ViewWidth = w;
             m_ViewHeight = h;
+            WindowRatioChanged((float) w / (float) h);
         }
 
         void cPerspectiveCamera::WindowRatioChanged(float ratio)
         {
+            LogInfo("cPerspectiveCamera::WindowRatioChanged: ratio={}", ratio);
             Component.AspectRatio = ratio;
             UpdateProjection();
             m_Buffer->Flush();
@@ -206,7 +208,7 @@ namespace xpe {
             m_ViewWidth = viewWidth;
             m_ViewHeight = viewHeight;
             m_Position = Component.Position;
-            AddWindowFrameResized(cOrthoCamera, eWindowFrameResizedPriority::CAMERA);
+            AddWindowResized(cOrthoCamera, eWindowFrameResizedPriority::CAMERA);
             AddScrollChanged(cOrthoCamera, 2);
             AddCursorMove(cOrthoCamera, 2);
         }
@@ -259,9 +261,9 @@ namespace xpe {
             // todo ortho camera look function
         }
 
-        void cOrthoCamera::WindowFrameResized(int width, int height)
+        void cOrthoCamera::WindowResized(int width, int height)
         {
-            LogInfo("cOrthoCamera::WindowFrameResized: width={}, height={}", width, height);
+            LogInfo("cOrthoCamera::WindowResized: width={}, height={}", width, height);
             m_ViewWidth = width;
             m_ViewHeight = height;
             UpdateProjection();

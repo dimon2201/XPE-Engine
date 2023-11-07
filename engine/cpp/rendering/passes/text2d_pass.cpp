@@ -11,8 +11,7 @@ namespace xpe {
 
         void cText2DPass::DrawUI(cScene* scene)
         {
-            scene->EachComponent<sCText2D>([this](sCText2D* component)
-            {
+            scene->ForLoop<sCText2D>([this](sCText2D *component) {
                 sTransform transform = component->Entity->GetTransform();
                 transform.Position = {
                         transform.Position.x * (float) cWindowManager::GetFrameWidth(),

@@ -4,18 +4,23 @@
 
 // ---------- Structure Buffers --------------- //
 
-// ---------- sVertex Stage --------------- //
+// ---------- Vertex Stage --------------- //
 
+// UI
+#define K_SLOT_WIDGETS 0
+#define K_SLOT_TEXT_CHARS 0
+#define K_SLOT_WIDGET_ATLAS 0
+#define K_SLOT_WIDGET_SAMPLER 0
+
+// Scene
 #define K_SLOT_INSTANCES 0
-#define K_SLOT_TEXT_CHARS 1
-#define K_SLOT_SKELETONS 2
-#define K_SLOT_UI 3
-
-#define K_SLOT_DIRECT_LIGHT_MATRICES 4
+#define K_SLOT_SKELETONS 1
+#define K_SLOT_DIRECT_LIGHT_MATRICES 2
 
 // ---------- Pixel Stage --------------- //
 
 // materials
+#define K_SLOT_MATERIAL_SAMPLER 0
 #define K_SLOT_MATERIALS 0
 #define K_SLOT_ALBEDO 1
 #define K_SLOT_BUMPING 2
@@ -32,10 +37,6 @@
 
 // shadows
 #define K_SLOT_SHADOW_ATLAS 11
-
-// ---------- Samplers --------------- //
-
-#define K_SLOT_MATERIAL_SAMPLER 0
 #define K_SLOT_SHADOW_SAMPLER 1
 
 // ---------- Constant Buffers --------------- //
@@ -43,6 +44,7 @@
 // ---------- Vertex Stage --------------- //
 
 #define K_SLOT_CAMERA 0
+#define K_SLOT_TEXT   1
 
 // ---------- Pixel Stage --------------- //
 

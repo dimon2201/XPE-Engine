@@ -3,6 +3,7 @@
 #include <core/events.h>
 
 #define AddWindowClosed(clazz, priority) xpe::core::cEventManager::Get().WindowClosedEvents.AddEvent(this, xpe::core::OnWindowClosed<clazz>, priority)
+#define AddWindowResized(clazz, priority) xpe::core::cEventManager::Get().WindowResizedEvents.AddEvent(this, xpe::core::OnWindowResized<clazz>, priority)
 #define AddWindowFrameResized(clazz, priority) xpe::core::cEventManager::Get().WindowFrameResizedEvents.AddEvent(this, xpe::core::OnWindowFrameResized<clazz>, priority)
 #define AddWindowRatioChanged(clazz, priority) xpe::core::cEventManager::Get().WindowRatioChangedEvents.AddEvent(this, xpe::core::OnWindowRatioChanged<clazz>, priority)
 

@@ -9,7 +9,11 @@ struct Character
     float AdvanceY;
     float AtlasXOffset;
     float AtlasYOffset;
-    float4x4 ModelMatrix;
 };
 
 StructuredBuffer<Character> Text : K_SLOT_TEXT_CHARS;
+
+cbuffer TextBuffer : K_SLOT_TEXT
+{
+    float4x4 TextModelMatrix;
+};

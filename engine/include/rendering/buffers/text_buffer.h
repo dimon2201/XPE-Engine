@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/buffers/list_buffer.h>
+#include <rendering/buffers/item_buffer.h>
 
 namespace xpe {
 
@@ -17,12 +18,21 @@ namespace xpe {
             f32 AdvanceY = 0;
             f32 AtlasXOffset = 0;
             f32 AtlasYOffset = 0;
-            glm::mat4 ModelMatrix;  // position world space
         };
 
-        struct ENGINE_API sTextBuffer : public sListBuffer<sChar>
+        struct ENGINE_API sCharBuffer : public sListBuffer<sChar>
         {
-            sTextBuffer(usize count = 0) : sListBuffer<sChar>(count, K_SLOT_TEXT_CHARS) {}
+            sCharBuffer(usize count = 0) : sListBuffer<sChar>(count, K_SLOT_TEXT_CHARS) {}
+        };
+
+        struct ENGINE_API sText final
+        {
+            glm::mat4 ModelMatrix; // world space
+        };
+
+        struct ENGINE_API sTextBuffer : public sItemBuffer<sText>
+        {
+            sTextBuffer() : sItemBuffer<sText>(K_SLOT_TEXT) {}
         };
 
     }

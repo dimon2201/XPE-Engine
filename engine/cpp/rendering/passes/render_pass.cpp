@@ -87,6 +87,7 @@ namespace xpe {
         void cRenderPass::InitFinal()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+
             sBlendTarget target;
             target.Enable = false;
             m_Pipeline->Blending.Targets.push_back(target);
@@ -160,8 +161,11 @@ namespace xpe {
         void cRenderPass::InitUI()
         {
             m_Pipeline->DepthStencil.DepthWriteMask = eDepthWriteMask::ALL;
+
             sBlendTarget target;
-            target.Enable = false;
+            target.Enable = true;
+            m_Pipeline->Blending.Targets.push_back(target);
+            m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
         }

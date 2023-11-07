@@ -24,7 +24,7 @@ PSOut ps_main(VSOut psIn)
     ColorTexture.GetDimensions(width, height, sampleCount);
 
     float3 averageColor = SampleMSAATextureFloat3(ColorTexture, psIn.uv);
-    averageColor = TonemapExp(averageColor, Exposure);
+    averageColor = TonemapExp(averageColor, CameraExposure);
     float3 averageAO = SampleMSAATextureFloat3(AOTexture, psIn.uv);
 
     PSOut psOut;

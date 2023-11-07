@@ -30,7 +30,9 @@ namespace xpe {
 
             static cPerspectiveCamera* AddPerspectiveCamera(int width, int height);
             static cOrthoCamera* AddOrthoCamera(int width, int height);
+
             static cCamera* GetCamera();
+            static void SetCamera(cCamera* camera);
 
         private:
             static sCameraBuffer* s_Buffer;

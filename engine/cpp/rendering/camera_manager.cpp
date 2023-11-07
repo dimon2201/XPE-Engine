@@ -86,6 +86,11 @@ namespace xpe {
             return s_Camera;
         }
 
+        void cCameraManager::SetCamera(cCamera* camera)
+        {
+            s_Camera = camera;
+        }
+
     }
 
 }

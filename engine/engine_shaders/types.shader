@@ -1,16 +1,22 @@
 // ---------- For Structure Buffer --------------- //
 
-// ---------- For sVertex Stage --------------- //
+// ---------- Vertex Stage --------------- //
 
+// UI
+#define K_SLOT_WIDGETS                 register(t0)
+#define K_SLOT_TEXT_CHARS              register(t0)
+#define K_SLOT_WIDGET_ATLAS            register(t0)
+#define K_SLOT_WIDGET_SAMPLER          register(s0)
+
+// Scene
 #define K_SLOT_INSTANCES               register(t0)
-#define K_SLOT_TEXT_CHARS              register(t1)
-#define K_SLOT_SKELETONS               register(t2)
-#define K_SLOT_UI                      register(t3)
-#define K_SLOT_DIRECT_LIGHT_MATRICES   register(t4)
+#define K_SLOT_SKELETONS               register(t1)
+#define K_SLOT_DIRECT_LIGHT_MATRICES   register(t2)
 
-// ---------- For Pixel Stage --------------- //
+// ---------- Pixel Stage --------------- //
 
 // materials
+#define K_SLOT_MATERIAL_SAMPLER        register(s0)
 #define K_SLOT_MATERIALS               register(t0)
 #define K_SLOT_ALBEDO                  register(t1)
 #define K_SLOT_BUMPING                 register(t2)
@@ -27,19 +33,16 @@
 
 // shadows
 #define K_SLOT_SHADOW_ATLAS            register(t11)
-
-// ------------ For Samplers ----------------- //
-
-#define K_SLOT_MATERIAL_SAMPLER        register(s0)
 #define K_SLOT_SHADOW_SAMPLER          register(s1)
 
-// ---------- For Constant Buffer --------------- //
+// ---------- Constant Buffer --------------- //
 
-// ---------- For sVertex Stage --------------- //
+// ---------- Vertex Stage --------------- //
 
 #define K_SLOT_CAMERA                  register(b0)
+#define K_SLOT_TEXT                    register(b1)
 
-// ---------- For Pixel Stage --------------- //
+// ---------- Pixel Stage --------------- //
 
 #define K_SLOT_SSAO                    register(b0)
 

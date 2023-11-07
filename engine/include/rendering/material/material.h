@@ -39,7 +39,6 @@ namespace xpe
 
         Json(
             sMaterial,
-            Index,
             Albedo,
             EnableAlbedoMap,
             EnableNormalMap,

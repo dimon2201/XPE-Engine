@@ -3,8 +3,8 @@
 #define STR(clazz) #clazz
 
 #define K_MEMORY_KB 1024
-#define K_MEMORY_MB 1024 * K_MEMORY_KB
-#define K_MEMORY_GB 1024 * K_MEMORY_MB
+#define K_MEMORY_MB (1024 * K_MEMORY_KB)
+#define K_MEMORY_GB (1024 * K_MEMORY_MB)
 
 #define K_PI 3.14159265359f
 

@@ -53,6 +53,13 @@ namespace xpe {
             BOX = 3,
             PLANE = 4
         };
+        JsonEnum(eShapeType, {
+            { eShapeType::NONE, "NONE" },
+            { eShapeType::SPHERE, "SPHERE" },
+            { eShapeType::CAPSULE, "CAPSULE" },
+            { eShapeType::BOX, "BOX" },
+            { eShapeType::PLANE, "PLANE" }
+        })
 
         struct ENGINE_API sShapeDescriptor : public cObject
         {
@@ -63,6 +70,7 @@ namespace xpe {
 
             eShapeType Type;
         };
+        Json(sShapeDescriptor, Type)
 
         struct ENGINE_API sSphereShapeDescriptor : public sShapeDescriptor
         {
@@ -71,30 +79,34 @@ namespace xpe {
 
             f32 Radius;
         };
+        Json(sSphereShapeDescriptor, Type, Radius)
 
         struct ENGINE_API sCapsuleShapeDescriptor : public sShapeDescriptor
         {
             sCapsuleShapeDescriptor() = delete;
             sCapsuleShapeDescriptor(f32 radius, f32 halfHeight)
-                : sShapeDescriptor(eShapeType::CAPSULE), Radius(radius), HalfHeight(halfHeight) {}
+            : sShapeDescriptor(eShapeType::CAPSULE), Radius(radius), HalfHeight(halfHeight) {}
 
             f32 Radius;
             f32 HalfHeight;
         };
+        Json(sCapsuleShapeDescriptor, Type, Radius, HalfHeight)
 
         struct ENGINE_API sBoxShapeDescriptor : public sShapeDescriptor
         {
             sBoxShapeDescriptor() = delete;
             sBoxShapeDescriptor(const glm::vec3& halfExtents)
-                : sShapeDescriptor(eShapeType::BOX), HalfExtents(halfExtents) {}
+            : sShapeDescriptor(eShapeType::BOX), HalfExtents(halfExtents) {}
 
             glm::vec3 HalfExtents;
         };
+        Json(sBoxShapeDescriptor, Type, HalfExtents)
 
         struct ENGINE_API sPlaneShapeDescriptor : public sShapeDescriptor
         {
             sPlaneShapeDescriptor() : sShapeDescriptor(eShapeType::PLANE) {}
         };
+        Json(sPlaneShapeDescriptor, Type)
 
         struct ENGINE_API sActor : public cObject
         {
@@ -104,6 +116,11 @@ namespace xpe {
                 RIGID_STATIC = 1,
                 RIGID_DYNAMIC = 2
             };
+            JsonEnum(eActorType, {
+                { eActorType::NONE,          "NONE" },
+                { eActorType::RIGID_STATIC,  "RIGID_STATIC" },
+                { eActorType::RIGID_DYNAMIC, "RIGID_DYNAMIC" },
+            })
 
             sActor() = default;
 

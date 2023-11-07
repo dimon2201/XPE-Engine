@@ -20,12 +20,12 @@ namespace xpe {
 		// Update listener's position, velocity and orientation
 		void cAudioSystem::UpdateListener(cScene* scene)
 		{
-			// todo : Maybe, if do it global, it will be better then now. And I dont need use EachComponent :|
-			scene->EachComponent<sCListener>([](sCListener* component) {
-				SetListenerPosition(*component->Position);
-				SetListenerVelocity(component->Velocity);
-				SetListenerOrientation(*component->Look, component->Up);
-			});
+			// todo : Maybe, if do it global, it will be better then now. And I dont need use ForLoop :|
+            scene->ForLoop<sCListener>([](sCListener *component) {
+                SetListenerPosition(*component->Position);
+                SetListenerVelocity(component->Velocity);
+                SetListenerOrientation(*component->Look, component->Up);
+            });
 		}
 
 		// It's a cycle. multimedia playback and update audio's states
@@ -38,19 +38,20 @@ namespace xpe {
 
 		void cAudioSystem::UpdateVoices(cScene* scene)
 		{
-			scene->EachComponent<sCVoice>([this](sCVoice* component) {
+            scene->ForLoop<sCVoice>([this](sCVoice *component) {
 
-				if (component->State != eAudioState::PLAYING) {
-					VoiceInit(component);
-				}
+                if (component->State != eAudioState::PLAYING) {
+                    VoiceInit(component);
+                }
 
-				RecordVoice(component);
+                RecordVoice(component);
 
-				GetState(component->SourceID, component->State);
-				if (component->Frames > 0) {
-					UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(), component->Samples, k_SampleRate);
-				}
-			});
+                GetState(component->SourceID, component->State);
+                if (component->Frames > 0) {
+                    UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(),
+                                  component->Samples, k_SampleRate);
+                }
+            });
 		}
 
 		void cAudioSystem::RecordVoice(sCVoice* component)
@@ -124,22 +125,18 @@ namespace xpe {
 
 		void cAudioSystem::UpdateAudios(cScene* scene)
 		{
-			scene->EachComponent<sCAudio>([this](sCAudio* component) {
+            scene->ForLoop<sCAudio>([this](sCAudio *component) {
 
-				if (component->State == eAudioState::PLAYING) {
-					AudioUpdate(component);
-				}
+                if (component->State == eAudioState::PLAYING) {
+                    AudioUpdate(component);
+                } else if (component->State == eAudioState::INITIAL) {
+                    AudioSet(component);
+                    component->State = eAudioState::PLAYING;
+                } else if (component->State == eAudioState::STOPPED) {
+                    AudioStop(component);
+                }
 
-				else if (component->State == eAudioState::INITIAL) {
-					AudioSet(component);
-					component->State = eAudioState::PLAYING;
-				}
-
-				else if (component->State == eAudioState::STOPPED) {
-					AudioStop(component);
-				}
-
-			});
+            });
 		}
 
 		void cAudioSystem::AudioInit(sCStreamAudio* component)
@@ -219,22 +216,18 @@ namespace xpe {
 		void cAudioSystem::UpdateStreamAudios(cScene* scene)
 		{
 			// todo : Need to fix Looping
-			scene->EachComponent<sCStreamAudio>([this](sCStreamAudio* component) {
+            scene->ForLoop<sCStreamAudio>([this](sCStreamAudio *component) {
 
-				if (component->State == eAudioState::PLAYING) {
-					AudioUpdate(component);
-				}
+                if (component->State == eAudioState::PLAYING) {
+                    AudioUpdate(component);
+                } else if (component->State == eAudioState::INITIAL) {
+                    AudioSet(component);
+                    component->State = eAudioState::PLAYING;
+                } else if (component->State == eAudioState::STOPPED) {
+                    AudioStop(component);
+                }
 
-				else if (component->State == eAudioState::INITIAL) {
-					AudioSet(component);
-					component->State = eAudioState::PLAYING;
-				}
-
-				else if (component->State == eAudioState::STOPPED) {
-					AudioStop(component);
-				}
-
-			});
+            });
 		}
 	}
 }

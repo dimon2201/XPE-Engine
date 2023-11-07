@@ -194,6 +194,10 @@ namespace xpe
 
             virtual ~cScene();
 
+            inline void SetTag(const string& tag) { m_Tag = tag; }
+
+            [[nodiscard]] inline const string& GetTag() const { return m_Tag; }
+
             void AddEntity(const string& tag, cEntity* entity);
 
             void RemoveEntity(const string& tag);
@@ -233,7 +237,7 @@ namespace xpe
             sComponentStorage& GetComponents();
 
             template<typename T>
-            void EachComponent(const std::function<void(T*)>& iterateFunction);
+            void ForLoop(const std::function<void(T*)>& iterateFunction);
 
             template<typename T>
             usize GetComponentsCount();
@@ -257,6 +261,7 @@ namespace xpe
             void InvalidateComponentAddresses(ComponentType componentType, usize componentSize);
 
         private:
+            string m_Tag;
             unordered_map<string, cEntity*> m_Entities;
             unordered_map<ComponentType, sComponentStorage> m_ComponentStorages;
             unordered_map<cEntity*, unordered_map<ComponentType, sComponent*>> m_ComponentAddresses;
@@ -324,7 +329,7 @@ namespace xpe
         }
 
         template<typename T>
-        void cScene::EachComponent(const std::function<void(T*)>& iterateFunction)
+        void cScene::ForLoop(const std::function<void(T*)>& iterateFunction)
         {
             ComponentType componentType = GetComponentType<T>();
             if (m_ComponentStorages.find(componentType) != m_ComponentStorages.end()) {
@@ -373,18 +378,21 @@ namespace xpe
             void SetPosition(const glm::vec3& position);
             void SetRotation(const glm::vec3& rotation);
             void SetScale(const glm::vec3& scale);
-            inline void SetScene(cScene* scene) { m_Scene = scene; }
 
             inline sTransform& GetTransform() { return m_Transform; }
             inline glm::vec3& GetPosition() { return m_Transform.Position; }
             inline glm::vec3& GetRotation() { return m_Transform.Rotation; }
             inline glm::vec3& GetScale() { return m_Transform.Scale; }
+
+            inline void SetScene(cScene* scene) { m_Scene = scene; }
             [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
 
-            inline void Rename(const string& tag)
+            inline void SetTag(const string& tag)
             {
+                m_Tag = tag;
                 m_Scene->RenameEntity(m_Tag, tag);
             }
+            [[nodiscard]] inline const string& GetTag() const { return m_Tag; }
 
             template<typename T, typename... Args>
             T* Add(Args &&... args);
@@ -406,6 +414,7 @@ namespace xpe
             }
 
         protected:
+            string m_Tag;
             sTransform m_Transform;
             cEntity* m_Parent = nullptr;
             vector<cEntity*> m_Children;

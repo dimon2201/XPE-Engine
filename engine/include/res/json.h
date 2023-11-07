@@ -8,21 +8,21 @@ using json = nlohmann::json;
 
 #define Json(clazz, ...) NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(clazz, __VA_ARGS__)
 
-#define JsonClass(clazz, ...)                                   \
+#define JsonClassNamed(clazz, name, ...)                        \
                                                                 \
 NLOHMANN_DEFINE_TYPE_INTRUSIVE(clazz, __VA_ARGS__)              \
                                                                 \
-clazz() { m_Tag = #clazz; }                                     \
-                                                                \
 void ToJson(json &root) override                                \
 {                                                               \
-    root[m_Tag.c_str()] = *this;                                \
+    root[name.c_str()] = *this;                                 \
 }                                                               \
                                                                 \
 void FromJson(json &root) override                              \
 {                                                               \
-    root.at(m_Tag.c_str()).get_to(*this);                       \
+    root.at(name.c_str()).get_to(*this);                        \
 }                                                               \
+
+#define JsonClass(clazz, ...) JsonClassNamed(clazz, string(#clazz), __VA_ARGS__)
 
 #define JsonEnum(clazz, ...) \
 NLOHMANN_JSON_SERIALIZE_ENUM(clazz, __VA_ARGS__)
@@ -35,23 +35,9 @@ namespace xpe {
 
         class ENGINE_API cJson
         {
-
         public:
             virtual void ToJson(json& root) = 0;
             virtual void FromJson(json& root) = 0;
-
-            inline void SetTag(const string& tag)
-            {
-                m_Tag = tag;
-            }
-
-            inline const string& GetTag() const
-            {
-                return m_Tag;
-            }
-
-        protected:
-            string m_Tag;
         };
 
         ENGINE_API bool ReadJsonFile(const char* filepath, cJson& object);

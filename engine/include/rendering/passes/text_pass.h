@@ -21,6 +21,7 @@ namespace xpe {
         protected:
             void DrawText(const sTransform& transform, const string& text, sFont& font);
 
+            sCharBuffer m_CharBuffer;
             sTextBuffer m_TextBuffer;
             sGeometry m_Quad;
         };

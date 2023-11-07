@@ -4,6 +4,8 @@
 #include <rendering/material/material.h>
 #include <rendering/font/font.hpp>
 #include <rendering/buffers/light_buffers.h>
+#include <rendering/buffers/widget_buffer.h>
+#include <rendering/widgets.h>
 
 #include <anim/skeleton.h>
 
@@ -45,7 +47,13 @@ namespace xpe
         {
             JsonClass(
                 sCPerspectiveCamera,
-                m_Tag
+                Position,
+                Front,
+                Up,
+                FovDegree,
+                AspectRatio,
+                Near,
+                Far
             )
         };
 
@@ -53,7 +61,15 @@ namespace xpe
         {
             JsonClass(
                 sCOrthoCamera,
-                m_Tag
+                Position,
+                Front,
+                Up,
+                Left,
+                Right,
+                Bottom,
+                Top,
+                Near,
+                Far
             )
         };
 
@@ -62,7 +78,7 @@ namespace xpe
             string Text;
             sFont* Font;
 
-            sCText2D(const string& text, sFont* font) : Text(text), Font(font) {}
+            sCText2D(const string& text = {}, sFont* font = nullptr) : Text(text), Font(font) {}
 
             JsonClass(
                 sCText2D,
@@ -75,7 +91,7 @@ namespace xpe
             string Text;
             sFont* Font;
 
-            sCText3D(const string& text, sFont* font) : Text(text), Font(font) {}
+            sCText3D(const string& text = {}, sFont* font = nullptr) : Text(text), Font(font) {}
 
             JsonClass(
                 sCText3D,
@@ -90,7 +106,21 @@ namespace xpe
 
             JsonClass(
                 sCMaterial,
-                m_Tag
+                Albedo,
+                EnableAlbedoMap,
+                EnableNormalMap,
+                EnableParallaxMap,
+                ParallaxHeightScale,
+                ParallaxMinLayers,
+                ParallaxMaxLayers,
+                Metallness,
+                EnableMetalMap,
+                Roughness,
+                EnableRoughnessMap,
+                AO,
+                EnableAOMap,
+                Emission,
+                EnableEmissionMap
             )
         };
 
@@ -174,7 +204,11 @@ namespace xpe
 
             JsonClass(
                 sCGeometry,
-                m_Tag
+                PrimitiveTopology,
+                VertexOffset,
+                IndexOffset,
+                Vertices,
+                Indices
             )
         };
 
@@ -187,7 +221,12 @@ namespace xpe
 
             JsonClass(
                 sCModel,
-                m_Tag
+                PrimitiveTopology,
+                VertexOffset,
+                VertexCount,
+                IndexOffset,
+                Indices,
+                Meshes
             )
         };
 
@@ -203,7 +242,13 @@ namespace xpe
             JsonClass(
                 sCSkeletonModel,
                 Skeleton,
-                Animation
+                Animation,
+                PrimitiveTopology,
+                VertexOffset,
+                VertexCount,
+                IndexOffset,
+                Indices,
+                Meshes
             )
         };
 
@@ -216,30 +261,29 @@ namespace xpe
 
             JsonClass(
                 sCListener,
-                m_Tag
+                Velocity,
+                Up
             )
         };
 
         struct ENGINE_API sCAudio : sComponent
         {
             sAudioSource Source;
-
             eAudioState State = eAudioState::INITIAL;
-
             u32 BufferID = 0;
-
             sAudioFile* File = nullptr;
 
             JsonClass(
                 sCAudio,
-                m_Tag
+                Source,
+                State,
+                BufferID
             )
         };
 
         struct ENGINE_API sCStreamAudio : sComponent
         {
             sAudioSource Source;
-
             eAudioState State = eAudioState::INITIAL;
 
             u32 NumBuffers = 4;
@@ -253,7 +297,12 @@ namespace xpe
 
             JsonClass(
                 sCStreamAudio,
-                m_Tag
+                Source,
+                State,
+                NumBuffers,
+                BufferSamples,
+                CurrentFrame,
+                BufferID
             )
         };
 
@@ -275,7 +324,14 @@ namespace xpe
 
             JsonClass(
                 sCVoice,
-                m_Tag
+                SourceID,
+                State,
+                BufferID,
+                NumBuffers,
+                Samples,
+                Frames,
+                Recording,
+                Data
             )
         };
 
@@ -298,8 +354,29 @@ namespace xpe
 
             JsonClass(
                 sCPhysicsActor,
-                m_Tag
+                ActorType,
+                ShapeDesc,
+                LinearVelocity,
+                StaticFriction,
+                DynamicFriction,
+                Restitution,
+                ContactOffset,
+                RestOffset
             )
         };
+
+        struct ENGINE_API sCWidget : sComponent, sWidget
+        {
+            JsonClass(
+                sCWidget,
+                Visible,
+                Transform,
+                Color,
+                ColorHover,
+                ColorPressed,
+                EnableTexture
+            )
+        };
+
     }
 }

@@ -300,8 +300,7 @@ namespace xpe {
         {
             m_DirectLightBuffer->Clear();
             m_DirectLightMatrixBuffer->Clear();
-            scene->EachComponent<sCDirectionalLight>([this](sCDirectionalLight* component)
-            {
+            scene->ForLoop<sCDirectionalLight>([this](sCDirectionalLight *component) {
                 if (component->FollowEntity) {
                     component->View.Position = component->Entity->GetPosition();
                 }
@@ -320,8 +319,7 @@ namespace xpe {
             m_DirectLightMatrixBuffer->Flush();
 
             m_PointLightBuffer->Clear();
-            scene->EachComponent<sCPointLight>([this](sCPointLight* component)
-            {
+            scene->ForLoop<sCPointLight>([this](sCPointLight *component) {
                 if (component->FollowEntity) {
                     component->Position = component->Entity->GetPosition();
                 }
@@ -337,8 +335,7 @@ namespace xpe {
             m_PointLightBuffer->Flush();
 
             m_SpotLightBuffer->Clear();
-            scene->EachComponent<sCSpotLight>([this](sCSpotLight* component)
-            {
+            scene->ForLoop<sCSpotLight>([this](sCSpotLight *component) {
                 if (component->FollowEntity) {
                     component->Position = component->Entity->GetPosition();
                 }

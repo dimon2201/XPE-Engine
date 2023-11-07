@@ -21,41 +21,39 @@ namespace xpe
             scene->PhysicsScene->simulate(1.0f / 60.0f);
             scene->PhysicsScene->fetchResults(true);
 
-            scene->EachComponent<sCPhysicsActor>(
-                [this]
-                (sCPhysicsActor* component)
-                {
-                    cEntity* entity = component->Entity;
+            scene->ForLoop<sCPhysicsActor>(
+                    [this]
+                            (sCPhysicsActor *component) {
+                        cEntity *entity = component->Entity;
 
-                    PxTransform actorTransform;
-                    
-                    switch (component->ActorType)
-                    {
+                        PxTransform actorTransform;
 
-                    case sActor::eActorType::RIGID_STATIC:
-                        actorTransform = ((PxRigidStatic*)component->Actor)->getGlobalPose();
-                        break;
+                        switch (component->ActorType) {
 
-                    case sActor::eActorType::RIGID_DYNAMIC:
-                        actorTransform = ((PxRigidDynamic*)component->Actor)->getGlobalPose();
-                        break;
+                            case sActor::eActorType::RIGID_STATIC:
+                                actorTransform = ((PxRigidStatic *) component->Actor)->getGlobalPose();
+                                break;
 
+                            case sActor::eActorType::RIGID_DYNAMIC:
+                                actorTransform = ((PxRigidDynamic *) component->Actor)->getGlobalPose();
+                                break;
+
+                        }
+
+                        PxShape *shape = component->Shape;
+
+                        glm::vec3 shapeEuler = QuatToEuler(
+                                actorTransform.q.w, actorTransform.q.x, actorTransform.q.y, actorTransform.q.z
+                        );
+
+                        // Prevent concurrent access
+                        {
+                            std::lock_guard<std::mutex> lock(m_Mutex);
+
+                            entity->SetPosition(glm::vec3(actorTransform.p.y, actorTransform.p.x, -actorTransform.p.z));
+                            entity->SetRotation(glm::vec3(shapeEuler.y, shapeEuler.x, -shapeEuler.z));
+                        }
                     }
-
-                    PxShape* shape = component->Shape;
-
-                    glm::vec3 shapeEuler = QuatToEuler(
-                        actorTransform.q.w, actorTransform.q.x, actorTransform.q.y, actorTransform.q.z
-                    );
-
-                    // Prevent concurrent access
-                    {
-                        std::lock_guard<std::mutex> lock(m_Mutex);
-
-                        entity->SetPosition(glm::vec3(actorTransform.p.y, actorTransform.p.x, -actorTransform.p.z));
-                        entity->SetRotation(glm::vec3(shapeEuler.y, shapeEuler.x, -shapeEuler.z));
-                    }
-                }
             );
         }
 	}

@@ -1,5 +1,4 @@
 <XmlConfig
-    Name="XmlConfig"
     AnimateLight="true"
     CameraFar="1000"
     CameraMoveSpeed="0.05"

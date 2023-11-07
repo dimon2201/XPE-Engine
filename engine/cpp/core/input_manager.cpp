@@ -37,7 +37,7 @@ namespace xpe {
                     LogWarning("Window size has invalid width={} height={}. WindowResized event will not be handled!", w, h);
                     return;
                 }
-                cEventManager::Get().WindowFrameResizedEvents.NotifyAll(w, h);
+                cEventManager::Get().WindowResizedEvents.NotifyAll(w, h);
             });
 
             glfwSetFramebufferSizeCallback(s_Window, [](GLFWwindow* window, int w, int h) {

@@ -9,6 +9,7 @@
 #include <rendering/passes/canvas.hpp>
 #include <rendering/passes/skybox_pass.h>
 #include <rendering/passes/geometry_pass.h>
+#include <rendering/passes/widget_pass.h>
 #include <rendering/passes/text2d_pass.h>
 #include <rendering/passes/text3d_pass.h>
 #include <rendering/passes/composite_transparent_pass.h>
@@ -271,6 +272,22 @@ namespace xpe {
                 };
 
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::SHADOW, bindings);
+            }
+
+            // Widget pass
+            {
+                sShader* shader = cShaderManager::CreateShader("widget_pass");
+                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass.vs");
+                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/widget_pass.ps");
+                cShaderManager::BuildShader(shader);
+
+                vector<sRenderPassBinding> bindings = {
+                        { "Shader",         sRenderPassBinding::eType::SHADER,        shader },
+                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT },
+                        { "CameraBuffer",   sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),   sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
+                };
+
+                m_RenderSystem->AddRenderPass<cWidgetPass>(bindings);
             }
 
             // Text 2D pass

@@ -37,6 +37,8 @@ namespace xpe {
 
             void Clear();
 
+            bool Empty();
+
             inline vector<T>& GetList()
             {
                 return m_List;
@@ -154,6 +156,12 @@ namespace xpe {
         void sListBuffer<T>::Clear()
         {
             m_List.clear();
+        }
+
+        template<typename T>
+        bool sListBuffer<T>::Empty()
+        {
+            return m_List.empty();
         }
 
         template<typename T>

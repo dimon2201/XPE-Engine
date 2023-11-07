@@ -9,7 +9,7 @@ namespace xpe {
         cTextPass::cTextPass(eType type, const vector<sRenderPassBinding>& bindings) : cRenderPass(type, bindings)
         {
             m_Quad = cGeometryManager::AddGeometry(sQuad());
-            m_TextBuffer.Reserve(1000);
+            m_CharBuffer.Reserve(1000);
             m_Pipeline->PrimitiveTopology = m_Quad.PrimitiveTopology;
             m_Pipeline->Textures.emplace_back(nullptr);
         }
@@ -22,7 +22,7 @@ namespace xpe {
             const char* chars = text.c_str();
 
             glm::vec2 advance = { 0, 0 };
-            m_TextBuffer.Clear();
+            m_CharBuffer.Clear();
             for (usize i = 0; i < charsCount; i++)
             {
                 char c = chars[i];
@@ -44,7 +44,6 @@ namespace xpe {
                 character.AdvanceY = advance.y;
                 character.AtlasXOffset = glyph.AtlasXOffset;
                 character.AtlasYOffset = glyph.AtlasYOffset;
-                character.ModelMatrix = MathManager::UpdateModelMatrix(transform);
 
                 // Tab
                 if (c == '\t')
@@ -62,15 +61,20 @@ namespace xpe {
                 else
                 {
                     advance.x += (glyph.AdvanceX / 64.0f) * transform.Scale.x;
-                    m_TextBuffer.Add(character);
+                    m_CharBuffer.Add(character);
                 }
             }
+            m_CharBuffer.Flush();
+
+            m_TextBuffer.Item.ModelMatrix = MathManager::UpdateModelMatrix(transform);
             m_TextBuffer.Flush();
 
             m_Pipeline->Textures[0] = &font.Atlas;
 
+            context::BindVSBuffer(m_CharBuffer);
             context::BindVSBuffer(m_TextBuffer);
             context::DrawIndexed(m_Quad.Indices.size(), charsCount, m_Quad.VertexOffset, m_Quad.IndexOffset);
+            context::UnbindVSBuffer(m_CharBuffer);
             context::UnbindVSBuffer(m_TextBuffer);
         }
 
