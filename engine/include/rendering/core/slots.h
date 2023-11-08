@@ -8,9 +8,11 @@
 
 // UI
 #define K_SLOT_WIDGETS 0
-#define K_SLOT_TEXT_CHARS 0
-#define K_SLOT_WIDGET_ATLAS 0
+#define K_SLOT_CHARS 1
+#define K_SLOT_TEXT 1
 #define K_SLOT_WIDGET_SAMPLER 0
+#define K_SLOT_WIDGET_ATLAS 0
+#define K_SLOT_FONT_ATLAS 1
 
 // Scene
 #define K_SLOT_INSTANCES 0
@@ -44,7 +46,6 @@
 // ---------- Vertex Stage --------------- //
 
 #define K_SLOT_CAMERA 0
-#define K_SLOT_TEXT   1
 
 // ---------- Pixel Stage --------------- //
 

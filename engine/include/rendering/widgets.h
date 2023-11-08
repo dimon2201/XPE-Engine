@@ -6,12 +6,26 @@ namespace xpe {
 
     namespace render {
 
+        struct ENGINE_API sTextLabel : sWidget
+        {
+            sTextLabel(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 });
+
+            XmlClass(
+                "TextLabel",
+                Visible,
+                Transform,
+                Color,
+                ColorHover,
+                ColorPressed,
+                EnableTexture,
+                Text
+            )
+        };
+
         struct ENGINE_API sButton : sWidget
         {
             float Corners;
             float Padding;
-            string Text;
-            glm::vec4 TextColor = { 1, 1, 1, 1 };
 
             sButton();
 
@@ -25,50 +39,23 @@ namespace xpe {
                 EnableTexture,
                 Corners,
                 Padding,
-                Text,
-                TextColor
+                Text
             )
         };
 
-        struct ENGINE_API sEditText : sWidget
+        struct ENGINE_API sTextInput : sWidget
         {
-            string Text;
-            glm::vec4 TextColor = { 1, 1, 1, 1 };
-            glm::vec4 HintColor = { 1, 1, 1, 1 };
-
-            sEditText();
+            sTextInput(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 });
 
             XmlClass(
-                "EditText",
+                "TextInput",
                 Visible,
                 Transform,
                 Color,
                 ColorHover,
                 ColorPressed,
                 EnableTexture,
-                Text,
-                TextColor,
-                HintColor
-            )
-        };
-
-        struct ENGINE_API sLabel : sWidget
-        {
-            string Text;
-            glm::vec4 TextColor = { 1, 1, 1, 1 };
-
-            sLabel();
-
-            XmlClass(
-                "Label",
-                Visible,
-                Transform,
-                Color,
-                ColorHover,
-                ColorPressed,
-                EnableTexture,
-                Text,
-                TextColor
+                Text
             )
         };
 

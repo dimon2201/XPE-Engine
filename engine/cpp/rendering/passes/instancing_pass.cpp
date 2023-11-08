@@ -44,8 +44,8 @@ namespace xpe {
             m_InstanceBuffer.Clear();
 
             sRenderInstance instance;
-            instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
-            instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
+            instance.ModelMatrix = cMathManager::UpdateModelMatrix(entity->GetTransform());
+            instance.NormalMatrix = cMathManager::UpdateNormalMatrix(instance.ModelMatrix);
             if (callback) {
                 callback(entity, instance);
             }
@@ -85,8 +85,8 @@ namespace xpe {
                     continue;
 
                 sRenderInstance instance;
-                instance.ModelMatrix = MathManager::UpdateModelMatrix(entity->GetTransform());
-                instance.NormalMatrix = MathManager::UpdateNormalMatrix(instance.ModelMatrix);
+                instance.ModelMatrix = cMathManager::UpdateModelMatrix(entity->GetTransform());
+                instance.NormalMatrix = cMathManager::UpdateNormalMatrix(instance.ModelMatrix);
                 if (callback) {
                     callback(entity, instance);
                 }

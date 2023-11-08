@@ -298,8 +298,9 @@ namespace xpe {
 
         void cRenderSystem::UpdateLight(cScene* scene)
         {
-            m_DirectLightBuffer->Clear();
             m_DirectLightMatrixBuffer->Clear();
+
+            m_DirectLightBuffer->Clear();
             scene->ForLoop<sCDirectionalLight>([this](sCDirectionalLight *component) {
                 if (component->FollowEntity) {
                     component->View.Position = component->Entity->GetPosition();
@@ -310,12 +311,34 @@ namespace xpe {
                 light.Color = component->Color;
 
                 sDirectLightMatrix lightMatrix;
-                lightMatrix.Matrix = MathManager::UpdateLightMatrix(component->Projection, component->View);
+                lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(component->Projection, component->View);
 
                 m_DirectLightBuffer->Add(light);
                 m_DirectLightMatrixBuffer->Add(lightMatrix);
             });
             m_DirectLightBuffer->Flush();
+
+            m_SpotLightBuffer->Clear();
+            scene->ForLoop<sCSpotLight>([this](sCSpotLight *component) {
+                if (component->FollowEntity) {
+                    component->View.Position = component->Entity->GetPosition();
+                }
+
+                sSpotLightData light;
+                light.Position = component->View.Position;
+                light.Color = component->Color;
+                light.Direction = component->View.Front;
+                light.Outer = component->Outer;
+                light.Cutoff = component->Cutoff;
+
+                sDirectLightMatrix lightMatrix;
+                lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(component->Projection, component->View);
+
+                m_SpotLightBuffer->Add(light);
+                m_DirectLightMatrixBuffer->Add(lightMatrix);
+            });
+            m_SpotLightBuffer->Flush();
+
             m_DirectLightMatrixBuffer->Flush();
 
             m_PointLightBuffer->Clear();
@@ -333,22 +356,6 @@ namespace xpe {
                 m_PointLightBuffer->Add(light);
             });
             m_PointLightBuffer->Flush();
-
-            m_SpotLightBuffer->Clear();
-            scene->ForLoop<sCSpotLight>([this](sCSpotLight *component) {
-                if (component->FollowEntity) {
-                    component->Position = component->Entity->GetPosition();
-                }
-
-                sSpotLightData light;
-                light.Position = component->Position;
-                light.Color = component->Color;
-                light.Direction = component->Direction;
-                light.Outer = component->Outer;
-                light.Cutoff = component->Cutoff;
-                m_SpotLightBuffer->Add(light);
-            });
-            m_SpotLightBuffer->Flush();
         }
 
         void cRenderSystem::UpdatePasses(xpe::ecs::cScene *scene)

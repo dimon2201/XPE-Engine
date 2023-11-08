@@ -58,8 +58,8 @@ namespace xpe {
 
             auto& bufferData = m_Buffer->Item;
             bufferData.Position = Component.Position;
-            bufferData.View = MathManager::UpdateViewMatrix(viewMatrix);
-            bufferData.Projection = MathManager::UpdatePerspectiveMatrix(Component);
+            bufferData.View = cMathManager::UpdateViewMatrix(viewMatrix);
+            bufferData.Projection = cMathManager::UpdatePerspectiveMatrix(Component);
             m_Buffer->Flush();
         }
 
@@ -118,7 +118,7 @@ namespace xpe {
             fov -= (float) GetZoomSpeed();
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            cameraBuffer.Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
+            cameraBuffer.Item.Projection = cMathManager::UpdatePerspectiveMatrix(Component);
             cameraBuffer.Flush();
         }
 
@@ -130,7 +130,7 @@ namespace xpe {
             fov += (float) GetZoomSpeed();
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            cameraBuffer.Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
+            cameraBuffer.Item.Projection = cMathManager::UpdatePerspectiveMatrix(Component);
             cameraBuffer.Flush();
         }
 
@@ -142,7 +142,7 @@ namespace xpe {
             fov -= (float) y * GetZoomSpeed();
             math::clamp(fov, MinFovDegree, MaxFovDegree);
 
-            cameraBuffer.Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
+            cameraBuffer.Item.Projection = cMathManager::UpdatePerspectiveMatrix(Component);
             cameraBuffer.Flush();
         }
 
@@ -186,7 +186,7 @@ namespace xpe {
 
         void cPerspectiveCamera::UpdateProjection()
         {
-            m_Buffer->Item.Projection = MathManager::UpdatePerspectiveMatrix(Component);
+            m_Buffer->Item.Projection = cMathManager::UpdatePerspectiveMatrix(Component);
         }
 
         void cPerspectiveCamera::UpdateView(const glm::vec3& position)
@@ -236,8 +236,8 @@ namespace xpe {
 
             auto& bufferData = m_Buffer->Item;
             bufferData.Position = Component.Position;
-            bufferData.View = MathManager::UpdateViewMatrix(viewMatrix);
-            bufferData.Projection = MathManager::UpdateOrthoMatrix(Component);
+            bufferData.View = cMathManager::UpdateViewMatrix(viewMatrix);
+            bufferData.Projection = cMathManager::UpdateOrthoMatrix(Component);
             m_Buffer->Flush();
         }
 
@@ -285,7 +285,7 @@ namespace xpe {
             Component.Left = -m_ViewWidth;
             Component.Top = m_ViewHeight;
             Component.Bottom = -m_ViewHeight;
-            m_Buffer->Item.Projection = MathManager::UpdateOrthoMatrix(Component);
+            m_Buffer->Item.Projection = cMathManager::UpdateOrthoMatrix(Component);
         }
 
     }

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <rendering/buffers/widget_buffer.h>
+#include <rendering/buffers/text_buffer.h>
+#include <rendering/font/font.hpp>
 
 namespace xpe {
 
@@ -12,12 +14,16 @@ namespace xpe {
         struct ENGINE_API sWidget : public cObject, public cXml
         {
             bool Visible = true;
+            bool FillFrame = true;
             sTransform Transform;
-            glm::vec4 Color = { 1, 1, 1, 0.5 };
+            glm::vec4 Color = { 1, 1, 1, 1 };
             glm::vec4 ColorHover = { 0.5, 0.5, 0.5, 1.0 };
             glm::vec4 ColorPressed = { 0.25, 0.25, 0.25, 1.0 };
             sTextureLayer Texture;
             bool EnableTexture = false;
+            string Text;
+            sFont* Font = nullptr;
+            eMouse MousePressed = eMouse::ButtonLeft;
             std::function<void()> CallbackHover = [](){};
             std::function<void()> CallbackPressed = [](){};
             std::function<void()> CallbackReleased = [](){};
@@ -55,8 +61,8 @@ namespace xpe {
             static sWidget AddWidget(Args&&... args);
 
         private:
-            static sSampler s_Sampler;
             static sTexture* s_TextureAtlas;
+            static sSampler s_Sampler;
         };
 
         template<typename... Args>

@@ -10,8 +10,6 @@
 #include <rendering/passes/skybox_pass.h>
 #include <rendering/passes/geometry_pass.h>
 #include <rendering/passes/widget_pass.h>
-#include <rendering/passes/text2d_pass.h>
-#include <rendering/passes/text3d_pass.h>
 #include <rendering/passes/composite_transparent_pass.h>
 #include <rendering/passes/composite_ao_pass.h>
 #include <rendering/passes/final_pass.h>
@@ -274,10 +272,10 @@ namespace xpe {
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::SHADOW, bindings);
             }
 
-            // Widget pass
+            // Widget 2D pass
             {
-                sShader* shader = cShaderManager::CreateShader("widget_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass.vs");
+                sShader* shader = cShaderManager::CreateShader("widget_pass_2d");
+                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass_2d.vs");
                 cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/widget_pass.ps");
                 cShaderManager::BuildShader(shader);
 
@@ -287,39 +285,23 @@ namespace xpe {
                         { "CameraBuffer",   sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),   sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
                 };
 
-                m_RenderSystem->AddRenderPass<cWidgetPass>(bindings);
+                m_RenderSystem->AddRenderPass<cWidgetPass2D>(bindings);
             }
 
-            // Text 2D pass
+            // Widget 3D pass
             {
-                sShader* shader = cShaderManager::CreateShader("text2d_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text2d_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text2d_pass.ps");
+                sShader* shader = cShaderManager::CreateShader("widget_pass_3d");
+                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass_3d.vs");
+                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/widget_pass.ps");
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                    { "sShader",         sRenderPassBinding::eType::SHADER,        shader },
-                    { "sRenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT },
-                    { "sCameraBuffer",   sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),   sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
+                        { "Shader",         sRenderPassBinding::eType::SHADER,        shader },
+                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT },
+                        { "CameraBuffer",   sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),   sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
                 };
 
-                m_RenderSystem->AddRenderPass<cText2DPass>(bindings);
-            }
-
-            // Text 3D pass
-            {
-                sShader* shader = cShaderManager::CreateShader("text3d_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text3d_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text3d_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                    { "sShader",       sRenderPassBinding::eType::SHADER,        shader },
-                    { "sRenderTarget", sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
-                    { "sCameraBuffer", sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(), sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
-                };
-
-                m_RenderSystem->AddRenderPass<cText3DPass>(bindings);
+                m_RenderSystem->AddRenderPass<cWidgetPass3D>(bindings);
             }
 
             // FXAA pass

@@ -80,22 +80,18 @@ public:
         {
             m_Widget = new cEntity("Widget", m_Scene);
 
-            sWidget* loginLayout = new sWidget();
-            sEditText* emailEdit = new sEditText();
-            emailEdit->Text = "Enter your email";
-            sEditText* passwordEdit = new sEditText();
-            passwordEdit->Text = "Enter your password";
-            sButton* loginButton = new sButton();
-            loginButton->Text = "Log In";
-            sButton* cancelButton = new sButton();
-            cancelButton->Text = "Cancel";
+            m_Stats = new sTextLabel(cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32));
+            m_Stats->Font->NewLineOffset = 1.0f;
 
-            loginLayout->Children = { emailEdit, passwordEdit, loginButton, cancelButton };
-            loginLayout->UpdateXmlChildren();
-
-            sCWidget* widget = m_Widget->Add<sCWidget>();
-            widget->Children = { loginLayout, new sButton() };
+            sCWidget2D* widget = m_Widget->Add<sCWidget2D>();
+            widget->Children = { m_Stats };
             widget->UpdateXmlChildren();
+
+            sCWidget3D* widget3D = m_Widget->Add<sCWidget3D>();
+            widget3D->Transform.Position = { 0, 25, 50 };
+            widget3D->Transform.Scale = { 25, 50, 1 };
+            widget3D->Children = { m_Stats };
+            widget3D->UpdateXmlChildren();
 
             // save widget xml into file
             if (!widget->SaveFile("config/widget_xml_saved.xml"))
@@ -106,26 +102,25 @@ public:
 
         // Text 2D
         {
-            m_Text2D = new cEntity("Text2D", m_Scene);
-            m_Text2D->SetPosition(glm::vec3(0, 1, 0));
-            m_Text2D->SetScale(glm::vec3(1));
-
-            auto* textComponent = m_Text2D->Add<sCText2D>();
-            textComponent->Text = "FPS: \n CPU: \n";
-            textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
-            textComponent->Font->NewLineOffset = 1.0f;
+//            m_Text2D = new cEntity("Text2D", m_Scene);
+//            m_Text2D->SetPosition(glm::vec3(0, 1, 0));
+//            m_Text2D->SetScale(glm::vec3(1));
+//
+//            auto* textComponent = m_Text2D->Add<sCText2D>();
+//            textComponent->Text = "FPS: \n CPU: \n";
+//            textComponent->Font->NewLineOffset = 1.0f;
         }
 
         // Text 3D
         {
-            m_Text3D = new cEntity("Text3D", m_Scene);
-            m_Text3D->SetPosition(glm::vec3(0, 25, 50));
-            m_Text3D->SetScale(glm::vec3(0.25, 0.25, 1));
-
-            auto* textComponent = m_Text3D->Add<sCText3D>();
-            textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
-            textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
-            textComponent->Font->NewLineOffset = 1.0f;
+//            m_Text3D = new cEntity("Text3D", m_Scene);
+//            m_Text3D->SetPosition(glm::vec3(0, 25, 50));
+//            m_Text3D->SetScale(glm::vec3(0.25, 0.25, 1));
+//
+//            auto* textComponent = m_Text3D->Add<sCText3D>();
+//            textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
+//            textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
+//            textComponent->Font->NewLineOffset = 1.0f;
         }
 
         // sSkybox
@@ -471,8 +466,6 @@ public:
         cAudioLoader::Free();
 
         delete m_SunLight;
-        delete m_Text2D;
-        delete m_Text3D;
         delete m_Plane;
         delete m_Goblins;
         delete m_Goblin1;
@@ -614,14 +607,8 @@ private:
     }
 
     void DisplayStats() {
-        auto& text2D = m_Text2D->Get<sCText2D>()->Text;
-        text2D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
-                 "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(cCameraManager::GetGamma()) +
-                 "\nExposure: " + std::to_string(cCameraManager::GetExposure());
-
-        auto& text3D = m_Text3D->Get<sCText3D>()->Text;
-        text3D = "\nFPS: " + std::to_string(CPUTime.Fps()) +
+        auto& text = m_Stats->Text;
+        text = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(cCameraManager::GetGamma()) +
                  "\nExposure: " + std::to_string(cCameraManager::GetExposure());
@@ -631,8 +618,6 @@ private:
     cPerspectiveCamera* m_PerspectiveCamera;
 
     cEntity* m_SunLight;
-    cEntity* m_Text2D;
-    cEntity* m_Text3D;
     cEntity* m_Plane;
     cEntity* m_Goblins;
     cEntity* m_Goblin1;
@@ -648,6 +633,7 @@ private:
     sXmlConfig  m_XmlConfig;
 
     cEntity* m_Widget;
+    sTextLabel* m_Stats;
 };
 
 cApp* CreateApplication() {

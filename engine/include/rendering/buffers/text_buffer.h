@@ -22,12 +22,13 @@ namespace xpe {
 
         struct ENGINE_API sCharBuffer : public sListBuffer<sChar>
         {
-            sCharBuffer(usize count = 0) : sListBuffer<sChar>(count, K_SLOT_TEXT_CHARS) {}
+            sCharBuffer(usize count = 0) : sListBuffer<sChar>(count, K_SLOT_CHARS) {}
         };
 
         struct ENGINE_API sText final
         {
-            glm::mat4 ModelMatrix; // world space
+            glm::mat4 ModelMatrix;
+            glm::vec4 Color = { 1, 1, 1, 1 };
         };
 
         struct ENGINE_API sTextBuffer : public sItemBuffer<sText>

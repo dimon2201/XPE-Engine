@@ -50,8 +50,8 @@ namespace xpe {
 
         void cWidgetManager::Bind(sPipeline& pipeline)
         {
-            pipeline.Samplers.emplace_back(&s_Sampler);
             pipeline.Textures.emplace_back(s_TextureAtlas);
+            pipeline.Samplers.emplace_back(&s_Sampler);
         }
 
     }

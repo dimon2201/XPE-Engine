@@ -9,7 +9,7 @@ namespace xpe {
 
     namespace math {
 
-        class ENGINE_API MathManager final {
+        class ENGINE_API cMathManager final {
         public:
             // world space -> local space
             static sRay ToLocalSpace(const sRay& ray, const glm::mat4& modelMatrix);
@@ -39,7 +39,8 @@ namespace xpe {
             static glm::mat4 UpdateViewMatrix(const sViewMatrix& viewMatrix);
             static glm::mat4 UpdateOrthoMatrix(const sOrthoMatrix& orthoMatrix);
             static glm::mat4 UpdatePerspectiveMatrix(const sPerspectiveMatrix& perspectiveMatrix);
-            static glm::mat4 UpdateLightMatrix(const sOrthoMatrix& orthoMatrix, const sViewMatrix& viewMatrix);
+            static glm::mat4 UpdateDirectLightMatrix(const sOrthoMatrix& orthoMatrix, const sViewMatrix& viewMatrix);
+            static glm::mat4 UpdateDirectLightMatrix(const sPerspectiveMatrix& perspectiveMatrix, const sViewMatrix& viewMatrix);
 
         };
 

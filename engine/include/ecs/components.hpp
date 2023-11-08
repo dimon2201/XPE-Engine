@@ -73,32 +73,6 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCText2D : sComponent
-        {
-            string Text;
-            sFont* Font;
-
-            sCText2D(const string& text = {}, sFont* font = nullptr) : Text(text), Font(font) {}
-
-            JsonClass(
-                sCText2D,
-                Text
-            )
-        };
-
-        struct ENGINE_API sCText3D : sComponent
-        {
-            string Text;
-            sFont* Font;
-
-            sCText3D(const string& text = {}, sFont* font = nullptr) : Text(text), Font(font) {}
-
-            JsonClass(
-                sCText3D,
-                Text
-            )
-        };
-
         struct ENGINE_API sCMaterial : sComponent, sMaterial
         {
             sCMaterial(const sMaterial& material) : sMaterial(material) {}
@@ -170,21 +144,36 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCSpotLight : sComponent, sSpotLightData
+        struct ENGINE_API sCSpotLight : sComponent
         {
-            sCSpotLight(const glm::vec3& position, const glm::vec3& color)
-            {
-                Position = position;
+            glm::vec3 Color;
+            float Cutoff = 0.90f;
+            float Outer = 0.95f;
+            sPerspectiveMatrix Projection;
+            sViewMatrix View;
+
+            sCSpotLight(
+                    const glm::vec3& position = { 0, 0, 0 },
+                    const glm::vec3& direction = { 0, 0, 0 },
+                    const glm::vec3& color = { 1, 1, 1 }
+            ) {
                 Color = color;
+                Projection.FovDegree = 90.0f;
+                Projection.AspectRatio = 1.0;
+                Projection.Near = 0.1f;
+                Projection.Far = 75.0f;
+                View.Position = position;
+                View.Front = direction;
+                View.Up = { 0, 0, 1 };
             }
 
             JsonClass(
                 sCSpotLight,
-                Position,
-                Direction,
                 Color,
                 Cutoff,
-                Outer
+                Outer,
+                Projection,
+                View
             )
         };
 
@@ -365,10 +354,23 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCWidget : sComponent, sWidget
+        struct ENGINE_API sCWidget2D : sComponent, sWidget
         {
             JsonClass(
-                sCWidget,
+                sCWidget2D,
+                Visible,
+                Transform,
+                Color,
+                ColorHover,
+                ColorPressed,
+                EnableTexture
+            )
+        };
+
+        struct ENGINE_API sCWidget3D : sComponent, sWidget
+        {
+            JsonClass(
+                sCWidget3D,
                 Visible,
                 Transform,
                 Color,
