@@ -17,17 +17,6 @@ namespace xpe {
 			context::FreeAudio();
 		}
 
-		// Update listener's position, velocity and orientation
-		void cAudioSystem::UpdateListener(cScene* scene)
-		{
-			// todo : Maybe, if do it global, it will be better then now. And I dont need use ForEach :|
-            scene->ForEach<sCListener>([](sCListener *component) {
-                SetListenerPosition(*component->Position);
-                SetListenerVelocity(component->Velocity);
-                SetListenerOrientation(*component->Look, component->Up);
-            });
-		}
-
 		// It's a cycle. multimedia playback and update audio's states
 		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
 		{

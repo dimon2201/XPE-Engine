@@ -16,8 +16,6 @@ namespace xpe {
             cAudioSystem();
 			~cAudioSystem();
 
-			void UpdateListener(cScene* scene);
-
 			void Update(cScene* scene, const cTime& dt) override final;
 
 			void UpdateVoices(cScene* scene);

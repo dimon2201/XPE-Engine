@@ -49,7 +49,10 @@ namespace xpe {
 
             ENGINE_API void SetListenerPosition(glm::vec3 position);
             ENGINE_API void SetListenerVelocity(glm::vec3 velocity);
-            ENGINE_API void SetListenerOrientation(glm::vec3 look, glm::vec3 up);
+            ENGINE_API void SetListenerOrientation(glm::vec3 front, glm::vec3 up);
+            ENGINE_API void SetListenerGain(f32 volume);
+            ENGINE_API void SetListenerDopplerFactor(f32 factor);
+            ENGINE_API void SetListenerSpeedOfSound(f32 speed);
 
             ENGINE_API void SetLooping(u32 sourceID, bool Looping);
 
