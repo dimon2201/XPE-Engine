@@ -319,10 +319,10 @@ public:
             m_AudioBox->Add<sCGeometry>(cGeometryManager::AddGeometry(sCube()));
             m_AudioBox->Add<sCMaterial>(cMaterialManager::AddMaterial());
 
-            auto* test1 = m_AudioBox->Add<sCAudio>(sCAudio());
-            test1->File = cAudioLoader::Load("res/audio/mono_test.wav");
+            auto* test1 = m_AudioBox->Add<sCStreamAudio>(sCStreamAudio());
+            test1->File = cAudioLoader::Load("res/audio/test.wav");
             test1->Source.Position = { -5.0f, 5.0f, 10.0f };
-            test1->Source.Looping = true;
+            test1->Source.Looping = false;
         }
 
         m_SsaoPass->GetData().Intensity = 2;
