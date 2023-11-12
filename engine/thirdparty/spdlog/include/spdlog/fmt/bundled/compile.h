@@ -312,9 +312,9 @@ constexpr auto compile_format_string(S format_str);
 
 template <typename Args, size_t POS, int ID, typename T, typename S>
 constexpr auto parse_tail(T head, S format_str) {
-  if constexpr (k_Pos !=
+  if constexpr (POS !=
                 basic_string_view<typename S::char_type>(format_str).size()) {
-    constexpr auto tail = compile_format_string<Args, k_Pos, ID>(format_str);
+    constexpr auto tail = compile_format_string<Args, POS, ID>(format_str);
     if constexpr (std::is_same<remove_cvref_t<decltype(tail)>,
                                unknown_format>())
       return tail;
@@ -420,22 +420,22 @@ template <typename Args, size_t POS, int ID, typename S>
 constexpr auto compile_format_string(S format_str) {
   using char_type = typename S::char_type;
   constexpr auto str = basic_string_view<char_type>(format_str);
-  if constexpr (str[k_Pos] == '{') {
-    if constexpr (k_Pos + 1 == str.size())
+  if constexpr (str[POS] == '{') {
+    if constexpr (POS + 1 == str.size())
       FMT_THROW(format_error("unmatched '{' in format string"));
-    if constexpr (str[k_Pos + 1] == '{') {
-      return parse_tail<Args, k_Pos + 2, ID>(make_text(str, k_Pos, 1), format_str);
-    } else if constexpr (str[k_Pos + 1] == '}' || str[k_Pos + 1] == ':') {
+    if constexpr (str[POS + 1] == '{') {
+      return parse_tail<Args, POS + 2, ID>(make_text(str, POS, 1), format_str);
+    } else if constexpr (str[POS + 1] == '}' || str[POS + 1] == ':') {
       static_assert(ID != manual_indexing_id,
                     "cannot switch from manual to automatic argument indexing");
       constexpr auto next_id =
           ID != manual_indexing_id ? ID + 1 : manual_indexing_id;
       return parse_replacement_field_then_tail<get_type<ID, Args>, Args,
-              k_Pos + 1, ID, next_id>(
+                                               POS + 1, ID, next_id>(
           format_str);
     } else {
       constexpr auto arg_id_result =
-          parse_arg_id<ID>(str.data() + k_Pos + 1, str.data() + str.size());
+          parse_arg_id<ID>(str.data() + POS + 1, str.data() + str.size());
       constexpr auto arg_id_end_pos = arg_id_result.arg_id_end - str.data();
       constexpr char_type c =
           arg_id_end_pos != str.size() ? str[arg_id_end_pos] : char_type();
@@ -469,17 +469,17 @@ constexpr auto compile_format_string(S format_str) {
         }
       }
     }
-  } else if constexpr (str[k_Pos] == '}') {
-    if constexpr (k_Pos + 1 == str.size())
+  } else if constexpr (str[POS] == '}') {
+    if constexpr (POS + 1 == str.size())
       FMT_THROW(format_error("unmatched '}' in format string"));
-    return parse_tail<Args, k_Pos + 2, ID>(make_text(str, k_Pos, 1), format_str);
+    return parse_tail<Args, POS + 2, ID>(make_text(str, POS, 1), format_str);
   } else {
-    constexpr auto end = parse_text(str, k_Pos + 1);
-    if constexpr (end - k_Pos > 1) {
-      return parse_tail<Args, end, ID>(make_text(str, k_Pos, end - k_Pos),
+    constexpr auto end = parse_text(str, POS + 1);
+    if constexpr (end - POS > 1) {
+      return parse_tail<Args, end, ID>(make_text(str, POS, end - POS),
                                        format_str);
     } else {
-      return parse_tail<Args, end, ID>(code_unit<char_type>{str[k_Pos]},
+      return parse_tail<Args, end, ID>(code_unit<char_type>{str[POS]},
                                        format_str);
     }
   }

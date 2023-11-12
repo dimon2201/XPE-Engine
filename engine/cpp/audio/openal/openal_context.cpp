@@ -208,12 +208,26 @@ namespace xpe {
                 alListener3f(AL_VELOCITY, velocity.x, velocity.y, velocity.z);
             }
 
-            void SetListenerOrientation(glm::vec3 look, glm::vec3 up)
+            void SetListenerOrientation(glm::vec3 front, glm::vec3 up)
             {
-                float orientation[6] = { look.x, look.y, look.z, up.x, up.y, up.z };
+                float orientation[6] = { front.x, front.y, front.z, up.x, up.y, up.z };
                 alListenerfv(AL_ORIENTATION, orientation);
             }
 
+            void SetListenerGain(f32 volume)
+            {
+                alListenerf(AL_GAIN, volume);
+            }
+
+            void SetListenerDopplerFactor(f32 factor)
+            {
+                alListenerf(AL_DOPPLER_FACTOR, factor);
+            }
+
+            void SetListenerSpeedOfSound(f32 speed)
+            {
+                alListenerf(AL_SPEED_OF_SOUND, speed);
+            }
 
             void SetLooping(u32 sourceID, bool Looping)
             {

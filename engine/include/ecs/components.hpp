@@ -207,19 +207,6 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCListener : sComponent
-        {
-            glm::vec3* Position;// = { 0.0f, 0.0f, 0.0f };
-            glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
-            glm::vec3 Up = { 0.0f, 1.0f, 0.0f };
-            glm::vec3* Look;
-
-            JsonClass(
-                sCListener,
-                m_Tag
-            )
-        };
-
         struct ENGINE_API sCAudio : sComponent
         {
             sAudioSource Source;

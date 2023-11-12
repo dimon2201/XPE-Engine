@@ -83,7 +83,7 @@ namespace glm
 	/// Builds a scale 4 * 4 matrix created from 3 scalars.
 	///
 	/// @param m Input matrix multiplied by this scale matrix.
-	/// @param v AspectRatio of scaling for each axis.
+	/// @param v Ratio of scaling for each axis.
 	///
 	/// @tparam T A floating-point scalar type
 	/// @tparam Q A value from qualifier enum
@@ -99,9 +99,9 @@ namespace glm
     ///
     /// @param m Input matrix multiplied by this shear matrix.
     /// @param p Point of shearing as reference.
-    /// @param l_x AspectRatio of matrix.x projection in YZ plane relative to the y-axis/z-axis.
-    /// @param l_y AspectRatio of matrix.y projection in XZ plane relative to the x-axis/z-axis.
-    /// @param l_z AspectRatio of matrix.z projection in XY plane relative to the x-axis/y-axis.
+    /// @param l_x Ratio of matrix.x projection in YZ plane relative to the y-axis/z-axis.
+    /// @param l_y Ratio of matrix.y projection in XZ plane relative to the x-axis/z-axis.
+    /// @param l_z Ratio of matrix.z projection in XY plane relative to the x-axis/y-axis.
     ///
     /// as example:
     ///                                         [1   , l_xy, l_xz, -(l_xy+l_xz) * p_x] [x]  T

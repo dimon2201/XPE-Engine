@@ -5,6 +5,8 @@
 #include <rendering/skybox_manager.h>
 #include <rendering/camera_manager.h>
 
+#include <audio/listener_manager.h>
+
 #include <ecs/components.hpp>
 
 #include <model_loader.h>
@@ -310,117 +312,18 @@ public:
             );
         }
 
-//        //loading stream audio files
-//        {
-//            m_AudioObject = new Entity("AudioObject", m_Scene);
-//
-//            //load test stream audio
-//            {
-//                m_AudioObject->Add<AudioFileComponent>("Test", m_AudioLoader->Load("res/audio/test.wav"));
-//            }
-//
-//            //load spell stream audio
-//            {
-//                m_AudioObject->Add<AudioFileComponent>("Magicfail", m_AudioLoader->Load("res/audio/magicfail.ogg"));
-//            }
-//
-//            //load magicfail stream audio
-//            {
-//                m_AudioObject->Add<AudioFileComponent>("Spell", m_AudioLoader->Load("res/audio/spell.ogg"));
-//            }
-//
-//        }
-//        //temporarily commented
-//        //// create voice component
-//        //{
-//        //    VoiceComponent component("Test");
-//        //    m_Scene->Add<VoiceComponent>(m_Scene->Audio->GetTag(), component);
-//        //}
-//
-//        //setup background audio
-//        {
-//            m_BackgroundAudio = new Entity("BackgroundAudio", m_Scene);
-//
-//            //test sources
-//            SourceAudioComponent* source;
-//            SourceAudioComponent* source1;
-//            SourceAudioComponent* source2;
-//
-//            //test files //You can use one file for many sources in one time
-//            auto* file = m_AudioObject->Get<AudioFileComponent>("Spell");
-//            auto* file1 = m_AudioObject->Get<AudioFileComponent>("Test");
-//            auto* file2 = m_AudioObject->Get<AudioFileComponent>("Magicfail");
-//
-//            //creating source
-//            {
-//                SourceAudioComponent component("Sound_Test");
-//
-//                component.Position = { -15.0f, 2.0f, 0.0f };
-//                component.Looping = true;
-//                component.Gain = 0.5f;
-//                component.RefDistance = 10.0f;
-//                component.MaxDistance = 100.0f;
-//                source = m_BackgroundAudio->Add<SourceAudioComponent>(component);
-//            }
-//
-//            //creating stream audio
-//            {
-//                AudioComponent component("Sound_Test");
-//
-//                component.Source = source;
-//                component.File = file->File;
-//
-//                m_BackgroundAudio->Add<AudioComponent>(component);
-//            }
-//
-//            //-------------------------------------
-//            //creating source
-//            {
-//                SourceAudioComponent component("Test");
-//
-//                component.Position = { -5.0f, 2.0f, 0.0f };
-//                component.Looping = true; //(todo) Need do some logic to looping the stream audio
-//                component.Gain = 0.2f;
-//                component.RefDistance = 10.0f;
-//                component.MaxDistance = 100.0f;
-//                source1 = m_BackgroundAudio->Add<SourceAudioComponent>(component);
-//            }
-//
-//            //creating stream audio
-//            {
-//                StreamAudioComponent component("Test");
-//
-//                component.Source = source1;
-//                component.File = file1->File;
-//                component.BufferSamples = 8192 * 2; //for test
-//                component.NumBuffers = 5; //for test
-//
-//                m_BackgroundAudio->Add<StreamAudioComponent>(component);
-//            }
-//
-//            //-------------------------------------
-//            //creating source
-//            {
-//                SourceAudioComponent component("Sound_Test1");
-//
-//                component.Position = { 11.0f, 2.0f, 0.0f };
-//                component.Looping = true;
-//                component.Gain = 0.5f;
-//                component.RefDistance = 10.0f;
-//                component.MaxDistance = 100.0f;
-//                source2 = m_BackgroundAudio->Add<SourceAudioComponent>(component);
-//            }
-//
-//            //creating stream audio
-//            {
-//                AudioComponent component("Sound_Test1");
-//
-//                component.Source = source2;
-//                component.File = file2->File;
-//
-//                m_BackgroundAudio->Add<AudioComponent>(component);
-//            }
-//        }
+        {
+            m_AudioBox = new cEntity("AudioBox", m_Scene);
+
+            m_AudioBox->SetPosition(glm::vec3(-5.0f, 5.0f, 10.0f));
+            m_AudioBox->Add<sCGeometry>(cGeometryManager::AddGeometry(sCube()));
+            m_AudioBox->Add<sCMaterial>(cMaterialManager::AddMaterial());
+
+            auto* test1 = m_AudioBox->Add<sCAudio>(sCAudio());
+            test1->File = cAudioLoader::Load("res/audio/test.wav");
+            test1->Source.Position = { -5.0f, 5.0f, 10.0f };
+            test1->Source.Looping = true;
+        }
 
         m_SsaoPass->GetData().Intensity = 2;
         m_SsaoPass->Flush();
@@ -430,6 +333,7 @@ public:
     {
         LockFPSFromConfig();
         UpdateCamera();
+        UpdateListener();
         AnimateLight();
         DisplayStats();
     }
@@ -536,6 +440,13 @@ private:
         camera.Move();
     }
 
+    void UpdateListener() {
+        auto& camera = *m_PerspectiveCamera;
+
+        cListenerManager::SetPosition(camera.Component.Position);
+        cListenerManager::SetOrientation(camera.Pitch, camera.Yaw, camera.Roll, camera.Component.Up);
+    }
+
     void MoveLight(const eKey key)
     {
         auto& pos = m_SunLight->GetPosition();
@@ -612,7 +523,7 @@ private:
     cEntity* m_Goblin3;
     cEntity* m_Goblin4;
     cEntity* m_Cube;
-    cEntity* m_BackgroundAudio;
+    cEntity* m_AudioBox;
     cEntity* m_AudioObject;
     cEntity* m_Glasses[4];
 
