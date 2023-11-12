@@ -22,22 +22,22 @@ namespace xpe {
 			void RecordVoice(sCVoice* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
 
 		private:
-
 			void VoiceInit(sCVoice* component);
 
-			void AudioInit(sCAudio* component);
-			void AudioSet(sCAudio* component);
-			void AudioUpdate(sCAudio* component);
-			void AudioStop(sCAudio* component);
-
 			void UpdateAudios(cScene* scene);
-
-			void AudioInit(sCStreamAudio* component);
-			void AudioSet(sCStreamAudio* component);
-			void AudioUpdate(sCStreamAudio* component);
-			void AudioStop(sCStreamAudio* component);
-
 			void UpdateStreamAudios(cScene* scene);
+
+			void AudioInit(sCAudio* component);
+			void AudioInit(sCStreamAudio* component);
+			
+			void AudioSet(sCAudio* component);
+			void AudioSet(sCStreamAudio* component);
+			
+			void AudioUpdate(sCAudio* component);
+			void AudioUpdate(sCStreamAudio* component);
+
+			void AudioStop(sCAudio* component);
+			void AudioStop(sCStreamAudio* component);
 		};
 	}
 }

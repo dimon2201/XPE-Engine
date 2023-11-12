@@ -17,14 +17,6 @@ namespace xpe {
 			context::FreeAudio();
 		}
 
-		// It's a cycle. multimedia playback and update audio's states
-		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
-		{
-			//UpdateVoices(scene); //temporarily commented to not hearing myself
-			UpdateAudios(scene);
-			UpdateStreamAudios(scene);
-		}
-
 		void cAudioSystem::UpdateVoices(cScene* scene)
 		{
             scene->ForEach<sCVoice>([this](sCVoice *component) {
@@ -64,6 +56,49 @@ namespace xpe {
 			StartRecord(component->SourceID, component->BufferID.data(), component->State, component->Data.data(), component->NumBuffers);
 		}
 
+		// It's a cycle. multimedia playback and update audio's states
+		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
+		{
+			//UpdateVoices(scene); //temporarily commented to not hearing myself
+			UpdateAudios(scene);
+			UpdateStreamAudios(scene);
+		}
+
+		void cAudioSystem::UpdateAudios(cScene* scene)
+		{
+			scene->EachComponent<sCAudio>([this](sCAudio* component) {
+
+				if (component->State == eAudioState::PLAYING) {
+					AudioUpdate(component);
+				}
+
+				else if (component->State == eAudioState::INITIAL) {
+					AudioSet(component);
+				}
+
+				else if (component->State == eAudioState::STOPPED) {
+					AudioStop(component);
+				}
+
+			});
+		}
+
+		void cAudioSystem::UpdateStreamAudios(cScene* scene)
+		{
+            scene->ForEach<sCAudio>([this](sCAudio *component) {
+
+                if (component->State == eAudioState::PLAYING) {
+                    AudioUpdate(component);
+                } else if (component->State == eAudioState::INITIAL) {
+                    AudioSet(component);
+                    component->State = eAudioState::PLAYING;
+                } else if (component->State == eAudioState::STOPPED) {
+                    AudioStop(component);
+                }
+
+            });
+		}
+		
 		void cAudioSystem::AudioInit(sCAudio* component)
 		{
 			GenSources(1, &component->Source.Id);
@@ -90,44 +125,6 @@ namespace xpe {
 			SetLooping(component->Source.Id, component->Source.Looping);
 		}
 
-		void cAudioSystem::AudioSet(sCAudio* component)
-		{
-			AudioInit(component);
-			PlaySource(component->Source.Id);
-		}
-
-		void cAudioSystem::AudioUpdate(sCAudio* component)
-		{
-			GetState(component->Source.Id, component->Source.State);
-		}
-
-		void cAudioSystem::AudioStop(sCAudio* component)
-		{
-			StopAudio(component->Source.Id);
-			UnbindBuffers(component->Source.Id);
-
-			DeleteSources(1, &component->Source.Id);
-			DeleteBuffers(1, &component->BufferID);
-
-			component->Source.Id = 0;
-		}
-
-		void cAudioSystem::UpdateAudios(cScene* scene)
-		{
-            scene->ForEach<sCAudio>([this](sCAudio *component) {
-
-                if (component->State == eAudioState::PLAYING) {
-                    AudioUpdate(component);
-                } else if (component->State == eAudioState::INITIAL) {
-                    AudioSet(component);
-                    component->State = eAudioState::PLAYING;
-                } else if (component->State == eAudioState::STOPPED) {
-                    AudioStop(component);
-                }
-
-            });
-		}
-
 		void cAudioSystem::AudioInit(sCStreamAudio* component)
 		{
 			GenSources(1, &component->Source.Id);
@@ -152,6 +149,13 @@ namespace xpe {
 			SetConeOuterAngle(component->Source.Id, component->Source.ConeOuterAngle);
 		}
 
+		void cAudioSystem::AudioSet(sCAudio* component)
+		{
+			AudioInit(component);
+			PlaySource(component->Source.Id);
+			GetState(component->Source.Id, component->State);
+		}
+
 		void cAudioSystem::AudioSet(sCStreamAudio* component)
 		{
 			AudioInit(component);
@@ -164,6 +168,13 @@ namespace xpe {
 			}
 
 			PlaySource(component->Source.Id);
+
+			component->State = eAudioState::PLAYING;
+		}
+
+		void cAudioSystem::AudioUpdate(sCAudio* component)
+		{
+			GetState(component->Source.Id, component->State);
 		}
 
 		void cAudioSystem::AudioUpdate(sCStreamAudio* component)
@@ -171,11 +182,16 @@ namespace xpe {
 			s32 processed;
 
 			GetProcessed(component->Source.Id, &processed);
-			GetState(component->Source.Id, component->Source.State);
+			GetState(component->Source.Id, component->State);
 
 			if (GetError() == eAudioError::NONE) {
 
 				for (s32 i = 0; i < component->NumBuffers && component->CurrentFrame < component->File->Info.frames && processed > 0; ++i) {
+
+					//if (component->CurrentFrame >= component->File->Info.frames) {
+					//	component->State = eAudioState::STOPPED;
+					//	return;
+					//}
 
 					SetCurrentFrame(component->File->File, component->CurrentFrame);
 					component->CurrentFrame += component->BufferSamples;
@@ -191,32 +207,38 @@ namespace xpe {
 			}
 		}
 
-		void cAudioSystem::AudioStop(sCStreamAudio* component)
+		void cAudioSystem::AudioStop(sCAudio* component)
 		{
 			StopAudio(component->Source.Id);
 			UnbindBuffers(component->Source.Id);
 
 			DeleteSources(1, &component->Source.Id);
-			DeleteBuffers(component->NumBuffers, component->BufferID.data());
+			DeleteBuffers(1, &component->BufferID);
 
 			component->Source.Id = 0;
+
+			component->State = eAudioState::PAUSED;
 		}
 
-		void cAudioSystem::UpdateStreamAudios(cScene* scene)
+		void cAudioSystem::AudioStop(sCStreamAudio* component)
 		{
 			// todo : Need to fix Looping
-            scene->ForEach<sCStreamAudio>([this](sCStreamAudio *component) {
+			scene->EachComponent<sCStreamAudio>([this](sCStreamAudio* component) {
 
-                if (component->State == eAudioState::PLAYING) {
-                    AudioUpdate(component);
-                } else if (component->State == eAudioState::INITIAL) {
-                    AudioSet(component);
-                    component->State = eAudioState::PLAYING;
-                } else if (component->State == eAudioState::STOPPED) {
-                    AudioStop(component);
-                }
+				if (component->State == eAudioState::PLAYING) {
+					AudioUpdate(component);
+				}
 
-            });
+				else if (component->State == eAudioState::INITIAL) {
+					AudioSet(component);
+					component->State = eAudioState::PLAYING;
+				}
+
+				else if (component->State == eAudioState::STOPPED) {
+					AudioStop(component);
+				}
+
+			});
 		}
 	}
 }
