@@ -2,10 +2,8 @@
 
 #include <rendering/geometry/geometries.h>
 #include <rendering/material/material.h>
-#include <rendering/font/font.hpp>
 #include <rendering/buffers/light_buffers.h>
-#include <rendering/buffers/widget_buffer.h>
-#include <rendering/widgets.h>
+#include <rendering/widget_manager.h>
 
 #include <anim/skeleton.h>
 
@@ -354,29 +352,84 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCWidget2D : sComponent, sWidget
+        struct ENGINE_API sCLabel : sComponent, cXml
         {
-            JsonClass(
-                sCWidget2D,
-                Visible,
-                Transform,
+            eSpace Space = eSpace::SPACE_2D;
+            sFont* Font = nullptr;
+            string Text;
+            glm::vec4 Color = { 1, 1, 1, 1 };
+            bool FillFrame = true;
+
+            sCLabel(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 })
+            : Font(font), Text(text), Color(color) {}
+
+            XmlClass(
+                "Label",
+                Space,
+                Text,
                 Color,
-                ColorHover,
-                ColorPressed,
-                EnableTexture
+                FillFrame
+            )
+
+            JsonClass(
+                sCLabel,
+                Color
             )
         };
 
-        struct ENGINE_API sCWidget3D : sComponent, sWidget
+        struct ENGINE_API sCButton : sComponent, cXml
         {
-            JsonClass(
-                sCWidget3D,
-                Visible,
-                Transform,
+            eSpace Space = eSpace::SPACE_2D;
+            glm::vec4 Color = { 1, 1, 1, 1 };
+            glm::vec4 ColorHover = { 0.5, 0.5, 0.5, 1.0 };
+            glm::vec4 ColorPressed = { 0.25, 0.25, 0.25, 1.0 };
+            sTextureLayer Texture;
+            bool EnableTexture = false;
+            bool EnablePress = false;
+            eMouse MousePressed = eMouse::ButtonLeft;
+            std::function<void()> CallbackHover = [](){};
+            std::function<void()> CallbackPressed = [](){};
+            bool FillFrame = true;
+
+            XmlClass(
+                "Button",
+                Space,
                 Color,
                 ColorHover,
                 ColorPressed,
-                EnableTexture
+                EnableTexture,
+                MousePressed,
+                FillFrame
+            )
+
+            JsonClass(
+                sCButton,
+                Color
+            )
+        };
+
+        struct ENGINE_API sCField : sComponent, cXml
+        {
+            eSpace Space = eSpace::SPACE_2D;
+            sFont* Font = nullptr;
+            string Text;
+            glm::vec4 Color = { 1, 1, 1, 1 };
+            bool FillFrame = true;
+
+            sCField(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 })
+            : Font(font), Text(text), Color(color) {}
+
+            XmlClass(
+                "Field",
+                Space,
+                Text,
+                Color,
+                FillFrame
+            )
+
+            JsonClass(
+                sCField,
+                Color
             )
         };
 

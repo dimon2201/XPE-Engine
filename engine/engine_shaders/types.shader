@@ -4,11 +4,12 @@
 
 // UI
 #define K_SLOT_WIDGETS                 register(t0)
-#define K_SLOT_CHARS                   register(t1)
-#define K_SLOT_TEXT                    register(b1)
+#define K_SLOT_CHARS                   register(t0)
+#define K_SLOT_TEXTS                   register(t1)
 #define K_SLOT_WIDGET_SAMPLER          register(s0)
 #define K_SLOT_WIDGET_ATLAS            register(t0)
-#define K_SLOT_FONT_ATLAS              register(t1)
+#define K_SLOT_FONT_SAMPLER            register(s0)
+#define K_SLOT_FONT_ATLAS              register(t0)
 
 // Scene
 #define K_SLOT_INSTANCES               register(t0)

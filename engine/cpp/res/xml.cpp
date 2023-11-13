@@ -67,6 +67,10 @@ namespace xpe {
             root.append_attribute(name).set_value(value.c_str());
         }
 
+        void SetXmlValue(xml &root, const char *name, std::string &value) {
+            root.append_attribute(name).set_value(value.c_str());
+        }
+
         void SetXmlValue(xml &root, const char *name, glm::vec2 &value) {
             hstringstream ss;
             ss << "x:" << value.x << " ";
@@ -120,6 +124,10 @@ namespace xpe {
         }
 
         void GetXmlValue(xml &root, const char *name, string &value) {
+            value = root.attribute(name).as_string();
+        }
+
+        void GetXmlValue(xml &root, const char *name, std::string &value) {
             value = root.attribute(name).as_string();
         }
 

@@ -111,7 +111,7 @@ namespace xpe {
         {
         }
 
-        void cEntity::SetTranform(const sTransform &transform)
+        void cEntity::SetTransform(const sTransform &transform)
         {
             m_Transform = transform;
 
@@ -120,23 +120,103 @@ namespace xpe {
             {
                 physics::cPhysicsManager::SetActorPose(actor, &m_Transform);
             }
+
+            SetPosition(transform.Position);
+            SetRotation(transform.Rotation);
+            SetScale(transform.Scale);
         }
 
-        void cEntity::SetPosition(const glm::vec3& position)
+        void cEntity::UpdateXmlChildren()
         {
+            XmlChildren.clear();
+            for (auto* child : Children) {
+                XmlChildren.emplace_back(child);
+            }
+        }
+
+        void cEntity::SetPosition(const glm::vec3 &position)
+        {
+            glm::vec3 diff = position - m_Transform.Position;
             m_Transform.Position = position;
-            SetTranform(m_Transform);
+            for (auto* child : Children) {
+                child->Translate(diff);
+            }
         }
 
-        void cEntity::SetRotation(const glm::vec3& rotation)
+        void cEntity::SetRotation(const glm::vec3 &rotation)
         {
+            glm::vec3 diff = rotation - m_Transform.Rotation;
             m_Transform.Rotation = rotation;
-            SetTranform(m_Transform);
+            for (auto* child : Children) {
+                child->Rotate(diff);
+            }
         }
 
-        void cEntity::SetScale(const glm::vec3& scale)
+        void cEntity::SetScale(const glm::vec3 &scale)
         {
+            glm::vec3 diff = scale - m_Transform.Scale;
             m_Transform.Scale = scale;
+            for (auto* child : Children) {
+                child->Scale(diff);
+            }
+        }
+
+        void cEntity::Translate(const glm::vec3 &diff)
+        {
+            m_Transform.Position += diff;
+            for (auto* child : Children) {
+                child->Translate(diff);
+            }
+        }
+
+        void cEntity::Rotate(const glm::vec3 &diff)
+        {
+            m_Transform.Rotation += diff;
+            for (auto* child : Children) {
+                child->Rotate(diff);
+            }
+        }
+
+        void cEntity::Scale(const glm::vec3 &diff)
+        {
+            m_Transform.Scale += diff;
+            for (auto* child : Children) {
+                child->Scale(diff);
+            }
+        }
+
+        void cEntity::SetVisible(bool visible)
+        {
+            m_Visible = visible;
+            for (auto* child : Children) {
+                child->SetVisible(visible);
+            }
+        }
+
+        void cEntity::SetSpace(eSpace space)
+        {
+            m_Space = space;
+            for (auto* child : Children) {
+                child->SetSpace(space);
+            }
+        }
+
+        xml cEntity::ToXml(xml &root)
+        {
+            cXml* component = HasAs<cXml>();
+            if (component != nullptr) {
+                return component->ToXml(root);
+            }
+            return root;
+        }
+
+        xml cEntity::FromXml(xml &root)
+        {
+            cXml* component = HasAs<cXml>();
+            if (component != nullptr) {
+                return component->FromXml(root);
+            }
+            return root;
         }
 
     }

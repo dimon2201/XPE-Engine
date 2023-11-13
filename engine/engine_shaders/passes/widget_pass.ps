@@ -1,20 +1,14 @@
 #include ../types.shader
-#include ../gamma_correction.shader
 
 SamplerState   WidgetSampler   : K_SLOT_WIDGET_SAMPLER;
 Texture2DArray WidgetAtlas     : K_SLOT_WIDGET_ATLAS;
-Texture2D      FontAtlas       : K_SLOT_FONT_ATLAS;
 
 struct VSOut
 {
+    float4 positionOut : SV_POSITION;
     float2 uv : XPE_UV2;
-    float4 positionNDC : SV_POSITION;
     float4 color : XPE_WIDGET_COLOR;
-    float gamma : XPE_GAMMA;
-    bool enableTexture : XPE_ENABLE_TEXTURE;
-    bool enableFont : XPE_ENABLE_FONT;
-    float2 glyphSize : XPE_GLYPH_SIZE;
-    float2 glyphAtlasOffset : XPE_GLYPH_ATLAS_OFFSET;
+    bool hasTexture : XPE_ENABLE_TEXTURE;
 };
 
 struct PSOut
@@ -28,29 +22,10 @@ PSOut ps_main(VSOut psIn)
 
     float2 uv = psIn.uv;
     float4 color = psIn.color;
-    float gamma = psIn.gamma;
-    bool enableTexture = psIn.enableTexture;
-    bool enableFont = psIn.enableFont;
+    bool hasTexture = psIn.hasTexture;
 
-    if (enableTexture) {
+    if (hasTexture) {
         color *= WidgetAtlas.Sample(WidgetSampler, float3(uv, 0));
-    }
-
-    if (enableFont) {
-        uint fontWidth = 0;
-        uint fontHeight = 0;
-        FontAtlas.GetDimensions(fontWidth, fontHeight);
-        float2 fontAtlasSize = float2(fontWidth, fontHeight);
-        float2 fGlyphSize = psIn.glyphSize / fontAtlasSize;
-        float2 fOffset = psIn.glyphAtlasOffset / fontAtlasSize;
-        uv = fOffset + (float2(uv.x, 1.0 - uv.y) * fGlyphSize);
-
-        float font = FontAtlas.Sample(WidgetSampler, uv).x;
-
-        if (font == 0)
-            discard;
-
-        color *= float4(font, font, font, font);
     }
 
     psOut.color = color;

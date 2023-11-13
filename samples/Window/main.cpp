@@ -78,23 +78,27 @@ public:
 
         // Widgets
         {
-            m_Widget = new cEntity("Widget", m_Scene);
+            m_Menu = new cEntity("Menu", m_Scene);
+            m_Menu->Add<sCButton>();
+            m_Menu->Get<sCButton>()->Color = { 0, 0, 1, 1 };
 
-            m_Stats = new sTextLabel(cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32));
-            m_Stats->Font->NewLineOffset = 1.0f;
+            m_Label = new cEntity("Stats", m_Scene);
+            m_Label->SetPosition(glm::vec3(0, 1, 0));
+            m_Label->Add<sCLabel>(cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32), "Test Label", glm::vec4(0, 1, 0, 1));
+            m_Label->Get<sCLabel>()->Font->NewLineOffset = 1.0f;
 
-            sCWidget2D* widget = m_Widget->Add<sCWidget2D>();
-            widget->Children = { m_Stats };
-            widget->UpdateXmlChildren();
+            m_Button = new cEntity("Button", m_Scene);
+            m_Button->SetPosition(glm::vec3(0.5, 0.5, 0));
+            m_Button->Add<sCButton>();
+            m_Button->Get<sCButton>()->Color = { 1, 0, 0, 1 };
 
-            sCWidget3D* widget3D = m_Widget->Add<sCWidget3D>();
-            widget3D->Transform.Position = { 0, 25, 50 };
-            widget3D->Transform.Scale = { 25, 50, 1 };
-            widget3D->Children = { m_Stats };
-            widget3D->UpdateXmlChildren();
+            m_Menu->Children = { m_Label, m_Button };
+            m_Menu->SetSpace(eSpace::SPACE_2D);
+            m_Menu->SetScale(glm::vec3(0.2, 0.2, 0));
+            m_Menu->UpdateXmlChildren();
 
             // save widget xml into file
-            if (!widget->SaveFile("config/widget_xml_saved.xml"))
+            if (!m_Menu->SaveFile("config/widget_xml_saved.xml"))
             {
                 LogError("widget_xml_saved.xml file not found in config/widget_xml_saved.xml path.");
             }
@@ -177,27 +181,27 @@ public:
             m_Goblins = new cEntity("Goblins", m_Scene);
 
             m_Goblin1 = new cEntity("Goblin1", m_Scene);
-            m_Goblin1->GetPosition() = {-4, 0, -4 };
-            m_Goblin1->GetRotation() = {0, 0, 0 };
-            m_Goblin1->GetScale() = {5, 5, 5 };
-            m_Goblin1->Visible = false;
+            m_Goblin1->GetPosition() = { -4, 0, -4 };
+            m_Goblin1->GetRotation() = { 0, 0, 0 };
+            m_Goblin1->GetScale() = { 5, 5, 5 };
+            m_Goblin1->SetVisible(false);
 
             m_Goblin2 = new cEntity("Goblin2", m_Scene);
-            m_Goblin2->GetPosition() = {-4, 0, 4 };
-            m_Goblin2->GetRotation() = {0, 0, 0 };
-            m_Goblin2->GetScale() = {5, 5, 5 };
-            m_Goblin2->Visible = false;
+            m_Goblin2->GetPosition() = { -4, 0, 4 };
+            m_Goblin2->GetRotation() = { 0, 0, 0 };
+            m_Goblin2->GetScale() = { 5, 5, 5 };
+            m_Goblin2->SetVisible(false);
 
             m_Goblin3 = new cEntity("Goblin3", m_Scene);
-            m_Goblin3->GetPosition() = {4, 0, -4 };
-            m_Goblin3->GetRotation() = {0, 0, 0 };
-            m_Goblin3->GetScale() = {5, 5, 5 };
-            m_Goblin3->Visible = false;
+            m_Goblin3->GetPosition() = { 4, 0, -4 };
+            m_Goblin3->GetRotation() = { 0, 0, 0 };
+            m_Goblin3->GetScale() = { 5, 5, 5 };
+            m_Goblin3->SetVisible(false);
 
             m_Goblin4 = new cEntity("Goblin4", m_Scene);
-            m_Goblin4->GetPosition() = {4, 0, 4 };
-            m_Goblin4->GetRotation() = {0, 0, 0 };
-            m_Goblin4->GetScale() = {5, 5, 5 };
+            m_Goblin4->GetPosition() = { 4, 0, 4 };
+            m_Goblin4->GetRotation() = { 0, 0, 0 };
+            m_Goblin4->GetScale() = { 5, 5, 5 };
 
             auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
             goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
@@ -480,6 +484,10 @@ public:
         delete m_Glasses[2];
         delete m_Glasses[3];
 
+        delete m_Menu;
+        delete m_Button;
+        delete m_Label;
+
         RemoveWindowClose();
         RemoveKeyPressed();
         RemoveKeyHold();
@@ -510,12 +518,15 @@ public:
         {
             m_CanvasTexture = m_RenderSystem->GetFinalRT()->Colors[0];
         }
+
+        MoveWidget(key);
     }
 
     void KeyHold(const eKey key)
     {
         MoveLight(key);
         PlayAnimations(key);
+        MoveWidget(key);
     }
 
     void CursorMoved(const double x, const double y)
@@ -582,6 +593,29 @@ private:
         }
     }
 
+    void MoveWidget(const eKey key)
+    {
+        if (key == eKey::Up)
+        {
+            m_Menu->Translate({ 0, 0.1, 0 });
+        }
+
+        if (key == eKey::Down)
+        {
+            m_Menu->Translate({ 0, -0.1, 0 });
+        }
+
+        if (key == eKey::Left)
+        {
+            m_Menu->Translate({ -0.1, 0, 0 });
+        }
+
+        if (key == eKey::Right)
+        {
+            m_Menu->Translate({ 0.1, 0, 0 });
+        }
+    }
+
     void PlayAnimations(const eKey key)
     {
         if (key == eKey::P)
@@ -607,7 +641,7 @@ private:
     }
 
     void DisplayStats() {
-        auto& text = m_Stats->Text;
+        auto& text = m_Label->Get<sCLabel>()->Text;
         text = "\nFPS: " + std::to_string(CPUTime.Fps()) +
                  "\nCPU: " + std::to_string(CPUTime.Millis()) +
                  "\nGamma: " + std::to_string(cCameraManager::GetGamma()) +
@@ -632,8 +666,9 @@ private:
     sTestConfig m_TestConfig;
     sXmlConfig  m_XmlConfig;
 
-    cEntity* m_Widget;
-    sTextLabel* m_Stats;
+    cEntity* m_Menu;
+    cEntity* m_Button;
+    cEntity* m_Label;
 };
 
 cApp* CreateApplication() {

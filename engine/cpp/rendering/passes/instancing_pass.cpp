@@ -38,7 +38,7 @@ namespace xpe {
                 cEntity* entity,
                 const std::function<void(cEntity* entity, sRenderInstance&)>& callback
         ) {
-            if (!entity->Visible)
+            if (!entity->IsVisible())
                 return;
 
             m_InstanceBuffer.Clear();
@@ -81,7 +81,7 @@ namespace xpe {
             {
                 auto& entity = entities[i];
 
-                if (!entity->Visible)
+                if (!entity->IsVisible())
                     continue;
 
                 sRenderInstance instance;

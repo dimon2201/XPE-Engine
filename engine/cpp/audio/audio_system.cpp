@@ -20,8 +20,8 @@ namespace xpe {
 		// Update listener's position, velocity and orientation
 		void cAudioSystem::UpdateListener(cScene* scene)
 		{
-			// todo : Maybe, if do it global, it will be better then now. And I dont need use ForLoop :|
-            scene->ForLoop<sCListener>([](sCListener *component) {
+			// todo : Maybe, if do it global, it will be better then now. And I dont need use ForEach :|
+            scene->ForEach<sCListener>([](sCListener *component) {
                 SetListenerPosition(*component->Position);
                 SetListenerVelocity(component->Velocity);
                 SetListenerOrientation(*component->Look, component->Up);
@@ -38,7 +38,7 @@ namespace xpe {
 
 		void cAudioSystem::UpdateVoices(cScene* scene)
 		{
-            scene->ForLoop<sCVoice>([this](sCVoice *component) {
+            scene->ForEach<sCVoice>([this](sCVoice *component) {
 
                 if (component->State != eAudioState::PLAYING) {
                     VoiceInit(component);
@@ -125,7 +125,7 @@ namespace xpe {
 
 		void cAudioSystem::UpdateAudios(cScene* scene)
 		{
-            scene->ForLoop<sCAudio>([this](sCAudio *component) {
+            scene->ForEach<sCAudio>([this](sCAudio *component) {
 
                 if (component->State == eAudioState::PLAYING) {
                     AudioUpdate(component);
@@ -216,7 +216,7 @@ namespace xpe {
 		void cAudioSystem::UpdateStreamAudios(cScene* scene)
 		{
 			// todo : Need to fix Looping
-            scene->ForLoop<sCStreamAudio>([this](sCStreamAudio *component) {
+            scene->ForEach<sCStreamAudio>([this](sCStreamAudio *component) {
 
                 if (component->State == eAudioState::PLAYING) {
                     AudioUpdate(component);

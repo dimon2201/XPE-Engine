@@ -9,7 +9,7 @@ namespace xpe {
 
         void cAnimSystem::Update(cScene* scene, const cTime& dt)
         {
-            scene->ForLoop<sCSkeletonModel>([this, dt](sCSkeletonModel *component) {
+            scene->ForEach<sCSkeletonModel>([this, dt](sCSkeletonModel *component) {
                 if (component->Animation.Play) {
                     AnimateSkeleton(component->Skeleton, component->Animation, dt);
                 }

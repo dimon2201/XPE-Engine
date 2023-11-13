@@ -272,36 +272,34 @@ namespace xpe {
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::SHADOW, bindings);
             }
 
-            // Widget 2D pass
+            // Widget pass
             {
-                sShader* shader = cShaderManager::CreateShader("widget_pass_2d");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass_2d.vs");
+                sShader* shader = cShaderManager::CreateShader("widget_pass");
+                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass.vs");
                 cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/widget_pass.ps");
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
                         { "Shader",         sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT },
-                        { "CameraBuffer",   sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),   sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
+                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT }
                 };
 
-                m_RenderSystem->AddRenderPass<cWidgetPass2D>(bindings);
+                m_RenderSystem->AddRenderPass<cWidgetPass>(bindings);
             }
 
-            // Widget 3D pass
+            // Text pass
             {
-                sShader* shader = cShaderManager::CreateShader("widget_pass_3d");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass_3d.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/widget_pass.ps");
+                sShader* shader = cShaderManager::CreateShader("text_pass");
+                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text_pass.vs");
+                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text_pass.ps");
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
                         { "Shader",         sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT },
-                        { "CameraBuffer",   sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),   sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
+                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT }
                 };
 
-                m_RenderSystem->AddRenderPass<cWidgetPass3D>(bindings);
+                m_RenderSystem->AddRenderPass<cTextPass>(bindings);
             }
 
             // FXAA pass

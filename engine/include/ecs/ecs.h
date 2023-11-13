@@ -237,10 +237,13 @@ namespace xpe
             sComponentStorage& GetComponents();
 
             template<typename T>
-            void ForLoop(const std::function<void(T*)>& iterateFunction);
+            void ForEach(const std::function<void(T*)>& iterateFunction);
 
             template<typename T>
             usize GetComponentsCount();
+
+            template<typename T>
+            T* HasComponentAs(cEntity* entity);
 
             void ToJson(json &root) override;
 
@@ -329,7 +332,7 @@ namespace xpe
         }
 
         template<typename T>
-        void cScene::ForLoop(const std::function<void(T*)>& iterateFunction)
+        void cScene::ForEach(const std::function<void(T*)>& iterateFunction)
         {
             ComponentType componentType = GetComponentType<T>();
             if (m_ComponentStorages.find(componentType) != m_ComponentStorages.end()) {
@@ -350,6 +353,21 @@ namespace xpe
         }
 
         template<typename T>
+        T* cScene::HasComponentAs(cEntity* entity)
+        {
+            auto& components = m_ComponentAddresses[entity];
+            for (auto& p : components)
+            {
+                T* base = dynamic_cast<T*>(p.second);
+                if (base != nullptr)
+                {
+                    return base;
+                }
+            }
+            return nullptr;
+        }
+
+        template<typename T>
         void cScene::RemoveGlobal()
         {
             auto it = m_Globals.find(GetGlobalType<T>());
@@ -365,34 +383,44 @@ namespace xpe
             return static_cast<T*>(m_Globals[GetGlobalType<T>()]);
         }
 
-        class ENGINE_API cEntity : public cObject, public cJson
+        class ENGINE_API cEntity : public cObject, public cJson, public cXml
         {
 
         public:
-            bool Visible = true;         // switch visibility, that will draw or not draw this entity
+            vector<cEntity*> Children;
 
             cEntity(const string& tag, cScene* scene);
-            ~cEntity();
+            virtual ~cEntity();
 
-            void SetTranform(const sTransform& transform);
+            void SetTransform(const sTransform& transform);
             void SetPosition(const glm::vec3& position);
             void SetRotation(const glm::vec3& rotation);
             void SetScale(const glm::vec3& scale);
+            void SetVisible(bool visible);
 
+            void Translate(const glm::vec3& diff);
+            void Rotate(const glm::vec3& diff);
+            void Scale(const glm::vec3& diff);
+
+            void SetSpace(eSpace space);
+
+            [[nodiscard]] inline const string& GetTag() const { return m_Tag; }
+            [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
             inline sTransform& GetTransform() { return m_Transform; }
             inline glm::vec3& GetPosition() { return m_Transform.Position; }
             inline glm::vec3& GetRotation() { return m_Transform.Rotation; }
             inline glm::vec3& GetScale() { return m_Transform.Scale; }
+            [[nodiscard]] inline bool IsVisible() const { return m_Visible; }
+            [[nodiscard]] inline eSpace GetSpace() const { return m_Space; }
 
             inline void SetScene(cScene* scene) { m_Scene = scene; }
-            [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
-
             inline void SetTag(const string& tag)
             {
                 m_Tag = tag;
                 m_Scene->RenameEntity(m_Tag, tag);
             }
-            [[nodiscard]] inline const string& GetTag() const { return m_Tag; }
+
+            void UpdateXmlChildren();
 
             template<typename T, typename... Args>
             T* Add(Args &&... args);
@@ -408,21 +436,28 @@ namespace xpe
             template<typename T>
             bool Has();
 
+            template<typename T>
+            T* HasAs();
+
             inline bool operator ==(const cEntity& other) const
             {
                 return m_Tag == other.GetTag();
             }
 
+            xml ToXml(xml &root) override;
+            xml FromXml(xml &root) override;
+
         protected:
             string m_Tag;
+            bool m_Visible = true;
             sTransform m_Transform;
-            cEntity* m_Parent = nullptr;
-            vector<cEntity*> m_Children;
             cScene* m_Scene = nullptr;
+            eSpace m_Space = eSpace::SPACE_2D;
 
             JsonClass(
                 cEntity,
                 m_Tag,
+                m_Visible,
                 m_Transform
             )
         };
@@ -449,6 +484,12 @@ namespace xpe
         bool cEntity::Has()
         {
             return Get<T>() != nullptr;
+        }
+
+        template<typename T>
+        T* cEntity::HasAs()
+        {
+            return m_Scene->HasComponentAs<T>(this);
         }
 
         struct ENGINE_API cGlobal : public cObject, public cJson

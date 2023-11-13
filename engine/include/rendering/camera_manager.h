@@ -14,6 +14,7 @@ namespace xpe {
             static void Free();
 
             static sCameraBuffer* GetBuffer();
+            static glm::mat4 GetViewProjection();
 
             static void Flush();
 

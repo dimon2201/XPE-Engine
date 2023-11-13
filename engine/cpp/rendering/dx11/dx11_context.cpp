@@ -1276,8 +1276,8 @@ namespace xpe {
 
                 auto& v = vs[0];
                 v = {};
-                v.TopLeftX = viewport->TopLeftX;
-                v.TopLeftY = viewport->TopLeftY;
+                v.TopLeftX = viewport->Left;
+                v.TopLeftY = viewport->Top;
                 v.Width = viewport->Width;
                 v.Height = viewport->Height;
                 v.MinDepth = viewport->MinDepth;

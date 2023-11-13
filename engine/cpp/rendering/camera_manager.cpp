@@ -23,6 +23,11 @@ namespace xpe {
             return s_Buffer;
         }
 
+        glm::mat4 cCameraManager::GetViewProjection()
+        {
+            return s_Buffer->Item.Projection * s_Buffer->Item.View;
+        }
+
         void cCameraManager::Flush()
         {
             s_Buffer->Flush();

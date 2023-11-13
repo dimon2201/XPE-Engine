@@ -27,7 +27,7 @@ namespace xpe {
         }
 
         void cGeometryPass::DrawOpaque(cScene* scene) {
-            scene->ForLoop<sCGeometry>([this](sCGeometry *component) {
+            scene->ForEach<sCGeometry>([this](sCGeometry *component) {
                 if (!component->Transparent) {
                     auto &geometry = *component;
                     DrawInstanced(
@@ -48,7 +48,7 @@ namespace xpe {
                 }
             });
 
-            scene->ForLoop<sCModel>([this](sCModel *component) {
+            scene->ForEach<sCModel>([this](sCModel *component) {
                 if (!component->Transparent) {
                     auto &model = *component;
                     DrawInstanced(
@@ -69,7 +69,7 @@ namespace xpe {
                 }
             });
 
-            scene->ForLoop<sCSkeletonModel>([this](sCSkeletonModel *component) {
+            scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
                 if (!component->Transparent) {
                     auto &model = *component;
                     auto &skeleton = component->Skeleton;
@@ -94,7 +94,7 @@ namespace xpe {
         }
 
         void cGeometryPass::DrawTransparent(cScene* scene) {
-            scene->ForLoop<sCGeometry>([this](sCGeometry *component) {
+            scene->ForEach<sCGeometry>([this](sCGeometry *component) {
                 if (component->Transparent) {
                     auto &geometry = *component;
                     DrawInstanced(
@@ -115,7 +115,7 @@ namespace xpe {
                 }
             });
 
-            scene->ForLoop<sCModel>([this](sCModel *component) {
+            scene->ForEach<sCModel>([this](sCModel *component) {
                 if (component->Transparent) {
                     auto &model = *component;
                     DrawInstanced(
@@ -136,7 +136,7 @@ namespace xpe {
                 }
             });
 
-            scene->ForLoop<sCSkeletonModel>([this](sCSkeletonModel *component) {
+            scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
                 if (component->Transparent) {
                     auto &model = *component;
                     auto &skeleton = component->Skeleton;
@@ -162,7 +162,7 @@ namespace xpe {
 
         void cGeometryPass::DrawShadow(cScene* scene)
         {
-            scene->ForLoop<sCGeometry>([this](sCGeometry *component) {
+            scene->ForEach<sCGeometry>([this](sCGeometry *component) {
                 if (component->CastShadow) {
                     auto &geometry = *component;
                     DrawInstanced(
@@ -178,7 +178,7 @@ namespace xpe {
                 }
             });
 
-            scene->ForLoop<sCModel>([this](sCModel *component) {
+            scene->ForEach<sCModel>([this](sCModel *component) {
                 if (component->CastShadow) {
                     auto &model = *component;
                     DrawInstanced(
@@ -194,7 +194,7 @@ namespace xpe {
                 }
             });
 
-            scene->ForLoop<sCSkeletonModel>([this](sCSkeletonModel *component) {
+            scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
                 if (component->CastShadow) {
                     auto &model = *component;
                     auto &skeleton = component->Skeleton;

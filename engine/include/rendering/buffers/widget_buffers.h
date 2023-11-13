@@ -1,14 +1,27 @@
 #pragma once
 
 #include <rendering/buffers/list_buffer.h>
-#include <rendering/buffers/item_buffer.h>
 
 namespace xpe {
 
     namespace render {
 
+        struct ENGINE_API sWidgetData
+        {
+            glm::mat4 ModelMatrix;
+            glm::mat4 Projection;
+            glm::vec4 Color = { 1, 1, 1, 1 };
+            Boolean HasTexture = false;
+        };
+
+        struct ENGINE_API sWidgetBuffer : public sListBuffer<sWidgetData>
+        {
+            sWidgetBuffer(usize count = 0) : sListBuffer<sWidgetData>(count, K_SLOT_WIDGETS) {}
+        };
+
         struct ENGINE_API sChar final
         {
+            u32 TextIndex = 0;
             f32 GlyphSize = 0;
             f32 Width = 0;
             f32 Height = 0;
@@ -28,12 +41,13 @@ namespace xpe {
         struct ENGINE_API sText final
         {
             glm::mat4 ModelMatrix;
+            glm::mat4 Projection;
             glm::vec4 Color = { 1, 1, 1, 1 };
         };
 
-        struct ENGINE_API sTextBuffer : public sItemBuffer<sText>
+        struct ENGINE_API sTextBuffer : public sListBuffer<sText>
         {
-            sTextBuffer() : sItemBuffer<sText>(K_SLOT_TEXT) {}
+            sTextBuffer(usize count = 0) : sListBuffer<sText>(count, K_SLOT_TEXTS) {}
         };
 
     }

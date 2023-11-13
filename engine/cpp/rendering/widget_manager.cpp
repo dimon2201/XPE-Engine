@@ -4,25 +4,17 @@ namespace xpe {
 
     namespace render {
 
-        sSampler cWidgetManager::s_Sampler;
+        sSampler cWidgetManager::s_TextureSampler;
         sTexture* cWidgetManager::s_TextureAtlas;
-
-        void sWidget::UpdateXmlChildren()
-        {
-            XmlChildren.clear();
-            for (auto* child : Children) {
-                XmlChildren.emplace_back(child);
-            }
-        }
 
         void cWidgetManager::Init()
         {
-            s_Sampler.Slot            = K_SLOT_WIDGET_SAMPLER;
-            s_Sampler.Filter          = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
-            s_Sampler.AddressU        = sSampler::eAddress::WRAP;
-            s_Sampler.AddressV        = sSampler::eAddress::WRAP;
-            s_Sampler.AddressW        = sSampler::eAddress::WRAP;
-            context::CreateSampler(s_Sampler);
+            s_TextureSampler.Slot            = K_SLOT_WIDGET_SAMPLER;
+            s_TextureSampler.Filter          = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
+            s_TextureSampler.AddressU        = sSampler::eAddress::WRAP;
+            s_TextureSampler.AddressV        = sSampler::eAddress::WRAP;
+            s_TextureSampler.AddressW        = sSampler::eAddress::WRAP;
+            context::CreateSampler(s_TextureSampler);
 
             s_TextureAtlas = new sTexture();
             s_TextureAtlas->InitializeData = true;
@@ -38,7 +30,7 @@ namespace xpe {
 
         void cWidgetManager::Free()
         {
-            context::FreeSampler(s_Sampler);
+            context::FreeSampler(s_TextureSampler);
             delete s_TextureAtlas;
         }
 
@@ -51,7 +43,7 @@ namespace xpe {
         void cWidgetManager::Bind(sPipeline& pipeline)
         {
             pipeline.Textures.emplace_back(s_TextureAtlas);
-            pipeline.Samplers.emplace_back(&s_Sampler);
+            pipeline.Samplers.emplace_back(&s_TextureSampler);
         }
 
     }

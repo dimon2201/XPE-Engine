@@ -21,7 +21,7 @@ namespace xpe
             scene->PhysicsScene->simulate(1.0f / 60.0f);
             scene->PhysicsScene->fetchResults(true);
 
-            scene->ForLoop<sCPhysicsActor>(
+            scene->ForEach<sCPhysicsActor>(
                     [this]
                             (sCPhysicsActor *component) {
                         cEntity *entity = component->Entity;
