@@ -1,3 +1,6 @@
+
+#include "core/task_manager.h"
+
 namespace xpe {
 
     namespace core {
@@ -16,8 +19,6 @@ namespace xpe {
                 nextTask = nextTask->Next;
             }
         }
-
-        cTaskDispatcher* cTaskManager::s_Dispatcher = nullptr;
 
         cTaskDispatcher::cTaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, cThread::ePriority priority)
         {
@@ -108,39 +109,97 @@ namespace xpe {
                     }
                 }
             });
-            cThread thread = {workerId, worker };
+            cThread thread = { workerId, worker };
             thread.SetFormat(name, priority);
             worker.detach();
         }
 
-        void cTaskManager::Init()
+        cSimulationDispatcher::~cSimulationDispatcher() = default;
+
+        void cSimulationDispatcher::submitTask(physx::PxBaseTask& pxTask)
         {
-            s_Dispatcher = new cTaskDispatcher(cHardwareManager::CPU.Cores, 100, "Worker", cThread::ePriority::NORMAL);
+            sTask task;
+            task.Category = eTaskCategory::PHYSICS;
+            task.Todo = [&pxTask]() {
+                pxTask.run();
+                pxTask.release();
+            };
+            Dispatch(task);
         }
 
-        void cTaskManager::Init(cTaskDispatcher* dispatcher)
+        uint32_t cSimulationDispatcher::getWorkerCount() const
         {
-            s_Dispatcher = dispatcher;
+            return GetWorkerCount();
+        }
+
+        cTaskDispatcher* cTaskManager::s_AudioDispatcher = nullptr;
+        cTaskDispatcher* cTaskManager::s_NetworkDispatcher = nullptr;
+        cSimulationDispatcher* cTaskManager::s_SimulationDispatcher = nullptr;
+        cTaskDispatcher* cTaskManager::s_ThreadPoolDispatcher = nullptr;
+
+        void cTaskManager::Init()
+        {
+            s_AudioDispatcher = new cTaskDispatcher(1, 10, "AudioThread", cThread::ePriority::NORMAL);
+            s_NetworkDispatcher = new cTaskDispatcher(1, 10, "NetworkThread", cThread::ePriority::NORMAL);
+            s_SimulationDispatcher = new cSimulationDispatcher(1, 10, "SimulationThread", cThread::ePriority::NORMAL);
+            s_ThreadPoolDispatcher = new cTaskDispatcher(cHardwareManager::CPU.Cores - 3, 100, "ThreadPool", cThread::ePriority::NORMAL);
         }
 
         void cTaskManager::Free()
         {
-            delete s_Dispatcher;
-        }
-
-        void cTaskManager::Wait()
-        {
-            s_Dispatcher->Wait();
+            delete s_AudioDispatcher;
+            delete s_NetworkDispatcher;
+            delete s_SimulationDispatcher;
+            delete s_ThreadPoolDispatcher;
         }
 
         void cTaskManager::SubmitTask(const sTask &task)
         {
-            s_Dispatcher->Dispatch(task);
+            switch (task.Category)
+            {
+                case eTaskCategory::AUDIO:
+                    s_AudioDispatcher->Dispatch(task);
+                    break;
+                case eTaskCategory::NETWORK:
+                    s_NetworkDispatcher->Dispatch(task);
+                    break;
+                case eTaskCategory::PHYSICS:
+                    s_SimulationDispatcher->Dispatch(task);
+                    break;
+                case eTaskCategory::ANIMATION:
+                    s_SimulationDispatcher->Dispatch(task);
+                    break;
+                case eTaskCategory::THREAD_POOL:
+                    s_ThreadPoolDispatcher->Dispatch(task);
+                    break;
+            }
         }
 
         void cTaskManager::SubmitTask(u32 tasksPerThread, u32 totalTasks, const sTask &task)
         {
-            s_Dispatcher->Dispatch(tasksPerThread, totalTasks, task);
+            switch (task.Category)
+            {
+                case eTaskCategory::AUDIO:
+                    s_AudioDispatcher->Dispatch(tasksPerThread, totalTasks, task);
+                    break;
+                case eTaskCategory::NETWORK:
+                    s_NetworkDispatcher->Dispatch(tasksPerThread, totalTasks, task);
+                    break;
+                case eTaskCategory::PHYSICS:
+                    s_SimulationDispatcher->Dispatch(tasksPerThread, totalTasks, task);
+                    break;
+                case eTaskCategory::ANIMATION:
+                    s_SimulationDispatcher->Dispatch(tasksPerThread, totalTasks, task);
+                    break;
+                case eTaskCategory::THREAD_POOL:
+                    s_ThreadPoolDispatcher->Dispatch(tasksPerThread, totalTasks, task);
+                    break;
+            }
+        }
+
+        cSimulationDispatcher *cTaskManager::GetSimulationDispatcher()
+        {
+            return s_SimulationDispatcher;
         }
 
     }

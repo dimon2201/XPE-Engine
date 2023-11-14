@@ -1,15 +1,27 @@
 #pragma once
 
+#include <PxPhysicsAPI.h>
+
 namespace xpe {
 
     namespace core {
 
+        enum eTaskCategory : u8
+        {
+            AUDIO = 0,
+            NETWORK = 1,
+            ANIMATION = 2,
+            PHYSICS = 3,
+            THREAD_POOL = 4
+        };
+
         struct ENGINE_API sTask : public cObject {
+            eTaskCategory Category = eTaskCategory::THREAD_POOL;
             std::function<void()> Todo;
             sTask* Next = nullptr;
 
             sTask() = default;
-            sTask(const std::function<void()>& todo) : Todo(todo) {}
+            sTask(eTaskCategory category, const std::function<void()>& todo) : Category(category), Todo(todo) {}
 
             virtual void DoWork();
 
@@ -50,20 +62,36 @@ namespace xpe {
             u32 m_WorkerCount;
         };
 
+        class ENGINE_API cSimulationDispatcher : public cTaskDispatcher, public physx::PxCpuDispatcher {
+
+        public:
+            cSimulationDispatcher(usize workerSize, usize taskBufferSize, const char* name, cThread::ePriority priority)
+            : cTaskDispatcher(workerSize, taskBufferSize, name, priority) {}
+
+            ~cSimulationDispatcher() override;
+
+            void submitTask(physx::PxBaseTask& task) override final;
+
+            uint32_t getWorkerCount() const override final;
+
+        };
+
         class ENGINE_API cTaskManager final {
 
         public:
             static void Init();
-            static void Init(cTaskDispatcher* dispatcher);
             static void Free();
 
             static void SubmitTask(const sTask& task);
             static void SubmitTask(u32 tasksPerThread, u32 totalTasks, const sTask& task);
 
-            static void Wait();
+            static cSimulationDispatcher* GetSimulationDispatcher();
 
         private:
-            static cTaskDispatcher* s_Dispatcher;
+            static cTaskDispatcher* s_AudioDispatcher;
+            static cTaskDispatcher* s_NetworkDispatcher;
+            static cSimulationDispatcher* s_SimulationDispatcher;
+            static cTaskDispatcher* s_ThreadPoolDispatcher;
         };
 
     }

@@ -79,11 +79,12 @@ public:
         // Widgets
         {
             m_Menu = new cEntity("Menu", m_Scene);
+            m_Menu->SetPosition(glm::vec3(0.0, 0.0, 0));
             m_Menu->Add<sCButton>();
             m_Menu->Get<sCButton>()->Color = { 0, 0, 1, 1 };
 
             m_Label = new cEntity("Stats", m_Scene);
-            m_Label->SetPosition(glm::vec3(0, 1, 0));
+            m_Label->SetPosition(glm::vec3(0.5, 0.5, 0));
             m_Label->Add<sCLabel>(cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32), "Test Label", glm::vec4(0, 1, 0, 1));
             m_Label->Get<sCLabel>()->Font->NewLineOffset = 1.0f;
 
@@ -91,10 +92,11 @@ public:
             m_Button->SetPosition(glm::vec3(0.5, 0.5, 0));
             m_Button->Add<sCButton>();
             m_Button->Get<sCButton>()->Color = { 1, 0, 0, 1 };
+            m_Button->Get<sCButton>()->ColorHover = { 0.75, 0, 0, 1 };
+            m_Button->Get<sCButton>()->ColorPressed = { 0.5, 0, 0, 1 };
 
             m_Menu->Children = { m_Label, m_Button };
             m_Menu->SetSpace(eSpace::SPACE_2D);
-            m_Menu->SetScale(glm::vec3(0.2, 0.2, 0));
             m_Menu->UpdateXmlChildren();
 
             // save widget xml into file

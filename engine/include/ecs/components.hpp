@@ -385,7 +385,7 @@ namespace xpe
             glm::vec4 ColorPressed = { 0.25, 0.25, 0.25, 1.0 };
             sTextureLayer Texture;
             bool EnableTexture = false;
-            bool EnablePress = false;
+            bool EnablePress = true;
             eMouse MousePressed = eMouse::ButtonLeft;
             std::function<void()> CallbackHover = [](){};
             std::function<void()> CallbackPressed = [](){};

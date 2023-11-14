@@ -19,10 +19,10 @@ namespace xpe {
         void cWidgetPass::DrawUI(cScene* scene)
         {
             sOrthoMatrix orthoMatrix;
-            orthoMatrix.Left = -1.0f;
-            orthoMatrix.Right = 1.0f;
-            orthoMatrix.Bottom = -1.0f;
-            orthoMatrix.Top = 1.0f;
+            orthoMatrix.Left = cCameraManager::GetViewport()->Left;
+            orthoMatrix.Top = cCameraManager::GetViewport()->Top;
+            orthoMatrix.Right = cCameraManager::GetViewport()->Width;
+            orthoMatrix.Bottom = cCameraManager::GetViewport()->Height;
             orthoMatrix.Near = -1.0f;
             orthoMatrix.Far = 1.0f;
             m_Projection2D = cMathManager::UpdateOrthoMatrix(orthoMatrix);
@@ -182,10 +182,10 @@ namespace xpe {
         void cTextPass::DrawUI(cScene *scene)
         {
             sOrthoMatrix orthoMatrix;
-            orthoMatrix.Left = -1.0f;
-            orthoMatrix.Right = 1.0f;
-            orthoMatrix.Bottom = -1.0f;
-            orthoMatrix.Top = 1.0f;
+            orthoMatrix.Left = cCameraManager::GetViewport()->Left;
+            orthoMatrix.Top = cCameraManager::GetViewport()->Top;
+            orthoMatrix.Right = cCameraManager::GetViewport()->Width;
+            orthoMatrix.Bottom = cCameraManager::GetViewport()->Height;
             orthoMatrix.Near = -1.0f;
             orthoMatrix.Far = 1.0f;
             m_Projection2D = cMathManager::UpdateOrthoMatrix(orthoMatrix);

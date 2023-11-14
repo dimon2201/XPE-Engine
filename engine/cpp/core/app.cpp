@@ -1,5 +1,4 @@
 #include <core/app.hpp>
-#include <core/dispatchers.h>
 
 #include <rendering/core/debugger.h>
 
@@ -52,19 +51,12 @@ namespace xpe {
             DeltaTime.SetFps(Config.FPS);
             CPUTime = DeltaTime;
 
-            cMainDispatcher* mainDispatcher = new cMainDispatcher(
-                    cHardwareManager::CPU.Cores,
-                    100,
-                    "Worker",
-                    cThread::ePriority::NORMAL
-            );
-
-            cTaskManager::Init(mainDispatcher);
+            cTaskManager::Init();
             cEventManager::Init();
             cWindowManager::Init();
             cWindowManager::InitWindow(winDesc);
             cInputManager::Init();
-            cPhysicsManager::Init(mainDispatcher);
+            cPhysicsManager::Init(cTaskManager::GetSimulationDispatcher());
 
             render::context::EnableInfoLog = Config.EnableGPUInfoLog;
             render::context::EnableWarnLog = Config.EnableGPUWarnLog;
@@ -115,20 +107,19 @@ namespace xpe {
                 Update();
 
                 // submit audio task with current scene state
-                cTaskManager::SubmitTask({[this]() {
+                cTaskManager::SubmitTask({ eTaskCategory::AUDIO, [this]() {
                     m_AudioSystem->Update(m_Scene, DeltaTime);
                     m_AudioSystem->UpdateListener(m_Scene);
                 }});
 
                 // submit animation task with current scene state
-                cTaskManager::SubmitTask({[this]() {
+                cTaskManager::SubmitTask({ eTaskCategory::ANIMATION, [this]() {
                     m_AnimSystem->Update(m_Scene, DeltaTime);
                 }});
 
-                // submit physics task with current scene state
-//                cTaskManager::SubmitTask({[this]() {
-                    m_PhysicsSystem->Update(m_Scene, DeltaTime);
-//                }});
+                // calls physics simulation that will be automatically dispatched into TaskManager
+                // we don't need to submit physics system into task
+                m_PhysicsSystem->Update(m_Scene, DeltaTime);
 
                 ClearRenderPasses();
                 Render();
