@@ -25,7 +25,8 @@ namespace xpe {
         {
             SYSTEM_INFO sysinfo;
             GetSystemInfo(&sysinfo);
-            CPU.Cores = sysinfo.dwNumberOfProcessors;
+            CPU.Threads = sysinfo.dwNumberOfProcessors;
+            CPU.Cores = sysinfo.dwNumberOfProcessors / 2;
         }
 
     }

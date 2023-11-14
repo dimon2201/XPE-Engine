@@ -27,6 +27,7 @@ namespace xpe {
         struct ENGINE_API sCpuStats final
         {
             u32 Cores = 1;
+            u32 Threads = 1;
         };
 
         class ENGINE_API cHardwareManager final {

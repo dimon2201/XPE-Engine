@@ -25,7 +25,8 @@ namespace xpe {
                 }
             }
 
-            CPU.Cores = numCPU;
+            CPU.Threads = numCPU;
+            CPU.Cores = numCPU / 2;
         }
 
     }

@@ -26,7 +26,8 @@
 
            void cHardwareManager::UpdateCpuStats()
            {
-               CPU.Cores = sysconf(_SC_NPROCESSORS_ONLN);
+               CPU.Threads = sysconf(_SC_NPROCESSORS_ONLN);
+               CPU.Cores = sysconf(_SC_NPROCESSORS_ONLN) / 2;
            }
 
        }
