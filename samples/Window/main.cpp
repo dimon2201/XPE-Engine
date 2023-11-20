@@ -5,7 +5,7 @@
 #include <rendering/skybox_manager.h>
 #include <rendering/camera_manager.h>
 
-#include <audio/listener_manager.h>
+#include <audio/listening_manager.h>
 
 #include <ecs/components.hpp>
 
@@ -320,7 +320,7 @@ public:
             m_AudioBox->Add<sCMaterial>(cMaterialManager::AddMaterial());
 
             auto* test1 = m_AudioBox->Add<sCStreamAudio>(sCStreamAudio());
-            test1->File = cAudioLoader::Load("res/audio/test.wav");
+            test1->File = cAudioLoader::Load("res/audio/mono_test.wav");
             test1->Source.Position = { -5.0f, 5.0f, 10.0f };
             test1->Source.Looping = false;
         }
@@ -443,8 +443,8 @@ private:
     void UpdateListener() {
         auto& camera = *m_PerspectiveCamera;
 
-        cListenerManager::SetPosition(camera.Component.Position);
-        cListenerManager::SetOrientation(camera.Pitch, camera.Yaw, camera.Roll, camera.Component.Up);
+        cListeningManager::SetPosition(camera.Component.Position);
+        cListeningManager::SetOrientation(camera.Pitch, camera.Yaw, camera.Roll, camera.Component.Up);
     }
 
     void MoveLight(const eKey key)

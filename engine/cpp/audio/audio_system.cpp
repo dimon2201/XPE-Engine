@@ -17,48 +17,48 @@ namespace xpe {
 			context::FreeAudio();
 		}
 
-		void cAudioSystem::UpdateVoices(cScene* scene)
-		{
-			scene->EachComponent<sCVoice>([this](sCVoice* component) {
+		//void cAudioSystem::UpdateVoices(cScene* scene)
+		//{
+		//	scene->EachComponent<sCVoice>([this](sCVoice* component) {
+		//
+		//		if (component->State != eAudioState::PLAYING) {
+		//			VoiceInit(component);
+		//		}
+		//
+		//		RecordVoice(component);
+		//
+		//		GetState(component->SourceID, component->State);
+		//		if (component->Frames > 0) {
+		//			UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(), component->Samples, k_SampleRate);
+		//		}
+		//	});
+		//}
 
-				if (component->State != eAudioState::PLAYING) {
-					VoiceInit(component);
-				}
+		//void cAudioSystem::RecordVoice(sCVoice* component)
+		//{
+		//	GetProcessed(component->SourceID, &component->Frames);
+		//
+		//	if (component->Frames > 0) {
+		//		GetCaptureSamples(1, component->Samples);
+		//		UploadSamplesToBuffer(component->Data.data(), component->Samples);
+		//	}
+		//}
 
-				RecordVoice(component);
-
-				GetState(component->SourceID, component->State);
-				if (component->Frames > 0) {
-					UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(), component->Samples, k_SampleRate);
-				}
-			});
-		}
-
-		void cAudioSystem::RecordVoice(sCVoice* component)
-		{
-			GetProcessed(component->SourceID, &component->Frames);
-
-			if (component->Frames > 0) {
-				GetCaptureSamples(1, component->Samples);
-				UploadSamplesToBuffer(component->Data.data(), component->Samples);
-			}
-		}
-
-		void cAudioSystem::VoiceInit(sCVoice* component)
-		{
-			GenSources(1, &component->SourceID);
-
-			component->BufferID.reserve(component->NumBuffers);
-			GenBuffers(component->NumBuffers, component->BufferID.data());
-
-			component->Data.reserve(k_DataSize);
-			StartRecord(component->SourceID, component->BufferID.data(), component->State, component->Data.data(), component->NumBuffers);
-		}
+		//void cAudioSystem::VoiceInit(sCVoice* component)
+		//{
+		//	GenSources(1, &component->SourceID);
+		//
+		//	component->BufferID.reserve(component->NumBuffers);
+		//	GenBuffers(component->NumBuffers, component->BufferID.data());
+		//
+		//	component->Data.reserve(k_DataSize);
+		//	StartRecord(component->SourceID, component->BufferID.data(), component->State, component->Data.data(), component->NumBuffers);
+		//}
 
 		// It's a cycle. multimedia playback and update audio's states
 		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
 		{
-			//UpdateVoices(scene); //temporarily commented to not hearing myself
+			//UpdateVoices(scene);
 			UpdateAudios(scene);
 			UpdateStreamAudios(scene);
 		}
@@ -220,7 +220,7 @@ namespace xpe {
 
 			component->Source.Id = 0;
 
-			component->State = eAudioState::PAUSED;
+			component->State = eAudioState::PAUSED; // temporarily
 		}
 
 		void cAudioSystem::AudioStop(sCStreamAudio* component)

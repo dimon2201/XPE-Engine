@@ -162,6 +162,11 @@ namespace xpe {
                 }
             }
 
+            void StartRecord()
+            {
+                alcCaptureStart((ALCdevice*)RecordDevice);
+            }
+
             void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers)
             {
                 RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2);

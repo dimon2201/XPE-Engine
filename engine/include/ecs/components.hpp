@@ -193,7 +193,7 @@ namespace xpe
 
         struct ENGINE_API sCSkeletonModel : sComponent, sModel, sRenderState
         {
-            vector<cEntity*> Entities;
+            vector<cEntity*> Entities;  
             sSkeleton Skeleton;
             sAnimation Animation;
 
@@ -262,6 +262,22 @@ namespace xpe
 
             JsonClass(
                 sCVoice,
+                m_Tag
+            )
+        };
+
+        struct ENGINE_API MYsCVoice : sComponent
+        {
+            sAudioSource Source;
+
+            //struct voice Voice;
+            // /\ 
+            // ||
+            //vector<u32> BufferID;
+            //vector<s16> Data;
+
+            JsonClass(
+                MYsCVoice,
                 m_Tag
             )
         };
