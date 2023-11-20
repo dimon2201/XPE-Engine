@@ -201,7 +201,7 @@ namespace xpe
 
         struct ENGINE_API sCSkeletonModel : sComponent, sGeometry, sRenderState
         {
-            vector<cEntity*> Entities;
+            vector<cEntity*> Entities;  
             sSkeleton Skeleton;
             vector<sAnimation> Animations;
 

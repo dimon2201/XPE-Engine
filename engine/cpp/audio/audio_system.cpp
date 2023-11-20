@@ -59,7 +59,7 @@ namespace xpe {
 		// It's a cycle. multimedia playback and update audio's states
 		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
 		{
-			//UpdateVoices(scene); //temporarily commented to not hearing myself
+			//UpdateVoices(scene);
 			UpdateAudios(scene);
 			UpdateStreamAudios(scene);
 		}
@@ -217,7 +217,7 @@ namespace xpe {
 
 			component->Source.Id = 0;
 
-			component->State = eAudioState::PAUSED;
+			component->State = eAudioState::PAUSED; // temporarily
 		}
 
 		void cAudioSystem::AudioStop(sCStreamAudio* component)

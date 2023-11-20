@@ -18,11 +18,10 @@ namespace xpe {
 
 			void Update(cScene* scene, const cTime& dt) override final;
 
-			void UpdateVoices(cScene* scene);
-			void RecordVoice(sCVoice* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
-
 		private:
-			void VoiceInit(sCVoice* component);
+			//void UpdateVoices(cScene* scene);
+			//void RecordVoice(sCVoice* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
+			//void VoiceInit(sCVoice* component);
 
 			void UpdateAudios(cScene* scene);
 			void UpdateStreamAudios(cScene* scene);
