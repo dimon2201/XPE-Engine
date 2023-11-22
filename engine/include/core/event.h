@@ -1,7 +1,7 @@
 #pragma once
 
 #define event_begin(name, ...) \
-        typedef void (*e##name)(void* thiz, __VA_ARGS__); \
+        typedef void (*f##name)(void* thiz, __VA_ARGS__); \
         template<typename T> \
         static void On##name(void* const thiz, __VA_ARGS__) { \
 

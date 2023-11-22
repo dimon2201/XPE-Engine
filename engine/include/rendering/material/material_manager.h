@@ -31,9 +31,9 @@ namespace xpe {
 
             static void Flush(const sMaterial& material);
 
-            static void AddLayer(sTexture& texture, sTextureLayer& layer);
+            static void AddLayer(sTexture& texture, sTextureLayer* layer);
 
-            static void SetLayer(sTexture& texture, sTextureLayer& layer, u32 layerIndex);
+            static void SetLayer(sTexture& texture, sTextureLayer* layer, u32 layerIndex);
 
         private:
             static void InitSampler();

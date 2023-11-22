@@ -119,7 +119,7 @@ namespace xpe {
         void cSimulationDispatcher::submitTask(physx::PxBaseTask& pxTask)
         {
             sTask task;
-            task.Category = eTaskCategory::PHYSICS;
+            task.Type = eTaskType::PHYSICS;
             task.Todo = [&pxTask]() {
                 pxTask.run();
                 pxTask.release();
@@ -155,21 +155,21 @@ namespace xpe {
 
         void cTaskManager::SubmitTask(const sTask &task)
         {
-            switch (task.Category)
+            switch (task.Type)
             {
-                case eTaskCategory::AUDIO:
+                case eTaskType::AUDIO:
                     s_AudioDispatcher->Dispatch(task);
                     break;
-                case eTaskCategory::NETWORK:
+                case eTaskType::NETWORK:
                     s_NetworkDispatcher->Dispatch(task);
                     break;
-                case eTaskCategory::PHYSICS:
+                case eTaskType::PHYSICS:
                     s_SimulationDispatcher->Dispatch(task);
                     break;
-                case eTaskCategory::ANIMATION:
+                case eTaskType::ANIMATION:
                     s_SimulationDispatcher->Dispatch(task);
                     break;
-                case eTaskCategory::THREAD_POOL:
+                case eTaskType::THREAD_POOL:
                     s_ThreadPoolDispatcher->Dispatch(task);
                     break;
             }
@@ -177,21 +177,21 @@ namespace xpe {
 
         void cTaskManager::SubmitTask(u32 tasksPerThread, u32 totalTasks, const sTask &task)
         {
-            switch (task.Category)
+            switch (task.Type)
             {
-                case eTaskCategory::AUDIO:
+                case eTaskType::AUDIO:
                     s_AudioDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskCategory::NETWORK:
+                case eTaskType::NETWORK:
                     s_NetworkDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskCategory::PHYSICS:
+                case eTaskType::PHYSICS:
                     s_SimulationDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskCategory::ANIMATION:
+                case eTaskType::ANIMATION:
                     s_SimulationDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskCategory::THREAD_POOL:
+                case eTaskType::THREAD_POOL:
                     s_ThreadPoolDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
             }

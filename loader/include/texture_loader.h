@@ -30,13 +30,12 @@ namespace xpe {
             static void Free();
             static sTexture* Load(const char* filepath, const eTextureFormat& format);
             static sTexture* LoadCube(const sTextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
-            static sTextureLayer LoadLayer(
+            static sTextureLayer* LoadLayer(
                     const char* filepath,
                     const eTextureFormat& format,
                     int& width, int& height, int& channels
             );
-            static bool Save(const char* filepath, const sTexture& texture, const sTexture::eFileFormat& fileFormat);
-            static bool SaveLayer(const char* filepath, const sTextureLayer& textureLayer, const sTexture::eFileFormat& fileFormat);
+            static bool SaveLayer(const char* filepath, sTextureLayer* textureLayer, const eFileFormat& fileFormat);
         };
 
     }

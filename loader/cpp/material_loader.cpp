@@ -49,49 +49,49 @@ namespace xpe {
                     render::sMaterial::k_AlbedoFormat.Format,
                     w, h, c
             );
-            material.EnableAlbedoMap = material.AlbedoMap.Pixels != nullptr;
+            material.EnableAlbedoMap = material.AlbedoMap->Pixels != nullptr;
 
             material.NormalMap = cTextureLoader::LoadLayer(
                     filepath.BumpFilepath.c_str(),
                     render::sMaterial::k_NormalFormat.Format,
                     w, h, c
             );
-            material.EnableNormalMap = material.NormalMap.Pixels != nullptr;
+            material.EnableNormalMap = material.NormalMap->Pixels != nullptr;
 
             material.ParallaxMap = cTextureLoader::LoadLayer(
                     filepath.ParallaxFilepath.c_str(),
                     render::sMaterial::k_ParallaxFormat.Format,
                     w, h, c
             );
-            material.EnableParallaxMap = material.ParallaxMap.Pixels != nullptr;
+            material.EnableParallaxMap = material.ParallaxMap->Pixels != nullptr;
 
             material.MetalMap = cTextureLoader::LoadLayer(
                     filepath.MetallicFilepath.c_str(),
                     render::sMaterial::k_MetalFormat.Format,
                     w, h, c
             );
-            material.EnableMetalMap = material.MetalMap.Pixels != nullptr;
+            material.EnableMetalMap = material.MetalMap->Pixels != nullptr;
 
             material.RoughnessMap = cTextureLoader::LoadLayer(
                     filepath.RoughnessFilepath.c_str(),
                     render::sMaterial::k_RoughnessFormat.Format,
                     w, h, c
             );
-            material.EnableRoughnessMap = material.RoughnessMap.Pixels != nullptr;
+            material.EnableRoughnessMap = material.RoughnessMap->Pixels != nullptr;
 
             material.AOMap = cTextureLoader::LoadLayer(
                     filepath.AOFilepath.c_str(),
                     render::sMaterial::k_AoFormat.Format,
                     w, h, c
             );
-            material.EnableAOMap = material.AOMap.Pixels != nullptr;
+            material.EnableAOMap = material.AOMap->Pixels != nullptr;
 
             material.EmissionMap = cTextureLoader::LoadLayer(
                     filepath.EmissionFilepath.c_str(),
                     render::sMaterial::k_EmissionFormat.Format,
                     w, h, c
             );
-            material.EnableEmissionMap = material.EmissionMap.Pixels != nullptr;
+            material.EnableEmissionMap = material.EmissionMap->Pixels != nullptr;
 
             return cMaterialManager::AddMaterial(material);
         }

@@ -115,14 +115,14 @@ namespace xpe {
             s_DataBuffer->FlushItem(material.Index, material);
         }
 
-        void cMaterialManager::AddLayer(sTexture &texture, sTextureLayer &layer)
+        void cMaterialManager::AddLayer(sTexture &texture, sTextureLayer* layer)
         {
-            if (layer.Pixels == nullptr) {
-                layer = texture.CreateLayer();
+            if (layer == nullptr || layer->Pixels == nullptr) {
+                texture.Layers.emplace_back(texture.CreateLayer());
             } else {
+                texture.Layers.emplace_back(*layer);
 //                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
-            texture.Layers.emplace_back(layer);
 
 //            if (layer.Mips.empty()) {
 //                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
@@ -131,14 +131,14 @@ namespace xpe {
             texture.Flush();
         }
 
-        void cMaterialManager::SetLayer(sTexture &texture, sTextureLayer &layer, u32 layerIndex)
+        void cMaterialManager::SetLayer(sTexture &texture, sTextureLayer* layer, u32 layerIndex)
         {
-            if (layer.Pixels == nullptr) {
-                layer = texture.CreateLayer();
+            if (layer == nullptr || layer->Pixels == nullptr) {
+                texture.Layers[layerIndex] = texture.CreateLayer();
             } else {
+                texture.Layers[layerIndex] = *layer;
             //                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
-            texture.Layers[layerIndex] = layer;
 
             //            if (layer.Mips.empty()) {
             //                layer.GenerateMips(texture.Format, texture.Width, texture.Height);

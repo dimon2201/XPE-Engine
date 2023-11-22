@@ -78,16 +78,8 @@ namespace xpe {
         cScene::~cScene()
         {
             m_Entities.clear();
-
             m_ComponentAddresses.clear();
-
             m_ComponentStorages.clear();
-
-            for (auto& global : m_Globals)
-            {
-                delete global.second;
-            }
-            m_Globals.clear();
         }
 
         void cScene::InvalidateComponentAddresses(ComponentType type, usize componentSize)
@@ -139,7 +131,7 @@ namespace xpe {
             glm::vec3 diff = position - m_Transform.Position;
             m_Transform.Position = position;
             for (auto* child : Children) {
-                child->Translate(diff);
+                child->Move(diff);
             }
         }
 
@@ -161,11 +153,11 @@ namespace xpe {
             }
         }
 
-        void cEntity::Translate(const glm::vec3 &diff)
+        void cEntity::Move(const glm::vec3 &diff)
         {
             m_Transform.Position += diff;
             for (auto* child : Children) {
-                child->Translate(diff);
+                child->Move(diff);
             }
         }
 

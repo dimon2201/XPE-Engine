@@ -17,24 +17,32 @@ namespace xpe {
             SRGBA8,
 
             DEFAULT = RGBA8,
-            HDR = RGBA16
+            HDR = RGBA32
         };
 
         struct ENGINE_API sMip final
         {
+            eTextureFormat Format;
+            s32 Width, Height = 0;
             void* Pixels = nullptr;
-            u32 RowByteSize = 0;
 
             sMip() = default;
-            sMip(void* pixels, u32 rowByteSize) : Pixels(pixels), RowByteSize(rowByteSize) {}
+
+            sMip(eTextureFormat format, s32 width, s32 height, void* pixels)
+            : Format(format), Width(width), Height(height), Pixels(pixels) {}
         };
 
         struct ENGINE_API sTextureLayer final
         {
+            eTextureFormat Format;
+            s32 Width, Height = 0;
             void* Pixels = nullptr;
-            s32 Width, Height, Channels = 0;
-            u32 RowByteSize = 0;
             vector<sMip> Mips;
+
+            sTextureLayer() = default;
+
+            sTextureLayer(eTextureFormat format, s32 width, s32 height, void* pixels)
+            : Format(format), Width(width), Height(height), Pixels(pixels) {}
 
             void Free();
 
@@ -44,9 +52,9 @@ namespace xpe {
 
             void GenerateMips(const eTextureFormat& format, int width, int height);
 
-            void GenerateMipsU8(int width, int height, int bpp, int channels);
+            void GenerateMipsU8(int width, int height);
 
-            void GenerateMipsFloat(int width, int height, int bpp, int channels);
+            void GenerateMipsFloat(int width, int height);
 
             void FreeMips();
 
@@ -57,14 +65,23 @@ namespace xpe {
             void ResizeFloat(s32 width, s32 height);
 
             void* ResizePixelsU8(
-                    const void* inputPixels, int inputWidth, int inputHeight, int channels,
+                    const void* inputPixels, int inputWidth, int inputHeight,
                     int outputWidth, int outputHeight
             );
 
             void* ResizePixelsFloat(
-                    const void* inputPixels, int inputWidth, int inputHeight, int channels,
+                    const void* inputPixels, int inputWidth, int inputHeight,
                     int outputWidth, int outputHeight
             );
+        };
+
+        enum class eFileFormat
+        {
+            PNG,
+            JPG,
+            TGA,
+            HDR,
+            BMP
         };
 
         struct ENGINE_API sTexture : public sResource
@@ -89,15 +106,6 @@ namespace xpe {
                 STATIC,
                 DYNAMIC,
                 STAGING,
-            };
-
-            enum class eFileFormat
-            {
-                PNG,
-                JPG,
-                TGA,
-                HDR,
-                BMP
             };
 
             // channels count table for each texture format
@@ -159,6 +167,124 @@ namespace xpe {
 
             bool m_Resizable = false;
         };
+
+        struct ENGINE_API sAtlas : public sTexture
+        {
+            struct ENGINE_API sCell final
+            {
+                u32 LayerIndex = 0;
+                glm::vec2 Position = { 0, 0 };
+                glm::vec2 Size = { 0, 0 };
+                sTextureLayer* Texture = nullptr;
+
+                sCell() = default;
+
+                sCell(u32 atlasIndex, const glm::vec2& position, const glm::vec2& size, sTextureLayer* texture)
+                : LayerIndex(atlasIndex), Position(position), Size(size), Texture(texture) {}
+            };
+
+            struct ENGINE_API sLocation final
+            {
+                u32 LayerIndex = 0;
+                glm::vec2 UV[4] = {
+                    glm::vec2(0),
+                    glm::vec2(0),
+                    glm::vec2(0),
+                    glm::vec2(0)
+                };
+            };
+
+            void AddLayer();
+
+            template<typename... Args>
+            sLocation AddCell(Args&&... args);
+
+            template<typename... Args>
+            void RemoveCell(Args&&... args);
+        };
+
+        template<typename... Args>
+        sAtlas::sLocation sAtlas::AddCell(Args &&... args)
+        {
+            sCell cell = sCell(std::forward<Args>(args)...);
+
+            if (cell.LayerIndex >= Layers.size()) {
+                LogWarning("Atlas with index={} is not initialized. Initialize atlasLayer before adding this cell!", cell.LayerIndex);
+                return {};
+            }
+
+            if (cell.Texture == nullptr || cell.Texture->Pixels == nullptr) {
+                LogWarning("Cell texture or texture pixels are not initialized. Initialize cell texture before adding this cell!");
+                return {};
+            }
+
+            sTextureLayer& atlasLayer = Layers[cell.LayerIndex];
+            sTextureLayer cellTexture = cell.Texture->Clone();
+            cellTexture.Resize(Format, cell.Size.x, cell.Size.y);
+
+            s32 cellX = cell.Position.x;
+            s32 cellY = cell.Position.y;
+            s32 cellWidth = cell.Size.x;
+            s32 cellHeight = cell.Size.y;
+            u8* atlasPixels = static_cast<u8*>(atlasLayer.Pixels);
+            u8* cellPixels = static_cast<u8*>(cellTexture.Pixels);
+            Channels = k_ChannelTable.at(Format);
+            int bpc = k_BppTable.at(Format) / Channels; // bytes per channel
+
+            for (int y = 0; y < cellHeight; ++y) {
+                for (int x = 0; x < cellWidth; ++x) {
+                    int cellId = (y * cellWidth + x) * Channels;
+                    int atlasX = x + cellX;
+                    int atlasY = y + cellY;
+                    int atlasId = (atlasY * atlasLayer.Width + atlasX) * Channels;
+                    for (int c = 0; c < Channels; ++c) {
+                        atlasPixels[atlasId + c * bpc] = cellPixels[cellId + c * bpc];
+                    }
+                }
+            }
+
+            cellTexture.Free();
+
+            sLocation location;
+            location.LayerIndex = cell.LayerIndex;
+            location.UV[0] = glm::fvec2(cellX, cellY) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            location.UV[1] = glm::fvec2(cellX, cellY + cellHeight) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            location.UV[2] = glm::fvec2(cellX + cellWidth, cellY + cellHeight) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            location.UV[3] = glm::fvec2(cellX + cellWidth, cellY) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            return location;
+        }
+
+        template<typename... Args>
+        void sAtlas::RemoveCell(Args &&... args)
+        {
+            sCell cell = sCell(std::forward<Args>(args)...);
+
+            if (cell.LayerIndex >= Layers.size()) {
+                LogWarning("Atlas with index={} is not initialized. Initialize atlasLayer before adding this cell!", cell.LayerIndex);
+                return;
+            }
+
+            sTextureLayer& atlasLayer = Layers[cell.LayerIndex];
+
+            s32 cellX = cell.Position.x;
+            s32 cellY = cell.Position.y;
+            s32 cellWidth = cell.Size.x;
+            s32 cellHeight = cell.Size.y;
+            u8* atlasPixels = static_cast<u8*>(atlasLayer.Pixels);
+            Channels = k_ChannelTable.at(Format);
+            int bpc = k_BppTable.at(Format) / Channels; // bytes per channel
+
+            for (int y = 0; y < cellHeight; ++y) {
+                for (int x = 0; x < cellWidth; ++x) {
+                    int atlasX = x + cellX;
+                    int atlasY = y + cellY;
+                    int atlasId = (atlasY * atlasLayer.Width + atlasX) * Channels;
+                    for (int c = 0; c < Channels; ++c) {
+                        atlasPixels[atlasId + c * bpc] = 0;
+                    }
+                }
+            }
+        }
 
         struct ENGINE_API sSampler : public sResource
         {

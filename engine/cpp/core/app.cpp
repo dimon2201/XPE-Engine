@@ -3,14 +3,12 @@
 #include <rendering/core/debugger.h>
 
 #include <rendering/render_system.h>
-#include <rendering/camera_manager.h>
 
 #include <rendering/passes/canvas.hpp>
 #include <rendering/passes/skybox_pass.h>
 #include <rendering/passes/geometry_pass.h>
 #include <rendering/passes/widget_pass.h>
 #include <rendering/passes/composite_transparent_pass.h>
-#include <rendering/passes/composite_ao_pass.h>
 #include <rendering/passes/final_pass.h>
 
 #include <anim/anim_system.h>
@@ -76,7 +74,6 @@ namespace xpe {
             cCameraManager::SetGamma(winDesc.Gamma);
 
             m_SsaoPass->Enable = Config.EnableSSAO;
-            m_FxaaPass->Enable = Config.MsaaSampleCount == 1;
 
             m_Scene = new cScene();
 
@@ -107,13 +104,13 @@ namespace xpe {
                 Update();
 
                 // submit audio task with current scene state
-                cTaskManager::SubmitTask({ eTaskCategory::AUDIO, [this]() {
+                cTaskManager::SubmitTask({eTaskType::AUDIO, [this]() {
                     m_AudioSystem->Update(m_Scene, DeltaTime);
                     m_AudioSystem->UpdateListener(m_Scene);
                 }});
 
                 // submit animation task with current scene state
-                cTaskManager::SubmitTask({ eTaskCategory::ANIMATION, [this]() {
+                cTaskManager::SubmitTask({eTaskType::ANIMATION, [this]() {
                     m_AnimSystem->Update(m_Scene, DeltaTime);
                 }});
 
@@ -195,9 +192,9 @@ namespace xpe {
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                        { "sShader",       sRenderPassBinding::eType::SHADER,        shader },
-                        { "sRenderTarget", sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
-                        { "sCameraBuffer", sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(), sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
+                        { "Shader",       sRenderPassBinding::eType::SHADER,        shader },
+                        { "RenderTarget", sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
+                        { "CameraBuffer", sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(), sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
                 };
 
                 m_RenderSystem->AddRenderPass<cSkyboxPass>(bindings);
@@ -211,15 +208,16 @@ namespace xpe {
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                    { "sShader",             sRenderPassBinding::eType::SHADER,        shader },
-                    { "sRenderTarget",       sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
-                    { "sCameraBuffer",       sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),            sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
-                    { "sDirectLightBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightBuffer(), sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                    { "sDirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightMatrixBuffer(), sRenderPassBinding::eStage::VERTEX,  K_SLOT_DEFAULT },
-                    { "sPointLightBuffer",   sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetPointLightBuffer(),  sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                    { "sSpotLightBuffer",    sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetSpotLightBuffer(),   sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                    { "ShadowSampler",       sRenderPassBinding::eType::SAMPLER,       m_RenderSystem->GetShadowSampler(),     sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                    { "ShadowAtlas",         sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowAtlas(),       sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                    { "Shader",             sRenderPassBinding::eType::SHADER,        shader },
+                    { "RenderTarget",       sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
+                    { "CameraBuffer",       sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),            sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
+                    { "DirectLightBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightBuffer(), sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                    { "DirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER,  m_RenderSystem->GetDirectLightMatrixBuffer(), sRenderPassBinding::eStage::VERTEX,  K_SLOT_DEFAULT },
+                    { "PointLightBuffer",   sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetPointLightBuffer(),  sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                    { "SpotLightBuffer",    sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetSpotLightBuffer(),   sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                    { "ShadowAtlas",        sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowRT()->Colors[0], sRenderPassBinding::eStage::PIXEL,K_SLOT_DEFAULT },
+                    { "ShadowSampler",      sRenderPassBinding::eType::SAMPLER,       cShadowManager::GetSampler(),           sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                    { "ShadowPcfBuffer",    sRenderPassBinding::eType::BUFFER,        cShadowManager::GetBuffer(),            sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                 };
 
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::OPAQUE, bindings);
@@ -233,15 +231,16 @@ namespace xpe {
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                        { "sShader",             sRenderPassBinding::eType::SHADER,        shader },
-                        { "sRenderTarget",       sRenderPassBinding::eType::RENDER_TARGET, transparentRT },
-                        { "sCameraBuffer",       sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),            sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
-                        { "sDirectLightBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightBuffer(), sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                        { "sDirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightMatrixBuffer(), sRenderPassBinding::eStage::VERTEX,  K_SLOT_DEFAULT },
-                        { "sPointLightBuffer",   sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetPointLightBuffer(),  sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                        { "m_SpotLightBuffer",   sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetSpotLightBuffer(),   sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                        { "ShadowSampler",       sRenderPassBinding::eType::SAMPLER,       m_RenderSystem->GetShadowSampler(),     sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
-                        { "ShadowAtlas",         sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowAtlas(),       sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                        { "Shader",             sRenderPassBinding::eType::SHADER,        shader },
+                        { "RenderTarget",       sRenderPassBinding::eType::RENDER_TARGET, transparentRT },
+                        { "CameraBuffer",       sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(),            sRenderPassBinding::eStage::VERTEX, K_SLOT_DEFAULT },
+                        { "DirectLightBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightBuffer(), sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                        { "DirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER,  m_RenderSystem->GetDirectLightMatrixBuffer(), sRenderPassBinding::eStage::VERTEX,  K_SLOT_DEFAULT },
+                        { "PointLightBuffer",   sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetPointLightBuffer(),  sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                        { "SpotLightBuffer",    sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetSpotLightBuffer(),   sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                        { "ShadowAtlas",        sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowRT()->Colors[0], sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                        { "ShadowSampler",      sRenderPassBinding::eType::SAMPLER,       cShadowManager::GetSampler(),           sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
+                        { "ShadowPcfBuffer",    sRenderPassBinding::eType::BUFFER,        cShadowManager::GetBuffer(),            sRenderPassBinding::eStage::PIXEL,  K_SLOT_DEFAULT },
                 };
 
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::TRANSPARENT, bindings);
@@ -255,9 +254,9 @@ namespace xpe {
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                        { "sShader",       sRenderPassBinding::eType::SHADER,        shader },
-                        { "sRenderTarget", sRenderPassBinding::eType::RENDER_TARGET, shadowRT },
-                        { "sDirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightMatrixBuffer(), sRenderPassBinding::eStage::VERTEX,  K_SLOT_DEFAULT }
+                        { "Shader",                   sRenderPassBinding::eType::SHADER,        shader },
+                        { "RenderTarget",             sRenderPassBinding::eType::RENDER_TARGET, shadowRT },
+                        { "DirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetDirectLightMatrixBuffer(), sRenderPassBinding::eStage::VERTEX,  K_SLOT_DEFAULT }
                 };
 
                 m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::SHADOW, bindings);
@@ -293,21 +292,6 @@ namespace xpe {
                 m_RenderSystem->AddRenderPass<cTextPass>(bindings);
             }
 
-            // FXAA pass
-            {
-                sShader* shader = cShaderManager::CreateShader("fxaa_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/fxaa_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "sShader",      sRenderPassBinding::eType::SHADER,  shader },
-                        { "ColorTexture", sRenderPassBinding::eType::TEXTURE, opaqueRT->Colors[0], sRenderPassBinding::eStage::PIXEL, 0 },
-                };
-
-                m_FxaaPass = m_RenderSystem->AddRenderPass<cFxaaPass>(bindings, &m_Viewport);
-            }
-
             // SSAO pass
             {
                 sShader* shader = cShaderManager::CreateShader("ssao_pass");
@@ -316,7 +300,7 @@ namespace xpe {
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                    { "sShader",         sRenderPassBinding::eType::SHADER,  shader },
+                    { "Shader",          sRenderPassBinding::eType::SHADER,  shader },
                     { "PositionTexture", sRenderPassBinding::eType::TEXTURE, opaqueRT->Colors[1],    sRenderPassBinding::eStage::PIXEL, 1 },
                     { "NormalTexture",   sRenderPassBinding::eType::TEXTURE, opaqueRT->Colors[2],    sRenderPassBinding::eStage::PIXEL, 2 },
                     { "DepthTexture",    sRenderPassBinding::eType::TEXTURE, opaqueRT->DepthStencil, sRenderPassBinding::eStage::PIXEL, 3 }
@@ -333,8 +317,8 @@ namespace xpe {
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                        { "sShader",       sRenderPassBinding::eType::SHADER,        shader },
-                        { "sRenderTarget", sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
+                        { "Shader",        sRenderPassBinding::eType::SHADER,         shader },
+                        { "RenderTarget",  sRenderPassBinding::eType::RENDER_TARGET,  opaqueRT },
                         { "AccumTexture",  sRenderPassBinding::eType::TEXTURE,       transparentRT->Colors[0], sRenderPassBinding::eStage::PIXEL, 0 },
                         { "RevealTexture", sRenderPassBinding::eType::TEXTURE,       transparentRT->Colors[1], sRenderPassBinding::eStage::PIXEL, 1 }
                 };
@@ -342,36 +326,20 @@ namespace xpe {
                 m_RenderSystem->AddRenderPass<cCompositeTransparentPass>(bindings);
             }
 
-            // Composite AO pass
-            {
-                sShader* shader = cShaderManager::CreateShader("composite_pass_ao");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                cShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/composite_pass_ao.ps" : "engine_shaders/passes/composite_pass_ao.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                    { "sShader",       sRenderPassBinding::eType::SHADER,        shader },
-                    { "sRenderTarget", sRenderPassBinding::eType::RENDER_TARGET, sceneRT },
-                    { "sCameraBuffer", sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(), sRenderPassBinding::eStage::PIXEL, K_SLOT_DEFAULT },
-                    { "ColorTexture",  sRenderPassBinding::eType::TEXTURE,       Config.MsaaSampleCount > 1 ? opaqueRT->Colors[0] : m_FxaaPass->GetRenderTarget()->Colors[0], sRenderPassBinding::eStage::PIXEL, 0 },
-                    { "AOTexture",     sRenderPassBinding::eType::TEXTURE,       m_SsaoPass->GetRenderTarget()->Colors[0],                                                    sRenderPassBinding::eStage::PIXEL, 1 }
-                };
-
-                m_RenderSystem->AddRenderPass<cCompositeAoPass>(bindings);
-            }
-
             // Final pass
             {
                 sShader* shader = cShaderManager::CreateShader("final_pass");
                 cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/final_pass.ps");
+                cShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/final_pass.ps" : "engine_shaders/passes/final_pass.ps");
                 cShaderManager::BuildShader(shader);
 
                 vector<sRenderPassBinding> bindings = {
-                        { "sShader",       sRenderPassBinding::eType::SHADER,        shader },
-                        { "sRenderTarget", sRenderPassBinding::eType::RENDER_TARGET, finalRT },
-                        { "SceneTexture",  sRenderPassBinding::eType::TEXTURE,       sceneRT->Colors[0], sRenderPassBinding::eStage::PIXEL, 0 },
-                        { "UiTexture",     sRenderPassBinding::eType::TEXTURE,       uiRT->Colors[0],    sRenderPassBinding::eStage::PIXEL, 1 }
+                        { "Shader",       sRenderPassBinding::eType::SHADER,        shader },
+                        { "RenderTarget", sRenderPassBinding::eType::RENDER_TARGET, finalRT },
+                        { "CameraBuffer", sRenderPassBinding::eType::BUFFER,        cCameraManager::GetBuffer(), sRenderPassBinding::eStage::PIXEL, K_SLOT_DEFAULT },
+                        { "SceneTexture", sRenderPassBinding::eType::TEXTURE,       opaqueRT->Colors[0], sRenderPassBinding::eStage::PIXEL, 0 },
+                        { "AOTexture",    sRenderPassBinding::eType::TEXTURE,       m_SsaoPass->GetRenderTarget()->Colors[0], sRenderPassBinding::eStage::PIXEL, 1 },
+                        { "UITexture",    sRenderPassBinding::eType::TEXTURE,       uiRT->Colors[0],    sRenderPassBinding::eStage::PIXEL, 2 }
                 };
 
                 m_RenderSystem->AddRenderPass<cFinalPass>(bindings);
@@ -380,12 +348,6 @@ namespace xpe {
 
         void cApp::ClearRenderPasses()
         {
-            if (m_FxaaPass->Enable)
-            {
-                m_FxaaPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
-                m_FxaaPass->GetRenderTarget()->ClearDepth(1);
-            }
-
             if (m_SsaoPass->Enable)
             {
                 m_SsaoPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });

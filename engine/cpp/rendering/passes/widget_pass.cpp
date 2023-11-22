@@ -37,15 +37,20 @@ namespace xpe {
                         component->Space,
                         component->Color,
                         component->EnableTexture,
+                        component->AtlasLocation,
                         component->FillFrame,
                         cInputManager::MousePressed(component->MousePressed) && component->EnablePress,
-                        [&component](sWidgetData& widget) {
+                        [component](sWidgetData& widget) {
                             widget.Color = component->ColorPressed;
-                            component->CallbackPressed();
+                            if (component->Pressed != nullptr) {
+                                component->Pressed();
+                            }
                         },
-                        [&component](sWidgetData& widget) {
+                        [component](sWidgetData& widget) {
                             widget.Color = component->ColorHover;
-                            component->CallbackHover();
+                            if (component->Hovered != nullptr) {
+                                component->Hovered();
+                            }
                         }
                     );
                 }
@@ -59,6 +64,7 @@ namespace xpe {
                 eSpace space,
                 const glm::vec4& color,
                 bool enableTexture,
+                const sAtlas::sLocation& atlasLocation,
                 bool fillFrame,
                 bool pressed,
                 const std::function<void(sWidgetData&)>& pressedCallback,
@@ -66,6 +72,10 @@ namespace xpe {
         ) {
             sWidgetData widget;
             widget.HasTexture = enableTexture;
+            widget.AtlasUV[0] = atlasLocation.UV[0];
+            widget.AtlasUV[1] = atlasLocation.UV[1];
+            widget.AtlasUV[2] = atlasLocation.UV[2];
+            widget.AtlasUV[3] = atlasLocation.UV[3];
             bool isHovered;
             glm::mat4 modelMatrix;
 

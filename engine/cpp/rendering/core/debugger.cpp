@@ -45,13 +45,13 @@ namespace xpe {
 
             switch (category)
             {
-                case eDebugCategory::D_NO_CATEGORY:             ss << "Category: None"; break;
-                case eDebugCategory::D_API:                     ss << "Category: API"; break;
-                case eDebugCategory::D_WINDOW_SYSTEM:           ss << "Category: Window System"; break;
-                case eDebugCategory::D_SHADER_COMPILER:         ss << "Category: sShader Compiler"; break;
-                case eDebugCategory::D_THIRD_PARTY:             ss << "Category: Third Party"; break;
-                case eDebugCategory::D_APPLICATION:             ss << "Category: cApp"; break;
-                case eDebugCategory::D_OTHER:                   ss << "Category: Other"; break;
+                case eDebugCategory::D_NO_CATEGORY:             ss << "Type: None"; break;
+                case eDebugCategory::D_API:                     ss << "Type: API"; break;
+                case eDebugCategory::D_WINDOW_SYSTEM:           ss << "Type: Window System"; break;
+                case eDebugCategory::D_SHADER_COMPILER:         ss << "Type: sShader Compiler"; break;
+                case eDebugCategory::D_THIRD_PARTY:             ss << "Type: Third Party"; break;
+                case eDebugCategory::D_APPLICATION:             ss << "Type: cApp"; break;
+                case eDebugCategory::D_OTHER:                   ss << "Type: Other"; break;
             }
             ss << "\n";
 

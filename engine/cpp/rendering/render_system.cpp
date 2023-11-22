@@ -3,6 +3,7 @@
 #include <rendering/geometry/geometry_manager.h>
 #include <rendering/skybox_manager.h>
 #include <rendering/camera_manager.h>
+#include <rendering/shadow_manager.h>
 
 #include <anim/skeleton_manager.h>
 
@@ -41,6 +42,7 @@ namespace xpe {
             cMaterialManager::Init();
             cSkeletonManager::Init();
             cSkyboxManager::Init();
+            cShadowManager::Init();
         }
 
         void cRenderSystem::InitBuffers(sViewport &viewport, u32 sampleCount)
@@ -57,13 +59,6 @@ namespace xpe {
 
         void cRenderSystem::InitSamplers(sViewport &viewport, u32 sampleCount)
         {
-            m_ShadowSampler.Filter      = sSampler::eFilter::MIN_MAG_MIP_POINT;
-            m_ShadowSampler.BorderColor = glm::vec4(1, 1, 1, 1);
-            m_ShadowSampler.AddressU    = sSampler::eAddress::BORDER;
-            m_ShadowSampler.AddressV    = sSampler::eAddress::BORDER;
-            m_ShadowSampler.Slot        = K_SLOT_SHADOW_SAMPLER;
-
-            context::CreateSampler(m_ShadowSampler);
         }
 
         void cRenderSystem::InitRenderTargets(sViewport& viewport, u32 sampleCount)
@@ -88,7 +83,7 @@ namespace xpe {
             finalDepth->SetResizable(true);
             finalDepth->Init();
 
-            m_FinalRenderTarget = new sRenderTarget({finalColor }, finalDepth, &viewport);
+            m_FinalRenderTarget = new sRenderTarget({ finalColor }, finalDepth, &viewport);
             m_FinalRenderTarget->SetResizable(true);
 
             // Scene render target
@@ -116,8 +111,8 @@ namespace xpe {
 
             // Shadow render target
             sTexture* shadowColor = new sTexture();
-            shadowColor->Width = 1024;
-            shadowColor->Height = 1024;
+            shadowColor->Width = 512;
+            shadowColor->Height = 512;
             shadowColor->Format = eTextureFormat::RGBA8;
             shadowColor->InitializeData = false;
             shadowColor->EnableRenderTarget = true;
@@ -127,8 +122,8 @@ namespace xpe {
 
             sTexture* shadowDepth = new sTexture();
             shadowDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            shadowDepth->Width = 1024;
-            shadowDepth->Height = 1024;
+            shadowDepth->Width = 512;
+            shadowDepth->Height = 512;
             shadowDepth->Format = eTextureFormat::R32_TYPELESS;
             shadowDepth->InitializeData = false;
             shadowDepth->EnableRenderTarget = true;
@@ -235,6 +230,7 @@ namespace xpe {
 
         void cRenderSystem::FreeManagers()
         {
+            cShadowManager::Free();
             cSkyboxManager::Free();
             cSkeletonManager::Free();
             cMaterialManager::Free();
@@ -253,7 +249,6 @@ namespace xpe {
 
         void cRenderSystem::FreeSamplers()
         {
-            context::FreeSampler(m_ShadowSampler);
         }
 
         void cRenderSystem::FreeRenderTargets()

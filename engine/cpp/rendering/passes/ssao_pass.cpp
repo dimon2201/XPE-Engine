@@ -29,7 +29,7 @@ namespace xpe
             ssaoDepth->SetResizable(true);
             ssaoDepth->Init();
 
-            m_Pipeline->RenderTarget = new sRenderTarget({ssaoColor }, ssaoDepth, viewport);
+            m_Pipeline->RenderTarget = new sRenderTarget({ ssaoColor }, ssaoDepth, viewport);
             m_Pipeline->RenderTarget->SetResizable(true);
 
             m_Pipeline->PSBuffers.emplace_back(&m_Buffer);

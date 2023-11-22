@@ -44,8 +44,8 @@ VSOut vs_main(VSIn vsIn)
     float4x4 worldMatrix        = instance.ModelMatrix;
     float4x4 lightMatrix        = DirectLightMatrices[0].Matrix;
 
-    float4 positionWorld = mul(worldMatrix, positionBone);
-    float4 positionLight = mul(lightMatrix, positionWorld);
+    float4 positionWorld = mul(worldMatrix, float4(positionBone.xyz, 1.0));
+    float4 positionLight = mul(lightMatrix, float4(positionWorld.xyz, 1.0));
 
     vsOut.positionLight = positionLight;
 

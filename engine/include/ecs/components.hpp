@@ -113,7 +113,7 @@ namespace xpe
                 Projection.Far = 75.0f;
                 View.Position = position;
                 View.Front = { 0, 0, 0 };
-                View.Up = { 0, 0, 1 };
+                View.Up = { 0, 1, 0 };
             }
 
             JsonClass(
@@ -162,7 +162,7 @@ namespace xpe
                 Projection.Far = 75.0f;
                 View.Position = position;
                 View.Front = direction;
-                View.Up = { 0, 0, 1 };
+                View.Up = { 0, 1, 0 };
             }
 
             JsonClass(
@@ -199,43 +199,22 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCModel : sComponent, sModel, sRenderState
-        {
-            vector<cEntity*> Entities;
-
-            sCModel(const sModel& model) : sModel(model) {}
-            sCModel(sModel&& model) : sModel(model) {}
-
-            JsonClass(
-                sCModel,
-                PrimitiveTopology,
-                VertexOffset,
-                VertexCount,
-                IndexOffset,
-                Indices,
-                Meshes
-            )
-        };
-
-        struct ENGINE_API sCSkeletonModel : sComponent, sModel, sRenderState
+        struct ENGINE_API sCSkeletonModel : sComponent, sGeometry, sRenderState
         {
             vector<cEntity*> Entities;
             sSkeleton Skeleton;
-            sAnimation Animation;
+            vector<sAnimation> Animations;
 
-            sCSkeletonModel(const sModel& model) : sModel(model) {}
-            sCSkeletonModel(sModel&& model) : sModel(model) {}
+            sCSkeletonModel(const sGeometry& geometry) : sGeometry(geometry) {}
+            sCSkeletonModel(sGeometry&& geometry) : sGeometry(geometry) {}
 
             JsonClass(
                 sCSkeletonModel,
                 Skeleton,
-                Animation,
+                Animations,
                 PrimitiveTopology,
-                VertexOffset,
-                VertexCount,
-                IndexOffset,
-                Indices,
-                Meshes
+                Vertices,
+                Indices
             )
         };
 
@@ -352,9 +331,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCLabel : sComponent, cXml
+        struct ENGINE_API sCLabel : sComponent, sWidget
         {
-            eSpace Space = eSpace::SPACE_2D;
             sFont* Font = nullptr;
             string Text;
             glm::vec4 Color = { 1, 1, 1, 1 };
@@ -377,19 +355,21 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCButton : sComponent, cXml
+        struct ENGINE_API sCButton : sComponent, sWidget
         {
-            eSpace Space = eSpace::SPACE_2D;
+            typedef void (*fHovered)();
+            typedef void (*fPressed)();
+
             glm::vec4 Color = { 1, 1, 1, 1 };
             glm::vec4 ColorHover = { 0.5, 0.5, 0.5, 1.0 };
             glm::vec4 ColorPressed = { 0.25, 0.25, 0.25, 1.0 };
-            sTextureLayer Texture;
             bool EnableTexture = false;
+            sAtlas::sLocation AtlasLocation;
             bool EnablePress = true;
             eMouse MousePressed = eMouse::ButtonLeft;
-            std::function<void()> CallbackHover = [](){};
-            std::function<void()> CallbackPressed = [](){};
             bool FillFrame = true;
+            fHovered Hovered = nullptr;
+            fPressed Pressed = nullptr;
 
             XmlClass(
                 "Button",
@@ -408,9 +388,8 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCField : sComponent, cXml
+        struct ENGINE_API sCField : sComponent, sWidget
         {
-            eSpace Space = eSpace::SPACE_2D;
             sFont* Font = nullptr;
             string Text;
             glm::vec4 Color = { 1, 1, 1, 1 };

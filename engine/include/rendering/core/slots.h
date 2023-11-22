@@ -41,6 +41,7 @@
 // shadows
 #define K_SLOT_SHADOW_ATLAS 11
 #define K_SLOT_SHADOW_SAMPLER 1
+#define K_SLOT_SHADOW_PCF 0
 
 // ---------- Constant Buffers --------------- //
 

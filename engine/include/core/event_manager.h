@@ -15,32 +15,32 @@ namespace xpe {
 
             static cEventManager* s_Instance;
 
-            cEventBuffer<eWindowClosed> WindowClosedEvents;
-            cEventBuffer<eWindowResized> WindowResizedEvents;
-            cEventBuffer<eWindowFrameResized> WindowFrameResizedEvents;
-            cEventBuffer<eWindowMoved> WindowMovedEvents;
-            cEventBuffer<eWindowFocused> WindowFocusedEvents;
-            cEventBuffer<eWindowFocusLost> WindowFocusLostEvents;
+            cEventBuffer<fWindowClosed> WindowClosedEvents;
+            cEventBuffer<fWindowResized> WindowResizedEvents;
+            cEventBuffer<fWindowFrameResized> WindowFrameResizedEvents;
+            cEventBuffer<fWindowMoved> WindowMovedEvents;
+            cEventBuffer<fWindowFocused> WindowFocusedEvents;
+            cEventBuffer<fWindowFocusLost> WindowFocusLostEvents;
 
-            cEventBuffer<eKeyPressed> KeyPressedEvents;
-            cEventBuffer<eKeyReleased> KeyReleasedEvents;
-            cEventBuffer<eKeyHold> KeyHoldEvents;
+            cEventBuffer<fKeyPressed> KeyPressedEvents;
+            cEventBuffer<fKeyReleased> KeyReleasedEvents;
+            cEventBuffer<fKeyHold> KeyHoldEvents;
 
-            cEventBuffer<eMousePressed> MousePressedEvents;
-            cEventBuffer<eMouseReleased> MouseReleasedEvents;
-            cEventBuffer<eMouseHold> MouseHoldEvents;
+            cEventBuffer<fMousePressed> MousePressedEvents;
+            cEventBuffer<fMouseReleased> MouseReleasedEvents;
+            cEventBuffer<fMouseHold> MouseHoldEvents;
 
-            cEventBuffer<eCursorMoved> CursorMovedEvents;
-            cEventBuffer<eCursorEntered> CursorEnteredEvents;
-            cEventBuffer<eCursorLeft> CursorLeftEvents;
+            cEventBuffer<fCursorMoved> CursorMovedEvents;
+            cEventBuffer<fCursorEntered> CursorEnteredEvents;
+            cEventBuffer<fCursorLeft> CursorLeftEvents;
 
-            cEventBuffer<eScrollChanged> ScrollChangedEvents;
+            cEventBuffer<fScrollChanged> ScrollChangedEvents;
 
-            cEventBuffer<eCharTyped> CharTypedEvents;
-            cEventBuffer<eCharModsTyped> CharModsTypedEvents;
+            cEventBuffer<fCharTyped> CharTypedEvents;
+            cEventBuffer<fCharModsTyped> CharModsTypedEvents;
 
-            cEventBuffer<eSampleCountChanged> SampleCountChangedEvents;
-            cEventBuffer<eWindowRatioChanged> WindowRatioChangedEvents;
+            cEventBuffer<fSampleCountChanged> SampleCountChangedEvents;
+            cEventBuffer<fWindowRatioChanged> WindowRatioChangedEvents;
 
         };
 

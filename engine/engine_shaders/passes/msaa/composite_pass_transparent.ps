@@ -17,11 +17,6 @@ Texture2DMS<float> RevealTexture : register(t1);
 
 PSOut ps_main(VSOut psIn)
 {
-    uint width = 0;
-    uint height = 0;
-    uint sampleCount = 0;
-    AccumTexture.GetDimensions(width, height, sampleCount);
-
     float4 accum = SampleMSAATextureFloat4(AccumTexture, psIn.uv);
     float reveal = SampleMSAATextureFloat(RevealTexture, psIn.uv);
     

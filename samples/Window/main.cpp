@@ -41,6 +41,14 @@ protected:
 
 public:
 
+    static void HandleButtonPress() {
+
+    }
+
+    static void HandleButtonHover() {
+
+    }
+
     void Init() override final {
         LogInfo("cExample::Init()");
 
@@ -82,6 +90,8 @@ public:
             m_Menu->SetPosition(glm::vec3(0.0, 0.0, 0));
             m_Menu->Add<sCButton>();
             m_Menu->Get<sCButton>()->Color = { 0, 0, 1, 1 };
+            m_Menu->Get<sCButton>()->Pressed = HandleButtonPress;
+            m_Menu->Get<sCButton>()->Hovered = HandleButtonHover;
 
             m_Label = new cEntity("Stats", m_Scene);
             m_Label->SetPosition(glm::vec3(0.5, 0.5, 0));
@@ -97,6 +107,7 @@ public:
 
             m_Menu->Children = { m_Label, m_Button };
             m_Menu->SetSpace(eSpace::SPACE_2D);
+            m_Menu->SetVisible(false);
             m_Menu->UpdateXmlChildren();
 
             // save widget xml into file
@@ -153,7 +164,7 @@ public:
             m_Plane = new cEntity("sPlane", m_Scene);
             m_Plane->SetPosition(glm::vec3(0.0f));
             m_Plane->SetScale(glm::vec3(5.0f, 1.0f, 5.0f));
-            m_Plane->Add<sCGeometry>(cGeometryManager::AddGeometry(sPlane(10)))->CastShadow = false;
+            m_Plane->Add<sCGeometry>(cGeometryManager::AddGeometry(sPlane(10)))->CastShadow = true;
             m_Plane->Add<sCMaterial>(cMaterialManager::AddMaterial());
 
             sPlaneShapeDescriptor planeShapeDesc;
@@ -172,10 +183,10 @@ public:
         // Sunlight
         {
             m_SunLight = new cEntity("SunLight", m_Scene);
-            m_SunLight->SetPosition(glm::vec3(20.0f, 20.0f, -20.0f));
+            m_SunLight->SetPosition(glm::vec3(-2.0f, 4.0f, -1.0f));
             m_SunLight->Add<sCGeometry>(cGeometryManager::AddGeometry(sSphere()))->CastShadow = false;
             m_SunLight->Add<sCMaterial>(cMaterialManager::AddMaterial());
-            m_SunLight->Add<sCDirectionalLight>(glm::vec3(0, 0, 0), glm::vec3(1, 1, 10));
+            m_SunLight->Add<sCDirectionalLight>(glm::vec3(-2, 4, -1), glm::vec3(1, 1, 10));
         }
 
         // Goblins
@@ -205,11 +216,15 @@ public:
             m_Goblin4->GetRotation() = { 0, 0, 0 };
             m_Goblin4->GetScale() = { 5, 5, 5 };
 
-            auto* goblins = m_Goblins->Add<sCSkeletonModel>(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            auto* goblins = m_Goblins->Add<sCSkeletonModel>(
+                cGeometryManager::AddGeometry(
+                        cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae").Bake()
+                )
+            );
             goblins->Entities = { m_Goblin1, m_Goblin2, m_Goblin3, m_Goblin4 };
             goblins->Skeleton = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-            goblins->Animation = cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-            goblins->Animation.Play = true;
+            goblins->Animations.emplace_back(cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            goblins->Animations[0].Play = true;
 
             sMaterialFilepath materialFilepath;
             materialFilepath.Name = "niz";
@@ -275,25 +290,44 @@ public:
             cTextureLoader::SaveLayer(
                     "generated/Vampire_diffuse_resized.png",
                     material1->AlbedoMap,
-                    sTexture::eFileFormat::PNG
+                    eFileFormat::PNG
             );
 
             cTextureLoader::SaveLayer(
                     "generated/Vampire_normal_resized.png",
                     material1->NormalMap,
-                    sTexture::eFileFormat::PNG
+                    eFileFormat::PNG
             );
 
             cTextureLoader::SaveLayer(
                     "generated/Vampire_roughness_resized.png",
                     material1->RoughnessMap,
-                    sTexture::eFileFormat::PNG
+                    eFileFormat::PNG
             );
 
             cTextureLoader::SaveLayer(
                     "generated/Vampire_metallic_resized.png",
                     material1->MetalMap,
-                    sTexture::eFileFormat::PNG
+                    eFileFormat::PNG
+            );
+
+            int w, h, c;
+            sTextureLayer* layer = cTextureLoader::LoadLayer("res/skybox/back.jpg", eTextureFormat::RGBA8, w, h, c);
+            sAtlas atlas;
+            atlas.Width = 1024;
+            atlas.Height = 1024;
+            atlas.Channels = c;
+            atlas.Format = eTextureFormat::RGBA8;
+            atlas.AddLayer();
+            atlas.AddCell(0, glm::vec2(0, 0), glm::vec2(32, 32), layer);
+            atlas.AddCell(0, glm::vec2(32, 0), glm::vec2(64, 64), layer);
+            atlas.AddCell(0, glm::vec2(32 + 64, 0), glm::vec2(128, 128), layer);
+            atlas.AddCell(0, glm::vec2(32 + 64 + 128, 0), glm::vec2(256, 256), layer);
+            atlas.Init();
+            cTextureLoader::SaveLayer(
+                "generated/test_atlas.png",
+                &atlas.Layers[0],
+                eFileFormat::PNG
             );
         }
 
@@ -338,6 +372,10 @@ public:
                     )
             );
         }
+
+        // settings for shadows
+        cShadowManager::GetData().FilterSize = 0;
+        cShadowManager::Flush();
 
 //        //loading stream audio files
 //        {
@@ -593,28 +631,38 @@ private:
         {
             pos.x += 1;
         }
+
+        if (key == eKey::Z)
+        {
+            pos.z += 1;
+        }
+
+        if (key == eKey::X)
+        {
+            pos.z -= 1;
+        }
     }
 
     void MoveWidget(const eKey key)
     {
         if (key == eKey::Up)
         {
-            m_Menu->Translate({ 0, 0.1, 0 });
+            m_Menu->Move({0, 0.1, 0});
         }
 
         if (key == eKey::Down)
         {
-            m_Menu->Translate({ 0, -0.1, 0 });
+            m_Menu->Move({0, -0.1, 0});
         }
 
         if (key == eKey::Left)
         {
-            m_Menu->Translate({ -0.1, 0, 0 });
+            m_Menu->Move({-0.1, 0, 0});
         }
 
         if (key == eKey::Right)
         {
-            m_Menu->Translate({ 0.1, 0, 0 });
+            m_Menu->Move({0.1, 0, 0});
         }
     }
 
@@ -622,7 +670,7 @@ private:
     {
         if (key == eKey::P)
         {
-            m_Goblins->Get<sCSkeletonModel>()->Animation.Play = !m_Goblins->Get<sCSkeletonModel>()->Animation.Play;
+            m_Goblins->Get<sCSkeletonModel>()->Animations[0].Play = !m_Goblins->Get<sCSkeletonModel>()->Animations[0].Play;
         }
     }
 

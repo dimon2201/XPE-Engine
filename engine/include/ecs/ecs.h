@@ -182,10 +182,8 @@ namespace xpe
         }
 
         class cEntity;
-        class cGlobal;
 
         typedef usize ComponentType;
-        typedef usize GlobalType;
 
         class ENGINE_API cScene : public cObject, public cJson
         {
@@ -207,17 +205,6 @@ namespace xpe
             cEntity* GetEntity(const string& tag);
 
             inline unordered_map<string, cEntity*>& GetEntities() { return m_Entities; }
-
-            template<typename T, typename... Args>
-            T* AddGlobal(Args&&... args);
-
-            template<typename T>
-            void RemoveGlobal();
-
-            template<typename T>
-            T* GetGlobal();
-
-            inline unordered_map<uword, cGlobal*>& GetGlobals() { return m_Globals; }
 
             template<typename T>
             void ReserveComponents(usize capacity);
@@ -256,9 +243,6 @@ namespace xpe
             inline ComponentType GetComponentType() { return typeid(T).hash_code(); }
 
             template<typename T>
-            inline GlobalType GetGlobalType() { return typeid(T).hash_code(); }
-
-            template<typename T>
             void InvalidateComponentAddresses();
 
             void InvalidateComponentAddresses(ComponentType componentType, usize componentSize);
@@ -268,7 +252,6 @@ namespace xpe
             unordered_map<string, cEntity*> m_Entities;
             unordered_map<ComponentType, sComponentStorage> m_ComponentStorages;
             unordered_map<cEntity*, unordered_map<ComponentType, sComponent*>> m_ComponentAddresses;
-            unordered_map<GlobalType, cGlobal*> m_Globals;
         };
 
         template<typename T>
@@ -367,22 +350,6 @@ namespace xpe
             return nullptr;
         }
 
-        template<typename T>
-        void cScene::RemoveGlobal()
-        {
-            auto it = m_Globals.find(GetGlobalType<T>());
-            if (it != m_Globals.end()) {
-                m_Globals.erase(it);
-                delete it.operator->();
-            }
-        }
-
-        template<typename T>
-        T* cScene::GetGlobal()
-        {
-            return static_cast<T*>(m_Globals[GetGlobalType<T>()]);
-        }
-
         class ENGINE_API cEntity : public cObject, public cJson, public cXml
         {
 
@@ -398,7 +365,7 @@ namespace xpe
             void SetScale(const glm::vec3& scale);
             void SetVisible(bool visible);
 
-            void Translate(const glm::vec3& diff);
+            void Move(const glm::vec3& diff);
             void Rotate(const glm::vec3& diff);
             void Scale(const glm::vec3& diff);
 
@@ -490,17 +457,6 @@ namespace xpe
         T* cEntity::HasAs()
         {
             return m_Scene->HasComponentAs<T>(this);
-        }
-
-        struct ENGINE_API cGlobal : public cObject, public cJson
-        {};
-
-        template<typename T, typename... Args>
-        T* cScene::AddGlobal(Args&&... args)
-        {
-            T* global = new T(std::forward<Args>(args)...);
-            m_Globals.insert({ GetGlobalType<T>(), static_cast<cGlobal*>(global) });
-            return global;
         }
 
         class ENGINE_API cSystem : public cObject {

@@ -22,7 +22,7 @@ struct VSOut
     float2 uv            : XPE_UV2;
     float3 normal        : XPE_NORMAL_WORLD;
     float4 positionClip  : SV_POSITION;
-    float4 positionLight : XPE_POSITION_LIGHT;
+    float3 positionLight : XPE_POSITION_LIGHT;
     float3 viewPosition  : XPE_VIEW_POSITION;
     uint materialIndex   : XPE_MATERIAL_INDEX;
     float3x3 tbn         : XPE_TBN;
@@ -62,10 +62,10 @@ VSOut vs_main(VSIn vsIn)
     float4x4 worldNormalMatrix  = instance.NormalMatrix;
     float4x4 lightMatrix        = DirectLightMatrices[0].Matrix;
 
-    float4 positionWorld = mul(worldMatrix, positionBone);
-    float4 positionView  = mul(CameraView, positionWorld);
-    float4 positionClip  = mul(CameraProjection, positionView);
-    float4 positionLight = mul(lightMatrix, positionWorld);
+    float4 positionWorld = mul(worldMatrix, float4(positionBone.xyz, 1.0));
+    float4 positionView  = mul(CameraView, float4(positionWorld.xyz, 1.0));
+    float4 positionClip  = mul(CameraProjection, float4(positionView.xyz, 1.0));
+    float4 positionLight = mul(lightMatrix, float4(positionWorld.xyz, 1.0));
 
     float3 normalWorld   = mul(worldNormalMatrix, float4(normalBone, 1.0)).xyz;
     float3 tangentWorld  = mul(worldNormalMatrix, float4(vsIn.tangent, 1.0)).xyz;
@@ -78,7 +78,9 @@ VSOut vs_main(VSIn vsIn)
     vsOut.uv            = vsIn.uv;
     vsOut.normal        = normalWorld.xyz;
     vsOut.positionClip  = positionClip;
-    vsOut.positionLight = positionLight;
+    vsOut.positionLight = float3(positionLight.xyz / positionLight.w) * 0.5 + 0.5;     // transform into [0, 1]
+    vsOut.positionLight.y = 1.0 - vsOut.positionLight.y;                               // HOTFIX: flip Y coordinate for correct UV projection of shadow
+    vsOut.positionLight.z = vsOut.positionLight.z > 1.0 ? 1.0 : vsOut.positionLight.z; // clamp depth value to 1
     vsOut.viewPosition  = CameraPosition;
     vsOut.materialIndex = instance.MaterialIndex;
     vsOut.tbn           = float3x3(tangentWorld, bitangentWorld, normalWorld);

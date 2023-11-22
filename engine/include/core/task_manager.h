@@ -6,22 +6,24 @@ namespace xpe {
 
     namespace core {
 
-        enum eTaskCategory : u8
+        enum eTaskType : u8
         {
-            AUDIO = 0,
-            NETWORK = 1,
-            ANIMATION = 2,
-            PHYSICS = 3,
-            THREAD_POOL = 4
+            THREAD_POOL = 0,
+            AUDIO = 1,
+            NETWORK = 2,
+            ANIMATION = 3,
+            PHYSICS = 4,
+
+            DEFAULT = THREAD_POOL
         };
 
         struct ENGINE_API sTask : public cObject {
-            eTaskCategory Category = eTaskCategory::THREAD_POOL;
+            eTaskType Type = eTaskType::DEFAULT;
             std::function<void()> Todo;
             sTask* Next = nullptr;
 
             sTask() = default;
-            sTask(eTaskCategory category, const std::function<void()>& todo) : Category(category), Todo(todo) {}
+            sTask(eTaskType type, const std::function<void()>& todo) : Type(type), Todo(todo) {}
 
             virtual void DoWork();
 

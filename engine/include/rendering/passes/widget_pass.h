@@ -27,6 +27,7 @@ namespace xpe {
                     eSpace space,
                     const glm::vec4& color,
                     bool enableTexture,
+                    const sAtlas::sLocation& atlasLocation,
                     bool fillFrame,
                     bool pressed,
                     const std::function<void(sWidgetData&)>& pressedCallback,

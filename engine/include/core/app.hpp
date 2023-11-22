@@ -1,7 +1,9 @@
 #pragma once
 
-#include <rendering/passes/fxaa_pass.hpp>
 #include <rendering/passes/ssao_pass.hpp>
+#include <rendering/camera_manager.h>
+#include <rendering/shadow_manager.h>
+#include <rendering/skybox_manager.h>
 
 #include <ecs/components.hpp>
 
@@ -75,7 +77,6 @@ namespace xpe
             cPhysicsSystem* m_PhysicsSystem = nullptr;
 
             cSsaoPass* m_SsaoPass = nullptr;
-            cFxaaPass* m_FxaaPass = nullptr;
 
             sTexture* m_CanvasTexture = nullptr;
         };

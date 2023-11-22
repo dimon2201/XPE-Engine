@@ -12,6 +12,12 @@ namespace xpe {
             glm::mat4 Projection;
             glm::vec4 Color = { 1, 1, 1, 1 };
             Boolean HasTexture = false;
+            glm::vec2 AtlasUV[4] = {
+                glm::vec2(0),
+                glm::vec2(0),
+                glm::vec2(0),
+                glm::vec2(0)
+            };
         };
 
         struct ENGINE_API sWidgetBuffer : public sListBuffer<sWidgetData>

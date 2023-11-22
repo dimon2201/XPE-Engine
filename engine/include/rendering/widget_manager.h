@@ -10,9 +10,9 @@ namespace xpe {
         using namespace math;
         using namespace res;
 
-        struct ENGINE_API sWidgetAtlasCell final
+        struct ENGINE_API sWidget : public cXml
         {
-            u32 AtlasIndex;
+            eSpace Space = eSpace::SPACE_2D;
         };
 
         class ENGINE_API cWidgetManager final
@@ -21,12 +21,13 @@ namespace xpe {
         public:
             static void Init();
             static void Free();
-            static void Clear();
             static void Bind(sPipeline& pipeline);
 
+            static sAtlas* GetAtlas();
+
         private:
-            static sTexture* s_TextureAtlas;
-            static sSampler s_TextureSampler;
+            static sAtlas* s_WidgetAtlas;
+            static sSampler s_WidgetSampler;
         };
 
     }

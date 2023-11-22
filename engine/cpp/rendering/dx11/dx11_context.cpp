@@ -256,7 +256,7 @@ namespace xpe {
 
                         auto& textureData = initialData[k];
                         textureData.pSysMem = textureLayer.Pixels;
-                        textureData.SysMemPitch = textureLayer.RowByteSize;
+                        textureData.SysMemPitch = textureLayer.Width * sTexture::k_BppTable.at(textureLayer.Format);
                         textureData.SysMemSlicePitch = 0;
 
                         for (int j = 0 ; j < mipSize ; j++)
@@ -264,7 +264,7 @@ namespace xpe {
                             auto& mip = textureLayer.Mips[j];
                             auto& mipData = initialData[++k];
                             mipData.pSysMem = mip.Pixels;
-                            mipData.SysMemPitch = mip.RowByteSize;
+                            mipData.SysMemPitch = mip.Width * sTexture::k_BppTable.at(mip.Format);
                             mipData.SysMemSlicePitch = 0;
                         }
                     }

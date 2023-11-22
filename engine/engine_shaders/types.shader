@@ -37,6 +37,7 @@
 // shadows
 #define K_SLOT_SHADOW_ATLAS            register(t11)
 #define K_SLOT_SHADOW_SAMPLER          register(s1)
+#define K_SLOT_SHADOW_PCF              register(b0)
 
 // ---------- Constant Buffer --------------- //
 

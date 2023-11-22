@@ -6,6 +6,7 @@ struct Widget
     float4x4 Projection;
     float4 Color;
     bool HasTexture;
+    float2 AtlasUV[4];
 };
 StructuredBuffer<Widget> Widgets : K_SLOT_WIDGETS;
 
@@ -14,6 +15,7 @@ struct VSIn
     float3 positionLocal : XPE_POSITION;
     float2 uv : XPE_UV;
     uint instanceIndex : SV_InstanceID;
+    uint vertexIndex : SV_VertexID;
 };
 
 struct VSOut
@@ -38,7 +40,7 @@ VSOut vs_main(VSIn vsIn)
     positionOut = mul(projection, positionOut);
 
     vsOut.positionOut = positionOut;
-    vsOut.uv = vsIn.uv;
+    vsOut.uv = widget.AtlasUV[vsIn.vertexIndex];
     vsOut.color = widget.Color;
     vsOut.hasTexture = widget.HasTexture;
 

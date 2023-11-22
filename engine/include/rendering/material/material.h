@@ -28,13 +28,13 @@ namespace xpe
 
             u32 Index = 0;
 
-            sTextureLayer AlbedoMap;
-            sTextureLayer NormalMap;
-            sTextureLayer ParallaxMap;
-            sTextureLayer MetalMap;
-            sTextureLayer RoughnessMap;
-            sTextureLayer AOMap;
-            sTextureLayer EmissionMap;
+            sTextureLayer* AlbedoMap;
+            sTextureLayer* NormalMap;
+            sTextureLayer* ParallaxMap;
+            sTextureLayer* MetalMap;
+            sTextureLayer* RoughnessMap;
+            sTextureLayer* AOMap;
+            sTextureLayer* EmissionMap;
         };
 
         Json(

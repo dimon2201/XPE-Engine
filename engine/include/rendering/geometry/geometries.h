@@ -54,6 +54,16 @@ namespace xpe {
             sSphere(s32 xSegments = 64, s32 ySegments = 64);
         };
 
+        struct ENGINE_API sModel : public sGeometry {
+            vector<sGeometry> Geometries;
+
+            sGeometry Bake();
+
+            inline sGeometry& operator [](u32 i) { return Geometries[i]; }
+        };
+
+        Json(sModel, PrimitiveTopology, Geometries, VertexOffset, IndexOffset, Indices)
+
         template<typename T>
         static void InitUV(vector<T>& vertices)
         {
@@ -162,20 +172,6 @@ namespace xpe {
             InitTangent(&vertices[16], &vertices[17], &vertices[18], &vertices[19]);
             InitTangent(&vertices[20], &vertices[21], &vertices[22], &vertices[23]);
         }
-
-        struct ENGINE_API sModel : public cObject
-        {
-            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::TRIANGLE_LIST;
-            vector<sGeometry> Meshes;
-            usize VertexOffset = 0;
-            usize VertexCount = 0;
-            usize IndexOffset = 0;
-            vector<u32> Indices;
-
-            inline sGeometry& operator [](u32 i) { return Meshes[i]; }
-        };
-
-        Json(sModel, PrimitiveTopology, Meshes, VertexOffset, VertexCount, IndexOffset, Indices)
 
     }
 

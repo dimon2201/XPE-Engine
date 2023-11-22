@@ -222,6 +222,26 @@ namespace xpe {
             Indices = indexList;
         }
 
+        sGeometry sModel::Bake()
+        {
+            sGeometry baked;
+            baked.PrimitiveTopology = PrimitiveTopology;
+            usize vertexCount = 0;
+            for (auto& geometry : Geometries)
+            {
+                for (auto& vertex : geometry.Vertices)
+                {
+                    baked.Vertices.emplace_back(vertex);
+                }
+                for (auto& index : geometry.Indices)
+                {
+                    baked.Indices.emplace_back(index + vertexCount);
+                }
+                vertexCount += geometry.Vertices.size();
+            }
+            return baked;
+        }
+
     }
 
 }

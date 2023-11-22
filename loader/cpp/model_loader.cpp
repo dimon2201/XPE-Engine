@@ -107,7 +107,7 @@ namespace xpe {
                 sModel& model,
                 const hstring& directory, u32 flags
         ) {
-            auto& meshes = model.Meshes;
+            auto& meshes = model.Geometries;
 
             for (u32 i = 0 ; i < node->mNumMeshes ; i++)
             {
@@ -138,7 +138,7 @@ namespace xpe {
 
             ParseMeshes(scene->mRootNode, scene, model, directory, flags);
 
-            return cGeometryManager::AddModel(model);
+            return model;
         }
 
     }

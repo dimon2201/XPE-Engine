@@ -117,7 +117,7 @@ namespace xpe {
             m_Pipeline->Blending.Targets.push_back(target);
             m_Pipeline->Blending.IndependentBlendEnable = true;
 
-            m_Pipeline->Rasterizer.CullMode = eCullMode::BACK;
+            m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
         }
 
         void cRenderPass::InitTransparent()

@@ -13,13 +13,9 @@ namespace xpe {
             static void Init();
             static void Free();
             static void Bind();
-
             static sGeometry AddGeometry(const sGeometry& _geometry);
-            static sModel AddModel(const sModel& _model);
 
         private:
-            static usize AddIndices(const vector<u32>& indices);
-
             static sVertexBuffer* s_VertexBuffer;
             static sIndexBuffer* s_IndexBuffer;
         };

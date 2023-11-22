@@ -10,8 +10,10 @@ namespace xpe {
         void cAnimSystem::Update(cScene* scene, const cTime& dt)
         {
             scene->ForEach<sCSkeletonModel>([this, dt](sCSkeletonModel *component) {
-                if (component->Animation.Play) {
-                    AnimateSkeleton(component->Skeleton, component->Animation, dt);
+                for (auto& animation : component->Animations) {
+                    if (animation.Play) {
+                        AnimateSkeleton(component->Skeleton, animation, dt);
+                    }
                 }
             });
         }
@@ -21,10 +23,7 @@ namespace xpe {
             m_DeltaSeconds = dt.Seconds();
             m_CurrentSeconds += animation.TicksPerSecond * m_DeltaSeconds;
             m_CurrentSeconds = fmod(m_CurrentSeconds, animation.Duration);
-            auto* skeletonBuffer = cSkeletonManager::GetBuffer();
-            if (skeletonBuffer) {
-                UpdateSkeletonTransform(skeleton, *skeletonBuffer, animation.Root, glm::mat4(1.0f));
-            }
+            UpdateSkeletonTransform(skeleton, *cSkeletonManager::GetBuffer(), animation.Root, glm::mat4(1.0f));
         }
 
         void cAnimSystem::AnimateBone(sBone &bone, float time)

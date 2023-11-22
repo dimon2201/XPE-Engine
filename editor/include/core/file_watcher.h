@@ -13,11 +13,11 @@ namespace focus {
         struct sFileWatch final {
             bool DeleteNotified = false;
             std::filesystem::file_time_type Timestamp;
-            cEventBuffer<EventFileAdded> FileAddedEvents;
-            cEventBuffer<EventFileDeleted> FileDeletedEvents;
-            cEventBuffer<EventFileModified> FileModifiedEvents;
-            cEventBuffer<EventFileNewName> FileNewNameEvents;
-            cEventBuffer<EventFileOldName> FileOldNameEvents;
+            cEventBuffer<fEventFileAdded> FileAddedEvents;
+            cEventBuffer<fEventFileDeleted> FileDeletedEvents;
+            cEventBuffer<fEventFileModified> FileModifiedEvents;
+            cEventBuffer<fEventFileNewName> FileNewNameEvents;
+            cEventBuffer<fEventFileOldName> FileOldNameEvents;
         };
 
         class cFileWatcher : public cObject

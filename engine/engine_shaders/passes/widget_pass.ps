@@ -1,7 +1,7 @@
 #include ../types.shader
 
 SamplerState   WidgetSampler   : K_SLOT_WIDGET_SAMPLER;
-Texture2DArray WidgetAtlas     : K_SLOT_WIDGET_ATLAS;
+Texture2D      WidgetAtlas     : K_SLOT_WIDGET_ATLAS;
 
 struct VSOut
 {
@@ -25,7 +25,7 @@ PSOut ps_main(VSOut psIn)
     bool hasTexture = psIn.hasTexture;
 
     if (hasTexture) {
-        color *= WidgetAtlas.Sample(WidgetSampler, float3(uv, 0));
+        color *= WidgetAtlas.Sample(WidgetSampler, uv);
     }
 
     psOut.color = color;

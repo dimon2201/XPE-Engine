@@ -1,0 +1,35 @@
+#include ../../tonemap.shader
+#include ../../camera.shader
+#include msaa_sampling.shader
+
+struct VSOut
+{
+    float4 positionClip : SV_POSITION;
+    float2 uv : XPE_UV;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+Texture2DMS<float4> SceneTexture : register(t0);
+Texture2DMS<float4> AOTexture    : register(t1);
+Texture2D<float4>   UITexture    : register(t2);
+
+PSOut ps_main(VSOut psIn)
+{
+    float3 scene = SampleMSAATextureFloat3(SceneTexture, psIn.uv);
+    scene = TonemapExp(scene, CameraExposure);
+    float3 ao = SampleMSAATextureFloat3(AOTexture, psIn.uv);
+
+    uint uiWidth = 0;
+    uint uiHeight = 0;
+    UITexture.GetDimensions(uiWidth, uiHeight);
+    float3 ui = UITexture.Load(int3(float2(uiWidth, uiHeight) * psIn.uv, 0)).xyz;
+
+    PSOut psOut;
+    psOut.color = float4(scene, 1.0) * float4(ao, 1.0) + float4(ui, 1.0);
+
+    return psOut;
+}

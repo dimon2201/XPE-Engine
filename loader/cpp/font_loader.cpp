@@ -123,7 +123,9 @@ namespace xpe {
                     font->Atlas.Slot = 0;
                     font->Atlas.MostDetailedMip = 0;
                     font->Atlas.Layers.push_back({});
-                    font->Atlas.Layers[0].RowByteSize = font->Atlas.Width;
+                    font->Atlas.Layers[0].Width = font->Atlas.Width;
+                    font->Atlas.Layers[0].Height = font->Atlas.Height;
+                    font->Atlas.Layers[0].Format = font->Atlas.Format;
                     font->Atlas.Layers[0].Pixels = main_alloc(font->Atlas.Width * font->Atlas.Height);
                     memset(font->Atlas.Layers[0].Pixels, 0, font->Atlas.Width * font->Atlas.Height);
                     const sTextureLayer& layer = font->Atlas.Layers[0];

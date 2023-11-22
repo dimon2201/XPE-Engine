@@ -48,27 +48,6 @@ namespace xpe {
                 }
             });
 
-            scene->ForEach<sCModel>([this](sCModel *component) {
-                if (!component->Transparent) {
-                    auto &model = *component;
-                    DrawInstanced(
-                            model.PrimitiveTopology,
-                            model.VertexOffset,
-                            model.VertexCount,
-                            model.IndexOffset,
-                            model.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [](cEntity *entity, sRenderInstance &instance) {
-                                auto *materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
-                            }
-                    );
-                }
-            });
-
             scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
                 if (!component->Transparent) {
                     auto &model = *component;
@@ -76,7 +55,7 @@ namespace xpe {
                     DrawInstanced(
                             model.PrimitiveTopology,
                             model.VertexOffset,
-                            model.VertexCount,
+                            model.Vertices.size(),
                             model.IndexOffset,
                             model.Indices.size(),
                             component->Entity,
@@ -115,27 +94,6 @@ namespace xpe {
                 }
             });
 
-            scene->ForEach<sCModel>([this](sCModel *component) {
-                if (component->Transparent) {
-                    auto &model = *component;
-                    DrawInstanced(
-                            model.PrimitiveTopology,
-                            model.VertexOffset,
-                            model.VertexCount,
-                            model.IndexOffset,
-                            model.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [](cEntity *entity, sRenderInstance &instance) {
-                                auto *materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
-                            }
-                    );
-                }
-            });
-
             scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
                 if (component->Transparent) {
                     auto &model = *component;
@@ -143,7 +101,7 @@ namespace xpe {
                     DrawInstanced(
                             model.PrimitiveTopology,
                             model.VertexOffset,
-                            model.VertexCount,
+                            model.Vertices.size(),
                             model.IndexOffset,
                             model.Indices.size(),
                             component->Entity,
@@ -178,22 +136,6 @@ namespace xpe {
                 }
             });
 
-            scene->ForEach<sCModel>([this](sCModel *component) {
-                if (component->CastShadow) {
-                    auto &model = *component;
-                    DrawInstanced(
-                            model.PrimitiveTopology,
-                            model.VertexOffset,
-                            model.VertexCount,
-                            model.IndexOffset,
-                            model.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            {}
-                    );
-                }
-            });
-
             scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
                 if (component->CastShadow) {
                     auto &model = *component;
@@ -201,7 +143,7 @@ namespace xpe {
                     DrawInstanced(
                             model.PrimitiveTopology,
                             model.VertexOffset,
-                            model.VertexCount,
+                            model.Vertices.size(),
                             model.IndexOffset,
                             model.Indices.size(),
                             component->Entity,

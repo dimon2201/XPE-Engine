@@ -43,9 +43,6 @@ namespace xpe {
             inline sRenderTarget* GetUiRT() { return m_UiRenderTarget; }
 
             inline sTexture* GetSharedDepthTexture() { return m_SharedDepthTexture; }
-            inline sTexture* GetShadowAtlas() { return m_ShadowRenderTarget->DepthStencil; }
-
-            inline sSampler* GetShadowSampler() { return &m_ShadowSampler; }
 
         private:
             void InitManagers(sViewport& viewport, u32 sampleCount);
@@ -81,9 +78,6 @@ namespace xpe {
             sRenderTarget* m_UiRenderTarget;
 
             sTexture* m_SharedDepthTexture;
-
-            sSampler m_ShadowSampler;
-
         };
 
         template<typename T, typename... Args>
