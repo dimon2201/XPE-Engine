@@ -1,5 +1,6 @@
 #include <audio/audio_system.h>
 #include <audio/core/context.h>
+#include <audio/audio_manager.h>
 
 namespace xpe {
 
@@ -10,6 +11,7 @@ namespace xpe {
         cAudioSystem::cAudioSystem()
 		{
 			context::InitAudio();
+			m_VoiceData.reserve(k_DataSize);
 		}
 
         cAudioSystem::~cAudioSystem()
@@ -17,23 +19,26 @@ namespace xpe {
 			context::FreeAudio();
 		}
 
-		//void cAudioSystem::UpdateVoices(cScene* scene)
-		//{
-        //    scene->ForEach<sCVoice>([this](sCVoice *component) {
-		//
-        //        if (component->State != eAudioState::PLAYING) {
-        //            VoiceInit(component);
-        //        }
-		//
-        //        RecordVoice(component);
-		//
-        //        GetState(component->SourceID, component->State);
-        //        if (component->Frames > 0) {
-        //            UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(),
-        //                          component->Samples, k_SampleRate);
-        //        }
-        //    });
-		//}
+		void cAudioSystem::UpdateVoices(cScene* scene)
+		{
+            
+
+			
+			//scene->ForEach<sCVoice>([this](sCVoice *component) {
+			//
+            //    if (component->State != eAudioState::PLAYING) {
+            //        VoiceInit(component);
+            //    }
+			//
+            //    RecordVoice(component);
+			//
+            //    GetState(component->SourceID, component->State);
+            //    if (component->Frames > 0) {
+            //        UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(),
+            //                      component->Samples, k_SampleRate);
+            //    }
+            //});
+		}
 
 		//void cAudioSystem::RecordVoice(sCVoice* component)
 		//{
@@ -59,9 +64,19 @@ namespace xpe {
 		// It's a cycle. multimedia playback and update audio's states
 		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
 		{
-			//UpdateVoices(scene);
+			VoiceRecord();
+			UpdateVoices(scene);
 			UpdateAudios(scene);
 			UpdateStreamAudios(scene);
+		}
+
+		void cAudioSystem::VoiceRecord()
+		{
+			GetCaptureSamples(1, m_Samples);
+			if(m_Samples > k_DataSize) {
+				LogInfo("UploadSamplesToBuffer(m_VoiceData.data(), k_DataSize);");
+				UploadSamplesToBuffer(m_VoiceData.data(), k_DataSize);
+			}
 		}
 
 		void cAudioSystem::UpdateAudios(cScene* scene)
@@ -89,10 +104,14 @@ namespace xpe {
 
                 if (component->State == eAudioState::PLAYING) {
                     AudioUpdate(component);
-                } else if (component->State == eAudioState::INITIAL) {
+                } 
+				
+				else if (component->State == eAudioState::INITIAL) {
                     AudioSet(component);
                     component->State = eAudioState::PLAYING;
-                } else if (component->State == eAudioState::STOPPED) {
+                } 
+
+				else if (component->State == eAudioState::STOPPED) {
                     AudioStop(component);
                 }
 
@@ -187,11 +206,6 @@ namespace xpe {
 			if (GetError() == eAudioError::NONE) {
 
 				for (s32 i = 0; i < component->NumBuffers && component->CurrentFrame < component->File->Info.frames && processed > 0; ++i) {
-
-					//if (component->CurrentFrame >= component->File->Info.frames) {
-					//	component->State = eAudioState::STOPPED;
-					//	return;
-					//}
 
 					SetCurrentFrame(component->File->File, component->CurrentFrame);
 					component->CurrentFrame += component->BufferSamples;

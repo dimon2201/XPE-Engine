@@ -167,20 +167,20 @@ namespace xpe {
                 alcCaptureStart((ALCdevice*)RecordDevice);
             }
 
-            void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers)
-            {
-                RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2);
+            //void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers)
+            //{
+            //    RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2);
 
-                for (int i = 0; i < numBuffers; i++) {
-                    alBufferData(buffers[i], AL_FORMAT_MONO16, data, k_DataSize, k_SampleRate);
-                }
+            //    for (int i = 0; i < numBuffers; i++) {
+            //        alBufferData(buffers[i], AL_FORMAT_MONO16, data, k_DataSize, k_SampleRate);
+            //    }
 
-                alSourceQueueBuffers(sourceID, numBuffers, buffers);
+            //    alSourceQueueBuffers(sourceID, numBuffers, buffers);
 
-                PlaySource(sourceID);
+            //    PlaySource(sourceID);
 
-                alcCaptureStart((ALCdevice*) RecordDevice);
-            }
+            //    alcCaptureStart((ALCdevice*) RecordDevice);
+            //}
 
             void StopRecord()
             {

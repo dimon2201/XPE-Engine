@@ -5,7 +5,7 @@
 #include <rendering/skybox_manager.h>
 #include <rendering/camera_manager.h>
 
-#include <audio/listening_manager.h>
+#include <audio/audio_manager.h>
 
 #include <ecs/components.hpp>
 
@@ -462,6 +462,11 @@ public:
             m_CanvasTexture = m_RenderSystem->GetFinalRT()->Colors[0];
         }
 
+        if (key == eKey::V)
+        {
+            cAudioManager::VoiceRecord();
+        }
+
         MoveWidget(key);
     }
 
@@ -514,8 +519,8 @@ private:
     void UpdateListener() {
         auto& camera = *m_PerspectiveCamera;
 
-        cListeningManager::SetPosition(camera.Component.Position);
-        cListeningManager::SetOrientation(camera.Pitch, camera.Yaw, camera.Roll, camera.Component.Up);
+        cAudioManager::SetListenerPosition(camera.Component.Position);
+        cAudioManager::SetListenerOrientation(camera.Pitch, camera.Yaw, camera.Roll, camera.Component.Up);
     }
 
     void MoveLight(const eKey key)
