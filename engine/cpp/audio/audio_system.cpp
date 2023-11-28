@@ -11,7 +11,18 @@ namespace xpe {
         cAudioSystem::cAudioSystem()
 		{
 			context::InitAudio();
-			m_VoiceData.reserve(k_DataSize);
+			m_VoiceData = vector<signed char>(k_CaptureBufferSize * k_NumCaptureBuffers, 0);
+			 
+			//Test varriables to hear myself \/
+			GenSources(1, &m_MySourceID);
+
+			m_MyBuffersID = vector<u32>(k_NumCaptureBuffers);
+			GenBuffers(k_NumCaptureBuffers, m_MyBuffersID.data());
+
+			AddBuffer(m_MySourceID, m_MyBuffersID.data(), m_VoiceData.data(),
+				k_CaptureBufferSize, k_CaptureFrequency, k_NumCaptureBuffers);
+
+			PlaySource(m_MySourceID);
 		}
 
         cAudioSystem::~cAudioSystem()
@@ -19,64 +30,42 @@ namespace xpe {
 			context::FreeAudio();
 		}
 
-		void cAudioSystem::UpdateVoices(cScene* scene)
-		{
-            
-
-			
-			//scene->ForEach<sCVoice>([this](sCVoice *component) {
-			//
-            //    if (component->State != eAudioState::PLAYING) {
-            //        VoiceInit(component);
-            //    }
-			//
-            //    RecordVoice(component);
-			//
-            //    GetState(component->SourceID, component->State);
-            //    if (component->Frames > 0) {
-            //        UpdateBuffers(component->SourceID, component->BufferID.data(), component->Data.data(),
-            //                      component->Samples, k_SampleRate);
-            //    }
-            //});
-		}
-
-		//void cAudioSystem::RecordVoice(sCVoice* component)
-		//{
-		//	GetProcessed(component->SourceID, &component->Frames);
-		//
-		//	if (component->Frames > 0) {
-		//		GetCaptureSamples(1, component->Samples);
-		//		UploadSamplesToBuffer(component->Data.data(), component->Samples);
-		//	}
-		//}
-
-		//void cAudioSystem::VoiceInit(sCVoice* component)
-		//{
-		//	GenSources(1, &component->SourceID);
-
-		//	component->BufferID.reserve(component->NumBuffers);
-		//	GenBuffers(component->NumBuffers, component->BufferID.data());
-
-		//	component->Data.reserve(k_DataSize);
-		//	StartRecord(component->SourceID, component->BufferID.data(), component->State, component->Data.data(), component->NumBuffers);
-		//}
-
-		// It's a cycle. multimedia playback and update audio's states
 		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
 		{
-			VoiceRecord();
+			if (cAudioManager::s_Recording) {
+				VoiceRecord();
+			}
+
 			UpdateVoices(scene);
 			UpdateAudios(scene);
 			UpdateStreamAudios(scene);
 		}
 
-		void cAudioSystem::VoiceRecord()
+		void cAudioSystem::UpdateVoices(cScene* scene)
 		{
-			GetCaptureSamples(1, m_Samples);
-			if(m_Samples > k_DataSize) {
-				LogInfo("UploadSamplesToBuffer(m_VoiceData.data(), k_DataSize);");
-				UploadSamplesToBuffer(m_VoiceData.data(), k_DataSize);
+			// For testing voice recorder
+			{
+				eAudioState State;
+				s32 Processed;
+
+				GetState(m_MySourceID, State);
+				GetProcessed(m_MySourceID, &Processed);
+
+				if(Processed) {
+
+					UpdateBuffers(m_MySourceID, m_MyBuffersID.data(), m_VoiceData.data(),
+						k_CaptureBufferSize, k_CaptureFrequency);
+
+					if (State != eAudioState::PLAYING) {
+						PlaySource(m_MySourceID);
+					}
+				}
 			}
+
+			// There is no sense in doing this now, so I'll leave it for later
+			//scene->ForEach<sCVoice>([this](sCVoice *component) {
+			//		//Voices update 
+            //});
 		}
 
 		void cAudioSystem::UpdateAudios(cScene* scene)
@@ -116,6 +105,16 @@ namespace xpe {
                 }
 
             });
+		}
+
+		void cAudioSystem::VoiceRecord()
+		{
+			s32 samples;
+			GetCaptureSamples(1, samples);
+
+			if(samples > k_CaptureBufferSize) {
+				UploadSamplesToBuffer(m_VoiceData.data(), k_CaptureBufferSize);
+			}
 		}
 		
 		void cAudioSystem::AudioInit(sCAudio* component)
@@ -223,7 +222,7 @@ namespace xpe {
 
 		void cAudioSystem::AudioStop(sCAudio* component)
 		{
-			StopAudio(component->Source.Id);
+			StopSource(component->Source.Id);
 			UnbindBuffers(component->Source.Id);
 
 			DeleteSources(1, &component->Source.Id);
@@ -236,7 +235,7 @@ namespace xpe {
 
 		void cAudioSystem::AudioStop(sCStreamAudio* component)
 		{
-			StopAudio(component->Source.Id);
+			StopSource(component->Source.Id);
 			UnbindBuffers(component->Source.Id);
 
 			DeleteSources(1, &component->Source.Id);

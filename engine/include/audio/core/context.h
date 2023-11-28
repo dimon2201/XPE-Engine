@@ -13,10 +13,14 @@ namespace xpe {
 
             using namespace xpe::core;
 
-            const u32 k_SampleRate = 22050;
+            //const u32 k_CaptureFormat = AL_FORMAT_MONO16;
+            //const f32 k_CaptureDuration = 1;
+
             const u32 k_Channels = 1;
-            const f32 k_Duration = 0.02;
-            const u32 k_DataSize = static_cast<unsigned int>(k_Duration * k_SampleRate * k_Channels * 2);
+
+            const u32 k_NumCaptureBuffers = 4;
+            const u32 k_CaptureFrequency = 44100;
+            const u32 k_CaptureBufferSize = k_CaptureFrequency * k_Channels * sizeof(signed char);
 
             inline void* Context = nullptr;
             inline void* PlaybackDevice = nullptr;
@@ -34,19 +38,20 @@ namespace xpe {
             ENGINE_API void DeleteBuffers(u32 count, u32* bufferID);
 
             ENGINE_API void PlaySource(u32 sourceID);
-            ENGINE_API void StopAudio(u32 sourceID);
+            ENGINE_API void StopSource(u32 sourceID);
             ENGINE_API void bindBuffers(u32 sourceID, u32 bufferID);
             ENGINE_API void UnbindBuffers(u32 sourceID);
 
             ENGINE_API void UploadFileToBuffer(sAudioFile& file, u32 bufferID);
-            ENGINE_API void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed);
+            ENGINE_API void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, s16* data, s64 frames, s32 processed);
 
             ENGINE_API void StartRecord();
-            //ENGINE_API void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers);
             ENGINE_API void StopRecord();
             ENGINE_API void GetCaptureSamples(s32 size, s32& samples);
-            ENGINE_API void UploadSamplesToBuffer(short* data, s32 samples);
-            ENGINE_API void UpdateBuffers(u32 source, u32* buffer, short* data, s32 samples, s32 samplerate);
+            ENGINE_API void UploadSamplesToBuffer(signed char* data, s32 samples);
+            ENGINE_API void UpdateBuffers(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate);
+            ENGINE_API void InitCaptureBuffers(); // like AddBuffer
+            ENGINE_API void AddBuffer(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate, u32 num);
 
             ENGINE_API void SetListenerPosition(glm::vec3 position);
             ENGINE_API void SetListenerVelocity(glm::vec3 velocity);

@@ -6,6 +6,7 @@ namespace xpe {
 
 		class ENGINE_API cAudioManager final
 		{
+
 		public:
 			static void SetListenerPosition(glm::vec3 position);
 			static void SetListenerVelocity(glm::vec3 velocity);
@@ -18,9 +19,10 @@ namespace xpe {
 
 			static void VoiceRecord();
 
-		public:
+		private:
 			static bool s_Recording;
 
+			friend class cAudioSystem;
 		};
 	}
 }

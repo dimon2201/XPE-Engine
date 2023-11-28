@@ -34,21 +34,21 @@ namespace xpe {
             {
                 LogInfo("Audio initialize");
 
-                PlaybackDevice = alcOpenDevice(nullptr); // get payback device
+                PlaybackDevice = alcOpenDevice(nullptr);
                 if (!PlaybackDevice) {
                     LogError("Failed to get playback device");
                 }
 
-                Context = alcCreateContext((ALCdevice*) PlaybackDevice, nullptr);  // create context
+                Context = alcCreateContext((ALCdevice*) PlaybackDevice, nullptr);
                 if (!Context) {
                     LogError("Failed to set audio context");
                 }
 
-                if (!alcMakeContextCurrent((ALCcontext*) Context)) { // make context current
+                if (!alcMakeContextCurrent((ALCcontext*) Context)) {
                     LogError("Failed to make audio context current");
                 }
 
-                RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2); // get record device
+                RecordDevice = alcCaptureOpenDevice(nullptr, k_CaptureFrequency, AL_FORMAT_MONO16, k_CaptureBufferSize);
                 if (!RecordDevice) {
                     LogError("Failed to get record device");
                 }
@@ -107,7 +107,7 @@ namespace xpe {
                 }
             }
 
-            void StopAudio(u32 sourceID)
+            void StopSource(u32 sourceID)
             {
                 alSourceStop(sourceID);
             }
@@ -141,7 +141,7 @@ namespace xpe {
                 }
             }
 
-            void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed)
+            void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, s16* data, s64 frames, s32 processed)
             {
                 s64 chunk, size;
 
@@ -167,21 +167,6 @@ namespace xpe {
                 alcCaptureStart((ALCdevice*)RecordDevice);
             }
 
-            //void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers)
-            //{
-            //    RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2);
-
-            //    for (int i = 0; i < numBuffers; i++) {
-            //        alBufferData(buffers[i], AL_FORMAT_MONO16, data, k_DataSize, k_SampleRate);
-            //    }
-
-            //    alSourceQueueBuffers(sourceID, numBuffers, buffers);
-
-            //    PlaySource(sourceID);
-
-            //    alcCaptureStart((ALCdevice*) RecordDevice);
-            //}
-
             void StopRecord()
             {
                 alcCaptureStop((ALCdevice*) RecordDevice);
@@ -192,14 +177,23 @@ namespace xpe {
                 alcGetIntegerv((ALCdevice*) RecordDevice, ALC_CAPTURE_SAMPLES, size, &samples);
             }
 
-            void UploadSamplesToBuffer(short* data, s32 samples)
+            void UploadSamplesToBuffer(signed char* data, s32 samples)
             {
                 alcCaptureSamples((ALCdevice*) RecordDevice, data, samples);
             }
 
-            void UpdateBuffers(u32 source, u32* buffer, short* data, s32 samples, s32 samplerate) {
+            void UpdateBuffers(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate)
+            {
                 alSourceUnqueueBuffers(source, 1, buffer);
                 alBufferData(*buffer, AL_FORMAT_MONO16, data, samples * 2, samplerate);
+                alSourceQueueBuffers(source, 1, buffer);
+            }
+
+            void AddBuffer(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate, u32 num)
+            {
+                for(int i = 0; i < num; ++i)
+                    alBufferData(*buffer, AL_FORMAT_MONO16, data, samples, samplerate);
+
                 alSourceQueueBuffers(source, 1, buffer);
             }
 

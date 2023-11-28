@@ -19,13 +19,11 @@ namespace xpe {
 			void Update(cScene* scene, const cTime& dt) override final;
 
 		private:
-			void VoiceRecord();
-			//void RecordVoice(sCVoice* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
-			//void VoiceInit(sCVoice* component);
-
 			void UpdateVoices(cScene* scene);
 			void UpdateAudios(cScene* scene);
 			void UpdateStreamAudios(cScene* scene);
+
+			void VoiceRecord();
 
 			void AudioInit(sCAudio* component);
 			void AudioInit(sCStreamAudio* component);
@@ -40,10 +38,11 @@ namespace xpe {
 			void AudioStop(sCStreamAudio* component);
 
 		private:
-			u32 m_Counter = 0;
-			s32 m_Samples = 0;
+			vector<signed char> m_VoiceData;
 
-			vector<s16> m_VoiceData;
+			//Test varriables to hear myself \/
+			u32 m_MySourceID;
+			vector<u32> m_MyBuffersID;
 		};
 	}
 }
