@@ -21,23 +21,23 @@ namespace xpe {
 			void Update(cScene* scene, const cTime& dt) override final;
 
 			void UpdateVoices(cScene* scene);
-			void RecordVoice(sCVoice* component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
+			void RecordVoice(CVoice& component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
 
 		private:
 
-			void VoiceInit(sCVoice* component);
+			void VoiceInit(CVoice& component);
 
-			void AudioInit(sCAudio* component);
-			void AudioSet(sCAudio* component);
-			void AudioUpdate(sCAudio* component);
-			void AudioStop(sCAudio* component);
+			void AudioInit(CAudio& component);
+			void AudioSet(CAudio& component);
+			void AudioUpdate(CAudio& component);
+			void AudioStop(CAudio& component);
 
 			void UpdateAudios(cScene* scene);
 
-			void AudioInit(sCStreamAudio* component);
-			void AudioSet(sCStreamAudio* component);
-			void AudioUpdate(sCStreamAudio* component);
-			void AudioStop(sCStreamAudio* component);
+			void AudioInit(CStreamAudio& component);
+			void AudioSet(CStreamAudio& component);
+			void AudioUpdate(CStreamAudio& component);
+			void AudioStop(CStreamAudio& component);
 
 			void UpdateStreamAudios(cScene* scene);
 		};

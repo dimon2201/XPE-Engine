@@ -29,15 +29,15 @@ namespace xpe {
         {
             auto& skybox = cSkyboxManager::Get().Skybox;
             if (skybox.Texture) {
-                sGeometry& skyboxGeometry = skybox.Geometry;
+                sGeometryInfo geometryInfo = skybox.GeometryInfo;
                 sTexture& skyboxTexture = *skybox.Texture;
-                context::BindPrimitiveTopology(skyboxGeometry.PrimitiveTopology);
+                context::BindPrimitiveTopology(geometryInfo.PrimitiveTopology);
                 context::BindTexture(skyboxTexture);
                 context::DrawIndexed(
-                        skyboxGeometry.Indices.size(),
+                        geometryInfo.IndexCount,
                         1,
-                        skyboxGeometry.VertexOffset,
-                        skyboxGeometry.IndexOffset
+                        geometryInfo.VertexOffset,
+                        geometryInfo.IndexOffset
                 );
             }
         }

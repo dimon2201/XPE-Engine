@@ -80,7 +80,7 @@ namespace xpe {
             glm::vec4 BoneWeights = { 0, 0, 0, 0 };
         };
 
-        Json(
+        JSON(
             sVertex,
             Position,
             UV,

@@ -194,7 +194,7 @@ namespace xpe {
 
         void cShaderManager::AddTessControlStage(sShader* const shader, const string& id, const string &source) {
             sShaderStage stage = {id, eShaderType::TESS_CONTROL };
-            stage.EntryPoint = "tc_main";
+            stage.EntryPoint = "ts_main";
             stage.Profile = "tcs_5_0";
             stage.Source = source;
 
@@ -205,7 +205,7 @@ namespace xpe {
 
         void cShaderManager::AddTessEvalStage(sShader* const shader, const string& id, const string &source) {
             sShaderStage stage = {id, eShaderType::TESS_EVAL };
-            stage.EntryPoint = "te_main";
+            stage.EntryPoint = "ts_main";
             stage.Profile = "tes_5_0";
             stage.Source = source;
 

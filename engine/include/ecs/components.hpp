@@ -25,7 +25,47 @@ namespace xpe
         using namespace audio;
         using namespace physics;
 
-        struct ENGINE_API sCCamera : sComponent
+        JSON_ENUM(eSpace, {
+            { eSpace::SPACE_2D, "2D" },
+            { eSpace::SPACE_3D, "3D" },
+        })
+
+        struct ENGINE_API CSpace final
+        {
+            eSpace Space;
+            CSpace(const eSpace& space = {}) : Space(space) {}
+            CSpace(eSpace&& space) : Space(space) {}
+        };
+        JSON(CSpace, Space)
+
+        struct ENGINE_API CTag final
+        {
+            string Tag;
+            CTag(const string& tag = {}) : Tag(tag) {}
+            CTag(string&& tag) : Tag(tag) {}
+        };
+        JSON(CTag, Tag)
+
+        struct ENGINE_API CTransform : sTransform
+        {
+            CTransform(const sTransform& transform = {}) : sTransform(transform) {}
+            CTransform(sTransform&& transform) : sTransform(transform) {}
+        };
+        JSON(CTransform, Position, Rotation, Scale)
+
+        struct ENGINE_API CVisible { bool Visible = true; };
+        JSON(CVisible, Visible)
+
+        struct ENGINE_API COpaque { bool Opaque = true; };
+        JSON(COpaque, Opaque)
+
+        struct ENGINE_API CTransparent { bool Transparent = true; };
+        JSON(CTransparent, Transparent)
+
+        struct ENGINE_API CHasShadow { bool HasShadow = true; };
+        JSON(CHasShadow, HasShadow)
+
+        struct ENGINE_API CCamera : cJson
         {
             // Position.z = -1 is a default valid value for 2D orthographic view
             // If Position.z >= 0, 2D geometry will not be shown on screen
@@ -33,18 +73,18 @@ namespace xpe
             glm::vec3 Front = { 0, 0, 0 };
             glm::vec3 Up = { 0, 1, 0 };
 
-            JsonClass(
-                sCCamera,
+            JSON_CLASS(
+                CCamera,
                 Position,
                 Front,
                 Up
             )
         };
 
-        struct ENGINE_API sCPerspectiveCamera : sCCamera, sPerspectiveMatrix
+        struct ENGINE_API CPerspectiveCamera : CCamera, sPerspectiveMatrix
         {
-            JsonClass(
-                sCPerspectiveCamera,
+            JSON_CLASS(
+                CPerspectiveCamera,
                 Position,
                 Front,
                 Up,
@@ -55,10 +95,10 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCOrthoCamera : sCCamera, sOrthoMatrix
+        struct ENGINE_API COrthoCamera : CCamera, sOrthoMatrix
         {
-            JsonClass(
-                sCOrthoCamera,
+            JSON_CLASS(
+                COrthoCamera,
                 Position,
                 Front,
                 Up,
@@ -71,13 +111,13 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCMaterial : sComponent, sMaterial
+        struct ENGINE_API CMaterial : cJson, sMaterial
         {
-            sCMaterial(const sMaterial& material) : sMaterial(material) {}
-            sCMaterial(sMaterial&& material) : sMaterial(material) {}
+            CMaterial(const sMaterial& material = {}) : sMaterial(material) {}
+            CMaterial(sMaterial&& material) : sMaterial(material) {}
 
-            JsonClass(
-                sCMaterial,
+            JSON_CLASS(
+                CMaterial,
                 Albedo,
                 EnableAlbedoMap,
                 EnableNormalMap,
@@ -96,13 +136,13 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCDirectionalLight : sComponent
+        struct ENGINE_API CDirectionalLight : cJson
         {
             glm::vec3 Color = { 1, 1, 1 };
             sOrthoMatrix Projection;
             sViewMatrix View;
 
-            sCDirectionalLight(const glm::vec3& position, const glm::vec3& color)
+            CDirectionalLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Color = color;
                 Projection.Left = -35.0f;
@@ -116,24 +156,24 @@ namespace xpe
                 View.Up = { 0, 1, 0 };
             }
 
-            JsonClass(
-                sCDirectionalLight,
+            JSON_CLASS(
+                CDirectionalLight,
                 Color,
                 Projection,
                 View
             )
         };
 
-        struct ENGINE_API sCPointLight : sComponent, sPointLightData
+        struct ENGINE_API CPointLight : cJson, sPointLightData
         {
-            sCPointLight(const glm::vec3& position, const glm::vec3& color)
+            CPointLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Position = position;
                 Color = color;
             }
 
-            JsonClass(
-                sCPointLight,
+            JSON_CLASS(
+                CPointLight,
                 Position,
                 Color,
                 Constant,
@@ -142,7 +182,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCSpotLight : sComponent
+        struct ENGINE_API CSpotLight : cJson
         {
             glm::vec3 Color;
             float Cutoff = 0.90f;
@@ -150,7 +190,7 @@ namespace xpe
             sPerspectiveMatrix Projection;
             sViewMatrix View;
 
-            sCSpotLight(
+            CSpotLight(
                     const glm::vec3& position = { 0, 0, 0 },
                     const glm::vec3& direction = { 0, 0, 0 },
                     const glm::vec3& color = { 1, 1, 1 }
@@ -165,8 +205,8 @@ namespace xpe
                 View.Up = { 0, 1, 0 };
             }
 
-            JsonClass(
-                sCSpotLight,
+            JSON_CLASS(
+                CSpotLight,
                 Color,
                 Cutoff,
                 Outer,
@@ -175,79 +215,81 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sRenderState
+        struct ENGINE_API CGeometry : sGeometry, cJson
         {
-            bool Transparent = false;    // switch to transparency, that will draw object in transparent passes
-            bool CastShadow = true;      // switch shadow casting, that will draw or not draw shadow of object
-        };
-        Json(sRenderState, Transparent, CastShadow)
+            CGeometry(const sGeometry& geometry = {}) : sGeometry(geometry) {}
+            CGeometry(sGeometry&& geometry) : sGeometry(geometry) {}
 
-        struct ENGINE_API sCGeometry : sComponent, sGeometry, sRenderState
-        {
-            vector<cEntity*> Entities;
-
-            sCGeometry(const sGeometry& geometry) : sGeometry(geometry) {}
-            sCGeometry(sGeometry&& geometry) : sGeometry(geometry) {}
-
-            JsonClass(
-                sCGeometry,
-                PrimitiveTopology,
-                VertexOffset,
-                IndexOffset,
+            JSON_CLASS(
+                CGeometry,
                 Vertices,
                 Indices
             )
         };
 
-        struct ENGINE_API sCSkeletonModel : sComponent, sGeometry, sRenderState
+        struct ENGINE_API CGeometryInfo : sGeometryInfo
         {
-            vector<cEntity*> Entities;
-            sSkeleton Skeleton;
+            CGeometryInfo(const sGeometryInfo& geometryInfo = {}) : sGeometryInfo(geometryInfo) {}
+            CGeometryInfo(sGeometryInfo&& geometryInfo) : sGeometryInfo(geometryInfo) {}
+        };
+
+        struct ENGINE_API CSkeleton : sSkeleton, cJson
+        {
+            CSkeleton(const sSkeleton& skeleton = {}) : sSkeleton(skeleton) {}
+            CSkeleton(sSkeleton&& skeleton) : sSkeleton(skeleton) {}
+
+            JSON_CLASS(
+                CSkeleton,
+                Bones
+            )
+        };
+
+        struct ENGINE_API CSkeletonInfo : sSkeletonInfo
+        {
+            CSkeletonInfo(const sSkeletonInfo& skeletonInfo = {}) : sSkeletonInfo(skeletonInfo) {}
+            CSkeletonInfo(sSkeletonInfo&& skeletonInfo) : sSkeletonInfo(skeletonInfo) {}
+        };
+
+        struct ENGINE_API CAnimation : cJson
+        {
             vector<sAnimation> Animations;
 
-            sCSkeletonModel(const sGeometry& geometry) : sGeometry(geometry) {}
-            sCSkeletonModel(sGeometry&& geometry) : sGeometry(geometry) {}
-
-            JsonClass(
-                sCSkeletonModel,
-                Skeleton,
-                Animations,
-                PrimitiveTopology,
-                Vertices,
-                Indices
+            JSON_CLASS(
+                CAnimation,
+                Animations
             )
         };
 
-        struct ENGINE_API sCListener : sComponent
+        struct ENGINE_API CListener : cJson
         {
             glm::vec3* Position;// = { 0.0f, 0.0f, 0.0f };
             glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
             glm::vec3 Up = { 0.0f, 1.0f, 0.0f };
             glm::vec3* Look;
 
-            JsonClass(
-                sCListener,
+            JSON_CLASS(
+                CListener,
                 Velocity,
                 Up
             )
         };
 
-        struct ENGINE_API sCAudio : sComponent
+        struct ENGINE_API CAudio : cJson
         {
             sAudioSource Source;
             eAudioState State = eAudioState::INITIAL;
             u32 BufferID = 0;
             sAudioFile* File = nullptr;
 
-            JsonClass(
-                sCAudio,
+            JSON_CLASS(
+                CAudio,
                 Source,
                 State,
                 BufferID
             )
         };
 
-        struct ENGINE_API sCStreamAudio : sComponent
+        struct ENGINE_API CStreamAudio : cJson
         {
             sAudioSource Source;
             eAudioState State = eAudioState::INITIAL;
@@ -261,8 +303,8 @@ namespace xpe
 
             sAudioFile* File = nullptr;
 
-            JsonClass(
-                sCStreamAudio,
+            JSON_CLASS(
+                CStreamAudio,
                 Source,
                 State,
                 NumBuffers,
@@ -272,7 +314,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCVoice : sComponent
+        struct ENGINE_API CVoice : cJson
         {
             u32 SourceID = 0;
 
@@ -288,8 +330,8 @@ namespace xpe
 
             vector<s16> Data;
 
-            JsonClass(
-                sCVoice,
+            JSON_CLASS(
+                CVoice,
                 SourceID,
                 State,
                 BufferID,
@@ -301,9 +343,9 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCPhysicsActor : sComponent, physics::sActor
+        struct ENGINE_API CPhysicsActor : cJson, physics::sActor
         {
-            sCPhysicsActor(physics::sActor* actor)
+            CPhysicsActor(physics::sActor* actor)
             {
                 Actor = actor->Actor;
                 Material = actor->Material;
@@ -318,8 +360,8 @@ namespace xpe
                 RestOffset = actor->RestOffset;
             }
 
-            JsonClass(
-                sCPhysicsActor,
+            JSON_CLASS(
+                CPhysicsActor,
                 ActorType,
                 ShapeDesc,
                 LinearVelocity,
@@ -331,31 +373,25 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API sCLabel : sComponent, sWidget
+        struct ENGINE_API CLabel : sWidget
         {
             sFont* Font = nullptr;
             string Text;
             glm::vec4 Color = { 1, 1, 1, 1 };
             bool FillFrame = true;
 
-            sCLabel(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 })
+            CLabel(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 })
             : Font(font), Text(text), Color(color) {}
 
-            XmlClass(
+            XML_CLASS(
                 "Label",
-                Space,
                 Text,
                 Color,
                 FillFrame
             )
-
-            JsonClass(
-                sCLabel,
-                Color
-            )
         };
 
-        struct ENGINE_API sCButton : sComponent, sWidget
+        struct ENGINE_API CButton : sWidget
         {
             typedef void (*fHovered)();
             typedef void (*fPressed)();
@@ -371,9 +407,8 @@ namespace xpe
             fHovered Hovered = nullptr;
             fPressed Pressed = nullptr;
 
-            XmlClass(
+            XML_CLASS(
                 "Button",
-                Space,
                 Color,
                 ColorHover,
                 ColorPressed,
@@ -381,34 +416,23 @@ namespace xpe
                 MousePressed,
                 FillFrame
             )
-
-            JsonClass(
-                sCButton,
-                Color
-            )
         };
 
-        struct ENGINE_API sCField : sComponent, sWidget
+        struct ENGINE_API CField : sWidget
         {
             sFont* Font = nullptr;
             string Text;
             glm::vec4 Color = { 1, 1, 1, 1 };
             bool FillFrame = true;
 
-            sCField(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 })
+            CField(sFont* font, const string& text = "", const glm::vec4& color = { 1, 1, 1, 1 })
             : Font(font), Text(text), Color(color) {}
 
-            XmlClass(
+            XML_CLASS(
                 "Field",
-                Space,
                 Text,
                 Color,
                 FillFrame
-            )
-
-            JsonClass(
-                sCField,
-                Color
             )
         };
 

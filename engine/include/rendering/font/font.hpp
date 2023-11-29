@@ -42,7 +42,7 @@ namespace xpe
             }
         };
 
-        Json(
+        JSON(
             sFont::sGlyph,
             Char,
             Width,
@@ -55,7 +55,7 @@ namespace xpe
             AtlasYOffset
         )
 
-        Json(
+        JSON(
             sFont,
             GlyphCount,
             GlyphSize,

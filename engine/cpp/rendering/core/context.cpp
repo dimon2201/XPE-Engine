@@ -271,11 +271,11 @@ namespace xpe {
                 }
             }
 
-            void CreatePipeline(sPipeline& pipeline)
+            void CreateVertexPipeline(sVertexPipeline& pipeline)
             {
                 if (pipeline.Shader == nullptr)
                 {
-                    LogError("Failed to create input layout. sShader does not exist.");
+                    LogError("Failed to create vertex pipeline. Shader does not exist.");
                     assert(false);
                     return;
                 }
@@ -290,14 +290,14 @@ namespace xpe {
 
                 if (vertexBlob == nullptr)
                 {
-                    LogError("Failed to create input layout. sShader has no sVertex stage.");
+                    LogError("Failed to create input layout. Shader has no vertex stage.");
                     assert(false);
                     return;
                 }
 
                 if (vertexBlob->ByteCode == nullptr || vertexBlob->ByteCodeSize == 0)
                 {
-                    LogError("Failed to create input layout. sVertex shader bytecode is empty.");
+                    LogError("Failed to create input layout. Vertex shader bytecode is empty.");
                     assert(false);
                     return;
                 }
@@ -309,7 +309,7 @@ namespace xpe {
                 CreateBlendMode(pipeline.Blending);
             }
 
-            void BindPipeline(const sPipeline& pipeline)
+            void BindVertexPipeline(const sVertexPipeline& pipeline)
             {
                 if (pipeline.Shader != nullptr) {
                     BindShader(*pipeline.Shader);
@@ -323,15 +323,39 @@ namespace xpe {
 
                 BindInputLayout(pipeline.InputLayout);
 
-                for (const auto* buffer : pipeline.VSBuffers) {
+                for (const auto* buffer : pipeline.VSListBuffers) {
                     if (buffer != nullptr) {
-                        BindVSBuffer(*buffer);
+                        BindListBufferVS(*buffer);
                     }
                 }
 
-                for (const auto* buffer : pipeline.PSBuffers) {
+                for (const auto* buffer : pipeline.VSItemBuffers) {
                     if (buffer != nullptr) {
-                        BindPSBuffer(*buffer);
+                        BindItemBufferVS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.GSListBuffers) {
+                    if (buffer != nullptr) {
+                        BindListBufferGS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.GSItemBuffers) {
+                    if (buffer != nullptr) {
+                        BindItemBufferGS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.PSListBuffers) {
+                    if (buffer != nullptr) {
+                        BindListBufferPS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.PSItemBuffers) {
+                    if (buffer != nullptr) {
+                        BindItemBufferPS(*buffer);
                     }
                 }
 
@@ -352,19 +376,43 @@ namespace xpe {
                 BindBlendMode(pipeline.Blending.State);
             }
 
-            void UnbindPipeline(const sPipeline &pipeline)
+            void UnbindVertexPipeline(const sVertexPipeline &pipeline)
             {
                 UnbindRenderTarget();
 
-                for (const auto* buffer : pipeline.VSBuffers) {
+                for (const auto* buffer : pipeline.VSListBuffers) {
                     if (buffer != nullptr) {
-                        UnbindVSBuffer(*buffer);
+                        UnbindListBufferVS(*buffer);
                     }
                 }
 
-                for (const auto* buffer : pipeline.PSBuffers) {
+                for (const auto* buffer : pipeline.VSItemBuffers) {
                     if (buffer != nullptr) {
-                        UnbindPSBuffer(*buffer);
+                        UnbindItemBufferVS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.GSListBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindListBufferGS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.GSItemBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindItemBufferGS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.PSListBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindListBufferPS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.PSItemBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindItemBufferPS(*buffer);
                     }
                 }
 
@@ -381,7 +429,7 @@ namespace xpe {
                 }
             }
 
-            void FreePipeline(sPipeline& pipeline)
+            void FreeVertexPipeline(sVertexPipeline& pipeline)
             {
                 FreeInputLayout(pipeline.InputLayout);
                 FreeRasterizer(pipeline.Rasterizer);
@@ -399,6 +447,84 @@ namespace xpe {
             {
                 BindRenderTarget(colorViews, depthView);
                 BindViewport(viewport);
+            }
+
+            void CreateComputePipeline(sComputePipeline &pipeline)
+            {
+                if (pipeline.Shader == nullptr)
+                {
+                    LogError("Failed to create compute pipeline. Shader does not exist.");
+                    assert(false);
+                    return;
+                }
+            }
+
+            void BindComputePipeline(const sComputePipeline &pipeline)
+            {
+                if (pipeline.Shader != nullptr) {
+                    BindShader(*pipeline.Shader);
+                }
+
+                if (pipeline.RenderTarget != nullptr) {
+                    BindRenderTarget(pipeline.RenderTarget->ColorViews, pipeline.RenderTarget->DepthStencilView);
+                }
+
+                for (const auto* buffer : pipeline.CSListBuffers) {
+                    if (buffer != nullptr) {
+                        BindListBufferCS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.CSItemBuffers) {
+                    if (buffer != nullptr) {
+                        BindItemBufferCS(*buffer);
+                    }
+                }
+
+                for (const auto* texture : pipeline.Textures) {
+                    if (texture != nullptr) {
+                        BindTexture(*texture);
+                    }
+                }
+
+                for (const auto* sampler : pipeline.Samplers) {
+                    if (sampler != nullptr) {
+                        BindSampler(*sampler);
+                    }
+                }
+            }
+
+            void UnbindComputePipeline(const sComputePipeline &pipeline)
+            {
+                UnbindRenderTarget();
+
+                for (const auto* buffer : pipeline.CSListBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindListBufferCS(*buffer);
+                    }
+                }
+
+                for (const auto* buffer : pipeline.CSItemBuffers) {
+                    if (buffer != nullptr) {
+                        UnbindItemBufferCS(*buffer);
+                    }
+                }
+
+                for (const auto* texture : pipeline.Textures) {
+                    if (texture != nullptr) {
+                        UnbindTexture(*texture);
+                    }
+                }
+
+                for (const auto* sampler : pipeline.Samplers) {
+                    if (sampler != nullptr) {
+                        UnbindSampler(*sampler);
+                    }
+                }
+            }
+
+            void FreeComputePipeline(sComputePipeline &pipeline)
+            {
             }
 
         }

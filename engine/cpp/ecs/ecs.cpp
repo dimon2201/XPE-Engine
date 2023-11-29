@@ -1,98 +1,38 @@
 #include <ecs/components.hpp>
 #include <ecs/ecs.h>
 
-
 namespace xpe {
 
     namespace ecs {
 
-        sComponent* sComponentStorage::GetAddress(usize componentSize, cEntity* entity)
+        EntityID cScene::CreateEntity()
         {
-            usize size = m_Components.size();
-            usize step = componentSize;
-
-            for (usize i = 0 ; i < size ; i += step)
-            {
-                auto* component = reinterpret_cast<sComponent*>(&m_Components[i]);
-                if (component->Entity == entity) {
-                    return component;
-                }
-            }
-
-            return nullptr;
+            return m_Registry.create();
         }
 
-        void sComponentStorage::Clear()
+        void cScene::RemoveEntity(EntityID entityId)
         {
-            m_Components.clear();
+            m_Registry.destroy(entityId);
         }
 
-        cEntity::cEntity(const string& tag, cScene* scene) : m_Scene(scene)
+        bool cScene::IsValidEntity(EntityID entityId)
         {
-            m_Tag = tag;
-            if (m_Scene != nullptr) {
-                m_Scene->AddEntity(tag, this);
-            }
+            return m_Registry.valid(entityId);
         }
 
-        cEntity::~cEntity()
+        void cScene::ClearEntities()
         {
-            if (m_Scene != nullptr) {
-                m_Scene->RemoveEntity(m_Tag);
-                m_Scene->RemoveComponents(this);
-            }
+            m_Registry.clear();
         }
 
-        void cEntity::RemoveAll()
+        unordered_map<ComponentID, cJson*>& cScene::GetJsons(EntityID entityId)
         {
-            m_Scene->RemoveComponents(this);
+            return m_Jsons[entityId];
         }
 
-        void cScene::AddEntity(const string& tag, cEntity* entity)
+        unordered_map<ComponentID, cXml*>& cScene::GetXmls(EntityID entityId)
         {
-            m_Entities.insert({ tag, entity });
-        }
-
-        void cScene::RemoveEntity(const string& tag)
-        {
-            m_Entities.erase(tag);
-        }
-
-        void cScene::RenameEntity(const string &oldTag, const string& newTag)
-        {
-            m_Entities.insert({ newTag, m_Entities[oldTag] });
-            m_Entities.erase(oldTag);
-        }
-
-        cEntity* cScene::GetEntity(const string &tag)
-        {
-            auto it = m_Entities.find(tag);
-
-            if (it != m_Entities.end()) {
-                return it->second;
-            }
-
-            return nullptr;
-        }
-
-        cScene::~cScene()
-        {
-            m_Entities.clear();
-            m_ComponentAddresses.clear();
-            m_ComponentStorages.clear();
-        }
-
-        void cScene::InvalidateComponentAddresses(ComponentType type, usize componentSize)
-        {
-            for (const auto& entity : m_Entities)
-            {
-                m_ComponentAddresses[entity.second][type] = m_ComponentStorages[type].GetAddress(componentSize, entity.second);
-            }
-        }
-
-        void cScene::RemoveComponents(cEntity* entity)
-        {
-            m_ComponentAddresses.erase(entity);
+            return m_Xmls[entityId];
         }
 
         void cScene::ToJson(json &root)
@@ -103,19 +43,14 @@ namespace xpe {
         {
         }
 
-        void cEntity::SetTransform(const sTransform &transform)
+        cEntity::cEntity(const string& tag, cScene* scene) : m_Scene(scene)
         {
-            m_Transform = transform;
-
-            sCPhysicsActor* actor = Get<sCPhysicsActor>();
-            if (actor != nullptr)
-            {
-                physics::cPhysicsManager::SetActorPose(actor, &m_Transform);
+            if (m_Scene != nullptr) {
+                m_ID = m_Scene->CreateEntity();
+                Add<CTag>(tag);
+                Add<CTransform>();
+                Add<CVisible>();
             }
-
-            SetPosition(transform.Position);
-            SetRotation(transform.Rotation);
-            SetScale(transform.Scale);
         }
 
         void cEntity::UpdateXmlChildren()
@@ -126,60 +61,20 @@ namespace xpe {
             }
         }
 
-        void cEntity::SetPosition(const glm::vec3 &position)
+        void cEntity::SetTag(const string &tag)
         {
-            glm::vec3 diff = position - m_Transform.Position;
-            m_Transform.Position = position;
-            for (auto* child : Children) {
-                child->Move(diff);
-            }
-        }
-
-        void cEntity::SetRotation(const glm::vec3 &rotation)
-        {
-            glm::vec3 diff = rotation - m_Transform.Rotation;
-            m_Transform.Rotation = rotation;
-            for (auto* child : Children) {
-                child->Rotate(diff);
-            }
-        }
-
-        void cEntity::SetScale(const glm::vec3 &scale)
-        {
-            glm::vec3 diff = scale - m_Transform.Scale;
-            m_Transform.Scale = scale;
-            for (auto* child : Children) {
-                child->Scale(diff);
-            }
-        }
-
-        void cEntity::Move(const glm::vec3 &diff)
-        {
-            m_Transform.Position += diff;
-            for (auto* child : Children) {
-                child->Move(diff);
-            }
-        }
-
-        void cEntity::Rotate(const glm::vec3 &diff)
-        {
-            m_Transform.Rotation += diff;
-            for (auto* child : Children) {
-                child->Rotate(diff);
-            }
-        }
-
-        void cEntity::Scale(const glm::vec3 &diff)
-        {
-            m_Transform.Scale += diff;
-            for (auto* child : Children) {
-                child->Scale(diff);
-            }
+            Add<CTag>(tag);
         }
 
         void cEntity::SetVisible(bool visible)
         {
-            m_Visible = visible;
+            if (visible) {
+                Add<CVisible>();
+            }
+            else {
+                Remove<CVisible>();
+            }
+
             for (auto* child : Children) {
                 child->SetVisible(visible);
             }
@@ -187,28 +82,201 @@ namespace xpe {
 
         void cEntity::SetSpace(eSpace space)
         {
-            m_Space = space;
+            Add<CSpace>(space);
             for (auto* child : Children) {
                 child->SetSpace(space);
             }
         }
 
+        void cEntity::SetTransparent(bool transparent)
+        {
+            if (transparent) {
+                Add<CTransparent>();
+            }
+            else {
+                Remove<CTransparent>();
+            }
+        }
+
+        void cEntity::SetOpaque(bool opaque)
+        {
+            if (opaque) {
+                Add<COpaque>();
+            }
+            else {
+                Remove<COpaque>();
+            }
+        }
+
+        void cEntity::SetShadow(bool shadow)
+        {
+            if (shadow) {
+                Add<CHasShadow>();
+            }
+            else {
+                Remove<CHasShadow>();
+            }
+        }
+
+        const string &cEntity::GetTag()
+        {
+            return Get<CTag>().Tag;
+        }
+
+        sTransform& cEntity::GetTransform()
+        {
+            return Get<CTransform>();
+        }
+
+        glm::vec3& cEntity::GetPosition()
+        {
+            return Get<CTransform>().Position;
+        }
+
+        glm::vec3 &cEntity::GetRotation()
+        {
+            return Get<CTransform>().Rotation;
+        }
+
+        glm::vec3 &cEntity::GetScale()
+        {
+            return Get<CTransform>().Scale;
+        }
+
+        bool cEntity::IsVisible()
+        {
+            return HasAny<CVisible>();
+        }
+
+        eSpace cEntity::GetSpace()
+        {
+            return Get<CSpace>().Space;
+        }
+
+        bool cEntity::IsTransparent()
+        {
+            return HasAny<CTransparent>();
+        }
+
+        bool cEntity::IsOpaque()
+        {
+            return HasAny<COpaque>();
+        }
+
+        bool cEntity::HasShadow()
+        {
+            return HasAny<CHasShadow>();
+        }
+
         xml cEntity::ToXml(xml &root)
         {
-            cXml* component = HasAs<cXml>();
-            if (component != nullptr) {
-                return component->ToXml(root);
+            auto& xmls = m_Scene->GetXmls(m_ID);
+            xml newRoot;
+            for (auto& _xml : xmls)
+            {
+                newRoot = _xml.second->ToXml(root);
             }
-            return root;
+            return newRoot;
         }
 
         xml cEntity::FromXml(xml &root)
         {
-            cXml* component = HasAs<cXml>();
-            if (component != nullptr) {
-                return component->FromXml(root);
+            auto& xmls = m_Scene->GetXmls(m_ID);
+            xml newRoot;
+            for (auto& _xml : xmls)
+            {
+                newRoot = _xml.second->FromXml(root);
             }
-            return root;
+            return newRoot;
+        }
+
+        void cEntity::ToJson(json &root)
+        {
+            auto& jsons = m_Scene->GetJsons(m_ID);
+            for (auto& _json : jsons)
+            {
+                _json.second->ToJson(root);
+            }
+        }
+
+        void cEntity::FromJson(json &root)
+        {
+            auto& jsons = m_Scene->GetJsons(m_ID);
+            for (auto& _json : jsons)
+            {
+                _json.second->FromJson(root);
+            }
+        }
+
+        void cEntity::SetTransformImpl(const sTransform& _transform)
+        {
+            auto& transform = Add<CTransform>(_transform);
+
+            if (HasAny<CPhysicsActor>())
+            {
+                physics::cPhysicsManager::SetActorPose(Get<CPhysicsActor>(), transform);
+            }
+
+            SetPosition(transform.Position);
+            SetRotation(transform.Rotation);
+            SetScale(transform.Scale);
+        }
+
+        void cEntity::SetPositionImpl(const glm::vec3 &position)
+        {
+            auto& transform = Get<CTransform>();
+            glm::vec3 diff = position - transform.Position;
+            transform.Position = position;
+            for (auto* child : Children) {
+                child->Move(diff);
+            }
+        }
+
+        void cEntity::SetRotationImpl(const glm::vec3 &rotation)
+        {
+            auto& transform = Get<CTransform>();
+            glm::vec3 diff = rotation - transform.Rotation;
+            transform.Rotation = rotation;
+            for (auto* child : Children) {
+                child->Rotate(diff);
+            }
+        }
+
+        void cEntity::SetScaleImpl(const glm::vec3 &scale)
+        {
+            auto& transform = Get<CTransform>();
+            glm::vec3 diff = scale - transform.Scale;
+            transform.Scale = scale;
+            for (auto* child : Children) {
+                child->Scale(diff);
+            }
+        }
+
+        void cEntity::MoveImpl(const glm::vec3 &diff)
+        {
+            auto& transform = Get<CTransform>();
+            transform.Position += diff;
+            for (auto* child : Children) {
+                child->Move(diff);
+            }
+        }
+
+        void cEntity::RotateImpl(const glm::vec3 &diff)
+        {
+            auto& transform = Get<CTransform>();
+            transform.Rotation += diff;
+            for (auto* child : Children) {
+                child->Rotate(diff);
+            }
+        }
+
+        void cEntity::ScaleImpl(const glm::vec3 &diff)
+        {
+            auto& transform = Get<CTransform>();
+            transform.Scale += diff;
+            for (auto* child : Children) {
+                child->Scale(diff);
+            }
         }
 
     }

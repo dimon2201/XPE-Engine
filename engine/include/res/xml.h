@@ -1,7 +1,6 @@
 #pragma once
 
-#include <stl/string.h>
-#include <stl/vector.h>
+#include <stl/stl.h>
 
 #include <pugixml.hpp>
 
@@ -141,7 +140,7 @@ using xml = pugi::xml_node;
 #define XML_SET_VALUE(v1) xpe::res::SetXmlValue(root, #v1, value.v1);
 #define XML_GET_VALUE(v1) xpe::res::GetXmlValue(root, #v1, value.v1);
 
-#define Xml(type, ...)                          \
+#define XML(type, ...)                          \
                                                 \
 inline void SetXmlValue(xml& root, const char* name, type& value) { \
     XML_EXPAND(XML_PASTE(XML_SET_VALUE, __VA_ARGS__))\
@@ -154,7 +153,7 @@ inline void GetXmlValue(xml& root, const char* name, type& value) { \
 #define XML_TO(v1) SetXmlValue(child, #v1, v1);
 #define XML_FROM(v1) GetXmlValue(child, #v1, v1);
 
-#define XmlClass(name, ...)                      \
+#define XML_CLASS(name, ...)                      \
                                                  \
 xml ToXml(xml& root) override {                 \
     auto child = root.append_child(name);         \
@@ -168,7 +167,7 @@ xml FromXml(xml& root) override {               \
     return child;                                                 \
 }                                                \
 
-#define XmlEnum(Enum, ...) \
+#define XML_ENUM(Enum, ...) \
                            \
     inline void SetXmlValue(xml& root, const char* name, Enum& e)                                  \
     {                                                                                           \
@@ -224,6 +223,7 @@ namespace xpe {
 
         // Primitives
         ENGINE_API void SetXmlValue(xml& root, const char* name, bool& value);
+        ENGINE_API void SetXmlValue(xml& root, const char* name, u8& value);
         ENGINE_API void SetXmlValue(xml& root, const char* name, int& value);
         ENGINE_API void SetXmlValue(xml& root, const char* name, u32& value);
         ENGINE_API void SetXmlValue(xml& root, const char* name, float& value);
@@ -242,6 +242,7 @@ namespace xpe {
 
         // Primitives
         ENGINE_API void GetXmlValue(xml& root, const char* name, bool& value);
+        ENGINE_API void GetXmlValue(xml& root, const char* name, u8& value);
         ENGINE_API void GetXmlValue(xml& root, const char* name, int& value);
         ENGINE_API void GetXmlValue(xml& root, const char* name, u32& value);
         ENGINE_API void GetXmlValue(xml& root, const char* name, float& value);
@@ -266,8 +267,7 @@ namespace xpe {
 namespace xpe::core
 {
 
-    XmlEnum(eKey, {
-
+    XML_ENUM(eKey, {
         { eKey::None, "None" },
         { eKey::Space, "Space" },
         { eKey::Apostrophe, "Apostrophe" },
@@ -275,7 +275,6 @@ namespace xpe::core
         { eKey::Minus, "Minus" },
         { eKey::Period, "Period" },
         { eKey::Slash, "Slash" },
-
         { eKey::D0, "D0" },
         { eKey::D1, "D1" },
         { eKey::D2, "D2" },
@@ -286,10 +285,8 @@ namespace xpe::core
         { eKey::D7, "D7" },
         { eKey::D8, "D8" },
         { eKey::D9, "D9" },
-
         { eKey::Semicolon, "Semicolon" },
         { eKey::Equal, "Equal" },
-
         { eKey::A, "A" },
         { eKey::B, "B" },
         { eKey::C, "C" },
@@ -316,40 +313,31 @@ namespace xpe::core
         { eKey::X, "X" },
         { eKey::Y, "Y" },
         { eKey::Z, "Z" },
-
         { eKey::LeftBracket, "LeftBracket" },
         { eKey::Backslash, "Backslash" },
         { eKey::RightBracket, "RightBracket" },
         { eKey::GraveAccent, "GraveAccent" },
-
         { eKey::World1, "World1" },
         { eKey::World2, "World2" },
-
         { eKey::Esc, "Esc" },
         { eKey::Enter, "Enter" },
         { eKey::Tab, "Tab" },
         { eKey::Backspace, "Backspace" },
-
         { eKey::Insert, "Insert" },
         { eKey::Delete, "Delete" },
-
         { eKey::Right, "Right" },
         { eKey::Left, "Left" },
         { eKey::Down, "Down" },
         { eKey::Up, "Up" },
-
         { eKey::PageUp, "PageUp" },
         { eKey::PageDown, "PageDown" },
         { eKey::Home, "Home" },
         { eKey::End, "End" },
-
         { eKey::CapsLock, "CapsLock" },
         { eKey::ScrollLock, "ScrollLock" },
         { eKey::NumLock, "NumLock" },
-
         { eKey::PrintScreen, "PrintScreen" },
         { eKey::Pause, "Pause" },
-
         { eKey::F1, "F1" },
         { eKey::F2, "F2" },
         { eKey::F3, "F3" },
@@ -375,7 +363,6 @@ namespace xpe::core
         { eKey::F23, "F23" },
         { eKey::F24, "F24" },
         { eKey::F25, "F25" },
-
         { eKey::KP0, "KP0" },
         { eKey::KP1, "KP1" },
         { eKey::KP2, "KP2" },
@@ -393,7 +380,6 @@ namespace xpe::core
         { eKey::KPAdd, "KPAdd" },
         { eKey::KPEnter, "KPEnter" },
         { eKey::KPEqual, "KPEqual" },
-
         { eKey::LeftShift, "LeftShift" },
         { eKey::LeftControl, "LeftControl" },
         { eKey::LeftAlt, "LeftAlt" },
@@ -402,7 +388,6 @@ namespace xpe::core
         { eKey::RightControl, "RightControl" },
         { eKey::RightAlt, "RightAlt" },
         { eKey::RightSuper, "RightSuper" },
-
         { eKey::Menu, "Menu" },
     })
 
@@ -412,10 +397,8 @@ namespace xpe::core
 namespace xpe::core
 {
 
-    XmlEnum(eMouse, {
-
+    XML_ENUM(eMouse, {
         { eMouse::NoneButton, "NoneButton" },
-
         { eMouse::Button0, "Button0" },
         { eMouse::Button1, "Button1" },
         { eMouse::Button2, "Button2" },
@@ -424,12 +407,10 @@ namespace xpe::core
         { eMouse::Button5, "Button5" },
         { eMouse::Button6, "Button6" },
         { eMouse::Button7, "Button7" },
-
         { eMouse::ButtonLast, "ButtonLast" },
         { eMouse::ButtonLeft, "ButtonLeft" },
         { eMouse::ButtonRight, "ButtonRight" },
         { eMouse::ButtonMiddle, "ButtonMiddle" },
-
     })
 
 } // namespace xpe::core
@@ -438,48 +419,37 @@ namespace xpe::core
 namespace xpe::core
 {
 
-    XmlEnum(eGamepadButton, {
-
+    XML_ENUM(eGamepadButton, {
         { eGamepadButton::Pad_A, "Pad_A" },
         { eGamepadButton::Pad_B, "Pad_B" },
         { eGamepadButton::Pad_X, "Pad_X" },
         { eGamepadButton::Pad_Y, "Pad_Y" },
-
         { eGamepadButton::Pad_LeftBumper, "Pad_LeftBumper" },
         { eGamepadButton::Pad_RightBumper, "Pad_RightBumper" },
-
         { eGamepadButton::Pad_Back, "Pad_Back" },
         { eGamepadButton::Pad_Start, "Pad_Start" },
         { eGamepadButton::Pad_Guide, "Pad_Guide" },
-
         { eGamepadButton::Pad_LeftThumb, "Pad_LeftThumb" },
         { eGamepadButton::Pad_RightThumb, "Pad_RightThumb" },
-
         { eGamepadButton::Pad_Up, "Pad_Up" },
         { eGamepadButton::Pad_Right, "Pad_Right" },
         { eGamepadButton::Pad_Down, "Pad_Down" },
         { eGamepadButton::Pad_Left, "Pad_Left" },
-
         { eGamepadButton::Pad_Last, "Pad_Last" },
-
         { eGamepadButton::Pad_Cross, "Pad_Cross" },
         { eGamepadButton::Pad_Circle, "Pad_Circle" },
         { eGamepadButton::Pad_Square, "Pad_Square" },
         { eGamepadButton::Pad_Triangle, "Pad_Triangle" },
     })
 
-    XmlEnum(eGamepadAxis, {
-
+    XML_ENUM(eGamepadAxis, {
         { eGamepadAxis::Axis_LeftX, "Axis_LeftX" },
         { eGamepadAxis::Axis_LeftY, "Axis_LeftY" },
         { eGamepadAxis::Axis_RightX, "Axis_RightX" },
         { eGamepadAxis::Axis_RightY, "Axis_RightY" },
-
         { eGamepadAxis::Axis_LeftTrigger, "Axis_LeftTrigger" },
         { eGamepadAxis::Axis_RightTrigger, "Axis_RightTrigger" },
-
         { eGamepadAxis::Axis_Last, "Axis_Last" }
-
     })
 
 } // namespace xpe::core
@@ -487,7 +457,7 @@ namespace xpe::core
 // XML for Spaces
 namespace xpe::core {
 
-    XmlEnum(eSpace, {
+    XML_ENUM(eSpace, {
         { eSpace::SPACE_2D, "2D" },
         { eSpace::SPACE_3D, "3D" }
     })

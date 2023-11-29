@@ -1,4 +1,5 @@
 #include <rendering/passes/instancing_pass.h>
+#include <ecs/components.hpp>
 
 namespace xpe {
 
@@ -13,83 +14,24 @@ namespace xpe {
         }
 
         void cInstancingPass::DrawInstanced(
-                ePrimitiveTopology primitiveTopology,
-                usize vertexOffset,
-                usize vertexCount,
-                usize indexOffset,
-                usize indexCount,
-                cEntity* entity,
-                const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback
+                cScene* scene,
+                const sGeometryInfo& geometryInfo,
+                const std::function<void(EntityID entityId, sRenderInstance&)>& callback
         ) {
-            if (entities.empty()) {
-                DrawSingle(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entity, callback);
-            } else {
-                DrawMultiple(primitiveTopology, vertexOffset, vertexCount, indexOffset, indexCount, entities, callback);
-            }
-        }
-
-        void cInstancingPass::DrawSingle(
-                ePrimitiveTopology primitiveTopology,
-                usize vertexOffset,
-                usize vertexCount,
-                usize indexOffset,
-                usize indexCount,
-                cEntity* entity,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback
-        ) {
-            if (!entity->IsVisible())
-                return;
-
-            m_InstanceBuffer.Clear();
-
-            sRenderInstance instance;
-            instance.ModelMatrix = cMathManager::UpdateModelMatrix(entity->GetTransform());
-            instance.NormalMatrix = cMathManager::UpdateNormalMatrix(instance.ModelMatrix);
-            if (callback) {
-                callback(entity, instance);
-            }
-
-            m_InstanceBuffer.Add(instance);
-            m_InstanceBuffer.Flush();
-
-            context::BindPrimitiveTopology(primitiveTopology);
-            context::BindVSBuffer(m_InstanceBuffer);
-
-            if (indexCount == 0) {
-                context::DrawVertexed(vertexCount, 1, vertexOffset);
-            } else {
-                context::DrawIndexed(indexCount, 1, vertexOffset, indexOffset);
-            }
-
-            context::UnbindVSBuffer(m_InstanceBuffer);
-        }
-
-        void cInstancingPass::DrawMultiple(
-                ePrimitiveTopology primitiveTopology,
-                usize vertexOffset,
-                usize vertexCount,
-                usize indexOffset,
-                usize indexCount,
-                const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback
-        ) {
-            usize entityCount = entities.size();
+            usize entityCount = geometryInfo.Entities.size();
             usize instanceCount = 0;
             m_InstanceBuffer.Clear();
             for (usize i = 0 ; i < entityCount ; i++)
             {
-                auto& entity = entities[i];
+                auto& entity = geometryInfo.Entities[i];
 
-                if (!entity->IsVisible())
+                if (!scene->HasAnyComponent<CVisible>(entity))
                     continue;
 
                 sRenderInstance instance;
-                instance.ModelMatrix = cMathManager::UpdateModelMatrix(entity->GetTransform());
+                instance.ModelMatrix = cMathManager::UpdateModelMatrix(scene->GetComponent<CTransform>(entity));
                 instance.NormalMatrix = cMathManager::UpdateNormalMatrix(instance.ModelMatrix);
-                if (callback) {
-                    callback(entity, instance);
-                }
+                callback(entity, instance);
 
                 m_InstanceBuffer.Add(instance);
 
@@ -97,16 +39,16 @@ namespace xpe {
             }
             m_InstanceBuffer.Flush();
 
-            context::BindPrimitiveTopology(primitiveTopology);
-            context::BindVSBuffer(m_InstanceBuffer);
+            context::BindPrimitiveTopology(geometryInfo.PrimitiveTopology);
+            context::BindListBufferVS(m_InstanceBuffer);
 
-            if (indexCount == 0) {
-                context::DrawVertexed(vertexCount, instanceCount, vertexOffset);
+            if (geometryInfo.IndexCount == 0) {
+                context::DrawVertexed(geometryInfo.VertexCount, instanceCount, geometryInfo.VertexOffset);
             } else {
-                context::DrawIndexed(indexCount, instanceCount, vertexOffset, indexOffset);
+                context::DrawIndexed(geometryInfo.IndexCount, instanceCount, geometryInfo.VertexOffset, geometryInfo.IndexOffset);
             }
 
-            context::UnbindVSBuffer(m_InstanceBuffer);
+            context::UnbindListBufferVS(m_InstanceBuffer);
         }
 
     }

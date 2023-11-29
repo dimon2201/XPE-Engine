@@ -6,9 +6,9 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API sTransform : public cObject, public sModelMatrix {};
-        Json(sTransform, Position, Rotation, Scale)
-        Xml(sTransform, Position, Rotation, Scale)
+        struct ENGINE_API sTransform : public sModelMatrix {};
+        JSON(sTransform, Position, Rotation, Scale)
+        XML(sTransform, Position, Rotation, Scale)
 
     }
 

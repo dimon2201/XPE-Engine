@@ -6,7 +6,7 @@ namespace xpe {
 
     namespace render {
 
-        JsonEnum(ePrimitiveTopology, {
+        JSON_ENUM(ePrimitiveTopology, {
             { ePrimitiveTopology::DEFAULT, "DEFAULT" },
             { ePrimitiveTopology::TRIANGLE_LIST, "TRIANGLE_LIST" },
             { ePrimitiveTopology::TRIANGLE_STRIP, "TRIANGLE_STRIP" },
@@ -15,15 +15,13 @@ namespace xpe {
             { ePrimitiveTopology::LINE_STRIP, "LINE_STRIP" },
         })
 
-        Json(sVertexBuffer, List)
-        Json(sIndexBuffer, List)
+        JSON(sVertexBuffer, List)
+        JSON(sIndexBuffer, List)
 
-        Json(
+        JSON(
             sGeometry,
             PrimitiveTopology,
-            VertexOffset,
             Vertices,
-            IndexOffset,
             Indices
         )
 
@@ -57,12 +55,12 @@ namespace xpe {
         struct ENGINE_API sModel : public sGeometry {
             vector<sGeometry> Geometries;
 
-            sGeometry Bake();
+            sGeometry Merge();
 
             inline sGeometry& operator [](u32 i) { return Geometries[i]; }
         };
 
-        Json(sModel, PrimitiveTopology, Geometries, VertexOffset, IndexOffset, Indices)
+        JSON(sModel, PrimitiveTopology, Geometries, Indices)
 
         template<typename T>
         static void InitUV(vector<T>& vertices)

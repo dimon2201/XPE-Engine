@@ -13,21 +13,23 @@ namespace xpe {
         {
             enum eType
             {
-                BUFFER = 0,
-                TEXTURE = 1,
-                SAMPLER = 2,
-                SHADER = 3,
-                RASTERIZER = 4,
-                DEPTH_STENCIL = 5,
-                BLENDING = 6,
-                RENDER_TARGET = 7,
+                SHADER = 0,
+                RENDER_TARGET = 1,
+                LIST_BUFFER = 2,
+                ITEM_BUFFER = 3,
+                TEXTURE = 4,
+                SAMPLER = 5,
+                RASTERIZER = 6,
+                DEPTH_STENCIL = 7,
+                BLENDING = 8
             };
 
             enum eStage
             {
                 NONE = -1,
                 VERTEX = 0,
-                PIXEL = 1
+                PIXEL = 1,
+                GEOMETRY = 2
             };
 
             sRenderPassBinding(
@@ -36,7 +38,7 @@ namespace xpe {
                 void* resource = nullptr,
                 const eStage& stage = eStage::NONE,
                 const u32 slot = 0
-            ) : Tag(tag), Type(type), Stage(stage), Slot(slot), Resource(resource) {}
+            ) : Tag(tag), Type(type), Resource(resource), Stage(stage), Slot(slot) {}
 
             string Tag;
             eType Type;
@@ -90,7 +92,56 @@ namespace xpe {
 
             eType m_Type;
             vector<sRenderPassBinding> m_Bindings;
-            sPipeline* m_Pipeline = nullptr;
+            sVertexPipeline* m_Pipeline = nullptr;
+
+        };
+
+        struct ENGINE_API sComputePassBinding
+        {
+            enum eType
+            {
+                SHADER = 0,
+                RENDER_TARGET = 1,
+                LIST_BUFFER = 2,
+                ITEM_BUFFER = 3,
+                TEXTURE = 4,
+                SAMPLER = 5,
+            };
+
+            sComputePassBinding(
+                const string& tag,
+                const eType& type,
+                void* resource = nullptr,
+                const u32 slot = 0
+            ) : Tag(tag), Type(type), Resource(resource), Slot(slot) {}
+
+            string Tag;
+            eType Type;
+            u32 Slot;
+            void* Resource;
+        };
+
+        class ENGINE_API cComputePass : public cObject
+        {
+
+        public:
+            cComputePass(const vector<sComputePassBinding>& bindings);
+            virtual ~cComputePass();
+
+            bool Enable = true;
+
+            virtual void Update(cScene* scene) {}
+            virtual void Draw(cScene* scene) {}
+
+            virtual void Init();
+            void Bind();
+            void Unbind();
+
+            sRenderTarget* GetRenderTarget();
+
+        protected:
+            vector<sComputePassBinding> m_Bindings;
+            sComputePipeline* m_Pipeline = nullptr;
 
         };
 

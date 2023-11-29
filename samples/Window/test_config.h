@@ -10,7 +10,7 @@ struct sTestConfig : public cJson
     float CameraHorizontalSens = 0.005f;
     float CameraVerticalSens = 0.005f;
 
-    JsonClass(
+    JSON_CLASS(
         sTestConfig,
         AnimateLight,
         CameraFar,
@@ -32,7 +32,7 @@ struct sXmlConfig : public cXml
     float CameraHorizontalSens = 0.005f;
     float CameraVerticalSens = 0.005f;
 
-    XmlClass(
+    XML_CLASS(
         "XmlConfig",
         AnimateLight,
         CameraFar,

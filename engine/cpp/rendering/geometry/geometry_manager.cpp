@@ -25,14 +25,17 @@ namespace xpe {
             context::BindIndexBuffer(*s_IndexBuffer);
         }
 
-        sGeometry cGeometryManager::AddGeometry(const sGeometry& _geometry)
+        std::pair<sGeometry, sGeometryInfo> cGeometryManager::AddGeometry(const sGeometry& geometry)
         {
-            sGeometry geometry(_geometry);
-            geometry.VertexOffset = s_VertexBuffer->AddVertices(geometry.Vertices);
-            geometry.IndexOffset = s_IndexBuffer->AddIndices(geometry.Indices);
+            sGeometryInfo geometryInfo;
+            geometryInfo.PrimitiveTopology = geometry.PrimitiveTopology;
+            geometryInfo.VertexOffset = s_VertexBuffer->AddVertices(geometry.Vertices);
+            geometryInfo.IndexOffset = s_IndexBuffer->AddIndices(geometry.Indices);
+            geometryInfo.VertexCount = geometry.Vertices.size();
+            geometryInfo.IndexCount = geometry.Indices.size();
             s_VertexBuffer->Flush();
             s_IndexBuffer->Flush();
-            return geometry;
+            return { geometry, geometryInfo };
         }
 
     }

@@ -23,3 +23,6 @@
 [submodule "engine/thirdparty/pugixml"]
 	path = engine/thirdparty/pugixml
 	url = https://github.com/zeux/pugixml.git
+[submodule "engine/thirdparty/entt"]
+	path = engine/thirdparty/entt
+	url = https://github.com/skypjack/entt.git

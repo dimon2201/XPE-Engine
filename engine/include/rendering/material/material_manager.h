@@ -27,7 +27,7 @@ namespace xpe {
 
             static void Clear();
 
-            static void Bind(sPipeline& pipeline);
+            static void Bind(sVertexPipeline& pipeline);
 
             static void Flush(const sMaterial& material);
 

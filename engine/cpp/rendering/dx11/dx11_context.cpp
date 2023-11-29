@@ -1127,66 +1127,108 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void BindVSBuffer(const sBuffer& buffer)
+            void BindListBufferVS(const sBuffer &buffer)
             {
-                if (buffer.Type == eBufferType::STRUCTURED)
-                {
-                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
-                    LogDebugMessage();
-                }
-                else if (buffer.Type == eBufferType::CONSTANT)
-                {
-                    s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
-                    LogDebugMessage();
-                }
+                s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                LogDebugMessage();
             }
 
-            void UnbindVSBuffer(const sBuffer& buffer)
+            void UnbindListBufferVS(const sBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-
-                if (buffer.Type == eBufferType::STRUCTURED)
-                {
-                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
-                    LogDebugMessage();
-                }
-
-                else if (buffer.Type == eBufferType::CONSTANT)
-                {
-                    s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
-                    LogDebugMessage();
-                }
+                s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                LogDebugMessage();
             }
 
-            void BindPSBuffer(const sBuffer& buffer)
+            void BindListBufferGS(const sBuffer &buffer)
             {
-                if (buffer.Type == eBufferType::STRUCTURED)
-                {
-                    s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
-                    LogDebugMessage();
-                }
-                else if (buffer.Type == eBufferType::CONSTANT)
-                {
-                    s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
-                    LogDebugMessage();
-                }
+                s_ImmContext->GSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                LogDebugMessage();
             }
 
-            void UnbindPSBuffer(const sBuffer& buffer)
+            void UnbindListBufferGS(const sBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->GSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                LogDebugMessage();
+            }
 
-                if (buffer.Type == eBufferType::STRUCTURED)
-                {
-                    s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
-                    LogDebugMessage();
-                }
+            void BindListBufferPS(const sBuffer &buffer)
+            {
+                s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                LogDebugMessage();
+            }
 
-                else if (buffer.Type == eBufferType::CONSTANT)
-                {
-                    s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
-                    LogDebugMessage();
-                }
+            void UnbindListBufferPS(const sBuffer &buffer)
+            {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                LogDebugMessage();
+            }
+
+            void BindListBufferCS(const sBuffer &buffer)
+            {
+                s_ImmContext->CSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                LogDebugMessage();
+            }
+
+            void UnbindListBufferCS(const sBuffer &buffer)
+            {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->CSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                LogDebugMessage();
+            }
+
+            void BindItemBufferVS(const sBuffer &buffer)
+            {
+                s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
+                LogDebugMessage();
+            }
+
+            void UnbindItemBufferVS(const sBuffer &buffer)
+            {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
+                LogDebugMessage();
+            }
+
+            void BindItemBufferGS(const sBuffer &buffer)
+            {
+                s_ImmContext->GSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
+                LogDebugMessage();
+            }
+
+            void UnbindItemBufferGS(const sBuffer &buffer)
+            {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->GSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
+                LogDebugMessage();
+            }
+
+            void BindItemBufferPS(const sBuffer &buffer)
+            {
+                s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
+                LogDebugMessage();
+            }
+
+            void UnbindItemBufferPS(const sBuffer &buffer)
+            {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
+                LogDebugMessage();
+            }
+
+            void BindItemBufferCS(const sBuffer &buffer)
+            {
+                s_ImmContext->CSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
+                LogDebugMessage();
+            }
+
+            void UnbindItemBufferCS(const sBuffer &buffer)
+            {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->CSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
+                LogDebugMessage();
             }
 
             void* Map(

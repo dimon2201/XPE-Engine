@@ -296,60 +296,60 @@ namespace xpe {
             m_DirectLightMatrixBuffer->Clear();
 
             m_DirectLightBuffer->Clear();
-            scene->ForEach<sCDirectionalLight>([this](sCDirectionalLight *component) {
-                if (component->FollowEntity) {
-                    component->View.Position = component->Entity->GetPosition();
+            {
+                auto components = scene->GetComponents<CDirectionalLight>();
+                for (auto [entity, light] : components.each())
+                {
+                    sDirectLightData lightData;
+                    lightData.Position = light.View.Position;
+                    lightData.Color = light.Color;
+
+                    sDirectLightMatrix lightMatrix;
+                    lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(light.Projection, light.View);
+
+                    m_DirectLightBuffer->Add(lightData);
+                    m_DirectLightMatrixBuffer->Add(lightMatrix);
                 }
-
-                sDirectLightData light;
-                light.Position = component->View.Position;
-                light.Color = component->Color;
-
-                sDirectLightMatrix lightMatrix;
-                lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(component->Projection, component->View);
-
-                m_DirectLightBuffer->Add(light);
-                m_DirectLightMatrixBuffer->Add(lightMatrix);
-            });
+            }
             m_DirectLightBuffer->Flush();
 
             m_SpotLightBuffer->Clear();
-            scene->ForEach<sCSpotLight>([this](sCSpotLight *component) {
-                if (component->FollowEntity) {
-                    component->View.Position = component->Entity->GetPosition();
+            {
+                auto components = scene->GetComponents<CSpotLight>();
+                for (auto [entity, light] : components.each())
+                {
+                    sSpotLightData lightData;
+                    lightData.Position = light.View.Position;
+                    lightData.Color = light.Color;
+                    lightData.Direction = light.View.Front;
+                    lightData.Outer = light.Outer;
+                    lightData.Cutoff = light.Cutoff;
+
+                    sDirectLightMatrix lightMatrix;
+                    lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(light.Projection, light.View);
+
+                    m_SpotLightBuffer->Add(lightData);
+                    m_DirectLightMatrixBuffer->Add(lightMatrix);
                 }
-
-                sSpotLightData light;
-                light.Position = component->View.Position;
-                light.Color = component->Color;
-                light.Direction = component->View.Front;
-                light.Outer = component->Outer;
-                light.Cutoff = component->Cutoff;
-
-                sDirectLightMatrix lightMatrix;
-                lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(component->Projection, component->View);
-
-                m_SpotLightBuffer->Add(light);
-                m_DirectLightMatrixBuffer->Add(lightMatrix);
-            });
+            }
             m_SpotLightBuffer->Flush();
 
             m_DirectLightMatrixBuffer->Flush();
 
             m_PointLightBuffer->Clear();
-            scene->ForEach<sCPointLight>([this](sCPointLight *component) {
-                if (component->FollowEntity) {
-                    component->Position = component->Entity->GetPosition();
+            {
+                auto components = scene->GetComponents<CPointLight>();
+                for (auto [entity, light] : components.each())
+                {
+                    sPointLightData lightData;
+                    lightData.Position = light.Position;
+                    lightData.Color = light.Color;
+                    lightData.Constant = light.Constant;
+                    lightData.Linear = light.Linear;
+                    lightData.Quadratic = light.Quadratic;
+                    m_PointLightBuffer->Add(lightData);
                 }
-
-                sPointLightData light;
-                light.Position = component->Position;
-                light.Color = component->Color;
-                light.Constant = component->Constant;
-                light.Linear = component->Constant;
-                light.Quadratic = component->Constant;
-                m_PointLightBuffer->Add(light);
-            });
+            }
             m_PointLightBuffer->Flush();
         }
 
@@ -432,6 +432,17 @@ namespace xpe {
                     rp->Bind();
                     rp->DrawFinal(scene);
                     rp->Unbind();
+                }
+            }
+
+            // Compute
+            for (cComputePass* cp : m_ComputePasses)
+            {
+                if (cp->Enable) {
+                    cp->Update(scene);
+                    cp->Bind();
+                    cp->Draw(scene);
+                    cp->Unbind();
                 }
             }
         }

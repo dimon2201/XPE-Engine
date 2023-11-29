@@ -24,6 +24,9 @@ namespace xpe {
             template<typename T, typename ... Args>
             T* AddRenderPass(Args &&... args);
 
+            template<typename T, typename ... Args>
+            T* AddComputePass(Args &&... args);
+
             void Update(cScene* scene, const cTime& dt) override final;
 
             void Prepare();
@@ -64,6 +67,7 @@ namespace xpe {
             vector<cRenderPass*> m_TransparentRenderPasses;
             vector<cRenderPass*> m_PostFXRenderPasses;
             vector<cRenderPass*> m_UiRenderPasses;
+            vector<cComputePass*> m_ComputePasses;
 
             sDirectLightBuffer* m_DirectLightBuffer;
             sDirectLightMatrixBuffer* m_DirectLightMatrixBuffer;
@@ -114,6 +118,15 @@ namespace xpe {
             }
 
             return renderPass;
+        }
+
+        template<typename T, typename... Args>
+        T* cRenderSystem::AddComputePass(Args &&... args)
+        {
+            T* computePass = new T(std::forward<Args>(args)...);
+            computePass->Init();
+            m_ComputePasses.emplace_back(computePass);
+            return computePass;
         }
 
     }

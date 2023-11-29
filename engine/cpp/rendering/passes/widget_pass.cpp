@@ -10,8 +10,8 @@ namespace xpe {
         cWidgetPass::cWidgetPass(const vector<sRenderPassBinding>& bindings)
         : cRenderPass(eType::UI, bindings)
         {
-            m_Quad = cGeometryManager::AddGeometry(sQuad());
-            m_Pipeline->PrimitiveTopology = m_Quad.PrimitiveTopology;
+            std::tie(m_Quad, m_QuadInfo) = cGeometryManager::AddGeometry(sQuad());
+            m_Pipeline->PrimitiveTopology = m_QuadInfo.PrimitiveTopology;
             m_WidgetBuffer.Reserve(100);
             cWidgetManager::Bind(*m_Pipeline);
         }
@@ -28,33 +28,31 @@ namespace xpe {
             m_Projection2D = cMathManager::UpdateOrthoMatrix(orthoMatrix);
             m_Projection3D = cCameraManager::GetViewProjection();
 
-            scene->ForEach<sCButton>([this](sCButton* component)
+            auto components = scene->GetComponents<CVisible, CSpace, CTransform, CButton>();
+            for (auto [entity, visible, space, transform, button] : components.each())
             {
-                component->Space = component->Entity->GetSpace();
-                if (component->Entity->IsVisible()) {
-                    UpdateWidget(
-                        component->Entity->GetTransform(),
-                        component->Space,
-                        component->Color,
-                        component->EnableTexture,
-                        component->AtlasLocation,
-                        component->FillFrame,
-                        cInputManager::MousePressed(component->MousePressed) && component->EnablePress,
-                        [component](sWidgetData& widget) {
-                            widget.Color = component->ColorPressed;
-                            if (component->Pressed != nullptr) {
-                                component->Pressed();
+                UpdateWidget(
+                        transform,
+                        space.Space,
+                        button.Color,
+                        button.EnableTexture,
+                        button.AtlasLocation,
+                        button.FillFrame,
+                        cInputManager::MousePressed(button.MousePressed) && button.EnablePress,
+                        [&button](sWidgetData& widget) {
+                            widget.Color = button.ColorPressed;
+                            if (button.Pressed != nullptr) {
+                                button.Pressed();
                             }
                         },
-                        [component](sWidgetData& widget) {
-                            widget.Color = component->ColorHover;
-                            if (component->Hovered != nullptr) {
-                                component->Hovered();
+                        [&button](sWidgetData& widget) {
+                            widget.Color = button.ColorHover;
+                            if (button.Hovered != nullptr) {
+                                button.Hovered();
                             }
                         }
-                    );
-                }
-            });
+                );
+            }
 
             DrawWidgets();
         }
@@ -137,9 +135,9 @@ namespace xpe {
 
             m_WidgetBuffer.Flush();
 
-            context::BindVSBuffer(m_WidgetBuffer);
-            context::DrawIndexed(m_Quad.Indices.size(), m_WidgetBuffer.Size(), m_Quad.VertexOffset, m_Quad.IndexOffset);
-            context::UnbindVSBuffer(m_WidgetBuffer);
+            context::BindListBufferVS(m_WidgetBuffer);
+            context::DrawIndexed(m_QuadInfo.IndexCount, m_WidgetBuffer.Size(), m_QuadInfo.VertexOffset, m_QuadInfo.IndexOffset);
+            context::UnbindListBufferVS(m_WidgetBuffer);
 
             m_WidgetBuffer.Clear();
         }
@@ -169,7 +167,7 @@ namespace xpe {
         cTextPass::cTextPass(const vector<sRenderPassBinding> &bindings)
         : cRenderPass(eType::UI, bindings)
         {
-            m_Quad = cGeometryManager::AddGeometry(sQuad());
+            std::tie(m_Quad, m_QuadInfo) = cGeometryManager::AddGeometry(sQuad());
             m_Pipeline->PrimitiveTopology = m_Quad.PrimitiveTopology;
             m_CharBuffer.Reserve(1000);
             m_TextBuffer.Reserve(100);
@@ -202,22 +200,20 @@ namespace xpe {
             m_Projection3D = cCameraManager::GetViewProjection();
             sTexture* fontAtlas = nullptr;
 
-            scene->ForEach<sCLabel>([this, &fontAtlas](sCLabel* component)
+            auto components = scene->GetComponents<CVisible, CSpace, CTransform, CLabel>();
+            for (auto [entity, visible, space, transform, label] : components.each())
             {
-                component->Space = component->Entity->GetSpace();
-                if (component->Entity->IsVisible()) {
-                    fontAtlas = &component->Font->Atlas;
-                    UpdateText(
-                        component->Entity->GetTransform(),
-                        component->Space,
+                fontAtlas = &label.Font->Atlas;
+                UpdateText(
+                        transform,
+                        space.Space,
                         0,
-                        *component->Font,
-                        component->Text,
-                        component->Color,
-                        component->FillFrame
-                    );
-                }
-            });
+                        *label.Font,
+                        label.Text,
+                        label.Color,
+                        label.FillFrame
+                );
+            }
 
             if (fontAtlas != nullptr) {
                 DrawTexts(*fontAtlas);
@@ -232,13 +228,13 @@ namespace xpe {
             m_CharBuffer.Flush();
             m_TextBuffer.Flush();
 
-            context::BindVSBuffer(m_CharBuffer);
-            context::BindVSBuffer(m_TextBuffer);
+            context::BindListBufferVS(m_CharBuffer);
+            context::BindListBufferVS(m_TextBuffer);
             context::BindTexture(fontAtlas, K_SLOT_FONT_ATLAS);
-            context::DrawIndexed(m_Quad.Indices.size(), m_CharBuffer.Size(), m_Quad.VertexOffset, m_Quad.IndexOffset);
+            context::DrawIndexed(m_QuadInfo.IndexCount, m_CharBuffer.Size(), m_QuadInfo.VertexOffset, m_QuadInfo.IndexOffset);
             context::UnbindTexture(fontAtlas);
-            context::UnbindVSBuffer(m_TextBuffer);
-            context::UnbindVSBuffer(m_CharBuffer);
+            context::UnbindListBufferVS(m_TextBuffer);
+            context::UnbindListBufferVS(m_CharBuffer);
 
             m_CharBuffer.Clear();
             m_TextBuffer.Clear();

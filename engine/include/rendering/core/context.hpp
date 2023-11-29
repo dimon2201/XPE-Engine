@@ -87,10 +87,26 @@ namespace xpe {
             ENGINE_API void FreeBuffer(sBuffer& buffer);
             ENGINE_API void BindVertexBuffer(const sBuffer& buffer);
             ENGINE_API void BindIndexBuffer(const sBuffer& buffer);
-            ENGINE_API void BindVSBuffer(const sBuffer& buffer);
-            ENGINE_API void UnbindVSBuffer(const sBuffer& buffer);
-            ENGINE_API void BindPSBuffer(const sBuffer& buffer);
-            ENGINE_API void UnbindPSBuffer(const sBuffer& buffer);
+
+            // bind calls for list buffers
+            ENGINE_API void BindListBufferVS(const sBuffer& buffer);
+            ENGINE_API void UnbindListBufferVS(const sBuffer& buffer);
+            ENGINE_API void BindListBufferGS(const sBuffer& buffer);
+            ENGINE_API void UnbindListBufferGS(const sBuffer& buffer);
+            ENGINE_API void BindListBufferPS(const sBuffer& buffer);
+            ENGINE_API void UnbindListBufferPS(const sBuffer& buffer);
+            ENGINE_API void BindListBufferCS(const sBuffer& buffer);
+            ENGINE_API void UnbindListBufferCS(const sBuffer& buffer);
+
+            // bind calls for item buffers
+            ENGINE_API void BindItemBufferVS(const sBuffer& buffer);
+            ENGINE_API void UnbindItemBufferVS(const sBuffer& buffer);
+            ENGINE_API void BindItemBufferGS(const sBuffer& buffer);
+            ENGINE_API void UnbindItemBufferGS(const sBuffer& buffer);
+            ENGINE_API void BindItemBufferPS(const sBuffer& buffer);
+            ENGINE_API void UnbindItemBufferPS(const sBuffer& buffer);
+            ENGINE_API void BindItemBufferCS(const sBuffer& buffer);
+            ENGINE_API void UnbindItemBufferCS(const sBuffer& buffer);
 
             ENGINE_API void CopyBuffer(const sBuffer& buffer, const void* data, usize dataByteSize);
             ENGINE_API void CopyBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize);
@@ -110,10 +126,17 @@ namespace xpe {
             ENGINE_API void BindViewport(sViewport* viewport);
             ENGINE_API void UnbindViewport();
 
-            ENGINE_API void CreatePipeline(sPipeline& pipeline);
-            ENGINE_API void BindPipeline(const sPipeline& pipeline);
-            ENGINE_API void UnbindPipeline(const sPipeline& pipeline);
-            ENGINE_API void FreePipeline(sPipeline& pipeline);
+            // Calls for Vertex Pipeline
+            ENGINE_API void CreateVertexPipeline(sVertexPipeline& pipeline);
+            ENGINE_API void BindVertexPipeline(const sVertexPipeline& pipeline);
+            ENGINE_API void UnbindVertexPipeline(const sVertexPipeline& pipeline);
+            ENGINE_API void FreeVertexPipeline(sVertexPipeline& pipeline);
+
+            // Calls for Compute Pipeline
+            ENGINE_API void CreateComputePipeline(sComputePipeline& pipeline);
+            ENGINE_API void BindComputePipeline(const sComputePipeline& pipeline);
+            ENGINE_API void UnbindComputePipeline(const sComputePipeline& pipeline);
+            ENGINE_API void FreeComputePipeline(sComputePipeline& pipeline);
 
             ENGINE_API void CreateDepthStencilMode(sDepthStencilMode& depthStencilMode);
             ENGINE_API void BindDepthStencilMode(void* state);

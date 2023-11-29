@@ -11,7 +11,7 @@ namespace xpe {
             glm::vec3 Scale = { 1, 1, 1 };
         };
 
-        Json(
+        JSON(
             sModelMatrix,
             Position,
             Rotation,
@@ -25,7 +25,7 @@ namespace xpe {
             glm::vec3 Up = { 0, 1, 0 };
         };
 
-        Json(
+        JSON(
             sViewMatrix,
             Position,
             Front,
@@ -42,7 +42,7 @@ namespace xpe {
             float Far = 1.0f;
         };
 
-        Json(
+        JSON(
             sOrthoMatrix,
             Left,
             Right,
@@ -60,7 +60,7 @@ namespace xpe {
             float Far = 100.0f;
         };
 
-        Json(
+        JSON(
             sPerspectiveMatrix,
             FovDegree,
             AspectRatio,

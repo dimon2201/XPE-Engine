@@ -91,7 +91,7 @@ namespace xpe {
             }
         }
 
-        sSkeleton cSkeletonLoader::Load(const char* filepath, const vector<eLoadOption>& options)
+        std::pair<sSkeleton, sSkeletonInfo> cSkeletonLoader::Load(const char* filepath, const vector<eLoadOption>& options)
         {
             sSkeleton skeleton;
 

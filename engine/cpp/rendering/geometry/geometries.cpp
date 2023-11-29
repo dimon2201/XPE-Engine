@@ -222,7 +222,7 @@ namespace xpe {
             Indices = indexList;
         }
 
-        sGeometry sModel::Bake()
+        sGeometry sModel::Merge()
         {
             sGeometry baked;
             baked.PrimitiveTopology = PrimitiveTopology;

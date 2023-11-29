@@ -95,9 +95,9 @@ namespace xpe {
             EmissionAtlas->Flush();
         }
 
-        void cMaterialManager::Bind(sPipeline& pipeline)
+        void cMaterialManager::Bind(sVertexPipeline& pipeline)
         {
-            pipeline.PSBuffers.emplace_back(s_DataBuffer);
+            pipeline.PSListBuffers.emplace_back(s_DataBuffer);
 
             pipeline.Samplers.emplace_back(&Sampler);
 

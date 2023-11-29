@@ -9,21 +9,23 @@ namespace xpe {
 
         void cAnimSystem::Update(cScene* scene, const cTime& dt)
         {
-            scene->ForEach<sCSkeletonModel>([this, dt](sCSkeletonModel *component) {
-                for (auto& animation : component->Animations) {
-                    if (animation.Play) {
-                        AnimateSkeleton(component->Skeleton, animation, dt);
+            auto components = scene->GetComponents<CAnimation, CSkeleton, CSkeletonInfo>();
+            for (auto [entity, animation, skeleton, skeletonInfo] : components.each())
+            {
+                for (auto& subAnimation : animation.Animations) {
+                    if (subAnimation.Play) {
+                        AnimateSkeleton(subAnimation, skeleton, skeletonInfo.SkeletonIndex, dt);
                     }
                 }
-            });
+            }
         }
 
-        void cAnimSystem::AnimateSkeleton(sSkeleton &skeleton, const sAnimation &animation, const cTime& dt)
+        void cAnimSystem::AnimateSkeleton(const sAnimation &animation, sSkeleton &skeleton, u32 skeletonIndex, const cTime& dt)
         {
             m_DeltaSeconds = dt.Seconds();
             m_CurrentSeconds += animation.TicksPerSecond * m_DeltaSeconds;
             m_CurrentSeconds = fmod(m_CurrentSeconds, animation.Duration);
-            UpdateSkeletonTransform(skeleton, *cSkeletonManager::GetBuffer(), animation.Root, glm::mat4(1.0f));
+            UpdateSkeletonTransform(animation.Root, skeleton, *cSkeletonManager::GetBuffer(), skeletonIndex, glm::mat4(1.0f));
         }
 
         void cAnimSystem::AnimateBone(sBone &bone, float time)
@@ -180,9 +182,10 @@ namespace xpe {
         }
 
         void cAnimSystem::UpdateSkeletonTransform(
+                const sAnimationNode& animationNode,
                 sSkeleton &skeleton,
                 sSkeletonBuffer& skeletonBuffer,
-                const sAnimationNode& animationNode,
+                u32 skeletonIndex,
                 const glm::mat4 &parentTransform
         ) {
             const string& nodeName = animationNode.Name;
@@ -202,12 +205,12 @@ namespace xpe {
             glm::mat4 globalTransformation = parentTransform * nodeTransform;
 
             if (bone != nullptr) {
-                *skeletonBuffer[bone->ID + skeleton.Index] = { globalTransformation * bone->Offset };
+                *skeletonBuffer[bone->ID + skeletonIndex] = { globalTransformation * bone->Offset };
             }
 
             for (auto& node : animationNode.Children)
             {
-                UpdateSkeletonTransform(skeleton, skeletonBuffer, node, globalTransformation);
+                UpdateSkeletonTransform(node, skeleton, skeletonBuffer, skeletonIndex, globalTransformation);
             }
         }
 

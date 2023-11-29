@@ -16,7 +16,7 @@ namespace xpe
             u32 Slot;
         };
 
-        struct ENGINE_API sMaterial : public cObject, sMaterialData
+        struct ENGINE_API sMaterial : sMaterialData
         {
             static const sMaterialFormat k_AlbedoFormat;
             static const sMaterialFormat k_NormalFormat;
@@ -37,7 +37,7 @@ namespace xpe
             sTextureLayer* EmissionMap;
         };
 
-        Json(
+        JSON(
             sMaterial,
             Albedo,
             EnableAlbedoMap,
