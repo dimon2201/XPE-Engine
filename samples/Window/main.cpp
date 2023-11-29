@@ -230,10 +230,12 @@ public:
             m_Goblin4.SetScale(5, 5, 5);
             m_Goblin4.SetVisible(false);
 
+            auto [goblinGeometry, goblinGeometryInfo] = cGeometryManager::AddGeometry(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae").Merge());
             auto [goblinSkeleton, goblinSkeletonInfo] = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            goblinSkeletonInfo.GeometryInfo = goblinGeometryInfo;
             m_Goblins.Add<CSkeleton>(goblinSkeleton);
             m_Goblins.Add<CSkeletonInfo>(goblinSkeletonInfo);
-            m_Goblins.Get<CSkeletonInfo>().Entities = {
+            m_Goblins.Get<CSkeletonInfo>().GeometryInfo.Entities = {
                     m_Goblin1.GetID(),
                     m_Goblin2.GetID(),
                     m_Goblin3.GetID(),

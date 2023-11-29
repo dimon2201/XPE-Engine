@@ -27,8 +27,9 @@ namespace xpe {
         };
         JSON(sSkeleton, Bones)
 
-        struct ENGINE_API sSkeletonInfo : render::sGeometryInfo
+        struct ENGINE_API sSkeletonInfo
         {
+            render::sGeometryInfo GeometryInfo;
             u32 SkeletonIndex = 0;
         };
 

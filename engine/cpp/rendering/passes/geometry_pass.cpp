@@ -47,7 +47,7 @@ namespace xpe {
                 for (auto [entity, opaque, skeletonInfo]: components.each()) {
                     DrawInstanced(
                             scene,
-                            skeletonInfo,
+                            skeletonInfo.GeometryInfo,
                             [scene, &skeletonInfo](EntityID entityId, sRenderInstance &instance) {
                                 instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
                                 instance.SkeletonIndex = skeletonInfo.SkeletonIndex;
@@ -78,7 +78,7 @@ namespace xpe {
                 for (auto [entity, transparent, skeletonInfo]: components.each()) {
                     DrawInstanced(
                             scene,
-                            skeletonInfo,
+                            skeletonInfo.GeometryInfo,
                             [scene, &skeletonInfo](EntityID entityId, sRenderInstance &instance) {
                                 instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
                                 instance.SkeletonIndex = skeletonInfo.SkeletonIndex;
@@ -106,7 +106,7 @@ namespace xpe {
                 for (auto [entity, hasShadow, skeletonInfo]: components.each()) {
                     DrawInstanced(
                             scene,
-                            skeletonInfo,
+                            skeletonInfo.GeometryInfo,
                             [&skeletonInfo](EntityID entityId, sRenderInstance &instance) {
                                 instance.SkeletonIndex = skeletonInfo.SkeletonIndex;
                             }
