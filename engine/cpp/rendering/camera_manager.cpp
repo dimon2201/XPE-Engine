@@ -35,12 +35,12 @@ namespace xpe {
 
         void cCameraManager::Bind()
         {
-            context::BindItemBufferVS(*s_Buffer);
+            context::VSBindBuffer(*s_Buffer);
         }
 
         void cCameraManager::Unbind()
         {
-            context::UnbindItemBufferVS(*s_Buffer);
+            context::VSUnbindBuffer(*s_Buffer);
         }
 
         void cCameraManager::SetExposure(float exposure)

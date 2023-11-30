@@ -160,7 +160,7 @@ namespace xpe {
         }
 
         void cShaderManager::AddVertexStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = {id, eShaderType::VERTEX };
+            sShaderStage stage = { id, sShaderStage::eType::VERTEX };
             stage.EntryPoint = "vs_main";
             stage.Profile = "vs_5_0";
             stage.Source = source;
@@ -171,7 +171,7 @@ namespace xpe {
         }
 
         void cShaderManager::AddPixelStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = {id, eShaderType::PIXEL };
+            sShaderStage stage = { id, sShaderStage::eType::PIXEL };
             stage.EntryPoint = "ps_main";
             stage.Profile = "ps_5_0";
             stage.Source = source;
@@ -182,7 +182,7 @@ namespace xpe {
         }
 
         void cShaderManager::AddGeometryStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = {id, eShaderType::GEOMETRY };
+            sShaderStage stage = { id, sShaderStage::eType::GEOMETRY };
             stage.EntryPoint = "gs_main";
             stage.Profile = "gs_5_0";
             stage.Source = source;
@@ -193,7 +193,7 @@ namespace xpe {
         }
 
         void cShaderManager::AddTessControlStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = {id, eShaderType::TESS_CONTROL };
+            sShaderStage stage = { id, sShaderStage::eType::TESS_CONTROL };
             stage.EntryPoint = "ts_main";
             stage.Profile = "tcs_5_0";
             stage.Source = source;
@@ -204,7 +204,7 @@ namespace xpe {
         }
 
         void cShaderManager::AddTessEvalStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = {id, eShaderType::TESS_EVAL };
+            sShaderStage stage = { id, sShaderStage::eType::TESS_EVAL };
             stage.EntryPoint = "ts_main";
             stage.Profile = "tes_5_0";
             stage.Source = source;
@@ -215,7 +215,7 @@ namespace xpe {
         }
 
         void cShaderManager::AddComputeStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = {id, eShaderType::COMPUTE };
+            sShaderStage stage = { id, sShaderStage::eType::COMPUTE };
             stage.EntryPoint = "cs_main";
             stage.Profile = "cs_5_0";
             stage.Source = source;

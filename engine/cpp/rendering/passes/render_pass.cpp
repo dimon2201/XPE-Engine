@@ -21,65 +21,39 @@ namespace xpe {
             {
                 switch (binding.Type) {
 
-                    case sRenderPassBinding::eType::LIST_BUFFER:
-                        if (binding.Stage == sRenderPassBinding::eStage::VERTEX)
+                    case sRenderPassBinding::eType::BUFFER:
+                        for (auto* stage : m_Pipeline->Shader->Stages)
                         {
-                            m_Pipeline->VSListBuffers.emplace_back((sBuffer*)binding.Resource);
-                            if (binding.Slot != K_SLOT_DEFAULT) {
-                                m_Pipeline->VSListBuffers.back()->Slot = binding.Slot;
-                            }
-                        }
-                        else if (binding.Stage == sRenderPassBinding::eStage::PIXEL)
-                        {
-                            m_Pipeline->PSListBuffers.emplace_back((sBuffer*)binding.Resource);
-                            if (binding.Slot != K_SLOT_DEFAULT) {
-                                m_Pipeline->PSListBuffers.back()->Slot = binding.Slot;
-                            }
-                        }
-                        else if (binding.Stage == sRenderPassBinding::eStage::GEOMETRY)
-                        {
-                            m_Pipeline->GSListBuffers.emplace_back((sBuffer*)binding.Resource);
-                            if (binding.Slot != K_SLOT_DEFAULT) {
-                                m_Pipeline->GSListBuffers.back()->Slot = binding.Slot;
-                            }
-                        }
-                        break;
-
-                    case sRenderPassBinding::eType::ITEM_BUFFER:
-                        if (binding.Stage == sRenderPassBinding::eStage::VERTEX)
-                        {
-                            m_Pipeline->VSItemBuffers.emplace_back((sBuffer*)binding.Resource);
-                            if (binding.Slot != K_SLOT_DEFAULT) {
-                                m_Pipeline->VSItemBuffers.back()->Slot = binding.Slot;
-                            }
-                        }
-                        else if (binding.Stage == sRenderPassBinding::eStage::PIXEL)
-                        {
-                            m_Pipeline->PSItemBuffers.emplace_back((sBuffer*)binding.Resource);
-                            if (binding.Slot != K_SLOT_DEFAULT) {
-                                m_Pipeline->PSItemBuffers.back()->Slot = binding.Slot;
-                            }
-                        }
-                        else if (binding.Stage == sRenderPassBinding::eStage::GEOMETRY)
-                        {
-                            m_Pipeline->GSItemBuffers.emplace_back((sBuffer*)binding.Resource);
-                            if (binding.Slot != K_SLOT_DEFAULT) {
-                                m_Pipeline->GSItemBuffers.back()->Slot = binding.Slot;
+                            if (stage->Type == binding.Stage) {
+                                stage->Buffers.emplace_back((sBuffer*)binding.Resource);
+                                if (binding.Slot != K_SLOT_DEFAULT) {
+                                    stage->Buffers.back()->Slot = binding.Slot;
+                                }
                             }
                         }
                         break;
 
                     case sRenderPassBinding::eType::TEXTURE:
-                        m_Pipeline->Textures.emplace_back((sTexture*)binding.Resource);
-                        if (binding.Slot != K_SLOT_DEFAULT) {
-                            m_Pipeline->Textures.back()->Slot = binding.Slot;
+                        for (auto* stage : m_Pipeline->Shader->Stages)
+                        {
+                            if (stage->Type == binding.Stage) {
+                                stage->Textures.emplace_back((sTexture*)binding.Resource);
+                                if (binding.Slot != K_SLOT_DEFAULT) {
+                                    stage->Textures.back()->Slot = binding.Slot;
+                                }
+                            }
                         }
                         break;
 
                     case sRenderPassBinding::eType::SAMPLER:
-                        m_Pipeline->Samplers.emplace_back((sSampler*)binding.Resource);
-                        if (binding.Slot != K_SLOT_DEFAULT) {
-                            m_Pipeline->Samplers.back()->Slot = binding.Slot;
+                        for (auto* stage : m_Pipeline->Shader->Stages)
+                        {
+                            if (stage->Type == binding.Stage) {
+                                stage->Samplers.emplace_back((sSampler*)binding.Resource);
+                                if (binding.Slot != K_SLOT_DEFAULT) {
+                                    stage->Samplers.back()->Slot = binding.Slot;
+                                }
+                            }
                         }
                         break;
 
@@ -256,7 +230,8 @@ namespace xpe {
             delete m_Pipeline;
         }
 
-        cComputePass::cComputePass(const vector<sComputePassBinding> &bindings) : m_Bindings(bindings)
+        cComputePass::cComputePass(const vector<sComputePassBinding> &bindings, const glm::ivec3& threadGroups)
+        : m_Bindings(bindings), m_ThreadGroups(threadGroups)
         {
             m_Pipeline = new sComputePipeline();
 
@@ -264,31 +239,42 @@ namespace xpe {
             {
                 switch (binding.Type) {
 
-                    case sComputePassBinding::eType::LIST_BUFFER:
-                        m_Pipeline->CSListBuffers.emplace_back((sBuffer*)binding.Resource);
-                        if (binding.Slot != K_SLOT_DEFAULT) {
-                            m_Pipeline->CSListBuffers.back()->Slot = binding.Slot;
-                        }
-                        break;
-
-                    case sComputePassBinding::eType::ITEM_BUFFER:
-                        m_Pipeline->CSItemBuffers.emplace_back((sBuffer*)binding.Resource);
-                        if (binding.Slot != K_SLOT_DEFAULT) {
-                            m_Pipeline->CSItemBuffers.back()->Slot = binding.Slot;
+                    case sComputePassBinding::eType::BUFFER:
+                        for (auto* stage : m_Pipeline->Shader->Stages)
+                        {
+                            if (stage->Type == sShaderStage::eType::COMPUTE)
+                            {
+                                stage->Buffers.emplace_back((sBuffer*)binding.Resource);
+                                if (binding.Slot != K_SLOT_DEFAULT) {
+                                    stage->Buffers.back()->Slot = binding.Slot;
+                                }
+                            }
                         }
                         break;
 
                     case sComputePassBinding::eType::TEXTURE:
-                        m_Pipeline->Textures.emplace_back((sTexture*)binding.Resource);
-                        if (binding.Slot != K_SLOT_DEFAULT) {
-                            m_Pipeline->Textures.back()->Slot = binding.Slot;
+                        for (auto* stage : m_Pipeline->Shader->Stages)
+                        {
+                            if (stage->Type == sShaderStage::eType::COMPUTE)
+                            {
+                                stage->Textures.emplace_back((sTexture*)binding.Resource);
+                                if (binding.Slot != K_SLOT_DEFAULT) {
+                                    stage->Textures.back()->Slot = binding.Slot;
+                                }
+                            }
                         }
                         break;
 
                     case sComputePassBinding::eType::SAMPLER:
-                        m_Pipeline->Samplers.emplace_back((sSampler*)binding.Resource);
-                        if (binding.Slot != K_SLOT_DEFAULT) {
-                            m_Pipeline->Samplers.back()->Slot = binding.Slot;
+                        for (auto* stage : m_Pipeline->Shader->Stages)
+                        {
+                            if (stage->Type == sShaderStage::eType::COMPUTE)
+                            {
+                                stage->Samplers.emplace_back((sSampler*)binding.Resource);
+                                if (binding.Slot != K_SLOT_DEFAULT) {
+                                    stage->Samplers.back()->Slot = binding.Slot;
+                                }
+                            }
                         }
                         break;
 
@@ -317,6 +303,11 @@ namespace xpe {
         void cComputePass::Unbind()
         {
             context::UnbindComputePipeline(*m_Pipeline);
+        }
+
+        void cComputePass::Dispatch()
+        {
+            context::Dispatch(m_ThreadGroups);
         }
 
         sRenderTarget* cComputePass::GetRenderTarget()

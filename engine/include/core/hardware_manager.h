@@ -22,6 +22,10 @@ namespace xpe {
             usize MaxRenderTargetsPerStage;
             bool IsConcurrentCreatesSupported;
             bool IsCommandListSupported;
+            usize MaxThreadGroupsPerDimension;
+            usize MaxThreadsPerGroup;
+            glm::ivec3 MaxThreadGroup;
+            usize MaxUnorderedAccessViews;
         };
 
         struct ENGINE_API sCpuStats final

@@ -15,34 +15,25 @@ namespace xpe {
             {
                 SHADER = 0,
                 RENDER_TARGET = 1,
-                LIST_BUFFER = 2,
-                ITEM_BUFFER = 3,
-                TEXTURE = 4,
-                SAMPLER = 5,
-                RASTERIZER = 6,
-                DEPTH_STENCIL = 7,
-                BLENDING = 8
-            };
-
-            enum eStage
-            {
-                NONE = -1,
-                VERTEX = 0,
-                PIXEL = 1,
-                GEOMETRY = 2
+                BUFFER = 2,
+                TEXTURE = 3,
+                SAMPLER = 4,
+                RASTERIZER = 5,
+                DEPTH_STENCIL = 6,
+                BLENDING = 7
             };
 
             sRenderPassBinding(
                 const string& tag,
                 const eType& type,
                 void* resource = nullptr,
-                const eStage& stage = eStage::NONE,
+                const sShaderStage::eType& stage = sShaderStage::eType::NONE,
                 const u32 slot = 0
             ) : Tag(tag), Type(type), Resource(resource), Stage(stage), Slot(slot) {}
 
             string Tag;
             eType Type;
-            eStage Stage;
+            sShaderStage::eType Stage;
             u32 Slot;
             void* Resource;
         };
@@ -102,10 +93,9 @@ namespace xpe {
             {
                 SHADER = 0,
                 RENDER_TARGET = 1,
-                LIST_BUFFER = 2,
-                ITEM_BUFFER = 3,
-                TEXTURE = 4,
-                SAMPLER = 5,
+                BUFFER = 2,
+                TEXTURE = 3,
+                SAMPLER = 4
             };
 
             sComputePassBinding(
@@ -125,24 +115,24 @@ namespace xpe {
         {
 
         public:
-            cComputePass(const vector<sComputePassBinding>& bindings);
+            cComputePass(const vector<sComputePassBinding>& bindings, const glm::ivec3& threadGroups = { 1, 1, 1 });
             virtual ~cComputePass();
 
             bool Enable = true;
 
             virtual void Update(cScene* scene) {}
-            virtual void Draw(cScene* scene) {}
 
             virtual void Init();
             void Bind();
             void Unbind();
+            void Dispatch();
 
             sRenderTarget* GetRenderTarget();
 
         protected:
             vector<sComputePassBinding> m_Bindings;
             sComputePipeline* m_Pipeline = nullptr;
-
+            glm::ivec3 m_ThreadGroups;
         };
 
     }

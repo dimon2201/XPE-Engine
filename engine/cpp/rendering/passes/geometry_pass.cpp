@@ -11,7 +11,12 @@ namespace xpe {
 
         cGeometryPass::cGeometryPass(eType type, const vector<sRenderPassBinding> &bindings) : cInstancingPass(type, bindings)
         {
-            m_Pipeline->VSListBuffers.emplace_back(cSkeletonManager::GetBuffer());
+            for (auto* stage : m_Pipeline->Shader->Stages)
+            {
+                if (stage->Type == sShaderStage::eType::VERTEX) {
+                    stage->Buffers.emplace_back(cSkeletonManager::GetBuffer());
+                }
+            }
         }
 
         void cGeometryPass::InitOpaque()

@@ -18,24 +18,12 @@ namespace xpe {
             sRasterizer Rasterizer;
             sDepthStencilMode DepthStencil;
             sBlendMode Blending;
-            vector<sBuffer*> VSListBuffers; // list buffers defined in vertex shader
-            vector<sBuffer*> VSItemBuffers; // item buffers defined in vertex shader
-            vector<sBuffer*> PSListBuffers; // list buffers defined in pixel shader
-            vector<sBuffer*> PSItemBuffers; // item buffers defined in pixel shader
-            vector<sBuffer*> GSListBuffers; // list buffers defined in geometry shader
-            vector<sBuffer*> GSItemBuffers; // item buffers defined in geometry shader
-            vector<sTexture*> Textures;
-            vector<sSampler*> Samplers;
             sShader* Shader = nullptr;
             sRenderTarget* RenderTarget = nullptr;
         };
 
         struct ENGINE_API sComputePipeline final
         {
-            vector<sBuffer*> CSListBuffers; // list buffers defined in compute shader
-            vector<sBuffer*> CSItemBuffers; // item buffers defined in compute shader
-            vector<sTexture*> Textures;
-            vector<sSampler*> Samplers;
             sShader* Shader = nullptr;
             sRenderTarget* RenderTarget = nullptr;
         };

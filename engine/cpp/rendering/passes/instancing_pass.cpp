@@ -40,7 +40,7 @@ namespace xpe {
             m_InstanceBuffer.Flush();
 
             context::BindPrimitiveTopology(geometryInfo.PrimitiveTopology);
-            context::BindListBufferVS(m_InstanceBuffer);
+            context::VSBindBuffer(m_InstanceBuffer);
 
             if (geometryInfo.IndexCount == 0) {
                 context::DrawVertexed(geometryInfo.VertexCount, instanceCount, geometryInfo.VertexOffset);
@@ -48,7 +48,7 @@ namespace xpe {
                 context::DrawIndexed(geometryInfo.IndexCount, instanceCount, geometryInfo.VertexOffset, geometryInfo.IndexOffset);
             }
 
-            context::UnbindListBufferVS(m_InstanceBuffer);
+            context::VSUnbindBuffer(m_InstanceBuffer);
         }
 
     }

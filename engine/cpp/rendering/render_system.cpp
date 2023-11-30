@@ -43,6 +43,7 @@ namespace xpe {
             cSkeletonManager::Init();
             cSkyboxManager::Init();
             cShadowManager::Init();
+            cWidgetManager::Init();
         }
 
         void cRenderSystem::InitBuffers(sViewport &viewport, u32 sampleCount)
@@ -230,6 +231,7 @@ namespace xpe {
 
         void cRenderSystem::FreeManagers()
         {
+            cWidgetManager::Free();
             cShadowManager::Free();
             cSkyboxManager::Free();
             cSkeletonManager::Free();
@@ -422,6 +424,17 @@ namespace xpe {
                 }
             }
 
+            // Compute
+            for (cComputePass* cp : m_ComputePasses)
+            {
+                if (cp->Enable) {
+                    cp->Update(scene);
+                    cp->Bind();
+                    cp->Dispatch();
+                    cp->Unbind();
+                }
+            }
+
             // Final
             m_FinalRenderTarget->ClearColor(0, glm::vec4(0.0f));
             m_FinalRenderTarget->ClearDepth(1.0f);
@@ -432,17 +445,6 @@ namespace xpe {
                     rp->Bind();
                     rp->DrawFinal(scene);
                     rp->Unbind();
-                }
-            }
-
-            // Compute
-            for (cComputePass* cp : m_ComputePasses)
-            {
-                if (cp->Enable) {
-                    cp->Update(scene);
-                    cp->Bind();
-                    cp->Draw(scene);
-                    cp->Unbind();
                 }
             }
         }

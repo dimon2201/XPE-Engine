@@ -11,12 +11,12 @@ namespace xpe {
 
             void CopyBuffer(const sBuffer& buffer, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
+                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
-                if (buffer.Usage == eBufferUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_DISCARD;
+                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
+                    mapType = sResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -26,12 +26,12 @@ namespace xpe {
 
             void CopyBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
+                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
-                if (buffer.Usage == eBufferUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_NO_OVERWRITE;
+                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
+                    mapType = sResource::eMapType::WRITE_NO_OVERWRITE;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -42,12 +42,12 @@ namespace xpe {
 
             void MoveBuffer(const sBuffer& buffer, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
+                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
-                if (buffer.Usage == eBufferUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_DISCARD;
+                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
+                    mapType = sResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -57,12 +57,12 @@ namespace xpe {
 
             void MoveBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == eBufferUsage::STATIC) return;
+                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
-                if (buffer.Usage == eBufferUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_NO_OVERWRITE;
+                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
+                    mapType = sResource::eMapType::WRITE_NO_OVERWRITE;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -75,10 +75,10 @@ namespace xpe {
             {
                 if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
                 if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_DISCARD;
+                    mapType = sResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
@@ -97,10 +97,10 @@ namespace xpe {
             {
                 if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
                 if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_DISCARD;
+                    mapType = sResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
@@ -120,10 +120,10 @@ namespace xpe {
             {
                 if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
                 if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_DISCARD;
+                    mapType = sResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
@@ -142,10 +142,10 @@ namespace xpe {
             {
                 if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
 
-                eMapType mapType = eMapType::WRITE;
+                sResource::eMapType mapType = sResource::eMapType::WRITE;
 
                 if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = eMapType::WRITE_DISCARD;
+                    mapType = sResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
@@ -184,6 +184,16 @@ namespace xpe {
                 {
                     if (stage != nullptr) {
                         BindShaderStage(*stage);
+                    }
+                }
+            }
+
+            void UnbindShader(const sShader &shader)
+            {
+                for (const auto* stage : shader.Stages)
+                {
+                    if (stage != nullptr) {
+                        UnbindShaderStage(*stage);
                     }
                 }
             }
@@ -283,7 +293,7 @@ namespace xpe {
                 sBlob* vertexBlob = nullptr;
                 for (auto* stage : pipeline.Shader->Stages)
                 {
-                    if (stage->Type == eShaderType::VERTEX) {
+                    if (stage->Type == sShaderStage::eType::VERTEX) {
                         vertexBlob = &stage->Blob;
                     }
                 }
@@ -320,57 +330,7 @@ namespace xpe {
                 }
 
                 BindPrimitiveTopology(pipeline.PrimitiveTopology);
-
                 BindInputLayout(pipeline.InputLayout);
-
-                for (const auto* buffer : pipeline.VSListBuffers) {
-                    if (buffer != nullptr) {
-                        BindListBufferVS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.VSItemBuffers) {
-                    if (buffer != nullptr) {
-                        BindItemBufferVS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.GSListBuffers) {
-                    if (buffer != nullptr) {
-                        BindListBufferGS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.GSItemBuffers) {
-                    if (buffer != nullptr) {
-                        BindItemBufferGS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.PSListBuffers) {
-                    if (buffer != nullptr) {
-                        BindListBufferPS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.PSItemBuffers) {
-                    if (buffer != nullptr) {
-                        BindItemBufferPS(*buffer);
-                    }
-                }
-
-                for (const auto* texture : pipeline.Textures) {
-                    if (texture != nullptr) {
-                        BindTexture(*texture);
-                    }
-                }
-
-                for (const auto* sampler : pipeline.Samplers) {
-                    if (sampler != nullptr) {
-                        BindSampler(*sampler);
-                    }
-                }
-
                 BindRasterizer(pipeline.Rasterizer.Instance);
                 BindDepthStencilMode(pipeline.DepthStencil.State);
                 BindBlendMode(pipeline.Blending.State);
@@ -378,55 +338,10 @@ namespace xpe {
 
             void UnbindVertexPipeline(const sVertexPipeline &pipeline)
             {
+                if (pipeline.Shader != nullptr) {
+                    UnbindShader(*pipeline.Shader);
+                }
                 UnbindRenderTarget();
-
-                for (const auto* buffer : pipeline.VSListBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindListBufferVS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.VSItemBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindItemBufferVS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.GSListBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindListBufferGS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.GSItemBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindItemBufferGS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.PSListBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindListBufferPS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.PSItemBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindItemBufferPS(*buffer);
-                    }
-                }
-
-                for (const auto* texture : pipeline.Textures) {
-                    if (texture != nullptr) {
-                        UnbindTexture(*texture);
-                    }
-                }
-
-                for (const auto* sampler : pipeline.Samplers) {
-                    if (sampler != nullptr) {
-                        UnbindSampler(*sampler);
-                    }
-                }
             }
 
             void FreeVertexPipeline(sVertexPipeline& pipeline)
@@ -449,6 +364,182 @@ namespace xpe {
                 BindViewport(viewport);
             }
 
+            void VSBindBuffer(const sBuffer &buffer)
+            {
+                VSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
+            }
+
+            void VSUnbindBuffer(const sBuffer &buffer)
+            {
+                static void* nullInstance = nullptr;
+                VSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
+            }
+
+            void PSBindBuffer(const sBuffer &buffer)
+            {
+                PSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
+            }
+
+            void PSUnbindBuffer(const sBuffer &buffer)
+            {
+                static void* nullInstance = nullptr;
+                PSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
+            }
+
+            void GSBindBuffer(const sBuffer &buffer)
+            {
+                GSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
+            }
+
+            void GSUnbindBuffer(const sBuffer &buffer)
+            {
+                static void* nullInstance = nullptr;
+                GSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
+            }
+
+            void CSBindBuffer(const sBuffer &buffer)
+            {
+                CSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
+            }
+
+            void CSUnbindBuffer(const sBuffer &buffer)
+            {
+                static void* nullInstance = nullptr;
+                CSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
+            }
+
+            void VSBindTexture(const sTexture& texture)
+            {
+                VSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+            }
+
+            void VSBindTexture(const sTexture &texture, u32 slot)
+            {
+                VSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+            }
+
+            void VSBindTextureSlot(u32 slot)
+            {
+                void* nullInstance = nullptr;
+                VSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+            }
+
+            void VSUnbindTexture(const sTexture& texture)
+            {
+                static void* nullInstance = nullptr;
+                VSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+            }
+
+            void PSBindTexture(const sTexture& texture)
+            {
+                PSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+            }
+
+            void PSBindTexture(const sTexture &texture, u32 slot)
+            {
+                PSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+            }
+
+            void PSBindTextureSlot(u32 slot)
+            {
+                void* nullInstance = nullptr;
+                PSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+            }
+
+            void PSUnbindTexture(const sTexture& texture)
+            {
+                static void* nullInstance = nullptr;
+                PSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+            }
+
+            void GSBindTexture(const sTexture& texture)
+            {
+                GSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+            }
+
+            void GSBindTexture(const sTexture &texture, u32 slot)
+            {
+                GSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+            }
+
+            void GSBindTextureSlot(u32 slot)
+            {
+                void* nullInstance = nullptr;
+                GSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+            }
+
+            void GSUnbindTexture(const sTexture& texture)
+            {
+                static void* nullInstance = nullptr;
+                GSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+            }
+
+            void CSBindTexture(const sTexture& texture)
+            {
+                CSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+            }
+
+            void CSBindTexture(const sTexture &texture, u32 slot)
+            {
+                CSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+            }
+
+            void CSBindTextureSlot(u32 slot)
+            {
+                void* nullInstance = nullptr;
+                CSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+            }
+
+            void CSUnbindTexture(const sTexture& texture)
+            {
+                static void* nullInstance = nullptr;
+                CSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+            }
+
+            void VSBindSampler(const sSampler &sampler)
+            {
+                VSBindSampler(sampler.Slot, sampler.ViewInstance);
+            }
+
+            void VSUnbindSampler(const sSampler& sampler)
+            {
+                static void* nullInstance = nullptr;
+                VSBindSampler(sampler.Slot, nullInstance);
+            }
+
+            void PSBindSampler(const sSampler &sampler)
+            {
+                PSBindSampler(sampler.Slot, sampler.ViewInstance);
+            }
+
+            void PSUnbindSampler(const sSampler& sampler)
+            {
+                static void* nullInstance = nullptr;
+                PSBindSampler(sampler.Slot, nullInstance);
+            }
+
+            void GSBindSampler(const sSampler &sampler)
+            {
+                GSBindSampler(sampler.Slot, sampler.ViewInstance);
+            }
+
+            void GSUnbindSampler(const sSampler& sampler)
+            {
+                static void* nullInstance = nullptr;
+                GSBindSampler(sampler.Slot, nullInstance);
+            }
+
+            void CSBindSampler(const sSampler &sampler)
+            {
+                CSBindSampler(sampler.Slot, sampler.ViewInstance);
+            }
+
+            void CSUnbindSampler(const sSampler& sampler)
+            {
+                static void* nullInstance = nullptr;
+                CSBindSampler(sampler.Slot, nullInstance);
+            }
+
             void CreateComputePipeline(sComputePipeline &pipeline)
             {
                 if (pipeline.Shader == nullptr)
@@ -468,59 +559,14 @@ namespace xpe {
                 if (pipeline.RenderTarget != nullptr) {
                     BindRenderTarget(pipeline.RenderTarget->ColorViews, pipeline.RenderTarget->DepthStencilView);
                 }
-
-                for (const auto* buffer : pipeline.CSListBuffers) {
-                    if (buffer != nullptr) {
-                        BindListBufferCS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.CSItemBuffers) {
-                    if (buffer != nullptr) {
-                        BindItemBufferCS(*buffer);
-                    }
-                }
-
-                for (const auto* texture : pipeline.Textures) {
-                    if (texture != nullptr) {
-                        BindTexture(*texture);
-                    }
-                }
-
-                for (const auto* sampler : pipeline.Samplers) {
-                    if (sampler != nullptr) {
-                        BindSampler(*sampler);
-                    }
-                }
             }
 
             void UnbindComputePipeline(const sComputePipeline &pipeline)
             {
+                if (pipeline.Shader != nullptr) {
+                    UnbindShader(*pipeline.Shader);
+                }
                 UnbindRenderTarget();
-
-                for (const auto* buffer : pipeline.CSListBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindListBufferCS(*buffer);
-                    }
-                }
-
-                for (const auto* buffer : pipeline.CSItemBuffers) {
-                    if (buffer != nullptr) {
-                        UnbindItemBufferCS(*buffer);
-                    }
-                }
-
-                for (const auto* texture : pipeline.Textures) {
-                    if (texture != nullptr) {
-                        UnbindTexture(*texture);
-                    }
-                }
-
-                for (const auto* sampler : pipeline.Samplers) {
-                    if (sampler != nullptr) {
-                        UnbindSampler(*sampler);
-                    }
-                }
             }
 
             void FreeComputePipeline(sComputePipeline &pipeline)

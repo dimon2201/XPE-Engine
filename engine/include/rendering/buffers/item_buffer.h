@@ -14,7 +14,7 @@ namespace xpe {
             T Item;
 
             sItemBuffer() = default;
-            sItemBuffer(u32 slot);
+            sItemBuffer(u32 slot, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::NONE);
             ~sItemBuffer();
 
             void Flush();
@@ -22,9 +22,11 @@ namespace xpe {
         };
 
         template<typename T>
-        sItemBuffer<T>::sItemBuffer(u32 slot)
+        sItemBuffer<T>::sItemBuffer(u32 slot, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
         {
-            Type = eBufferType::CONSTANT;
+            Type = sBuffer::eType::ITEM;
+            ViewType = viewtype;
+            SubType = subtype;
             Slot = slot;
             StructureSize = sizeof(T);
             NumElements = 1;

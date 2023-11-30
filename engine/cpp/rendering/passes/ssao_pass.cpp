@@ -32,7 +32,12 @@ namespace xpe
             m_Pipeline->RenderTarget = new sRenderTarget({ ssaoColor }, ssaoDepth, viewport);
             m_Pipeline->RenderTarget->SetResizable(true);
 
-            m_Pipeline->PSItemBuffers.emplace_back(&m_Buffer);
+            for (auto* stage : m_Pipeline->Shader->Stages)
+            {
+                if (stage->Type == sShaderStage::eType::PIXEL) {
+                    stage->Buffers.emplace_back(&m_Buffer);
+                }
+            }
         }
     }
 }

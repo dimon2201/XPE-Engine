@@ -135,9 +135,9 @@ namespace xpe {
 
             m_WidgetBuffer.Flush();
 
-            context::BindListBufferVS(m_WidgetBuffer);
+            context::VSBindBuffer(m_WidgetBuffer);
             context::DrawIndexed(m_QuadInfo.IndexCount, m_WidgetBuffer.Size(), m_QuadInfo.VertexOffset, m_QuadInfo.IndexOffset);
-            context::UnbindListBufferVS(m_WidgetBuffer);
+            context::VSUnbindBuffer(m_WidgetBuffer);
 
             m_WidgetBuffer.Clear();
         }
@@ -179,7 +179,12 @@ namespace xpe {
             m_FontSampler.AddressW        = sSampler::eAddress::WRAP;
             context::CreateSampler(m_FontSampler);
 
-            m_Pipeline->Samplers.emplace_back(&m_FontSampler);
+            for (auto* stage : m_Pipeline->Shader->Stages)
+            {
+                if (stage->Type == sShaderStage::eType::PIXEL) {
+                    stage->Samplers.emplace_back(&m_FontSampler);
+                }
+            }
         }
 
         cTextPass::~cTextPass()
@@ -228,13 +233,13 @@ namespace xpe {
             m_CharBuffer.Flush();
             m_TextBuffer.Flush();
 
-            context::BindListBufferVS(m_CharBuffer);
-            context::BindListBufferVS(m_TextBuffer);
-            context::BindTexture(fontAtlas, K_SLOT_FONT_ATLAS);
+            context::VSBindBuffer(m_CharBuffer);
+            context::VSBindBuffer(m_TextBuffer);
+            context::PSBindTexture(fontAtlas, K_SLOT_FONT_ATLAS);
             context::DrawIndexed(m_QuadInfo.IndexCount, m_CharBuffer.Size(), m_QuadInfo.VertexOffset, m_QuadInfo.IndexOffset);
-            context::UnbindTexture(fontAtlas);
-            context::UnbindListBufferVS(m_TextBuffer);
-            context::UnbindListBufferVS(m_CharBuffer);
+            context::PSUnbindTexture(fontAtlas);
+            context::VSUnbindBuffer(m_TextBuffer);
+            context::VSUnbindBuffer(m_CharBuffer);
 
             m_CharBuffer.Clear();
             m_TextBuffer.Clear();
