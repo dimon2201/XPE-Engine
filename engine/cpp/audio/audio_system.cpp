@@ -27,6 +27,9 @@ namespace xpe {
 
         cAudioSystem::~cAudioSystem()
 		{
+			DeleteSources(1, &m_MySourceID);
+			DeleteBuffers(k_NumCaptureBuffers, m_MyBuffersID.data());
+
 			context::FreeAudio();
 		}
 
@@ -195,11 +198,11 @@ namespace xpe {
 			s32 processed;
 
 			GetProcessed(component.Source.Id, &processed);
-			GetState(component.Source.Id, component.State);
+			GetState(component.Source.Id, component.Source.State);
 
 			if (GetError() == eAudioError::NONE) {
 
-				for (s32 i = 0; component.CurrentFrame < component.File->Info.frames && processed; ++i) {
+				for (s32 i = 0; i < component.NumBuffers && component.CurrentFrame < component.File->Info.frames && processed > 0; ++i) {
 
 					SetCurrentFrame(component.File->File, component.CurrentFrame);
 					component.CurrentFrame += component.BufferSamples;
@@ -208,13 +211,13 @@ namespace xpe {
 
 					--processed;
 				}
+				
+				GetState(component.Source.Id, component.Source.State);
 			}
 
 			else {
 				LogError("Error checking music source state");
 			}
-
-			GetState(component.Source.Id, component.State);
 		}
 
 		void cAudioSystem::AudioStop(CAudio& component)
