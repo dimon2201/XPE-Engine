@@ -141,7 +141,7 @@ namespace xpe {
                 }
             }
 
-            void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, s16* data, s64 frames, s32 processed)
+            void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed)
             {
                 s64 chunk, size;
 
