@@ -16,7 +16,7 @@ namespace xpe {
         class LOADER_API cSkeletonLoader final
         {
         public:
-            static sSkeleton Load(const char* filepath, const vector<eLoadOption>& options = {
+            static std::pair<sSkeleton, sSkeletonInfo> Load(const char* filepath, const vector<eLoadOption>& options = {
                     eLoadOption::TRIANGULATE
             });
         };

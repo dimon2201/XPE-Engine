@@ -57,7 +57,7 @@ namespace xpe
             void operator delete(void* address);
         };
 
-        enum eSpace : u8
+        enum eSpace
         {
             SPACE_2D = 0,
             SPACE_3D = 1

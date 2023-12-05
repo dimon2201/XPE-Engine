@@ -4,24 +4,33 @@ namespace xpe {
 
     namespace render {
 
-        sVertexBuffer::sVertexBuffer(const usize vertexCount)
+        sVertexBuffer::sVertexBuffer(const usize vertexCount, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
         {
-            Type = eBufferType::VERTEX;
+            Type = sBuffer::eType::VERTEX;
+            SubType = subtype;
+            ViewType = viewtype;
             StructureSize = sizeof(sVertex);
             NumElements = vertexCount;
-            List.resize(vertexCount);
-            InitialData = List.data();
-            context::CreateBuffer(*this);
+            if (vertexCount > 0) {
+                List.resize(vertexCount);
+                InitialData = List.data();
+                context::CreateBuffer(*this);
+            }
         }
 
-        sVertexBuffer::sVertexBuffer(const vector<sVertex>& vertexArray) : List(vertexArray)
+        sVertexBuffer::sVertexBuffer(const vector<sVertex>& vertexArray, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
+        : List(vertexArray)
         {
-            Type = eBufferType::VERTEX;
+            Type = sBuffer::eType::VERTEX;
+            SubType = subtype;
+            ViewType = viewtype;
             StructureSize = sizeof(sVertex);
             NumElements = vertexArray.size();
-            InitialData = List.data();
-            context::CreateBuffer(*this);
-            Flush();
+            if (vertexArray.size() > 0) {
+                InitialData = List.data();
+                context::CreateBuffer(*this);
+                Flush();
+            }
         }
 
         sVertexBuffer::~sVertexBuffer()
@@ -60,7 +69,6 @@ namespace xpe {
 
         void sVertexBuffer::Recreate(const usize vertexCount)
         {
-            Type = eBufferType::VERTEX;
             NumElements = vertexCount;
             StructureSize = sizeof(sVertex);
             InitialData = List.data();

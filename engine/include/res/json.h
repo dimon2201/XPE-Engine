@@ -1,14 +1,14 @@
 #pragma once
 
-#include <stl/string.h>
+#include <stl/stl.h>
 
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
-#define Json(clazz, ...) NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(clazz, __VA_ARGS__)
+#define JSON(clazz, ...) NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(clazz, __VA_ARGS__)
 
-#define JsonClassNamed(clazz, name, ...)                        \
+#define JSON_CLASS_NAMED(clazz, name, ...)                        \
                                                                 \
 NLOHMANN_DEFINE_TYPE_INTRUSIVE(clazz, __VA_ARGS__)              \
                                                                 \
@@ -22,9 +22,9 @@ void FromJson(json &root) override                              \
     root.at(name.c_str()).get_to(*this);                        \
 }                                                               \
 
-#define JsonClass(clazz, ...) JsonClassNamed(clazz, string(#clazz), __VA_ARGS__)
+#define JSON_CLASS(clazz, ...) JSON_CLASS_NAMED(clazz, string(#clazz), __VA_ARGS__)
 
-#define JsonEnum(clazz, ...) \
+#define JSON_ENUM(clazz, ...) \
 NLOHMANN_JSON_SERIALIZE_ENUM(clazz, __VA_ARGS__)
 
 namespace xpe {
@@ -50,13 +50,13 @@ namespace xpe {
 // JSON for GLM library
 namespace glm {
 
-    Json(vec2, x, y)
-    Json(vec3, x, y, z)
-    Json(vec4, x, y, z, w)
-    Json(ivec2, x, y)
-    Json(ivec3, x, y, z)
-    Json(ivec4, x, y, z, w)
-    Json(quat, x, y, z, w)
+    JSON(vec2, x, y)
+    JSON(vec3, x, y, z)
+    JSON(vec4, x, y, z, w)
+    JSON(ivec2, x, y)
+    JSON(ivec3, x, y, z)
+    JSON(ivec4, x, y, z, w)
+    JSON(quat, x, y, z, w)
 
     void to_json(json& j, const glm::mat2& m);
 
@@ -76,7 +76,7 @@ namespace glm {
 namespace xpe::core
 {
 
-    JsonEnum(eKey, {
+    JSON_ENUM(eKey, {
 
         { eKey::None, "None" },
         { eKey::Space, "Space" },
@@ -222,7 +222,7 @@ namespace xpe::core
 namespace xpe::core
 {
 
-    JsonEnum(eMouse, {
+    JSON_ENUM(eMouse, {
 
         { eMouse::NoneButton, "NoneButton" },
 
@@ -248,7 +248,7 @@ namespace xpe::core
 namespace xpe::core
 {
 
-    JsonEnum(eGamepadButton, {
+    JSON_ENUM(eGamepadButton, {
 
         { eGamepadButton::Pad_A, "Pad_A" },
         { eGamepadButton::Pad_B, "Pad_B" },
@@ -278,7 +278,7 @@ namespace xpe::core
         { eGamepadButton::Pad_Triangle, "Pad_Triangle" },
     })
 
-    JsonEnum(eGamepadAxis, {
+    JSON_ENUM(eGamepadAxis, {
 
         { eGamepadAxis::Axis_LeftX, "Axis_LeftX" },
         { eGamepadAxis::Axis_LeftY, "Axis_LeftY" },

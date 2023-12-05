@@ -5,24 +5,33 @@ namespace xpe {
 
     namespace render {
 
-        sIndexBuffer::sIndexBuffer(const usize indexCount)
+        sIndexBuffer::sIndexBuffer(const usize indexCount, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
         {
-            List.resize(indexCount);
-            Type = eBufferType::INDEX;
+            Type = sBuffer::eType::INDEX;
+            SubType = subtype;
+            ViewType = viewtype;
             StructureSize = sizeof(u32);
             NumElements = indexCount;
-            InitialData = List.data();
-            context::CreateBuffer(*this);
+            if (indexCount > 0) {
+                List.resize(indexCount);
+                InitialData = List.data();
+                context::CreateBuffer(*this);
+            }
         }
 
-        sIndexBuffer::sIndexBuffer(const vector<u32>& indexArray) : List(indexArray)
+        sIndexBuffer::sIndexBuffer(const vector<u32>& indexArray, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
+        : List(indexArray)
         {
-            Type = eBufferType::INDEX;
+            Type = sBuffer::eType::INDEX;
+            SubType = subtype;
+            ViewType = viewtype;
             StructureSize = sizeof(u32);
             NumElements = indexArray.size();
-            InitialData = List.data();
-            context::CreateBuffer(*this);
-            Flush();
+            if (indexArray.size() > 0) {
+                InitialData = List.data();
+                context::CreateBuffer(*this);
+                Flush();
+            }
         }
 
         sIndexBuffer::~sIndexBuffer()
@@ -61,7 +70,6 @@ namespace xpe {
 
         void sIndexBuffer::Recreate(const usize indexCount)
         {
-            Type = eBufferType::INDEX;
             NumElements = indexCount;
             StructureSize = sizeof(u32);
             InitialData = List.data();

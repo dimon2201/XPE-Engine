@@ -19,7 +19,12 @@ namespace xpe {
         void cSkyboxPass::InitOpaque()
         {
             cRenderPass::InitOpaque();
-            m_Pipeline->Samplers.emplace_back(&m_Sampler);
+            for (auto* stage : m_Pipeline->Shader->Stages)
+            {
+                if (stage->Type == sShaderStage::eType::PIXEL) {
+                    stage->Samplers.emplace_back(&m_Sampler);
+                }
+            }
             m_Pipeline->DepthStencil.EnableDepth = true;
             m_Pipeline->DepthStencil.DepthFunc = eDepthStencilFunc::LESS_EQUAL;
             m_Pipeline->Rasterizer.CullMode = eCullMode::NONE;
@@ -29,15 +34,15 @@ namespace xpe {
         {
             auto& skybox = cSkyboxManager::Get().Skybox;
             if (skybox.Texture) {
-                sGeometry& skyboxGeometry = skybox.Geometry;
+                sGeometryInfo geometryInfo = skybox.GeometryInfo;
                 sTexture& skyboxTexture = *skybox.Texture;
-                context::BindPrimitiveTopology(skyboxGeometry.PrimitiveTopology);
-                context::BindTexture(skyboxTexture);
+                context::BindPrimitiveTopology(geometryInfo.PrimitiveTopology);
+                context::PSBindTexture(skyboxTexture);
                 context::DrawIndexed(
-                        skyboxGeometry.Indices.size(),
-                        1,
-                        skyboxGeometry.VertexOffset,
-                        skyboxGeometry.IndexOffset
+                    geometryInfo.IndexCount,
+                    1,
+                    geometryInfo.VertexOffset,
+                    geometryInfo.IndexOffset
                 );
             }
         }

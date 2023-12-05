@@ -35,10 +35,15 @@ namespace xpe {
             delete s_WidgetAtlas;
         }
 
-        void cWidgetManager::Bind(sPipeline& pipeline)
+        void cWidgetManager::Bind(sVertexPipeline& pipeline)
         {
-            pipeline.Textures.emplace_back(s_WidgetAtlas);
-            pipeline.Samplers.emplace_back(&s_WidgetSampler);
+            for (auto* stage : pipeline.Shader->Stages)
+            {
+                if (stage->Type == sShaderStage::eType::PIXEL) {
+                    stage->Textures.emplace_back(s_WidgetAtlas);
+                    stage->Samplers.emplace_back(&s_WidgetSampler);
+                }
+            }
         }
 
         sAtlas* cWidgetManager::GetAtlas()

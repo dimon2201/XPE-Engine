@@ -11,7 +11,12 @@ namespace xpe {
 
         cGeometryPass::cGeometryPass(eType type, const vector<sRenderPassBinding> &bindings) : cInstancingPass(type, bindings)
         {
-            m_Pipeline->VSBuffers.emplace_back(cSkeletonManager::GetBuffer());
+            for (auto* stage : m_Pipeline->Shader->Stages)
+            {
+                if (stage->Type == sShaderStage::eType::VERTEX) {
+                    stage->Buffers.emplace_back(cSkeletonManager::GetBuffer());
+                }
+            }
         }
 
         void cGeometryPass::InitOpaque()
@@ -26,134 +31,93 @@ namespace xpe {
             cMaterialManager::Bind(*m_Pipeline);
         }
 
-        void cGeometryPass::DrawOpaque(cScene* scene) {
-            scene->ForEach<sCGeometry>([this](sCGeometry *component) {
-                if (!component->Transparent) {
-                    auto &geometry = *component;
+        void cGeometryPass::DrawOpaque(cScene* scene)
+        {
+            // Draw geometry
+            {
+                auto components = scene->GetComponents<COpaque, CGeometryInfo>();
+                for (auto [entity, opaque, geometryInfo]: components.each()) {
                     DrawInstanced(
-                            geometry.PrimitiveTopology,
-                            geometry.VertexOffset,
-                            geometry.Vertices.size(),
-                            geometry.IndexOffset,
-                            geometry.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [](cEntity *entity, sRenderInstance &instance) {
-                                auto *materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
+                            scene,
+                            geometryInfo,
+                            [scene](EntityID entityId, sRenderInstance &instance) {
+                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
                             }
                     );
                 }
-            });
-
-            scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
-                if (!component->Transparent) {
-                    auto &model = *component;
-                    auto &skeleton = component->Skeleton;
+            }
+            // Draw skeletons
+            {
+                auto components = scene->GetComponents<COpaque, CSkeletonInfo>();
+                for (auto [entity, opaque, skeletonInfo]: components.each()) {
                     DrawInstanced(
-                            model.PrimitiveTopology,
-                            model.VertexOffset,
-                            model.Vertices.size(),
-                            model.IndexOffset,
-                            model.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [&skeleton](cEntity *entity, sRenderInstance &instance) {
-                                auto *materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
-                                instance.SkeletonIndex = skeleton.Index;
+                            scene,
+                            skeletonInfo.GeometryInfo,
+                            [scene, &skeletonInfo](EntityID entityId, sRenderInstance &instance) {
+                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
+                                instance.SkeletonIndex = skeletonInfo.SkeletonIndex;
                             }
                     );
                 }
-            });
+            }
         }
 
-        void cGeometryPass::DrawTransparent(cScene* scene) {
-            scene->ForEach<sCGeometry>([this](sCGeometry *component) {
-                if (component->Transparent) {
-                    auto &geometry = *component;
+        void cGeometryPass::DrawTransparent(cScene* scene)
+        {
+            // Draw geometry
+            {
+                auto components = scene->GetComponents<CTransparent, CGeometryInfo>();
+                for (auto [entity, transparent, geometryInfo]: components.each()) {
                     DrawInstanced(
-                            geometry.PrimitiveTopology,
-                            geometry.VertexOffset,
-                            geometry.Vertices.size(),
-                            geometry.IndexOffset,
-                            geometry.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [](cEntity *entity, sRenderInstance &instance) {
-                                auto *materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
+                            scene,
+                            geometryInfo,
+                            [scene](EntityID entityId, sRenderInstance &instance) {
+                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
                             }
                     );
                 }
-            });
-
-            scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
-                if (component->Transparent) {
-                    auto &model = *component;
-                    auto &skeleton = component->Skeleton;
+            }
+            // Draw skeletons
+            {
+                auto components = scene->GetComponents<CTransparent, CSkeletonInfo>();
+                for (auto [entity, transparent, skeletonInfo]: components.each()) {
                     DrawInstanced(
-                            model.PrimitiveTopology,
-                            model.VertexOffset,
-                            model.Vertices.size(),
-                            model.IndexOffset,
-                            model.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [&skeleton](cEntity *entity, sRenderInstance &instance) {
-                                auto *materialComponent = entity->Get<sCMaterial>();
-                                if (materialComponent != nullptr) {
-                                    instance.MaterialIndex = materialComponent->Index;
-                                }
-                                instance.SkeletonIndex = skeleton.Index;
+                            scene,
+                            skeletonInfo.GeometryInfo,
+                            [scene, &skeletonInfo](EntityID entityId, sRenderInstance &instance) {
+                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
+                                instance.SkeletonIndex = skeletonInfo.SkeletonIndex;
                             }
                     );
                 }
-            });
+            }
         }
 
         void cGeometryPass::DrawShadow(cScene* scene)
         {
-            scene->ForEach<sCGeometry>([this](sCGeometry *component) {
-                if (component->CastShadow) {
-                    auto &geometry = *component;
+            // Draw geometry
+            {
+                auto components = scene->GetComponents<CHasShadow, CGeometryInfo>();
+                for (auto [entity, hasShadow, geometryInfo]: components.each()) {
                     DrawInstanced(
-                            geometry.PrimitiveTopology,
-                            geometry.VertexOffset,
-                            geometry.Vertices.size(),
-                            geometry.IndexOffset,
-                            geometry.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            {}
+                            scene,
+                            geometryInfo
                     );
                 }
-            });
-
-            scene->ForEach<sCSkeletonModel>([this](sCSkeletonModel *component) {
-                if (component->CastShadow) {
-                    auto &model = *component;
-                    auto &skeleton = component->Skeleton;
+            }
+            // Draw skeletons
+            {
+                auto components = scene->GetComponents<CHasShadow, CSkeletonInfo>();
+                for (auto [entity, hasShadow, skeletonInfo]: components.each()) {
                     DrawInstanced(
-                            model.PrimitiveTopology,
-                            model.VertexOffset,
-                            model.Vertices.size(),
-                            model.IndexOffset,
-                            model.Indices.size(),
-                            component->Entity,
-                            component->Entities,
-                            [&skeleton](cEntity *entity, sRenderInstance &instance) {
-                                instance.SkeletonIndex = skeleton.Index;
+                            scene,
+                            skeletonInfo.GeometryInfo,
+                            [&skeletonInfo](EntityID entityId, sRenderInstance &instance) {
+                                instance.SkeletonIndex = skeletonInfo.SkeletonIndex;
                             }
                     );
                 }
-            });
+            }
         }
 
     }

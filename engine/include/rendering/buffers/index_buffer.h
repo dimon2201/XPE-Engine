@@ -13,9 +13,8 @@ namespace xpe {
         {
             vector<u32> List;
 
-            sIndexBuffer() = default;
-            sIndexBuffer(const usize indexCount);
-            sIndexBuffer(const vector<u32>& indexArray);
+            sIndexBuffer(const usize indexCount = 0, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::NONE);
+            sIndexBuffer(const vector<u32>& indexArray, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::NONE);
             ~sIndexBuffer();
 
             void Flush();

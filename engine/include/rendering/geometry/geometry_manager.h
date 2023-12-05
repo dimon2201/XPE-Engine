@@ -13,7 +13,7 @@ namespace xpe {
             static void Init();
             static void Free();
             static void Bind();
-            static sGeometry AddGeometry(const sGeometry& _geometry);
+            static std::pair<sGeometry, sGeometryInfo> AddGeometry(const sGeometry& _geometry);
 
         private:
             static sVertexBuffer* s_VertexBuffer;

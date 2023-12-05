@@ -89,12 +89,12 @@ namespace xpe {
 
         void sRenderTarget::BindColor(u32 index)
         {
-            context::BindTexture(*Colors[index]);
+            context::PSBindTexture(*Colors[index]);
         }
 
         void sRenderTarget::BindDepth()
         {
-            context::BindTexture(*DepthStencil);
+            context::PSBindTexture(*DepthStencil);
         }
 
         void sRenderTarget::ClearColor(u32 index, const glm::vec4 &color)

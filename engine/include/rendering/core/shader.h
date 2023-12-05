@@ -1,24 +1,26 @@
 #pragma once
 
 #include <rendering/core/core.h>
+#include <rendering/core/texture.h>
 
 namespace xpe {
 
     namespace render {
 
-        enum class eShaderType
-        {
-            VERTEX = 0,
-            PIXEL = 1,
-            GEOMETRY = 2,
-            TESS_EVAL = 3,
-            TESS_CONTROL = 4,
-            COMPUTE = 5,
-        };
-
         struct ENGINE_API sShaderStage : public sResource
         {
-            eShaderType Type;
+            enum class eType
+            {
+                NONE = -1,
+                VERTEX = 0,
+                PIXEL = 1,
+                GEOMETRY = 2,
+                TESS_EVAL = 3,
+                TESS_CONTROL = 4,
+                COMPUTE = 5,
+            };
+
+            eType Type;
             render::sBlob Blob;
             string Source;
             const char* EntryPoint = nullptr;
@@ -26,10 +28,15 @@ namespace xpe {
             uword Flag = 0;
             bool Compiled = false;
             string Name;
+            sBuffer* VertexBuffer = nullptr;
+            sBuffer* IndexBuffer = nullptr;
+            vector<sBuffer*>  Buffers;
+            vector<sTexture*> Textures;
+            vector<sSampler*> Samplers;
 
             sShaderStage() = default;
-            sShaderStage(eShaderType type) : Type(type) {}
-            sShaderStage(const string& name, eShaderType type) : Type(type), Name(name) {}
+            sShaderStage(eType type) : Type(type) {}
+            sShaderStage(const string& name, eType type) : Type(type), Name(name) {}
         };
 
         struct ENGINE_API sShader : public cObject

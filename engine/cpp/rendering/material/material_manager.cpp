@@ -95,19 +95,24 @@ namespace xpe {
             EmissionAtlas->Flush();
         }
 
-        void cMaterialManager::Bind(sPipeline& pipeline)
+        void cMaterialManager::Bind(sVertexPipeline& pipeline)
         {
-            pipeline.PSBuffers.emplace_back(s_DataBuffer);
+            for (auto* stage : pipeline.Shader->Stages)
+            {
+                if (stage->Type == sShaderStage::eType::PIXEL) {
+                    stage->Buffers.emplace_back(s_DataBuffer);
 
-            pipeline.Samplers.emplace_back(&Sampler);
+                    stage->Samplers.emplace_back(&Sampler);
 
-            pipeline.Textures.emplace_back(AlbedoAtlas);
-            pipeline.Textures.emplace_back(NormalAtlas);
-            pipeline.Textures.emplace_back(ParallaxAtlas);
-            pipeline.Textures.emplace_back(MetalAtlas);
-            pipeline.Textures.emplace_back(RoughnessAtlas);
-            pipeline.Textures.emplace_back(AOAtlas);
-            pipeline.Textures.emplace_back(EmissionAtlas);
+                    stage->Textures.emplace_back(AlbedoAtlas);
+                    stage->Textures.emplace_back(NormalAtlas);
+                    stage->Textures.emplace_back(ParallaxAtlas);
+                    stage->Textures.emplace_back(MetalAtlas);
+                    stage->Textures.emplace_back(RoughnessAtlas);
+                    stage->Textures.emplace_back(AOAtlas);
+                    stage->Textures.emplace_back(EmissionAtlas);
+                }
+            }
         }
 
         void cMaterialManager::Flush(const sMaterial& material)

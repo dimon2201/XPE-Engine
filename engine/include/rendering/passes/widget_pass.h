@@ -37,6 +37,7 @@ namespace xpe {
             bool IsHovered3D(const glm::mat4& modelMatrix, const glm::vec2& mousePos);
 
             sGeometry m_Quad;
+            sGeometryInfo m_QuadInfo;
             sWidgetBuffer m_WidgetBuffer;
             glm::mat4 m_Projection2D;
             glm::mat4 m_Projection3D;
@@ -65,6 +66,7 @@ namespace xpe {
             bool IsHovered3D(const glm::mat4& modelMatrix, const glm::vec2& mousePos);
 
             sGeometry m_Quad;
+            sGeometryInfo m_QuadInfo;
             sCharBuffer m_CharBuffer;
             sTextBuffer m_TextBuffer;
             sSampler m_FontSampler;

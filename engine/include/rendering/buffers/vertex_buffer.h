@@ -13,9 +13,8 @@ namespace xpe {
         {
             vector<sVertex> List;
 
-            sVertexBuffer() = default;
-            sVertexBuffer(const usize vertexCount);
-            sVertexBuffer(const vector<sVertex>& vertices);
+            sVertexBuffer(const usize vertexCount = 0, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::NONE);
+            sVertexBuffer(const vector<sVertex>& vertices, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::NONE);
             ~sVertexBuffer();
 
             void Flush();

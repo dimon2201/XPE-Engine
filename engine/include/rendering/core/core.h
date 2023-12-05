@@ -8,17 +8,27 @@ namespace xpe {
 
         struct ENGINE_API sResource : public cObject
         {
+            enum class eViewType
+            {
+                NONE,
+                DEPTH_STENCIL,
+                RENDER_TARGET,
+                SRV,
+                UAV
+            };
+
+            enum class eMapType
+            {
+                READ,
+                WRITE,
+                READ_WRITE,
+                WRITE_NO_OVERWRITE,
+                WRITE_DISCARD
+            };
+
             void* Instance = nullptr;
             void* ViewInstance = nullptr;
-        };
-
-        enum class eMapType
-        {
-            READ,
-            WRITE,
-            READ_WRITE,
-            WRITE_NO_OVERWRITE,
-            WRITE_DISCARD
+            eViewType ViewType = eViewType::NONE;
         };
 
         enum class ePrimitiveTopology
@@ -32,26 +42,39 @@ namespace xpe {
             DEFAULT = TRIANGLE_LIST
         };
 
-        enum class eBufferType
-        {
-            VERTEX,
-            INDEX,
-            CONSTANT,
-            STRUCTURED
-        };
-
-        enum class eBufferUsage
-        {
-            DEFAULT,
-            STATIC,
-            DYNAMIC,
-            STAGING
-        };
-
         struct ENGINE_API sBuffer : public sResource
         {
-            eBufferType Type;
-            eBufferUsage Usage = eBufferUsage::DYNAMIC;
+            enum class eType
+            {
+                NONE,
+                VERTEX,
+                INDEX,
+                ITEM,
+                LIST,
+
+                CONSTANT = ITEM,
+                STRUCTURED = LIST,
+            };
+
+            enum class eSubType
+            {
+                NONE,
+                RAW,     // combined with VERTEX/INDEX/LIST buffer
+                APPEND,  // combined with LIST/ITEM buffer
+                CONSUME  // combined with LIST/ITEM buffer
+            };
+
+            enum class eUsage
+            {
+                DEFAULT,
+                STATIC,
+                DYNAMIC,
+                STAGING
+            };
+
+            eType Type = eType::NONE;
+            eSubType SubType = eSubType::NONE;
+            eUsage Usage = eUsage::DYNAMIC;
             usize StructureSize = 0;
             u32 NumElements = 0;
             u32 Slot = 0;

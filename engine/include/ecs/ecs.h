@@ -1,5 +1,7 @@
 #pragma once
 
+#include <entt/entity/registry.hpp>
+
 namespace physx
 {
     struct PxScene;
@@ -14,449 +16,294 @@ namespace xpe
         using namespace res;
         using namespace math;
 
-        class cEntity;
-
-        struct ENGINE_API sComponent : public cObject, public cJson
-        {
-            cEntity* Entity = nullptr;
-            bool FollowEntity = true;
-        };
-
-        struct ENGINE_API sComponentStorage : public cObject
-        {
-            template<typename T>
-            [[nodiscard]] inline size_t GetSize() const
-            {
-                return m_Components.size() / sizeof(T);
-            }
-
-            template<typename T>
-            [[nodiscard]] inline size_t GetCapacity() const
-            {
-                return m_Components.capacity() / sizeof(T);
-            }
-
-            template<typename T>
-            inline T* Get(int i)
-            {
-                return (T*) (m_Components[i * sizeof(T)]);
-            }
-
-            [[nodiscard]] inline bool HasCapacity() const
-            {
-                return m_Components.size() < m_Components.capacity();
-            }
-
-            template<typename T>
-            T* Get(const string& tag);
-
-            sComponent* GetAddress(usize componentSize, cEntity* entity);
-
-            template<typename T>
-            void Reserve(usize newCapacity);
-
-            template<typename T>
-            void Resize(usize newSize);
-
-            template<typename T, typename... Args>
-            T* Add(Args &&... args);
-
-            template<typename T, typename... Args>
-            void Update(T* component, Args &&... args);
-
-            template<typename T>
-            void EraseAt(int index, usize typeSize);
-
-            template<typename T>
-            void Erase(cEntity* entity);
-
-            template<typename T>
-            void ForEach(const std::function<void(T*)> &iterateFunction);
-
-            void Clear();
-
-            inline vector<u8>& Data()
-            {
-                return m_Components;
-            }
-
-            inline bool NotEmpty()
-            {
-                return m_Components.size() > 0;
-            }
-
-            inline bool Empty()
-            {
-                return m_Components.size() <= 0;
-            }
-
-        private:
-            vector<u8> m_Components;
-        };
-
+        typedef entt::entity EntityID;
+        constexpr EntityID EntityNull = entt::null;
+        typedef usize ComponentID;
+        using cRegistry = entt::basic_registry<EntityID, cMainAllocator<EntityID>>;
         template<typename T>
-        void sComponentStorage::Reserve(size_t newCapacity)
-        {
-            m_Components.reserve(sizeof(T) * newCapacity);
-        }
-
-        template<typename T>
-        void sComponentStorage::Resize(size_t newSize)
-        {
-            m_Components.resize(sizeof(T) * newSize);
-        }
-
-        template<typename T, typename... Args>
-        T* sComponentStorage::Add(Args &&... args)
-        {
-            usize componentsSize = m_Components.size();
-            m_Components.resize(componentsSize + sizeof(T));
-            T* component = reinterpret_cast<T*>(&m_Components[componentsSize]);
-            ::new (component) T(std::forward<Args>(args)...);
-            return component;
-        }
-
-        template<typename T, typename... Args>
-        void sComponentStorage::Update(T* component, Args &&... args)
-        {
-            component->~T();
-            ::new (component) T(std::forward<Args>(args)...);
-        }
-
-        template<typename T>
-        void sComponentStorage::EraseAt(int index, usize typeSize)
-        {
-            auto begin = m_Components.begin() + (index * typeSize);
-            auto end = begin + typeSize;
-            m_Components.erase(begin, end);
-        }
-
-        template<typename T>
-        void sComponentStorage::Erase(cEntity* entity)
-        {
-            usize size = m_Components.size();
-            usize typeSize = sizeof(T);
-
-            for (usize i = 0; i < size; i += typeSize)
-            {
-                T* component = (T*) &m_Components[i];
-                if (component->Entity == entity)
-                {
-                    component->~T();
-                    EraseAt<T>(i / typeSize, typeSize);
-                    break;
-                }
-            }
-        }
-
-        template<typename T>
-        void sComponentStorage::ForEach(const std::function<void(T*)> &iterateFunction)
-        {
-            usize size = m_Components.size();
-            usize step = sizeof(T);
-
-            for (usize i = 0; i < size; i += step)
-            {
-                T* component = (T*) &m_Components[i];
-                iterateFunction(component);
-            }
-        }
-
-        template<typename T>
-        T* sComponentStorage::Get(const string& tag)
-        {
-            u64 id = Hash(tag);
-            usize size = m_Components.size();
-            usize step = sizeof(T);
-
-            for (usize i = 0; i < size; i += step)
-            {
-                T* component = (T*) &m_Components[i];
-                u64 cid = Hash(component->GetTag());
-                if (cid == id) {
-                    return component;
-                }
-            }
-
-            return nullptr;
-        }
-
-        class cEntity;
-
-        typedef usize ComponentType;
+        using cStorage = entt::basic_storage<T, EntityID, cMainAllocator<EntityID>>;
 
         class ENGINE_API cScene : public cObject, public cJson
         {
 
         public:
-
-            virtual ~cScene();
-
             inline void SetTag(const string& tag) { m_Tag = tag; }
 
             [[nodiscard]] inline const string& GetTag() const { return m_Tag; }
 
-            void AddEntity(const string& tag, cEntity* entity);
+            EntityID CreateEntity();
 
-            void RemoveEntity(const string& tag);
+            void RemoveEntity(EntityID entityId);
 
-            void RenameEntity(const string& oldTag, const string& newTag);
+            bool IsValidEntity(EntityID entityId);
 
-            cEntity* GetEntity(const string& tag);
-
-            inline unordered_map<string, cEntity*>& GetEntities() { return m_Entities; }
-
-            template<typename T>
-            void ReserveComponents(usize capacity);
+            void ClearEntities();
 
             template<typename T, typename... Args>
-            T* AddComponent(cEntity* entity, Args&&... args);
+            T& AddComponent(EntityID entityId, Args&&... args);
 
             template<typename T>
-            void RemoveComponent(cEntity* entity);
-
-            void RemoveComponents(cEntity* entity);
+            void RemoveComponent(EntityID entityId);
 
             template<typename T>
-            T* GetComponent(cEntity* entity);
+            T& GetComponent(EntityID entityId);
 
-            template<typename T>
-            sComponentStorage& GetComponents();
+            template<typename... T>
+            bool HasAnyComponent(EntityID entityId);
 
-            template<typename T>
-            void ForEach(const std::function<void(T*)>& iterateFunction);
+            template<typename... T>
+            bool HasAllComponent(EntityID entityId);
 
-            template<typename T>
-            usize GetComponentsCount();
+            template<typename... T>
+            void ClearComponents();
 
-            template<typename T>
-            T* HasComponentAs(cEntity* entity);
+            template<typename... T>
+            auto GetComponents();
+
+            unordered_map<ComponentID, cJson*>& GetJsons(EntityID entityId);
+            unordered_map<ComponentID, cXml*>&  GetXmls(EntityID entityId);
 
             void ToJson(json &root) override;
-
             void FromJson(json &root) override;
 
             physx::PxScene* PhysicsScene;
 
-        protected:
-            template<typename T>
-            inline ComponentType GetComponentType() { return typeid(T).hash_code(); }
-
-            template<typename T>
-            void InvalidateComponentAddresses();
-
-            void InvalidateComponentAddresses(ComponentType componentType, usize componentSize);
-
         private:
             string m_Tag;
-            unordered_map<string, cEntity*> m_Entities;
-            unordered_map<ComponentType, sComponentStorage> m_ComponentStorages;
-            unordered_map<cEntity*, unordered_map<ComponentType, sComponent*>> m_ComponentAddresses;
+            cRegistry m_Registry;
+            unordered_map<EntityID, unordered_map<ComponentID, cJson*>> m_Jsons;
+            unordered_map<EntityID, unordered_map<ComponentID, cXml*>>  m_Xmls;
         };
 
-        template<typename T>
-        void cScene::ReserveComponents(usize capacity)
-        {
-            ComponentType type = GetComponentType<T>();
-            m_ComponentStorages[type] = {};
-            m_ComponentStorages[type].Reserve<T>(capacity);
-        }
-
         template<typename T, typename... Args>
-        T* cScene::AddComponent(cEntity* entity, Args&&... args)
+        T& cScene::AddComponent(EntityID entityId, Args&&... args)
         {
-            ComponentType type = GetComponentType<T>();
-            T* component;
+            T* component = nullptr;
 
-            // reallocate more memory if capacity exceeds
-            auto& componentStorage = m_ComponentStorages[type];
-            if (!componentStorage.HasCapacity())
+            if constexpr(sizeof...(Args) != 0u) {
+                component = &m_Registry.emplace_or_replace<T>(entityId, std::forward<Args>(args)...);
+            }
+            else {
+                component = &m_Registry.emplace_or_replace<T>(entityId, T());
+            }
+
+            if constexpr (std::is_base_of<cJson, T>::value) {
+                m_Jsons[entityId][typeid(T).hash_code()] = component;
+            }
+            else if constexpr (std::is_base_of<cXml, T>::value) {
+                m_Xmls[entityId][typeid(T).hash_code()] = component;
+            }
+
+            return *component;
+        }
+
+        template<typename T>
+        void cScene::RemoveComponent(EntityID entityId)
+        {
+            if (std::is_base_of<cJson, T>::value) {
+                m_Jsons[entityId].erase(typeid(T).hash_code());
+            }
+            else if (std::is_base_of<cXml, T>::value) {
+                m_Xmls[entityId].erase(typeid(T).hash_code());
+            }
+
+            if (m_Registry.any_of<T>(entityId))
             {
-                componentStorage.Reserve<T>(componentStorage.GetSize<T>() * 2);
-                // because component storage memory changed, we need to invalidate all addresses that use it.
-                // it may be expensive operation when scene has a lot of entities,
-                // but it depends only on component storage capacity and reserve weight variables.
-                InvalidateComponentAddresses<T>();
-            }
-            component = componentStorage.Add<T>(std::forward<Args>(args)...);
-            component->Entity = entity;
-            m_ComponentAddresses[entity][type] = component;
-
-            return component;
-        }
-
-        template<typename T>
-        void cScene::RemoveComponent(cEntity* entity)
-        {
-            ComponentType type = GetComponentType<T>();
-            sComponent*& component = m_ComponentAddresses[entity][type];
-
-            if (component == nullptr)
-            {
-                LogWarning("Component for entity {0} does not exist", entity->GetTag());
-                return;
-            }
-
-            // remove component from storage
-            m_ComponentStorages[type].Erase<T>(entity);
-            component = nullptr;
-        }
-
-        template<typename T>
-        T* cScene::GetComponent(cEntity* entity)
-        {
-            return (T*) m_ComponentAddresses[entity][GetComponentType<T>()];
-        }
-
-        template<typename T>
-        sComponentStorage& cScene::GetComponents()
-        {
-            return m_ComponentStorages[GetComponentType<T>()];
-        }
-
-        template<typename T>
-        void cScene::ForEach(const std::function<void(T*)>& iterateFunction)
-        {
-            ComponentType componentType = GetComponentType<T>();
-            if (m_ComponentStorages.find(componentType) != m_ComponentStorages.end()) {
-                m_ComponentStorages[componentType].ForEach<T>(iterateFunction);
+                m_Registry.erase<T>(entityId);
             }
         }
 
         template<typename T>
-        void cScene::InvalidateComponentAddresses()
+        T& cScene::GetComponent(EntityID entityId)
         {
-            InvalidateComponentAddresses(GetComponentType<T>(), sizeof(T));
+            return m_Registry.get<T>(entityId);
         }
 
-        template<typename T>
-        usize cScene::GetComponentsCount()
+        template<typename... T>
+        bool cScene::HasAnyComponent(EntityID entityId)
         {
-            return m_ComponentStorages[GetComponentType<T>()].GetSize();
+            return m_Registry.any_of<T...>(entityId);
         }
 
-        template<typename T>
-        T* cScene::HasComponentAs(cEntity* entity)
+        template<typename... T>
+        bool cScene::HasAllComponent(EntityID entityId)
         {
-            auto& components = m_ComponentAddresses[entity];
-            for (auto& p : components)
-            {
-                T* base = dynamic_cast<T*>(p.second);
-                if (base != nullptr)
-                {
-                    return base;
-                }
-            }
-            return nullptr;
+            return m_Registry.all_of<T...>(entityId);
         }
 
-        class ENGINE_API cEntity : public cObject, public cJson, public cXml
+        template<typename... T>
+        void cScene::ClearComponents()
+        {
+            m_Registry.clear<T...>();
+            m_Jsons.clear();
+            m_Xmls.clear();
+        }
+
+        template<typename... T>
+        auto cScene::GetComponents()
+        {
+            return m_Registry.view<T...>();
+        }
+
+        class ENGINE_API cEntity : public cJson, public cXml
         {
 
         public:
             vector<cEntity*> Children;
 
+            cEntity() = default;
             cEntity(const string& tag, cScene* scene);
-            virtual ~cEntity();
-
-            void SetTransform(const sTransform& transform);
-            void SetPosition(const glm::vec3& position);
-            void SetRotation(const glm::vec3& rotation);
-            void SetScale(const glm::vec3& scale);
-            void SetVisible(bool visible);
-
-            void Move(const glm::vec3& diff);
-            void Rotate(const glm::vec3& diff);
-            void Scale(const glm::vec3& diff);
-
-            void SetSpace(eSpace space);
-
-            [[nodiscard]] inline const string& GetTag() const { return m_Tag; }
-            [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
-            inline sTransform& GetTransform() { return m_Transform; }
-            inline glm::vec3& GetPosition() { return m_Transform.Position; }
-            inline glm::vec3& GetRotation() { return m_Transform.Rotation; }
-            inline glm::vec3& GetScale() { return m_Transform.Scale; }
-            [[nodiscard]] inline bool IsVisible() const { return m_Visible; }
-            [[nodiscard]] inline eSpace GetSpace() const { return m_Space; }
 
             inline void SetScene(cScene* scene) { m_Scene = scene; }
-            inline void SetTag(const string& tag)
-            {
-                m_Tag = tag;
-                m_Scene->RenameEntity(m_Tag, tag);
-            }
+            void SetTag(const string& tag);
+
+            template<typename... Args>
+            void SetTransform(Args&&... args);
+
+            template<typename... Args>
+            void SetPosition(Args&&... args);
+
+            template<typename... Args>
+            void SetRotation(Args&&... args);
+
+            template<typename... Args>
+            void SetScale(Args&&... args);
+
+            void SetVisible(bool visible);
+            void SetSpace(eSpace space);
+            void SetTransparent(bool transparent);
+            void SetOpaque(bool opaque);
+            void SetShadow(bool shadow);
+
+            template<typename... Args>
+            void Move(Args&&... args);
+
+            template<typename... Args>
+            void Rotate(Args&&... args);
+
+            template<typename... Args>
+            void Scale(Args&&... args);
+
+            [[nodiscard]] inline const EntityID GetID() const { return m_ID; }
+            [[nodiscard]] inline const cScene* GetScene() const { return m_Scene; }
+            const string& GetTag();
+            sTransform& GetTransform();
+            glm::vec3& GetPosition();
+            glm::vec3& GetRotation();
+            glm::vec3& GetScale();
+            bool IsVisible();
+            eSpace GetSpace();
+            bool IsTransparent();
+            bool IsOpaque();
+            bool HasShadow();
 
             void UpdateXmlChildren();
 
             template<typename T, typename... Args>
-            T* Add(Args &&... args);
+            T& Add(Args&&... args);
 
             template<typename T>
-            T* Get();
+            T& Get();
 
             template<typename T>
             void Remove();
 
-            void RemoveAll();
+            template<typename... T>
+            bool HasAny();
 
-            template<typename T>
-            bool Has();
+            template<typename... T>
+            bool HasAll();
 
-            template<typename T>
-            T* HasAs();
-
-            inline bool operator ==(const cEntity& other) const
-            {
-                return m_Tag == other.GetTag();
-            }
+            void ToJson(json &root) override;
+            void FromJson(json &root) override;
 
             xml ToXml(xml &root) override;
             xml FromXml(xml &root) override;
 
-        protected:
-            string m_Tag;
-            bool m_Visible = true;
-            sTransform m_Transform;
-            cScene* m_Scene = nullptr;
-            eSpace m_Space = eSpace::SPACE_2D;
+        private:
+            void SetTransformImpl(const sTransform& transform);
+            void SetPositionImpl(const glm::vec3& position);
+            void SetRotationImpl(const glm::vec3& rotation);
+            void SetScaleImpl(const glm::vec3& scale);
+            void MoveImpl(const glm::vec3& diff);
+            void RotateImpl(const glm::vec3& diff);
+            void ScaleImpl(const glm::vec3& diff);
 
-            JsonClass(
-                cEntity,
-                m_Tag,
-                m_Visible,
-                m_Transform
-            )
+        protected:
+            EntityID m_ID = EntityNull;
+            cScene* m_Scene = nullptr;
         };
 
-        template<typename T>
-        T* cEntity::Get()
+        template<typename... Args>
+        void cEntity::SetTransform(Args &&... args)
         {
-            return m_Scene->GetComponent<T>(this);
+            SetTransformImpl(sTransform(std::forward<Args>(args)...));
+        }
+
+        template<typename... Args>
+        void cEntity::SetPosition(Args &&... args)
+        {
+            SetPositionImpl(glm::vec3(std::forward<Args>(args)...));
+        }
+
+        template<typename... Args>
+        void cEntity::SetRotation(Args &&... args)
+        {
+            SetRotationImpl(glm::vec3(std::forward<Args>(args)...));
+        }
+
+        template<typename... Args>
+        void cEntity::SetScale(Args &&... args)
+        {
+            SetScaleImpl(glm::vec3(std::forward<Args>(args)...));
+        }
+
+        template<typename... Args>
+        void cEntity::Move(Args &&... args)
+        {
+            MoveImpl(glm::vec3(std::forward<Args>(args)...));
+        }
+
+        template<typename... Args>
+        void cEntity::Rotate(Args &&... args)
+        {
+            RotateImpl(glm::vec3(std::forward<Args>(args)...));
+        }
+
+        template<typename... Args>
+        void cEntity::Scale(Args &&... args)
+        {
+            ScaleImpl(glm::vec3(std::forward<Args>(args)...));
+        }
+
+        template<typename T>
+        T& cEntity::Get()
+        {
+            return m_Scene->GetComponent<T>(m_ID);
         }
 
         template<typename T, typename... Args>
-        T* cEntity::Add(Args &&... args)
+        T& cEntity::Add(Args&&... args)
         {
-            return m_Scene->AddComponent<T>(this, std::forward<Args>(args)...);
+            return m_Scene->AddComponent<T>(m_ID, std::forward<Args>(args)...);
         }
 
         template<typename T>
         void cEntity::Remove()
         {
-            m_Scene->RemoveComponent<T>(this);
+            m_Scene->RemoveComponent<T>(m_ID);
         }
 
-        template<typename T>
-        bool cEntity::Has()
+        template<typename... T>
+        bool cEntity::HasAny()
         {
-            return Get<T>() != nullptr;
+            return m_Scene->HasAnyComponent<T...>(m_ID);
         }
 
-        template<typename T>
-        T* cEntity::HasAs()
+        template<typename... T>
+        bool cEntity::HasAll()
         {
-            return m_Scene->HasComponentAs<T>(this);
+            return m_Scene->HasAllComponent<T...>(m_ID);
         }
 
         class ENGINE_API cSystem : public cObject {

@@ -12,7 +12,7 @@ namespace xpe {
             PAUSED,
             STOPPED
         };
-        JsonEnum(eAudioState, {
+        JSON_ENUM(eAudioState, {
             { eAudioState::INITIAL, "INITIAL" },
             { eAudioState::PLAYING, "PLAYING" },
             { eAudioState::PAUSED,  "PAUSED" },
@@ -27,7 +27,7 @@ namespace xpe {
             INVALID_OPERATION,
             OUT_OF_MEMORY
         };
-        JsonEnum(eAudioError, {
+        JSON_ENUM(eAudioError, {
             { eAudioError::NONE,              "INITIAL" },
             { eAudioError::INVALID_NAME,      "INVALID_NAME" },
             { eAudioError::INVALID_ENUM,      "INVALID_ENUM" },
@@ -57,7 +57,7 @@ namespace xpe {
             bool Looping = false;
         };
 
-        Json(
+        JSON(
             sAudioSource,
             Id,
             State,

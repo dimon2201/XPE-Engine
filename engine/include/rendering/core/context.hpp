@@ -40,11 +40,13 @@ namespace xpe {
             ENGINE_API void CreateShader(sShader& shader);
             ENGINE_API void CompileShader(sShader& shader);
             ENGINE_API void BindShader(const sShader& shader);
+            ENGINE_API void UnbindShader(const sShader& shader);
             ENGINE_API void FreeShader(sShader& shader);
 
             ENGINE_API void CompileShaderStage(sShaderStage& stage);
             ENGINE_API void CreateShaderStage(sShaderStage& stage);
             ENGINE_API void BindShaderStage(const sShaderStage& stage);
+            ENGINE_API void UnbindShaderStage(const sShaderStage& stage);
             ENGINE_API void FreeShaderStage(sShaderStage& stage);
 
             ENGINE_API void FreeShaderResourceView(void* viewInstance);
@@ -58,10 +60,29 @@ namespace xpe {
             ENGINE_API void CreateTextureCube(sTexture& texture);
             ENGINE_API void CreateTextureDepthStencil(sTexture& texture);
 
-            ENGINE_API void BindTexture(const sTexture& texture);
-            ENGINE_API void BindTexture(const sTexture& texture, u32 slot);
-            ENGINE_API void BindTextureSlot(u32 slot);
-            ENGINE_API void UnbindTexture(const sTexture& texture);
+            ENGINE_API void VSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance);
+            ENGINE_API void VSBindTexture(const sTexture& texture);
+            ENGINE_API void VSBindTexture(const sTexture& texture, u32 slot);
+            ENGINE_API void VSBindTextureSlot(u32 slot);
+            ENGINE_API void VSUnbindTexture(const sTexture& texture);
+
+            ENGINE_API void PSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance);
+            ENGINE_API void PSBindTexture(const sTexture& texture);
+            ENGINE_API void PSBindTexture(const sTexture& texture, u32 slot);
+            ENGINE_API void PSBindTextureSlot(u32 slot);
+            ENGINE_API void PSUnbindTexture(const sTexture& texture);
+
+            ENGINE_API void GSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance);
+            ENGINE_API void GSBindTexture(const sTexture& texture);
+            ENGINE_API void GSBindTexture(const sTexture& texture, u32 slot);
+            ENGINE_API void GSBindTextureSlot(u32 slot);
+            ENGINE_API void GSUnbindTexture(const sTexture& texture);
+
+            ENGINE_API void CSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance);
+            ENGINE_API void CSBindTexture(const sTexture& texture);
+            ENGINE_API void CSBindTexture(const sTexture& texture, u32 slot);
+            ENGINE_API void CSBindTextureSlot(u32 slot);
+            ENGINE_API void CSUnbindTexture(const sTexture& texture);
 
             ENGINE_API void FreeTexture(sTexture& texture);
             ENGINE_API void FreeTexture1D(void* instance);
@@ -79,25 +100,52 @@ namespace xpe {
             ENGINE_API void GenerateMips(const sTexture& texture);
 
             ENGINE_API void CreateSampler(sSampler& sampler);
-            ENGINE_API void BindSampler(const sSampler& sampler);
-            ENGINE_API void UnbindSampler(const sSampler& sampler);
             ENGINE_API void FreeSampler(sSampler& sampler);
+
+            ENGINE_API void VSBindSampler(const sSampler& sampler);
+            ENGINE_API void VSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void VSUnbindSampler(const sSampler& sampler);
+
+            ENGINE_API void PSBindSampler(const sSampler& sampler);
+            ENGINE_API void PSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void PSUnbindSampler(const sSampler& sampler);
+
+            ENGINE_API void GSBindSampler(const sSampler& sampler);
+            ENGINE_API void GSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void GSUnbindSampler(const sSampler& sampler);
+
+            ENGINE_API void CSBindSampler(const sSampler& sampler);
+            ENGINE_API void CSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void CSUnbindSampler(const sSampler& sampler);
 
             ENGINE_API void CreateBuffer(sBuffer& buffer);
             ENGINE_API void FreeBuffer(sBuffer& buffer);
+
             ENGINE_API void BindVertexBuffer(const sBuffer& buffer);
             ENGINE_API void BindIndexBuffer(const sBuffer& buffer);
-            ENGINE_API void BindVSBuffer(const sBuffer& buffer);
-            ENGINE_API void UnbindVSBuffer(const sBuffer& buffer);
-            ENGINE_API void BindPSBuffer(const sBuffer& buffer);
-            ENGINE_API void UnbindPSBuffer(const sBuffer& buffer);
+
+            ENGINE_API void VSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance);
+            ENGINE_API void VSBindBuffer(const sBuffer& buffer);
+            ENGINE_API void VSUnbindBuffer(const sBuffer& buffer);
+
+            ENGINE_API void PSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance);
+            ENGINE_API void PSBindBuffer(const sBuffer& buffer);
+            ENGINE_API void PSUnbindBuffer(const sBuffer& buffer);
+
+            ENGINE_API void GSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance);
+            ENGINE_API void GSBindBuffer(const sBuffer& buffer);
+            ENGINE_API void GSUnbindBuffer(const sBuffer& buffer);
+
+            ENGINE_API void CSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance);
+            ENGINE_API void CSBindBuffer(const sBuffer& buffer);
+            ENGINE_API void CSUnbindBuffer(const sBuffer& buffer);
 
             ENGINE_API void CopyBuffer(const sBuffer& buffer, const void* data, usize dataByteSize);
             ENGINE_API void CopyBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize);
             ENGINE_API void MoveBuffer(const sBuffer& buffer, const void* data, usize dataByteSize);
             ENGINE_API void MoveBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize);
 
-            ENGINE_API void* Map(const sResource& resource, u32 subresourceIndex, eMapType mapType);
+            ENGINE_API void* Map(const sResource& resource, u32 subresourceIndex, sResource::eMapType mapType);
             ENGINE_API void Unmap(const sResource& resource);
             ENGINE_API void UpdateSubData(const sResource& resource, u32 subresourceIndex, const void* data, u32 rowPitch, u32 depthPitch);
 
@@ -110,10 +158,17 @@ namespace xpe {
             ENGINE_API void BindViewport(sViewport* viewport);
             ENGINE_API void UnbindViewport();
 
-            ENGINE_API void CreatePipeline(sPipeline& pipeline);
-            ENGINE_API void BindPipeline(const sPipeline& pipeline);
-            ENGINE_API void UnbindPipeline(const sPipeline& pipeline);
-            ENGINE_API void FreePipeline(sPipeline& pipeline);
+            // Calls for Vertex Pipeline
+            ENGINE_API void CreateVertexPipeline(sVertexPipeline& pipeline);
+            ENGINE_API void BindVertexPipeline(const sVertexPipeline& pipeline);
+            ENGINE_API void UnbindVertexPipeline(const sVertexPipeline& pipeline);
+            ENGINE_API void FreeVertexPipeline(sVertexPipeline& pipeline);
+
+            // Calls for Compute Pipeline
+            ENGINE_API void CreateComputePipeline(sComputePipeline& pipeline);
+            ENGINE_API void BindComputePipeline(const sComputePipeline& pipeline);
+            ENGINE_API void UnbindComputePipeline(const sComputePipeline& pipeline);
+            ENGINE_API void FreeComputePipeline(sComputePipeline& pipeline);
 
             ENGINE_API void CreateDepthStencilMode(sDepthStencilMode& depthStencilMode);
             ENGINE_API void BindDepthStencilMode(void* state);
@@ -131,6 +186,8 @@ namespace xpe {
             ENGINE_API void DrawVertexed(usize vertexCount, usize instanceCount = 1, usize vertexOffset = 0, usize instanceOffset = 0);
 
             ENGINE_API void DrawQuad();
+
+            ENGINE_API void Dispatch(const glm::ivec3& threadGroupCount);
 
             ENGINE_API void* GetDevice();
 

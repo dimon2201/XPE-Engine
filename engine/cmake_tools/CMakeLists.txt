@@ -191,6 +191,7 @@ macro(include_engine path)
         ${path}/thirdparty/PhysX/flow/include
         ${path}/thirdparty/stbi
         ${path}/thirdparty/pugixml/src
+        ${path}/thirdparty/entt/src
     )
 endmacro()
 

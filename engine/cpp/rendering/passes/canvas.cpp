@@ -21,11 +21,11 @@ namespace xpe {
 
         void cCanvas::Draw()
         {
-            context::BindTextureSlot(0);
+            context::PSBindTextureSlot(0);
             context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewport);
             context::BindShader(*m_Shader);
-            context::BindSampler(m_PresentSampler);
-            context::BindTexture(*m_Texture, 0);
+            context::PSBindSampler(m_PresentSampler);
+            context::PSBindTexture(*m_Texture, 0);
 
             context::ClearColorTarget(m_PresentTarget->ColorViews[m_BoundTargetIndex], glm::vec4(0, 0, 0, 1));
 

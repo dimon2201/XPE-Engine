@@ -8,29 +8,29 @@ namespace xpe {
 
         struct ENGINE_API sAppConfig : public res::cJson
         {
-            JsonClass(
-                    sAppConfig,
-                    WinTitle,
-                    WinWidth,
-                    WinHeight,
-                    WinX,
-                    WinY,
-                    VSync,
-                    Fullscreen,
-                    Gamma,
-                    Exposure,
-                    AspectRatio.Value,
-                    LogTitle,
-                    LogBacktrace,
-                    EnableGPUInfoLog,
-                    EnableGPUWarnLog,
-                    EnableGPUErrorLog,
-                    FPS,
-                    LogTimeDelaySeconds,
-                    LockOnFps,
-                    HotReloadShaders,
-                    MsaaSampleCount.Value,
-                    EnableSSAO
+            JSON_CLASS(
+                sAppConfig,
+                WinTitle,
+                WinWidth,
+                WinHeight,
+                WinX,
+                WinY,
+                VSync,
+                Fullscreen,
+                Gamma,
+                Exposure,
+                AspectRatio.Value,
+                LogTitle,
+                LogBacktrace,
+                EnableGPUInfoLog,
+                EnableGPUWarnLog,
+                EnableGPUErrorLog,
+                FPS,
+                LogTimeDelaySeconds,
+                LockOnFps,
+                HotReloadShaders,
+                MsaaSampleCount.Value,
+                EnableSSAO
             )
 
             string WinTitle;

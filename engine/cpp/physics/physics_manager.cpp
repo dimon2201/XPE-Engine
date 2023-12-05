@@ -98,7 +98,7 @@ namespace xpe
         }
 
         sActor* cPhysicsManager::AddActor(
-            cEntity* entity,
+            cEntity& entity,
             const sActor::eActorType& actorType,
             sShapeDescriptor* shapeDesc,
             const glm::vec3& linearVelocity,
@@ -109,7 +109,7 @@ namespace xpe
             f32 restOffset
         )
         {
-            glm::vec3 entityPosition = entity->GetPosition();
+            glm::vec3& entityPosition = entity.GetPosition();
             glm::vec3 position = glm::vec3(entityPosition.y, entityPosition.x, -entityPosition.z);
             
             // Creating material
@@ -140,7 +140,7 @@ namespace xpe
                 return nullptr;
             }
 
-            entity->GetScene()->PhysicsScene->addActor(*physicsActor);
+            entity.GetScene()->PhysicsScene->addActor(*physicsActor);
 
             // Shape creation
             PxShape* physicsShape = nullptr;
@@ -234,7 +234,7 @@ namespace xpe
                 restOffset
             );
 
-            s_Actors->insert({ entity->GetTag(), actor });
+            s_Actors->insert({ entity.GetTag(), actor });
 
             return actor;
         }
@@ -271,17 +271,17 @@ namespace xpe
             return physicsScene;
         }
 
-        void cPhysicsManager::SetActorPose(sActor* actor, sTransform* transform)
+        void cPhysicsManager::SetActorPose(sActor& actor, sTransform& transform)
         {
-            switch (actor->ActorType)
+            switch (actor.ActorType)
             {
 
             case sActor::eActorType::RIGID_DYNAMIC:
-                glm::quat rotation = glm::quat(transform->Rotation);
+                glm::quat rotation = glm::quat(transform.Rotation);
 
-                ((PxRigidDynamic*)actor->Actor)->setGlobalPose(
+                ((PxRigidDynamic*)actor.Actor)->setGlobalPose(
                     PxTransform(
-                        PxVec3(transform->Position.y, transform->Position.x, -transform->Position.z),
+                        PxVec3(transform.Position.y, transform.Position.x, -transform.Position.z),
                         PxQuat(rotation.x, rotation.y, rotation.z, rotation.w)
                     )
                 );

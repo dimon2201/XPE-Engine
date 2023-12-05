@@ -17,7 +17,7 @@ namespace xpe {
             void Update(cScene* scene, const cTime& dt) override final;
 
         private:
-            void AnimateSkeleton(sSkeleton& skeleton, const sAnimation& animation, const cTime& dt);
+            void AnimateSkeleton(const sAnimation& animation, sSkeleton& skeleton, u32 skeletonIndex, const cTime& dt);
             void AnimateBone(sBone& bone, float time);
 
             glm::mat4 InterpolatePosition(sBone& bone, float time);
@@ -31,9 +31,10 @@ namespace xpe {
             float GetScaleFactor(float lastTimestamp, float nextTimestamp, float time);
 
             void UpdateSkeletonTransform(
+                    const sAnimationNode& animationNode,
                     sSkeleton& skeleton,
                     sSkeletonBuffer& skeletonBuffer,
-                    const sAnimationNode& animationNode,
+                    u32 skeletonIndex,
                     const glm::mat4& parentTransform
             );
 

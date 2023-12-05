@@ -14,7 +14,7 @@ namespace xpe {
 
         public:
             sListBuffer() = default;
-            sListBuffer(usize count, u32 slot);
+            sListBuffer(usize count, u32 slot, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::SRV);
             ~sListBuffer();
 
         public:
@@ -74,9 +74,11 @@ namespace xpe {
         };
 
         template<typename T>
-        sListBuffer<T>::sListBuffer(usize count, u32 slot)
+        sListBuffer<T>::sListBuffer(usize count, u32 slot, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
         {
-            Type = eBufferType::STRUCTURED;
+            Type = sBuffer::eType::LIST;
+            SubType = subtype;
+            ViewType = viewtype;
             Slot = slot;
             StructureSize = sizeof(T);
             NumElements = count;

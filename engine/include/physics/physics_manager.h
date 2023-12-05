@@ -53,7 +53,8 @@ namespace xpe {
             BOX = 3,
             PLANE = 4
         };
-        JsonEnum(eShapeType, {
+
+        JSON_ENUM(eShapeType, {
             { eShapeType::NONE, "NONE" },
             { eShapeType::SPHERE, "SPHERE" },
             { eShapeType::CAPSULE, "CAPSULE" },
@@ -70,7 +71,7 @@ namespace xpe {
 
             eShapeType Type;
         };
-        Json(sShapeDescriptor, Type)
+        JSON(sShapeDescriptor, Type)
 
         struct ENGINE_API sSphereShapeDescriptor : public sShapeDescriptor
         {
@@ -79,7 +80,7 @@ namespace xpe {
 
             f32 Radius;
         };
-        Json(sSphereShapeDescriptor, Type, Radius)
+        JSON(sSphereShapeDescriptor, Type, Radius)
 
         struct ENGINE_API sCapsuleShapeDescriptor : public sShapeDescriptor
         {
@@ -90,7 +91,7 @@ namespace xpe {
             f32 Radius;
             f32 HalfHeight;
         };
-        Json(sCapsuleShapeDescriptor, Type, Radius, HalfHeight)
+        JSON(sCapsuleShapeDescriptor, Type, Radius, HalfHeight)
 
         struct ENGINE_API sBoxShapeDescriptor : public sShapeDescriptor
         {
@@ -100,15 +101,15 @@ namespace xpe {
 
             glm::vec3 HalfExtents;
         };
-        Json(sBoxShapeDescriptor, Type, HalfExtents)
+        JSON(sBoxShapeDescriptor, Type, HalfExtents)
 
         struct ENGINE_API sPlaneShapeDescriptor : public sShapeDescriptor
         {
             sPlaneShapeDescriptor() : sShapeDescriptor(eShapeType::PLANE) {}
         };
-        Json(sPlaneShapeDescriptor, Type)
+        JSON(sPlaneShapeDescriptor, Type)
 
-        struct ENGINE_API sActor : public cObject
+        struct ENGINE_API sActor
         {
             enum class eActorType
             {
@@ -116,7 +117,7 @@ namespace xpe {
                 RIGID_STATIC = 1,
                 RIGID_DYNAMIC = 2
             };
-            JsonEnum(eActorType, {
+            JSON_ENUM(eActorType, {
                 { eActorType::NONE,          "NONE" },
                 { eActorType::RIGID_STATIC,  "RIGID_STATIC" },
                 { eActorType::RIGID_DYNAMIC, "RIGID_DYNAMIC" },
@@ -203,7 +204,7 @@ namespace xpe {
             static void EnableLoggingError(bool enable);
 
             static sActor* AddActor(
-                cEntity* entity,
+                cEntity& entity,
                 const sActor::eActorType& actorType,
                 sShapeDescriptor* shapeDesc,
                 const glm::vec3& linearVelocity,
@@ -217,7 +218,7 @@ namespace xpe {
             static sRagdoll* AddRagdoll();
             static PxScene* AddScene(const string& tag);
 
-            static void SetActorPose(sActor* actor, math::sTransform* transform);
+            static void SetActorPose(sActor& actor, math::sTransform& transform);
 
         private:
             static cPhysicsAllocator* s_Allocator;

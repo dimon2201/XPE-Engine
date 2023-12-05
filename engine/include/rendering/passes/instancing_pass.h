@@ -2,6 +2,7 @@
 
 #include <rendering/passes/render_pass.h>
 #include <rendering/buffers/instance_buffer.h>
+#include <rendering/geometry/geometry.h>
 
 namespace xpe {
 
@@ -15,34 +16,9 @@ namespace xpe {
 
         protected:
             void DrawInstanced(
-                ePrimitiveTopology primitiveTopology,
-                usize vertexOffset,
-                usize vertexCount,
-                usize indexOffset,
-                usize indexCount,
-                cEntity* entity,
-                const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {}
-            );
-
-            void DrawSingle(
-                ePrimitiveTopology primitiveTopology,
-                usize vertexOffset,
-                usize vertexCount,
-                usize indexOffset,
-                usize indexCount,
-                cEntity* entity,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {}
-            );
-
-            void DrawMultiple(
-                ePrimitiveTopology primitiveTopology,
-                usize vertexOffset,
-                usize vertexCount,
-                usize indexOffset,
-                usize indexCount,
-                const vector<cEntity*>& entities,
-                const std::function<void(cEntity* entity, sRenderInstance&)>& callback = {}
+                cScene* scene,
+                const sGeometryInfo& geometryInfo,
+                const std::function<void(EntityID entityId, sRenderInstance&)>& callback = [](EntityID, sRenderInstance&) {}
             );
 
             sInstanceBuffer m_InstanceBuffer;

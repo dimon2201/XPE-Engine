@@ -18,7 +18,7 @@ namespace xpe {
         public:
             cCamera(sCameraBuffer* buffer) : m_Buffer(buffer) {}
 
-            JsonClass(
+            JSON_CLASS(
                 cCamera,
                 KeyMoveForward,
                 KeyMoveLeft,
@@ -126,7 +126,7 @@ namespace xpe {
             sCameraBuffer* m_Buffer;
         };
 
-        JsonEnum(cCamera::eLookMode, {
+        JSON_ENUM(cCamera::eLookMode, {
             { cCamera::eLookMode::GAME,   "GAME" },
             { cCamera::eLookMode::EDITOR, "EDITOR" }
         })
@@ -137,7 +137,7 @@ namespace xpe {
             cPerspectiveCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer);
             ~cPerspectiveCamera();
 
-            JsonClass(
+            JSON_CLASS(
                 cPerspectiveCamera,
                 KeyMoveForward,
                 KeyMoveLeft,
@@ -163,7 +163,7 @@ namespace xpe {
 
             float MaxFovDegree = 45.0f;
             float MinFovDegree = 1.0f;
-            sCPerspectiveCamera Component;
+            CPerspectiveCamera Component;
 
             void Move();
             void Pan(const glm::vec2& delta);
@@ -190,7 +190,7 @@ namespace xpe {
             cOrthoCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer);
             ~cOrthoCamera();
 
-            JsonClass(
+            JSON_CLASS(
                 cOrthoCamera,
                 KeyMoveForward,
                 KeyMoveLeft,
@@ -209,7 +209,7 @@ namespace xpe {
                 Component
             )
 
-            sCOrthoCamera Component;
+            COrthoCamera Component;
 
             void Move();
             void ZoomIn();

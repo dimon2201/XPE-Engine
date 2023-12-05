@@ -10,9 +10,10 @@ namespace xpe {
         struct ENGINE_API sSkybox final
         {
             sGeometry Geometry;
+            sGeometryInfo GeometryInfo;
             sTexture* Texture;
         };
-        Json(sSkybox, Geometry)
+        JSON(sSkybox, Geometry)
 
         class ENGINE_API cSkyboxManager final
         {

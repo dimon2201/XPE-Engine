@@ -66,13 +66,21 @@ namespace xpe {
             v3->Tangent = tangent;
         }
 
-        struct sGeometry : public cObject
+        struct ENGINE_API sGeometry
         {
-            render::ePrimitiveTopology PrimitiveTopology = render::ePrimitiveTopology::DEFAULT;
-            usize VertexOffset = 0;
+            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
             vector<sVertex> Vertices;
-            usize IndexOffset = 0;
             vector<u32> Indices;
+        };
+
+        struct ENGINE_API sGeometryInfo
+        {
+            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
+            usize VertexOffset = 0;
+            usize IndexOffset = 0;
+            usize VertexCount = 0;
+            usize IndexCount = 0;
+            vector<EntityID> Entities;
         };
 
     }

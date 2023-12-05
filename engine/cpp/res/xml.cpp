@@ -39,6 +39,10 @@ namespace xpe {
             root.append_attribute(name).set_value(value);
         }
 
+        void SetXmlValue(xml &root, const char *name, u8 &value) {
+            root.append_attribute(name).set_value(value);
+        }
+
         void SetXmlValue(xml &root, const char *name, int &value) {
             root.append_attribute(name).set_value(value);
         }
@@ -96,6 +100,10 @@ namespace xpe {
         }
 
         void GetXmlValue(xml &root, const char *name, bool &value) {
+            value = root.attribute(name).as_bool();
+        }
+
+        void GetXmlValue(xml &root, const char *name, u8 &value) {
             value = root.attribute(name).as_bool();
         }
 

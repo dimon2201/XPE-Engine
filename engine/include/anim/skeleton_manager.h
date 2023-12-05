@@ -19,7 +19,7 @@ namespace xpe {
             static void Flush();
 
             template<typename... Args>
-            static sSkeleton AddSkeleton(Args &&... args);
+            static std::pair<sSkeleton, sSkeletonInfo> AddSkeleton(Args &&... args);
 
             static render::sSkeletonBuffer* GetBuffer();
 
@@ -28,12 +28,13 @@ namespace xpe {
         };
 
         template<typename... Args>
-        sSkeleton cSkeletonManager::AddSkeleton(Args &&... args)
+        std::pair<sSkeleton, sSkeletonInfo> cSkeletonManager::AddSkeleton(Args &&... args)
         {
             sSkeleton skeleton(std::forward<Args>(args)...);
-            skeleton.Index = s_Buffer->Size();
+            sSkeletonInfo skeletonInfo;
+            skeletonInfo.SkeletonIndex = s_Buffer->Size();
             s_Buffer->Resize(s_Buffer->Size() + skeleton.Bones.size());
-            return skeleton;
+            return { skeleton, skeletonInfo };
         }
 
     }

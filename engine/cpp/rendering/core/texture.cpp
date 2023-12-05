@@ -53,6 +53,11 @@ namespace xpe {
                 { eTextureFormat::SRGBA8, 4 },
         };
 
+        sTexture::sTexture()
+        {
+            ViewType = eViewType::SRV;
+        }
+
         sTexture::~sTexture()
         {
             for (auto& layer : Layers)
@@ -453,6 +458,11 @@ namespace xpe {
         void sAtlas::AddLayer()
         {
             Layers.emplace_back(CreateLayer());
+        }
+
+        sSampler::sSampler()
+        {
+            ViewType = eViewType::SRV;
         }
 
     }

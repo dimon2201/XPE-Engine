@@ -19,23 +19,23 @@ namespace xpe {
 			void Update(cScene* scene, const cTime& dt) override final;
 
 		private:
-			void UpdateVoices(cScene* scene);
-			void UpdateAudios(cScene* scene);
-			void UpdateStreamAudios(cScene* scene);
+			void UpdateVoices(Scene* scene);
+			void UpdateAudios(Scene* scene);
+			void UpdateStreamAudios(Scene* scene);
 
 			void VoiceRecord();
 
-			void AudioInit(sCAudio* component);
-			void AudioInit(sCStreamAudio* component);
+			void AudioInit(CAudio* component);
+			void AudioInit(CStreamAudio* component);
 			
-			void AudioSet(sCAudio* component);
-			void AudioSet(sCStreamAudio* component);
+			void AudioSet(CAudio* component);
+			void AudioSet(CStreamAudio* component);
 			
-			void AudioUpdate(sCAudio* component);
-			void AudioUpdate(sCStreamAudio* component);
+			void AudioUpdate(CAudio* component);
+			void AudioUpdate(CStreamAudio* component);
 
-			void AudioStop(sCAudio* component);
-			void AudioStop(sCStreamAudio* component);
+			void AudioStop(CAudio* component);
+			void AudioStop(CStreamAudio* component);
 
 		private:
 			vector<signed char> m_VoiceData;

@@ -20,12 +20,12 @@ namespace xpe {
 
         void cSkeletonManager::Bind()
         {
-            render::context::BindVSBuffer(*s_Buffer);
+            render::context::VSBindBuffer(*s_Buffer);
         }
 
         void cSkeletonManager::Unbind()
         {
-            render::context::UnbindVSBuffer(*s_Buffer);
+            render::context::VSUnbindBuffer(*s_Buffer);
         }
 
         void cSkeletonManager::Flush()

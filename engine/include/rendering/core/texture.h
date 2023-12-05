@@ -132,6 +132,7 @@ namespace xpe {
             bool InitializeData = true;
             vector<sTextureLayer> Layers;
 
+            sTexture();
             ~sTexture();
 
             void Init();
@@ -334,6 +335,8 @@ namespace xpe {
             eAddress AddressU = eAddress::CLAMP;
             eAddress AddressV = eAddress::CLAMP;
             eAddress AddressW = eAddress::CLAMP;
+
+            sSampler();
         };
 
     }

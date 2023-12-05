@@ -15,7 +15,7 @@ namespace xpe {
             sKeyPosition(float timestamp, const glm::vec3& position) : Timestamp(timestamp), Position(position) {}
         };
 
-        Json(sKeyPosition, Timestamp, Position)
+        JSON(sKeyPosition, Timestamp, Position)
 
         struct ENGINE_API sKeyRotate final
         {
@@ -26,7 +26,7 @@ namespace xpe {
             sKeyRotate(float timestamp, const glm::quat& orientation) : Timestamp(timestamp), Orientation(orientation) {}
         };
 
-        Json(sKeyRotate, Timestamp, Orientation)
+        JSON(sKeyRotate, Timestamp, Orientation)
 
         struct ENGINE_API sKeyScale final
         {
@@ -37,7 +37,7 @@ namespace xpe {
             sKeyScale(float timestamp, const glm::vec3& scale) : Timestamp(timestamp), Scale(scale) {}
         };
 
-        Json(sKeyScale, Timestamp, Scale)
+        JSON(sKeyScale, Timestamp, Scale)
 
         struct ENGINE_API sAnimationNode final
         {
@@ -46,7 +46,7 @@ namespace xpe {
             vector<sAnimationNode> Children;
         };
 
-        Json(sAnimationNode, Name, Transform, Children)
+        JSON(sAnimationNode, Name, Transform, Children)
 
         struct ENGINE_API sAnimation
         {
@@ -56,7 +56,7 @@ namespace xpe {
             sAnimationNode Root;
         };
 
-        Json(sAnimation, Duration, TicksPerSecond, Root)
+        JSON(sAnimation, Duration, TicksPerSecond, Root)
 
     }
 
