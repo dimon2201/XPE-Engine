@@ -413,14 +413,18 @@ public:
         {
             m_AudioBox = cEntity("AudioBox", m_Scene);
 
-            m_AudioBox->SetPosition(glm::vec3(-5.0f, 5.0f, 10.0f));
-            m_AudioBox->Add<sCGeometry>(cGeometryManager::AddGeometry(sCube()));
-            m_AudioBox->Add<sCMaterial>(cMaterialManager::AddMaterial());
+            m_AudioBox.SetPosition(glm::vec3(-5.0f, 5.0f, 10.0f));
+            m_AudioBox.SetScale(glm::vec3(1.0f));
+            m_AudioBox.Add<CGeometry>(sCube());
+            m_AudioBox.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCube()).second);
+            m_AudioBox.Add<CMaterial>(cMaterialManager::AddMaterial());
+            m_AudioBox.Get<CGeometryInfo>().Entities = { m_AudioBox.GetID() };
+            m_AudioBox.SetOpaque(true);
 
-            auto* test1 = m_AudioBox->Add<sCStreamAudio>(sCStreamAudio());
-            test1->File = cAudioLoader::Load("res/audio/mono_test.wav");
-            test1->Source.Position = { -5.0f, 5.0f, 10.0f };
-            test1->Source.Looping = false;
+            auto& test1 = m_AudioBox.Add<CStreamAudio>(CStreamAudio());
+            test1.File = cAudioLoader::Load("res/audio/mono_test.wav");
+            test1.Source.Position = { -5.0f, 5.0f, 10.0f };
+            test1.Source.Looping = false;
         }
 
         m_SsaoPass->GetData().Intensity = 2;
