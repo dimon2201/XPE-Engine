@@ -202,7 +202,7 @@ namespace xpe {
 
 			if (GetError() == eAudioError::NONE) {
 
-				for (s32 i = 0; i < component.NumBuffers && component.CurrentFrame < component.File->Info.frames && processed > 0; ++i) {
+				for (s32 i = 0; component.CurrentFrame < component.File->Info.frames && processed > 0; ++i) {
 
 					SetCurrentFrame(component.File->File, component.CurrentFrame);
 					component.CurrentFrame += component.BufferSamples;
@@ -244,8 +244,6 @@ namespace xpe {
 			component.Source.Id = 0;
 
 			component.State = eAudioState::PAUSED; // temporarily
-
-			LogInfo("PAUSED");
 		}
 	}
 }
