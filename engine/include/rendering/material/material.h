@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/buffers/material_data_buffer.h>
+#include <rendering/buffers.h>
 
 namespace xpe
 {

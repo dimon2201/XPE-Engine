@@ -1,6 +1,5 @@
 #pragma once
 
-#include <rendering/passes/ssao_pass.hpp>
 #include <rendering/camera_manager.h>
 #include <rendering/shadow_manager.h>
 #include <rendering/skybox_manager.h>
@@ -58,8 +57,7 @@ namespace xpe
             virtual void Free() {}
             virtual void Render();
 
-            virtual void InitRenderPasses();
-            virtual void ClearRenderPasses();
+            virtual void InitShaders();
 
             void LockFPSFromConfig();
 
@@ -75,10 +73,6 @@ namespace xpe
             cAnimSystem* m_AnimSystem = nullptr;
             cAudioSystem* m_AudioSystem = nullptr;
             cPhysicsSystem* m_PhysicsSystem = nullptr;
-
-            cSsaoPass* m_SsaoPass = nullptr;
-
-            sTexture* m_CanvasTexture = nullptr;
         };
     }
 }

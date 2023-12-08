@@ -23,7 +23,7 @@ namespace xpe
         template<typename T>
         using cStorage = entt::basic_storage<T, EntityID, cMainAllocator<EntityID>>;
 
-        class ENGINE_API cScene : public cObject, public cJson
+        class ENGINE_API cScene : public cObject, cJson, cXml
         {
 
         public:
@@ -65,6 +65,8 @@ namespace xpe
 
             void ToJson(json &root) override;
             void FromJson(json &root) override;
+            xml ToXml(xml &root) override;
+            xml FromXml(xml &root) override;
 
             physx::PxScene* PhysicsScene;
 
@@ -78,7 +80,7 @@ namespace xpe
         template<typename T, typename... Args>
         T& cScene::AddComponent(EntityID entityId, Args&&... args)
         {
-            T* component = nullptr;
+            T* component;
 
             if constexpr(sizeof...(Args) != 0u) {
                 component = &m_Registry.emplace_or_replace<T>(entityId, std::forward<Args>(args)...);
@@ -169,8 +171,9 @@ namespace xpe
             template<typename... Args>
             void SetScale(Args&&... args);
 
+            void SetSpace2D();
+            void SetSpace3D();
             void SetVisible(bool visible);
-            void SetSpace(eSpace space);
             void SetTransparent(bool transparent);
             void SetOpaque(bool opaque);
             void SetShadow(bool shadow);
@@ -192,7 +195,6 @@ namespace xpe
             glm::vec3& GetRotation();
             glm::vec3& GetScale();
             bool IsVisible();
-            eSpace GetSpace();
             bool IsTransparent();
             bool IsOpaque();
             bool HasShadow();

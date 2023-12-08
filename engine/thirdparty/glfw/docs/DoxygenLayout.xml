@@ -9,7 +9,7 @@
     <tab type="filelist" visible="yes" title="Files"/>
   </navindex>
 
-  <!-- Layout definition for a file page -->
+  <!-- Instance definition for a file page -->
   <file>
     <detaileddescription title="Description"/>
     <includes visible="$SHOW_INCLUDE_FILES"/>
@@ -33,7 +33,7 @@
     <authorsection/>
   </file>
 
-  <!-- Layout definition for a group page -->
+  <!-- Instance definition for a group page -->
   <group>
     <detaileddescription title="Description"/>
     <memberdecl>
@@ -59,7 +59,7 @@
     <authorsection visible="yes"/>
   </group>
 
-  <!-- Layout definition for a directory page -->
+  <!-- Instance definition for a directory page -->
   <directory>
     <briefdescription visible="yes"/>
     <memberdecl>

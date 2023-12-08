@@ -1,41 +1,22 @@
 #include <anim/skeleton_manager.h>
 
-#include <rendering/core/context.hpp>
-
 namespace xpe {
 
     namespace anim {
 
-        render::sSkeletonBuffer* cSkeletonManager::s_Buffer = nullptr;
-
         void cSkeletonManager::Init()
         {
-            s_Buffer = new render::sSkeletonBuffer();
+            Buffers::Skeleton = new sSkeletonBuffer();
         }
 
         void cSkeletonManager::Free()
         {
-            delete s_Buffer;
-        }
-
-        void cSkeletonManager::Bind()
-        {
-            render::context::VSBindBuffer(*s_Buffer);
-        }
-
-        void cSkeletonManager::Unbind()
-        {
-            render::context::VSUnbindBuffer(*s_Buffer);
+            delete Buffers::Skeleton;
         }
 
         void cSkeletonManager::Flush()
         {
-            s_Buffer->Flush();
-        }
-
-        render::sSkeletonBuffer* cSkeletonManager::GetBuffer()
-        {
-            return s_Buffer;
+            Buffers::Skeleton->Flush();
         }
 
     }

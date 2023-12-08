@@ -19,7 +19,6 @@ namespace xpe {
             InitManagers(viewport, sampleCount);
             cCameraManager::SetViewport(viewport);
             InitBuffers(*cCameraManager::GetViewport(), sampleCount);
-            InitSamplers(*cCameraManager::GetViewport(), sampleCount);
             InitRenderTargets(*cCameraManager::GetViewport(), sampleCount);
             AddWindowFrameResized(cRenderSystem, eWindowFrameResizedPriority::RENDER_SYSTEM);
         }
@@ -27,7 +26,6 @@ namespace xpe {
         cRenderSystem::~cRenderSystem()
         {
             FreeBuffers();
-            FreeSamplers();
             FreeRenderTargets();
             FreeManagers();
             context::Free();
@@ -48,104 +46,27 @@ namespace xpe {
 
         void cRenderSystem::InitBuffers(sViewport &viewport, u32 sampleCount)
         {
-            m_DirectLightBuffer = new sDirectLightBuffer();
-            m_DirectLightBuffer->Reserve(10);
-            m_DirectLightMatrixBuffer = new sDirectLightMatrixBuffer();
-            m_DirectLightMatrixBuffer->Reserve(10);
-            m_PointLightBuffer = new sPointLightBuffer();
-            m_PointLightBuffer->Reserve(10);
-            m_SpotLightBuffer = new sSpotLightBuffer();
-            m_SpotLightBuffer->Reserve(10);
-        }
-
-        void cRenderSystem::InitSamplers(sViewport &viewport, u32 sampleCount)
-        {
+            Buffers::DirectLight = new sDirectLightBuffer();
+            Buffers::DirectLight->Reserve(10);
+            Buffers::PointLight = new sPointLightBuffer();
+            Buffers::PointLight->Reserve(10);
+            Buffers::SpotLight = new sSpotLightBuffer();
+            Buffers::SpotLight->Reserve(10);
         }
 
         void cRenderSystem::InitRenderTargets(sViewport& viewport, u32 sampleCount)
         {
-            // Final render target
-            sTexture* finalColor = new sTexture();
-            finalColor->Width = viewport.Width;
-            finalColor->Height = viewport.Height;
-            finalColor->Format = eTextureFormat::RGBA8;
-            finalColor->InitializeData = false;
-            finalColor->EnableRenderTarget = true;
-            finalColor->SetResizable(true);
-            finalColor->Init();
-
-            sTexture* finalDepth = new sTexture();
-            finalDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            finalDepth->Width = viewport.Width;
-            finalDepth->Height = viewport.Height;
-            finalDepth->Format = eTextureFormat::R32_TYPELESS;
-            finalDepth->InitializeData = false;
-            finalDepth->EnableRenderTarget = true;
-            finalDepth->SetResizable(true);
-            finalDepth->Init();
-
-            m_FinalRenderTarget = new sRenderTarget({ finalColor }, finalDepth, &viewport);
-            m_FinalRenderTarget->SetResizable(true);
-
-            // Scene render target
-            sTexture* sceneColor = new sTexture();
-            sceneColor->Width = viewport.Width;
-            sceneColor->Height = viewport.Height;
-            sceneColor->Format = eTextureFormat::RGBA8;
-            sceneColor->InitializeData = false;
-            sceneColor->EnableRenderTarget = true;
-            sceneColor->SetResizable(true);
-            sceneColor->Init();
-
-            sTexture* sceneDepth = new sTexture();
-            sceneDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            sceneDepth->Width = viewport.Width;
-            sceneDepth->Height = viewport.Height;
-            sceneDepth->Format = eTextureFormat::R32_TYPELESS;
-            sceneDepth->InitializeData = false;
-            sceneDepth->EnableRenderTarget = true;
-            sceneDepth->SetResizable(true);
-            sceneDepth->Init();
-
-            m_SceneRenderTarget = new sRenderTarget({ sceneColor }, sceneDepth, &viewport);
-            m_SceneRenderTarget->SetResizable(true);
-
-            // Shadow render target
-            sTexture* shadowColor = new sTexture();
-            shadowColor->Width = 512;
-            shadowColor->Height = 512;
-            shadowColor->Format = eTextureFormat::RGBA8;
-            shadowColor->InitializeData = false;
-            shadowColor->EnableRenderTarget = true;
-            shadowColor->Slot = K_SLOT_SHADOW_ATLAS;
-            shadowColor->SetResizable(true);
-            shadowColor->Init();
-
-            sTexture* shadowDepth = new sTexture();
-            shadowDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            shadowDepth->Width = 512;
-            shadowDepth->Height = 512;
-            shadowDepth->Format = eTextureFormat::R32_TYPELESS;
-            shadowDepth->InitializeData = false;
-            shadowDepth->EnableRenderTarget = true;
-            shadowDepth->Slot = K_SLOT_SHADOW_ATLAS;
-            shadowDepth->SetResizable(true);
-            shadowDepth->Init();
-
-            m_ShadowRenderTarget = new sRenderTarget({ shadowColor }, shadowDepth, &viewport);
-            m_ShadowRenderTarget->SetResizable(true);
-
             // Shared depth texture for opaque and transparent render targets
-            m_SharedDepthTexture = new sTexture();
-            m_SharedDepthTexture->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            m_SharedDepthTexture->Width = viewport.Width;
-            m_SharedDepthTexture->Height = viewport.Height;
-            m_SharedDepthTexture->Format = eTextureFormat::R32_TYPELESS;
-            m_SharedDepthTexture->InitializeData = false;
-            m_SharedDepthTexture->EnableRenderTarget = true;
-            m_SharedDepthTexture->SampleCount = sampleCount;
-            m_SharedDepthTexture->SetResizable(false);
-            m_SharedDepthTexture->Init();
+            Textures::SharedDepth = new sTexture();
+            Textures::SharedDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            Textures::SharedDepth->Width = viewport.Width;
+            Textures::SharedDepth->Height = viewport.Height;
+            Textures::SharedDepth->Format = eTextureFormat::R32_TYPELESS;
+            Textures::SharedDepth->InitializeData = false;
+            Textures::SharedDepth->EnableRenderTarget = true;
+            Textures::SharedDepth->SampleCount = sampleCount;
+            Textures::SharedDepth->SetResizable(false);
+            Textures::SharedDepth->Init();
 
             // Opaque render target
             sTexture* opaqueColor = new sTexture();
@@ -178,8 +99,12 @@ namespace xpe {
             opaqueNormal->SetResizable(false);
             opaqueNormal->Init();
 
-            m_OpaqueRenderTarget = new sRenderTarget({opaqueColor, opaquePosition, opaqueNormal }, m_SharedDepthTexture, &viewport);
-            m_OpaqueRenderTarget->SetResizable(false);
+            RenderTargets::Opaque = new sRenderTarget({ opaqueColor, opaquePosition, opaqueNormal }, Textures::SharedDepth, &viewport);
+            RenderTargets::Opaque->SetResizable(false);
+            RenderTargets::Opaque->ClearColors.emplace_back(glm::vec4(0));
+            RenderTargets::Opaque->ClearColors.emplace_back(glm::vec4(0));
+            RenderTargets::Opaque->ClearColors.emplace_back(glm::vec4(0));
+            RenderTargets::Opaque->ClearDepth = 1;
 
             // Transparent render target
             sTexture* transparentAccum = new sTexture();
@@ -202,8 +127,35 @@ namespace xpe {
             transparentReveal->SetResizable(false);
             transparentReveal->Init();
 
-            m_TransparentRenderTarget = new sRenderTarget({transparentAccum, transparentReveal }, m_SharedDepthTexture, &viewport);
-            m_TransparentRenderTarget->SetResizable(false);
+            RenderTargets::Transparent = new sRenderTarget({transparentAccum, transparentReveal }, Textures::SharedDepth, &viewport);
+            RenderTargets::Transparent->SetResizable(false);
+            RenderTargets::Transparent->ClearColors.emplace_back(glm::vec4(0.0f));
+            RenderTargets::Transparent->ClearColors.emplace_back(glm::vec4(1.0f));
+
+            // Scene render target
+            sTexture* sceneColor = new sTexture();
+            sceneColor->Width = viewport.Width;
+            sceneColor->Height = viewport.Height;
+            sceneColor->Format = eTextureFormat::RGBA8;
+            sceneColor->InitializeData = false;
+            sceneColor->EnableRenderTarget = true;
+            sceneColor->SetResizable(true);
+            sceneColor->Init();
+
+            sTexture* sceneDepth = new sTexture();
+            sceneDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            sceneDepth->Width = viewport.Width;
+            sceneDepth->Height = viewport.Height;
+            sceneDepth->Format = eTextureFormat::R32_TYPELESS;
+            sceneDepth->InitializeData = false;
+            sceneDepth->EnableRenderTarget = true;
+            sceneDepth->SetResizable(true);
+            sceneDepth->Init();
+
+            RenderTargets::Scene = new sRenderTarget({ sceneColor }, sceneDepth, &viewport);
+            RenderTargets::Scene->SetResizable(true);
+            RenderTargets::Scene->ClearColors.emplace_back(glm::vec4(0.0f));
+            RenderTargets::Scene->ClearDepth = 1.0f;
 
             // UI render target
             sTexture* uiColor = new sTexture();
@@ -225,8 +177,37 @@ namespace xpe {
             uiDepth->SetResizable(true);
             uiDepth->Init();
 
-            m_UiRenderTarget = new sRenderTarget({ uiColor }, uiDepth, &viewport);
-            m_UiRenderTarget->SetResizable(true);
+            RenderTargets::UI = new sRenderTarget({ uiColor }, uiDepth, &viewport);
+            RenderTargets::UI->SetResizable(true);
+            RenderTargets::UI->ClearColors.emplace_back(glm::vec4(0.0f));
+            RenderTargets::UI->ClearDepth = 1.0f;
+
+            // Final render target
+            sTexture* finalColor = new sTexture();
+            finalColor->Width = viewport.Width;
+            finalColor->Height = viewport.Height;
+            finalColor->Format = eTextureFormat::RGBA8;
+            finalColor->InitializeData = false;
+            finalColor->EnableRenderTarget = true;
+            finalColor->SetResizable(true);
+            finalColor->Init();
+
+            sTexture* finalDepth = new sTexture();
+            finalDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
+            finalDepth->Width = viewport.Width;
+            finalDepth->Height = viewport.Height;
+            finalDepth->Format = eTextureFormat::R32_TYPELESS;
+            finalDepth->InitializeData = false;
+            finalDepth->EnableRenderTarget = true;
+            finalDepth->SetResizable(true);
+            finalDepth->Init();
+
+            RenderTargets::Final = new sRenderTarget({ finalColor }, finalDepth, &viewport);
+            RenderTargets::Final->SetResizable(true);
+            RenderTargets::Final->ClearColors.emplace_back(glm::vec4(0.0f));
+            RenderTargets::Final->ClearDepth = 1.0f;
+
+            Textures::Canvas = RenderTargets::Final->Colors[0];
         }
 
         void cRenderSystem::FreeManagers()
@@ -243,61 +224,54 @@ namespace xpe {
 
         void cRenderSystem::FreeBuffers()
         {
-            delete m_DirectLightBuffer;
-            delete m_DirectLightMatrixBuffer;
-            delete m_PointLightBuffer;
-            delete m_SpotLightBuffer;
-        }
-
-        void cRenderSystem::FreeSamplers()
-        {
+            delete Buffers::DirectLight;
+            delete Buffers::PointLight;
+            delete Buffers::SpotLight;
         }
 
         void cRenderSystem::FreeRenderTargets()
         {
-            delete m_FinalRenderTarget;
-            delete m_SceneRenderTarget;
-            delete m_ShadowRenderTarget;
-            delete m_OpaqueRenderTarget;
-            delete m_TransparentRenderTarget;
-            delete m_UiRenderTarget;
+            delete RenderTargets::Scene;
+            delete RenderTargets::Opaque;
+            delete RenderTargets::Transparent;
+            delete RenderTargets::UI;
+            delete RenderTargets::Final;
         }
 
         void cRenderSystem::WindowFrameResized(int width, int height)
         {
-            sViewport& viewport = cCameraManager::GetBuffer()->Item.Viewport;
+            sViewport& viewport = *cCameraManager::GetViewport();
             viewport.Width = width;
             viewport.Height = height;
             cCameraManager::Flush();
 
-            m_SharedDepthTexture->Resize(width, height);
+            Textures::SharedDepth->Resize(width, height);
 
-            m_OpaqueRenderTarget->DepthStencil = m_SharedDepthTexture;
-            m_OpaqueRenderTarget->ResizeColors(width, height);
-            m_OpaqueRenderTarget->Resize(width, height);
+            RenderTargets::Opaque->DepthStencil = Textures::SharedDepth;
+            RenderTargets::Opaque->ResizeColors(width, height);
+            RenderTargets::Opaque->Resize(width, height);
 
-            m_TransparentRenderTarget->DepthStencil = m_SharedDepthTexture;
-            m_TransparentRenderTarget->ResizeColors(width, height);
-            m_TransparentRenderTarget->Resize(width, height);
+            RenderTargets::Transparent->DepthStencil = Textures::SharedDepth;
+            RenderTargets::Transparent->ResizeColors(width, height);
+            RenderTargets::Transparent->Resize(width, height);
         }
 
         void cRenderSystem::Prepare()
         {
-            cGeometryManager::Bind();
+            context::BindVertexBuffer(*Buffers::Vertex);
+            context::BindIndexBuffer(*Buffers::Index);
         }
 
         void cRenderSystem::Update(cScene* scene, const cTime& dt)
         {
             cSkeletonManager::Flush();
             UpdateLight(scene);
-            UpdatePasses(scene);
+            UpdateShaders(scene);
         }
 
         void cRenderSystem::UpdateLight(cScene* scene)
         {
-            m_DirectLightMatrixBuffer->Clear();
-
-            m_DirectLightBuffer->Clear();
+            Buffers::DirectLight->Clear();
             {
                 auto components = scene->GetComponents<CDirectionalLight>();
                 for (auto [entity, light] : components.each())
@@ -305,17 +279,13 @@ namespace xpe {
                     sDirectLightData lightData;
                     lightData.Position = light.View.Position;
                     lightData.Color = light.Color;
-
-                    sDirectLightMatrix lightMatrix;
-                    lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(light.Projection, light.View);
-
-                    m_DirectLightBuffer->Add(lightData);
-                    m_DirectLightMatrixBuffer->Add(lightMatrix);
+                    lightData.ViewProjection = cMathManager::UpdateLightMatrix(light.Projection, light.View);
+                    Buffers::DirectLight->Add(lightData);
                 }
             }
-            m_DirectLightBuffer->Flush();
+            Buffers::DirectLight->Flush();
 
-            m_SpotLightBuffer->Clear();
+            Buffers::SpotLight->Clear();
             {
                 auto components = scene->GetComponents<CSpotLight>();
                 for (auto [entity, light] : components.each())
@@ -326,19 +296,16 @@ namespace xpe {
                     lightData.Direction = light.View.Front;
                     lightData.Outer = light.Outer;
                     lightData.Cutoff = light.Cutoff;
+                    lightData.ViewProjection = cMathManager::UpdateLightMatrix(light.Projection, light.View);
+                    lightData.Near = light.Projection.Near;
+                    lightData.Far = light.Projection.Far;
 
-                    sDirectLightMatrix lightMatrix;
-                    lightMatrix.Matrix = cMathManager::UpdateDirectLightMatrix(light.Projection, light.View);
-
-                    m_SpotLightBuffer->Add(lightData);
-                    m_DirectLightMatrixBuffer->Add(lightMatrix);
+                    Buffers::SpotLight->Add(lightData);
                 }
             }
-            m_SpotLightBuffer->Flush();
+            Buffers::SpotLight->Flush();
 
-            m_DirectLightMatrixBuffer->Flush();
-
-            m_PointLightBuffer->Clear();
+            Buffers::PointLight->Clear();
             {
                 auto components = scene->GetComponents<CPointLight>();
                 for (auto [entity, light] : components.each())
@@ -349,102 +316,108 @@ namespace xpe {
                     lightData.Constant = light.Constant;
                     lightData.Linear = light.Linear;
                     lightData.Quadratic = light.Quadratic;
-                    m_PointLightBuffer->Add(lightData);
+                    Buffers::PointLight->Add(lightData);
                 }
             }
-            m_PointLightBuffer->Flush();
+            Buffers::PointLight->Flush();
         }
 
-        void cRenderSystem::UpdatePasses(xpe::ecs::cScene *scene)
+        void cRenderSystem::UpdateShaders(cScene* scene)
         {
-            // Shadow
-            m_ShadowRenderTarget->ClearColor(0, glm::vec4(1.0f));
-            m_ShadowRenderTarget->ClearDepth(1.0f);
-            for (cRenderPass* rp : m_ShadowRenderPasses)
+            // Compute
             {
-                if (rp->Enable) {
-                    rp->Update(scene);
-                    rp->Bind();
-                    rp->DrawShadow(scene);
-                    rp->Unbind();
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::COMPUTE);
+                while (shader != nullptr) {
+                    if (shader->Enable) {
+                        shader->Bind();
+                        shader->Draw(scene);
+                        shader->Unbind();
+                    }
+                    shader = shader->Next;
+                }
+            }
+
+            // Prepass
+            RenderTargets::Shadow->Clear();
+            {
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::PREPASS);
+                while (shader != nullptr) {
+                    if (shader->Enable) {
+                        shader->Bind();
+                        shader->Draw(scene);
+                        shader->Unbind();
+                    }
+                    shader = shader->Next;
                 }
             }
 
             // Opaque
-            m_OpaqueRenderTarget->ClearColor(0, glm::vec4(0.0f));
-            m_OpaqueRenderTarget->ClearColor(1, glm::vec4(0.0f));
-            m_OpaqueRenderTarget->ClearColor(2, glm::vec4(0.0f));
-            m_OpaqueRenderTarget->ClearDepth(1.0f);
-            for (cRenderPass* rp : m_OpaqueRenderPasses)
+            RenderTargets::Opaque->Clear();
             {
-                if (rp->Enable) {
-                    rp->Update(scene);
-                    rp->Bind();
-                    rp->DrawOpaque(scene);
-                    rp->Unbind();
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::OPAQUE);
+                while (shader != nullptr) {
+                    if (shader->Enable) {
+                        shader->Bind();
+                        shader->Draw(scene);
+                        shader->Unbind();
+                    }
+                    shader = shader->Next;
                 }
             }
 
             // Transparent
-            m_TransparentRenderTarget->ClearColor(0, glm::vec4(0.0f));
-            m_TransparentRenderTarget->ClearColor(1, glm::vec4(1.0f));
-            for (cRenderPass* rp : m_TransparentRenderPasses)
+            RenderTargets::Transparent->Clear();
             {
-                if (rp->Enable) {
-                    rp->Update(scene);
-                    rp->Bind();
-                    rp->DrawTransparent(scene);
-                    rp->Unbind();
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::TRANSPARENT);
+                while (shader != nullptr) {
+                    if (shader->Enable) {
+                        shader->Bind();
+                        shader->Draw(scene);
+                        shader->Unbind();
+                    }
+                    shader = shader->Next;
                 }
             }
 
             // PostFX
-            m_SceneRenderTarget->ClearColor(0, glm::vec4(0.0f));
-            m_SceneRenderTarget->ClearDepth(1.0f);
-            for (cRenderPass* rp : m_PostFXRenderPasses)
+            RenderTargets::Scene->Clear();
             {
-                if (rp->Enable) {
-                    rp->Update(scene);
-                    rp->Bind();
-                    rp->DrawPostFX(scene);
-                    rp->Unbind();
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::POSTFX);
+                while (shader != nullptr) {
+                    if (shader->Enable) {
+                        shader->Bind();
+                        shader->Draw(scene);
+                        shader->Unbind();
+                    }
+                    shader = shader->Next;
                 }
             }
 
             // UI
-            m_UiRenderTarget->ClearColor(0, glm::vec4(0.0f));
-            m_UiRenderTarget->ClearDepth(1.0f);
-            for (cRenderPass* rp : m_UiRenderPasses)
+            RenderTargets::UI->Clear();
             {
-                if (rp->Enable) {
-                    rp->Update(scene);
-                    rp->Bind();
-                    rp->DrawUI(scene);
-                    rp->Unbind();
-                }
-            }
-
-            // Compute
-            for (cComputePass* cp : m_ComputePasses)
-            {
-                if (cp->Enable) {
-                    cp->Update(scene);
-                    cp->Bind();
-                    cp->Dispatch();
-                    cp->Unbind();
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::UI);
+                while (shader != nullptr) {
+                    if (shader->Enable) {
+                        shader->Bind();
+                        shader->Draw(scene);
+                        shader->Unbind();
+                    }
+                    shader = shader->Next;
                 }
             }
 
             // Final
-            m_FinalRenderTarget->ClearColor(0, glm::vec4(0.0f));
-            m_FinalRenderTarget->ClearDepth(1.0f);
-            for (cRenderPass* rp : m_FinalRenderPasses)
+            RenderTargets::Final->Clear();
             {
-                if (rp->Enable) {
-                    rp->Update(scene);
-                    rp->Bind();
-                    rp->DrawFinal(scene);
-                    rp->Unbind();
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::FINAL);
+                while (shader != nullptr) {
+                    if (shader->Enable) {
+                        shader->Bind();
+                        shader->Draw(scene);
+                        shader->Unbind();
+                    }
+                    shader = shader->Next;
                 }
             }
         }

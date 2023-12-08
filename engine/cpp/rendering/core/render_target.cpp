@@ -97,14 +97,20 @@ namespace xpe {
             context::PSBindTexture(*DepthStencil);
         }
 
-        void sRenderTarget::ClearColor(u32 index, const glm::vec4 &color)
+        void sRenderTarget::Unbind()
         {
-            context::ClearColorTarget(ColorViews[index], color);
+            context::UnbindRenderTarget();
         }
 
-        void sRenderTarget::ClearDepth(const float depth)
+        void sRenderTarget::Clear()
         {
-            context::ClearDepthTarget(DepthStencilView, depth);
+            usize size = ClearColors.size();
+            for (int i = 0 ; i < size ; i++) {
+                context::ClearColorTarget(ColorViews[i], ClearColors[i]);
+            }
+            if (ClearDepth != K_DEPTH_INVALID) {
+                context::ClearDepthTarget(DepthStencilView, ClearDepth);
+            }
         }
 
         void sRenderTarget::SetResizable(bool resizable)

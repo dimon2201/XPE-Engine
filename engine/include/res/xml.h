@@ -453,13 +453,3 @@ namespace xpe::core
     })
 
 } // namespace xpe::core
-
-// XML for Spaces
-namespace xpe::core {
-
-    XML_ENUM(eSpace, {
-        { eSpace::SPACE_2D, "2D" },
-        { eSpace::SPACE_3D, "3D" }
-    })
-
-} // namespace xpe::core

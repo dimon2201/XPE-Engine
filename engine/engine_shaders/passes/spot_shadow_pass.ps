@@ -1,0 +1,25 @@
+#include ../types.shader
+
+struct VSOut
+{
+    float4 positionLight  : SV_POSITION;
+    float  near           : XPE_NEAR;
+    float  far            : XPE_FAR;
+};
+
+struct PSOut
+{
+    float depth : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn) {
+    PSOut psOut;
+
+    float near  = psIn.near;
+    float far   = psIn.far;
+    float depth = psIn.positionLight.z;
+    depth       = LinearizeDepth(depth, near, far);
+    psOut.depth = depth;
+
+    return psOut;
+}

@@ -1,13 +1,5 @@
 #pragma once
 
-#define STR(clazz) #clazz
-
-#define K_MEMORY_KB 1024
-#define K_MEMORY_MB (1024 * K_MEMORY_KB)
-#define K_MEMORY_GB (1024 * K_MEMORY_MB)
-
-#define K_PI 3.14159265359f
-
 namespace xpe
 {
     namespace core
@@ -55,12 +47,6 @@ namespace xpe
         public:
             void* operator new(usize byteSize);
             void operator delete(void* address);
-        };
-
-        enum eSpace
-        {
-            SPACE_2D = 0,
-            SPACE_3D = 1
         };
 
     }

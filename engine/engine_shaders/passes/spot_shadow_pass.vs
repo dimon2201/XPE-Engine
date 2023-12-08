@@ -1,7 +1,7 @@
 #include ../types.shader
 #include ../instancing.shader
 #include ../skeleton.shader
-#include ../lighting_matrices.shader
+#include ../lighting.shader
 
 struct VSIn
 {
@@ -14,6 +14,8 @@ struct VSIn
 struct VSOut
 {
     float4 positionLight  : SV_POSITION;
+    float  near           : XPE_NEAR;
+    float  far            : XPE_FAR;
 };
 
 VSOut vs_main(VSIn vsIn)
@@ -41,13 +43,18 @@ VSOut vs_main(VSIn vsIn)
         positionBone = positionTotal;
     }
 
-    float4x4 worldMatrix        = instance.ModelMatrix;
-    float4x4 lightMatrix        = DirectLightMatrices[0].Matrix;
+    float4x4 worldMatrix = instance.ModelMatrix;
+    SpotLight light      = SpotLights[instance.LightIndex];
+    float4x4 lightMatrix = light.ViewProjection;
+    float near           = light.Near;
+    float far            = light.Far;
 
     float4 positionWorld = mul(worldMatrix, float4(positionBone.xyz, 1.0));
     float4 positionLight = mul(lightMatrix, float4(positionWorld.xyz, 1.0));
 
     vsOut.positionLight = positionLight;
+    vsOut.near          = near;
+    vsOut.far           = far;
 
     return vsOut;
 }

@@ -14,7 +14,6 @@
 // Scene
 #define K_SLOT_INSTANCES               register(t0)
 #define K_SLOT_SKELETONS               register(t1)
-#define K_SLOT_DIRECT_LIGHT_MATRICES   register(t2)
 
 // ---------- Pixel Stage --------------- //
 
@@ -58,7 +57,24 @@
 
 static float3 V = float3(0, 0, 0);  // view direction vector. from pixel surface to camera view position
 static float3 R = float3(0, 0, 0);  // reflection direction vector. reflected vector between light vector and surface normal
-static float2 UV = float2(0, 0); // texture coordinates.
+static float2 UV = float2(0, 0);    // texture coordinates.
 static float3 W = float3(0, 0, 0);  // world position vector of pixel
 static float3 N = float3(0, 0, 0);  // normal direction vector of pixel surface
 static float3 L = float3(0, 0, 0);  // light direction vector. from pixel surface to light position
+
+float LinearizeDepth(float depth, float near, float far)
+{
+    float z = depth * 2.0 - 1.0; // Back to NDC
+    z = (2.0 * near * far) / (far + near - z * (far - near));
+    z /= far;
+    return z;
+}
+
+float3 ToLightSpace(float3 v, float4x4 m)
+{
+    float4 l = mul(m, float4(v.xyz, 1.0));
+    l = float4(l.xyz / l.w, 1.0) * 0.5 + 0.5; // transform into [0, 1]
+    l.y = 1.0 - l.y;                          // HOTFIX: flip Y coordinate for correct UV projection of shadow
+    l.z = l.z > 1.0 ? 1.0 : l.z;              // clamp depth value to 1
+    return l.xyz;
+}

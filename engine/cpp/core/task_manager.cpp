@@ -1,23 +1,27 @@
-
-#include "core/task_manager.h"
-
 namespace xpe {
 
     namespace core {
 
-        void sTask::DoWork()
+        sTaskQueue::sTaskQueue()
         {
-            Todo();
+            Todo = [this]() {
+                for (auto& task : Tasks)
+                {
+                    task.Todo();
+                }
+            };
         }
 
-        void sTask::DoAll()
+        sTaskQueue::sTaskQueue(sTask::eType type, const vector<sTask> &tasks)
         {
-            DoWork();
-            sTask* nextTask = Next;
-            while (nextTask != nullptr) {
-                nextTask->DoWork();
-                nextTask = nextTask->Next;
-            }
+            Type = type;
+            Tasks = tasks;
+            Todo = [this]() {
+                for (auto& task : Tasks)
+                {
+                    task.Todo();
+                }
+            };
         }
 
         cTaskDispatcher::cTaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, cThread::ePriority priority)
@@ -31,7 +35,7 @@ namespace xpe {
             }
         }
 
-        void cTaskDispatcher::Dispatch(sTask task)
+        void cTaskDispatcher::Dispatch(const sTask& task)
         {
             m_TasksTodo += 1;
             // try to push a new task until it is pushed
@@ -41,7 +45,7 @@ namespace xpe {
             m_WakeCondition.notify_one();
         }
 
-        void cTaskDispatcher::Dispatch(u32 tasksPerThread, u32 taskSize, sTask task)
+        void cTaskDispatcher::Dispatch(u32 tasksPerThread, u32 taskSize, const sTask& task)
         {
             if (taskSize == 0 || tasksPerThread == 0) {
                 return;
@@ -57,7 +61,7 @@ namespace xpe {
                     u32 groupJobOffset = i * taskSize;
                     u32 groupJobEnd = std::min(groupJobOffset + taskSize, tasksPerThread);
                     for (u32 j = groupJobOffset; j < groupJobEnd; ++j) {
-                        ((sTask) task).DoAll();
+                        task.Todo();
                     }
                 };
 
@@ -99,11 +103,11 @@ namespace xpe {
                 sTask task;
                 while (true) {
                     if (m_TaskBuffer.Pop(task)) {
-                        // execute job and update worker label state
-                        task.DoAll();
+                        // do task and update worker state
+                        task.Todo();
                         m_TasksDone.fetch_add(1);
                     } else {
-                        // no job, put thread to sleep
+                        // no task, put thread to sleep
                         std::unique_lock<std::mutex> lock(m_WakeMutex);
                         m_WakeCondition.wait(lock);
                     }
@@ -119,7 +123,7 @@ namespace xpe {
         void cSimulationDispatcher::submitTask(physx::PxBaseTask& pxTask)
         {
             sTask task;
-            task.Type = eTaskType::PHYSICS;
+            task.Type = sTask::eType::PHYSICS;
             task.Todo = [&pxTask]() {
                 pxTask.run();
                 pxTask.release();
@@ -157,19 +161,19 @@ namespace xpe {
         {
             switch (task.Type)
             {
-                case eTaskType::AUDIO:
+                case sTask::eType::AUDIO:
                     s_AudioDispatcher->Dispatch(task);
                     break;
-                case eTaskType::NETWORK:
+                case sTask::eType::NETWORK:
                     s_NetworkDispatcher->Dispatch(task);
                     break;
-                case eTaskType::PHYSICS:
+                case sTask::eType::PHYSICS:
                     s_SimulationDispatcher->Dispatch(task);
                     break;
-                case eTaskType::ANIMATION:
+                case sTask::eType::ANIMATION:
                     s_SimulationDispatcher->Dispatch(task);
                     break;
-                case eTaskType::THREAD_POOL:
+                case sTask::eType::THREAD_POOL:
                     s_ThreadPoolDispatcher->Dispatch(task);
                     break;
             }
@@ -179,19 +183,19 @@ namespace xpe {
         {
             switch (task.Type)
             {
-                case eTaskType::AUDIO:
+                case sTask::eType::AUDIO:
                     s_AudioDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskType::NETWORK:
+                case sTask::eType::NETWORK:
                     s_NetworkDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskType::PHYSICS:
+                case sTask::eType::PHYSICS:
                     s_SimulationDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskType::ANIMATION:
+                case sTask::eType::ANIMATION:
                     s_SimulationDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
-                case eTaskType::THREAD_POOL:
+                case sTask::eType::THREAD_POOL:
                     s_ThreadPoolDispatcher->Dispatch(tasksPerThread, totalTasks, task);
                     break;
             }

@@ -5,17 +5,248 @@ namespace xpe {
 
     namespace render {
 
-        sShaderStorage* cShaderManager::s_Storage = nullptr;
+        unordered_map<string, sShaderStage>* cShaderManager::s_Stages = nullptr;
+        cShader* cShaderManager::s_ComputeShaders = nullptr;
+        cShader* cShaderManager::s_PrepassShaders = nullptr;
+        cShader* cShaderManager::s_OpaqueShaders = nullptr;
+        cShader* cShaderManager::s_TransparentShaders = nullptr;
+        cShader* cShaderManager::s_PostfxShaders = nullptr;
+        cShader* cShaderManager::s_UiShaders = nullptr;
+        cShader* cShaderManager::s_FinalShaders = nullptr;
 
-        sShaderStorage::~sShaderStorage() {
-            Shaders.clear();
-            ShaderStages.clear();
+        void cDefaultShader::Init()
+        {
+            switch (Category)
+            {
+                case eCategory::PREPASS:
+                    InitPrepass();
+                    break;
+
+                case eCategory::OPAQUE:
+                    InitOpaque();
+                    break;
+
+                case eCategory::TRANSPARENT:
+                    InitTransparent();
+                    break;
+
+                case eCategory::POSTFX:
+                    InitPostFX();
+                    break;
+
+                case eCategory::UI:
+                    InitUI();
+                    break;
+
+                case eCategory::FINAL:
+                    InitFinal();
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (Category != eCategory::NONE) {
+                context::CreateRasterizer(Rasterizer);
+                context::CreateDepthStencilMode(DepthStencilMode);
+                context::CreateBlendMode(BlendMode);
+
+                if (VertexStage != nullptr) {
+                    sBlob* vertexBlob = &VertexStage->Blob;
+
+                    if (vertexBlob == nullptr)
+                    {
+                        LogError("Failed to create input layout. Shader has no vertex stage.");
+                        assert(false);
+                        return;
+                    }
+
+                    if (vertexBlob->ByteCode == nullptr || vertexBlob->ByteCodeSize == 0)
+                    {
+                        LogError("Failed to create input layout. Vertex shader bytecode is empty.");
+                        assert(false);
+                        return;
+                    }
+
+                    InputLayout.VertexBlob = vertexBlob;
+                    context::CreateInputLayout(InputLayout);
+                }
+            }
         }
 
-        void cShaderManager::Init() {
+        void cDefaultShader::InitPrepass()
+        {
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
+
+            sBlendTarget target;
+            target.Enable = false;
+            BlendMode.Targets.push_back(target);
+            BlendMode.Targets.push_back(target);
+            BlendMode.Targets.push_back(target);
+            BlendMode.IndependentBlendEnable = true;
+
+            Rasterizer.CullMode = eCullMode::NONE;
+        }
+
+        void cDefaultShader::InitOpaque()
+        {
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
+
+            sBlendTarget target;
+            target.Enable = false;
+            BlendMode.Targets.push_back(target);
+            BlendMode.Targets.push_back(target);
+            BlendMode.Targets.push_back(target);
+            BlendMode.IndependentBlendEnable = true;
+
+            Rasterizer.CullMode = eCullMode::NONE;
+        }
+
+        void cDefaultShader::InitTransparent()
+        {
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ZERO;
+
+            sBlendTarget target;
+            target.Enable = true;
+            target.Src = eBlend::ONE;
+            target.Dest = eBlend::ONE;
+            target.BlendOp = eBlendOp::ADD;
+            target.SrcAlpha = eBlend::ONE;
+            target.DestAlpha = eBlend::ONE;
+            target.BlendOpAlpha = eBlendOp::ADD;
+            BlendMode.Targets.push_back(target);
+
+            target.Enable = true;
+            target.Src = eBlend::ZERO;
+            target.Dest = eBlend::INV_SRC_COLOR;
+            target.BlendOp = eBlendOp::ADD;
+            target.SrcAlpha = eBlend::ZERO;
+            target.DestAlpha = eBlend::ZERO;
+            target.BlendOpAlpha = eBlendOp::ADD;
+            BlendMode.Targets.push_back(target);
+
+            BlendMode.IndependentBlendEnable = true;
+
+            Rasterizer.CullMode = eCullMode::NONE;
+        }
+
+        void cDefaultShader::InitPostFX()
+        {
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
+
+            sBlendTarget target;
+            target.Enable = false;
+            BlendMode.Targets.push_back(target);
+            BlendMode.IndependentBlendEnable = true;
+        }
+
+        void cDefaultShader::InitUI()
+        {
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
+
+            sBlendTarget target;
+            target.Enable = true;
+            BlendMode.Targets.push_back(target);
+            BlendMode.Targets.push_back(target);
+            BlendMode.Targets.push_back(target);
+            BlendMode.IndependentBlendEnable = true;
+        }
+
+        void cDefaultShader::InitFinal()
+        {
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
+
+            sBlendTarget target;
+            target.Enable = false;
+            BlendMode.Targets.push_back(target);
+            BlendMode.IndependentBlendEnable = true;
+        }
+
+        cDefaultShader::cDefaultShader(cShader::eCategory category, const string& name)
+        : cShader(category, name)
+        {
+        }
+
+        cDefaultShader::~cDefaultShader()
+        {
+            if (Category != eCategory::NONE) {
+                context::FreeInputLayout(InputLayout);
+                context::FreeRasterizer(Rasterizer);
+                context::FreeDepthStencilMode(DepthStencilMode);
+                context::FreeBlendMode(BlendMode);
+            }
+        }
+
+        void cDefaultShader::Bind()
+        {
+            context::BindPrimitiveTopology(PrimitiveTopology);
+            context::BindInputLayout(InputLayout);
+
+            if (VertexStage != nullptr) {
+                context::BindVSStage(*VertexStage);
+            }
+
+            if (PixelStage != nullptr) {
+                context::BindPSStage(*PixelStage);
+            }
+
+            if (GeometryStage != nullptr) {
+                context::BindGSStage(*GeometryStage);
+            }
+
+            if (RenderTarget != nullptr) {
+                RenderTarget->Bind();
+            }
+
+            context::BindRasterizer(Rasterizer.State);
+            context::BindDepthStencilMode(DepthStencilMode.State);
+            context::BindBlendMode(BlendMode.State);
+        }
+
+        void cDefaultShader::Unbind()
+        {
+            if (VertexStage != nullptr) {
+                context::UnbindVSStage(*VertexStage);
+            }
+
+            if (PixelStage != nullptr) {
+                context::UnbindPSStage(*PixelStage);
+            }
+
+            if (GeometryStage != nullptr) {
+                context::UnbindGSStage(*GeometryStage);
+            }
+
+            if (RenderTarget != nullptr) {
+                RenderTarget->Unbind();
+            }
+        }
+
+        void cComputeShader::Bind()
+        {
+            if (ComputeStage != nullptr) {
+                context::BindCSStage(*ComputeStage);
+            }
+        }
+
+        void cComputeShader::Unbind()
+        {
+            if (ComputeStage != nullptr) {
+                context::UnbindCSStage(*ComputeStage);
+            }
+        }
+
+        void cComputeShader::Draw(ecs::cScene *scene)
+        {
+            context::Dispatch(m_ThreadGroups);
+        }
+
+        void cShaderManager::Init()
+        {
             LogInfo("cShaderManager::Init()");
 
-            s_Storage = new sShaderStorage();
+            s_Stages = new unordered_map<string, sShaderStage>();
+
             cFileManager::CreateDir("generated");
             cFileManager::CreateDir("generated/shaders");
             cFileManager::CreateDir("generated/engine_shaders");
@@ -26,235 +257,84 @@ namespace xpe {
             LogInfo("cShaderManager initialized");
         }
 
-        void cShaderManager::Free() {
+        void cShaderManager::Free()
+        {
             LogInfo("cShaderManager::Free()");
-            FreeShaders();
-            delete s_Storage;
+            FreeStages();
+            delete s_Stages;
+            delete s_ComputeShaders;
+            delete s_PrepassShaders;
+            delete s_OpaqueShaders;
+            delete s_TransparentShaders;
+            delete s_PostfxShaders;
+            delete s_UiShaders;
+            delete s_FinalShaders;
         }
 
-        sShader* cShaderManager::CreateShader(const string &id) {
-            sShader shader;
-            shader.Name = id;
-            AddShader(id, shader);
-            return GetShader(id);
-        }
-
-        void cShaderManager::AddVertexStageFromFile(sShader* const shader, const char *filepath) {
-            sShaderStage* stage = GetShaderStage(filepath);
-
-            if (stage != nullptr) {
-                shader->Stages.emplace_back(stage);
-                return;
+        sShaderStage* cShaderManager::GetFromFile(const sShaderStage::eType &type, const char *filepath)
+        {
+            if (s_Stages->find(filepath) != s_Stages->end()) {
+                return &s_Stages->at(filepath);
             }
-
             string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
-
-            if (src.empty()) {
-                LogError("Failed to add sVertex stage from filepath {}", filepath);
-                return;
-            }
-
             WriteGeneratedShader(filepath, src);
-
-            AddVertexStage(shader, filepath, src);
+            return GetFromSrc(type, filepath, src);
         }
 
-        void cShaderManager::AddPixelStageFromFile(sShader* const shader, const char *filepath) {
-            sShaderStage* stage = GetShaderStage(filepath);
-
-            if (stage != nullptr) {
-                shader->Stages.emplace_back(stage);
-                return;
-            }
-
-            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
-
+        sShaderStage* cShaderManager::GetFromSrc(
+                const sShaderStage::eType &type,
+                const string &id,
+                const string &src
+        ) {
             if (src.empty()) {
-                LogError("Failed to add Pixel stage from filepath {}", filepath);
-                return;
+                LogError("{} shader stage source is empty", id);
+                return nullptr;
             }
 
-            WriteGeneratedShader(filepath, src);
+            string profile;
+            string entryPoint;
 
-            AddPixelStage(shader, filepath, src);
-        }
+            switch (type) {
 
-        void cShaderManager::AddGeometryStageFromFile(sShader* const shader, const char *filepath) {
-            sShaderStage* stage = GetShaderStage(filepath);
+                case sShaderStage::eType::VERTEX:
+                    profile = K_PROFILE_VERTEX;
+                    entryPoint = K_ENTRY_POINT_VERTEX;
+                    break;
 
-            if (stage != nullptr) {
-                shader->Stages.emplace_back(stage);
-                return;
+                case sShaderStage::eType::PIXEL:
+                    profile = K_PROFILE_PIXEL;
+                    entryPoint = K_ENTRY_POINT_PIXEL;
+                    break;
+
+                case sShaderStage::eType::GEOMETRY:
+                    profile = K_PROFILE_GEOMETRY;
+                    entryPoint = K_ENTRY_POINT_GEOMETRY;
+                    break;
+
+                case sShaderStage::eType::COMPUTE:
+                    profile = K_PROFILE_COMPUTE;
+                    entryPoint = K_ENTRY_POINT_COMPUTE;
+                    break;
+
+                default:
+                    LogError("Failed to identify shader stage type for {}", id);
+                    return nullptr;
+
             }
 
-            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
-
-            if (src.empty()) {
-                LogError("Failed to add GeometryInstances stage from filepath {}", filepath);
-                return;
-            }
-
-            WriteGeneratedShader(filepath, src);
-
-            AddGeometryStage(shader, filepath, src);
+            s_Stages->insert({ id, { Hash(id), type } });
+            sShaderStage* stage = &s_Stages->at(id);
+            stage->Profile = profile;
+            stage->EntryPoint = entryPoint;
+            stage->Source = src;
+            context::CompileShaderStage(*stage);
+            context::CreateShaderStage(*stage);
+            return stage;
         }
 
-        void cShaderManager::AddTessControlStageFromFile(sShader* const shader, const char *filepath) {
-            sShaderStage* stage = GetShaderStage(filepath);
-
-            if (stage != nullptr) {
-                shader->Stages.emplace_back(stage);
-                return;
-            }
-
-            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
-
-            if (src.empty()) {
-                LogError("Failed to add Tesselation Control stage from filepath {}", filepath);
-                return;
-            }
-
-            WriteGeneratedShader(filepath, src);
-
-            AddTessControlStage(shader, filepath, src);
-        }
-
-        void cShaderManager::AddTessEvalStageFromFile(sShader* const shader, const char *filepath) {
-            sShaderStage* stage = GetShaderStage(filepath);
-
-            if (stage != nullptr) {
-                shader->Stages.emplace_back(stage);
-                return;
-            }
-
-            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
-
-            if (src.empty()) {
-                LogError("Failed to add Tesselation Evaluation stage from filepath {}", filepath);
-                return;
-            }
-
-            WriteGeneratedShader(filepath, src);
-
-            AddTessEvalStage(shader, filepath, src);
-        }
-
-        void cShaderManager::AddComputeStageFromFile(sShader* const shader, const char *filepath) {
-            sShaderStage* stage = cShaderManager::GetShaderStage(filepath);
-
-            if (stage != nullptr) {
-                shader->Stages.emplace_back(stage);
-                return;
-            }
-
-            string src = cFileManager::ReadFileWithIncludes(filepath, "#include");
-
-            if (src.empty()) {
-                LogError("Failed to add Compute stage from filepath {}", filepath);
-                return;
-            }
-
-            WriteGeneratedShader(filepath, src);
-
-            AddComputeStage(shader, filepath, src);
-        }
-
-        void cShaderManager::AddVertexStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = { id, sShaderStage::eType::VERTEX };
-            stage.EntryPoint = "vs_main";
-            stage.Profile = "vs_5_0";
-            stage.Source = source;
-
-            AddShaderStage(id, stage);
-
-            shader->Stages.emplace_back(GetShaderStage(id));
-        }
-
-        void cShaderManager::AddPixelStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = { id, sShaderStage::eType::PIXEL };
-            stage.EntryPoint = "ps_main";
-            stage.Profile = "ps_5_0";
-            stage.Source = source;
-
-            AddShaderStage(id, stage);
-
-            shader->Stages.emplace_back(GetShaderStage(id));
-        }
-
-        void cShaderManager::AddGeometryStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = { id, sShaderStage::eType::GEOMETRY };
-            stage.EntryPoint = "gs_main";
-            stage.Profile = "gs_5_0";
-            stage.Source = source;
-
-            AddShaderStage(id, stage);
-
-            shader->Stages.emplace_back(GetShaderStage(id));
-        }
-
-        void cShaderManager::AddTessControlStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = { id, sShaderStage::eType::TESS_CONTROL };
-            stage.EntryPoint = "ts_main";
-            stage.Profile = "tcs_5_0";
-            stage.Source = source;
-
-            AddShaderStage(id, stage);
-
-            shader->Stages.emplace_back(GetShaderStage(id));
-        }
-
-        void cShaderManager::AddTessEvalStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = { id, sShaderStage::eType::TESS_EVAL };
-            stage.EntryPoint = "ts_main";
-            stage.Profile = "tes_5_0";
-            stage.Source = source;
-
-            AddShaderStage(id, stage);
-
-            shader->Stages.emplace_back(GetShaderStage(id));
-        }
-
-        void cShaderManager::AddComputeStage(sShader* const shader, const string& id, const string &source) {
-            sShaderStage stage = { id, sShaderStage::eType::COMPUTE };
-            stage.EntryPoint = "cs_main";
-            stage.Profile = "cs_5_0";
-            stage.Source = source;
-
-            AddShaderStage(id, stage);
-
-            shader->Stages.emplace_back(GetShaderStage(id));
-        }
-
-        void cShaderManager::BuildShader(sShader *const shader) {
-            context::CompileShader(*shader);
-            context::CreateShader(*shader);
-        }
-
-        void cShaderManager::BuildShader(const string &id) {
-            BuildShader(GetShader(id));
-        }
-
-        void cShaderManager::AddShaderStage(const string& filepath, const sShaderStage &shaderStage) {
-            s_Storage->ShaderStages.insert({ filepath, shaderStage });
-        }
-
-        void cShaderManager::RemoveShaderStage(const string& name) {
-            s_Storage->ShaderStages.erase(name);
-        }
-
-        sShaderStage* cShaderManager::GetShaderStage(const string &name) {
-            auto& stages = s_Storage->ShaderStages;
-            auto it = stages.find(name);
-
-            if (it != stages.end()) {
-                return &it->second;
-            }
-
-            return nullptr;
-        }
-
-        void cShaderManager::ReloadStage(const char* filepath) {
-            auto& stages = s_Storage->ShaderStages;
+        void cShaderManager::ReloadStage(const char* filepath)
+        {
+            auto& stages = *s_Stages;
 
             auto it = stages.find(filepath);
             if (it != stages.end()) {
@@ -273,41 +353,192 @@ namespace xpe {
             }
         }
 
-        void cShaderManager::AddShader(const string &id, const sShader& shader) {
-            s_Storage->Shaders[id] = shader;
-        }
-
-        void cShaderManager::FreeShader(const string &id) {
-            auto& shaders = s_Storage->Shaders;
-
-            auto it = shaders.find(id);
-            if (it != shaders.end()) {
-                context::FreeShader(it->second);
+        void cShaderManager::FreeStages()
+        {
+            for (auto& shader : *s_Stages) {
+                context::FreeShaderStage(shader.second);
             }
         }
 
-        void cShaderManager::FreeShaders() {
-            for (auto& shader : s_Storage->Shaders) {
-                context::FreeShader(shader.second);
-            }
-        }
-
-        sShader* cShaderManager::GetShader(const string &id) {
-            auto& shaders = s_Storage->Shaders;
-
-            auto it = shaders.find(id);
-            if (it != shaders.end()) {
-                return &shaders[id];
-            }
-
-            return nullptr;
-        }
-
-        void cShaderManager::WriteGeneratedShader(const char *filepath, const string &src) {
+        void cShaderManager::WriteGeneratedShader(const char *filepath, const string &src)
+        {
             hstringstream ss;
             ss << "generated/" << filepath;
             hstring generatedFilepath = ss.str();
             cFileManager::WriteFile(generatedFilepath.c_str(), src);
+        }
+
+        void cShaderManager::SetShader(cShader*& dest, cShader* src)
+        {
+            if (dest == nullptr) {
+                dest = src;
+                return;
+            }
+
+            cShader*& next = dest->Next;
+            while (next != nullptr) {
+                next = next->Next;
+            }
+            next = src;
+        }
+
+        void cShaderManager::SetShader(cShader*& dest, cShader* src, u64 id)
+        {
+            if (dest == nullptr) {
+                LogWarning("Can't set shader by ID because destination is NULL");
+                return;
+            }
+
+            cShader*& next = dest->Next;
+            while (next != nullptr) {
+                if (next->ID == id) {
+                    cShader* prev = next->Next;
+                    next->Next = src;
+                    src->Next = prev;
+                    break;
+                }
+                next = next->Next;
+            }
+        }
+
+        void cShaderManager::SetShader(cShader* shader)
+        {
+            switch (shader->Category)
+            {
+                case cShader::eCategory::PREPASS:
+                    SetShader(s_PrepassShaders, shader);
+                    break;
+
+                case cShader::eCategory::OPAQUE:
+                    SetShader(s_OpaqueShaders, shader);
+                    break;
+
+                case cShader::eCategory::TRANSPARENT:
+                    SetShader(s_TransparentShaders, shader);
+                    break;
+
+                case cShader::eCategory::POSTFX:
+                    SetShader(s_PostfxShaders, shader);
+                    break;
+
+                case cShader::eCategory::UI:
+                    SetShader(s_UiShaders, shader);
+                    break;
+
+                case cShader::eCategory::FINAL:
+                    SetShader(s_FinalShaders, shader);
+                    break;
+
+                case cShader::eCategory::COMPUTE:
+                    SetShader(s_ComputeShaders, shader);
+                    break;
+            }
+        }
+
+        void cShaderManager::SetShaderAfter(cShader* shader, const string &name)
+        {
+            u64 id = Hash(name);
+            switch (shader->Category)
+            {
+                case cShader::eCategory::PREPASS:
+                    SetShader(s_PrepassShaders, shader, id);
+                    break;
+
+                case cShader::eCategory::OPAQUE:
+                    SetShader(s_OpaqueShaders, shader, id);
+                    break;
+
+                case cShader::eCategory::TRANSPARENT:
+                    SetShader(s_TransparentShaders, shader, id);
+                    break;
+
+                case cShader::eCategory::POSTFX:
+                    SetShader(s_PostfxShaders, shader, id);
+                    break;
+
+                case cShader::eCategory::UI:
+                    SetShader(s_UiShaders, shader, id);
+                    break;
+
+                case cShader::eCategory::FINAL:
+                    SetShader(s_FinalShaders, shader, id);
+                    break;
+
+                case cShader::eCategory::COMPUTE:
+                    SetShader(s_ComputeShaders, shader, id);
+                    break;
+            }
+        }
+
+        cShader* cShaderManager::GetShaders(cShader::eCategory category)
+        {
+            switch (category)
+            {
+                case cShader::eCategory::NONE:        return nullptr;
+                case cShader::eCategory::COMPUTE:     return s_ComputeShaders;
+                case cShader::eCategory::PREPASS:     return s_PrepassShaders;
+                case cShader::eCategory::OPAQUE:      return s_OpaqueShaders;
+                case cShader::eCategory::TRANSPARENT: return s_TransparentShaders;
+                case cShader::eCategory::POSTFX:      return s_PostfxShaders;
+                case cShader::eCategory::UI:          return s_UiShaders;
+                case cShader::eCategory::FINAL:       return s_FinalShaders;
+            }
+        }
+
+        cShader* cShaderManager::GetShader(const string& name)
+        {
+            u64 id = Hash(name);
+            cShader* shader = nullptr;
+
+            shader = GetShader(s_ComputeShaders, id);
+            if (shader != nullptr) {
+                return shader;
+            }
+
+            shader = GetShader(s_PrepassShaders, id);
+            if (shader != nullptr) {
+                return shader;
+            }
+
+            shader = GetShader(s_OpaqueShaders, id);
+            if (shader != nullptr) {
+                return shader;
+            }
+
+            shader = GetShader(s_TransparentShaders, id);
+            if (shader != nullptr) {
+                return shader;
+            }
+
+            shader = GetShader(s_PostfxShaders, id);
+            if (shader != nullptr) {
+                return shader;
+            }
+
+            shader = GetShader(s_UiShaders, id);
+            if (shader != nullptr) {
+                return shader;
+            }
+
+            shader = GetShader(s_FinalShaders, id);
+            if (shader != nullptr) {
+                return shader;
+            }
+
+            return shader;
+        }
+
+        cShader* cShaderManager::GetShader(cShader*& src, u64 id)
+        {
+            cShader* next = src;
+            while (next != nullptr)
+            {
+                if (next->ID == id) {
+                    return next;
+                }
+                next = next->Next;
+            }
+            return nullptr;
         }
 
     }

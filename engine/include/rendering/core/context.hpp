@@ -1,7 +1,6 @@
 #pragma once
 
-#include <rendering/core/viewport.h>
-#include <rendering/core/pipeline.h>
+#include <rendering/core/shader.h>
 
 namespace xpe {
 
@@ -37,17 +36,19 @@ namespace xpe {
 
             ENGINE_API void Present();
 
-            ENGINE_API void CreateShader(sShader& shader);
-            ENGINE_API void CompileShader(sShader& shader);
-            ENGINE_API void BindShader(const sShader& shader);
-            ENGINE_API void UnbindShader(const sShader& shader);
-            ENGINE_API void FreeShader(sShader& shader);
-
-            ENGINE_API void CompileShaderStage(sShaderStage& stage);
             ENGINE_API void CreateShaderStage(sShaderStage& stage);
-            ENGINE_API void BindShaderStage(const sShaderStage& stage);
-            ENGINE_API void UnbindShaderStage(const sShaderStage& stage);
             ENGINE_API void FreeShaderStage(sShaderStage& stage);
+            ENGINE_API void CompileShaderStage(sShaderStage& stage);
+
+            ENGINE_API void BindVSStage(const sShaderStage& stage);
+            ENGINE_API void BindPSStage(const sShaderStage& stage);
+            ENGINE_API void BindGSStage(const sShaderStage& stage);
+            ENGINE_API void BindCSStage(const sShaderStage& stage);
+
+            ENGINE_API void UnbindVSStage(const sShaderStage& stage);
+            ENGINE_API void UnbindPSStage(const sShaderStage& stage);
+            ENGINE_API void UnbindGSStage(const sShaderStage& stage);
+            ENGINE_API void UnbindCSStage(const sShaderStage& stage);
 
             ENGINE_API void FreeShaderResourceView(void* viewInstance);
 
@@ -157,18 +158,6 @@ namespace xpe {
 
             ENGINE_API void BindViewport(sViewport* viewport);
             ENGINE_API void UnbindViewport();
-
-            // Calls for Vertex Pipeline
-            ENGINE_API void CreateVertexPipeline(sVertexPipeline& pipeline);
-            ENGINE_API void BindVertexPipeline(const sVertexPipeline& pipeline);
-            ENGINE_API void UnbindVertexPipeline(const sVertexPipeline& pipeline);
-            ENGINE_API void FreeVertexPipeline(sVertexPipeline& pipeline);
-
-            // Calls for Compute Pipeline
-            ENGINE_API void CreateComputePipeline(sComputePipeline& pipeline);
-            ENGINE_API void BindComputePipeline(const sComputePipeline& pipeline);
-            ENGINE_API void UnbindComputePipeline(const sComputePipeline& pipeline);
-            ENGINE_API void FreeComputePipeline(sComputePipeline& pipeline);
 
             ENGINE_API void CreateDepthStencilMode(sDepthStencilMode& depthStencilMode);
             ENGINE_API void BindDepthStencilMode(void* state);

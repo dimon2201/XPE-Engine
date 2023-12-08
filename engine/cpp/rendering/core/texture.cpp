@@ -465,6 +465,16 @@ namespace xpe {
             ViewType = eViewType::SRV;
         }
 
+        sSampler::~sSampler()
+        {
+            context::FreeSampler(*this);
+        }
+
+        void sSampler::Init()
+        {
+            context::CreateSampler(*this);
+        }
+
     }
 
 }

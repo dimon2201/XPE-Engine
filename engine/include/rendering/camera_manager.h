@@ -13,7 +13,6 @@ namespace xpe {
             static void Init();
             static void Free();
 
-            static sCameraBuffer* GetBuffer();
             static glm::mat4 GetViewProjection();
 
             static void Flush();
@@ -29,14 +28,10 @@ namespace xpe {
             static void SetViewport(const sViewport& viewport);
             static sViewport* GetViewport();
 
-            static cPerspectiveCamera* AddPerspectiveCamera(int width, int height);
-            static cOrthoCamera* AddOrthoCamera(int width, int height);
-
             static cCamera* GetCamera();
             static void SetCamera(cCamera* camera);
 
         private:
-            static sCameraBuffer* s_Buffer;
             static cCamera* s_Camera;
 
         };

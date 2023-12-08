@@ -39,8 +39,8 @@ namespace xpe {
             static glm::mat4 UpdateViewMatrix(const sViewMatrix& viewMatrix);
             static glm::mat4 UpdateOrthoMatrix(const sOrthoMatrix& orthoMatrix);
             static glm::mat4 UpdatePerspectiveMatrix(const sPerspectiveMatrix& perspectiveMatrix);
-            static glm::mat4 UpdateDirectLightMatrix(const sOrthoMatrix& orthoMatrix, const sViewMatrix& viewMatrix);
-            static glm::mat4 UpdateDirectLightMatrix(const sPerspectiveMatrix& perspectiveMatrix, const sViewMatrix& viewMatrix);
+            static glm::mat4 UpdateLightMatrix(const sOrthoMatrix& orthoMatrix, const sViewMatrix& viewMatrix);
+            static glm::mat4 UpdateLightMatrix(const sPerspectiveMatrix& perspectiveMatrix, const sViewMatrix& viewMatrix);
 
         };
 

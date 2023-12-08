@@ -1,30 +1,24 @@
 #pragma once
 
 #include <anim/skeleton.h>
+#include <rendering/bindings.h>
 
 namespace xpe {
 
     namespace anim {
 
         using namespace ecs;
+        using namespace render;
 
         class ENGINE_API cSkeletonManager final
         {
         public:
             static void Init();
             static void Free();
-
-            static void Bind();
-            static void Unbind();
             static void Flush();
 
             template<typename... Args>
             static std::pair<sSkeleton, sSkeletonInfo> AddSkeleton(Args &&... args);
-
-            static render::sSkeletonBuffer* GetBuffer();
-
-        private:
-            static render::sSkeletonBuffer* s_Buffer;
         };
 
         template<typename... Args>
@@ -32,8 +26,8 @@ namespace xpe {
         {
             sSkeleton skeleton(std::forward<Args>(args)...);
             sSkeletonInfo skeletonInfo;
-            skeletonInfo.SkeletonIndex = s_Buffer->Size();
-            s_Buffer->Resize(s_Buffer->Size() + skeleton.Bones.size());
+            skeletonInfo.SkeletonIndex = Buffers::Skeleton->Size();
+            Buffers::Skeleton->Resize(Buffers::Skeleton->Size() + skeleton.Bones.size());
             return { skeleton, skeletonInfo };
         }
 

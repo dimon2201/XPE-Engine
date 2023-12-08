@@ -37,10 +37,52 @@ namespace xpe {
 
         void cScene::ToJson(json &root)
         {
+            to_json(root, m_Tag);
+            for (auto& jsonEntity : m_Jsons)
+            {
+                for (auto& jsonComponent : jsonEntity.second)
+                {
+                    jsonComponent.second->ToJson(root);
+                }
+            }
         }
 
         void cScene::FromJson(json &root)
         {
+            from_json(root, m_Tag);
+            for (auto& jsonEntity : m_Jsons)
+            {
+                for (auto& jsonComponent : jsonEntity.second)
+                {
+                    jsonComponent.second->FromJson(root);
+                }
+            }
+        }
+
+        xml cScene::ToXml(xml &root)
+        {
+            SetXmlValue(root, "Tag", m_Tag);
+            for (auto& xmlEntity : m_Xmls)
+            {
+                for (auto& xmlComponent : xmlEntity.second)
+                {
+                    return xmlComponent.second->ToXml(root);
+                }
+            }
+            return root;
+        }
+
+        xml cScene::FromXml(xml &root)
+        {
+            GetXmlValue(root, "Tag", m_Tag);
+            for (auto& xmlEntity : m_Xmls)
+            {
+                for (auto& xmlComponent : xmlEntity.second)
+                {
+                    return xmlComponent.second->FromXml(root);
+                }
+            }
+            return root;
         }
 
         cEntity::cEntity(const string& tag, cScene* scene) : m_Scene(scene)
@@ -80,11 +122,19 @@ namespace xpe {
             }
         }
 
-        void cEntity::SetSpace(eSpace space)
+        void cEntity::SetSpace2D()
         {
-            Add<CSpace>(space);
+            Add<CSpace2D>();
             for (auto* child : Children) {
-                child->SetSpace(space);
+                child->SetSpace2D();
+            }
+        }
+
+        void cEntity::SetSpace3D()
+        {
+            Add<CSpace3D>();
+            for (auto* child : Children) {
+                child->SetSpace3D();
             }
         }
 
@@ -146,11 +196,6 @@ namespace xpe {
         bool cEntity::IsVisible()
         {
             return HasAny<CVisible>();
-        }
-
-        eSpace cEntity::GetSpace()
-        {
-            return Get<CSpace>().Space;
         }
 
         bool cEntity::IsTransparent()

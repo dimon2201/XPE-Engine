@@ -1,89 +1,74 @@
 #include <rendering/camera_manager.h>
+#include <rendering/bindings.h>
 
 namespace xpe {
 
     namespace render {
 
-        sCameraBuffer* cCameraManager::s_Buffer = nullptr;
         cCamera* cCameraManager::s_Camera = nullptr;
 
         void cCameraManager::Init()
         {
-            s_Buffer = new sCameraBuffer();
+            Buffers::Camera = new sCameraBuffer();
         }
 
         void cCameraManager::Free()
         {
-            delete s_Buffer;
+            delete Buffers::Camera;
             delete s_Camera;
-        }
-
-        sCameraBuffer* cCameraManager::GetBuffer()
-        {
-            return s_Buffer;
         }
 
         glm::mat4 cCameraManager::GetViewProjection()
         {
-            return s_Buffer->Item.Projection * s_Buffer->Item.View;
+            return Buffers::Camera->Item.Projection * Buffers::Camera->Item.View;
         }
 
         void cCameraManager::Flush()
         {
-            s_Buffer->Flush();
+            Buffers::Camera->Flush();
         }
 
         void cCameraManager::Bind()
         {
-            context::VSBindBuffer(*s_Buffer);
+            context::VSBindBuffer(*Buffers::Camera);
         }
 
         void cCameraManager::Unbind()
         {
-            context::VSUnbindBuffer(*s_Buffer);
+            context::VSUnbindBuffer(*Buffers::Camera);
         }
 
         void cCameraManager::SetExposure(float exposure)
         {
-            s_Buffer->Item.Exposure = exposure;
-            s_Buffer->Flush();
+            Buffers::Camera->Item.Exposure = exposure;
+            Buffers::Camera->Flush();
         }
 
         void cCameraManager::SetGamma(float gamma)
         {
-            s_Buffer->Item.Gamma = gamma;
-            s_Buffer->Flush();
+            Buffers::Camera->Item.Gamma = gamma;
+            Buffers::Camera->Flush();
         }
 
         float cCameraManager::GetExposure()
         {
-            return s_Buffer->Item.Exposure;
+            return Buffers::Camera->Item.Exposure;
         }
 
         float cCameraManager::GetGamma()
         {
-            return s_Buffer->Item.Gamma;
+            return Buffers::Camera->Item.Gamma;
         }
 
         void cCameraManager::SetViewport(const sViewport &viewport)
         {
-            s_Buffer->Item.Viewport = viewport;
-            s_Buffer->Flush();
+            Buffers::Camera->Item.Viewport = viewport;
+            Buffers::Camera->Flush();
         }
 
         sViewport* cCameraManager::GetViewport()
         {
-            return &s_Buffer->Item.Viewport;
-        }
-
-        cPerspectiveCamera* cCameraManager::AddPerspectiveCamera(int width, int height)
-        {
-            return new cPerspectiveCamera(width, height, s_Buffer);
-        }
-
-        cOrthoCamera* cCameraManager::AddOrthoCamera(int width, int height)
-        {
-            return new cOrthoCamera(width, height, s_Buffer);
+            return &Buffers::Camera->Item.Viewport;
         }
 
         cCamera* cCameraManager::GetCamera()

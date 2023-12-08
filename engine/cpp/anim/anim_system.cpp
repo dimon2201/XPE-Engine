@@ -25,7 +25,7 @@ namespace xpe {
             m_DeltaSeconds = dt.Seconds();
             m_CurrentSeconds += animation.TicksPerSecond * m_DeltaSeconds;
             m_CurrentSeconds = fmod(m_CurrentSeconds, animation.Duration);
-            UpdateSkeletonTransform(animation.Root, skeleton, *cSkeletonManager::GetBuffer(), skeletonIndex, glm::mat4(1.0f));
+            UpdateSkeletonTransform(animation.Root, skeleton, *Buffers::Skeleton, skeletonIndex, glm::mat4(1.0f));
         }
 
         void cAnimSystem::AnimateBone(sBone &bone, float time)
