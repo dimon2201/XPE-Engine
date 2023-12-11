@@ -40,7 +40,7 @@ namespace xpe {
         {
             u32 Id = 0;
 
-            eAudioState State = eAudioState::INITIAL;
+            //eAudioState State = eAudioState::INITIAL;
 
             glm::vec3 Position = { 0.0f, 0.0f, 0.0f };
             glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
@@ -60,7 +60,7 @@ namespace xpe {
         JSON(
             sAudioSource,
             Id,
-            State,
+            //State,
             Position,
             Velocity,
             Gain,

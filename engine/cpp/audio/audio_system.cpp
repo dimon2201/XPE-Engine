@@ -95,11 +95,10 @@ namespace xpe {
 			for (auto [entity, audio] : components.each())
 			{
 				if (audio.State == eAudioState::PLAYING) {
-					AudioUpdate(audio);
+					AudioUpdate(audio);		
 				}
 				else if (audio.State == eAudioState::INITIAL) {
 					AudioSet(audio);
-					audio.State = eAudioState::PLAYING;
 				}
 				else if (audio.State == eAudioState::STOPPED) {
 					AudioStop(audio);
@@ -122,7 +121,7 @@ namespace xpe {
 			GenSources(1, &component.Source.Id);
 			GenBuffers(1, &component.BufferID);
 
-			UploadFileToBuffer(*component.File, component.BufferID);
+			UploadFileToBuffer(component.File, component.BufferID);
 
 			bindBuffers(component.Source.Id, component.BufferID);
 
@@ -186,6 +185,8 @@ namespace xpe {
 			}
 
 			PlaySource(component.Source.Id);
+
+			GetState(component.Source.Id, component.State);
 		}
 
 		void cAudioSystem::AudioUpdate(CAudio& component)
@@ -198,7 +199,7 @@ namespace xpe {
 			s32 processed;
 
 			GetProcessed(component.Source.Id, &processed);
-			GetState(component.Source.Id, component.Source.State);
+			GetState(component.Source.Id, component.State);
 
 			if (GetError() == eAudioError::NONE) {
 
@@ -211,8 +212,6 @@ namespace xpe {
 
 					--processed;
 				}
-				
-				GetState(component.Source.Id, component.Source.State);
 			}
 
 			else {

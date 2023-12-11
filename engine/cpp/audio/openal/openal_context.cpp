@@ -122,18 +122,18 @@ namespace xpe {
                 alSourcei(sourceID, AL_BUFFER, 0);
             }
 
-            void UploadFileToBuffer(sAudioFile& file, u32 bufferID)
+            void UploadFileToBuffer(sAudioFile* file, u32 bufferID)
             {
                 s64 chunk, size;
                 vector<short> data;
-                data.reserve(GetBufferSize(file.Info.channels, file.Info.frames));
+                data.reserve(GetBufferSize(file->Info.channels, file->Info.frames));
 
-                chunk = ReadChunk(file.File, data.data(), file.Info.frames);
-                SetCurrentFrame(file.File, 0);
+                chunk = ReadChunk(file->File, data.data(), file->Info.frames);
+                SetCurrentFrame(file->File, 0);
 
                 if (chunk > 1) {
-                    size = chunk * file.Info.channels * 2; // 2 == sizeof(short);
-                    alBufferData(bufferID, file.Info.format, data.data(), size, file.Info.samplerate);
+                    size = chunk * file->Info.channels * 2; // 2 == sizeof(short);
+                    alBufferData(bufferID, file->Info.format, data.data(), size, file->Info.samplerate);
                 }
 
                 else {
