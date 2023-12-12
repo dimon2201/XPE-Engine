@@ -42,8 +42,8 @@ namespace xpe {
             ENGINE_API void bindBuffers(u32 sourceID, u32 bufferID);
             ENGINE_API void UnbindBuffers(u32 sourceID);
 
-            ENGINE_API void UploadFileToBuffer(sAudioFile* file, u32 bufferID);
-            ENGINE_API void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed);
+            ENGINE_API void UploadFileToBuffer(const sAudioFile* file, u32 bufferID);
+            ENGINE_API void UpdateBuffer(const sAudioFile* file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed);
 
             ENGINE_API void StartRecord();
             ENGINE_API void StopRecord();

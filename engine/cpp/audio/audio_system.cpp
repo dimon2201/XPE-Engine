@@ -81,7 +81,6 @@ namespace xpe {
 				}
 				else if (audio.State == eAudioState::INITIAL) {
 					AudioSet(audio);
-					audio.State = eAudioState::PLAYING;
 				}
 				else if (audio.State == eAudioState::STOPPED) {
 					AudioStop(audio);
@@ -99,10 +98,13 @@ namespace xpe {
 				}
 				else if (audio.State == eAudioState::INITIAL) {
 					AudioSet(audio);
+					AudioUpdate(audio);		
 				}
 				else if (audio.State == eAudioState::STOPPED) {
 					AudioStop(audio);
 				}
+
+				LogInfo(audio.State);
 			}
 		}
 
@@ -170,7 +172,8 @@ namespace xpe {
 		{
 			AudioInit(component);
 			PlaySource(component.Source.Id);
-			GetState(component.Source.Id, component.State);
+
+			component.State = eAudioState::PLAYING;
 		}
 
 		void cAudioSystem::AudioSet(CStreamAudio& component)
@@ -180,12 +183,12 @@ namespace xpe {
 			SetCurrentFrame(component.File->File, component.CurrentFrame);
 
 			for (int i = 0; i < component.NumBuffers; i++) {
-				UpdateBuffer(*component.File, component.Source.Id, component.BufferID[i], component.Data.data(), component.BufferSamples, false);
+				UpdateBuffer(component.File, component.Source.Id, component.BufferID[i], component.Data.data(), component.BufferSamples, false);
 				component.CurrentFrame += component.BufferSamples;
+				LogInfo("AudioSet - UpdateBuffer");
 			}
 
 			PlaySource(component.Source.Id);
-
 			GetState(component.Source.Id, component.State);
 		}
 
@@ -196,27 +199,29 @@ namespace xpe {
 
 		void cAudioSystem::AudioUpdate(CStreamAudio& component)
 		{
-			s32 processed;
-
+			s32 processed = 0;
 			GetProcessed(component.Source.Id, &processed);
 			GetState(component.Source.Id, component.State);
+			LogInfo("PROcessed: {0}", processed);
 
-			if (GetError() == eAudioError::NONE) {
+			if (component.State == eAudioState::STOPPED) {
+				AudioSet(component);
+			}
+			else if (GetError() == eAudioError::NONE) {
 
 				for (s32 i = 0; component.CurrentFrame < component.File->Info.frames && processed > 0; ++i) {
-
 					SetCurrentFrame(component.File->File, component.CurrentFrame);
 					component.CurrentFrame += component.BufferSamples;
 
-					UpdateBuffer(*component.File, component.Source.Id, component.BufferID[i], component.Data.data(), component.BufferSamples, processed);
+					UpdateBuffer(component.File, component.Source.Id, component.BufferID[i], component.Data.data(), component.BufferSamples, processed);
 
 					--processed;
 				}
 			}
-
 			else {
 				LogError("Error checking music source state");
 			}
+			
 		}
 
 		void cAudioSystem::AudioStop(CAudio& component)
@@ -241,6 +246,14 @@ namespace xpe {
 			DeleteBuffers(component.NumBuffers, component.BufferID.data());
 
 			component.Source.Id = 0;
+
+			//LogInfo(component.CurrentFrame);
+			//LogInfo(component.File->Info.samplerate);
+			//LogInfo(component.File->Info.channels);
+			//LogInfo(component.File->Info.format);
+			//LogInfo(component.File->Info.frames);
+			//LogInfo(component.File->Info.sections);
+			//LogInfo(component.File->Info.seekable);
 
 			component.State = eAudioState::PAUSED; // temporarily
 		}

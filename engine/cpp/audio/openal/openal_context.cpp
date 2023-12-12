@@ -122,7 +122,7 @@ namespace xpe {
                 alSourcei(sourceID, AL_BUFFER, 0);
             }
 
-            void UploadFileToBuffer(sAudioFile* file, u32 bufferID)
+            void UploadFileToBuffer(const sAudioFile* file, u32 bufferID)
             {
                 s64 chunk, size;
                 vector<short> data;
@@ -141,7 +141,7 @@ namespace xpe {
                 }
             }
 
-            void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed)
+            void UpdateBuffer(const sAudioFile* file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed)
             {
                 s64 chunk, size;
 
@@ -149,11 +149,11 @@ namespace xpe {
                     alSourceUnqueueBuffers(sourceID, 1, &bufferID);
                 }
 
-                chunk = ReadChunk(file.File, data, frames);
+                chunk = ReadChunk(file->File, data, frames);
 
                 if (chunk) {
-                    size = chunk * file.Info.channels * 2; // 2 == sizeof(short);
-                    alBufferData(bufferID, file.Info.format, data, size, file.Info.samplerate);
+                    size = chunk * file->Info.channels * 2; // 2 == sizeof(short);
+                    alBufferData(bufferID, file->Info.format, data, size, file->Info.samplerate);
                     alSourceQueueBuffers(sourceID, 1, &bufferID);
                 }
 
