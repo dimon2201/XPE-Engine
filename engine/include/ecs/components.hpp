@@ -279,6 +279,7 @@ namespace xpe
 
         struct ENGINE_API CStreamAudio : cJson
         {
+
             sAudioSource Source;
             eAudioState State = eAudioState::INITIAL;
 

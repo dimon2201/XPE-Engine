@@ -13,14 +13,11 @@ namespace xpe {
 
             using namespace xpe::core;
 
-            //const u32 k_CaptureFormat = AL_FORMAT_MONO16;
-            //const f32 k_CaptureDuration = 1;
-
             const u32 k_Channels = 1;
 
             const u32 k_NumCaptureBuffers = 4;
-            const u32 k_CaptureFrequency = 44100;
-            const u32 k_CaptureBufferSize = k_CaptureFrequency * k_Channels * sizeof(signed char);
+            const u32 k_CaptureFrequency = 22050;
+            const u32 k_CaptureBufferSize = k_CaptureFrequency * k_Channels * sizeof(signed char) / 8; // Divided by 8 only to reduce the buffer size
 
             inline void* Context = nullptr;
             inline void* PlaybackDevice = nullptr;

@@ -112,7 +112,7 @@ namespace xpe {
 			s32 samples;
 			GetCaptureSamples(1, samples);
 
-			if(samples > k_CaptureBufferSize) {
+			if(samples >= k_CaptureBufferSize) {
 				UploadSamplesToBuffer(m_VoiceData.data(), k_CaptureBufferSize);
 			}
 		}
@@ -180,7 +180,8 @@ namespace xpe {
 				SetCurrentFrame(component.File->File, component.CurrentFrame);
 				component.CurrentFrame += component.BufferSamples;
 
-				UpdateBuffer(component.File, component.Source.Id, component.BufferID[i], component.Data.data(), component.BufferSamples, false);
+				UpdateBuffer(component.File, component.Source.Id, component.BufferID[i], component.Data.data(),
+					component.BufferSamples, false);
 			}
 
 			PlaySource(component.Source.Id);
@@ -205,7 +206,6 @@ namespace xpe {
 					AudioStop(component);
 					AudioInit(component);
 					AudioSet(component);
-					LogInfo("WOWOW");
 				}
 				else {
 					for (s32 i = 0; component.CurrentFrame < component.File->Info.frames && processed > 0; ++i) {
@@ -213,7 +213,7 @@ namespace xpe {
 						component.CurrentFrame += component.BufferSamples;
 
 						UpdateBuffer(component.File, component.Source.Id, component.BufferID[i], component.Data.data(),
-							component.BufferSamples, processed);
+							component.BufferSamples, true);
 
 						--processed;
 					}
@@ -235,7 +235,7 @@ namespace xpe {
 
 			component.Source.Id = 0;
 
-			component.State = eAudioState::PAUSED; // temporarily
+			component.State = eAudioState::PAUSED;
 		}
 
 		void cAudioSystem::AudioStop(CStreamAudio& component)
@@ -247,7 +247,7 @@ namespace xpe {
 
 			component.Source.Id = 0;
 
-			component.State = eAudioState::PAUSED; // temporarily
+			component.State = eAudioState::PAUSED;
 		}
 	}
 }
