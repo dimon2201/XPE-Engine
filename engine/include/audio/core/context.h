@@ -13,10 +13,11 @@ namespace xpe {
 
             using namespace xpe::core;
 
-            const u32 k_SampleRate = 22050;
             const u32 k_Channels = 1;
-            const f32 k_Duration = 0.02;
-            const u32 k_DataSize = static_cast<unsigned int>(k_Duration * k_SampleRate * k_Channels * 2);
+
+            const u32 k_NumCaptureBuffers = 4;
+            const u32 k_CaptureFrequency = 22050;
+            const u32 k_CaptureBufferSize = k_CaptureFrequency * k_Channels * sizeof(signed char) / 8; // Divided by 8 only to reduce the buffer size and also to reduce the write time
 
             inline void* Context = nullptr;
             inline void* PlaybackDevice = nullptr;
@@ -34,22 +35,26 @@ namespace xpe {
             ENGINE_API void DeleteBuffers(u32 count, u32* bufferID);
 
             ENGINE_API void PlaySource(u32 sourceID);
-            ENGINE_API void StopAudio(u32 sourceID);
+            ENGINE_API void StopSource(u32 sourceID);
             ENGINE_API void bindBuffers(u32 sourceID, u32 bufferID);
             ENGINE_API void UnbindBuffers(u32 sourceID);
 
-            ENGINE_API void UploadFileToBuffer(sAudioFile& file, u32 bufferID);
-            ENGINE_API void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed);
+            ENGINE_API void UploadFileToBuffer(const sAudioFile* file, u32 bufferID);
+            ENGINE_API void UpdateBuffer(const sAudioFile* file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed);
 
-            ENGINE_API void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers);
+            ENGINE_API void StartRecord();
             ENGINE_API void StopRecord();
             ENGINE_API void GetCaptureSamples(s32 size, s32& samples);
-            ENGINE_API void UploadSamplesToBuffer(short* data, s32 samples);
-            ENGINE_API void UpdateBuffers(u32 source, u32* buffer, short* data, s32 samples, s32 samplerate);
+            ENGINE_API void UploadSamplesToBuffer(signed char* data, s32 samples);
+            ENGINE_API void UpdateBuffers(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate);
+            ENGINE_API void AddBuffer(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate, u32 num);
 
             ENGINE_API void SetListenerPosition(glm::vec3 position);
             ENGINE_API void SetListenerVelocity(glm::vec3 velocity);
-            ENGINE_API void SetListenerOrientation(glm::vec3 look, glm::vec3 up);
+            ENGINE_API void SetListenerOrientation(glm::vec3 front, glm::vec3 up);
+            ENGINE_API void SetListenerGain(f32 volume);
+            ENGINE_API void SetListenerDopplerFactor(f32 factor);
+            ENGINE_API void SetListenerSpeedOfSound(f32 speed);
 
             ENGINE_API void SetLooping(u32 sourceID, bool Looping);
 
@@ -69,6 +74,7 @@ namespace xpe {
 
             ENGINE_API void GetState(u32 sourceID, eAudioState& state);
             ENGINE_API void GetProcessed(u32 sourceID, s32* processed);
+            ENGINE_API void GetQueued(u32 sourceID, s32* queued);
 
             ENGINE_API int GetFormat(const sAudioFile& file, u32 channels);
             ENGINE_API u32 GetBufferSize(u32 channels, u32 BufferSamples);

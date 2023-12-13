@@ -16,30 +16,33 @@ namespace xpe {
             cAudioSystem();
 			~cAudioSystem();
 
-			void UpdateListener(cScene* scene);
-
 			void Update(cScene* scene, const cTime& dt) override final;
 
-			void UpdateVoices(cScene* scene);
-			void RecordVoice(CVoice& component); //(todo) Bug: When you start voice recording, there is an unpleasant sound at first
-
 		private:
+			void UpdateVoices(cScene* scene);
+			void UpdateAudios(cScene* scene);
+			void UpdateStreamAudios(cScene* scene);
 
-			void VoiceInit(CVoice& component);
+			void VoiceRecord();
 
 			void AudioInit(CAudio& component);
-			void AudioSet(CAudio& component);
-			void AudioUpdate(CAudio& component);
-			void AudioStop(CAudio& component);
-
-			void UpdateAudios(cScene* scene);
-
 			void AudioInit(CStreamAudio& component);
+			
+			void AudioSet(CAudio& component);
 			void AudioSet(CStreamAudio& component);
+			
+			void AudioUpdate(CAudio& component);
 			void AudioUpdate(CStreamAudio& component);
+
+			void AudioStop(CAudio& component);
 			void AudioStop(CStreamAudio& component);
 
-			void UpdateStreamAudios(cScene* scene);
+		private:
+			vector<signed char> m_VoiceData;
+
+			//Test varriables to hear myself \/
+			u32 m_MySourceID;
+			vector<u32> m_MyBuffersID;
 		};
 	}
 }

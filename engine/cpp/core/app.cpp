@@ -100,7 +100,6 @@ namespace xpe {
                 // submit audio task with current scene state
                 cTaskManager::SubmitTask({ sTask::eType::AUDIO, [this]() {
                     m_AudioSystem->Update(m_Scene, DeltaTime);
-                    m_AudioSystem->UpdateListener(m_Scene);
                 }});
 
                 // submit animation task with current scene state

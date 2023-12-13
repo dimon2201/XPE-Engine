@@ -176,7 +176,7 @@
       Don't use full-width decode buffers when only processing a partial tile
       When processing wide images, break processing into tiles so data fits in L1 cache
       Installable filters?
-      ResizePixels that respects alpha test coverage
+      Resize that respects alpha test coverage
          (Reference code: FloatImage::alphaTestCoverage and FloatImage::scaleAlphaToCoverage:
          https://code.google.com/p/nvidia-texture-tools/source/browse/trunk/src/nvimage/FloatImage.cpp )
 */

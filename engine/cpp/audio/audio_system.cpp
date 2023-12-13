@@ -1,5 +1,6 @@
 #include <audio/audio_system.h>
 #include <audio/core/context.h>
+#include <audio/audio_manager.h>
 
 namespace xpe {
 
@@ -10,84 +11,124 @@ namespace xpe {
         cAudioSystem::cAudioSystem()
 		{
 			context::InitAudio();
+			m_VoiceData = vector<signed char>(k_CaptureBufferSize * k_NumCaptureBuffers, 0);
+			 
+			//Test varriables to hear myself \/
+			GenSources(1, &m_MySourceID);
+
+			m_MyBuffersID = vector<u32>(k_NumCaptureBuffers);
+			GenBuffers(k_NumCaptureBuffers, m_MyBuffersID.data());
+
+			AddBuffer(m_MySourceID, m_MyBuffersID.data(), m_VoiceData.data(),
+				k_CaptureBufferSize, k_CaptureFrequency, k_NumCaptureBuffers);
+
+			PlaySource(m_MySourceID);
 		}
 
         cAudioSystem::~cAudioSystem()
 		{
+			DeleteSources(1, &m_MySourceID);
+			DeleteBuffers(k_NumCaptureBuffers, m_MyBuffersID.data());
+
 			context::FreeAudio();
 		}
 
-		// Update listener's position, velocity and orientation
-		void cAudioSystem::UpdateListener(cScene* scene)
-		{
-			// todo : Maybe, if do it global, it will be better then now. And I dont need use ForEach :|
-            auto components = scene->GetComponents<CListener>();
-            for (auto [entity, listener] : components.each())
-            {
-                SetListenerPosition(*listener.Position);
-                SetListenerVelocity(listener.Velocity);
-                SetListenerOrientation(*listener.Look, listener.Up);
-            }
-		}
-
-		// It's a cycle. multimedia playback and update audio's states
 		void cAudioSystem::Update(ecs::cScene* scene, const cTime& dt)
 		{
-			//UpdateVoices(scene); //temporarily commented to not hearing myself
+			if (cAudioManager::s_Recording) {
+				VoiceRecord();
+			}
+
+			UpdateVoices(scene);
 			UpdateAudios(scene);
 			UpdateStreamAudios(scene);
 		}
 
 		void cAudioSystem::UpdateVoices(cScene* scene)
 		{
-            auto components = scene->GetComponents<CVoice>();
-            for (auto [entity, voice] : components.each())
-            {
-                if (voice.State != eAudioState::PLAYING) {
-                    VoiceInit(voice);
-                }
+			// For testing voice recorder
+			{
+				eAudioState State;
+				s32 Processed;
 
-                RecordVoice(voice);
+				GetState(m_MySourceID, State);
+				GetProcessed(m_MySourceID, &Processed);
 
-                GetState(voice.SourceID, voice.State);
-                if (voice.Frames > 0) {
-                    UpdateBuffers(voice.SourceID, voice.BufferID.data(), voice.Data.data(), voice.Samples, k_SampleRate);
-                }
-            }
+				if(Processed) {
+
+					UpdateBuffers(m_MySourceID, m_MyBuffersID.data(), m_VoiceData.data(),
+						k_CaptureBufferSize, k_CaptureFrequency);
+
+					if (State != eAudioState::PLAYING) {
+						PlaySource(m_MySourceID);
+					}
+				}
+			}
+
+			// There is no sense in doing this now, so I'll leave it for later
+			//scene->ForEach<sCVoice>([this](sCVoice *component) {
+			//		//Voices update 
+            //});
 		}
 
-		void cAudioSystem::RecordVoice(CVoice& component)
+		void cAudioSystem::UpdateAudios(cScene* scene)
 		{
-			GetProcessed(component.SourceID, &component.Frames);
-
-			if (component.Frames > 0) {
-				GetCaptureSamples(1, component.Samples);
-				UploadSamplesToBuffer(component.Data.data(), component.Samples);
+			auto components = scene->GetComponents<CAudio, CTransform>();
+			for (auto [entity, audio, transform] : components.each())
+			{
+				if (audio.State == eAudioState::PLAYING) {
+					AudioUpdate(audio);
+					SetPosition(audio.Source.Id, transform.Position);
+				}
+				else if (audio.State == eAudioState::INITIAL) {
+					AudioInit(audio);
+					AudioSet(audio);
+					SetPosition(audio.Source.Id, transform.Position);
+				}
+				else if (audio.State == eAudioState::STOPPED) {
+					AudioStop(audio);
+				}
 			}
 		}
 
-		void cAudioSystem::VoiceInit(CVoice& component)
+		void cAudioSystem::UpdateStreamAudios(cScene* scene)
 		{
-			GenSources(1, &component.SourceID);
-
-			component.BufferID.reserve(component.NumBuffers);
-			GenBuffers(component.NumBuffers, component.BufferID.data());
-
-			component.Data.reserve(k_DataSize);
-			StartRecord(component.SourceID, component.BufferID.data(), component.State, component.Data.data(), component.NumBuffers);
+			auto components = scene->GetComponents<CStreamAudio, CTransform>();
+			for (auto [entity, audio, transform] : components.each())
+			{
+				if (audio.State == eAudioState::PLAYING) {
+					AudioUpdate(audio);		
+					SetPosition(audio.Source.Id, transform.Position);
+				}
+				else if (audio.State == eAudioState::INITIAL) {
+					AudioInit(audio);
+					AudioSet(audio);
+					SetPosition(audio.Source.Id, transform.Position);
+				}
+				else if (audio.State == eAudioState::STOPPED) {
+					AudioStop(audio);
+				}
+			}
 		}
 
+		void cAudioSystem::VoiceRecord()
+		{
+			s32 samples;
+			GetCaptureSamples(1, samples);
+
+			if(samples >= k_CaptureBufferSize) {
+				UploadSamplesToBuffer(m_VoiceData.data(), k_CaptureBufferSize);
+			}
+		}
+		
 		void cAudioSystem::AudioInit(CAudio& component)
 		{
 			GenSources(1, &component.Source.Id);
 			GenBuffers(1, &component.BufferID);
-			
-			UploadFileToBuffer(*component.File, component.BufferID);
+
+			UploadFileToBuffer(component.File, component.BufferID);
 
 			bindBuffers(component.Source.Id, component.BufferID);
-
-			SetPosition(component.Source.Id, component.Source.Position);
-			SetVelocity(component.Source.Id, component.Source.Position);
 
 			SetGain(component.Source.Id, component.Source.Gain);
 			SetPitch(component.Source.Id, component.Source.Pitch);
@@ -103,44 +144,6 @@ namespace xpe {
 			SetLooping(component.Source.Id, component.Source.Looping);
 		}
 
-		void cAudioSystem::AudioSet(CAudio& component)
-		{
-			AudioInit(component);
-			PlaySource(component.Source.Id);
-		}
-
-		void cAudioSystem::AudioUpdate(CAudio& component)
-		{
-			GetState(component.Source.Id, component.Source.State);
-		}
-
-		void cAudioSystem::AudioStop(CAudio& component)
-		{
-			StopAudio(component.Source.Id);
-			UnbindBuffers(component.Source.Id);
-
-			DeleteSources(1, &component.Source.Id);
-			DeleteBuffers(1, &component.BufferID);
-
-			component.Source.Id = 0;
-		}
-
-		void cAudioSystem::UpdateAudios(cScene* scene)
-		{
-            auto components = scene->GetComponents<CAudio>();
-            for (auto [entity, audio] : components.each())
-            {
-                if (audio.State == eAudioState::PLAYING) {
-                    AudioUpdate(audio);
-                } else if (audio.State == eAudioState::INITIAL) {
-                    AudioSet(audio);
-                    audio.State = eAudioState::PLAYING;
-                } else if (audio.State == eAudioState::STOPPED) {
-                    AudioStop(audio);
-                }
-            }
-		}
-
 		void cAudioSystem::AudioInit(CStreamAudio& component)
 		{
 			GenSources(1, &component.Source.Id);
@@ -149,9 +152,6 @@ namespace xpe {
 			GenBuffers(component.NumBuffers, component.BufferID.data());
 
 			component.Data = vector<short>(GetBufferSize(component.File->Info.channels, component.BufferSamples));
-
-			SetPosition(component.Source.Id, component.Source.Position);
-			SetVelocity(component.Source.Id, component.Source.Position);
 
 			SetGain(component.Source.Id, component.Source.Gain);
 			SetPitch(component.Source.Id, component.Source.Pitch);
@@ -165,71 +165,87 @@ namespace xpe {
 			SetConeOuterAngle(component.Source.Id, component.Source.ConeOuterAngle);
 		}
 
+		void cAudioSystem::AudioSet(CAudio& component)
+		{
+			PlaySource(component.Source.Id);
+
+			component.State = eAudioState::PLAYING;
+		}
+
 		void cAudioSystem::AudioSet(CStreamAudio& component)
 		{
-			AudioInit(component);
-
-			SetCurrentFrame(component.File->File, component.CurrentFrame);
-
 			for (int i = 0; i < component.NumBuffers; i++) {
-				UpdateBuffer(*component.File, component.Source.Id, component.BufferID[i], component.Data.data(), component.BufferSamples, 0);
+				SetCurrentFrame(component.File->File, component.CurrentFrame);
 				component.CurrentFrame += component.BufferSamples;
+
+				UpdateBuffer(component.File, component.Source.Id, component.BufferID[i], component.Data.data(),
+					component.BufferSamples, false);
 			}
 
 			PlaySource(component.Source.Id);
+			GetState(component.Source.Id, component.State);
+		}
+
+		void cAudioSystem::AudioUpdate(CAudio& component)
+		{
+			GetState(component.Source.Id, component.State);
 		}
 
 		void cAudioSystem::AudioUpdate(CStreamAudio& component)
 		{
-			s32 processed;
-
+			s32 processed = 0;
 			GetProcessed(component.Source.Id, &processed);
-			GetState(component.Source.Id, component.Source.State);
-
+			GetState(component.Source.Id, component.State);
+			
 			if (GetError() == eAudioError::NONE) {
 
-				for (s32 i = 0; i < component.NumBuffers && component.CurrentFrame < component.File->Info.frames && processed > 0; ++i) {
+				if (component.State == eAudioState::STOPPED && component.CurrentFrame < component.File->Info.frames) {
+					//Recreating audio
+					AudioStop(component);
+					AudioInit(component);
+					AudioSet(component);
+				}
+				else {
+					for (s32 i = 0; component.CurrentFrame < component.File->Info.frames && processed > 0; ++i) {
+						SetCurrentFrame(component.File->File, component.CurrentFrame);
+						component.CurrentFrame += component.BufferSamples;
 
-					SetCurrentFrame(component.File->File, component.CurrentFrame);
-					component.CurrentFrame += component.BufferSamples;
+						UpdateBuffer(component.File, component.Source.Id, component.BufferID[i], component.Data.data(),
+							component.BufferSamples, true);
 
-					UpdateBuffer(*component.File, component.Source.Id, component.BufferID[i], component.Data.data(), component.BufferSamples, processed);
-					
-					--processed;
+						--processed;
+					}
 				}
 			}
-
 			else {
 				LogError("Error checking music source state");
 			}
+			
+		}
+
+		void cAudioSystem::AudioStop(CAudio& component)
+		{
+			StopSource(component.Source.Id);
+			UnbindBuffers(component.Source.Id);
+
+			DeleteSources(1, &component.Source.Id);
+			DeleteBuffers(1, &component.BufferID);
+
+			component.Source.Id = 0;
+
+			component.State = eAudioState::PAUSED;
 		}
 
 		void cAudioSystem::AudioStop(CStreamAudio& component)
 		{
-			StopAudio(component.Source.Id);
-			UnbindBuffers(component.Source.Id);
+			StopSource(component.Source.Id);
 
 			DeleteSources(1, &component.Source.Id);
 			DeleteBuffers(component.NumBuffers, component.BufferID.data());
 
 			component.Source.Id = 0;
-		}
 
-		void cAudioSystem::UpdateStreamAudios(cScene* scene)
-		{
-			// todo : Need to fix Looping
-            auto components = scene->GetComponents<CStreamAudio>();
-            for (auto [entity, audio] : components.each())
-            {
-                if (audio.State == eAudioState::PLAYING) {
-                    AudioUpdate(audio);
-                } else if (audio.State == eAudioState::INITIAL) {
-                    AudioSet(audio);
-                    audio.State = eAudioState::PLAYING;
-                } else if (audio.State == eAudioState::STOPPED) {
-                    AudioStop(audio);
-                }
-            }
+			component.State = eAudioState::PAUSED;
 		}
 	}
 }

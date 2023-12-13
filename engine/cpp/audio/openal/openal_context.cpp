@@ -34,21 +34,21 @@ namespace xpe {
             {
                 LogInfo("Audio initialize");
 
-                PlaybackDevice = alcOpenDevice(nullptr); // get payback device
+                PlaybackDevice = alcOpenDevice(nullptr);
                 if (!PlaybackDevice) {
                     LogError("Failed to get playback device");
                 }
 
-                Context = alcCreateContext((ALCdevice*) PlaybackDevice, nullptr);  // create context
+                Context = alcCreateContext((ALCdevice*) PlaybackDevice, nullptr);
                 if (!Context) {
                     LogError("Failed to set audio context");
                 }
 
-                if (!alcMakeContextCurrent((ALCcontext*) Context)) { // make context current
+                if (!alcMakeContextCurrent((ALCcontext*) Context)) {
                     LogError("Failed to make audio context current");
                 }
 
-                RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2); // get record device
+                RecordDevice = alcCaptureOpenDevice(nullptr, k_CaptureFrequency, AL_FORMAT_MONO16, k_CaptureBufferSize);
                 if (!RecordDevice) {
                     LogError("Failed to get record device");
                 }
@@ -107,7 +107,7 @@ namespace xpe {
                 }
             }
 
-            void StopAudio(u32 sourceID)
+            void StopSource(u32 sourceID)
             {
                 alSourceStop(sourceID);
             }
@@ -122,18 +122,18 @@ namespace xpe {
                 alSourcei(sourceID, AL_BUFFER, 0);
             }
 
-            void UploadFileToBuffer(sAudioFile& file, u32 bufferID)
+            void UploadFileToBuffer(const sAudioFile* file, u32 bufferID)
             {
                 s64 chunk, size;
                 vector<short> data;
-                data.reserve(GetBufferSize(file.Info.channels, file.Info.frames));
+                data.reserve(GetBufferSize(file->Info.channels, file->Info.frames));
 
-                chunk = ReadChunk(file.File, data.data(), file.Info.frames);
-                SetCurrentFrame(file.File, 0);
+                chunk = ReadChunk(file->File, data.data(), file->Info.frames);
+                SetCurrentFrame(file->File, 0);
 
                 if (chunk > 1) {
-                    size = chunk * file.Info.channels * 2; // 2 == sizeof(short);
-                    alBufferData(bufferID, file.Info.format, data.data(), size, file.Info.samplerate);
+                    size = chunk * file->Info.channels * 2; // 2 == sizeof(short);
+                    alBufferData(bufferID, file->Info.format, data.data(), size, file->Info.samplerate);
                 }
 
                 else {
@@ -141,19 +141,22 @@ namespace xpe {
                 }
             }
 
-            void UpdateBuffer(const sAudioFile& file, u32 sourceID, u32 bufferID, short* data, s64 frames, s32 processed)
+            void UpdateBuffer(const sAudioFile* file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed)
             {
+                s32 queued;
                 s64 chunk, size;
 
-                if (processed) {
+                GetQueued(sourceID, &queued);
+
+                if (processed && queued) {
                     alSourceUnqueueBuffers(sourceID, 1, &bufferID);
                 }
 
-                chunk = ReadChunk(file.File, data, frames);
+                chunk = ReadChunk(file->File, data, frames);
 
                 if (chunk) {
-                    size = chunk * file.Info.channels * 2; // 2 == sizeof(short);
-                    alBufferData(bufferID, file.Info.format, data, size, file.Info.samplerate);
+                    size = chunk * file->Info.channels * 2; // 2 == sizeof(short);
+                    alBufferData(bufferID, file->Info.format, data, size, file->Info.samplerate);
                     alSourceQueueBuffers(sourceID, 1, &bufferID);
                 }
 
@@ -162,19 +165,9 @@ namespace xpe {
                 }
             }
 
-            void StartRecord(u32 sourceID, u32* buffers, s32 state, short* data, u32 numBuffers)
+            void StartRecord()
             {
-                RecordDevice = alcCaptureOpenDevice(nullptr, k_SampleRate, AL_FORMAT_MONO16, k_SampleRate / 2);
-
-                for (int i = 0; i < numBuffers; i++) {
-                    alBufferData(buffers[i], AL_FORMAT_MONO16, data, k_DataSize, k_SampleRate);
-                }
-
-                alSourceQueueBuffers(sourceID, numBuffers, buffers);
-
-                PlaySource(sourceID);
-
-                alcCaptureStart((ALCdevice*) RecordDevice);
+                alcCaptureStart((ALCdevice*)RecordDevice);
             }
 
             void StopRecord()
@@ -187,14 +180,24 @@ namespace xpe {
                 alcGetIntegerv((ALCdevice*) RecordDevice, ALC_CAPTURE_SAMPLES, size, &samples);
             }
 
-            void UploadSamplesToBuffer(short* data, s32 samples)
+            void UploadSamplesToBuffer(signed char* data, s32 samples)
             {
                 alcCaptureSamples((ALCdevice*) RecordDevice, data, samples);
             }
 
-            void UpdateBuffers(u32 source, u32* buffer, short* data, s32 samples, s32 samplerate) {
+            void UpdateBuffers(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate)
+            {
                 alSourceUnqueueBuffers(source, 1, buffer);
                 alBufferData(*buffer, AL_FORMAT_MONO16, data, samples * 2, samplerate);
+                alSourceQueueBuffers(source, 1, buffer);
+            }
+
+            void AddBuffer(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate, u32 num)
+            {
+                for (int i = 0; i < num; ++i) {
+                    alBufferData(*buffer, AL_FORMAT_MONO16, data, samples, samplerate);
+                }
+
                 alSourceQueueBuffers(source, 1, buffer);
             }
 
@@ -208,12 +211,26 @@ namespace xpe {
                 alListener3f(AL_VELOCITY, velocity.x, velocity.y, velocity.z);
             }
 
-            void SetListenerOrientation(glm::vec3 look, glm::vec3 up)
+            void SetListenerOrientation(glm::vec3 front, glm::vec3 up)
             {
-                float orientation[6] = { look.x, look.y, look.z, up.x, up.y, up.z };
+                float orientation[6] = { front.x, front.y, front.z, up.x, up.y, up.z };
                 alListenerfv(AL_ORIENTATION, orientation);
             }
 
+            void SetListenerGain(f32 volume)
+            {
+                alListenerf(AL_GAIN, volume);
+            }
+
+            void SetListenerDopplerFactor(f32 factor)
+            {
+                alListenerf(AL_DOPPLER_FACTOR, factor);
+            }
+
+            void SetListenerSpeedOfSound(f32 speed)
+            {
+                alListenerf(AL_SPEED_OF_SOUND, speed);
+            }
 
             void SetLooping(u32 sourceID, bool Looping)
             {
@@ -275,6 +292,11 @@ namespace xpe {
             void GetProcessed(u32 sourceID, s32* processed)
             {
                 alGetSourcei(sourceID, AL_BUFFERS_PROCESSED, processed);
+            }
+
+            void GetQueued(u32 sourceID, s32* queued)
+            {
+                alGetSourcei(sourceID, AL_BUFFERS_QUEUED, queued);
             }
 
             int GetFormat(const sAudioFile& file, u32 channels)

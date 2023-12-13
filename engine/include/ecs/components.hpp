@@ -243,25 +243,13 @@ namespace xpe
 
         struct ENGINE_API CAnimation : cJson
         {
+            vector<cEntity*> Entities;
+            sSkeleton Skeleton;
             vector<sAnimation> Animations;
 
             JSON_CLASS(
                 CAnimation,
                 Animations
-            )
-        };
-
-        struct ENGINE_API CListener : cJson
-        {
-            glm::vec3* Position;// = { 0.0f, 0.0f, 0.0f };
-            glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
-            glm::vec3 Up = { 0.0f, 1.0f, 0.0f };
-            glm::vec3* Look;
-
-            JSON_CLASS(
-                CListener,
-                Velocity,
-                Up
             )
         };
 
@@ -308,28 +296,17 @@ namespace xpe
         struct ENGINE_API CVoice : cJson
         {
             u32 SourceID = 0;
-
+        
             eAudioState State = eAudioState::INITIAL;
-
+        
             vector<u32> BufferID;
-
-            u32 NumBuffers = 4;
-            s32 Samples = 0;
-            s32 Frames = 0;
-
-            bool Recording = false;
-
             vector<s16> Data;
-
+        
             JSON_CLASS(
                 CVoice,
                 SourceID,
                 State,
                 BufferID,
-                NumBuffers,
-                Samples,
-                Frames,
-                Recording,
                 Data
             )
         };
