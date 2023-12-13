@@ -161,52 +161,6 @@ namespace xpe {
                 }
             }
 
-            void CreateShader(sShader& shader)
-            {
-                for (auto* stage : shader.Stages)
-                {
-                    CreateShaderStage(*stage);
-                }
-            }
-
-            void CompileShader(sShader& shader)
-            {
-                for (auto* stage : shader.Stages)
-                {
-                    LogInfo("Compiling shader stage {}", stage->Name);
-                    CompileShaderStage(*stage);
-                }
-            }
-
-            void BindShader(const sShader& shader)
-            {
-                for (const auto* stage : shader.Stages)
-                {
-                    if (stage != nullptr) {
-                        BindShaderStage(*stage);
-                    }
-                }
-            }
-
-            void UnbindShader(const sShader &shader)
-            {
-                for (const auto* stage : shader.Stages)
-                {
-                    if (stage != nullptr) {
-                        UnbindShaderStage(*stage);
-                    }
-                }
-            }
-
-            void FreeShader(sShader& shader)
-            {
-                for (auto* stage : shader.Stages)
-                {
-                    FreeShaderStage(*stage);
-                }
-                shader.Stages.clear();
-            }
-
             void CreateTexture(sTexture& texture)
             {
 
@@ -279,77 +233,6 @@ namespace xpe {
                     FreeShaderResourceView(texture.ViewInstance);
                     texture.ViewInstance = nullptr;
                 }
-            }
-
-            void CreateVertexPipeline(sVertexPipeline& pipeline)
-            {
-                if (pipeline.Shader == nullptr)
-                {
-                    LogError("Failed to create vertex pipeline. Shader does not exist.");
-                    assert(false);
-                    return;
-                }
-
-                sBlob* vertexBlob = nullptr;
-                for (auto* stage : pipeline.Shader->Stages)
-                {
-                    if (stage->Type == sShaderStage::eType::VERTEX) {
-                        vertexBlob = &stage->Blob;
-                    }
-                }
-
-                if (vertexBlob == nullptr)
-                {
-                    LogError("Failed to create input layout. Shader has no vertex stage.");
-                    assert(false);
-                    return;
-                }
-
-                if (vertexBlob->ByteCode == nullptr || vertexBlob->ByteCodeSize == 0)
-                {
-                    LogError("Failed to create input layout. Vertex shader bytecode is empty.");
-                    assert(false);
-                    return;
-                }
-
-                pipeline.InputLayout.VertexBlob = vertexBlob;
-                CreateInputLayout(pipeline.InputLayout);
-                CreateRasterizer(pipeline.Rasterizer);
-                CreateDepthStencilMode(pipeline.DepthStencil);
-                CreateBlendMode(pipeline.Blending);
-            }
-
-            void BindVertexPipeline(const sVertexPipeline& pipeline)
-            {
-                if (pipeline.Shader != nullptr) {
-                    BindShader(*pipeline.Shader);
-                }
-
-                if (pipeline.RenderTarget != nullptr) {
-                    BindRenderTarget(pipeline.RenderTarget->ColorViews, pipeline.RenderTarget->DepthStencilView);
-                }
-
-                BindPrimitiveTopology(pipeline.PrimitiveTopology);
-                BindInputLayout(pipeline.InputLayout);
-                BindRasterizer(pipeline.Rasterizer.Instance);
-                BindDepthStencilMode(pipeline.DepthStencil.State);
-                BindBlendMode(pipeline.Blending.State);
-            }
-
-            void UnbindVertexPipeline(const sVertexPipeline &pipeline)
-            {
-                if (pipeline.Shader != nullptr) {
-                    UnbindShader(*pipeline.Shader);
-                }
-                UnbindRenderTarget();
-            }
-
-            void FreeVertexPipeline(sVertexPipeline& pipeline)
-            {
-                FreeInputLayout(pipeline.InputLayout);
-                FreeRasterizer(pipeline.Rasterizer);
-                FreeDepthStencilMode(pipeline.DepthStencil);
-                FreeBlendMode(pipeline.Blending);
             }
 
             void FreeRenderTarget(sRenderTarget& renderTarget)
@@ -538,39 +421,6 @@ namespace xpe {
             {
                 static void* nullInstance = nullptr;
                 CSBindSampler(sampler.Slot, nullInstance);
-            }
-
-            void CreateComputePipeline(sComputePipeline &pipeline)
-            {
-                if (pipeline.Shader == nullptr)
-                {
-                    LogError("Failed to create compute pipeline. Shader does not exist.");
-                    assert(false);
-                    return;
-                }
-            }
-
-            void BindComputePipeline(const sComputePipeline &pipeline)
-            {
-                if (pipeline.Shader != nullptr) {
-                    BindShader(*pipeline.Shader);
-                }
-
-                if (pipeline.RenderTarget != nullptr) {
-                    BindRenderTarget(pipeline.RenderTarget->ColorViews, pipeline.RenderTarget->DepthStencilView);
-                }
-            }
-
-            void UnbindComputePipeline(const sComputePipeline &pipeline)
-            {
-                if (pipeline.Shader != nullptr) {
-                    UnbindShader(*pipeline.Shader);
-                }
-                UnbindRenderTarget();
-            }
-
-            void FreeComputePipeline(sComputePipeline &pipeline)
-            {
             }
 
         }

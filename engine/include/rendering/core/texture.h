@@ -289,7 +289,6 @@ namespace xpe {
 
         struct ENGINE_API sSampler : public sResource
         {
-
             enum class eComparison
             {
                 NEVER,
@@ -337,6 +336,9 @@ namespace xpe {
             eAddress AddressW = eAddress::CLAMP;
 
             sSampler();
+            ~sSampler();
+
+            void Init();
         };
 
     }

@@ -4,6 +4,7 @@
 #include <rendering/render_system.h>
 #include <rendering/skybox_manager.h>
 #include <rendering/camera_manager.h>
+#include <rendering/canvas.hpp>
 
 #include <audio/audio_manager.h>
 
@@ -35,10 +36,10 @@ public:
 
 protected:
 
-    void InitRenderPasses() override
+    void InitShaders() override
     {
-        cApp::InitRenderPasses();
-        m_CanvasTexture = m_RenderSystem->GetFinalRT()->Colors[0];
+        cApp::InitShaders();
+        Textures::Canvas = RenderTargets::Final->Colors[0];
     }
 
 public:
@@ -94,13 +95,13 @@ public:
             m_Menu.Get<CButton>().Color = { 0, 0, 1, 1 };
             m_Menu.Get<CButton>().Pressed = HandleButtonPress;
             m_Menu.Get<CButton>().Hovered = HandleButtonHover;
-            m_Menu.SetSpace(eSpace::SPACE_2D);
+            m_Menu.SetSpace2D();
 
             m_Label = cEntity("Stats", m_Scene);
             m_Label.SetPosition(0.5, 0.5, 0);
             m_Label.Add<CLabel>(cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32), "Test Label", glm::vec4(0, 1, 0, 1));
             m_Label.Get<CLabel>().Font->NewLineOffset = 1.0f;
-            m_Label.SetSpace(eSpace::SPACE_2D);
+            m_Label.SetSpace2D();
 
             m_Button = cEntity("Button", m_Scene);
             m_Button.SetPosition(0.5, 0.5, 0);
@@ -108,10 +109,10 @@ public:
             m_Button.Get<CButton>().Color = { 1, 0, 0, 1 };
             m_Button.Get<CButton>().ColorHover = { 0.75, 0, 0, 1 };
             m_Button.Get<CButton>().ColorPressed = { 0.5, 0, 0, 1 };
-            m_Button.SetSpace(eSpace::SPACE_2D);
+            m_Button.SetSpace2D();
 
             m_Menu.Children = { &m_Label, &m_Button };
-            m_Menu.SetSpace(eSpace::SPACE_2D);
+            m_Menu.SetSpace2D();
             m_Menu.SetVisible(false);
             m_Menu.UpdateXmlChildren();
 
@@ -407,8 +408,8 @@ public:
         }
 
         // settings for shadows
-        cShadowManager::GetData().FilterSize = 0;
-        cShadowManager::Flush();
+        Buffers::ShadowPCF->Item.FilterSize = 0;
+        Buffers::ShadowPCF->Flush();
 
         {
             m_AudioBox = cEntity("AudioBox", m_Scene);
@@ -425,8 +426,8 @@ public:
             test1.File = cAudioLoader::Load("res/audio/mono_test.wav");
         }
 
-        m_SsaoPass->GetData().Intensity = 2;
-        m_SsaoPass->Flush();
+        Buffers::SSAO->Item.Intensity = 2;
+        Buffers::SSAO->Flush();
     }
 
     void Update() override final
@@ -469,12 +470,13 @@ public:
 
         if (key == eKey::R)
         {
-            m_CanvasTexture = m_RenderSystem->GetShadowRT()->Colors[0];
+            Textures::Canvas = RenderTargets::Shadow->Colors[0];
+            m_Canvas->SetViewport(RenderTargets::Shadow->Viewport);
         }
 
         if (key == eKey::T)
         {
-            m_CanvasTexture = m_RenderSystem->GetFinalRT()->Colors[0];
+            Textures::Canvas = RenderTargets::Final->Colors[0];
         }
 
         if (key == eKey::V)
@@ -508,7 +510,7 @@ public:
 private:
 
     void InitCamera() {
-        m_PerspectiveCamera = cCameraManager::AddPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight());
+        m_PerspectiveCamera = new cPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight());
         m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
         m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
         m_PerspectiveCamera->Component.AspectRatio = Config.AspectRatio;

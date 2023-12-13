@@ -1,7 +1,6 @@
 #pragma once
 
 #include <rendering/core/texture.h>
-#include <rendering/core/viewport.h>
 
 namespace xpe {
 
@@ -14,6 +13,8 @@ namespace xpe {
             vector<sTexture*> Colors;
             sTexture* DepthStencil = nullptr;
             sViewport* Viewport = nullptr;
+            vector<glm::vec4> ClearColors;
+            float ClearDepth = K_DEPTH_INVALID;
 
             sRenderTarget(const vector<sTexture*>& colors, sViewport* viewport);
             sRenderTarget(const sTexture* depthStencil, sViewport* viewport);
@@ -28,11 +29,11 @@ namespace xpe {
             void Bind();
             void BindColor(u32 index);
             void BindDepth();
+            void Unbind();
 
             void WindowFrameResized(s32 width, s32 height);
 
-            void ClearColor(u32 index, const glm::vec4& color);
-            void ClearDepth(const float depth);
+            void Clear();
 
             void SetResizable(bool resizable);
             [[nodiscard]] inline bool IsResizable() const { return m_Resizable; }

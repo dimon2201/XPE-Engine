@@ -623,7 +623,6 @@ namespace xpe {
 
             void CompileShaderStage(sShaderStage &stage) {
                 // skip stage that is already compiled
-                // save vertex BLOB into shader
                 if (stage.Compiled) {
                     return;
                 }
@@ -637,8 +636,8 @@ namespace xpe {
                         nullptr,
                         nullptr,
                         nullptr,
-                        stage.EntryPoint,
-                        stage.Profile,
+                        stage.EntryPoint.c_str(),
+                        stage.Profile.c_str(),
                         (UINT)stage.Flag,
                         0,
                         &shaderBlob,
@@ -715,151 +714,159 @@ namespace xpe {
                 }
             }
 
-            void BindShaderStage(const sShaderStage &stage)
+            void BindVSStage(const sShaderStage &stage)
             {
-                switch (stage.Type) {
+                s_ImmContext->VSSetShader((ID3D11VertexShader*) stage.Instance, nullptr, 0);
+                LogDebugMessage();
 
-                    case sShaderStage::eType::VERTEX:
-                        s_ImmContext->VSSetShader((ID3D11VertexShader*) stage.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            VSBindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            VSBindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            VSBindSampler(*sampler);
-                        }
-                        break;
-
-                    case sShaderStage::eType::PIXEL:
-                        s_ImmContext->PSSetShader((ID3D11PixelShader*) stage.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            PSBindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            PSBindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            PSBindSampler(*sampler);
-                        }
-                        break;
-
-                    case sShaderStage::eType::GEOMETRY:
-                        s_ImmContext->GSSetShader((ID3D11GeometryShader*) stage.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            GSBindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            GSBindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            GSBindSampler(*sampler);
-                        }
-                        break;
-
-                    case sShaderStage::eType::COMPUTE:
-                        s_ImmContext->CSSetShader((ID3D11ComputeShader*) stage.Instance, nullptr, 0);
-                        LogDebugMessage();
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            CSBindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            CSBindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            CSBindSampler(*sampler);
-                        }
-                        break;
+                for (auto* buffer : stage.Buffers)
+                {
+                    VSBindBuffer(*buffer);
                 }
 
-                if (stage.VertexBuffer != nullptr) {
-                    BindVertexBuffer(*stage.VertexBuffer);
+                for (auto* texture : stage.Textures)
+                {
+                    VSBindTexture(*texture);
                 }
 
-                if (stage.IndexBuffer != nullptr) {
-                    BindIndexBuffer(*stage.IndexBuffer);
+                for (auto* sampler : stage.Samplers)
+                {
+                    VSBindSampler(*sampler);
                 }
             }
 
-            void UnbindShaderStage(const sShaderStage &stage)
+            void BindPSStage(const sShaderStage &stage)
             {
-                switch (stage.Type) {
+                s_ImmContext->PSSetShader((ID3D11PixelShader*) stage.Instance, nullptr, 0);
+                LogDebugMessage();
 
-                    case sShaderStage::eType::VERTEX:
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            VSUnbindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            VSUnbindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            VSUnbindSampler(*sampler);
-                        }
-                        break;
+                for (auto* buffer : stage.Buffers)
+                {
+                    PSBindBuffer(*buffer);
+                }
 
-                    case sShaderStage::eType::PIXEL:
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            PSUnbindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            PSUnbindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            PSUnbindSampler(*sampler);
-                        }
-                        break;
+                for (auto* texture : stage.Textures)
+                {
+                    PSBindTexture(*texture);
+                }
 
-                    case sShaderStage::eType::GEOMETRY:
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            GSUnbindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            GSUnbindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            GSUnbindSampler(*sampler);
-                        }
-                        break;
+                for (auto* sampler : stage.Samplers)
+                {
+                    PSBindSampler(*sampler);
+                }
+            }
 
-                    case sShaderStage::eType::COMPUTE:
-                        for (auto* buffer : stage.Buffers)
-                        {
-                            CSUnbindBuffer(*buffer);
-                        }
-                        for (auto* texture : stage.Textures)
-                        {
-                            CSUnbindTexture(*texture);
-                        }
-                        for (auto* sampler : stage.Samplers)
-                        {
-                            CSUnbindSampler(*sampler);
-                        }
-                        break;
+            void BindGSStage(const sShaderStage &stage)
+            {
+                s_ImmContext->GSSetShader((ID3D11GeometryShader*) stage.Instance, nullptr, 0);
+                LogDebugMessage();
+
+                for (auto* buffer : stage.Buffers)
+                {
+                    GSBindBuffer(*buffer);
+                }
+
+                for (auto* texture : stage.Textures)
+                {
+                    GSBindTexture(*texture);
+                }
+
+                for (auto* sampler : stage.Samplers)
+                {
+                    GSBindSampler(*sampler);
+                }
+            }
+
+            void BindCSStage(const sShaderStage &stage)
+            {
+                s_ImmContext->CSSetShader((ID3D11ComputeShader*) stage.Instance, nullptr, 0);
+                LogDebugMessage();
+
+                for (auto* buffer : stage.Buffers)
+                {
+                    CSBindBuffer(*buffer);
+                }
+
+                for (auto* texture : stage.Textures)
+                {
+                    CSBindTexture(*texture);
+                }
+
+                for (auto* sampler : stage.Samplers)
+                {
+                    CSBindSampler(*sampler);
+                }
+            }
+
+            void UnbindVSStage(const sShaderStage &stage)
+            {
+                for (auto* buffer : stage.Buffers)
+                {
+                    VSUnbindBuffer(*buffer);
+                }
+
+                for (auto* texture : stage.Textures)
+                {
+                    VSUnbindTexture(*texture);
+                }
+
+                for (auto* sampler : stage.Samplers)
+                {
+                    VSUnbindSampler(*sampler);
+                }
+            }
+
+            void UnbindPSStage(const sShaderStage &stage)
+            {
+                for (auto* buffer : stage.Buffers)
+                {
+                    PSUnbindBuffer(*buffer);
+                }
+
+                for (auto* texture : stage.Textures)
+                {
+                    PSUnbindTexture(*texture);
+                }
+
+                for (auto* sampler : stage.Samplers)
+                {
+                    PSUnbindSampler(*sampler);
+                }
+            }
+
+            void UnbindGSStage(const sShaderStage &stage)
+            {
+                for (auto* buffer : stage.Buffers)
+                {
+                    GSUnbindBuffer(*buffer);
+                }
+
+                for (auto* texture : stage.Textures)
+                {
+                    GSUnbindTexture(*texture);
+                }
+
+                for (auto* sampler : stage.Samplers)
+                {
+                    GSUnbindSampler(*sampler);
+                }
+            }
+
+            void UnbindCSStage(const sShaderStage &stage)
+            {
+                for (auto* buffer : stage.Buffers)
+                {
+                    CSUnbindBuffer(*buffer);
+                }
+
+                for (auto* texture : stage.Textures)
+                {
+                    CSUnbindTexture(*texture);
+                }
+
+                for (auto* sampler : stage.Samplers)
+                {
+                    CSUnbindSampler(*sampler);
                 }
             }
 
@@ -1638,7 +1645,7 @@ namespace xpe {
                 s_Device->CreateInputLayout(
                         attributes, attributeCount,
                         inputLayout.VertexBlob->ByteCode, inputLayout.VertexBlob->ByteCodeSize,
-                        (ID3D11InputLayout**)&inputLayout.Layout
+                        (ID3D11InputLayout**)&inputLayout.Instance
                 );
                 LogDebugMessage();
 
@@ -1647,7 +1654,7 @@ namespace xpe {
 
             void BindInputLayout(const sInputLayout& inputLayout)
             {
-                s_ImmContext->IASetInputLayout((ID3D11InputLayout*) inputLayout.Layout);
+                s_ImmContext->IASetInputLayout((ID3D11InputLayout*) inputLayout.Instance);
                 LogDebugMessage();
             }
 
@@ -1685,11 +1692,11 @@ namespace xpe {
 
             void FreeInputLayout(sInputLayout& inputLayout)
             {
-                if (inputLayout.Layout != nullptr)
+                if (inputLayout.Instance != nullptr)
                 {
-                    ((ID3D11InputLayout*) inputLayout.Layout)->Release();
+                    ((ID3D11InputLayout*) inputLayout.Instance)->Release();
                     LogDebugMessage();
-                    inputLayout.Layout = nullptr;
+                    inputLayout.Instance = nullptr;
                 }
             }
 
@@ -1792,7 +1799,7 @@ namespace xpe {
                 desc.MultisampleEnable = rasterizer.MultisampleEnable;
                 desc.AntialiasedLineEnable = rasterizer.AntialiasedLineEnable;
 
-                s_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**) &rasterizer.Instance);
+                s_Device->CreateRasterizerState(&desc, (ID3D11RasterizerState**) &rasterizer.State);
                 LogDebugMessage();
             }
 
@@ -1804,10 +1811,10 @@ namespace xpe {
 
             void FreeRasterizer(sRasterizer& rasterizer)
             {
-                if (rasterizer.Instance != nullptr) {
-                    ((ID3D11RasterizerState*) rasterizer.Instance)->Release();
+                if (rasterizer.State != nullptr) {
+                    ((ID3D11RasterizerState*) rasterizer.State)->Release();
                     LogDebugMessage();
-                    rasterizer.Instance = nullptr;
+                    rasterizer.State = nullptr;
                 }
             }
 

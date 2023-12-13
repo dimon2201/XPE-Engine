@@ -2,7 +2,6 @@
 
 #include <anim/anim.h>
 
-#include <rendering/buffers/skeleton_buffer.h>
 #include <rendering/geometry/geometry.h>
 
 namespace xpe {

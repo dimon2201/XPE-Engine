@@ -1,8 +1,34 @@
 #pragma once
 
+#define K_DEPTH_INVALID -1.0f
+
+// ---------- Math --------------------------//
+
+#define K_PI 3.14159265359f
+
+// ---------- Memory measure ----------------//
+
+#define K_MEMORY_KB 1024
+#define K_MEMORY_MB (1024 * K_MEMORY_KB)
+#define K_MEMORY_GB (1024 * K_MEMORY_MB)
+
+// ---------- Shader Profiles ---------------//
+
+#define K_PROFILE_VERTEX   "vs_5_0"
+#define K_PROFILE_PIXEL    "ps_5_0"
+#define K_PROFILE_GEOMETRY "gs_5_0"
+#define K_PROFILE_COMPUTE  "cs_5_0"
+
+// ---------- Shader Entry Points ----------//
+
+#define K_ENTRY_POINT_VERTEX   "vs_main"
+#define K_ENTRY_POINT_PIXEL    "ps_main"
+#define K_ENTRY_POINT_GEOMETRY "gs_main"
+#define K_ENTRY_POINT_COMPUTE  "cs_main"
+
 #define K_SLOT_DEFAULT UINT32_MAX
 
-// ---------- Structure Buffers --------------- //
+// ---------- Structure Buffers ---------- //
 
 // ---------- Vertex Stage --------------- //
 
@@ -18,7 +44,6 @@
 // Scene
 #define K_SLOT_INSTANCES 0
 #define K_SLOT_SKELETONS 1
-#define K_SLOT_DIRECT_LIGHT_MATRICES 2
 
 // ---------- Pixel Stage --------------- //
 

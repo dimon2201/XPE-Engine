@@ -6,8 +6,11 @@
 #pragma warning(disable : 4067)
 #pragma warning(disable : 4251) // dll-interface warning
 
-// Platform Detection macros
+// Macros
 #include <core/macro_platform.h>
+#include <core/macro_build.h>
+#include <core/macro_constants.h>
+#include <core/macro_debugbreak.h>
 
 // STL
 #define _ENFORCE_MATCHING_ALLOCATORS 0
@@ -50,7 +53,6 @@
 #include <gtx/string_cast.hpp>
 
 // Core
-#include <core/macro_build.h>
 #include <core/types.hpp>
 #include <core/memory_manager.hpp>
 #include <core/allocators.h>
@@ -63,9 +65,6 @@
 #include <core/app_config.h>
 #include <core/hardware_manager.h>
 
-// Rendering constants
-#include <rendering/core/slots.h>
-
 // STL customization
 #include <stl/stl.h>
 #include <stl/ring_buffer.h>
@@ -73,7 +72,6 @@
 // Core
 #include <core/time_manager.hpp>
 #include <core/log_manager.h>
-#include <core/macro_debugbreak.h>
 #include <core/thread.h>
 #include <core/task_manager.h>
 #include <core/event_manager.h>

@@ -1,7 +1,6 @@
 #pragma once
 
-#include <rendering/core/core.h>
-#include <rendering/core/texture.h>
+#include <rendering/core/render_target.h>
 
 namespace xpe {
 
@@ -15,42 +14,115 @@ namespace xpe {
                 VERTEX = 0,
                 PIXEL = 1,
                 GEOMETRY = 2,
-                TESS_EVAL = 3,
-                TESS_CONTROL = 4,
-                COMPUTE = 5,
+                COMPUTE = 3,
             };
 
+            u64 ID;
             eType Type;
-            render::sBlob Blob;
-            string Source;
-            const char* EntryPoint = nullptr;
-            const char* Profile = nullptr;
+            sBlob Blob;
             uword Flag = 0;
             bool Compiled = false;
-            string Name;
-            sBuffer* VertexBuffer = nullptr;
-            sBuffer* IndexBuffer = nullptr;
+            string Profile;
+            string EntryPoint;
+            string Source;
             vector<sBuffer*>  Buffers;
             vector<sTexture*> Textures;
             vector<sSampler*> Samplers;
 
             sShaderStage() = default;
-            sShaderStage(eType type) : Type(type) {}
-            sShaderStage(const string& name, eType type) : Type(type), Name(name) {}
+            sShaderStage(u64 id, eType type) : ID(id), Type(type) {}
+
+            inline void SetBuffer(sBuffer* buffer, u32 slot = K_SLOT_DEFAULT) {
+                if (slot != K_SLOT_DEFAULT) {
+                    buffer->Slot = slot;
+                }
+                Buffers.emplace_back(buffer);
+            }
+
+            inline void SetTexture(sTexture* texture, u32 slot = K_SLOT_DEFAULT) {
+                if (slot != K_SLOT_DEFAULT) {
+                    texture->Slot = slot;
+                }
+                Textures.emplace_back(texture);
+            }
+
+            inline void SetSampler(sSampler* sampler, u32 slot = K_SLOT_DEFAULT) {
+                if (slot != K_SLOT_DEFAULT) {
+                    sampler->Slot = slot;
+                }
+                Samplers.emplace_back(sampler);
+            }
         };
 
-        struct ENGINE_API sShader : public cObject
+        class ENGINE_API cShader : public cObject
         {
-            string Name = "Untitled";
-            vector<sShaderStage*> Stages;
+        public:
+            enum eCategory
+            {
+                NONE = 0,
+                PREPASS = 1,
+                OPAQUE = 2,
+                TRANSPARENT = 3,
+                POSTFX = 4,
+                UI = 5,
+                FINAL = 6,
+                COMPUTE = 7
+            };
+
+            cShader(cShader::eCategory category, const string& name) : Category(category), ID(Hash(name)) {}
+            virtual ~cShader() {}
+            virtual void Draw(ecs::cScene* scene) {}
+            virtual void Bind() = 0;
+            virtual void Unbind() = 0;
+
+            u64 ID = 0;
+            bool Enable = true;
+            eCategory Category = eCategory::PREPASS;
+            cShader* Next = nullptr;
         };
 
-        struct ENGINE_API sShaderStorage : public cObject
+        class ENGINE_API cDefaultShader : public cShader
         {
-            unordered_map<string, sShaderStage> ShaderStages;
-            unordered_map<string, sShader> Shaders;
+        public:
+            cDefaultShader(cShader::eCategory category, const string& name);
+            ~cDefaultShader() override;
 
-            ~sShaderStorage();
+            void Bind() override;
+            void Unbind() override;
+
+            ePrimitiveTopology PrimitiveTopology = ePrimitiveTopology::DEFAULT;
+            sInputLayout InputLayout = sVertex::k_Format;
+            sShaderStage* VertexStage = nullptr;
+            sShaderStage* PixelStage = nullptr;
+            sShaderStage* GeometryStage = nullptr;
+            sRenderTarget* RenderTarget = nullptr;
+            sRasterizer Rasterizer;
+            sDepthStencilMode DepthStencilMode;
+            sBlendMode BlendMode;
+
+        protected:
+            void Init();
+            virtual void InitPrepass();
+            virtual void InitOpaque();
+            virtual void InitTransparent();
+            virtual void InitPostFX();
+            virtual void InitUI();
+            virtual void InitFinal();
+        };
+
+        class ENGINE_API cComputeShader : public cShader
+        {
+        public:
+            cComputeShader(const string& name, const glm::vec3& threadGroups = { 1, 1, 1 })
+            : cShader(eCategory::COMPUTE, name), m_ThreadGroups(threadGroups) {}
+
+            void Bind() override;
+            void Unbind() override;
+
+            void Draw(ecs::cScene *scene) override;
+
+            sShaderStage* ComputeStage = nullptr;
+            glm::ivec3 m_ThreadGroups;
         };
 
         class ENGINE_API cShaderManager final
@@ -60,42 +132,36 @@ namespace xpe {
             static void Init();
             static void Free();
 
-            static sShader* CreateShader(const string& id);
+            static sShaderStage* GetFromFile(const sShaderStage::eType& type, const char* filepath);
+            static sShaderStage* GetFromSrc(
+                    const sShaderStage::eType& type,
+                    const string& id,
+                    const string& src
+            );
 
-            static void AddVertexStageFromFile(sShader* const shader, const char* filepath);
-            static void AddPixelStageFromFile(sShader* const shader, const char* filepath);
-            static void AddGeometryStageFromFile(sShader* const shader, const char* filepath);
-            static void AddTessControlStageFromFile(sShader* const shader, const char* filepath);
-            static void AddTessEvalStageFromFile(sShader* const shader, const char* filepath);
-            static void AddComputeStageFromFile(sShader* const shader, const char* filepath);
-
-            static void AddVertexStage(sShader* const shader, const string& id, const string& source);
-            static void AddPixelStage(sShader* const shader, const string& id, const string& source);
-            static void AddGeometryStage(sShader* const shader, const string& id, const string& source);
-            static void AddTessControlStage(sShader* const shader, const string& id, const string& source);
-            static void AddTessEvalStage(sShader* const shader, const string& id, const string& source);
-            static void AddComputeStage(sShader* const shader, const string& id, const string& source);
-
-            static void BuildShader(sShader* const shader);
-            static void BuildShader(const string& id);
-
-            static sShader* GetShader(const string& id);
-            static sShaderStage* GetShaderStage(const string& filepath);
+            static void SetShader(cShader* shader);
+            static void SetShaderAfter(cShader* shader, const string& name);
+            static cShader* GetShaders(cShader::eCategory category);
+            static cShader* GetShader(const string& name);
 
             static void ReloadStage(const char* filepath);
 
         private:
-            static void AddShader(const string& id, const sShader& shader);
-            static void FreeShader(const string& id);
-            static void FreeShaders();
-
-            static void AddShaderStage(const string& filepath, const sShaderStage& shaderStage);
-            static void RemoveShaderStage(const string& filepath);
-
+            static void FreeStages();
             static void WriteGeneratedShader(const char* filepath, const string& src);
 
-        private:
-            static sShaderStorage* s_Storage;
+            static void SetShader(cShader*& dest, cShader* src);
+            static void SetShader(cShader*& dest, cShader* src, u64 id);
+            static cShader* GetShader(cShader*& src, u64 id);
+
+            static unordered_map<string, sShaderStage>* s_Stages;
+            static cShader* s_ComputeShaders;
+            static cShader* s_PrepassShaders;
+            static cShader* s_OpaqueShaders;
+            static cShader* s_TransparentShaders;
+            static cShader* s_PostfxShaders;
+            static cShader* s_UiShaders;
+            static cShader* s_FinalShaders;
         };
 
     }

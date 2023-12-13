@@ -69,16 +69,16 @@ float3 PBR(float3 lightColor, float radianceFactor, float3 albedo, float metalln
     return (diffuse + specular) * radiance * dotNL;
 }
 
-float3 PBR(DirectLight directLight, float3 albedo, float metallness, float roughness, float3 positionLightSpace)
+float3 PBR(DirectLight directLight, float3 albedo, float metallness, float roughness)
 {
     L = normalize(directLight.Position);
     float3 lightColor = directLight.Color;
-    float directShadow = DirectShadow(L, positionLightSpace);
+    float directShadow = GetDirectionalShadow(L, ToLightSpace(W, directLight.ViewProjection));
     float radianceFactor = directShadow;
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
 }
 
-float3 PBR(PointLight pointLight, float3 albedo, float metallness, float roughness, float3 positionLightSpace)
+float3 PBR(PointLight pointLight, float3 albedo, float metallness, float roughness)
 {
     L = normalize(pointLight.Position - W);
     float3 lightColor = pointLight.Color;
@@ -89,12 +89,12 @@ float3 PBR(PointLight pointLight, float3 albedo, float metallness, float roughne
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
 }
 
-float3 PBR(SpotLight spotLight, float3 albedo, float metallness, float roughness, float3 positionLightSpace)
+float3 PBR(SpotLight spotLight, float3 albedo, float metallness, float roughness)
 {
     L = normalize(spotLight.Position - W);
     float3 lightColor = spotLight.Color;
     float A = Attenuation(spotLight);
-    float spotShadow = DirectShadow(L, positionLightSpace);
+    float spotShadow = GetSpotShadow(L, ToLightSpace(W, spotLight.ViewProjection));
     float radianceFactor = A * spotShadow;
 
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);

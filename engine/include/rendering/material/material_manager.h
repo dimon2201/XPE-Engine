@@ -1,6 +1,7 @@
 #pragma once
 
 #include <rendering/material/material.h>
+#include <rendering/bindings.h>
 
 namespace xpe {
 
@@ -8,17 +9,7 @@ namespace xpe {
 
         class ENGINE_API cMaterialManager final
         {
-
         public:
-            static sSampler Sampler;
-            static sTexture* AlbedoAtlas;
-            static sTexture* NormalAtlas;
-            static sTexture* ParallaxAtlas;
-            static sTexture* MetalAtlas;
-            static sTexture* RoughnessAtlas;
-            static sTexture* AOAtlas;
-            static sTexture* EmissionAtlas;
-
             static void Init();
             static void Free();
 
@@ -26,8 +17,6 @@ namespace xpe {
             static sMaterial AddMaterial(Args&&... args);
 
             static void Clear();
-
-            static void Bind(sVertexPipeline& pipeline);
 
             static void Flush(const sMaterial& material);
 
@@ -37,10 +26,7 @@ namespace xpe {
 
         private:
             static void InitSampler();
-
             static sTexture* InitTextureArray(const sMaterialFormat& materialFormat);
-
-            static sMaterialDataBuffer* s_DataBuffer;
         };
 
         template<typename... Args>
@@ -48,18 +34,18 @@ namespace xpe {
         {
             sMaterial material(std::forward<Args>(args)...);
 
-            material.Index = s_DataBuffer->Size();
-            s_DataBuffer->Add(material);
+            material.Index = Buffers::Material->Size();
+            Buffers::Material->Add(material);
 
-            AddLayer(*AlbedoAtlas, material.AlbedoMap);
-            AddLayer(*NormalAtlas, material.NormalMap);
-            AddLayer(*ParallaxAtlas, material.ParallaxMap);
-            AddLayer(*MetalAtlas, material.MetalMap);
-            AddLayer(*RoughnessAtlas, material.RoughnessMap);
-            AddLayer(*AOAtlas, material.AOMap);
-            AddLayer(*EmissionAtlas, material.EmissionMap);
+            AddLayer(*Textures::AlbedoAtlas, material.AlbedoMap);
+            AddLayer(*Textures::NormalAtlas, material.NormalMap);
+            AddLayer(*Textures::ParallaxAtlas, material.ParallaxMap);
+            AddLayer(*Textures::MetalAtlas, material.MetalMap);
+            AddLayer(*Textures::RoughnessAtlas, material.RoughnessMap);
+            AddLayer(*Textures::AOAtlas, material.AOMap);
+            AddLayer(*Textures::EmissionAtlas, material.EmissionMap);
 
-            s_DataBuffer->Flush();
+            Buffers::Material->Flush();
 
             return material;
         }

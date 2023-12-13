@@ -6,42 +6,47 @@ namespace xpe {
 
     namespace core {
 
-        enum eTaskType : u8
+        struct ENGINE_API sTask : public cObject
         {
-            THREAD_POOL = 0,
-            AUDIO = 1,
-            NETWORK = 2,
-            ANIMATION = 3,
-            PHYSICS = 4,
+            enum eType : u8
+            {
+                THREAD_POOL = 0,
+                AUDIO = 1,
+                NETWORK = 2,
+                ANIMATION = 3,
+                PHYSICS = 4,
 
-            DEFAULT = THREAD_POOL
-        };
+                DEFAULT = THREAD_POOL
+            };
 
-        struct ENGINE_API sTask : public cObject {
-            eTaskType Type = eTaskType::DEFAULT;
-            std::function<void()> Todo;
-            sTask* Next = nullptr;
+            eType Type = eType::DEFAULT;
+            std::function<void()> Todo = [](){};
 
             sTask() = default;
-            sTask(eTaskType type, const std::function<void()>& todo) : Type(type), Todo(todo) {}
-
-            virtual void DoWork();
-
-            void DoAll();
+            sTask(eType type, const std::function<void()>& todo) : Type(type), Todo(todo) {}
         };
 
-        class ENGINE_API cTaskDispatcher : public cObject {
+        struct ENGINE_API sTaskQueue : public sTask
+        {
+            vector<sTask> Tasks;
+
+            sTaskQueue();
+            sTaskQueue(eType type, const vector<sTask>& tasks = {});
+        };
+
+        class ENGINE_API cTaskDispatcher : public cObject
+        {
 
         public:
             cTaskDispatcher(u32 workerSize, usize taskBufferSize, const char* name, cThread::ePriority priority);
 
             // executes single task in a single worker thread
-            void Dispatch(sTask task);
+            void Dispatch(const sTask& task);
 
             // executes multiple tasks with multiple amount of workers per task
             // taskSize - count of inner tasks inside single task
             // tasksPerThread - count of tasks for each worker thread
-            void Dispatch(u32 tasksPerThread, u32 taskSize, sTask task);
+            void Dispatch(u32 tasksPerThread, u32 taskSize, const sTask& task);
 
             inline bool IsBusy();
 

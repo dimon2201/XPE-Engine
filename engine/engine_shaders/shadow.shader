@@ -7,9 +7,13 @@ cbuffer ShadowPCF                            : K_SLOT_SHADOW_PCF
     float PcfMaxBias = 0.05;
 };
 
-float DirectShadow(float3 lightDir, float3 positionLightSpace)
-{
-    int filterSize = PcfFilterSize;
+float ShadowMapping(
+    float3 lightDir,
+    float3 positionLightSpace,
+    Texture2D shadowMap,
+    SamplerState shadowSampler,
+    int filterSize
+) {
     float posZ = positionLightSpace.z;
     float bias = max(PcfMaxBias * (1.0 - dot(N, lightDir)), PcfMinBias);
     float shadow = 0.0;
@@ -26,7 +30,7 @@ float DirectShadow(float3 lightDir, float3 positionLightSpace)
             [loop]
             for (int y = -filterSize; y <= filterSize; y++)
             {
-                float depth = ShadowAtlas.Sample(ShadowSampler, positionLightSpace.xy + float2(x, y) * texelSize).r;
+                float depth = shadowMap.Sample(shadowSampler, positionLightSpace.xy + float2(x, y) * texelSize).r;
                 shadow += (depth + bias) < posZ ? 0.0 : 1.0;
             }
         }
@@ -34,9 +38,19 @@ float DirectShadow(float3 lightDir, float3 positionLightSpace)
     }
     // mapping without PCF
     else {
-        float depth = ShadowAtlas.Sample(ShadowSampler, positionLightSpace.xy).r;
+        float depth = shadowMap.Sample(shadowSampler, positionLightSpace.xy).r;
         shadow = (depth + bias) < posZ ? 0.0 : 1.0;
     }
 
     return shadow;
+}
+
+float GetDirectionalShadow(float3 lightDir, float3 positionLightSpace)
+{
+    return ShadowMapping(lightDir, positionLightSpace, ShadowAtlas, ShadowSampler, PcfFilterSize);
+}
+
+float GetSpotShadow(float3 lightDir, float3 positionLightSpace)
+{
+    return ShadowMapping(lightDir, positionLightSpace, ShadowAtlas, ShadowSampler, PcfFilterSize);
 }

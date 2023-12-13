@@ -1,3 +1,5 @@
+#include ../types.shader
+
 struct VSOut
 {
     float4 positionLight : SV_POSITION;
@@ -5,7 +7,7 @@ struct VSOut
 
 struct PSOut
 {
-    float4 color : SV_Target0;
+    float depth : SV_Target0;
 };
 
 PSOut ps_main(VSOut psIn) {
@@ -13,7 +15,7 @@ PSOut ps_main(VSOut psIn) {
 
     float depth = psIn.positionLight.z / psIn.positionLight.w;
     depth = depth * 0.5 + 0.5;
-    psOut.color = float4(depth, depth, depth, 1.0);
+    psOut.depth = depth;
 
     return psOut;
 }

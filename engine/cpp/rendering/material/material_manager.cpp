@@ -4,53 +4,42 @@ namespace xpe {
 
     namespace render {
 
-        sMaterialDataBuffer* cMaterialManager::s_DataBuffer = nullptr;
-
-        sSampler cMaterialManager::Sampler;
-        sTexture* cMaterialManager::AlbedoAtlas;
-        sTexture* cMaterialManager::NormalAtlas;
-        sTexture* cMaterialManager::ParallaxAtlas;
-        sTexture* cMaterialManager::MetalAtlas;
-        sTexture* cMaterialManager::RoughnessAtlas;
-        sTexture* cMaterialManager::AOAtlas;
-        sTexture* cMaterialManager::EmissionAtlas;
-
         void cMaterialManager::Init()
         {
-            s_DataBuffer = new sMaterialDataBuffer();
+            Buffers::Material = new sMaterialDataBuffer();
             InitSampler();
-            AlbedoAtlas = InitTextureArray(sMaterial::k_AlbedoFormat);
-            NormalAtlas = InitTextureArray(sMaterial::k_NormalFormat);
-            ParallaxAtlas = InitTextureArray(sMaterial::k_ParallaxFormat);
-            MetalAtlas = InitTextureArray(sMaterial::k_MetalFormat);
-            RoughnessAtlas = InitTextureArray(sMaterial::k_RoughnessFormat);
-            AOAtlas = InitTextureArray(sMaterial::k_AoFormat);
-            EmissionAtlas = InitTextureArray(sMaterial::k_EmissionFormat);
+            Textures::AlbedoAtlas = InitTextureArray(sMaterial::k_AlbedoFormat);
+            Textures::NormalAtlas = InitTextureArray(sMaterial::k_NormalFormat);
+            Textures::ParallaxAtlas = InitTextureArray(sMaterial::k_ParallaxFormat);
+            Textures::MetalAtlas = InitTextureArray(sMaterial::k_MetalFormat);
+            Textures::RoughnessAtlas = InitTextureArray(sMaterial::k_RoughnessFormat);
+            Textures::AOAtlas = InitTextureArray(sMaterial::k_AoFormat);
+            Textures::EmissionAtlas = InitTextureArray(sMaterial::k_EmissionFormat);
         }
 
         void cMaterialManager::Free()
         {
-            delete s_DataBuffer;
-            delete AlbedoAtlas;
-            delete NormalAtlas;
-            delete ParallaxAtlas;
-            delete MetalAtlas;
-            delete RoughnessAtlas;
-            delete AOAtlas;
-            delete EmissionAtlas;
-            context::FreeSampler(Sampler);
+            delete Buffers::Material;
+            delete Textures::AlbedoAtlas;
+            delete Textures::NormalAtlas;
+            delete Textures::ParallaxAtlas;
+            delete Textures::MetalAtlas;
+            delete Textures::RoughnessAtlas;
+            delete Textures::AOAtlas;
+            delete Textures::EmissionAtlas;
+            delete Samplers::Material;
         }
 
         void cMaterialManager::InitSampler()
         {
-            Sampler.Slot            = K_SLOT_MATERIAL_SAMPLER;
-            Sampler.Filter          = sSampler::eFilter::ANISOTROPIC;
-            Sampler.AnisotropyLevel = cHardwareManager::GPU.MaxAnisotropyLevel;
-            Sampler.AddressU        = sSampler::eAddress::WRAP;
-            Sampler.AddressV        = sSampler::eAddress::WRAP;
-            Sampler.AddressW        = sSampler::eAddress::WRAP;
-
-            context::CreateSampler(Sampler);
+            Samplers::Material                  = new sSampler();
+            Samplers::Material->Slot            = K_SLOT_MATERIAL_SAMPLER;
+            Samplers::Material->Filter          = sSampler::eFilter::ANISOTROPIC;
+            Samplers::Material->AnisotropyLevel = cHardwareManager::GPU.MaxAnisotropyLevel;
+            Samplers::Material->AddressU        = sSampler::eAddress::WRAP;
+            Samplers::Material->AddressV        = sSampler::eAddress::WRAP;
+            Samplers::Material->AddressW        = sSampler::eAddress::WRAP;
+            Samplers::Material->Init();
         }
 
         sTexture* cMaterialManager::InitTextureArray(const sMaterialFormat& materialFormat)
@@ -70,54 +59,34 @@ namespace xpe {
 
         void cMaterialManager::Clear()
         {
-            s_DataBuffer->Clear();
-            s_DataBuffer->Flush();
+            Buffers::Material->Clear();
+            Buffers::Material->Flush();
 
-            AlbedoAtlas->Layers.clear();
-            AlbedoAtlas->Flush();
+            Textures::AlbedoAtlas->Layers.clear();
+            Textures::AlbedoAtlas->Flush();
 
-            NormalAtlas->Layers.clear();
-            NormalAtlas->Flush();
+            Textures::NormalAtlas->Layers.clear();
+            Textures::NormalAtlas->Flush();
 
-            ParallaxAtlas->Layers.clear();
-            ParallaxAtlas->Flush();
+            Textures::ParallaxAtlas->Layers.clear();
+            Textures::ParallaxAtlas->Flush();
 
-            MetalAtlas->Layers.clear();
-            MetalAtlas->Flush();
+            Textures::MetalAtlas->Layers.clear();
+            Textures::MetalAtlas->Flush();
 
-            RoughnessAtlas->Layers.clear();
-            RoughnessAtlas->Flush();
+            Textures::RoughnessAtlas->Layers.clear();
+            Textures::RoughnessAtlas->Flush();
 
-            AOAtlas->Layers.clear();
-            AOAtlas->Flush();
+            Textures::AOAtlas->Layers.clear();
+            Textures::AOAtlas->Flush();
 
-            EmissionAtlas->Layers.clear();
-            EmissionAtlas->Flush();
-        }
-
-        void cMaterialManager::Bind(sVertexPipeline& pipeline)
-        {
-            for (auto* stage : pipeline.Shader->Stages)
-            {
-                if (stage->Type == sShaderStage::eType::PIXEL) {
-                    stage->Buffers.emplace_back(s_DataBuffer);
-
-                    stage->Samplers.emplace_back(&Sampler);
-
-                    stage->Textures.emplace_back(AlbedoAtlas);
-                    stage->Textures.emplace_back(NormalAtlas);
-                    stage->Textures.emplace_back(ParallaxAtlas);
-                    stage->Textures.emplace_back(MetalAtlas);
-                    stage->Textures.emplace_back(RoughnessAtlas);
-                    stage->Textures.emplace_back(AOAtlas);
-                    stage->Textures.emplace_back(EmissionAtlas);
-                }
-            }
+            Textures::EmissionAtlas->Layers.clear();
+            Textures::EmissionAtlas->Flush();
         }
 
         void cMaterialManager::Flush(const sMaterial& material)
         {
-            s_DataBuffer->FlushItem(material.Index, material);
+            Buffers::Material->FlushItem(material.Index, material);
         }
 
         void cMaterialManager::AddLayer(sTexture &texture, sTextureLayer* layer)

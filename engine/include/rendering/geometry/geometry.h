@@ -1,7 +1,6 @@
 #pragma once
 
-#include <rendering/buffers/vertex_buffer.h>
-#include <rendering/buffers/index_buffer.h>
+#include <rendering/buffers.h>
 
 namespace xpe {
 

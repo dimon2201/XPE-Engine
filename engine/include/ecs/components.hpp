@@ -2,7 +2,8 @@
 
 #include <rendering/geometry/geometries.h>
 #include <rendering/material/material.h>
-#include <rendering/buffers/light_buffers.h>
+#include <rendering/buffers.h>
+#include <rendering/font/font.hpp>
 #include <rendering/widget_manager.h>
 
 #include <anim/skeleton.h>
@@ -25,18 +26,8 @@ namespace xpe
         using namespace audio;
         using namespace physics;
 
-        JSON_ENUM(eSpace, {
-            { eSpace::SPACE_2D, "2D" },
-            { eSpace::SPACE_3D, "3D" },
-        })
-
-        struct ENGINE_API CSpace final
-        {
-            eSpace Space;
-            CSpace(const eSpace& space = {}) : Space(space) {}
-            CSpace(eSpace&& space) : Space(space) {}
-        };
-        JSON(CSpace, Space)
+        struct ENGINE_API CSpace2D final { u8 _pad0 = 0; };
+        struct ENGINE_API CSpace3D final { u8 _pad0 = 0; };
 
         struct ENGINE_API CTag final
         {
@@ -145,12 +136,12 @@ namespace xpe
             CDirectionalLight(const glm::vec3& position, const glm::vec3& color)
             {
                 Color = color;
-                Projection.Left = -35.0f;
-                Projection.Right = 35.0f;
-                Projection.Bottom = -35.0f;
-                Projection.Top = 35.0f;
-                Projection.Near = 0.1f;
-                Projection.Far = 75.0f;
+                Projection.Left = -20.0f;
+                Projection.Right = 20.0f;
+                Projection.Bottom = -20.0f;
+                Projection.Top = 20.0f;
+                Projection.Near = 0;
+                Projection.Far = 100.0f;
                 View.Position = position;
                 View.Front = { 0, 0, 0 };
                 View.Up = { 0, 1, 0 };
@@ -320,7 +311,7 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API CPhysicsActor : cJson, physics::sActor
+        struct ENGINE_API CPhysicsActor : physics::sActor, cJson
         {
             CPhysicsActor(physics::sActor* actor)
             {
@@ -366,6 +357,11 @@ namespace xpe
                 Color,
                 FillFrame
             )
+        };
+
+        struct ENGINE_API CContainer : sWidget
+        {
+            
         };
 
         struct ENGINE_API CButton : sWidget

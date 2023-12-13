@@ -1,15 +1,10 @@
 #include <core/app.hpp>
 
 #include <rendering/core/debugger.h>
-
 #include <rendering/render_system.h>
-
-#include <rendering/passes/canvas.hpp>
-#include <rendering/passes/skybox_pass.h>
-#include <rendering/passes/geometry_pass.h>
-#include <rendering/passes/widget_pass.h>
-#include <rendering/passes/composite_transparent_pass.h>
-#include <rendering/passes/final_pass.h>
+#include <rendering/canvas.hpp>
+#include <rendering/bindings.h>
+#include <rendering/shaders.h>
 
 #include <anim/anim_system.h>
 
@@ -64,16 +59,15 @@ namespace xpe {
             m_Viewport.Height = cWindowManager::GetHeight();
 
             m_RenderSystem = new cRenderSystem(m_Viewport, Config.MsaaSampleCount);
+            m_Canvas = new cCanvas();
             m_AnimSystem = new cAnimSystem();
             m_AudioSystem = new cAudioSystem();
             m_PhysicsSystem = new cPhysicsSystem();
 
-            InitRenderPasses();
+            InitShaders();
 
             cCameraManager::SetExposure(winDesc.Exposure);
             cCameraManager::SetGamma(winDesc.Gamma);
-
-            m_SsaoPass->Enable = Config.EnableSSAO;
 
             m_Scene = new cScene();
 
@@ -104,12 +98,12 @@ namespace xpe {
                 Update();
 
                 // submit audio task with current scene state
-                cTaskManager::SubmitTask({eTaskType::AUDIO, [this]() {
+                cTaskManager::SubmitTask({ sTask::eType::AUDIO, [this]() {
                     m_AudioSystem->Update(m_Scene, DeltaTime);
                 }});
 
                 // submit animation task with current scene state
-                cTaskManager::SubmitTask({eTaskType::ANIMATION, [this]() {
+                cTaskManager::SubmitTask({ sTask::eType::ANIMATION, [this]() {
                     m_AnimSystem->Update(m_Scene, DeltaTime);
                 }});
 
@@ -117,7 +111,6 @@ namespace xpe {
                 // we don't need to submit physics system into task
                 m_PhysicsSystem->Update(m_Scene, DeltaTime);
 
-                ClearRenderPasses();
                 Render();
 
                 cWindowManager::PollEvents();
@@ -164,200 +157,27 @@ namespace xpe {
             }
         }
 
-        void cApp::InitRenderPasses()
+        void cApp::InitShaders()
         {
-            sRenderTarget* finalRT = m_RenderSystem->GetFinalRT();
-            sRenderTarget* sceneRT = m_RenderSystem->GetSceneRT();
-            sRenderTarget* shadowRT = m_RenderSystem->GetShadowRT();
-            sRenderTarget* opaqueRT = m_RenderSystem->GetOpaqueRT();
-            sRenderTarget* transparentRT = m_RenderSystem->GetTransparentRT();
-            sRenderTarget* uiRT = m_RenderSystem->GetUiRT();
-            m_CanvasTexture = finalRT->Colors[0];
+            cShaderManager::SetShader(new cSkyboxShader("skybox"));
+            cShaderManager::SetShader(new cDirectionalShadowShader("directional_shadow"));
+//            cShaderManager::SetShader(new cPointShadowShader("point_shadow"));
+//            cShaderManager::SetShader(new cSpotShadowShader("spot_shadow"));
+            cShaderManager::SetShader(new cOpaqueShader("opaque"));
+            cShaderManager::SetShader(new cTransparentShader("transparent"));
+            cShaderManager::SetShader(new cCompositeTransparentShader("composite_transparent", Config.MsaaSampleCount));
+            cShaderManager::SetShader(new cSsaoShader("ssao", Config.MsaaSampleCount));
+            cShaderManager::SetShader(new cWidgetShader("widget"));
+            cShaderManager::SetShader(new cTextShader("text"));
+            cShaderManager::SetShader(new cFinalShader("final", Config.MsaaSampleCount));
 
-            // cCanvas
-            {
-                sShader* shader = cShaderManager::CreateShader("canvas");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/canvas.ps");
-                cShaderManager::BuildShader(shader);
-                m_Canvas = new cCanvas(shader, m_CanvasTexture, cCameraManager::GetViewport());
-            }
-
-            // sSkybox pass
-            {
-                sShader* shader = cShaderManager::CreateShader("skybox_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/skybox_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/skybox_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "Shader",       sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget", sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
-                        { "CameraBuffer", sRenderPassBinding::eType::BUFFER,   cCameraManager::GetBuffer(), sShaderStage::eType::VERTEX, K_SLOT_DEFAULT },
-                };
-
-                m_RenderSystem->AddRenderPass<cSkyboxPass>(bindings);
-            }
-
-            // Geometry opaque pass
-            {
-                sShader* shader = cShaderManager::CreateShader("geometry_opaque_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/geometry_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_opaque.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                    { "Shader",             sRenderPassBinding::eType::SHADER,        shader },
-                    { "RenderTarget",       sRenderPassBinding::eType::RENDER_TARGET, opaqueRT },
-                    { "CameraBuffer",       sRenderPassBinding::eType::BUFFER,   cCameraManager::GetBuffer(),            sShaderStage::eType::VERTEX, K_SLOT_DEFAULT },
-                    { "DirectLightBuffer",  sRenderPassBinding::eType::BUFFER,   m_RenderSystem->GetDirectLightBuffer(), sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                    { "DirectLightMatrixBuffer", sRenderPassBinding::eType::BUFFER,  m_RenderSystem->GetDirectLightMatrixBuffer(), sShaderStage::eType::VERTEX,  K_SLOT_DEFAULT },
-                    { "PointLightBuffer",   sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetPointLightBuffer(),  sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                    { "SpotLightBuffer",    sRenderPassBinding::eType::BUFFER,        m_RenderSystem->GetSpotLightBuffer(),   sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                    { "ShadowAtlas",        sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowRT()->Colors[0], sShaderStage::eType::PIXEL,K_SLOT_DEFAULT },
-                    { "ShadowSampler",      sRenderPassBinding::eType::SAMPLER,       cShadowManager::GetSampler(),           sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                    { "ShadowPcfBuffer",    sRenderPassBinding::eType::BUFFER,        cShadowManager::GetBuffer(),            sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                };
-
-                m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::OPAQUE, bindings);
-            }
-
-            // Geometry transparent pass
-            {
-                sShader* shader = cShaderManager::CreateShader("geometry_transparent_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/geometry_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/pbr_pass_transparent.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "Shader",             sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget",       sRenderPassBinding::eType::RENDER_TARGET, transparentRT },
-                        { "CameraBuffer",       sRenderPassBinding::eType::BUFFER,   cCameraManager::GetBuffer(),            sShaderStage::eType::VERTEX, K_SLOT_DEFAULT },
-                        { "DirectLightBuffer",  sRenderPassBinding::eType::BUFFER,   m_RenderSystem->GetDirectLightBuffer(), sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                        { "DirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER, m_RenderSystem->GetDirectLightMatrixBuffer(), sShaderStage::eType::VERTEX,  K_SLOT_DEFAULT },
-                        { "PointLightBuffer",   sRenderPassBinding::eType::BUFFER,   m_RenderSystem->GetPointLightBuffer(),  sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                        { "SpotLightBuffer",    sRenderPassBinding::eType::BUFFER,   m_RenderSystem->GetSpotLightBuffer(),   sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                        { "ShadowAtlas",        sRenderPassBinding::eType::TEXTURE,       m_RenderSystem->GetShadowRT()->Colors[0], sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                        { "ShadowSampler",      sRenderPassBinding::eType::SAMPLER,       cShadowManager::GetSampler(),           sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                        { "ShadowPcfBuffer",    sRenderPassBinding::eType::BUFFER,   cShadowManager::GetBuffer(),            sShaderStage::eType::PIXEL,  K_SLOT_DEFAULT },
-                };
-
-                m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::TRANSPARENT, bindings);
-            }
-
-            // Geometry shadow pass
-            {
-                sShader* shader = cShaderManager::CreateShader("geometry_shadow_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/shadow_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/shadow_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "Shader",                   sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget",             sRenderPassBinding::eType::RENDER_TARGET, shadowRT },
-                        { "DirectLightMatrixBuffer",  sRenderPassBinding::eType::BUFFER,   m_RenderSystem->GetDirectLightMatrixBuffer(), sShaderStage::eType::VERTEX,  K_SLOT_DEFAULT }
-                };
-
-                m_RenderSystem->AddRenderPass<cGeometryPass>(cRenderPass::eType::SHADOW, bindings);
-            }
-
-            // Widget pass
-            {
-                sShader* shader = cShaderManager::CreateShader("widget_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/widget_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/widget_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "Shader",         sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT }
-                };
-
-                m_RenderSystem->AddRenderPass<cWidgetPass>(bindings);
-            }
-
-            // Text pass
-            {
-                sShader* shader = cShaderManager::CreateShader("text_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/text_pass.vs");
-                cShaderManager::AddPixelStageFromFile(shader, "engine_shaders/passes/text_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "Shader",         sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget",   sRenderPassBinding::eType::RENDER_TARGET, uiRT }
-                };
-
-                m_RenderSystem->AddRenderPass<cTextPass>(bindings);
-            }
-
-            // SSAO pass
-            {
-                sShader* shader = cShaderManager::CreateShader("ssao_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                cShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/ssao_pass.ps" : "engine_shaders/passes/ssao_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                    { "Shader",          sRenderPassBinding::eType::SHADER,  shader },
-                    { "PositionTexture", sRenderPassBinding::eType::TEXTURE, opaqueRT->Colors[1],    sShaderStage::eType::PIXEL, 1 },
-                    { "NormalTexture",   sRenderPassBinding::eType::TEXTURE, opaqueRT->Colors[2],    sShaderStage::eType::PIXEL, 2 },
-                    { "DepthTexture",    sRenderPassBinding::eType::TEXTURE, opaqueRT->DepthStencil, sShaderStage::eType::PIXEL, 3 }
-                };
-
-                m_SsaoPass = m_RenderSystem->AddRenderPass<cSsaoPass>(bindings, &m_Viewport, Config.MsaaSampleCount);
-            }
-
-            // Composite transparent pass
-            {
-                sShader* shader = cShaderManager::CreateShader("composite_pass_transparent");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                cShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/composite_pass_transparent.ps" : "engine_shaders/passes/composite_pass_transparent.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "Shader",        sRenderPassBinding::eType::SHADER,         shader },
-                        { "RenderTarget",  sRenderPassBinding::eType::RENDER_TARGET,  opaqueRT },
-                        { "AccumTexture",  sRenderPassBinding::eType::TEXTURE,       transparentRT->Colors[0], sShaderStage::eType::PIXEL, 0 },
-                        { "RevealTexture", sRenderPassBinding::eType::TEXTURE,       transparentRT->Colors[1], sShaderStage::eType::PIXEL, 1 }
-                };
-
-                m_RenderSystem->AddRenderPass<cCompositeTransparentPass>(bindings);
-            }
-
-            // Final pass
-            {
-                sShader* shader = cShaderManager::CreateShader("final_pass");
-                cShaderManager::AddVertexStageFromFile(shader, "engine_shaders/passes/screen.vs");
-                cShaderManager::AddPixelStageFromFile(shader, Config.MsaaSampleCount > 1 ? "engine_shaders/passes/msaa/final_pass.ps" : "engine_shaders/passes/final_pass.ps");
-                cShaderManager::BuildShader(shader);
-
-                vector<sRenderPassBinding> bindings = {
-                        { "Shader",       sRenderPassBinding::eType::SHADER,        shader },
-                        { "RenderTarget", sRenderPassBinding::eType::RENDER_TARGET, finalRT },
-                        { "CameraBuffer", sRenderPassBinding::eType::BUFFER,   cCameraManager::GetBuffer(), sShaderStage::eType::PIXEL, K_SLOT_DEFAULT },
-                        { "SceneTexture", sRenderPassBinding::eType::TEXTURE,       opaqueRT->Colors[0], sShaderStage::eType::PIXEL, 0 },
-                        { "AOTexture",    sRenderPassBinding::eType::TEXTURE,       m_SsaoPass->GetRenderTarget()->Colors[0], sShaderStage::eType::PIXEL, 1 },
-                        { "UITexture",    sRenderPassBinding::eType::TEXTURE,       uiRT->Colors[0],    sShaderStage::eType::PIXEL, 2 }
-                };
-
-                m_RenderSystem->AddRenderPass<cFinalPass>(bindings);
-            }
-        }
-
-        void cApp::ClearRenderPasses()
-        {
-            if (m_SsaoPass->Enable)
-            {
-                m_SsaoPass->GetRenderTarget()->ClearColor(0, { 1, 1, 1, 1 });
-                m_SsaoPass->GetRenderTarget()->ClearDepth(1);
-            }
+            cShaderManager::GetShader("ssao")->Enable = Config.EnableSSAO;
         }
 
         void cApp::Render()
         {
+            RenderTargets::SSAO->Clear();
             m_RenderSystem->Update(m_Scene, DeltaTime);
-            m_Canvas->SetTexture(m_CanvasTexture);
             m_Canvas->Draw();
         }
 

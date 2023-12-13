@@ -2,6 +2,7 @@ struct DirectLight
 {
     float3 Position;
     float3 Color;
+    float4x4 ViewProjection;
 };
 
 StructuredBuffer<DirectLight> DirectLights : K_SLOT_DIRECT_LIGHTS;
@@ -13,6 +14,7 @@ struct PointLight
     float Constant;
     float Linear;
     float Quadratic;
+    float4x4 ViewProjection;
 };
 
 StructuredBuffer<PointLight> PointLights : K_SLOT_POINT_LIGHTS;
@@ -32,6 +34,9 @@ struct SpotLight
     float3 Color;
     float Cutoff;
     float Outer;
+    float4x4 ViewProjection;
+    float Near;
+    float Far;
 };
 
 StructuredBuffer<SpotLight> SpotLights : K_SLOT_SPOT_LIGHTS;

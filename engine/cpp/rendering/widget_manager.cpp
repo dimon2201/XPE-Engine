@@ -1,54 +1,37 @@
 #include <rendering/widget_manager.h>
+#include <rendering/bindings.h>
 
 namespace xpe {
 
     namespace render {
 
-        sSampler cWidgetManager::s_WidgetSampler;
-        sAtlas* cWidgetManager::s_WidgetAtlas;
-
         void cWidgetManager::Init()
         {
-            s_WidgetSampler.Slot            = K_SLOT_WIDGET_SAMPLER;
-            s_WidgetSampler.Filter          = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
-            s_WidgetSampler.AddressU        = sSampler::eAddress::WRAP;
-            s_WidgetSampler.AddressV        = sSampler::eAddress::WRAP;
-            s_WidgetSampler.AddressW        = sSampler::eAddress::WRAP;
-            context::CreateSampler(s_WidgetSampler);
+            Samplers::Widget               = new sSampler();
+            Samplers::Widget->Slot         = K_SLOT_WIDGET_SAMPLER;
+            Samplers::Widget->Filter       = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
+            Samplers::Widget->AddressU     = sSampler::eAddress::WRAP;
+            Samplers::Widget->AddressV     = sSampler::eAddress::WRAP;
+            Samplers::Widget->AddressW     = sSampler::eAddress::WRAP;
+            Samplers::Widget->Init();
 
-            s_WidgetAtlas = new sAtlas();
-            s_WidgetAtlas->InitializeData = true;
-            s_WidgetAtlas->Type = sTexture::eType::TEXTURE_2D;
-            s_WidgetAtlas->Usage = sTexture::eUsage::DEFAULT;
-            s_WidgetAtlas->Format = eTextureFormat::RGBA8;
-            s_WidgetAtlas->Width = 1024;
-            s_WidgetAtlas->Height = 1024;
-            s_WidgetAtlas->Channels = 4;
-            s_WidgetAtlas->Slot = K_SLOT_WIDGET_ATLAS;
-            s_WidgetAtlas->AddLayer();
-            s_WidgetAtlas->Init();
+            Textures::WidgetAtlas = new sAtlas();
+            Textures::WidgetAtlas->InitializeData = true;
+            Textures::WidgetAtlas->Type = sTexture::eType::TEXTURE_2D;
+            Textures::WidgetAtlas->Usage = sTexture::eUsage::DEFAULT;
+            Textures::WidgetAtlas->Format = eTextureFormat::RGBA8;
+            Textures::WidgetAtlas->Width = 1024;
+            Textures::WidgetAtlas->Height = 1024;
+            Textures::WidgetAtlas->Channels = 4;
+            Textures::WidgetAtlas->Slot = K_SLOT_WIDGET_ATLAS;
+            Textures::WidgetAtlas->AddLayer();
+            Textures::WidgetAtlas->Init();
         }
 
         void cWidgetManager::Free()
         {
-            context::FreeSampler(s_WidgetSampler);
-            delete s_WidgetAtlas;
-        }
-
-        void cWidgetManager::Bind(sVertexPipeline& pipeline)
-        {
-            for (auto* stage : pipeline.Shader->Stages)
-            {
-                if (stage->Type == sShaderStage::eType::PIXEL) {
-                    stage->Textures.emplace_back(s_WidgetAtlas);
-                    stage->Samplers.emplace_back(&s_WidgetSampler);
-                }
-            }
-        }
-
-        sAtlas* cWidgetManager::GetAtlas()
-        {
-            return s_WidgetAtlas;
+            delete Samplers::Widget;
+            delete Textures::WidgetAtlas;
         }
 
     }

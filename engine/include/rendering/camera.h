@@ -1,7 +1,5 @@
 #pragma once
 
-#include <rendering/buffers/camera_buffer.h>
-
 #include <ecs/components.hpp>
 
 namespace xpe {
@@ -16,8 +14,6 @@ namespace xpe {
         {
 
         public:
-            cCamera(sCameraBuffer* buffer) : m_Buffer(buffer) {}
-
             JSON_CLASS(
                 cCamera,
                 KeyMoveForward,
@@ -123,7 +119,6 @@ namespace xpe {
             int m_ViewWidth = 0;
             int m_ViewHeight = 0;
             glm::vec3 m_Position = { 0, 0, 0 };
-            sCameraBuffer* m_Buffer;
         };
 
         JSON_ENUM(cCamera::eLookMode, {
@@ -134,7 +129,7 @@ namespace xpe {
         class ENGINE_API cPerspectiveCamera : public cCamera {
 
         public:
-            cPerspectiveCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer);
+            cPerspectiveCamera(int viewWidth, int viewHeight);
             ~cPerspectiveCamera();
 
             JSON_CLASS(
@@ -187,7 +182,7 @@ namespace xpe {
         class ENGINE_API cOrthoCamera : public cCamera {
 
         public:
-            cOrthoCamera(int viewWidth, int viewHeight, sCameraBuffer* buffer);
+            cOrthoCamera(int viewWidth, int viewHeight);
             ~cOrthoCamera();
 
             JSON_CLASS(
