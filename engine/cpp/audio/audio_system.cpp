@@ -73,15 +73,17 @@ namespace xpe {
 
 		void cAudioSystem::UpdateAudios(cScene* scene)
 		{
-			auto components = scene->GetComponents<CAudio>();
-			for (auto [entity, audio] : components.each())
+			auto components = scene->GetComponents<CAudio, CTransform>();
+			for (auto [entity, audio, transform] : components.each())
 			{
 				if (audio.State == eAudioState::PLAYING) {
 					AudioUpdate(audio);
+					SetPosition(audio.Source.Id, transform.Position);
 				}
 				else if (audio.State == eAudioState::INITIAL) {
 					AudioInit(audio);
 					AudioSet(audio);
+					SetPosition(audio.Source.Id, transform.Position);
 				}
 				else if (audio.State == eAudioState::STOPPED) {
 					AudioStop(audio);
@@ -91,15 +93,17 @@ namespace xpe {
 
 		void cAudioSystem::UpdateStreamAudios(cScene* scene)
 		{
-			auto components = scene->GetComponents<CStreamAudio>();
-			for (auto [entity, audio] : components.each())
+			auto components = scene->GetComponents<CStreamAudio, CTransform>();
+			for (auto [entity, audio, transform] : components.each())
 			{
 				if (audio.State == eAudioState::PLAYING) {
 					AudioUpdate(audio);		
+					SetPosition(audio.Source.Id, transform.Position);
 				}
 				else if (audio.State == eAudioState::INITIAL) {
 					AudioInit(audio);
 					AudioSet(audio);
+					SetPosition(audio.Source.Id, transform.Position);
 				}
 				else if (audio.State == eAudioState::STOPPED) {
 					AudioStop(audio);
@@ -126,9 +130,6 @@ namespace xpe {
 
 			bindBuffers(component.Source.Id, component.BufferID);
 
-			SetPosition(component.Source.Id, component.Source.Position);
-			SetVelocity(component.Source.Id, component.Source.Position);
-
 			SetGain(component.Source.Id, component.Source.Gain);
 			SetPitch(component.Source.Id, component.Source.Pitch);
 
@@ -151,9 +152,6 @@ namespace xpe {
 			GenBuffers(component.NumBuffers, component.BufferID.data());
 
 			component.Data = vector<short>(GetBufferSize(component.File->Info.channels, component.BufferSamples));
-
-			SetPosition(component.Source.Id, component.Source.Position);
-			SetVelocity(component.Source.Id, component.Source.Position);
 
 			SetGain(component.Source.Id, component.Source.Gain);
 			SetPitch(component.Source.Id, component.Source.Pitch);

@@ -42,9 +42,6 @@ namespace xpe {
 
             eAudioState State = eAudioState::INITIAL;
 
-            glm::vec3 Position = { 0.0f, 0.0f, 0.0f };
-            glm::vec3 Velocity = { 0.0f, 0.0f, 0.0f };
-
             f32 Gain = 1;                   // affects audio volume
             f32 Pitch = 1;                  // affects playback speed
 
@@ -61,8 +58,6 @@ namespace xpe {
             sAudioSource,
             Id,
             State,
-            Position,
-            Velocity,
             Gain,
             Pitch,
             RefDistance,

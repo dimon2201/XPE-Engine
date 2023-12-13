@@ -194,8 +194,9 @@ namespace xpe {
 
             void AddBuffer(u32 source, u32* buffer, signed char* data, s32 samples, s32 samplerate, u32 num)
             {
-                for(int i = 0; i < num; ++i)
+                for (int i = 0; i < num; ++i) {
                     alBufferData(*buffer, AL_FORMAT_MONO16, data, samples, samplerate);
+                }
 
                 alSourceQueueBuffers(source, 1, buffer);
             }

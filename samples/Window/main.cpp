@@ -423,8 +423,6 @@ public:
 
             auto& test1 = m_AudioBox.Add<CStreamAudio>(CStreamAudio());
             test1.File = cAudioLoader::Load("res/audio/mono_test.wav");
-            test1.Source.Position = { -5.0f, 5.0f, 10.0f };
-            test1.Source.Looping = false;
         }
 
         m_SsaoPass->GetData().Intensity = 2;

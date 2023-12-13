@@ -17,7 +17,7 @@ namespace xpe {
 
             const u32 k_NumCaptureBuffers = 4;
             const u32 k_CaptureFrequency = 22050;
-            const u32 k_CaptureBufferSize = k_CaptureFrequency * k_Channels * sizeof(signed char) / 8; // Divided by 8 only to reduce the buffer size
+            const u32 k_CaptureBufferSize = k_CaptureFrequency * k_Channels * sizeof(signed char) / 8; // Divided by 8 only to reduce the buffer size and also to reduce the write time
 
             inline void* Context = nullptr;
             inline void* PlaybackDevice = nullptr;
