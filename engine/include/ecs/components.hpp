@@ -279,7 +279,6 @@ namespace xpe
 
         struct ENGINE_API CStreamAudio : cJson
         {
-
             sAudioSource Source;
             eAudioState State = eAudioState::INITIAL;
 
@@ -303,34 +302,23 @@ namespace xpe
             )
         };
 
-        //struct ENGINE_API CVoice : cJson
-        //{
-        //    u32 SourceID = 0;
-        //
-        //    eAudioState State = eAudioState::INITIAL;
-        //
-        //    vector<u32> BufferID;
-        //
-        //    u32 NumBuffers = 4;
-        //    s32 Samples = 0;
-        //    s32 Frames = 0;
-        //
-        //    bool Recording = false;
-        //
-        //    vector<s16> Data;
-        //
-        //    JSON_CLASS(
-        //        CVoice,
-        //        SourceID,
-        //        State,
-        //        BufferID,
-        //        NumBuffers,
-        //        Samples,
-        //        Frames,
-        //        Recording,
-        //        Data
-        //    )
-        //};
+        struct ENGINE_API CVoice : cJson
+        {
+            u32 SourceID = 0;
+        
+            eAudioState State = eAudioState::INITIAL;
+        
+            vector<u32> BufferID;
+            vector<s16> Data;
+        
+            JSON_CLASS(
+                CVoice,
+                SourceID,
+                State,
+                BufferID,
+                Data
+            )
+        };
 
         struct ENGINE_API CPhysicsActor : cJson, physics::sActor
         {
