@@ -77,6 +77,7 @@ namespace xpe {
 
             ENGINE_API void GetState(u32 sourceID, eAudioState& state);
             ENGINE_API void GetProcessed(u32 sourceID, s32* processed);
+            ENGINE_API void GetQueued(u32 sourceID, s32* queued);
 
             ENGINE_API int GetFormat(const sAudioFile& file, u32 channels);
             ENGINE_API u32 GetBufferSize(u32 channels, u32 BufferSamples);

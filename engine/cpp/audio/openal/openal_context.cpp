@@ -143,9 +143,12 @@ namespace xpe {
 
             void UpdateBuffer(const sAudioFile* file, u32 sourceID, u32 bufferID, s16* data, s64 frames, bool processed)
             {
+                s32 queued;
                 s64 chunk, size;
 
-                if (processed) {
+                GetQueued(sourceID, &queued);
+
+                if (processed && queued) {
                     alSourceUnqueueBuffers(sourceID, 1, &bufferID);
                 }
 
@@ -288,6 +291,11 @@ namespace xpe {
             void GetProcessed(u32 sourceID, s32* processed)
             {
                 alGetSourcei(sourceID, AL_BUFFERS_PROCESSED, processed);
+            }
+
+            void GetQueued(u32 sourceID, s32* queued)
+            {
+                alGetSourcei(sourceID, AL_BUFFERS_QUEUED, queued);
             }
 
             int GetFormat(const sAudioFile& file, u32 channels)
