@@ -42,7 +42,7 @@ endmacro()
 macro(include_game path)
     add_definitions(-DGAME_DLL=1)
     include_directories(
-            ${path}/include
+            ${path}/src
     )
 endmacro()
 

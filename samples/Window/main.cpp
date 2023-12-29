@@ -1,24 +1,24 @@
 #include <core/app.hpp>
-#include <launcher.h>
+#include <launcher.hpp>
 
-#include <rendering/render_system.h>
-#include <rendering/skybox_manager.h>
-#include <rendering/camera_manager.h>
+#include <rendering/render_system.hpp>
+#include <rendering/skybox_manager.hpp>
+#include <rendering/camera_manager.hpp>
 #include <rendering/canvas.hpp>
 
-#include <audio/audio_manager.h>
+#include <audio/audio_manager.hpp>
 
 #include <ecs/components.hpp>
 
-#include <model_loader.h>
-#include <material_loader.h>
-#include <font_loader.h>
-#include <texture_loader.h>
-#include <skeleton_loader.h>
-#include <anim_loader.h>
-#include <audio_loader.h>
+#include <model_loader.hpp>
+#include <material_loader.hpp>
+#include <font_loader.hpp>
+#include <texture_loader.hpp>
+#include <skeleton_loader.hpp>
+#include <anim_loader.hpp>
+#include <audio_loader.hpp>
 
-#include "test_config.h"
+#include "test_config.hpp"
 
 using namespace xpe::core;
 using namespace xpe::ecs;

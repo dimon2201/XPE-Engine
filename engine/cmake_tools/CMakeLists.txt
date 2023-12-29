@@ -179,7 +179,7 @@ endmacro()
 macro(include_engine path)
     add_definitions(-DENGINE_DLL=1)
     include_directories(
-        ${path}/include
+        ${path}/src
         ${path}/thirdparty/spdlog/include
         ${path}/thirdparty/glfw/include
         ${path}/thirdparty/glm/glm
@@ -198,7 +198,7 @@ endmacro()
 # link target project with engine and also will add precompiled header to your project
 # provide your project name and path to engine project
 macro(link_engine project path)
-    target_precompile_headers(${project} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:../${path}/include/pch.h>")
+    target_precompile_headers(${project} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:../${path}/src/pch.hpp>")
     get_filename_component(dir_name ${PROJECT_BINARY_DIR} NAME)
 
     ## ---------------- Debug ---------------

@@ -4,7 +4,7 @@ macro(include_loader path)
     add_definitions(-DLOADER_DLL=1)
     add_definitions(-DASSIMP_DLL=1)
     include_directories(
-            ${path}/include
+            ${path}/src
             ${path}/thirdparty/Assimp142/include
             ${path}/thirdparty/Freetype/include
             ${path}/thirdparty/stbi

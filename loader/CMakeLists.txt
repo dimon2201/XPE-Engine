@@ -13,12 +13,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 build_loader_dll()
 
 # Add sources
-file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES src/*.c src/*.cpp)
 
 # Include third party dependency headers
 include_engine(../engine)
 include_directories(
-        include
+        src
         thirdparty/Assimp142/include
         thirdparty/Freetype/include
         thirdparty/libsndfile/include

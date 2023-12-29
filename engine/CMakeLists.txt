@@ -12,12 +12,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 build_engine_dll()
 
 # Add engine sources
-file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
-file(GLOB_RECURSE HEADER_FILES include/*.h include/*.hpp)
+file(GLOB_RECURSE SOURCE_FILES src/*.c src/*.cpp)
+file(GLOB_RECURSE HEADER_FILES src/*.h src/*.hpp)
 
 # Include third party dependency headers
 include_directories(
-        include
+        src
         thirdparty/glfw/include/GLFW
         thirdparty/glm/glm
         thirdparty/json/include
@@ -37,7 +37,7 @@ add_engine_definitions()
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
 
 # Add precompile header for compile-CurrentTime optimization
-target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch.h>")
+target_precompile_headers(${PROJECT_NAME} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:pch.hpp>")
 
 add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/glfw)

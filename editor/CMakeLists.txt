@@ -8,9 +8,9 @@ include(../loader/cmake_tools/CMakeLists.txt)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 
-file(GLOB_RECURSE SOURCE_FILES cpp/*.c cpp/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES src/*.c src/*.cpp)
 
-include_directories(include)
+include_directories(src)
 include_engine(../engine)
 include_loader(../loader)
 
