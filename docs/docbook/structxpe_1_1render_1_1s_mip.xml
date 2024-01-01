@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_mip" xml:lang="en-US">
+<title>xpe::render::sMip Struct Reference</title>
+<indexterm><primary>xpe::render::sMip</primary></indexterm>
+<para>
+<computeroutput>#include &lt;texture.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_mip_1a97805a0a538f2725c88a00fbbae9b932">sMip</link> ()=<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">default</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_mip_1acad0bc6ba93397b5076137fb782c9fa7">sMip</link> (<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">format</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">pixels</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> <link linkend="_structxpe_1_1render_1_1s_mip_1ac6be9af417f448fada12fcee732d6e7c">Format</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_mip_1aadcbf4fde4a2b116782a8f6fef1449f7">Width</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_mip_1a36a48e4cbed5180781528bc502e6c973">Height</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_mip_1a8cc5923eb0b81a575a5494b9cb1e8513">Pixels</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_mip_1a97805a0a538f2725c88a00fbbae9b932"/><section>
+    <title>sMip()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>sMip</primary><secondary>xpe::render::sMip</secondary></indexterm>
+<indexterm><primary>xpe::render::sMip</primary><secondary>sMip</secondary></indexterm>
+<para><computeroutput>xpe::render::sMip::sMip ( )<computeroutput>[default]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_mip_1acad0bc6ba93397b5076137fb782c9fa7"/><section>
+    <title>sMip()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>sMip</primary><secondary>xpe::render::sMip</secondary></indexterm>
+<indexterm><primary>xpe::render::sMip</primary><secondary>sMip</secondary></indexterm>
+<para><computeroutput>xpe::render::sMip::sMip (<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> format, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> width, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> height, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * pixels)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_mip_1ac6be9af417f448fada12fcee732d6e7c"/><section>
+    <title>Format</title>
+<indexterm><primary>Format</primary><secondary>xpe::render::sMip</secondary></indexterm>
+<indexterm><primary>xpe::render::sMip</primary><secondary>Format</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> xpe::render::sMip::Format</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_mip_1a36a48e4cbed5180781528bc502e6c973"/><section>
+    <title>Height</title>
+<indexterm><primary>Height</primary><secondary>xpe::render::sMip</secondary></indexterm>
+<indexterm><primary>xpe::render::sMip</primary><secondary>Height</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::render::sMip::Height = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_mip_1a8cc5923eb0b81a575a5494b9cb1e8513"/><section>
+    <title>Pixels</title>
+<indexterm><primary>Pixels</primary><secondary>xpe::render::sMip</secondary></indexterm>
+<indexterm><primary>xpe::render::sMip</primary><secondary>Pixels</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>* xpe::render::sMip::Pixels = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_mip_1aadcbf4fde4a2b116782a8f6fef1449f7"/><section>
+    <title>Width</title>
+<indexterm><primary>Width</primary><secondary>xpe::render::sMip</secondary></indexterm>
+<indexterm><primary>xpe::render::sMip</primary><secondary>Width</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::render::sMip::Width</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/rendering/core/<link linkend="_texture_8hpp">texture.hpp</link></section>
+</section>

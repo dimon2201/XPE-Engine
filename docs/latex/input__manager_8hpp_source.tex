@@ -1,0 +1,83 @@
+\doxysection{input\+\_\+manager.\+hpp}
+\hypertarget{input__manager_8hpp_source}{}\label{input__manager_8hpp_source}\index{engine/src/core/input\_manager.hpp@{engine/src/core/input\_manager.hpp}}
+\mbox{\hyperlink{input__manager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{events_8hpp}{core/events.hpp}}>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ AddWindowClosed(clazz,\ priority)\ xpe::core::cEventManager::Get().WindowClosedEvents.AddEvent(this,\ xpe::core::OnWindowClosed<clazz>,\ priority)}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ AddWindowResized(clazz,\ priority)\ xpe::core::cEventManager::Get().WindowResizedEvents.AddEvent(this,\ xpe::core::OnWindowResized<clazz>,\ priority)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ AddWindowFrameResized(clazz,\ priority)\ xpe::core::cEventManager::Get().WindowFrameResizedEvents.AddEvent(this,\ xpe::core::OnWindowFrameResized<clazz>,\ priority)}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ AddWindowRatioChanged(clazz,\ priority)\ xpe::core::cEventManager::Get().WindowRatioChangedEvents.AddEvent(this,\ xpe::core::OnWindowRatioChanged<clazz>,\ priority)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ AddKeyPressed(clazz,\ priority)\ xpe::core::cEventManager::Get().KeyPressedEvents.AddEvent(this,\ xpe::core::OnKeyPressed<clazz>,\ priority)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ AddKeyRelease(clazz,\ priority)\ xpe::core::cEventManager::Get().KeyReleasedEvents.AddEvent(this,\ xpe::core::OnKeyReleased<clazz>,\ priority)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ AddKeyHold(clazz,\ priority)\ xpe::core::cEventManager::Get().KeyHoldEvents.AddEvent(this,\ xpe::core::OnKeyHold<clazz>,\ priority)}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ AddCursorMove(clazz,\ priority)\ xpe::core::cEventManager::Get().CursorMovedEvents.AddEvent(this,\ xpe::core::OnCursorMoved<clazz>,\ priority)}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ AddScrollChanged(clazz,\ priority)\ xpe::core::cEventManager::Get().ScrollChangedEvents.AddEvent(this,\ xpe::core::OnScrollChanged<clazz>,\ priority)}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ RemoveWindowClose()\ xpe::core::cEventManager::Get().WindowClosedEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ RemoveWindowFrameResized()\ xpe::core::cEventManager::Get().WindowFrameResizedEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ RemoveWindowRatioChanged()\ xpe::core::cEventManager::Get().WindowRatioChangedEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ RemoveKeyPressed()\ xpe::core::cEventManager::Get().KeyPressedEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ RemoveKeyRelease()\ xpe::core::cEventManager::Get().KeyReleasedEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ RemoveKeyHold()\ xpe::core::cEventManager::Get().KeyHoldEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ RemoveCursorMove()\ xpe::core::cEventManager::Get().CursorMovedEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ RemoveScrollChanged()\ xpe::core::cEventManager::Get().ScrollChangedEvents.RemoveEvent(this)}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_mouse_cursor}{sMouseCursor}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ Position\ =\ \{\ 0,\ 0\ \};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ Delta\ =\ \{\ 0,\ 0\ \};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager}{cInputManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Free();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CaptureCursor();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CaptureCursor(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ KeyPressed(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8}{eKey}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{key}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ KeyReleased(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8}{eKey}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{key}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ KeyHold(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8}{eKey}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{key}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_key_state}{sKeyState}}\ GetKeyState(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8}{eKey}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{key}});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ MousePressed(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62}{eMouse}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mouse}});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ MouseReleased(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62}{eMouse}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mouse}});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ MouseHold(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62}{eMouse}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mouse}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_mouse_state}{sMouseState}}\ GetMouseState(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62}{eMouse}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mouse}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_mouse_cursor}{sMouseCursor}}\&\ \mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_acb8d964541b09642226c3d11c298a8e6}{GetMouseCursor}}()\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s\_Cursor;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitWindowCallbacks();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitKeyCallbacks();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitMouseCallbacks();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitCursorCallbacks();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitScrollCallbacks();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitCharCallbacks();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_mouse_cursor}{sMouseCursor}}\ s\_Cursor;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_shadow_pcf" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sShadowPcf</compoundname>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_shadow_pcf_1a2b947db38e1ba16415fa0c9793836512" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+        <definition>int xpe::render::sShadowPcf::FilterSize</definition>
+        <argsstring></argsstring>
+        <name>FilterSize</name>
+        <qualifiedname>xpe::render::sShadowPcf::FilterSize</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="410" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="410" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_shadow_pcf_1abeb2c30e624eba99c97daf09da5b289c" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sShadowPcf::MinBias</definition>
+        <argsstring></argsstring>
+        <name>MinBias</name>
+        <qualifiedname>xpe::render::sShadowPcf::MinBias</qualifiedname>
+        <initializer>= 0.005<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="411" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="411" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_shadow_pcf_1a15f1ebebb87614284b767f5e2a96ee4b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sShadowPcf::MaxBias</definition>
+        <argsstring></argsstring>
+        <name>MaxBias</name>
+        <qualifiedname>xpe::render::sShadowPcf::MaxBias</qualifiedname>
+        <initializer>= 0.05<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="412" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="412" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_shadow_pcf_1a2156671fcffc304a3f7961008ff94d6c" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sShadowPcf::_pad0</definition>
+        <argsstring></argsstring>
+        <name>_pad0</name>
+        <qualifiedname>xpe::render::sShadowPcf::_pad0</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="413" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="413" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/buffers.hpp" line="408" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="409" bodyend="414"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_shadow_pcf_1a2156671fcffc304a3f7961008ff94d6c" prot="public" virt="non-virtual"><scope>xpe::render::sShadowPcf</scope><name>_pad0</name></member>
+      <member refid="structxpe_1_1render_1_1s_shadow_pcf_1a2b947db38e1ba16415fa0c9793836512" prot="public" virt="non-virtual"><scope>xpe::render::sShadowPcf</scope><name>FilterSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_shadow_pcf_1a15f1ebebb87614284b767f5e2a96ee4b" prot="public" virt="non-virtual"><scope>xpe::render::sShadowPcf</scope><name>MaxBias</name></member>
+      <member refid="structxpe_1_1render_1_1s_shadow_pcf_1abeb2c30e624eba99c97daf09da5b289c" prot="public" virt="non-virtual"><scope>xpe::render::sShadowPcf</scope><name>MinBias</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

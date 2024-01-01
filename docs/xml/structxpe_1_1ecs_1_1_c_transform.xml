@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_transform" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CTransform</compoundname>
+    <basecompoundref refid="structxpe_1_1math_1_1s_transform" prot="public" virt="non-virtual">xpe::math::sTransform</basecompoundref>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1ecs_1_1_c_transform_1a755a6da13c708d581277943f404d807e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::ecs::CTransform::CTransform</definition>
+        <argsstring>(const sTransform &amp;transform={})</argsstring>
+        <name>CTransform</name>
+        <qualifiedname>xpe::ecs::CTransform::CTransform</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1math_1_1s_transform" kindref="compound">sTransform</ref> &amp;</type>
+          <declname>transform</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="42" column="13" bodyfile="engine/src/ecs/components.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1ecs_1_1_c_transform_1a1898aa6ea26563d7f5047f610c01c1d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::ecs::CTransform::CTransform</definition>
+        <argsstring>(sTransform &amp;&amp;transform)</argsstring>
+        <name>CTransform</name>
+        <qualifiedname>xpe::ecs::CTransform::CTransform</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1math_1_1s_transform" kindref="compound">sTransform</ref> &amp;&amp;</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="43" column="13" bodyfile="engine/src/ecs/components.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::ecs::CTransform</label>
+        <link refid="structxpe_1_1ecs_1_1_c_transform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::math::sModelMatrix</label>
+        <link refid="structxpe_1_1math_1_1s_model_matrix"/>
+      </node>
+      <node id="2">
+        <label>xpe::math::sTransform</label>
+        <link refid="structxpe_1_1math_1_1s_transform"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::ecs::CTransform</label>
+        <link refid="structxpe_1_1ecs_1_1_c_transform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::math::sModelMatrix</label>
+        <link refid="structxpe_1_1math_1_1s_model_matrix"/>
+      </node>
+      <node id="2">
+        <label>xpe::math::sTransform</label>
+        <link refid="structxpe_1_1math_1_1s_transform"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/components.hpp" line="40" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="41" bodyend="44"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1ecs_1_1_c_transform_1a755a6da13c708d581277943f404d807e" prot="public" virt="non-virtual"><scope>xpe::ecs::CTransform</scope><name>CTransform</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_transform_1a1898aa6ea26563d7f5047f610c01c1d0" prot="public" virt="non-virtual"><scope>xpe::ecs::CTransform</scope><name>CTransform</name></member>
+      <member refid="structxpe_1_1math_1_1s_model_matrix_1a703c5fc61342a9749f76805dccaae0c5" prot="public" virt="non-virtual"><scope>xpe::ecs::CTransform</scope><name>Position</name></member>
+      <member refid="structxpe_1_1math_1_1s_model_matrix_1a839495fca075487c2d3f777d62f0b396" prot="public" virt="non-virtual"><scope>xpe::ecs::CTransform</scope><name>Rotation</name></member>
+      <member refid="structxpe_1_1math_1_1s_model_matrix_1a6230178a1e3d66ec14155442f2cb139a" prot="public" virt="non-virtual"><scope>xpe::ecs::CTransform</scope><name>Scale</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

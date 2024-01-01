@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_e0b00fc876371703b31d58f22d847408" kind="dir">
+    <compoundname>engine/src/platform/linux</compoundname>
+    <innerfile refid="linux__hardware__manager_8cpp">linux_hardware_manager.cpp</innerfile>
+    <innerfile refid="linux__thread_8cpp">linux_thread.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/platform/linux/"/>
+  </compounddef>
+</doxygen>

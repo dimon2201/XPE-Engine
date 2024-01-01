@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="types_8hpp" kind="file" language="C++">
+    <compoundname>types.hpp</compoundname>
+    <includedby refid="audio_2core_2context_8hpp" local="no">engine/src/audio/core/context.hpp</includedby>
+    <includedby refid="pch_8hpp" local="no">engine/src/pch.hpp</includedby>
+    <invincdepgraph>
+      <node id="7">
+        <label>engine/src/anim/anim_system.cpp</label>
+        <link refid="anim__system_8cpp"/>
+      </node>
+      <node id="3">
+        <label>engine/src/audio/audio_manager.cpp</label>
+        <link refid="audio__manager_8cpp"/>
+      </node>
+      <node id="4">
+        <label>engine/src/audio/audio_system.cpp</label>
+        <link refid="audio__system_8cpp"/>
+      </node>
+      <node id="8">
+        <label>engine/src/audio/audio_system.hpp</label>
+        <link refid="audio__system_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>engine/src/audio/core/context.cpp</label>
+        <link refid="audio_2core_2context_8cpp"/>
+      </node>
+      <node id="2">
+        <label>engine/src/audio/core/context.hpp</label>
+        <link refid="audio_2core_2context_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>engine/src/core/app.cpp</label>
+        <link refid="app_8cpp"/>
+      </node>
+      <node id="10">
+        <label>engine/src/core/app.hpp</label>
+        <link refid="app_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>engine/src/core/types.hpp</label>
+        <link refid="types_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>engine/src/ecs/components.hpp</label>
+        <link refid="components_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>engine/src/ecs/ecs.cpp</label>
+        <link refid="ecs_8cpp"/>
+      </node>
+      <node id="11">
+        <label>engine/src/launcher.hpp</label>
+        <link refid="launcher_8hpp"/>
+      </node>
+      <node id="22">
+        <label>engine/src/pch.hpp</label>
+        <link refid="pch_8hpp"/>
+      </node>
+      <node id="13">
+        <label>engine/src/physics/physics_manager.cpp</label>
+        <link refid="physics__manager_8cpp"/>
+      </node>
+      <node id="14">
+        <label>engine/src/physics/physics_system.cpp</label>
+        <link refid="physics__system_8cpp"/>
+      </node>
+      <node id="16">
+        <label>engine/src/rendering/camera.cpp</label>
+        <link refid="camera_8cpp"/>
+      </node>
+      <node id="15">
+        <label>engine/src/rendering/camera.hpp</label>
+        <link refid="camera_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>engine/src/rendering/camera_manager.cpp</label>
+        <link refid="camera__manager_8cpp"/>
+      </node>
+      <node id="17">
+        <label>engine/src/rendering/camera_manager.hpp</label>
+        <link refid="camera__manager_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>engine/src/rendering/canvas.cpp</label>
+        <link refid="canvas_8cpp"/>
+      </node>
+      <node id="20">
+        <label>engine/src/rendering/render_system.cpp</label>
+        <link refid="render__system_8cpp"/>
+      </node>
+      <node id="21">
+        <label>engine/src/rendering/shaders.cpp</label>
+        <link refid="shaders_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classxpe_1_1core_1_1c_object" prot="public">xpe::core::cObject</innerclass>
+    <innerclass refid="classxpe_1_1core_1_1c_hot_object" prot="public">xpe::core::cHotObject</innerclass>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1core">xpe::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="7" refid="namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6" kindref="member">u8</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">uint8_t</ref>;</highlight></codeline>
+<codeline lineno="8" refid="namespacexpe_1_1core_1a4fa41479cc3d0f2fa85fcff48c8ea81d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a4fa41479cc3d0f2fa85fcff48c8ea81d" kindref="member">s8</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int8_t</ref>;</highlight></codeline>
+<codeline lineno="9" refid="namespacexpe_1_1core_1a4d7d1d0f77610b8d68dba21aa753a8fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a4d7d1d0f77610b8d68dba21aa753a8fb" kindref="member">u16</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">uint16_t</ref>;</highlight></codeline>
+<codeline lineno="10" refid="namespacexpe_1_1core_1a3ef33364f79f5d0dc0e14b61fe762b97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a3ef33364f79f5d0dc0e14b61fe762b97" kindref="member">s16</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int16_t</ref>;</highlight></codeline>
+<codeline lineno="11" refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">uint32_t</ref>;</highlight></codeline>
+<codeline lineno="12" refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int32_t</ref>;</highlight></codeline>
+<codeline lineno="13" refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">uint64_t</ref>;</highlight></codeline>
+<codeline lineno="14" refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int64_t</ref>;</highlight></codeline>
+<codeline lineno="15" refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref>;</highlight></codeline>
+<codeline lineno="16" refid="namespacexpe_1_1core_1a58cb86e6f2c9a870682bdd3e146bc8ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a58cb86e6f2c9a870682bdd3e146bc8ef" kindref="member">f64</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref>;</highlight></codeline>
+<codeline lineno="17" refid="namespacexpe_1_1core_1aee1243b17d3b3db2871cc5dfc7e62dd5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1aee1243b17d3b3db2871cc5dfc7e62dd5" kindref="member">dword</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref>;</highlight></codeline>
+<codeline lineno="18" refid="namespacexpe_1_1core_1a2265c1d51ff9327d4504dc6e761fde02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a2265c1d51ff9327d4504dc6e761fde02" kindref="member">qword</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#if<sp/>defined(__ILP32__)<sp/>||<sp/>defined(__arm__)<sp/>||<sp/>defined(_M_ARM)<sp/>||<sp/>defined(__i386__)<sp/>||<sp/>defined(_M_IX86)<sp/>||<sp/>defined(_X86_)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>32-bit<sp/>machine</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">ssize</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">sword</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">uword</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#elif<sp/>defined(__amd64__)<sp/>||<sp/>defined(_M_AMD64)<sp/>||<sp/>defined(_M_X64)<sp/>||<sp/>defined(__aarch64__)<sp/>||<sp/>defined(__ia64__)<sp/>||<sp/>defined(_M_IA64)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>64-bit<sp/>machine</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">ssize</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">sword</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">uword</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classxpe_1_1core_1_1c_object" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="classxpe_1_1core_1_1c_object" kindref="compound">cObject</ref></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">byteSize</ref>);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">address</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="classxpe_1_1core_1_1c_hot_object" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="classxpe_1_1core_1_1c_hot_object" kindref="compound">cHotObject</ref></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">byteSize</ref>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">address</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/core/types.hpp"/>
+  </compounddef>
+</doxygen>

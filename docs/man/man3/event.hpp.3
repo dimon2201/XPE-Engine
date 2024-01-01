@@ -1,0 +1,53 @@
+.TH "engine/src/core/event.hpp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine/src/core/event.hpp
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBxpe::core::sEvent< EventFunction >\fP"
+.br
+.ti -1c
+.RI "class \fBxpe::core::cEventBuffer< EventFunction >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBxpe\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::core\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBevent_begin\fP(name, \&.\&.\&.)"
+.br
+.ti -1c
+.RI "#define \fBevent_end\fP(name, \&.\&.\&.)   ((T*) thiz)\->name(__VA_ARGS__); }"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define event_begin(name,  \&.\&.\&.)"
+\fBValue:\fP.PP
+.nf
+        typedef void (*f##name)(void* thiz, __VA_ARGS__); \\
+        template<typename T> \\
+        static void On##name(void* const thiz, __VA_ARGS__) { \\
+.fi
+
+.SS "#define event_end(name,  \&.\&.\&.)   ((T*) thiz)\->name(__VA_ARGS__); }"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

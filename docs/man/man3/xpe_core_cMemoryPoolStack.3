@@ -1,0 +1,128 @@
+.TH "xpe::core::cMemoryPoolStack" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cMemoryPoolStack
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <memory_manager\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcMemoryPoolStack\fP (\fBconst\fP \fBchar\fP *\fBusid\fP, \fBusize\fP \fBpoolCount\fP, \fBusize\fP \fBpoolByteSize\fP, \fBusize\fP \fBpoolAllocs\fP, \fBconst\fP \fBusize\fP \fBalignment\fP)"
+.br
+.ti -1c
+.RI "\fB~cMemoryPoolStack\fP ()"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBGetPoolCount\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBGetAllocCount\fP (\fBu32\fP \fBindex\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBGetPoolSize\fP (\fBu32\fP \fBindex\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBAllocate\fP (\fBconst\fP \fBusize\fP \fBsize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFree\fP (\fBvoid\fP *\fBaddress\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBAllocateConstruct\fP ()"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \&.\&.\&. Args> \fBT\fP * \fBAllocateConstructArgs\fP (\fBArgs\fP &&\&.\&.\&. \fBargs\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBLogPools\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBcMemoryPool\fP > \fBPools\fP"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBPoolByteSize\fP = 0"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBPoolAllocs\fP = 0"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBTotalAllocCount\fP = 0"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBTotalFreeCount\fP = 0"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBTotalBytes\fP = 0"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBTotalBytesOccupied\fP = 0"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBTotalBytesFreed\fP = 0"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBAlignment\fP = 0"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBUSID\fP = \fBnullptr\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::core::cMemoryPoolStack::cMemoryPoolStack (\fBconst\fP \fBchar\fP * usid, \fBusize\fP poolCount, \fBusize\fP poolByteSize, \fBusize\fP poolAllocs, \fBconst\fP \fBusize\fP alignment)"
+
+.SS "xpe::core::cMemoryPoolStack::~cMemoryPoolStack ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP * xpe::core::cMemoryPoolStack::Allocate (\fBconst\fP \fBusize\fP size)"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * xpe::core::cMemoryPoolStack::AllocateConstruct ()"
+
+.SS "template<\fBtypename\fP \fBT\fP , typename\&.\&.\&. Args> \fBT\fP * xpe::core::cMemoryPoolStack::AllocateConstructArgs (\fBArgs\fP &&\&.\&.\&. args)"
+
+.SS "\fBvoid\fP xpe::core::cMemoryPoolStack::Free (\fBvoid\fP * address)"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::GetAllocCount (\fBu32\fP index) const\fR [inline]\fP"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::GetPoolCount () const\fR [inline]\fP"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::GetPoolSize (\fBu32\fP index) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP xpe::core::cMemoryPoolStack::LogPools ()"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::Alignment = 0"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::PoolAllocs = 0"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::PoolByteSize = 0"
+
+.SS "std::vector<\fBcMemoryPool\fP> xpe::core::cMemoryPoolStack::Pools"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::TotalAllocCount = 0"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::TotalBytes = 0"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::TotalBytesFreed = 0"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::TotalBytesOccupied = 0"
+
+.SS "\fBusize\fP xpe::core::cMemoryPoolStack::TotalFreeCount = 0"
+
+.SS "\fBconst\fP \fBchar\fP* xpe::core::cMemoryPoolStack::USID = \fBnullptr\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

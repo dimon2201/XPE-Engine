@@ -1,0 +1,273 @@
+.TH "xpe::audio::context" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::audio::context
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBInitAudio\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBFreeAudio\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBeAudioError\fP \fBGetError\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBGenSources\fP (\fBu32\fP \fBcount\fP, \fBu32\fP *\fBsourceID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBGenBuffers\fP (\fBu32\fP \fBcount\fP, \fBu32\fP *\fBbufferID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBDeleteSources\fP (\fBu32\fP \fBcount\fP, \fBu32\fP *\fBsourceID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBDeleteBuffers\fP (\fBu32\fP \fBcount\fP, \fBu32\fP *\fBbufferID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBPlaySource\fP (\fBu32\fP \fBsourceID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBStopSource\fP (\fBu32\fP \fBsourceID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBbindBuffers\fP (\fBu32\fP \fBsourceID\fP, \fBu32\fP \fBbufferID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBUnbindBuffers\fP (\fBu32\fP \fBsourceID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBUploadFileToBuffer\fP (\fBconst\fP \fBsAudioFile\fP *\fBfile\fP, \fBu32\fP \fBbufferID\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBUpdateBuffer\fP (\fBconst\fP \fBsAudioFile\fP *\fBfile\fP, \fBu32\fP \fBsourceID\fP, \fBu32\fP \fBbufferID\fP, \fBs16\fP *\fBdata\fP, \fBs64\fP \fBframes\fP, \fBbool\fP \fBprocessed\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBStartRecord\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBStopRecord\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBGetCaptureSamples\fP (\fBs32\fP \fBsize\fP, \fBs32\fP &\fBsamples\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBUploadSamplesToBuffer\fP (\fBsigned\fP \fBchar\fP *\fBdata\fP, \fBs32\fP \fBsamples\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBUpdateBuffers\fP (\fBu32\fP \fBsource\fP, \fBu32\fP *\fBbuffer\fP, \fBsigned\fP \fBchar\fP *\fBdata\fP, \fBs32\fP \fBsamples\fP, \fBs32\fP \fBsamplerate\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBAddBuffer\fP (\fBu32\fP \fBsource\fP, \fBu32\fP *\fBbuffer\fP, \fBsigned\fP \fBchar\fP *\fBdata\fP, \fBs32\fP \fBsamples\fP, \fBs32\fP \fBsamplerate\fP, \fBu32\fP \fBnum\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetListenerPosition\fP (glm::vec3 \fBposition\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetListenerVelocity\fP (glm::vec3 \fBvelocity\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetListenerOrientation\fP (glm::vec3 \fBfront\fP, glm::vec3 \fBup\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetListenerGain\fP (\fBf32\fP \fBvolume\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetListenerDopplerFactor\fP (\fBf32\fP \fBfactor\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetListenerSpeedOfSound\fP (\fBf32\fP \fBspeed\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetLooping\fP (\fBu32\fP \fBsourceID\fP, \fBbool\fP \fBLooping\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetPitch\fP (\fBu32\fP \fBsourceID\fP, \fBf32\fP \fBpitch\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetGain\fP (\fBu32\fP \fBsourceID\fP, \fBf32\fP \fBvolume\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetPosition\fP (\fBu32\fP \fBsourceID\fP, glm::vec3 \fBposition\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetVelocity\fP (\fBu32\fP \fBsourceID\fP, glm::vec3 \fBvelocity\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetRefDistance\fP (\fBu32\fP \fBsourceID\fP, \fBf32\fP \fBdistance\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetMaxDistance\fP (\fBu32\fP \fBsourceID\fP, \fBf32\fP \fBdistance\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetRollOffFactor\fP (\fBu32\fP \fBsourceID\fP, \fBf32\fP \fBrollOffFactor\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetConeInnerAngle\fP (\fBu32\fP \fBsourceID\fP, \fBf32\fP \fBangle\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBSetConeOuterAngle\fP (\fBu32\fP \fBsourceID\fP, \fBf32\fP \fBangle\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBGetState\fP (\fBu32\fP \fBsourceID\fP, \fBeAudioState\fP &\fBstate\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBGetProcessed\fP (\fBu32\fP \fBsourceID\fP, \fBs32\fP *\fBprocessed\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBGetQueued\fP (\fBu32\fP \fBsourceID\fP, \fBs32\fP *\fBqueued\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBint\fP \fBGetFormat\fP (\fBconst\fP \fBsAudioFile\fP &\fBfile\fP, \fBu32\fP \fBchannels\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBu32\fP \fBGetBufferSize\fP (\fBu32\fP \fBchannels\fP, \fBu32\fP BufferSamples)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBSetCurrentFrame\fP (\fBSNDFILE\fP *\fBfile\fP, \fBs64\fP \fBframe\fP)"
+.br
+.ti -1c
+.RI "\fBs64\fP \fBReadChunk\fP (\fBSNDFILE\fP *\fBm_File\fP, \fBshort\fP *\fBdata\fP, \fBs64\fP \fBnum_frames\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBisAmbisonic\fP (\fBconst\fP \fBsAudioFile\fP &\fBfile\fP)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBu32\fP \fBk_Channels\fP = 1"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBu32\fP \fBk_NumCaptureBuffers\fP = 4"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBu32\fP \fBk_CaptureFrequency\fP = 22050"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBu32\fP \fBk_CaptureBufferSize\fP = \fBk_CaptureFrequency\fP * \fBk_Channels\fP * \fBsizeof\fP(\fBsigned\fP \fBchar\fP) / 8"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBContext\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBPlaybackDevice\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBRecordDevice\fP = \fBnullptr\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::AddBuffer (\fBu32\fP source, \fBu32\fP * buffer, \fBsigned\fP \fBchar\fP * data, \fBs32\fP samples, \fBs32\fP samplerate, \fBu32\fP num)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::bindBuffers (\fBu32\fP sourceID, \fBu32\fP bufferID)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::DeleteBuffers (\fBu32\fP count, \fBu32\fP * bufferID)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::DeleteSources (\fBu32\fP count, \fBu32\fP * sourceID)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::FreeAudio ()"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::GenBuffers (\fBu32\fP count, \fBu32\fP * bufferID)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::GenSources (\fBu32\fP count, \fBu32\fP * sourceID)"
+
+.SS "\fBENGINE_API\fP \fBu32\fP xpe::audio::context::GetBufferSize (\fBu32\fP channels, \fBu32\fP BufferSamples)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::GetCaptureSamples (\fBs32\fP size, \fBs32\fP & samples)"
+
+.SS "\fBENGINE_API\fP \fBeAudioError\fP xpe::audio::context::GetError ()"
+
+.SS "\fBENGINE_API\fP \fBint\fP xpe::audio::context::GetFormat (\fBconst\fP \fBsAudioFile\fP & file, \fBu32\fP channels)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::GetProcessed (\fBu32\fP sourceID, \fBs32\fP * processed)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::GetQueued (\fBu32\fP sourceID, \fBs32\fP * queued)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::GetState (\fBu32\fP sourceID, \fBeAudioState\fP & state)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::InitAudio ()"
+
+.SS "\fBENGINE_API\fP \fBbool\fP xpe::audio::context::isAmbisonic (\fBconst\fP \fBsAudioFile\fP & file)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::PlaySource (\fBu32\fP sourceID)"
+
+.SS "\fBENGINE_API\fP \fBs64\fP xpe::audio::context::ReadChunk (\fBSNDFILE\fP * m_File, \fBshort\fP * data, \fBs64\fP num_frames)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetConeInnerAngle (\fBu32\fP sourceID, \fBf32\fP angle)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetConeOuterAngle (\fBu32\fP sourceID, \fBf32\fP angle)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetCurrentFrame (\fBSNDFILE\fP * file, \fBs64\fP frame)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetGain (\fBu32\fP sourceID, \fBf32\fP volume)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetListenerDopplerFactor (\fBf32\fP factor)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetListenerGain (\fBf32\fP volume)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetListenerOrientation (glm::vec3 front, glm::vec3 up)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetListenerPosition (glm::vec3 position)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetListenerSpeedOfSound (\fBf32\fP speed)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetListenerVelocity (glm::vec3 velocity)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetLooping (\fBu32\fP sourceID, \fBbool\fP Looping)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetMaxDistance (\fBu32\fP sourceID, \fBf32\fP distance)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetPitch (\fBu32\fP sourceID, \fBf32\fP pitch)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetPosition (\fBu32\fP sourceID, glm::vec3 position)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetRefDistance (\fBu32\fP sourceID, \fBf32\fP distance)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetRollOffFactor (\fBu32\fP sourceID, \fBf32\fP rollOffFactor)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::SetVelocity (\fBu32\fP sourceID, glm::vec3 velocity)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::StartRecord ()"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::StopRecord ()"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::StopSource (\fBu32\fP sourceID)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::UnbindBuffers (\fBu32\fP sourceID)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::UpdateBuffer (\fBconst\fP \fBsAudioFile\fP * file, \fBu32\fP sourceID, \fBu32\fP bufferID, \fBs16\fP * data, \fBs64\fP frames, \fBbool\fP processed)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::UpdateBuffers (\fBu32\fP source, \fBu32\fP * buffer, \fBsigned\fP \fBchar\fP * data, \fBs32\fP samples, \fBs32\fP samplerate)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::UploadFileToBuffer (\fBconst\fP \fBsAudioFile\fP * file, \fBu32\fP bufferID)"
+
+.SS "\fBENGINE_API\fP \fBvoid\fP xpe::audio::context::UploadSamplesToBuffer (\fBsigned\fP \fBchar\fP * data, \fBs32\fP samples)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBvoid\fP* xpe::audio::context::Context = \fBnullptr\fP\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBu32\fP xpe::audio::context::k_CaptureBufferSize = \fBk_CaptureFrequency\fP * \fBk_Channels\fP * \fBsizeof\fP(\fBsigned\fP \fBchar\fP) / 8"
+
+.SS "\fBconst\fP \fBu32\fP xpe::audio::context::k_CaptureFrequency = 22050"
+
+.SS "\fBconst\fP \fBu32\fP xpe::audio::context::k_Channels = 1"
+
+.SS "\fBconst\fP \fBu32\fP xpe::audio::context::k_NumCaptureBuffers = 4"
+
+.SS "\fBvoid\fP* xpe::audio::context::PlaybackDevice = \fBnullptr\fP\fR [inline]\fP"
+
+.SS "\fBvoid\fP* xpe::audio::context::RecordDevice = \fBnullptr\fP\fR [inline]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

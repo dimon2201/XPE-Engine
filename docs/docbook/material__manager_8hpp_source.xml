@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_material__manager_8hpp_source" xml:lang="en-US">
+<title>material_manager.hpp</title>
+<indexterm><primary>engine/src/rendering/material/material_manager.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_material_8hpp">rendering/material/material.hpp</link>&gt;</emphasis>
+4 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_bindings_8hpp">rendering/bindings.hpp</link>&gt;</emphasis>
+5 
+6 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+7 
+8 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>render&#32;{
+9 
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager">cMaterialManager</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Init();
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Free();
+15 
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link>&#32;AddMaterial(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>);
+18 
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Clear();
+20 
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Flush(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>);
+22 
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;AddLayer(<link linkend="_structxpe_1_1render_1_1s_texture">sTexture</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">texture</link>,&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">layer</link>);
+24 
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetLayer(<link linkend="_structxpe_1_1render_1_1s_texture">sTexture</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">texture</link>,&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">layer</link>,&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">layerIndex</link>);
+26 
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;InitSampler();
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_texture">sTexture</link>*&#32;InitTextureArray(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">materialFormat</link>);
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+31 
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link>&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4">cMaterialManager::AddMaterial</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>(std::forward&lt;Args&gt;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)...);
+36 
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.Index&#32;=&#32;<link linkend="_structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d">Buffers::Material</link>-&gt;<link linkend="_classxpe_1_1render_1_1s_list_buffer_1af1b78e374e912c0f7ea9363d579553c5">Size</link>();
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d">Buffers::Material</link>-&gt;<link linkend="_classxpe_1_1render_1_1s_list_buffer_1a915d07581a0582453afaa6057d734476">Add</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>);
+39 
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9">AddLayer</link>(*<link linkend="_structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7">Textures::AlbedoAtlas</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.AlbedoMap);
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9">AddLayer</link>(*<link linkend="_structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194">Textures::NormalAtlas</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.NormalMap);
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9">AddLayer</link>(*<link linkend="_structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11">Textures::ParallaxAtlas</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.ParallaxMap);
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9">AddLayer</link>(*<link linkend="_structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35">Textures::MetalAtlas</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.MetalMap);
+44 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9">AddLayer</link>(*<link linkend="_structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3">Textures::RoughnessAtlas</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.RoughnessMap);
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9">AddLayer</link>(*<link linkend="_structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c">Textures::AOAtlas</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.AOMap);
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9">AddLayer</link>(*<link linkend="_structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58">Textures::EmissionAtlas</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>.EmissionMap);
+47 
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d">Buffers::Material</link>-&gt;<link linkend="_classxpe_1_1render_1_1s_list_buffer_1ad9de1835e029836261d585eec95bedd5">Flush</link>();
+49 
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>;
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+52 
+53 &#32;&#32;&#32;&#32;}
+54 
+55 }
+</programlisting></section>

@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_canvas" kind="class" language="C++" prot="public">
+    <compoundname>xpe::render::cCanvas</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="canvas_8hpp" local="no">canvas.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_canvas_1aab1e1580c158c92159fbb8744560ce7c" prot="private" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_default_shader" kindref="compound">cDefaultShader</ref> *</type>
+        <definition>cDefaultShader* xpe::render::cCanvas::m_Shader</definition>
+        <argsstring></argsstring>
+        <name>m_Shader</name>
+        <qualifiedname>xpe::render::cCanvas::m_Shader</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="28" column="28" bodyfile="engine/src/rendering/canvas.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_canvas_1af9fb9a95091f782bfc00b54f2a11bb5d" prot="private" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+        <definition>sViewport* xpe::render::cCanvas::m_Viewport</definition>
+        <argsstring></argsstring>
+        <name>m_Viewport</name>
+        <qualifiedname>xpe::render::cCanvas::m_Viewport</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="29" column="23" bodyfile="engine/src/rendering/canvas.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_canvas_1a43a693710941df6bda4ac5b61815ed36" prot="private" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_sampler" kindref="compound">sSampler</ref> *</type>
+        <definition>sSampler* xpe::render::cCanvas::m_PresentSampler</definition>
+        <argsstring></argsstring>
+        <name>m_PresentSampler</name>
+        <qualifiedname>xpe::render::cCanvas::m_PresentSampler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="30" column="22" bodyfile="engine/src/rendering/canvas.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_canvas_1a30029ff24eeccdc1198a6c84e7586a71" prot="private" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref> *</type>
+        <definition>sRenderTarget* xpe::render::cCanvas::m_PresentTarget</definition>
+        <argsstring></argsstring>
+        <name>m_PresentTarget</name>
+        <qualifiedname>xpe::render::cCanvas::m_PresentTarget</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="31" column="27" bodyfile="engine/src/rendering/canvas.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_canvas_1a9480038dc59a7e50b9992571a47c50f1" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::cCanvas::m_BoundTargetIndex</definition>
+        <argsstring></argsstring>
+        <name>m_BoundTargetIndex</name>
+        <qualifiedname>xpe::render::cCanvas::m_BoundTargetIndex</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="32" column="17" bodyfile="engine/src/rendering/canvas.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1a9d8c18ddfb24dcd26edf2ee2472f0fb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cCanvas::cCanvas</definition>
+        <argsstring>()</argsstring>
+        <name>cCanvas</name>
+        <qualifiedname>xpe::render::cCanvas::cCanvas</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="13" column="13" bodyfile="engine/src/rendering/canvas.cpp" bodystart="9" bodyend="20"/>
+        <references refid="input__manager_8hpp_1a2cd1cdcbe57492f3f37f3242807b8d22" compoundref="input__manager_8hpp" startline="7">AddWindowFrameResized</references>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a97a6e32b351d6afb063039f115b55ae7" compoundref="shader_8cpp" startline="274" endline="282">xpe::render::cShaderManager::GetFromFile</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1abe3b469b340e88d3b463a76164e5f308" compoundref="camera__manager_8cpp" startline="69" endline="72">xpe::render::cCameraManager::GetViewport</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a" compoundref="shader_8hpp" startline="62">xpe::render::cShader::NONE</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441">xpe::render::sShaderStage::PIXEL</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd" compoundref="shader_8hpp" startline="96">xpe::render::cDefaultShader::PixelStage</references>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" compoundref="shader_8cpp" startline="404" endline="436">xpe::render::cShaderManager::SetShader</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b">xpe::render::sShaderStage::VERTEX</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0" compoundref="shader_8hpp" startline="95">xpe::render::cDefaultShader::VertexStage</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1acf1b2e05f157135eb1ea38e361f47354" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cCanvas::~cCanvas</definition>
+        <argsstring>()</argsstring>
+        <name>~cCanvas</name>
+        <qualifiedname>xpe::render::cCanvas::~cCanvas</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="14" column="13" bodyfile="engine/src/rendering/canvas.cpp" bodystart="22" bodyend="28"/>
+        <references refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" compoundref="input__manager_8hpp" startline="19">RemoveWindowFrameResized</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cCanvas::Draw</definition>
+        <argsstring>()</argsstring>
+        <name>Draw</name>
+        <qualifiedname>xpe::render::cCanvas::Draw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="16" column="18" bodyfile="engine/src/rendering/canvas.cpp" bodystart="30" bodyend="44"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a68b9c3c436cb270939b34679a3c4dcef">xpe::render::context::BindPSStage</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a1b599623aad5a454a34697cec5c79143" compoundref="rendering_2core_2context_8cpp" startline="244" endline="248">xpe::render::context::BindRenderTarget</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a48c270e9a05382bd3824c1d9fa92268b">xpe::render::context::BindVSStage</references>
+        <references refid="structxpe_1_1render_1_1_textures_1ad899c5ceab4e39079770ff8b238f1b82" compoundref="bindings_8hpp" startline="42">xpe::render::Textures::Canvas</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a7ef3ba5c9c5d29b8a2f1d9551b452d5e">xpe::render::context::ClearColorTarget</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" compoundref="render__target_8hpp" startline="11">xpe::render::sRenderTarget::ColorViews</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" compoundref="render__target_8hpp" startline="12">xpe::render::sRenderTarget::DepthStencilView</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a87a2da77de2bea05f299145aa58d7ca5">xpe::render::context::DrawQuad</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd" compoundref="shader_8hpp" startline="96">xpe::render::cDefaultShader::PixelStage</references>
+        <references refid="namespacexpe_1_1render_1_1context_1aebbc29eb22343932ff7c938aefcb3468">xpe::render::context::Present</references>
+        <references refid="namespacexpe_1_1render_1_1context_1aa422283e5b1e7f0ec37bce4e205040b1" compoundref="rendering_2core_2context_8cpp" startline="393" endline="396">xpe::render::context::PSBindSampler</references>
+        <references refid="namespacexpe_1_1render_1_1context_1af7d77195f515615a89c72aa4f236bf05" compoundref="rendering_2core_2context_8cpp" startline="316" endline="319">xpe::render::context::PSBindTexture</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a012199697e8054ff25d90b30a8e434ad" compoundref="rendering_2core_2context_8cpp" startline="326" endline="330">xpe::render::context::PSBindTextureSlot</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0" compoundref="shader_8hpp" startline="95">xpe::render::cDefaultShader::VertexStage</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" compoundref="render__target_8hpp" startline="15">xpe::render::sRenderTarget::Viewport</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">xpe::core::cApp::Render</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1a01d13a50afd94a2e6d847eb2ef0c186b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cCanvas::WindowFrameResized</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>WindowFrameResized</name>
+        <qualifiedname>xpe::render::cCanvas::WindowFrameResized</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="18" column="18" bodyfile="engine/src/rendering/canvas.cpp" bodystart="46" bodyend="49"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a50e128be96001994d7db255d0f372e80">xpe::render::context::ResizeSwapchain</references>
+        <referencedby refid="classxpe_1_1render_1_1c_canvas_1a8b2bcc95a8e76bff19d4aaa3938e8450" compoundref="canvas_8cpp" startline="71" endline="75">SetViewport</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1a8b2bcc95a8e76bff19d4aaa3938e8450" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cCanvas::SetViewport</definition>
+        <argsstring>(sViewport *viewport)</argsstring>
+        <name>SetViewport</name>
+        <qualifiedname>xpe::render::cCanvas::SetViewport</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+          <declname>viewport</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="20" column="18" bodyfile="engine/src/rendering/canvas.cpp" bodystart="71" bodyend="75"/>
+        <references refid="classxpe_1_1render_1_1c_canvas_1a01d13a50afd94a2e6d847eb2ef0c186b" compoundref="canvas_8cpp" startline="46" endline="49">WindowFrameResized</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1a5598d4ae57f3b802eee42f99c56b40ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+        <definition>sViewport * xpe::render::cCanvas::GetViewport</definition>
+        <argsstring>()</argsstring>
+        <name>GetViewport</name>
+        <qualifiedname>xpe::render::cCanvas::GetViewport</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="21" column="30" bodyfile="engine/src/rendering/canvas.hpp" bodystart="21" bodyend="21"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1a5eceba643a7bfd717f1fd7182b6c4f30" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cCanvas::CreatePresentTarget</definition>
+        <argsstring>()</argsstring>
+        <name>CreatePresentTarget</name>
+        <qualifiedname>xpe::render::cCanvas::CreatePresentTarget</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="24" column="18" bodyfile="engine/src/rendering/canvas.cpp" bodystart="51" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_canvas_1a94dd5f685961b7b12b71fefa03f87be6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cCanvas::CreatePresentSampler</definition>
+        <argsstring>()</argsstring>
+        <name>CreatePresentSampler</name>
+        <qualifiedname>xpe::render::cCanvas::CreatePresentSampler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/canvas.hpp" line="25" column="18" bodyfile="engine/src/rendering/canvas.cpp" bodystart="60" bodyend="69"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::cCanvas</label>
+        <link refid="classxpe_1_1render_1_1c_canvas"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::cCanvas</label>
+        <link refid="classxpe_1_1render_1_1c_canvas"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/canvas.hpp" line="9" column="9" bodyfile="engine/src/rendering/canvas.hpp" bodystart="10" bodyend="33"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a9d8c18ddfb24dcd26edf2ee2472f0fb5" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>cCanvas</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a94dd5f685961b7b12b71fefa03f87be6" prot="private" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>CreatePresentSampler</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a5eceba643a7bfd717f1fd7182b6c4f30" prot="private" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>CreatePresentTarget</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>Draw</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a5598d4ae57f3b802eee42f99c56b40ea" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>GetViewport</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a9480038dc59a7e50b9992571a47c50f1" prot="private" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>m_BoundTargetIndex</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a43a693710941df6bda4ac5b61815ed36" prot="private" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>m_PresentSampler</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a30029ff24eeccdc1198a6c84e7586a71" prot="private" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>m_PresentTarget</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1aab1e1580c158c92159fbb8744560ce7c" prot="private" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>m_Shader</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1af9fb9a95091f782bfc00b54f2a11bb5d" prot="private" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>m_Viewport</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a8b2bcc95a8e76bff19d4aaa3938e8450" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>SetViewport</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1a01d13a50afd94a2e6d847eb2ef0c186b" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>WindowFrameResized</name></member>
+      <member refid="classxpe_1_1render_1_1c_canvas_1acf1b2e05f157135eb1ea38e361f47354" prot="public" virt="non-virtual"><scope>xpe::render::cCanvas</scope><name>~cCanvas</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

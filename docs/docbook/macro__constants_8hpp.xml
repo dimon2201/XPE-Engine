@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_macro__constants_8hpp" xml:lang="en-US">
+<title>engine/src/core/macro_constants.hpp File Reference</title>
+<indexterm><primary>engine/src/core/macro_constants.hpp</primary></indexterm>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a85e6337346a6ea4f556bebea44119253">K_DEPTH_INVALID</link>&#160;&#160;&#160;-1.0f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a7f5d931d5fbaeacdfc2efacf4175b298">K_PI</link>&#160;&#160;&#160;3.14159265359f</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a1f8a407cbad0acdc37be099e2cc86baa">K_MEMORY_KB</link>&#160;&#160;&#160;1024</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a02ed90f1d23f1fc49883cf0e231d1edc">K_MEMORY_MB</link>&#160;&#160;&#160;(1024 * <link linkend="_macro__constants_8hpp_1a1f8a407cbad0acdc37be099e2cc86baa">K_MEMORY_KB</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a67c5a3e6e5cd32bdf91e31d40ee78cd0">K_MEMORY_GB</link>&#160;&#160;&#160;(1024 * <link linkend="_macro__constants_8hpp_1a02ed90f1d23f1fc49883cf0e231d1edc">K_MEMORY_MB</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a2d22a9fda7c68f0389bdc591e97533ca">K_PROFILE_VERTEX</link>&#160;&#160;&#160;&quot;vs_5_0&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1aef1338f2ecff3c5574144e98c9475b2b">K_PROFILE_PIXEL</link>&#160;&#160;&#160;&quot;ps_5_0&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1af8d64bd1af6c56777ef2a273262743d7">K_PROFILE_GEOMETRY</link>&#160;&#160;&#160;&quot;gs_5_0&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a7ecc2e6bb743ab97a04929292edc9e0d">K_PROFILE_COMPUTE</link>&#160;&#160;&#160;&quot;cs_5_0&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a187fca04ed0ba353f82db5669137aa38">K_ENTRY_POINT_VERTEX</link>&#160;&#160;&#160;&quot;vs_main&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1aaeeb5334a4a232e31e7fca5b93580b8e">K_ENTRY_POINT_PIXEL</link>&#160;&#160;&#160;&quot;ps_main&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1afce5797e90e14ecc67a9af5924eb049c">K_ENTRY_POINT_GEOMETRY</link>&#160;&#160;&#160;&quot;gs_main&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a3b5ea3a71b2057d627ab8f0b53e7040b">K_ENTRY_POINT_COMPUTE</link>&#160;&#160;&#160;&quot;cs_main&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43">K_SLOT_DEFAULT</link>&#160;&#160;&#160;UINT32_MAX</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1aeee5bb13dd29a33510cf6eedb79e688f">K_SLOT_WIDGETS</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1aa497b187bf5238d20687fe45bd2fa864">K_SLOT_CHARS</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a696e064280b9ae46de00c7796e6729bf">K_SLOT_TEXTS</link>&#160;&#160;&#160;1</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a14627b7c6e78a1dee74ad3ff7c2e8cc6">K_SLOT_WIDGET_SAMPLER</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a25c3a64b705621ce38eb5b258b52d603">K_SLOT_WIDGET_ATLAS</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1ade20640b54450a3d066eceeeed341511">K_SLOT_FONT_SAMPLER</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a40d988bc2f682c48febfec59326c66d9">K_SLOT_FONT_ATLAS</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a7aa9c09536f63465cce816ada9c6198d">K_SLOT_INSTANCES</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a9c625f55e51989edd74d1ce9c4df4776">K_SLOT_SKELETONS</link>&#160;&#160;&#160;1</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1abd3add7e8a71e8b76f7ddde13f4dd872">K_SLOT_MATERIAL_SAMPLER</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a1371de9c80b3be24ab606e5ed2579bc0">K_SLOT_MATERIALS</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1aa42ea15a2dd8e8db222f0ef5b41b382a">K_SLOT_ALBEDO</link>&#160;&#160;&#160;1</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a1995ccbf83e8506089d9cf4b5516fc01">K_SLOT_BUMPING</link>&#160;&#160;&#160;2</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a50d0d26800e7825664a38c16f334f5e6">K_SLOT_PARALLAX</link>&#160;&#160;&#160;3</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1aa5c2bd81300aa2f35c1bbfefe8e22fc9">K_SLOT_METALLIC</link>&#160;&#160;&#160;4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a28be33e3843004d307f2943cd7238612">K_SLOT_ROUGHNESS</link>&#160;&#160;&#160;5</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a49221d34edf7442d66b433967b2dcc21">K_SLOT_AO</link>&#160;&#160;&#160;6</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a6f2ebfba73bfdc52330d43b7bf94c6f7">K_SLOT_EMISSION</link>&#160;&#160;&#160;7</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1af5e23be2d64a830eacc2b7104d50cd93">K_SLOT_DIRECT_LIGHTS</link>&#160;&#160;&#160;8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1ae63f50f316d512217ef6f57a69bbe058">K_SLOT_POINT_LIGHTS</link>&#160;&#160;&#160;9</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a5163ca2f051525fe5dd1eb3702eb3bc2">K_SLOT_SPOT_LIGHTS</link>&#160;&#160;&#160;10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1ad4aea4f869eaed47721fee63a8ddcd81">K_SLOT_SHADOW_ATLAS</link>&#160;&#160;&#160;11</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1af94ba6b41910053a120ce7e89cd56f7c">K_SLOT_SHADOW_SAMPLER</link>&#160;&#160;&#160;1</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1ab00ecd5c7aa4b113b5ef03024f2b4eef">K_SLOT_SHADOW_PCF</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a5e65ccfc4325ebb3b4ecb123b2aee29c">K_SLOT_CAMERA</link>&#160;&#160;&#160;0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__constants_8hpp_1a4e22ca4479658148746f876744072766">K_SLOT_SSAO</link>&#160;&#160;&#160;0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_macro__constants_8hpp_1a85e6337346a6ea4f556bebea44119253"/><section>
+    <title>K_DEPTH_INVALID</title>
+<indexterm><primary>K_DEPTH_INVALID</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_DEPTH_INVALID</secondary></indexterm>
+<para><computeroutput>#define K_DEPTH_INVALID&#160;&#160;&#160;-1.0f</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a3b5ea3a71b2057d627ab8f0b53e7040b"/><section>
+    <title>K_ENTRY_POINT_COMPUTE</title>
+<indexterm><primary>K_ENTRY_POINT_COMPUTE</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_ENTRY_POINT_COMPUTE</secondary></indexterm>
+<para><computeroutput>#define K_ENTRY_POINT_COMPUTE&#160;&#160;&#160;&quot;cs_main&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1afce5797e90e14ecc67a9af5924eb049c"/><section>
+    <title>K_ENTRY_POINT_GEOMETRY</title>
+<indexterm><primary>K_ENTRY_POINT_GEOMETRY</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_ENTRY_POINT_GEOMETRY</secondary></indexterm>
+<para><computeroutput>#define K_ENTRY_POINT_GEOMETRY&#160;&#160;&#160;&quot;gs_main&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1aaeeb5334a4a232e31e7fca5b93580b8e"/><section>
+    <title>K_ENTRY_POINT_PIXEL</title>
+<indexterm><primary>K_ENTRY_POINT_PIXEL</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_ENTRY_POINT_PIXEL</secondary></indexterm>
+<para><computeroutput>#define K_ENTRY_POINT_PIXEL&#160;&#160;&#160;&quot;ps_main&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a187fca04ed0ba353f82db5669137aa38"/><section>
+    <title>K_ENTRY_POINT_VERTEX</title>
+<indexterm><primary>K_ENTRY_POINT_VERTEX</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_ENTRY_POINT_VERTEX</secondary></indexterm>
+<para><computeroutput>#define K_ENTRY_POINT_VERTEX&#160;&#160;&#160;&quot;vs_main&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a67c5a3e6e5cd32bdf91e31d40ee78cd0"/><section>
+    <title>K_MEMORY_GB</title>
+<indexterm><primary>K_MEMORY_GB</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_MEMORY_GB</secondary></indexterm>
+<para><computeroutput>#define K_MEMORY_GB&#160;&#160;&#160;(1024 * <link linkend="_macro__constants_8hpp_1a02ed90f1d23f1fc49883cf0e231d1edc">K_MEMORY_MB</link>)</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a1f8a407cbad0acdc37be099e2cc86baa"/><section>
+    <title>K_MEMORY_KB</title>
+<indexterm><primary>K_MEMORY_KB</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_MEMORY_KB</secondary></indexterm>
+<para><computeroutput>#define K_MEMORY_KB&#160;&#160;&#160;1024</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a02ed90f1d23f1fc49883cf0e231d1edc"/><section>
+    <title>K_MEMORY_MB</title>
+<indexterm><primary>K_MEMORY_MB</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_MEMORY_MB</secondary></indexterm>
+<para><computeroutput>#define K_MEMORY_MB&#160;&#160;&#160;(1024 * <link linkend="_macro__constants_8hpp_1a1f8a407cbad0acdc37be099e2cc86baa">K_MEMORY_KB</link>)</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a7f5d931d5fbaeacdfc2efacf4175b298"/><section>
+    <title>K_PI</title>
+<indexterm><primary>K_PI</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_PI</secondary></indexterm>
+<para><computeroutput>#define K_PI&#160;&#160;&#160;3.14159265359f</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a7ecc2e6bb743ab97a04929292edc9e0d"/><section>
+    <title>K_PROFILE_COMPUTE</title>
+<indexterm><primary>K_PROFILE_COMPUTE</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_PROFILE_COMPUTE</secondary></indexterm>
+<para><computeroutput>#define K_PROFILE_COMPUTE&#160;&#160;&#160;&quot;cs_5_0&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1af8d64bd1af6c56777ef2a273262743d7"/><section>
+    <title>K_PROFILE_GEOMETRY</title>
+<indexterm><primary>K_PROFILE_GEOMETRY</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_PROFILE_GEOMETRY</secondary></indexterm>
+<para><computeroutput>#define K_PROFILE_GEOMETRY&#160;&#160;&#160;&quot;gs_5_0&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1aef1338f2ecff3c5574144e98c9475b2b"/><section>
+    <title>K_PROFILE_PIXEL</title>
+<indexterm><primary>K_PROFILE_PIXEL</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_PROFILE_PIXEL</secondary></indexterm>
+<para><computeroutput>#define K_PROFILE_PIXEL&#160;&#160;&#160;&quot;ps_5_0&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a2d22a9fda7c68f0389bdc591e97533ca"/><section>
+    <title>K_PROFILE_VERTEX</title>
+<indexterm><primary>K_PROFILE_VERTEX</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_PROFILE_VERTEX</secondary></indexterm>
+<para><computeroutput>#define K_PROFILE_VERTEX&#160;&#160;&#160;&quot;vs_5_0&quot;</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1aa42ea15a2dd8e8db222f0ef5b41b382a"/><section>
+    <title>K_SLOT_ALBEDO</title>
+<indexterm><primary>K_SLOT_ALBEDO</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_ALBEDO</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_ALBEDO&#160;&#160;&#160;1</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a49221d34edf7442d66b433967b2dcc21"/><section>
+    <title>K_SLOT_AO</title>
+<indexterm><primary>K_SLOT_AO</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_AO</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_AO&#160;&#160;&#160;6</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a1995ccbf83e8506089d9cf4b5516fc01"/><section>
+    <title>K_SLOT_BUMPING</title>
+<indexterm><primary>K_SLOT_BUMPING</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_BUMPING</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_BUMPING&#160;&#160;&#160;2</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a5e65ccfc4325ebb3b4ecb123b2aee29c"/><section>
+    <title>K_SLOT_CAMERA</title>
+<indexterm><primary>K_SLOT_CAMERA</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_CAMERA</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_CAMERA&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1aa497b187bf5238d20687fe45bd2fa864"/><section>
+    <title>K_SLOT_CHARS</title>
+<indexterm><primary>K_SLOT_CHARS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_CHARS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_CHARS&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43"/><section>
+    <title>K_SLOT_DEFAULT</title>
+<indexterm><primary>K_SLOT_DEFAULT</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_DEFAULT</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_DEFAULT&#160;&#160;&#160;UINT32_MAX</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1af5e23be2d64a830eacc2b7104d50cd93"/><section>
+    <title>K_SLOT_DIRECT_LIGHTS</title>
+<indexterm><primary>K_SLOT_DIRECT_LIGHTS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_DIRECT_LIGHTS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_DIRECT_LIGHTS&#160;&#160;&#160;8</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a6f2ebfba73bfdc52330d43b7bf94c6f7"/><section>
+    <title>K_SLOT_EMISSION</title>
+<indexterm><primary>K_SLOT_EMISSION</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_EMISSION</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_EMISSION&#160;&#160;&#160;7</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a40d988bc2f682c48febfec59326c66d9"/><section>
+    <title>K_SLOT_FONT_ATLAS</title>
+<indexterm><primary>K_SLOT_FONT_ATLAS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_FONT_ATLAS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_FONT_ATLAS&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1ade20640b54450a3d066eceeeed341511"/><section>
+    <title>K_SLOT_FONT_SAMPLER</title>
+<indexterm><primary>K_SLOT_FONT_SAMPLER</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_FONT_SAMPLER</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_FONT_SAMPLER&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a7aa9c09536f63465cce816ada9c6198d"/><section>
+    <title>K_SLOT_INSTANCES</title>
+<indexterm><primary>K_SLOT_INSTANCES</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_INSTANCES</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_INSTANCES&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1abd3add7e8a71e8b76f7ddde13f4dd872"/><section>
+    <title>K_SLOT_MATERIAL_SAMPLER</title>
+<indexterm><primary>K_SLOT_MATERIAL_SAMPLER</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_MATERIAL_SAMPLER</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_MATERIAL_SAMPLER&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a1371de9c80b3be24ab606e5ed2579bc0"/><section>
+    <title>K_SLOT_MATERIALS</title>
+<indexterm><primary>K_SLOT_MATERIALS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_MATERIALS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_MATERIALS&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1aa5c2bd81300aa2f35c1bbfefe8e22fc9"/><section>
+    <title>K_SLOT_METALLIC</title>
+<indexterm><primary>K_SLOT_METALLIC</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_METALLIC</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_METALLIC&#160;&#160;&#160;4</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a50d0d26800e7825664a38c16f334f5e6"/><section>
+    <title>K_SLOT_PARALLAX</title>
+<indexterm><primary>K_SLOT_PARALLAX</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_PARALLAX</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_PARALLAX&#160;&#160;&#160;3</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1ae63f50f316d512217ef6f57a69bbe058"/><section>
+    <title>K_SLOT_POINT_LIGHTS</title>
+<indexterm><primary>K_SLOT_POINT_LIGHTS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_POINT_LIGHTS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_POINT_LIGHTS&#160;&#160;&#160;9</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a28be33e3843004d307f2943cd7238612"/><section>
+    <title>K_SLOT_ROUGHNESS</title>
+<indexterm><primary>K_SLOT_ROUGHNESS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_ROUGHNESS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_ROUGHNESS&#160;&#160;&#160;5</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1ad4aea4f869eaed47721fee63a8ddcd81"/><section>
+    <title>K_SLOT_SHADOW_ATLAS</title>
+<indexterm><primary>K_SLOT_SHADOW_ATLAS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_SHADOW_ATLAS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_SHADOW_ATLAS&#160;&#160;&#160;11</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1ab00ecd5c7aa4b113b5ef03024f2b4eef"/><section>
+    <title>K_SLOT_SHADOW_PCF</title>
+<indexterm><primary>K_SLOT_SHADOW_PCF</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_SHADOW_PCF</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_SHADOW_PCF&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1af94ba6b41910053a120ce7e89cd56f7c"/><section>
+    <title>K_SLOT_SHADOW_SAMPLER</title>
+<indexterm><primary>K_SLOT_SHADOW_SAMPLER</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_SHADOW_SAMPLER</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_SHADOW_SAMPLER&#160;&#160;&#160;1</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a9c625f55e51989edd74d1ce9c4df4776"/><section>
+    <title>K_SLOT_SKELETONS</title>
+<indexterm><primary>K_SLOT_SKELETONS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_SKELETONS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_SKELETONS&#160;&#160;&#160;1</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a5163ca2f051525fe5dd1eb3702eb3bc2"/><section>
+    <title>K_SLOT_SPOT_LIGHTS</title>
+<indexterm><primary>K_SLOT_SPOT_LIGHTS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_SPOT_LIGHTS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_SPOT_LIGHTS&#160;&#160;&#160;10</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a4e22ca4479658148746f876744072766"/><section>
+    <title>K_SLOT_SSAO</title>
+<indexterm><primary>K_SLOT_SSAO</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_SSAO</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_SSAO&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a696e064280b9ae46de00c7796e6729bf"/><section>
+    <title>K_SLOT_TEXTS</title>
+<indexterm><primary>K_SLOT_TEXTS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_TEXTS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_TEXTS&#160;&#160;&#160;1</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a25c3a64b705621ce38eb5b258b52d603"/><section>
+    <title>K_SLOT_WIDGET_ATLAS</title>
+<indexterm><primary>K_SLOT_WIDGET_ATLAS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_WIDGET_ATLAS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_WIDGET_ATLAS&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1a14627b7c6e78a1dee74ad3ff7c2e8cc6"/><section>
+    <title>K_SLOT_WIDGET_SAMPLER</title>
+<indexterm><primary>K_SLOT_WIDGET_SAMPLER</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_WIDGET_SAMPLER</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_WIDGET_SAMPLER&#160;&#160;&#160;0</computeroutput></para></section>
+<anchor xml:id="_macro__constants_8hpp_1aeee5bb13dd29a33510cf6eedb79e688f"/><section>
+    <title>K_SLOT_WIDGETS</title>
+<indexterm><primary>K_SLOT_WIDGETS</primary><secondary>macro_constants.hpp</secondary></indexterm>
+<indexterm><primary>macro_constants.hpp</primary><secondary>K_SLOT_WIDGETS</secondary></indexterm>
+<para><computeroutput>#define K_SLOT_WIDGETS&#160;&#160;&#160;0</computeroutput></para></section>
+</section>
+</section>

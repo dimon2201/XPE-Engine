@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_hot_allocator" kind="class" language="C++" prot="public">
+    <compoundname>xpe::core::cHotAllocator</compoundname>
+    <includes refid="core_2allocators_8hpp" local="no">allocators.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classxpe_1_1core_1_1c_hot_allocator_1ab5ecfcfe024492cddaaf83e1cf399e40" prot="public" static="no">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+        <definition>typedef T xpe::core::cHotAllocator&lt; T &gt;::value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <qualifiedname>xpe::core::cHotAllocator::value_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="54" column="23" bodyfile="engine/src/core/allocators.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_allocator_1a56223db2c0e1b0547731616338d7127e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cHotAllocator&lt; T &gt;::cHotAllocator</definition>
+        <argsstring>()=default</argsstring>
+        <name>cHotAllocator</name>
+        <qualifiedname>xpe::core::cHotAllocator::cHotAllocator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="56" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_allocator_1a2bb628cfee24a72086a3dab9a2e4ef6c" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">class</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997" kindref="member">U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">constexpr</ref></type>
+        <definition>constexpr xpe::core::cHotAllocator&lt; T &gt;::cHotAllocator</definition>
+        <argsstring>(const cHotAllocator&lt; U &gt; &amp;) noexcept</argsstring>
+        <name>cHotAllocator</name>
+        <qualifiedname>xpe::core::cHotAllocator::cHotAllocator</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_hot_allocator" kindref="compound">cHotAllocator</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997" kindref="member">U</ref> &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="59" column="23" bodyfile="engine/src/core/allocators.hpp" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_allocator_1a83586b7354621fe8c38d09bdf7f715a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T * xpe::core::cHotAllocator&lt; T &gt;::allocate</definition>
+        <argsstring>(std::size_t count)</argsstring>
+        <name>allocate</name>
+        <qualifiedname>xpe::core::cHotAllocator::allocate</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="61" column="16" bodyfile="engine/src/core/allocators.hpp" bodystart="61" bodyend="64"/>
+        <references refid="core_2allocators_8hpp_1a907c182cb7f92ee2064968fda57d6656" compoundref="core_2allocators_8hpp" startline="3">hot_alloc</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_allocator_1ac22b8b9b09101333e086e1b5c4878302" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cHotAllocator&lt; T &gt;::deallocate</definition>
+        <argsstring>(T *element, std::size_t count) noexcept</argsstring>
+        <name>deallocate</name>
+        <qualifiedname>xpe::core::cHotAllocator::deallocate</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="66" column="18" bodyfile="engine/src/core/allocators.hpp" bodystart="66" bodyend="69"/>
+        <references refid="core_2allocators_8hpp_1a787bfb5b87d8abdec2e3c38601cf4a31" compoundref="core_2allocators_8hpp" startline="7">hot_free</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/allocators.hpp" line="50" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="51" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_hot_allocator_1a83586b7354621fe8c38d09bdf7f715a2" prot="public" virt="non-virtual"><scope>xpe::core::cHotAllocator</scope><name>allocate</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_allocator_1a56223db2c0e1b0547731616338d7127e" prot="public" virt="non-virtual"><scope>xpe::core::cHotAllocator</scope><name>cHotAllocator</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_allocator_1a2bb628cfee24a72086a3dab9a2e4ef6c" prot="public" virt="non-virtual"><scope>xpe::core::cHotAllocator</scope><name>cHotAllocator</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_allocator_1ac22b8b9b09101333e086e1b5c4878302" prot="public" virt="non-virtual"><scope>xpe::core::cHotAllocator</scope><name>deallocate</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_allocator_1ab5ecfcfe024492cddaaf83e1cf399e40" prot="public" virt="non-virtual"><scope>xpe::core::cHotAllocator</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

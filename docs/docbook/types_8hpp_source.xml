@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_types_8hpp_source" xml:lang="en-US">
+<title>types.hpp</title>
+<indexterm><primary>engine/src/core/types.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>
+4 {
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>core
+6 &#32;&#32;&#32;&#32;{
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">uint8_t</link>;
+8 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a4fa41479cc3d0f2fa85fcff48c8ea81d">s8</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int8_t</link>;
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a4d7d1d0f77610b8d68dba21aa753a8fb">u16</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">uint16_t</link>;
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a3ef33364f79f5d0dc0e14b61fe762b97">s16</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int16_t</link>;
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">uint32_t</link>;
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int32_t</link>;
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">uint64_t</link>;
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771">s64</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int64_t</link>;
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link>;
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a58cb86e6f2c9a870682bdd3e146bc8ef">f64</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">double</link>;
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1aee1243b17d3b3db2871cc5dfc7e62dd5">dword</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>;
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a2265c1d51ff9327d4504dc6e761fde02">qword</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>;
+19 
+20 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;#if&#32;defined(__ILP32__)&#32;||&#32;defined(__arm__)&#32;||&#32;defined(_M_ARM)&#32;||&#32;defined(__i386__)&#32;||&#32;defined(_M_IX86)&#32;||&#32;defined(_X86_)</emphasis>
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;32-bit&#32;machine</emphasis>
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ssize</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link>;
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>;
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sword</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link>;
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">uword</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>;
+26 
+27 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;#elif&#32;defined(__amd64__)&#32;||&#32;defined(_M_AMD64)&#32;||&#32;defined(_M_X64)&#32;||&#32;defined(__aarch64__)&#32;||&#32;defined(__ia64__)&#32;||&#32;defined(_M_IA64)</emphasis>
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;64-bit&#32;machine</emphasis>
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ssize</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771">s64</link>;
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>;
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sword</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771">s64</link>;
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">uword</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>;
+33 
+34 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;#endif</emphasis>
+35 
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;</emphasis><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>;
+37 
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1core_1_1c_object">cObject</link>
+39 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>*&#32;<emphasis role="keyword">operator</emphasis>&#32;<emphasis role="keyword">new</emphasis>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>);
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<emphasis role="keyword">operator</emphasis>&#32;<emphasis role="keyword">delete</emphasis>(<emphasis role="keywordtype">void</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>);
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+44 
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_object">cHotObject</link>
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>*&#32;<emphasis role="keyword">operator</emphasis>&#32;<emphasis role="keyword">new</emphasis>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>);
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<emphasis role="keyword">operator</emphasis>&#32;<emphasis role="keyword">delete</emphasis>(<emphasis role="keywordtype">void</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>);
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+51 
+52 &#32;&#32;&#32;&#32;}
+53 }
+</programlisting></section>

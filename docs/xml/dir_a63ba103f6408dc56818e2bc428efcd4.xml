@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_a63ba103f6408dc56818e2bc428efcd4" kind="dir">
+    <compoundname>engine/src/audio/core</compoundname>
+    <innerfile refid="audio_2core_2context_8cpp">context.cpp</innerfile>
+    <innerfile refid="audio_2core_2context_8hpp">context.hpp</innerfile>
+    <innerfile refid="audio_2core_2core_8hpp">core.hpp</innerfile>
+    <innerfile refid="sndfile__context_8cpp">sndfile_context.cpp</innerfile>
+    <innerfile refid="sndfile__context_8hpp">sndfile_context.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/audio/core/"/>
+  </compounddef>
+</doxygen>

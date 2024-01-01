@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1physics_1_1c_physics_allocator" kind="class" language="C++" prot="public">
+    <compoundname>xpe::physics::cPhysicsAllocator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">physx::PxAllocatorCallback</basecompoundref>
+    <includes refid="physics_2allocators_8hpp" local="no">allocators.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_allocator_1a10874132e7da29d5f5784a6f4aa6d6ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::cPhysicsAllocator::~cPhysicsAllocator</definition>
+        <argsstring>() override</argsstring>
+        <name>~cPhysicsAllocator</name>
+        <qualifiedname>xpe::physics::cPhysicsAllocator::~cPhysicsAllocator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/allocators.hpp" line="16" column="13" bodyfile="engine/src/physics/allocators.cpp" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_allocator_1a6c5007c5709a9fe777a1511709231d21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void * xpe::physics::cPhysicsAllocator::allocate</definition>
+        <argsstring>(size_t size, const char *typeName, const char *filename, int line) override</argsstring>
+        <name>allocate</name>
+        <qualifiedname>xpe::physics::cPhysicsAllocator::allocate</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>typeName</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/allocators.hpp" line="18" column="18" bodyfile="engine/src/physics/allocators.cpp" bodystart="9" bodyend="30"/>
+        <references refid="namespacexpe_1_1core_1ae5d0b54168ae6e02cf8c8b7d9327c96f" compoundref="core_2allocators_8cpp" startline="7" endline="18">xpe::core::align16_malloc</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_allocator_1ab0e2f88b10d5f15bc408c1234bcceabf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsAllocator::deallocate</definition>
+        <argsstring>(void *ptr) override</argsstring>
+        <name>deallocate</name>
+        <qualifiedname>xpe::physics::cPhysicsAllocator::deallocate</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/allocators.hpp" line="19" column="18" bodyfile="engine/src/physics/allocators.cpp" bodystart="32" bodyend="36"/>
+        <references refid="namespacexpe_1_1core_1a10508d83f4fe37b4a622196fe785a7b5" compoundref="core_2allocators_8cpp" startline="20" endline="31">xpe::core::align16_free</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>physx::PxAllocatorCallback</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::cPhysicsAllocator</label>
+        <link refid="classxpe_1_1physics_1_1c_physics_allocator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>physx::PxAllocatorCallback</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::cPhysicsAllocator</label>
+        <link refid="classxpe_1_1physics_1_1c_physics_allocator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/physics/allocators.hpp" line="12" column="9" bodyfile="engine/src/physics/allocators.hpp" bodystart="13" bodyend="21"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1physics_1_1c_physics_allocator_1a6c5007c5709a9fe777a1511709231d21" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsAllocator</scope><name>allocate</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_allocator_1ab0e2f88b10d5f15bc408c1234bcceabf" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsAllocator</scope><name>deallocate</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_allocator_1a10874132e7da29d5f5784a6f4aa6d6ce" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsAllocator</scope><name>~cPhysicsAllocator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

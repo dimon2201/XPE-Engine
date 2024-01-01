@@ -1,0 +1,84 @@
+\doxysection{xpe\+::ecs\+::CSpot\+Light Struct Reference}
+\hypertarget{structxpe_1_1ecs_1_1_c_spot_light}{}\label{structxpe_1_1ecs_1_1_c_spot_light}\index{xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}}
+
+
+{\ttfamily \#include $<$components.\+hpp$>$}
+
+Inheritance diagram for xpe\+::ecs\+::CSpot\+Light\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structxpe_1_1ecs_1_1_c_spot_light}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_ae86b3c11bf59b956328bd837cea9d226}{CSpot\+Light}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}=\{ 0, 0, 0 \}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{direction}}=\{ 0, 0, 0 \}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}}=\{ 1, 1, 1 \})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{xpe\+::res\+::c\+Json}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1res_1_1c_json_ae9f2dda5c12658850632637c06868e88}{To\+Json}} (\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}})=0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1res_1_1c_json_ac1f545d15f6d5162d765f9c8eb9b336b}{From\+Json}} (\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}})=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_adc0776043d96c9bac2f850c05858dafc}{Color}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_a6d5d419e90fc1203cc8ee4dc5ee2592b}{Cutoff}} = 0.\+90f
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_aab334d838475ec7642ee95859aee4b22}{Outer}} = 0.\+95\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{f}}
+\item 
+s\+Perspective\+Matrix \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_a626daf30106c9465387b8af3a664e567}{Projection}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\+View\+Matrix}} \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_aeaf5b7b578677a2725c3a6281cd6fb5c}{View}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structxpe_1_1ecs_1_1_c_spot_light_ae86b3c11bf59b956328bd837cea9d226}\label{structxpe_1_1ecs_1_1_c_spot_light_ae86b3c11bf59b956328bd837cea9d226} 
+\index{xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}!CSpotLight@{CSpotLight}}
+\index{CSpotLight@{CSpotLight}!xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}}
+\doxysubsubsection{\texorpdfstring{CSpotLight()}{CSpotLight()}}
+{\footnotesize\ttfamily xpe\+::ecs\+::\+CSpot\+Light\+::\+CSpot\+Light (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&}]{position = {\ttfamily \{~0,~0,~0~\}},  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&}]{direction = {\ttfamily \{~0,~0,~0~\}},  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&}]{color = {\ttfamily \{~1,~1,~1~\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1ecs_1_1_c_spot_light_adc0776043d96c9bac2f850c05858dafc}\label{structxpe_1_1ecs_1_1_c_spot_light_adc0776043d96c9bac2f850c05858dafc} 
+\index{xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}!Color@{Color}}
+\index{Color@{Color}!xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}}
+\doxysubsubsection{\texorpdfstring{Color}{Color}}
+{\footnotesize\ttfamily glm\+::vec3 xpe\+::ecs\+::\+CSpot\+Light\+::\+Color}
+
+\Hypertarget{structxpe_1_1ecs_1_1_c_spot_light_a6d5d419e90fc1203cc8ee4dc5ee2592b}\label{structxpe_1_1ecs_1_1_c_spot_light_a6d5d419e90fc1203cc8ee4dc5ee2592b} 
+\index{xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}!Cutoff@{Cutoff}}
+\index{Cutoff@{Cutoff}!xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}}
+\doxysubsubsection{\texorpdfstring{Cutoff}{Cutoff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} xpe\+::ecs\+::\+CSpot\+Light\+::\+Cutoff = 0.\+90f}
+
+\Hypertarget{structxpe_1_1ecs_1_1_c_spot_light_aab334d838475ec7642ee95859aee4b22}\label{structxpe_1_1ecs_1_1_c_spot_light_aab334d838475ec7642ee95859aee4b22} 
+\index{xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}!Outer@{Outer}}
+\index{Outer@{Outer}!xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}}
+\doxysubsubsection{\texorpdfstring{Outer}{Outer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} xpe\+::ecs\+::\+CSpot\+Light\+::\+Outer = 0.\+95\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{f}}}
+
+\Hypertarget{structxpe_1_1ecs_1_1_c_spot_light_a626daf30106c9465387b8af3a664e567}\label{structxpe_1_1ecs_1_1_c_spot_light_a626daf30106c9465387b8af3a664e567} 
+\index{xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}!Projection@{Projection}}
+\index{Projection@{Projection}!xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}}
+\doxysubsubsection{\texorpdfstring{Projection}{Projection}}
+{\footnotesize\ttfamily s\+Perspective\+Matrix xpe\+::ecs\+::\+CSpot\+Light\+::\+Projection}
+
+\Hypertarget{structxpe_1_1ecs_1_1_c_spot_light_aeaf5b7b578677a2725c3a6281cd6fb5c}\label{structxpe_1_1ecs_1_1_c_spot_light_aeaf5b7b578677a2725c3a6281cd6fb5c} 
+\index{xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}!View@{View}}
+\index{View@{View}!xpe::ecs::CSpotLight@{xpe::ecs::CSpotLight}}
+\doxysubsubsection{\texorpdfstring{View}{View}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\+View\+Matrix}} xpe\+::ecs\+::\+CSpot\+Light\+::\+View}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/ecs/\mbox{\hyperlink{components_8hpp}{components.\+hpp}}\end{DoxyCompactItemize}

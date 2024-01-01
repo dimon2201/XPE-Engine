@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1audio_1_1c_audio_system" xml:lang="en-US">
+<title>xpe::audio::cAudioSystem Class Reference</title>
+<indexterm><primary>xpe::audio::cAudioSystem</primary></indexterm>
+<para>
+<computeroutput>#include &lt;audio_system.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::audio::cAudioSystem:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1audio_1_1c_audio_system.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313">cAudioSystem</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938">~cAudioSystem</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_system_1aa5ea13f96fded87ef85fd3164207670f">Update</link> (<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dt</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313"/><section>
+    <title>cAudioSystem()</title>
+<indexterm><primary>cAudioSystem</primary><secondary>xpe::audio::cAudioSystem</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioSystem</primary><secondary>cAudioSystem</secondary></indexterm>
+<para><computeroutput>xpe::audio::cAudioSystem::cAudioSystem ( )</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938"/><section>
+    <title>~cAudioSystem()</title>
+<indexterm><primary>~cAudioSystem</primary><secondary>xpe::audio::cAudioSystem</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioSystem</primary><secondary>~cAudioSystem</secondary></indexterm>
+<para><computeroutput>xpe::audio::cAudioSystem::~cAudioSystem ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_system_1aa5ea13f96fded87ef85fd3164207670f"/><section>
+    <title>Update()</title>
+<indexterm><primary>Update</primary><secondary>xpe::audio::cAudioSystem</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioSystem</primary><secondary>Update</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioSystem::Update (<link linkend="_classxpe_1_1ecs_1_1c_scene">ecs::cScene</link> * scene, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp; dt)<computeroutput>[final]</computeroutput>, <computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Implements <link linkend="_classxpe_1_1ecs_1_1c_system_1a2a77b444fc80b9f1bd43215a7ba894d6">xpe::ecs::cSystem</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/audio/<link linkend="_audio__system_8hpp">audio_system.hpp</link>engine/src/audio/<link linkend="_audio__system_8cpp">audio_system.cpp</link></section>
+</section>

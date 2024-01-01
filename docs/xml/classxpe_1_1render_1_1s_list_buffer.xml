@@ -1,0 +1,479 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1s_list_buffer" kind="class" language="C++" prot="public">
+    <compoundname>xpe::render::sListBuffer</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_buffer" prot="public" virt="non-virtual">xpe::render::sBuffer</basecompoundref>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classxpe_1_1render_1_1s_list_buffer_1a5f8dfd6829fafa6ef35f66123f4d65be" prot="protected" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt;</type>
+        <definition>vector&lt;T&gt; xpe::render::sListBuffer&lt; T &gt;::m_List</definition>
+        <argsstring></argsstring>
+        <name>m_List</name>
+        <qualifiedname>xpe::render::sListBuffer::m_List</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="193" column="20" bodyfile="engine/src/rendering/buffers.hpp" bodystart="193" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1s_list_buffer_1a890c0d3362ed1ddfb7f6415e04c26152" compoundref="buffers_8hpp" startline="172" endline="175">xpe::render::sListBuffer&lt; T &gt;::Capacity</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1s_list_buffer_1a5da7fa83fc5fd64d05df00b870bb78d9" compoundref="buffers_8hpp" startline="177" endline="185">xpe::render::sListBuffer&lt; T &gt;::Get</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1s_list_buffer_1a183aa9a22c658269cc9eeecfe72e06a6" compoundref="buffers_8hpp" startline="162" endline="165">xpe::render::sListBuffer&lt; T &gt;::GetList</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1s_list_buffer_1af1b78e374e912c0f7ea9363d579553c5" compoundref="buffers_8hpp" startline="167" endline="170">xpe::render::sListBuffer&lt; T &gt;::Size</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a1373c4c3770a4badfbabfbd32f6d28e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sListBuffer&lt; T &gt;::sListBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>sListBuffer</name>
+        <qualifiedname>xpe::render::sListBuffer::sListBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="136" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1aefa6236c95b3bfb6bf7faff1b0538d76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sListBuffer&lt; T &gt;::sListBuffer</definition>
+        <argsstring>(usize count, u32 slot, sBuffer::eSubType subtype=sBuffer::eSubType::NONE, sBuffer::eViewType viewtype=sBuffer::eViewType::SRV)</argsstring>
+        <name>sListBuffer</name>
+        <qualifiedname>xpe::render::sListBuffer::sListBuffer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>slot</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" kindref="member">sBuffer::eSubType</ref></type>
+          <declname>subtype</declname>
+          <defval><ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693" kindref="member">sBuffer::eSubType::NONE</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" kindref="member">sBuffer::eViewType</ref></type>
+          <declname>viewtype</declname>
+          <defval><ref refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db" kindref="member">sBuffer::eViewType::SRV</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="137" column="13" bodyfile="engine/src/rendering/buffers.hpp" bodystart="197" bodyend="212"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a43a3526ddcb06eddda247d1457ae02b3" compoundref="rendering_2core_2context_8cpp" startline="12" endline="25">xpe::render::context::CopyBuffer</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a55a0590129a19f52e243dc67094efaf5">xpe::render::context::CreateBuffer</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa298cb25408234de02baf2085803a464a">xpe::render::sBuffer::LIST</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1afa72691ff364361e8000923fc3da6089" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sListBuffer&lt; T &gt;::~sListBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>~sListBuffer</name>
+        <qualifiedname>xpe::render::sListBuffer::~sListBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="138" column="13" bodyfile="engine/src/rendering/buffers.hpp" bodystart="215" bodyend="219"/>
+        <references refid="namespacexpe_1_1render_1_1context_1aabfe2d29425d231b5bcb38398009e73c">xpe::render::context::FreeBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1ad9de1835e029836261d585eec95bedd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::Flush</definition>
+        <argsstring>()</argsstring>
+        <name>Flush</name>
+        <qualifiedname>xpe::render::sListBuffer::Flush</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="141" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="222" bodyend="231"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a43a3526ddcb06eddda247d1457ae02b3" compoundref="rendering_2core_2context_8cpp" startline="12" endline="25">xpe::render::context::CopyBuffer</references>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_instancing_shader_1a8aff797e93842eabe1565da005bad1f9" compoundref="shaders_8cpp" startline="18" endline="54">xpe::render::cInstancingShader::DrawInstanced</referencedby>
+        <referencedby refid="classxpe_1_1anim_1_1c_skeleton_manager_1a4abeb14a1cd0427e88c31b8ef6efc480" compoundref="skeleton__manager_8cpp" startline="17" endline="20">xpe::anim::cSkeletonManager::Flush</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1abbb9adba1403faffd5abc203db0ba419" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::FlushItem</definition>
+        <argsstring>(u32 index, const T &amp;item)</argsstring>
+        <name>FlushItem</name>
+        <qualifiedname>xpe::render::sListBuffer::FlushItem</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="143" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="234" bodyend="242"/>
+        <references refid="namespacexpe_1_1render_1_1context_1ac4e51ec5113ccbd8df2127707e684e88" compoundref="rendering_2core_2context_8cpp" startline="27" endline="41">xpe::render::context::CopyBufferOffset</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a93d92265c6b46eadf6bcb57c948f2907" compoundref="material__manager_8cpp" startline="87" endline="90">xpe::render::cMaterialManager::Flush</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a3a082aa393d4ddd287620213150952db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::FlushItemAt</definition>
+        <argsstring>(u32 index)</argsstring>
+        <name>FlushItemAt</name>
+        <qualifiedname>xpe::render::sListBuffer::FlushItemAt</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="145" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="245" bodyend="252"/>
+        <references refid="namespacexpe_1_1render_1_1context_1ac4e51ec5113ccbd8df2127707e684e88" compoundref="rendering_2core_2context_8cpp" startline="27" endline="41">xpe::render::context::CopyBufferOffset</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a915d07581a0582453afaa6057d734476" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> ...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sListBuffer&lt; T &gt;::Add</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>Add</name>
+        <qualifiedname>xpe::render::sListBuffer::Add</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="148" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="291" bodyend="295"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_instancing_shader_1a8aff797e93842eabe1565da005bad1f9" compoundref="shaders_8cpp" startline="18" endline="54">xpe::render::cInstancingShader::DrawInstanced</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a8118487ce9bf5871387829bf8b9a6a1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::RemoveAt</definition>
+        <argsstring>(u32 index)</argsstring>
+        <name>RemoveAt</name>
+        <qualifiedname>xpe::render::sListBuffer::RemoveAt</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="150" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="298" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a05386fd8b9858ceda35f9f17d4de0cc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::Resize</definition>
+        <argsstring>(const usize count)</argsstring>
+        <name>Resize</name>
+        <qualifiedname>xpe::render::sListBuffer::Resize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="152" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="266" bodyend="269"/>
+        <referencedby refid="classxpe_1_1anim_1_1c_skeleton_manager_1a78919107dce1e4029702fe6ed0f12175" compoundref="skeleton__manager_8hpp" startline="25" endline="32">xpe::anim::cSkeletonManager::AddSkeleton</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a95eba2b8154bc1c8f9150e632e518161" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::Reserve</definition>
+        <argsstring>(const usize count)</argsstring>
+        <name>Reserve</name>
+        <qualifiedname>xpe::render::sListBuffer::Reserve</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="154" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="272" bodyend="275"/>
+        <referencedby refid="classxpe_1_1render_1_1c_instancing_shader_1aa07434479537490283672f91f660c4d5" compoundref="shaders_8cpp" startline="12" endline="16">xpe::render::cInstancingShader::cInstancingShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_text_shader_1ad8b58ce40667013c62bc85cb9ae913fa" compoundref="shaders_8cpp" startline="726" endline="753">xpe::render::cTextShader::cTextShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_shader_1ac6d0a01c7e25a93a16e38d9642dfe0f2" compoundref="shaders_8cpp" startline="479" endline="497">xpe::render::cWidgetShader::cWidgetShader</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a8255ba8a59c6efe9728f65b6fe37d486" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::Recreate</definition>
+        <argsstring>(const usize count)</argsstring>
+        <name>Recreate</name>
+        <qualifiedname>xpe::render::sListBuffer::Recreate</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="156" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="255" bodyend="263"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a43a3526ddcb06eddda247d1457ae02b3" compoundref="rendering_2core_2context_8cpp" startline="12" endline="25">xpe::render::context::CopyBuffer</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a55a0590129a19f52e243dc67094efaf5">xpe::render::context::CreateBuffer</references>
+        <references refid="namespacexpe_1_1render_1_1context_1aabfe2d29425d231b5bcb38398009e73c">xpe::render::context::FreeBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1aa314c4a7aca6c0623cd4ac495925eae7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sListBuffer&lt; T &gt;::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>xpe::render::sListBuffer::Clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="158" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="278" bodyend="281"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_instancing_shader_1a8aff797e93842eabe1565da005bad1f9" compoundref="shaders_8cpp" startline="18" endline="54">xpe::render::cInstancingShader::DrawInstanced</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1acbba31b0032b55239b1e910c71cb7bd4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sListBuffer&lt; T &gt;::Empty</definition>
+        <argsstring>()</argsstring>
+        <name>Empty</name>
+        <qualifiedname>xpe::render::sListBuffer::Empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="160" column="18" bodyfile="engine/src/rendering/buffers.hpp" bodystart="284" bodyend="287"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a183aa9a22c658269cc9eeecfe72e06a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+        <definition>vector&lt; T &gt; &amp; xpe::render::sListBuffer&lt; T &gt;::GetList</definition>
+        <argsstring>()</argsstring>
+        <name>GetList</name>
+        <qualifiedname>xpe::render::sListBuffer::GetList</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="162" column="27" bodyfile="engine/src/rendering/buffers.hpp" bodystart="162" bodyend="165"/>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a5f8dfd6829fafa6ef35f66123f4d65be" compoundref="buffers_8hpp" startline="193">xpe::render::sListBuffer&lt; T &gt;::m_List</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1af1b78e374e912c0f7ea9363d579553c5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sListBuffer&lt; T &gt;::Size</definition>
+        <argsstring>() const</argsstring>
+        <name>Size</name>
+        <qualifiedname>xpe::render::sListBuffer::Size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="167" column="26" bodyfile="engine/src/rendering/buffers.hpp" bodystart="167" bodyend="170"/>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a5f8dfd6829fafa6ef35f66123f4d65be" compoundref="buffers_8hpp" startline="193">xpe::render::sListBuffer&lt; T &gt;::m_List</references>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1anim_1_1c_skeleton_manager_1a78919107dce1e4029702fe6ed0f12175" compoundref="skeleton__manager_8hpp" startline="25" endline="32">xpe::anim::cSkeletonManager::AddSkeleton</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a890c0d3362ed1ddfb7f6415e04c26152" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sListBuffer&lt; T &gt;::Capacity</definition>
+        <argsstring>() const</argsstring>
+        <name>Capacity</name>
+        <qualifiedname>xpe::render::sListBuffer::Capacity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="172" column="26" bodyfile="engine/src/rendering/buffers.hpp" bodystart="172" bodyend="175"/>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a5f8dfd6829fafa6ef35f66123f4d65be" compoundref="buffers_8hpp" startline="193">xpe::render::sListBuffer&lt; T &gt;::m_List</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1a5da7fa83fc5fd64d05df00b870bb78d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T * xpe::render::sListBuffer&lt; T &gt;::Get</definition>
+        <argsstring>(u32 index)</argsstring>
+        <name>Get</name>
+        <qualifiedname>xpe::render::sListBuffer::Get</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="177" column="22" bodyfile="engine/src/rendering/buffers.hpp" bodystart="177" bodyend="185"/>
+        <references refid="log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e" compoundref="log__manager_8hpp" startline="36">LogError</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a5f8dfd6829fafa6ef35f66123f4d65be" compoundref="buffers_8hpp" startline="193">xpe::render::sListBuffer&lt; T &gt;::m_List</references>
+        <referencedby refid="classxpe_1_1render_1_1s_list_buffer_1aba6ef6b63567204b44769096f2ddbf10" compoundref="buffers_8hpp" startline="187" endline="190">xpe::render::sListBuffer&lt; T &gt;::operator[]</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1s_list_buffer_1aba6ef6b63567204b44769096f2ddbf10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T * xpe::render::sListBuffer&lt; T &gt;::operator[]</definition>
+        <argsstring>(u32 index)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>xpe::render::sListBuffer::operator[]</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="187" column="22" bodyfile="engine/src/rendering/buffers.hpp" bodystart="187" bodyend="190"/>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a5da7fa83fc5fd64d05df00b870bb78d9" compoundref="buffers_8hpp" startline="177" endline="185">xpe::render::sListBuffer&lt; T &gt;::Get</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sListBuffer&lt; T &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sListBuffer&lt; T &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/buffers.hpp" line="132" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="133" bodyend="194"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a915d07581a0582453afaa6057d734476" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Add</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a890c0d3362ed1ddfb7f6415e04c26152" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Capacity</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1aa314c4a7aca6c0623cd4ac495925eae7" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Clear</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>eMapType</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1acbba31b0032b55239b1e910c71cb7bd4" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Empty</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>eSubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>eType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>eUsage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>eViewType</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1ad9de1835e029836261d585eec95bedd5" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Flush</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1abbb9adba1403faffd5abc203db0ba419" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>FlushItem</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a3a082aa393d4ddd287620213150952db" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>FlushItemAt</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a5da7fa83fc5fd64d05df00b870bb78d9" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Get</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>GetByteSize</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a183aa9a22c658269cc9eeecfe72e06a6" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>GetList</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>InitialData</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Instance</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a5f8dfd6829fafa6ef35f66123f4d65be" prot="protected" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>m_List</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>NumElements</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1aba6ef6b63567204b44769096f2ddbf10" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>operator[]</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a8255ba8a59c6efe9728f65b6fe37d486" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Recreate</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a8118487ce9bf5871387829bf8b9a6a1a" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>RemoveAt</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a95eba2b8154bc1c8f9150e632e518161" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Reserve</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a05386fd8b9858ceda35f9f17d4de0cc1" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Resize</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1af1b78e374e912c0f7ea9363d579553c5" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Size</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1a1373c4c3770a4badfbabfbd32f6d28e4" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>sListBuffer</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1aefa6236c95b3bfb6bf7faff1b0538d76" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>sListBuffer</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af3faa739ee8d36ff1b306fe10a5184bf" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Slot</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>StructureSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>SubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Type</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a74933b3c2fa8f86517547b9dcc9c903a" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>Usage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>ViewInstance</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>ViewType</name></member>
+      <member refid="classxpe_1_1render_1_1s_list_buffer_1afa72691ff364361e8000923fc3da6089" prot="public" virt="non-virtual"><scope>xpe::render::sListBuffer</scope><name>~sListBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

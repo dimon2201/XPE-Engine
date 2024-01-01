@@ -1,0 +1,159 @@
+\doxysection{engine/src/core/input\+\_\+manager.hpp File Reference}
+\hypertarget{input__manager_8hpp}{}\label{input__manager_8hpp}\index{engine/src/core/input\_manager.hpp@{engine/src/core/input\_manager.hpp}}
+{\ttfamily \#include $<$core/events.\+hpp$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1core_1_1s_mouse_cursor}{xpe\+::core\+::s\+Mouse\+Cursor}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager}{xpe\+::core\+::c\+Input\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_af0e19d2ab9aeb4aa488e57911d4d8e8f}{Add\+Window\+Closed}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Closed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Closed}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a576eabc769112ab438a27635af3dda0c}{Add\+Window\+Resized}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Resized\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Resized}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a2cd1cdcbe57492f3f37f3242807b8d22}{Add\+Window\+Frame\+Resized}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Frame\+Resized\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Frame\+Resized}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a9b823d06edce33615df6f3fb7bd88538}{Add\+Window\+Ratio\+Changed}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Ratio\+Changed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Ratio\+Changed}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_ac225faea04df547b86e8e78867a193de}{Add\+Key\+Pressed}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Pressed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Key\+Pressed}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a07911524deba689229eef346f0f48965}{Add\+Key\+Release}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Released\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Key\+Released}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a974d6b9f048c1c1a22d0b02bd16025ae}{Add\+Key\+Hold}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Hold\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Key\+Hold}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a81e1153a87fa319a45de9d00676b0b5e}{Add\+Cursor\+Move}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Cursor\+Moved\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Cursor\+Moved}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a6a71e46125bc7a2d501908f55cdfb0f9}{Add\+Scroll\+Changed}}(clazz,  priority)~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Scroll\+Changed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Scroll\+Changed}}$<$clazz$>$, priority)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_aa72b87d6b96eff1ed64c56f1f60d691c}{Remove\+Window\+Close}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Closed\+Events.\+Remove\+Event(this)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a63d155ba501a5780d2d067ac845da1d9}{Remove\+Window\+Frame\+Resized}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Frame\+Resized\+Events.\+Remove\+Event(this)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_af865feaedb0105ecf2395f440302d37b}{Remove\+Window\+Ratio\+Changed}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Ratio\+Changed\+Events.\+Remove\+Event(this)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_ad0fc2ab4240b4482adde4f787a893f89}{Remove\+Key\+Pressed}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Pressed\+Events.\+Remove\+Event(this)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a44adc84c3c5c3e95184b948a63c005e5}{Remove\+Key\+Release}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Released\+Events.\+Remove\+Event(this)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a1e50db97d0b641e19e3c599845b49889}{Remove\+Key\+Hold}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Hold\+Events.\+Remove\+Event(this)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a3be6a41ac17dff84029bf2d0067df2b3}{Remove\+Cursor\+Move}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Cursor\+Moved\+Events.\+Remove\+Event(this)
+\item 
+\#define \mbox{\hyperlink{input__manager_8hpp_a61c570116fdcc1ac2fd424fc9ecb8cf6}{Remove\+Scroll\+Changed}}()~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Scroll\+Changed\+Events.\+Remove\+Event(this)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{input__manager_8hpp_a81e1153a87fa319a45de9d00676b0b5e}\label{input__manager_8hpp_a81e1153a87fa319a45de9d00676b0b5e} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddCursorMove@{AddCursorMove}}
+\index{AddCursorMove@{AddCursorMove}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddCursorMove}{AddCursorMove}}
+{\footnotesize\ttfamily \#define Add\+Cursor\+Move(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Cursor\+Moved\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Cursor\+Moved}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_a974d6b9f048c1c1a22d0b02bd16025ae}\label{input__manager_8hpp_a974d6b9f048c1c1a22d0b02bd16025ae} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddKeyHold@{AddKeyHold}}
+\index{AddKeyHold@{AddKeyHold}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddKeyHold}{AddKeyHold}}
+{\footnotesize\ttfamily \#define Add\+Key\+Hold(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Hold\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Key\+Hold}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_ac225faea04df547b86e8e78867a193de}\label{input__manager_8hpp_ac225faea04df547b86e8e78867a193de} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddKeyPressed@{AddKeyPressed}}
+\index{AddKeyPressed@{AddKeyPressed}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddKeyPressed}{AddKeyPressed}}
+{\footnotesize\ttfamily \#define Add\+Key\+Pressed(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Pressed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Key\+Pressed}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_a07911524deba689229eef346f0f48965}\label{input__manager_8hpp_a07911524deba689229eef346f0f48965} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddKeyRelease@{AddKeyRelease}}
+\index{AddKeyRelease@{AddKeyRelease}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddKeyRelease}{AddKeyRelease}}
+{\footnotesize\ttfamily \#define Add\+Key\+Release(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Released\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Key\+Released}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_a6a71e46125bc7a2d501908f55cdfb0f9}\label{input__manager_8hpp_a6a71e46125bc7a2d501908f55cdfb0f9} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddScrollChanged@{AddScrollChanged}}
+\index{AddScrollChanged@{AddScrollChanged}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddScrollChanged}{AddScrollChanged}}
+{\footnotesize\ttfamily \#define Add\+Scroll\+Changed(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Scroll\+Changed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Scroll\+Changed}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_af0e19d2ab9aeb4aa488e57911d4d8e8f}\label{input__manager_8hpp_af0e19d2ab9aeb4aa488e57911d4d8e8f} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddWindowClosed@{AddWindowClosed}}
+\index{AddWindowClosed@{AddWindowClosed}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddWindowClosed}{AddWindowClosed}}
+{\footnotesize\ttfamily \#define Add\+Window\+Closed(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Closed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Closed}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_a2cd1cdcbe57492f3f37f3242807b8d22}\label{input__manager_8hpp_a2cd1cdcbe57492f3f37f3242807b8d22} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddWindowFrameResized@{AddWindowFrameResized}}
+\index{AddWindowFrameResized@{AddWindowFrameResized}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddWindowFrameResized}{AddWindowFrameResized}}
+{\footnotesize\ttfamily \#define Add\+Window\+Frame\+Resized(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Frame\+Resized\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Frame\+Resized}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_a9b823d06edce33615df6f3fb7bd88538}\label{input__manager_8hpp_a9b823d06edce33615df6f3fb7bd88538} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddWindowRatioChanged@{AddWindowRatioChanged}}
+\index{AddWindowRatioChanged@{AddWindowRatioChanged}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddWindowRatioChanged}{AddWindowRatioChanged}}
+{\footnotesize\ttfamily \#define Add\+Window\+Ratio\+Changed(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Ratio\+Changed\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Ratio\+Changed}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_a576eabc769112ab438a27635af3dda0c}\label{input__manager_8hpp_a576eabc769112ab438a27635af3dda0c} 
+\index{input\_manager.hpp@{input\_manager.hpp}!AddWindowResized@{AddWindowResized}}
+\index{AddWindowResized@{AddWindowResized}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{AddWindowResized}{AddWindowResized}}
+{\footnotesize\ttfamily \#define Add\+Window\+Resized(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{priority }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Resized\+Events.\+Add\+Event(this, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xpe\+::core\+::\+On\+Window\+Resized}}$<$clazz$>$, priority)}
+
+\Hypertarget{input__manager_8hpp_a3be6a41ac17dff84029bf2d0067df2b3}\label{input__manager_8hpp_a3be6a41ac17dff84029bf2d0067df2b3} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveCursorMove@{RemoveCursorMove}}
+\index{RemoveCursorMove@{RemoveCursorMove}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveCursorMove}{RemoveCursorMove}}
+{\footnotesize\ttfamily \#define Remove\+Cursor\+Move(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Cursor\+Moved\+Events.\+Remove\+Event(this)}
+
+\Hypertarget{input__manager_8hpp_a1e50db97d0b641e19e3c599845b49889}\label{input__manager_8hpp_a1e50db97d0b641e19e3c599845b49889} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveKeyHold@{RemoveKeyHold}}
+\index{RemoveKeyHold@{RemoveKeyHold}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveKeyHold}{RemoveKeyHold}}
+{\footnotesize\ttfamily \#define Remove\+Key\+Hold(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Hold\+Events.\+Remove\+Event(this)}
+
+\Hypertarget{input__manager_8hpp_ad0fc2ab4240b4482adde4f787a893f89}\label{input__manager_8hpp_ad0fc2ab4240b4482adde4f787a893f89} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveKeyPressed@{RemoveKeyPressed}}
+\index{RemoveKeyPressed@{RemoveKeyPressed}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveKeyPressed}{RemoveKeyPressed}}
+{\footnotesize\ttfamily \#define Remove\+Key\+Pressed(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Pressed\+Events.\+Remove\+Event(this)}
+
+\Hypertarget{input__manager_8hpp_a44adc84c3c5c3e95184b948a63c005e5}\label{input__manager_8hpp_a44adc84c3c5c3e95184b948a63c005e5} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveKeyRelease@{RemoveKeyRelease}}
+\index{RemoveKeyRelease@{RemoveKeyRelease}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveKeyRelease}{RemoveKeyRelease}}
+{\footnotesize\ttfamily \#define Remove\+Key\+Release(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Key\+Released\+Events.\+Remove\+Event(this)}
+
+\Hypertarget{input__manager_8hpp_a61c570116fdcc1ac2fd424fc9ecb8cf6}\label{input__manager_8hpp_a61c570116fdcc1ac2fd424fc9ecb8cf6} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveScrollChanged@{RemoveScrollChanged}}
+\index{RemoveScrollChanged@{RemoveScrollChanged}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveScrollChanged}{RemoveScrollChanged}}
+{\footnotesize\ttfamily \#define Remove\+Scroll\+Changed(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Scroll\+Changed\+Events.\+Remove\+Event(this)}
+
+\Hypertarget{input__manager_8hpp_aa72b87d6b96eff1ed64c56f1f60d691c}\label{input__manager_8hpp_aa72b87d6b96eff1ed64c56f1f60d691c} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveWindowClose@{RemoveWindowClose}}
+\index{RemoveWindowClose@{RemoveWindowClose}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveWindowClose}{RemoveWindowClose}}
+{\footnotesize\ttfamily \#define Remove\+Window\+Close(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Closed\+Events.\+Remove\+Event(this)}
+
+\Hypertarget{input__manager_8hpp_a63d155ba501a5780d2d067ac845da1d9}\label{input__manager_8hpp_a63d155ba501a5780d2d067ac845da1d9} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveWindowFrameResized@{RemoveWindowFrameResized}}
+\index{RemoveWindowFrameResized@{RemoveWindowFrameResized}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveWindowFrameResized}{RemoveWindowFrameResized}}
+{\footnotesize\ttfamily \#define Remove\+Window\+Frame\+Resized(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Frame\+Resized\+Events.\+Remove\+Event(this)}
+
+\Hypertarget{input__manager_8hpp_af865feaedb0105ecf2395f440302d37b}\label{input__manager_8hpp_af865feaedb0105ecf2395f440302d37b} 
+\index{input\_manager.hpp@{input\_manager.hpp}!RemoveWindowRatioChanged@{RemoveWindowRatioChanged}}
+\index{RemoveWindowRatioChanged@{RemoveWindowRatioChanged}!input\_manager.hpp@{input\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{RemoveWindowRatioChanged}{RemoveWindowRatioChanged}}
+{\footnotesize\ttfamily \#define Remove\+Window\+Ratio\+Changed(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74}{xpe\+::core\+::c\+Event\+Manager\+::\+Get}}().Window\+Ratio\+Changed\+Events.\+Remove\+Event(this)}
+

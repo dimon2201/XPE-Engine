@@ -1,0 +1,240 @@
+\doxysection{xpe\+::render\+::s\+Shader\+Stage Struct Reference}
+\hypertarget{structxpe_1_1render_1_1s_shader_stage}{}\label{structxpe_1_1render_1_1s_shader_stage}\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+
+
+{\ttfamily \#include $<$shader.\+hpp$>$}
+
+Inheritance diagram for xpe\+::render\+::s\+Shader\+Stage\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{structxpe_1_1render_1_1s_shader_stage}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781}{e\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781ab50339a10e1de285ac99d4c3990b8693}{NONE}} = -\/1
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b}{VERTEX}} = 0
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441}{PIXEL}} = 1
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781ab22957ad8078e8d73de61aef53d13a74}{GEOMETRY}} = 2
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781aac404d7ce6ca5862e9b8a2641fbafd90}{COMPUTE}} = 3
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{xpe\+::render\+::s\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{e\+View\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4aecaa8fe8cb0e85372f4cc76728c7cf3c}{DEPTH\+\_\+\+STENCIL}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4a0bb01e169097cdf50612a3b567e8224b}{RENDER\+\_\+\+TARGET}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db}{SRV}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4a6902d76cea698982754404da77e5e08a}{UAV}}
+ \}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295}{e\+Map\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295a3466fab4975481651940ed328aa990e4}{READ}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295ad4b9e47f65b6e79b010582f15785867e}{WRITE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295aa7b843fb734e3b3fea8e5f902d3f4144}{READ\+\_\+\+WRITE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295a35e7bbbf18cc8cf2948004487c61a0ed}{WRITE\+\_\+\+NO\+\_\+\+OVERWRITE}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295aeb339b5f9c978d1d5d991cd67e08e31b}{WRITE\+\_\+\+DISCARD}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_ab916365963963ea5ef17e52423216e61}{s\+Shader\+Stage}} ()=\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{default}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3ee680c6893843b2ae0837695dd7fbd9}{s\+Shader\+Stage}} (\mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{id}}, \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781}{e\+Type}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_acf471dfdf127b77268e9bcab19f8a6ba}{Set\+Buffer}} (\mbox{\hyperlink{structxpe_1_1render_1_1s_buffer}{s\+Buffer}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{buffer}}, \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{slot}}=\mbox{\hyperlink{macro__constants_8hpp_a957882f9609425b078baff6f65857f43}{K\+\_\+\+SLOT\+\_\+\+DEFAULT}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a94e63af7ae74675f7fcb248f99dadca8}{Set\+Texture}} (\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{s\+Texture}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{texture}}, \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{slot}}=\mbox{\hyperlink{macro__constants_8hpp_a957882f9609425b078baff6f65857f43}{K\+\_\+\+SLOT\+\_\+\+DEFAULT}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a93f171a836a5716cd48b332327de8675}{Set\+Sampler}} (\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler}{s\+Sampler}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sampler}}, \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{slot}}=\mbox{\hyperlink{macro__constants_8hpp_a957882f9609425b078baff6f65857f43}{K\+\_\+\+SLOT\+\_\+\+DEFAULT}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_aaa3b6a79d804caddfa1f27740fc4ea1e}{ID}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781}{e\+Type}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3093d527a63f31d5402a6c69e6dc0ed2}{Type}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_blob}{s\+Blob}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_ab817744d2eb05d8152e136513812bee9}{Blob}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uword}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a8945febb6e431c05b95cf8d6f4995dd1}{Flag}} = 0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a7a7aacb4473381323afe68b726be5255}{Compiled}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_af97b7d801b46e942d9867c6c9ff8a227}{Profile}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a54f108a78d8b8685c7fb088639525c4c}{Entry\+Point}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_acc61948e3e3a8e7f9c3a9fc184e8ea56}{Source}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer}{s\+Buffer}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a8d965057dba54bb9b2abda7f75b1a01d}{Buffers}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{s\+Texture}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a8cc1eba6805082953aee58e4c9fa298d}{Textures}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$ \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler}{s\+Sampler}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a2721343f20cf208d65dd549bdad88bcf}{Samplers}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{xpe\+::render\+::s\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_af827dadaafbfdfbb81c4fe6d17d37bfd}{Instance}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_acd7826aa1301d8a032b85078503313ca}{View\+Instance}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{e\+View\+Type}} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a92908e592469d360bed7d9526fb59b69}{View\+Type}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693}{e\+View\+Type\+::\+NONE}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781}\label{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!eType@{eType}}
+\index{eType@{eType}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{eType}{eType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781}{xpe\+::render\+::s\+Shader\+Stage\+::e\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!NONE@{NONE}}}\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781ab50339a10e1de285ac99d4c3990b8693}\label{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781ab50339a10e1de285ac99d4c3990b8693} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VERTEX@{VERTEX}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!VERTEX@{VERTEX}}}\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b}\label{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b} 
+VERTEX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PIXEL@{PIXEL}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!PIXEL@{PIXEL}}}\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441}\label{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441} 
+PIXEL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GEOMETRY@{GEOMETRY}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!GEOMETRY@{GEOMETRY}}}\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781ab22957ad8078e8d73de61aef53d13a74}\label{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781ab22957ad8078e8d73de61aef53d13a74} 
+GEOMETRY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPUTE@{COMPUTE}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!COMPUTE@{COMPUTE}}}\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781aac404d7ce6ca5862e9b8a2641fbafd90}\label{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781aac404d7ce6ca5862e9b8a2641fbafd90} 
+COMPUTE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_ab916365963963ea5ef17e52423216e61}\label{structxpe_1_1render_1_1s_shader_stage_ab916365963963ea5ef17e52423216e61} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!sShaderStage@{sShaderStage}}
+\index{sShaderStage@{sShaderStage}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{sShaderStage()}{sShaderStage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily xpe\+::render\+::s\+Shader\+Stage\+::s\+Shader\+Stage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3ee680c6893843b2ae0837695dd7fbd9}\label{structxpe_1_1render_1_1s_shader_stage_a3ee680c6893843b2ae0837695dd7fbd9} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!sShaderStage@{sShaderStage}}
+\index{sShaderStage@{sShaderStage}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{sShaderStage()}{sShaderStage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily xpe\+::render\+::s\+Shader\+Stage\+::s\+Shader\+Stage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}}}]{id,  }\item[{\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781}{e\+Type}}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_acf471dfdf127b77268e9bcab19f8a6ba}\label{structxpe_1_1render_1_1s_shader_stage_acf471dfdf127b77268e9bcab19f8a6ba} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!SetBuffer@{SetBuffer}}
+\index{SetBuffer@{SetBuffer}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{SetBuffer()}{SetBuffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Shader\+Stage\+::\+Set\+Buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structxpe_1_1render_1_1s_buffer}{s\+Buffer}} \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}}]{slot = {\ttfamily \mbox{\hyperlink{macro__constants_8hpp_a957882f9609425b078baff6f65857f43}{K\+\_\+\+SLOT\+\_\+\+DEFAULT}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a93f171a836a5716cd48b332327de8675}\label{structxpe_1_1render_1_1s_shader_stage_a93f171a836a5716cd48b332327de8675} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!SetSampler@{SetSampler}}
+\index{SetSampler@{SetSampler}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{SetSampler()}{SetSampler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Shader\+Stage\+::\+Set\+Sampler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler}{s\+Sampler}} \texorpdfstring{$\ast$}{*}}]{sampler,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}}]{slot = {\ttfamily \mbox{\hyperlink{macro__constants_8hpp_a957882f9609425b078baff6f65857f43}{K\+\_\+\+SLOT\+\_\+\+DEFAULT}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a94e63af7ae74675f7fcb248f99dadca8}\label{structxpe_1_1render_1_1s_shader_stage_a94e63af7ae74675f7fcb248f99dadca8} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!SetTexture@{SetTexture}}
+\index{SetTexture@{SetTexture}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{SetTexture()}{SetTexture()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Shader\+Stage\+::\+Set\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{s\+Texture}} \texorpdfstring{$\ast$}{*}}]{texture,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}}]{slot = {\ttfamily \mbox{\hyperlink{macro__constants_8hpp_a957882f9609425b078baff6f65857f43}{K\+\_\+\+SLOT\+\_\+\+DEFAULT}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_ab817744d2eb05d8152e136513812bee9}\label{structxpe_1_1render_1_1s_shader_stage_ab817744d2eb05d8152e136513812bee9} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Blob@{Blob}}
+\index{Blob@{Blob}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Blob}{Blob}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_blob}{s\+Blob}} xpe\+::render\+::s\+Shader\+Stage\+::\+Blob}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a8d965057dba54bb9b2abda7f75b1a01d}\label{structxpe_1_1render_1_1s_shader_stage_a8d965057dba54bb9b2abda7f75b1a01d} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Buffers@{Buffers}}
+\index{Buffers@{Buffers}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Buffers}{Buffers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$\mbox{\hyperlink{structxpe_1_1render_1_1s_buffer}{s\+Buffer}}\texorpdfstring{$\ast$}{*}$>$ xpe\+::render\+::s\+Shader\+Stage\+::\+Buffers}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a7a7aacb4473381323afe68b726be5255}\label{structxpe_1_1render_1_1s_shader_stage_a7a7aacb4473381323afe68b726be5255} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Compiled@{Compiled}}
+\index{Compiled@{Compiled}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Compiled}{Compiled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::render\+::s\+Shader\+Stage\+::\+Compiled = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a54f108a78d8b8685c7fb088639525c4c}\label{structxpe_1_1render_1_1s_shader_stage_a54f108a78d8b8685c7fb088639525c4c} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!EntryPoint@{EntryPoint}}
+\index{EntryPoint@{EntryPoint}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{EntryPoint}{EntryPoint}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} xpe\+::render\+::s\+Shader\+Stage\+::\+Entry\+Point}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a8945febb6e431c05b95cf8d6f4995dd1}\label{structxpe_1_1render_1_1s_shader_stage_a8945febb6e431c05b95cf8d6f4995dd1} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Flag@{Flag}}
+\index{Flag@{Flag}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Flag}{Flag}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uword}} xpe\+::render\+::s\+Shader\+Stage\+::\+Flag = 0}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_aaa3b6a79d804caddfa1f27740fc4ea1e}\label{structxpe_1_1render_1_1s_shader_stage_aaa3b6a79d804caddfa1f27740fc4ea1e} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!ID@{ID}}
+\index{ID@{ID}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}} xpe\+::render\+::s\+Shader\+Stage\+::\+ID}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_af97b7d801b46e942d9867c6c9ff8a227}\label{structxpe_1_1render_1_1s_shader_stage_af97b7d801b46e942d9867c6c9ff8a227} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Profile@{Profile}}
+\index{Profile@{Profile}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Profile}{Profile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} xpe\+::render\+::s\+Shader\+Stage\+::\+Profile}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a2721343f20cf208d65dd549bdad88bcf}\label{structxpe_1_1render_1_1s_shader_stage_a2721343f20cf208d65dd549bdad88bcf} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Samplers@{Samplers}}
+\index{Samplers@{Samplers}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Samplers}{Samplers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler}{s\+Sampler}}\texorpdfstring{$\ast$}{*}$>$ xpe\+::render\+::s\+Shader\+Stage\+::\+Samplers}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_acc61948e3e3a8e7f9c3a9fc184e8ea56}\label{structxpe_1_1render_1_1s_shader_stage_acc61948e3e3a8e7f9c3a9fc184e8ea56} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Source@{Source}}
+\index{Source@{Source}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Source}{Source}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} xpe\+::render\+::s\+Shader\+Stage\+::\+Source}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a8cc1eba6805082953aee58e4c9fa298d}\label{structxpe_1_1render_1_1s_shader_stage_a8cc1eba6805082953aee58e4c9fa298d} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Textures@{Textures}}
+\index{Textures@{Textures}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Textures}{Textures}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{s\+Texture}}\texorpdfstring{$\ast$}{*}$>$ xpe\+::render\+::s\+Shader\+Stage\+::\+Textures}
+
+\Hypertarget{structxpe_1_1render_1_1s_shader_stage_a3093d527a63f31d5402a6c69e6dc0ed2}\label{structxpe_1_1render_1_1s_shader_stage_a3093d527a63f31d5402a6c69e6dc0ed2} 
+\index{xpe::render::sShaderStage@{xpe::render::sShaderStage}!Type@{Type}}
+\index{Type@{Type}!xpe::render::sShaderStage@{xpe::render::sShaderStage}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781}{e\+Type}} xpe\+::render\+::s\+Shader\+Stage\+::\+Type}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/rendering/core/\mbox{\hyperlink{shader_8hpp}{shader.\+hpp}}\end{DoxyCompactItemize}

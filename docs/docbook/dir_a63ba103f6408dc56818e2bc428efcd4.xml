@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_a63ba103f6408dc56818e2bc428efcd4" xml:lang="en-US">
+<title>engine/src/audio/core Directory Reference</title>
+<indexterm><primary>engine/src/audio/core Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_audio_2core_2context_8cpp">context.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_audio_2core_2context_8hpp">context.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_audio_2core_2core_8hpp">core.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_sndfile__context_8cpp">sndfile_context.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_sndfile__context_8hpp">sndfile_context.hpp</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

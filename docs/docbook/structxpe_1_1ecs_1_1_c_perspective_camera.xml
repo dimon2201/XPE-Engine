@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1ecs_1_1_c_perspective_camera" xml:lang="en-US">
+<title>xpe::ecs::CPerspectiveCamera Struct Reference</title>
+<indexterm><primary>xpe::ecs::CPerspectiveCamera</primary></indexterm>
+<para>
+<computeroutput>#include &lt;components.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::ecs::CPerspectiveCamera:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1ecs_1_1_c_perspective_camera.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Member Functions inherited from <link linkend="_classxpe_1_1res_1_1c_json">xpe::res::cJson</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88">ToJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b">FromJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_structxpe_1_1ecs_1_1_c_camera">xpe::ecs::CCamera</link>        <itemizedlist>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1ecs_1_1_c_camera_1ab3082484fe8770bfe6d074ce175f65a2">Position</link> = { 0, 0, -1 }</para>
+</listitem>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1ecs_1_1_c_camera_1a636e4980bf69df249495f4e1b98e8aff">Front</link> = { 0, 0, 0 }</para>
+</listitem>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1ecs_1_1_c_camera_1a1ace175af5a24628c5aab30268ea3833">Up</link> = { 0, 1, 0 }</para>
+</listitem>
+        </itemizedlist>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/ecs/<link linkend="_components_8hpp">components.hpp</link></section>

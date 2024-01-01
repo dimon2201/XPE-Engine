@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1core_1_1c_ring_buffer" xml:lang="en-US">
+<title>xpe::core::cRingBuffer&lt; T &gt; Class Template Reference</title>
+<indexterm><primary>xpe::core::cRingBuffer&lt; T &gt;</primary></indexterm>
+<para>
+<computeroutput>#include &lt;ring_buffer.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::core::cRingBuffer&lt; T &gt;:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1core_1_1c_ring_buffer.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer_1a7e2a7496f4d8a0f1f1a741ab765f7dad">Reserve</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">capacity</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer_1aeeb81d25975173d770612c5857de76eb">Resize</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">size</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer_1add2bf87765a5be55fd2547edacc153f0">Push</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">item</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer_1a642e4da2861f21242c6268b480a0eb88">Pop</link> (<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">item</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_ring_buffer_1a642e4da2861f21242c6268b480a0eb88"/><section>
+    <title>Pop()</title>
+<indexterm><primary>Pop</primary><secondary>xpe::core::cRingBuffer&lt; T &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cRingBuffer&lt; T &gt;</primary><secondary>Pop</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer">xpe::core::cRingBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt;::Pop (<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &amp; item)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_ring_buffer_1add2bf87765a5be55fd2547edacc153f0"/><section>
+    <title>Push()</title>
+<indexterm><primary>Push</primary><secondary>xpe::core::cRingBuffer&lt; T &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cRingBuffer&lt; T &gt;</primary><secondary>Push</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer">xpe::core::cRingBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt;::Push (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &amp; item)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_ring_buffer_1a7e2a7496f4d8a0f1f1a741ab765f7dad"/><section>
+    <title>Reserve()</title>
+<indexterm><primary>Reserve</primary><secondary>xpe::core::cRingBuffer&lt; T &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cRingBuffer&lt; T &gt;</primary><secondary>Reserve</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer">xpe::core::cRingBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt;::Reserve (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> capacity)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_ring_buffer_1aeeb81d25975173d770612c5857de76eb"/><section>
+    <title>Resize()</title>
+<indexterm><primary>Resize</primary><secondary>xpe::core::cRingBuffer&lt; T &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cRingBuffer&lt; T &gt;</primary><secondary>Resize</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_ring_buffer">xpe::core::cRingBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt;::Resize (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> size)</computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following file:</para>
+engine/src/stl/<link linkend="_ring__buffer_8hpp">ring_buffer.hpp</link></section>
+</section>

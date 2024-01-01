@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1render_1_1c_default_shader" xml:lang="en-US">
+<title>xpe::render::cDefaultShader Class Reference</title>
+<indexterm><primary>xpe::render::cDefaultShader</primary></indexterm>
+<para>
+<computeroutput>#include &lt;shader.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::cDefaultShader:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1render_1_1c_default_shader.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_default_shader_1a29c90f7c9d9fdd883ada1b381a9bd317">cDefaultShader</link> (<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">cShader::eCategory</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">category</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_default_shader_1a9d9aaf06c895ee5e4d773960b8fede3a">~cDefaultShader</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1ae049ee7d29afa50b562466bdef95b704">Bind</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a214ac22548a93e5291b81c69b1e801ee">Unbind</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1render_1_1c_shader">xpe::render::cShader</link>        <itemizedlist>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_shader_1a0cbea5a99dbdb3dfc6a7095ab8c206ab">cShader</link> (<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">cShader::eCategory</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">category</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_classxpe_1_1render_1_1c_shader_1a9af1125e8f5c2d061535cc5b87206d05">~cShader</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_shader_1ac2fb10c43abc3823aa6dc466b1f3ed56">Draw</link> (<link linkend="_classxpe_1_1ecs_1_1c_scene">ecs::cScene</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>)</para>
+</listitem>
+        </itemizedlist>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100">ePrimitiveTopology</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1ab9a49246297e92c63aa928f3efb6e371">PrimitiveTopology</link> = <link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee">ePrimitiveTopology::DEFAULT</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sInputLayout</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a6912c47f8410d5b9301ac33209453014">InputLayout</link> = <link linkend="_structxpe_1_1render_1_1s_vertex_1a82bd9ee50a012b35683065a507c0310e">sVertex::k_Format</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link> * <link linkend="_classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0">VertexStage</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link> * <link linkend="_classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd">PixelStage</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link> * <link linkend="_classxpe_1_1render_1_1c_default_shader_1a13e9aff101373819a6161f5bea71605f">GeometryStage</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_render_target">sRenderTarget</link> * <link linkend="_classxpe_1_1render_1_1c_default_shader_1abf89a1cb37817a55ff9c61f1cf61e145">RenderTarget</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_rasterizer">sRasterizer</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a3cb409c71bc3653e9d7c58182a447c9d">Rasterizer</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode">sDepthStencilMode</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a85458b227cfcf927c59290f85facfa43">DepthStencilMode</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_blend_mode">sBlendMode</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a58ff40e7e48861009c86b5bc9e39d689">BlendMode</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_classxpe_1_1render_1_1c_shader">xpe::render::cShader</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link> <link linkend="_classxpe_1_1render_1_1c_shader_1ac04f06dd5200515c26667aa1eddaeb42">ID</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_classxpe_1_1render_1_1c_shader_1afb11bac579269c1289d67f9ef0892980">Enable</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">eCategory</link> <link linkend="_classxpe_1_1render_1_1c_shader_1a15d300d13e742ae170e20143521c062a">Category</link> = <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b">eCategory::PREPASS</link></para>
+</listitem>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_shader">cShader</link> * <link linkend="_classxpe_1_1render_1_1c_shader_1a1434a54f77c5b8dfbad9c83b0bc602b6">Next</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Protected Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1ab70979a918380ad6b90ac6d020e23e56">Init</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a113c277f6a3d283c6ace4e7fda913853">InitPrepass</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a432663a9956bbd6b79fb46b6c5f70b92">InitOpaque</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1ad4f9480afbaccfd7f785e564b187c052">InitTransparent</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1ae7eae67faabb5d18b014aebbf9fef3f5">InitPostFX</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a5b9b2cb08e062a41083e5df13738f6be">InitUI</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_default_shader_1a94c9420cc3cee18454c9b0381a0c8303">InitFinal</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Types inherited from <link linkend="_classxpe_1_1render_1_1c_shader">xpe::render::cShader</link>        <itemizedlist>
+            <listitem><para>enum <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">eCategory</link> { <?linebreak?><link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a">NONE</link> = 0
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b">PREPASS</link> = 1
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144">OPAQUE</link> = 2
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9">TRANSPARENT</link> = 3
+, <?linebreak?><link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce">POSTFX</link> = 4
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e">UI</link> = 5
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806">FINAL</link> = 6
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1">COMPUTE</link> = 7
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a29c90f7c9d9fdd883ada1b381a9bd317"/><section>
+    <title>cDefaultShader()</title>
+<indexterm><primary>cDefaultShader</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>cDefaultShader</secondary></indexterm>
+<para><computeroutput>xpe::render::cDefaultShader::cDefaultShader (<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">cShader::eCategory</link> category, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> &amp; name)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a9d9aaf06c895ee5e4d773960b8fede3a"/><section>
+    <title>~cDefaultShader()</title>
+<indexterm><primary>~cDefaultShader</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>~cDefaultShader</secondary></indexterm>
+<para><computeroutput>xpe::render::cDefaultShader::~cDefaultShader ( )<computeroutput>[override]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1ae049ee7d29afa50b562466bdef95b704"/><section>
+    <title>Bind()</title>
+<indexterm><primary>Bind</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>Bind</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::Bind ( )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Implements <link linkend="_classxpe_1_1render_1_1c_shader_1a0278697eafc93f03dc126a6e2d3a2cbd">xpe::render::cShader</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1ab70979a918380ad6b90ac6d020e23e56"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::Init ( )<computeroutput>[protected]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a94c9420cc3cee18454c9b0381a0c8303"/><section>
+    <title>InitFinal()</title>
+<indexterm><primary>InitFinal</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>InitFinal</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::InitFinal ( )<computeroutput>[protected]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a432663a9956bbd6b79fb46b6c5f70b92"/><section>
+    <title>InitOpaque()</title>
+<indexterm><primary>InitOpaque</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>InitOpaque</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::InitOpaque ( )<computeroutput>[protected]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Reimplemented in <link linkend="_classxpe_1_1render_1_1c_skybox_shader_1a914912b074db5d3f985c8d31da02d417">xpe::render::cSkyboxShader</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1ae7eae67faabb5d18b014aebbf9fef3f5"/><section>
+    <title>InitPostFX()</title>
+<indexterm><primary>InitPostFX</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>InitPostFX</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::InitPostFX ( )<computeroutput>[protected]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Reimplemented in <link linkend="_classxpe_1_1render_1_1c_composite_transparent_shader_1a4c3dd46f56bb16151ce904d15d791fe5">xpe::render::cCompositeTransparentShader</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a113c277f6a3d283c6ace4e7fda913853"/><section>
+    <title>InitPrepass()</title>
+<indexterm><primary>InitPrepass</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>InitPrepass</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::InitPrepass ( )<computeroutput>[protected]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Reimplemented in <link linkend="_classxpe_1_1render_1_1c_shadow_shader_1acd5d0ef8a94bc9f6fd5c9ef429a7ba99">xpe::render::cShadowShader</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1ad4f9480afbaccfd7f785e564b187c052"/><section>
+    <title>InitTransparent()</title>
+<indexterm><primary>InitTransparent</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>InitTransparent</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::InitTransparent ( )<computeroutput>[protected]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a5b9b2cb08e062a41083e5df13738f6be"/><section>
+    <title>InitUI()</title>
+<indexterm><primary>InitUI</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>InitUI</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::InitUI ( )<computeroutput>[protected]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a214ac22548a93e5291b81c69b1e801ee"/><section>
+    <title>Unbind()</title>
+<indexterm><primary>Unbind</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>Unbind</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDefaultShader::Unbind ( )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Implements <link linkend="_classxpe_1_1render_1_1c_shader_1a84982d70a60b8fc688009d083e6dd2a1">xpe::render::cShader</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a58ff40e7e48861009c86b5bc9e39d689"/><section>
+    <title>BlendMode</title>
+<indexterm><primary>BlendMode</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>BlendMode</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_blend_mode">sBlendMode</link> xpe::render::cDefaultShader::BlendMode</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a85458b227cfcf927c59290f85facfa43"/><section>
+    <title>DepthStencilMode</title>
+<indexterm><primary>DepthStencilMode</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>DepthStencilMode</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode">sDepthStencilMode</link> xpe::render::cDefaultShader::DepthStencilMode</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a13e9aff101373819a6161f5bea71605f"/><section>
+    <title>GeometryStage</title>
+<indexterm><primary>GeometryStage</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>GeometryStage</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>* xpe::render::cDefaultShader::GeometryStage = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a6912c47f8410d5b9301ac33209453014"/><section>
+    <title>InputLayout</title>
+<indexterm><primary>InputLayout</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>InputLayout</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sInputLayout</link> xpe::render::cDefaultShader::InputLayout = <link linkend="_structxpe_1_1render_1_1s_vertex_1a82bd9ee50a012b35683065a507c0310e">sVertex::k_Format</link></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd"/><section>
+    <title>PixelStage</title>
+<indexterm><primary>PixelStage</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>PixelStage</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>* xpe::render::cDefaultShader::PixelStage = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1ab9a49246297e92c63aa928f3efb6e371"/><section>
+    <title>PrimitiveTopology</title>
+<indexterm><primary>PrimitiveTopology</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>PrimitiveTopology</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100">ePrimitiveTopology</link> xpe::render::cDefaultShader::PrimitiveTopology = <link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee">ePrimitiveTopology::DEFAULT</link></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1a3cb409c71bc3653e9d7c58182a447c9d"/><section>
+    <title>Rasterizer</title>
+<indexterm><primary>Rasterizer</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>Rasterizer</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_rasterizer">sRasterizer</link> xpe::render::cDefaultShader::Rasterizer</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1abf89a1cb37817a55ff9c61f1cf61e145"/><section>
+    <title>RenderTarget</title>
+<indexterm><primary>RenderTarget</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>RenderTarget</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_render_target">sRenderTarget</link>* xpe::render::cDefaultShader::RenderTarget = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0"/><section>
+    <title>VertexStage</title>
+<indexterm><primary>VertexStage</primary><secondary>xpe::render::cDefaultShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cDefaultShader</primary><secondary>VertexStage</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>* xpe::render::cDefaultShader::VertexStage = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/rendering/core/<link linkend="_shader_8hpp">shader.hpp</link>engine/src/rendering/core/<link linkend="_shader_8cpp">shader.cpp</link></section>
+</section>

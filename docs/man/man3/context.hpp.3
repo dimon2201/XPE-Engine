@@ -1,0 +1,418 @@
+.TH "engine/src/rendering/core/context.hpp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine/src/rendering/core/context.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <rendering/core/shader\&.hpp>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBxpe\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::render\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::render::context\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::Init\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::Free\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateSwapchain\fP (\fBint\fP \fBwidth\fP, \fBint\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeSwapchain\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::ResizeSwapchain\fP (\fBsRenderTarget\fP &\fBpresentTarget\fP, \fBint\fP \fBwidth\fP, \fBint\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateSwapchainTargetView\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateRenderTarget\fP (\fBsRenderTarget\fP &\fBrenderTarget\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindRenderTarget\fP (\fBconst\fP \fBvector\fP< \fBvoid\fP * > &\fBcolorViews\fP, \fBvoid\fP *\fBdepthView\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::BindRenderTarget\fP (\fBconst\fP \fBvector\fP< \fBvoid\fP * > &\fBcolorViews\fP, \fBvoid\fP *\fBdepthView\fP, \fBsViewport\fP *\fBviewport\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::UnbindRenderTarget\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::ClearColorTarget\fP (\fBvoid\fP *\fBcolorView\fP, \fBconst\fP glm::vec4 &\fBcolor\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::ClearDepthTarget\fP (\fBvoid\fP *\fBdepthView\fP, \fBconst\fP \fBf32\fP \fBdepth\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::ClearStencilTarget\fP (\fBvoid\fP *\fBdepthView\fP, \fBconst\fP \fBu8\fP \fBstencil\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::ClearDepthStencilTarget\fP (\fBvoid\fP *\fBdepthView\fP, \fBconst\fP \fBf32\fP \fBdepth\fP, \fBconst\fP \fBu8\fP \fBstencil\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::FreeRenderTarget\fP (\fBsRenderTarget\fP &\fBrenderTarget\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeRenderTargetColors\fP (\fBvector\fP< \fBsTexture\fP * > &\fBcolors\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeRenderTargetColorViews\fP (\fBvector\fP< \fBvoid\fP * > &\fBcolorViews\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeRenderTargetDepth\fP (\fBsTexture\fP *\fBdepth\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeRenderTargetDepthView\fP (\fBvoid\fP **\fBdepthView\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::ResizeRenderTarget\fP (\fBsRenderTarget\fP &\fBrenderTarget\fP, \fBint\fP \fBwidth\fP, \fBint\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::Present\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateShaderStage\fP (\fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeShaderStage\fP (\fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CompileShaderStage\fP (\fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindVSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindPSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindGSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindCSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::UnbindVSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::UnbindPSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::UnbindGSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::UnbindCSStage\fP (\fBconst\fP \fBsShaderStage\fP &\fBstage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeShaderResourceView\fP (\fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CreateTexture\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateTexture1D\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateTexture2D\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateTexture2DArray\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateTexture3D\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateTextureCube\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateTextureDepthStencil\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::VSBindTexture\fP (\fBsTexture::eViewType\fP \fBviewType\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSBindTextureSlot\fP (\fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSUnbindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::PSBindTexture\fP (\fBsTexture::eViewType\fP \fBviewType\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSBindTextureSlot\fP (\fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSUnbindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::GSBindTexture\fP (\fBsTexture::eViewType\fP \fBviewType\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSBindTextureSlot\fP (\fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSUnbindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CSBindTexture\fP (\fBsTexture::eViewType\fP \fBviewType\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSBindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSBindTextureSlot\fP (\fBu32\fP \fBslot\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSUnbindTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::FreeTexture\fP (\fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeTexture1D\fP (\fBvoid\fP *\fBinstance\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeTexture2D\fP (\fBvoid\fP *\fBinstance\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeTexture2DArray\fP (\fBvoid\fP *\fBinstance\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeTexture3D\fP (\fBvoid\fP *\fBinstance\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeTextureCube\fP (\fBvoid\fP *\fBinstance\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeTextureDepthStencil\fP (\fBvoid\fP *\fBinstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CopyTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP, \fBu32\fP \fBlayerIndex\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CopyTextureOffset\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBusize\fP \fBoffset\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP, \fBu32\fP \fBlayerIndex\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::MoveTexture\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP, \fBu32\fP \fBlayerIndex\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::MoveTextureOffset\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP, \fBusize\fP \fBoffset\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP, \fBu32\fP \fBlayerIndex\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::GenerateMips\fP (\fBconst\fP \fBsTexture\fP &\fBtexture\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateSampler\fP (\fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeSampler\fP (\fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSBindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::VSBindSampler\fP (\fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSUnbindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSBindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::PSBindSampler\fP (\fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSUnbindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSBindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::GSBindSampler\fP (\fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSUnbindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSBindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CSBindSampler\fP (\fBu32\fP \fBslot\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSUnbindSampler\fP (\fBconst\fP \fBsSampler\fP &\fBsampler\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateBuffer\fP (\fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeBuffer\fP (\fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindVertexBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindIndexBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::VSBindBuffer\fP (\fBsBuffer::eViewType\fP \fBviewType\fP, \fBsBuffer::eType\fP \fBtype\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBinstance\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSBindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::VSUnbindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::PSBindBuffer\fP (\fBsBuffer::eViewType\fP \fBviewType\fP, \fBsBuffer::eType\fP \fBtype\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBinstance\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSBindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::PSUnbindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::GSBindBuffer\fP (\fBsBuffer::eViewType\fP \fBviewType\fP, \fBsBuffer::eType\fP \fBtype\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBinstance\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSBindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::GSUnbindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CSBindBuffer\fP (\fBsBuffer::eViewType\fP \fBviewType\fP, \fBsBuffer::eType\fP \fBtype\fP, \fBu32\fP \fBslot\fP, \fBvoid\fP *\fBinstance\fP, \fBvoid\fP *\fBviewInstance\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSBindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CSUnbindBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CopyBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::CopyBufferOffset\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP, \fBusize\fP \fBoffset\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::MoveBuffer\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::render::context::MoveBufferOffset\fP (\fBconst\fP \fBsBuffer\fP &\fBbuffer\fP, \fBusize\fP \fBoffset\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBusize\fP \fBdataByteSize\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP * \fBxpe::render::context::Map\fP (\fBconst\fP \fBsResource\fP &\fBresource\fP, \fBu32\fP \fBsubresourceIndex\fP, \fBsResource::eMapType\fP \fBmapType\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::Unmap\fP (\fBconst\fP \fBsResource\fP &\fBresource\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::UpdateSubData\fP (\fBconst\fP \fBsResource\fP &\fBresource\fP, \fBu32\fP \fBsubresourceIndex\fP, \fBconst\fP \fBvoid\fP *\fBdata\fP, \fBu32\fP \fBrowPitch\fP, \fBu32\fP \fBdepthPitch\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateInputLayout\fP (\fBsInputLayout\fP &\fBinputLayout\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindInputLayout\fP (\fBconst\fP \fBsInputLayout\fP &\fBinputLayout\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeInputLayout\fP (\fBsInputLayout\fP &\fBinputLayout\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindPrimitiveTopology\fP (\fBconst\fP \fBePrimitiveTopology\fP &\fBprimitiveTopology\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindViewport\fP (\fBsViewport\fP *\fBviewport\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::UnbindViewport\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateDepthStencilMode\fP (\fBsDepthStencilMode\fP &\fBdepthStencilMode\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindDepthStencilMode\fP (\fBvoid\fP *\fBstate\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeDepthStencilMode\fP (\fBsDepthStencilMode\fP &\fBdepthStencilMode\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateBlendMode\fP (\fBsBlendMode\fP &\fBblendMode\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindBlendMode\fP (\fBvoid\fP *\fBstate\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeBlendMode\fP (\fBsBlendMode\fP &\fBblendMode\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::CreateRasterizer\fP (\fBsRasterizer\fP &\fBrasterizer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::BindRasterizer\fP (\fBvoid\fP *\fBstate\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeRasterizer\fP (\fBsRasterizer\fP &\fBrasterizer\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::DrawIndexed\fP (\fBusize\fP \fBindexCount\fP, \fBusize\fP \fBinstanceCount\fP=1, \fBusize\fP \fBvertexOffset\fP=0, \fBusize\fP \fBindexOffset\fP=0, \fBusize\fP \fBinstanceOffset\fP=0)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::DrawVertexed\fP (\fBusize\fP \fBvertexCount\fP, \fBusize\fP \fBinstanceCount\fP=1, \fBusize\fP \fBvertexOffset\fP=0, \fBusize\fP \fBinstanceOffset\fP=0)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::DrawQuad\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::Dispatch\fP (\fBconst\fP glm::ivec3 &\fBthreadGroupCount\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP * \fBxpe::render::context::GetDevice\fP ()"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

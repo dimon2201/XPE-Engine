@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ecs_8hpp" xml:lang="en-US">
+<title>engine/src/ecs/ecs.hpp File Reference</title>
+<indexterm><primary>engine/src/ecs/ecs.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;entt/entity/registry.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classxpe_1_1ecs_1_1c_scene">xpe::ecs::cScene</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1ecs_1_1c_entity">xpe::ecs::cEntity</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1ecs_1_1c_system">xpe::ecs::cSystem</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacephysx">physx</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1ecs">xpe::ecs</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typedef</link> entt::entity <link linkend="_namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5">xpe::ecs::EntityID</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typedef</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1ecs_1a5d94892c480b4d1cee59dd45fb6799bc">xpe::ecs::ComponentID</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">using</link> <link linkend="_namespacexpe_1_1ecs_1a7963541b7fa8df6c5e97615835f40acf">xpe::ecs::cRegistry</link> = entt::basic_registry&lt;<link linkend="_namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5">EntityID</link>, <link linkend="_classxpe_1_1core_1_1c_main_allocator">cMainAllocator</link>&lt;<link linkend="_namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5">EntityID</link>&gt;&gt;</para>
+</listitem>
+            <listitem><para>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link> &gt; </para><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">using</link> <link linkend="_namespacexpe_1_1ecs_1a1046766c77e58971bcc166487987d765">xpe::ecs::cStorage</link> = entt::basic_storage&lt;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>, <link linkend="_namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5">EntityID</link>, <link linkend="_classxpe_1_1core_1_1c_main_allocator">cMainAllocator</link>&lt;<link linkend="_namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5">EntityID</link>&gt;&gt;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">constexpr</link> <link linkend="_namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5">EntityID</link> <link linkend="_namespacexpe_1_1ecs_1a27b929b1a51cf2205dac0671e06d8937">xpe::ecs::EntityNull</link> = entt::null</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

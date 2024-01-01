@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1core_1_1s_observer_window_ratio" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::core::sObserverWindowRatio</compoundname>
+    <basecompoundref refid="structxpe_1_1core_1_1s_observer" prot="public" virt="non-virtual">xpe::core::sObserver&lt; float &gt;</basecompoundref>
+    <includes refid="observers_8hpp" local="no">observers.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_window_ratio_1ae68d3a3544c87ab3b2af8ad258c6248d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sObserverWindowRatio::sObserverWindowRatio</definition>
+        <argsstring>(float ratio)</argsstring>
+        <name>sObserverWindowRatio</name>
+        <qualifiedname>xpe::core::sObserverWindowRatio::sObserverWindowRatio</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observers.hpp" line="14" column="13" bodyfile="engine/src/core/observers.cpp" bodystart="12" bodyend="17"/>
+        <references refid="classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74" compoundref="event__manager_8cpp" startline="18" endline="21">xpe::core::cEventManager::Get</references>
+        <references refid="structxpe_1_1core_1_1s_observer_1a5d351e8173fd954c2c6a964d3411a241" compoundref="observer_8hpp" startline="46">xpe::core::sObserver&lt; float &gt;::m_OnChanged</references>
+        <references refid="classxpe_1_1core_1_1c_event_buffer_1aea68f47d551082a2b6878a5e18b1bdf8" compoundref="event_8hpp" startline="134" endline="141">xpe::core::cEventBuffer&lt; EventFunction &gt;::NotifyAll</references>
+        <references refid="classxpe_1_1core_1_1c_event_manager_1a695b88eed062d10ba3bf71fa08bd646c" compoundref="event__manager_8hpp" startline="43">xpe::core::cEventManager::WindowRatioChangedEvents</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::sObserver&lt; float &gt;</label>
+        <link refid="structxpe_1_1core_1_1s_observer"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::sObserverWindowRatio</label>
+        <link refid="structxpe_1_1core_1_1s_observer_window_ratio"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::sObserver&lt; float &gt;</label>
+        <link refid="structxpe_1_1core_1_1s_observer"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::sObserverWindowRatio</label>
+        <link refid="structxpe_1_1core_1_1s_observer_window_ratio"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/core/observers.hpp" line="13" column="9" bodyfile="engine/src/core/observers.hpp" bodystart="13" bodyend="15"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1core_1_1s_observer_1a5d351e8173fd954c2c6a964d3411a241" prot="protected" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>m_OnChanged</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1ab81082f760f9c507937a21604d958e07" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator float</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a1d40b50056be4667333f630547ae6149" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator!=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a149bf7344514f2e38b6a53fec6235305" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator!=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aad03823e7ef98dc2a1ee06f5f6f0758b" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator!=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a3112b70cb139bfd7f68bec9948f31a8b" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator()</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a1d1dcf741ba102441f059801e715a8a1" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&lt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a2e39c826d8988030a95a82df468e750e" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&lt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aa0f9dee51375748c046238f8b9b39db0" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&lt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1ab09d392742847aeab6623d40b678c520" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&lt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1adf0b1af83b82d7ab08a3ff983cbeb93f" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&lt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aac27addf1be37f0b16a9dbcf84b30d24" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&lt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a29c4c31ed712e8ad0b6108eb9ddfb82e" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a16fdd18dfa87de699b93ae7b4e19bfa8" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator==</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1abda90864ce669d8069b89e0ebecdfcd1" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator==</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a9d3298132df88256089fec4d90d2d8d4" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator==</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aea316df7ff0f83cc124ba8a658ee7f7a" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&gt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a158a2096015600fc7415132ec0f53511" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&gt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a2960d0ff7c7c49464970e880749d6793" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&gt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a95a83bd87ad5ba361d56b437d8cbd46a" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&gt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1adfc85eab6559e6e478e398d86381bab4" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&gt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1af52bbfd564cee65e847f9db7df103860" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>operator&gt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a22dfe1edba80d794f09d54bf28c519b6" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>sObserver</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_window_ratio_1ae68d3a3544c87ab3b2af8ad258c6248d" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>sObserverWindowRatio</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" prot="public" virt="non-virtual"><scope>xpe::core::sObserverWindowRatio</scope><name>Value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

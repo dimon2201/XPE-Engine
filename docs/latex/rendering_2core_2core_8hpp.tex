@@ -1,0 +1,137 @@
+\doxysection{engine/src/rendering/core/core.hpp File Reference}
+\hypertarget{rendering_2core_2core_8hpp}{}\label{rendering_2core_2core_8hpp}\index{engine/src/rendering/core/core.hpp@{engine/src/rendering/core/core.hpp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{xpe\+::render\+::s\+Resource}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer}{xpe\+::render\+::s\+Buffer}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_blob}{xpe\+::render\+::s\+Blob}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_viewport}{xpe\+::render\+::s\+Viewport}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format}{xpe\+::render\+::s\+Vertex\+Format}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{xpe\+::render\+::s\+Vertex\+Format\+::s\+Attribute}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes}{xpe\+::render\+::s\+Attributes}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex}{xpe\+::render\+::s\+Vertex}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_stencil_test}{xpe\+::render\+::s\+Stencil\+Test}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_depth_stencil_mode}{xpe\+::render\+::s\+Depth\+Stencil\+Mode}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_target}{xpe\+::render\+::s\+Blend\+Target}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_mode}{xpe\+::render\+::s\+Blend\+Mode}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_rasterizer}{xpe\+::render\+::s\+Rasterizer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1render}{xpe\+::render}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100}{xpe\+::render\+::e\+Primitive\+Topology}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a14d20da17f6d27fc43c5f311c17eb912}{xpe\+::render\+::\+TRIANGLE\+\_\+\+LIST}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a708de017e3b83ccba21dfc9f6367d46f}{xpe\+::render\+::\+TRIANGLE\+\_\+\+STRIP}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100ad2632e54a7b9520714554554f4b9619d}{xpe\+::render\+::\+POINT\+\_\+\+LIST}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a195d93c98c5e94cad21509e910f65fae}{xpe\+::render\+::\+LINE\+\_\+\+LIST}}
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100ae64a4d2159ed46d077e21a505575c814}{xpe\+::render\+::\+LINE\+\_\+\+STRIP}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee}{xpe\+::render\+::\+DEFAULT}} = TRIANGLE\+\_\+\+LIST
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542}{xpe\+::render\+::e\+Depth\+Write\+Mask}} \{ \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542a529e9e0beb5f85d1f132917c1a09860c}{xpe\+::render\+::\+ZERO}} = 0
+, \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542a5fb1f955b45e38e31789286a1790398d}{xpe\+::render\+::\+ALL}} = 1
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927}{xpe\+::render\+::e\+Depth\+Stencil\+Func}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a443475558f0168dff92ecde26b98ae5a}{xpe\+::render\+::\+NEVER}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a1798e8c3621ca53d9e3a80d257306000}{xpe\+::render\+::\+LESS}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a969f331a87d8c958473c32b4d0e61a44}{xpe\+::render\+::\+EQUAL}} = 3
+, \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a8b4a5cd69b217bf93b054ada7f49abd4}{xpe\+::render\+::\+LESS\+\_\+\+EQUAL}} = 4
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927ae7e72355289e404b762d4cf88824d23b}{xpe\+::render\+::\+GREATER}} = 5
+, \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a4ea2d378cdec20f59330f113297bc1ce}{xpe\+::render\+::\+NOT\+\_\+\+EQUAL}} = 6
+, \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a87e6b203bf40967d37a33f9a4438561a}{xpe\+::render\+::\+GREATER\+\_\+\+EQUAL}} = 7
+, \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927af3fc827ade4b968e50406496907ef962}{xpe\+::render\+::\+ALWAYS}} = 8
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409}{xpe\+::render\+::e\+Depth\+Stencil\+Op}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a60cba2874369bd3790e14ea5f8a7bc58}{xpe\+::render\+::\+KEEP}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a529e9e0beb5f85d1f132917c1a09860c}{xpe\+::render\+::\+ZERO}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a560a2dd6f6744646473b3b19e1fe96d7}{xpe\+::render\+::\+REPLACE}} = 3
+, \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a5a5305a172cd658125cfa47646dceba1}{xpe\+::render\+::\+INCR\+\_\+\+SAT}} = 4
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a5becedb7820af09b129428cea781c7ca}{xpe\+::render\+::\+DECR\+\_\+\+SAT}} = 5
+, \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409aa2727ae72447eea06d4cc0ef67187280}{xpe\+::render\+::\+INVERT}} = 6
+, \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409afc67535e5273d466beba3c06c0dbd988}{xpe\+::render\+::\+INCR}} = 7
+, \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409ac121b991572aba8a5789d08d7e9cf76e}{xpe\+::render\+::\+DECR}} = 8
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22c}{xpe\+::render\+::e\+Blend}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca529e9e0beb5f85d1f132917c1a09860c}{xpe\+::render\+::\+ZERO}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22cabc21e6484530fc9d0313cb816b733396}{xpe\+::render\+::\+ONE}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca0d64e73cd04f53e815a849347285839e}{xpe\+::render\+::\+SRC\+\_\+\+COLOR}} = 3
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca5e4fced94ef5e9710ce78137845fa25c}{xpe\+::render\+::\+INV\+\_\+\+SRC\+\_\+\+COLOR}} = 4
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22caa01be6519d4fb614f16261a59958bbb4}{xpe\+::render\+::\+SRC\+\_\+\+ALPHA}} = 5
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca17595667cd320b6e679472da7a32e4c5}{xpe\+::render\+::\+INV\+\_\+\+SRC\+\_\+\+ALPHA}} = 6
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22cae9f1eb5f70dec83523dc8c5ed48975bb}{xpe\+::render\+::\+DEST\+\_\+\+ALPHA}} = 7
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca8a1073afa63c32ab6ba7c1c34874675e}{xpe\+::render\+::\+INV\+\_\+\+DEST\+\_\+\+ALPHA}} = 8
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca40e4540ce040c52d2070b2b19f590ded}{xpe\+::render\+::\+DEST\+\_\+\+COLOR}} = 9
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22caee898522202ff79c0e99fe097f12dfd1}{xpe\+::render\+::\+INV\+\_\+\+DEST\+\_\+\+COLOR}} = 10
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca6fbee7e1f50ab11b3548fe4d66edb33b}{xpe\+::render\+::\+SRC\+\_\+\+ALPHA\+\_\+\+SAT}} = 11
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca6582a89c86055442e24b63ce8ef51a11}{xpe\+::render\+::\+BLEND\+\_\+\+FACTOR}} = 14
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca21d378651720cb4455d53e2cf313c5e7}{xpe\+::render\+::\+INV\+\_\+\+BLEND\+\_\+\+FACTOR}} = 15
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca66d0eeba66efb4330b4282febabb5376}{xpe\+::render\+::\+SRC1\+\_\+\+COLOR}} = 16
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca9ffd5c40e7ef30789f03bddf3fdd2b0b}{xpe\+::render\+::\+INV\+\_\+\+SRC1\+\_\+\+COLOR}} = 17
+, \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca9093618941290447db0d37e48f60f82a}{xpe\+::render\+::\+SRC1\+\_\+\+ALPHA}} = 18
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22cab0b7d955c7fa184d61392db88e403251}{xpe\+::render\+::\+INV\+\_\+\+SRC1\+\_\+\+ALPHA}} = 19
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025}{xpe\+::render\+::e\+Blend\+Op}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025a9eeb52badb613229884838847294b90d}{xpe\+::render\+::\+ADD}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025a23ebcc4776b613af25dfbe7c8ce4813e}{xpe\+::render\+::\+SUBTRACT}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025ad1ce55434a47514db52d9706a79eaf7b}{xpe\+::render\+::\+REV\+\_\+\+SUBTRACT}} = 3
+, \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025ace31e2a082d17e038fcc6e3006166653}{xpe\+::render\+::\+MIN}} = 4
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025a26a4b44a837bf97b972628509912b4a5}{xpe\+::render\+::\+MAX}} = 5
+ \}
+\item 
+enum \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618e}{xpe\+::render\+::e\+Color\+Write\+Enable\+Mask}} \+: u8 \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea6d9a3b389a702f29ef14d867ed7aef9c}{xpe\+::render\+::\+RED}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea054dc054cec517a54f25d8a38b3c3dd0}{xpe\+::render\+::\+GREEN}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea2f85853946b7cc49fce605cbe307c916}{xpe\+::render\+::\+BLUE}} = 4
+, \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618eafbc64e20f8fda25c03e032a359e22743}{xpe\+::render\+::\+ALPHA}} = 8
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618eae8d0dfe7c060638bef4030ce7aa1fcd1}{xpe\+::render\+::\+ALL}} = (((RED \texorpdfstring{$\vert$}{|} GREEN) \texorpdfstring{$\vert$}{|} BLUE) \texorpdfstring{$\vert$}{|} ALPHA)
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84}{xpe\+::render\+::e\+Fill\+Mode}} \{ \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84a43ea8c7cefb63ec314b4df5628cba577}{xpe\+::render\+::\+WIREFRAME}}
+, \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84ad0dea69649a83749aa6bdf176092e8c9}{xpe\+::render\+::\+SOLID}}
+, \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84a5b39c8b553c821e7cddc6da64b5bd2ee}{xpe\+::render\+::\+DEFAULT}} = SOLID
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9}{xpe\+::render\+::e\+Cull\+Mode}} \{ \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9ab50339a10e1de285ac99d4c3990b8693}{xpe\+::render\+::\+NONE}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9abb2fe5c916efb43aab8cbb68f997d2ee}{xpe\+::render\+::\+FRONT}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9a1dd26f1f1790f0b56d5752fb0fbecef0}{xpe\+::render\+::\+BACK}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9a5b39c8b553c821e7cddc6da64b5bd2ee}{xpe\+::render\+::\+DEFAULT}} = NONE
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1render_a5aa26e9d9a7e2a4be98a0195191c654f}{xpe\+::render\+::\+JSON}} (\mbox{\hyperlink{structxpe_1_1render_1_1s_vertex}{s\+Vertex}}, Position, UV, Normal, Tangent, Bone\+IDs, Bone\+Weights) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{struct}} \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\+\_\+\+API}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\+Input\+Layout}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}
+\end{DoxyCompactItemize}

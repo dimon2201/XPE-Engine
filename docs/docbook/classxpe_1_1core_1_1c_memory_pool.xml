@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1core_1_1c_memory_pool" xml:lang="en-US">
+<title>xpe::core::cMemoryPool Class Reference</title>
+<indexterm><primary>xpe::core::cMemoryPool</primary></indexterm>
+<para>
+<computeroutput>#include &lt;memory_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_memory_pool_1a758ddd40c10e6e5b8bfebd17245dac75">Init</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">allocs</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">alignment</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_memory_pool_1a440d95eb9d3f9e46250182f2927b2a2f">Release</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_memory_pool_1a213424d7b68568217760b8717ea90447">Allocate</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">size</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_classxpe_1_1core_1_1c_memory_pool_1ac16a3ff0230764a05b791226c2149a73">Free</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_classxpe_1_1core_1_1c_memory_pool_1a6522f0d3fd6fe0ded6f6f47c423c2cb1">GetAllocCount</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_classxpe_1_1core_1_1c_memory_pool_1a36098361cfd16fb1c5642d6f0195ee7e">GetByteSize</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_classxpe_1_1core_1_1c_memory_pool_1ab6f6f1a953d48db7aa2b94cc05e1ed2c">GetBytesUsage</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_classxpe_1_1core_1_1c_memory_pool_1a154cc7bfe409e6ee097530288ac6c8b9">GetLastFreedBytes</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1a213424d7b68568217760b8717ea90447"/><section>
+    <title>Allocate()</title>
+<indexterm><primary>Allocate</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>Allocate</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * xpe::core::cMemoryPool::Allocate (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> size)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1ac16a3ff0230764a05b791226c2149a73"/><section>
+    <title>Free()</title>
+<indexterm><primary>Free</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>Free</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::cMemoryPool::Free (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * address)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1a6522f0d3fd6fe0ded6f6f47c423c2cb1"/><section>
+    <title>GetAllocCount()</title>
+<indexterm><primary>GetAllocCount</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>GetAllocCount</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::core::cMemoryPool::GetAllocCount ( ) const<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1a36098361cfd16fb1c5642d6f0195ee7e"/><section>
+    <title>GetByteSize()</title>
+<indexterm><primary>GetByteSize</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>GetByteSize</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::core::cMemoryPool::GetByteSize ( ) const<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1ab6f6f1a953d48db7aa2b94cc05e1ed2c"/><section>
+    <title>GetBytesUsage()</title>
+<indexterm><primary>GetBytesUsage</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>GetBytesUsage</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::core::cMemoryPool::GetBytesUsage ( ) const<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1a154cc7bfe409e6ee097530288ac6c8b9"/><section>
+    <title>GetLastFreedBytes()</title>
+<indexterm><primary>GetLastFreedBytes</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>GetLastFreedBytes</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::core::cMemoryPool::GetLastFreedBytes ( ) const<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1a758ddd40c10e6e5b8bfebd17245dac75"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cMemoryPool::Init (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> byteSize, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> allocs, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> alignment)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_pool_1a440d95eb9d3f9e46250182f2927b2a2f"/><section>
+    <title>Release()</title>
+<indexterm><primary>Release</primary><secondary>xpe::core::cMemoryPool</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryPool</primary><secondary>Release</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cMemoryPool::Release ( )</computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/core/<link linkend="_memory__manager_8hpp">memory_manager.hpp</link>engine/src/core/<link linkend="_memory__manager_8cpp">memory_manager.cpp</link></section>
+</section>

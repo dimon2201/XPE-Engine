@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_skeleton_data" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sSkeletonData</compoundname>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_skeleton_data_1ad2594ed74f7327381b359397c437918b" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::render::sSkeletonData::Transform</definition>
+        <argsstring></argsstring>
+        <name>Transform</name>
+        <qualifiedname>xpe::render::sSkeletonData::Transform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="423" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="423" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/buffers.hpp" line="421" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="422" bodyend="424"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_skeleton_data_1ad2594ed74f7327381b359397c437918b" prot="public" virt="non-virtual"><scope>xpe::render::sSkeletonData</scope><name>Transform</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

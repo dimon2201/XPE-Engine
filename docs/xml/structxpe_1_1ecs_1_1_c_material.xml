@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_material" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CMaterial</compoundname>
+    <basecompoundref refid="classxpe_1_1res_1_1c_json" prot="public" virt="non-virtual">xpe::res::cJson</basecompoundref>
+    <basecompoundref refid="structxpe_1_1render_1_1s_material" prot="public" virt="non-virtual">xpe::render::sMaterial</basecompoundref>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1ecs_1_1_c_material_1a95dbd853a07f57cdaf65db71517dd838" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::ecs::CMaterial::CMaterial</definition>
+        <argsstring>(const sMaterial &amp;material={})</argsstring>
+        <name>CMaterial</name>
+        <qualifiedname>xpe::ecs::CMaterial::CMaterial</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material" kindref="compound">sMaterial</ref> &amp;</type>
+          <declname>material</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="107" column="13" bodyfile="engine/src/ecs/components.hpp" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1ecs_1_1_c_material_1a8fb991ffe5c2e3470614f7ae8d53e5bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::ecs::CMaterial::CMaterial</definition>
+        <argsstring>(sMaterial &amp;&amp;material)</argsstring>
+        <name>CMaterial</name>
+        <qualifiedname>xpe::ecs::CMaterial::CMaterial</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_material" kindref="compound">sMaterial</ref> &amp;&amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="108" column="13" bodyfile="engine/src/ecs/components.hpp" bodystart="108" bodyend="108"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::ecs::CMaterial</label>
+        <link refid="structxpe_1_1ecs_1_1_c_material"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sMaterial</label>
+        <link refid="structxpe_1_1render_1_1s_material"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::render::sMaterialData</label>
+        <link refid="structxpe_1_1render_1_1s_material_data"/>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::ecs::CMaterial</label>
+        <link refid="structxpe_1_1ecs_1_1_c_material"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sMaterial</label>
+        <link refid="structxpe_1_1render_1_1s_material"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>k_AlbedoFormat</edgelabel>
+          <edgelabel>k_AoFormat</edgelabel>
+          <edgelabel>k_EmissionFormat</edgelabel>
+          <edgelabel>k_MetalFormat</edgelabel>
+          <edgelabel>k_NormalFormat</edgelabel>
+          <edgelabel>k_ParallaxFormat</edgelabel>
+          <edgelabel>k_RoughnessFormat</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>AOMap</edgelabel>
+          <edgelabel>AlbedoMap</edgelabel>
+          <edgelabel>EmissionMap</edgelabel>
+          <edgelabel>MetalMap</edgelabel>
+          <edgelabel>NormalMap</edgelabel>
+          <edgelabel>ParallaxMap</edgelabel>
+          <edgelabel>RoughnessMap</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::render::sMaterialData</label>
+        <link refid="structxpe_1_1render_1_1s_material_data"/>
+      </node>
+      <node id="5">
+        <label>xpe::render::sMaterialFormat</label>
+        <link refid="structxpe_1_1render_1_1s_material_format"/>
+      </node>
+      <node id="6">
+        <label>xpe::render::sTextureLayer</label>
+        <link refid="structxpe_1_1render_1_1s_texture_layer"/>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/components.hpp" line="105" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="106" bodyend="128"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a356d0d1b5bf01b688b0ebd4d445199a4" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>Albedo</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1ab88689d44e7b88eff39fd0c83fff2280" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>AlbedoMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a89de4731402970568fb906af617a7898" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>AO</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1af538cb0f5d3342e9e1c5f261d031e1fa" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>AOMap</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_material_1a95dbd853a07f57cdaf65db71517dd838" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>CMaterial</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_material_1a8fb991ffe5c2e3470614f7ae8d53e5bb" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>CMaterial</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1ab83b1ef034151bab989b3eefe3f21fef" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>Emission</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a7cd3b8226a2b8be9b9734ef6de6e1206" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EmissionMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1aaf8c8c778a572fec9540dbabd6f35df4" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EnableAlbedoMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a765cd8e61efc02c4b545e4c071e60459" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EnableAOMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1acbe069a989f658e0d8c7e75df11cbfa1" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EnableEmissionMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a2377f43c15e30ef9f7385a757360da04" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EnableMetalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a3465dab281ef2fd290e934274903e123" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EnableNormalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a545082e3756d7f4d8d15268b4ec44a4c" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EnableParallaxMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a1e19eb989b0e2dfb426c32e9e0694630" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>EnableRoughnessMap</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b" prot="public" virt="pure-virtual"><scope>xpe::ecs::CMaterial</scope><name>FromJson</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a757b22aed38e6861f412eafcc2f28da9" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>Index</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a0d94b1e860dc2325e2a44d5a74236c69" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>k_AlbedoFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a06cf1a4b230a8eb966444e960f58c739" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>k_AoFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a521990eae276dd1ccbca8488fe05b975" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>k_EmissionFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a778de9af6fe0c5d9bad03e3507df848d" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>k_MetalFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a988b64f18a21642da269713bcea946d3" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>k_NormalFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a5c63aeff2d60d9097bf4bfe22a1ea0fe" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>k_ParallaxFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a3d8f9c4231009e6e6c3456daed421770" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>k_RoughnessFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1acd7393b29575d2e3625be481770e95c9" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>Metallness</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1aca8f684ea2e6dc26d6b9dd8fca2f32e6" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>MetalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1ae6e50a7299329ae69d069a8dd391e29a" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>NormalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a425019f971aed63a2a18021002748c21" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>ParallaxHeightScale</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a5246278aec0eaa97daeec3c7af2a246e" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>ParallaxMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a2e9a01dc7f4b987c53b7ba275be19cf1" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>ParallaxMaxLayers</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a9d75e6621d5a7f5475c497aeeaca2aeb" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>ParallaxMinLayers</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1ad563ce12bd4a5b8942d4a66277633188" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>Roughness</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a897f7b59df970acf28de682debdb052c" prot="public" virt="non-virtual"><scope>xpe::ecs::CMaterial</scope><name>RoughnessMap</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88" prot="public" virt="pure-virtual"><scope>xpe::ecs::CMaterial</scope><name>ToJson</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

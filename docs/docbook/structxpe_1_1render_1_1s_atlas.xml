@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_atlas" xml:lang="en-US">
+<title>xpe::render::sAtlas Struct Reference</title>
+<indexterm><primary>xpe::render::sAtlas</primary></indexterm>
+<para>
+<computeroutput>#include &lt;texture.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::sAtlas:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1render_1_1s_atlas.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1render_1_1s_atlas_1_1s_cell">sCell</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1render_1_1s_atlas_1_1s_location">sLocation</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_atlas_1a9b13fba96a509782b26f37769d067d1a">AddLayer</link> ()</para>
+</listitem>
+            <listitem><para>template&lt;typename... Args&gt; </para><para><link linkend="_structxpe_1_1render_1_1s_atlas_1_1s_location">sLocation</link> <link linkend="_structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a">AddCell</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)</para>
+</listitem>
+            <listitem><para>template&lt;typename... Args&gt; </para><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b">RemoveCell</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_structxpe_1_1render_1_1s_texture">xpe::render::sTexture</link>        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_1a700b7503a37d4f407f2c57287b121a1d">sTexture</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_1aacf76abd32ef8b66ad73b177086bb6fd">~sTexture</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a266c9db8925ad6755a455f20f1375e52">Init</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a9f477cd7cc9f05c9544b5cd7f864f8a4">Free</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b">CreateLayer</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a0369835873cfc25776640f320e0fad09">RemoveLayerAt</link> (<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">index</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1afca3ad09a60227179d3a670ccc977cde">GetMipLevels</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1af387596e9480a6ea1647b59a5cf59da2">WindowFrameResized</link> (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b">Resize</link> (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a5d2b4723da07e042cc5d2d9807820fc8">ResizePixels</link> (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00">Flip</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9">GenerateMips</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63">FlushLayer</link> (<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">index</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a2cdf5d311c6d8c2f0f066e63a2cbb854">Flush</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a5b2549ba6691480e47ea4175c584f8f8">SetResizable</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">resizable</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1render_1_1s_texture_1ad6d30c28e7b20bfdfb29b099a371def3">IsResizable</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+        </itemizedlist>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Types inherited from <link linkend="_structxpe_1_1render_1_1s_texture">xpe::render::sTexture</link>        <itemizedlist>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7">eType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a85975f3555d8eb49414ceb23f293b0e3">TEXTURE_1D</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7acc301ce75e16247f3b96a3907519096c">TEXTURE_2D</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a0780be97b60994fb8fee7f0d84f15e5f">TEXTURE_2D_MS</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a52e05a9e7056e6b657eb3fc397403433">TEXTURE_2D_DEPTH_STENCIL</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a0a9d553de9943da3013fb61a284c8689">TEXTURE_2D_ARRAY</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a197c970fd2222156ffc203ec66c64bb4">TEXTURE_3D</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a2dfa8fb773797e0343322a33cd625b44">TEXTURE_CUBE</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac">TEXTURE_DEFAULT</link> = TEXTURE_2D
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2b">eUsage</link> { <link linkend="_structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee">DEFAULT</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2bafe6f99ef1ec99efbdc19a9786cf1facc">STATIC</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2ba0fcc90da4811c877ba9f9c12f7d60bc9">DYNAMIC</link>
+, <link linkend="_structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf">STAGING</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Types inherited from <link linkend="_structxpe_1_1render_1_1s_resource">xpe::render::sResource</link>        <itemizedlist>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">NONE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4aecaa8fe8cb0e85372f4cc76728c7cf3c">DEPTH_STENCIL</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4a0bb01e169097cdf50612a3b567e8224b">RENDER_TARGET</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db">SRV</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4a6902d76cea698982754404da77e5e08a">UAV</link>
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295">eMapType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295a3466fab4975481651940ed328aa990e4">READ</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295ad4b9e47f65b6e79b010582f15785867e">WRITE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295aa7b843fb734e3b3fea8e5f902d3f4144">READ_WRITE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295a35e7bbbf18cc8cf2948004487c61a0ed">WRITE_NO_OVERWRITE</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295aeb339b5f9c978d1d5d991cd67e08e31b">WRITE_DISCARD</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+Static Public Member Functions inherited from <link linkend="_structxpe_1_1render_1_1s_texture">xpe::render::sTexture</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a1ac807fdbbada7bbd0c0766f33bf060e">GetMipsLevels</link> (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>)</para>
+</listitem>
+        </itemizedlist>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_texture">xpe::render::sTexture</link>        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7">eType</link> <link linkend="_structxpe_1_1render_1_1s_texture_1ac31bce368d387d78d37db106f54cc5bf">Type</link> = <link linkend="_structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac">eType::TEXTURE_DEFAULT</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2b">eUsage</link> <link linkend="_structxpe_1_1render_1_1s_texture_1ac23d567666987a86801e12b7daefea2d">Usage</link> = <link linkend="_structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee">eUsage::DEFAULT</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd">Width</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6">Height</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a981813f57d7d1d49d1c8bd3f142c9a96">Depth</link> = 1</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a10628a7ab9042a9df51147bf76b38c81">Channels</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> <link linkend="_structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985">Format</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1ac10f77c7c7b681f8c057d739e927c1fb">SampleCount</link> = 1</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a39d0f942dc05ef4c535be42d8ea3d0b0">EnableRenderTarget</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a57c79caedf5201b6ff362b15499313d0">Slot</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_texture_1a828db7ee4fc05b358bd43b60ceb69532">MostDetailedMip</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1render_1_1s_texture_1ad97d493ce4705e27f8fa3be57b23657d">InitializeData</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> &gt; <link linkend="_structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19">Layers</link></para>
+</listitem>
+        </itemizedlist>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_resource">xpe::render::sResource</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd">Instance</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca">ViewInstance</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</link> <link linkend="_structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69">ViewType</link> = <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">eViewType::NONE</link></para>
+</listitem>
+        </itemizedlist>
+Static Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_texture">xpe::render::sTexture</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> std::unordered_map&lt; <link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> &gt; <link linkend="_structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c">k_ChannelTable</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> std::unordered_map&lt; <link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> &gt; <link linkend="_structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e">k_BppTable</link></para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a"/><section>
+    <title>AddCell()</title>
+<indexterm><primary>AddCell</primary><secondary>xpe::render::sAtlas</secondary></indexterm>
+<indexterm><primary>xpe::render::sAtlas</primary><secondary>AddCell</secondary></indexterm>
+<computeroutput>template&lt;typename... Args&gt; </computeroutput><para><computeroutput><link linkend="_structxpe_1_1render_1_1s_atlas_1_1s_location">sAtlas::sLocation</link> xpe::render::sAtlas::AddCell (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... args)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_atlas_1a9b13fba96a509782b26f37769d067d1a"/><section>
+    <title>AddLayer()</title>
+<indexterm><primary>AddLayer</primary><secondary>xpe::render::sAtlas</secondary></indexterm>
+<indexterm><primary>xpe::render::sAtlas</primary><secondary>AddLayer</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sAtlas::AddLayer ( )</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b"/><section>
+    <title>RemoveCell()</title>
+<indexterm><primary>RemoveCell</primary><secondary>xpe::render::sAtlas</secondary></indexterm>
+<indexterm><primary>xpe::render::sAtlas</primary><secondary>RemoveCell</secondary></indexterm>
+<computeroutput>template&lt;typename... Args&gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sAtlas::RemoveCell (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... args)</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following files:</para>
+engine/src/rendering/core/<link linkend="_texture_8hpp">texture.hpp</link>engine/src/rendering/core/<link linkend="_texture_8cpp">texture.cpp</link></section>
+</section>

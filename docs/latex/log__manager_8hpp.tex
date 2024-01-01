@@ -1,0 +1,114 @@
+\doxysection{engine/src/core/log\+\_\+manager.hpp File Reference}
+\hypertarget{log__manager_8hpp}{}\label{log__manager_8hpp}\index{engine/src/core/log\_manager.hpp@{engine/src/core/log\_manager.hpp}}
+{\ttfamily \#include $<$spdlog/spdlog.\+h$>$}\newline
+{\ttfamily \#include $<$spdlog/sinks/basic\+\_\+file\+\_\+sink.\+h$>$}\newline
+{\ttfamily \#include $<$spdlog/sinks/stdout\+\_\+color\+\_\+sinks.\+h$>$}\newline
+{\ttfamily \#include $<$spdlog/async.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1core_1_1s_logger_descriptor}{xpe\+::core\+::s\+Logger\+Descriptor}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1core_1_1c_log_manager}{xpe\+::core\+::c\+Log\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_ace537ecfc8a0c748069d8946e3a48369}{Init\+Logger}}(desc)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_a2483e63d382a5858591b9d725cf36485}{Free\+Logger}}()
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_ad0d5f3c901779f5c0a464d4eb4202d62}{Log\+Trace}}(...)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_ad5cd22eaef4a5b03a044d26a6d42e52c}{Log\+Verbose}}(...)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484}{Log\+Info}}(...)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_a2c6c3e9c356e14fb4a7139acf4fa7b18}{Log\+Warning}}(...)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{Log\+Error}}(...)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_a9a24dfbeabc0f2323f3e94fc982e8ffd}{Log\+Memory}}(...)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_a705313536fd985391204a62e275c7154}{Dump\+Trace\+Error}}(...)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_ab1ef1da5fb4535faa4cac7287d508334}{Log\+Time}}(time)
+\item 
+\#define \mbox{\hyperlink{log__manager_8hpp_abcb1c32a4ad6492e3dc4a9d981004948}{Log\+GLM}}(name,  v)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{log__manager_8hpp_a705313536fd985391204a62e275c7154}\label{log__manager_8hpp_a705313536fd985391204a62e275c7154} 
+\index{log\_manager.hpp@{log\_manager.hpp}!DumpTraceError@{DumpTraceError}}
+\index{DumpTraceError@{DumpTraceError}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{DumpTraceError}{DumpTraceError}}
+{\footnotesize\ttfamily \#define Dump\+Trace\+Error(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_a2483e63d382a5858591b9d725cf36485}\label{log__manager_8hpp_a2483e63d382a5858591b9d725cf36485} 
+\index{log\_manager.hpp@{log\_manager.hpp}!FreeLogger@{FreeLogger}}
+\index{FreeLogger@{FreeLogger}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{FreeLogger}{FreeLogger}}
+{\footnotesize\ttfamily \#define Free\+Logger(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_ace537ecfc8a0c748069d8946e3a48369}\label{log__manager_8hpp_ace537ecfc8a0c748069d8946e3a48369} 
+\index{log\_manager.hpp@{log\_manager.hpp}!InitLogger@{InitLogger}}
+\index{InitLogger@{InitLogger}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{InitLogger}{InitLogger}}
+{\footnotesize\ttfamily \#define Init\+Logger(\begin{DoxyParamCaption}\item[{}]{desc }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}\label{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogError@{LogError}}
+\index{LogError@{LogError}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogError}{LogError}}
+{\footnotesize\ttfamily \#define Log\+Error(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_abcb1c32a4ad6492e3dc4a9d981004948}\label{log__manager_8hpp_abcb1c32a4ad6492e3dc4a9d981004948} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogGLM@{LogGLM}}
+\index{LogGLM@{LogGLM}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogGLM}{LogGLM}}
+{\footnotesize\ttfamily \#define Log\+GLM(\begin{DoxyParamCaption}\item[{}]{name,  }\item[{}]{v }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484}\label{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogInfo@{LogInfo}}
+\index{LogInfo@{LogInfo}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogInfo}{LogInfo}}
+{\footnotesize\ttfamily \#define Log\+Info(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_a9a24dfbeabc0f2323f3e94fc982e8ffd}\label{log__manager_8hpp_a9a24dfbeabc0f2323f3e94fc982e8ffd} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogMemory@{LogMemory}}
+\index{LogMemory@{LogMemory}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogMemory}{LogMemory}}
+{\footnotesize\ttfamily \#define Log\+Memory(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_ab1ef1da5fb4535faa4cac7287d508334}\label{log__manager_8hpp_ab1ef1da5fb4535faa4cac7287d508334} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogTime@{LogTime}}
+\index{LogTime@{LogTime}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogTime}{LogTime}}
+{\footnotesize\ttfamily \#define Log\+Time(\begin{DoxyParamCaption}\item[{}]{time }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_ad0d5f3c901779f5c0a464d4eb4202d62}\label{log__manager_8hpp_ad0d5f3c901779f5c0a464d4eb4202d62} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogTrace@{LogTrace}}
+\index{LogTrace@{LogTrace}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogTrace}{LogTrace}}
+{\footnotesize\ttfamily \#define Log\+Trace(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_ad5cd22eaef4a5b03a044d26a6d42e52c}\label{log__manager_8hpp_ad5cd22eaef4a5b03a044d26a6d42e52c} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogVerbose@{LogVerbose}}
+\index{LogVerbose@{LogVerbose}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogVerbose}{LogVerbose}}
+{\footnotesize\ttfamily \#define Log\+Verbose(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+\Hypertarget{log__manager_8hpp_a2c6c3e9c356e14fb4a7139acf4fa7b18}\label{log__manager_8hpp_a2c6c3e9c356e14fb4a7139acf4fa7b18} 
+\index{log\_manager.hpp@{log\_manager.hpp}!LogWarning@{LogWarning}}
+\index{LogWarning@{LogWarning}!log\_manager.hpp@{log\_manager.hpp}}
+\doxysubsubsection{\texorpdfstring{LogWarning}{LogWarning}}
+{\footnotesize\ttfamily \#define Log\+Warning(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+

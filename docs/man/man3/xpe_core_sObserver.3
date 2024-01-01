@@ -1,0 +1,152 @@
+.TH "xpe::core::sObserver< T >" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::sObserver< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <observer\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsObserver\fP (\fBconst\fP \fBT\fP &\fBvalue\fP, \fBconst\fP std::function< \fBvoid\fP(\fBT\fP)> \fBonChanged\fP={})"
+.br
+.ti -1c
+.RI "\fBsObserver\fP & \fBoperator=\fP (\fBconst\fP \fBT\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator T\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBT\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBT\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBconst\fP \fBT\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBT\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBT\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBT\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBu32\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBu32\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBu32\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBu32\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBu32\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBu32\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBint\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBint\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBint\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBint\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBint\fP \fBother\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBint\fP \fBother\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBT\fP \fBValue\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::function< \fBvoid\fP(\fBT\fP)> \fBm_OnChanged\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::sObserver\fP< \fBT\fP >::sObserver (\fBconst\fP \fBT\fP & value, \fBconst\fP std::function< \fBvoid\fP(\fBT\fP)> onChanged = \fR{}\fP)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP \fBT\fP () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator!\fP= (\fBconst\fP \fBT\fP & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator!\fP= (\fBint\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator!\fP= (\fBu32\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP() ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP< (\fBconst\fP \fBT\fP & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP< (\fBint\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP< (\fBu32\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP<= (\fBconst\fP \fBT\fP & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP<= (\fBint\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP<= (\fBu32\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBsObserver\fP & \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP= (\fBconst\fP \fBT\fP & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP== (\fBconst\fP \fBT\fP & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP== (\fBint\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP== (\fBu32\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP> (\fBconst\fP \fBT\fP & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP> (\fBint\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP> (\fBu32\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP>= (\fBconst\fP \fBT\fP & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP>= (\fBint\fP other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBxpe::core::sObserver\fP< \fBT\fP >\fB::operator\fP>= (\fBu32\fP other)\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > std::function<\fBvoid\fP(\fBT\fP)> \fBxpe::core::sObserver\fP< \fBT\fP >::m_OnChanged\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP \fBxpe::core::sObserver\fP< \fBT\fP >::Value"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

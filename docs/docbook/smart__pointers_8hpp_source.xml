@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_smart__pointers_8hpp_source" xml:lang="en-US">
+<title>smart_pointers.hpp</title>
+<indexterm><primary>engine/src/core/smart_pointers.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+4 
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>core&#32;{
+6 
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+8 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_classxpe_1_1core_1_1c_scope">cScope</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_object">cObject</link>
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+10 
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+12 
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a847008b9446aebb8d416601d3fd4ef6c">cScope</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a183cd2c81754a3e278e5011b73e3150d">~cScope</link>();
+15 
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1ab7da9d3d46c6e1ad4fb00c0eff19b51c">cScope</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1ae9fca8ebfe8f4cccd2bc11d4fa84a352">operator =</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1ae9fca8ebfe8f4cccd2bc11d4fa84a352">operator =</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+19 
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a9c76b3408c8c6647dc86e8ada2124eb7">cScope</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;<emphasis role="keyword">noexcept</emphasis>&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1ae9fca8ebfe8f4cccd2bc11d4fa84a352">operator =</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cScope&lt;T&gt;</link>&amp;&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;<emphasis role="keyword">noexcept</emphasis>&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+22 
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a456cbc006f737f27377bd80a0fae564a">Create</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>);
+25 
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1ae63cf04b601b6ef8bcacb7d781b53c56">Destroy</link>();
+27 
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1ac972f84b5bfb3ddde181ce7ea797d18f">Get</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;m_Ptr;&#32;}
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a1b20d1fd6cca601d90cc2ce17c4c57cb">operator*</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;*m_Ptr;&#32;}
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a947107ff2f229a52c5ea1071b10a627e">operator-&gt;</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;m_Ptr;&#32;}
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keyword">explicit</emphasis>&#32;<emphasis role="keyword">operator</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;m_Ptr;&#32;}
+32 
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;m_Ptr&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+36 
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a183cd2c81754a3e278e5011b73e3150d">cScope&lt;T&gt;::~cScope</link>()
+39 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(m_Ptr&#32;!=&#32;<emphasis role="keyword">nullptr</emphasis>)
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_core_2allocators_8hpp_1a1141b5be50573f8004090ec0346d4cec">main_destruct</link>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>,&#32;m_Ptr);
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Ptr&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+44 
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a456cbc006f737f27377bd80a0fae564a">cScope&lt;T&gt;::Create</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Ptr&#32;=&#32;<link linkend="_core_2allocators_8hpp_1af6f8111492d698bb692248ef013f538a">main_construct_args</link>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>,&#32;std::forward&lt;Args&gt;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)...);
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+51 
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+53 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1ae63cf04b601b6ef8bcacb7d781b53c56">cScope&lt;T&gt;::Destroy</link>()
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+55 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_scope_1a183cd2c81754a3e278e5011b73e3150d">cScope&lt;T&gt;::~cScope</link>();
+56 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+57 
+58 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+59 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_classxpe_1_1core_1_1c_hot_scope">cHotScope</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_object">cHotObject</link>
+60 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+61 
+62 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+63 
+64 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1abca4a17fbb9eb42194006a7de5023a1b">cHotScope</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+65 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1af6af2e8c04349254627884ecacb9b02c">~cHotScope</link>();
+66 
+67 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1ae12db7665a8b5fc373911366f3f2b2c4">cHotScope</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+68 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a59944ac515046ab236588c517491dba3">cHotScope</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+69 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a869b56d4d1cf67e97810fe58615c5a7a">operator =</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+70 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a869b56d4d1cf67e97810fe58615c5a7a">operator =</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+71 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a869b56d4d1cf67e97810fe58615c5a7a">operator =</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+72 
+73 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a519eaf858e4e75949cba94839b6f4d5c">cHotScope</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;<emphasis role="keyword">noexcept</emphasis>&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+74 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a869b56d4d1cf67e97810fe58615c5a7a">operator =</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotScope&lt;T&gt;</link>&amp;&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)&#32;<emphasis role="keyword">noexcept</emphasis>&#32;=&#32;<emphasis role="keyword">delete</emphasis>;
+75 
+76 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+77 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1afd86c65942f45e49844531c6b9b6ae15">Create</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>);
+78 
+79 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a91935b841912dd028ef353248f912553">Destroy</link>();
+80 
+81 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a2a62116c69a134351c90e1169fd73682">Get</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;m_Ptr;&#32;}
+82 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a72fb3356b926fa6ff7b6a886a92ec3f5">operator*</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;*m_Ptr;&#32;}
+83 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1ab1ac1d0fbac22c3092598b6940d4e2d7">operator-&gt;</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;m_Ptr;&#32;}
+84 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keyword">explicit</emphasis>&#32;<emphasis role="keyword">operator</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link>()&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">noexcept</link>&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;m_Ptr;&#32;}
+85 
+86 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+87 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;m_Ptr&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+88 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+89 
+90 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+91 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1af6af2e8c04349254627884ecacb9b02c">cHotScope&lt;T&gt;::~cHotScope</link>()
+92 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+93 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(m_Ptr&#32;!=&#32;<emphasis role="keyword">nullptr</emphasis>)
+94 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_core_2allocators_8hpp_1a375348b94c144f7dd96baac0e308ef4e">hot_destruct</link>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>,&#32;m_Ptr);
+95 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Ptr&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+96 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+97 
+98 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+99 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1afd86c65942f45e49844531c6b9b6ae15">cHotScope&lt;T&gt;::Create</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)
+101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Ptr&#32;=&#32;<link linkend="_core_2allocators_8hpp_1ac67ca42f522dd054da17196865395fc2">hot_construct_args</link>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>,&#32;std::forward&lt;Args&gt;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)...);
+103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+104 
+105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1a91935b841912dd028ef353248f912553">cHotScope&lt;T&gt;::Destroy</link>()
+107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_scope_1af6af2e8c04349254627884ecacb9b02c">cHotScope&lt;T&gt;::~cHotScope</link>();
+109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+110 
+111 &#32;&#32;&#32;&#32;}
+112 
+113 }
+</programlisting></section>

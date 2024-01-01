@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_has_shadow" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CHasShadow</compoundname>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_has_shadow_1a7d0042387ba2d42cc00e82494304063b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::ecs::CHasShadow::HasShadow</definition>
+        <argsstring></argsstring>
+        <name>HasShadow</name>
+        <qualifiedname>xpe::ecs::CHasShadow::HasShadow</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="56" column="30" bodyfile="engine/src/ecs/components.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/ecs/components.hpp" line="56" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="56" bodyend="56"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1ecs_1_1_c_has_shadow_1a7d0042387ba2d42cc00e82494304063b" prot="public" virt="non-virtual"><scope>xpe::ecs::CHasShadow</scope><name>HasShadow</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

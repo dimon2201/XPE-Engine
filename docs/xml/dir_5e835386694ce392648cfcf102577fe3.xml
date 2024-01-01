@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_5e835386694ce392648cfcf102577fe3" kind="dir">
+    <compoundname>engine/src/core</compoundname>
+    <innerfile refid="core_2allocators_8cpp">allocators.cpp</innerfile>
+    <innerfile refid="core_2allocators_8hpp">allocators.hpp</innerfile>
+    <innerfile refid="app_8cpp">app.cpp</innerfile>
+    <innerfile refid="app_8hpp">app.hpp</innerfile>
+    <innerfile refid="app__config_8hpp">app_config.hpp</innerfile>
+    <innerfile refid="codes__gamepad_8hpp">codes_gamepad.hpp</innerfile>
+    <innerfile refid="codes__keyboard_8hpp">codes_keyboard.hpp</innerfile>
+    <innerfile refid="codes__mouse_8hpp">codes_mouse.hpp</innerfile>
+    <innerfile refid="event_8hpp">event.hpp</innerfile>
+    <innerfile refid="event__manager_8cpp">event_manager.cpp</innerfile>
+    <innerfile refid="event__manager_8hpp">event_manager.hpp</innerfile>
+    <innerfile refid="events_8hpp">events.hpp</innerfile>
+    <innerfile refid="file__manager_8cpp">file_manager.cpp</innerfile>
+    <innerfile refid="file__manager_8hpp">file_manager.hpp</innerfile>
+    <innerfile refid="hardware__manager_8cpp">hardware_manager.cpp</innerfile>
+    <innerfile refid="hardware__manager_8hpp">hardware_manager.hpp</innerfile>
+    <innerfile refid="input__manager_8cpp">input_manager.cpp</innerfile>
+    <innerfile refid="input__manager_8hpp">input_manager.hpp</innerfile>
+    <innerfile refid="log__manager_8cpp">log_manager.cpp</innerfile>
+    <innerfile refid="log__manager_8hpp">log_manager.hpp</innerfile>
+    <innerfile refid="macro__build_8hpp">macro_build.hpp</innerfile>
+    <innerfile refid="macro__constants_8hpp">macro_constants.hpp</innerfile>
+    <innerfile refid="macro__debugbreak_8hpp">macro_debugbreak.hpp</innerfile>
+    <innerfile refid="macro__platform_8hpp">macro_platform.hpp</innerfile>
+    <innerfile refid="memory__manager_8cpp">memory_manager.cpp</innerfile>
+    <innerfile refid="memory__manager_8hpp">memory_manager.hpp</innerfile>
+    <innerfile refid="observer_8hpp">observer.hpp</innerfile>
+    <innerfile refid="observers_8cpp">observers.cpp</innerfile>
+    <innerfile refid="observers_8hpp">observers.hpp</innerfile>
+    <innerfile refid="smart__pointers_8hpp">smart_pointers.hpp</innerfile>
+    <innerfile refid="task__manager_8cpp">task_manager.cpp</innerfile>
+    <innerfile refid="task__manager_8hpp">task_manager.hpp</innerfile>
+    <innerfile refid="thread_8cpp">thread.cpp</innerfile>
+    <innerfile refid="thread_8hpp">thread.hpp</innerfile>
+    <innerfile refid="time__manager_8cpp">time_manager.cpp</innerfile>
+    <innerfile refid="time__manager_8hpp">time_manager.hpp</innerfile>
+    <innerfile refid="types_8cpp">types.cpp</innerfile>
+    <innerfile refid="types_8hpp">types.hpp</innerfile>
+    <innerfile refid="window__manager_8cpp">window_manager.cpp</innerfile>
+    <innerfile refid="window__manager_8hpp">window_manager.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/"/>
+  </compounddef>
+</doxygen>

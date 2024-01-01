@@ -1,0 +1,13 @@
+digraph "xpe::render::cSkyboxManager::Init"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="xpe::render::cSkyboxManager\l::Init",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge5_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="xpe::render::cSkyboxManager::Get",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_skybox_manager.html#a7dd6b461180ad3928c1b9b26d12c29b3",tooltip=" "];
+  Node2 -> Node3 [id="edge6_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="xpe::render::cSkyboxShader\l::Draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_skybox_shader.html#ad0657596c465749935ee5c1b5aab5bfc",tooltip=" "];
+}

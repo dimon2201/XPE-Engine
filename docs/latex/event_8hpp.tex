@@ -1,0 +1,45 @@
+\doxysection{engine/src/core/event.hpp File Reference}
+\hypertarget{event_8hpp}{}\label{event_8hpp}\index{engine/src/core/event.hpp@{engine/src/core/event.hpp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1core_1_1s_event}{xpe\+::core\+::s\+Event$<$ Event\+Function $>$}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1core_1_1c_event_buffer}{xpe\+::core\+::c\+Event\+Buffer$<$ Event\+Function $>$}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{event_8hpp_a64e953d064fd9f060c44e75f3340604d}{event\+\_\+begin}}(name, ...)
+\item 
+\#define \mbox{\hyperlink{event_8hpp_a84f30cac3bef98bd3c88d619af98bcea}{event\+\_\+end}}(name, ...)~((T\texorpdfstring{$\ast$}{*}) thiz)-\/$>$name(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+); \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{event_8hpp_a64e953d064fd9f060c44e75f3340604d}\label{event_8hpp_a64e953d064fd9f060c44e75f3340604d} 
+\index{event.hpp@{event.hpp}!event\_begin@{event\_begin}}
+\index{event\_begin@{event\_begin}!event.hpp@{event.hpp}}
+\doxysubsubsection{\texorpdfstring{event\_begin}{event\_begin}}
+{\footnotesize\ttfamily \#define event\+\_\+begin(\begin{DoxyParamCaption}\item[{}]{name,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (*f\#\#name)(\textcolor{keywordtype}{void}*\ thiz,\ \_\_VA\_ARGS\_\_);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ On\#\#name(\textcolor{keywordtype}{void}*\ \textcolor{keyword}{const}\ thiz,\ \_\_VA\_ARGS\_\_)\ \{\ \(\backslash\)}
+
+\end{DoxyCode}
+\Hypertarget{event_8hpp_a84f30cac3bef98bd3c88d619af98bcea}\label{event_8hpp_a84f30cac3bef98bd3c88d619af98bcea} 
+\index{event.hpp@{event.hpp}!event\_end@{event\_end}}
+\index{event\_end@{event\_end}!event.hpp@{event.hpp}}
+\doxysubsubsection{\texorpdfstring{event\_end}{event\_end}}
+{\footnotesize\ttfamily \#define event\+\_\+end(\begin{DoxyParamCaption}\item[{}]{name,  }\item[{}]{... }\end{DoxyParamCaption})~((T\texorpdfstring{$\ast$}{*}) thiz)-\/$>$name(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+); \}}
+

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1_samplers" xml:lang="en-US">
+<title>xpe::render::Samplers Struct Reference</title>
+<indexterm><primary>xpe::render::Samplers</primary></indexterm>
+<para>
+<computeroutput>#include &lt;bindings.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * <link linkend="_structxpe_1_1render_1_1_samplers_1a4d9fb16bf8ee515af1e578fce358875f">Material</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * <link linkend="_structxpe_1_1render_1_1_samplers_1a4c8c9343e7e77fb726c7a3978abc24cc">Shadow</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * <link linkend="_structxpe_1_1render_1_1_samplers_1a9d18d6bcb797e4eb03de7fcb3f96fe17">Widget</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * <link linkend="_structxpe_1_1render_1_1_samplers_1a93ba934421e022fb7244c2be860f802d">Skybox</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * <link linkend="_structxpe_1_1render_1_1_samplers_1aab0b61293036f76f5bb59c0771afbc35">Font</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1_samplers_1aab0b61293036f76f5bb59c0771afbc35"/><section>
+    <title>Font</title>
+<indexterm><primary>Font</primary><secondary>xpe::render::Samplers</secondary></indexterm>
+<indexterm><primary>xpe::render::Samplers</primary><secondary>Font</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * xpe::render::Samplers::Font = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link><computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1_samplers_1a4d9fb16bf8ee515af1e578fce358875f"/><section>
+    <title>Material</title>
+<indexterm><primary>Material</primary><secondary>xpe::render::Samplers</secondary></indexterm>
+<indexterm><primary>xpe::render::Samplers</primary><secondary>Material</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * xpe::render::Samplers::Material = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link><computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1_samplers_1a4c8c9343e7e77fb726c7a3978abc24cc"/><section>
+    <title>Shadow</title>
+<indexterm><primary>Shadow</primary><secondary>xpe::render::Samplers</secondary></indexterm>
+<indexterm><primary>xpe::render::Samplers</primary><secondary>Shadow</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * xpe::render::Samplers::Shadow = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link><computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1_samplers_1a93ba934421e022fb7244c2be860f802d"/><section>
+    <title>Skybox</title>
+<indexterm><primary>Skybox</primary><secondary>xpe::render::Samplers</secondary></indexterm>
+<indexterm><primary>xpe::render::Samplers</primary><secondary>Skybox</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * xpe::render::Samplers::Skybox = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link><computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1_samplers_1a9d18d6bcb797e4eb03de7fcb3f96fe17"/><section>
+    <title>Widget</title>
+<indexterm><primary>Widget</primary><secondary>xpe::render::Samplers</secondary></indexterm>
+<indexterm><primary>xpe::render::Samplers</primary><secondary>Widget</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link> * xpe::render::Samplers::Widget = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link><computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following files:</para>
+engine/src/rendering/<link linkend="_bindings_8hpp">bindings.hpp</link>engine/src/rendering/<link linkend="_bindings_8cpp">bindings.cpp</link></section>
+</section>

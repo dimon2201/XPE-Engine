@@ -1,0 +1,125 @@
+.TH "engine/src/core/input_manager.hpp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine/src/core/input_manager.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <core/events\&.hpp>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBxpe::core::sMouseCursor\fP"
+.br
+.ti -1c
+.RI "class \fBxpe::core::cInputManager\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBxpe\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::core\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBAddWindowClosed\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowClosedEvents\&.AddEvent(this, \fBxpe::core::OnWindowClosed\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddWindowResized\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowResizedEvents\&.AddEvent(this, \fBxpe::core::OnWindowResized\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddWindowFrameResized\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowFrameResizedEvents\&.AddEvent(this, \fBxpe::core::OnWindowFrameResized\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddWindowRatioChanged\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowRatioChangedEvents\&.AddEvent(this, \fBxpe::core::OnWindowRatioChanged\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddKeyPressed\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.KeyPressedEvents\&.AddEvent(this, \fBxpe::core::OnKeyPressed\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddKeyRelease\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.KeyReleasedEvents\&.AddEvent(this, \fBxpe::core::OnKeyReleased\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddKeyHold\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.KeyHoldEvents\&.AddEvent(this, \fBxpe::core::OnKeyHold\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddCursorMove\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.CursorMovedEvents\&.AddEvent(this, \fBxpe::core::OnCursorMoved\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBAddScrollChanged\fP(clazz,  priority)   \fBxpe::core::cEventManager::Get\fP()\&.ScrollChangedEvents\&.AddEvent(this, \fBxpe::core::OnScrollChanged\fP<clazz>, priority)"
+.br
+.ti -1c
+.RI "#define \fBRemoveWindowClose\fP()   \fBxpe::core::cEventManager::Get\fP()\&.WindowClosedEvents\&.RemoveEvent(this)"
+.br
+.ti -1c
+.RI "#define \fBRemoveWindowFrameResized\fP()   \fBxpe::core::cEventManager::Get\fP()\&.WindowFrameResizedEvents\&.RemoveEvent(this)"
+.br
+.ti -1c
+.RI "#define \fBRemoveWindowRatioChanged\fP()   \fBxpe::core::cEventManager::Get\fP()\&.WindowRatioChangedEvents\&.RemoveEvent(this)"
+.br
+.ti -1c
+.RI "#define \fBRemoveKeyPressed\fP()   \fBxpe::core::cEventManager::Get\fP()\&.KeyPressedEvents\&.RemoveEvent(this)"
+.br
+.ti -1c
+.RI "#define \fBRemoveKeyRelease\fP()   \fBxpe::core::cEventManager::Get\fP()\&.KeyReleasedEvents\&.RemoveEvent(this)"
+.br
+.ti -1c
+.RI "#define \fBRemoveKeyHold\fP()   \fBxpe::core::cEventManager::Get\fP()\&.KeyHoldEvents\&.RemoveEvent(this)"
+.br
+.ti -1c
+.RI "#define \fBRemoveCursorMove\fP()   \fBxpe::core::cEventManager::Get\fP()\&.CursorMovedEvents\&.RemoveEvent(this)"
+.br
+.ti -1c
+.RI "#define \fBRemoveScrollChanged\fP()   \fBxpe::core::cEventManager::Get\fP()\&.ScrollChangedEvents\&.RemoveEvent(this)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define AddCursorMove(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.CursorMovedEvents\&.AddEvent(this, \fBxpe::core::OnCursorMoved\fP<clazz>, priority)"
+
+.SS "#define AddKeyHold(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.KeyHoldEvents\&.AddEvent(this, \fBxpe::core::OnKeyHold\fP<clazz>, priority)"
+
+.SS "#define AddKeyPressed(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.KeyPressedEvents\&.AddEvent(this, \fBxpe::core::OnKeyPressed\fP<clazz>, priority)"
+
+.SS "#define AddKeyRelease(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.KeyReleasedEvents\&.AddEvent(this, \fBxpe::core::OnKeyReleased\fP<clazz>, priority)"
+
+.SS "#define AddScrollChanged(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.ScrollChangedEvents\&.AddEvent(this, \fBxpe::core::OnScrollChanged\fP<clazz>, priority)"
+
+.SS "#define AddWindowClosed(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowClosedEvents\&.AddEvent(this, \fBxpe::core::OnWindowClosed\fP<clazz>, priority)"
+
+.SS "#define AddWindowFrameResized(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowFrameResizedEvents\&.AddEvent(this, \fBxpe::core::OnWindowFrameResized\fP<clazz>, priority)"
+
+.SS "#define AddWindowRatioChanged(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowRatioChangedEvents\&.AddEvent(this, \fBxpe::core::OnWindowRatioChanged\fP<clazz>, priority)"
+
+.SS "#define AddWindowResized(clazz, priority)   \fBxpe::core::cEventManager::Get\fP()\&.WindowResizedEvents\&.AddEvent(this, \fBxpe::core::OnWindowResized\fP<clazz>, priority)"
+
+.SS "#define RemoveCursorMove()   \fBxpe::core::cEventManager::Get\fP()\&.CursorMovedEvents\&.RemoveEvent(this)"
+
+.SS "#define RemoveKeyHold()   \fBxpe::core::cEventManager::Get\fP()\&.KeyHoldEvents\&.RemoveEvent(this)"
+
+.SS "#define RemoveKeyPressed()   \fBxpe::core::cEventManager::Get\fP()\&.KeyPressedEvents\&.RemoveEvent(this)"
+
+.SS "#define RemoveKeyRelease()   \fBxpe::core::cEventManager::Get\fP()\&.KeyReleasedEvents\&.RemoveEvent(this)"
+
+.SS "#define RemoveScrollChanged()   \fBxpe::core::cEventManager::Get\fP()\&.ScrollChangedEvents\&.RemoveEvent(this)"
+
+.SS "#define RemoveWindowClose()   \fBxpe::core::cEventManager::Get\fP()\&.WindowClosedEvents\&.RemoveEvent(this)"
+
+.SS "#define RemoveWindowFrameResized()   \fBxpe::core::cEventManager::Get\fP()\&.WindowFrameResizedEvents\&.RemoveEvent(this)"
+
+.SS "#define RemoveWindowRatioChanged()   \fBxpe::core::cEventManager::Get\fP()\&.WindowRatioChangedEvents\&.RemoveEvent(this)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

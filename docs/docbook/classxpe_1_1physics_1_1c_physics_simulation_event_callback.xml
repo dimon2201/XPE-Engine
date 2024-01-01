@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1physics_1_1c_physics_simulation_event_callback" xml:lang="en-US">
+<title>xpe::physics::cPhysicsSimulationEventCallback Class Reference</title>
+<indexterm><primary>xpe::physics::cPhysicsSimulationEventCallback</primary></indexterm>
+<para>
+<computeroutput>#include &lt;callbacks.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::physics::cPhysicsSimulationEventCallback:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1physics_1_1c_physics_simulation_event_callback.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a046017393adf432a13f88f4bd3b26e21">onConstraintBreak</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxConstraintInfo</link> *, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a1ac125e903701784c351bc07f777ed0a">onWake</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxActor</link> **, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1ae3bb12c8615583f4fb199efa186a03cd">onSleep</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxActor</link> **, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1aa7cc466577d3d41031a4309f985ff69c">onContact</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxContactPairHeader</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">pairHeader</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxContactPair</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">pairs</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nbPairs</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a0e15d7927fa0c80a3d805c08897dbff4">onTrigger</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxTriggerPair</link> *, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a73c477f354afb64d54a624c2349d4d0c">onAdvance</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxRigidBody</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> *, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxTransform</link> *, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a73c477f354afb64d54a624c2349d4d0c"/><section>
+    <title>onAdvance()</title>
+<indexterm><primary>onAdvance</primary><secondary>xpe::physics::cPhysicsSimulationEventCallback</secondary></indexterm>
+<indexterm><primary>xpe::physics::cPhysicsSimulationEventCallback</primary><secondary>onAdvance</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::physics::cPhysicsSimulationEventCallback::onAdvance (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxRigidBody</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> * , <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxTransform</link> * , <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link> )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a046017393adf432a13f88f4bd3b26e21"/><section>
+    <title>onConstraintBreak()</title>
+<indexterm><primary>onConstraintBreak</primary><secondary>xpe::physics::cPhysicsSimulationEventCallback</secondary></indexterm>
+<indexterm><primary>xpe::physics::cPhysicsSimulationEventCallback</primary><secondary>onConstraintBreak</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::physics::cPhysicsSimulationEventCallback::onConstraintBreak (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxConstraintInfo</link> * , <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link> )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1aa7cc466577d3d41031a4309f985ff69c"/><section>
+    <title>onContact()</title>
+<indexterm><primary>onContact</primary><secondary>xpe::physics::cPhysicsSimulationEventCallback</secondary></indexterm>
+<indexterm><primary>xpe::physics::cPhysicsSimulationEventCallback</primary><secondary>onContact</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::physics::cPhysicsSimulationEventCallback::onContact (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxContactPairHeader</link> &amp; pairHeader, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxContactPair</link> * pairs, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link> nbPairs)<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1ae3bb12c8615583f4fb199efa186a03cd"/><section>
+    <title>onSleep()</title>
+<indexterm><primary>onSleep</primary><secondary>xpe::physics::cPhysicsSimulationEventCallback</secondary></indexterm>
+<indexterm><primary>xpe::physics::cPhysicsSimulationEventCallback</primary><secondary>onSleep</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::physics::cPhysicsSimulationEventCallback::onSleep (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxActor</link> ** , <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link> )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a0e15d7927fa0c80a3d805c08897dbff4"/><section>
+    <title>onTrigger()</title>
+<indexterm><primary>onTrigger</primary><secondary>xpe::physics::cPhysicsSimulationEventCallback</secondary></indexterm>
+<indexterm><primary>xpe::physics::cPhysicsSimulationEventCallback</primary><secondary>onTrigger</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::physics::cPhysicsSimulationEventCallback::onTrigger (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxTriggerPair</link> * , <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link> )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1physics_1_1c_physics_simulation_event_callback_1a1ac125e903701784c351bc07f777ed0a"/><section>
+    <title>onWake()</title>
+<indexterm><primary>onWake</primary><secondary>xpe::physics::cPhysicsSimulationEventCallback</secondary></indexterm>
+<indexterm><primary>xpe::physics::cPhysicsSimulationEventCallback</primary><secondary>onWake</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::physics::cPhysicsSimulationEventCallback::onWake (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxActor</link> ** , <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxU32</link> )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/physics/<link linkend="_callbacks_8hpp">callbacks.hpp</link>engine/src/physics/<link linkend="_callbacks_8cpp">callbacks.cpp</link></section>
+</section>

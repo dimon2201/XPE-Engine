@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_vertex" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sVertex</compoundname>
+    <includes refid="rendering_2core_2core_8hpp" local="no">core.hpp</includes>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_1a82bd9ee50a012b35683065a507c0310e" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_vertex_format" kindref="compound">sVertexFormat</ref></type>
+        <definition>const sVertexFormat xpe::render::sVertex::k_Format</definition>
+        <argsstring></argsstring>
+        <name>k_Format</name>
+        <qualifiedname>xpe::render::sVertex::k_Format</qualifiedname>
+        <initializer>=
+        {{
+             <ref refid="structxpe_1_1render_1_1s_attributes_1a035514cd5bc1fcc1a9dc8ae981c38f21" kindref="member">sAttributes::k_Pos</ref>,
+             <ref refid="structxpe_1_1render_1_1s_attributes_1a4debbf06401114236dd548c50b0d5e41" kindref="member">sAttributes::k_UV</ref>,
+             <ref refid="structxpe_1_1render_1_1s_attributes_1a2f54e3a9cfaca629cb175e4117d2288d" kindref="member">sAttributes::k_Normal</ref>,
+             <ref refid="structxpe_1_1render_1_1s_attributes_1aad12d10b8300be8c432bf385434e5bfa" kindref="member">sAttributes::k_Tangent</ref>,
+             <ref refid="structxpe_1_1render_1_1s_attributes_1a62ea44fa4d9f64e4b3c9630d202bbd70" kindref="member">sAttributes::k_BoneIds</ref>,
+             <ref refid="structxpe_1_1render_1_1s_attributes_1aff3bd8c373059a70f71c04c7df2b2261" kindref="member">sAttributes::k_BoneWeights</ref>
+         }}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="170" column="40" bodyfile="engine/src/rendering/core/core.hpp" bodystart="170" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_1af3c38a215a62f0a241b80694212340b5" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sVertex::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>xpe::render::sVertex::Position</qualifiedname>
+        <initializer>= { 0, 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="172" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="172" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_1a70cb67502969e6b7204d63b5b936f436" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 xpe::render::sVertex::UV</definition>
+        <argsstring></argsstring>
+        <name>UV</name>
+        <qualifiedname>xpe::render::sVertex::UV</qualifiedname>
+        <initializer>= { 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="173" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="173" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_1aca0e8ca4b2a5f9622da0e0f20173c84a" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sVertex::Normal</definition>
+        <argsstring></argsstring>
+        <name>Normal</name>
+        <qualifiedname>xpe::render::sVertex::Normal</qualifiedname>
+        <initializer>= { 0, 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="174" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="174" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_1af448165bdaefb9f4bb31deb83d6ed6cf" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sVertex::Tangent</definition>
+        <argsstring></argsstring>
+        <name>Tangent</name>
+        <qualifiedname>xpe::render::sVertex::Tangent</qualifiedname>
+        <initializer>= { 0, 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="175" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="175" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_1abc4c2f8be1a80b90e61d8a9fde120f5f" prot="public" static="no" mutable="no">
+        <type>glm::ivec4</type>
+        <definition>glm::ivec4 xpe::render::sVertex::BoneIDs</definition>
+        <argsstring></argsstring>
+        <name>BoneIDs</name>
+        <qualifiedname>xpe::render::sVertex::BoneIDs</qualifiedname>
+        <initializer>= { -1, -1, -1, -1 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="176" column="24" bodyfile="engine/src/rendering/core/core.hpp" bodystart="176" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_1af4e5512d240a5b363fcee562285a9e2a" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 xpe::render::sVertex::BoneWeights</definition>
+        <argsstring></argsstring>
+        <name>BoneWeights</name>
+        <qualifiedname>xpe::render::sVertex::BoneWeights</qualifiedname>
+        <initializer>= { 0, 0, 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="177" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="177" bodyend="177"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::render::sVertex</label>
+        <link refid="structxpe_1_1render_1_1s_vertex"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>k_Format</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sVertexFormat</label>
+        <link refid="structxpe_1_1render_1_1s_vertex_format"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/core.hpp" line="168" column="9" bodyfile="engine/src/rendering/core/core.hpp" bodystart="169" bodyend="178"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_vertex_1abc4c2f8be1a80b90e61d8a9fde120f5f" prot="public" virt="non-virtual"><scope>xpe::render::sVertex</scope><name>BoneIDs</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_1af4e5512d240a5b363fcee562285a9e2a" prot="public" virt="non-virtual"><scope>xpe::render::sVertex</scope><name>BoneWeights</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_1a82bd9ee50a012b35683065a507c0310e" prot="public" virt="non-virtual"><scope>xpe::render::sVertex</scope><name>k_Format</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_1aca0e8ca4b2a5f9622da0e0f20173c84a" prot="public" virt="non-virtual"><scope>xpe::render::sVertex</scope><name>Normal</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_1af3c38a215a62f0a241b80694212340b5" prot="public" virt="non-virtual"><scope>xpe::render::sVertex</scope><name>Position</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_1af448165bdaefb9f4bb31deb83d6ed6cf" prot="public" virt="non-virtual"><scope>xpe::render::sVertex</scope><name>Tangent</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_1a70cb67502969e6b7204d63b5b936f436" prot="public" virt="non-virtual"><scope>xpe::render::sVertex</scope><name>UV</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_atlas_1_1s_location" xml:lang="en-US">
+<title>xpe::render::sAtlas::sLocation Struct Reference</title>
+<indexterm><primary>xpe::render::sAtlas::sLocation</primary></indexterm>
+<para>
+<computeroutput>#include &lt;texture.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_atlas_1_1s_location_1acd2f198d37bc2a5e945aee4a01152aee">LayerIndex</link> = 0</para>
+</listitem>
+            <listitem><para>glm::vec2 <link linkend="_structxpe_1_1render_1_1s_atlas_1_1s_location_1a677ab6770c018da25f1853f0a6a6349a">UV</link> [4]</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_atlas_1_1s_location_1acd2f198d37bc2a5e945aee4a01152aee"/><section>
+    <title>LayerIndex</title>
+<indexterm><primary>LayerIndex</primary><secondary>xpe::render::sAtlas::sLocation</secondary></indexterm>
+<indexterm><primary>xpe::render::sAtlas::sLocation</primary><secondary>LayerIndex</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::render::sAtlas::sLocation::LayerIndex = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_atlas_1_1s_location_1a677ab6770c018da25f1853f0a6a6349a"/><section>
+    <title>UV</title>
+<indexterm><primary>UV</primary><secondary>xpe::render::sAtlas::sLocation</secondary></indexterm>
+<indexterm><primary>xpe::render::sAtlas::sLocation</primary><secondary>UV</secondary></indexterm>
+<para><computeroutput>glm::vec2 xpe::render::sAtlas::sLocation::UV[4]</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">=&#32;{
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::vec2(0),
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::vec2(0),
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::vec2(0),
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::vec2(0)
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+</programlisting></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/rendering/core/<link linkend="_texture_8hpp">texture.hpp</link></section>
+</section>

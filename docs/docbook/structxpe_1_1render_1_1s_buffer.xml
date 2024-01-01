@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_buffer" xml:lang="en-US">
+<title>xpe::render::sBuffer Struct Reference</title>
+<indexterm><primary>xpe::render::sBuffer</primary></indexterm>
+<para>
+<computeroutput>#include &lt;core.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::sBuffer:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1render_1_1s_buffer.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Types    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca">eType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caab50339a10e1de285ac99d4c3990b8693">NONE</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa0c3e47aef93a7f244f41ab309a33634b">VERTEX</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caacb4ae3b37047fb4b2c0d16f8bf84f076">INDEX</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa2b911c015ed17a423c74ab9987330e60">ITEM</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa298cb25408234de02baf2085803a464a">LIST</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa8d6b5cada83510220f59e00ce86d4d92">CONSTANT</link> = ITEM
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caaf3657f7b18c7809b92f317c5f3b53421">STRUCTURED</link> = LIST
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633">eSubType</link> { <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693">NONE</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a633d6abff0a3fc22404347728d195059">RAW</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a375ffb668aa90f1c7fcae55e9734a752">APPEND</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a2a966fff3e22232bb122ac70968894f6">CONSUME</link>
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641">eUsage</link> { <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a5b39c8b553c821e7cddc6da64b5bd2ee">DEFAULT</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641afe6f99ef1ec99efbdc19a9786cf1facc">STATIC</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a0fcc90da4811c877ba9f9c12f7d60bc9">DYNAMIC</link>
+, <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641ab8a1431064f351dbef92871d02bab8cf">STAGING</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Types inherited from <link linkend="_structxpe_1_1render_1_1s_resource">xpe::render::sResource</link>        <itemizedlist>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">NONE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4aecaa8fe8cb0e85372f4cc76728c7cf3c">DEPTH_STENCIL</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4a0bb01e169097cdf50612a3b567e8224b">RENDER_TARGET</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db">SRV</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4a6902d76cea698982754404da77e5e08a">UAV</link>
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295">eMapType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295a3466fab4975481651940ed328aa990e4">READ</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295ad4b9e47f65b6e79b010582f15785867e">WRITE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295aa7b843fb734e3b3fea8e5f902d3f4144">READ_WRITE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295a35e7bbbf18cc8cf2948004487c61a0ed">WRITE_NO_OVERWRITE</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295aeb339b5f9c978d1d5d991cd67e08e31b">WRITE_DISCARD</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9">GetByteSize</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca">eType</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237">Type</link> = <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caab50339a10e1de285ac99d4c3990b8693">eType::NONE</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633">eSubType</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548">SubType</link> = <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693">eSubType::NONE</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641">eUsage</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1a74933b3c2fa8f86517547b9dcc9c903a">Usage</link> = <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a0fcc90da4811c877ba9f9c12f7d60bc9">eUsage::DYNAMIC</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3">StructureSize</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d">NumElements</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1af3faa739ee8d36ff1b306fe10a5184bf">Slot</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740">InitialData</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_resource">xpe::render::sResource</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd">Instance</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca">ViewInstance</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</link> <link linkend="_structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69">ViewType</link> = <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">eViewType::NONE</link></para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Member Enumeration Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633"/><section>
+    <title>eSubType</title>
+<indexterm><primary>eSubType</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>eSubType</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633">xpe::render::sBuffer::eSubType</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>NONE</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>NONE</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693"/>NONE</entry><entry></entry></row><row><entry><indexterm><primary>RAW</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>RAW</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a633d6abff0a3fc22404347728d195059"/>RAW</entry><entry></entry></row><row><entry><indexterm><primary>APPEND</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>APPEND</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a375ffb668aa90f1c7fcae55e9734a752"/>APPEND</entry><entry></entry></row><row><entry><indexterm><primary>CONSUME</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>CONSUME</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a2a966fff3e22232bb122ac70968894f6"/>CONSUME</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca"/><section>
+    <title>eType</title>
+<indexterm><primary>eType</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>eType</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca">xpe::render::sBuffer::eType</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>NONE</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>NONE</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caab50339a10e1de285ac99d4c3990b8693"/>NONE</entry><entry></entry></row><row><entry><indexterm><primary>VERTEX</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>VERTEX</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa0c3e47aef93a7f244f41ab309a33634b"/>VERTEX</entry><entry></entry></row><row><entry><indexterm><primary>INDEX</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>INDEX</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caacb4ae3b37047fb4b2c0d16f8bf84f076"/>INDEX</entry><entry></entry></row><row><entry><indexterm><primary>ITEM</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>ITEM</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa2b911c015ed17a423c74ab9987330e60"/>ITEM</entry><entry></entry></row><row><entry><indexterm><primary>LIST</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>LIST</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa298cb25408234de02baf2085803a464a"/>LIST</entry><entry></entry></row><row><entry><indexterm><primary>CONSTANT</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>CONSTANT</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa8d6b5cada83510220f59e00ce86d4d92"/>CONSTANT</entry><entry></entry></row><row><entry><indexterm><primary>STRUCTURED</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>STRUCTURED</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caaf3657f7b18c7809b92f317c5f3b53421"/>STRUCTURED</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641"/><section>
+    <title>eUsage</title>
+<indexterm><primary>eUsage</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>eUsage</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641">xpe::render::sBuffer::eUsage</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>DEFAULT</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>DEFAULT</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a5b39c8b553c821e7cddc6da64b5bd2ee"/>DEFAULT</entry><entry></entry></row><row><entry><indexterm><primary>STATIC</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>STATIC</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641afe6f99ef1ec99efbdc19a9786cf1facc"/>STATIC</entry><entry></entry></row><row><entry><indexterm><primary>DYNAMIC</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>DYNAMIC</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a0fcc90da4811c877ba9f9c12f7d60bc9"/>DYNAMIC</entry><entry></entry></row><row><entry><indexterm><primary>STAGING</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>STAGING</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641ab8a1431064f351dbef92871d02bab8cf"/>STAGING</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9"/><section>
+    <title>GetByteSize()</title>
+<indexterm><primary>GetByteSize</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>GetByteSize</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::render::sBuffer::GetByteSize ( ) const<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740"/><section>
+    <title>InitialData</title>
+<indexterm><primary>InitialData</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>InitialData</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>* xpe::render::sBuffer::InitialData = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d"/><section>
+    <title>NumElements</title>
+<indexterm><primary>NumElements</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>NumElements</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::render::sBuffer::NumElements = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1af3faa739ee8d36ff1b306fe10a5184bf"/><section>
+    <title>Slot</title>
+<indexterm><primary>Slot</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>Slot</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::render::sBuffer::Slot = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3"/><section>
+    <title>StructureSize</title>
+<indexterm><primary>StructureSize</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>StructureSize</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::render::sBuffer::StructureSize = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548"/><section>
+    <title>SubType</title>
+<indexterm><primary>SubType</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>SubType</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633">eSubType</link> xpe::render::sBuffer::SubType = <link linkend="_structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693">eSubType::NONE</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237"/><section>
+    <title>Type</title>
+<indexterm><primary>Type</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>Type</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca">eType</link> xpe::render::sBuffer::Type = <link linkend="_structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caab50339a10e1de285ac99d4c3990b8693">eType::NONE</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_buffer_1a74933b3c2fa8f86517547b9dcc9c903a"/><section>
+    <title>Usage</title>
+<indexterm><primary>Usage</primary><secondary>xpe::render::sBuffer</secondary></indexterm>
+<indexterm><primary>xpe::render::sBuffer</primary><secondary>Usage</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641">eUsage</link> xpe::render::sBuffer::Usage = <link linkend="_structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a0fcc90da4811c877ba9f9c12f7d60bc9">eUsage::DYNAMIC</link></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/rendering/core/<link linkend="_rendering_2core_2core_8hpp">core.hpp</link></section>
+</section>

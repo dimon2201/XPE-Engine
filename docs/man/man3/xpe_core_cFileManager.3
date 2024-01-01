@@ -1,0 +1,80 @@
+.TH "xpe::core::cFileManager" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cFileManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <file_manager\&.hpp>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBstring\fP \fBReadFileWithIncludes\fP (\fBconst\fP \fBstring\fP &\fBfilepath\fP, \fBstring\fP \fBincludeIdentifier\fP='#include')"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBstring\fP \fBReadFile\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBWriteFile\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP, \fBconst\fP \fBstring\fP &\fBstr\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBWriteFile\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP, \fBconst\fP \fBchar\fP *\fBbytes\fP, \fBusize\fP \fBbyteSize\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBCreateDir\fP (\fBconst\fP \fBchar\fP *\fBdirName\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBCopyFile\fP (\fBconst\fP \fBchar\fP *\fBsrcPath\fP, \fBconst\fP \fBchar\fP *\fBdestPath\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBCopyDirs\fP (\fBconst\fP \fBchar\fP *\fBsrcPath\fP, \fBconst\fP \fBchar\fP *\fBdestPath\fP, \fBconst\fP \fBbool\fP \fBcreateRoot\fP=\fBfalse\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBhstring\fP \fBGetFullFileName\fP (\fBconst\fP \fBchar\fP *\fBpath\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBhstring\fP \fBGetFileName\fP (\fBconst\fP \fBchar\fP *\fBpath\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBExists\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBstring\fP \fBGetAbsolutePath\fP (\fBconst\fP \fBchar\fP *\fBpath\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBhstring\fP \fBGetDirectory\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP)"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::core::cFileManager::CopyDirs (\fBconst\fP \fBchar\fP * srcPath, \fBconst\fP \fBchar\fP * destPath, \fBconst\fP \fBbool\fP createRoot = \fR\fBfalse\fP\fP)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cFileManager::CopyFile (\fBconst\fP \fBchar\fP * srcPath, \fBconst\fP \fBchar\fP * destPath)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cFileManager::CreateDir (\fBconst\fP \fBchar\fP * dirName)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cFileManager::Exists (\fBconst\fP \fBchar\fP * filepath)\fR [static]\fP"
+
+.SS "\fBstring\fP xpe::core::cFileManager::GetAbsolutePath (\fBconst\fP \fBchar\fP * path)\fR [static]\fP"
+
+.SS "\fBhstring\fP xpe::core::cFileManager::GetDirectory (\fBconst\fP \fBchar\fP * filepath)\fR [static]\fP"
+
+.SS "\fBhstring\fP xpe::core::cFileManager::GetFileName (\fBconst\fP \fBchar\fP * path)\fR [static]\fP"
+
+.SS "\fBhstring\fP xpe::core::cFileManager::GetFullFileName (\fBconst\fP \fBchar\fP * path)\fR [static]\fP"
+
+.SS "\fBstring\fP xpe::core::cFileManager::ReadFile (\fBconst\fP \fBchar\fP * filepath)\fR [static]\fP"
+
+.SS "\fBstring\fP xpe::core::cFileManager::ReadFileWithIncludes (\fBconst\fP \fBstring\fP & filepath, \fBstring\fP includeIdentifier = \fR'#include'\fP)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cFileManager::WriteFile (\fBconst\fP \fBchar\fP * filepath, \fBconst\fP \fBchar\fP * bytes, \fBusize\fP byteSize)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cFileManager::WriteFile (\fBconst\fP \fBchar\fP * filepath, \fBconst\fP \fBstring\fP & str)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

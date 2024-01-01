@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_log__manager_8hpp" xml:lang="en-US">
+<title>engine/src/core/log_manager.hpp File Reference</title>
+<indexterm><primary>engine/src/core/log_manager.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;spdlog/spdlog.h&gt;<?linebreak?>#include &lt;spdlog/sinks/basic_file_sink.h&gt;<?linebreak?>#include &lt;spdlog/sinks/stdout_color_sinks.h&gt;<?linebreak?>#include &lt;spdlog/async.h&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_logger_descriptor">xpe::core::sLoggerDescriptor</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_log_manager">xpe::core::cLogManager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1ace537ecfc8a0c748069d8946e3a48369">InitLogger</link>(desc)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1a2483e63d382a5858591b9d725cf36485">FreeLogger</link>()</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1ad0d5f3c901779f5c0a464d4eb4202d62">LogTrace</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1ad5cd22eaef4a5b03a044d26a6d42e52c">LogVerbose</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1a57eb3ffc98e6ad1bdbed0a980a54c484">LogInfo</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1a2c6c3e9c356e14fb4a7139acf4fa7b18">LogWarning</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e">LogError</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1a9a24dfbeabc0f2323f3e94fc982e8ffd">LogMemory</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1a705313536fd985391204a62e275c7154">DumpTraceError</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1ab1ef1da5fb4535faa4cac7287d508334">LogTime</link>(time)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_log__manager_8hpp_1abcb1c32a4ad6492e3dc4a9d981004948">LogGLM</link>(name,  v)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_log__manager_8hpp_1a705313536fd985391204a62e275c7154"/><section>
+    <title>DumpTraceError</title>
+<indexterm><primary>DumpTraceError</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>DumpTraceError</secondary></indexterm>
+<para><computeroutput>#define DumpTraceError( ...)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1a2483e63d382a5858591b9d725cf36485"/><section>
+    <title>FreeLogger</title>
+<indexterm><primary>FreeLogger</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>FreeLogger</secondary></indexterm>
+<para><computeroutput>#define FreeLogger( )</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1ace537ecfc8a0c748069d8946e3a48369"/><section>
+    <title>InitLogger</title>
+<indexterm><primary>InitLogger</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>InitLogger</secondary></indexterm>
+<para><computeroutput>#define InitLogger( desc)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e"/><section>
+    <title>LogError</title>
+<indexterm><primary>LogError</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogError</secondary></indexterm>
+<para><computeroutput>#define LogError( ...)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1abcb1c32a4ad6492e3dc4a9d981004948"/><section>
+    <title>LogGLM</title>
+<indexterm><primary>LogGLM</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogGLM</secondary></indexterm>
+<para><computeroutput>#define LogGLM( name,  v)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1a57eb3ffc98e6ad1bdbed0a980a54c484"/><section>
+    <title>LogInfo</title>
+<indexterm><primary>LogInfo</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogInfo</secondary></indexterm>
+<para><computeroutput>#define LogInfo( ...)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1a9a24dfbeabc0f2323f3e94fc982e8ffd"/><section>
+    <title>LogMemory</title>
+<indexterm><primary>LogMemory</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogMemory</secondary></indexterm>
+<para><computeroutput>#define LogMemory( ...)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1ab1ef1da5fb4535faa4cac7287d508334"/><section>
+    <title>LogTime</title>
+<indexterm><primary>LogTime</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogTime</secondary></indexterm>
+<para><computeroutput>#define LogTime( time)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1ad0d5f3c901779f5c0a464d4eb4202d62"/><section>
+    <title>LogTrace</title>
+<indexterm><primary>LogTrace</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogTrace</secondary></indexterm>
+<para><computeroutput>#define LogTrace( ...)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1ad5cd22eaef4a5b03a044d26a6d42e52c"/><section>
+    <title>LogVerbose</title>
+<indexterm><primary>LogVerbose</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogVerbose</secondary></indexterm>
+<para><computeroutput>#define LogVerbose( ...)</computeroutput></para></section>
+<anchor xml:id="_log__manager_8hpp_1a2c6c3e9c356e14fb4a7139acf4fa7b18"/><section>
+    <title>LogWarning</title>
+<indexterm><primary>LogWarning</primary><secondary>log_manager.hpp</secondary></indexterm>
+<indexterm><primary>log_manager.hpp</primary><secondary>LogWarning</secondary></indexterm>
+<para><computeroutput>#define LogWarning( ...)</computeroutput></para></section>
+</section>
+</section>

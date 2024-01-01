@@ -1,0 +1,220 @@
+\doxysection{xpe\+::ecs\+::c\+Scene Class Reference}
+\hypertarget{classxpe_1_1ecs_1_1c_scene}{}\label{classxpe_1_1ecs_1_1c_scene}\index{xpe::ecs::cScene@{xpe::ecs::cScene}}
+
+
+{\ttfamily \#include $<$ecs.\+hpp$>$}
+
+Inheritance diagram for xpe\+::ecs\+::c\+Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classxpe_1_1ecs_1_1c_scene}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a9382a3ab28600cc502022e1e09823cba}{Set\+Tag}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \& \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a72859f04ba3f448f96fc2353fae7906a}{Get\+Tag}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_ab2842bd0b2bd2789068e9ac82eaa11a6}{Create\+Entity}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_ad9913c4d0a11f519f5789eff1cc8ede9}{Remove\+Entity}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a383d018c0c2db44c44e1c06c35f67626}{Is\+Valid\+Entity}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_aa47283de7ae110700943b75258d1c988}{Clear\+Entities}} ()
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} , typename... Args$>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \& \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_af10ade81ca093d8c007444182173209c}{Add\+Component}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}} \&\&... \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{args}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a132ac580d0c04aa43d71fe827ca333da}{Remove\+Component}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \& \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_adfe5448c670a7646b1b49f1698c0e965}{Get\+Component}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+{\footnotesize template$<$typename... T$>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_af8dda2e288dfd0505ee3d7bc545f8d85}{Has\+Any\+Component}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+{\footnotesize template$<$typename... T$>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a837ce789126d7aa510afb211f86b36da}{Has\+All\+Component}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+{\footnotesize template$<$typename... T$>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_ab39105edd3f4294de8bfb4f97369259f}{Clear\+Components}} ()
+\item 
+{\footnotesize template$<$typename... T$>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{auto}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639}{Get\+Components}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_affe7ea2db8f29e4d85e6a1da779b90dd}{unordered\+\_\+map}}$<$ \mbox{\hyperlink{namespacexpe_1_1ecs_a5d94892c480b4d1cee59dd45fb6799bc}{Component\+ID}}, \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{c\+Json}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_aab680a93dde6e0eced4194ad05622161}{Get\+Jsons}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_affe7ea2db8f29e4d85e6a1da779b90dd}{unordered\+\_\+map}}$<$ \mbox{\hyperlink{namespacexpe_1_1ecs_a5d94892c480b4d1cee59dd45fb6799bc}{Component\+ID}}, \mbox{\hyperlink{classxpe_1_1res_1_1c_xml}{c\+Xml}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a2b882d4b7b0d933d04c7f2d72eda864e}{Get\+Xmls}} (\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity\+Id}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_abd6271071cb04ddd7a3c726e7257b044}{To\+Json}} (\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_aad8dbb8b2770569d902a8a09ba6eb1ca}{From\+Json}} (\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a069b678a1d459ec195a12cc982e22c1b}{To\+Xml}} (\mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a1a742c4d2f714632fdb3dd10b933db75}{From\+Xml}} (\mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+physx\+::\+Px\+Scene \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a08a445f8a61afef6e5b4221d4ed45c36}{Physics\+Scene}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_af10ade81ca093d8c007444182173209c}\label{classxpe_1_1ecs_1_1c_scene_af10ade81ca093d8c007444182173209c} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!AddComponent@{AddComponent}}
+\index{AddComponent@{AddComponent}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{AddComponent()}{AddComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} , typename... Args$>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \& xpe\+::ecs\+::c\+Scene\+::\+Add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}} \&\&...}]{args }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_ab39105edd3f4294de8bfb4f97369259f}\label{classxpe_1_1ecs_1_1c_scene_ab39105edd3f4294de8bfb4f97369259f} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!ClearComponents@{ClearComponents}}
+\index{ClearComponents@{ClearComponents}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{ClearComponents()}{ClearComponents()}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::ecs\+::c\+Scene\+::\+Clear\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_aa47283de7ae110700943b75258d1c988}\label{classxpe_1_1ecs_1_1c_scene_aa47283de7ae110700943b75258d1c988} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!ClearEntities@{ClearEntities}}
+\index{ClearEntities@{ClearEntities}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{ClearEntities()}{ClearEntities()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::ecs\+::c\+Scene\+::\+Clear\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_ab2842bd0b2bd2789068e9ac82eaa11a6}\label{classxpe_1_1ecs_1_1c_scene_ab2842bd0b2bd2789068e9ac82eaa11a6} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!CreateEntity@{CreateEntity}}
+\index{CreateEntity@{CreateEntity}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{CreateEntity()}{CreateEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}} xpe\+::ecs\+::c\+Scene\+::\+Create\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_aad8dbb8b2770569d902a8a09ba6eb1ca}\label{classxpe_1_1ecs_1_1c_scene_aad8dbb8b2770569d902a8a09ba6eb1ca} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!FromJson@{FromJson}}
+\index{FromJson@{FromJson}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{FromJson()}{FromJson()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::ecs\+::c\+Scene\+::\+From\+Json (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classxpe_1_1res_1_1c_json_ac1f545d15f6d5162d765f9c8eb9b336b}{xpe\+::res\+::c\+Json}}.
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a1a742c4d2f714632fdb3dd10b933db75}\label{classxpe_1_1ecs_1_1c_scene_a1a742c4d2f714632fdb3dd10b933db75} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!FromXml@{FromXml}}
+\index{FromXml@{FromXml}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{FromXml()}{FromXml()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} xpe\+::ecs\+::c\+Scene\+::\+From\+Xml (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classxpe_1_1res_1_1c_xml_ad40ae73f421e5655d44fe871cdfe808f}{xpe\+::res\+::c\+Xml}}.
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_adfe5448c670a7646b1b49f1698c0e965}\label{classxpe_1_1ecs_1_1c_scene_adfe5448c670a7646b1b49f1698c0e965} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!GetComponent@{GetComponent}}
+\index{GetComponent@{GetComponent}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{GetComponent()}{GetComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \& xpe\+::ecs\+::c\+Scene\+::\+Get\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639}\label{classxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!GetComponents@{GetComponents}}
+\index{GetComponents@{GetComponents}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{GetComponents()}{GetComponents()}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{auto}} xpe\+::ecs\+::c\+Scene\+::\+Get\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_aab680a93dde6e0eced4194ad05622161}\label{classxpe_1_1ecs_1_1c_scene_aab680a93dde6e0eced4194ad05622161} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!GetJsons@{GetJsons}}
+\index{GetJsons@{GetJsons}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{GetJsons()}{GetJsons()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_affe7ea2db8f29e4d85e6a1da779b90dd}{unordered\+\_\+map}}$<$ \mbox{\hyperlink{namespacexpe_1_1ecs_a5d94892c480b4d1cee59dd45fb6799bc}{Component\+ID}}, \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{c\+Json}} \texorpdfstring{$\ast$}{*} $>$ \& xpe\+::ecs\+::c\+Scene\+::\+Get\+Jsons (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a72859f04ba3f448f96fc2353fae7906a}\label{classxpe_1_1ecs_1_1c_scene_a72859f04ba3f448f96fc2353fae7906a} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!GetTag@{GetTag}}
+\index{GetTag@{GetTag}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{GetTag()}{GetTag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \& xpe\+::ecs\+::c\+Scene\+::\+Get\+Tag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a2b882d4b7b0d933d04c7f2d72eda864e}\label{classxpe_1_1ecs_1_1c_scene_a2b882d4b7b0d933d04c7f2d72eda864e} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!GetXmls@{GetXmls}}
+\index{GetXmls@{GetXmls}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{GetXmls()}{GetXmls()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_affe7ea2db8f29e4d85e6a1da779b90dd}{unordered\+\_\+map}}$<$ \mbox{\hyperlink{namespacexpe_1_1ecs_a5d94892c480b4d1cee59dd45fb6799bc}{Component\+ID}}, \mbox{\hyperlink{classxpe_1_1res_1_1c_xml}{c\+Xml}} \texorpdfstring{$\ast$}{*} $>$ \& xpe\+::ecs\+::c\+Scene\+::\+Get\+Xmls (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a837ce789126d7aa510afb211f86b36da}\label{classxpe_1_1ecs_1_1c_scene_a837ce789126d7aa510afb211f86b36da} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!HasAllComponent@{HasAllComponent}}
+\index{HasAllComponent@{HasAllComponent}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{HasAllComponent()}{HasAllComponent()}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::ecs\+::c\+Scene\+::\+Has\+All\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_af8dda2e288dfd0505ee3d7bc545f8d85}\label{classxpe_1_1ecs_1_1c_scene_af8dda2e288dfd0505ee3d7bc545f8d85} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!HasAnyComponent@{HasAnyComponent}}
+\index{HasAnyComponent@{HasAnyComponent}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{HasAnyComponent()}{HasAnyComponent()}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::ecs\+::c\+Scene\+::\+Has\+Any\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a383d018c0c2db44c44e1c06c35f67626}\label{classxpe_1_1ecs_1_1c_scene_a383d018c0c2db44c44e1c06c35f67626} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!IsValidEntity@{IsValidEntity}}
+\index{IsValidEntity@{IsValidEntity}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{IsValidEntity()}{IsValidEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::ecs\+::c\+Scene\+::\+Is\+Valid\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a132ac580d0c04aa43d71fe827ca333da}\label{classxpe_1_1ecs_1_1c_scene_a132ac580d0c04aa43d71fe827ca333da} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!RemoveComponent@{RemoveComponent}}
+\index{RemoveComponent@{RemoveComponent}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{RemoveComponent()}{RemoveComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::ecs\+::c\+Scene\+::\+Remove\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_ad9913c4d0a11f519f5789eff1cc8ede9}\label{classxpe_1_1ecs_1_1c_scene_ad9913c4d0a11f519f5789eff1cc8ede9} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!RemoveEntity@{RemoveEntity}}
+\index{RemoveEntity@{RemoveEntity}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{RemoveEntity()}{RemoveEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::ecs\+::c\+Scene\+::\+Remove\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{Entity\+ID}}}]{entity\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a9382a3ab28600cc502022e1e09823cba}\label{classxpe_1_1ecs_1_1c_scene_a9382a3ab28600cc502022e1e09823cba} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!SetTag@{SetTag}}
+\index{SetTag@{SetTag}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{SetTag()}{SetTag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::ecs\+::c\+Scene\+::\+Set\+Tag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \&}]{tag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_abd6271071cb04ddd7a3c726e7257b044}\label{classxpe_1_1ecs_1_1c_scene_abd6271071cb04ddd7a3c726e7257b044} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!ToJson@{ToJson}}
+\index{ToJson@{ToJson}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{ToJson()}{ToJson()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::ecs\+::c\+Scene\+::\+To\+Json (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classxpe_1_1res_1_1c_json_ae9f2dda5c12658850632637c06868e88}{xpe\+::res\+::c\+Json}}.
+
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a069b678a1d459ec195a12cc982e22c1b}\label{classxpe_1_1ecs_1_1c_scene_a069b678a1d459ec195a12cc982e22c1b} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!ToXml@{ToXml}}
+\index{ToXml@{ToXml}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{ToXml()}{ToXml()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} xpe\+::ecs\+::c\+Scene\+::\+To\+Xml (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{xml_8hpp_aa0a06f210737bd93431285d99e56096a}{xml}} \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classxpe_1_1res_1_1c_xml_aecfd539665c2cc21965c15aa4f53b9e2}{xpe\+::res\+::c\+Xml}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classxpe_1_1ecs_1_1c_scene_a08a445f8a61afef6e5b4221d4ed45c36}\label{classxpe_1_1ecs_1_1c_scene_a08a445f8a61afef6e5b4221d4ed45c36} 
+\index{xpe::ecs::cScene@{xpe::ecs::cScene}!PhysicsScene@{PhysicsScene}}
+\index{PhysicsScene@{PhysicsScene}!xpe::ecs::cScene@{xpe::ecs::cScene}}
+\doxysubsubsection{\texorpdfstring{PhysicsScene}{PhysicsScene}}
+{\footnotesize\ttfamily physx\+::\+Px\+Scene\texorpdfstring{$\ast$}{*} xpe\+::ecs\+::c\+Scene\+::\+Physics\+Scene}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/ecs/\mbox{\hyperlink{ecs_8hpp}{ecs.\+hpp}}\item 
+engine/src/ecs/\mbox{\hyperlink{ecs_8cpp}{ecs.\+cpp}}\end{DoxyCompactItemize}

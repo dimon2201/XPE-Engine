@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1anim_1_1s_bone" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::anim::sBone</compoundname>
+    <includes refid="skeleton_8hpp" local="no">skeleton.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_bone_1a8f80516fd02edd118e4fc3fe04fcbdf2" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::anim::sBone::ID</definition>
+        <argsstring></argsstring>
+        <name>ID</name>
+        <qualifiedname>xpe::anim::sBone::ID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="13" column="17" bodyfile="engine/src/anim/skeleton.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_bone_1a4668c968a8f7bdca01626fb1337dc63b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref></type>
+        <definition>string xpe::anim::sBone::Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <qualifiedname>xpe::anim::sBone::Name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="14" column="20" bodyfile="engine/src/anim/skeleton.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_bone_1a5e94e9da1f554e19a3e28aa0ece653d2" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::anim::sBone::Offset</definition>
+        <argsstring></argsstring>
+        <name>Offset</name>
+        <qualifiedname>xpe::anim::sBone::Offset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="15" column="23" bodyfile="engine/src/anim/skeleton.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_bone_1a328da8a21d179f267779ac55869e943d" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::anim::sBone::Transform</definition>
+        <argsstring></argsstring>
+        <name>Transform</name>
+        <qualifiedname>xpe::anim::sBone::Transform</qualifiedname>
+        <initializer>= glm::mat4(1.0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="16" column="23" bodyfile="engine/src/anim/skeleton.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_bone_1adac532a271d6e165dc0261016694c8dc" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1anim_1_1s_key_position" kindref="compound">sKeyPosition</ref> &gt;</type>
+        <definition>vector&lt;sKeyPosition&gt; xpe::anim::sBone::KeyPositions</definition>
+        <argsstring></argsstring>
+        <name>KeyPositions</name>
+        <qualifiedname>xpe::anim::sBone::KeyPositions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="17" column="20" bodyfile="engine/src/anim/skeleton.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_bone_1a30fa55e909f6c7956012e7544621b9f8" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1anim_1_1s_key_rotate" kindref="compound">sKeyRotate</ref> &gt;</type>
+        <definition>vector&lt;sKeyRotate&gt; xpe::anim::sBone::KeyRotations</definition>
+        <argsstring></argsstring>
+        <name>KeyRotations</name>
+        <qualifiedname>xpe::anim::sBone::KeyRotations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="18" column="20" bodyfile="engine/src/anim/skeleton.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_bone_1a3b9e4bfb8d72ec90e36958530c75b636" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1anim_1_1s_key_scale" kindref="compound">sKeyScale</ref> &gt;</type>
+        <definition>vector&lt;sKeyScale&gt; xpe::anim::sBone::KeyScales</definition>
+        <argsstring></argsstring>
+        <name>KeyScales</name>
+        <qualifiedname>xpe::anim::sBone::KeyScales</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="19" column="20" bodyfile="engine/src/anim/skeleton.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/anim/skeleton.hpp" line="11" column="9" bodyfile="engine/src/anim/skeleton.hpp" bodystart="12" bodyend="20"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1anim_1_1s_bone_1a8f80516fd02edd118e4fc3fe04fcbdf2" prot="public" virt="non-virtual"><scope>xpe::anim::sBone</scope><name>ID</name></member>
+      <member refid="structxpe_1_1anim_1_1s_bone_1adac532a271d6e165dc0261016694c8dc" prot="public" virt="non-virtual"><scope>xpe::anim::sBone</scope><name>KeyPositions</name></member>
+      <member refid="structxpe_1_1anim_1_1s_bone_1a30fa55e909f6c7956012e7544621b9f8" prot="public" virt="non-virtual"><scope>xpe::anim::sBone</scope><name>KeyRotations</name></member>
+      <member refid="structxpe_1_1anim_1_1s_bone_1a3b9e4bfb8d72ec90e36958530c75b636" prot="public" virt="non-virtual"><scope>xpe::anim::sBone</scope><name>KeyScales</name></member>
+      <member refid="structxpe_1_1anim_1_1s_bone_1a4668c968a8f7bdca01626fb1337dc63b" prot="public" virt="non-virtual"><scope>xpe::anim::sBone</scope><name>Name</name></member>
+      <member refid="structxpe_1_1anim_1_1s_bone_1a5e94e9da1f554e19a3e28aa0ece653d2" prot="public" virt="non-virtual"><scope>xpe::anim::sBone</scope><name>Offset</name></member>
+      <member refid="structxpe_1_1anim_1_1s_bone_1a328da8a21d179f267779ac55869e943d" prot="public" virt="non-virtual"><scope>xpe::anim::sBone</scope><name>Transform</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

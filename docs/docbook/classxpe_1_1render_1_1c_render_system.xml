@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1render_1_1c_render_system" xml:lang="en-US">
+<title>xpe::render::cRenderSystem Class Reference</title>
+<indexterm><primary>xpe::render::cRenderSystem</primary></indexterm>
+<para>
+<computeroutput>#include &lt;render_system.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::cRenderSystem:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1render_1_1c_render_system.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_render_system_1abcbdfa25ef1687e44c642a2dd04e4762">cRenderSystem</link> (<link linkend="_structxpe_1_1render_1_1s_viewport">sViewport</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">viewport</link>, <link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sampleCount</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_render_system_1af94aa18605dede3765dec0d2e029c120">~cRenderSystem</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_render_system_1ac2834a58be8933708392e7d92a79e43e">Prepare</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_render_system_1adf9ca8fc79ed13660b521ef4cf9f78be">Update</link> (<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dt</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984">WindowFrameResized</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_render_system_1abcbdfa25ef1687e44c642a2dd04e4762"/><section>
+    <title>cRenderSystem()</title>
+<indexterm><primary>cRenderSystem</primary><secondary>xpe::render::cRenderSystem</secondary></indexterm>
+<indexterm><primary>xpe::render::cRenderSystem</primary><secondary>cRenderSystem</secondary></indexterm>
+<para><computeroutput>xpe::render::cRenderSystem::cRenderSystem (<link linkend="_structxpe_1_1render_1_1s_viewport">sViewport</link> &amp; viewport, <link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> sampleCount)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_render_system_1af94aa18605dede3765dec0d2e029c120"/><section>
+    <title>~cRenderSystem()</title>
+<indexterm><primary>~cRenderSystem</primary><secondary>xpe::render::cRenderSystem</secondary></indexterm>
+<indexterm><primary>xpe::render::cRenderSystem</primary><secondary>~cRenderSystem</secondary></indexterm>
+<para><computeroutput>xpe::render::cRenderSystem::~cRenderSystem ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_render_system_1ac2834a58be8933708392e7d92a79e43e"/><section>
+    <title>Prepare()</title>
+<indexterm><primary>Prepare</primary><secondary>xpe::render::cRenderSystem</secondary></indexterm>
+<indexterm><primary>xpe::render::cRenderSystem</primary><secondary>Prepare</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cRenderSystem::Prepare ( )</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_render_system_1adf9ca8fc79ed13660b521ef4cf9f78be"/><section>
+    <title>Update()</title>
+<indexterm><primary>Update</primary><secondary>xpe::render::cRenderSystem</secondary></indexterm>
+<indexterm><primary>xpe::render::cRenderSystem</primary><secondary>Update</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cRenderSystem::Update (<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link> * scene, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp; dt)<computeroutput>[final]</computeroutput>, <computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Implements <link linkend="_classxpe_1_1ecs_1_1c_system_1a2a77b444fc80b9f1bd43215a7ba894d6">xpe::ecs::cSystem</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984"/><section>
+    <title>WindowFrameResized()</title>
+<indexterm><primary>WindowFrameResized</primary><secondary>xpe::render::cRenderSystem</secondary></indexterm>
+<indexterm><primary>xpe::render::cRenderSystem</primary><secondary>WindowFrameResized</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cRenderSystem::WindowFrameResized (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> width, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> height)</computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/rendering/<link linkend="_render__system_8hpp">render_system.hpp</link>engine/src/rendering/<link linkend="_render__system_8cpp">render_system.cpp</link></section>
+</section>

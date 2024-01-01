@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_font_8hpp" xml:lang="en-US">
+<title>engine/src/rendering/font/font.hpp File Reference</title>
+<indexterm><primary>engine/src/rendering/font/font.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/core/texture.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1render_1_1s_font">xpe::render::sFont</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1render_1_1s_font_1_1s_glyph">xpe::render::sFont::sGlyph</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1acd79024d1d184cfba5d94062efbba6e5">xpe::render::JSON</link> (<link linkend="_structxpe_1_1render_1_1s_font_1_1s_glyph">sFont::sGlyph</link>, Char, Width, Height, <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e">Left</link>, Top, AdvanceX, AdvanceY, AtlasXOffset, AtlasYOffset) JSON(<link linkend="_structxpe_1_1render_1_1s_font">sFont</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1ae5fd894f0070107242bfc6ca6f7533d2">xpe::render::GlyphCount</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a2fe1f6d43d54e1296405a1f31ebe4a50">xpe::render::GlyphSize</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a7ff3e06a3c32742dbfbdb8a7d3f9827c">xpe::render::NewLineOffset</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a60a22b42d177de6f3c8a06dc395a7fc6">xpe::render::WhitespaceOffset</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a85e7da60ced5657efd54c86294c57a71">xpe::render::MaxGlyphHeight</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

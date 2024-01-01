@@ -1,0 +1,302 @@
+\doxysection{xpe\+::render\+::s\+Sampler Struct Reference}
+\hypertarget{structxpe_1_1render_1_1s_sampler}{}\label{structxpe_1_1render_1_1s_sampler}\index{xpe::render::sSampler@{xpe::render::sSampler}}
+
+
+{\ttfamily \#include $<$texture.\+hpp$>$}
+
+Inheritance diagram for xpe\+::render\+::s\+Sampler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{structxpe_1_1render_1_1s_sampler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2}{e\+Comparison}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a}{NEVER}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a1798e8c3621ca53d9e3a80d257306000}{LESS}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a969f331a87d8c958473c32b4d0e61a44}{EQUAL}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a8b4a5cd69b217bf93b054ada7f49abd4}{LESS\+\_\+\+EQUAL}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2ae7e72355289e404b762d4cf88824d23b}{GREATER}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a4ea2d378cdec20f59330f113297bc1ce}{NOT\+\_\+\+EQUAL}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a87e6b203bf40967d37a33f9a4438561a}{GREATER\+\_\+\+EQUAL}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2af3fc827ade4b968e50406496907ef962}{ALWAYS}}
+ \}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{e\+Address}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4dae1c8555fcf0ea2bb648a6fd527d658c0}{WRAP}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4da72a92ae9c1d172cdda196686278fbfc6}{MIRROR}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{CLAMP}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178}{BORDER}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daa3a9901f7f844b6c8835d5b002600edb}{MIRROR\+\_\+\+ONCE}}
+ \}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625}{e\+Filter}} \{ \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5}{MIN\+\_\+\+MAG\+\_\+\+MIP\+\_\+\+POINT}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a2bc377bb3caf2fbd1d5a2bafcb36d26a}{MIN\+\_\+\+MAG\+\_\+\+MIP\+\_\+\+LINEAR}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a5c56bb1e22b336ee67d2b1612b46dd1d}{ANISOTROPIC}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{xpe\+::render\+::s\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{e\+View\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4aecaa8fe8cb0e85372f4cc76728c7cf3c}{DEPTH\+\_\+\+STENCIL}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4a0bb01e169097cdf50612a3b567e8224b}{RENDER\+\_\+\+TARGET}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db}{SRV}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4a6902d76cea698982754404da77e5e08a}{UAV}}
+ \}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295}{e\+Map\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295a3466fab4975481651940ed328aa990e4}{READ}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295ad4b9e47f65b6e79b010582f15785867e}{WRITE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295aa7b843fb734e3b3fea8e5f902d3f4144}{READ\+\_\+\+WRITE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295a35e7bbbf18cc8cf2948004487c61a0ed}{WRITE\+\_\+\+NO\+\_\+\+OVERWRITE}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295aeb339b5f9c978d1d5d991cd67e08e31b}{WRITE\+\_\+\+DISCARD}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ade9553c3e1d7bf7e577c457ca6a155b7}{s\+Sampler}} ()
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab8032ad07bbd55f5a3f4ff26770d0a95}{\texorpdfstring{$\sim$}{\string~}s\+Sampler}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340}{Init}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a2111257a98552cfee195a4d063fce7e0}{Slot}} = 0
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625}{e\+Filter}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a00645d12398bcc905de33feb27153065}{Filter}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5}{e\+Filter\+::\+MIN\+\_\+\+MAG\+\_\+\+MIP\+\_\+\+POINT}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ad605bf2ef69b99c534ada17b9693290f}{Min\+LOD}} = 0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a5e9464b790d5402c218155c2319484d1}{Max\+LOD}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FLT\+\_\+\+MAX}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a2686b1fea063256568cd3fa3b8c87c90}{Mip\+LODBias}} = 0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a3288fae8b851ef315ce0ed38335f81ab}{Anisotropy\+Level}} = 1
+\item 
+glm\+::vec4 \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a377d09ab7f8b76428efd46f45f18060b}{Border\+Color}} = \{ 0, 0, 0, 0 \}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2}{e\+Comparison}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a710c367e680b414785b30e10a920700d}{Comparison}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a}{e\+Comparison\+::\+NEVER}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{e\+Address}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a667dc6455e11368da13e15df19234954}{AddressU}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{e\+Address\+::\+CLAMP}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{e\+Address}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a101c6c8edcb9e9b127fdd2bcfb2e5056}{AddressV}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{e\+Address\+::\+CLAMP}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{e\+Address}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_af7562572bdf962338a55e88467f24f82}{AddressW}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{e\+Address\+::\+CLAMP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{xpe\+::render\+::s\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_af827dadaafbfdfbb81c4fe6d17d37bfd}{Instance}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_acd7826aa1301d8a032b85078503313ca}{View\+Instance}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{e\+View\+Type}} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a92908e592469d360bed7d9526fb59b69}{View\+Type}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693}{e\+View\+Type\+::\+NONE}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}\label{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!eAddress@{eAddress}}
+\index{eAddress@{eAddress}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{eAddress}{eAddress}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{xpe\+::render\+::s\+Sampler\+::e\+Address}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WRAP@{WRAP}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!WRAP@{WRAP}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4dae1c8555fcf0ea2bb648a6fd527d658c0}\label{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4dae1c8555fcf0ea2bb648a6fd527d658c0} 
+WRAP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MIRROR@{MIRROR}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!MIRROR@{MIRROR}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4da72a92ae9c1d172cdda196686278fbfc6}\label{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4da72a92ae9c1d172cdda196686278fbfc6} 
+MIRROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLAMP@{CLAMP}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!CLAMP@{CLAMP}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}\label{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345} 
+CLAMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BORDER@{BORDER}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!BORDER@{BORDER}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178}\label{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178} 
+BORDER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MIRROR\_ONCE@{MIRROR\_ONCE}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!MIRROR\_ONCE@{MIRROR\_ONCE}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daa3a9901f7f844b6c8835d5b002600edb}\label{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daa3a9901f7f844b6c8835d5b002600edb} 
+MIRROR\+\_\+\+ONCE&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!eComparison@{eComparison}}
+\index{eComparison@{eComparison}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{eComparison}{eComparison}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2}{xpe\+::render\+::s\+Sampler\+::e\+Comparison}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NEVER@{NEVER}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!NEVER@{NEVER}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a} 
+NEVER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LESS@{LESS}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!LESS@{LESS}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a1798e8c3621ca53d9e3a80d257306000}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a1798e8c3621ca53d9e3a80d257306000} 
+LESS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EQUAL@{EQUAL}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!EQUAL@{EQUAL}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a969f331a87d8c958473c32b4d0e61a44}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a969f331a87d8c958473c32b4d0e61a44} 
+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LESS\_EQUAL@{LESS\_EQUAL}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!LESS\_EQUAL@{LESS\_EQUAL}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a8b4a5cd69b217bf93b054ada7f49abd4}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a8b4a5cd69b217bf93b054ada7f49abd4} 
+LESS\+\_\+\+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREATER@{GREATER}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!GREATER@{GREATER}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2ae7e72355289e404b762d4cf88824d23b}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2ae7e72355289e404b762d4cf88824d23b} 
+GREATER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT\_EQUAL@{NOT\_EQUAL}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!NOT\_EQUAL@{NOT\_EQUAL}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a4ea2d378cdec20f59330f113297bc1ce}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a4ea2d378cdec20f59330f113297bc1ce} 
+NOT\+\_\+\+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREATER\_EQUAL@{GREATER\_EQUAL}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!GREATER\_EQUAL@{GREATER\_EQUAL}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a87e6b203bf40967d37a33f9a4438561a}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a87e6b203bf40967d37a33f9a4438561a} 
+GREATER\+\_\+\+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALWAYS@{ALWAYS}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!ALWAYS@{ALWAYS}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2af3fc827ade4b968e50406496907ef962}\label{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2af3fc827ade4b968e50406496907ef962} 
+ALWAYS&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625}\label{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!eFilter@{eFilter}}
+\index{eFilter@{eFilter}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{eFilter}{eFilter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625}{xpe\+::render\+::s\+Sampler\+::e\+Filter}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MIN\_MAG\_MIP\_POINT@{MIN\_MAG\_MIP\_POINT}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!MIN\_MAG\_MIP\_POINT@{MIN\_MAG\_MIP\_POINT}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5}\label{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5} 
+MIN\+\_\+\+MAG\+\_\+\+MIP\+\_\+\+POINT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MIN\_MAG\_MIP\_LINEAR@{MIN\_MAG\_MIP\_LINEAR}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!MIN\_MAG\_MIP\_LINEAR@{MIN\_MAG\_MIP\_LINEAR}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a2bc377bb3caf2fbd1d5a2bafcb36d26a}\label{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a2bc377bb3caf2fbd1d5a2bafcb36d26a} 
+MIN\+\_\+\+MAG\+\_\+\+MIP\+\_\+\+LINEAR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANISOTROPIC@{ANISOTROPIC}!xpe::render::sSampler@{xpe::render::sSampler}}\index{xpe::render::sSampler@{xpe::render::sSampler}!ANISOTROPIC@{ANISOTROPIC}}}\Hypertarget{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a5c56bb1e22b336ee67d2b1612b46dd1d}\label{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a5c56bb1e22b336ee67d2b1612b46dd1d} 
+ANISOTROPIC&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_sampler_ade9553c3e1d7bf7e577c457ca6a155b7}\label{structxpe_1_1render_1_1s_sampler_ade9553c3e1d7bf7e577c457ca6a155b7} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!sSampler@{sSampler}}
+\index{sSampler@{sSampler}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{sSampler()}{sSampler()}}
+{\footnotesize\ttfamily xpe\+::render\+::s\+Sampler\+::s\+Sampler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_ab8032ad07bbd55f5a3f4ff26770d0a95}\label{structxpe_1_1render_1_1s_sampler_ab8032ad07bbd55f5a3f4ff26770d0a95} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!````~sSampler@{\texorpdfstring{$\sim$}{\string~}sSampler}}
+\index{````~sSampler@{\texorpdfstring{$\sim$}{\string~}sSampler}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}sSampler()}{\string~sSampler()}}
+{\footnotesize\ttfamily xpe\+::render\+::s\+Sampler\+::\texorpdfstring{$\sim$}{\string~}s\+Sampler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340}\label{structxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!Init@{Init}}
+\index{Init@{Init}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Sampler\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a667dc6455e11368da13e15df19234954}\label{structxpe_1_1render_1_1s_sampler_a667dc6455e11368da13e15df19234954} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!AddressU@{AddressU}}
+\index{AddressU@{AddressU}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{AddressU}{AddressU}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{e\+Address}} xpe\+::render\+::s\+Sampler\+::\+AddressU = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{e\+Address\+::\+CLAMP}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a101c6c8edcb9e9b127fdd2bcfb2e5056}\label{structxpe_1_1render_1_1s_sampler_a101c6c8edcb9e9b127fdd2bcfb2e5056} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!AddressV@{AddressV}}
+\index{AddressV@{AddressV}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{AddressV}{AddressV}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{e\+Address}} xpe\+::render\+::s\+Sampler\+::\+AddressV = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{e\+Address\+::\+CLAMP}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_af7562572bdf962338a55e88467f24f82}\label{structxpe_1_1render_1_1s_sampler_af7562572bdf962338a55e88467f24f82} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!AddressW@{AddressW}}
+\index{AddressW@{AddressW}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{AddressW}{AddressW}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4d}{e\+Address}} xpe\+::render\+::s\+Sampler\+::\+AddressW = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{e\+Address\+::\+CLAMP}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a3288fae8b851ef315ce0ed38335f81ab}\label{structxpe_1_1render_1_1s_sampler_a3288fae8b851ef315ce0ed38335f81ab} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!AnisotropyLevel@{AnisotropyLevel}}
+\index{AnisotropyLevel@{AnisotropyLevel}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{AnisotropyLevel}{AnisotropyLevel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Sampler\+::\+Anisotropy\+Level = 1}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a377d09ab7f8b76428efd46f45f18060b}\label{structxpe_1_1render_1_1s_sampler_a377d09ab7f8b76428efd46f45f18060b} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!BorderColor@{BorderColor}}
+\index{BorderColor@{BorderColor}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{BorderColor}{BorderColor}}
+{\footnotesize\ttfamily glm\+::vec4 xpe\+::render\+::s\+Sampler\+::\+Border\+Color = \{ 0, 0, 0, 0 \}}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a710c367e680b414785b30e10a920700d}\label{structxpe_1_1render_1_1s_sampler_a710c367e680b414785b30e10a920700d} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!Comparison@{Comparison}}
+\index{Comparison@{Comparison}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{Comparison}{Comparison}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2}{e\+Comparison}} xpe\+::render\+::s\+Sampler\+::\+Comparison = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a}{e\+Comparison\+::\+NEVER}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a00645d12398bcc905de33feb27153065}\label{structxpe_1_1render_1_1s_sampler_a00645d12398bcc905de33feb27153065} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!Filter@{Filter}}
+\index{Filter@{Filter}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{Filter}{Filter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625}{e\+Filter}} xpe\+::render\+::s\+Sampler\+::\+Filter = \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5}{e\+Filter\+::\+MIN\+\_\+\+MAG\+\_\+\+MIP\+\_\+\+POINT}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a5e9464b790d5402c218155c2319484d1}\label{structxpe_1_1render_1_1s_sampler_a5e9464b790d5402c218155c2319484d1} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!MaxLOD@{MaxLOD}}
+\index{MaxLOD@{MaxLOD}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{MaxLOD}{MaxLOD}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::render\+::s\+Sampler\+::\+Max\+LOD = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FLT\+\_\+\+MAX}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_ad605bf2ef69b99c534ada17b9693290f}\label{structxpe_1_1render_1_1s_sampler_ad605bf2ef69b99c534ada17b9693290f} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!MinLOD@{MinLOD}}
+\index{MinLOD@{MinLOD}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{MinLOD}{MinLOD}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::render\+::s\+Sampler\+::\+Min\+LOD = 0}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a2686b1fea063256568cd3fa3b8c87c90}\label{structxpe_1_1render_1_1s_sampler_a2686b1fea063256568cd3fa3b8c87c90} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!MipLODBias@{MipLODBias}}
+\index{MipLODBias@{MipLODBias}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{MipLODBias}{MipLODBias}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::render\+::s\+Sampler\+::\+Mip\+LODBias = 0}
+
+\Hypertarget{structxpe_1_1render_1_1s_sampler_a2111257a98552cfee195a4d063fce7e0}\label{structxpe_1_1render_1_1s_sampler_a2111257a98552cfee195a4d063fce7e0} 
+\index{xpe::render::sSampler@{xpe::render::sSampler}!Slot@{Slot}}
+\index{Slot@{Slot}!xpe::render::sSampler@{xpe::render::sSampler}}
+\doxysubsubsection{\texorpdfstring{Slot}{Slot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Sampler\+::\+Slot = 0}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/rendering/core/\mbox{\hyperlink{texture_8hpp}{texture.\+hpp}}\item 
+engine/src/rendering/core/\mbox{\hyperlink{texture_8cpp}{texture.\+cpp}}\end{DoxyCompactItemize}

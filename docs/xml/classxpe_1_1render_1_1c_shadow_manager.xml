@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_shadow_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::cShadowManager</compoundname>
+    <includes refid="shadow__manager_8hpp" local="no">shadow_manager.hpp</includes>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shadow_manager_1ab48f2f89acf430f23bd847d1d6522702" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShadowManager::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::render::cShadowManager::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shadow_manager.hpp" line="10" column="25" bodyfile="engine/src/rendering/shadow_manager.cpp" bodystart="8" bodyend="50"/>
+        <references refid="structxpe_1_1render_1_1s_sampler_1a667dc6455e11368da13e15df19234954" compoundref="texture_8hpp" startline="334">xpe::render::sSampler::AddressU</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1a101c6c8edcb9e9b127fdd2bcfb2e5056" compoundref="texture_8hpp" startline="335">xpe::render::sSampler::AddressV</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1af7562572bdf962338a55e88467f24f82" compoundref="texture_8hpp" startline="336">xpe::render::sSampler::AddressW</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178">xpe::render::sSampler::BORDER</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1a377d09ab7f8b76428efd46f45f18060b" compoundref="texture_8hpp" startline="330" endline="330">xpe::render::sSampler::BorderColor</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1aa2ee11146ce783e2aa821717ea2295b8" compoundref="render__target_8hpp" startline="16">xpe::render::sRenderTarget::ClearColors</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1acde4317ff9849e50fb56436943dbbd0e" compoundref="render__target_8hpp" startline="17">xpe::render::sRenderTarget::ClearDepth</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1a00645d12398bcc905de33feb27153065" compoundref="texture_8hpp" startline="322">xpe::render::sSampler::Filter</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1a5bf4baa8340c1e14a5208eba4165add7" compoundref="rendering_2core_2core_8hpp" startline="101">xpe::render::sViewport::Height</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1afb7fae3cf8ede538ecf2c087de227340" compoundref="texture_8cpp" startline="473" endline="476">xpe::render::sSampler::Init</references>
+        <references refid="macro__constants_8hpp_1ad4aea4f869eaed47721fee63a8ddcd81" compoundref="macro__constants_8hpp" startline="67">K_SLOT_SHADOW_ATLAS</references>
+        <references refid="macro__constants_8hpp_1af94ba6b41910053a120ce7e89cd56f7c" compoundref="macro__constants_8hpp" startline="68">K_SLOT_SHADOW_SAMPLER</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a2bc377bb3caf2fbd1d5a2bafcb36d26a">xpe::render::sSampler::MIN_MAG_MIP_LINEAR</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419">xpe::render::R32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a5b48989c0201198bda57a0024e2e2bd9">xpe::render::R32_TYPELESS</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a17f0a872aae3eb6370c290695e31b208" compoundref="render__target_8cpp" startline="116" endline="124">xpe::render::sRenderTarget::SetResizable</references>
+        <references refid="structxpe_1_1render_1_1_viewports_1a60607f8ab14087213db8cf51a1f551ca" compoundref="bindings_8hpp" startline="11">xpe::render::Viewports::Shadow</references>
+        <references refid="structxpe_1_1render_1_1_render_targets_1a82b348c7ad59494ecc7fb5e06ea4b238" compoundref="bindings_8hpp" startline="22">xpe::render::RenderTargets::Shadow</references>
+        <references refid="structxpe_1_1render_1_1_samplers_1a4c8c9343e7e77fb726c7a3978abc24cc" compoundref="bindings_8hpp" startline="57">xpe::render::Samplers::Shadow</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1a82f8224c0b7a0ae9eea8005b65161fe2" compoundref="bindings_8hpp" startline="35">xpe::render::Buffers::ShadowPCF</references>
+        <references refid="structxpe_1_1render_1_1s_sampler_1a2111257a98552cfee195a4d063fce7e0" compoundref="texture_8hpp" startline="320">xpe::render::sSampler::Slot</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a52e05a9e7056e6b657eb3fc397403433">xpe::render::sTexture::TEXTURE_2D_DEPTH_STENCIL</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1af844df25d5d2c89c0c9cb8ebacbfc7a9" compoundref="rendering_2core_2core_8hpp" startline="100">xpe::render::sViewport::Width</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shadow_manager_1abcaed5d467f2c0c6e85a9508818efd8b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShadowManager::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::render::cShadowManager::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shadow_manager.hpp" line="11" column="25" bodyfile="engine/src/rendering/shadow_manager.cpp" bodystart="52" bodyend="62"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a3b81fe98fd6ef9ff743e6c9d22debd9a" compoundref="render__target_8hpp" startline="13">xpe::render::sRenderTarget::Colors</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1aa5a44bf9fcb607e8332ecbc0503a8226" compoundref="render__target_8hpp" startline="14">xpe::render::sRenderTarget::DepthStencil</references>
+        <references refid="structxpe_1_1render_1_1_viewports_1a60607f8ab14087213db8cf51a1f551ca" compoundref="bindings_8hpp" startline="11">xpe::render::Viewports::Shadow</references>
+        <references refid="structxpe_1_1render_1_1_render_targets_1a82b348c7ad59494ecc7fb5e06ea4b238" compoundref="bindings_8hpp" startline="22">xpe::render::RenderTargets::Shadow</references>
+        <references refid="structxpe_1_1render_1_1_samplers_1a4c8c9343e7e77fb726c7a3978abc24cc" compoundref="bindings_8hpp" startline="57">xpe::render::Samplers::Shadow</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1a82f8224c0b7a0ae9eea8005b65161fe2" compoundref="bindings_8hpp" startline="35">xpe::render::Buffers::ShadowPCF</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shadow_manager_1afbb2abf517384579c57f20d6feb29add" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShadowManager::Flush</definition>
+        <argsstring>()</argsstring>
+        <name>Flush</name>
+        <qualifiedname>xpe::render::cShadowManager::Flush</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shadow_manager.hpp" line="12" column="25" bodyfile="engine/src/rendering/shadow_manager.cpp" bodystart="64" bodyend="67"/>
+        <references refid="structxpe_1_1render_1_1s_item_buffer_1a36748548161b72588ad888d58a2aa163" compoundref="buffers_8hpp" startline="119" endline="122">xpe::render::sItemBuffer&lt; T &gt;::Flush</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1a82f8224c0b7a0ae9eea8005b65161fe2" compoundref="bindings_8hpp" startline="35">xpe::render::Buffers::ShadowPCF</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/shadow_manager.hpp" line="7" column="9" bodyfile="engine/src/rendering/shadow_manager.hpp" bodystart="8" bodyend="13"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_shadow_manager_1afbb2abf517384579c57f20d6feb29add" prot="public" virt="non-virtual"><scope>xpe::render::cShadowManager</scope><name>Flush</name></member>
+      <member refid="classxpe_1_1render_1_1c_shadow_manager_1abcaed5d467f2c0c6e85a9508818efd8b" prot="public" virt="non-virtual"><scope>xpe::render::cShadowManager</scope><name>Free</name></member>
+      <member refid="classxpe_1_1render_1_1c_shadow_manager_1ab48f2f89acf430f23bd847d1d6522702" prot="public" virt="non-virtual"><scope>xpe::render::cShadowManager</scope><name>Init</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

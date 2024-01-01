@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1render_1_1c_debug_manager" xml:lang="en-US">
+<title>xpe::render::cDebugManager Class Reference</title>
+<indexterm><primary>xpe::render::cDebugManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;debugger.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_debug_manager_1ae6ea5822c76184a6d1e1b3fb039c44e7">Init</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_debug_manager_1ae557545204334aa7a434dde6a14a513c">Free</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_debug_manager_1ae50a27433d9048159a6bbe2acef13dc0">LogMessages</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_debug_manager_1ac78b455c1f6babcbb4202d84fba5def1">LogLastMessage</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_debug_manager_1ae557545204334aa7a434dde6a14a513c"/><section>
+    <title>Free()</title>
+<indexterm><primary>Free</primary><secondary>xpe::render::cDebugManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cDebugManager</primary><secondary>Free</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDebugManager::Free ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_debug_manager_1ae6ea5822c76184a6d1e1b3fb039c44e7"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::render::cDebugManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cDebugManager</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDebugManager::Init ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_debug_manager_1ac78b455c1f6babcbb4202d84fba5def1"/><section>
+    <title>LogLastMessage()</title>
+<indexterm><primary>LogLastMessage</primary><secondary>xpe::render::cDebugManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cDebugManager</primary><secondary>LogLastMessage</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDebugManager::LogLastMessage ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_debug_manager_1ae50a27433d9048159a6bbe2acef13dc0"/><section>
+    <title>LogMessages()</title>
+<indexterm><primary>LogMessages</primary><secondary>xpe::render::cDebugManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cDebugManager</primary><secondary>LogMessages</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cDebugManager::LogMessages ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/rendering/core/<link linkend="_debugger_8hpp">debugger.hpp</link>engine/src/rendering/core/<link linkend="_debugger_8cpp">debugger.cpp</link></section>
+</section>

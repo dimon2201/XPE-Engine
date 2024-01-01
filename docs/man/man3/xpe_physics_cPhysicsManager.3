@@ -1,0 +1,65 @@
+.TH "xpe::physics::cPhysicsManager" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::physics::cPhysicsManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <physics_manager\&.hpp>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBInit\fP (PxCpuDispatcher *\fBdispatcher\fP, \fBbool\fP \fBenableMemoryProfiling\fP=\fBfalse\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBEnableLoggingInfo\fP (\fBbool\fP \fBenable\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBEnableLoggingWarning\fP (\fBbool\fP \fBenable\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBEnableLoggingError\fP (\fBbool\fP \fBenable\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsActor\fP * \fBAddActor\fP (\fBcEntity\fP &\fBentity\fP, \fBconst\fP \fBsActor::eActorType\fP &\fBactorType\fP, sShapeDescriptor *\fBshapeDesc\fP, \fBconst\fP glm::vec3 &\fBlinearVelocity\fP, \fBf32\fP \fBstaticFriction\fP, \fBf32\fP \fBdynamicFriction\fP, \fBf32\fP \fBrestitution\fP, \fBf32\fP \fBcontactOffset\fP, \fBf32\fP \fBrestOffset\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsRagdoll\fP * \fBAddRagdoll\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBPxScene\fP * \fBAddScene\fP (\fBconst\fP \fBstring\fP &\fBtag\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBSetActorPose\fP (\fBsActor\fP &\fBactor\fP, \fBmath::sTransform\fP &\fBtransform\fP)"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBsActor\fP * xpe::physics::cPhysicsManager::AddActor (\fBcEntity\fP & entity, \fBconst\fP \fBsActor::eActorType\fP & actorType, sShapeDescriptor * shapeDesc, \fBconst\fP glm::vec3 & linearVelocity, \fBf32\fP staticFriction, \fBf32\fP dynamicFriction, \fBf32\fP restitution, \fBf32\fP contactOffset, \fBf32\fP restOffset)\fR [static]\fP"
+
+.SS "\fBsRagdoll\fP * xpe::physics::cPhysicsManager::AddRagdoll ()\fR [static]\fP"
+
+.SS "\fBPxScene\fP * xpe::physics::cPhysicsManager::AddScene (\fBconst\fP \fBstring\fP & tag)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsManager::EnableLoggingError (\fBbool\fP enable)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsManager::EnableLoggingInfo (\fBbool\fP enable)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsManager::EnableLoggingWarning (\fBbool\fP enable)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsManager::Free ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsManager::Init (PxCpuDispatcher * dispatcher, \fBbool\fP enableMemoryProfiling = \fR\fBfalse\fP\fP)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsManager::SetActorPose (\fBsActor\fP & actor, \fBmath::sTransform\fP & transform)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

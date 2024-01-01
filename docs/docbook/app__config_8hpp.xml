@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_app__config_8hpp" xml:lang="en-US">
+<title>engine/src/core/app_config.hpp File Reference</title>
+<indexterm><primary>engine/src/core/app_config.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;core/observers.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_app_config">xpe::core::sAppConfig</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

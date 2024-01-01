@@ -1,0 +1,728 @@
+.TH "xpe::render" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBcontext\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBBuffers\fP"
+.br
+.ti -1c
+.RI "class \fBcCamera\fP"
+.br
+.ti -1c
+.RI "class \fBcCameraManager\fP"
+.br
+.ti -1c
+.RI "class \fBcCanvas\fP"
+.br
+.ti -1c
+.RI "class \fBcCompositeTransparentShader\fP"
+.br
+.ti -1c
+.RI "class \fBcComputeShader\fP"
+.br
+.ti -1c
+.RI "class \fBcDebugManager\fP"
+.br
+.ti -1c
+.RI "class \fBcDefaultShader\fP"
+.br
+.ti -1c
+.RI "class \fBcDirectionalShadowShader\fP"
+.br
+.ti -1c
+.RI "class \fBcFinalShader\fP"
+.br
+.ti -1c
+.RI "class \fBcGeometryManager\fP"
+.br
+.ti -1c
+.RI "class \fBcInstancingShader\fP"
+.br
+.ti -1c
+.RI "class \fBcMaterialManager\fP"
+.br
+.ti -1c
+.RI "class \fBcOpaqueShader\fP"
+.br
+.ti -1c
+.RI "class \fBcOrthoCamera\fP"
+.br
+.ti -1c
+.RI "class \fBcPointShadowShader\fP"
+.br
+.ti -1c
+.RI "class \fBcRenderSystem\fP"
+.br
+.ti -1c
+.RI "class \fBcShader\fP"
+.br
+.ti -1c
+.RI "class \fBcShaderManager\fP"
+.br
+.ti -1c
+.RI "class \fBcShadowManager\fP"
+.br
+.ti -1c
+.RI "class \fBcShadowShader\fP"
+.br
+.ti -1c
+.RI "class \fBcSkyboxManager\fP"
+.br
+.ti -1c
+.RI "class \fBcSkyboxShader\fP"
+.br
+.ti -1c
+.RI "class \fBcSpotShadowShader\fP"
+.br
+.ti -1c
+.RI "class \fBcSsaoShader\fP"
+.br
+.ti -1c
+.RI "class \fBcTextShader\fP"
+.br
+.ti -1c
+.RI "class \fBcTransparentShader\fP"
+.br
+.ti -1c
+.RI "class \fBcWidgetManager\fP"
+.br
+.ti -1c
+.RI "class \fBcWidgetShader\fP"
+.br
+.ti -1c
+.RI "struct \fBRenderTargets\fP"
+.br
+.ti -1c
+.RI "struct \fBSamplers\fP"
+.br
+.ti -1c
+.RI "struct \fBsAtlas\fP"
+.br
+.ti -1c
+.RI "struct \fBsAttributes\fP"
+.br
+.ti -1c
+.RI "struct \fBsBlendMode\fP"
+.br
+.ti -1c
+.RI "struct \fBsBlendTarget\fP"
+.br
+.ti -1c
+.RI "struct \fBsBlob\fP"
+.br
+.ti -1c
+.RI "struct \fBsBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsCameraBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsCameraData\fP"
+.br
+.ti -1c
+.RI "struct \fBsChar\fP"
+.br
+.ti -1c
+.RI "struct \fBsCharBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsCube\fP"
+.br
+.ti -1c
+.RI "struct \fBsDebugMessage\fP"
+.br
+.ti -1c
+.RI "struct \fBsDepthStencilMode\fP"
+.br
+.ti -1c
+.RI "struct \fBsDirectLightBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsDirectLightData\fP"
+.br
+.ti -1c
+.RI "struct \fBsFont\fP"
+.br
+.ti -1c
+.RI "struct \fBsGeometry\fP"
+.br
+.ti -1c
+.RI "struct \fBsGeometryInfo\fP"
+.br
+.ti -1c
+.RI "struct \fBsIndexBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsInstanceBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsItemBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsLine\fP"
+.br
+.ti -1c
+.RI "class \fBsListBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsMaterial\fP"
+.br
+.ti -1c
+.RI "struct \fBsMaterialData\fP"
+.br
+.ti -1c
+.RI "struct \fBsMaterialDataBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsMaterialFormat\fP"
+.br
+.ti -1c
+.RI "struct \fBsMip\fP"
+.br
+.ti -1c
+.RI "struct \fBsModel\fP"
+.br
+.ti -1c
+.RI "struct \fBsPlane\fP"
+.br
+.ti -1c
+.RI "struct \fBsPointLightBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsPointLightData\fP"
+.br
+.ti -1c
+.RI "struct \fBsQuad\fP"
+.br
+.ti -1c
+.RI "struct \fBsRasterizer\fP"
+.br
+.ti -1c
+.RI "struct \fBsRenderInstance\fP"
+.br
+.ti -1c
+.RI "struct \fBsRenderTarget\fP"
+.br
+.ti -1c
+.RI "struct \fBsResource\fP"
+.br
+.ti -1c
+.RI "struct \fBsSampler\fP"
+.br
+.ti -1c
+.RI "struct \fBsShaderStage\fP"
+.br
+.ti -1c
+.RI "struct \fBsShadowPcf\fP"
+.br
+.ti -1c
+.RI "struct \fBsShadowPcfBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsSkeletonBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsSkeletonData\fP"
+.br
+.ti -1c
+.RI "struct \fBsSkybox\fP"
+.br
+.ti -1c
+.RI "struct \fBsSphere\fP"
+.br
+.ti -1c
+.RI "struct \fBsSpotLightBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsSpotLightData\fP"
+.br
+.ti -1c
+.RI "struct \fBsSsaoBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsSsaoData\fP"
+.br
+.ti -1c
+.RI "struct \fBsStencilTest\fP"
+.br
+.ti -1c
+.RI "struct \fBsText\fP"
+.br
+.ti -1c
+.RI "struct \fBsTextBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsTexture\fP"
+.br
+.ti -1c
+.RI "struct \fBsTextureLayer\fP"
+.br
+.ti -1c
+.RI "struct \fBsTriangle\fP"
+.br
+.ti -1c
+.RI "struct \fBsVertex\fP"
+.br
+.ti -1c
+.RI "struct \fBsVertexBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsVertexFormat\fP"
+.br
+.ti -1c
+.RI "struct \fBsViewport\fP"
+.br
+.ti -1c
+.RI "struct \fBsWidget\fP"
+.br
+.ti -1c
+.RI "struct \fBsWidgetBuffer\fP"
+.br
+.ti -1c
+.RI "struct \fBsWidgetData\fP"
+.br
+.ti -1c
+.RI "struct \fBTextures\fP"
+.br
+.ti -1c
+.RI "struct \fBViewports\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(* \fBDebuggerCallback\fP) (\fBconst\fP \fBsDebugMessage\fP &)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBePrimitiveTopology\fP { \fBTRIANGLE_LIST\fP, \fBTRIANGLE_STRIP\fP, \fBPOINT_LIST\fP, \fBLINE_LIST\fP, \fBLINE_STRIP\fP, \fBDEFAULT\fP = TRIANGLE_LIST }"
+.br
+.ti -1c
+.RI "enum class \fBeDepthWriteMask\fP { \fBZERO\fP = 0, \fBALL\fP = 1 }"
+.br
+.ti -1c
+.RI "enum class \fBeDepthStencilFunc\fP { \fBNEVER\fP = 1, \fBLESS\fP = 2, \fBEQUAL\fP = 3, \fBLESS_EQUAL\fP = 4, \fBGREATER\fP = 5, \fBNOT_EQUAL\fP = 6, \fBGREATER_EQUAL\fP = 7, \fBALWAYS\fP = 8 }"
+.br
+.ti -1c
+.RI "enum class \fBeDepthStencilOp\fP { \fBKEEP\fP = 1, \fBZERO\fP = 2, \fBREPLACE\fP = 3, \fBINCR_SAT\fP = 4, \fBDECR_SAT\fP = 5, \fBINVERT\fP = 6, \fBINCR\fP = 7, \fBDECR\fP = 8 }"
+.br
+.ti -1c
+.RI "enum class \fBeBlend\fP { \fBZERO\fP = 1, \fBONE\fP = 2, \fBSRC_COLOR\fP = 3, \fBINV_SRC_COLOR\fP = 4, \fBSRC_ALPHA\fP = 5, \fBINV_SRC_ALPHA\fP = 6, \fBDEST_ALPHA\fP = 7, \fBINV_DEST_ALPHA\fP = 8, \fBDEST_COLOR\fP = 9, \fBINV_DEST_COLOR\fP = 10, \fBSRC_ALPHA_SAT\fP = 11, \fBBLEND_FACTOR\fP = 14, \fBINV_BLEND_FACTOR\fP = 15, \fBSRC1_COLOR\fP = 16, \fBINV_SRC1_COLOR\fP = 17, \fBSRC1_ALPHA\fP = 18, \fBINV_SRC1_ALPHA\fP = 19 }"
+.br
+.ti -1c
+.RI "enum class \fBeBlendOp\fP { \fBADD\fP = 1, \fBSUBTRACT\fP = 2, \fBREV_SUBTRACT\fP = 3, \fBMIN\fP = 4, \fBMAX\fP = 5 }"
+.br
+.ti -1c
+.RI "enum \fBeColorWriteEnableMask\fP : u8 { \fBRED\fP = 1, \fBGREEN\fP = 2, \fBBLUE\fP = 4, \fBALPHA\fP = 8, \fBALL\fP = (((RED | GREEN) | BLUE) | ALPHA) }"
+.br
+.ti -1c
+.RI "enum class \fBeFillMode\fP { \fBWIREFRAME\fP, \fBSOLID\fP, \fBDEFAULT\fP = SOLID }"
+.br
+.ti -1c
+.RI "enum class \fBeCullMode\fP { \fBNONE\fP, \fBFRONT\fP, \fBBACK\fP, \fBDEFAULT\fP = NONE }"
+.br
+.ti -1c
+.RI "enum class \fBeDebugErrorType\fP { \fBD_NO_ERROR_TYPE\fP, \fBD_INVALID_ENUM\fP, \fBD_INVALID_OPERATION\fP, \fBD_INVALID_VALUE\fP, \fBD_STACK_OVERFLOW\fP, \fBD_STACK_UNDERFLOW\fP, \fBD_OUT_OF_MEMORY\fP, \fBD_INVALID_FRAMEBUFFER_OPERATION\fP, \fBD_OTHER_ERROR_TYPE\fP }"
+.br
+.ti -1c
+.RI "enum class \fBeDebugType\fP { \fBD_NO_TYPE\fP, \fBD_ERROR\fP, \fBD_WARNING\fP, \fBD_DEPRECATED_BEHAVIOUR\fP, \fBD_UNDEFINED_BEHAVIOUR\fP, \fBD_PORTABILITY\fP, \fBD_PERFORMANCE\fP, \fBD_MARKER\fP, \fBD_PUSH_GROUP\fP, \fBD_POP_GROUP\fP, \fBD_OTHER\fP }"
+.br
+.ti -1c
+.RI "enum class \fBeDebugCategory\fP { \fBD_NO_CATEGORY\fP, \fBD_API\fP, \fBD_WINDOW_SYSTEM\fP, \fBD_SHADER_COMPILER\fP, \fBD_THIRD_PARTY\fP, \fBD_APPLICATION\fP, \fBD_OTHER\fP }"
+.br
+.ti -1c
+.RI "enum class \fBeDebugSeverity\fP { \fBD_NO_SEVERITY\fP, \fBD_LOW\fP, \fBD_MEDIUM\fP, \fBD_HIGH\fP, \fBD_NOTIFICATION\fP }"
+.br
+.ti -1c
+.RI "enum class \fBeTextureFormat\fP { \fBR8\fP, \fBR16\fP, \fBR32\fP, \fBR32_TYPELESS\fP, \fBRG8\fP, \fBRG16\fP, \fBRG32\fP, \fBRGB8\fP, \fBRGB16\fP, \fBRGB32\fP, \fBRGBA8\fP, \fBRGBA16\fP, \fBRGBA32\fP, \fBSRGBA8\fP, \fBDEFAULT\fP = RGBA8, \fBHDR\fP = RGBA32 }"
+.br
+.ti -1c
+.RI "enum class \fBeFileFormat\fP { \fBPNG\fP, \fBJPG\fP, \fBTGA\fP, \fBHDR\fP, \fBBMP\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBJSON\fP (\fBsVertex\fP, Position, UV, Normal, Tangent, BoneIDs, BoneWeights) \fBstruct\fP \fBENGINE_API\fP \fBsInputLayout\fP \fBfinal\fP"
+.br
+.ti -1c
+.RI "\fBJSON\fP (\fBsFont::sGlyph\fP, Char, Width, Height, \fBLeft\fP, Top, AdvanceX, AdvanceY, AtlasXOffset, AtlasYOffset) JSON(\fBsFont\fP"
+.br
+.ti -1c
+.RI "\fBJSON_ENUM\fP (\fBePrimitiveTopology\fP, { { \fBePrimitiveTopology::DEFAULT\fP, 'DEFAULT' }, { \fBePrimitiveTopology::TRIANGLE_LIST\fP, 'TRIANGLE_LIST' }, { \fBePrimitiveTopology::TRIANGLE_STRIP\fP, 'TRIANGLE_STRIP' }, { \fBePrimitiveTopology::POINT_LIST\fP, 'POINT_LIST' }, { \fBePrimitiveTopology::LINE_LIST\fP, 'LINE_LIST' }, { \fBePrimitiveTopology::LINE_STRIP\fP, 'LINE_STRIP' }, }) \fBJSON\fP(\fBsGeometry\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBGlyphCount\fP"
+.br
+.ti -1c
+.RI "\fBGlyphSize\fP"
+.br
+.ti -1c
+.RI "\fBNewLineOffset\fP"
+.br
+.ti -1c
+.RI "\fBWhitespaceOffset\fP"
+.br
+.ti -1c
+.RI "\fBMaxGlyphHeight\fP"
+.br
+.ti -1c
+.RI "\fBPrimitiveTopology\fP"
+.br
+.ti -1c
+.RI "\fBVertices\fP"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBvoid\fP(* xpe::render::DebuggerCallback) (\fBconst\fP \fBsDebugMessage\fP &)"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eBlend\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIZERO \fP\fP
+.TP
+\fB\fIONE \fP\fP
+.TP
+\fB\fISRC_COLOR \fP\fP
+.TP
+\fB\fIINV_SRC_COLOR \fP\fP
+.TP
+\fB\fISRC_ALPHA \fP\fP
+.TP
+\fB\fIINV_SRC_ALPHA \fP\fP
+.TP
+\fB\fIDEST_ALPHA \fP\fP
+.TP
+\fB\fIINV_DEST_ALPHA \fP\fP
+.TP
+\fB\fIDEST_COLOR \fP\fP
+.TP
+\fB\fIINV_DEST_COLOR \fP\fP
+.TP
+\fB\fISRC_ALPHA_SAT \fP\fP
+.TP
+\fB\fIBLEND_FACTOR \fP\fP
+.TP
+\fB\fIINV_BLEND_FACTOR \fP\fP
+.TP
+\fB\fISRC1_COLOR \fP\fP
+.TP
+\fB\fIINV_SRC1_COLOR \fP\fP
+.TP
+\fB\fISRC1_ALPHA \fP\fP
+.TP
+\fB\fIINV_SRC1_ALPHA \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eBlendOp\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIADD \fP\fP
+.TP
+\fB\fISUBTRACT \fP\fP
+.TP
+\fB\fIREV_SUBTRACT \fP\fP
+.TP
+\fB\fIMIN \fP\fP
+.TP
+\fB\fIMAX \fP\fP
+.SS "\fBenum\fP \fBxpe::render::eColorWriteEnableMask\fP : \fBu8\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIRED \fP\fP
+.TP
+\fB\fIGREEN \fP\fP
+.TP
+\fB\fIBLUE \fP\fP
+.TP
+\fB\fIALPHA \fP\fP
+.TP
+\fB\fIALL \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eCullMode\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fINONE \fP\fP
+.TP
+\fB\fIFRONT \fP\fP
+.TP
+\fB\fIBACK \fP\fP
+.TP
+\fB\fIDEFAULT \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eDebugCategory\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fID_NO_CATEGORY \fP\fP
+.TP
+\fB\fID_API \fP\fP
+.TP
+\fB\fID_WINDOW_SYSTEM \fP\fP
+.TP
+\fB\fID_SHADER_COMPILER \fP\fP
+.TP
+\fB\fID_THIRD_PARTY \fP\fP
+.TP
+\fB\fID_APPLICATION \fP\fP
+.TP
+\fB\fID_OTHER \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eDebugErrorType\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fID_NO_ERROR_TYPE \fP\fP
+.TP
+\fB\fID_INVALID_ENUM \fP\fP
+.TP
+\fB\fID_INVALID_OPERATION \fP\fP
+.TP
+\fB\fID_INVALID_VALUE \fP\fP
+.TP
+\fB\fID_STACK_OVERFLOW \fP\fP
+.TP
+\fB\fID_STACK_UNDERFLOW \fP\fP
+.TP
+\fB\fID_OUT_OF_MEMORY \fP\fP
+.TP
+\fB\fID_INVALID_FRAMEBUFFER_OPERATION \fP\fP
+.TP
+\fB\fID_OTHER_ERROR_TYPE \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eDebugSeverity\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fID_NO_SEVERITY \fP\fP
+.TP
+\fB\fID_LOW \fP\fP
+.TP
+\fB\fID_MEDIUM \fP\fP
+.TP
+\fB\fID_HIGH \fP\fP
+.TP
+\fB\fID_NOTIFICATION \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eDebugType\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fID_NO_TYPE \fP\fP
+.TP
+\fB\fID_ERROR \fP\fP
+.TP
+\fB\fID_WARNING \fP\fP
+.TP
+\fB\fID_DEPRECATED_BEHAVIOUR \fP\fP
+.TP
+\fB\fID_UNDEFINED_BEHAVIOUR \fP\fP
+.TP
+\fB\fID_PORTABILITY \fP\fP
+.TP
+\fB\fID_PERFORMANCE \fP\fP
+.TP
+\fB\fID_MARKER \fP\fP
+.TP
+\fB\fID_PUSH_GROUP \fP\fP
+.TP
+\fB\fID_POP_GROUP \fP\fP
+.TP
+\fB\fID_OTHER \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eDepthStencilFunc\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fINEVER \fP\fP
+.TP
+\fB\fILESS \fP\fP
+.TP
+\fB\fIEQUAL \fP\fP
+.TP
+\fB\fILESS_EQUAL \fP\fP
+.TP
+\fB\fIGREATER \fP\fP
+.TP
+\fB\fINOT_EQUAL \fP\fP
+.TP
+\fB\fIGREATER_EQUAL \fP\fP
+.TP
+\fB\fIALWAYS \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eDepthStencilOp\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIKEEP \fP\fP
+.TP
+\fB\fIZERO \fP\fP
+.TP
+\fB\fIREPLACE \fP\fP
+.TP
+\fB\fIINCR_SAT \fP\fP
+.TP
+\fB\fIDECR_SAT \fP\fP
+.TP
+\fB\fIINVERT \fP\fP
+.TP
+\fB\fIINCR \fP\fP
+.TP
+\fB\fIDECR \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eDepthWriteMask\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIZERO \fP\fP
+.TP
+\fB\fIALL \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eFileFormat\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIPNG \fP\fP
+.TP
+\fB\fIJPG \fP\fP
+.TP
+\fB\fITGA \fP\fP
+.TP
+\fB\fIHDR \fP\fP
+.TP
+\fB\fIBMP \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eFillMode\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIWIREFRAME \fP\fP
+.TP
+\fB\fISOLID \fP\fP
+.TP
+\fB\fIDEFAULT \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::ePrimitiveTopology\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITRIANGLE_LIST \fP\fP
+.TP
+\fB\fITRIANGLE_STRIP \fP\fP
+.TP
+\fB\fIPOINT_LIST \fP\fP
+.TP
+\fB\fILINE_LIST \fP\fP
+.TP
+\fB\fILINE_STRIP \fP\fP
+.TP
+\fB\fIDEFAULT \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::eTextureFormat\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIR8 \fP\fP
+.TP
+\fB\fIR16 \fP\fP
+.TP
+\fB\fIR32 \fP\fP
+.TP
+\fB\fIR32_TYPELESS \fP\fP
+.TP
+\fB\fIRG8 \fP\fP
+.TP
+\fB\fIRG16 \fP\fP
+.TP
+\fB\fIRG32 \fP\fP
+.TP
+\fB\fIRGB8 \fP\fP
+.TP
+\fB\fIRGB16 \fP\fP
+.TP
+\fB\fIRGB32 \fP\fP
+.TP
+\fB\fIRGBA8 \fP\fP
+.TP
+\fB\fIRGBA16 \fP\fP
+.TP
+\fB\fIRGBA32 \fP\fP
+.TP
+\fB\fISRGBA8 \fP\fP
+.TP
+\fB\fIDEFAULT \fP\fP
+.TP
+\fB\fIHDR \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "xpe::render::JSON (\fBsFont::sGlyph\fP, Char, Width, Height, \fBLeft\fP, Top, AdvanceX, AdvanceY, AtlasXOffset, AtlasYOffset)"
+
+.SS "xpe::render::JSON (\fBsVertex\fP, Position, UV, Normal, Tangent, BoneIDs, BoneWeights)\fR [final]\fP"
+
+.SS "xpe::render::JSON_ENUM (\fBePrimitiveTopology\fP, { { \fBePrimitiveTopology::DEFAULT\fP, 'DEFAULT' }, { \fBePrimitiveTopology::TRIANGLE_LIST\fP, 'TRIANGLE_LIST' }, { \fBePrimitiveTopology::TRIANGLE_STRIP\fP, 'TRIANGLE_STRIP' }, { \fBePrimitiveTopology::POINT_LIST\fP, 'POINT_LIST' }, { \fBePrimitiveTopology::LINE_LIST\fP, 'LINE_LIST' }, { \fBePrimitiveTopology::LINE_STRIP\fP, 'LINE_STRIP' }, })"
+
+.SH "Variable Documentation"
+.PP 
+.SS "xpe::render::GlyphCount"
+
+.SS "xpe::render::GlyphSize"
+
+.SS "xpe::render::MaxGlyphHeight"
+
+.SS "xpe::render::NewLineOffset"
+
+.SS "xpe::render::PrimitiveTopology"
+
+.SS "xpe::render::Vertices"
+
+.SS "xpe::render::WhitespaceOffset"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

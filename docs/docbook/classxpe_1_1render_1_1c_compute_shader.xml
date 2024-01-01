@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1render_1_1c_compute_shader" xml:lang="en-US">
+<title>xpe::render::cComputeShader Class Reference</title>
+<indexterm><primary>xpe::render::cComputeShader</primary></indexterm>
+<para>
+<computeroutput>#include &lt;shader.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::cComputeShader:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1render_1_1c_compute_shader.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_compute_shader_1a833a7cbe99cc4d72550c819a2f22edf2">cComputeShader</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::vec3 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">threadGroups</link>={ 1, 1, 1 })</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_compute_shader_1ad1871544c342223819d9b30bc6ab6658">Bind</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_compute_shader_1a5fc99399f5142c1242d2db1d67bebd84">Unbind</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_compute_shader_1ac9c262bc825081afa6b2e6c8b7323cfc">Draw</link> (<link linkend="_classxpe_1_1ecs_1_1c_scene">ecs::cScene</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1render_1_1c_shader">xpe::render::cShader</link>        <itemizedlist>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_shader_1a0cbea5a99dbdb3dfc6a7095ab8c206ab">cShader</link> (<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">cShader::eCategory</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">category</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_classxpe_1_1render_1_1c_shader_1a9af1125e8f5c2d061535cc5b87206d05">~cShader</link> ()</para>
+</listitem>
+        </itemizedlist>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link> * <link linkend="_classxpe_1_1render_1_1c_compute_shader_1a29eb11ec3de366b37dd0c278f2df4131">ComputeStage</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para>glm::ivec3 <link linkend="_classxpe_1_1render_1_1c_compute_shader_1abbe9e4360ad1cfb7d4cb14d4d0ca7e1b">m_ThreadGroups</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_classxpe_1_1render_1_1c_shader">xpe::render::cShader</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link> <link linkend="_classxpe_1_1render_1_1c_shader_1ac04f06dd5200515c26667aa1eddaeb42">ID</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_classxpe_1_1render_1_1c_shader_1afb11bac579269c1289d67f9ef0892980">Enable</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">eCategory</link> <link linkend="_classxpe_1_1render_1_1c_shader_1a15d300d13e742ae170e20143521c062a">Category</link> = <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b">eCategory::PREPASS</link></para>
+</listitem>
+            <listitem><para><link linkend="_classxpe_1_1render_1_1c_shader">cShader</link> * <link linkend="_classxpe_1_1render_1_1c_shader_1a1434a54f77c5b8dfbad9c83b0bc602b6">Next</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Types inherited from <link linkend="_classxpe_1_1render_1_1c_shader">xpe::render::cShader</link>        <itemizedlist>
+            <listitem><para>enum <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">eCategory</link> { <?linebreak?><link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a">NONE</link> = 0
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b">PREPASS</link> = 1
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144">OPAQUE</link> = 2
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9">TRANSPARENT</link> = 3
+, <?linebreak?><link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce">POSTFX</link> = 4
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e">UI</link> = 5
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806">FINAL</link> = 6
+, <link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1">COMPUTE</link> = 7
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_compute_shader_1a833a7cbe99cc4d72550c819a2f22edf2"/><section>
+    <title>cComputeShader()</title>
+<indexterm><primary>cComputeShader</primary><secondary>xpe::render::cComputeShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cComputeShader</primary><secondary>cComputeShader</secondary></indexterm>
+<para><computeroutput>xpe::render::cComputeShader::cComputeShader (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> &amp; name, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::vec3 &amp; threadGroups = <computeroutput>{&#160;1,&#160;1,&#160;1&#160;}</computeroutput>
+)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_compute_shader_1ad1871544c342223819d9b30bc6ab6658"/><section>
+    <title>Bind()</title>
+<indexterm><primary>Bind</primary><secondary>xpe::render::cComputeShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cComputeShader</primary><secondary>Bind</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cComputeShader::Bind ( )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Implements <link linkend="_classxpe_1_1render_1_1c_shader_1a0278697eafc93f03dc126a6e2d3a2cbd">xpe::render::cShader</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1render_1_1c_compute_shader_1ac9c262bc825081afa6b2e6c8b7323cfc"/><section>
+    <title>Draw()</title>
+<indexterm><primary>Draw</primary><secondary>xpe::render::cComputeShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cComputeShader</primary><secondary>Draw</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cComputeShader::Draw (<link linkend="_classxpe_1_1ecs_1_1c_scene">ecs::cScene</link> * scene)<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Reimplemented from <link linkend="_classxpe_1_1render_1_1c_shader_1ac2fb10c43abc3823aa6dc466b1f3ed56">xpe::render::cShader</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1render_1_1c_compute_shader_1a5fc99399f5142c1242d2db1d67bebd84"/><section>
+    <title>Unbind()</title>
+<indexterm><primary>Unbind</primary><secondary>xpe::render::cComputeShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cComputeShader</primary><secondary>Unbind</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cComputeShader::Unbind ( )<computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Implements <link linkend="_classxpe_1_1render_1_1c_shader_1a84982d70a60b8fc688009d083e6dd2a1">xpe::render::cShader</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_compute_shader_1a29eb11ec3de366b37dd0c278f2df4131"/><section>
+    <title>ComputeStage</title>
+<indexterm><primary>ComputeStage</primary><secondary>xpe::render::cComputeShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cComputeShader</primary><secondary>ComputeStage</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>* xpe::render::cComputeShader::ComputeStage = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_compute_shader_1abbe9e4360ad1cfb7d4cb14d4d0ca7e1b"/><section>
+    <title>m_ThreadGroups</title>
+<indexterm><primary>m_ThreadGroups</primary><secondary>xpe::render::cComputeShader</secondary></indexterm>
+<indexterm><primary>xpe::render::cComputeShader</primary><secondary>m_ThreadGroups</secondary></indexterm>
+<para><computeroutput>glm::ivec3 xpe::render::cComputeShader::m_ThreadGroups</computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/rendering/core/<link linkend="_shader_8hpp">shader.hpp</link>engine/src/rendering/core/<link linkend="_shader_8cpp">shader.cpp</link></section>
+</section>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1core_1_1c_log_manager" xml:lang="en-US">
+<title>xpe::core::cLogManager Class Reference</title>
+<indexterm><primary>xpe::core::cLogManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;log_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_log_manager_1aa74243c8d16a41f50d9c7f8504b89916">Init</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1core_1_1s_logger_descriptor">sLoggerDescriptor</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">descriptor</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_log_manager_1afca6c1c76a9d72bd0c9b20bb1b9a12de">Free</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> spdlog::logger * <link linkend="_classxpe_1_1core_1_1c_log_manager_1a619950f7cd7eca33631d17311e25de06">GetLogger</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> spdlog::logger * <link linkend="_classxpe_1_1core_1_1c_log_manager_1ab61d9f265f1d8a79f8c35ced774bf096">GetTracer</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> spdlog::logger * <link linkend="_classxpe_1_1core_1_1c_log_manager_1a36199b32ad07adca9005ab1c0ab0e82b">GetMemLogger</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_log_manager_1a9926687b6984605f8e0282325d7264a0">DumpBacktrace</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_log_manager_1a9926687b6984605f8e0282325d7264a0"/><section>
+    <title>DumpBacktrace()</title>
+<indexterm><primary>DumpBacktrace</primary><secondary>xpe::core::cLogManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cLogManager</primary><secondary>DumpBacktrace</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cLogManager::DumpBacktrace ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_log_manager_1afca6c1c76a9d72bd0c9b20bb1b9a12de"/><section>
+    <title>Free()</title>
+<indexterm><primary>Free</primary><secondary>xpe::core::cLogManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cLogManager</primary><secondary>Free</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cLogManager::Free ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_log_manager_1a619950f7cd7eca33631d17311e25de06"/><section>
+    <title>GetLogger()</title>
+<indexterm><primary>GetLogger</primary><secondary>xpe::core::cLogManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cLogManager</primary><secondary>GetLogger</secondary></indexterm>
+<para><computeroutput>spdlog::logger * xpe::core::cLogManager::GetLogger ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_log_manager_1a36199b32ad07adca9005ab1c0ab0e82b"/><section>
+    <title>GetMemLogger()</title>
+<indexterm><primary>GetMemLogger</primary><secondary>xpe::core::cLogManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cLogManager</primary><secondary>GetMemLogger</secondary></indexterm>
+<para><computeroutput>spdlog::logger * xpe::core::cLogManager::GetMemLogger ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_log_manager_1ab61d9f265f1d8a79f8c35ced774bf096"/><section>
+    <title>GetTracer()</title>
+<indexterm><primary>GetTracer</primary><secondary>xpe::core::cLogManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cLogManager</primary><secondary>GetTracer</secondary></indexterm>
+<para><computeroutput>spdlog::logger * xpe::core::cLogManager::GetTracer ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_log_manager_1aa74243c8d16a41f50d9c7f8504b89916"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::core::cLogManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cLogManager</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cLogManager::Init (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1core_1_1s_logger_descriptor">sLoggerDescriptor</link> &amp; descriptor)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/core/<link linkend="_log__manager_8hpp">log_manager.hpp</link>engine/src/core/<link linkend="_log__manager_8cpp">log_manager.cpp</link></section>
+</section>

@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_label" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CLabel</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_widget" prot="public" virt="non-virtual">xpe::render::sWidget</basecompoundref>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_label_1a8d6ed86b40eb59952d1c97c620786de8" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_font" kindref="compound">sFont</ref> *</type>
+        <definition>sFont* xpe::ecs::CLabel::Font</definition>
+        <argsstring></argsstring>
+        <name>Font</name>
+        <qualifiedname>xpe::ecs::CLabel::Font</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="346" column="19" bodyfile="engine/src/ecs/components.hpp" bodystart="346" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_text_shader_1a1eee34fddc8be62badbcb8c4a0b93ad2" compoundref="shaders_8cpp" startline="760" endline="812">xpe::render::cTextShader::Draw</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_label_1a240f32cce6c7b6bf389cf2d114596655" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref></type>
+        <definition>string xpe::ecs::CLabel::Text</definition>
+        <argsstring></argsstring>
+        <name>Text</name>
+        <qualifiedname>xpe::ecs::CLabel::Text</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="347" column="20" bodyfile="engine/src/ecs/components.hpp" bodystart="347" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_label_1a96051701b965a4d87b880f4eacd1b6b6" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 xpe::ecs::CLabel::Color</definition>
+        <argsstring></argsstring>
+        <name>Color</name>
+        <qualifiedname>xpe::ecs::CLabel::Color</qualifiedname>
+        <initializer>= { 1, 1, 1, 1 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="348" column="23" bodyfile="engine/src/ecs/components.hpp" bodystart="348" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_label_1a1caf95f41f61bfbd4b6f3b98a1322410" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::ecs::CLabel::FillFrame</definition>
+        <argsstring></argsstring>
+        <name>FillFrame</name>
+        <qualifiedname>xpe::ecs::CLabel::FillFrame</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="349" column="18" bodyfile="engine/src/ecs/components.hpp" bodystart="349" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1ecs_1_1_c_label_1a66835f5f6ebf9287448e889182bde332" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::ecs::CLabel::CLabel</definition>
+        <argsstring>(sFont *font, const string &amp;text=&quot;&quot;, const glm::vec4 &amp;color={ 1, 1, 1, 1 })</argsstring>
+        <name>CLabel</name>
+        <qualifiedname>xpe::ecs::CLabel::CLabel</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_font" kindref="compound">sFont</ref> *</type>
+          <declname>font</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>text</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec4 &amp;</type>
+          <declname>color</declname>
+          <defval>{ 1, 1, 1, 1 }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="351" column="13" bodyfile="engine/src/ecs/components.hpp" bodystart="351" bodyend="352"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::ecs::CLabel</label>
+        <link refid="structxpe_1_1ecs_1_1_c_label"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sWidget</label>
+        <link refid="structxpe_1_1render_1_1s_widget"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::ecs::CLabel</label>
+        <link refid="structxpe_1_1ecs_1_1_c_label"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>Font</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::render::sFont</label>
+        <link refid="structxpe_1_1render_1_1s_font"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>Atlas</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sWidget</label>
+        <link refid="structxpe_1_1render_1_1s_widget"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/components.hpp" line="344" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="345" bodyend="360"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1ecs_1_1_c_label_1a66835f5f6ebf9287448e889182bde332" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>CLabel</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_label_1a96051701b965a4d87b880f4eacd1b6b6" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>Color</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_label_1a1caf95f41f61bfbd4b6f3b98a1322410" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>FillFrame</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_label_1a8d6ed86b40eb59952d1c97c620786de8" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>Font</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1ad40ae73f421e5655d44fe871cdfe808f" prot="public" virt="pure-virtual"><scope>xpe::ecs::CLabel</scope><name>FromXml</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a47e4be13468d499a782a8f9bf25c3602" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>LoadFile</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a8a1dda763ec866fcb4b8f6b0c02e91a3" prot="protected" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>m_Doc</name></member>
+      <member refid="structxpe_1_1render_1_1s_widget_1a9b580c426c346de4ee436e05f31e9f70" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>Projection</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a0165873965f1f93bec83a91f72b7741a" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>SaveFile</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_label_1a240f32cce6c7b6bf389cf2d114596655" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>Text</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1aecfd539665c2cc21965c15aa4f53b9e2" prot="public" virt="pure-virtual"><scope>xpe::ecs::CLabel</scope><name>ToXml</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a92a96665a2976d88f96c8f4a9744939a" prot="public" virt="non-virtual"><scope>xpe::ecs::CLabel</scope><name>XmlChildren</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

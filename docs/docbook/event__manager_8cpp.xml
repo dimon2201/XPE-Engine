@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_event__manager_8cpp" xml:lang="en-US">
+<title>engine/src/core/event_manager.cpp File Reference</title>
+<indexterm><primary>engine/src/core/event_manager.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;core/event_manager.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

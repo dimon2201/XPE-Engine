@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1physics_1_1s_ragdoll" xml:lang="en-US">
+<title>xpe::physics::sRagdoll Struct Reference</title>
+<indexterm><primary>xpe::physics::sRagdoll</primary></indexterm>
+<para>
+<computeroutput>#include &lt;physics_manager.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::physics::sRagdoll:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1physics_1_1s_ragdoll.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Types    </title>
+        <itemizedlist>
+            <listitem><para>enum <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709">eBodypart</link> { <?linebreak?><link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aefb98acb6ef2cd6eb1eaeffdfea97b29">NONE</link> = 0
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a89d7d7084592f3b74d9125b5aefd2cfe">HEAD</link> = 1
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a3ba2668b058e0cd7aa1767b981f748d2">TORSO_TOP</link> = 2
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a39c829d9cb116e506e3df3652cf869d6">TORSO_MIDDLE</link> = 3
+, <?linebreak?><link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a43c8fbe94e8ae5076edc6cb1f4bd1877">TORSO_BOTTOM</link> = 4
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aca226a80fc561d2f6ed401fc0fabee06">LEFT_ARM_TOP</link> = 5
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a606308157b03caad8e5af199a8f471cd">LEFT_ARM_BOTTOM</link> = 6
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a691caa8051d8480c9a80d5112012a97e">RIGHT_ARM_TOP</link> = 7
+, <?linebreak?><link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a8a71e669377d5972511162ae9ddd6e67">RIGHT_ARM_BOTTOM</link> = 8
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709ae3948599804700d4626ff6f71b059a82">LEFT_LEG_TOP</link> = 9
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709afb4afe8477614f2db8bf90eef6722710">LEFT_LEG_BOTTOM</link> = 10
+, <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a6c18cc2eff2092f315cc9c7e4189ab1c">RIGHT_LEG_TOP</link> = 11
+, <?linebreak?><link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a5b4172a43b9bb6a20a7736d22ce5043a">RIGHT_LEG_BOTTOM</link> = 12
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1physics_1_1s_ragdoll_1aeda9a25ef2fa74f5948681b045346e80">sRagdoll</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1physics_1_1s_actor">sActor</link> * &gt; &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bodyparts</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1physics_1_1s_ragdoll_1aa867b794021be6821bd4d44f5f6da88e">~sRagdoll</link> ()=<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">default</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1physics_1_1s_actor">sActor</link> * &gt; <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1a3c78e7d1cf49375afb779a32b6f71ad8">Bodyparts</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1a2781089318e519e18316b4f65f840062">k_BodypartCount</link> = 12</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Enumeration Documentation</title>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709"/><section>
+    <title>eBodypart</title>
+<indexterm><primary>eBodypart</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>eBodypart</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709">xpe::physics::sRagdoll::eBodypart</link></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>NONE</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>NONE</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aefb98acb6ef2cd6eb1eaeffdfea97b29"/>NONE</entry><entry></entry></row><row><entry><indexterm><primary>HEAD</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>HEAD</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a89d7d7084592f3b74d9125b5aefd2cfe"/>HEAD</entry><entry></entry></row><row><entry><indexterm><primary>TORSO_TOP</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>TORSO_TOP</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a3ba2668b058e0cd7aa1767b981f748d2"/>TORSO_TOP</entry><entry></entry></row><row><entry><indexterm><primary>TORSO_MIDDLE</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>TORSO_MIDDLE</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a39c829d9cb116e506e3df3652cf869d6"/>TORSO_MIDDLE</entry><entry></entry></row><row><entry><indexterm><primary>TORSO_BOTTOM</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>TORSO_BOTTOM</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a43c8fbe94e8ae5076edc6cb1f4bd1877"/>TORSO_BOTTOM</entry><entry></entry></row><row><entry><indexterm><primary>LEFT_ARM_TOP</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>LEFT_ARM_TOP</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aca226a80fc561d2f6ed401fc0fabee06"/>LEFT_ARM_TOP</entry><entry></entry></row><row><entry><indexterm><primary>LEFT_ARM_BOTTOM</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>LEFT_ARM_BOTTOM</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a606308157b03caad8e5af199a8f471cd"/>LEFT_ARM_BOTTOM</entry><entry></entry></row><row><entry><indexterm><primary>RIGHT_ARM_TOP</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>RIGHT_ARM_TOP</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a691caa8051d8480c9a80d5112012a97e"/>RIGHT_ARM_TOP</entry><entry></entry></row><row><entry><indexterm><primary>RIGHT_ARM_BOTTOM</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>RIGHT_ARM_BOTTOM</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a8a71e669377d5972511162ae9ddd6e67"/>RIGHT_ARM_BOTTOM</entry><entry></entry></row><row><entry><indexterm><primary>LEFT_LEG_TOP</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>LEFT_LEG_TOP</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709ae3948599804700d4626ff6f71b059a82"/>LEFT_LEG_TOP</entry><entry></entry></row><row><entry><indexterm><primary>LEFT_LEG_BOTTOM</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>LEFT_LEG_BOTTOM</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709afb4afe8477614f2db8bf90eef6722710"/>LEFT_LEG_BOTTOM</entry><entry></entry></row><row><entry><indexterm><primary>RIGHT_LEG_TOP</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>RIGHT_LEG_TOP</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a6c18cc2eff2092f315cc9c7e4189ab1c"/>RIGHT_LEG_TOP</entry><entry></entry></row><row><entry><indexterm><primary>RIGHT_LEG_BOTTOM</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>RIGHT_LEG_BOTTOM</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a5b4172a43b9bb6a20a7736d22ce5043a"/>RIGHT_LEG_BOTTOM</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1aeda9a25ef2fa74f5948681b045346e80"/><section>
+    <title>sRagdoll()</title>
+<indexterm><primary>sRagdoll</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>sRagdoll</secondary></indexterm>
+<para><computeroutput>xpe::physics::sRagdoll::sRagdoll (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1physics_1_1s_actor">sActor</link> * &gt; &amp; bodyparts)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1aa867b794021be6821bd4d44f5f6da88e"/><section>
+    <title>~sRagdoll()</title>
+<indexterm><primary>~sRagdoll</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>~sRagdoll</secondary></indexterm>
+<para><computeroutput>xpe::physics::sRagdoll::~sRagdoll ( )<computeroutput>[default]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1a3c78e7d1cf49375afb779a32b6f71ad8"/><section>
+    <title>Bodyparts</title>
+<indexterm><primary>Bodyparts</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>Bodyparts</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt;<link linkend="_structxpe_1_1physics_1_1s_actor">sActor</link>*&gt; xpe::physics::sRagdoll::Bodyparts</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1physics_1_1s_ragdoll_1a2781089318e519e18316b4f65f840062"/><section>
+    <title>k_BodypartCount</title>
+<indexterm><primary>k_BodypartCount</primary><secondary>xpe::physics::sRagdoll</secondary></indexterm>
+<indexterm><primary>xpe::physics::sRagdoll</primary><secondary>k_BodypartCount</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::physics::sRagdoll::k_BodypartCount = 12<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/physics/<link linkend="_physics__manager_8hpp">physics_manager.hpp</link></section>
+</section>

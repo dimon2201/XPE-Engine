@@ -1,0 +1,526 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_texture_layer" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sTextureLayer</compoundname>
+    <includes refid="texture_8hpp" local="no">texture.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2" kindref="member">eTextureFormat</ref></type>
+        <definition>eTextureFormat xpe::render::sTextureLayer::Format</definition>
+        <argsstring></argsstring>
+        <name>Format</name>
+        <qualifiedname>xpe::render::sTextureLayer::Format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="37" column="28" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="37" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" compoundref="texture_8cpp" startline="247" endline="256">CopyFrom</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" compoundref="texture_8cpp" startline="328" endline="339">GenerateMipsFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" compoundref="texture_8cpp" startline="314" endline="326">GenerateMipsU8</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7" compoundref="texture_8cpp" startline="442" endline="456">ResizePixelsFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8" compoundref="texture_8cpp" startline="426" endline="440">ResizePixelsU8</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_layer_1a4f7a8417b7507fd7995cc9d806b26bef" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::render::sTextureLayer::Width</definition>
+        <argsstring></argsstring>
+        <name>Width</name>
+        <qualifiedname>xpe::render::sTextureLayer::Width</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="38" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="38" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" compoundref="texture_8cpp" startline="247" endline="256">CopyFrom</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_layer_1abda979fb0bf11c9ac88768710be75550" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::render::sTextureLayer::Height</definition>
+        <argsstring></argsstring>
+        <name>Height</name>
+        <qualifiedname>xpe::render::sTextureLayer::Height</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="38" column="23" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="38" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" compoundref="texture_8cpp" startline="247" endline="256">CopyFrom</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::render::sTextureLayer::Pixels</definition>
+        <argsstring></argsstring>
+        <name>Pixels</name>
+        <qualifiedname>xpe::render::sTextureLayer::Pixels</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="39" column="18" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="39" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" compoundref="texture_8cpp" startline="247" endline="256">CopyFrom</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" compoundref="texture_8cpp" startline="82" endline="92">xpe::render::sTexture::CreateLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3cc06d7291a272bb5316e177a2c1fe6a" compoundref="texture_8cpp" startline="238" endline="245">Free</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a351c03d48adce5f555d6475ba1cde159" compoundref="texture_8cpp" startline="265" endline="312">GenerateMips</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" compoundref="texture_8cpp" startline="328" endline="339">GenerateMipsFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" compoundref="texture_8cpp" startline="314" endline="326">GenerateMipsU8</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_mip" kindref="compound">sMip</ref> &gt;</type>
+        <definition>vector&lt;sMip&gt; xpe::render::sTextureLayer::Mips</definition>
+        <argsstring></argsstring>
+        <name>Mips</name>
+        <qualifiedname>xpe::render::sTextureLayer::Mips</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="40" column="20" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="40" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c" compoundref="texture_8cpp" startline="341" endline="349">FreeMips</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" compoundref="texture_8cpp" startline="328" endline="339">GenerateMipsFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" compoundref="texture_8cpp" startline="314" endline="326">GenerateMipsU8</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1ac3d739257fc08d099a972e182390dde1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sTextureLayer::sTextureLayer</definition>
+        <argsstring>()=default</argsstring>
+        <name>sTextureLayer</name>
+        <qualifiedname>xpe::render::sTextureLayer::sTextureLayer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="42" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a693eac44108e02aaa674aac7dccda669" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sTextureLayer::sTextureLayer</definition>
+        <argsstring>(eTextureFormat format, s32 width, s32 height, void *pixels)</argsstring>
+        <name>sTextureLayer</name>
+        <qualifiedname>xpe::render::sTextureLayer::sTextureLayer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2" kindref="member">eTextureFormat</ref></type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+          <declname>pixels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="44" column="13" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="44" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a3cc06d7291a272bb5316e177a2c1fe6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::render::sTextureLayer::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="47" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="238" bodyend="245"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c" compoundref="texture_8cpp" startline="341" endline="349">FreeMips</references>
+        <references refid="core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc" compoundref="core_2allocators_8hpp" startline="16">main_free</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">Pixels</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::CopyFrom</definition>
+        <argsstring>(const sTextureLayer &amp;other)</argsstring>
+        <name>CopyFrom</name>
+        <qualifiedname>xpe::render::sTextureLayer::CopyFrom</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="49" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="247" bodyend="256"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312" compoundref="texture_8hpp" startline="37">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1abda979fb0bf11c9ac88768710be75550" compoundref="texture_8hpp" startline="38">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" compoundref="texture_8hpp" startline="114">xpe::render::sTexture::k_BppTable</references>
+        <references refid="core_2allocators_8hpp_1a0b2c774a281f8d83b9add0b64bf4cff1" compoundref="core_2allocators_8hpp" startline="12">main_alloc</references>
+        <references refid="core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc" compoundref="core_2allocators_8hpp" startline="16">main_free</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">Pixels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a4f7a8417b7507fd7995cc9d806b26bef" compoundref="texture_8hpp" startline="38">Width</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a569be24358e889b9b52802dea3fd4155" compoundref="texture_8cpp" startline="258" endline="263">Clone</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a569be24358e889b9b52802dea3fd4155" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref></type>
+        <definition>sTextureLayer xpe::render::sTextureLayer::Clone</definition>
+        <argsstring>() const</argsstring>
+        <name>Clone</name>
+        <qualifiedname>xpe::render::sTextureLayer::Clone</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="51" column="28" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="258" bodyend="263"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" compoundref="texture_8cpp" startline="247" endline="256">CopyFrom</references>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" compoundref="texture_8hpp" startline="208" endline="256">xpe::render::sAtlas::AddCell</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a351c03d48adce5f555d6475ba1cde159" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::GenerateMips</definition>
+        <argsstring>(const eTextureFormat &amp;format, int width, int height)</argsstring>
+        <name>GenerateMips</name>
+        <qualifiedname>xpe::render::sTextureLayer::GenerateMips</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2" kindref="member">eTextureFormat</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="53" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="265" bodyend="312"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" compoundref="texture_8cpp" startline="328" endline="339">GenerateMipsFloat</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" compoundref="texture_8cpp" startline="314" endline="326">GenerateMipsU8</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">Pixels</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419">xpe::render::R32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a5b48989c0201198bda57a0024e2e2bd9">xpe::render::R32_TYPELESS</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">xpe::render::R8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aa8725115efc714421823b7397f9c130c">xpe::render::RG32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a0367a93b9e3e7aa2fbe9802d80298e46">xpe::render::RG8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ace70a5db6685e6d210c3f905a8fa7d4c">xpe::render::RGB32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a165c6379d01617e12de274a3952efa63">xpe::render::RGB8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b">xpe::render::RGBA32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642">xpe::render::RGBA8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">xpe::render::SRGBA8</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::GenerateMipsU8</definition>
+        <argsstring>(int width, int height)</argsstring>
+        <name>GenerateMipsU8</name>
+        <qualifiedname>xpe::render::sTextureLayer::GenerateMipsU8</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="55" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="314" bodyend="326"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312" compoundref="texture_8hpp" startline="37">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f" compoundref="texture_8hpp" startline="40">Mips</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">Pixels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8" compoundref="texture_8cpp" startline="426" endline="440">ResizePixelsU8</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a351c03d48adce5f555d6475ba1cde159" compoundref="texture_8cpp" startline="265" endline="312">GenerateMips</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::GenerateMipsFloat</definition>
+        <argsstring>(int width, int height)</argsstring>
+        <name>GenerateMipsFloat</name>
+        <qualifiedname>xpe::render::sTextureLayer::GenerateMipsFloat</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="57" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="328" bodyend="339"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312" compoundref="texture_8hpp" startline="37">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f" compoundref="texture_8hpp" startline="40">Mips</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">Pixels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7" compoundref="texture_8cpp" startline="442" endline="456">ResizePixelsFloat</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a351c03d48adce5f555d6475ba1cde159" compoundref="texture_8cpp" startline="265" endline="312">GenerateMips</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::FreeMips</definition>
+        <argsstring>()</argsstring>
+        <name>FreeMips</name>
+        <qualifiedname>xpe::render::sTextureLayer::FreeMips</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="59" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="341" bodyend="349"/>
+        <references refid="core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc" compoundref="core_2allocators_8hpp" startline="16">main_free</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f" compoundref="texture_8hpp" startline="40">Mips</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3cc06d7291a272bb5316e177a2c1fe6a" compoundref="texture_8cpp" startline="238" endline="245">Free</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a312528dbd92ffb2a012cc45b08b0c48d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::Resize</definition>
+        <argsstring>(const eTextureFormat &amp;format, s32 width, s32 height)</argsstring>
+        <name>Resize</name>
+        <qualifiedname>xpe::render::sTextureLayer::Resize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2" kindref="member">eTextureFormat</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="61" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="351" bodyend="392"/>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419">xpe::render::R32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">xpe::render::R8</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aa8725115efc714421823b7397f9c130c">xpe::render::RG32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a0367a93b9e3e7aa2fbe9802d80298e46">xpe::render::RG8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ace70a5db6685e6d210c3f905a8fa7d4c">xpe::render::RGB32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a165c6379d01617e12de274a3952efa63">xpe::render::RGB8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b">xpe::render::RGBA32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642">xpe::render::RGBA8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">xpe::render::SRGBA8</references>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" compoundref="texture_8hpp" startline="208" endline="256">xpe::render::sAtlas::AddCell</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::ResizeU8</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>ResizeU8</name>
+        <qualifiedname>xpe::render::sTextureLayer::ResizeU8</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="63" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="394" bodyend="408"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c" compoundref="texture_8cpp" startline="341" endline="349">FreeMips</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" compoundref="texture_8cpp" startline="314" endline="326">GenerateMipsU8</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1abda979fb0bf11c9ac88768710be75550" compoundref="texture_8hpp" startline="38">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f" compoundref="texture_8hpp" startline="40">Mips</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">Pixels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8" compoundref="texture_8cpp" startline="426" endline="440">ResizePixelsU8</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a4f7a8417b7507fd7995cc9d806b26bef" compoundref="texture_8hpp" startline="38">Width</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a312528dbd92ffb2a012cc45b08b0c48d" compoundref="texture_8cpp" startline="351" endline="392">Resize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTextureLayer::ResizeFloat</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>ResizeFloat</name>
+        <qualifiedname>xpe::render::sTextureLayer::ResizeFloat</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="65" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="410" bodyend="424"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c" compoundref="texture_8cpp" startline="341" endline="349">FreeMips</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" compoundref="texture_8cpp" startline="328" endline="339">GenerateMipsFloat</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1abda979fb0bf11c9ac88768710be75550" compoundref="texture_8hpp" startline="38">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f" compoundref="texture_8hpp" startline="40">Mips</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">Pixels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7" compoundref="texture_8cpp" startline="442" endline="456">ResizePixelsFloat</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a4f7a8417b7507fd7995cc9d806b26bef" compoundref="texture_8hpp" startline="38">Width</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a312528dbd92ffb2a012cc45b08b0c48d" compoundref="texture_8cpp" startline="351" endline="392">Resize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void * xpe::render::sTextureLayer::ResizePixelsU8</definition>
+        <argsstring>(const void *inputPixels, int inputWidth, int inputHeight, int outputWidth, int outputHeight)</argsstring>
+        <name>ResizePixelsU8</name>
+        <qualifiedname>xpe::render::sTextureLayer::ResizePixelsU8</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+          <declname>inputPixels</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>inputWidth</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>inputHeight</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>outputWidth</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>outputHeight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="67" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="426" bodyend="440"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312" compoundref="texture_8hpp" startline="37">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c" compoundref="texture_8hpp" startline="112">xpe::render::sTexture::k_ChannelTable</references>
+        <references refid="core_2allocators_8hpp_1a302f380460dc88796d2decc19478bf62" compoundref="core_2allocators_8hpp" startline="13">main_allocT</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" compoundref="texture_8cpp" startline="314" endline="326">GenerateMipsU8</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" compoundref="texture_8cpp" startline="394" endline="408">ResizeU8</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void * xpe::render::sTextureLayer::ResizePixelsFloat</definition>
+        <argsstring>(const void *inputPixels, int inputWidth, int inputHeight, int outputWidth, int outputHeight)</argsstring>
+        <name>ResizePixelsFloat</name>
+        <qualifiedname>xpe::render::sTextureLayer::ResizePixelsFloat</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+          <declname>inputPixels</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>inputWidth</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>inputHeight</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>outputWidth</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>outputHeight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="72" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="442" bodyend="456"/>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312" compoundref="texture_8hpp" startline="37">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c" compoundref="texture_8hpp" startline="112">xpe::render::sTexture::k_ChannelTable</references>
+        <references refid="core_2allocators_8hpp_1a302f380460dc88796d2decc19478bf62" compoundref="core_2allocators_8hpp" startline="13">main_allocT</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" compoundref="texture_8cpp" startline="328" endline="339">GenerateMipsFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" compoundref="texture_8cpp" startline="410" endline="424">ResizeFloat</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/core/texture.hpp" line="35" column="9" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="36" bodyend="76"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a569be24358e889b9b52802dea3fd4155" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Clone</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>CopyFrom</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Format</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a3cc06d7291a272bb5316e177a2c1fe6a" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Free</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>FreeMips</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a351c03d48adce5f555d6475ba1cde159" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>GenerateMips</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>GenerateMipsFloat</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>GenerateMipsU8</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1abda979fb0bf11c9ac88768710be75550" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Height</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Mips</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Pixels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a312528dbd92ffb2a012cc45b08b0c48d" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Resize</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>ResizeFloat</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>ResizePixelsFloat</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>ResizePixelsU8</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>ResizeU8</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1ac3d739257fc08d099a972e182390dde1" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>sTextureLayer</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a693eac44108e02aaa674aac7dccda669" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>sTextureLayer</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_layer_1a4f7a8417b7507fd7995cc9d806b26bef" prot="public" virt="non-virtual"><scope>xpe::render::sTextureLayer</scope><name>Width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

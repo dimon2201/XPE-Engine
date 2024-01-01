@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_render__system_8hpp" xml:lang="en-US">
+<title>engine/src/rendering/render_system.hpp File Reference</title>
+<indexterm><primary>engine/src/rendering/render_system.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/core/texture.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_render_system">xpe::render::cRenderSystem</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

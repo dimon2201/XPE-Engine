@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_3e5d39cd28e26382e58e353c566ad298" kind="dir">
+    <compoundname>engine/src/platform/macos</compoundname>
+    <innerfile refid="macos__hardware__manager_8cpp">macos_hardware_manager.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/platform/macos/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="bindings_8hpp" kind="file" language="C++">
+    <compoundname>bindings.hpp</compoundname>
+    <includes refid="buffers_8hpp" local="no">rendering/buffers.hpp</includes>
+    <includedby refid="skeleton__manager_8hpp" local="no">engine/src/anim/skeleton_manager.hpp</includedby>
+    <includedby refid="app_8cpp" local="no">engine/src/core/app.cpp</includedby>
+    <includedby refid="bindings_8cpp" local="no">engine/src/rendering/bindings.cpp</includedby>
+    <includedby refid="camera_8cpp" local="no">engine/src/rendering/camera.cpp</includedby>
+    <includedby refid="camera__manager_8cpp" local="no">engine/src/rendering/camera_manager.cpp</includedby>
+    <includedby refid="canvas_8cpp" local="no">engine/src/rendering/canvas.cpp</includedby>
+    <includedby refid="geometry__manager_8cpp" local="no">engine/src/rendering/geometry/geometry_manager.cpp</includedby>
+    <includedby refid="material__manager_8hpp" local="no">engine/src/rendering/material/material_manager.hpp</includedby>
+    <includedby refid="shaders_8cpp" local="no">engine/src/rendering/shaders.cpp</includedby>
+    <includedby refid="shadow__manager_8cpp" local="no">engine/src/rendering/shadow_manager.cpp</includedby>
+    <includedby refid="widget__manager_8cpp" local="no">engine/src/rendering/widget_manager.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>engine/src/rendering/bindings.hpp</label>
+        <link refid="bindings_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>rendering/buffers.hpp</label>
+        <link refid="buffers_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>rendering/core/context.hpp</label>
+        <link refid="rendering_2core_2context_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>rendering/core/core.hpp</label>
+        <link refid="rendering_2core_2core_8hpp"/>
+      </node>
+      <node id="5">
+        <label>rendering/core/render_target.hpp</label>
+        <link refid="render__target_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>rendering/core/shader.hpp</label>
+        <link refid="shader_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>rendering/core/texture.hpp</label>
+        <link refid="texture_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>engine/src/anim/anim_system.cpp</label>
+        <link refid="anim__system_8cpp"/>
+      </node>
+      <node id="4">
+        <label>engine/src/anim/skeleton_manager.cpp</label>
+        <link refid="skeleton__manager_8cpp"/>
+      </node>
+      <node id="2">
+        <label>engine/src/anim/skeleton_manager.hpp</label>
+        <link refid="skeleton__manager_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>engine/src/core/app.cpp</label>
+        <link refid="app_8cpp"/>
+      </node>
+      <node id="7">
+        <label>engine/src/rendering/bindings.cpp</label>
+        <link refid="bindings_8cpp"/>
+      </node>
+      <node id="1">
+        <label>engine/src/rendering/bindings.hpp</label>
+        <link refid="bindings_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>engine/src/rendering/camera.cpp</label>
+        <link refid="camera_8cpp"/>
+      </node>
+      <node id="9">
+        <label>engine/src/rendering/camera_manager.cpp</label>
+        <link refid="camera__manager_8cpp"/>
+      </node>
+      <node id="10">
+        <label>engine/src/rendering/canvas.cpp</label>
+        <link refid="canvas_8cpp"/>
+      </node>
+      <node id="11">
+        <label>engine/src/rendering/geometry/geometry_manager.cpp</label>
+        <link refid="geometry__manager_8cpp"/>
+      </node>
+      <node id="13">
+        <label>engine/src/rendering/material/material_manager.cpp</label>
+        <link refid="material__manager_8cpp"/>
+      </node>
+      <node id="12">
+        <label>engine/src/rendering/material/material_manager.hpp</label>
+        <link refid="material__manager_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>engine/src/rendering/render_system.cpp</label>
+        <link refid="render__system_8cpp"/>
+      </node>
+      <node id="14">
+        <label>engine/src/rendering/shaders.cpp</label>
+        <link refid="shaders_8cpp"/>
+      </node>
+      <node id="15">
+        <label>engine/src/rendering/shadow_manager.cpp</label>
+        <link refid="shadow__manager_8cpp"/>
+      </node>
+      <node id="16">
+        <label>engine/src/rendering/widget_manager.cpp</label>
+        <link refid="widget__manager_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structxpe_1_1render_1_1_viewports" prot="public">xpe::render::Viewports</innerclass>
+    <innerclass refid="structxpe_1_1render_1_1_render_targets" prot="public">xpe::render::RenderTargets</innerclass>
+    <innerclass refid="structxpe_1_1render_1_1_buffers" prot="public">xpe::render::Buffers</innerclass>
+    <innerclass refid="structxpe_1_1render_1_1_textures" prot="public">xpe::render::Textures</innerclass>
+    <innerclass refid="structxpe_1_1render_1_1_samplers" prot="public">xpe::render::Samplers</innerclass>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1render">xpe::render</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="buffers_8hpp" kindref="compound">rendering/buffers.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">render<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="structxpe_1_1render_1_1_viewports" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1render_1_1_viewports" kindref="compound">Viewports</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11" refid="structxpe_1_1render_1_1_viewports_1a60607f8ab14087213db8cf51a1f551ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_viewports_1a60607f8ab14087213db8cf51a1f551ca" kindref="member">Shadow</ref>;</highlight></codeline>
+<codeline lineno="12" refid="structxpe_1_1render_1_1_viewports_1a55ad78863265d0dc3fc64545d9a34ba8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_viewports_1a55ad78863265d0dc3fc64545d9a34ba8" kindref="member">SSAO</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="structxpe_1_1render_1_1_render_targets" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1render_1_1_render_targets" kindref="compound">RenderTargets</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="17" refid="structxpe_1_1render_1_1_render_targets_1a3e0b156922708dd54243ed92be4933d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1a3e0b156922708dd54243ed92be4933d3" kindref="member">Scene</ref>;</highlight></codeline>
+<codeline lineno="18" refid="structxpe_1_1render_1_1_render_targets_1aea80a7365d3fe9bfc78d3e67c62241c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1aea80a7365d3fe9bfc78d3e67c62241c5" kindref="member">Opaque</ref>;</highlight></codeline>
+<codeline lineno="19" refid="structxpe_1_1render_1_1_render_targets_1a5707635fef6e8157ed49abe40dfdc9a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1a5707635fef6e8157ed49abe40dfdc9a5" kindref="member">Transparent</ref>;</highlight></codeline>
+<codeline lineno="20" refid="structxpe_1_1render_1_1_render_targets_1a759abfd2d5c9358d9ccab484be76e894" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1a759abfd2d5c9358d9ccab484be76e894" kindref="member">UI</ref>;</highlight></codeline>
+<codeline lineno="21" refid="structxpe_1_1render_1_1_render_targets_1a10d0b8f685b7427e4f36d8e1b490e07e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1a10d0b8f685b7427e4f36d8e1b490e07e" kindref="member">Final</ref>;</highlight></codeline>
+<codeline lineno="22" refid="structxpe_1_1render_1_1_render_targets_1a82b348c7ad59494ecc7fb5e06ea4b238" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1a82b348c7ad59494ecc7fb5e06ea4b238" kindref="member">Shadow</ref>;</highlight></codeline>
+<codeline lineno="23" refid="structxpe_1_1render_1_1_render_targets_1a4edea5878877cdda968bc46eb9da6707" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1a4edea5878877cdda968bc46eb9da6707" kindref="member">SSAO</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structxpe_1_1render_1_1_buffers" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1render_1_1_buffers" kindref="compound">Buffers</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28" refid="structxpe_1_1render_1_1_buffers_1a17e78b5995040ce0922bb6e86b9ac029" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_vertex_buffer" kindref="compound">sVertexBuffer</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a17e78b5995040ce0922bb6e86b9ac029" kindref="member">Vertex</ref>;</highlight></codeline>
+<codeline lineno="29" refid="structxpe_1_1render_1_1_buffers_1a5c7fbcce9a91a8cade08dc58bc6bf0cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_index_buffer" kindref="compound">sIndexBuffer</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a5c7fbcce9a91a8cade08dc58bc6bf0cd" kindref="member">Index</ref>;</highlight></codeline>
+<codeline lineno="30" refid="structxpe_1_1render_1_1_buffers_1adefa07e479401aa7e6379b488541f2e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_camera_buffer" kindref="compound">sCameraBuffer</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1adefa07e479401aa7e6379b488541f2e0" kindref="member">Camera</ref>;</highlight></codeline>
+<codeline lineno="31" refid="structxpe_1_1render_1_1_buffers_1a94d3d6f9e64f630efe3ac23217f2f2af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_direct_light_buffer" kindref="compound">sDirectLightBuffer</ref>*<sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a94d3d6f9e64f630efe3ac23217f2f2af" kindref="member">DirectLight</ref>;</highlight></codeline>
+<codeline lineno="32" refid="structxpe_1_1render_1_1_buffers_1a0fb2fcbbd6c7d5ba08fd356d105b56c3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_point_light_buffer" kindref="compound">sPointLightBuffer</ref>*<sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a0fb2fcbbd6c7d5ba08fd356d105b56c3" kindref="member">PointLight</ref>;</highlight></codeline>
+<codeline lineno="33" refid="structxpe_1_1render_1_1_buffers_1a900d3d0915251c0dd9ba6998465b181e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_spot_light_buffer" kindref="compound">sSpotLightBuffer</ref>*<sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a900d3d0915251c0dd9ba6998465b181e" kindref="member">SpotLight</ref>;</highlight></codeline>
+<codeline lineno="34" refid="structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_material_data_buffer" kindref="compound">sMaterialDataBuffer</ref>*<sp/><ref refid="structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d" kindref="member">Material</ref>;</highlight></codeline>
+<codeline lineno="35" refid="structxpe_1_1render_1_1_buffers_1a82f8224c0b7a0ae9eea8005b65161fe2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_shadow_pcf_buffer" kindref="compound">sShadowPcfBuffer</ref>*<sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a82f8224c0b7a0ae9eea8005b65161fe2" kindref="member">ShadowPCF</ref>;</highlight></codeline>
+<codeline lineno="36" refid="structxpe_1_1render_1_1_buffers_1a40c3f91f9d60532775f460dccd7d254d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_skeleton_buffer" kindref="compound">sSkeletonBuffer</ref>*<sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a40c3f91f9d60532775f460dccd7d254d" kindref="member">Skeleton</ref>;</highlight></codeline>
+<codeline lineno="37" refid="structxpe_1_1render_1_1_buffers_1a73581045decae2218c24ff436cfa1699" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_ssao_buffer" kindref="compound">sSsaoBuffer</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_buffers_1a73581045decae2218c24ff436cfa1699" kindref="member">SSAO</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="structxpe_1_1render_1_1_textures" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1render_1_1_textures" kindref="compound">Textures</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42" refid="structxpe_1_1render_1_1_textures_1ad899c5ceab4e39079770ff8b238f1b82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1ad899c5ceab4e39079770ff8b238f1b82" kindref="member">Canvas</ref>;</highlight></codeline>
+<codeline lineno="43" refid="structxpe_1_1render_1_1_textures_1ac93872fd21faffa72c22f0ab4acfc88c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1ac93872fd21faffa72c22f0ab4acfc88c" kindref="member">SharedDepth</ref>;</highlight></codeline>
+<codeline lineno="44" refid="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" kindref="member">AlbedoAtlas</ref>;</highlight></codeline>
+<codeline lineno="45" refid="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" kindref="member">NormalAtlas</ref>;</highlight></codeline>
+<codeline lineno="46" refid="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" kindref="member">ParallaxAtlas</ref>;</highlight></codeline>
+<codeline lineno="47" refid="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" kindref="member">MetalAtlas</ref>;</highlight></codeline>
+<codeline lineno="48" refid="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" kindref="member">RoughnessAtlas</ref>;</highlight></codeline>
+<codeline lineno="49" refid="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" kindref="member">AOAtlas</ref>;</highlight></codeline>
+<codeline lineno="50" refid="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" kindref="member">EmissionAtlas</ref>;</highlight></codeline>
+<codeline lineno="51" refid="structxpe_1_1render_1_1_textures_1ac6f1fb7834d145a999d6fe567d8b0ba1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_atlas" kindref="compound">sAtlas</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_textures_1ac6f1fb7834d145a999d6fe567d8b0ba1" kindref="member">WidgetAtlas</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="structxpe_1_1render_1_1_samplers" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1render_1_1_samplers" kindref="compound">Samplers</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56" refid="structxpe_1_1render_1_1_samplers_1a4d9fb16bf8ee515af1e578fce358875f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_sampler" kindref="compound">sSampler</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_samplers_1a4d9fb16bf8ee515af1e578fce358875f" kindref="member">Material</ref>;</highlight></codeline>
+<codeline lineno="57" refid="structxpe_1_1render_1_1_samplers_1a4c8c9343e7e77fb726c7a3978abc24cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_sampler" kindref="compound">sSampler</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_samplers_1a4c8c9343e7e77fb726c7a3978abc24cc" kindref="member">Shadow</ref>;</highlight></codeline>
+<codeline lineno="58" refid="structxpe_1_1render_1_1_samplers_1a9d18d6bcb797e4eb03de7fcb3f96fe17" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_sampler" kindref="compound">sSampler</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_samplers_1a9d18d6bcb797e4eb03de7fcb3f96fe17" kindref="member">Widget</ref>;</highlight></codeline>
+<codeline lineno="59" refid="structxpe_1_1render_1_1_samplers_1a93ba934421e022fb7244c2be860f802d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_sampler" kindref="compound">sSampler</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_samplers_1a93ba934421e022fb7244c2be860f802d" kindref="member">Skybox</ref>;</highlight></codeline>
+<codeline lineno="60" refid="structxpe_1_1render_1_1_samplers_1aab0b61293036f76f5bb59c0771afbc35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_sampler" kindref="compound">sSampler</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_samplers_1aab0b61293036f76f5bb59c0771afbc35" kindref="member">Font</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/rendering/bindings.hpp"/>
+  </compounddef>
+</doxygen>

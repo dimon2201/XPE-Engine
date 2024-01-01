@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_camera__manager_8hpp_source" xml:lang="en-US">
+<title>camera_manager.hpp</title>
+<indexterm><primary>engine/src/rendering/camera_manager.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_camera_8hpp">rendering/camera.hpp</link>&gt;</emphasis>
+4 
+5 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+6 
+7 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>render&#32;{
+8 
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1render_1_1c_camera_manager">cCameraManager</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+11 
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Init();
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Free();
+15 
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;glm::mat4&#32;GetViewProjection();
+17 
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Flush();
+19 
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Bind();
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Unbind();
+22 
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetExposure(<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">exposure</link>);
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetGamma(<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">gamma</link>);
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">float</emphasis>&#32;GetExposure();
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">float</emphasis>&#32;GetGamma();
+27 
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetViewport(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_viewport">sViewport</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">viewport</link>);
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_viewport">sViewport</link>*&#32;GetViewport();
+30 
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_camera">cCamera</link>*&#32;GetCamera();
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetCamera(<link linkend="_classxpe_1_1render_1_1c_camera">cCamera</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">camera</link>);
+33 
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_camera">cCamera</link>*&#32;s_Camera;
+36 
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+38 
+39 &#32;&#32;&#32;&#32;}
+40 
+41 }
+</programlisting></section>

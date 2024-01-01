@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_skeleton__manager_8hpp" xml:lang="en-US">
+<title>engine/src/anim/skeleton_manager.hpp File Reference</title>
+<indexterm><primary>engine/src/anim/skeleton_manager.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;anim/skeleton.hpp&gt;<?linebreak?>#include &lt;rendering/bindings.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classxpe_1_1anim_1_1c_skeleton_manager">xpe::anim::cSkeletonManager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1anim">xpe::anim</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

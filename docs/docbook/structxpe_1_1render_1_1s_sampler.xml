@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_sampler" xml:lang="en-US">
+<title>xpe::render::sSampler Struct Reference</title>
+<indexterm><primary>xpe::render::sSampler</primary></indexterm>
+<para>
+<computeroutput>#include &lt;texture.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::sSampler:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1render_1_1s_sampler.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Types    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2">eComparison</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a">NEVER</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a1798e8c3621ca53d9e3a80d257306000">LESS</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a969f331a87d8c958473c32b4d0e61a44">EQUAL</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a8b4a5cd69b217bf93b054ada7f49abd4">LESS_EQUAL</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2ae7e72355289e404b762d4cf88824d23b">GREATER</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a4ea2d378cdec20f59330f113297bc1ce">NOT_EQUAL</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a87e6b203bf40967d37a33f9a4438561a">GREATER_EQUAL</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2af3fc827ade4b968e50406496907ef962">ALWAYS</link>
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">eAddress</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4dae1c8555fcf0ea2bb648a6fd527d658c0">WRAP</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4da72a92ae9c1d172cdda196686278fbfc6">MIRROR</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345">CLAMP</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178">BORDER</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daa3a9901f7f844b6c8835d5b002600edb">MIRROR_ONCE</link>
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625">eFilter</link> { <link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5">MIN_MAG_MIP_POINT</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a2bc377bb3caf2fbd1d5a2bafcb36d26a">MIN_MAG_MIP_LINEAR</link>
+, <link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a5c56bb1e22b336ee67d2b1612b46dd1d">ANISOTROPIC</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Types inherited from <link linkend="_structxpe_1_1render_1_1s_resource">xpe::render::sResource</link>        <itemizedlist>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">NONE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4aecaa8fe8cb0e85372f4cc76728c7cf3c">DEPTH_STENCIL</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4a0bb01e169097cdf50612a3b567e8224b">RENDER_TARGET</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db">SRV</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4a6902d76cea698982754404da77e5e08a">UAV</link>
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295">eMapType</link> { <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295a3466fab4975481651940ed328aa990e4">READ</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295ad4b9e47f65b6e79b010582f15785867e">WRITE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295aa7b843fb734e3b3fea8e5f902d3f4144">READ_WRITE</link>
+, <link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295a35e7bbbf18cc8cf2948004487c61a0ed">WRITE_NO_OVERWRITE</link>
+, <?linebreak?><link linkend="_structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295aeb339b5f9c978d1d5d991cd67e08e31b">WRITE_DISCARD</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sampler_1ade9553c3e1d7bf7e577c457ca6a155b7">sSampler</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sampler_1ab8032ad07bbd55f5a3f4ff26770d0a95">~sSampler</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1afb7fae3cf8ede538ecf2c087de227340">Init</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a2111257a98552cfee195a4d063fce7e0">Slot</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625">eFilter</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a00645d12398bcc905de33feb27153065">Filter</link> = <link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5">eFilter::MIN_MAG_MIP_POINT</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1ad605bf2ef69b99c534ada17b9693290f">MinLOD</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a5e9464b790d5402c218155c2319484d1">MaxLOD</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">FLT_MAX</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a2686b1fea063256568cd3fa3b8c87c90">MipLODBias</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a3288fae8b851ef315ce0ed38335f81ab">AnisotropyLevel</link> = 1</para>
+</listitem>
+            <listitem><para>glm::vec4 <link linkend="_structxpe_1_1render_1_1s_sampler_1a377d09ab7f8b76428efd46f45f18060b">BorderColor</link> = { 0, 0, 0, 0 }</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2">eComparison</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a710c367e680b414785b30e10a920700d">Comparison</link> = <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a">eComparison::NEVER</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">eAddress</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a667dc6455e11368da13e15df19234954">AddressU</link> = <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345">eAddress::CLAMP</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">eAddress</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a101c6c8edcb9e9b127fdd2bcfb2e5056">AddressV</link> = <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345">eAddress::CLAMP</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">eAddress</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1af7562572bdf962338a55e88467f24f82">AddressW</link> = <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345">eAddress::CLAMP</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_resource">xpe::render::sResource</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd">Instance</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca">ViewInstance</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</link> <link linkend="_structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69">ViewType</link> = <link linkend="_structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">eViewType::NONE</link></para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Member Enumeration Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d"/><section>
+    <title>eAddress</title>
+<indexterm><primary>eAddress</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>eAddress</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">xpe::render::sSampler::eAddress</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>WRAP</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>WRAP</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4dae1c8555fcf0ea2bb648a6fd527d658c0"/>WRAP</entry><entry></entry></row><row><entry><indexterm><primary>MIRROR</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>MIRROR</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4da72a92ae9c1d172cdda196686278fbfc6"/>MIRROR</entry><entry></entry></row><row><entry><indexterm><primary>CLAMP</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>CLAMP</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345"/>CLAMP</entry><entry></entry></row><row><entry><indexterm><primary>BORDER</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>BORDER</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178"/>BORDER</entry><entry></entry></row><row><entry><indexterm><primary>MIRROR_ONCE</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>MIRROR_ONCE</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daa3a9901f7f844b6c8835d5b002600edb"/>MIRROR_ONCE</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2"/><section>
+    <title>eComparison</title>
+<indexterm><primary>eComparison</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>eComparison</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2">xpe::render::sSampler::eComparison</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>NEVER</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>NEVER</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a"/>NEVER</entry><entry></entry></row><row><entry><indexterm><primary>LESS</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>LESS</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a1798e8c3621ca53d9e3a80d257306000"/>LESS</entry><entry></entry></row><row><entry><indexterm><primary>EQUAL</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>EQUAL</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a969f331a87d8c958473c32b4d0e61a44"/>EQUAL</entry><entry></entry></row><row><entry><indexterm><primary>LESS_EQUAL</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>LESS_EQUAL</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a8b4a5cd69b217bf93b054ada7f49abd4"/>LESS_EQUAL</entry><entry></entry></row><row><entry><indexterm><primary>GREATER</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>GREATER</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2ae7e72355289e404b762d4cf88824d23b"/>GREATER</entry><entry></entry></row><row><entry><indexterm><primary>NOT_EQUAL</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>NOT_EQUAL</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a4ea2d378cdec20f59330f113297bc1ce"/>NOT_EQUAL</entry><entry></entry></row><row><entry><indexterm><primary>GREATER_EQUAL</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>GREATER_EQUAL</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a87e6b203bf40967d37a33f9a4438561a"/>GREATER_EQUAL</entry><entry></entry></row><row><entry><indexterm><primary>ALWAYS</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>ALWAYS</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2af3fc827ade4b968e50406496907ef962"/>ALWAYS</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625"/><section>
+    <title>eFilter</title>
+<indexterm><primary>eFilter</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>eFilter</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625">xpe::render::sSampler::eFilter</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>MIN_MAG_MIP_POINT</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>MIN_MAG_MIP_POINT</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5"/>MIN_MAG_MIP_POINT</entry><entry></entry></row><row><entry><indexterm><primary>MIN_MAG_MIP_LINEAR</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>MIN_MAG_MIP_LINEAR</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a2bc377bb3caf2fbd1d5a2bafcb36d26a"/>MIN_MAG_MIP_LINEAR</entry><entry></entry></row><row><entry><indexterm><primary>ANISOTROPIC</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>ANISOTROPIC</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a5c56bb1e22b336ee67d2b1612b46dd1d"/>ANISOTROPIC</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ade9553c3e1d7bf7e577c457ca6a155b7"/><section>
+    <title>sSampler()</title>
+<indexterm><primary>sSampler</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>sSampler</secondary></indexterm>
+<para><computeroutput>xpe::render::sSampler::sSampler ( )</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ab8032ad07bbd55f5a3f4ff26770d0a95"/><section>
+    <title>~sSampler()</title>
+<indexterm><primary>~sSampler</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>~sSampler</secondary></indexterm>
+<para><computeroutput>xpe::render::sSampler::~sSampler ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1afb7fae3cf8ede538ecf2c087de227340"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sSampler::Init ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a667dc6455e11368da13e15df19234954"/><section>
+    <title>AddressU</title>
+<indexterm><primary>AddressU</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>AddressU</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">eAddress</link> xpe::render::sSampler::AddressU = <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345">eAddress::CLAMP</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a101c6c8edcb9e9b127fdd2bcfb2e5056"/><section>
+    <title>AddressV</title>
+<indexterm><primary>AddressV</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>AddressV</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">eAddress</link> xpe::render::sSampler::AddressV = <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345">eAddress::CLAMP</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1af7562572bdf962338a55e88467f24f82"/><section>
+    <title>AddressW</title>
+<indexterm><primary>AddressW</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>AddressW</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4d">eAddress</link> xpe::render::sSampler::AddressW = <link linkend="_structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345">eAddress::CLAMP</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a3288fae8b851ef315ce0ed38335f81ab"/><section>
+    <title>AnisotropyLevel</title>
+<indexterm><primary>AnisotropyLevel</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>AnisotropyLevel</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::render::sSampler::AnisotropyLevel = 1</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a377d09ab7f8b76428efd46f45f18060b"/><section>
+    <title>BorderColor</title>
+<indexterm><primary>BorderColor</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>BorderColor</secondary></indexterm>
+<para><computeroutput>glm::vec4 xpe::render::sSampler::BorderColor = { 0, 0, 0, 0 }</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a710c367e680b414785b30e10a920700d"/><section>
+    <title>Comparison</title>
+<indexterm><primary>Comparison</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>Comparison</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2">eComparison</link> xpe::render::sSampler::Comparison = <link linkend="_structxpe_1_1render_1_1s_sampler_1ae7484a0042c11b348127faeccae46ef2a443475558f0168dff92ecde26b98ae5a">eComparison::NEVER</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a00645d12398bcc905de33feb27153065"/><section>
+    <title>Filter</title>
+<indexterm><primary>Filter</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>Filter</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625">eFilter</link> xpe::render::sSampler::Filter = <link linkend="_structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5">eFilter::MIN_MAG_MIP_POINT</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a5e9464b790d5402c218155c2319484d1"/><section>
+    <title>MaxLOD</title>
+<indexterm><primary>MaxLOD</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>MaxLOD</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> xpe::render::sSampler::MaxLOD = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">FLT_MAX</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1ad605bf2ef69b99c534ada17b9693290f"/><section>
+    <title>MinLOD</title>
+<indexterm><primary>MinLOD</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>MinLOD</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> xpe::render::sSampler::MinLOD = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a2686b1fea063256568cd3fa3b8c87c90"/><section>
+    <title>MipLODBias</title>
+<indexterm><primary>MipLODBias</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>MipLODBias</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> xpe::render::sSampler::MipLODBias = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sampler_1a2111257a98552cfee195a4d063fce7e0"/><section>
+    <title>Slot</title>
+<indexterm><primary>Slot</primary><secondary>xpe::render::sSampler</secondary></indexterm>
+<indexterm><primary>xpe::render::sSampler</primary><secondary>Slot</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::render::sSampler::Slot = 0</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following files:</para>
+engine/src/rendering/core/<link linkend="_texture_8hpp">texture.hpp</link>engine/src/rendering/core/<link linkend="_texture_8cpp">texture.cpp</link></section>
+</section>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_audio__manager_8hpp_source" xml:lang="en-US">
+<title>audio_manager.hpp</title>
+<indexterm><primary>engine/src/audio/audio_manager.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+4 
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>audio&#32;{
+6 
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1audio_1_1c_audio_manager">cAudioManager</link>&#32;final
+8 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+9 
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1aaf3004496e351a239bea9d0ade024160">SetListenerPosition</link>(glm::vec3&#32;position);
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1a78092fb106e2211efc0ca702d64fb824">SetListenerVelocity</link>(glm::vec3&#32;velocity);
+13 
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1ab9f35ee9cee876aeb42e8a0ed27c1809">SetListenerOrientation</link>(<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;pitch,&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;yaw,&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;roll,&#32;glm::vec3&#32;up);
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1aa4e46e3b5de7ef2f5754efb8c01abd07">SetListenerGain</link>(<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;volume);
+16 
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1aeceeba937bb35833645046c39a19ce5b">SetListenerDopplerFactor</link>(<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;factor);
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1a03fd23c618ef38a1577c991ce42d344a">SetListenerSpeedOfSound</link>(<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;seed);
+19 
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;VoiceRecord();
+21 
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;s_Recording;
+24 
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">friend</emphasis>&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_classxpe_1_1audio_1_1c_audio_system">cAudioSystem</link>;
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+27 &#32;&#32;&#32;&#32;}
+28 }
+</programlisting></section>

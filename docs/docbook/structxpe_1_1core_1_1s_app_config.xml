@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1core_1_1s_app_config" xml:lang="en-US">
+<title>xpe::core::sAppConfig Struct Reference</title>
+<indexterm><primary>xpe::core::sAppConfig</primary></indexterm>
+<para>
+<computeroutput>#include &lt;app_config.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::core::sAppConfig:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1core_1_1s_app_config.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_app_config_1a25b6c80ea03e809e2d2f536c681aec3b">JSON_CLASS</link> (<link linkend="_structxpe_1_1core_1_1s_app_config">sAppConfig</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">WinTitle</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32">WinWidth</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6">WinHeight</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9">WinX</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014">WinY</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3">VSync</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b">Fullscreen</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f">Gamma</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677">Exposure</link>, AspectRatio.Value, <link linkend="_structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf">LogTitle</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275">LogBacktrace</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78">EnableGPUInfoLog</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748">EnableGPUWarnLog</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21">EnableGPUErrorLog</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0">FPS</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e">LogTimeDelaySeconds</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4">LockOnFps</link>, <link linkend="_structxpe_1_1core_1_1s_app_config_1abe8961c8be9c69d0d19683ecdcf23c32">HotReloadShaders</link>, MsaaSampleCount.Value, <link linkend="_structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77">EnableSSAO</link>) <link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">WinTitle</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1res_1_1c_json">xpe::res::cJson</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88">ToJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b">FromJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32">WinWidth</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6">WinHeight</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9">WinX</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014">WinY</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3">VSync</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b">Fullscreen</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f">Gamma</link> = 2.2<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677">Exposure</link> = 1</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_observer_window_ratio">sObserverWindowRatio</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a2cccaa8ba46ff64ec540ab7d30f5f7dd">AspectRatio</link> = 1.6<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf">LogTitle</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275">LogBacktrace</link> = 32</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78">EnableGPUInfoLog</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748">EnableGPUWarnLog</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21">EnableGPUErrorLog</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0">FPS</link> = 165.0f</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e">LogTimeDelaySeconds</link> = 5</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4">LockOnFps</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1abe8961c8be9c69d0d19683ecdcf23c32">HotReloadShaders</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77">EnableSSAO</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_observer_sample_count">sObserverSampleCount</link> <link linkend="_structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8">MsaaSampleCount</link> = 1</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a25b6c80ea03e809e2d2f536c681aec3b"/><section>
+    <title>JSON_CLASS()</title>
+<indexterm><primary>JSON_CLASS</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>JSON_CLASS</secondary></indexterm>
+<para><computeroutput>xpe::core::sAppConfig::JSON_CLASS (<link linkend="_structxpe_1_1core_1_1s_app_config">sAppConfig</link> , <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">WinTitle</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32">WinWidth</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6">WinHeight</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9">WinX</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014">WinY</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3">VSync</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b">Fullscreen</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f">Gamma</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677">Exposure</link> , AspectRatio. Value, <link linkend="_structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf">LogTitle</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275">LogBacktrace</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78">EnableGPUInfoLog</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748">EnableGPUWarnLog</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21">EnableGPUErrorLog</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0">FPS</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e">LogTimeDelaySeconds</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4">LockOnFps</link> , <link linkend="_structxpe_1_1core_1_1s_app_config_1abe8961c8be9c69d0d19683ecdcf23c32">HotReloadShaders</link> , MsaaSampleCount. Value, <link linkend="_structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77">EnableSSAO</link> )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a2cccaa8ba46ff64ec540ab7d30f5f7dd"/><section>
+    <title>AspectRatio</title>
+<indexterm><primary>AspectRatio</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>AspectRatio</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1core_1_1s_observer_window_ratio">sObserverWindowRatio</link> xpe::core::sAppConfig::AspectRatio = 1.6<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21"/><section>
+    <title>EnableGPUErrorLog</title>
+<indexterm><primary>EnableGPUErrorLog</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>EnableGPUErrorLog</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::EnableGPUErrorLog = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78"/><section>
+    <title>EnableGPUInfoLog</title>
+<indexterm><primary>EnableGPUInfoLog</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>EnableGPUInfoLog</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::EnableGPUInfoLog = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748"/><section>
+    <title>EnableGPUWarnLog</title>
+<indexterm><primary>EnableGPUWarnLog</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>EnableGPUWarnLog</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::EnableGPUWarnLog = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77"/><section>
+    <title>EnableSSAO</title>
+<indexterm><primary>EnableSSAO</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>EnableSSAO</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::EnableSSAO = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677"/><section>
+    <title>Exposure</title>
+<indexterm><primary>Exposure</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>Exposure</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::core::sAppConfig::Exposure = 1</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0"/><section>
+    <title>FPS</title>
+<indexterm><primary>FPS</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>FPS</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::core::sAppConfig::FPS = 165.0f</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b"/><section>
+    <title>Fullscreen</title>
+<indexterm><primary>Fullscreen</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>Fullscreen</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::Fullscreen = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f"/><section>
+    <title>Gamma</title>
+<indexterm><primary>Gamma</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>Gamma</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::core::sAppConfig::Gamma = 2.2<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1abe8961c8be9c69d0d19683ecdcf23c32"/><section>
+    <title>HotReloadShaders</title>
+<indexterm><primary>HotReloadShaders</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>HotReloadShaders</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::HotReloadShaders = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4"/><section>
+    <title>LockOnFps</title>
+<indexterm><primary>LockOnFps</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>LockOnFps</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::LockOnFps = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275"/><section>
+    <title>LogBacktrace</title>
+<indexterm><primary>LogBacktrace</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>LogBacktrace</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sAppConfig::LogBacktrace = 32</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e"/><section>
+    <title>LogTimeDelaySeconds</title>
+<indexterm><primary>LogTimeDelaySeconds</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>LogTimeDelaySeconds</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::core::sAppConfig::LogTimeDelaySeconds = 5</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf"/><section>
+    <title>LogTitle</title>
+<indexterm><primary>LogTitle</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>LogTitle</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> xpe::core::sAppConfig::LogTitle</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8"/><section>
+    <title>MsaaSampleCount</title>
+<indexterm><primary>MsaaSampleCount</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>MsaaSampleCount</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1core_1_1s_observer_sample_count">sObserverSampleCount</link> xpe::core::sAppConfig::MsaaSampleCount = 1</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3"/><section>
+    <title>VSync</title>
+<indexterm><primary>VSync</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>VSync</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sAppConfig::VSync = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6"/><section>
+    <title>WinHeight</title>
+<indexterm><primary>WinHeight</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>WinHeight</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sAppConfig::WinHeight = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32"/><section>
+    <title>WinWidth</title>
+<indexterm><primary>WinWidth</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>WinWidth</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sAppConfig::WinWidth = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9"/><section>
+    <title>WinX</title>
+<indexterm><primary>WinX</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>WinX</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sAppConfig::WinX = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014"/><section>
+    <title>WinY</title>
+<indexterm><primary>WinY</primary><secondary>xpe::core::sAppConfig</secondary></indexterm>
+<indexterm><primary>xpe::core::sAppConfig</primary><secondary>WinY</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sAppConfig::WinY = 0</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/core/<link linkend="_app__config_8hpp">app_config.hpp</link></section>
+</section>

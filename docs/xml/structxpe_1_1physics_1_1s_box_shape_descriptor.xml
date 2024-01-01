@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1physics_1_1s_box_shape_descriptor" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::physics::sBoxShapeDescriptor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">sShapeDescriptor</basecompoundref>
+    <includes refid="physics__manager_8hpp" local="no">physics_manager.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1physics_1_1s_box_shape_descriptor_1ad4f5759c1e4707e26115e7c8773664e9" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::physics::sBoxShapeDescriptor::HalfExtents</definition>
+        <argsstring></argsstring>
+        <name>HalfExtents</name>
+        <qualifiedname>xpe::physics::sBoxShapeDescriptor::HalfExtents</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="102" column="23" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1physics_1_1s_box_shape_descriptor_1a76afcf8b7c0f7a678bc16f7aa2e62d9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::sBoxShapeDescriptor::sBoxShapeDescriptor</definition>
+        <argsstring>()=delete</argsstring>
+        <name>sBoxShapeDescriptor</name>
+        <qualifiedname>xpe::physics::sBoxShapeDescriptor::sBoxShapeDescriptor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="98" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1physics_1_1s_box_shape_descriptor_1a051606b0870fe1954d2c12416774df48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::sBoxShapeDescriptor::sBoxShapeDescriptor</definition>
+        <argsstring>(const glm::vec3 &amp;halfExtents)</argsstring>
+        <name>sBoxShapeDescriptor</name>
+        <qualifiedname>xpe::physics::sBoxShapeDescriptor::sBoxShapeDescriptor</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec3 &amp;</type>
+          <declname>halfExtents</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="99" column="13" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="99" bodyend="100"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>sShapeDescriptor</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::sBoxShapeDescriptor</label>
+        <link refid="structxpe_1_1physics_1_1s_box_shape_descriptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>sShapeDescriptor</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::sBoxShapeDescriptor</label>
+        <link refid="structxpe_1_1physics_1_1s_box_shape_descriptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/physics/physics_manager.hpp" line="96" column="9" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="97" bodyend="103"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1physics_1_1s_box_shape_descriptor_1ad4f5759c1e4707e26115e7c8773664e9" prot="public" virt="non-virtual"><scope>xpe::physics::sBoxShapeDescriptor</scope><name>HalfExtents</name></member>
+      <member refid="structxpe_1_1physics_1_1s_box_shape_descriptor_1a76afcf8b7c0f7a678bc16f7aa2e62d9e" prot="public" virt="non-virtual"><scope>xpe::physics::sBoxShapeDescriptor</scope><name>sBoxShapeDescriptor</name></member>
+      <member refid="structxpe_1_1physics_1_1s_box_shape_descriptor_1a051606b0870fe1954d2c12416774df48" prot="public" virt="non-virtual"><scope>xpe::physics::sBoxShapeDescriptor</scope><name>sBoxShapeDescriptor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_2afa4a2c4df85670c270dbd0d609878e" kind="dir">
+    <compoundname>engine/src/anim</compoundname>
+    <innerfile refid="anim_8hpp">anim.hpp</innerfile>
+    <innerfile refid="anim__system_8cpp">anim_system.cpp</innerfile>
+    <innerfile refid="anim__system_8hpp">anim_system.hpp</innerfile>
+    <innerfile refid="skeleton_8hpp">skeleton.hpp</innerfile>
+    <innerfile refid="skeleton__manager_8cpp">skeleton_manager.cpp</innerfile>
+    <innerfile refid="skeleton__manager_8hpp">skeleton_manager.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/anim/"/>
+  </compounddef>
+</doxygen>

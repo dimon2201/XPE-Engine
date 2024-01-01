@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_vertex_format" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sVertexFormat</compoundname>
+    <includes refid="rendering_2core_2core_8hpp" local="no">core.hpp</includes>
+    <innerclass refid="structxpe_1_1render_1_1s_vertex_format_1_1s_attribute" prot="public">xpe::render::sVertexFormat::sAttribute</innerclass>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_format_1a3c026eb4dcd45fb6098139226607ca8e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structxpe_1_1render_1_1s_vertex_format_1_1s_attribute" kindref="compound">sAttribute</ref> &gt;</type>
+        <definition>std::vector&lt;sAttribute&gt; xpe::render::sVertexFormat::Attributes</definition>
+        <argsstring></argsstring>
+        <name>Attributes</name>
+        <qualifiedname>xpe::render::sVertexFormat::Attributes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="149" column="25" bodyfile="engine/src/rendering/core/core.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_format_1af42037dec502a5182f3a6a2dd9358a5d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sVertexFormat::Stride</definition>
+        <argsstring></argsstring>
+        <name>Stride</name>
+        <qualifiedname>xpe::render::sVertexFormat::Stride</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="150" column="19" bodyfile="engine/src/rendering/core/core.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_format_1ad5ee011700f7287bd7b6ff25b5462c6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sVertexFormat::sVertexFormat</definition>
+        <argsstring>()=default</argsstring>
+        <name>sVertexFormat</name>
+        <qualifiedname>xpe::render::sVertexFormat::sVertexFormat</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="152" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_format_1a365ec2d3f52b48c6ab3eb474e3401e03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sVertexFormat::sVertexFormat</definition>
+        <argsstring>(const std::vector&lt; sAttribute &gt; &amp;attributes)</argsstring>
+        <name>sVertexFormat</name>
+        <qualifiedname>xpe::render::sVertexFormat::sVertexFormat</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::vector&lt; <ref refid="structxpe_1_1render_1_1s_vertex_format_1_1s_attribute" kindref="compound">sAttribute</ref> &gt; &amp;</type>
+          <declname>attributes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="153" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/core/core.hpp" line="107" column="9" bodyfile="engine/src/rendering/core/core.hpp" bodystart="108" bodyend="155"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_vertex_format_1a3c026eb4dcd45fb6098139226607ca8e" prot="public" virt="non-virtual"><scope>xpe::render::sVertexFormat</scope><name>Attributes</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_format_1af42037dec502a5182f3a6a2dd9358a5d" prot="public" virt="non-virtual"><scope>xpe::render::sVertexFormat</scope><name>Stride</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_format_1ad5ee011700f7287bd7b6ff25b5462c6c" prot="public" virt="non-virtual"><scope>xpe::render::sVertexFormat</scope><name>sVertexFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_format_1a365ec2d3f52b48c6ab3eb474e3401e03" prot="public" virt="non-virtual"><scope>xpe::render::sVertexFormat</scope><name>sVertexFormat</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

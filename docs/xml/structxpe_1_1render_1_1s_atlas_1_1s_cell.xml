@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_atlas_1_1s_cell" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sAtlas::sCell</compoundname>
+    <includes refid="texture_8hpp" local="no">texture.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_atlas_1_1s_cell_1afde4c1b15cf2b8b9158ca01ad15543f9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sAtlas::sCell::LayerIndex</definition>
+        <argsstring></argsstring>
+        <name>LayerIndex</name>
+        <qualifiedname>xpe::render::sAtlas::sCell::LayerIndex</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="176" column="21" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_atlas_1_1s_cell_1aaac2486143772cf85ff377cc9a32dafe" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 xpe::render::sAtlas::sCell::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>xpe::render::sAtlas::sCell::Position</qualifiedname>
+        <initializer>= { 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="177" column="27" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="177" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a2426eb23daae709d7ec362b35392847a" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 xpe::render::sAtlas::sCell::Size</definition>
+        <argsstring></argsstring>
+        <name>Size</name>
+        <qualifiedname>xpe::render::sAtlas::sCell::Size</qualifiedname>
+        <initializer>= { 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="178" column="27" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="178" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a47c4b897fa0ae47aa22af6aadcc084d1" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sAtlas::sCell::Texture</definition>
+        <argsstring></argsstring>
+        <name>Texture</name>
+        <qualifiedname>xpe::render::sAtlas::sCell::Texture</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="179" column="31" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a4aeca40fc96b5cc0e6eacaa133e2ba5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sAtlas::sCell::sCell</definition>
+        <argsstring>()=default</argsstring>
+        <name>sCell</name>
+        <qualifiedname>xpe::render::sAtlas::sCell::sCell</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="181" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a12473e4c0c2b6ef1c48421b5b8a31439" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sAtlas::sCell::sCell</definition>
+        <argsstring>(u32 atlasIndex, const glm::vec2 &amp;position, const glm::vec2 &amp;size, sTextureLayer *texture)</argsstring>
+        <name>sCell</name>
+        <qualifiedname>xpe::render::sAtlas::sCell::sCell</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>atlasIndex</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec2 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec2 &amp;</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="183" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="183" bodyend="184"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::render::sAtlas::sCell</label>
+        <link refid="structxpe_1_1render_1_1s_atlas_1_1s_cell"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>Texture</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sTextureLayer</label>
+        <link refid="structxpe_1_1render_1_1s_texture_layer"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/texture.hpp" line="174" column="13" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="175" bodyend="185"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_atlas_1_1s_cell_1afde4c1b15cf2b8b9158ca01ad15543f9" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas::sCell</scope><name>LayerIndex</name></member>
+      <member refid="structxpe_1_1render_1_1s_atlas_1_1s_cell_1aaac2486143772cf85ff377cc9a32dafe" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas::sCell</scope><name>Position</name></member>
+      <member refid="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a4aeca40fc96b5cc0e6eacaa133e2ba5a" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas::sCell</scope><name>sCell</name></member>
+      <member refid="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a12473e4c0c2b6ef1c48421b5b8a31439" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas::sCell</scope><name>sCell</name></member>
+      <member refid="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a2426eb23daae709d7ec362b35392847a" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas::sCell</scope><name>Size</name></member>
+      <member refid="structxpe_1_1render_1_1s_atlas_1_1s_cell_1a47c4b897fa0ae47aa22af6aadcc084d1" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas::sCell</scope><name>Texture</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

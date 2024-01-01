@@ -1,0 +1,104 @@
+\doxysection{xpe\+::core\+::c\+Simulation\+Dispatcher Class Reference}
+\hypertarget{classxpe_1_1core_1_1c_simulation_dispatcher}{}\label{classxpe_1_1core_1_1c_simulation_dispatcher}\index{xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}}
+
+
+{\ttfamily \#include $<$task\+\_\+manager.\+hpp$>$}
+
+Inheritance diagram for xpe\+::core\+::c\+Simulation\+Dispatcher\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classxpe_1_1core_1_1c_simulation_dispatcher}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a03402af9a4692af19df4f4cf1fb06f69}{c\+Simulation\+Dispatcher}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{worker\+Size}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task\+Buffer\+Size}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}}, \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{c\+Thread\+::e\+Priority}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})
+\item 
+\mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a493289526bd21e68c177c08468d555f4}{\texorpdfstring{$\sim$}{\string~}c\+Simulation\+Dispatcher}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a5325d7dece59cf7a08b8dbef17764317}{submit\+Task}} (physx\+::\+Px\+Base\+Task \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uint32\+\_\+t}} \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a6e43096a7f0c9dbaad09a67ee017328a}{get\+Worker\+Count}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{xpe\+::core\+::c\+Task\+Dispatcher}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a8b31fc506fb0e2f9f8226ef416c895fc}{c\+Task\+Dispatcher}} (\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{worker\+Size}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task\+Buffer\+Size}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}}, \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{c\+Thread\+::e\+Priority}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a9c0c18dbf564186d946ca962fea4b898}{Dispatch}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{s\+Task}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a4811adb9542a927aa10e811016738a03}{Dispatch}} (\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tasks\+Per\+Thread}}, \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task\+Size}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{s\+Task}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a854d3943678b3a7acba946444716cd3f}{Is\+Busy}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a49bf69fb2bde1506378fb05c6c9442a7}{Get\+Worker\+Count}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a5b0ee750b601bbefec2f5d142c5704b3}{Wait}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{xpe\+::core\+::c\+Task\+Dispatcher}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a65dcf432e2c479da29f08ae128cee2b4}{Poll}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a0ed830ba0ff8290188850e8d323ac592}{Init\+Thread}} (\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{worker\+Id}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}}, \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{c\+Thread\+::e\+Priority}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{xpe\+::core\+::c\+Task\+Dispatcher}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer}{c\+Ring\+Buffer}}$<$ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{s\+Task}} $>$ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a6b88d57d92d2d9745c3df4d684edea50}{m\+\_\+\+Task\+Buffer}}
+\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_ab138311f4c5844fc1ffdd9b575c5e057}{m\+\_\+\+Wake\+Condition}}
+\item 
+std\+::mutex \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_aeed8047b981e99e67ae3025006d586e9}{m\+\_\+\+Wake\+Mutex}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a122a3bb1bfa10ac948f995fe3a5c820e}{m\+\_\+\+Tasks\+Todo}}
+\item 
+std\+::atomic$<$ \mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}} $>$ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a2a1a61cf6c2caea1de30583c0146f7b5}{m\+\_\+\+Tasks\+Done}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a932baf4d6c1c03c8968a8129da4ab6d1}{m\+\_\+\+Worker\+Count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_simulation_dispatcher_a03402af9a4692af19df4f4cf1fb06f69}\label{classxpe_1_1core_1_1c_simulation_dispatcher_a03402af9a4692af19df4f4cf1fb06f69} 
+\index{xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}!cSimulationDispatcher@{cSimulationDispatcher}}
+\index{cSimulationDispatcher@{cSimulationDispatcher}!xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}}
+\doxysubsubsection{\texorpdfstring{cSimulationDispatcher()}{cSimulationDispatcher()}}
+{\footnotesize\ttfamily xpe\+::core\+::c\+Simulation\+Dispatcher\+::c\+Simulation\+Dispatcher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{worker\+Size,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{task\+Buffer\+Size,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}}]{name,  }\item[{\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{c\+Thread\+::e\+Priority}}}]{priority }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_simulation_dispatcher_a493289526bd21e68c177c08468d555f4}\label{classxpe_1_1core_1_1c_simulation_dispatcher_a493289526bd21e68c177c08468d555f4} 
+\index{xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}!````~cSimulationDispatcher@{\texorpdfstring{$\sim$}{\string~}cSimulationDispatcher}}
+\index{````~cSimulationDispatcher@{\texorpdfstring{$\sim$}{\string~}cSimulationDispatcher}!xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}cSimulationDispatcher()}{\string~cSimulationDispatcher()}}
+{\footnotesize\ttfamily xpe\+::core\+::c\+Simulation\+Dispatcher\+::\texorpdfstring{$\sim$}{\string~}c\+Simulation\+Dispatcher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_simulation_dispatcher_a6e43096a7f0c9dbaad09a67ee017328a}\label{classxpe_1_1core_1_1c_simulation_dispatcher_a6e43096a7f0c9dbaad09a67ee017328a} 
+\index{xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}!getWorkerCount@{getWorkerCount}}
+\index{getWorkerCount@{getWorkerCount}!xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}}
+\doxysubsubsection{\texorpdfstring{getWorkerCount()}{getWorkerCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uint32\+\_\+t}} xpe\+::core\+::c\+Simulation\+Dispatcher\+::get\+Worker\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_simulation_dispatcher_a5325d7dece59cf7a08b8dbef17764317}\label{classxpe_1_1core_1_1c_simulation_dispatcher_a5325d7dece59cf7a08b8dbef17764317} 
+\index{xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}!submitTask@{submitTask}}
+\index{submitTask@{submitTask}!xpe::core::cSimulationDispatcher@{xpe::core::cSimulationDispatcher}}
+\doxysubsubsection{\texorpdfstring{submitTask()}{submitTask()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::core\+::c\+Simulation\+Dispatcher\+::submit\+Task (\begin{DoxyParamCaption}\item[{physx\+::\+Px\+Base\+Task \&}]{task }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{task__manager_8hpp}{task\+\_\+manager.\+hpp}}\item 
+engine/src/core/\mbox{\hyperlink{task__manager_8cpp}{task\+\_\+manager.\+cpp}}\end{DoxyCompactItemize}

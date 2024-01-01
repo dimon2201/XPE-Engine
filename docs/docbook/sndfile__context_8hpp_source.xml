@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_sndfile__context_8hpp_source" xml:lang="en-US">
+<title>sndfile_context.hpp</title>
+<indexterm><primary>engine/src/audio/core/sndfile_context.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;sndfile.h&gt;</emphasis>
+4 
+5 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+6 
+7 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>audio&#32;{
+8 
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>core;
+10 
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1audio_1_1s_audio_file">sAudioFile</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_object">cObject</link>
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">SNDFILE</link>*&#32;File&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">SF_INFO</link>&#32;<link linkend="_structxpe_1_1audio_1_1s_audio_file_1a2908dd2626ece9dc05fe9b88d04e2ada">Info</link>;
+15 
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1audio_1_1s_audio_file_1a0fd2de6b5392a4b34dee51934daee8ed">sAudioFile</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1audio_1_1s_audio_file">~sAudioFile</link>();
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+19 
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>context&#32;{
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1a441e3db4c0c07452df254a5b649b7935">SetCurrentFrame</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">SNDFILE</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">file</link>,&#32;<link linkend="_namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771">s64</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">frame</link>);
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771">s64</link>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1a7c97f85c585f9e3b795db945c5581d52">ReadChunk</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">SNDFILE</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">m_File</link>,&#32;<emphasis role="keywordtype">short</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">data</link>,&#32;<link linkend="_namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771">s64</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">num_frames</link>);
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1_1context_1a91f3ee3b32d5bd17626a0eb696aba5a2">isAmbisonic</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1audio_1_1s_audio_file">sAudioFile</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">file</link>);
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+25 &#32;&#32;&#32;&#32;}
+26 }
+</programlisting></section>

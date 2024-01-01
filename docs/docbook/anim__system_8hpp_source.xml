@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_anim__system_8hpp_source" xml:lang="en-US">
+<title>anim_system.hpp</title>
+<indexterm><primary>engine/src/anim/anim_system.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_skeleton_8hpp">anim/skeleton.hpp</link>&gt;</emphasis>
+4 
+5 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+6 
+7 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>anim&#32;{
+8 
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>core;
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>ecs;
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>render;
+12 
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1anim_1_1c_anim_system">cAnimSystem</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1ecs_1_1c_system">cSystem</link>
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+15 
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;Update(<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link>*&#32;scene,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_time">cTime</link>&amp;&#32;dt)&#32;<emphasis role="keyword">override</emphasis>&#32;<emphasis role="keyword">final</emphasis>;
+18 
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;AnimateSkeleton(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation">sAnimation</link>&amp;&#32;animation,&#32;<link linkend="_structxpe_1_1anim_1_1s_skeleton">sSkeleton</link>&amp;&#32;skeleton,&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;skeletonIndex,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_time">cTime</link>&amp;&#32;dt);
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;AnimateBone(<link linkend="_structxpe_1_1anim_1_1s_bone">sBone</link>&amp;&#32;bone,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+22 
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::mat4&#32;InterpolatePosition(<link linkend="_structxpe_1_1anim_1_1s_bone">sBone</link>&amp;&#32;bone,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::mat4&#32;InterpolateRotation(<link linkend="_structxpe_1_1anim_1_1s_bone">sBone</link>&amp;&#32;bone,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::mat4&#32;InterpolateScale(<link linkend="_structxpe_1_1anim_1_1s_bone">sBone</link>&amp;&#32;bone,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+26 
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;GetPositionIndex(<link linkend="_structxpe_1_1anim_1_1s_bone">sBone</link>&amp;&#32;bone,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;GetRotationIndex(<link linkend="_structxpe_1_1anim_1_1s_bone">sBone</link>&amp;&#32;bone,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;GetScaleIndex(<link linkend="_structxpe_1_1anim_1_1s_bone">sBone</link>&amp;&#32;bone,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+30 
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;GetScaleFactor(<emphasis role="keywordtype">float</emphasis>&#32;lastTimestamp,&#32;<emphasis role="keywordtype">float</emphasis>&#32;nextTimestamp,&#32;<emphasis role="keywordtype">float</emphasis>&#32;time);
+32 
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;UpdateSkeletonTransform(
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_node">sAnimationNode</link>&amp;&#32;animationNode,
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_skeleton">sSkeleton</link>&amp;&#32;skeleton,
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_skeleton_buffer">sSkeletonBuffer</link>&amp;&#32;skeletonBuffer,
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;skeletonIndex,
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;glm::mat4&amp;&#32;parentTransform
+39 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+40 
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;m_CurrentSeconds&#32;=&#32;0;
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;m_DeltaSeconds&#32;=&#32;0;
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+44 
+45 &#32;&#32;&#32;&#32;}
+46 
+47 }
+</programlisting></section>

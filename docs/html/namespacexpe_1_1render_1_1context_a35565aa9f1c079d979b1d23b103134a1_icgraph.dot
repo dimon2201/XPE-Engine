@@ -1,0 +1,24 @@
+digraph "xpe::render::context::DrawVertexed"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="xpe::render::context\l::DrawVertexed",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="xpe::render::cInstancing\lShader::DrawInstanced",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_instancing_shader.html#a8aff797e93842eabe1565da005bad1f9",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="xpe::render::cOpaqueShader\l::Draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_opaque_shader.html#a7b7b6a8e853bb0188f55d26cc5ce23e4",tooltip=" "];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="xpe::render::cTransparent\lShader::Draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_transparent_shader.html#a41136b4dbad82e1306bed55c264f3772",tooltip=" "];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="xpe::render::cShadowShader\l::DrawShadow",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_shadow_shader.html#a96fe11cf22a10fcc79bd896e3237ae59",tooltip=" "];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="xpe::render::cDirectional\lShadowShader::Draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_directional_shadow_shader.html#af7c943a5a94f8f5b5d9def4b96b418e8",tooltip=" "];
+  Node5 -> Node7 [id="edge6_Node000005_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="xpe::render::cPointShadow\lShader::Draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_point_shadow_shader.html#a1113634e6e17cea7bea8395707aa809b",tooltip=" "];
+  Node5 -> Node8 [id="edge7_Node000005_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="xpe::render::cSpotShadow\lShader::Draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_spot_shadow_shader.html#a110c7db6532938ddfb6a93f0a48b8439",tooltip=" "];
+  Node1 -> Node1 [id="edge8_Node000001_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+}

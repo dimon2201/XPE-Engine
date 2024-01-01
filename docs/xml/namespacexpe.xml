@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacexpe" kind="namespace" language="C++">
+    <compoundname>xpe</compoundname>
+    <innernamespace refid="namespacexpe_1_1anim">xpe::anim</innernamespace>
+    <innernamespace refid="namespacexpe_1_1audio">xpe::audio</innernamespace>
+    <innernamespace refid="namespacexpe_1_1core">xpe::core</innernamespace>
+    <innernamespace refid="namespacexpe_1_1ecs">xpe::ecs</innernamespace>
+    <innernamespace refid="namespacexpe_1_1math">xpe::math</innernamespace>
+    <innernamespace refid="namespacexpe_1_1physics">xpe::physics</innernamespace>
+    <innernamespace refid="namespacexpe_1_1render">xpe::render</innernamespace>
+    <innernamespace refid="namespacexpe_1_1res">xpe::res</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/anim/anim.hpp" line="3" column="1"/>
+  </compounddef>
+</doxygen>

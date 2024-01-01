@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_geometry_8hpp" xml:lang="en-US">
+<title>engine/src/rendering/geometry/geometry.hpp File Reference</title>
+<indexterm><primary>engine/src/rendering/geometry/geometry.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/buffers.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1render_1_1s_geometry">xpe::render::sGeometry</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1render_1_1s_geometry_info">xpe::render::sGeometryInfo</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -1,0 +1,66 @@
+.TH "xpe::res::cXml" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::res::cXml
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xml\&.hpp>\fP
+.PP
+Inherited by \fBxpe::ecs::cEntity\fP, \fBxpe::ecs::cScene\fP\fR [private]\fP, and \fBxpe::render::sWidget\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBxml\fP \fBToXml\fP (\fBxml\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBxml\fP \fBFromXml\fP (\fBxml\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBLoadFile\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBSaveFile\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBxpe::core::vector\fP< \fBcXml\fP * > \fBXmlChildren\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "pugi::xml_document \fBm_Doc\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvirtual\fP \fBxml\fP xpe::res::cXml::FromXml (\fBxml\fP & root)\fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBxpe::ecs::cScene\fP, and \fBxpe::ecs::cEntity\fP\&.
+.SS "\fBbool\fP xpe::res::cXml::LoadFile (\fBconst\fP \fBchar\fP * filepath)"
+
+.SS "\fBbool\fP xpe::res::cXml::SaveFile (\fBconst\fP \fBchar\fP * filepath)"
+
+.SS "\fBvirtual\fP \fBxml\fP xpe::res::cXml::ToXml (\fBxml\fP & root)\fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBxpe::ecs::cScene\fP, and \fBxpe::ecs::cEntity\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "pugi::xml_document xpe::res::cXml::m_Doc\fR [protected]\fP"
+
+.SS "\fBxpe::core::vector\fP<\fBcXml\fP*> xpe::res::cXml::XmlChildren"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

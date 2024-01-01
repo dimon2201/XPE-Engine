@@ -1,0 +1,448 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="app_8cpp" kind="file" language="C++">
+    <compoundname>app.cpp</compoundname>
+    <includes refid="app_8hpp" local="no">core/app.hpp</includes>
+    <includes refid="debugger_8hpp" local="no">rendering/core/debugger.hpp</includes>
+    <includes refid="render__system_8hpp" local="no">rendering/render_system.hpp</includes>
+    <includes refid="canvas_8hpp" local="no">rendering/canvas.hpp</includes>
+    <includes refid="bindings_8hpp" local="no">rendering/bindings.hpp</includes>
+    <includes refid="shaders_8hpp" local="no">rendering/shaders.hpp</includes>
+    <includes refid="anim__system_8hpp" local="no">anim/anim_system.hpp</includes>
+    <includes refid="audio__system_8hpp" local="no">audio/audio_system.hpp</includes>
+    <includes refid="physics__manager_8hpp" local="no">physics/physics_manager.hpp</includes>
+    <includes refid="physics__system_8hpp" local="no">physics/physics_system.hpp</includes>
+    <incdepgraph>
+      <node id="18">
+        <label>anim/anim.hpp</label>
+        <link refid="anim_8hpp"/>
+      </node>
+      <node id="31">
+        <label>anim/anim_system.hpp</label>
+        <link refid="anim__system_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>anim/skeleton.hpp</label>
+        <link refid="skeleton_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>audio/audio_system.hpp</label>
+        <link refid="audio__system_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>audio/core/context.hpp</label>
+        <link refid="audio_2core_2context_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>audio/core/core.hpp</label>
+        <link refid="audio_2core_2core_8hpp"/>
+      </node>
+      <node id="21">
+        <label>audio/core/sndfile_context.hpp</label>
+        <link refid="sndfile__context_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>engine/src/core/app.cpp</label>
+        <link refid="app_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>core/app.hpp</label>
+        <link refid="app_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>core/types.hpp</label>
+        <link refid="types_8hpp"/>
+      </node>
+      <node id="5">
+        <label>ecs/components.hpp</label>
+        <link refid="components_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>physics/physics_manager.hpp</label>
+        <link refid="physics__manager_8hpp"/>
+      </node>
+      <node id="34">
+        <label>physics/physics_system.hpp</label>
+        <link refid="physics__system_8hpp"/>
+      </node>
+      <node id="29">
+        <label>rendering/bindings.hpp</label>
+        <link refid="bindings_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>rendering/buffers.hpp</label>
+        <link refid="buffers_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>rendering/camera.hpp</label>
+        <link refid="camera_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>rendering/camera_manager.hpp</label>
+        <link refid="camera__manager_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>rendering/canvas.hpp</label>
+        <link refid="canvas_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>rendering/core/context.hpp</label>
+        <link refid="rendering_2core_2context_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>rendering/core/core.hpp</label>
+        <link refid="rendering_2core_2core_8hpp"/>
+      </node>
+      <node id="26">
+        <label>rendering/core/debugger.hpp</label>
+        <link refid="debugger_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>rendering/core/render_target.hpp</label>
+        <link refid="render__target_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>rendering/core/shader.hpp</label>
+        <link refid="shader_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>rendering/core/texture.hpp</label>
+        <link refid="texture_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>rendering/font/font.hpp</label>
+        <link refid="font_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>rendering/geometry/geometries.hpp</label>
+        <link refid="geometries_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>rendering/geometry/geometry.hpp</label>
+        <link refid="geometry_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>rendering/material/material.hpp</label>
+        <link refid="material_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>rendering/render_system.hpp</label>
+        <link refid="render__system_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>rendering/shaders.hpp</label>
+        <link refid="shaders_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>rendering/shadow_manager.hpp</label>
+        <link refid="shadow__manager_8hpp"/>
+      </node>
+      <node id="25">
+        <label>rendering/skybox_manager.hpp</label>
+        <link refid="skybox__manager_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>rendering/widget_manager.hpp</label>
+        <link refid="widget__manager_8hpp"/>
+      </node>
+      <node id="22">
+        <label>sndfile.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1core">xpe::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="app_8hpp" kindref="compound">core/app.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="debugger_8hpp" kindref="compound">rendering/core/debugger.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="render__system_8hpp" kindref="compound">rendering/render_system.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="canvas_8hpp" kindref="compound">rendering/canvas.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="bindings_8hpp" kindref="compound">rendering/bindings.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="shaders_8hpp" kindref="compound">rendering/shaders.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="anim__system_8hpp" kindref="compound">anim/anim_system.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="audio__system_8hpp" kindref="compound">audio/audio_system.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="physics__manager_8hpp" kindref="compound">physics/physics_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="physics__system_8hpp" kindref="compound">physics/physics_system.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">render;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">ecs;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">anim;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">audio;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">physics;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" kindref="member">cApp::Run</ref>()</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_logger_descriptor" kindref="compound">sLoggerDescriptor</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">logDesc</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">logDesc</ref>.<ref refid="structxpe_1_1core_1_1s_logger_descriptor_1afc1b0ee6bfda7d6bba679494db09bb7a" kindref="member">Name</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf" kindref="member">LogTitle</ref>.c_str();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">logDesc</ref>.Backtrace<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275" kindref="member">LogBacktrace</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="log__manager_8hpp_1ace537ecfc8a0c748069d8946e3a48369" kindref="member">InitLogger</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">logDesc</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_window_descriptor" kindref="compound">sWindowDescriptor</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.<ref refid="structxpe_1_1core_1_1s_window_descriptor_1abeacae5dd25884d31e9b16fc50448178" kindref="member">Title</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.WinTitle.c_str();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Width<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32" kindref="member">WinWidth</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Height<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6" kindref="member">WinHeight</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.X<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9" kindref="member">WinX</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Y<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014" kindref="member">WinY</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.VSync<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3" kindref="member">VSync</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Fullscreen<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b" kindref="member">Fullscreen</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Gamma<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f" kindref="member">Gamma</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Exposure<sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677" kindref="member">Exposure</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>.<ref refid="classxpe_1_1core_1_1c_time_1a7f748397ee483ce2bfdf6ce54e89992d" kindref="member">SetFps</ref>(<ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" kindref="member">FPS</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" kindref="member">CPUTime</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_task_manager_1a46a55aa8997512cd132a29694a4f5526" kindref="member">cTaskManager::Init</ref>();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_event_manager_1ab412052ff29ce97f039a00d4f9a2e492" kindref="member">cEventManager::Init</ref>();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1ab5db59ec1956eab92788445e2a236ade" kindref="member">cWindowManager::Init</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1a5acf1469a7302505924c4c95048009c8" kindref="member">cWindowManager::InitWindow</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_input_manager_1a6e64b8653d658153d72bba1301edec2c" kindref="member">cInputManager::Init</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1physics_1_1c_physics_manager_1a37d2691cdf4bf8bf56425ffee6d932ec" kindref="member">cPhysicsManager::Init</ref>(<ref refid="classxpe_1_1core_1_1c_task_manager_1afdf5cf1f256eb417b3207318805aaba3" kindref="member">cTaskManager::GetSimulationDispatcher</ref>());</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1af2d11cdae2d8d2f7d279f2f5084af3db" kindref="member">render::context::EnableInfoLog</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78" kindref="member">EnableGPUInfoLog</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a0aadefb26c0f0b42144c840348f50dc8" kindref="member">render::context::EnableWarnLog</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748" kindref="member">EnableGPUWarnLog</ref>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a8d307d9518a59bafae06691f1c8009cc" kindref="member">render::context::EnableErrorLog</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21" kindref="member">EnableGPUErrorLog</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1aa5fbd2978189be084ded83cb82bce612" kindref="member">m_Viewport</ref>.<ref refid="structxpe_1_1render_1_1s_viewport_1af844df25d5d2c89c0c9cb8ebacbfc7a9" kindref="member">Width</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1afe9947fdbfa0a31f51a29d9553362c8c" kindref="member">cWindowManager::GetWidth</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1aa5fbd2978189be084ded83cb82bce612" kindref="member">m_Viewport</ref>.<ref refid="structxpe_1_1render_1_1s_viewport_1a5bf4baa8340c1e14a5208eba4165add7" kindref="member">Height</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1a146fad2784fb4c33d64eaa08ae1bc340" kindref="member">cWindowManager::GetHeight</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" kindref="member">m_RenderSystem</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_render_system" kindref="compound">cRenderSystem</ref>(<ref refid="classxpe_1_1core_1_1c_app_1aa5fbd2978189be084ded83cb82bce612" kindref="member">m_Viewport</ref>,<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" kindref="member">MsaaSampleCount</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a383aa3cc5c1df7085ff2601d5ef3c559" kindref="member">m_Canvas</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_canvas" kindref="compound">cCanvas</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a96c4c6c63918967c724923577f7570f3" kindref="member">m_AnimSystem</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1anim_1_1c_anim_system" kindref="compound">cAnimSystem</ref>();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a39fceb74db114dad5ab2f2bcf5f27be2" kindref="member">m_AudioSystem</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1audio_1_1c_audio_system" kindref="compound">cAudioSystem</ref>();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1abbe71f6bebeba16997b626d3f1941039" kindref="member">m_PhysicsSystem</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1physics_1_1c_physics_system" kindref="compound">cPhysicsSystem</ref>();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" kindref="member">InitShaders</ref>();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_camera_manager_1aba0502682c716b06e9b0b8e69bb18878" kindref="member">cCameraManager::SetExposure</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Exposure);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_camera_manager_1ac36b65d33a2ff4f2624492b3733fab11" kindref="member">cCameraManager::SetGamma</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">winDesc</ref>.Gamma);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" kindref="member">m_Scene</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref>();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a5ef55c63d56dfccfc7738b50cf5be70a" kindref="member">Init</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" kindref="member">m_RenderSystem</ref>-&gt;<ref refid="classxpe_1_1render_1_1c_render_system_1ac2834a58be8933708392e7d92a79e43e" kindref="member">Prepare</ref>();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="classxpe_1_1core_1_1c_app_1a56f56ce2f1d738cc92dd1017bb737b61" kindref="member">m_Opened</ref>)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>measure<sp/>cpu<sp/>ticks<sp/>in<sp/>seconds<sp/>and<sp/>log<sp/>CPU<sp/>time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cpuTickSec</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cpuTickSec</ref><sp/>+=<sp/><ref refid="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" kindref="member">CPUTime</ref>.<ref refid="classxpe_1_1core_1_1c_time_1a9ef071be238e4c1adb24bc48e9b990b3" kindref="member">Seconds</ref>();</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cpuTickSec</ref><sp/>&gt;=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e" kindref="member">LogTimeDelaySeconds</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cpuTickSec</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="time__manager_8hpp_1ab3a55de6979b221cf68ec9d259b90f3a" kindref="member">LogCpuTime</ref>(<ref refid="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" kindref="member">CPUTime</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="memory__manager_8hpp_1ac17247c0375861bfc4d740e77109acdc" kindref="member">LogMemoryPools</ref>();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="core_2allocators_8hpp_1abdfa33f12655d0a8f26a1fb077ee2f0a" kindref="member">LogStackMemory</ref>();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_time_manager" kindref="compound">cTimeManager</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cpuTimer</ref>(&amp;<ref refid="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" kindref="member">CPUTime</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_time_manager" kindref="compound">cTimeManager</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">deltaTimer</ref>(&amp;<ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a2e4a9bdbfb9563c041ab0447a108e26d" kindref="member">CurrentTime</ref><sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cpuTimer</ref>.GetStartTime();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a3b069d8cbc5de0646cc885b9ccc62d85" kindref="member">Update</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>submit<sp/>audio<sp/>task<sp/>with<sp/>current<sp/>scene<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_task_manager_1a0e82de392ba02bbe3ad1303ef2d4d813" kindref="member">cTaskManager::SubmitTask</ref>({<sp/><ref refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae" kindref="member">sTask::eType::AUDIO</ref>,<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">]()<sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a39fceb74db114dad5ab2f2bcf5f27be2" kindref="member">m_AudioSystem</ref>-&gt;<ref refid="classxpe_1_1audio_1_1c_audio_system_1aa5ea13f96fded87ef85fd3164207670f" kindref="member">Update</ref>(<ref refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" kindref="member">m_Scene</ref>,<sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}});</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>submit<sp/>animation<sp/>task<sp/>with<sp/>current<sp/>scene<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_task_manager_1a0e82de392ba02bbe3ad1303ef2d4d813" kindref="member">cTaskManager::SubmitTask</ref>({<sp/><ref refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b" kindref="member">sTask::eType::ANIMATION</ref>,<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">]()<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a96c4c6c63918967c724923577f7570f3" kindref="member">m_AnimSystem</ref>-&gt;<ref refid="classxpe_1_1anim_1_1c_anim_system_1a0a35098c9165bcf4720ccfd500467e9d" kindref="member">Update</ref>(<ref refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" kindref="member">m_Scene</ref>,<sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}});</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calls<sp/>physics<sp/>simulation<sp/>that<sp/>will<sp/>be<sp/>automatically<sp/>dispatched<sp/>into<sp/>TaskManager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>we<sp/>don&apos;t<sp/>need<sp/>to<sp/>submit<sp/>physics<sp/>system<sp/>into<sp/>task</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1abbe71f6bebeba16997b626d3f1941039" kindref="member">m_PhysicsSystem</ref>-&gt;<ref refid="classxpe_1_1physics_1_1c_physics_system_1a5679425dd00d09e95985cb8ffb23a036" kindref="member">Update</ref>(<ref refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" kindref="member">m_Scene</ref>,<sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" kindref="member">Render</ref>();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1a8130115cee9a62495d705fdd78be284f" kindref="member">cWindowManager::PollEvents</ref>();</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1a2783e36503821ce0cb3d15d7be6c9c4d" kindref="member">cWindowManager::Swap</ref>();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a56f56ce2f1d738cc92dd1017bb737b61" kindref="member">m_Opened</ref><sp/>=<sp/>!<ref refid="classxpe_1_1core_1_1c_window_manager_1a0e9a87fc7593793533fe673a3078dab0" kindref="member">cWindowManager::ShouldClose</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>measure<sp/>delta<sp/>ticks<sp/>in<sp/>seconds<sp/>and<sp/>log<sp/>delta</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">deltaTickSec</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">deltaTickSec</ref><sp/>+=<sp/><ref refid="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" kindref="member">CPUTime</ref>.<ref refid="classxpe_1_1core_1_1c_time_1a9ef071be238e4c1adb24bc48e9b990b3" kindref="member">Seconds</ref>();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">deltaTickSec</ref><sp/>&gt;=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e" kindref="member">LogTimeDelaySeconds</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">deltaTickSec</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="log__manager_8hpp_1ab1ef1da5fb4535faa4cac7287d508334" kindref="member">LogTime</ref>(<ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a2024288747447bdb0a69a021fed66b2f" kindref="member">Free</ref>();</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" kindref="member">m_Scene</ref>;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1a39fceb74db114dad5ab2f2bcf5f27be2" kindref="member">m_AudioSystem</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1a96c4c6c63918967c724923577f7570f3" kindref="member">m_AnimSystem</ref>;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1a383aa3cc5c1df7085ff2601d5ef3c559" kindref="member">m_Canvas</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" kindref="member">m_RenderSystem</ref>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1physics_1_1c_physics_manager_1a4f1601625b22bfa825c44ee871d4f8be" kindref="member">cPhysicsManager::Free</ref>();</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_input_manager_1a9ec787efb7db503df7a6d05119a3d8de" kindref="member">cInputManager::Free</ref>();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1af5dfe3894003a8ad57e1354021b8d298" kindref="member">cWindowManager::FreeWindow</ref>();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_window_manager_1a89c96ef2f0b2adb0e3d731e2a61f3ce9" kindref="member">cWindowManager::Free</ref>();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_event_manager_1ade6d0f70bc2e8420e85ffa785fb6ce00" kindref="member">cEventManager::Free</ref>();</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_task_manager_1a1460b83cb7d2cc385262757d46157076" kindref="member">cTaskManager::Free</ref>();</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="log__manager_8hpp_1a2483e63d382a5858591b9d725cf36485" kindref="member">FreeLogger</ref>();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" kindref="member">cApp::LockFPSFromConfig</ref>()</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4" kindref="member">LockOnFps</ref><sp/>&amp;&amp;<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" kindref="member">FPS</ref><sp/>&lt;<sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>.<ref refid="classxpe_1_1core_1_1c_time_1af639bb5b7e24e85652ddd5508db9fd9a" kindref="member">Fps</ref>())</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>.<ref refid="classxpe_1_1core_1_1c_time_1a7f748397ee483ce2bfdf6ce54e89992d" kindref="member">SetFps</ref>(<ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" kindref="member">FPS</ref>);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" kindref="member">cApp::InitShaders</ref>()</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_skybox_shader" kindref="compound">cSkyboxShader</ref>(</highlight><highlight class="stringliteral">&quot;skybox&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_directional_shadow_shader" kindref="compound">cDirectionalShadowShader</ref>(</highlight><highlight class="stringliteral">&quot;directional_shadow&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cShaderManager::SetShader(new<sp/>cPointShadowShader(&quot;point_shadow&quot;));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cShaderManager::SetShader(new<sp/>cSpotShadowShader(&quot;spot_shadow&quot;));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_opaque_shader" kindref="compound">cOpaqueShader</ref>(</highlight><highlight class="stringliteral">&quot;opaque&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_transparent_shader" kindref="compound">cTransparentShader</ref>(</highlight><highlight class="stringliteral">&quot;transparent&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_composite_transparent_shader" kindref="compound">cCompositeTransparentShader</ref>(</highlight><highlight class="stringliteral">&quot;composite_transparent&quot;</highlight><highlight class="normal">,<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" kindref="member">MsaaSampleCount</ref>));</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_ssao_shader" kindref="compound">cSsaoShader</ref>(</highlight><highlight class="stringliteral">&quot;ssao&quot;</highlight><highlight class="normal">,<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" kindref="member">MsaaSampleCount</ref>));</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_widget_shader" kindref="compound">cWidgetShader</ref>(</highlight><highlight class="stringliteral">&quot;widget&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_text_shader" kindref="compound">cTextShader</ref>(</highlight><highlight class="stringliteral">&quot;text&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_final_shader" kindref="compound">cFinalShader</ref>(</highlight><highlight class="stringliteral">&quot;final&quot;</highlight><highlight class="normal">,<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" kindref="member">MsaaSampleCount</ref>));</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a4057793b0888fbca76fcaa4b670dae05" kindref="member">cShaderManager::GetShader</ref>(</highlight><highlight class="stringliteral">&quot;ssao&quot;</highlight><highlight class="normal">)-&gt;<ref refid="classxpe_1_1render_1_1c_shader_1afb11bac579269c1289d67f9ef0892980" kindref="member">Enable</ref><sp/>=<sp/><ref refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" kindref="member">Config</ref>.<ref refid="structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77" kindref="member">EnableSSAO</ref>;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" kindref="member">cApp::Render</ref>()</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1render_1_1_render_targets_1a4edea5878877cdda968bc46eb9da6707" kindref="member">RenderTargets::SSAO</ref>-&gt;<ref refid="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" kindref="member">Clear</ref>();</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" kindref="member">m_RenderSystem</ref>-&gt;<ref refid="classxpe_1_1render_1_1c_render_system_1adf9ca8fc79ed13660b521ef4cf9f78be" kindref="member">Update</ref>(<ref refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" kindref="member">m_Scene</ref>,<sp/><ref refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" kindref="member">DeltaTime</ref>);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_app_1a383aa3cc5c1df7085ff2601d5ef3c559" kindref="member">m_Canvas</ref>-&gt;<ref refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" kindref="member">Draw</ref>();</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/core/app.cpp"/>
+  </compounddef>
+</doxygen>

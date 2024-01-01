@@ -1,0 +1,54 @@
+.TH "xpe::ecs::CVoice" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::ecs::CVoice
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <components\&.hpp>\fP
+.PP
+Inherits \fBxpe::res::cJson\fP\&.
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBu32\fP \fBSourceID\fP = 0"
+.br
+.ti -1c
+.RI "\fBeAudioState\fP \fBState\fP = eAudioState::INITIAL"
+.br
+.ti -1c
+.RI "\fBvector\fP< \fBu32\fP > \fBBufferID\fP"
+.br
+.ti -1c
+.RI "\fBvector\fP< \fBs16\fP > \fBData\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBxpe::res::cJson\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBToJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBFromJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBvector\fP<\fBu32\fP> xpe::ecs::CVoice::BufferID"
+
+.SS "\fBvector\fP<\fBs16\fP> xpe::ecs::CVoice::Data"
+
+.SS "\fBu32\fP xpe::ecs::CVoice::SourceID = 0"
+
+.SS "\fBeAudioState\fP xpe::ecs::CVoice::State = eAudioState::INITIAL"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

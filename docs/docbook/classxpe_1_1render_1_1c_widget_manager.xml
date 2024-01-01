@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1render_1_1c_widget_manager" xml:lang="en-US">
+<title>xpe::render::cWidgetManager Class Reference</title>
+<indexterm><primary>xpe::render::cWidgetManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;widget_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7">Init</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_widget_manager_1a6a32a8e5b1e365a10beed0c2608ea823">Free</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_widget_manager_1a6a32a8e5b1e365a10beed0c2608ea823"/><section>
+    <title>Free()</title>
+<indexterm><primary>Free</primary><secondary>xpe::render::cWidgetManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cWidgetManager</primary><secondary>Free</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cWidgetManager::Free ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::render::cWidgetManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cWidgetManager</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cWidgetManager::Init ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/rendering/<link linkend="_widget__manager_8hpp">widget_manager.hpp</link>engine/src/rendering/<link linkend="_widget__manager_8cpp">widget_manager.cpp</link></section>
+</section>

@@ -1,0 +1,52 @@
+.TH "xpe::physics::cPhysicsSimulationEventCallback" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::physics::cPhysicsSimulationEventCallback
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <callbacks\&.hpp>\fP
+.PP
+Inherits PxSimulationEventCallback\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBonConstraintBreak\fP (\fBPxConstraintInfo\fP *, \fBPxU32\fP) \fBoverride\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBonWake\fP (\fBPxActor\fP **, \fBPxU32\fP) \fBoverride\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBonSleep\fP (\fBPxActor\fP **, \fBPxU32\fP) \fBoverride\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBonContact\fP (\fBconst\fP \fBPxContactPairHeader\fP &\fBpairHeader\fP, \fBconst\fP \fBPxContactPair\fP *\fBpairs\fP, \fBPxU32\fP \fBnbPairs\fP) \fBoverride\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBonTrigger\fP (\fBPxTriggerPair\fP *, \fBPxU32\fP) \fBoverride\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBonAdvance\fP (\fBconst\fP \fBPxRigidBody\fP *\fBconst\fP *, \fBconst\fP \fBPxTransform\fP *, \fBconst\fP \fBPxU32\fP) \fBoverride\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::physics::cPhysicsSimulationEventCallback::onAdvance (\fBconst\fP \fBPxRigidBody\fP *\fBconst\fP *, \fBconst\fP \fBPxTransform\fP *, \fBconst\fP \fBPxU32\fP)\fR [override]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsSimulationEventCallback::onConstraintBreak (\fBPxConstraintInfo\fP *, \fBPxU32\fP)\fR [override]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsSimulationEventCallback::onContact (\fBconst\fP \fBPxContactPairHeader\fP & pairHeader, \fBconst\fP \fBPxContactPair\fP * pairs, \fBPxU32\fP nbPairs)\fR [override]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsSimulationEventCallback::onSleep (\fBPxActor\fP **, \fBPxU32\fP)\fR [override]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsSimulationEventCallback::onTrigger (\fBPxTriggerPair\fP *, \fBPxU32\fP)\fR [override]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::physics::cPhysicsSimulationEventCallback::onWake (\fBPxActor\fP **, \fBPxU32\fP)\fR [override]\fP, \fR [virtual]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

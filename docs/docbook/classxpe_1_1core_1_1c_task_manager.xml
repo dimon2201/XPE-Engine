@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1core_1_1c_task_manager" xml:lang="en-US">
+<title>xpe::core::cTaskManager Class Reference</title>
+<indexterm><primary>xpe::core::cTaskManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;task_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_task_manager_1a46a55aa8997512cd132a29694a4f5526">Init</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_task_manager_1a1460b83cb7d2cc385262757d46157076">Free</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_task_manager_1a0e82de392ba02bbe3ad1303ef2d4d813">SubmitTask</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1core_1_1s_task">sTask</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">task</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_task_manager_1a7fd38c7c9b4021c105bcb12e96a469c3">SubmitTask</link> (<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">tasksPerThread</link>, <link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">totalTasks</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1core_1_1s_task">sTask</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">task</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_classxpe_1_1core_1_1c_simulation_dispatcher">cSimulationDispatcher</link> * <link linkend="_classxpe_1_1core_1_1c_task_manager_1afdf5cf1f256eb417b3207318805aaba3">GetSimulationDispatcher</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_task_manager_1a1460b83cb7d2cc385262757d46157076"/><section>
+    <title>Free()</title>
+<indexterm><primary>Free</primary><secondary>xpe::core::cTaskManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cTaskManager</primary><secondary>Free</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cTaskManager::Free ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_task_manager_1afdf5cf1f256eb417b3207318805aaba3"/><section>
+    <title>GetSimulationDispatcher()</title>
+<indexterm><primary>GetSimulationDispatcher</primary><secondary>xpe::core::cTaskManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cTaskManager</primary><secondary>GetSimulationDispatcher</secondary></indexterm>
+<para><computeroutput><link linkend="_classxpe_1_1core_1_1c_simulation_dispatcher">cSimulationDispatcher</link> * xpe::core::cTaskManager::GetSimulationDispatcher ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_task_manager_1a46a55aa8997512cd132a29694a4f5526"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::core::cTaskManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cTaskManager</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cTaskManager::Init ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_task_manager_1a0e82de392ba02bbe3ad1303ef2d4d813"/><section>
+    <title>SubmitTask()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>SubmitTask</primary><secondary>xpe::core::cTaskManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cTaskManager</primary><secondary>SubmitTask</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cTaskManager::SubmitTask (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1core_1_1s_task">sTask</link> &amp; task)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_task_manager_1a7fd38c7c9b4021c105bcb12e96a469c3"/><section>
+    <title>SubmitTask()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>SubmitTask</primary><secondary>xpe::core::cTaskManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cTaskManager</primary><secondary>SubmitTask</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cTaskManager::SubmitTask (<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> tasksPerThread, <link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> totalTasks, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1core_1_1s_task">sTask</link> &amp; task)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/core/<link linkend="_task__manager_8hpp">task_manager.hpp</link>engine/src/core/<link linkend="_task__manager_8cpp">task_manager.cpp</link></section>
+</section>

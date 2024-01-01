@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_event_8hpp_source" xml:lang="en-US">
+<title>event.hpp</title>
+<indexterm><primary>engine/src/core/event.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#define&#32;event_begin(name,&#32;...)&#32;\</emphasis>
+4 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;typedef&#32;void&#32;(*f##name)(void*&#32;thiz,&#32;__VA_ARGS__);&#32;\</emphasis>
+5 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;template&lt;typename&#32;T&gt;&#32;\</emphasis>
+6 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;static&#32;void&#32;On##name(void*&#32;const&#32;thiz,&#32;__VA_ARGS__)&#32;{&#32;\</emphasis>
+7 <emphasis role="preprocessor"></emphasis>
+8 <emphasis role="preprocessor">#define&#32;event_end(name,&#32;...)&#32;((T*)&#32;thiz)-&gt;name(__VA_ARGS__);&#32;}</emphasis>
+9 
+10 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+11 
+12 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>core&#32;{
+13 
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_structxpe_1_1core_1_1s_event">sEvent</link>
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+17 
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>*&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a1646f7ca11257e055ed5f6eb11895159">This</link>&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link>&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a2e4e949ab8f2f8713e6e50903cebaaf2">Function</link>&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_structxpe_1_1core_1_1s_event_1af91030e88372c711aac843c8ddc96c62">Priority</link>&#32;=&#32;0;
+21 
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a2225c66fa1ec0fc12027b4e5f5881797">sEvent</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+23 
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a7e2999da99890203c7db4f8279839234">sEvent</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">function</link>,&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">priority</link>)
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a2e4e949ab8f2f8713e6e50903cebaaf2">Function</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">function</link>),&#32;<link linkend="_structxpe_1_1core_1_1s_event_1af91030e88372c711aac843c8ddc96c62">Priority</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">priority</link>)&#32;{}
+26 
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_event_1ae554848032f298cecc8d966c5f964d43">sEvent</link>(<emphasis role="keywordtype">void</emphasis>*&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">_this</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">function</link>,&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">priority</link>)
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a1646f7ca11257e055ed5f6eb11895159">This</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">_this</link>),&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a2e4e949ab8f2f8713e6e50903cebaaf2">Function</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">function</link>),&#32;<link linkend="_structxpe_1_1core_1_1s_event_1af91030e88372c711aac843c8ddc96c62">Priority</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">priority</link>)&#32;{}
+29 
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keyword">friend</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_structxpe_1_1core_1_1s_event_1aa5baaeac1d9afa832f072ef4ea15767f">operator&lt;</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>)
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>.Priority&#32;&lt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>.Priority;
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+34 
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keyword">friend</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_structxpe_1_1core_1_1s_event_1ab8fed02147c42bcbe42fa8126cfd918b">operator&gt;</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>)
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>.Priority&#32;&gt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>.Priority;
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+39 
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keyword">friend</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a104aaa98819de71933f1080d7f098595">operator==</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>)
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>.This&#32;==&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>.This;
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+44 
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keyword">friend</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_structxpe_1_1core_1_1s_event_1a96f075ec957dcb622f681d8039da8080">operator!=</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>)
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>.This&#32;!=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>.This;
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+49 
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+51 
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+53 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_classxpe_1_1core_1_1c_event_buffer">cEventBuffer</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_object">cObject</link>
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+55 
+56 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+57 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1a2be267c957472f93aa9515646d3e3795">~cEventBuffer</link>();
+58 
+59 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+60 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1a0106c2c3db24b98a723b1bbf58de4b00">AddEvent</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">eventArgs</link>);
+61 
+62 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1afb40e69af07e0b0629b6fee202ad0725">RemoveEvent</link>(<emphasis role="keywordtype">void</emphasis>*&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">_this</link>);
+63 
+64 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1acfd3a3d7ae6153c9d4fec6e7f33243d4">Clear</link>();
+65 
+66 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1a58a439d6e5a5a927f41b3f6e8be5f462">Reserve</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>);
+67 
+68 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+69 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1aea68f47d551082a2b6878a5e18b1bdf8">NotifyAll</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>);
+70 
+71 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector&lt;sEvent&lt;EventFunction&gt;</link>&gt;&amp;&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1aa4a92e5cf28a047819c1bc32c84b7ba8">GetEvents</link>()<emphasis role="keyword">&#32;const</emphasis>
+72 <emphasis role="keyword">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis>{
+73 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;m_Events;
+74 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+75 
+76 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+77 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector&lt;sEvent&lt;EventFunction&gt;</link>&gt;&#32;m_Events;
+78 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::mutex&#32;m_Mutex;
+79 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+80 
+81 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+82 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1a2be267c957472f93aa9515646d3e3795">cEventBuffer&lt;EventFunction&gt;::~cEventBuffer</link>()
+83 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+84 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Events.clear();
+85 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+86 
+87 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+88 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+89 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1a0106c2c3db24b98a723b1bbf58de4b00">cEventBuffer&lt;EventFunction&gt;::AddEvent</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">eventArgs</link>)
+90 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+91 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::lock_guard&lt;std::mutex&gt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">lock</link>(m_Mutex);
+92 
+93 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">event</link>(std::forward&lt;Args&gt;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">eventArgs</link>)...);
+94 
+95 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Events.emplace_back(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">event</link>);
+96 
+97 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;store&#32;event&#32;functions&#32;by&#32;Priority&#32;in&#32;ascending&#32;order</emphasis>
+98 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::sort(m_Events.begin(),&#32;m_Events.end(),&#32;[](<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e1</link>,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sEvent&lt;EventFunction&gt;</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">e2</link>)&#32;{&#32;return&#32;e1&#32;&lt;&#32;e2;&#32;});
+99 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+100 
+101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1afb40e69af07e0b0629b6fee202ad0725">cEventBuffer&lt;EventFunction&gt;::RemoveEvent</link>(<emphasis role="keywordtype">void</emphasis>*&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">_this</link>)
+103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::lock_guard&lt;std::mutex&gt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">lock</link>(m_Mutex);
+105 
+106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">size</link>&#32;=&#32;m_Events.size();
+107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">i</link>&#32;=&#32;0&#32;;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">i</link>&#32;&lt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">size</link>&#32;;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">i</link>++)&#32;{
+108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">auto</emphasis>&amp;&#32;<emphasis role="keyword">event</emphasis>&#32;=&#32;m_Events[<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">i</link>];
+109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">_this</link>&#32;==&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">event</link>.This)&#32;{
+110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Events.erase(m_Events.begin()&#32;+&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">i</link>);
+111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+115 
+116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1acfd3a3d7ae6153c9d4fec6e7f33243d4">cEventBuffer&lt;EventFunction&gt;::Clear</link>()
+118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::lock_guard&lt;std::mutex&gt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">lock</link>(m_Mutex);
+120 
+121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Events.clear();
+122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+123 
+124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1a58a439d6e5a5a927f41b3f6e8be5f462">cEventBuffer&lt;EventFunction&gt;::Reserve</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)
+126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::lock_guard&lt;std::mutex&gt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">lock</link>(m_Mutex);
+128 
+129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;m_Events.reserve(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>);
+130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+131 
+132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;EventFunction&gt;
+133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&gt;
+134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_event_buffer_1aea68f47d551082a2b6878a5e18b1bdf8">cEventBuffer&lt;EventFunction&gt;::NotifyAll</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link>&#32;&amp;&amp;...&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)
+135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::lock_guard&lt;std::mutex&gt;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">lock</link>(m_Mutex);
+137 
+138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keyword">auto</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">event</link>&#32;:&#32;m_Events)&#32;{
+139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">event</emphasis>.Function(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">event</link>.This,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>...);
+140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+142 
+143 &#32;&#32;&#32;&#32;}
+144 
+145 }
+</programlisting></section>

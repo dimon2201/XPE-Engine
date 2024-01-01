@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1audio_1_1c_audio_manager" xml:lang="en-US">
+<title>xpe::audio::cAudioManager Class Reference</title>
+<indexterm><primary>xpe::audio::cAudioManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;audio_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1ae9894202640e400278bcdccfae96d05c">SetListenerPosition</link> (glm::vec3 <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">position</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1a50edbadc1d670c7820e88de7b24bc2ec">SetListenerVelocity</link> (glm::vec3 <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">velocity</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1ad0a17d0c1c6615dc6104074ba28947d9">SetListenerOrientation</link> (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">pitch</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">yaw</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">roll</link>, glm::vec3 <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">up</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1aa428335afa984d8ee94cb6c81fb94ca9">SetListenerGain</link> (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">volume</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1ad2f1b247396c8a28f7a5d17e4d566b58">SetListenerDopplerFactor</link> (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">factor</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1ac6b617370e6fd0202be11c694debf6ed">SetListenerSpeedOfSound</link> (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">seed</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1a8717798d1dead084694903fac1ef487d">VoiceRecord</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Friends    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_classxpe_1_1audio_1_1c_audio_manager_1afdfe9e29d6935c744617acd61098ecb8">cAudioSystem</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1ad2f1b247396c8a28f7a5d17e4d566b58"/><section>
+    <title>SetListenerDopplerFactor()</title>
+<indexterm><primary>SetListenerDopplerFactor</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>SetListenerDopplerFactor</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioManager::SetListenerDopplerFactor (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> factor)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1aa428335afa984d8ee94cb6c81fb94ca9"/><section>
+    <title>SetListenerGain()</title>
+<indexterm><primary>SetListenerGain</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>SetListenerGain</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioManager::SetListenerGain (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> volume)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1ad0a17d0c1c6615dc6104074ba28947d9"/><section>
+    <title>SetListenerOrientation()</title>
+<indexterm><primary>SetListenerOrientation</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>SetListenerOrientation</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioManager::SetListenerOrientation (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> pitch, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> yaw, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> roll, glm::vec3 up)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1ae9894202640e400278bcdccfae96d05c"/><section>
+    <title>SetListenerPosition()</title>
+<indexterm><primary>SetListenerPosition</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>SetListenerPosition</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioManager::SetListenerPosition (glm::vec3 position)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1ac6b617370e6fd0202be11c694debf6ed"/><section>
+    <title>SetListenerSpeedOfSound()</title>
+<indexterm><primary>SetListenerSpeedOfSound</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>SetListenerSpeedOfSound</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioManager::SetListenerSpeedOfSound (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> seed)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1a50edbadc1d670c7820e88de7b24bc2ec"/><section>
+    <title>SetListenerVelocity()</title>
+<indexterm><primary>SetListenerVelocity</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>SetListenerVelocity</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioManager::SetListenerVelocity (glm::vec3 velocity)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1a8717798d1dead084694903fac1ef487d"/><section>
+    <title>VoiceRecord()</title>
+<indexterm><primary>VoiceRecord</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>VoiceRecord</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::audio::cAudioManager::VoiceRecord ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Friends And Related Symbol Documentation</title>
+<anchor xml:id="_classxpe_1_1audio_1_1c_audio_manager_1afdfe9e29d6935c744617acd61098ecb8"/><section>
+    <title>cAudioSystem</title>
+<indexterm><primary>cAudioSystem</primary><secondary>xpe::audio::cAudioManager</secondary></indexterm>
+<indexterm><primary>xpe::audio::cAudioManager</primary><secondary>cAudioSystem</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">friend</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">class</link> <link linkend="_classxpe_1_1audio_1_1c_audio_system">cAudioSystem</link><computeroutput>[friend]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/audio/<link linkend="_audio__manager_8hpp">audio_manager.hpp</link>engine/src/audio/<link linkend="_audio__manager_8cpp">audio_manager.cpp</link></section>
+</section>

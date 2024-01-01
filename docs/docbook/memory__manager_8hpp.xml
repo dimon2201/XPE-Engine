@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_memory__manager_8hpp" xml:lang="en-US">
+<title>engine/src/core/memory_manager.hpp File Reference</title>
+<indexterm><primary>engine/src/core/memory_manager.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_memory_pool_allocation">xpe::core::sMemoryPoolAllocation</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_memory_pool">xpe::core::cMemoryPool</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_memory_pool_stack">xpe::core::cMemoryPoolStack</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_memory_manager">xpe::core::cMemoryManager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_memory__manager_8hpp_1ac17247c0375861bfc4d740e77109acdc">LogMemoryPools</link>()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_memory__manager_8hpp_1ac17247c0375861bfc4d740e77109acdc"/><section>
+    <title>LogMemoryPools</title>
+<indexterm><primary>LogMemoryPools</primary><secondary>memory_manager.hpp</secondary></indexterm>
+<indexterm><primary>memory_manager.hpp</primary><secondary>LogMemoryPools</secondary></indexterm>
+<para><computeroutput>#define LogMemoryPools( )</computeroutput></para></section>
+</section>
+</section>

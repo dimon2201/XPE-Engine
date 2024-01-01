@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_physics__system_8cpp" xml:lang="en-US">
+<title>engine/src/physics/physics_system.cpp File Reference</title>
+<indexterm><primary>engine/src/physics/physics_system.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;PxPhysicsAPI.h&gt;<?linebreak?>#include &lt;physics/physics_system.hpp&gt;<?linebreak?>#include &lt;physics/physics_manager.hpp&gt;<?linebreak?>#include &lt;ecs/components.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1physics">xpe::physics</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>glm::vec3 <link linkend="_namespacexpe_1_1physics_1afa19f45096b2341a10365ac1f56c1255">xpe::physics::QuatToEuler</link> (<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a531d26e89a16703584b7e1ec09302f99">w</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a49526f1e6a80726936b0b54c8ac10411">x</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">y</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">z</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

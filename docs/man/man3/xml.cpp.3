@@ -1,0 +1,106 @@
+.TH "engine/src/res/xml.cpp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine/src/res/xml.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <res/xml\&.hpp>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBxpe\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::res\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBbool\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBu8\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBint\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBu32\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBfloat\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBdouble\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBu64\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBs64\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBstring\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, std::string &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, glm::vec2 &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, glm::vec3 &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::SetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, glm::vec4 &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBbool\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBu8\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBint\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBu32\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBfloat\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBdouble\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBu64\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBs64\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, \fBstring\fP &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, std::string &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, glm::vec2 &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, glm::vec3 &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBxpe::res::GetXmlValue\fP (\fBxml\fP &\fBroot\fP, \fBconst\fP \fBchar\fP *\fBname\fP, glm::vec4 &\fBvalue\fP)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

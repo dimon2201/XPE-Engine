@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1res_1_1c_json" xml:lang="en-US">
+<title>xpe::res::cJson Class Reference</title>
+<indexterm><primary>xpe::res::cJson</primary></indexterm>
+<para>
+<computeroutput>#include &lt;json.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::res::cJson:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1res_1_1c_json.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88">ToJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b">FromJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b"/><section>
+    <title>FromJson()</title>
+<indexterm><primary>FromJson</primary><secondary>xpe::res::cJson</secondary></indexterm>
+<indexterm><primary>xpe::res::cJson</primary><secondary>FromJson</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::res::cJson::FromJson (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp; root)<computeroutput>[pure virtual]</computeroutput></computeroutput></para><para>
+Implemented in <link linkend="_classxpe_1_1ecs_1_1c_scene_1aad8dbb8b2770569d902a8a09ba6eb1ca">xpe::ecs::cScene</link>, and <link linkend="_classxpe_1_1ecs_1_1c_entity_1afa4533d7e2c0a989940fd5c7a1faaa88">xpe::ecs::cEntity</link>.</para>
+</section>
+<anchor xml:id="_classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88"/><section>
+    <title>ToJson()</title>
+<indexterm><primary>ToJson</primary><secondary>xpe::res::cJson</secondary></indexterm>
+<indexterm><primary>xpe::res::cJson</primary><secondary>ToJson</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::res::cJson::ToJson (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp; root)<computeroutput>[pure virtual]</computeroutput></computeroutput></para><para>
+Implemented in <link linkend="_classxpe_1_1ecs_1_1c_scene_1abd6271071cb04ddd7a3c726e7257b044">xpe::ecs::cScene</link>, and <link linkend="_classxpe_1_1ecs_1_1c_entity_1ad457941d66381bee7335581ce40d6780">xpe::ecs::cEntity</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+engine/src/res/<link linkend="_json_8hpp">json.hpp</link></section>
+</section>

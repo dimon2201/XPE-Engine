@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1audio_1_1s_audio_file" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::audio::sAudioFile</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="sndfile__context_8hpp" local="no">sndfile_context.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1audio_1_1s_audio_file_1a97675b10e8a1029dd95bad890948f0bf" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">SNDFILE</ref> *</type>
+        <definition>SNDFILE* xpe::audio::sAudioFile::File</definition>
+        <argsstring></argsstring>
+        <name>File</name>
+        <qualifiedname>xpe::audio::sAudioFile::File</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/sndfile_context.hpp" line="13" column="9" bodyfile="engine/src/audio/core/sndfile_context.hpp" bodystart="13" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1audio_1_1s_audio_file_1aeb5babadd185412211cbf04fe66b0b98" compoundref="sndfile__context_8cpp" startline="7" endline="10">~sAudioFile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1audio_1_1s_audio_file_1a2908dd2626ece9dc05fe9b88d04e2ada" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">SF_INFO</ref></type>
+        <definition>SF_INFO xpe::audio::sAudioFile::Info</definition>
+        <argsstring></argsstring>
+        <name>Info</name>
+        <qualifiedname>xpe::audio::sAudioFile::Info</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/sndfile_context.hpp" line="14" column="9" bodyfile="engine/src/audio/core/sndfile_context.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1audio_1_1s_audio_file_1a0fd2de6b5392a4b34dee51934daee8ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::audio::sAudioFile::sAudioFile</definition>
+        <argsstring>()=default</argsstring>
+        <name>sAudioFile</name>
+        <qualifiedname>xpe::audio::sAudioFile::sAudioFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/sndfile_context.hpp" line="16" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1audio_1_1s_audio_file_1aeb5babadd185412211cbf04fe66b0b98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::audio::sAudioFile::~sAudioFile</definition>
+        <argsstring>()</argsstring>
+        <name>~sAudioFile</name>
+        <qualifiedname>xpe::audio::sAudioFile::~sAudioFile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/sndfile_context.hpp" line="17" column="1" bodyfile="engine/src/audio/core/sndfile_context.cpp" bodystart="7" bodyend="10"/>
+        <references refid="structxpe_1_1audio_1_1s_audio_file_1a97675b10e8a1029dd95bad890948f0bf" compoundref="sndfile__context_8hpp" startline="13">File</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::audio::sAudioFile</label>
+        <link refid="structxpe_1_1audio_1_1s_audio_file"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::audio::sAudioFile</label>
+        <link refid="structxpe_1_1audio_1_1s_audio_file"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/audio/core/sndfile_context.hpp" line="11" column="1" bodyfile="engine/src/audio/core/sndfile_context.hpp" bodystart="12" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1audio_1_1s_audio_file_1a97675b10e8a1029dd95bad890948f0bf" prot="public" virt="non-virtual"><scope>xpe::audio::sAudioFile</scope><name>File</name></member>
+      <member refid="structxpe_1_1audio_1_1s_audio_file_1a2908dd2626ece9dc05fe9b88d04e2ada" prot="public" virt="non-virtual"><scope>xpe::audio::sAudioFile</scope><name>Info</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::audio::sAudioFile</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::audio::sAudioFile</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1audio_1_1s_audio_file_1a0fd2de6b5392a4b34dee51934daee8ed" prot="public" virt="non-virtual"><scope>xpe::audio::sAudioFile</scope><name>sAudioFile</name></member>
+      <member refid="structxpe_1_1audio_1_1s_audio_file_1aeb5babadd185412211cbf04fe66b0b98" prot="public" virt="non-virtual"><scope>xpe::audio::sAudioFile</scope><name>~sAudioFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

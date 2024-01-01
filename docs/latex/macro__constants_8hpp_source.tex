@@ -1,0 +1,85 @@
+\doxysection{macro\+\_\+constants.\+hpp}
+\hypertarget{macro__constants_8hpp_source}{}\label{macro__constants_8hpp_source}\index{engine/src/core/macro\_constants.hpp@{engine/src/core/macro\_constants.hpp}}
+\mbox{\hyperlink{macro__constants_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ K\_DEPTH\_INVALID\ -\/1.0f}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Math\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ K\_PI\ 3.14159265359f}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Memory\ measure\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_KB\ 1024}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_MB\ (1024\ *\ K\_MEMORY\_KB)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_GB\ (1024\ *\ K\_MEMORY\_MB)}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Shader\ Profiles\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_VERTEX\ \ \ "{}vs\_5\_0"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_PIXEL\ \ \ \ "{}ps\_5\_0"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_GEOMETRY\ "{}gs\_5\_0"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_COMPUTE\ \ "{}cs\_5\_0"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Shader\ Entry\ Points\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_VERTEX\ \ \ "{}vs\_main"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_PIXEL\ \ \ \ "{}ps\_main"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_GEOMETRY\ "{}gs\_main"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_COMPUTE\ \ "{}cs\_main"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ K\_SLOT\_DEFAULT\ UINT32\_MAX}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Structure\ Buffers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Vertex\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ UI}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGETS\ 0}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ K\_SLOT\_CHARS\ 0}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ K\_SLOT\_TEXTS\ 1}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGET\_SAMPLER\ 0}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGET\_ATLAS\ 0}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ K\_SLOT\_FONT\_SAMPLER\ 0}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ K\_SLOT\_FONT\_ATLAS\ 0}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Scene}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ K\_SLOT\_INSTANCES\ 0}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SKELETONS\ 1}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Pixel\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ materials}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ K\_SLOT\_MATERIAL\_SAMPLER\ 0}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ K\_SLOT\_MATERIALS\ 0}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ K\_SLOT\_ALBEDO\ 1}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ K\_SLOT\_BUMPING\ 2}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ K\_SLOT\_PARALLAX\ 3}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ K\_SLOT\_METALLIC\ 4}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ K\_SLOT\_ROUGHNESS\ 5}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ K\_SLOT\_AO\ 6}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ K\_SLOT\_EMISSION\ 7}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ lights}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ K\_SLOT\_DIRECT\_LIGHTS\ 8}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ K\_SLOT\_POINT\_LIGHTS\ 9}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SPOT\_LIGHTS\ 10}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ shadows}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_ATLAS\ 11}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_SAMPLER\ 1}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_PCF\ 0}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Constant\ Buffers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Vertex\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ K\_SLOT\_CAMERA\ 0}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Pixel\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SSAO\ 0}}
+
+\end{DoxyCode}

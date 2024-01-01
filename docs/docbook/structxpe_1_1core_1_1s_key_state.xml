@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1core_1_1s_key_state" xml:lang="en-US">
+<title>xpe::core::sKeyState Struct Reference</title>
+<indexterm><primary>xpe::core::sKeyState</primary></indexterm>
+<para>
+<computeroutput>#include &lt;codes_keyboard.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_key_state_1a2bb1083079d179dd90fd0810856a10e1">Pressed</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_key_state_1af9a0a08f36c98082e3b9fc5958656760">Released</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_key_state_1ac75c9a9855e8d868336340f790a429fa">Hold</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_key_state_1ac75c9a9855e8d868336340f790a429fa"/><section>
+    <title>Hold</title>
+<indexterm><primary>Hold</primary><secondary>xpe::core::sKeyState</secondary></indexterm>
+<indexterm><primary>xpe::core::sKeyState</primary><secondary>Hold</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sKeyState::Hold = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_key_state_1a2bb1083079d179dd90fd0810856a10e1"/><section>
+    <title>Pressed</title>
+<indexterm><primary>Pressed</primary><secondary>xpe::core::sKeyState</secondary></indexterm>
+<indexterm><primary>xpe::core::sKeyState</primary><secondary>Pressed</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sKeyState::Pressed = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_key_state_1af9a0a08f36c98082e3b9fc5958656760"/><section>
+    <title>Released</title>
+<indexterm><primary>Released</primary><secondary>xpe::core::sKeyState</secondary></indexterm>
+<indexterm><primary>xpe::core::sKeyState</primary><secondary>Released</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sKeyState::Released = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/core/<link linkend="_codes__keyboard_8hpp">codes_keyboard.hpp</link></section>
+</section>

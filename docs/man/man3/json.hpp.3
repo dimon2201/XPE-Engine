@@ -1,0 +1,122 @@
+.TH "engine/src/res/json.hpp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine/src/res/json.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stl/stl\&.hpp>\fP
+.br
+\fR#include <nlohmann/json\&.hpp>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBxpe::res::cJson\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBxpe\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::res\fP"
+.br
+.ti -1c
+.RI "namespace \fBglm\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::core\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBJSON\fP(clazz, \&.\&.\&.)   NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(clazz, __VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBJSON_CLASS_NAMED\fP(clazz,  name, \&.\&.\&.)"
+.br
+.ti -1c
+.RI "#define \fBJSON_CLASS\fP(clazz, \&.\&.\&.)   \fBJSON_CLASS_NAMED\fP(clazz, string(#clazz), __VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBJSON_ENUM\fP(clazz, \&.\&.\&.)   NLOHMANN_JSON_SERIALIZE_ENUM(clazz, __VA_ARGS__)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "using \fBjson\fP = nlohmann::json"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBxpe::res::ReadJsonFile\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP, \fBcJson\fP &\fBobject\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBxpe::res::WriteJsonFile\fP (\fBconst\fP \fBchar\fP *\fBfilepath\fP, \fBcJson\fP &\fBobject\fP)"
+.br
+.ti -1c
+.RI "void \fBglm::to_json\fP (\fBjson\fP &j, const glm::mat2 &m)"
+.br
+.ti -1c
+.RI "void \fBglm::from_json\fP (const \fBjson\fP &j, glm::mat2 &m)"
+.br
+.ti -1c
+.RI "void \fBglm::to_json\fP (\fBjson\fP &j, const glm::mat3 &m)"
+.br
+.ti -1c
+.RI "void \fBglm::from_json\fP (const \fBjson\fP &j, glm::mat3 &m)"
+.br
+.ti -1c
+.RI "void \fBglm::to_json\fP (\fBjson\fP &j, const glm::mat4 &m)"
+.br
+.ti -1c
+.RI "void \fBglm::from_json\fP (const \fBjson\fP &j, glm::mat4 &m)"
+.br
+.ti -1c
+.RI "\fBxpe::core::JSON_ENUM\fP (\fBeGamepadButton\fP, { { \fBeGamepadButton::Pad_A\fP, 'Pad_A' }, { \fBeGamepadButton::Pad_B\fP, 'Pad_B' }, { \fBeGamepadButton::Pad_X\fP, 'Pad_X' }, { \fBeGamepadButton::Pad_Y\fP, 'Pad_Y' }, { \fBeGamepadButton::Pad_LeftBumper\fP, 'Pad_LeftBumper' }, { \fBeGamepadButton::Pad_RightBumper\fP, 'Pad_RightBumper' }, { \fBeGamepadButton::Pad_Back\fP, 'Pad_Back' }, { \fBeGamepadButton::Pad_Start\fP, 'Pad_Start' }, { \fBeGamepadButton::Pad_Guide\fP, 'Pad_Guide' }, { \fBeGamepadButton::Pad_LeftThumb\fP, 'Pad_LeftThumb' }, { \fBeGamepadButton::Pad_RightThumb\fP, 'Pad_RightThumb' }, { \fBeGamepadButton::Pad_Up\fP, 'Pad_Up' }, { \fBeGamepadButton::Pad_Right\fP, 'Pad_Right' }, { \fBeGamepadButton::Pad_Down\fP, 'Pad_Down' }, { \fBeGamepadButton::Pad_Left\fP, 'Pad_Left' }, { \fBeGamepadButton::Pad_Last\fP, 'Pad_Last' }, { \fBeGamepadButton::Pad_Cross\fP, 'Pad_Cross' }, { \fBeGamepadButton::Pad_Circle\fP, 'Pad_Circle' }, { \fBeGamepadButton::Pad_Square\fP, 'Pad_Square' }, { \fBeGamepadButton::Pad_Triangle\fP, 'Pad_Triangle' }, }) JSON_ENUM(\fBeGamepadAxis\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define JSON(clazz,  \&.\&.\&.)   NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(clazz, __VA_ARGS__)"
+
+.SS "#define JSON_CLASS(clazz,  \&.\&.\&.)   \fBJSON_CLASS_NAMED\fP(clazz, string(#clazz), __VA_ARGS__)"
+
+.SS "#define JSON_CLASS_NAMED(clazz, name,  \&.\&.\&.)"
+\fBValue:\fP.PP
+.nf
+                                                                \\
+NLOHMANN_DEFINE_TYPE_INTRUSIVE(clazz, __VA_ARGS__)              \\
+                                                                \\
+void ToJson(json &root) override                                \\
+{                                                               \\
+    root[name\&.c_str()] = *this;                                 \\
+}                                                               \\
+                                                                \\
+void FromJson(json &root) override                              \\
+{                                                               \\
+    root\&.at(name\&.c_str())\&.get_to(*this);                        \\
+}                                                               \\
+.fi
+
+.SS "#define JSON_ENUM(clazz,  \&.\&.\&.)   NLOHMANN_JSON_SERIALIZE_ENUM(clazz, __VA_ARGS__)"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "using \fBjson\fP = nlohmann::json"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

@@ -1,0 +1,197 @@
+.TH "xpe::render::cOrthoCamera" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::cOrthoCamera
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <camera\&.hpp>\fP
+.PP
+Inherits \fBxpe::render::cCamera\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcOrthoCamera\fP (\fBint\fP \fBviewWidth\fP, \fBint\fP \fBviewHeight\fP)"
+.br
+.ti -1c
+.RI "\fB~cOrthoCamera\fP ()"
+.br
+.ti -1c
+.RI "\fBJSON_CLASS\fP (\fBcOrthoCamera\fP, \fBKeyMoveForward\fP, \fBKeyMoveLeft\fP, \fBKeyMoveBackward\fP, \fBKeyMoveRight\fP, \fBMoveSpeed\fP, \fBZoomAcceleration\fP, \fBPanAcceleration\fP, \fBHorizontalSensitivity\fP, \fBVerticalSensitivity\fP, \fBPitch\fP, \fBYaw\fP, \fBRoll\fP, \fBLookMode\fP, \fBEnableLook\fP, \fBComponent\fP) \fBCOrthoCamera\fP \fBComponent\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBMove\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBZoomIn\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBZoomOut\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBLook\fP (\fBconst\fP \fBdouble\fP \fBx\fP, \fBconst\fP \fBdouble\fP \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBWindowResized\fP (\fBint\fP \fBw\fP, \fBint\fP \fBh\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBScrollChanged\fP (\fBconst\fP \fBdouble\fP \fBx\fP, \fBconst\fP \fBdouble\fP \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBCursorMoved\fP (\fBconst\fP \fBdouble\fP \fBx\fP, \fBconst\fP \fBdouble\fP \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFlush\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::render::cCamera\fP
+.in +1c
+.ti -1c
+.RI "\fBJSON_CLASS\fP (\fBcCamera\fP, \fBKeyMoveForward\fP, \fBKeyMoveLeft\fP, \fBKeyMoveBackward\fP, \fBKeyMoveRight\fP, \fBMoveSpeed\fP, \fBZoomAcceleration\fP, \fBPanAcceleration\fP, \fBHorizontalSensitivity\fP, \fBVerticalSensitivity\fP, \fBPitch\fP, \fBYaw\fP, \fBRoll\fP, \fBLookMode\fP, \fBEnableLook\fP, \fBm_ViewWidth\fP, \fBm_ViewHeight\fP, \fBm_Position\fP) \fBenum\fP \fBclass\fP \fBeLookMode\fP"
+.br
+.ti -1c
+.RI "glm::vec2 \fBGetPanSpeed\fP ()"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBGetZoomSpeed\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::res::cJson\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBToJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBFromJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Attributes inherited from \fBxpe::render::cCamera\fP
+.in +1c
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveForward\fP = eKey::W"
+.br
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveLeft\fP = eKey::A"
+.br
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveBackward\fP = eKey::S"
+.br
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveRight\fP = eKey::D"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBMoveSpeed\fP = 0\&.1\fBf\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBZoomAcceleration\fP = 10\&.0f"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBPanAcceleration\fP = 10\&.0f"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBHorizontalSensitivity\fP = 0\&.01\fBf\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBVerticalSensitivity\fP = 0\&.01\fBf\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBPitch\fP = 0"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBYaw\fP = 0"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBRoll\fP = 0"
+.br
+.ti -1c
+.RI "\fBeLookMode\fP \fBLookMode\fP = eLookMode::GAME"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnableLook\fP = \fBtrue\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBxpe::render::cCamera\fP
+.in +1c
+.ti -1c
+.RI "glm::vec3 \fBGetUpDirection\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBGetRightDirection\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBGetForwardDirection\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateFrontPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateBackPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateRightPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateLeftPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateUpPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateDownPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::quat \fBGetOrientation\fP () \fBconst\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBxpe::render::cCamera\fP
+.in +1c
+.ti -1c
+.RI "\fBint\fP \fBm_ViewWidth\fP = 0"
+.br
+.ti -1c
+.RI "\fBint\fP \fBm_ViewHeight\fP = 0"
+.br
+.ti -1c
+.RI "glm::vec3 \fBm_Position\fP = { 0, 0, 0 }"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::render::cOrthoCamera::cOrthoCamera (\fBint\fP viewWidth, \fBint\fP viewHeight)"
+
+.SS "xpe::render::cOrthoCamera::~cOrthoCamera ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::CursorMoved (\fBconst\fP \fBdouble\fP x, \fBconst\fP \fBdouble\fP y)"
+
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::Flush ()"
+
+.SS "xpe::render::cOrthoCamera::JSON_CLASS (\fBcOrthoCamera\fP, \fBKeyMoveForward\fP, \fBKeyMoveLeft\fP, \fBKeyMoveBackward\fP, \fBKeyMoveRight\fP, \fBMoveSpeed\fP, \fBZoomAcceleration\fP, \fBPanAcceleration\fP, \fBHorizontalSensitivity\fP, \fBVerticalSensitivity\fP, \fBPitch\fP, \fBYaw\fP, \fBRoll\fP, \fBLookMode\fP, \fBEnableLook\fP, \fBComponent\fP)"
+
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::Look (\fBconst\fP \fBdouble\fP x, \fBconst\fP \fBdouble\fP y)"
+
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::Move ()"
+
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::ScrollChanged (\fBconst\fP \fBdouble\fP x, \fBconst\fP \fBdouble\fP y)"
+
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::WindowResized (\fBint\fP w, \fBint\fP h)"
+
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::ZoomIn ()"
+
+.SS "\fBvoid\fP xpe::render::cOrthoCamera::ZoomOut ()"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

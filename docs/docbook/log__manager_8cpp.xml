@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_log__manager_8cpp" xml:lang="en-US">
+<title>engine/src/core/log_manager.cpp File Reference</title>
+<indexterm><primary>engine/src/core/log_manager.cpp</primary></indexterm>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">using</link> <link linkend="_namespacexpe_1_1core_1ad02fcc4735479af113d05e1a2dc22aa3">xpe::core::LogSinkColor</link> = spdlog::sinks::stdout_color_sink_mt</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">using</link> <link linkend="_namespacexpe_1_1core_1a3ce6d6dfb3b2f8f78d78a4a9127be166">xpe::core::ErrorSinkColor</link> = spdlog::sinks::stderr_color_sink_mt</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">using</link> <link linkend="_namespacexpe_1_1core_1ad5f86a445dfabf8d1a4ae61091d72fda">xpe::core::FileSink</link> = spdlog::sinks::basic_file_sink_mt</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">using</link> <link linkend="_namespacexpe_1_1core_1ad7497adbb6088f3a67f32704a485cc41">xpe::core::Sink</link> = spdlog::sink_ptr</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_codes__mouse_8hpp_source" xml:lang="en-US">
+<title>codes_mouse.hpp</title>
+<indexterm><primary>engine/src/core/codes_mouse.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+4 
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>core&#32;{
+6 
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1core_1_1s_mouse_state">sMouseState</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+8 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Pressed&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Released&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Hold&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+13 
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62">eMouse</link>&#32;:&#32;<link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link>
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a6f9117080d9a04b8cc36cb06dc84dc1c">NoneButton</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;16,
+17 
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62ac90e9e64b2f96ed3e7243caaaef0d4c8">Button0</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;0,
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a40ed92f1ee1d3aba975f394704633ae5">Button1</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;1,
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a856295141a850ad2143d777f097998b2">Button2</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;2,
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62abc7970d854230f9771885d2531af9971">Button3</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;3,
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62aef4d4fe8182f928003d378b944ef23b3">Button4</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;4,
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a55e3d7a0f61f12241cd12f7392823043">Button5</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;5,
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a2fd9a7ed46e2f9d21126d4ccc061f8a2">Button6</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;6,
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a89d460cc6d8f79fa6467b70a1f60b5e5">Button7</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;7,
+26 
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a5ba4e717224da4e5800953546a70c6f5">ButtonLast</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a89d460cc6d8f79fa6467b70a1f60b5e5">Button7</link>,
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a40e3123019d5c14ebb2698c04dcc3a22">ButtonLeft</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62ac90e9e64b2f96ed3e7243caaaef0d4c8">Button0</link>,
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a2fe4e37aa9d2f65a0d02267a177384c1">ButtonRight</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a40ed92f1ee1d3aba975f394704633ae5">Button1</link>,
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a2628d67c9a478732d27e45b06eaf8889">ButtonMiddle</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a856295141a850ad2143d777f097998b2">Button2</link>
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+32 
+33 &#32;&#32;&#32;&#32;}
+34 
+35 }
+</programlisting></section>

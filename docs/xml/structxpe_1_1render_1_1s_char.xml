@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_char" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sChar</compoundname>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1a2892f44b41fd38aa1e33c021df2ff476" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sChar::TextIndex</definition>
+        <argsstring></argsstring>
+        <name>TextIndex</name>
+        <qualifiedname>xpe::render::sChar::TextIndex</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="465" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="465" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1ada96fd791c79d1cd54de19e18deaebde" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::GlyphSize</definition>
+        <argsstring></argsstring>
+        <name>GlyphSize</name>
+        <qualifiedname>xpe::render::sChar::GlyphSize</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="466" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="466" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1ab790ccab8e742ac04c404a9de70eeaaf" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::Width</definition>
+        <argsstring></argsstring>
+        <name>Width</name>
+        <qualifiedname>xpe::render::sChar::Width</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="467" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="467" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1a8a6873e1a047472a2900af20b83b838d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::Height</definition>
+        <argsstring></argsstring>
+        <name>Height</name>
+        <qualifiedname>xpe::render::sChar::Height</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="468" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="468" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1a21f77185997b49500e681ed99f3ae271" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::Left</definition>
+        <argsstring></argsstring>
+        <name>Left</name>
+        <qualifiedname>xpe::render::sChar::Left</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="469" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="469" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1ac39b55d423bb8713be3ae4e26b8eab50" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::Top</definition>
+        <argsstring></argsstring>
+        <name>Top</name>
+        <qualifiedname>xpe::render::sChar::Top</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="470" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="470" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1a410153b1796f8b5421c9e04a8f8c2c2d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::AdvanceX</definition>
+        <argsstring></argsstring>
+        <name>AdvanceX</name>
+        <qualifiedname>xpe::render::sChar::AdvanceX</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="471" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="471" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1abcb870652605cf189c9979465965bc8e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::AdvanceY</definition>
+        <argsstring></argsstring>
+        <name>AdvanceY</name>
+        <qualifiedname>xpe::render::sChar::AdvanceY</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="472" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="472" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1ad32b13171213579e47691faeff71b362" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::AtlasXOffset</definition>
+        <argsstring></argsstring>
+        <name>AtlasXOffset</name>
+        <qualifiedname>xpe::render::sChar::AtlasXOffset</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="473" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="473" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_char_1a5dfd066e92c6827bc74aa70b24fcc0c2" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::render::sChar::AtlasYOffset</definition>
+        <argsstring></argsstring>
+        <name>AtlasYOffset</name>
+        <qualifiedname>xpe::render::sChar::AtlasYOffset</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="474" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="474" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/buffers.hpp" line="463" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="464" bodyend="475"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_char_1a410153b1796f8b5421c9e04a8f8c2c2d" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>AdvanceX</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1abcb870652605cf189c9979465965bc8e" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>AdvanceY</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1ad32b13171213579e47691faeff71b362" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>AtlasXOffset</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1a5dfd066e92c6827bc74aa70b24fcc0c2" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>AtlasYOffset</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1ada96fd791c79d1cd54de19e18deaebde" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>GlyphSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1a8a6873e1a047472a2900af20b83b838d" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>Height</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1a21f77185997b49500e681ed99f3ae271" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>Left</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1a2892f44b41fd38aa1e33c021df2ff476" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>TextIndex</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1ac39b55d423bb8713be3ae4e26b8eab50" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>Top</name></member>
+      <member refid="structxpe_1_1render_1_1s_char_1ab790ccab8e742ac04c404a9de70eeaaf" prot="public" virt="non-virtual"><scope>xpe::render::sChar</scope><name>Width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

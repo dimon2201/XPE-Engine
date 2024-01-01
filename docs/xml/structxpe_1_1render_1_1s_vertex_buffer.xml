@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_vertex_buffer" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sVertexBuffer</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_buffer" prot="public" virt="non-virtual">xpe::render::sBuffer</basecompoundref>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_vertex" kindref="compound">sVertex</ref> &gt;</type>
+        <definition>vector&lt;sVertex&gt; xpe::render::sVertexBuffer::List</definition>
+        <argsstring></argsstring>
+        <name>List</name>
+        <qualifiedname>xpe::render::sVertexBuffer::List</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="49" column="20" bodyfile="engine/src/rendering/buffers.hpp" bodystart="49" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a51156ba60b131894740fcda87d91459d" compoundref="buffers_8cpp" startline="187" endline="193">AddVertices</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aa56240713704162563ad0604561e09fd" compoundref="buffers_8cpp" startline="182" endline="185">Clear</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" compoundref="buffers_8cpp" startline="133" endline="142">Flush</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1ab319de361de407e89c7b62eb8874a96a" compoundref="buffers_8cpp" startline="144" endline="151">FlushVertex</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aa4f339fcf483993cf3f770ac2ca58044" compoundref="buffers_8cpp" startline="153" endline="160">FlushVertices</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" compoundref="buffers_8cpp" startline="162" endline="170">Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a6fec9c4ee6e4d3feebefc2109d5f6d9f" compoundref="buffers_8cpp" startline="177" endline="180">Reserve</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1adf06fa5021b71e7a986cb12b1c6f82a0" compoundref="buffers_8cpp" startline="172" endline="175">Resize</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" compoundref="buffers_8cpp" startline="99" endline="111">sVertexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" compoundref="buffers_8cpp" startline="113" endline="126">sVertexBuffer</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sVertexBuffer::sVertexBuffer</definition>
+        <argsstring>(const usize vertexCount=0, sBuffer::eSubType subtype=sBuffer::eSubType::NONE, sBuffer::eViewType viewtype=sBuffer::eViewType::NONE)</argsstring>
+        <name>sVertexBuffer</name>
+        <qualifiedname>xpe::render::sVertexBuffer::sVertexBuffer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>vertexCount</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" kindref="member">sBuffer::eSubType</ref></type>
+          <declname>subtype</declname>
+          <defval><ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693" kindref="member">sBuffer::eSubType::NONE</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" kindref="member">sBuffer::eViewType</ref></type>
+          <declname>viewtype</declname>
+          <defval><ref refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693" kindref="member">sBuffer::eViewType::NONE</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="51" column="13" bodyfile="engine/src/rendering/buffers.cpp" bodystart="99" bodyend="111"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a55a0590129a19f52e243dc67094efaf5">xpe::render::context::CreateBuffer</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" compoundref="rendering_2core_2core_8hpp" startline="81">xpe::render::sBuffer::InitialData</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" compoundref="rendering_2core_2core_8hpp" startline="79">xpe::render::sBuffer::NumElements</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" compoundref="rendering_2core_2core_8hpp" startline="78">xpe::render::sBuffer::StructureSize</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548" compoundref="rendering_2core_2core_8hpp" startline="76">xpe::render::sBuffer::SubType</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237" compoundref="rendering_2core_2core_8hpp" startline="75">xpe::render::sBuffer::Type</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa0c3e47aef93a7f244f41ab309a33634b">xpe::render::sBuffer::VERTEX</references>
+        <references refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" compoundref="rendering_2core_2core_8hpp" startline="31">xpe::render::sResource::ViewType</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sVertexBuffer::sVertexBuffer</definition>
+        <argsstring>(const vector&lt; sVertex &gt; &amp;vertices, sBuffer::eSubType subtype=sBuffer::eSubType::NONE, sBuffer::eViewType viewtype=sBuffer::eViewType::NONE)</argsstring>
+        <name>sVertexBuffer</name>
+        <qualifiedname>xpe::render::sVertexBuffer::sVertexBuffer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_vertex" kindref="compound">sVertex</ref> &gt; &amp;</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" kindref="member">sBuffer::eSubType</ref></type>
+          <declname>subtype</declname>
+          <defval><ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693" kindref="member">sBuffer::eSubType::NONE</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" kindref="member">sBuffer::eViewType</ref></type>
+          <declname>viewtype</declname>
+          <defval><ref refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693" kindref="member">sBuffer::eViewType::NONE</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="52" column="13" bodyfile="engine/src/rendering/buffers.cpp" bodystart="113" bodyend="126"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a55a0590129a19f52e243dc67094efaf5">xpe::render::context::CreateBuffer</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" compoundref="buffers_8cpp" startline="133" endline="142">Flush</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" compoundref="rendering_2core_2core_8hpp" startline="81">xpe::render::sBuffer::InitialData</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" compoundref="rendering_2core_2core_8hpp" startline="79">xpe::render::sBuffer::NumElements</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" compoundref="rendering_2core_2core_8hpp" startline="78">xpe::render::sBuffer::StructureSize</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548" compoundref="rendering_2core_2core_8hpp" startline="76">xpe::render::sBuffer::SubType</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237" compoundref="rendering_2core_2core_8hpp" startline="75">xpe::render::sBuffer::Type</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa0c3e47aef93a7f244f41ab309a33634b">xpe::render::sBuffer::VERTEX</references>
+        <references refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" compoundref="rendering_2core_2core_8hpp" startline="31">xpe::render::sResource::ViewType</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1a84736a7ff093e3c38e72fbc37bb9691b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sVertexBuffer::~sVertexBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>~sVertexBuffer</name>
+        <qualifiedname>xpe::render::sVertexBuffer::~sVertexBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="53" column="13" bodyfile="engine/src/rendering/buffers.cpp" bodystart="128" bodyend="131"/>
+        <references refid="namespacexpe_1_1render_1_1context_1aabfe2d29425d231b5bcb38398009e73c">xpe::render::context::FreeBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sVertexBuffer::Flush</definition>
+        <argsstring>()</argsstring>
+        <name>Flush</name>
+        <qualifiedname>xpe::render::sVertexBuffer::Flush</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="55" column="18" bodyfile="engine/src/rendering/buffers.cpp" bodystart="133" bodyend="142"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a43a3526ddcb06eddda247d1457ae02b3" compoundref="rendering_2core_2context_8cpp" startline="12" endline="25">xpe::render::context::CopyBuffer</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" compoundref="rendering_2core_2core_8hpp" startline="83" endline="86">xpe::render::sBuffer::GetByteSize</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" compoundref="rendering_2core_2core_8hpp" startline="79">xpe::render::sBuffer::NumElements</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" compoundref="buffers_8cpp" startline="162" endline="170">Recreate</references>
+        <referencedby refid="classxpe_1_1render_1_1c_geometry_manager_1afcab89931d34518de9c76ff962e6a5b9" compoundref="geometry__manager_8cpp" startline="20" endline="31">xpe::render::cGeometryManager::AddGeometry</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aa4f339fcf483993cf3f770ac2ca58044" compoundref="buffers_8cpp" startline="153" endline="160">FlushVertices</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" compoundref="buffers_8cpp" startline="113" endline="126">sVertexBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1ab319de361de407e89c7b62eb8874a96a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sVertexBuffer::FlushVertex</definition>
+        <argsstring>(u32 index, const sVertex &amp;item)</argsstring>
+        <name>FlushVertex</name>
+        <qualifiedname>xpe::render::sVertexBuffer::FlushVertex</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_vertex" kindref="compound">sVertex</ref> &amp;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="56" column="18" bodyfile="engine/src/rendering/buffers.cpp" bodystart="144" bodyend="151"/>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <references refid="namespacexpe_1_1render_1_1context_1af0816f9058a84f88babfed20ccbc2e96" compoundref="rendering_2core_2context_8cpp" startline="58" endline="72">xpe::render::context::MoveBufferOffset</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1adf06fa5021b71e7a986cb12b1c6f82a0" compoundref="buffers_8cpp" startline="172" endline="175">Resize</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" compoundref="rendering_2core_2core_8hpp" startline="78">xpe::render::sBuffer::StructureSize</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1aa4f339fcf483993cf3f770ac2ca58044" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sVertexBuffer::FlushVertices</definition>
+        <argsstring>(const vector&lt; sVertex &gt; &amp;vertices)</argsstring>
+        <name>FlushVertices</name>
+        <qualifiedname>xpe::render::sVertexBuffer::FlushVertices</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_vertex" kindref="compound">sVertex</ref> &gt; &amp;</type>
+          <declname>vertices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="57" column="18" bodyfile="engine/src/rendering/buffers.cpp" bodystart="153" bodyend="160"/>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" compoundref="buffers_8cpp" startline="133" endline="142">Flush</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" compoundref="rendering_2core_2core_8hpp" startline="83" endline="86">xpe::render::sBuffer::GetByteSize</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1adf06fa5021b71e7a986cb12b1c6f82a0" compoundref="buffers_8cpp" startline="172" endline="175">Resize</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1adf06fa5021b71e7a986cb12b1c6f82a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sVertexBuffer::Resize</definition>
+        <argsstring>(const usize count)</argsstring>
+        <name>Resize</name>
+        <qualifiedname>xpe::render::sVertexBuffer::Resize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="59" column="18" bodyfile="engine/src/rendering/buffers.cpp" bodystart="172" bodyend="175"/>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1ab319de361de407e89c7b62eb8874a96a" compoundref="buffers_8cpp" startline="144" endline="151">FlushVertex</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aa4f339fcf483993cf3f770ac2ca58044" compoundref="buffers_8cpp" startline="153" endline="160">FlushVertices</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1a6fec9c4ee6e4d3feebefc2109d5f6d9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sVertexBuffer::Reserve</definition>
+        <argsstring>(const usize count)</argsstring>
+        <name>Reserve</name>
+        <qualifiedname>xpe::render::sVertexBuffer::Reserve</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="60" column="18" bodyfile="engine/src/rendering/buffers.cpp" bodystart="177" bodyend="180"/>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sVertexBuffer::Recreate</definition>
+        <argsstring>(const usize count)</argsstring>
+        <name>Recreate</name>
+        <qualifiedname>xpe::render::sVertexBuffer::Recreate</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="61" column="18" bodyfile="engine/src/rendering/buffers.cpp" bodystart="162" bodyend="170"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a43a3526ddcb06eddda247d1457ae02b3" compoundref="rendering_2core_2context_8cpp" startline="12" endline="25">xpe::render::context::CopyBuffer</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a55a0590129a19f52e243dc67094efaf5">xpe::render::context::CreateBuffer</references>
+        <references refid="namespacexpe_1_1render_1_1context_1aabfe2d29425d231b5bcb38398009e73c">xpe::render::context::FreeBuffer</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" compoundref="rendering_2core_2core_8hpp" startline="83" endline="86">xpe::render::sBuffer::GetByteSize</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" compoundref="rendering_2core_2core_8hpp" startline="81">xpe::render::sBuffer::InitialData</references>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" compoundref="rendering_2core_2core_8hpp" startline="79">xpe::render::sBuffer::NumElements</references>
+        <references refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" compoundref="rendering_2core_2core_8hpp" startline="78">xpe::render::sBuffer::StructureSize</references>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" compoundref="buffers_8cpp" startline="133" endline="142">Flush</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1aa56240713704162563ad0604561e09fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sVertexBuffer::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>xpe::render::sVertexBuffer::Clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="63" column="18" bodyfile="engine/src/rendering/buffers.cpp" bodystart="182" bodyend="185"/>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1a51156ba60b131894740fcda87d91459d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sVertexBuffer::AddVertices</definition>
+        <argsstring>(const vector&lt; sVertex &gt; &amp;vertices)</argsstring>
+        <name>AddVertices</name>
+        <qualifiedname>xpe::render::sVertexBuffer::AddVertices</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_vertex" kindref="compound">sVertex</ref> &gt; &amp;</type>
+          <declname>vertices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="66" column="19" bodyfile="engine/src/rendering/buffers.cpp" bodystart="187" bodyend="193"/>
+        <references refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" compoundref="buffers_8hpp" startline="49">List</references>
+        <referencedby refid="classxpe_1_1render_1_1c_geometry_manager_1afcab89931d34518de9c76ff962e6a5b9" compoundref="geometry__manager_8cpp" startline="20" endline="31">xpe::render::cGeometryManager::AddGeometry</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1a9ed5d79b8e6e598d9d2d5e532037ab2f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structxpe_1_1render_1_1s_vertex" kindref="compound">sVertex</ref> *</type>
+        <definition>sVertex * xpe::render::sVertexBuffer::GetVertex</definition>
+        <argsstring>(const u32 index)</argsstring>
+        <name>GetVertex</name>
+        <qualifiedname>xpe::render::sVertexBuffer::GetVertex</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="68" column="28" bodyfile="engine/src/rendering/buffers.hpp" bodystart="68" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_vertex_buffer_1aa1bb53510a4f9a6e53ff21b4c04b73b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sVertexBuffer::Count</definition>
+        <argsstring>()</argsstring>
+        <name>Count</name>
+        <qualifiedname>xpe::render::sVertexBuffer::Count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="78" column="26" bodyfile="engine/src/rendering/buffers.hpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sVertexBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_vertex_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sVertexBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_vertex_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/buffers.hpp" line="47" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="48" bodyend="83"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a51156ba60b131894740fcda87d91459d" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>AddVertices</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1aa56240713704162563ad0604561e09fd" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Clear</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1aa1bb53510a4f9a6e53ff21b4c04b73b7" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Count</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>eMapType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>eSubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>eType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>eUsage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>eViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Flush</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1ab319de361de407e89c7b62eb8874a96a" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>FlushVertex</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1aa4f339fcf483993cf3f770ac2ca58044" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>FlushVertices</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>GetByteSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a9ed5d79b8e6e598d9d2d5e532037ab2f" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>GetVertex</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>InitialData</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Instance</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a22d81b65d5f12550be686e431441ad5e" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>List</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>NumElements</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Recreate</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a6fec9c4ee6e4d3feebefc2109d5f6d9f" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Reserve</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1adf06fa5021b71e7a986cb12b1c6f82a0" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Resize</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af3faa739ee8d36ff1b306fe10a5184bf" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Slot</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>StructureSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>SubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>sVertexBuffer</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>sVertexBuffer</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Type</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a74933b3c2fa8f86517547b9dcc9c903a" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>Usage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>ViewInstance</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>ViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_vertex_buffer_1a84736a7ff093e3c38e72fbc37bb9691b" prot="public" virt="non-virtual"><scope>xpe::render::sVertexBuffer</scope><name>~sVertexBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

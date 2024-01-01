@@ -1,0 +1,90 @@
+\doxysection{xpe\+::physics\+::c\+Physics\+Manager Class Reference}
+\hypertarget{classxpe_1_1physics_1_1c_physics_manager}{}\label{classxpe_1_1physics_1_1c_physics_manager}\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+
+
+{\ttfamily \#include $<$physics\+\_\+manager.\+hpp$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a37d2691cdf4bf8bf56425ffee6d932ec}{Init}} (Px\+Cpu\+Dispatcher \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dispatcher}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable\+Memory\+Profiling}}=\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a4f1601625b22bfa825c44ee871d4f8be}{Free}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a5cd5060de27b26d69c7a1de65acef7e6}{Enable\+Logging\+Info}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_af76f425ba35f8fd00fb6f740ea3219f3}{Enable\+Logging\+Warning}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_adce57bf32f9b50791e22c1eafcf3a8a1}{Enable\+Logging\+Error}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{s\+Actor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a8485895993a10de8e7bea43e462665f6}{Add\+Actor}} (\mbox{\hyperlink{classxpe_1_1ecs_1_1c_entity}{c\+Entity}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{s\+Actor\+::e\+Actor\+Type}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor\+Type}}, s\+Shape\+Descriptor \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shape\+Desc}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{linear\+Velocity}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static\+Friction}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dynamic\+Friction}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restitution}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{contact\+Offset}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{rest\+Offset}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_ragdoll}{s\+Ragdoll}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a2cf208ad9559752ec45914ea1562c79a}{Add\+Ragdoll}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Scene}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_aa898c0a40205f342209d97ccd68d6bb7}{Add\+Scene}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a6a2db35b7416716d3b07b7c5cf862835}{Set\+Actor\+Pose}} (\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{s\+Actor}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}, \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{math\+::s\+Transform}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_a8485895993a10de8e7bea43e462665f6}\label{classxpe_1_1physics_1_1c_physics_manager_a8485895993a10de8e7bea43e462665f6} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{AddActor()}{AddActor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{s\+Actor}} \texorpdfstring{$\ast$}{*} xpe\+::physics\+::c\+Physics\+Manager\+::\+Add\+Actor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classxpe_1_1ecs_1_1c_entity}{c\+Entity}} \&}]{entity,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{s\+Actor\+::e\+Actor\+Type}} \&}]{actor\+Type,  }\item[{s\+Shape\+Descriptor \texorpdfstring{$\ast$}{*}}]{shape\+Desc,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&}]{linear\+Velocity,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{static\+Friction,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{dynamic\+Friction,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{restitution,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{contact\+Offset,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{rest\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_a2cf208ad9559752ec45914ea1562c79a}\label{classxpe_1_1physics_1_1c_physics_manager_a2cf208ad9559752ec45914ea1562c79a} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!AddRagdoll@{AddRagdoll}}
+\index{AddRagdoll@{AddRagdoll}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{AddRagdoll()}{AddRagdoll()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1physics_1_1s_ragdoll}{s\+Ragdoll}} \texorpdfstring{$\ast$}{*} xpe\+::physics\+::c\+Physics\+Manager\+::\+Add\+Ragdoll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_aa898c0a40205f342209d97ccd68d6bb7}\label{classxpe_1_1physics_1_1c_physics_manager_aa898c0a40205f342209d97ccd68d6bb7} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!AddScene@{AddScene}}
+\index{AddScene@{AddScene}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{AddScene()}{AddScene()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Scene}} \texorpdfstring{$\ast$}{*} xpe\+::physics\+::c\+Physics\+Manager\+::\+Add\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \&}]{tag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_adce57bf32f9b50791e22c1eafcf3a8a1}\label{classxpe_1_1physics_1_1c_physics_manager_adce57bf32f9b50791e22c1eafcf3a8a1} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!EnableLoggingError@{EnableLoggingError}}
+\index{EnableLoggingError@{EnableLoggingError}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{EnableLoggingError()}{EnableLoggingError()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Manager\+::\+Enable\+Logging\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}}}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_a5cd5060de27b26d69c7a1de65acef7e6}\label{classxpe_1_1physics_1_1c_physics_manager_a5cd5060de27b26d69c7a1de65acef7e6} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!EnableLoggingInfo@{EnableLoggingInfo}}
+\index{EnableLoggingInfo@{EnableLoggingInfo}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{EnableLoggingInfo()}{EnableLoggingInfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Manager\+::\+Enable\+Logging\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}}}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_af76f425ba35f8fd00fb6f740ea3219f3}\label{classxpe_1_1physics_1_1c_physics_manager_af76f425ba35f8fd00fb6f740ea3219f3} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!EnableLoggingWarning@{EnableLoggingWarning}}
+\index{EnableLoggingWarning@{EnableLoggingWarning}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{EnableLoggingWarning()}{EnableLoggingWarning()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Manager\+::\+Enable\+Logging\+Warning (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}}}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_a4f1601625b22bfa825c44ee871d4f8be}\label{classxpe_1_1physics_1_1c_physics_manager_a4f1601625b22bfa825c44ee871d4f8be} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!Free@{Free}}
+\index{Free@{Free}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Manager\+::\+Free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_a37d2691cdf4bf8bf56425ffee6d932ec}\label{classxpe_1_1physics_1_1c_physics_manager_a37d2691cdf4bf8bf56425ffee6d932ec} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!Init@{Init}}
+\index{Init@{Init}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Manager\+::\+Init (\begin{DoxyParamCaption}\item[{Px\+Cpu\+Dispatcher \texorpdfstring{$\ast$}{*}}]{dispatcher,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}}}]{enable\+Memory\+Profiling = {\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_manager_a6a2db35b7416716d3b07b7c5cf862835}\label{classxpe_1_1physics_1_1c_physics_manager_a6a2db35b7416716d3b07b7c5cf862835} 
+\index{xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}!SetActorPose@{SetActorPose}}
+\index{SetActorPose@{SetActorPose}!xpe::physics::cPhysicsManager@{xpe::physics::cPhysicsManager}}
+\doxysubsubsection{\texorpdfstring{SetActorPose()}{SetActorPose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Manager\+::\+Set\+Actor\+Pose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{s\+Actor}} \&}]{actor,  }\item[{\mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{math\+::s\+Transform}} \&}]{transform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/physics/\mbox{\hyperlink{physics__manager_8hpp}{physics\+\_\+manager.\+hpp}}\item 
+engine/src/physics/\mbox{\hyperlink{physics__manager_8cpp}{physics\+\_\+manager.\+cpp}}\end{DoxyCompactItemize}

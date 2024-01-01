@@ -1,0 +1,72 @@
+\doxysection{xpe\+::core\+::c\+Hot\+Allocator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classxpe_1_1core_1_1c_hot_allocator}{}\label{classxpe_1_1core_1_1c_hot_allocator}\index{xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}}
+
+
+{\ttfamily \#include $<$allocators.\+hpp$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typedef}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ab5ecfcfe024492cddaaf83e1cf399e40}{value\+\_\+type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a56223db2c0e1b0547731616338d7127e}{c\+Hot\+Allocator}} ()=\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{default}}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997}{U}} $>$ }\\\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{constexpr}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a2bb628cfee24a72086a3dab9a2e4ef6c}{c\+Hot\+Allocator}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{c\+Hot\+Allocator}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997}{U}} $>$ \&) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{noexcept}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a83586b7354621fe8c38d09bdf7f715a2}{allocate}} (std\+::size\+\_\+t \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ac22b8b9b09101333e086e1b5c4878302}{deallocate}} (\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}}, std\+::size\+\_\+t \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{noexcept}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_hot_allocator_ab5ecfcfe024492cddaaf83e1cf399e40}\label{classxpe_1_1core_1_1c_hot_allocator_ab5ecfcfe024492cddaaf83e1cf399e40} 
+\index{xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}!value\_type@{value\_type}}
+\index{value\_type@{value\_type}!xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{value\_type}{value\_type}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typedef}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{xpe\+::core\+::c\+Hot\+Allocator}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::value\+\_\+type}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_hot_allocator_a56223db2c0e1b0547731616338d7127e}\label{classxpe_1_1core_1_1c_hot_allocator_a56223db2c0e1b0547731616338d7127e} 
+\index{xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}!cHotAllocator@{cHotAllocator}}
+\index{cHotAllocator@{cHotAllocator}!xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cHotAllocator()}{cHotAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{xpe\+::core\+::c\+Hot\+Allocator}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::c\+Hot\+Allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_hot_allocator_a2bb628cfee24a72086a3dab9a2e4ef6c}\label{classxpe_1_1core_1_1c_hot_allocator_a2bb628cfee24a72086a3dab9a2e4ef6c} 
+\index{xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}!cHotAllocator@{cHotAllocator}}
+\index{cHotAllocator@{cHotAllocator}!xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cHotAllocator()}{cHotAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997}{U}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{constexpr}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{xpe\+::core\+::c\+Hot\+Allocator}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::c\+Hot\+Allocator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{c\+Hot\+Allocator}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997}{U}} $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_hot_allocator_a83586b7354621fe8c38d09bdf7f715a2}\label{classxpe_1_1core_1_1c_hot_allocator_a83586b7354621fe8c38d09bdf7f715a2} 
+\index{xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}!allocate@{allocate}}
+\index{allocate@{allocate}!xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{allocate()}{allocate()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{xpe\+::core\+::c\+Hot\+Allocator}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::allocate (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_hot_allocator_ac22b8b9b09101333e086e1b5c4878302}\label{classxpe_1_1core_1_1c_hot_allocator_ac22b8b9b09101333e086e1b5c4878302} 
+\index{xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}!deallocate@{deallocate}}
+\index{deallocate@{deallocate}!xpe::core::cHotAllocator$<$ T $>$@{xpe::core::cHotAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{deallocate()}{deallocate()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{xpe\+::core\+::c\+Hot\+Allocator}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::deallocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \texorpdfstring{$\ast$}{*}}]{element,  }\item[{std\+::size\+\_\+t}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{core_2allocators_8hpp}{allocators.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,1058 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacexpe_1_1audio_1_1context" kind="namespace" language="C++">
+    <compoundname>xpe::audio::context</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacexpe_1_1audio_1_1context_1a6ac69987919e60fdc865740cf31433d5" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>const u32 xpe::audio::context::k_Channels</definition>
+        <argsstring></argsstring>
+        <name>k_Channels</name>
+        <qualifiedname>xpe::audio::context::k_Channels</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="16" column="23" bodyfile="engine/src/audio/core/context.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacexpe_1_1audio_1_1context_1a709280f20d67e451e173e2aadc3c2a3a" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>const u32 xpe::audio::context::k_NumCaptureBuffers</definition>
+        <argsstring></argsstring>
+        <name>k_NumCaptureBuffers</name>
+        <qualifiedname>xpe::audio::context::k_NumCaptureBuffers</qualifiedname>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="18" column="23" bodyfile="engine/src/audio/core/context.hpp" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938" compoundref="audio__system_8cpp" startline="28" endline="34">xpe::audio::cAudioSystem::~cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="namespacexpe_1_1audio_1_1context_1a487ca035375c56d588285567bbb51298" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>const u32 xpe::audio::context::k_CaptureFrequency</definition>
+        <argsstring></argsstring>
+        <name>k_CaptureFrequency</name>
+        <qualifiedname>xpe::audio::context::k_CaptureFrequency</qualifiedname>
+        <initializer>= 22050</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="19" column="23" bodyfile="engine/src/audio/core/context.hpp" bodystart="19" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="namespacexpe_1_1audio_1_1context_1a40ab66b328485e78adfbc1de5692615b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>const u32 xpe::audio::context::k_CaptureBufferSize</definition>
+        <argsstring></argsstring>
+        <name>k_CaptureBufferSize</name>
+        <qualifiedname>xpe::audio::context::k_CaptureBufferSize</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1audio_1_1context_1a487ca035375c56d588285567bbb51298" kindref="member">k_CaptureFrequency</ref> * <ref refid="namespacexpe_1_1audio_1_1context_1a6ac69987919e60fdc865740cf31433d5" kindref="member">k_Channels</ref> * <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">sizeof</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">signed</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref>) / 8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="20" column="23" bodyfile="engine/src/audio/core/context.hpp" bodystart="20" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="namespacexpe_1_1audio_1_1context_1a9de42aa2b3c7588e625bbbe5021f4fe1" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::audio::context::Context</definition>
+        <argsstring></argsstring>
+        <name>Context</name>
+        <qualifiedname>xpe::audio::context::Context</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="22" column="25" bodyfile="engine/src/audio/core/context.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacexpe_1_1audio_1_1context_1a4082fb8e46a315f73af8a3098ce1d36b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::audio::context::PlaybackDevice</definition>
+        <argsstring></argsstring>
+        <name>PlaybackDevice</name>
+        <qualifiedname>xpe::audio::context::PlaybackDevice</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="23" column="25" bodyfile="engine/src/audio/core/context.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacexpe_1_1audio_1_1context_1a772dbcbf8276ebbb8a60bd5f473501eb" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::audio::context::RecordDevice</definition>
+        <argsstring></argsstring>
+        <name>RecordDevice</name>
+        <qualifiedname>xpe::audio::context::RecordDevice</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="24" column="25" bodyfile="engine/src/audio/core/context.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1aebdf7c3fbf66f961dab2f22e150bd360" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::InitAudio</definition>
+        <argsstring>()</argsstring>
+        <name>InitAudio</name>
+        <qualifiedname>xpe::audio::context::InitAudio</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="26" column="29" declfile="engine/src/audio/core/context.hpp" declline="26" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a4ddbaa76c1383f18ef7d912ae18037e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::FreeAudio</definition>
+        <argsstring>()</argsstring>
+        <name>FreeAudio</name>
+        <qualifiedname>xpe::audio::context::FreeAudio</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="27" column="29" declfile="engine/src/audio/core/context.hpp" declline="27" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938" compoundref="audio__system_8cpp" startline="28" endline="34">xpe::audio::cAudioSystem::~cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a738ff8c8cb47e4d2bad2e13b52c4c768" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">eAudioError</ref></type>
+        <definition>ENGINE_API eAudioError xpe::audio::context::GetError</definition>
+        <argsstring>()</argsstring>
+        <name>GetError</name>
+        <qualifiedname>xpe::audio::context::GetError</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="29" column="36" declfile="engine/src/audio/core/context.hpp" declline="29" declcolumn="36"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a740dd5a6dcb373654e6aacc52c4994d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::GenSources</definition>
+        <argsstring>(u32 count, u32 *sourceID)</argsstring>
+        <name>GenSources</name>
+        <qualifiedname>xpe::audio::context::GenSources</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> *</type>
+          <declname>sourceID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="31" column="29" declfile="engine/src/audio/core/context.hpp" declline="31" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a4a19b59e809d6f081ac3f7cd67f053f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::GenBuffers</definition>
+        <argsstring>(u32 count, u32 *bufferID)</argsstring>
+        <name>GenBuffers</name>
+        <qualifiedname>xpe::audio::context::GenBuffers</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> *</type>
+          <declname>bufferID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="32" column="29" declfile="engine/src/audio/core/context.hpp" declline="32" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1aaad802187553ce017518fd6df0bb418c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::DeleteSources</definition>
+        <argsstring>(u32 count, u32 *sourceID)</argsstring>
+        <name>DeleteSources</name>
+        <qualifiedname>xpe::audio::context::DeleteSources</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> *</type>
+          <declname>sourceID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="34" column="29" declfile="engine/src/audio/core/context.hpp" declline="34" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938" compoundref="audio__system_8cpp" startline="28" endline="34">xpe::audio::cAudioSystem::~cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a5b811183b3c6fe18d071d3d10ba6695b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::DeleteBuffers</definition>
+        <argsstring>(u32 count, u32 *bufferID)</argsstring>
+        <name>DeleteBuffers</name>
+        <qualifiedname>xpe::audio::context::DeleteBuffers</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> *</type>
+          <declname>bufferID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="35" column="29" declfile="engine/src/audio/core/context.hpp" declline="35" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938" compoundref="audio__system_8cpp" startline="28" endline="34">xpe::audio::cAudioSystem::~cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a93bb84201f282d370e3a962c588311f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::PlaySource</definition>
+        <argsstring>(u32 sourceID)</argsstring>
+        <name>PlaySource</name>
+        <qualifiedname>xpe::audio::context::PlaySource</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="37" column="29" declfile="engine/src/audio/core/context.hpp" declline="37" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a66e5e7236c6f2c249eba9037880a43eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::StopSource</definition>
+        <argsstring>(u32 sourceID)</argsstring>
+        <name>StopSource</name>
+        <qualifiedname>xpe::audio::context::StopSource</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="38" column="29" declfile="engine/src/audio/core/context.hpp" declline="38" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a033b1d21279a7378ba69fc12472fe41e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::bindBuffers</definition>
+        <argsstring>(u32 sourceID, u32 bufferID)</argsstring>
+        <name>bindBuffers</name>
+        <qualifiedname>xpe::audio::context::bindBuffers</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>bufferID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="39" column="29" declfile="engine/src/audio/core/context.hpp" declline="39" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a11629f1a894ca251fb5731689e76ae58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::UnbindBuffers</definition>
+        <argsstring>(u32 sourceID)</argsstring>
+        <name>UnbindBuffers</name>
+        <qualifiedname>xpe::audio::context::UnbindBuffers</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="40" column="29" declfile="engine/src/audio/core/context.hpp" declline="40" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a98626288e386bfa8eec597486f973808" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::UploadFileToBuffer</definition>
+        <argsstring>(const sAudioFile *file, u32 bufferID)</argsstring>
+        <name>UploadFileToBuffer</name>
+        <qualifiedname>xpe::audio::context::UploadFileToBuffer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1audio_1_1s_audio_file" kindref="compound">sAudioFile</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>bufferID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="42" column="29" declfile="engine/src/audio/core/context.hpp" declline="42" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a64541bbaea56e49ce9ad2330d4423041" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::UpdateBuffer</definition>
+        <argsstring>(const sAudioFile *file, u32 sourceID, u32 bufferID, s16 *data, s64 frames, bool processed)</argsstring>
+        <name>UpdateBuffer</name>
+        <qualifiedname>xpe::audio::context::UpdateBuffer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1audio_1_1s_audio_file" kindref="compound">sAudioFile</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>bufferID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a3ef33364f79f5d0dc0e14b61fe762b97" kindref="member">s16</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref></type>
+          <declname>frames</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>processed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="43" column="29" declfile="engine/src/audio/core/context.hpp" declline="43" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a7e3e7b78e61c8ea463a52d480e97f6e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::StartRecord</definition>
+        <argsstring>()</argsstring>
+        <name>StartRecord</name>
+        <qualifiedname>xpe::audio::context::StartRecord</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="45" column="29" declfile="engine/src/audio/core/context.hpp" declline="45" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1a8717798d1dead084694903fac1ef487d" compoundref="audio__manager_8cpp" startline="43" endline="53">xpe::audio::cAudioManager::VoiceRecord</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a34835d068264a28789ce49ca78172edb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::StopRecord</definition>
+        <argsstring>()</argsstring>
+        <name>StopRecord</name>
+        <qualifiedname>xpe::audio::context::StopRecord</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="46" column="29" declfile="engine/src/audio/core/context.hpp" declline="46" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1a8717798d1dead084694903fac1ef487d" compoundref="audio__manager_8cpp" startline="43" endline="53">xpe::audio::cAudioManager::VoiceRecord</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a491941b05ab5353dc8b10da8c2f625a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::GetCaptureSamples</definition>
+        <argsstring>(s32 size, s32 &amp;samples)</argsstring>
+        <name>GetCaptureSamples</name>
+        <qualifiedname>xpe::audio::context::GetCaptureSamples</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref> &amp;</type>
+          <declname>samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="47" column="29" declfile="engine/src/audio/core/context.hpp" declline="47" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a646b5160dbb3f5a7f75685965e1c86e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::UploadSamplesToBuffer</definition>
+        <argsstring>(signed char *data, s32 samples)</argsstring>
+        <name>UploadSamplesToBuffer</name>
+        <qualifiedname>xpe::audio::context::UploadSamplesToBuffer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">signed</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="48" column="29" declfile="engine/src/audio/core/context.hpp" declline="48" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a5d4fd160e5c0f6ed9defdaf07cbe572b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::UpdateBuffers</definition>
+        <argsstring>(u32 source, u32 *buffer, signed char *data, s32 samples, s32 samplerate)</argsstring>
+        <name>UpdateBuffers</name>
+        <qualifiedname>xpe::audio::context::UpdateBuffers</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">signed</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>samplerate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="49" column="29" declfile="engine/src/audio/core/context.hpp" declline="49" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1af85f271fb092d6ad6c1ef2e87bc9fc5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::AddBuffer</definition>
+        <argsstring>(u32 source, u32 *buffer, signed char *data, s32 samples, s32 samplerate, u32 num)</argsstring>
+        <name>AddBuffer</name>
+        <qualifiedname>xpe::audio::context::AddBuffer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">signed</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>samplerate</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>num</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="50" column="29" declfile="engine/src/audio/core/context.hpp" declline="50" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" compoundref="audio__system_8cpp" startline="11" endline="26">xpe::audio::cAudioSystem::cAudioSystem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1aaf3004496e351a239bea9d0ade024160" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetListenerPosition</definition>
+        <argsstring>(glm::vec3 position)</argsstring>
+        <name>SetListenerPosition</name>
+        <qualifiedname>xpe::audio::context::SetListenerPosition</qualifiedname>
+        <param>
+          <type>glm::vec3</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="52" column="29" declfile="engine/src/audio/core/context.hpp" declline="52" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1ae9894202640e400278bcdccfae96d05c" compoundref="audio__manager_8cpp" startline="10" endline="13">xpe::audio::cAudioManager::SetListenerPosition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a78092fb106e2211efc0ca702d64fb824" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetListenerVelocity</definition>
+        <argsstring>(glm::vec3 velocity)</argsstring>
+        <name>SetListenerVelocity</name>
+        <qualifiedname>xpe::audio::context::SetListenerVelocity</qualifiedname>
+        <param>
+          <type>glm::vec3</type>
+          <declname>velocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="53" column="29" declfile="engine/src/audio/core/context.hpp" declline="53" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1a50edbadc1d670c7820e88de7b24bc2ec" compoundref="audio__manager_8cpp" startline="15" endline="18">xpe::audio::cAudioManager::SetListenerVelocity</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1ab9f35ee9cee876aeb42e8a0ed27c1809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetListenerOrientation</definition>
+        <argsstring>(glm::vec3 front, glm::vec3 up)</argsstring>
+        <name>SetListenerOrientation</name>
+        <qualifiedname>xpe::audio::context::SetListenerOrientation</qualifiedname>
+        <param>
+          <type>glm::vec3</type>
+          <declname>front</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>up</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="54" column="29" declfile="engine/src/audio/core/context.hpp" declline="54" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1ad0a17d0c1c6615dc6104074ba28947d9" compoundref="audio__manager_8cpp" startline="20" endline="26">xpe::audio::cAudioManager::SetListenerOrientation</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1aa4e46e3b5de7ef2f5754efb8c01abd07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetListenerGain</definition>
+        <argsstring>(f32 volume)</argsstring>
+        <name>SetListenerGain</name>
+        <qualifiedname>xpe::audio::context::SetListenerGain</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>volume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="55" column="29" declfile="engine/src/audio/core/context.hpp" declline="55" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1aa428335afa984d8ee94cb6c81fb94ca9" compoundref="audio__manager_8cpp" startline="28" endline="31">xpe::audio::cAudioManager::SetListenerGain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1aeceeba937bb35833645046c39a19ce5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetListenerDopplerFactor</definition>
+        <argsstring>(f32 factor)</argsstring>
+        <name>SetListenerDopplerFactor</name>
+        <qualifiedname>xpe::audio::context::SetListenerDopplerFactor</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>factor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="56" column="29" declfile="engine/src/audio/core/context.hpp" declline="56" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1ad2f1b247396c8a28f7a5d17e4d566b58" compoundref="audio__manager_8cpp" startline="33" endline="36">xpe::audio::cAudioManager::SetListenerDopplerFactor</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a03fd23c618ef38a1577c991ce42d344a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetListenerSpeedOfSound</definition>
+        <argsstring>(f32 speed)</argsstring>
+        <name>SetListenerSpeedOfSound</name>
+        <qualifiedname>xpe::audio::context::SetListenerSpeedOfSound</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="57" column="29" declfile="engine/src/audio/core/context.hpp" declline="57" declcolumn="29"/>
+        <referencedby refid="classxpe_1_1audio_1_1c_audio_manager_1ac6b617370e6fd0202be11c694debf6ed" compoundref="audio__manager_8cpp" startline="38" endline="41">xpe::audio::cAudioManager::SetListenerSpeedOfSound</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a48123e05d88b2e95a251296105f97a25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetLooping</definition>
+        <argsstring>(u32 sourceID, bool Looping)</argsstring>
+        <name>SetLooping</name>
+        <qualifiedname>xpe::audio::context::SetLooping</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>Looping</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="59" column="29" declfile="engine/src/audio/core/context.hpp" declline="59" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a8b865561de769ae59b513963ef30aa09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetPitch</definition>
+        <argsstring>(u32 sourceID, f32 pitch)</argsstring>
+        <name>SetPitch</name>
+        <qualifiedname>xpe::audio::context::SetPitch</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>pitch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="61" column="29" declfile="engine/src/audio/core/context.hpp" declline="61" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a44c13b01d74c2c11e49e796c710aa67c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetGain</definition>
+        <argsstring>(u32 sourceID, f32 volume)</argsstring>
+        <name>SetGain</name>
+        <qualifiedname>xpe::audio::context::SetGain</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>volume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="62" column="29" declfile="engine/src/audio/core/context.hpp" declline="62" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1addef3f14afbb1bd8ea577a9f7a388b10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetPosition</definition>
+        <argsstring>(u32 sourceID, glm::vec3 position)</argsstring>
+        <name>SetPosition</name>
+        <qualifiedname>xpe::audio::context::SetPosition</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="64" column="29" declfile="engine/src/audio/core/context.hpp" declline="64" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1abc41428bec84da166c07d10e40cd562b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetVelocity</definition>
+        <argsstring>(u32 sourceID, glm::vec3 velocity)</argsstring>
+        <name>SetVelocity</name>
+        <qualifiedname>xpe::audio::context::SetVelocity</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>velocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="65" column="29" declfile="engine/src/audio/core/context.hpp" declline="65" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a47f6ad7639831412d8f2dda2883931ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetRefDistance</definition>
+        <argsstring>(u32 sourceID, f32 distance)</argsstring>
+        <name>SetRefDistance</name>
+        <qualifiedname>xpe::audio::context::SetRefDistance</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="67" column="29" declfile="engine/src/audio/core/context.hpp" declline="67" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1ae1728065795c85684b6116070fbc1e5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetMaxDistance</definition>
+        <argsstring>(u32 sourceID, f32 distance)</argsstring>
+        <name>SetMaxDistance</name>
+        <qualifiedname>xpe::audio::context::SetMaxDistance</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="68" column="29" declfile="engine/src/audio/core/context.hpp" declline="68" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1ac58eefadaa8576175b627f2c0a5941b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetRollOffFactor</definition>
+        <argsstring>(u32 sourceID, f32 rollOffFactor)</argsstring>
+        <name>SetRollOffFactor</name>
+        <qualifiedname>xpe::audio::context::SetRollOffFactor</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>rollOffFactor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="70" column="29" declfile="engine/src/audio/core/context.hpp" declline="70" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a83e34264dad5c6cffcc911396918735b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetConeInnerAngle</definition>
+        <argsstring>(u32 sourceID, f32 angle)</argsstring>
+        <name>SetConeInnerAngle</name>
+        <qualifiedname>xpe::audio::context::SetConeInnerAngle</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="72" column="29" declfile="engine/src/audio/core/context.hpp" declline="72" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a3fca2c88cdcaad5612fc2451ab486159" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetConeOuterAngle</definition>
+        <argsstring>(u32 sourceID, f32 angle)</argsstring>
+        <name>SetConeOuterAngle</name>
+        <qualifiedname>xpe::audio::context::SetConeOuterAngle</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="73" column="29" declfile="engine/src/audio/core/context.hpp" declline="73" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1aabf0a793a002bcb24f87e281766c3c39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::GetState</definition>
+        <argsstring>(u32 sourceID, eAudioState &amp;state)</argsstring>
+        <name>GetState</name>
+        <qualifiedname>xpe::audio::context::GetState</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016ae" kindref="member">eAudioState</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="75" column="29" declfile="engine/src/audio/core/context.hpp" declline="75" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a85be12a461dea756893467159c32aee7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::GetProcessed</definition>
+        <argsstring>(u32 sourceID, s32 *processed)</argsstring>
+        <name>GetProcessed</name>
+        <qualifiedname>xpe::audio::context::GetProcessed</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref> *</type>
+          <declname>processed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="76" column="29" declfile="engine/src/audio/core/context.hpp" declline="76" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a8858a26349e215517a3b32f83d0cd1d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::GetQueued</definition>
+        <argsstring>(u32 sourceID, s32 *queued)</argsstring>
+        <name>GetQueued</name>
+        <qualifiedname>xpe::audio::context::GetQueued</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sourceID</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref> *</type>
+          <declname>queued</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="77" column="29" declfile="engine/src/audio/core/context.hpp" declline="77" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a13014faa2ad4ee9a7a5b349113ea6e54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+        <definition>ENGINE_API int xpe::audio::context::GetFormat</definition>
+        <argsstring>(const sAudioFile &amp;file, u32 channels)</argsstring>
+        <name>GetFormat</name>
+        <qualifiedname>xpe::audio::context::GetFormat</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1audio_1_1s_audio_file" kindref="compound">sAudioFile</ref> &amp;</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>channels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="79" column="28" declfile="engine/src/audio/core/context.hpp" declline="79" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a6b3d6a9d9503b61ec83bc85d8ee281c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref> <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>ENGINE_API u32 xpe::audio::context::GetBufferSize</definition>
+        <argsstring>(u32 channels, u32 BufferSamples)</argsstring>
+        <name>GetBufferSize</name>
+        <qualifiedname>xpe::audio::context::GetBufferSize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>BufferSamples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/context.hpp" line="80" column="28" declfile="engine/src/audio/core/context.hpp" declline="80" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a441e3db4c0c07452df254a5b649b7935" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::audio::context::SetCurrentFrame</definition>
+        <argsstring>(SNDFILE *file, s64 frame)</argsstring>
+        <name>SetCurrentFrame</name>
+        <qualifiedname>xpe::audio::context::SetCurrentFrame</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">SNDFILE</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref></type>
+          <declname>frame</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/sndfile_context.cpp" line="14" column="6" bodyfile="engine/src/audio/core/sndfile_context.cpp" bodystart="14" bodyend="17" declfile="engine/src/audio/core/sndfile_context.hpp" declline="21" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a7c97f85c585f9e3b795db945c5581d52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref></type>
+        <definition>ENGINE_API s64 xpe::audio::context::ReadChunk</definition>
+        <argsstring>(SNDFILE *m_File, short *data, s64 num_frames)</argsstring>
+        <name>ReadChunk</name>
+        <qualifiedname>xpe::audio::context::ReadChunk</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">SNDFILE</ref> *</type>
+          <declname>m_File</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">short</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref></type>
+          <declname>num_frames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/sndfile_context.cpp" line="19" column="5" bodyfile="engine/src/audio/core/sndfile_context.cpp" bodystart="19" bodyend="22" declfile="engine/src/audio/core/sndfile_context.hpp" declline="22" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1audio_1_1context_1a91f3ee3b32d5bd17626a0eb696aba5a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>ENGINE_API bool xpe::audio::context::isAmbisonic</definition>
+        <argsstring>(const sAudioFile &amp;file)</argsstring>
+        <name>isAmbisonic</name>
+        <qualifiedname>xpe::audio::context::isAmbisonic</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1audio_1_1s_audio_file" kindref="compound">sAudioFile</ref> &amp;</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/core/sndfile_context.cpp" line="24" column="6" bodyfile="engine/src/audio/core/sndfile_context.cpp" bodystart="24" bodyend="27" declfile="engine/src/audio/core/sndfile_context.hpp" declline="23" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/audio/core/context.hpp" line="12" column="9"/>
+  </compounddef>
+</doxygen>

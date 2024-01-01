@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_codes__gamepad_8hpp_source" xml:lang="en-US">
+<title>codes_gamepad.hpp</title>
+<indexterm><primary>engine/src/core/codes_gamepad.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+4 
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>core&#32;{
+6 
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1core_1_1s_gamepad_state">sGamepadState</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+8 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Pressed&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Released&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Hold&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+13 
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26">eGamepadButton</link>&#32;:&#32;<link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link>
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a3687fbfe9f2fdda2244770408fd2c681">Pad_A</link>&#32;=&#32;0,
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26af2700249ef417eaea8cf716d48fd0827">Pad_B</link>&#32;=&#32;1,
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26abb62826bf2e91316d8a790fa55f1819a">Pad_X</link>&#32;=&#32;2,
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1dac038a79602619e1a7be9e4ab872cc">Pad_Y</link>&#32;=&#32;3,
+20 
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a41295e646d7bb68cf4a793d4ed7f106c">Pad_LeftBumper</link>&#32;=&#32;4,
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1672427b5e0b2a9f1ce3971fce88fb89">Pad_RightBumper</link>&#32;=&#32;5,
+23 
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a529a8d53ddba22b06f1708c6ff8d3642">Pad_Back</link>&#32;=&#32;6,
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a506f1b55538cb40fb0d742db500493e8">Pad_Start</link>&#32;=&#32;7,
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1ba8ea192d4238eb4997fc9d9c61fb49">Pad_Guide</link>&#32;=&#32;8,
+27 
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a9c80141c352b0620cef90f850346a543">Pad_LeftThumb</link>&#32;=&#32;9,
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26ac793975743453b6a513539248582b14f">Pad_RightThumb</link>&#32;=&#32;10,
+30 
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26abff713c98241f68fec0465974a3a80c5">Pad_Up</link>&#32;=&#32;11,
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a4ef92a28a7310b1e33f7c7f09d34c447">Pad_Right</link>&#32;=&#32;12,
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a6ea51f348ed2273d1cd7acc170cd960d">Pad_Down</link>&#32;=&#32;13,
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304">Pad_Left</link>&#32;=&#32;14,
+35 
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26acf06b676d433a6ab517247d238512310">Pad_Last</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304">Pad_Left</link>,
+37 
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a35e7e2b4be7d3b09ce6268a34db25ef4">Pad_Cross</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a397075a040528813f20f6c289b623a3b">A</link>,
+39 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a504e23bce3b71286dd697aa11d27e8f2">Pad_Circle</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a30d29bb7b92629637b6646d739a3fba2">B</link>,
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1bb4c477a5d06d7e7ade03b8db06c20e">Pad_Square</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a6e2cee66a4284c61b71c86a96bed8a6e">X</link>,
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a39da9c46f43862115c612e9c3b99af50">Pad_Triangle</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a4ae41f354a0249602ac21e9f3bcea073">Y</link>
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+43 
+44 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38">eGamepadAxis</link>&#32;:&#32;<link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link>
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a207e9e5d2a6c7725bddb7124c0f61287">Axis_LeftX</link>&#32;=&#32;0,
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a8e3a412945183656647d1076980caa6e">Axis_LeftY</link>&#32;=&#32;1,
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38ac82c10c9d77e9ff5150ccaf740b84aaf">Axis_RightX</link>&#32;=&#32;2,
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a1105fdc10b81ef4d8ecc0201289b2fe1">Axis_RightY</link>&#32;=&#32;3,
+50 
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a694b54f1b5afd19ed10b130526b2b2e0">Axis_LeftTrigger</link>&#32;=&#32;4,
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a6fba40b7473ffd948e23323ecfa62d2b">Axis_RightTrigger</link>&#32;=&#32;5,
+53 
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38aec7b154c770e5bfb5be55cec1e787318">Axis_Last</link>&#32;=&#32;<link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a6fba40b7473ffd948e23323ecfa62d2b">Axis_RightTrigger</link>
+55 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+56 
+57 &#32;&#32;&#32;&#32;}
+58 
+59 }
+</programlisting></section>

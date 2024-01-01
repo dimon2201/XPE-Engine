@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_input__manager_8hpp" xml:lang="en-US">
+<title>engine/src/core/input_manager.hpp File Reference</title>
+<indexterm><primary>engine/src/core/input_manager.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;core/events.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_mouse_cursor">xpe::core::sMouseCursor</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_input_manager">xpe::core::cInputManager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1af0e19d2ab9aeb4aa488e57911d4d8e8f">AddWindowClosed</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowClosedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowClosed</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a576eabc769112ab438a27635af3dda0c">AddWindowResized</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowResizedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowResized</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a2cd1cdcbe57492f3f37f3242807b8d22">AddWindowFrameResized</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowFrameResizedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowFrameResized</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a9b823d06edce33615df6f3fb7bd88538">AddWindowRatioChanged</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowRatioChangedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowRatioChanged</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1ac225faea04df547b86e8e78867a193de">AddKeyPressed</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyPressedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnKeyPressed</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a07911524deba689229eef346f0f48965">AddKeyRelease</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyReleasedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnKeyReleased</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a974d6b9f048c1c1a22d0b02bd16025ae">AddKeyHold</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyHoldEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnKeyHold</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a81e1153a87fa319a45de9d00676b0b5e">AddCursorMove</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().CursorMovedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnCursorMoved</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a6a71e46125bc7a2d501908f55cdfb0f9">AddScrollChanged</link>(clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().ScrollChangedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnScrollChanged</link>&lt;clazz&gt;, priority)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1aa72b87d6b96eff1ed64c56f1f60d691c">RemoveWindowClose</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowClosedEvents.RemoveEvent(this)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9">RemoveWindowFrameResized</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowFrameResizedEvents.RemoveEvent(this)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1af865feaedb0105ecf2395f440302d37b">RemoveWindowRatioChanged</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowRatioChangedEvents.RemoveEvent(this)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1ad0fc2ab4240b4482adde4f787a893f89">RemoveKeyPressed</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyPressedEvents.RemoveEvent(this)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a44adc84c3c5c3e95184b948a63c005e5">RemoveKeyRelease</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyReleasedEvents.RemoveEvent(this)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a1e50db97d0b641e19e3c599845b49889">RemoveKeyHold</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyHoldEvents.RemoveEvent(this)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a3be6a41ac17dff84029bf2d0067df2b3">RemoveCursorMove</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().CursorMovedEvents.RemoveEvent(this)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_input__manager_8hpp_1a61c570116fdcc1ac2fd424fc9ecb8cf6">RemoveScrollChanged</link>()&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().ScrollChangedEvents.RemoveEvent(this)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_input__manager_8hpp_1a81e1153a87fa319a45de9d00676b0b5e"/><section>
+    <title>AddCursorMove</title>
+<indexterm><primary>AddCursorMove</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddCursorMove</secondary></indexterm>
+<para><computeroutput>#define AddCursorMove( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().CursorMovedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnCursorMoved</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a974d6b9f048c1c1a22d0b02bd16025ae"/><section>
+    <title>AddKeyHold</title>
+<indexterm><primary>AddKeyHold</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddKeyHold</secondary></indexterm>
+<para><computeroutput>#define AddKeyHold( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyHoldEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnKeyHold</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1ac225faea04df547b86e8e78867a193de"/><section>
+    <title>AddKeyPressed</title>
+<indexterm><primary>AddKeyPressed</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddKeyPressed</secondary></indexterm>
+<para><computeroutput>#define AddKeyPressed( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyPressedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnKeyPressed</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a07911524deba689229eef346f0f48965"/><section>
+    <title>AddKeyRelease</title>
+<indexterm><primary>AddKeyRelease</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddKeyRelease</secondary></indexterm>
+<para><computeroutput>#define AddKeyRelease( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyReleasedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnKeyReleased</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a6a71e46125bc7a2d501908f55cdfb0f9"/><section>
+    <title>AddScrollChanged</title>
+<indexterm><primary>AddScrollChanged</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddScrollChanged</secondary></indexterm>
+<para><computeroutput>#define AddScrollChanged( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().ScrollChangedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnScrollChanged</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1af0e19d2ab9aeb4aa488e57911d4d8e8f"/><section>
+    <title>AddWindowClosed</title>
+<indexterm><primary>AddWindowClosed</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddWindowClosed</secondary></indexterm>
+<para><computeroutput>#define AddWindowClosed( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowClosedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowClosed</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a2cd1cdcbe57492f3f37f3242807b8d22"/><section>
+    <title>AddWindowFrameResized</title>
+<indexterm><primary>AddWindowFrameResized</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddWindowFrameResized</secondary></indexterm>
+<para><computeroutput>#define AddWindowFrameResized( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowFrameResizedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowFrameResized</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a9b823d06edce33615df6f3fb7bd88538"/><section>
+    <title>AddWindowRatioChanged</title>
+<indexterm><primary>AddWindowRatioChanged</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddWindowRatioChanged</secondary></indexterm>
+<para><computeroutput>#define AddWindowRatioChanged( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowRatioChangedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowRatioChanged</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a576eabc769112ab438a27635af3dda0c"/><section>
+    <title>AddWindowResized</title>
+<indexterm><primary>AddWindowResized</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>AddWindowResized</secondary></indexterm>
+<para><computeroutput>#define AddWindowResized( clazz,  priority)&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowResizedEvents.AddEvent(this, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xpe::core::OnWindowResized</link>&lt;clazz&gt;, priority)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a3be6a41ac17dff84029bf2d0067df2b3"/><section>
+    <title>RemoveCursorMove</title>
+<indexterm><primary>RemoveCursorMove</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveCursorMove</secondary></indexterm>
+<para><computeroutput>#define RemoveCursorMove( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().CursorMovedEvents.RemoveEvent(this)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a1e50db97d0b641e19e3c599845b49889"/><section>
+    <title>RemoveKeyHold</title>
+<indexterm><primary>RemoveKeyHold</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveKeyHold</secondary></indexterm>
+<para><computeroutput>#define RemoveKeyHold( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyHoldEvents.RemoveEvent(this)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1ad0fc2ab4240b4482adde4f787a893f89"/><section>
+    <title>RemoveKeyPressed</title>
+<indexterm><primary>RemoveKeyPressed</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveKeyPressed</secondary></indexterm>
+<para><computeroutput>#define RemoveKeyPressed( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyPressedEvents.RemoveEvent(this)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a44adc84c3c5c3e95184b948a63c005e5"/><section>
+    <title>RemoveKeyRelease</title>
+<indexterm><primary>RemoveKeyRelease</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveKeyRelease</secondary></indexterm>
+<para><computeroutput>#define RemoveKeyRelease( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().KeyReleasedEvents.RemoveEvent(this)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a61c570116fdcc1ac2fd424fc9ecb8cf6"/><section>
+    <title>RemoveScrollChanged</title>
+<indexterm><primary>RemoveScrollChanged</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveScrollChanged</secondary></indexterm>
+<para><computeroutput>#define RemoveScrollChanged( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().ScrollChangedEvents.RemoveEvent(this)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1aa72b87d6b96eff1ed64c56f1f60d691c"/><section>
+    <title>RemoveWindowClose</title>
+<indexterm><primary>RemoveWindowClose</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveWindowClose</secondary></indexterm>
+<para><computeroutput>#define RemoveWindowClose( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowClosedEvents.RemoveEvent(this)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9"/><section>
+    <title>RemoveWindowFrameResized</title>
+<indexterm><primary>RemoveWindowFrameResized</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveWindowFrameResized</secondary></indexterm>
+<para><computeroutput>#define RemoveWindowFrameResized( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowFrameResizedEvents.RemoveEvent(this)</computeroutput></para></section>
+<anchor xml:id="_input__manager_8hpp_1af865feaedb0105ecf2395f440302d37b"/><section>
+    <title>RemoveWindowRatioChanged</title>
+<indexterm><primary>RemoveWindowRatioChanged</primary><secondary>input_manager.hpp</secondary></indexterm>
+<indexterm><primary>input_manager.hpp</primary><secondary>RemoveWindowRatioChanged</secondary></indexterm>
+<para><computeroutput>#define RemoveWindowRatioChanged( )&#160;&#160;&#160;<link linkend="_classxpe_1_1core_1_1c_event_manager_1aa3306b0e31f6ee8fb24269cea0c07a74">xpe::core::cEventManager::Get</link>().WindowRatioChangedEvents.RemoveEvent(this)</computeroutput></para></section>
+</section>
+</section>

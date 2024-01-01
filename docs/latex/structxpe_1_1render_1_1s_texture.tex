@@ -1,0 +1,468 @@
+\doxysection{xpe\+::render\+::s\+Texture Struct Reference}
+\hypertarget{structxpe_1_1render_1_1s_texture}{}\label{structxpe_1_1render_1_1s_texture}\index{xpe::render::sTexture@{xpe::render::sTexture}}
+
+
+{\ttfamily \#include $<$texture.\+hpp$>$}
+
+Inheritance diagram for xpe\+::render\+::s\+Texture\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{structxpe_1_1render_1_1s_texture}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7}{e\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a85975f3555d8eb49414ceb23f293b0e3}{TEXTURE\+\_\+1D}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7acc301ce75e16247f3b96a3907519096c}{TEXTURE\+\_\+2D}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a0780be97b60994fb8fee7f0d84f15e5f}{TEXTURE\+\_\+2\+D\+\_\+\+MS}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a52e05a9e7056e6b657eb3fc397403433}{TEXTURE\+\_\+2\+D\+\_\+\+DEPTH\+\_\+\+STENCIL}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a0a9d553de9943da3013fb61a284c8689}{TEXTURE\+\_\+2\+D\+\_\+\+ARRAY}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a197c970fd2222156ffc203ec66c64bb4}{TEXTURE\+\_\+3D}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a2dfa8fb773797e0343322a33cd625b44}{TEXTURE\+\_\+\+CUBE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac}{TEXTURE\+\_\+\+DEFAULT}} = TEXTURE\+\_\+2D
+ \}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2b}{e\+Usage}} \{ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2bafe6f99ef1ec99efbdc19a9786cf1facc}{STATIC}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba0fcc90da4811c877ba9f9c12f7d60bc9}{DYNAMIC}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf}{STAGING}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{xpe\+::render\+::s\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{e\+View\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4aecaa8fe8cb0e85372f4cc76728c7cf3c}{DEPTH\+\_\+\+STENCIL}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4a0bb01e169097cdf50612a3b567e8224b}{RENDER\+\_\+\+TARGET}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db}{SRV}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4a6902d76cea698982754404da77e5e08a}{UAV}}
+ \}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295}{e\+Map\+Type}} \{ \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295a3466fab4975481651940ed328aa990e4}{READ}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295ad4b9e47f65b6e79b010582f15785867e}{WRITE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295aa7b843fb734e3b3fea8e5f902d3f4144}{READ\+\_\+\+WRITE}}
+, \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295a35e7bbbf18cc8cf2948004487c61a0ed}{WRITE\+\_\+\+NO\+\_\+\+OVERWRITE}}
+, \newline
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295aeb339b5f9c978d1d5d991cd67e08e31b}{WRITE\+\_\+\+DISCARD}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a700b7503a37d4f407f2c57287b121a1d}{s\+Texture}} ()
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_aacf76abd32ef8b66ad73b177086bb6fd}{\texorpdfstring{$\sim$}{\string~}s\+Texture}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52}{Init}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4}{Free}} ()
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a2e269ea33914935250859d42dadae69b}{Create\+Layer}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a0369835873cfc25776640f320e0fad09}{Remove\+Layer\+At}} (\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{index}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_afca3ad09a60227179d3a670ccc977cde}{Get\+Mip\+Levels}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_af387596e9480a6ea1647b59a5cf59da2}{Window\+Frame\+Resized}} (\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}}, \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b}{Resize}} (\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}}, \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a5d2b4723da07e042cc5d2d9807820fc8}{Resize\+Pixels}} (\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}}, \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a133c8b74d8bff5b814d265334c7ced00}{Flip}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a9ea65fd61b1bd856345e485a76611ca9}{Generate\+Mips}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_ad6c83752e22730ab10f2fd97c160de63}{Flush\+Layer}} (\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{index}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854}{Flush}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a5b2549ba6691480e47ea4175c584f8f8}{Set\+Resizable}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{resizable}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_ad6d30c28e7b20bfdfb29b099a371def3}{Is\+Resizable}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a1ac807fdbbada7bbd0c0766f33bf060e}{Get\+Mips\+Levels}} (\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7}{e\+Type}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_ac31bce368d387d78d37db106f54cc5bf}{Type}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac}{e\+Type\+::\+TEXTURE\+\_\+\+DEFAULT}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2b}{e\+Usage}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_ac23d567666987a86801e12b7daefea2d}{Usage}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee}{e\+Usage\+::\+DEFAULT}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a6c8207cb90ffe2906a9409638386c6dd}{Width}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a30ea6eae15dadddb4f65afae1a4106e6}{Height}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a981813f57d7d1d49d1c8bd3f142c9a96}{Depth}} = 1
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a10628a7ab9042a9df51147bf76b38c81}{Channels}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2}{e\+Texture\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_abb723fd3f4ee9573148bf11fd9491985}{Format}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_ac10f77c7c7b681f8c057d739e927c1fb}{Sample\+Count}} = 1
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a39d0f942dc05ef4c535be42d8ea3d0b0}{Enable\+Render\+Target}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a57c79caedf5201b6ff362b15499313d0}{Slot}} = 0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a828db7ee4fc05b358bd43b60ceb69532}{Most\+Detailed\+Mip}} = 0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_ad97d493ce4705e27f8fa3be57b23657d}{Initialize\+Data}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{true}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} $>$ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a269fc30698e07b48a71b4ee0b5ea2e19}{Layers}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{xpe\+::render\+::s\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_af827dadaafbfdfbb81c4fe6d17d37bfd}{Instance}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_acd7826aa1301d8a032b85078503313ca}{View\+Instance}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{e\+View\+Type}} \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a92908e592469d360bed7d9526fb59b69}{View\+Type}} = \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693}{e\+View\+Type\+::\+NONE}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2}{e\+Texture\+Format}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{int}} $>$ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_adc0d03a68a09e08cd032cad442af672c}{k\+\_\+\+Channel\+Table}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2}{e\+Texture\+Format}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{int}} $>$ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a29bf78a80d911f38c36e371e4a75828e}{k\+\_\+\+Bpp\+Table}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!eType@{eType}}
+\index{eType@{eType}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{eType}{eType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7}{xpe\+::render\+::s\+Texture\+::e\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_1D@{TEXTURE\_1D}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_1D@{TEXTURE\_1D}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a85975f3555d8eb49414ceb23f293b0e3}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a85975f3555d8eb49414ceb23f293b0e3} 
+TEXTURE\+\_\+1D&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_2D@{TEXTURE\_2D}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_2D@{TEXTURE\_2D}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7acc301ce75e16247f3b96a3907519096c}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7acc301ce75e16247f3b96a3907519096c} 
+TEXTURE\+\_\+2D&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_2D\_MS@{TEXTURE\_2D\_MS}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_2D\_MS@{TEXTURE\_2D\_MS}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a0780be97b60994fb8fee7f0d84f15e5f}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a0780be97b60994fb8fee7f0d84f15e5f} 
+TEXTURE\+\_\+2\+D\+\_\+\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_2D\_DEPTH\_STENCIL@{TEXTURE\_2D\_DEPTH\_STENCIL}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_2D\_DEPTH\_STENCIL@{TEXTURE\_2D\_DEPTH\_STENCIL}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a52e05a9e7056e6b657eb3fc397403433}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a52e05a9e7056e6b657eb3fc397403433} 
+TEXTURE\+\_\+2\+D\+\_\+\+DEPTH\+\_\+\+STENCIL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_2D\_ARRAY@{TEXTURE\_2D\_ARRAY}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_2D\_ARRAY@{TEXTURE\_2D\_ARRAY}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a0a9d553de9943da3013fb61a284c8689}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a0a9d553de9943da3013fb61a284c8689} 
+TEXTURE\+\_\+2\+D\+\_\+\+ARRAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_3D@{TEXTURE\_3D}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_3D@{TEXTURE\_3D}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a197c970fd2222156ffc203ec66c64bb4}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a197c970fd2222156ffc203ec66c64bb4} 
+TEXTURE\+\_\+3D&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_CUBE@{TEXTURE\_CUBE}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_CUBE@{TEXTURE\_CUBE}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a2dfa8fb773797e0343322a33cd625b44}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a2dfa8fb773797e0343322a33cd625b44} 
+TEXTURE\+\_\+\+CUBE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_DEFAULT@{TEXTURE\_DEFAULT}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!TEXTURE\_DEFAULT@{TEXTURE\_DEFAULT}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac}\label{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac} 
+TEXTURE\+\_\+\+DEFAULT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2b}\label{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2b} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!eUsage@{eUsage}}
+\index{eUsage@{eUsage}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{eUsage}{eUsage}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2b}{xpe\+::render\+::s\+Texture\+::e\+Usage}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!DEFAULT@{DEFAULT}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee}\label{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee} 
+DEFAULT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STATIC@{STATIC}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!STATIC@{STATIC}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2bafe6f99ef1ec99efbdc19a9786cf1facc}\label{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2bafe6f99ef1ec99efbdc19a9786cf1facc} 
+STATIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DYNAMIC@{DYNAMIC}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!DYNAMIC@{DYNAMIC}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba0fcc90da4811c877ba9f9c12f7d60bc9}\label{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba0fcc90da4811c877ba9f9c12f7d60bc9} 
+DYNAMIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STAGING@{STAGING}!xpe::render::sTexture@{xpe::render::sTexture}}\index{xpe::render::sTexture@{xpe::render::sTexture}!STAGING@{STAGING}}}\Hypertarget{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf}\label{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf} 
+STAGING&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_texture_a700b7503a37d4f407f2c57287b121a1d}\label{structxpe_1_1render_1_1s_texture_a700b7503a37d4f407f2c57287b121a1d} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!sTexture@{sTexture}}
+\index{sTexture@{sTexture}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{sTexture()}{sTexture()}}
+{\footnotesize\ttfamily xpe\+::render\+::s\+Texture\+::s\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_aacf76abd32ef8b66ad73b177086bb6fd}\label{structxpe_1_1render_1_1s_texture_aacf76abd32ef8b66ad73b177086bb6fd} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!````~sTexture@{\texorpdfstring{$\sim$}{\string~}sTexture}}
+\index{````~sTexture@{\texorpdfstring{$\sim$}{\string~}sTexture}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}sTexture()}{\string~sTexture()}}
+{\footnotesize\ttfamily xpe\+::render\+::s\+Texture\+::\texorpdfstring{$\sim$}{\string~}s\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_texture_a2e269ea33914935250859d42dadae69b}\label{structxpe_1_1render_1_1s_texture_a2e269ea33914935250859d42dadae69b} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!CreateLayer@{CreateLayer}}
+\index{CreateLayer@{CreateLayer}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{CreateLayer()}{CreateLayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} xpe\+::render\+::s\+Texture\+::\+Create\+Layer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a133c8b74d8bff5b814d265334c7ced00}\label{structxpe_1_1render_1_1s_texture_a133c8b74d8bff5b814d265334c7ced00} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Flip@{Flip}}
+\index{Flip@{Flip}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Flip()}{Flip()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Flip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854}\label{structxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Flush@{Flush}}
+\index{Flush@{Flush}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Flush()}{Flush()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_ad6c83752e22730ab10f2fd97c160de63}\label{structxpe_1_1render_1_1s_texture_ad6c83752e22730ab10f2fd97c160de63} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!FlushLayer@{FlushLayer}}
+\index{FlushLayer@{FlushLayer}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{FlushLayer()}{FlushLayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Flush\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}}]{index }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4}\label{structxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Free@{Free}}
+\index{Free@{Free}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a9ea65fd61b1bd856345e485a76611ca9}\label{structxpe_1_1render_1_1s_texture_a9ea65fd61b1bd856345e485a76611ca9} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!GenerateMips@{GenerateMips}}
+\index{GenerateMips@{GenerateMips}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{GenerateMips()}{GenerateMips()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Generate\+Mips (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_afca3ad09a60227179d3a670ccc977cde}\label{structxpe_1_1render_1_1s_texture_afca3ad09a60227179d3a670ccc977cde} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!GetMipLevels@{GetMipLevels}}
+\index{GetMipLevels@{GetMipLevels}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{GetMipLevels()}{GetMipLevels()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Texture\+::\+Get\+Mip\+Levels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a1ac807fdbbada7bbd0c0766f33bf060e}\label{structxpe_1_1render_1_1s_texture_a1ac807fdbbada7bbd0c0766f33bf060e} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!GetMipsLevels@{GetMipsLevels}}
+\index{GetMipsLevels@{GetMipsLevels}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{GetMipsLevels()}{GetMipsLevels()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Texture\+::\+Get\+Mips\+Levels (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}}]{width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52}\label{structxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Init@{Init}}
+\index{Init@{Init}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_ad6d30c28e7b20bfdfb29b099a371def3}\label{structxpe_1_1render_1_1s_texture_ad6d30c28e7b20bfdfb29b099a371def3} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!IsResizable@{IsResizable}}
+\index{IsResizable@{IsResizable}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{IsResizable()}{IsResizable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::render\+::s\+Texture\+::\+Is\+Resizable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a0369835873cfc25776640f320e0fad09}\label{structxpe_1_1render_1_1s_texture_a0369835873cfc25776640f320e0fad09} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!RemoveLayerAt@{RemoveLayerAt}}
+\index{RemoveLayerAt@{RemoveLayerAt}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{RemoveLayerAt()}{RemoveLayerAt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Remove\+Layer\+At (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}}]{index }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b}\label{structxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Resize@{Resize}}
+\index{Resize@{Resize}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Resize()}{Resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}}]{width,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}}]{height }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a5d2b4723da07e042cc5d2d9807820fc8}\label{structxpe_1_1render_1_1s_texture_a5d2b4723da07e042cc5d2d9807820fc8} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!ResizePixels@{ResizePixels}}
+\index{ResizePixels@{ResizePixels}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{ResizePixels()}{ResizePixels()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Resize\+Pixels (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}}]{width,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}}]{height }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a5b2549ba6691480e47ea4175c584f8f8}\label{structxpe_1_1render_1_1s_texture_a5b2549ba6691480e47ea4175c584f8f8} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!SetResizable@{SetResizable}}
+\index{SetResizable@{SetResizable}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{SetResizable()}{SetResizable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Set\+Resizable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}}}]{resizable }\end{DoxyParamCaption})}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_af387596e9480a6ea1647b59a5cf59da2}\label{structxpe_1_1render_1_1s_texture_af387596e9480a6ea1647b59a5cf59da2} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!WindowFrameResized@{WindowFrameResized}}
+\index{WindowFrameResized@{WindowFrameResized}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{WindowFrameResized()}{WindowFrameResized()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::s\+Texture\+::\+Window\+Frame\+Resized (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}}]{width,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}}]{height }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_texture_a10628a7ab9042a9df51147bf76b38c81}\label{structxpe_1_1render_1_1s_texture_a10628a7ab9042a9df51147bf76b38c81} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Channels@{Channels}}
+\index{Channels@{Channels}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Channels}{Channels}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} xpe\+::render\+::s\+Texture\+::\+Channels}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a981813f57d7d1d49d1c8bd3f142c9a96}\label{structxpe_1_1render_1_1s_texture_a981813f57d7d1d49d1c8bd3f142c9a96} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Depth@{Depth}}
+\index{Depth@{Depth}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Depth}{Depth}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} xpe\+::render\+::s\+Texture\+::\+Depth = 1}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a39d0f942dc05ef4c535be42d8ea3d0b0}\label{structxpe_1_1render_1_1s_texture_a39d0f942dc05ef4c535be42d8ea3d0b0} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!EnableRenderTarget@{EnableRenderTarget}}
+\index{EnableRenderTarget@{EnableRenderTarget}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{EnableRenderTarget}{EnableRenderTarget}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::render\+::s\+Texture\+::\+Enable\+Render\+Target = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_abb723fd3f4ee9573148bf11fd9491985}\label{structxpe_1_1render_1_1s_texture_abb723fd3f4ee9573148bf11fd9491985} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Format@{Format}}
+\index{Format@{Format}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Format}{Format}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2}{e\+Texture\+Format}} xpe\+::render\+::s\+Texture\+::\+Format}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a30ea6eae15dadddb4f65afae1a4106e6}\label{structxpe_1_1render_1_1s_texture_a30ea6eae15dadddb4f65afae1a4106e6} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Height@{Height}}
+\index{Height@{Height}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Height}{Height}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} xpe\+::render\+::s\+Texture\+::\+Height}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_ad97d493ce4705e27f8fa3be57b23657d}\label{structxpe_1_1render_1_1s_texture_ad97d493ce4705e27f8fa3be57b23657d} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!InitializeData@{InitializeData}}
+\index{InitializeData@{InitializeData}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{InitializeData}{InitializeData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::render\+::s\+Texture\+::\+Initialize\+Data = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{true}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a29bf78a80d911f38c36e371e4a75828e}\label{structxpe_1_1render_1_1s_texture_a29bf78a80d911f38c36e371e4a75828e} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!k\_BppTable@{k\_BppTable}}
+\index{k\_BppTable@{k\_BppTable}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{k\_BppTable}{k\_BppTable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2}{e\+Texture\+Format}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{int}} $>$ xpe\+::render\+::s\+Texture\+::k\+\_\+\+Bpp\+Table\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{eTextureFormat::R8}},\ 1\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a9a486e1a3c543c7c58e1cc8086dc4239}{eTextureFormat::R16}},\ 2\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419}{eTextureFormat::R32}},\ 4\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a0367a93b9e3e7aa2fbe9802d80298e46}{eTextureFormat::RG8}},\ 2\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a2b66caa416f0a28686ade3fc30ab223a}{eTextureFormat::RG16}},\ 4\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aa8725115efc714421823b7397f9c130c}{eTextureFormat::RG32}},\ 8\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a165c6379d01617e12de274a3952efa63}{eTextureFormat::RGB8}},\ 3\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a1cd42e2af35bdfb43d791f8cecdce4a4}{eTextureFormat::RGB16}},\ 6\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ace70a5db6685e6d210c3f905a8fa7d4c}{eTextureFormat::RGB32}},\ 12\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642}{eTextureFormat::RGBA8}},\ 4\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a50989efe15b375dce8ba3a5714fe2543}{eTextureFormat::RGBA16}},\ 8\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b}{eTextureFormat::RGBA32}},\ 16\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{eTextureFormat::SRGBA8}},\ 4\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structxpe_1_1render_1_1s_texture_adc0d03a68a09e08cd032cad442af672c}\label{structxpe_1_1render_1_1s_texture_adc0d03a68a09e08cd032cad442af672c} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!k\_ChannelTable@{k\_ChannelTable}}
+\index{k\_ChannelTable@{k\_ChannelTable}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{k\_ChannelTable}{k\_ChannelTable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2}{e\+Texture\+Format}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{int}} $>$ xpe\+::render\+::s\+Texture\+::k\+\_\+\+Channel\+Table\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{eTextureFormat::R8}},\ 1\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a9a486e1a3c543c7c58e1cc8086dc4239}{eTextureFormat::R16}},\ 1\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419}{eTextureFormat::R32}},\ 1\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a0367a93b9e3e7aa2fbe9802d80298e46}{eTextureFormat::RG8}},\ 2\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a2b66caa416f0a28686ade3fc30ab223a}{eTextureFormat::RG16}},\ 2\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aa8725115efc714421823b7397f9c130c}{eTextureFormat::RG32}},\ 2\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a165c6379d01617e12de274a3952efa63}{eTextureFormat::RGB8}},\ 3\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a1cd42e2af35bdfb43d791f8cecdce4a4}{eTextureFormat::RGB16}},\ 3\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ace70a5db6685e6d210c3f905a8fa7d4c}{eTextureFormat::RGB32}},\ 3\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642}{eTextureFormat::RGBA8}},\ 4\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2a50989efe15b375dce8ba3a5714fe2543}{eTextureFormat::RGBA16}},\ 4\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b}{eTextureFormat::RGBA32}},\ 4\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{eTextureFormat::SRGBA8}},\ 4\ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structxpe_1_1render_1_1s_texture_a269fc30698e07b48a71b4ee0b5ea2e19}\label{structxpe_1_1render_1_1s_texture_a269fc30698e07b48a71b4ee0b5ea2e19} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Layers@{Layers}}
+\index{Layers@{Layers}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Layers}{Layers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}$>$ xpe\+::render\+::s\+Texture\+::\+Layers}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a828db7ee4fc05b358bd43b60ceb69532}\label{structxpe_1_1render_1_1s_texture_a828db7ee4fc05b358bd43b60ceb69532} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!MostDetailedMip@{MostDetailedMip}}
+\index{MostDetailedMip@{MostDetailedMip}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{MostDetailedMip}{MostDetailedMip}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Texture\+::\+Most\+Detailed\+Mip = 0}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_ac10f77c7c7b681f8c057d739e927c1fb}\label{structxpe_1_1render_1_1s_texture_ac10f77c7c7b681f8c057d739e927c1fb} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!SampleCount@{SampleCount}}
+\index{SampleCount@{SampleCount}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{SampleCount}{SampleCount}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Texture\+::\+Sample\+Count = 1}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a57c79caedf5201b6ff362b15499313d0}\label{structxpe_1_1render_1_1s_texture_a57c79caedf5201b6ff362b15499313d0} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Slot@{Slot}}
+\index{Slot@{Slot}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Slot}{Slot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Texture\+::\+Slot = 0}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_ac31bce368d387d78d37db106f54cc5bf}\label{structxpe_1_1render_1_1s_texture_ac31bce368d387d78d37db106f54cc5bf} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Type@{Type}}
+\index{Type@{Type}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7}{e\+Type}} xpe\+::render\+::s\+Texture\+::\+Type = \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac}{e\+Type\+::\+TEXTURE\+\_\+\+DEFAULT}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_ac23d567666987a86801e12b7daefea2d}\label{structxpe_1_1render_1_1s_texture_ac23d567666987a86801e12b7daefea2d} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Usage@{Usage}}
+\index{Usage@{Usage}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Usage}{Usage}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2b}{e\+Usage}} xpe\+::render\+::s\+Texture\+::\+Usage = \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee}{e\+Usage\+::\+DEFAULT}}}
+
+\Hypertarget{structxpe_1_1render_1_1s_texture_a6c8207cb90ffe2906a9409638386c6dd}\label{structxpe_1_1render_1_1s_texture_a6c8207cb90ffe2906a9409638386c6dd} 
+\index{xpe::render::sTexture@{xpe::render::sTexture}!Width@{Width}}
+\index{Width@{Width}!xpe::render::sTexture@{xpe::render::sTexture}}
+\doxysubsubsection{\texorpdfstring{Width}{Width}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}} xpe\+::render\+::s\+Texture\+::\+Width}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/rendering/core/\mbox{\hyperlink{texture_8hpp}{texture.\+hpp}}\item 
+engine/src/rendering/core/\mbox{\hyperlink{texture_8cpp}{texture.\+cpp}}\end{DoxyCompactItemize}

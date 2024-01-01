@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_sphere" xml:lang="en-US">
+<title>xpe::render::sSphere Struct Reference</title>
+<indexterm><primary>xpe::render::sSphere</primary></indexterm>
+<para>
+<computeroutput>#include &lt;geometries.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::sSphere:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1render_1_1s_sphere.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_sphere_1a6161b35b3ad4c62dde67898f4fe668a4">sSphere</link> (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">xSegments</link>=64, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ySegments</link>=64)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1render_1_1s_sphere_1a3fc30d210bed867d8b64c75be12cf654">Center</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_sphere_1a7e1128cb020b06871a86fa8f9e2e9fa9">Radius</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_geometry">xpe::render::sGeometry</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100">ePrimitiveTopology</link> <link linkend="_structxpe_1_1render_1_1s_geometry_1a379b899d1d5cf643d32c40aff02461bc">PrimitiveTopology</link> = <link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee">ePrimitiveTopology::DEFAULT</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1render_1_1s_vertex">sVertex</link> &gt; <link linkend="_structxpe_1_1render_1_1s_geometry_1a8d830374768f5294dd56e98eb7a4dcb2">Vertices</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> &gt; <link linkend="_structxpe_1_1render_1_1s_geometry_1ac9add3011709810d7c76883a6c604a69">Indices</link></para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_sphere_1a6161b35b3ad4c62dde67898f4fe668a4"/><section>
+    <title>sSphere()</title>
+<indexterm><primary>sSphere</primary><secondary>xpe::render::sSphere</secondary></indexterm>
+<indexterm><primary>xpe::render::sSphere</primary><secondary>sSphere</secondary></indexterm>
+<para><computeroutput>xpe::render::sSphere::sSphere (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xSegments = <computeroutput>64</computeroutput>
+, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> ySegments = <computeroutput>64</computeroutput>
+)</computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_sphere_1a3fc30d210bed867d8b64c75be12cf654"/><section>
+    <title>Center</title>
+<indexterm><primary>Center</primary><secondary>xpe::render::sSphere</secondary></indexterm>
+<indexterm><primary>xpe::render::sSphere</primary><secondary>Center</secondary></indexterm>
+<para><computeroutput>glm::vec3 xpe::render::sSphere::Center</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_sphere_1a7e1128cb020b06871a86fa8f9e2e9fa9"/><section>
+    <title>Radius</title>
+<indexterm><primary>Radius</primary><secondary>xpe::render::sSphere</secondary></indexterm>
+<indexterm><primary>xpe::render::sSphere</primary><secondary>Radius</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sSphere::Radius</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following files:</para>
+engine/src/rendering/geometry/<link linkend="_geometries_8hpp">geometries.hpp</link>engine/src/rendering/geometry/<link linkend="_geometries_8cpp">geometries.cpp</link></section>
+</section>

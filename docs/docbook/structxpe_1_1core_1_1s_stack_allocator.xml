@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1core_1_1s_stack_allocator" xml:lang="en-US">
+<title>xpe::core::sStackAllocator Struct Reference</title>
+<indexterm><primary>xpe::core::sStackAllocator</primary></indexterm>
+<para>
+<computeroutput>#include &lt;allocators.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_stack_allocator_1ae8e279f0a2907c31e1befb0c690c2e90">sStackAllocator</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">size</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_stack_allocator_1a21bfc66e7907d1fe8fff15e9f8b0002c">~sStackAllocator</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1core_1_1s_stack_allocator_1abd96ad59d71860593d1f27d00ded4f48">Size</link> = 0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_stack_allocator_1ae8e279f0a2907c31e1befb0c690c2e90"/><section>
+    <title>sStackAllocator()</title>
+<indexterm><primary>sStackAllocator</primary><secondary>xpe::core::sStackAllocator</secondary></indexterm>
+<indexterm><primary>xpe::core::sStackAllocator</primary><secondary>sStackAllocator</secondary></indexterm>
+<para><computeroutput>xpe::core::sStackAllocator::sStackAllocator (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> size)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_stack_allocator_1a21bfc66e7907d1fe8fff15e9f8b0002c"/><section>
+    <title>~sStackAllocator()</title>
+<indexterm><primary>~sStackAllocator</primary><secondary>xpe::core::sStackAllocator</secondary></indexterm>
+<indexterm><primary>xpe::core::sStackAllocator</primary><secondary>~sStackAllocator</secondary></indexterm>
+<para><computeroutput>xpe::core::sStackAllocator::~sStackAllocator ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_stack_allocator_1abd96ad59d71860593d1f27d00ded4f48"/><section>
+    <title>Size</title>
+<indexterm><primary>Size</primary><secondary>xpe::core::sStackAllocator</secondary></indexterm>
+<indexterm><primary>xpe::core::sStackAllocator</primary><secondary>Size</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::core::sStackAllocator::Size = 0</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following files:</para>
+engine/src/core/<link linkend="_core_2allocators_8hpp">allocators.hpp</link>engine/src/core/<link linkend="_core_2allocators_8cpp">allocators.cpp</link></section>
+</section>

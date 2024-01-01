@@ -1,0 +1,926 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_texture" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sTexture</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_resource" prot="public" virt="non-virtual">xpe::render::sResource</basecompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_atlas" prot="public" virt="non-virtual">xpe::render::sAtlas</derivedcompoundref>
+    <includes refid="texture_8hpp" local="no">texture.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>eType</name>
+        <qualifiedname>xpe::render::sTexture::eType</qualifiedname>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a85975f3555d8eb49414ceb23f293b0e3" prot="public">
+          <name>TEXTURE_1D</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7acc301ce75e16247f3b96a3907519096c" prot="public">
+          <name>TEXTURE_2D</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a0780be97b60994fb8fee7f0d84f15e5f" prot="public">
+          <name>TEXTURE_2D_MS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a52e05a9e7056e6b657eb3fc397403433" prot="public">
+          <name>TEXTURE_2D_DEPTH_STENCIL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a0a9d553de9943da3013fb61a284c8689" prot="public">
+          <name>TEXTURE_2D_ARRAY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a197c970fd2222156ffc203ec66c64bb4" prot="public">
+          <name>TEXTURE_3D</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a2dfa8fb773797e0343322a33cd625b44" prot="public">
+          <name>TEXTURE_CUBE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac" prot="public">
+          <name>TEXTURE_DEFAULT</name>
+          <initializer>= TEXTURE_2D</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="90" column="13" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="91" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="enum" id="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2b" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>eUsage</name>
+        <qualifiedname>xpe::render::sTexture::eUsage</qualifiedname>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee" prot="public">
+          <name>DEFAULT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2bafe6f99ef1ec99efbdc19a9786cf1facc" prot="public">
+          <name>STATIC</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2ba0fcc90da4811c877ba9f9c12f7d60bc9" prot="public">
+          <name>DYNAMIC</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf" prot="public">
+          <name>STAGING</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="103" column="13" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="104" bodyend="109"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::unordered_map&lt; <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2" kindref="member">eTextureFormat</ref>, <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref> &gt;</type>
+        <definition>const std::unordered_map&lt; eTextureFormat, int &gt; xpe::render::sTexture::k_ChannelTable</definition>
+        <argsstring></argsstring>
+        <name>k_ChannelTable</name>
+        <qualifiedname>xpe::render::sTexture::k_ChannelTable</qualifiedname>
+        <initializer>=
+        {
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90" kindref="member">eTextureFormat::R8</ref>, 1 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a9a486e1a3c543c7c58e1cc8086dc4239" kindref="member">eTextureFormat::R16</ref>, 1 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419" kindref="member">eTextureFormat::R32</ref>, 1 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a0367a93b9e3e7aa2fbe9802d80298e46" kindref="member">eTextureFormat::RG8</ref>, 2 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a2b66caa416f0a28686ade3fc30ab223a" kindref="member">eTextureFormat::RG16</ref>, 2 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aa8725115efc714421823b7397f9c130c" kindref="member">eTextureFormat::RG32</ref>, 2 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a165c6379d01617e12de274a3952efa63" kindref="member">eTextureFormat::RGB8</ref>, 3 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1cd42e2af35bdfb43d791f8cecdce4a4" kindref="member">eTextureFormat::RGB16</ref>, 3 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ace70a5db6685e6d210c3f905a8fa7d4c" kindref="member">eTextureFormat::RGB32</ref>, 3 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642" kindref="member">eTextureFormat::RGBA8</ref>, 4 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a50989efe15b375dce8ba3a5714fe2543" kindref="member">eTextureFormat::RGBA16</ref>, 4 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b" kindref="member">eTextureFormat::RGBA32</ref>, 4 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3" kindref="member">eTextureFormat::SRGBA8</ref>, 4 }
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="112" column="45" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="112" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" compoundref="texture_8hpp" startline="208" endline="256">xpe::render::sAtlas::AddCell</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b" compoundref="texture_8hpp" startline="259" endline="288">xpe::render::sAtlas::RemoveCell</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7" compoundref="texture_8cpp" startline="442" endline="456">xpe::render::sTextureLayer::ResizePixelsFloat</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8" compoundref="texture_8cpp" startline="426" endline="440">xpe::render::sTextureLayer::ResizePixelsU8</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::unordered_map&lt; <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2" kindref="member">eTextureFormat</ref>, <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref> &gt;</type>
+        <definition>const std::unordered_map&lt; eTextureFormat, int &gt; xpe::render::sTexture::k_BppTable</definition>
+        <argsstring></argsstring>
+        <name>k_BppTable</name>
+        <qualifiedname>xpe::render::sTexture::k_BppTable</qualifiedname>
+        <initializer>=
+        {
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90" kindref="member">eTextureFormat::R8</ref>, 1 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a9a486e1a3c543c7c58e1cc8086dc4239" kindref="member">eTextureFormat::R16</ref>, 2 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419" kindref="member">eTextureFormat::R32</ref>, 4 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a0367a93b9e3e7aa2fbe9802d80298e46" kindref="member">eTextureFormat::RG8</ref>, 2 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a2b66caa416f0a28686ade3fc30ab223a" kindref="member">eTextureFormat::RG16</ref>, 4 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aa8725115efc714421823b7397f9c130c" kindref="member">eTextureFormat::RG32</ref>, 8 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a165c6379d01617e12de274a3952efa63" kindref="member">eTextureFormat::RGB8</ref>, 3 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1cd42e2af35bdfb43d791f8cecdce4a4" kindref="member">eTextureFormat::RGB16</ref>, 6 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ace70a5db6685e6d210c3f905a8fa7d4c" kindref="member">eTextureFormat::RGB32</ref>, 12 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642" kindref="member">eTextureFormat::RGBA8</ref>, 4 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a50989efe15b375dce8ba3a5714fe2543" kindref="member">eTextureFormat::RGBA16</ref>, 8 },
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b" kindref="member">eTextureFormat::RGBA32</ref>, 16 },
+
+                { <ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3" kindref="member">eTextureFormat::SRGBA8</ref>, 4 },
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="114" column="45" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="114" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" compoundref="texture_8hpp" startline="208" endline="256">xpe::render::sAtlas::AddCell</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1" compoundref="texture_8cpp" startline="247" endline="256">xpe::render::sTextureLayer::CopyFrom</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" compoundref="texture_8cpp" startline="82" endline="92">CreateLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" compoundref="texture_8cpp" startline="187" endline="193">Flip</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" compoundref="texture_8cpp" startline="202" endline="210">FlushLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b" compoundref="texture_8hpp" startline="259" endline="288">xpe::render::sAtlas::RemoveCell</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1ac31bce368d387d78d37db106f54cc5bf" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7" kindref="member">eType</ref></type>
+        <definition>eType xpe::render::sTexture::Type</definition>
+        <argsstring></argsstring>
+        <name>Type</name>
+        <qualifiedname>xpe::render::sTexture::Type</qualifiedname>
+        <initializer>= <ref refid="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac" kindref="member">eType::TEXTURE_DEFAULT</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="116" column="19" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="116" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1ac23d567666987a86801e12b7daefea2d" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2b" kindref="member">eUsage</ref></type>
+        <definition>eUsage xpe::render::sTexture::Usage</definition>
+        <argsstring></argsstring>
+        <name>Usage</name>
+        <qualifiedname>xpe::render::sTexture::Usage</qualifiedname>
+        <initializer>= <ref refid="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee" kindref="member">eUsage::DEFAULT</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="117" column="20" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="117" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::render::sTexture::Width</definition>
+        <argsstring></argsstring>
+        <name>Width</name>
+        <qualifiedname>xpe::render::sTexture::Width</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="119" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="119" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" compoundref="texture_8cpp" startline="82" endline="92">CreateLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" compoundref="texture_8cpp" startline="187" endline="193">Flip</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" compoundref="texture_8cpp" startline="202" endline="210">FlushLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9" compoundref="texture_8cpp" startline="195" endline="200">GenerateMips</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b" compoundref="texture_8cpp" startline="121" endline="127">Resize</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a5d2b4723da07e042cc5d2d9807820fc8" compoundref="texture_8cpp" startline="129" endline="173">ResizePixels</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::render::sTexture::Height</definition>
+        <argsstring></argsstring>
+        <name>Height</name>
+        <qualifiedname>xpe::render::sTexture::Height</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="120" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="120" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" compoundref="texture_8cpp" startline="82" endline="92">CreateLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" compoundref="texture_8cpp" startline="187" endline="193">Flip</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" compoundref="texture_8cpp" startline="202" endline="210">FlushLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9" compoundref="texture_8cpp" startline="195" endline="200">GenerateMips</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b" compoundref="texture_8cpp" startline="121" endline="127">Resize</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a5d2b4723da07e042cc5d2d9807820fc8" compoundref="texture_8cpp" startline="129" endline="173">ResizePixels</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a981813f57d7d1d49d1c8bd3f142c9a96" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::render::sTexture::Depth</definition>
+        <argsstring></argsstring>
+        <name>Depth</name>
+        <qualifiedname>xpe::render::sTexture::Depth</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="121" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a10628a7ab9042a9df51147bf76b38c81" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::render::sTexture::Channels</definition>
+        <argsstring></argsstring>
+        <name>Channels</name>
+        <qualifiedname>xpe::render::sTexture::Channels</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="122" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="122" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" compoundref="texture_8hpp" startline="208" endline="256">xpe::render::sAtlas::AddCell</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b" compoundref="texture_8hpp" startline="259" endline="288">xpe::render::sAtlas::RemoveCell</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2" kindref="member">eTextureFormat</ref></type>
+        <definition>eTextureFormat xpe::render::sTexture::Format</definition>
+        <argsstring></argsstring>
+        <name>Format</name>
+        <qualifiedname>xpe::render::sTexture::Format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="123" column="28" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="123" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" compoundref="texture_8hpp" startline="208" endline="256">xpe::render::sAtlas::AddCell</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" compoundref="texture_8cpp" startline="82" endline="92">CreateLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" compoundref="texture_8cpp" startline="187" endline="193">Flip</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" compoundref="texture_8cpp" startline="202" endline="210">FlushLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9" compoundref="texture_8cpp" startline="195" endline="200">GenerateMips</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b" compoundref="texture_8hpp" startline="259" endline="288">xpe::render::sAtlas::RemoveCell</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a5d2b4723da07e042cc5d2d9807820fc8" compoundref="texture_8cpp" startline="129" endline="173">ResizePixels</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1ac10f77c7c7b681f8c057d739e927c1fb" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sTexture::SampleCount</definition>
+        <argsstring></argsstring>
+        <name>SampleCount</name>
+        <qualifiedname>xpe::render::sTexture::SampleCount</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="124" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a39d0f942dc05ef4c535be42d8ea3d0b0" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sTexture::EnableRenderTarget</definition>
+        <argsstring></argsstring>
+        <name>EnableRenderTarget</name>
+        <qualifiedname>xpe::render::sTexture::EnableRenderTarget</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="126" column="18" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a57c79caedf5201b6ff362b15499313d0" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sTexture::Slot</definition>
+        <argsstring></argsstring>
+        <name>Slot</name>
+        <qualifiedname>xpe::render::sTexture::Slot</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="128" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="128" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a828db7ee4fc05b358bd43b60ceb69532" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sTexture::MostDetailedMip</definition>
+        <argsstring></argsstring>
+        <name>MostDetailedMip</name>
+        <qualifiedname>xpe::render::sTexture::MostDetailedMip</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="130" column="17" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1ad97d493ce4705e27f8fa3be57b23657d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sTexture::InitializeData</definition>
+        <argsstring></argsstring>
+        <name>InitializeData</name>
+        <qualifiedname>xpe::render::sTexture::InitializeData</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="132" column="18" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="132" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> &gt;</type>
+        <definition>vector&lt;sTextureLayer&gt; xpe::render::sTexture::Layers</definition>
+        <argsstring></argsstring>
+        <name>Layers</name>
+        <qualifiedname>xpe::render::sTexture::Layers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="133" column="20" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="133" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" compoundref="texture_8hpp" startline="208" endline="256">xpe::render::sAtlas::AddCell</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1a9b13fba96a509782b26f37769d067d1a" compoundref="texture_8cpp" startline="458" endline="461">xpe::render::sAtlas::AddLayer</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" compoundref="texture_8cpp" startline="187" endline="193">Flip</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" compoundref="texture_8cpp" startline="202" endline="210">FlushLayer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9" compoundref="texture_8cpp" startline="195" endline="200">GenerateMips</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1afca3ad09a60227179d3a670ccc977cde" compoundref="texture_8cpp" startline="101" endline="109">GetMipLevels</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b" compoundref="texture_8hpp" startline="259" endline="288">xpe::render::sAtlas::RemoveCell</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1a0369835873cfc25776640f320e0fad09" compoundref="texture_8cpp" startline="94" endline="99">RemoveLayerAt</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1aacf76abd32ef8b66ad73b177086bb6fd" compoundref="texture_8cpp" startline="61" endline="69">~sTexture</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_texture_1a7652eadac3f8a770b7c2ba4dcfd70f4f" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sTexture::m_Resizable</definition>
+        <argsstring></argsstring>
+        <name>m_Resizable</name>
+        <qualifiedname>xpe::render::sTexture::m_Resizable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="169" column="18" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="169" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a700b7503a37d4f407f2c57287b121a1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sTexture::sTexture</definition>
+        <argsstring>()</argsstring>
+        <name>sTexture</name>
+        <qualifiedname>xpe::render::sTexture::sTexture</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="135" column="13" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="56" bodyend="59"/>
+        <references refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4ab71ecf0b186ac1b938e15483f792b7db">xpe::render::sResource::SRV</references>
+        <references refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" compoundref="rendering_2core_2core_8hpp" startline="31">xpe::render::sResource::ViewType</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1aacf76abd32ef8b66ad73b177086bb6fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sTexture::~sTexture</definition>
+        <argsstring>()</argsstring>
+        <name>~sTexture</name>
+        <qualifiedname>xpe::render::sTexture::~sTexture</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="136" column="13" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="61" bodyend="69"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1a9f477cd7cc9f05c9544b5cd7f864f8a4" compoundref="texture_8cpp" startline="76" endline="80">Free</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">Layers</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a266c9db8925ad6755a455f20f1375e52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::render::sTexture::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="138" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="71" bodyend="74"/>
+        <references refid="namespacexpe_1_1render_1_1context_1abbf0f19b8986fbcfb44dc1319a0d929c" compoundref="rendering_2core_2context_8cpp" startline="164" endline="195">xpe::render::context::CreateTexture</references>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a9f477cd7cc9f05c9544b5cd7f864f8a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::render::sTexture::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="139" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="76" bodyend="80"/>
+        <references refid="namespacexpe_1_1render_1_1context_1ad9f56074521a5a0ab26fdaea101b6f58" compoundref="rendering_2core_2context_8cpp" startline="197" endline="236">xpe::render::context::FreeTexture</references>
+        <references refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" compoundref="input__manager_8hpp" startline="19">RemoveWindowFrameResized</references>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1aacf76abd32ef8b66ad73b177086bb6fd" compoundref="texture_8cpp" startline="61" endline="69">~sTexture</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref></type>
+        <definition>sTextureLayer xpe::render::sTexture::CreateLayer</definition>
+        <argsstring>() const</argsstring>
+        <name>CreateLayer</name>
+        <qualifiedname>xpe::render::sTexture::CreateLayer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="141" column="27" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="82" bodyend="92"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" compoundref="texture_8hpp" startline="123">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" compoundref="texture_8hpp" startline="120">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" compoundref="texture_8hpp" startline="114">k_BppTable</references>
+        <references refid="core_2allocators_8hpp_1a0b2c774a281f8d83b9add0b64bf4cff1" compoundref="core_2allocators_8hpp" startline="12">main_alloc</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21" compoundref="texture_8hpp" startline="39">xpe::render::sTextureLayer::Pixels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" compoundref="texture_8hpp" startline="119">Width</references>
+        <referencedby refid="structxpe_1_1render_1_1s_atlas_1a9b13fba96a509782b26f37769d067d1a" compoundref="texture_8cpp" startline="458" endline="461">xpe::render::sAtlas::AddLayer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a0369835873cfc25776640f320e0fad09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::RemoveLayerAt</definition>
+        <argsstring>(u32 index)</argsstring>
+        <name>RemoveLayerAt</name>
+        <qualifiedname>xpe::render::sTexture::RemoveLayerAt</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="143" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="94" bodyend="99"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">Layers</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1afca3ad09a60227179d3a670ccc977cde" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sTexture::GetMipLevels</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMipLevels</name>
+        <qualifiedname>xpe::render::sTexture::GetMipLevels</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="145" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="101" bodyend="109"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">Layers</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1af387596e9480a6ea1647b59a5cf59da2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::WindowFrameResized</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>WindowFrameResized</name>
+        <qualifiedname>xpe::render::sTexture::WindowFrameResized</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="148" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="116" bodyend="119"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b" compoundref="texture_8cpp" startline="121" endline="127">Resize</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::Resize</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>Resize</name>
+        <qualifiedname>xpe::render::sTexture::Resize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="150" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="121" bodyend="127"/>
+        <references refid="namespacexpe_1_1render_1_1context_1abbf0f19b8986fbcfb44dc1319a0d929c" compoundref="rendering_2core_2context_8cpp" startline="164" endline="195">xpe::render::context::CreateTexture</references>
+        <references refid="namespacexpe_1_1render_1_1context_1ad9f56074521a5a0ab26fdaea101b6f58" compoundref="rendering_2core_2context_8cpp" startline="197" endline="236">xpe::render::context::FreeTexture</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" compoundref="texture_8hpp" startline="120">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" compoundref="texture_8hpp" startline="119">Width</references>
+        <referencedby refid="classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984" compoundref="render__system_8cpp" startline="241" endline="257">xpe::render::cRenderSystem::WindowFrameResized</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_texture_1af387596e9480a6ea1647b59a5cf59da2" compoundref="texture_8cpp" startline="116" endline="119">WindowFrameResized</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a5d2b4723da07e042cc5d2d9807820fc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::ResizePixels</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>ResizePixels</name>
+        <qualifiedname>xpe::render::sTexture::ResizePixels</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="152" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="129" bodyend="173"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" compoundref="texture_8hpp" startline="123">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" compoundref="texture_8hpp" startline="120">Height</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a1b5c31a494189e0415d5623f8b92a419">xpe::render::R32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">xpe::render::R8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aa8725115efc714421823b7397f9c130c">xpe::render::RG32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a0367a93b9e3e7aa2fbe9802d80298e46">xpe::render::RG8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ace70a5db6685e6d210c3f905a8fa7d4c">xpe::render::RGB32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2a165c6379d01617e12de274a3952efa63">xpe::render::RGB8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b">xpe::render::RGBA32</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642">xpe::render::RGBA8</references>
+        <references refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">xpe::render::SRGBA8</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" compoundref="texture_8hpp" startline="119">Width</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::Flip</definition>
+        <argsstring>()</argsstring>
+        <name>Flip</name>
+        <qualifiedname>xpe::render::sTexture::Flip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="154" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="187" bodyend="193"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" compoundref="texture_8hpp" startline="123">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" compoundref="texture_8hpp" startline="120">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" compoundref="texture_8hpp" startline="114">k_BppTable</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">Layers</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" compoundref="texture_8hpp" startline="119">Width</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::GenerateMips</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateMips</name>
+        <qualifiedname>xpe::render::sTexture::GenerateMips</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="156" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="195" bodyend="200"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" compoundref="texture_8hpp" startline="123">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" compoundref="texture_8hpp" startline="120">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">Layers</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" compoundref="texture_8hpp" startline="119">Width</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::FlushLayer</definition>
+        <argsstring>(u32 index)</argsstring>
+        <name>FlushLayer</name>
+        <qualifiedname>xpe::render::sTexture::FlushLayer</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="158" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="202" bodyend="210"/>
+        <references refid="namespacexpe_1_1render_1_1context_1ad3910232ff154a7f62321718e26b25ef" compoundref="rendering_2core_2context_8cpp" startline="74" endline="94">xpe::render::context::CopyTexture</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" compoundref="texture_8hpp" startline="123">Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" compoundref="texture_8hpp" startline="120">Height</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" compoundref="texture_8hpp" startline="114">k_BppTable</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">Layers</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" compoundref="texture_8hpp" startline="119">Width</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a2cdf5d311c6d8c2f0f066e63a2cbb854" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::Flush</definition>
+        <argsstring>()</argsstring>
+        <name>Flush</name>
+        <qualifiedname>xpe::render::sTexture::Flush</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="160" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="212" bodyend="226"/>
+        <references refid="namespacexpe_1_1render_1_1context_1abbf0f19b8986fbcfb44dc1319a0d929c" compoundref="rendering_2core_2context_8cpp" startline="164" endline="195">xpe::render::context::CreateTexture</references>
+        <references refid="namespacexpe_1_1render_1_1context_1ad9f56074521a5a0ab26fdaea101b6f58" compoundref="rendering_2core_2context_8cpp" startline="197" endline="236">xpe::render::context::FreeTexture</references>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a5b2549ba6691480e47ea4175c584f8f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::SetResizable</definition>
+        <argsstring>(bool resizable)</argsstring>
+        <name>SetResizable</name>
+        <qualifiedname>xpe::render::sTexture::SetResizable</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>resizable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="162" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="228" bodyend="236"/>
+        <references refid="input__manager_8hpp_1a2cd1cdcbe57492f3f37f3242807b8d22" compoundref="input__manager_8hpp" startline="7">AddWindowFrameResized</references>
+        <references refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" compoundref="input__manager_8hpp" startline="19">RemoveWindowFrameResized</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1ad6d30c28e7b20bfdfb29b099a371def3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sTexture::IsResizable</definition>
+        <argsstring>() const</argsstring>
+        <name>IsResizable</name>
+        <qualifiedname>xpe::render::sTexture::IsResizable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="163" column="26" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="163" bodyend="163"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a1ac807fdbbada7bbd0c0766f33bf060e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sTexture::GetMipsLevels</definition>
+        <argsstring>(s32 width)</argsstring>
+        <name>GetMipsLevels</name>
+        <qualifiedname>xpe::render::sTexture::GetMipsLevels</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="146" column="24" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="111" bodyend="114"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a761378aed3329390aa8c5649bdde509b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::ResizeTextureU8</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>ResizeTextureU8</name>
+        <qualifiedname>xpe::render::sTexture::ResizeTextureU8</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="166" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="175" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_texture_1a48102f216f8bc38756ac074e28bb2011" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sTexture::ResizeTextureFloat</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>ResizeTextureFloat</name>
+        <qualifiedname>xpe::render::sTexture::ResizeTextureFloat</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="167" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="181" bodyend="185"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="4">
+        <label>xpe::render::sAtlas</label>
+        <link refid="structxpe_1_1render_1_1s_atlas"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/texture.hpp" line="87" column="9" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="88" bodyend="170"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_texture_1a10628a7ab9042a9df51147bf76b38c81" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Channels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>CreateLayer</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a981813f57d7d1d49d1c8bd3f142c9a96" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Depth</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>eMapType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a39d0f942dc05ef4c535be42d8ea3d0b0" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>EnableRenderTarget</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>eType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2b" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>eUsage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>eViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Flip</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a2cdf5d311c6d8c2f0f066e63a2cbb854" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Flush</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>FlushLayer</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Format</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a9f477cd7cc9f05c9544b5cd7f864f8a4" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Free</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>GenerateMips</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1afca3ad09a60227179d3a670ccc977cde" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>GetMipLevels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a1ac807fdbbada7bbd0c0766f33bf060e" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>GetMipsLevels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Height</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a266c9db8925ad6755a455f20f1375e52" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Init</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ad97d493ce4705e27f8fa3be57b23657d" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>InitializeData</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Instance</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ad6d30c28e7b20bfdfb29b099a371def3" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>IsResizable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>k_BppTable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>k_ChannelTable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Layers</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a7652eadac3f8a770b7c2ba4dcfd70f4f" prot="private" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>m_Resizable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a828db7ee4fc05b358bd43b60ceb69532" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>MostDetailedMip</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a0369835873cfc25776640f320e0fad09" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>RemoveLayerAt</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Resize</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a5d2b4723da07e042cc5d2d9807820fc8" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>ResizePixels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a48102f216f8bc38756ac074e28bb2011" prot="private" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>ResizeTextureFloat</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a761378aed3329390aa8c5649bdde509b" prot="private" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>ResizeTextureU8</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ac10f77c7c7b681f8c057d739e927c1fb" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>SampleCount</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a5b2549ba6691480e47ea4175c584f8f8" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>SetResizable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a57c79caedf5201b6ff362b15499313d0" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Slot</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a700b7503a37d4f407f2c57287b121a1d" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>sTexture</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ac31bce368d387d78d37db106f54cc5bf" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Type</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ac23d567666987a86801e12b7daefea2d" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Usage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>ViewInstance</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>ViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>Width</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1af387596e9480a6ea1647b59a5cf59da2" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>WindowFrameResized</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1aacf76abd32ef8b66ad73b177086bb6fd" prot="public" virt="non-virtual"><scope>xpe::render::sTexture</scope><name>~sTexture</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

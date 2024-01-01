@@ -1,0 +1,172 @@
+.TH "xpe::render::sDirectLightBuffer" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::sDirectLightBuffer
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <buffers\&.hpp>\fP
+.PP
+Inherits \fBxpe::render::sListBuffer< sDirectLightData >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsDirectLightBuffer\fP (\fBusize\fP \fBsize\fP=0)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::render::sListBuffer< sDirectLightData >\fP
+.in +1c
+.ti -1c
+.RI "\fBsListBuffer\fP ()=\fBdefault\fP"
+.br
+.ti -1c
+.RI "\fBsListBuffer\fP (\fBusize\fP \fBcount\fP, \fBu32\fP \fBslot\fP, \fBsBuffer::eSubType\fP \fBsubtype\fP=sBuffer::eSubType::NONE, \fBsBuffer::eViewType\fP \fBviewtype\fP=sBuffer::eViewType::SRV)"
+.br
+.ti -1c
+.RI "\fB~sListBuffer\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFlush\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFlushItem\fP (\fBu32\fP \fBindex\fP, \fBconst\fP \fBsDirectLightData\fP &\fBitem\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFlushItemAt\fP (\fBu32\fP \fBindex\fP)"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBAdd\fP (\fBArgs\fP &&\&.\&.\&. \fBargs\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBRemoveAt\fP (\fBu32\fP \fBindex\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBResize\fP (\fBconst\fP \fBusize\fP \fBcount\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBReserve\fP (\fBconst\fP \fBusize\fP \fBcount\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBRecreate\fP (\fBconst\fP \fBusize\fP \fBcount\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBClear\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEmpty\fP ()"
+.br
+.ti -1c
+.RI "\fBvector\fP< \fBsDirectLightData\fP > & \fBGetList\fP ()"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBSize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBCapacity\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsDirectLightData\fP * \fBGet\fP (\fBu32\fP \fBindex\fP)"
+.br
+.ti -1c
+.RI "\fBsDirectLightData\fP * \fBoperator[]\fP (\fBu32\fP \fBindex\fP)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::render::sBuffer\fP
+.in +1c
+.ti -1c
+.RI "\fBusize\fP \fBGetByteSize\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::core::cObject\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBoperator new\fP (\fBusize\fP \fBbyteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator delete\fP (\fBvoid\fP *\fBaddress\fP)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBxpe::render::sBuffer\fP
+.in +1c
+.ti -1c
+.RI "enum class \fBeType\fP { \fBNONE\fP, \fBVERTEX\fP, \fBINDEX\fP, \fBITEM\fP, \fBLIST\fP, \fBCONSTANT\fP = ITEM, \fBSTRUCTURED\fP = LIST }"
+.br
+.ti -1c
+.RI "enum class \fBeSubType\fP { \fBNONE\fP, \fBRAW\fP, \fBAPPEND\fP, \fBCONSUME\fP }"
+.br
+.ti -1c
+.RI "enum class \fBeUsage\fP { \fBDEFAULT\fP, \fBSTATIC\fP, \fBDYNAMIC\fP, \fBSTAGING\fP }"
+.br
+.in -1c
+
+Public Types inherited from \fBxpe::render::sResource\fP
+.in +1c
+.ti -1c
+.RI "enum class \fBeViewType\fP { \fBNONE\fP, \fBDEPTH_STENCIL\fP, \fBRENDER_TARGET\fP, \fBSRV\fP, \fBUAV\fP }"
+.br
+.ti -1c
+.RI "enum class \fBeMapType\fP { \fBREAD\fP, \fBWRITE\fP, \fBREAD_WRITE\fP, \fBWRITE_NO_OVERWRITE\fP, \fBWRITE_DISCARD\fP }"
+.br
+.in -1c
+
+Public Attributes inherited from \fBxpe::render::sBuffer\fP
+.in +1c
+.ti -1c
+.RI "\fBeType\fP \fBType\fP = \fBeType::NONE\fP"
+.br
+.ti -1c
+.RI "\fBeSubType\fP \fBSubType\fP = \fBeSubType::NONE\fP"
+.br
+.ti -1c
+.RI "\fBeUsage\fP \fBUsage\fP = \fBeUsage::DYNAMIC\fP"
+.br
+.ti -1c
+.RI "\fBusize\fP \fBStructureSize\fP = 0"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBNumElements\fP = 0"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBSlot\fP = 0"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBInitialData\fP = \fBnullptr\fP"
+.br
+.in -1c
+
+Public Attributes inherited from \fBxpe::render::sResource\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBInstance\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBViewInstance\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBeViewType\fP \fBViewType\fP = \fBeViewType::NONE\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBxpe::render::sListBuffer< sDirectLightData >\fP
+.in +1c
+.ti -1c
+.RI "\fBvector\fP< \fBsDirectLightData\fP > \fBm_List\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::render::sDirectLightBuffer::sDirectLightBuffer (\fBusize\fP size = \fR0\fP)\fR [inline]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

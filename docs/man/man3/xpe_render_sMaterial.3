@@ -1,0 +1,152 @@
+.TH "xpe::render::sMaterial" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::sMaterial
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <material\&.hpp>\fP
+.PP
+Inherits \fBxpe::render::sMaterialData\fP\&.
+.PP
+Inherited by \fBxpe::ecs::CMaterial\fP\&.
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBu32\fP \fBIndex\fP = 0"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP * \fBAlbedoMap\fP"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP * \fBNormalMap\fP"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP * \fBParallaxMap\fP"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP * \fBMetalMap\fP"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP * \fBRoughnessMap\fP"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP * \fBAOMap\fP"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP * \fBEmissionMap\fP"
+.br
+.in -1c
+
+Public Attributes inherited from \fBxpe::render::sMaterialData\fP
+.in +1c
+.ti -1c
+.RI "glm::vec4 \fBAlbedo\fP = { 0\&.5, 0\&.5, 0\&.5, 1\&.0 }"
+.br
+.ti -1c
+.RI "\fBBoolean\fP \fBEnableAlbedoMap\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBBoolean\fP \fBEnableNormalMap\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBBoolean\fP \fBEnableParallaxMap\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBParallaxHeightScale\fP = 0\&.1"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBParallaxMinLayers\fP = 8"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBParallaxMaxLayers\fP = 32"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBMetallness\fP = 0\&.5\fBf\fP"
+.br
+.ti -1c
+.RI "\fBBoolean\fP \fBEnableMetalMap\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBRoughness\fP = 0\&.5\fBf\fP"
+.br
+.ti -1c
+.RI "\fBBoolean\fP \fBEnableRoughnessMap\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBAO\fP = 0\&.5\fBf\fP"
+.br
+.ti -1c
+.RI "\fBBoolean\fP \fBEnableAOMap\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBEmission\fP = { 0, 0, 0 }"
+.br
+.ti -1c
+.RI "\fBBoolean\fP \fBEnableEmissionMap\fP = \fBfalse\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMaterialFormat\fP \fBk_AlbedoFormat\fP = {\fBeTextureFormat::SRGBA8\fP, 2048, 2048, \fBK_SLOT_ALBEDO\fP }"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMaterialFormat\fP \fBk_NormalFormat\fP = {\fBeTextureFormat::RGBA8\fP, 2048, 2048, \fBK_SLOT_BUMPING\fP }"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMaterialFormat\fP \fBk_ParallaxFormat\fP = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_PARALLAX\fP }"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMaterialFormat\fP \fBk_MetalFormat\fP = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_METALLIC\fP }"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMaterialFormat\fP \fBk_RoughnessFormat\fP = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_ROUGHNESS\fP }"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMaterialFormat\fP \fBk_AoFormat\fP = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_AO\fP }"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMaterialFormat\fP \fBk_EmissionFormat\fP = {\fBeTextureFormat::SRGBA8\fP, 2048, 2048, \fBK_SLOT_EMISSION\fP }"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsTextureLayer\fP* xpe::render::sMaterial::AlbedoMap"
+
+.SS "\fBsTextureLayer\fP* xpe::render::sMaterial::AOMap"
+
+.SS "\fBsTextureLayer\fP* xpe::render::sMaterial::EmissionMap"
+
+.SS "\fBu32\fP xpe::render::sMaterial::Index = 0"
+
+.SS "\fBconst\fP \fBsMaterialFormat\fP xpe::render::sMaterial::k_AlbedoFormat = {\fBeTextureFormat::SRGBA8\fP, 2048, 2048, \fBK_SLOT_ALBEDO\fP }\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsMaterialFormat\fP xpe::render::sMaterial::k_AoFormat = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_AO\fP }\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsMaterialFormat\fP xpe::render::sMaterial::k_EmissionFormat = {\fBeTextureFormat::SRGBA8\fP, 2048, 2048, \fBK_SLOT_EMISSION\fP }\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsMaterialFormat\fP xpe::render::sMaterial::k_MetalFormat = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_METALLIC\fP }\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsMaterialFormat\fP xpe::render::sMaterial::k_NormalFormat = {\fBeTextureFormat::RGBA8\fP, 2048, 2048, \fBK_SLOT_BUMPING\fP }\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsMaterialFormat\fP xpe::render::sMaterial::k_ParallaxFormat = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_PARALLAX\fP }\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsMaterialFormat\fP xpe::render::sMaterial::k_RoughnessFormat = {\fBeTextureFormat::R8\fP, 2048, 2048, \fBK_SLOT_ROUGHNESS\fP }\fR [static]\fP"
+
+.SS "\fBsTextureLayer\fP* xpe::render::sMaterial::MetalMap"
+
+.SS "\fBsTextureLayer\fP* xpe::render::sMaterial::NormalMap"
+
+.SS "\fBsTextureLayer\fP* xpe::render::sMaterial::ParallaxMap"
+
+.SS "\fBsTextureLayer\fP* xpe::render::sMaterial::RoughnessMap"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

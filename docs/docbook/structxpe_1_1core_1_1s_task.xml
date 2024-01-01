@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1core_1_1s_task" xml:lang="en-US">
+<title>xpe::core::sTask Struct Reference</title>
+<indexterm><primary>xpe::core::sTask</primary></indexterm>
+<para>
+<computeroutput>#include &lt;task_manager.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::core::sTask:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1core_1_1s_task.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Types    </title>
+        <itemizedlist>
+            <listitem><para>enum <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06">eType</link> : u8 { <?linebreak?><link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96">THREAD_POOL</link> = 0
+, <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae">AUDIO</link> = 1
+, <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d">NETWORK</link> = 2
+, <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b">ANIMATION</link> = 3
+, <?linebreak?><link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb">PHYSICS</link> = 4
+, <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96">DEFAULT</link> = THREAD_POOL
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_task_1a98a32f166503d07754051ffbb0de4f77">sTask</link> ()=<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">default</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_task_1a72b2582e5dc7cceb42a92214c20b438c">sTask</link> (<link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06">eType</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">type</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> std::function&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>()&gt; &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">todo</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06">eType</link> <link linkend="_structxpe_1_1core_1_1s_task_1a8b6c4d6e9f73187b6fe9594c26121b08">Type</link> = <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96">eType::DEFAULT</link></para>
+</listitem>
+            <listitem><para>std::function&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>()&gt; <link linkend="_structxpe_1_1core_1_1s_task_1ae37dc636337031739b2ea80a97c78f94">Todo</link> = [](){}</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Enumeration Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06"/><section>
+    <title>eType</title>
+<indexterm><primary>eType</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>eType</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">enum</link> <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06">xpe::core::sTask::eType</link> : <link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>THREAD_POOL</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>THREAD_POOL</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96"/>THREAD_POOL</entry><entry></entry></row><row><entry><indexterm><primary>AUDIO</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>AUDIO</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae"/>AUDIO</entry><entry></entry></row><row><entry><indexterm><primary>NETWORK</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>NETWORK</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d"/>NETWORK</entry><entry></entry></row><row><entry><indexterm><primary>ANIMATION</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>ANIMATION</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b"/>ANIMATION</entry><entry></entry></row><row><entry><indexterm><primary>PHYSICS</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>PHYSICS</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb"/>PHYSICS</entry><entry></entry></row><row><entry><indexterm><primary>DEFAULT</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>DEFAULT</secondary></indexterm>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96"/>DEFAULT</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a98a32f166503d07754051ffbb0de4f77"/><section>
+    <title>sTask()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>sTask</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>sTask</secondary></indexterm>
+<para><computeroutput>xpe::core::sTask::sTask ( )<computeroutput>[default]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a72b2582e5dc7cceb42a92214c20b438c"/><section>
+    <title>sTask()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>sTask</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>sTask</secondary></indexterm>
+<para><computeroutput>xpe::core::sTask::sTask (<link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06">eType</link> type, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> std::function&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>()&gt; &amp; todo)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1ae37dc636337031739b2ea80a97c78f94"/><section>
+    <title>Todo</title>
+<indexterm><primary>Todo</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>Todo</secondary></indexterm>
+<para><computeroutput>std::function&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>()&gt; xpe::core::sTask::Todo = [](){}</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_task_1a8b6c4d6e9f73187b6fe9594c26121b08"/><section>
+    <title>Type</title>
+<indexterm><primary>Type</primary><secondary>xpe::core::sTask</secondary></indexterm>
+<indexterm><primary>xpe::core::sTask</primary><secondary>Type</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06">eType</link> xpe::core::sTask::Type = <link linkend="_structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96">eType::DEFAULT</link></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/core/<link linkend="_task__manager_8hpp">task_manager.hpp</link></section>
+</section>

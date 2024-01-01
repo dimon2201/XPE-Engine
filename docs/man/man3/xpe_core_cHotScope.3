@@ -1,0 +1,109 @@
+.TH "xpe::core::cHotScope< T >" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cHotScope< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <smart_pointers\&.hpp>\fP
+.PP
+Inherits \fBxpe::core::cHotObject\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcHotScope\fP ()=\fBdefault\fP"
+.br
+.ti -1c
+.RI "\fB~cHotScope\fP ()"
+.br
+.ti -1c
+.RI "\fBcHotScope\fP (\fBconst\fP \fBcHotScope\fP< \fBT\fP > &\fBother\fP)=\fBdelete\fP"
+.br
+.ti -1c
+.RI "\fBcHotScope\fP (\fBcHotScope\fP< \fBT\fP > &\fBother\fP)=\fBdelete\fP"
+.br
+.ti -1c
+.RI "\fBcHotScope\fP< \fBT\fP > & \fBoperator=\fP (\fBconst\fP \fBcHotScope\fP< \fBT\fP > &\fBother\fP)=\fBdelete\fP"
+.br
+.ti -1c
+.RI "\fBcHotScope\fP< \fBT\fP > & \fBoperator=\fP (\fBcHotScope\fP< \fBT\fP > &\fBother\fP)=\fBdelete\fP"
+.br
+.ti -1c
+.RI "\fBcHotScope\fP< \fBT\fP > & \fBoperator=\fP (\fBcHotScope\fP< \fBT\fP > \fBother\fP)=\fBdelete\fP"
+.br
+.ti -1c
+.RI "\fBcHotScope\fP (\fBcHotScope\fP< \fBT\fP > &&\fBother\fP) \fBnoexcept\fP=\fBdelete\fP"
+.br
+.ti -1c
+.RI "\fBcHotScope\fP< \fBT\fP > & \fBoperator=\fP (\fBcHotScope\fP< \fBT\fP > &&\fBother\fP) \fBnoexcept\fP=\fBdelete\fP"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Args> \fBvoid\fP \fBCreate\fP (\fBArgs\fP &&\&.\&.\&. \fBargs\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBDestroy\fP ()"
+.br
+.ti -1c
+.RI "\fBT\fP * \fBGet\fP () \fBconst\fP \fBnoexcept\fP"
+.br
+.ti -1c
+.RI "\fBT\fP & \fBoperator*\fP () \fBconst\fP \fBnoexcept\fP"
+.br
+.ti -1c
+.RI "\fBT\fP * \fBoperator\->\fP () \fBconst\fP \fBnoexcept\fP"
+.br
+.ti -1c
+.RI "\fBoperator bool\fP () \fBconst\fP \fBnoexcept\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::core::cHotObject\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBoperator new\fP (\fBusize\fP \fBbyteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator delete\fP (\fBvoid\fP *\fBaddress\fP)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::cHotScope\fP< \fBT\fP >::cHotScope ()\fR [default]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::cHotScope\fP< \fBT\fP >::~\fBcHotScope\fP ()"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::cHotScope\fP< \fBT\fP >::cHotScope (\fBconst\fP \fBcHotScope\fP< \fBT\fP > & other)\fR [delete]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::cHotScope\fP< \fBT\fP >::cHotScope (\fBcHotScope\fP< \fBT\fP > & other)\fR [delete]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::cHotScope\fP< \fBT\fP >::cHotScope (\fBcHotScope\fP< \fBT\fP > && other)\fR [delete]\fP, \fR [noexcept]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > template<typename\&.\&.\&. Args> \fBvoid\fP \fBxpe::core::cHotScope\fP< \fBT\fP >::Create (\fBArgs\fP &&\&.\&.\&. args)"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBxpe::core::cHotScope\fP< \fBT\fP >::Destroy ()"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBxpe::core::cHotScope\fP< \fBT\fP >::Get () const\fR [inline]\fP, \fR [noexcept]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::cHotScope\fP< \fBT\fP >\fB::operator\fP \fBbool\fP () const\fR [inline]\fP, \fR [explicit]\fP, \fR [noexcept]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP & \fBxpe::core::cHotScope\fP< \fBT\fP >\fB::operator\fP* () const\fR [inline]\fP, \fR [noexcept]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBxpe::core::cHotScope\fP< \fBT\fP >\fB::operator\fP\-> () const\fR [inline]\fP, \fR [noexcept]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBcHotScope\fP< \fBT\fP > & \fBxpe::core::cHotScope\fP< \fBT\fP >\fB::operator\fP= (\fBcHotScope\fP< \fBT\fP > && other)\fR [delete]\fP, \fR [noexcept]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBcHotScope\fP< \fBT\fP > & \fBxpe::core::cHotScope\fP< \fBT\fP >\fB::operator\fP= (\fBcHotScope\fP< \fBT\fP > & other)\fR [delete]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBcHotScope\fP< \fBT\fP > & \fBxpe::core::cHotScope\fP< \fBT\fP >\fB::operator\fP= (\fBcHotScope\fP< \fBT\fP > other)\fR [delete]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBcHotScope\fP< \fBT\fP > & \fBxpe::core::cHotScope\fP< \fBT\fP >\fB::operator\fP= (\fBconst\fP \fBcHotScope\fP< \fBT\fP > & other)\fR [delete]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

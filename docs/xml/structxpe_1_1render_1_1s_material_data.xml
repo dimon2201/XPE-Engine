@@ -1,0 +1,275 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_material_data" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sMaterialData</compoundname>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_material" prot="public" virt="non-virtual">xpe::render::sMaterial</derivedcompoundref>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a356d0d1b5bf01b688b0ebd4d445199a4" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 xpe::render::sMaterialData::Albedo</definition>
+        <argsstring></argsstring>
+        <name>Albedo</name>
+        <qualifiedname>xpe::render::sMaterialData::Albedo</qualifiedname>
+        <initializer>= { 0.5, 0.5, 0.5, 1.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="380" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="380" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1aaf8c8c778a572fec9540dbabd6f35df4" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref></type>
+        <definition>Boolean xpe::render::sMaterialData::EnableAlbedoMap</definition>
+        <argsstring></argsstring>
+        <name>EnableAlbedoMap</name>
+        <qualifiedname>xpe::render::sMaterialData::EnableAlbedoMap</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="381" column="21" bodyfile="engine/src/rendering/buffers.hpp" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a3465dab281ef2fd290e934274903e123" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref></type>
+        <definition>Boolean xpe::render::sMaterialData::EnableNormalMap</definition>
+        <argsstring></argsstring>
+        <name>EnableNormalMap</name>
+        <qualifiedname>xpe::render::sMaterialData::EnableNormalMap</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="383" column="21" bodyfile="engine/src/rendering/buffers.hpp" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a545082e3756d7f4d8d15268b4ec44a4c" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref></type>
+        <definition>Boolean xpe::render::sMaterialData::EnableParallaxMap</definition>
+        <argsstring></argsstring>
+        <name>EnableParallaxMap</name>
+        <qualifiedname>xpe::render::sMaterialData::EnableParallaxMap</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="385" column="21" bodyfile="engine/src/rendering/buffers.hpp" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a425019f971aed63a2a18021002748c21" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sMaterialData::ParallaxHeightScale</definition>
+        <argsstring></argsstring>
+        <name>ParallaxHeightScale</name>
+        <qualifiedname>xpe::render::sMaterialData::ParallaxHeightScale</qualifiedname>
+        <initializer>= 0.1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="386" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a9d75e6621d5a7f5475c497aeeaca2aeb" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sMaterialData::ParallaxMinLayers</definition>
+        <argsstring></argsstring>
+        <name>ParallaxMinLayers</name>
+        <qualifiedname>xpe::render::sMaterialData::ParallaxMinLayers</qualifiedname>
+        <initializer>= 8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="387" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="387" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a2e9a01dc7f4b987c53b7ba275be19cf1" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sMaterialData::ParallaxMaxLayers</definition>
+        <argsstring></argsstring>
+        <name>ParallaxMaxLayers</name>
+        <qualifiedname>xpe::render::sMaterialData::ParallaxMaxLayers</qualifiedname>
+        <initializer>= 32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="388" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1acd7393b29575d2e3625be481770e95c9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sMaterialData::Metallness</definition>
+        <argsstring></argsstring>
+        <name>Metallness</name>
+        <qualifiedname>xpe::render::sMaterialData::Metallness</qualifiedname>
+        <initializer>= 0.5<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="390" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="390" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a2377f43c15e30ef9f7385a757360da04" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref></type>
+        <definition>Boolean xpe::render::sMaterialData::EnableMetalMap</definition>
+        <argsstring></argsstring>
+        <name>EnableMetalMap</name>
+        <qualifiedname>xpe::render::sMaterialData::EnableMetalMap</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="391" column="21" bodyfile="engine/src/rendering/buffers.hpp" bodystart="391" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1ad563ce12bd4a5b8942d4a66277633188" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sMaterialData::Roughness</definition>
+        <argsstring></argsstring>
+        <name>Roughness</name>
+        <qualifiedname>xpe::render::sMaterialData::Roughness</qualifiedname>
+        <initializer>= 0.5<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="393" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a1e19eb989b0e2dfb426c32e9e0694630" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref></type>
+        <definition>Boolean xpe::render::sMaterialData::EnableRoughnessMap</definition>
+        <argsstring></argsstring>
+        <name>EnableRoughnessMap</name>
+        <qualifiedname>xpe::render::sMaterialData::EnableRoughnessMap</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="394" column="21" bodyfile="engine/src/rendering/buffers.hpp" bodystart="394" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a89de4731402970568fb906af617a7898" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sMaterialData::AO</definition>
+        <argsstring></argsstring>
+        <name>AO</name>
+        <qualifiedname>xpe::render::sMaterialData::AO</qualifiedname>
+        <initializer>= 0.5<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="396" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="396" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1a765cd8e61efc02c4b545e4c071e60459" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref></type>
+        <definition>Boolean xpe::render::sMaterialData::EnableAOMap</definition>
+        <argsstring></argsstring>
+        <name>EnableAOMap</name>
+        <qualifiedname>xpe::render::sMaterialData::EnableAOMap</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="397" column="21" bodyfile="engine/src/rendering/buffers.hpp" bodystart="397" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1ab83b1ef034151bab989b3eefe3f21fef" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sMaterialData::Emission</definition>
+        <argsstring></argsstring>
+        <name>Emission</name>
+        <qualifiedname>xpe::render::sMaterialData::Emission</qualifiedname>
+        <initializer>= { 0, 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="399" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="399" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_data_1acbe069a989f658e0d8c7e75df11cbfa1" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692" kindref="member">Boolean</ref></type>
+        <definition>Boolean xpe::render::sMaterialData::EnableEmissionMap</definition>
+        <argsstring></argsstring>
+        <name>EnableEmissionMap</name>
+        <qualifiedname>xpe::render::sMaterialData::EnableEmissionMap</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="400" column="21" bodyfile="engine/src/rendering/buffers.hpp" bodystart="400" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>xpe::ecs::CMaterial</label>
+        <link refid="structxpe_1_1ecs_1_1_c_material"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sMaterial</label>
+        <link refid="structxpe_1_1render_1_1s_material"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sMaterialData</label>
+        <link refid="structxpe_1_1render_1_1s_material_data"/>
+      </node>
+    </inheritancegraph>
+    <location file="engine/src/rendering/buffers.hpp" line="377" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="378" bodyend="401"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a356d0d1b5bf01b688b0ebd4d445199a4" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>Albedo</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a89de4731402970568fb906af617a7898" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>AO</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1ab83b1ef034151bab989b3eefe3f21fef" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>Emission</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1aaf8c8c778a572fec9540dbabd6f35df4" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>EnableAlbedoMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a765cd8e61efc02c4b545e4c071e60459" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>EnableAOMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1acbe069a989f658e0d8c7e75df11cbfa1" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>EnableEmissionMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a2377f43c15e30ef9f7385a757360da04" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>EnableMetalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a3465dab281ef2fd290e934274903e123" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>EnableNormalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a545082e3756d7f4d8d15268b4ec44a4c" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>EnableParallaxMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a1e19eb989b0e2dfb426c32e9e0694630" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>EnableRoughnessMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1acd7393b29575d2e3625be481770e95c9" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>Metallness</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a425019f971aed63a2a18021002748c21" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>ParallaxHeightScale</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a2e9a01dc7f4b987c53b7ba275be19cf1" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>ParallaxMaxLayers</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a9d75e6621d5a7f5475c497aeeaca2aeb" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>ParallaxMinLayers</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1ad563ce12bd4a5b8942d4a66277633188" prot="public" virt="non-virtual"><scope>xpe::render::sMaterialData</scope><name>Roughness</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,378 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="core_2allocators_8hpp" kind="file" language="C++">
+    <compoundname>allocators.hpp</compoundname>
+    <includedby refid="core_2allocators_8cpp" local="no">engine/src/core/allocators.cpp</includedby>
+    <includedby refid="pch_8hpp" local="no">engine/src/pch.hpp</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>engine/src/core/allocators.cpp</label>
+        <link refid="core_2allocators_8cpp"/>
+      </node>
+      <node id="1">
+        <label>engine/src/core/allocators.hpp</label>
+        <link refid="core_2allocators_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>engine/src/pch.hpp</label>
+        <link refid="pch_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classxpe_1_1core_1_1c_hot_allocator" prot="public">xpe::core::cHotAllocator</innerclass>
+    <innerclass refid="classxpe_1_1core_1_1c_main_allocator" prot="public">xpe::core::cMainAllocator</innerclass>
+    <innerclass refid="classxpe_1_1core_1_1c_memory_stack_manager" prot="public">xpe::core::cMemoryStackManager</innerclass>
+    <innerclass refid="structxpe_1_1core_1_1s_stack_allocator" prot="public">xpe::core::sStackAllocator</innerclass>
+    <innerclass refid="structxpe_1_1core_1_1s_stack_typed_allocator" prot="public">xpe::core::sStackTypedAllocator</innerclass>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1core">xpe::core</innernamespace>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="core_2allocators_8hpp_1a907c182cb7f92ee2064968fda57d6656" prot="public" static="no">
+        <name>hot_alloc</name>
+        <param><defname>size</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a876715269b6bd8bd6b0f333836d7c229" kindref="member">xpe::core::cMemoryManager::HotPools</ref>-&gt;Allocate(size)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="3" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1ab1b790797d76f5cdbf0071e7c6bd1f4f" prot="public" static="no">
+        <name>hot_allocT</name>
+        <param><defname>T</defname></param>
+        <param><defname>count</defname></param>
+        <initializer>static_cast&lt;T*&gt;(<ref refid="core_2allocators_8hpp_1a907c182cb7f92ee2064968fda57d6656" kindref="member">hot_alloc</ref>(sizeof(T) * count))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="4" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a2bfcf8361a911e1d5f9356cea3ea74c8" prot="public" static="no">
+        <name>hot_construct</name>
+        <param><defname>T</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a876715269b6bd8bd6b0f333836d7c229" kindref="member">xpe::core::cMemoryManager::HotPools</ref>-&gt;AllocateConstruct&lt;T&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="5" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1ac67ca42f522dd054da17196865395fc2" prot="public" static="no">
+        <name>hot_construct_args</name>
+        <param><defname>T</defname></param>
+        <param><defname>...</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a876715269b6bd8bd6b0f333836d7c229" kindref="member">xpe::core::cMemoryManager::HotPools</ref>-&gt;AllocateConstructArgs&lt;T&gt;(__VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="6" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a787bfb5b87d8abdec2e3c38601cf4a31" prot="public" static="no">
+        <name>hot_free</name>
+        <param><defname>addr</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a876715269b6bd8bd6b0f333836d7c229" kindref="member">xpe::core::cMemoryManager::HotPools</ref>-&gt;Free(addr)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="7" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a375348b94c144f7dd96baac0e308ef4e" prot="public" static="no">
+        <name>hot_destruct</name>
+        <param><defname>T</defname></param>
+        <param><defname>addr</defname></param>
+        <initializer>addr-&gt;~T();                \
+<ref refid="core_2allocators_8hpp_1a787bfb5b87d8abdec2e3c38601cf4a31" kindref="member">hot_free</ref>(addr)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="8" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="8" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a0b2c774a281f8d83b9add0b64bf4cff1" prot="public" static="no">
+        <name>main_alloc</name>
+        <param><defname>size</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a936d86a0072701410f49106edf16abba" kindref="member">xpe::core::cMemoryManager::MainPools</ref>-&gt;Allocate(size)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="12" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a302f380460dc88796d2decc19478bf62" prot="public" static="no">
+        <name>main_allocT</name>
+        <param><defname>T</defname></param>
+        <param><defname>count</defname></param>
+        <initializer>static_cast&lt;T*&gt;(<ref refid="core_2allocators_8hpp_1a0b2c774a281f8d83b9add0b64bf4cff1" kindref="member">main_alloc</ref>(sizeof(T) * count))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="13" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1ad15daf8841b5c2684e797833d6d948ec" prot="public" static="no">
+        <name>main_construct</name>
+        <param><defname>T</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a936d86a0072701410f49106edf16abba" kindref="member">xpe::core::cMemoryManager::MainPools</ref>-&gt;AllocateConstruct&lt;T&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="14" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1af6f8111492d698bb692248ef013f538a" prot="public" static="no">
+        <name>main_construct_args</name>
+        <param><defname>T</defname></param>
+        <param><defname>...</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a936d86a0072701410f49106edf16abba" kindref="member">xpe::core::cMemoryManager::MainPools</ref>-&gt;AllocateConstructArgs&lt;T&gt;(__VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="15" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc" prot="public" static="no">
+        <name>main_free</name>
+        <param><defname>addr</defname></param>
+        <initializer><ref refid="classxpe_1_1core_1_1c_memory_manager_1a936d86a0072701410f49106edf16abba" kindref="member">xpe::core::cMemoryManager::MainPools</ref>-&gt;Free(addr)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="16" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a1141b5be50573f8004090ec0346d4cec" prot="public" static="no">
+        <name>main_destruct</name>
+        <param><defname>T</defname></param>
+        <param><defname>addr</defname></param>
+        <initializer>addr-&gt;~T();               \
+<ref refid="core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc" kindref="member">main_free</ref>(addr)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="17" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1a8cf9fa12fa5eb5f94831f79c7bc47caf" prot="public" static="no">
+        <name>salloc</name>
+        <param><defname>size</defname></param>
+        <initializer>alloca(size)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="35" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1aec82d3215267096f8c99bd3378cba794" prot="public" static="no">
+        <name>sallocT</name>
+        <param><defname>T</defname></param>
+        <param><defname>count</defname></param>
+        <initializer>static_cast&lt;T*&gt;(alloca(sizeof(T) * count))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="36" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="core_2allocators_8hpp_1abdfa33f12655d0a8f26a1fb077ee2f0a" prot="public" static="no">
+        <name>LogStackMemory</name>
+        <param></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="38" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="core_2allocators_8hpp_1a907c182cb7f92ee2064968fda57d6656" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>hot_alloc(size)<sp/>xpe::core::cMemoryManager::HotPools-&gt;Allocate(size)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="core_2allocators_8hpp_1ab1b790797d76f5cdbf0071e7c6bd1f4f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>hot_allocT(T,<sp/>count)<sp/>static_cast&lt;T*&gt;(hot_alloc(sizeof(T)<sp/>*<sp/>count))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="core_2allocators_8hpp_1a2bfcf8361a911e1d5f9356cea3ea74c8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>hot_construct(T)<sp/>xpe::core::cMemoryManager::HotPools-&gt;AllocateConstruct&lt;T&gt;()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="core_2allocators_8hpp_1ac67ca42f522dd054da17196865395fc2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>hot_construct_args(T,<sp/>...)<sp/>xpe::core::cMemoryManager::HotPools-&gt;AllocateConstructArgs&lt;T&gt;(__VA_ARGS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="core_2allocators_8hpp_1a787bfb5b87d8abdec2e3c38601cf4a31" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>hot_free(addr)<sp/>xpe::core::cMemoryManager::HotPools-&gt;Free(addr)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="core_2allocators_8hpp_1a375348b94c144f7dd96baac0e308ef4e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>hot_destruct(T,<sp/>addr)<sp/>\</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor">addr-&gt;~T();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor">hot_free(addr)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="core_2allocators_8hpp_1a0b2c774a281f8d83b9add0b64bf4cff1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>main_alloc(size)<sp/>xpe::core::cMemoryManager::MainPools-&gt;Allocate(size)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="core_2allocators_8hpp_1a302f380460dc88796d2decc19478bf62" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>main_allocT(T,<sp/>count)<sp/>static_cast&lt;T*&gt;(main_alloc(sizeof(T)<sp/>*<sp/>count))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="core_2allocators_8hpp_1ad15daf8841b5c2684e797833d6d948ec" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>main_construct(T)<sp/>xpe::core::cMemoryManager::MainPools-&gt;AllocateConstruct&lt;T&gt;()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="core_2allocators_8hpp_1af6f8111492d698bb692248ef013f538a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>main_construct_args(T,<sp/>...)<sp/>xpe::core::cMemoryManager::MainPools-&gt;AllocateConstructArgs&lt;T&gt;(__VA_ARGS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>main_free(addr)<sp/>xpe::core::cMemoryManager::MainPools-&gt;Free(addr)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="core_2allocators_8hpp_1a1141b5be50573f8004090ec0346d4cec" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>main_destruct(T,<sp/>addr)<sp/>\</highlight></codeline>
+<codeline lineno="18"><highlight class="preprocessor">addr-&gt;~T();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor">main_free(addr)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TOKENPASTE(x,<sp/>y)<sp/>x<sp/>##<sp/>y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TOKENPASTE2(x,<sp/>y)<sp/>TOKENPASTE(x,<sp/>y)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STACK(size)<sp/>xpe::core::sStackAllocator<sp/>TOKENPASTE2(s_,<sp/>__LINE__)(size)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STACKT(T,<sp/>count)<sp/>xpe::core::sStackTypedAllocator&lt;T&gt;<sp/>TOKENPASTE2(s_,<sp/>__LINE__)(count)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>salloc(size)<sp/>alloca(size);<sp/>STACK(size)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>sallocT(T,<sp/>count)<sp/>static_cast&lt;T*&gt;(alloca(sizeof(T)<sp/>*<sp/>count));<sp/>STACKT(T,<sp/>count)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LogStackMemory()<sp/>xpe::core::cMemoryStackManager::Log()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="core_2allocators_8hpp_1a8cf9fa12fa5eb5f94831f79c7bc47caf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>salloc(size)<sp/>alloca(size)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="core_2allocators_8hpp_1aec82d3215267096f8c99bd3378cba794" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>sallocT(T,<sp/>count)<sp/>static_cast&lt;T*&gt;(alloca(sizeof(T)<sp/>*<sp/>count))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="core_2allocators_8hpp_1abdfa33f12655d0a8f26a1fb077ee2f0a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LogStackMemory()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="namespacexpe_1_1core_1ae5d0b54168ae6e02cf8c8b7d9327c96f" kindref="member">align16_malloc</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="namespacexpe_1_1core_1a10508d83f4fe37b4a622196fe785a7b5" kindref="member">align16_free</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">address</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="50" refid="classxpe_1_1core_1_1c_hot_allocator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classxpe_1_1core_1_1c_hot_allocator" kindref="compound">cHotAllocator</ref></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="54" refid="classxpe_1_1core_1_1c_hot_allocator_1ab5ecfcfe024492cddaaf83e1cf399e40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref><sp/><ref refid="classxpe_1_1core_1_1c_hot_allocator_1ab5ecfcfe024492cddaaf83e1cf399e40" kindref="member">value_type</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="classxpe_1_1core_1_1c_hot_allocator_1a56223db2c0e1b0547731616338d7127e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_hot_allocator_1a56223db2c0e1b0547731616338d7127e" kindref="member">cHotAllocator</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
+<codeline lineno="59" refid="classxpe_1_1core_1_1c_hot_allocator_1a2bb628cfee24a72086a3dab9a2e4ef6c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_hot_allocator_1a2bb628cfee24a72086a3dab9a2e4ef6c" kindref="member">cHotAllocator</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;U&gt;</ref>&amp;)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"><sp/>{}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classxpe_1_1core_1_1c_hot_allocator_1a83586b7354621fe8c38d09bdf7f715a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[[<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nodiscard</ref>]]<sp/><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>*<sp/><ref refid="classxpe_1_1core_1_1c_hot_allocator_1a83586b7354621fe8c38d09bdf7f715a2" kindref="member">allocate</ref>(std::size_t<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="core_2allocators_8hpp_1a907c182cb7f92ee2064968fda57d6656" kindref="member">hot_alloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>)<sp/>*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>));</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classxpe_1_1core_1_1c_hot_allocator_1ac22b8b9b09101333e086e1b5c4878302" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_hot_allocator_1ac22b8b9b09101333e086e1b5c4878302" kindref="member">deallocate</ref>(<ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">element</ref>,<sp/>std::size_t<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="core_2allocators_8hpp_1a787bfb5b87d8abdec2e3c38601cf4a31" kindref="member">hot_free</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">element</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
+<codeline lineno="73" refid="namespacexpe_1_1core_1a532904247c5a467c46d0af45f025fdd2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a532904247c5a467c46d0af45f025fdd2" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;T&gt;</ref>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;U&gt;</ref>&amp;)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
+<codeline lineno="76" refid="namespacexpe_1_1core_1a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa" kindref="member">operator!=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;T&gt;</ref>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;U&gt;</ref>&amp;)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="79" refid="classxpe_1_1core_1_1c_main_allocator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classxpe_1_1core_1_1c_main_allocator" kindref="compound">cMainAllocator</ref></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="83" refid="classxpe_1_1core_1_1c_main_allocator_1a855065a97a2bc149b3054b76b66d17ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref><sp/><ref refid="classxpe_1_1core_1_1c_main_allocator_1a855065a97a2bc149b3054b76b66d17ca" kindref="member">value_type</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="classxpe_1_1core_1_1c_main_allocator_1aa150d0e4f524c33c8cb2b4d1949897b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_main_allocator_1aa150d0e4f524c33c8cb2b4d1949897b8" kindref="member">cMainAllocator</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
+<codeline lineno="88" refid="classxpe_1_1core_1_1c_main_allocator_1a9224359fd1505bf67899bc4f4d6a7959" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_main_allocator_1a9224359fd1505bf67899bc4f4d6a7959" kindref="member">cMainAllocator</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;U&gt;</ref>&amp;)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"><sp/>{}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="classxpe_1_1core_1_1c_main_allocator_1afbc9b354b3cbfc82c5993edef67a3539" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[[<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nodiscard</ref>]]<sp/><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>*<sp/><ref refid="classxpe_1_1core_1_1c_main_allocator_1afbc9b354b3cbfc82c5993edef67a3539" kindref="member">allocate</ref>(std::size_t<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="core_2allocators_8hpp_1a0b2c774a281f8d83b9add0b64bf4cff1" kindref="member">main_alloc</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>)<sp/>*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>));</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="classxpe_1_1core_1_1c_main_allocator_1a682580bb1b6b9f607dc7cef8114a650c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_main_allocator_1a682580bb1b6b9f607dc7cef8114a650c" kindref="member">deallocate</ref>(<ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">element</ref>,<sp/>std::size_t<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc" kindref="member">main_free</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">element</ref>);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
+<codeline lineno="102" refid="namespacexpe_1_1core_1ad6278e712d614cc282526c661f1a384c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a532904247c5a467c46d0af45f025fdd2" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;T&gt;</ref>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;U&gt;</ref>&amp;)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
+<codeline lineno="105" refid="namespacexpe_1_1core_1a6f7897a848f4c0cbdf34467fbec365f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa" kindref="member">operator!=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;T&gt;</ref>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;U&gt;</ref>&amp;)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="classxpe_1_1core_1_1c_memory_stack_manager" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="classxpe_1_1core_1_1c_memory_stack_manager" kindref="compound">cMemoryStackManager</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="110" refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" kindref="member">TotalAllocCount</ref>;</highlight></codeline>
+<codeline lineno="111" refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" kindref="member">MemoryOccupiedBytes</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Log();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="structxpe_1_1core_1_1s_stack_allocator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1core_1_1s_stack_allocator" kindref="compound">sStackAllocator</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="117" refid="structxpe_1_1core_1_1s_stack_allocator_1abd96ad59d71860593d1f27d00ded4f48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>Size<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_stack_allocator" kindref="compound">sStackAllocator</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_stack_allocator" kindref="compound">~sStackAllocator</ref>();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="124" refid="structxpe_1_1core_1_1s_stack_typed_allocator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structxpe_1_1core_1_1s_stack_typed_allocator" kindref="compound">sStackTypedAllocator</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="126" refid="structxpe_1_1core_1_1s_stack_typed_allocator_1aed21b1e9ca7688dcec87e00bd857fbd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="structxpe_1_1core_1_1s_stack_typed_allocator_1aed21b1e9ca7688dcec87e00bd857fbd9" kindref="member">Size</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a63ca56f4ed115eee4ad13d2ff4b04ff7" kindref="member">sStackTypedAllocator</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a0bf3824fb6bb58a7b1f0c3b57e20a43b" kindref="member">~sStackTypedAllocator</ref>();</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="133" refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a63ca56f4ed115eee4ad13d2ff4b04ff7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a63ca56f4ed115eee4ad13d2ff4b04ff7" kindref="member">sStackTypedAllocator&lt;T&gt;::sStackTypedAllocator</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>)<sp/>:<sp/>Size(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">sizeof</ref>(<ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>)<sp/>*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">count</ref>)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" kindref="member">cMemoryStackManager::TotalAllocCount</ref><sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" kindref="member">cMemoryStackManager::MemoryOccupiedBytes</ref><sp/>+=<sp/><ref refid="structxpe_1_1core_1_1s_stack_typed_allocator_1aed21b1e9ca7688dcec87e00bd857fbd9" kindref="member">Size</ref>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="140" refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a0bf3824fb6bb58a7b1f0c3b57e20a43b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a0bf3824fb6bb58a7b1f0c3b57e20a43b" kindref="member">sStackTypedAllocator&lt;T&gt;::~sStackTypedAllocator</ref>()</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" kindref="member">cMemoryStackManager::TotalAllocCount</ref><sp/>-=<sp/>1;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" kindref="member">cMemoryStackManager::MemoryOccupiedBytes</ref><sp/>-=<sp/>Size;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/core/allocators.hpp"/>
+  </compounddef>
+</doxygen>

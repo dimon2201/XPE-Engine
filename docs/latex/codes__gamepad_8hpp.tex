@@ -1,0 +1,55 @@
+\doxysection{engine/src/core/codes\+\_\+gamepad.hpp File Reference}
+\hypertarget{codes__gamepad_8hpp}{}\label{codes__gamepad_8hpp}\index{engine/src/core/codes\_gamepad.hpp@{engine/src/core/codes\_gamepad.hpp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1core_1_1s_gamepad_state}{xpe\+::core\+::s\+Gamepad\+State}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26}{xpe\+::core\+::e\+Gamepad\+Button}} \+: u8 \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a3687fbfe9f2fdda2244770408fd2c681}{xpe\+::core\+::\+Pad\+\_\+A}} = 0
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26af2700249ef417eaea8cf716d48fd0827}{xpe\+::core\+::\+Pad\+\_\+B}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abb62826bf2e91316d8a790fa55f1819a}{xpe\+::core\+::\+Pad\+\_\+X}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1dac038a79602619e1a7be9e4ab872cc}{xpe\+::core\+::\+Pad\+\_\+Y}} = 3
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a41295e646d7bb68cf4a793d4ed7f106c}{xpe\+::core\+::\+Pad\+\_\+\+Left\+Bumper}} = 4
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1672427b5e0b2a9f1ce3971fce88fb89}{xpe\+::core\+::\+Pad\+\_\+\+Right\+Bumper}} = 5
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a529a8d53ddba22b06f1708c6ff8d3642}{xpe\+::core\+::\+Pad\+\_\+\+Back}} = 6
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a506f1b55538cb40fb0d742db500493e8}{xpe\+::core\+::\+Pad\+\_\+\+Start}} = 7
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1ba8ea192d4238eb4997fc9d9c61fb49}{xpe\+::core\+::\+Pad\+\_\+\+Guide}} = 8
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a9c80141c352b0620cef90f850346a543}{xpe\+::core\+::\+Pad\+\_\+\+Left\+Thumb}} = 9
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26ac793975743453b6a513539248582b14f}{xpe\+::core\+::\+Pad\+\_\+\+Right\+Thumb}} = 10
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abff713c98241f68fec0465974a3a80c5}{xpe\+::core\+::\+Pad\+\_\+\+Up}} = 11
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a4ef92a28a7310b1e33f7c7f09d34c447}{xpe\+::core\+::\+Pad\+\_\+\+Right}} = 12
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a6ea51f348ed2273d1cd7acc170cd960d}{xpe\+::core\+::\+Pad\+\_\+\+Down}} = 13
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304}{xpe\+::core\+::\+Pad\+\_\+\+Left}} = 14
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26acf06b676d433a6ab517247d238512310}{xpe\+::core\+::\+Pad\+\_\+\+Last}} = Pad\+\_\+\+Left
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a35e7e2b4be7d3b09ce6268a34db25ef4}{xpe\+::core\+::\+Pad\+\_\+\+Cross}} = A
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a504e23bce3b71286dd697aa11d27e8f2}{xpe\+::core\+::\+Pad\+\_\+\+Circle}} = B
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1bb4c477a5d06d7e7ade03b8db06c20e}{xpe\+::core\+::\+Pad\+\_\+\+Square}} = X
+, \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a39da9c46f43862115c612e9c3b99af50}{xpe\+::core\+::\+Pad\+\_\+\+Triangle}} = Y
+ \}
+\item 
+enum \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38}{xpe\+::core\+::e\+Gamepad\+Axis}} \+: u8 \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a207e9e5d2a6c7725bddb7124c0f61287}{xpe\+::core\+::\+Axis\+\_\+\+LeftX}} = 0
+, \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a8e3a412945183656647d1076980caa6e}{xpe\+::core\+::\+Axis\+\_\+\+LeftY}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38ac82c10c9d77e9ff5150ccaf740b84aaf}{xpe\+::core\+::\+Axis\+\_\+\+RightX}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a1105fdc10b81ef4d8ecc0201289b2fe1}{xpe\+::core\+::\+Axis\+\_\+\+RightY}} = 3
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a694b54f1b5afd19ed10b130526b2b2e0}{xpe\+::core\+::\+Axis\+\_\+\+Left\+Trigger}} = 4
+, \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a6fba40b7473ffd948e23323ecfa62d2b}{xpe\+::core\+::\+Axis\+\_\+\+Right\+Trigger}} = 5
+, \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38aec7b154c770e5bfb5be55cec1e787318}{xpe\+::core\+::\+Axis\+\_\+\+Last}} = Axis\+\_\+\+Right\+Trigger
+ \}
+\end{DoxyCompactItemize}

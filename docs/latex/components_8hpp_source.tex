@@ -1,0 +1,419 @@
+\doxysection{components.\+hpp}
+\hypertarget{components_8hpp_source}{}\label{components_8hpp_source}\index{engine/src/ecs/components.hpp@{engine/src/ecs/components.hpp}}
+\mbox{\hyperlink{components_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{geometries_8hpp}{rendering/geometry/geometries.hpp}}>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{material_8hpp}{rendering/material/material.hpp}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{buffers_8hpp}{rendering/buffers.hpp}}>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{font_8hpp}{rendering/font/font.hpp}}>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{widget__manager_8hpp}{rendering/widget\_manager.hpp}}>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{skeleton_8hpp}{anim/skeleton.hpp}}>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{audio_2core_2context_8hpp}{audio/core/context.hpp}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{namespace\ }physics}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }sActor;}
+\DoxyCodeLine{00018\ \ \ \ \ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{namespace\ }ecs}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }render;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }math;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }anim;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }audio;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }physics;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_space2_d}{CSpace2D}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ \_pad0\ =\ 0;\ \};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_space3_d}{CSpace3D}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ \_pad0\ =\ 0;\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_tag}{CTag}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_tag_a1fc6da1daa13691f7e1087f425dad43d}{Tag}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_tag_a8d096611e4a745ec8ecf6f19445a6c84}{CTag}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}}\ =\ \{\})\ :\ Tag(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}})\ \{\}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_tag_ae698320bc9958d09d8095ab4b9779e8b}{CTag}}(\textcolor{keywordtype}{string}\&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}})\ :\ Tag(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}})\ \{\}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_tag}{CTag}},\ Tag)}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{struct}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_transform}{CTransform}}\ :\ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_transform_a755a6da13c708d581277943f404d807e}{CTransform}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}\ =\ \{\})\ :\ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}})\ \{\}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_transform_a1898aa6ea26563d7f5047f610c01c1d0}{CTransform}}(\mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}})\ :\ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}})\ \{\}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_transform}{CTransform}},\ Position,\ Rotation,\ Scale)}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{struct}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_visible}{CVisible}}\ \{\ \textcolor{keywordtype}{bool}\ Visible\ =\ \textcolor{keyword}{true};\ \};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_visible}{CVisible}},\ Visible)}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{struct}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_opaque}{COpaque}}\ \{\ \textcolor{keywordtype}{bool}\ Opaque\ =\ \textcolor{keyword}{true};\ \};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_opaque}{COpaque}},\ Opaque)}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{struct}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_transparent}{CTransparent}}\ \{\ \textcolor{keywordtype}{bool}\ Transparent\ =\ \textcolor{keyword}{true};\ \};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_transparent}{CTransparent}},\ Transparent)}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{struct}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_has_shadow}{CHasShadow}}\ \{\ \textcolor{keywordtype}{bool}\ HasShadow\ =\ \textcolor{keyword}{true};\ \};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_has_shadow}{CHasShadow}},\ HasShadow)}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{struct}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_camera}{CCamera}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Position.z\ =\ -\/1\ is\ a\ default\ valid\ value\ for\ 2D\ orthographic\ view}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ Position.z\ >=\ 0,\ 2D\ geometry\ will\ not\ be\ shown\ on\ screen}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Position\ =\ \{\ 0,\ 0,\ -\/1\ \};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Front\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}}\ =\ \{\ 0,\ 1,\ 0\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_camera}{CCamera}},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Front,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_perspective_camera}{CPerspectiveCamera}}\ :\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_camera}{CCamera}},\ sPerspectiveMatrix}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_perspective_camera}{CPerspectiveCamera}},}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Front,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FovDegree}},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AspectRatio,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Near,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Far}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_ortho_camera}{COrthoCamera}}\ :\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_camera}{CCamera}},\ sOrthoMatrix}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_ortho_camera}{COrthoCamera}},}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Front,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{Left}},}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13}{Right}},}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Bottom}},}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Top,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Near,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Far}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_material}{CMaterial}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_material_a95dbd853a07f57cdaf65db71517dd838}{CMaterial}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}\ =\ \{\})\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}})\ \{\}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_material_a8fb991ffe5c2e3470614f7ae8d53e5bb}{CMaterial}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}})\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}})\ \{\}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_material}{CMaterial}},}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Albedo,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableAlbedoMap,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableNormalMap,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableParallaxMap,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ParallaxHeightScale,}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ParallaxMinLayers,}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ParallaxMaxLayers,}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Metallness,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableMetalMap,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Roughness,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableRoughnessMap,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AO,}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableAOMap,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Emission,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableEmissionMap}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_directional_light}{CDirectionalLight}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Color\ =\ \{\ 1,\ 1,\ 1\ \};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ sOrthoMatrix\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_directional_light_a56f037a5b94b7f6f9dd32d6878f962ae}{Projection}};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sViewMatrix}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_directional_light_a6c3b073d04840e4d821e51b9dbead311}{View}};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_directional_light_a82cfc9b6f03b63acee7bedbb5dca4cab}{CDirectionalLight}}(\textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}},\ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}})}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Left\ =\ -\/20.0f;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Right\ =\ 20.0f;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Bottom\ =\ -\/20.0f;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Top\ =\ 20.0f;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Near\ =\ 0;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Far\ =\ 100.0f;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.Front\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.Up\ =\ \{\ 0,\ 1,\ 0\ \};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_directional_light}{CDirectionalLight}},}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color,}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection,}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_point_light}{CPointLight}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_point_light_data}{sPointLightData}}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_point_light_ad581a96c9c776b98662b0791ac71b3cc}{CPointLight}}(\textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}},\ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}})}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_point_light}{CPointLight}},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Constant,}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Linear,}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quadratic}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light}{CSpotLight}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_adc0776043d96c9bac2f850c05858dafc}{Color}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Cutoff\ =\ 0.90f;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Outer\ =\ 0.95f;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ sPerspectiveMatrix\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_a626daf30106c9465387b8af3a664e567}{Projection}};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sViewMatrix}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_aeaf5b7b578677a2725c3a6281cd6fb5c}{View}};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_spot_light_ae86b3c11bf59b956328bd837cea9d226}{CSpotLight}}(}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}\ =\ \{\ 0,\ 0,\ 0\ \},}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{direction}}\ =\ \{\ 0,\ 0,\ 0\ \},}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}}\ =\ \{\ 1,\ 1,\ 1\ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ =\ color;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.FovDegree\ =\ 90.0f;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.AspectRatio\ =\ 1.0;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Near\ =\ 0.1f;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection.Far\ =\ 75.0f;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.Position\ =\ position;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.Front\ =\ direction;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.Up\ =\ \{\ 0,\ 1,\ 0\ \};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CSpotLight,}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color,}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Cutoff,}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Outer,}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Projection,}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_geometry}{CGeometry}}\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}},\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_geometry_a51b4672e59cfee10ff196057b539da9c}{CGeometry}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}}\ =\ \{\})\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}})\ \{\}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_geometry_a128ea7d60ae88400525f8b43ff7f41e2}{CGeometry}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}\&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}})\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}})\ \{\}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_geometry}{CGeometry}},}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vertices,}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Indices}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_geometry_info}{CGeometryInfo}}\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_geometry_info_a29a10cfbc2c18bc2312c7f574cb59704}{CGeometryInfo}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}}\ =\ \{\})\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}})\ \{\}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_geometry_info_acd4029841bf61d3b9d8d89d42564631c}{CGeometryInfo}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}})\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}})\ \{\}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton}{CSkeleton}}\ :\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton}{sSkeleton}},\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton_a6592ccd811776bb20afbf78bcb68402e}{CSkeleton}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton}{sSkeleton}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeleton}}\ =\ \{\})\ :\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton}{sSkeleton}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeleton}})\ \{\}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton_a80ee1cc83c2f9bc1d3ad8177e7739a98}{CSkeleton}}(\mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton}{sSkeleton}}\&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeleton}})\ :\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton}{sSkeleton}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeleton}})\ \{\}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton}{CSkeleton}},}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bones}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton_info}{CSkeletonInfo}}\ :\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton_info}{sSkeletonInfo}}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton_info_a275affc9e51133482b936bc8676bc98d}{CSkeletonInfo}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton_info}{sSkeletonInfo}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeletonInfo}}\ =\ \{\})\ :\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton_info}{sSkeletonInfo}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeletonInfo}})\ \{\}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton_info_a775a0b6610d0376baa8b3544b60a29cf}{CSkeletonInfo}}(\mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton_info}{sSkeletonInfo}}\&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeletonInfo}})\ :\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton_info}{sSkeletonInfo}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{skeletonInfo}})\ \{\}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_animation}{CAnimation}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<cEntity*>}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_animation_a7f74abc57855a4b98d18b170e45c97a2}{Entities}};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton}{sSkeleton}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_animation_a47629036817c96c29d37e6c6cb864dfe}{Skeleton}};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sAnimation>}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_animation_a925c4a36ffbf78d9a4ebf5e09ad5c9ac}{Animations}};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_animation}{CAnimation}},}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Animations}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sAudioSource}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio_ac795c0f07ef28fd3d584a7615dffc799}{Source}};}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ State\ =\ eAudioState::INITIAL;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ BufferID\ =\ 0;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{sAudioFile}}*\ File\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}},}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Source,}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ State,}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BufferID}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sAudioSource}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio_ac6b47e6e7811c19793e9e6d5112ce70d}{Source}};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ State\ =\ eAudioState::INITIAL;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ NumBuffers\ =\ 4;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ BufferSamples\ =\ 8192;}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ CurrentFrame\ =\ 0;}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio_a081b9c60a293748f9ac1be21e16e9a6f}{BufferID}};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<s16>}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio_a4bd3baee265a051d922a7d34b0796dcc}{Data}};}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{sAudioFile}}*\ File\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}},}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Source,}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ State,}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NumBuffers,}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BufferSamples,}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CurrentFrame,}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BufferID}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_voice}{CVoice}}\ :\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ SourceID\ =\ 0;}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ State\ =\ eAudioState::INITIAL;}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_voice_a6a9d74acc1b9082997097c759faa3737}{BufferID}};}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<s16>}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_voice_aac24704a94abcaa8c5d525fe5be1e106}{Data}};}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_voice}{CVoice}},}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SourceID,}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ State,}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BufferID,}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Data}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_physics_actor}{CPhysicsActor}}\ :\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{physics::sActor}},\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_physics_actor_a066c2ca35c9cccc19ad62649b15690e7}{CPhysicsActor}}(\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{physics::sActor}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}})}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Actor\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>Actor;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Material\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>Material;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Shape\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>Shape;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ActorType\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>ActorType;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ShapeDesc\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>ShapeDesc;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LinearVelocity\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>LinearVelocity;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StaticFriction\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>StaticFriction;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DynamicFriction\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>DynamicFriction;}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Restitution\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>Restitution;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ContactOffset\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>ContactOffset;}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestOffset\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}-\/>RestOffset;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\_CLASS}}(}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_physics_actor}{CPhysicsActor}},}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ActorType,}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ShapeDesc,}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LinearVelocity,}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StaticFriction,}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DynamicFriction,}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Restitution,}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ContactOffset,}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestOffset}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_label}{CLabel}}\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_widget}{sWidget}}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}*\ Font\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_label_a240f32cce6c7b6bf389cf2d114596655}{Text}};}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec4\ Color\ =\ \{\ 1,\ 1,\ 1,\ 1\ \};}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ FillFrame\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_label_a66835f5f6ebf9287448e889182bde332}{CLabel}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{text}}\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}}\ =\ \{\ 1,\ 1,\ 1,\ 1\ \})}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ :\ Font(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}}),\ Text(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{text}}),\ Color(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}})\ \{\}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{xml_8hpp_ab801abf6dc0e0e41c642369747db984b}{XML\_CLASS}}(}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Label"{}},}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Text,}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color,}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FillFrame}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_container}{CContainer}}\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_widget}{sWidget}}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_button}{CButton}}\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_widget}{sWidget}}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}\ (*fHovered)();}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}\ (*fPressed)();}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec4\ Color\ =\ \{\ 1,\ 1,\ 1,\ 1\ \};}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec4\ ColorHover\ =\ \{\ 0.5,\ 0.5,\ 0.5,\ 1.0\ \};}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec4\ ColorPressed\ =\ \{\ 0.25,\ 0.25,\ 0.25,\ 1.0\ \};}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableTexture\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_atlas_1_1s_location}{sAtlas::sLocation}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_button_acd0bfbb88e572d061c06d5575df36b29}{AtlasLocation}};}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnablePress\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62}{eMouse}}\ MousePressed\ =\ eMouse::ButtonLeft;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ FillFrame\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ fHovered\ Hovered\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ fPressed\ Pressed\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{xml_8hpp_ab801abf6dc0e0e41c642369747db984b}{XML\_CLASS}}(}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Button"{}},}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color,}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColorHover,}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColorPressed,}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableTexture,}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MousePressed,}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FillFrame}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_field}{CField}}\ :\ \mbox{\hyperlink{structxpe_1_1render_1_1s_widget}{sWidget}}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}*\ Font\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_field_a6498cd7cdec54fd66e2a9900c3ffbf27}{Text}};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec4\ Color\ =\ \{\ 1,\ 1,\ 1,\ 1\ \};}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ FillFrame\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_field_ab133166c0738d5b84e146503ac360039}{CField}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{text}}\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}}\ =\ \{\ 1,\ 1,\ 1,\ 1\ \})}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ :\ Font(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}}),\ Text(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{text}}),\ Color(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}})\ \{\}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{xml_8hpp_ab801abf6dc0e0e41c642369747db984b}{XML\_CLASS}}(}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Field"{}},}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Text,}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color,}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FillFrame}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_codes__mouse_8hpp" xml:lang="en-US">
+<title>engine/src/core/codes_mouse.hpp File Reference</title>
+<indexterm><primary>engine/src/core/codes_mouse.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_mouse_state">xpe::core::sMouseState</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62">xpe::core::eMouse</link> : u8 { <?linebreak?><link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a6f9117080d9a04b8cc36cb06dc84dc1c">xpe::core::NoneButton</link> = 16
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62ac90e9e64b2f96ed3e7243caaaef0d4c8">xpe::core::Button0</link> = 0
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a40ed92f1ee1d3aba975f394704633ae5">xpe::core::Button1</link> = 1
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a856295141a850ad2143d777f097998b2">xpe::core::Button2</link> = 2
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62abc7970d854230f9771885d2531af9971">xpe::core::Button3</link> = 3
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62aef4d4fe8182f928003d378b944ef23b3">xpe::core::Button4</link> = 4
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a55e3d7a0f61f12241cd12f7392823043">xpe::core::Button5</link> = 5
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a2fd9a7ed46e2f9d21126d4ccc061f8a2">xpe::core::Button6</link> = 6
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a89d460cc6d8f79fa6467b70a1f60b5e5">xpe::core::Button7</link> = 7
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a5ba4e717224da4e5800953546a70c6f5">xpe::core::ButtonLast</link> = Button7
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a40e3123019d5c14ebb2698c04dcc3a22">xpe::core::ButtonLeft</link> = Button0
+, <link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a2fe4e37aa9d2f65a0d02267a177384c1">xpe::core::ButtonRight</link> = Button1
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1a2b9db99325643f54e77f1b26c03dfa62a2628d67c9a478732d27e45b06eaf8889">xpe::core::ButtonMiddle</link> = Button2
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

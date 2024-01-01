@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="hardware__manager_8hpp" kind="file" language="C++">
+    <compoundname>hardware_manager.hpp</compoundname>
+    <includedby refid="pch_8hpp" local="no">engine/src/pch.hpp</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>engine/src/core/hardware_manager.hpp</label>
+        <link refid="hardware__manager_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>engine/src/pch.hpp</label>
+        <link refid="pch_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structxpe_1_1core_1_1s_memory_stats" prot="public">xpe::core::sMemoryStats</innerclass>
+    <innerclass refid="structxpe_1_1core_1_1s_gpu_stats" prot="public">xpe::core::sGpuStats</innerclass>
+    <innerclass refid="structxpe_1_1core_1_1s_cpu_stats" prot="public">xpe::core::sCpuStats</innerclass>
+    <innerclass refid="classxpe_1_1core_1_1c_hardware_manager" prot="public">xpe::core::cHardwareManager</innerclass>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1core">xpe::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="structxpe_1_1core_1_1s_memory_stats" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1core_1_1s_memory_stats" kindref="compound">sMemoryStats</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9" refid="structxpe_1_1core_1_1s_memory_stats_1a220f10afa301f9ed2ebf598e78569fc0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>TotalPhysical<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="10" refid="structxpe_1_1core_1_1s_memory_stats_1ae799df1ce6fe17affc3099139e9ec6d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>AvailablePhysical<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="11" refid="structxpe_1_1core_1_1s_memory_stats_1a80e87be0f062400d3a308db83878751e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>TotalPageFile<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="12" refid="structxpe_1_1core_1_1s_memory_stats_1a78e941676875753cb8e567cdd7b17e84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>AvailablePageFile<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="13" refid="structxpe_1_1core_1_1s_memory_stats_1a97dcda75a5e9bcecbbb0a93205aee4be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>TotalVirtual<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="14" refid="structxpe_1_1core_1_1s_memory_stats_1a9b521535612e7862b6986cea48f547f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>AvailableVirtual<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="15" refid="structxpe_1_1core_1_1s_memory_stats_1a35de423916b10e10457a432734e146f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/>AvailableVirtualExtended<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="structxpe_1_1core_1_1s_gpu_stats" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats" kindref="compound">sGpuStats</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20" refid="structxpe_1_1core_1_1s_gpu_stats_1a04bb8408fdad1e093683eae2053848e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1a04bb8408fdad1e093683eae2053848e4" kindref="member">MaxTexture2dArray</ref>;</highlight></codeline>
+<codeline lineno="21" refid="structxpe_1_1core_1_1s_gpu_stats_1a27aeff7eef78343e29745b1dd217e00f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1a27aeff7eef78343e29745b1dd217e00f" kindref="member">MaxAnisotropyLevel</ref>;</highlight></codeline>
+<codeline lineno="22" refid="structxpe_1_1core_1_1s_gpu_stats_1a1fbe71af53831c4b4981f753acc63452" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1a1fbe71af53831c4b4981f753acc63452" kindref="member">MaxRenderTargetsPerStage</ref>;</highlight></codeline>
+<codeline lineno="23" refid="structxpe_1_1core_1_1s_gpu_stats_1a38e0fc0f9ffd93262798bd6021b8a5d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1a38e0fc0f9ffd93262798bd6021b8a5d6" kindref="member">IsConcurrentCreatesSupported</ref>;</highlight></codeline>
+<codeline lineno="24" refid="structxpe_1_1core_1_1s_gpu_stats_1aba1dd7aa3b91675fbb7c8acac14b9875" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1aba1dd7aa3b91675fbb7c8acac14b9875" kindref="member">IsCommandListSupported</ref>;</highlight></codeline>
+<codeline lineno="25" refid="structxpe_1_1core_1_1s_gpu_stats_1af50ad45f9a3d684bc059fba31268021a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1af50ad45f9a3d684bc059fba31268021a" kindref="member">MaxThreadGroupsPerDimension</ref>;</highlight></codeline>
+<codeline lineno="26" refid="structxpe_1_1core_1_1s_gpu_stats_1afbe10a656c5503e7bee21650795bdd1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1afbe10a656c5503e7bee21650795bdd1d" kindref="member">MaxThreadsPerGroup</ref>;</highlight></codeline>
+<codeline lineno="27" refid="structxpe_1_1core_1_1s_gpu_stats_1a6ec4a8ef455d8fdfb3514e0afa696e82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::ivec3<sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1a6ec4a8ef455d8fdfb3514e0afa696e82" kindref="member">MaxThreadGroup</ref>;</highlight></codeline>
+<codeline lineno="28" refid="structxpe_1_1core_1_1s_gpu_stats_1a8dfe4eafc6df0b061554a24d6797c4a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats_1a8dfe4eafc6df0b061554a24d6797c4a4" kindref="member">MaxUnorderedAccessViews</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structxpe_1_1core_1_1s_cpu_stats" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="structxpe_1_1core_1_1s_cpu_stats" kindref="compound">sCpuStats</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33" refid="structxpe_1_1core_1_1s_cpu_stats_1aa9f742abf986cc7a944b75ba141df48a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref><sp/>Cores<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="34" refid="structxpe_1_1core_1_1s_cpu_stats_1a92593625c5c576608457355a36efa268" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref><sp/>Threads<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classxpe_1_1core_1_1c_hardware_manager" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="classxpe_1_1core_1_1c_hardware_manager" kindref="compound">cHardwareManager</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">final</ref><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="40" refid="classxpe_1_1core_1_1c_hardware_manager_1ab313ef35e5e9a83bed08fb81a53667f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1core_1_1s_memory_stats" kindref="compound">sMemoryStats</ref><sp/><ref refid="classxpe_1_1core_1_1c_hardware_manager_1ab313ef35e5e9a83bed08fb81a53667f2" kindref="member">Memory</ref>;</highlight></codeline>
+<codeline lineno="41" refid="classxpe_1_1core_1_1c_hardware_manager_1a862c8f425b7c7fb53f5598f68247fef2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1core_1_1s_cpu_stats" kindref="compound">sCpuStats</ref><sp/><ref refid="classxpe_1_1core_1_1c_hardware_manager_1a862c8f425b7c7fb53f5598f68247fef2" kindref="member">CPU</ref>;</highlight></codeline>
+<codeline lineno="42" refid="classxpe_1_1core_1_1c_hardware_manager_1ab988f1bc59fb9c997208683d9a2d1df8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1core_1_1s_gpu_stats" kindref="compound">sGpuStats</ref><sp/><ref refid="classxpe_1_1core_1_1c_hardware_manager_1ab988f1bc59fb9c997208683d9a2d1df8" kindref="member">GPU</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="classxpe_1_1core_1_1c_hardware_manager_1ace365cf2d81ec1edcd8798aa43e94fa9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_hardware_manager_1ace365cf2d81ec1edcd8798aa43e94fa9" kindref="member">UpdateMemoryStats</ref>();</highlight></codeline>
+<codeline lineno="45" refid="classxpe_1_1core_1_1c_hardware_manager_1a28e6013e329654423e5793bab22507f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_hardware_manager_1a28e6013e329654423e5793bab22507f5" kindref="member">UpdateCpuStats</ref>();</highlight></codeline>
+<codeline lineno="46" refid="classxpe_1_1core_1_1c_hardware_manager_1a26135be8d001753cbfb9622f93a12c9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1core_1_1c_hardware_manager_1a26135be8d001753cbfb9622f93a12c9f" kindref="member">UpdateGpuStats</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">device</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/core/hardware_manager.hpp"/>
+  </compounddef>
+</doxygen>

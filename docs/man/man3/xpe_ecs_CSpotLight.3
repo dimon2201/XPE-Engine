@@ -1,0 +1,68 @@
+.TH "xpe::ecs::CSpotLight" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::ecs::CSpotLight
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <components\&.hpp>\fP
+.PP
+Inherits \fBxpe::res::cJson\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCSpotLight\fP (\fBconst\fP glm::vec3 &\fBposition\fP={ 0, 0, 0 }, \fBconst\fP glm::vec3 &\fBdirection\fP={ 0, 0, 0 }, \fBconst\fP glm::vec3 &\fBcolor\fP={ 1, 1, 1 })"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::res::cJson\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBToJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBFromJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "glm::vec3 \fBColor\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBCutoff\fP = 0\&.90f"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBOuter\fP = 0\&.95\fBf\fP"
+.br
+.ti -1c
+.RI "sPerspectiveMatrix \fBProjection\fP"
+.br
+.ti -1c
+.RI "\fBsViewMatrix\fP \fBView\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::ecs::CSpotLight::CSpotLight (\fBconst\fP glm::vec3 & position = \fR{ 0, 0, 0 }\fP, \fBconst\fP glm::vec3 & direction = \fR{ 0, 0, 0 }\fP, \fBconst\fP glm::vec3 & color = \fR{ 1, 1, 1 }\fP)\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "glm::vec3 xpe::ecs::CSpotLight::Color"
+
+.SS "\fBfloat\fP xpe::ecs::CSpotLight::Cutoff = 0\&.90f"
+
+.SS "\fBfloat\fP xpe::ecs::CSpotLight::Outer = 0\&.95\fBf\fP"
+
+.SS "sPerspectiveMatrix xpe::ecs::CSpotLight::Projection"
+
+.SS "\fBsViewMatrix\fP xpe::ecs::CSpotLight::View"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

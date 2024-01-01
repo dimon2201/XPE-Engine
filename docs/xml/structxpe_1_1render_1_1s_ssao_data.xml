@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_ssao_data" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sSsaoData</compoundname>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_ssao_data_1a5e46821af1cba4520d6227758aa900a4" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+        <definition>int xpe::render::sSsaoData::DirectionCount</definition>
+        <argsstring></argsstring>
+        <name>DirectionCount</name>
+        <qualifiedname>xpe::render::sSsaoData::DirectionCount</qualifiedname>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="433" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="433" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_ssao_data_1a2c2569ec68e6392704e5382fbc42543e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+        <definition>int xpe::render::sSsaoData::SampleCount</definition>
+        <argsstring></argsstring>
+        <name>SampleCount</name>
+        <qualifiedname>xpe::render::sSsaoData::SampleCount</qualifiedname>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="434" column="17" bodyfile="engine/src/rendering/buffers.hpp" bodystart="434" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_ssao_data_1abef09de6477bc44a7c8586b94fc0a5c1" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sSsaoData::Intensity</definition>
+        <argsstring></argsstring>
+        <name>Intensity</name>
+        <qualifiedname>xpe::render::sSsaoData::Intensity</qualifiedname>
+        <initializer>= 1.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="435" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="435" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_ssao_data_1adf1724e2311294d4f3732a82646da9e9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sSsaoData::_pad0</definition>
+        <argsstring></argsstring>
+        <name>_pad0</name>
+        <qualifiedname>xpe::render::sSsaoData::_pad0</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="436" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="436" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/buffers.hpp" line="431" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="432" bodyend="437"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_ssao_data_1adf1724e2311294d4f3732a82646da9e9" prot="public" virt="non-virtual"><scope>xpe::render::sSsaoData</scope><name>_pad0</name></member>
+      <member refid="structxpe_1_1render_1_1s_ssao_data_1a5e46821af1cba4520d6227758aa900a4" prot="public" virt="non-virtual"><scope>xpe::render::sSsaoData</scope><name>DirectionCount</name></member>
+      <member refid="structxpe_1_1render_1_1s_ssao_data_1abef09de6477bc44a7c8586b94fc0a5c1" prot="public" virt="non-virtual"><scope>xpe::render::sSsaoData</scope><name>Intensity</name></member>
+      <member refid="structxpe_1_1render_1_1s_ssao_data_1a2c2569ec68e6392704e5382fbc42543e" prot="public" virt="non-virtual"><scope>xpe::render::sSsaoData</scope><name>SampleCount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

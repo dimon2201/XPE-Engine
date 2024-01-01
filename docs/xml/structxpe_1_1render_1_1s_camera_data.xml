@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_camera_data" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sCameraData</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_camera_data_1a6545a53760842893edeae2a6d35df7e9" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sCameraData::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>xpe::render::sCameraData::Position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="305" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="305" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_ortho_camera_1a03d4d16733c86e076d05d0b548ab05aa" compoundref="camera_8cpp" startline="223" endline="242">xpe::render::cOrthoCamera::Flush</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_camera_data_1ac6494fc93e115518102a27844a5b1656" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sCameraData::_pad0</definition>
+        <argsstring></argsstring>
+        <name>_pad0</name>
+        <qualifiedname>xpe::render::sCameraData::_pad0</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="306" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="306" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_camera_data_1a5aac4ac1e531d6962e12165f74d4c6fe" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::render::sCameraData::View</definition>
+        <argsstring></argsstring>
+        <name>View</name>
+        <qualifiedname>xpe::render::sCameraData::View</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="307" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="307" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1a58279b3cb239ca16a76b8d04eacb93cc" compoundref="camera__manager_8cpp" startline="21" endline="24">xpe::render::cCameraManager::GetViewProjection</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_camera_data_1a191d0f1815561855dcf294c8ce3cbe7d" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::render::sCameraData::Projection</definition>
+        <argsstring></argsstring>
+        <name>Projection</name>
+        <qualifiedname>xpe::render::sCameraData::Projection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="308" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="308" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1a58279b3cb239ca16a76b8d04eacb93cc" compoundref="camera__manager_8cpp" startline="21" endline="24">xpe::render::cCameraManager::GetViewProjection</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_camera_data_1a17efea803d511e108323cdb9b372a342" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref></type>
+        <definition>sViewport xpe::render::sCameraData::Viewport</definition>
+        <argsstring></argsstring>
+        <name>Viewport</name>
+        <qualifiedname>xpe::render::sCameraData::Viewport</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="309" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="309" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1abe3b469b340e88d3b463a76164e5f308" compoundref="camera__manager_8cpp" startline="69" endline="72">xpe::render::cCameraManager::GetViewport</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1a9c0c4c39c990785bf9a1872668e034d4" compoundref="camera__manager_8cpp" startline="63" endline="67">xpe::render::cCameraManager::SetViewport</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_camera_data_1a7ab3a9ff57ec3d6f686ba1bfe816277c" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sCameraData::Exposure</definition>
+        <argsstring></argsstring>
+        <name>Exposure</name>
+        <qualifiedname>xpe::render::sCameraData::Exposure</qualifiedname>
+        <initializer>= 1.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="310" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="310" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1a3932ce0796389e9a760bd4066a649fee" compoundref="camera__manager_8cpp" startline="53" endline="56">xpe::render::cCameraManager::GetExposure</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1aba0502682c716b06e9b0b8e69bb18878" compoundref="camera__manager_8cpp" startline="41" endline="45">xpe::render::cCameraManager::SetExposure</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_camera_data_1ade38368e722be3cc96e24e4edd26ef8a" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sCameraData::Gamma</definition>
+        <argsstring></argsstring>
+        <name>Gamma</name>
+        <qualifiedname>xpe::render::sCameraData::Gamma</qualifiedname>
+        <initializer>= 2.2<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="311" column="19" bodyfile="engine/src/rendering/buffers.hpp" bodystart="311" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1a97831d722e6440122a5066e774c0e074" compoundref="camera__manager_8cpp" startline="58" endline="61">xpe::render::cCameraManager::GetGamma</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_camera_manager_1ac36b65d33a2ff4f2624492b3733fab11" compoundref="camera__manager_8cpp" startline="47" endline="51">xpe::render::cCameraManager::SetGamma</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sCameraData</label>
+        <link refid="structxpe_1_1render_1_1s_camera_data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sCameraData</label>
+        <link refid="structxpe_1_1render_1_1s_camera_data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>Viewport</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sViewport</label>
+        <link refid="structxpe_1_1render_1_1s_viewport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/buffers.hpp" line="303" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="304" bodyend="312"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_camera_data_1ac6494fc93e115518102a27844a5b1656" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>_pad0</name></member>
+      <member refid="structxpe_1_1render_1_1s_camera_data_1a7ab3a9ff57ec3d6f686ba1bfe816277c" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>Exposure</name></member>
+      <member refid="structxpe_1_1render_1_1s_camera_data_1ade38368e722be3cc96e24e4edd26ef8a" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>Gamma</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_camera_data_1a6545a53760842893edeae2a6d35df7e9" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>Position</name></member>
+      <member refid="structxpe_1_1render_1_1s_camera_data_1a191d0f1815561855dcf294c8ce3cbe7d" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>Projection</name></member>
+      <member refid="structxpe_1_1render_1_1s_camera_data_1a5aac4ac1e531d6962e12165f74d4c6fe" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>View</name></member>
+      <member refid="structxpe_1_1render_1_1s_camera_data_1a17efea803d511e108323cdb9b372a342" prot="public" virt="non-virtual"><scope>xpe::render::sCameraData</scope><name>Viewport</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

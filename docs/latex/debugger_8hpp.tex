@@ -1,0 +1,128 @@
+\doxysection{engine/src/rendering/core/debugger.hpp File Reference}
+\hypertarget{debugger_8hpp}{}\label{debugger_8hpp}\index{engine/src/rendering/core/debugger.hpp@{engine/src/rendering/core/debugger.hpp}}
+{\ttfamily \#include $<$rendering/core/context.\+hpp$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1render_1_1s_debug_message}{xpe\+::render\+::s\+Debug\+Message}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1render_1_1c_debug_manager}{xpe\+::render\+::c\+Debug\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1render}{xpe\+::render}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1render_1_1context}{xpe\+::render\+::context}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{debugger_8hpp_ac639555d3bbdf4ac2cc95a40d554f7b8}{Init\+Debugger}}()
+\item 
+\#define \mbox{\hyperlink{debugger_8hpp_acda8e82695fc6c58c8c7683100c61161}{Free\+Debugger}}()
+\item 
+\#define \mbox{\hyperlink{debugger_8hpp_affa90f0de63d2e223139bbb142bd27b3}{Log\+Debug\+Messages}}()
+\item 
+\#define \mbox{\hyperlink{debugger_8hpp_a5f403f0aee315d8d70d6567a40ee940b}{Log\+Debug\+Message}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typedef}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacexpe_1_1render_a08b01940bf881fe6bd2e55ed87bc2c72}{xpe\+::render\+::\+Debugger\+Callback}}) (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_debug_message}{s\+Debug\+Message}} \&)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ec}{xpe\+::render\+::e\+Debug\+Error\+Type}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ecad625c22e41ddc5cb58dca5a75c075596}{xpe\+::render\+::\+D\+\_\+\+NO\+\_\+\+ERROR\+\_\+\+TYPE}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ecaac945d6b75c6aff91b5f96fa49a31e80}{xpe\+::render\+::\+D\+\_\+\+INVALID\+\_\+\+ENUM}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253eca1b17df28efdccf495a3d550482737012}{xpe\+::render\+::\+D\+\_\+\+INVALID\+\_\+\+OPERATION}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ecaa1babf9c48245a0c11aa2f277200f746}{xpe\+::render\+::\+D\+\_\+\+INVALID\+\_\+\+VALUE}}
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ecaf9d66f7ae29c2900cfded830274d8570}{xpe\+::render\+::\+D\+\_\+\+STACK\+\_\+\+OVERFLOW}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ecadee75f05c302e9f4ab2d16c34f0abe00}{xpe\+::render\+::\+D\+\_\+\+STACK\+\_\+\+UNDERFLOW}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ecaca2918bda69c19182127e541d119311a}{xpe\+::render\+::\+D\+\_\+\+OUT\+\_\+\+OF\+\_\+\+MEMORY}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253eca988a57d535395034ca888f575c55b392}{xpe\+::render\+::\+D\+\_\+\+INVALID\+\_\+\+FRAMEBUFFER\+\_\+\+OPERATION}}
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a99c9e8bef18b3615f39b1cdb2e9253ecac314679bc84c66501549f2c9628ebe0f}{xpe\+::render\+::\+D\+\_\+\+OTHER\+\_\+\+ERROR\+\_\+\+TYPE}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0e}{xpe\+::render\+::e\+Debug\+Type}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea660eda79f10115318de0685be41c9919}{xpe\+::render\+::\+D\+\_\+\+NO\+\_\+\+TYPE}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea53a299451b07d786124b2dd6f6ece682}{xpe\+::render\+::\+D\+\_\+\+ERROR}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0eae129a76142411b87a4be453013664a98}{xpe\+::render\+::\+D\+\_\+\+WARNING}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea95865bd8eb0d26f70f7ee18ddd45484b}{xpe\+::render\+::\+D\+\_\+\+DEPRECATED\+\_\+\+BEHAVIOUR}}
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea9450ba47f00a2529a731f04b175f8086}{xpe\+::render\+::\+D\+\_\+\+UNDEFINED\+\_\+\+BEHAVIOUR}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0eabe55569d45ccc2f1ca8b277b42f7133c}{xpe\+::render\+::\+D\+\_\+\+PORTABILITY}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea8f2157e8ba5032e34315dc86b9f388dd}{xpe\+::render\+::\+D\+\_\+\+PERFORMANCE}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea092c9d74bb5427bb7c2e72bab32125ba}{xpe\+::render\+::\+D\+\_\+\+MARKER}}
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0eada67b2dcd2135082730aa47cc5337fe9}{xpe\+::render\+::\+D\+\_\+\+PUSH\+\_\+\+GROUP}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea27e7e2977e878d95ab0bcb8d8a340f7b}{xpe\+::render\+::\+D\+\_\+\+POP\+\_\+\+GROUP}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6d046b1ff462d4e59679d8de1dfbad0ea270d9db2cf5e7fd2b20e13501f18c70a}{xpe\+::render\+::\+D\+\_\+\+OTHER}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29b}{xpe\+::render\+::e\+Debug\+Category}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29bae353ad1d49ee9f9efe11a23704aa73e2}{xpe\+::render\+::\+D\+\_\+\+NO\+\_\+\+CATEGORY}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29bac9cd2f5f7e6eae33fedcf069a4e43f95}{xpe\+::render\+::\+D\+\_\+\+API}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29ba138be597051997b2abe0de6f6c2b25b8}{xpe\+::render\+::\+D\+\_\+\+WINDOW\+\_\+\+SYSTEM}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29ba437e41f5318082a2d1cb739326e5debc}{xpe\+::render\+::\+D\+\_\+\+SHADER\+\_\+\+COMPILER}}
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29ba0660dda2610d961547a591a7f259ca72}{xpe\+::render\+::\+D\+\_\+\+THIRD\+\_\+\+PARTY}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29ba1e01595272cae31b06033ec30b468cb5}{xpe\+::render\+::\+D\+\_\+\+APPLICATION}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a9310408e246af9000b45bc55535ac29ba270d9db2cf5e7fd2b20e13501f18c70a}{xpe\+::render\+::\+D\+\_\+\+OTHER}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1render_a6ad3cf0e40aa506e56b2cc176ff704d5}{xpe\+::render\+::e\+Debug\+Severity}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a6ad3cf0e40aa506e56b2cc176ff704d5a795504f4af999f07628267f6eed46774}{xpe\+::render\+::\+D\+\_\+\+NO\+\_\+\+SEVERITY}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6ad3cf0e40aa506e56b2cc176ff704d5aea6b5c475d493c88d67d69e8d4a6ac01}{xpe\+::render\+::\+D\+\_\+\+LOW}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6ad3cf0e40aa506e56b2cc176ff704d5a5a1ed94d173dc9c39534b43cbb8415d2}{xpe\+::render\+::\+D\+\_\+\+MEDIUM}}
+, \mbox{\hyperlink{namespacexpe_1_1render_a6ad3cf0e40aa506e56b2cc176ff704d5af769df1231303c4666d57bcb351f2034}{xpe\+::render\+::\+D\+\_\+\+HIGH}}
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1render_a6ad3cf0e40aa506e56b2cc176ff704d5a5c3d90b1e74e0d47247d2c23913f8427}{xpe\+::render\+::\+D\+\_\+\+NOTIFICATION}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\+\_\+\+API}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{namespacexpe_1_1render_1_1context_ab07e491fd3e0aab42a3f789e6b8ae0e0}{xpe\+::render\+::context\+::\+Init\+Debug}} ()
+\item 
+\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\+\_\+\+API}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a5ea9ec23acfb3fa644c5e7ad2cf5c93c}{xpe\+::render\+::context\+::\+Free\+Debug}} ()
+\item 
+\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\+\_\+\+API}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1render_1_1context_ae09aecc509f2be59b6a226888404ba55}{xpe\+::render\+::context\+::\+Get\+Last\+Message}} (\mbox{\hyperlink{structxpe_1_1render_1_1s_debug_message}{s\+Debug\+Message}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}})
+\item 
+\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\+\_\+\+API}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector}}$<$ \mbox{\hyperlink{structxpe_1_1render_1_1s_debug_message}{s\+Debug\+Message}} $>$ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_aa521e4c0300ff7c0eafb72228a0fa160}{xpe\+::render\+::context\+::\+Get\+Message\+Queue}} ()
+\item 
+\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\+\_\+\+API}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a223e186d2db510296c00f1fa836f5c36}{xpe\+::render\+::context\+::\+Clear\+Message\+Queue}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{debugger_8hpp_acda8e82695fc6c58c8c7683100c61161}\label{debugger_8hpp_acda8e82695fc6c58c8c7683100c61161} 
+\index{debugger.hpp@{debugger.hpp}!FreeDebugger@{FreeDebugger}}
+\index{FreeDebugger@{FreeDebugger}!debugger.hpp@{debugger.hpp}}
+\doxysubsubsection{\texorpdfstring{FreeDebugger}{FreeDebugger}}
+{\footnotesize\ttfamily \#define Free\+Debugger(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{debugger_8hpp_ac639555d3bbdf4ac2cc95a40d554f7b8}\label{debugger_8hpp_ac639555d3bbdf4ac2cc95a40d554f7b8} 
+\index{debugger.hpp@{debugger.hpp}!InitDebugger@{InitDebugger}}
+\index{InitDebugger@{InitDebugger}!debugger.hpp@{debugger.hpp}}
+\doxysubsubsection{\texorpdfstring{InitDebugger}{InitDebugger}}
+{\footnotesize\ttfamily \#define Init\+Debugger(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{debugger_8hpp_a5f403f0aee315d8d70d6567a40ee940b}\label{debugger_8hpp_a5f403f0aee315d8d70d6567a40ee940b} 
+\index{debugger.hpp@{debugger.hpp}!LogDebugMessage@{LogDebugMessage}}
+\index{LogDebugMessage@{LogDebugMessage}!debugger.hpp@{debugger.hpp}}
+\doxysubsubsection{\texorpdfstring{LogDebugMessage}{LogDebugMessage}}
+{\footnotesize\ttfamily \#define Log\+Debug\+Message(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{debugger_8hpp_affa90f0de63d2e223139bbb142bd27b3}\label{debugger_8hpp_affa90f0de63d2e223139bbb142bd27b3} 
+\index{debugger.hpp@{debugger.hpp}!LogDebugMessages@{LogDebugMessages}}
+\index{LogDebugMessages@{LogDebugMessages}!debugger.hpp@{debugger.hpp}}
+\doxysubsubsection{\texorpdfstring{LogDebugMessages}{LogDebugMessages}}
+{\footnotesize\ttfamily \#define Log\+Debug\+Messages(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_shader_8hpp_source" xml:lang="en-US">
+<title>shader.hpp</title>
+<indexterm><primary>engine/src/rendering/core/shader.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_render__target_8hpp">rendering/core/render_target.hpp</link>&gt;</emphasis>
+4 
+5 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+6 
+7 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>render&#32;{
+8 
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_resource">sResource</link>
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum&#32;class</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781">eType</link>
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693">NONE</link>&#32;=&#32;-1,
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;VERTEX&#32;=&#32;0,
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;PIXEL&#32;=&#32;1,
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;GEOMETRY&#32;=&#32;2,
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;COMPUTE&#32;=&#32;3,
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+19 
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1aaa3b6a79d804caddfa1f27740fc4ea1e">ID</link>;
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781">eType</link>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a3093d527a63f31d5402a6c69e6dc0ed2">Type</link>;
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_blob">sBlob</link>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1ab817744d2eb05d8152e136513812bee9">Blob</link>;
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">uword</link>&#32;Flag&#32;=&#32;0;
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Compiled&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1af97b7d801b46e942d9867c6c9ff8a227">Profile</link>;
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a54f108a78d8b8685c7fb088639525c4c">EntryPoint</link>;
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1acc61948e3e3a8e7f9c3a9fc184e8ea56">Source</link>;
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector&lt;sBuffer*&gt;</link>&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a8d965057dba54bb9b2abda7f75b1a01d">Buffers</link>;
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector&lt;sTexture*&gt;</link>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a8cc1eba6805082953aee58e4c9fa298d">Textures</link>;
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector&lt;sSampler*&gt;</link>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a2721343f20cf208d65dd549bdad88bcf">Samplers</link>;
+31 
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1ab916365963963ea5ef17e52423216e61">sShaderStage</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a3ee680c6893843b2ae0837695dd7fbd9">sShaderStage</link>(<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>&#32;<emphasis role="keywordtype">id</emphasis>,&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781">eType</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">type</link>)&#32;:&#32;ID(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">id</link>),&#32;Type(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">type</link>)&#32;{}
+34 
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1acf471dfdf127b77268e9bcab19f8a6ba">SetBuffer</link>(<link linkend="_structxpe_1_1render_1_1s_buffer">sBuffer</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">buffer</link>,&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>&#32;=&#32;<link linkend="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43">K_SLOT_DEFAULT</link>)&#32;{
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>&#32;!=&#32;<link linkend="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43">K_SLOT_DEFAULT</link>)&#32;{
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">buffer</link>-&gt;Slot&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>;
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+39 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1_buffers">Buffers</link>.emplace_back(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">buffer</link>);
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+41 
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a94e63af7ae74675f7fcb248f99dadca8">SetTexture</link>(<link linkend="_structxpe_1_1render_1_1s_texture">sTexture</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">texture</link>,&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>&#32;=&#32;<link linkend="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43">K_SLOT_DEFAULT</link>)&#32;{
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>&#32;!=&#32;<link linkend="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43">K_SLOT_DEFAULT</link>)&#32;{
+44 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">texture</link>-&gt;Slot&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>;
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1_textures">Textures</link>.emplace_back(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">texture</link>);
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+48 
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">inline</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a93f171a836a5716cd48b332327de8675">SetSampler</link>(<link linkend="_structxpe_1_1render_1_1s_sampler">sSampler</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sampler</link>,&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>&#32;=&#32;<link linkend="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43">K_SLOT_DEFAULT</link>)&#32;{
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>&#32;!=&#32;<link linkend="_macro__constants_8hpp_1a957882f9609425b078baff6f65857f43">K_SLOT_DEFAULT</link>)&#32;{
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sampler</link>-&gt;Slot&#32;=&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">slot</link>;
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+53 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1_samplers">Samplers</link>.emplace_back(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sampler</link>);
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+55 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+56 
+57 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_object">cObject</link>
+58 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+59 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+60 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">eCategory</link>
+61 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+62 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693">NONE</link>&#32;=&#32;0,
+63 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;PREPASS&#32;=&#32;1,
+64 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;OPAQUE&#32;=&#32;2,
+65 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;TRANSPARENT&#32;=&#32;3,
+66 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;POSTFX&#32;=&#32;4,
+67 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;UI&#32;=&#32;5,
+68 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;FINAL&#32;=&#32;6,
+69 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;COMPUTE&#32;=&#32;7
+70 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+71 
+72 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_shader_1a0cbea5a99dbdb3dfc6a7095ab8c206ab">cShader</link>(<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">cShader::eCategory</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">category</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>)&#32;:&#32;Category(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">category</link>),&#32;ID(<link linkend="_namespacexpe_1_1core_1a21084dba4baabe2a8da4ee568572f6da">Hash</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>))&#32;{}
+73 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader_1a9af1125e8f5c2d061535cc5b87206d05">~cShader</link>()&#32;{}
+74 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader_1ac2fb10c43abc3823aa6dc466b1f3ed56">Draw</link>(<link linkend="_classxpe_1_1ecs_1_1c_scene">ecs::cScene</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>)&#32;{}
+75 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader_1a0278697eafc93f03dc126a6e2d3a2cbd">Bind</link>()&#32;=&#32;0;
+76 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader_1a84982d70a60b8fc688009d083e6dd2a1">Unbind</link>()&#32;=&#32;0;
+77 
+78 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>&#32;ID&#32;=&#32;0;
+79 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;Enable&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+80 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">eCategory</link>&#32;Category&#32;=&#32;eCategory::PREPASS;
+81 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;Next&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+82 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+83 
+84 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1render_1_1c_default_shader">cDefaultShader</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>
+85 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+86 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+87 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_default_shader">cDefaultShader</link>(<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">cShader::eCategory</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">category</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>);
+88 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_default_shader">~cDefaultShader</link>()&#32;<emphasis role="keyword">override</emphasis>;
+89 
+90 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;Bind()&#32;<emphasis role="keyword">override</emphasis>;
+91 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;Unbind()&#32;<emphasis role="keyword">override</emphasis>;
+92 
+93 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100">ePrimitiveTopology</link>&#32;<link linkend="_namespacexpe_1_1render_1a0829045bba88bd2197a49b7c5226531a">PrimitiveTopology</link>&#32;=&#32;ePrimitiveTopology::DEFAULT;
+94 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sInputLayout</link>&#32;InputLayout&#32;=&#32;sVertex::k_Format;
+95 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>*&#32;VertexStage&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+96 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>*&#32;PixelStage&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+97 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>*&#32;GeometryStage&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+98 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_render_target">sRenderTarget</link>*&#32;RenderTarget&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+99 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_rasterizer">sRasterizer</link>&#32;<link linkend="_classxpe_1_1render_1_1c_default_shader_1a3cb409c71bc3653e9d7c58182a447c9d">Rasterizer</link>;
+100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode">sDepthStencilMode</link>&#32;<link linkend="_classxpe_1_1render_1_1c_default_shader_1a85458b227cfcf927c59290f85facfa43">DepthStencilMode</link>;
+101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_blend_mode">sBlendMode</link>&#32;<link linkend="_classxpe_1_1render_1_1c_default_shader_1a58ff40e7e48861009c86b5bc9e39d689">BlendMode</link>;
+102 
+103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>:
+104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;Init();
+105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;InitPrepass();
+106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;InitOpaque();
+107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;InitTransparent();
+108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;InitPostFX();
+109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;InitUI();
+110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;InitFinal();
+111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+112 
+113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1render_1_1c_compute_shader">cComputeShader</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>
+114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1render_1_1c_compute_shader_1a833a7cbe99cc4d72550c819a2f22edf2">cComputeShader</link>(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;glm::vec3&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">threadGroups</link>&#32;=&#32;{&#32;1,&#32;1,&#32;1&#32;})
+117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>(eCategory::COMPUTE,&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>),&#32;m_ThreadGroups(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">threadGroups</link>)&#32;{}
+118 
+119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;Bind()&#32;<emphasis role="keyword">override</emphasis>;
+120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;Unbind()&#32;<emphasis role="keyword">override</emphasis>;
+121 
+122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;Draw(<link linkend="_classxpe_1_1ecs_1_1c_scene">ecs::cScene</link>&#32;*<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>)&#32;<emphasis role="keyword">override</emphasis>;
+123 
+124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>*&#32;ComputeStage&#32;=&#32;<emphasis role="keyword">nullptr</emphasis>;
+125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::ivec3&#32;<link linkend="_classxpe_1_1render_1_1c_compute_shader_1abbe9e4360ad1cfb7d4cb14d4d0ca7e1b">m_ThreadGroups</link>;
+126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+127 
+128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1render_1_1c_shader_manager">cShaderManager</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+130 
+131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Init();
+133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Free();
+134 
+135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>*&#32;GetFromFile(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781">sShaderStage::eType</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">type</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">filepath</link>);
+136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage">sShaderStage</link>*&#32;GetFromSrc(
+137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781">sShaderStage::eType</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">type</link>,
+138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<emphasis role="keywordtype">id</emphasis>,
+139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">src</link>
+140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+141 
+142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetShader(<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">shader</link>);
+143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetShaderAfter(<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">shader</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>);
+144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;GetShaders(<link linkend="_classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04">cShader::eCategory</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">category</link>);
+145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;GetShader(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">name</link>);
+146 
+147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;ReloadStage(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">filepath</link>);
+148 
+149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;FreeStages();
+151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;WriteGeneratedShader(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">filepath</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">src</link>);
+152 
+153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetShader(<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dest</link>,&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">src</link>);
+154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;SetShader(<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dest</link>,&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">src</link>,&#32;<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>&#32;<emphasis role="keywordtype">id</emphasis>);
+155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;GetShader(<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">src</link>,&#32;<link linkend="_namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6">u64</link>&#32;<emphasis role="keywordtype">id</emphasis>);
+156 
+157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">unordered_map&lt;string, sShaderStage&gt;</link>*&#32;s_Stages;
+158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;s_ComputeShaders;
+159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;s_PrepassShaders;
+160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;s_OpaqueShaders;
+161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;s_TransparentShaders;
+162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;s_PostfxShaders;
+163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;s_UiShaders;
+164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_classxpe_1_1render_1_1c_shader">cShader</link>*&#32;s_FinalShaders;
+165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+166 
+167 &#32;&#32;&#32;&#32;}
+168 
+169 }
+</programlisting></section>

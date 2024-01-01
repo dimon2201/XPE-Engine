@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_physics__system_8hpp_source" xml:lang="en-US">
+<title>physics_system.hpp</title>
+<indexterm><primary>engine/src/physics/physics_system.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>
+4 {
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>physics
+6 &#32;&#32;&#32;&#32;{
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_classxpe_1_1physics_1_1c_physics_system">cPhysicsSystem</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_classxpe_1_1ecs_1_1c_system">cSystem</link>
+8 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+9 
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1physics_1_1c_physics_system_1a5679425dd00d09e95985cb8ffb23a036">Update</link>(<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_time">cTime</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dt</link>)&#32;<emphasis role="keyword">override</emphasis>&#32;<emphasis role="keyword">final</emphasis>;
+12 
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>:
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::mutex&#32;m_Mutex;
+15 
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+17 &#32;&#32;&#32;&#32;}
+18 }
+</programlisting></section>

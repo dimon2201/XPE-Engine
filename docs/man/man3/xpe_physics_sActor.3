@@ -1,0 +1,115 @@
+.TH "xpe::physics::sActor" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::physics::sActor
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <physics_manager\&.hpp>\fP
+.PP
+Inherited by \fBxpe::ecs::CPhysicsActor\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBeActorType\fP { \fBNONE\fP = 0, \fBRIGID_STATIC\fP = 1, \fBRIGID_DYNAMIC\fP = 2 }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBJSON_ENUM\fP (\fBeActorType\fP, { { \fBeActorType::NONE\fP, 'NONE' }, { \fBeActorType::RIGID_STATIC\fP, 'RIGID_STATIC' }, { \fBeActorType::RIGID_DYNAMIC\fP, 'RIGID_DYNAMIC' }, }) \fBsActor\fP()=\fBdefault\fP"
+.br
+.ti -1c
+.RI "\fBsActor\fP (\fBPxActor\fP *\fBactor\fP, \fBPxMaterial\fP *\fBmaterial\fP, \fBPxShape\fP *\fBshape\fP, \fBconst\fP \fBeActorType\fP &\fBactorType\fP, sShapeDescriptor *\fBshapeDesc\fP, \fBconst\fP glm::vec3 &\fBlinearVelocity\fP, \fBf32\fP \fBstaticFriction\fP, \fBf32\fP \fBdynamicFriction\fP, \fBf32\fP \fBrestitution\fP, \fBf32\fP \fBcontactOffset\fP, \fBf32\fP \fBrestOffset\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBPxActor\fP * \fBActor\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBPxMaterial\fP * \fBMaterial\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBPxShape\fP * \fBShape\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBeActorType\fP \fBActorType\fP = \fBeActorType::NONE\fP"
+.br
+.ti -1c
+.RI "sShapeDescriptor \fBShapeDesc\fP = sShapeDescriptor(\fBeShapeType::NONE\fP)"
+.br
+.ti -1c
+.RI "glm::vec3 \fBLinearVelocity\fP = glm::vec3(0\&.0f)"
+.br
+.ti -1c
+.RI "\fBf32\fP \fBStaticFriction\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "\fBf32\fP \fBDynamicFriction\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "\fBf32\fP \fBRestitution\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "\fBf32\fP \fBContactOffset\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "\fBf32\fP \fBRestOffset\fP = 0\&.0f"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBclass\fP \fBxpe::physics::sActor::eActorType\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fINONE \fP\fP
+.TP
+\fB\fIRIGID_STATIC \fP\fP
+.TP
+\fB\fIRIGID_DYNAMIC \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::physics::sActor::sActor (\fBPxActor\fP * actor, \fBPxMaterial\fP * material, \fBPxShape\fP * shape, \fBconst\fP \fBeActorType\fP & actorType, sShapeDescriptor * shapeDesc, \fBconst\fP glm::vec3 & linearVelocity, \fBf32\fP staticFriction, \fBf32\fP dynamicFriction, \fBf32\fP restitution, \fBf32\fP contactOffset, \fBf32\fP restOffset)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "xpe::physics::sActor::JSON_ENUM (\fBeActorType\fP, { { \fBeActorType::NONE\fP, 'NONE' }, { \fBeActorType::RIGID_STATIC\fP, 'RIGID_STATIC' }, { \fBeActorType::RIGID_DYNAMIC\fP, 'RIGID_DYNAMIC' }, })\fR [default]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBPxActor\fP* xpe::physics::sActor::Actor = \fBnullptr\fP"
+
+.SS "\fBeActorType\fP xpe::physics::sActor::ActorType = \fBeActorType::NONE\fP"
+
+.SS "\fBf32\fP xpe::physics::sActor::ContactOffset = 0\&.0f"
+
+.SS "\fBf32\fP xpe::physics::sActor::DynamicFriction = 0\&.0f"
+
+.SS "glm::vec3 xpe::physics::sActor::LinearVelocity = glm::vec3(0\&.0f)"
+
+.SS "\fBPxMaterial\fP* xpe::physics::sActor::Material = \fBnullptr\fP"
+
+.SS "\fBf32\fP xpe::physics::sActor::Restitution = 0\&.0f"
+
+.SS "\fBf32\fP xpe::physics::sActor::RestOffset = 0\&.0f"
+
+.SS "\fBPxShape\fP* xpe::physics::sActor::Shape = \fBnullptr\fP"
+
+.SS "sShapeDescriptor xpe::physics::sActor::ShapeDesc = sShapeDescriptor(\fBeShapeType::NONE\fP)"
+
+.SS "\fBf32\fP xpe::physics::sActor::StaticFriction = 0\&.0f"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

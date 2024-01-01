@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_ring_buffer" kind="class" language="C++" prot="public">
+    <compoundname>xpe::core::cRingBuffer</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="ring__buffer_8hpp" local="no">ring_buffer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_ring_buffer_1a494efd735e88c265c4caac4aa33b6355" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt;</type>
+        <definition>vector&lt;T&gt; xpe::core::cRingBuffer&lt; T &gt;::m_List</definition>
+        <argsstring></argsstring>
+        <name>m_List</name>
+        <qualifiedname>xpe::core::cRingBuffer::m_List</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="18" column="20" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_ring_buffer_1a6e9f91d625a7a9b56e64a3b651c62169" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cRingBuffer&lt; T &gt;::m_Tail</definition>
+        <argsstring></argsstring>
+        <name>m_Tail</name>
+        <qualifiedname>xpe::core::cRingBuffer::m_Tail</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="19" column="19" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_ring_buffer_1a995ce99d178c0c66a4c92b62143f29ef" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cRingBuffer&lt; T &gt;::m_Head</definition>
+        <argsstring></argsstring>
+        <name>m_Head</name>
+        <qualifiedname>xpe::core::cRingBuffer::m_Head</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="20" column="19" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_ring_buffer_1a81ca1211ad89dfc2b13ead5f6ce71f07" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex xpe::core::cRingBuffer&lt; T &gt;::m_Lock</definition>
+        <argsstring></argsstring>
+        <name>m_Lock</name>
+        <qualifiedname>xpe::core::cRingBuffer::m_Lock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="21" column="24" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_ring_buffer_1a7e2a7496f4d8a0f1f1a741ab765f7dad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cRingBuffer&lt; T &gt;::Reserve</definition>
+        <argsstring>(usize capacity)</argsstring>
+        <name>Reserve</name>
+        <qualifiedname>xpe::core::cRingBuffer::Reserve</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>capacity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="12" column="18" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_ring_buffer_1aeeb81d25975173d770612c5857de76eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cRingBuffer&lt; T &gt;::Resize</definition>
+        <argsstring>(usize size)</argsstring>
+        <name>Resize</name>
+        <qualifiedname>xpe::core::cRingBuffer::Resize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="13" column="18" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_ring_buffer_1add2bf87765a5be55fd2547edacc153f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::cRingBuffer&lt; T &gt;::Push</definition>
+        <argsstring>(const T &amp;item)</argsstring>
+        <name>Push</name>
+        <qualifiedname>xpe::core::cRingBuffer::Push</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="14" column="18" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="37" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_ring_buffer_1a642e4da2861f21242c6268b480a0eb88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::cRingBuffer&lt; T &gt;::Pop</definition>
+        <argsstring>(T &amp;item)</argsstring>
+        <name>Pop</name>
+        <qualifiedname>xpe::core::cRingBuffer::Pop</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/stl/ring_buffer.hpp" line="15" column="18" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="51" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::cRingBuffer&lt; T &gt;</label>
+        <link refid="classxpe_1_1core_1_1c_ring_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::cRingBuffer&lt; T &gt;</label>
+        <link refid="classxpe_1_1core_1_1c_ring_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/stl/ring_buffer.hpp" line="8" column="9" bodyfile="engine/src/stl/ring_buffer.hpp" bodystart="9" bodyend="22"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1a995ce99d178c0c66a4c92b62143f29ef" prot="private" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>m_Head</name></member>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1a494efd735e88c265c4caac4aa33b6355" prot="private" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>m_List</name></member>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1a81ca1211ad89dfc2b13ead5f6ce71f07" prot="private" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>m_Lock</name></member>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1a6e9f91d625a7a9b56e64a3b651c62169" prot="private" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>m_Tail</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1a642e4da2861f21242c6268b480a0eb88" prot="public" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>Pop</name></member>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1add2bf87765a5be55fd2547edacc153f0" prot="public" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>Push</name></member>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1a7e2a7496f4d8a0f1f1a741ab765f7dad" prot="public" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>Reserve</name></member>
+      <member refid="classxpe_1_1core_1_1c_ring_buffer_1aeeb81d25975173d770612c5857de76eb" prot="public" virt="non-virtual"><scope>xpe::core::cRingBuffer</scope><name>Resize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

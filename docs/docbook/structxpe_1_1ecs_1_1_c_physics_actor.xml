@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1ecs_1_1_c_physics_actor" xml:lang="en-US">
+<title>xpe::ecs::CPhysicsActor Struct Reference</title>
+<indexterm><primary>xpe::ecs::CPhysicsActor</primary></indexterm>
+<para>
+<computeroutput>#include &lt;components.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::ecs::CPhysicsActor:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1ecs_1_1_c_physics_actor.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1ecs_1_1_c_physics_actor_1a066c2ca35c9cccc19ad62649b15690e7">CPhysicsActor</link> (<link linkend="_structxpe_1_1physics_1_1s_actor">physics::sActor</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">actor</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_structxpe_1_1physics_1_1s_actor">xpe::physics::sActor</link>        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1physics_1_1s_actor_1a0d6b26bb92c74fce700ff90d28d9d58b">JSON_ENUM</link> (<link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5">eActorType</link>, { { <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693">eActorType::NONE</link>, &quot;NONE&quot; }, { <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c">eActorType::RIGID_STATIC</link>, &quot;RIGID_STATIC&quot; }, { <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1">eActorType::RIGID_DYNAMIC</link>, &quot;RIGID_DYNAMIC&quot; }, }) <link linkend="_structxpe_1_1physics_1_1s_actor">sActor</link>()=<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">default</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1physics_1_1s_actor_1af3c72e195b2eb868f37caa615fb1bede">sActor</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxActor</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">actor</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxMaterial</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxShape</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">shape</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5">eActorType</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">actorType</link>, sShapeDescriptor *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">shapeDesc</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::vec3 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">linearVelocity</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">staticFriction</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dynamicFriction</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">restitution</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">contactOffset</link>, <link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">restOffset</link>)</para>
+</listitem>
+        </itemizedlist>
+Public Member Functions inherited from <link linkend="_classxpe_1_1res_1_1c_json">xpe::res::cJson</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88">ToJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b">FromJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Types inherited from <link linkend="_structxpe_1_1physics_1_1s_actor">xpe::physics::sActor</link>        <itemizedlist>
+            <listitem><para>enum class <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5">eActorType</link> { <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693">NONE</link> = 0
+, <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c">RIGID_STATIC</link> = 1
+, <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1">RIGID_DYNAMIC</link> = 2
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_structxpe_1_1physics_1_1s_actor">xpe::physics::sActor</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxActor</link> * <link linkend="_structxpe_1_1physics_1_1s_actor_1a9ff38980fdbabf914bad7b253ed7d6f5">Actor</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxMaterial</link> * <link linkend="_structxpe_1_1physics_1_1s_actor_1a9e80cc5169928f239a53083a391a5803">Material</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">PxShape</link> * <link linkend="_structxpe_1_1physics_1_1s_actor_1a7f08a26f1289c9fbc767fd2922a99a8f">Shape</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5">eActorType</link> <link linkend="_structxpe_1_1physics_1_1s_actor_1afd480d49892ce3cf3eee0d2defb3be9b">ActorType</link> = <link linkend="_structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693">eActorType::NONE</link></para>
+</listitem>
+            <listitem><para>sShapeDescriptor <link linkend="_structxpe_1_1physics_1_1s_actor_1a886a2c46ef656e8dd58bf4759858d612">ShapeDesc</link> = sShapeDescriptor(<link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693">eShapeType::NONE</link>)</para>
+</listitem>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1physics_1_1s_actor_1a94cce68d00c948b3fa10645375fb6ead">LinearVelocity</link> = glm::vec3(0.0f)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1physics_1_1s_actor_1aac90896e9c533034a5e8cdd42ceda3a3">StaticFriction</link> = 0.0f</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1physics_1_1s_actor_1aa785997ff79c868fbeb006245e130466">DynamicFriction</link> = 0.0f</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1physics_1_1s_actor_1af1398d6be32b80d0da1f67a32b709a98">Restitution</link> = 0.0f</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1physics_1_1s_actor_1ac5687cbf86bf09611d55a1cb4a9d469f">ContactOffset</link> = 0.0f</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link> <link linkend="_structxpe_1_1physics_1_1s_actor_1af022fe076cb3c0459d37d1de9421fc2f">RestOffset</link> = 0.0f</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1ecs_1_1_c_physics_actor_1a066c2ca35c9cccc19ad62649b15690e7"/><section>
+    <title>CPhysicsActor()</title>
+<indexterm><primary>CPhysicsActor</primary><secondary>xpe::ecs::CPhysicsActor</secondary></indexterm>
+<indexterm><primary>xpe::ecs::CPhysicsActor</primary><secondary>CPhysicsActor</secondary></indexterm>
+<para><computeroutput>xpe::ecs::CPhysicsActor::CPhysicsActor (<link linkend="_structxpe_1_1physics_1_1s_actor">physics::sActor</link> * actor)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/ecs/<link linkend="_components_8hpp">components.hpp</link></section>
+</section>

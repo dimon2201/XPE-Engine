@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_5023b6ae898e8cb97148492cc641a5cd" kind="dir">
+    <compoundname>engine/src/platform</compoundname>
+    <innerdir refid="dir_e0b00fc876371703b31d58f22d847408">engine/src/platform/linux</innerdir>
+    <innerdir refid="dir_3e5d39cd28e26382e58e353c566ad298">engine/src/platform/macos</innerdir>
+    <innerdir refid="dir_e7e6d84f71ed6320a00aada155cfd0a7">engine/src/platform/win</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/platform/"/>
+  </compounddef>
+</doxygen>

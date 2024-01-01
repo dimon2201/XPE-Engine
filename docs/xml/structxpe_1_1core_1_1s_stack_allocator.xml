@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1core_1_1s_stack_allocator" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::sStackAllocator</compoundname>
+    <includes refid="core_2allocators_8hpp" local="no">allocators.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_stack_allocator_1abd96ad59d71860593d1f27d00ded4f48" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::sStackAllocator::Size</definition>
+        <argsstring></argsstring>
+        <name>Size</name>
+        <qualifiedname>xpe::core::sStackAllocator::Size</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="117" column="19" bodyfile="engine/src/core/allocators.hpp" bodystart="117" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_allocator_1a21bfc66e7907d1fe8fff15e9f8b0002c" compoundref="core_2allocators_8cpp" startline="55" endline="59">~sStackAllocator</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_stack_allocator_1ae8e279f0a2907c31e1befb0c690c2e90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sStackAllocator::sStackAllocator</definition>
+        <argsstring>(usize size)</argsstring>
+        <name>sStackAllocator</name>
+        <qualifiedname>xpe::core::sStackAllocator::sStackAllocator</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="119" column="13" bodyfile="engine/src/core/allocators.cpp" bodystart="49" bodyend="53"/>
+        <references refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" compoundref="core_2allocators_8hpp" startline="111">xpe::core::cMemoryStackManager::MemoryOccupiedBytes</references>
+        <references refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" compoundref="core_2allocators_8hpp" startline="110">xpe::core::cMemoryStackManager::TotalAllocCount</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_stack_allocator_1a21bfc66e7907d1fe8fff15e9f8b0002c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sStackAllocator::~sStackAllocator</definition>
+        <argsstring>()</argsstring>
+        <name>~sStackAllocator</name>
+        <qualifiedname>xpe::core::sStackAllocator::~sStackAllocator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="120" column="13" bodyfile="engine/src/core/allocators.cpp" bodystart="55" bodyend="59"/>
+        <references refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" compoundref="core_2allocators_8hpp" startline="111">xpe::core::cMemoryStackManager::MemoryOccupiedBytes</references>
+        <references refid="structxpe_1_1core_1_1s_stack_allocator_1abd96ad59d71860593d1f27d00ded4f48" compoundref="core_2allocators_8hpp" startline="117">Size</references>
+        <references refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" compoundref="core_2allocators_8hpp" startline="110">xpe::core::cMemoryStackManager::TotalAllocCount</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/allocators.hpp" line="115" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="116" bodyend="121"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1core_1_1s_stack_allocator_1abd96ad59d71860593d1f27d00ded4f48" prot="public" virt="non-virtual"><scope>xpe::core::sStackAllocator</scope><name>Size</name></member>
+      <member refid="structxpe_1_1core_1_1s_stack_allocator_1ae8e279f0a2907c31e1befb0c690c2e90" prot="public" virt="non-virtual"><scope>xpe::core::sStackAllocator</scope><name>sStackAllocator</name></member>
+      <member refid="structxpe_1_1core_1_1s_stack_allocator_1a21bfc66e7907d1fe8fff15e9f8b0002c" prot="public" virt="non-virtual"><scope>xpe::core::sStackAllocator</scope><name>~sStackAllocator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,109 @@
+\doxysection{engine/src/res/json.hpp File Reference}
+\hypertarget{json_8hpp}{}\label{json_8hpp}\index{engine/src/res/json.hpp@{engine/src/res/json.hpp}}
+{\ttfamily \#include $<$stl/stl.\+hpp$>$}\newline
+{\ttfamily \#include $<$nlohmann/json.\+hpp$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{xpe\+::res\+::c\+Json}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1res}{xpe\+::res}}
+\item 
+namespace \mbox{\hyperlink{namespaceglm}{glm}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(clazz, ...)~NLOHMANN\+\_\+\+DEFINE\+\_\+\+TYPE\+\_\+\+NON\+\_\+\+INTRUSIVE(clazz, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{json_8hpp_ac5b560ae6f77f6efa30b8c286c1cc754}{JSON\+\_\+\+CLASS\+\_\+\+NAMED}}(clazz,  name, ...)
+\item 
+\#define \mbox{\hyperlink{json_8hpp_a145ee90a4923a6ac29172dee21269b02}{JSON\+\_\+\+CLASS}}(clazz, ...)~\mbox{\hyperlink{json_8hpp_ac5b560ae6f77f6efa30b8c286c1cc754}{JSON\+\_\+\+CLASS\+\_\+\+NAMED}}(clazz, string(\#clazz), \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\+\_\+\+ENUM}}(clazz, ...)~NLOHMANN\+\_\+\+JSON\+\_\+\+SERIALIZE\+\_\+\+ENUM(clazz, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} = nlohmann\+::json
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1res_a457564438c0393afed9708a5e9da8433}{xpe\+::res\+::\+Read\+Json\+File}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}, \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{c\+Json}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{object}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{namespacexpe_1_1res_ab18afec3554029bc51ab158fc31b846c}{xpe\+::res\+::\+Write\+Json\+File}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}, \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{c\+Json}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{object}})
+\item 
+void \mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{glm\+::to\+\_\+json}} (\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&j, const glm\+::mat2 \&m)
+\item 
+void \mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{glm\+::from\+\_\+json}} (const \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&j, glm\+::mat2 \&m)
+\item 
+void \mbox{\hyperlink{namespaceglm_aac16aab5372625b0e1e8256ba3d6c8a5}{glm\+::to\+\_\+json}} (\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&j, const glm\+::mat3 \&m)
+\item 
+void \mbox{\hyperlink{namespaceglm_a05f58758cca3383a1c393639cde56cad}{glm\+::from\+\_\+json}} (const \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&j, glm\+::mat3 \&m)
+\item 
+void \mbox{\hyperlink{namespaceglm_a5e6943721882e8ab806468897263d8ad}{glm\+::to\+\_\+json}} (\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&j, const glm\+::mat4 \&m)
+\item 
+void \mbox{\hyperlink{namespaceglm_a68ed9b5561fba2143e62fb81a499dfe0}{glm\+::from\+\_\+json}} (const \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} \&j, glm\+::mat4 \&m)
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a723221f8f0c06451e98b88997085a84d}{xpe\+::core\+::\+JSON\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26}{e\+Gamepad\+Button}}, \{ \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a3687fbfe9f2fdda2244770408fd2c681}{e\+Gamepad\+Button\+::\+Pad\+\_\+A}}, "{}Pad\+\_\+\+A"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26af2700249ef417eaea8cf716d48fd0827}{e\+Gamepad\+Button\+::\+Pad\+\_\+B}}, "{}Pad\+\_\+\+B"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abb62826bf2e91316d8a790fa55f1819a}{e\+Gamepad\+Button\+::\+Pad\+\_\+X}}, "{}Pad\+\_\+\+X"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1dac038a79602619e1a7be9e4ab872cc}{e\+Gamepad\+Button\+::\+Pad\+\_\+Y}}, "{}Pad\+\_\+\+Y"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a41295e646d7bb68cf4a793d4ed7f106c}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Left\+Bumper}}, "{}Pad\+\_\+\+Left\+Bumper"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1672427b5e0b2a9f1ce3971fce88fb89}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Right\+Bumper}}, "{}Pad\+\_\+\+Right\+Bumper"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a529a8d53ddba22b06f1708c6ff8d3642}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Back}}, "{}Pad\+\_\+\+Back"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a506f1b55538cb40fb0d742db500493e8}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Start}}, "{}Pad\+\_\+\+Start"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1ba8ea192d4238eb4997fc9d9c61fb49}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Guide}}, "{}Pad\+\_\+\+Guide"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a9c80141c352b0620cef90f850346a543}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Left\+Thumb}}, "{}Pad\+\_\+\+Left\+Thumb"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26ac793975743453b6a513539248582b14f}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Right\+Thumb}}, "{}Pad\+\_\+\+Right\+Thumb"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abff713c98241f68fec0465974a3a80c5}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Up}}, "{}Pad\+\_\+\+Up"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a4ef92a28a7310b1e33f7c7f09d34c447}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Right}}, "{}Pad\+\_\+\+Right"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a6ea51f348ed2273d1cd7acc170cd960d}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Down}}, "{}Pad\+\_\+\+Down"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Left}}, "{}Pad\+\_\+\+Left"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26acf06b676d433a6ab517247d238512310}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Last}}, "{}Pad\+\_\+\+Last"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a35e7e2b4be7d3b09ce6268a34db25ef4}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Cross}}, "{}Pad\+\_\+\+Cross"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a504e23bce3b71286dd697aa11d27e8f2}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Circle}}, "{}Pad\+\_\+\+Circle"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1bb4c477a5d06d7e7ade03b8db06c20e}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Square}}, "{}Pad\+\_\+\+Square"{} \}, \{ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a39da9c46f43862115c612e9c3b99af50}{e\+Gamepad\+Button\+::\+Pad\+\_\+\+Triangle}}, "{}Pad\+\_\+\+Triangle"{} \}, \}) JSON\+\_\+\+ENUM(\mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38}{e\+Gamepad\+Axis}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}\label{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96} 
+\index{json.hpp@{json.hpp}!JSON@{JSON}}
+\index{JSON@{JSON}!json.hpp@{json.hpp}}
+\doxysubsubsection{\texorpdfstring{JSON}{JSON}}
+{\footnotesize\ttfamily \#define JSON(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{... }\end{DoxyParamCaption})~NLOHMANN\+\_\+\+DEFINE\+\_\+\+TYPE\+\_\+\+NON\+\_\+\+INTRUSIVE(clazz, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{json_8hpp_a145ee90a4923a6ac29172dee21269b02}\label{json_8hpp_a145ee90a4923a6ac29172dee21269b02} 
+\index{json.hpp@{json.hpp}!JSON\_CLASS@{JSON\_CLASS}}
+\index{JSON\_CLASS@{JSON\_CLASS}!json.hpp@{json.hpp}}
+\doxysubsubsection{\texorpdfstring{JSON\_CLASS}{JSON\_CLASS}}
+{\footnotesize\ttfamily \#define JSON\+\_\+\+CLASS(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{json_8hpp_ac5b560ae6f77f6efa30b8c286c1cc754}{JSON\+\_\+\+CLASS\+\_\+\+NAMED}}(clazz, string(\#clazz), \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{json_8hpp_ac5b560ae6f77f6efa30b8c286c1cc754}\label{json_8hpp_ac5b560ae6f77f6efa30b8c286c1cc754} 
+\index{json.hpp@{json.hpp}!JSON\_CLASS\_NAMED@{JSON\_CLASS\_NAMED}}
+\index{JSON\_CLASS\_NAMED@{JSON\_CLASS\_NAMED}!json.hpp@{json.hpp}}
+\doxysubsubsection{\texorpdfstring{JSON\_CLASS\_NAMED}{JSON\_CLASS\_NAMED}}
+{\footnotesize\ttfamily \#define JSON\+\_\+\+CLASS\+\_\+\+NAMED(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{name,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{NLOHMANN\_DEFINE\_TYPE\_INTRUSIVE(clazz,\ \_\_VA\_ARGS\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ ToJson(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ \&root)\ \textcolor{keyword}{override}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ root[name.c\_str()]\ =\ *\textcolor{keyword}{this};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ FromJson(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ \&root)\ \textcolor{keyword}{override}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ root.at(name.c\_str()).get\_to(*\textcolor{keyword}{this});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+
+\end{DoxyCode}
+\Hypertarget{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}\label{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59} 
+\index{json.hpp@{json.hpp}!JSON\_ENUM@{JSON\_ENUM}}
+\index{JSON\_ENUM@{JSON\_ENUM}!json.hpp@{json.hpp}}
+\doxysubsubsection{\texorpdfstring{JSON\_ENUM}{JSON\_ENUM}}
+{\footnotesize\ttfamily \#define JSON\+\_\+\+ENUM(\begin{DoxyParamCaption}\item[{}]{clazz,  }\item[{}]{... }\end{DoxyParamCaption})~NLOHMANN\+\_\+\+JSON\+\_\+\+SERIALIZE\+\_\+\+ENUM(clazz, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}\label{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d} 
+\index{json.hpp@{json.hpp}!json@{json}}
+\index{json@{json}!json.hpp@{json.hpp}}
+\doxysubsubsection{\texorpdfstring{json}{json}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}} = nlohmann\+::json}
+

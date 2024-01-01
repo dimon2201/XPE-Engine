@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1core_1_1s_task_queue" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::core::sTaskQueue</compoundname>
+    <basecompoundref refid="structxpe_1_1core_1_1s_task" prot="public" virt="non-virtual">xpe::core::sTask</basecompoundref>
+    <includes refid="task__manager_8hpp" local="no">task_manager.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_task_queue_1afb918d59e8c049ce1b5ca93f68dd245d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1core_1_1s_task" kindref="compound">sTask</ref> &gt;</type>
+        <definition>vector&lt;sTask&gt; xpe::core::sTaskQueue::Tasks</definition>
+        <argsstring></argsstring>
+        <name>Tasks</name>
+        <qualifiedname>xpe::core::sTaskQueue::Tasks</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="31" column="20" bodyfile="engine/src/core/task_manager.hpp" bodystart="31" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1core_1_1s_task_queue_1a7f9bb6c3df7dc9ec7cde7fd02612c66f" compoundref="task__manager_8cpp" startline="5" endline="13">sTaskQueue</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_task_queue_1a42d597a4313912876ef3dbc4953453b7" compoundref="task__manager_8cpp" startline="15" endline="25">sTaskQueue</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_task_queue_1a7f9bb6c3df7dc9ec7cde7fd02612c66f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sTaskQueue::sTaskQueue</definition>
+        <argsstring>()</argsstring>
+        <name>sTaskQueue</name>
+        <qualifiedname>xpe::core::sTaskQueue::sTaskQueue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="33" column="13" bodyfile="engine/src/core/task_manager.cpp" bodystart="5" bodyend="13"/>
+        <references refid="structxpe_1_1core_1_1s_task_queue_1afb918d59e8c049ce1b5ca93f68dd245d" compoundref="task__manager_8hpp" startline="31">Tasks</references>
+        <references refid="structxpe_1_1core_1_1s_task_1ae37dc636337031739b2ea80a97c78f94" compoundref="task__manager_8hpp" startline="23" endline="23">xpe::core::sTask::Todo</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_task_queue_1a42d597a4313912876ef3dbc4953453b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sTaskQueue::sTaskQueue</definition>
+        <argsstring>(eType type, const vector&lt; sTask &gt; &amp;tasks={})</argsstring>
+        <name>sTaskQueue</name>
+        <qualifiedname>xpe::core::sTaskQueue::sTaskQueue</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06" kindref="member">eType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1core_1_1s_task" kindref="compound">sTask</ref> &gt; &amp;</type>
+          <declname>tasks</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="34" column="13" bodyfile="engine/src/core/task_manager.cpp" bodystart="15" bodyend="25"/>
+        <references refid="structxpe_1_1core_1_1s_task_queue_1afb918d59e8c049ce1b5ca93f68dd245d" compoundref="task__manager_8hpp" startline="31">Tasks</references>
+        <references refid="structxpe_1_1core_1_1s_task_1ae37dc636337031739b2ea80a97c78f94" compoundref="task__manager_8hpp" startline="23" endline="23">xpe::core::sTask::Todo</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a8b6c4d6e9f73187b6fe9594c26121b08" compoundref="task__manager_8hpp" startline="22">xpe::core::sTask::Type</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::core::sTask</label>
+        <link refid="structxpe_1_1core_1_1s_task"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::core::sTaskQueue</label>
+        <link refid="structxpe_1_1core_1_1s_task_queue"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::core::sTask</label>
+        <link refid="structxpe_1_1core_1_1s_task"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::core::sTaskQueue</label>
+        <link refid="structxpe_1_1core_1_1s_task_queue"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/core/task_manager.hpp" line="29" column="9" bodyfile="engine/src/core/task_manager.hpp" bodystart="30" bodyend="35"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>ANIMATION</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>AUDIO</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>DEFAULT</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>eType</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>NETWORK</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>PHYSICS</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a98a32f166503d07754051ffbb0de4f77" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>sTask</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a72b2582e5dc7cceb42a92214c20b438c" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>sTask</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_queue_1a7f9bb6c3df7dc9ec7cde7fd02612c66f" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>sTaskQueue</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_queue_1a42d597a4313912876ef3dbc4953453b7" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>sTaskQueue</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_queue_1afb918d59e8c049ce1b5ca93f68dd245d" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>Tasks</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>THREAD_POOL</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1ae37dc636337031739b2ea80a97c78f94" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>Todo</name></member>
+      <member refid="structxpe_1_1core_1_1s_task_1a8b6c4d6e9f73187b6fe9594c26121b08" prot="public" virt="non-virtual"><scope>xpe::core::sTaskQueue</scope><name>Type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

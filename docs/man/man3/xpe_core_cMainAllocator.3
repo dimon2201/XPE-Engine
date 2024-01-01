@@ -1,0 +1,53 @@
+.TH "xpe::core::cMainAllocator< T >" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cMainAllocator< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <allocators\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBT\fP \fBvalue_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcMainAllocator\fP ()=\fBdefault\fP"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBU\fP > \fBconstexpr\fP \fBcMainAllocator\fP (\fBconst\fP \fBcMainAllocator\fP< \fBU\fP > &) \fBnoexcept\fP"
+.br
+.ti -1c
+.RI "\fBT\fP * \fBallocate\fP (std::size_t \fBcount\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdeallocate\fP (\fBT\fP *\fBelement\fP, std::size_t \fBcount\fP) \fBnoexcept\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBtypedef\fP \fBT\fP \fBxpe::core::cMainAllocator\fP< \fBT\fP >::value_type"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBxpe::core::cMainAllocator\fP< \fBT\fP >::cMainAllocator ()\fR [default]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > template<\fBclass\fP \fBU\fP > \fBconstexpr\fP \fBxpe::core::cMainAllocator\fP< \fBT\fP >::cMainAllocator (\fBconst\fP \fBcMainAllocator\fP< \fBU\fP > &)\fR [inline]\fP, \fR [constexpr]\fP, \fR [noexcept]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBxpe::core::cMainAllocator\fP< \fBT\fP >::allocate (std::size_t count)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBxpe::core::cMainAllocator\fP< \fBT\fP >::deallocate (\fBT\fP * element, std::size_t count)\fR [inline]\fP, \fR [noexcept]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

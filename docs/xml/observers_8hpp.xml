@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="observers_8hpp" kind="file" language="C++">
+    <compoundname>observers.hpp</compoundname>
+    <includes refid="observer_8hpp" local="no">core/observer.hpp</includes>
+    <includedby refid="app__config_8hpp" local="no">engine/src/core/app_config.hpp</includedby>
+    <includedby refid="pch_8hpp" local="no">engine/src/pch.hpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>core/observer.hpp</label>
+        <link refid="observer_8hpp"/>
+      </node>
+      <node id="1">
+        <label>engine/src/core/observers.hpp</label>
+        <link refid="observers_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>engine/src/core/app_config.hpp</label>
+        <link refid="app__config_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>engine/src/core/observers.hpp</label>
+        <link refid="observers_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>engine/src/pch.hpp</label>
+        <link refid="pch_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structxpe_1_1core_1_1s_observer_sample_count" prot="public">xpe::core::sObserverSampleCount</innerclass>
+    <innerclass refid="structxpe_1_1core_1_1s_observer_window_ratio" prot="public">xpe::core::sObserverWindowRatio</innerclass>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1core">xpe::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="observer_8hpp" kindref="compound">core/observer.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="structxpe_1_1core_1_1s_observer_sample_count" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structxpe_1_1core_1_1s_observer_sample_count" kindref="compound">sObserverSampleCount</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1core_1_1s_observer" kindref="compound">sObserver</ref>&lt;u32&gt;<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_observer_sample_count_1a139ad0f42b4f4fada31c94a4c12ede63" kindref="member">sObserverSampleCount</ref>(<ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">sampleCount</ref>);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="structxpe_1_1core_1_1s_observer_window_ratio" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structxpe_1_1core_1_1s_observer_window_ratio" kindref="compound">sObserverWindowRatio</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1core_1_1s_observer" kindref="compound">sObserver</ref>&lt;float&gt;<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structxpe_1_1core_1_1s_observer_window_ratio_1ae68d3a3544c87ab3b2af8ad258c6248d" kindref="member">sObserverWindowRatio</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">ratio</ref>);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/core/observers.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,55 @@
+.TH "xpe::render::cMaterialManager" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::cMaterialManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <material_manager\&.hpp>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Args> \fBstatic\fP \fBsMaterial\fP \fBAddMaterial\fP (\fBArgs\fP &&\&.\&.\&. \fBargs\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBClear\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBFlush\fP (\fBconst\fP \fBsMaterial\fP &\fBmaterial\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBAddLayer\fP (\fBsTexture\fP &\fBtexture\fP, \fBsTextureLayer\fP *\fBlayer\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBSetLayer\fP (\fBsTexture\fP &\fBtexture\fP, \fBsTextureLayer\fP *\fBlayer\fP, \fBu32\fP \fBlayerIndex\fP)"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::render::cMaterialManager::AddLayer (\fBsTexture\fP & texture, \fBsTextureLayer\fP * layer)\fR [static]\fP"
+
+.SS "template<typename\&.\&.\&. Args> \fBsMaterial\fP xpe::render::cMaterialManager::AddMaterial (\fBArgs\fP &&\&.\&.\&. args)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::render::cMaterialManager::Clear ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::render::cMaterialManager::Flush (\fBconst\fP \fBsMaterial\fP & material)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::render::cMaterialManager::Free ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::render::cMaterialManager::Init ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::render::cMaterialManager::SetLayer (\fBsTexture\fP & texture, \fBsTextureLayer\fP * layer, \fBu32\fP layerIndex)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

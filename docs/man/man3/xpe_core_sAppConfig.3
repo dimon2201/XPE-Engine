@@ -1,0 +1,143 @@
+.TH "xpe::core::sAppConfig" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::sAppConfig
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <app_config\&.hpp>\fP
+.PP
+Inherits \fBxpe::res::cJson\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBJSON_CLASS\fP (\fBsAppConfig\fP, \fBWinTitle\fP, \fBWinWidth\fP, \fBWinHeight\fP, \fBWinX\fP, \fBWinY\fP, \fBVSync\fP, \fBFullscreen\fP, \fBGamma\fP, \fBExposure\fP, AspectRatio\&.Value, \fBLogTitle\fP, \fBLogBacktrace\fP, \fBEnableGPUInfoLog\fP, \fBEnableGPUWarnLog\fP, \fBEnableGPUErrorLog\fP, \fBFPS\fP, \fBLogTimeDelaySeconds\fP, \fBLockOnFps\fP, \fBHotReloadShaders\fP, MsaaSampleCount\&.Value, \fBEnableSSAO\fP) \fBstring\fP \fBWinTitle\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::res::cJson\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBToJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBFromJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBs32\fP \fBWinWidth\fP = 0"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBWinHeight\fP = 0"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBWinX\fP = 0"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBWinY\fP = 0"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBVSync\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBFullscreen\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBGamma\fP = 2\&.2\fBf\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBExposure\fP = 1"
+.br
+.ti -1c
+.RI "\fBsObserverWindowRatio\fP \fBAspectRatio\fP = 1\&.6\fBf\fP"
+.br
+.ti -1c
+.RI "\fBstring\fP \fBLogTitle\fP"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBLogBacktrace\fP = 32"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnableGPUInfoLog\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnableGPUWarnLog\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnableGPUErrorLog\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBFPS\fP = 165\&.0f"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBLogTimeDelaySeconds\fP = 5"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBLockOnFps\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBHotReloadShaders\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnableSSAO\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBsObserverSampleCount\fP \fBMsaaSampleCount\fP = 1"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "xpe::core::sAppConfig::JSON_CLASS (\fBsAppConfig\fP, \fBWinTitle\fP, \fBWinWidth\fP, \fBWinHeight\fP, \fBWinX\fP, \fBWinY\fP, \fBVSync\fP, \fBFullscreen\fP, \fBGamma\fP, \fBExposure\fP, AspectRatio\&. Value, \fBLogTitle\fP, \fBLogBacktrace\fP, \fBEnableGPUInfoLog\fP, \fBEnableGPUWarnLog\fP, \fBEnableGPUErrorLog\fP, \fBFPS\fP, \fBLogTimeDelaySeconds\fP, \fBLockOnFps\fP, \fBHotReloadShaders\fP, MsaaSampleCount\&. Value, \fBEnableSSAO\fP)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsObserverWindowRatio\fP xpe::core::sAppConfig::AspectRatio = 1\&.6\fBf\fP"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::EnableGPUErrorLog = \fBtrue\fP"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::EnableGPUInfoLog = \fBfalse\fP"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::EnableGPUWarnLog = \fBfalse\fP"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::EnableSSAO = \fBtrue\fP"
+
+.SS "\fBfloat\fP xpe::core::sAppConfig::Exposure = 1"
+
+.SS "\fBfloat\fP xpe::core::sAppConfig::FPS = 165\&.0f"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::Fullscreen = \fBfalse\fP"
+
+.SS "\fBfloat\fP xpe::core::sAppConfig::Gamma = 2\&.2\fBf\fP"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::HotReloadShaders = \fBtrue\fP"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::LockOnFps = \fBtrue\fP"
+
+.SS "\fBs32\fP xpe::core::sAppConfig::LogBacktrace = 32"
+
+.SS "\fBfloat\fP xpe::core::sAppConfig::LogTimeDelaySeconds = 5"
+
+.SS "\fBstring\fP xpe::core::sAppConfig::LogTitle"
+
+.SS "\fBsObserverSampleCount\fP xpe::core::sAppConfig::MsaaSampleCount = 1"
+
+.SS "\fBbool\fP xpe::core::sAppConfig::VSync = \fBfalse\fP"
+
+.SS "\fBs32\fP xpe::core::sAppConfig::WinHeight = 0"
+
+.SS "\fBs32\fP xpe::core::sAppConfig::WinWidth = 0"
+
+.SS "\fBs32\fP xpe::core::sAppConfig::WinX = 0"
+
+.SS "\fBs32\fP xpe::core::sAppConfig::WinY = 0"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

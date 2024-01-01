@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_launcher_8hpp_source" xml:lang="en-US">
+<title>launcher.hpp</title>
+<indexterm><primary>engine/src/launcher.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_app_8hpp">core/app.hpp</link>&gt;</emphasis>
+4 
+5 <emphasis role="keyword">using&#32;namespace&#32;</emphasis><link linkend="_namespacexpe_1_1core">xpe::core</link>;
+6 
+7 <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_launcher_8hpp_1a3c04138a5bfe5d72780bb7e82a18e627">main</link>(<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">argc</link>,&#32;<emphasis role="keywordtype">char</emphasis>**&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">argv</link>)&#32;{
+8 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;pull&#32;OS&#32;hardware&#32;params</emphasis>
+9 &#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hardware_manager_1ace365cf2d81ec1edcd8798aa43e94fa9">xpe::core::cHardwareManager::UpdateMemoryStats</link>();
+10 &#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hardware_manager_1a28e6013e329654423e5793bab22507f5">xpe::core::cHardwareManager::UpdateCpuStats</link>();
+11 
+12 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;init&#32;memory&#32;pools</emphasis>
+13 &#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_memory_manager_1a14c7e27aec53bb95be7d5ac0ab24accd">cMemoryManager::Init</link>();
+14 
+15 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;run&#32;app&#32;implementation</emphasis>
+16 &#32;&#32;&#32;&#32;<emphasis role="keyword">auto</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">application</link>&#32;=&#32;<link linkend="_app_8hpp_1ade387e7515f0f30adc9898924329982e">CreateApplication</link>();
+17 
+18 &#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">application</link>-&gt;Run();
+19 
+20 &#32;&#32;&#32;&#32;<emphasis role="keyword">delete</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">application</link>;
+21 
+22 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;free&#32;memory&#32;pools</emphasis>
+23 &#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_memory_manager_1a4d93e73d334432a6ba77d0179db65d10">cMemoryManager::Free</link>();
+24 
+25 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+26 }
+</programlisting></section>

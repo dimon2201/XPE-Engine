@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_direct_light_data" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sDirectLightData</compoundname>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_direct_light_data_1a3501592ccf54ede2781686f1d1cc859c" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sDirectLightData::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>xpe::render::sDirectLightData::Position</qualifiedname>
+        <initializer>= { 0, 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="335" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="335" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_direct_light_data_1a8867af0821c27e8719465f7317fbfbf5" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sDirectLightData::Color</definition>
+        <argsstring></argsstring>
+        <name>Color</name>
+        <qualifiedname>xpe::render::sDirectLightData::Color</qualifiedname>
+        <initializer>= { 1, 1, 1 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="336" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="336" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_direct_light_data_1a064e58c291ad7f6c3565bedc8c9fce42" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::render::sDirectLightData::ViewProjection</definition>
+        <argsstring></argsstring>
+        <name>ViewProjection</name>
+        <qualifiedname>xpe::render::sDirectLightData::ViewProjection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="337" column="23" bodyfile="engine/src/rendering/buffers.hpp" bodystart="337" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/buffers.hpp" line="333" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="334" bodyend="338"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_direct_light_data_1a8867af0821c27e8719465f7317fbfbf5" prot="public" virt="non-virtual"><scope>xpe::render::sDirectLightData</scope><name>Color</name></member>
+      <member refid="structxpe_1_1render_1_1s_direct_light_data_1a3501592ccf54ede2781686f1d1cc859c" prot="public" virt="non-virtual"><scope>xpe::render::sDirectLightData</scope><name>Position</name></member>
+      <member refid="structxpe_1_1render_1_1s_direct_light_data_1a064e58c291ad7f6c3565bedc8c9fce42" prot="public" virt="non-virtual"><scope>xpe::render::sDirectLightData</scope><name>ViewProjection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

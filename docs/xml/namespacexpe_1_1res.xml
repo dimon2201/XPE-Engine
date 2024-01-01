@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacexpe_1_1res" kind="namespace" language="C++">
+    <compoundname>xpe::res</compoundname>
+    <innerclass refid="classxpe_1_1res_1_1c_json" prot="public">xpe::res::cJson</innerclass>
+    <innerclass refid="classxpe_1_1res_1_1c_xml" prot="public">xpe::res::cXml</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacexpe_1_1res_1a457564438c0393afed9708a5e9da8433" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>ENGINE_API bool xpe::res::ReadJsonFile</definition>
+        <argsstring>(const char *filepath, cJson &amp;object)</argsstring>
+        <name>ReadJsonFile</name>
+        <qualifiedname>xpe::res::ReadJsonFile</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filepath</declname>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1res_1_1c_json" kindref="compound">cJson</ref> &amp;</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="7" column="14" bodyfile="engine/src/res/json.cpp" bodystart="7" bodyend="21" declfile="engine/src/res/json.hpp" declline="43" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1ab18afec3554029bc51ab158fc31b846c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>ENGINE_API bool xpe::res::WriteJsonFile</definition>
+        <argsstring>(const char *filepath, cJson &amp;object)</argsstring>
+        <name>WriteJsonFile</name>
+        <qualifiedname>xpe::res::WriteJsonFile</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filepath</declname>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1res_1_1c_json" kindref="compound">cJson</ref> &amp;</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="23" column="14" bodyfile="engine/src/res/json.cpp" bodystart="23" bodyend="38" declfile="engine/src/res/json.hpp" declline="44" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1ae8813487225b68b49312454bb143e202" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, bool &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="38" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="38" bodyend="40" declfile="engine/src/res/xml.hpp" declline="225" declcolumn="25"/>
+        <referencedby refid="classxpe_1_1ecs_1_1c_scene_1a069b678a1d459ec195a12cc982e22c1b" compoundref="ecs_8cpp" startline="62" endline="73">xpe::ecs::cScene::ToXml</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a92fec084deb09888f5b33f5bd04ec88b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, u8 &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6" kindref="member">u8</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="42" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="42" bodyend="44" declfile="engine/src/res/xml.hpp" declline="226" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a4c2dd214c670d01b7998d4d0e0cce57f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, int &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="46" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="46" bodyend="48" declfile="engine/src/res/xml.hpp" declline="227" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a579fd17cbd784cfea77cd5de44e10608" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, u32 &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="50" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="50" bodyend="52" declfile="engine/src/res/xml.hpp" declline="228" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1ab74c245a4a6a0dddd23b1bfec34dba7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, float &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="54" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="54" bodyend="56" declfile="engine/src/res/xml.hpp" declline="229" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a4f2c9a1368485e9ec05e48df345dbc5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, double &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="58" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="58" bodyend="60" declfile="engine/src/res/xml.hpp" declline="230" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1ad3d48b93f2ed1ef58ecb353bd475523e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, u64 &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="62" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="62" bodyend="64" declfile="engine/src/res/xml.hpp" declline="231" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1af2dad131efbb9c128eadb852e86f5f2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, s64 &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="66" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="66" bodyend="68" declfile="engine/src/res/xml.hpp" declline="232" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1ab56219d1c2db5e6081d4e896bea91283" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, string &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="70" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="70" bodyend="72" declfile="engine/src/res/xml.hpp" declline="235" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1aab3e1e1dfe053d8cf85a0a76437b16fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, std::string &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="74" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="74" bodyend="76" declfile="engine/src/res/xml.hpp" declline="236" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1ac78f9b5c5f8d78d24cd49e9bf25cada5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, glm::vec2 &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec2 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="78" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="78" bodyend="83" declfile="engine/src/res/xml.hpp" declline="239" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a0783a8fbda8417349f15901b6dac5d43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, glm::vec3 &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec3 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="85" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="85" bodyend="91" declfile="engine/src/res/xml.hpp" declline="240" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1af66b868c03412251dad00a8675e81287" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::SetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, glm::vec4 &amp;value)</argsstring>
+        <name>SetXmlValue</name>
+        <qualifiedname>xpe::res::SetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec4 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="93" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="93" bodyend="100" declfile="engine/src/res/xml.hpp" declline="241" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1ac5525e0fd8b81e865e788d9ee64021b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, bool &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="102" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="102" bodyend="104" declfile="engine/src/res/xml.hpp" declline="244" declcolumn="25"/>
+        <referencedby refid="classxpe_1_1ecs_1_1c_scene_1a1a742c4d2f714632fdb3dd10b933db75" compoundref="ecs_8cpp" startline="75" endline="86">xpe::ecs::cScene::FromXml</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a2912120e111d500b8d54fe818d75a4e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, u8 &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6" kindref="member">u8</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="106" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="106" bodyend="108" declfile="engine/src/res/xml.hpp" declline="245" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a42916f971a61225037a6adb7dfe7b6f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, int &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="110" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="110" bodyend="112" declfile="engine/src/res/xml.hpp" declline="246" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a21272882a2a1f969d343ba38f7f7300e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, u32 &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="114" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="114" bodyend="116" declfile="engine/src/res/xml.hpp" declline="247" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a7cdc448a384360ad1469106193f64ca6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, float &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="118" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="118" bodyend="120" declfile="engine/src/res/xml.hpp" declline="248" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1aa250fb8836b21bb32ee56c8db5551846" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, double &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="122" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="122" bodyend="124" declfile="engine/src/res/xml.hpp" declline="249" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a6ebee9a9e9886d4c85db6fcf9dd7acc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, u64 &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="126" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="126" bodyend="128" declfile="engine/src/res/xml.hpp" declline="250" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a0545b602829a94ada5fb0ddda9db5b91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, s64 &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="130" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="130" bodyend="132" declfile="engine/src/res/xml.hpp" declline="251" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1af28dd191d5bef59f47558aada6c69c03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, string &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="134" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="134" bodyend="136" declfile="engine/src/res/xml.hpp" declline="254" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a3e96e4a4d06bb1d197d7406c4d3458f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, std::string &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="138" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="138" bodyend="140" declfile="engine/src/res/xml.hpp" declline="255" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1aeb8596a2a8a9a88da2721e3fda558e58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, glm::vec2 &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec2 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="142" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="142" bodyend="149" declfile="engine/src/res/xml.hpp" declline="258" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a9d8ffb7b1ff3cc38ca1211d7b3fb6463" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, glm::vec3 &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec3 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="151" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="151" bodyend="159" declfile="engine/src/res/xml.hpp" declline="259" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1res_1a26a0be58a8a769c71b5f520cf6cbb721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>ENGINE_API void xpe::res::GetXmlValue</definition>
+        <argsstring>(xml &amp;root, const char *name, glm::vec4 &amp;value)</argsstring>
+        <name>GetXmlValue</name>
+        <qualifiedname>xpe::res::GetXmlValue</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec4 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.cpp" line="161" column="14" bodyfile="engine/src/res/xml.cpp" bodystart="161" bodyend="170" declfile="engine/src/res/xml.hpp" declline="260" declcolumn="25"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/res/json.cpp" line="5" column="5"/>
+  </compounddef>
+</doxygen>

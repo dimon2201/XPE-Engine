@@ -1,0 +1,557 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_buffer" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sBuffer</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_resource" prot="public" virt="non-virtual">xpe::render::sResource</basecompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_item_buffer" prot="public" virt="non-virtual">xpe::render::sItemBuffer&lt; sCameraData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_item_buffer" prot="public" virt="non-virtual">xpe::render::sItemBuffer&lt; sShadowPcf &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_item_buffer" prot="public" virt="non-virtual">xpe::render::sItemBuffer&lt; sSsaoData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sChar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sDirectLightData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sRenderInstance &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sMaterialData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sPointLightData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sSkeletonData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sSpotLightData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sText &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; sWidgetData &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_index_buffer" prot="public" virt="non-virtual">xpe::render::sIndexBuffer</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_item_buffer" prot="public" virt="non-virtual">xpe::render::sItemBuffer&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1s_list_buffer" prot="public" virt="non-virtual">xpe::render::sListBuffer&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_vertex_buffer" prot="public" virt="non-virtual">xpe::render::sVertexBuffer</derivedcompoundref>
+    <includes refid="rendering_2core_2core_8hpp" local="no">core.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>eType</name>
+        <qualifiedname>xpe::render::sBuffer::eType</qualifiedname>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caab50339a10e1de285ac99d4c3990b8693" prot="public">
+          <name>NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa0c3e47aef93a7f244f41ab309a33634b" prot="public">
+          <name>VERTEX</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caacb4ae3b37047fb4b2c0d16f8bf84f076" prot="public">
+          <name>INDEX</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa2b911c015ed17a423c74ab9987330e60" prot="public">
+          <name>ITEM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa298cb25408234de02baf2085803a464a" prot="public">
+          <name>LIST</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caa8d6b5cada83510220f59e00ce86d4d92" prot="public">
+          <name>CONSTANT</name>
+          <initializer>= ITEM</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caaf3657f7b18c7809b92f317c5f3b53421" prot="public">
+          <name>STRUCTURED</name>
+          <initializer>= LIST</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="47" column="13" bodyfile="engine/src/rendering/core/core.hpp" bodystart="48" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="enum" id="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>eSubType</name>
+        <qualifiedname>xpe::render::sBuffer::eSubType</qualifiedname>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693" prot="public">
+          <name>NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a633d6abff0a3fc22404347728d195059" prot="public">
+          <name>RAW</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a375ffb668aa90f1c7fcae55e9734a752" prot="public">
+          <name>APPEND</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633a2a966fff3e22232bb122ac70968894f6" prot="public">
+          <name>CONSUME</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="59" column="13" bodyfile="engine/src/rendering/core/core.hpp" bodystart="60" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="enum" id="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>eUsage</name>
+        <qualifiedname>xpe::render::sBuffer::eUsage</qualifiedname>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a5b39c8b553c821e7cddc6da64b5bd2ee" prot="public">
+          <name>DEFAULT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641afe6f99ef1ec99efbdc19a9786cf1facc" prot="public">
+          <name>STATIC</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a0fcc90da4811c877ba9f9c12f7d60bc9" prot="public">
+          <name>DYNAMIC</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641ab8a1431064f351dbef92871d02bab8cf" prot="public">
+          <name>STAGING</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="67" column="13" bodyfile="engine/src/rendering/core/core.hpp" bodystart="68" bodyend="73"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca" kindref="member">eType</ref></type>
+        <definition>eType xpe::render::sBuffer::Type</definition>
+        <argsstring></argsstring>
+        <name>Type</name>
+        <qualifiedname>xpe::render::sBuffer::Type</qualifiedname>
+        <initializer>= <ref refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672caab50339a10e1de285ac99d4c3990b8693" kindref="member">eType::NONE</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="75" column="19" bodyfile="engine/src/rendering/core/core.hpp" bodystart="75" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1adee9f81da964924105c094672e57e9a4" compoundref="buffers_8cpp" startline="8" endline="20">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1ad43fb895491bda4ae6933f87c41a4793" compoundref="buffers_8cpp" startline="22" endline="35">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" compoundref="buffers_8cpp" startline="99" endline="111">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" compoundref="buffers_8cpp" startline="113" endline="126">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" kindref="member">eSubType</ref></type>
+        <definition>eSubType xpe::render::sBuffer::SubType</definition>
+        <argsstring></argsstring>
+        <name>SubType</name>
+        <qualifiedname>xpe::render::sBuffer::SubType</qualifiedname>
+        <initializer>= <ref refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633ab50339a10e1de285ac99d4c3990b8693" kindref="member">eSubType::NONE</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="76" column="22" bodyfile="engine/src/rendering/core/core.hpp" bodystart="76" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1adee9f81da964924105c094672e57e9a4" compoundref="buffers_8cpp" startline="8" endline="20">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1ad43fb895491bda4ae6933f87c41a4793" compoundref="buffers_8cpp" startline="22" endline="35">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" compoundref="buffers_8cpp" startline="99" endline="111">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" compoundref="buffers_8cpp" startline="113" endline="126">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_buffer_1a74933b3c2fa8f86517547b9dcc9c903a" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641" kindref="member">eUsage</ref></type>
+        <definition>eUsage xpe::render::sBuffer::Usage</definition>
+        <argsstring></argsstring>
+        <name>Usage</name>
+        <qualifiedname>xpe::render::sBuffer::Usage</qualifiedname>
+        <initializer>= <ref refid="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641a0fcc90da4811c877ba9f9c12f7d60bc9" kindref="member">eUsage::DYNAMIC</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="77" column="20" bodyfile="engine/src/rendering/core/core.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sBuffer::StructureSize</definition>
+        <argsstring></argsstring>
+        <name>StructureSize</name>
+        <qualifiedname>xpe::render::sBuffer::StructureSize</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="78" column="19" bodyfile="engine/src/rendering/core/core.hpp" bodystart="78" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1acaf5d900bc6fb01667e50c8cb458a983" compoundref="buffers_8cpp" startline="62" endline="69">xpe::render::sIndexBuffer::FlushIndex</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1ab319de361de407e89c7b62eb8874a96a" compoundref="buffers_8cpp" startline="144" endline="151">xpe::render::sVertexBuffer::FlushVertex</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1a7cc39f24072b907a5b007037b457c3ae" compoundref="buffers_8cpp" startline="71" endline="79">xpe::render::sIndexBuffer::Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" compoundref="buffers_8cpp" startline="162" endline="170">xpe::render::sVertexBuffer::Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1adee9f81da964924105c094672e57e9a4" compoundref="buffers_8cpp" startline="8" endline="20">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1ad43fb895491bda4ae6933f87c41a4793" compoundref="buffers_8cpp" startline="22" endline="35">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" compoundref="buffers_8cpp" startline="99" endline="111">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" compoundref="buffers_8cpp" startline="113" endline="126">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sBuffer::NumElements</definition>
+        <argsstring></argsstring>
+        <name>NumElements</name>
+        <qualifiedname>xpe::render::sBuffer::NumElements</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="79" column="17" bodyfile="engine/src/rendering/core/core.hpp" bodystart="79" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1aaa6c6f473ab50ee10652c85dd2bbfdb0" compoundref="buffers_8cpp" startline="42" endline="51">xpe::render::sIndexBuffer::Flush</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" compoundref="buffers_8cpp" startline="133" endline="142">xpe::render::sVertexBuffer::Flush</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1a7cc39f24072b907a5b007037b457c3ae" compoundref="buffers_8cpp" startline="71" endline="79">xpe::render::sIndexBuffer::Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" compoundref="buffers_8cpp" startline="162" endline="170">xpe::render::sVertexBuffer::Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1adee9f81da964924105c094672e57e9a4" compoundref="buffers_8cpp" startline="8" endline="20">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1ad43fb895491bda4ae6933f87c41a4793" compoundref="buffers_8cpp" startline="22" endline="35">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" compoundref="buffers_8cpp" startline="99" endline="111">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" compoundref="buffers_8cpp" startline="113" endline="126">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_buffer_1af3faa739ee8d36ff1b306fe10a5184bf" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sBuffer::Slot</definition>
+        <argsstring></argsstring>
+        <name>Slot</name>
+        <qualifiedname>xpe::render::sBuffer::Slot</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="80" column="17" bodyfile="engine/src/rendering/core/core.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::render::sBuffer::InitialData</definition>
+        <argsstring></argsstring>
+        <name>InitialData</name>
+        <qualifiedname>xpe::render::sBuffer::InitialData</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="81" column="18" bodyfile="engine/src/rendering/core/core.hpp" bodystart="81" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1a7cc39f24072b907a5b007037b457c3ae" compoundref="buffers_8cpp" startline="71" endline="79">xpe::render::sIndexBuffer::Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" compoundref="buffers_8cpp" startline="162" endline="170">xpe::render::sVertexBuffer::Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1adee9f81da964924105c094672e57e9a4" compoundref="buffers_8cpp" startline="8" endline="20">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1ad43fb895491bda4ae6933f87c41a4793" compoundref="buffers_8cpp" startline="22" endline="35">xpe::render::sIndexBuffer::sIndexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a4ec97886e7384db63d9db85c75ccfc29" compoundref="buffers_8cpp" startline="99" endline="111">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aeba0348f9a7328e3b6d9711dd4a6b5b2" compoundref="buffers_8cpp" startline="113" endline="126">xpe::render::sVertexBuffer::sVertexBuffer</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sBuffer::GetByteSize</definition>
+        <argsstring>() const</argsstring>
+        <name>GetByteSize</name>
+        <qualifiedname>xpe::render::sBuffer::GetByteSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="83" column="27" bodyfile="engine/src/rendering/core/core.hpp" bodystart="83" bodyend="86"/>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1aaa6c6f473ab50ee10652c85dd2bbfdb0" compoundref="buffers_8cpp" startline="42" endline="51">xpe::render::sIndexBuffer::Flush</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a896c35b36d1987189db78fbca0a81a19" compoundref="buffers_8cpp" startline="133" endline="142">xpe::render::sVertexBuffer::Flush</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1acc175b9bdf4157e6ae6846cd2caf7f1b" compoundref="buffers_8cpp" startline="53" endline="60">xpe::render::sIndexBuffer::FlushIndices</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1aa4f339fcf483993cf3f770ac2ca58044" compoundref="buffers_8cpp" startline="153" endline="160">xpe::render::sVertexBuffer::FlushVertices</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_index_buffer_1a7cc39f24072b907a5b007037b457c3ae" compoundref="buffers_8cpp" startline="71" endline="79">xpe::render::sIndexBuffer::Recreate</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_vertex_buffer_1a1e35d4d007d4707711bd3e42c0d8ae4f" compoundref="buffers_8cpp" startline="162" endline="170">xpe::render::sVertexBuffer::Recreate</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>xpe::render::sItemBuffer&lt; sCameraData &gt;</label>
+        <link refid="structxpe_1_1render_1_1s_item_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::render::sItemBuffer&lt; sShadowPcf &gt;</label>
+        <link refid="structxpe_1_1render_1_1s_item_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>xpe::render::sItemBuffer&lt; sSsaoData &gt;</label>
+        <link refid="structxpe_1_1render_1_1s_item_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>xpe::render::sListBuffer&lt; sChar &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>xpe::render::sListBuffer&lt; sDirectLightData &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>xpe::render::sListBuffer&lt; sMaterialData &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>xpe::render::sListBuffer&lt; sPointLightData &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>xpe::render::sListBuffer&lt; sRenderInstance &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>xpe::render::sListBuffer&lt; sSkeletonData &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>xpe::render::sListBuffer&lt; sSpotLightData &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>xpe::render::sListBuffer&lt; sText &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>xpe::render::sListBuffer&lt; sWidgetData &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::render::sCameraBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_camera_buffer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>xpe::render::sCharBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_char_buffer"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>xpe::render::sDirectLightBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_direct_light_buffer"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>xpe::render::sIndexBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_index_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>xpe::render::sInstanceBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_instance_buffer"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>xpe::render::sItemBuffer&lt; T &gt;</label>
+        <link refid="structxpe_1_1render_1_1s_item_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>xpe::render::sListBuffer&lt; T &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>xpe::render::sMaterialDataBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_material_data_buffer"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>xpe::render::sPointLightBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_point_light_buffer"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>xpe::render::sShadowPcfBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_shadow_pcf_buffer"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>xpe::render::sSkeletonBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_skeleton_buffer"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>xpe::render::sSpotLightBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_spot_light_buffer"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>xpe::render::sSsaoBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_ssao_buffer"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>xpe::render::sTextBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_text_buffer"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>xpe::render::sVertexBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_vertex_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>xpe::render::sWidgetBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_widget_buffer"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/core.hpp" line="45" column="9" bodyfile="engine/src/rendering/core/core.hpp" bodystart="46" bodyend="87"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>eMapType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>eSubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>eType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>eUsage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>eViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>GetByteSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>InitialData</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>Instance</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>NumElements</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af3faa739ee8d36ff1b306fe10a5184bf" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>Slot</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>StructureSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>SubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>Type</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a74933b3c2fa8f86517547b9dcc9c903a" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>Usage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>ViewInstance</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" prot="public" virt="non-virtual"><scope>xpe::render::sBuffer</scope><name>ViewType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

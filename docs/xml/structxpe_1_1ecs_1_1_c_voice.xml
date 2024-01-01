@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_voice" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CVoice</compoundname>
+    <basecompoundref refid="classxpe_1_1res_1_1c_json" prot="public" virt="non-virtual">xpe::res::cJson</basecompoundref>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_voice_1a81b4e8c58738fd817fbe75e5e2c4e241" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::ecs::CVoice::SourceID</definition>
+        <argsstring></argsstring>
+        <name>SourceID</name>
+        <qualifiedname>xpe::ecs::CVoice::SourceID</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="298" column="17" bodyfile="engine/src/ecs/components.hpp" bodystart="298" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_voice_1a86cf29ac0f6a595335ed2582aecadc29" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016ae" kindref="member">eAudioState</ref></type>
+        <definition>eAudioState xpe::ecs::CVoice::State</definition>
+        <argsstring></argsstring>
+        <name>State</name>
+        <qualifiedname>xpe::ecs::CVoice::State</qualifiedname>
+        <initializer>= eAudioState::INITIAL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="300" column="25" bodyfile="engine/src/ecs/components.hpp" bodystart="300" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_voice_1a6a9d74acc1b9082997097c759faa3737" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> &gt;</type>
+        <definition>vector&lt;u32&gt; xpe::ecs::CVoice::BufferID</definition>
+        <argsstring></argsstring>
+        <name>BufferID</name>
+        <qualifiedname>xpe::ecs::CVoice::BufferID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="302" column="20" bodyfile="engine/src/ecs/components.hpp" bodystart="302" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_voice_1aac24704a94abcaa8c5d525fe5be1e106" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1a3ef33364f79f5d0dc0e14b61fe762b97" kindref="member">s16</ref> &gt;</type>
+        <definition>vector&lt;s16&gt; xpe::ecs::CVoice::Data</definition>
+        <argsstring></argsstring>
+        <name>Data</name>
+        <qualifiedname>xpe::ecs::CVoice::Data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="303" column="20" bodyfile="engine/src/ecs/components.hpp" bodystart="303" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::ecs::CVoice</label>
+        <link refid="structxpe_1_1ecs_1_1_c_voice"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::ecs::CVoice</label>
+        <link refid="structxpe_1_1ecs_1_1_c_voice"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/components.hpp" line="296" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="297" bodyend="312"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1ecs_1_1_c_voice_1a6a9d74acc1b9082997097c759faa3737" prot="public" virt="non-virtual"><scope>xpe::ecs::CVoice</scope><name>BufferID</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_voice_1aac24704a94abcaa8c5d525fe5be1e106" prot="public" virt="non-virtual"><scope>xpe::ecs::CVoice</scope><name>Data</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b" prot="public" virt="pure-virtual"><scope>xpe::ecs::CVoice</scope><name>FromJson</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_voice_1a81b4e8c58738fd817fbe75e5e2c4e241" prot="public" virt="non-virtual"><scope>xpe::ecs::CVoice</scope><name>SourceID</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_voice_1a86cf29ac0f6a595335ed2582aecadc29" prot="public" virt="non-virtual"><scope>xpe::ecs::CVoice</scope><name>State</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88" prot="public" virt="pure-virtual"><scope>xpe::ecs::CVoice</scope><name>ToJson</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1core_1_1s_window_descriptor" xml:lang="en-US">
+<title>xpe::core::sWindowDescriptor Struct Reference</title>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary></indexterm>
+<para>
+<computeroutput>#include &lt;window_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">char</link> * <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1abeacae5dd25884d31e9b16fc50448178">Title</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a8030385588117fcdc1d58e52821dff97">Width</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a28561b3263b834433a0e5c4225251ea2">Height</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1ad1b60bc35c4d6a23d1e13a7c11f660b5">FrameWidth</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1ad00ce5b4a1f9e102bd12fec60bc958fc">FrameHeight</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a5cd3a322a51dc28601f0ddbd5936b378">X</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1ae4ae37ad4db22feee6eb141986236944">Y</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a139f631a2603fa9c1f13df799874c65e">VSync</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1accecff399d2a2aac407d5e6a07306b13">Fullscreen</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a83da1e1ac1cd29bab6b3ecd84f6a4012">Gamma</link> = 2.2<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a90c1f78f2d1c9bd16d78819f3e57ece4">Exposure</link> = 1.0f</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9">eCursorMode</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a0032ba121ba49c7ea012409675535f8a">CursorMode</link> = <link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee">eCursorMode::DEFAULT</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5ccc">eWindowTheme</link> <link linkend="_structxpe_1_1core_1_1s_window_descriptor_1a251d7e4cda638dad3d224de1b553f4b8">Theme</link> = <link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5ccca5b39c8b553c821e7cddc6da64b5bd2ee">eWindowTheme::DEFAULT</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a0032ba121ba49c7ea012409675535f8a"/><section>
+    <title>CursorMode</title>
+<indexterm><primary>CursorMode</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>CursorMode</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9">eCursorMode</link> xpe::core::sWindowDescriptor::CursorMode = <link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee">eCursorMode::DEFAULT</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a90c1f78f2d1c9bd16d78819f3e57ece4"/><section>
+    <title>Exposure</title>
+<indexterm><primary>Exposure</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Exposure</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::core::sWindowDescriptor::Exposure = 1.0f</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1ad00ce5b4a1f9e102bd12fec60bc958fc"/><section>
+    <title>FrameHeight</title>
+<indexterm><primary>FrameHeight</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>FrameHeight</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sWindowDescriptor::FrameHeight</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1ad1b60bc35c4d6a23d1e13a7c11f660b5"/><section>
+    <title>FrameWidth</title>
+<indexterm><primary>FrameWidth</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>FrameWidth</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sWindowDescriptor::FrameWidth</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1accecff399d2a2aac407d5e6a07306b13"/><section>
+    <title>Fullscreen</title>
+<indexterm><primary>Fullscreen</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Fullscreen</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sWindowDescriptor::Fullscreen = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a83da1e1ac1cd29bab6b3ecd84f6a4012"/><section>
+    <title>Gamma</title>
+<indexterm><primary>Gamma</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Gamma</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::core::sWindowDescriptor::Gamma = 2.2<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a28561b3263b834433a0e5c4225251ea2"/><section>
+    <title>Height</title>
+<indexterm><primary>Height</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Height</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sWindowDescriptor::Height</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a251d7e4cda638dad3d224de1b553f4b8"/><section>
+    <title>Theme</title>
+<indexterm><primary>Theme</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Theme</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5ccc">eWindowTheme</link> xpe::core::sWindowDescriptor::Theme = <link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5ccca5b39c8b553c821e7cddc6da64b5bd2ee">eWindowTheme::DEFAULT</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1abeacae5dd25884d31e9b16fc50448178"/><section>
+    <title>Title</title>
+<indexterm><primary>Title</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Title</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">char</link>* xpe::core::sWindowDescriptor::Title</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a139f631a2603fa9c1f13df799874c65e"/><section>
+    <title>VSync</title>
+<indexterm><primary>VSync</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>VSync</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::core::sWindowDescriptor::VSync</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a8030385588117fcdc1d58e52821dff97"/><section>
+    <title>Width</title>
+<indexterm><primary>Width</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Width</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sWindowDescriptor::Width</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1a5cd3a322a51dc28601f0ddbd5936b378"/><section>
+    <title>X</title>
+<indexterm><primary>X</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>X</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sWindowDescriptor::X</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_window_descriptor_1ae4ae37ad4db22feee6eb141986236944"/><section>
+    <title>Y</title>
+<indexterm><primary>Y</primary><secondary>xpe::core::sWindowDescriptor</secondary></indexterm>
+<indexterm><primary>xpe::core::sWindowDescriptor</primary><secondary>Y</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::core::sWindowDescriptor::Y</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/core/<link linkend="_window__manager_8hpp">window_manager.hpp</link></section>
+</section>

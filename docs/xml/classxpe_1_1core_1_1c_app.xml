@@ -1,0 +1,615 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_app" kind="class" language="C++" prot="public">
+    <compoundname>xpe::core::cApp</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="app_8hpp" local="no">app.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" prot="public" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cApp::CPUTime</definition>
+        <argsstring></argsstring>
+        <name>CPUTime</name>
+        <qualifiedname>xpe::core::cApp::CPUTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="43" column="19" bodyfile="engine/src/core/app.hpp" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" prot="public" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cApp::DeltaTime</definition>
+        <argsstring></argsstring>
+        <name>DeltaTime</name>
+        <qualifiedname>xpe::core::cApp::DeltaTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="44" column="19" bodyfile="engine/src/core/app.hpp" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" compoundref="app_8cpp" startline="152" endline="158">LockFPSFromConfig</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">Render</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1a2e4a9bdbfb9563c041ab0447a108e26d" prot="public" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cApp::CurrentTime</definition>
+        <argsstring></argsstring>
+        <name>CurrentTime</name>
+        <qualifiedname>xpe::core::cApp::CurrentTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="45" column="19" bodyfile="engine/src/core/app.hpp" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1core_1_1s_app_config" kindref="compound">sAppConfig</ref></type>
+        <definition>sAppConfig xpe::core::cApp::Config</definition>
+        <argsstring></argsstring>
+        <name>Config</name>
+        <qualifiedname>xpe::core::cApp::Config</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="46" column="24" bodyfile="engine/src/core/app.hpp" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" compoundref="app_8cpp" startline="160" endline="175">InitShaders</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" compoundref="app_8cpp" startline="152" endline="158">LockFPSFromConfig</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1a56f56ce2f1d738cc92dd1017bb737b61" prot="protected" static="no" mutable="no">
+        <type>std::atomic_bool</type>
+        <definition>std::atomic_bool xpe::core::cApp::m_Opened</definition>
+        <argsstring></argsstring>
+        <name>m_Opened</name>
+        <qualifiedname>xpe::core::cApp::m_Opened</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="64" column="30" bodyfile="engine/src/core/app.hpp" bodystart="64" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" prot="protected" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+        <definition>cScene* xpe::core::cApp::m_Scene</definition>
+        <argsstring></argsstring>
+        <name>m_Scene</name>
+        <qualifiedname>xpe::core::cApp::m_Scene</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="66" column="20" bodyfile="engine/src/core/app.hpp" bodystart="66" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">Render</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1a383aa3cc5c1df7085ff2601d5ef3c559" prot="protected" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_canvas" kindref="compound">cCanvas</ref> *</type>
+        <definition>cCanvas* xpe::core::cApp::m_Canvas</definition>
+        <argsstring></argsstring>
+        <name>m_Canvas</name>
+        <qualifiedname>xpe::core::cApp::m_Canvas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="68" column="21" bodyfile="engine/src/core/app.hpp" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">Render</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1aa5fbd2978189be084ded83cb82bce612" prot="protected" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref></type>
+        <definition>sViewport xpe::core::cApp::m_Viewport</definition>
+        <argsstring></argsstring>
+        <name>m_Viewport</name>
+        <qualifiedname>xpe::core::cApp::m_Viewport</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="70" column="23" bodyfile="engine/src/core/app.hpp" bodystart="70" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_render_system" kindref="compound">cRenderSystem</ref> *</type>
+        <definition>cRenderSystem* xpe::core::cApp::m_RenderSystem</definition>
+        <argsstring></argsstring>
+        <name>m_RenderSystem</name>
+        <qualifiedname>xpe::core::cApp::m_RenderSystem</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="72" column="27" bodyfile="engine/src/core/app.hpp" bodystart="72" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">Render</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1a96c4c6c63918967c724923577f7570f3" prot="protected" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1anim_1_1c_anim_system" kindref="compound">cAnimSystem</ref> *</type>
+        <definition>cAnimSystem* xpe::core::cApp::m_AnimSystem</definition>
+        <argsstring></argsstring>
+        <name>m_AnimSystem</name>
+        <qualifiedname>xpe::core::cApp::m_AnimSystem</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="73" column="25" bodyfile="engine/src/core/app.hpp" bodystart="73" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1a39fceb74db114dad5ab2f2bcf5f27be2" prot="protected" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1audio_1_1c_audio_system" kindref="compound">cAudioSystem</ref> *</type>
+        <definition>cAudioSystem* xpe::core::cApp::m_AudioSystem</definition>
+        <argsstring></argsstring>
+        <name>m_AudioSystem</name>
+        <qualifiedname>xpe::core::cApp::m_AudioSystem</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="74" column="26" bodyfile="engine/src/core/app.hpp" bodystart="74" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_app_1abbe71f6bebeba16997b626d3f1941039" prot="protected" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1physics_1_1c_physics_system" kindref="compound">cPhysicsSystem</ref> *</type>
+        <definition>cPhysicsSystem* xpe::core::cApp::m_PhysicsSystem</definition>
+        <argsstring></argsstring>
+        <name>m_PhysicsSystem</name>
+        <qualifiedname>xpe::core::cApp::m_PhysicsSystem</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="75" column="28" bodyfile="engine/src/core/app.hpp" bodystart="75" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1a0becddd38dd8bed4bada049b0e26e0ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cApp::cApp</definition>
+        <argsstring>()</argsstring>
+        <name>cApp</name>
+        <qualifiedname>xpe::core::cApp::cApp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="48" column="13" bodyfile="engine/src/core/app.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1ae6a970175db088cf49d8fafa265bbefe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cApp::~cApp</definition>
+        <argsstring>()</argsstring>
+        <name>~cApp</name>
+        <qualifiedname>xpe::core::cApp::~cApp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="49" column="13" bodyfile="engine/src/core/app.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cApp::Run</definition>
+        <argsstring>()</argsstring>
+        <name>Run</name>
+        <qualifiedname>xpe::core::cApp::Run</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="51" column="18" bodyfile="engine/src/core/app.cpp" bodystart="26" bodyend="150"/>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b" compoundref="task__manager_8hpp" startline="16">xpe::core::sTask::ANIMATION</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae" compoundref="task__manager_8hpp" startline="14">xpe::core::sTask::AUDIO</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" compoundref="app_8hpp" startline="46">Config</references>
+        <references refid="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" compoundref="app_8hpp" startline="43">CPUTime</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a2e4a9bdbfb9563c041ab0447a108e26d" compoundref="app_8hpp" startline="45">CurrentTime</references>
+        <references refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" compoundref="app_8hpp" startline="44">DeltaTime</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a8d307d9518a59bafae06691f1c8009cc" compoundref="debugger_8cpp" startline="11">xpe::render::context::EnableErrorLog</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21" compoundref="app__config_8hpp" startline="52">xpe::core::sAppConfig::EnableGPUErrorLog</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78" compoundref="app__config_8hpp" startline="50">xpe::core::sAppConfig::EnableGPUInfoLog</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748" compoundref="app__config_8hpp" startline="51">xpe::core::sAppConfig::EnableGPUWarnLog</references>
+        <references refid="namespacexpe_1_1render_1_1context_1af2d11cdae2d8d2f7d279f2f5084af3db" compoundref="debugger_8cpp" startline="9">xpe::render::context::EnableInfoLog</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a0aadefb26c0f0b42144c840348f50dc8" compoundref="debugger_8cpp" startline="10">xpe::render::context::EnableWarnLog</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677" compoundref="app__config_8hpp" startline="44">xpe::core::sAppConfig::Exposure</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" compoundref="app__config_8hpp" startline="54">xpe::core::sAppConfig::FPS</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a2024288747447bdb0a69a021fed66b2f" compoundref="app_8hpp" startline="57" endline="57">Free</references>
+        <references refid="classxpe_1_1core_1_1c_event_manager_1ade6d0f70bc2e8420e85ffa785fb6ce00" compoundref="event__manager_8cpp" startline="13" endline="16">xpe::core::cEventManager::Free</references>
+        <references refid="classxpe_1_1core_1_1c_input_manager_1a9ec787efb7db503df7a6d05119a3d8de" compoundref="input__manager_8cpp" startline="130" endline="130">xpe::core::cInputManager::Free</references>
+        <references refid="classxpe_1_1core_1_1c_task_manager_1a1460b83cb7d2cc385262757d46157076" compoundref="task__manager_8cpp" startline="152" endline="158">xpe::core::cTaskManager::Free</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1a89c96ef2f0b2adb0e3d731e2a61f3ce9" compoundref="window__manager_8cpp" startline="56" endline="59">xpe::core::cWindowManager::Free</references>
+        <references refid="classxpe_1_1physics_1_1c_physics_manager_1a4f1601625b22bfa825c44ee871d4f8be" compoundref="physics__manager_8cpp" startline="80" endline="86">xpe::physics::cPhysicsManager::Free</references>
+        <references refid="log__manager_8hpp_1a2483e63d382a5858591b9d725cf36485" compoundref="log__manager_8hpp" startline="30">FreeLogger</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1af5dfe3894003a8ad57e1354021b8d298" compoundref="window__manager_8cpp" startline="82" endline="88">xpe::core::cWindowManager::FreeWindow</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b" compoundref="app__config_8hpp" startline="42">xpe::core::sAppConfig::Fullscreen</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f" compoundref="app__config_8hpp" startline="43">xpe::core::sAppConfig::Gamma</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1a146fad2784fb4c33d64eaa08ae1bc340" compoundref="window__manager_8cpp" startline="99" endline="102">xpe::core::cWindowManager::GetHeight</references>
+        <references refid="classxpe_1_1core_1_1c_task_manager_1afdf5cf1f256eb417b3207318805aaba3" compoundref="task__manager_8cpp" startline="204" endline="207">xpe::core::cTaskManager::GetSimulationDispatcher</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1afe9947fdbfa0a31f51a29d9553362c8c" compoundref="window__manager_8cpp" startline="94" endline="97">xpe::core::cWindowManager::GetWidth</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1a5bf4baa8340c1e14a5208eba4165add7" compoundref="rendering_2core_2core_8hpp" startline="101">xpe::render::sViewport::Height</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a5ef55c63d56dfccfc7738b50cf5be70a" compoundref="app_8hpp" startline="55" endline="55">Init</references>
+        <references refid="classxpe_1_1core_1_1c_event_manager_1ab412052ff29ce97f039a00d4f9a2e492" compoundref="event__manager_8cpp" startline="9" endline="11">xpe::core::cEventManager::Init</references>
+        <references refid="classxpe_1_1core_1_1c_input_manager_1a6e64b8653d658153d72bba1301edec2c" compoundref="input__manager_8cpp" startline="11" endline="24">xpe::core::cInputManager::Init</references>
+        <references refid="classxpe_1_1core_1_1c_task_manager_1a46a55aa8997512cd132a29694a4f5526" compoundref="task__manager_8cpp" startline="144" endline="150">xpe::core::cTaskManager::Init</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1ab5db59ec1956eab92788445e2a236ade" compoundref="window__manager_8cpp" startline="36" endline="54">xpe::core::cWindowManager::Init</references>
+        <references refid="classxpe_1_1physics_1_1c_physics_manager_1a37d2691cdf4bf8bf56425ffee6d932ec" compoundref="physics__manager_8cpp" startline="44" endline="78">xpe::physics::cPhysicsManager::Init</references>
+        <references refid="log__manager_8hpp_1ace537ecfc8a0c748069d8946e3a48369" compoundref="log__manager_8hpp" startline="29">InitLogger</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" compoundref="app_8cpp" startline="160" endline="175">InitShaders</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1a5acf1469a7302505924c4c95048009c8" compoundref="window__manager_8cpp" startline="61" endline="80">xpe::core::cWindowManager::InitWindow</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275" compoundref="app__config_8hpp" startline="48">xpe::core::sAppConfig::LogBacktrace</references>
+        <references refid="time__manager_8hpp_1ab3a55de6979b221cf68ec9d259b90f3a" compoundref="time__manager_8hpp" startline="16">LogCpuTime</references>
+        <references refid="memory__manager_8hpp_1ac17247c0375861bfc4d740e77109acdc" compoundref="memory__manager_8hpp" startline="9">LogMemoryPools</references>
+        <references refid="core_2allocators_8hpp_1abdfa33f12655d0a8f26a1fb077ee2f0a" compoundref="core_2allocators_8hpp" startline="38">LogStackMemory</references>
+        <references refid="log__manager_8hpp_1ab1ef1da5fb4535faa4cac7287d508334" compoundref="log__manager_8hpp" startline="41">LogTime</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e" compoundref="app__config_8hpp" startline="56">xpe::core::sAppConfig::LogTimeDelaySeconds</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf" compoundref="app__config_8hpp" startline="47">xpe::core::sAppConfig::LogTitle</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a96c4c6c63918967c724923577f7570f3" compoundref="app_8hpp" startline="73">m_AnimSystem</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a39fceb74db114dad5ab2f2bcf5f27be2" compoundref="app_8hpp" startline="74">m_AudioSystem</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a383aa3cc5c1df7085ff2601d5ef3c559" compoundref="app_8hpp" startline="68">m_Canvas</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a56f56ce2f1d738cc92dd1017bb737b61" compoundref="app_8hpp" startline="64">m_Opened</references>
+        <references refid="classxpe_1_1core_1_1c_app_1abbe71f6bebeba16997b626d3f1941039" compoundref="app_8hpp" startline="75">m_PhysicsSystem</references>
+        <references refid="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" compoundref="app_8hpp" startline="72">m_RenderSystem</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" compoundref="app_8hpp" startline="66">m_Scene</references>
+        <references refid="classxpe_1_1core_1_1c_app_1aa5fbd2978189be084ded83cb82bce612" compoundref="app_8hpp" startline="70">m_Viewport</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" compoundref="app__config_8hpp" startline="64">xpe::core::sAppConfig::MsaaSampleCount</references>
+        <references refid="structxpe_1_1core_1_1s_logger_descriptor_1afc1b0ee6bfda7d6bba679494db09bb7a" compoundref="log__manager_8hpp" startline="52">xpe::core::sLoggerDescriptor::Name</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1a8130115cee9a62495d705fdd78be284f" compoundref="window__manager_8cpp" startline="170" endline="172">xpe::core::cWindowManager::PollEvents</references>
+        <references refid="classxpe_1_1render_1_1c_render_system_1ac2834a58be8933708392e7d92a79e43e" compoundref="render__system_8cpp" startline="259" endline="263">xpe::render::cRenderSystem::Prepare</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">Render</references>
+        <references refid="classxpe_1_1core_1_1c_time_1a9ef071be238e4c1adb24bc48e9b990b3" compoundref="time__manager_8hpp" startline="46" endline="48">xpe::core::cTime::Seconds</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1aba0502682c716b06e9b0b8e69bb18878" compoundref="camera__manager_8cpp" startline="41" endline="45">xpe::render::cCameraManager::SetExposure</references>
+        <references refid="classxpe_1_1core_1_1c_time_1a7f748397ee483ce2bfdf6ce54e89992d" compoundref="time__manager_8hpp" startline="62" endline="65">xpe::core::cTime::SetFps</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1ac36b65d33a2ff4f2624492b3733fab11" compoundref="camera__manager_8cpp" startline="47" endline="51">xpe::render::cCameraManager::SetGamma</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1a0e9a87fc7593793533fe673a3078dab0" compoundref="window__manager_8cpp" startline="162" endline="164">xpe::core::cWindowManager::ShouldClose</references>
+        <references refid="classxpe_1_1core_1_1c_task_manager_1a0e82de392ba02bbe3ad1303ef2d4d813" compoundref="task__manager_8cpp" startline="160" endline="180">xpe::core::cTaskManager::SubmitTask</references>
+        <references refid="classxpe_1_1core_1_1c_window_manager_1a2783e36503821ce0cb3d15d7be6c9c4d" compoundref="window__manager_8cpp" startline="174" endline="176">xpe::core::cWindowManager::Swap</references>
+        <references refid="structxpe_1_1core_1_1s_window_descriptor_1abeacae5dd25884d31e9b16fc50448178" compoundref="window__manager_8hpp" startline="27">xpe::core::sWindowDescriptor::Title</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a3b069d8cbc5de0646cc885b9ccc62d85" compoundref="app_8hpp" startline="56" endline="56">Update</references>
+        <references refid="classxpe_1_1anim_1_1c_anim_system_1a0a35098c9165bcf4720ccfd500467e9d" compoundref="anim__system_8cpp" startline="10" endline="21">xpe::anim::cAnimSystem::Update</references>
+        <references refid="classxpe_1_1audio_1_1c_audio_system_1aa5ea13f96fded87ef85fd3164207670f" compoundref="audio__system_8cpp" startline="36" endline="45">xpe::audio::cAudioSystem::Update</references>
+        <references refid="classxpe_1_1physics_1_1c_physics_system_1a5679425dd00d09e95985cb8ffb23a036" compoundref="physics__system_8cpp" startline="19" endline="54">xpe::physics::cPhysicsSystem::Update</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3" compoundref="app__config_8hpp" startline="41">xpe::core::sAppConfig::VSync</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1af844df25d5d2c89c0c9cb8ebacbfc7a9" compoundref="rendering_2core_2core_8hpp" startline="100">xpe::render::sViewport::Width</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6" compoundref="app__config_8hpp" startline="38">xpe::core::sAppConfig::WinHeight</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32" compoundref="app__config_8hpp" startline="37">xpe::core::sAppConfig::WinWidth</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9" compoundref="app__config_8hpp" startline="39">xpe::core::sAppConfig::WinX</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014" compoundref="app__config_8hpp" startline="40">xpe::core::sAppConfig::WinY</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1a5ef55c63d56dfccfc7738b50cf5be70a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>virtual void xpe::core::cApp::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::core::cApp::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="55" column="26" bodyfile="engine/src/core/app.hpp" bodystart="55" bodyend="55"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1a3b069d8cbc5de0646cc885b9ccc62d85" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>virtual void xpe::core::cApp::Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>xpe::core::cApp::Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="56" column="26" bodyfile="engine/src/core/app.hpp" bodystart="56" bodyend="56"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1a2024288747447bdb0a69a021fed66b2f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>virtual void xpe::core::cApp::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::core::cApp::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="57" column="26" bodyfile="engine/src/core/app.hpp" bodystart="57" bodyend="57"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cApp::Render</definition>
+        <argsstring>()</argsstring>
+        <name>Render</name>
+        <qualifiedname>xpe::core::cApp::Render</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="58" column="26" bodyfile="engine/src/core/app.cpp" bodystart="177" bodyend="182"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" compoundref="render__target_8cpp" startline="105" endline="114">xpe::render::sRenderTarget::Clear</references>
+        <references refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" compoundref="app_8hpp" startline="44">DeltaTime</references>
+        <references refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" compoundref="canvas_8cpp" startline="30" endline="44">xpe::render::cCanvas::Draw</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a383aa3cc5c1df7085ff2601d5ef3c559" compoundref="app_8hpp" startline="68">m_Canvas</references>
+        <references refid="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" compoundref="app_8hpp" startline="72">m_RenderSystem</references>
+        <references refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" compoundref="app_8hpp" startline="66">m_Scene</references>
+        <references refid="structxpe_1_1render_1_1_render_targets_1a4edea5878877cdda968bc46eb9da6707" compoundref="bindings_8hpp" startline="23">xpe::render::RenderTargets::SSAO</references>
+        <references refid="classxpe_1_1render_1_1c_render_system_1adf9ca8fc79ed13660b521ef4cf9f78be" compoundref="render__system_8cpp" startline="265" endline="270">xpe::render::cRenderSystem::Update</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cApp::InitShaders</definition>
+        <argsstring>()</argsstring>
+        <name>InitShaders</name>
+        <qualifiedname>xpe::core::cApp::InitShaders</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="60" column="26" bodyfile="engine/src/core/app.cpp" bodystart="160" bodyend="175"/>
+        <references refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" compoundref="app_8hpp" startline="46">Config</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1afb11bac579269c1289d67f9ef0892980" compoundref="shader_8hpp" startline="79">xpe::render::cShader::Enable</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77" compoundref="app__config_8hpp" startline="62">xpe::core::sAppConfig::EnableSSAO</references>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a4057793b0888fbca76fcaa4b670dae05" compoundref="shader_8cpp" startline="488" endline="529">xpe::render::cShaderManager::GetShader</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" compoundref="app__config_8hpp" startline="64">xpe::core::sAppConfig::MsaaSampleCount</references>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" compoundref="shader_8cpp" startline="404" endline="436">xpe::render::cShaderManager::SetShader</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cApp::LockFPSFromConfig</definition>
+        <argsstring>()</argsstring>
+        <name>LockFPSFromConfig</name>
+        <qualifiedname>xpe::core::cApp::LockFPSFromConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app.hpp" line="62" column="18" bodyfile="engine/src/core/app.cpp" bodystart="152" bodyend="158"/>
+        <references refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" compoundref="app_8hpp" startline="46">Config</references>
+        <references refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" compoundref="app_8hpp" startline="44">DeltaTime</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" compoundref="app__config_8hpp" startline="54">xpe::core::sAppConfig::FPS</references>
+        <references refid="classxpe_1_1core_1_1c_time_1af639bb5b7e24e85652ddd5508db9fd9a" compoundref="time__manager_8hpp" startline="58" endline="60">xpe::core::cTime::Fps</references>
+        <references refid="structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4" compoundref="app__config_8hpp" startline="58">xpe::core::sAppConfig::LockOnFps</references>
+        <references refid="classxpe_1_1core_1_1c_time_1a7f748397ee483ce2bfdf6ce54e89992d" compoundref="time__manager_8hpp" startline="62" endline="65">xpe::core::cTime::SetFps</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::core::cApp</label>
+        <link refid="classxpe_1_1core_1_1c_app"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>xpe::core::sObserver&lt; float &gt;</label>
+        <link refid="structxpe_1_1core_1_1s_observer"/>
+      </node>
+      <node id="9">
+        <label>xpe::core::sObserver&lt; u32 &gt;</label>
+        <link refid="structxpe_1_1core_1_1s_observer"/>
+      </node>
+      <node id="16">
+        <label>xpe::anim::cAnimSystem</label>
+        <link refid="classxpe_1_1anim_1_1c_anim_system"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>xpe::audio::cAudioSystem</label>
+        <link refid="classxpe_1_1audio_1_1c_audio_system"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::core::cApp</label>
+        <link refid="classxpe_1_1core_1_1c_app"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>CPUTime</edgelabel>
+          <edgelabel>CurrentTime</edgelabel>
+          <edgelabel>DeltaTime</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>Config</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>m_Scene</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>m_Canvas</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>m_Viewport</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>m_RenderSystem</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>m_AnimSystem</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>m_AudioSystem</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>m_PhysicsSystem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="3">
+        <label>xpe::core::cTime</label>
+        <link refid="classxpe_1_1core_1_1c_time"/>
+      </node>
+      <node id="4">
+        <label>xpe::core::sAppConfig</label>
+        <link refid="structxpe_1_1core_1_1s_app_config"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>AspectRatio</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>MsaaSampleCount</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>xpe::core::sObserverSampleCount</label>
+        <link refid="structxpe_1_1core_1_1s_observer_sample_count"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::core::sObserverWindowRatio</label>
+        <link refid="structxpe_1_1core_1_1s_observer_window_ratio"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>xpe::ecs::cScene</label>
+        <link refid="classxpe_1_1ecs_1_1c_scene"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="private-inheritance">
+        </childnode>
+        <childnode refid="11" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>xpe::ecs::cSystem</label>
+        <link refid="classxpe_1_1ecs_1_1c_system"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>xpe::physics::cPhysicsSystem</label>
+        <link refid="classxpe_1_1physics_1_1c_physics_system"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>xpe::render::cCanvas</label>
+        <link refid="classxpe_1_1render_1_1c_canvas"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>xpe::render::cRenderSystem</label>
+        <link refid="classxpe_1_1render_1_1c_render_system"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>xpe::render::sViewport</label>
+        <link refid="structxpe_1_1render_1_1s_viewport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+      <node id="11">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/core/app.hpp" line="40" column="9" bodyfile="engine/src/core/app.hpp" bodystart="40" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_app_1a0becddd38dd8bed4bada049b0e26e0ee" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>cApp</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a0cc9fce34bf62c88a60d175f0a7f89bf" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>Config</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1afa7bf2c8fb46d0ab2f731b097ad4e3a0" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>CPUTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a2e4a9bdbfb9563c041ab0447a108e26d" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>CurrentTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1aa093bbe02a4e655fa90d7c03459a8235" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>DeltaTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a2024288747447bdb0a69a021fed66b2f" prot="protected" virt="virtual"><scope>xpe::core::cApp</scope><name>Free</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a5ef55c63d56dfccfc7738b50cf5be70a" prot="protected" virt="virtual"><scope>xpe::core::cApp</scope><name>Init</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" prot="protected" virt="virtual"><scope>xpe::core::cApp</scope><name>InitShaders</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>LockFPSFromConfig</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a96c4c6c63918967c724923577f7570f3" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_AnimSystem</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a39fceb74db114dad5ab2f2bcf5f27be2" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_AudioSystem</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a383aa3cc5c1df7085ff2601d5ef3c559" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_Canvas</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a56f56ce2f1d738cc92dd1017bb737b61" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_Opened</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1abbe71f6bebeba16997b626d3f1941039" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_PhysicsSystem</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1ad570e1eb695c8e071001503abef9106f" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_RenderSystem</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a8b18a15ca5b08c1cd6e06985a9ee28f9" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_Scene</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1aa5fbd2978189be084ded83cb82bce612" prot="protected" virt="non-virtual"><scope>xpe::core::cApp</scope><name>m_Viewport</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" prot="protected" virt="virtual"><scope>xpe::core::cApp</scope><name>Render</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>Run</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1a3b069d8cbc5de0646cc885b9ccc62d85" prot="protected" virt="virtual"><scope>xpe::core::cApp</scope><name>Update</name></member>
+      <member refid="classxpe_1_1core_1_1c_app_1ae6a970175db088cf49d8fafa265bbefe" prot="public" virt="non-virtual"><scope>xpe::core::cApp</scope><name>~cApp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

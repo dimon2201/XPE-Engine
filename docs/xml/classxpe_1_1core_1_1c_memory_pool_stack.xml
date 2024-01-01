@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_memory_pool_stack" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::cMemoryPoolStack</compoundname>
+    <includes refid="memory__manager_8hpp" local="no">memory_manager.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1a59e2991d246f8b82eea77534f8adc5dd" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classxpe_1_1core_1_1c_memory_pool" kindref="compound">cMemoryPool</ref> &gt;</type>
+        <definition>std::vector&lt;cMemoryPool&gt; xpe::core::cMemoryPoolStack::Pools</definition>
+        <argsstring></argsstring>
+        <name>Pools</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::Pools</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="71" column="25" bodyfile="engine/src/core/memory_manager.hpp" bodystart="71" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ace90e70bb73ad1ad7cad09b7bd28318d" compoundref="memory__manager_8cpp" startline="102" endline="118">cMemoryPoolStack</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ab2837b4bac91331c423dd3865e569745" compoundref="memory__manager_8cpp" startline="156" endline="166">Free</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" compoundref="memory__manager_8cpp" startline="168" endline="197">LogPools</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a49aa70c1b4f127c2896937941ad6d450" compoundref="memory__manager_8cpp" startline="120" endline="127">~cMemoryPoolStack</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1ab4cfb434c17711bcafd79ae06764d303" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::PoolByteSize</definition>
+        <argsstring></argsstring>
+        <name>PoolByteSize</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::PoolByteSize</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="72" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="72" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1ad45746f1e29be44c286cba51bf8517f0" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::PoolAllocs</definition>
+        <argsstring></argsstring>
+        <name>PoolAllocs</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::PoolAllocs</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="73" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="73" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1a62472a53b8c041af3a25eac21c76cd39" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::TotalAllocCount</definition>
+        <argsstring></argsstring>
+        <name>TotalAllocCount</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::TotalAllocCount</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="74" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="74" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" compoundref="memory__manager_8cpp" startline="168" endline="197">LogPools</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1afed217042051f97939ef8a2081332d08" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::TotalFreeCount</definition>
+        <argsstring></argsstring>
+        <name>TotalFreeCount</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::TotalFreeCount</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="75" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="75" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ab2837b4bac91331c423dd3865e569745" compoundref="memory__manager_8cpp" startline="156" endline="166">Free</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" compoundref="memory__manager_8cpp" startline="168" endline="197">LogPools</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1a0511f9b25e79efcf1e1d62aa2c4a1050" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::TotalBytes</definition>
+        <argsstring></argsstring>
+        <name>TotalBytes</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::TotalBytes</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="76" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="76" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ace90e70bb73ad1ad7cad09b7bd28318d" compoundref="memory__manager_8cpp" startline="102" endline="118">cMemoryPoolStack</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" compoundref="memory__manager_8cpp" startline="168" endline="197">LogPools</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1a9a972787ece7aa6ba62d3aa53a11edde" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::TotalBytesOccupied</definition>
+        <argsstring></argsstring>
+        <name>TotalBytesOccupied</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::TotalBytesOccupied</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="77" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="77" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" compoundref="memory__manager_8cpp" startline="168" endline="197">LogPools</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1a1035ff0d9e147d481a58464027402618" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::TotalBytesFreed</definition>
+        <argsstring></argsstring>
+        <name>TotalBytesFreed</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::TotalBytesFreed</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="78" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="78" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ab2837b4bac91331c423dd3865e569745" compoundref="memory__manager_8cpp" startline="156" endline="166">Free</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" compoundref="memory__manager_8cpp" startline="168" endline="197">LogPools</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1a31b6629d0997c83a856c50dd1cb09331" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::Alignment</definition>
+        <argsstring></argsstring>
+        <name>Alignment</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::Alignment</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="79" column="19" bodyfile="engine/src/core/memory_manager.hpp" bodystart="79" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_pool_stack_1af1c4fd5a893d87e3054b30de9f63bf8b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+        <definition>const char* xpe::core::cMemoryPoolStack::USID</definition>
+        <argsstring></argsstring>
+        <name>USID</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::USID</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="80" column="24" bodyfile="engine/src/core/memory_manager.hpp" bodystart="80" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" compoundref="memory__manager_8cpp" startline="168" endline="197">LogPools</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1ace90e70bb73ad1ad7cad09b7bd28318d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cMemoryPoolStack::cMemoryPoolStack</definition>
+        <argsstring>(const char *usid, usize poolCount, usize poolByteSize, usize poolAllocs, const usize alignment)</argsstring>
+        <name>cMemoryPoolStack</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::cMemoryPoolStack</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>usid</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>poolCount</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>poolByteSize</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>poolAllocs</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>alignment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="82" column="13" bodyfile="engine/src/core/memory_manager.cpp" bodystart="102" bodyend="118"/>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_1a758ddd40c10e6e5b8bfebd17245dac75" compoundref="memory__manager_8cpp" startline="5" endline="18">xpe::core::cMemoryPool::Init</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a59e2991d246f8b82eea77534f8adc5dd" compoundref="memory__manager_8hpp" startline="71">Pools</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a0511f9b25e79efcf1e1d62aa2c4a1050" compoundref="memory__manager_8hpp" startline="76">TotalBytes</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1a49aa70c1b4f127c2896937941ad6d450" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cMemoryPoolStack::~cMemoryPoolStack</definition>
+        <argsstring>()</argsstring>
+        <name>~cMemoryPoolStack</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::~cMemoryPoolStack</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="84" column="13" bodyfile="engine/src/core/memory_manager.cpp" bodystart="120" bodyend="127"/>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a59e2991d246f8b82eea77534f8adc5dd" compoundref="memory__manager_8hpp" startline="71">Pools</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1a50d3dbf3d026ffcd6c690ec25c9d08cd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::GetPoolCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPoolCount</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::GetPoolCount</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="86" column="26" bodyfile="engine/src/core/memory_manager.hpp" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1a5d1b81e26af1551030602add69f1492d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::GetAllocCount</definition>
+        <argsstring>(u32 index) const</argsstring>
+        <name>GetAllocCount</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::GetAllocCount</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="91" column="26" bodyfile="engine/src/core/memory_manager.hpp" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1a288ecd4bd8f2683401de5cf4d7783718" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryPoolStack::GetPoolSize</definition>
+        <argsstring>(u32 index) const</argsstring>
+        <name>GetPoolSize</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::GetPoolSize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="96" column="26" bodyfile="engine/src/core/memory_manager.hpp" bodystart="96" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void * xpe::core::cMemoryPoolStack::Allocate</definition>
+        <argsstring>(const usize size)</argsstring>
+        <name>Allocate</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::Allocate</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="101" column="18" bodyfile="engine/src/core/memory_manager.cpp" bodystart="129" bodyend="154"/>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a31b6629d0997c83a856c50dd1cb09331" compoundref="memory__manager_8hpp" startline="79">Alignment</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_1a758ddd40c10e6e5b8bfebd17245dac75" compoundref="memory__manager_8cpp" startline="5" endline="18">xpe::core::cMemoryPool::Init</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1ad45746f1e29be44c286cba51bf8517f0" compoundref="memory__manager_8hpp" startline="73">PoolAllocs</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1ab4cfb434c17711bcafd79ae06764d303" compoundref="memory__manager_8hpp" startline="72">PoolByteSize</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a59e2991d246f8b82eea77534f8adc5dd" compoundref="memory__manager_8hpp" startline="71">Pools</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a62472a53b8c041af3a25eac21c76cd39" compoundref="memory__manager_8hpp" startline="74">TotalAllocCount</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a0511f9b25e79efcf1e1d62aa2c4a1050" compoundref="memory__manager_8hpp" startline="76">TotalBytes</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a9a972787ece7aa6ba62d3aa53a11edde" compoundref="memory__manager_8hpp" startline="77">TotalBytesOccupied</references>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1a0a2b778334b1190ace97d88626a74c6a" compoundref="memory__manager_8hpp" startline="114" endline="119">AllocateConstruct</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_pool_stack_1aa6ae78170d3ddcc6d8b0760f61c417a5" compoundref="memory__manager_8hpp" startline="122" endline="127">AllocateConstructArgs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1ab2837b4bac91331c423dd3865e569745" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cMemoryPoolStack::Free</definition>
+        <argsstring>(void *address)</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::Free</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+          <declname>address</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="102" column="18" bodyfile="engine/src/core/memory_manager.cpp" bodystart="156" bodyend="166"/>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a59e2991d246f8b82eea77534f8adc5dd" compoundref="memory__manager_8hpp" startline="71">Pools</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a1035ff0d9e147d481a58464027402618" compoundref="memory__manager_8hpp" startline="78">TotalBytesFreed</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1afed217042051f97939ef8a2081332d08" compoundref="memory__manager_8hpp" startline="75">TotalFreeCount</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1a0a2b778334b1190ace97d88626a74c6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T * xpe::core::cMemoryPoolStack::AllocateConstruct</definition>
+        <argsstring>()</argsstring>
+        <name>AllocateConstruct</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::AllocateConstruct</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="105" column="15" bodyfile="engine/src/core/memory_manager.hpp" bodystart="114" bodyend="119"/>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1aa6ae78170d3ddcc6d8b0760f61c417a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+          </param>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> ...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T * xpe::core::cMemoryPoolStack::AllocateConstructArgs</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>AllocateConstructArgs</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::AllocateConstructArgs</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="108" column="15" bodyfile="engine/src/core/memory_manager.hpp" bodystart="122" bodyend="127"/>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" compoundref="memory__manager_8cpp" startline="129" endline="154">Allocate</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cMemoryPoolStack::LogPools</definition>
+        <argsstring>()</argsstring>
+        <name>LogPools</name>
+        <qualifiedname>xpe::core::cMemoryPoolStack::LogPools</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/memory_manager.hpp" line="110" column="18" bodyfile="engine/src/core/memory_manager.cpp" bodystart="168" bodyend="197"/>
+        <references refid="macro__constants_8hpp_1a1f8a407cbad0acdc37be099e2cc86baa" compoundref="macro__constants_8hpp" startline="11">K_MEMORY_KB</references>
+        <references refid="macro__constants_8hpp_1a02ed90f1d23f1fc49883cf0e231d1edc" compoundref="macro__constants_8hpp" startline="12">K_MEMORY_MB</references>
+        <references refid="log__manager_8hpp_1a9a24dfbeabc0f2323f3e94fc982e8ffd" compoundref="log__manager_8hpp" startline="37">LogMemory</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a59e2991d246f8b82eea77534f8adc5dd" compoundref="memory__manager_8hpp" startline="71">Pools</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a62472a53b8c041af3a25eac21c76cd39" compoundref="memory__manager_8hpp" startline="74">TotalAllocCount</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a0511f9b25e79efcf1e1d62aa2c4a1050" compoundref="memory__manager_8hpp" startline="76">TotalBytes</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a1035ff0d9e147d481a58464027402618" compoundref="memory__manager_8hpp" startline="78">TotalBytesFreed</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1a9a972787ece7aa6ba62d3aa53a11edde" compoundref="memory__manager_8hpp" startline="77">TotalBytesOccupied</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1afed217042051f97939ef8a2081332d08" compoundref="memory__manager_8hpp" startline="75">TotalFreeCount</references>
+        <references refid="classxpe_1_1core_1_1c_memory_pool_stack_1af1c4fd5a893d87e3054b30de9f63bf8b" compoundref="memory__manager_8hpp" startline="80">USID</references>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_manager_1a9161b53f8fcba7f29c5035d6177b52cf" compoundref="memory__manager_8cpp" startline="217" endline="220">xpe::core::cMemoryManager::LogPools</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/memory_manager.hpp" line="68" column="9" bodyfile="engine/src/core/memory_manager.hpp" bodystart="68" bodyend="111"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a31b6629d0997c83a856c50dd1cb09331" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>Alignment</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1ae688cd1d27bb1cf64dec6c6824e156aa" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>Allocate</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a0a2b778334b1190ace97d88626a74c6a" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>AllocateConstruct</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1aa6ae78170d3ddcc6d8b0760f61c417a5" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>AllocateConstructArgs</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1ace90e70bb73ad1ad7cad09b7bd28318d" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>cMemoryPoolStack</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1ab2837b4bac91331c423dd3865e569745" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>Free</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a5d1b81e26af1551030602add69f1492d" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>GetAllocCount</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a50d3dbf3d026ffcd6c690ec25c9d08cd" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>GetPoolCount</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a288ecd4bd8f2683401de5cf4d7783718" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>GetPoolSize</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a04cba795278eeeba4c8a5899f30e852f" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>LogPools</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1ad45746f1e29be44c286cba51bf8517f0" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>PoolAllocs</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1ab4cfb434c17711bcafd79ae06764d303" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>PoolByteSize</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a59e2991d246f8b82eea77534f8adc5dd" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>Pools</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a62472a53b8c041af3a25eac21c76cd39" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>TotalAllocCount</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a0511f9b25e79efcf1e1d62aa2c4a1050" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>TotalBytes</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a1035ff0d9e147d481a58464027402618" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>TotalBytesFreed</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a9a972787ece7aa6ba62d3aa53a11edde" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>TotalBytesOccupied</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1afed217042051f97939ef8a2081332d08" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>TotalFreeCount</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1af1c4fd5a893d87e3054b30de9f63bf8b" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>USID</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_pool_stack_1a49aa70c1b4f127c2896937941ad6d450" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryPoolStack</scope><name>~cMemoryPoolStack</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

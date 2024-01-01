@@ -1,0 +1,395 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1audio_1_1c_audio_system" kind="class" language="C++" prot="public">
+    <compoundname>xpe::audio::cAudioSystem</compoundname>
+    <basecompoundref refid="classxpe_1_1ecs_1_1c_system" prot="public" virt="non-virtual">xpe::ecs::cSystem</basecompoundref>
+    <includes refid="audio__system_8hpp" local="no">audio_system.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1audio_1_1c_audio_system_1a44d2882549b5b64de8f07d0c2d29293d" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">signed</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> &gt;</type>
+        <definition>vector&lt;signed char&gt; xpe::audio::cAudioSystem::m_VoiceData</definition>
+        <argsstring></argsstring>
+        <name>m_VoiceData</name>
+        <qualifiedname>xpe::audio::cAudioSystem::m_VoiceData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="41" column="8" bodyfile="engine/src/audio/audio_system.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1audio_1_1c_audio_system_1a70f40377e1d735df0f3af245c16c1ffb" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::audio::cAudioSystem::m_MySourceID</definition>
+        <argsstring></argsstring>
+        <name>m_MySourceID</name>
+        <qualifiedname>xpe::audio::cAudioSystem::m_MySourceID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="44" column="5" bodyfile="engine/src/audio/audio_system.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1audio_1_1c_audio_system_1aeec31e69b79d7f958695ef381765b077" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> &gt;</type>
+        <definition>vector&lt;u32&gt; xpe::audio::cAudioSystem::m_MyBuffersID</definition>
+        <argsstring></argsstring>
+        <name>m_MyBuffersID</name>
+        <qualifiedname>xpe::audio::cAudioSystem::m_MyBuffersID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="45" column="8" bodyfile="engine/src/audio/audio_system.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::audio::cAudioSystem::cAudioSystem</definition>
+        <argsstring>()</argsstring>
+        <name>cAudioSystem</name>
+        <qualifiedname>xpe::audio::cAudioSystem::cAudioSystem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="16" column="13" bodyfile="engine/src/audio/audio_system.cpp" bodystart="11" bodyend="26"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1af85f271fb092d6ad6c1ef2e87bc9fc5f">xpe::audio::context::AddBuffer</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a4a19b59e809d6f081ac3f7cd67f053f1">xpe::audio::context::GenBuffers</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a740dd5a6dcb373654e6aacc52c4994d1">xpe::audio::context::GenSources</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1aebdf7c3fbf66f961dab2f22e150bd360">xpe::audio::context::InitAudio</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a40ab66b328485e78adfbc1de5692615b" compoundref="audio_2core_2context_8hpp" startline="20">xpe::audio::context::k_CaptureBufferSize</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a487ca035375c56d588285567bbb51298" compoundref="audio_2core_2context_8hpp" startline="19">xpe::audio::context::k_CaptureFrequency</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a709280f20d67e451e173e2aadc3c2a3a" compoundref="audio_2core_2context_8hpp" startline="18">xpe::audio::context::k_NumCaptureBuffers</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a93bb84201f282d370e3a962c588311f0">xpe::audio::context::PlaySource</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::audio::cAudioSystem::~cAudioSystem</definition>
+        <argsstring>()</argsstring>
+        <name>~cAudioSystem</name>
+        <qualifiedname>xpe::audio::cAudioSystem::~cAudioSystem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="17" column="1" bodyfile="engine/src/audio/audio_system.cpp" bodystart="28" bodyend="34"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1a5b811183b3c6fe18d071d3d10ba6695b">xpe::audio::context::DeleteBuffers</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1aaad802187553ce017518fd6df0bb418c">xpe::audio::context::DeleteSources</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a4ddbaa76c1383f18ef7d912ae18037e7">xpe::audio::context::FreeAudio</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a709280f20d67e451e173e2aadc3c2a3a" compoundref="audio_2core_2context_8hpp" startline="18">xpe::audio::context::k_NumCaptureBuffers</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1aa5ea13f96fded87ef85fd3164207670f" prot="public" static="no" const="no" explicit="no" inline="no" final="yes" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::Update</definition>
+        <argsstring>(cScene *scene, const cTime &amp;dt) override final</argsstring>
+        <name>Update</name>
+        <qualifiedname>xpe::audio::cAudioSystem::Update</qualifiedname>
+        <reimplements refid="classxpe_1_1ecs_1_1c_system_1a2a77b444fc80b9f1bd43215a7ba894d6">Update</reimplements>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="19" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="36" bodyend="45"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1abedddf84a6aaae3895fa520c7a1307fd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::UpdateVoices</definition>
+        <argsstring>(cScene *scene)</argsstring>
+        <name>UpdateVoices</name>
+        <qualifiedname>xpe::audio::cAudioSystem::UpdateVoices</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="22" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="47" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a58f206f751ad97ee90e0c2eb031819a8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::UpdateAudios</definition>
+        <argsstring>(cScene *scene)</argsstring>
+        <name>UpdateAudios</name>
+        <qualifiedname>xpe::audio::cAudioSystem::UpdateAudios</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="23" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="74" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a8b47d0dd9010f98e9e7552b30d6de5a7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::UpdateStreamAudios</definition>
+        <argsstring>(cScene *scene)</argsstring>
+        <name>UpdateStreamAudios</name>
+        <qualifiedname>xpe::audio::cAudioSystem::UpdateStreamAudios</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="24" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="94" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a9394eb77e77f141a082427dc6328128f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::VoiceRecord</definition>
+        <argsstring>()</argsstring>
+        <name>VoiceRecord</name>
+        <qualifiedname>xpe::audio::cAudioSystem::VoiceRecord</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="26" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="114" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a57262095b5b9c4d76647a22a203b749e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioInit</definition>
+        <argsstring>(CAudio &amp;component)</argsstring>
+        <name>AudioInit</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioInit</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_audio" kindref="compound">CAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="28" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="124" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a098f8ec8f0011a9b0c56a3661eb2196e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioInit</definition>
+        <argsstring>(CStreamAudio &amp;component)</argsstring>
+        <name>AudioInit</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioInit</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_stream_audio" kindref="compound">CStreamAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="29" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="147" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1aef10b584ac9ea7201ba0bb1769188439" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioSet</definition>
+        <argsstring>(CAudio &amp;component)</argsstring>
+        <name>AudioSet</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioSet</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_audio" kindref="compound">CAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="31" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="168" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a454c16738ea1bf99d56c47490aa1c2da" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioSet</definition>
+        <argsstring>(CStreamAudio &amp;component)</argsstring>
+        <name>AudioSet</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioSet</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_stream_audio" kindref="compound">CStreamAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="32" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="175" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1aafd6b6b3faa5b5e28decd4b68aeaacab" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioUpdate</definition>
+        <argsstring>(CAudio &amp;component)</argsstring>
+        <name>AudioUpdate</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioUpdate</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_audio" kindref="compound">CAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="34" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="189" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a2142a7e6d4f209d8d8e397658a746014" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioUpdate</definition>
+        <argsstring>(CStreamAudio &amp;component)</argsstring>
+        <name>AudioUpdate</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioUpdate</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_stream_audio" kindref="compound">CStreamAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="35" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="194" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1a025fde9bcf2687c79562c85345d0077d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioStop</definition>
+        <argsstring>(CAudio &amp;component)</argsstring>
+        <name>AudioStop</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioStop</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_audio" kindref="compound">CAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="37" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="226" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_system_1aea11bb7f9bf0f0e35c4069215a887a4c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioSystem::AudioStop</definition>
+        <argsstring>(CStreamAudio &amp;component)</argsstring>
+        <name>AudioStop</name>
+        <qualifiedname>xpe::audio::cAudioSystem::AudioStop</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1ecs_1_1_c_stream_audio" kindref="compound">CStreamAudio</ref> &amp;</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_system.hpp" line="38" column="6" bodyfile="engine/src/audio/audio_system.cpp" bodystart="239" bodyend="249"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::audio::cAudioSystem</label>
+        <link refid="classxpe_1_1audio_1_1c_audio_system"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::ecs::cSystem</label>
+        <link refid="classxpe_1_1ecs_1_1c_system"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::audio::cAudioSystem</label>
+        <link refid="classxpe_1_1audio_1_1c_audio_system"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::ecs::cSystem</label>
+        <link refid="classxpe_1_1ecs_1_1c_system"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/audio/audio_system.hpp" line="12" column="1" bodyfile="engine/src/audio/audio_system.hpp" bodystart="13" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a57262095b5b9c4d76647a22a203b749e" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioInit</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a098f8ec8f0011a9b0c56a3661eb2196e" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioInit</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1aef10b584ac9ea7201ba0bb1769188439" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioSet</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a454c16738ea1bf99d56c47490aa1c2da" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioSet</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a025fde9bcf2687c79562c85345d0077d" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioStop</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1aea11bb7f9bf0f0e35c4069215a887a4c" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioStop</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1aafd6b6b3faa5b5e28decd4b68aeaacab" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioUpdate</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a2142a7e6d4f209d8d8e397658a746014" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>AudioUpdate</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a95f083e4a21c794f3c64643719caa313" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>cAudioSystem</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1aeec31e69b79d7f958695ef381765b077" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>m_MyBuffersID</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a70f40377e1d735df0f3af245c16c1ffb" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>m_MySourceID</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a44d2882549b5b64de8f07d0c2d29293d" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>m_VoiceData</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1aa5ea13f96fded87ef85fd3164207670f" prot="public" virt="virtual"><scope>xpe::audio::cAudioSystem</scope><name>Update</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a58f206f751ad97ee90e0c2eb031819a8" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>UpdateAudios</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a8b47d0dd9010f98e9e7552b30d6de5a7" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>UpdateStreamAudios</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1abedddf84a6aaae3895fa520c7a1307fd" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>UpdateVoices</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a9394eb77e77f141a082427dc6328128f" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>VoiceRecord</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_system_1a3c2d14284b08c7d90704a843b4478938" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioSystem</scope><name>~cAudioSystem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

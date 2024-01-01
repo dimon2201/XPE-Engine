@@ -1,0 +1,153 @@
+.TH "xpe::core::cApp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cApp
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <app\&.hpp>\fP
+.PP
+Inherits \fBxpe::core::cObject\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcApp\fP ()"
+.br
+.ti -1c
+.RI "\fB~cApp\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBRun\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::core::cObject\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBoperator new\fP (\fBusize\fP \fBbyteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator delete\fP (\fBvoid\fP *\fBaddress\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBcTime\fP \fBCPUTime\fP"
+.br
+.ti -1c
+.RI "\fBcTime\fP \fBDeltaTime\fP"
+.br
+.ti -1c
+.RI "\fBcTime\fP \fBCurrentTime\fP"
+.br
+.ti -1c
+.RI "\fBsAppConfig\fP \fBConfig\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBUpdate\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBRender\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInitShaders\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBLockFPSFromConfig\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::atomic_bool \fBm_Opened\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBcScene\fP * \fBm_Scene\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBcCanvas\fP * \fBm_Canvas\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBsViewport\fP \fBm_Viewport\fP"
+.br
+.ti -1c
+.RI "\fBcRenderSystem\fP * \fBm_RenderSystem\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBcAnimSystem\fP * \fBm_AnimSystem\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBcAudioSystem\fP * \fBm_AudioSystem\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBcPhysicsSystem\fP * \fBm_PhysicsSystem\fP = \fBnullptr\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::core::cApp::cApp ()\fR [inline]\fP"
+
+.SS "xpe::core::cApp::~cApp ()\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvirtual\fP \fBvoid\fP xpe::core::cApp::Free ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP xpe::core::cApp::Init ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::core::cApp::InitShaders ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::core::cApp::LockFPSFromConfig ()\fR [protected]\fP"
+
+.SS "\fBvoid\fP xpe::core::cApp::Render ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP xpe::core::cApp::Run ()"
+
+.SS "\fBvirtual\fP \fBvoid\fP xpe::core::cApp::Update ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsAppConfig\fP xpe::core::cApp::Config"
+
+.SS "\fBcTime\fP xpe::core::cApp::CPUTime"
+
+.SS "\fBcTime\fP xpe::core::cApp::CurrentTime"
+
+.SS "\fBcTime\fP xpe::core::cApp::DeltaTime"
+
+.SS "\fBcAnimSystem\fP* xpe::core::cApp::m_AnimSystem = \fBnullptr\fP\fR [protected]\fP"
+
+.SS "\fBcAudioSystem\fP* xpe::core::cApp::m_AudioSystem = \fBnullptr\fP\fR [protected]\fP"
+
+.SS "\fBcCanvas\fP* xpe::core::cApp::m_Canvas = \fBnullptr\fP\fR [protected]\fP"
+
+.SS "std::atomic_bool xpe::core::cApp::m_Opened = \fBtrue\fP\fR [protected]\fP"
+
+.SS "\fBcPhysicsSystem\fP* xpe::core::cApp::m_PhysicsSystem = \fBnullptr\fP\fR [protected]\fP"
+
+.SS "\fBcRenderSystem\fP* xpe::core::cApp::m_RenderSystem = \fBnullptr\fP\fR [protected]\fP"
+
+.SS "\fBcScene\fP* xpe::core::cApp::m_Scene = \fBnullptr\fP\fR [protected]\fP"
+
+.SS "\fBsViewport\fP xpe::core::cApp::m_Viewport\fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

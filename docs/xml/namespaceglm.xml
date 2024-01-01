@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespaceglm" kind="namespace" language="C++">
+    <compoundname>glm</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceglm_1a6ca3f0bb1f4567a945315161608f3fb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void glm::to_json</definition>
+        <argsstring>(json &amp;j, const glm::mat2 &amp;m)</argsstring>
+        <name>to_json</name>
+        <qualifiedname>glm::to_json</qualifiedname>
+        <param>
+          <type><ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const glm::mat2 &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="46" column="10" bodyfile="engine/src/res/json.cpp" bodystart="46" bodyend="54" declfile="engine/src/res/json.hpp" declline="61" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceglm_1a5cdb13e0404806cd221c3870fc7b9760" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void glm::from_json</definition>
+        <argsstring>(const json &amp;j, glm::mat2 &amp;m)</argsstring>
+        <name>from_json</name>
+        <qualifiedname>glm::from_json</qualifiedname>
+        <param>
+          <type>const <ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>glm::mat2 &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="56" column="10" bodyfile="engine/src/res/json.cpp" bodystart="56" bodyend="62" declfile="engine/src/res/json.hpp" declline="63" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceglm_1aac16aab5372625b0e1e8256ba3d6c8a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void glm::to_json</definition>
+        <argsstring>(json &amp;j, const glm::mat3 &amp;m)</argsstring>
+        <name>to_json</name>
+        <qualifiedname>glm::to_json</qualifiedname>
+        <param>
+          <type><ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const glm::mat3 &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="64" column="10" bodyfile="engine/src/res/json.cpp" bodystart="64" bodyend="77" declfile="engine/src/res/json.hpp" declline="65" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceglm_1a05f58758cca3383a1c393639cde56cad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void glm::from_json</definition>
+        <argsstring>(const json &amp;j, glm::mat3 &amp;m)</argsstring>
+        <name>from_json</name>
+        <qualifiedname>glm::from_json</qualifiedname>
+        <param>
+          <type>const <ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>glm::mat3 &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="79" column="10" bodyfile="engine/src/res/json.cpp" bodystart="79" bodyend="90" declfile="engine/src/res/json.hpp" declline="67" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceglm_1a5e6943721882e8ab806468897263d8ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void glm::to_json</definition>
+        <argsstring>(json &amp;j, const glm::mat4 &amp;m)</argsstring>
+        <name>to_json</name>
+        <qualifiedname>glm::to_json</qualifiedname>
+        <param>
+          <type><ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const glm::mat4 &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="92" column="10" bodyfile="engine/src/res/json.cpp" bodystart="92" bodyend="112" declfile="engine/src/res/json.hpp" declline="69" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceglm_1a68ed9b5561fba2143e62fb81a499dfe0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void glm::from_json</definition>
+        <argsstring>(const json &amp;j, glm::mat4 &amp;m)</argsstring>
+        <name>from_json</name>
+        <qualifiedname>glm::from_json</qualifiedname>
+        <param>
+          <type>const <ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>glm::mat4 &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/json.cpp" line="114" column="10" bodyfile="engine/src/res/json.cpp" bodystart="114" bodyend="132" declfile="engine/src/res/json.hpp" declline="71" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/res/json.cpp" line="44" column="1"/>
+  </compounddef>
+</doxygen>

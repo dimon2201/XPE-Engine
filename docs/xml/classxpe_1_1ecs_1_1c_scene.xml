@@ -1,0 +1,565 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1ecs_1_1c_scene" kind="class" language="C++" prot="public">
+    <compoundname>xpe::ecs::cScene</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <basecompoundref refid="classxpe_1_1res_1_1c_json" prot="private" virt="non-virtual">xpe::res::cJson</basecompoundref>
+    <basecompoundref refid="classxpe_1_1res_1_1c_xml" prot="private" virt="non-virtual">xpe::res::cXml</basecompoundref>
+    <includes refid="ecs_8hpp" local="no">ecs.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classxpe_1_1ecs_1_1c_scene_1a08a445f8a61afef6e5b4221d4ed45c36" prot="public" static="no" mutable="no">
+        <type>physx::PxScene *</type>
+        <definition>physx::PxScene* xpe::ecs::cScene::PhysicsScene</definition>
+        <argsstring></argsstring>
+        <name>PhysicsScene</name>
+        <qualifiedname>xpe::ecs::cScene::PhysicsScene</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="71" column="28" bodyfile="engine/src/ecs/ecs.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1ecs_1_1c_scene_1ad2149a201d79b02b728bacae7be6ab91" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref></type>
+        <definition>string xpe::ecs::cScene::m_Tag</definition>
+        <argsstring></argsstring>
+        <name>m_Tag</name>
+        <qualifiedname>xpe::ecs::cScene::m_Tag</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="74" column="20" bodyfile="engine/src/ecs/ecs.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1ecs_1_1c_scene_1a341ed371482f802f8c6b684f176b44c4" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1ecs_1a7963541b7fa8df6c5e97615835f40acf" kindref="member">cRegistry</ref></type>
+        <definition>cRegistry xpe::ecs::cScene::m_Registry</definition>
+        <argsstring></argsstring>
+        <name>m_Registry</name>
+        <qualifiedname>xpe::ecs::cScene::m_Registry</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="75" column="23" bodyfile="engine/src/ecs/ecs.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1ecs_1_1c_scene_1a1f9074d41be7369f222646874592897d" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref>, <ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1ecs_1a5d94892c480b4d1cee59dd45fb6799bc" kindref="member">ComponentID</ref>, <ref refid="classxpe_1_1res_1_1c_json" kindref="compound">cJson</ref> * &gt; &gt;</type>
+        <definition>unordered_map&lt;EntityID, unordered_map&lt;ComponentID, cJson*&gt; &gt; xpe::ecs::cScene::m_Jsons</definition>
+        <argsstring></argsstring>
+        <name>m_Jsons</name>
+        <qualifiedname>xpe::ecs::cScene::m_Jsons</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="76" column="27" bodyfile="engine/src/ecs/ecs.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1ecs_1_1c_scene_1ad3fd6c524654e66928c30e52f7a8a45a" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref>, <ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1ecs_1a5d94892c480b4d1cee59dd45fb6799bc" kindref="member">ComponentID</ref>, <ref refid="classxpe_1_1res_1_1c_xml" kindref="compound">cXml</ref> * &gt; &gt;</type>
+        <definition>unordered_map&lt;EntityID, unordered_map&lt;ComponentID, cXml*&gt; &gt; xpe::ecs::cScene::m_Xmls</definition>
+        <argsstring></argsstring>
+        <name>m_Xmls</name>
+        <qualifiedname>xpe::ecs::cScene::m_Xmls</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="77" column="28" bodyfile="engine/src/ecs/ecs.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a9382a3ab28600cc502022e1e09823cba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::ecs::cScene::SetTag</definition>
+        <argsstring>(const string &amp;tag)</argsstring>
+        <name>SetTag</name>
+        <qualifiedname>xpe::ecs::cScene::SetTag</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="30" column="25" bodyfile="engine/src/ecs/ecs.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a72859f04ba3f448f96fc2353fae7906a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+        <definition>const string &amp; xpe::ecs::cScene::GetTag</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTag</name>
+        <qualifiedname>xpe::ecs::cScene::GetTag</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="32" column="34" bodyfile="engine/src/ecs/ecs.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1ab2842bd0b2bd2789068e9ac82eaa11a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+        <definition>EntityID xpe::ecs::cScene::CreateEntity</definition>
+        <argsstring>()</argsstring>
+        <name>CreateEntity</name>
+        <qualifiedname>xpe::ecs::cScene::CreateEntity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="34" column="22" bodyfile="engine/src/ecs/ecs.cpp" bodystart="8" bodyend="11"/>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1a7705012a6e76c255ac1d8633e53ed745" compoundref="ecs_8cpp" startline="88" endline="96">xpe::ecs::cEntity::cEntity</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1ad9913c4d0a11f519f5789eff1cc8ede9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::ecs::cScene::RemoveEntity</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>RemoveEntity</name>
+        <qualifiedname>xpe::ecs::cScene::RemoveEntity</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="36" column="18" bodyfile="engine/src/ecs/ecs.cpp" bodystart="13" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a383d018c0c2db44c44e1c06c35f67626" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::ecs::cScene::IsValidEntity</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>IsValidEntity</name>
+        <qualifiedname>xpe::ecs::cScene::IsValidEntity</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="38" column="18" bodyfile="engine/src/ecs/ecs.cpp" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1aa47283de7ae110700943b75258d1c988" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::ecs::cScene::ClearEntities</definition>
+        <argsstring>()</argsstring>
+        <name>ClearEntities</name>
+        <qualifiedname>xpe::ecs::cScene::ClearEntities</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="40" column="18" bodyfile="engine/src/ecs/ecs.cpp" bodystart="23" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1af10ade81ca093d8c007444182173209c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+        <definition>T &amp; xpe::ecs::cScene::AddComponent</definition>
+        <argsstring>(EntityID entityId, Args &amp;&amp;... args)</argsstring>
+        <name>AddComponent</name>
+        <qualifiedname>xpe::ecs::cScene::AddComponent</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="43" column="15" bodyfile="engine/src/ecs/ecs.hpp" bodystart="81" bodyend="100"/>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1a1368be7cdcee488845a75e7742e2eea3" compoundref="ecs_8hpp" startline="288" endline="291">xpe::ecs::cEntity::Add</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a132ac580d0c04aa43d71fe827ca333da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::ecs::cScene::RemoveComponent</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>RemoveComponent</name>
+        <qualifiedname>xpe::ecs::cScene::RemoveComponent</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="46" column="18" bodyfile="engine/src/ecs/ecs.hpp" bodystart="103" bodyend="116"/>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1a4b76e7d0f1a2d7980cdfde0fd516418e" compoundref="ecs_8hpp" startline="294" endline="297">xpe::ecs::cEntity::Remove</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1adfe5448c670a7646b1b49f1698c0e965" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+        <definition>T &amp; xpe::ecs::cScene::GetComponent</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>GetComponent</name>
+        <qualifiedname>xpe::ecs::cScene::GetComponent</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="49" column="15" bodyfile="engine/src/ecs/ecs.hpp" bodystart="119" bodyend="122"/>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1a6b56f191adb04a8f03422a665d591743" compoundref="ecs_8hpp" startline="282" endline="285">xpe::ecs::cEntity::Get</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1af8dda2e288dfd0505ee3d7bc545f8d85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::ecs::cScene::HasAnyComponent</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>HasAnyComponent</name>
+        <qualifiedname>xpe::ecs::cScene::HasAnyComponent</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="52" column="18" bodyfile="engine/src/ecs/ecs.hpp" bodystart="125" bodyend="128"/>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1a072b7e4f5b9028802f0ea9630c54a3c5" compoundref="ecs_8hpp" startline="300" endline="303">xpe::ecs::cEntity::HasAny</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a837ce789126d7aa510afb211f86b36da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::ecs::cScene::HasAllComponent</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>HasAllComponent</name>
+        <qualifiedname>xpe::ecs::cScene::HasAllComponent</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="55" column="18" bodyfile="engine/src/ecs/ecs.hpp" bodystart="131" bodyend="134"/>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1addda17a9e49912a9c25fa7304921e665" compoundref="ecs_8hpp" startline="306" endline="309">xpe::ecs::cEntity::HasAll</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1ab39105edd3f4294de8bfb4f97369259f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::ecs::cScene::ClearComponents</definition>
+        <argsstring>()</argsstring>
+        <name>ClearComponents</name>
+        <qualifiedname>xpe::ecs::cScene::ClearComponents</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="58" column="18" bodyfile="engine/src/ecs/ecs.hpp" bodystart="137" bodyend="142"/>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a09f2e93dae557058af5ea5d69fcdf639" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">auto</ref></type>
+        <definition>auto xpe::ecs::cScene::GetComponents</definition>
+        <argsstring>()</argsstring>
+        <name>GetComponents</name>
+        <qualifiedname>xpe::ecs::cScene::GetComponents</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="61" column="18" bodyfile="engine/src/ecs/ecs.hpp" bodystart="145" bodyend="148"/>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1anim_1_1c_anim_system_1a0a35098c9165bcf4720ccfd500467e9d" compoundref="anim__system_8cpp" startline="10" endline="21">xpe::anim::cAnimSystem::Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1aab680a93dde6e0eced4194ad05622161" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1ecs_1a5d94892c480b4d1cee59dd45fb6799bc" kindref="member">ComponentID</ref>, <ref refid="classxpe_1_1res_1_1c_json" kindref="compound">cJson</ref> * &gt; &amp;</type>
+        <definition>unordered_map&lt; ComponentID, cJson * &gt; &amp; xpe::ecs::cScene::GetJsons</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>GetJsons</name>
+        <qualifiedname>xpe::ecs::cScene::GetJsons</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="63" column="27" bodyfile="engine/src/ecs/ecs.cpp" bodystart="28" bodyend="31"/>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1afa4533d7e2c0a989940fd5c7a1faaa88" compoundref="ecs_8cpp" startline="247" endline="254">xpe::ecs::cEntity::FromJson</referencedby>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1ad457941d66381bee7335581ce40d6780" compoundref="ecs_8cpp" startline="238" endline="245">xpe::ecs::cEntity::ToJson</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a2b882d4b7b0d933d04c7f2d72eda864e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1ecs_1a5d94892c480b4d1cee59dd45fb6799bc" kindref="member">ComponentID</ref>, <ref refid="classxpe_1_1res_1_1c_xml" kindref="compound">cXml</ref> * &gt; &amp;</type>
+        <definition>unordered_map&lt; ComponentID, cXml * &gt; &amp; xpe::ecs::cScene::GetXmls</definition>
+        <argsstring>(EntityID entityId)</argsstring>
+        <name>GetXmls</name>
+        <qualifiedname>xpe::ecs::cScene::GetXmls</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref></type>
+          <declname>entityId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="64" column="28" bodyfile="engine/src/ecs/ecs.cpp" bodystart="33" bodyend="36"/>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1a09181b66bb5edce85a5806a9c491cb89" compoundref="ecs_8cpp" startline="227" endline="236">xpe::ecs::cEntity::FromXml</referencedby>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1aa8d2a9569eb64fe9d1e43e4baccab29d" compoundref="ecs_8cpp" startline="216" endline="225">xpe::ecs::cEntity::ToXml</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1abd6271071cb04ddd7a3c726e7257b044" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::ecs::cScene::ToJson</definition>
+        <argsstring>(json &amp;root) override</argsstring>
+        <name>ToJson</name>
+        <qualifiedname>xpe::ecs::cScene::ToJson</qualifiedname>
+        <reimplements refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88">ToJson</reimplements>
+        <param>
+          <type><ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="66" column="18" bodyfile="engine/src/ecs/ecs.cpp" bodystart="38" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1aad8dbb8b2770569d902a8a09ba6eb1ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::ecs::cScene::FromJson</definition>
+        <argsstring>(json &amp;root) override</argsstring>
+        <name>FromJson</name>
+        <qualifiedname>xpe::ecs::cScene::FromJson</qualifiedname>
+        <reimplements refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b">FromJson</reimplements>
+        <param>
+          <type><ref refid="json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d" kindref="member">json</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="67" column="18" bodyfile="engine/src/ecs/ecs.cpp" bodystart="50" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a069b678a1d459ec195a12cc982e22c1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref></type>
+        <definition>xml xpe::ecs::cScene::ToXml</definition>
+        <argsstring>(xml &amp;root) override</argsstring>
+        <name>ToXml</name>
+        <qualifiedname>xpe::ecs::cScene::ToXml</qualifiedname>
+        <reimplements refid="classxpe_1_1res_1_1c_xml_1aecfd539665c2cc21965c15aa4f53b9e2">ToXml</reimplements>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="68" column="17" bodyfile="engine/src/ecs/ecs.cpp" bodystart="62" bodyend="73"/>
+        <references refid="namespacexpe_1_1res_1ae8813487225b68b49312454bb143e202" compoundref="xml_8cpp" startline="38" endline="40">xpe::res::SetXmlValue</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1ecs_1_1c_scene_1a1a742c4d2f714632fdb3dd10b933db75" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref></type>
+        <definition>xml xpe::ecs::cScene::FromXml</definition>
+        <argsstring>(xml &amp;root) override</argsstring>
+        <name>FromXml</name>
+        <qualifiedname>xpe::ecs::cScene::FromXml</qualifiedname>
+        <reimplements refid="classxpe_1_1res_1_1c_xml_1ad40ae73f421e5655d44fe871cdfe808f">FromXml</reimplements>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/ecs.hpp" line="69" column="17" bodyfile="engine/src/ecs/ecs.cpp" bodystart="75" bodyend="86"/>
+        <references refid="namespacexpe_1_1res_1ac5525e0fd8b81e865e788d9ee64021b5" compoundref="xml_8cpp" startline="102" endline="104">xpe::res::GetXmlValue</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::ecs::cScene</label>
+        <link refid="classxpe_1_1ecs_1_1c_scene"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="private-inheritance">
+        </childnode>
+        <childnode refid="4" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+      <node id="4">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::ecs::cScene</label>
+        <link refid="classxpe_1_1ecs_1_1c_scene"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="private-inheritance">
+        </childnode>
+        <childnode refid="4" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+      <node id="4">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/ecs.hpp" line="26" column="9" bodyfile="engine/src/ecs/ecs.hpp" bodystart="27" bodyend="78"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1af10ade81ca093d8c007444182173209c" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>AddComponent</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1ab39105edd3f4294de8bfb4f97369259f" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>ClearComponents</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1aa47283de7ae110700943b75258d1c988" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>ClearEntities</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1ab2842bd0b2bd2789068e9ac82eaa11a6" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>CreateEntity</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1aad8dbb8b2770569d902a8a09ba6eb1ca" prot="public" virt="virtual"><scope>xpe::ecs::cScene</scope><name>FromJson</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a1a742c4d2f714632fdb3dd10b933db75" prot="public" virt="virtual"><scope>xpe::ecs::cScene</scope><name>FromXml</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1adfe5448c670a7646b1b49f1698c0e965" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>GetComponent</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a09f2e93dae557058af5ea5d69fcdf639" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>GetComponents</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1aab680a93dde6e0eced4194ad05622161" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>GetJsons</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a72859f04ba3f448f96fc2353fae7906a" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>GetTag</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a2b882d4b7b0d933d04c7f2d72eda864e" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>GetXmls</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a837ce789126d7aa510afb211f86b36da" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>HasAllComponent</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1af8dda2e288dfd0505ee3d7bc545f8d85" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>HasAnyComponent</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a383d018c0c2db44c44e1c06c35f67626" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>IsValidEntity</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a1f9074d41be7369f222646874592897d" prot="private" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>m_Jsons</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a341ed371482f802f8c6b684f176b44c4" prot="private" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>m_Registry</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1ad2149a201d79b02b728bacae7be6ab91" prot="private" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>m_Tag</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1ad3fd6c524654e66928c30e52f7a8a45a" prot="private" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>m_Xmls</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a08a445f8a61afef6e5b4221d4ed45c36" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>PhysicsScene</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a132ac580d0c04aa43d71fe827ca333da" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>RemoveComponent</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1ad9913c4d0a11f519f5789eff1cc8ede9" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>RemoveEntity</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a9382a3ab28600cc502022e1e09823cba" prot="public" virt="non-virtual"><scope>xpe::ecs::cScene</scope><name>SetTag</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1abd6271071cb04ddd7a3c726e7257b044" prot="public" virt="virtual"><scope>xpe::ecs::cScene</scope><name>ToJson</name></member>
+      <member refid="classxpe_1_1ecs_1_1c_scene_1a069b678a1d459ec195a12cc982e22c1b" prot="public" virt="virtual"><scope>xpe::ecs::cScene</scope><name>ToXml</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

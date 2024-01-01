@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_plane" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sPlane</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_geometry" prot="public" virt="non-virtual">xpe::render::sGeometry</basecompoundref>
+    <includes refid="geometries_8hpp" local="no">geometries.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_plane_1a0e144fb3f69330ad5dad578996b9639f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sPlane::sPlane</definition>
+        <argsstring>(s32 size=16)</argsstring>
+        <name>sPlane</name>
+        <qualifiedname>xpe::render::sPlane::sPlane</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>size</declname>
+          <defval>16</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometries.hpp" line="45" column="13" bodyfile="engine/src/rendering/geometry/geometries.cpp" bodystart="112" bodyend="156"/>
+        <references refid="structxpe_1_1render_1_1s_geometry_1ac9add3011709810d7c76883a6c604a69" compoundref="geometry_8hpp" startline="72">xpe::render::sGeometry::Indices</references>
+        <references refid="structxpe_1_1render_1_1s_geometry_1a379b899d1d5cf643d32c40aff02461bc" compoundref="geometry_8hpp" startline="70">xpe::render::sGeometry::PrimitiveTopology</references>
+        <references refid="namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100a708de017e3b83ccba21dfc9f6367d46f">xpe::render::TRIANGLE_STRIP</references>
+        <references refid="structxpe_1_1render_1_1s_geometry_1a8d830374768f5294dd56e98eb7a4dcb2" compoundref="geometry_8hpp" startline="71">xpe::render::sGeometry::Vertices</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::render::sGeometry</label>
+        <link refid="structxpe_1_1render_1_1s_geometry"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sPlane</label>
+        <link refid="structxpe_1_1render_1_1s_plane"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::render::sGeometry</label>
+        <link refid="structxpe_1_1render_1_1s_geometry"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sPlane</label>
+        <link refid="structxpe_1_1render_1_1s_plane"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/geometry/geometries.hpp" line="44" column="9" bodyfile="engine/src/rendering/geometry/geometries.hpp" bodystart="44" bodyend="46"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_geometry_1ac9add3011709810d7c76883a6c604a69" prot="public" virt="non-virtual"><scope>xpe::render::sPlane</scope><name>Indices</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_1a379b899d1d5cf643d32c40aff02461bc" prot="public" virt="non-virtual"><scope>xpe::render::sPlane</scope><name>PrimitiveTopology</name></member>
+      <member refid="structxpe_1_1render_1_1s_plane_1a0e144fb3f69330ad5dad578996b9639f" prot="public" virt="non-virtual"><scope>xpe::render::sPlane</scope><name>sPlane</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_1a8d830374768f5294dd56e98eb7a4dcb2" prot="public" virt="non-virtual"><scope>xpe::render::sPlane</scope><name>Vertices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

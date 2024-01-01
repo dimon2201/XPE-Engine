@@ -1,0 +1,581 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_render_target" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sRenderTarget</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="render__target_8hpp" local="no">render_target.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> * &gt;</type>
+        <definition>vector&lt;void*&gt; xpe::render::sRenderTarget::ColorViews</definition>
+        <argsstring></argsstring>
+        <name>ColorViews</name>
+        <qualifiedname>xpe::render::sRenderTarget::ColorViews</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="11" column="20" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="11" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1ab66aa8906eda1422cc1ae35224e8b745" compoundref="render__target_8cpp" startline="85" endline="88">Bind</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" compoundref="render__target_8cpp" startline="105" endline="114">Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" compoundref="canvas_8cpp" startline="30" endline="44">xpe::render::cCanvas::Draw</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a72b8bf700c0712f8de22273b561492e0" compoundref="render__target_8cpp" startline="29" endline="45">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a061a0cd8cc663cbd70e438cd00411286" compoundref="render__target_8cpp" startline="8" endline="19">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1aa9bf356d7c6ffc3b0cf0054926376273" compoundref="render__target_8cpp" startline="47" endline="55">sRenderTarget</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::render::sRenderTarget::DepthStencilView</definition>
+        <argsstring></argsstring>
+        <name>DepthStencilView</name>
+        <qualifiedname>xpe::render::sRenderTarget::DepthStencilView</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="12" column="18" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="12" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1ab66aa8906eda1422cc1ae35224e8b745" compoundref="render__target_8cpp" startline="85" endline="88">Bind</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" compoundref="render__target_8cpp" startline="105" endline="114">Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" compoundref="canvas_8cpp" startline="30" endline="44">xpe::render::cCanvas::Draw</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a8d5386303bbb663e5dd5512eecd1c63e" compoundref="render__target_8cpp" startline="21" endline="27">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a72b8bf700c0712f8de22273b561492e0" compoundref="render__target_8cpp" startline="29" endline="45">sRenderTarget</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1a3b81fe98fd6ef9ff743e6c9d22debd9a" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> * &gt;</type>
+        <definition>vector&lt;sTexture*&gt; xpe::render::sRenderTarget::Colors</definition>
+        <argsstring></argsstring>
+        <name>Colors</name>
+        <qualifiedname>xpe::render::sRenderTarget::Colors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="13" column="20" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="13" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a5b6776e400962296e04d74517b8ecf95" compoundref="render__target_8cpp" startline="90" endline="93">BindColor</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_manager_1abcaed5d467f2c0c6e85a9508818efd8b" compoundref="shadow__manager_8cpp" startline="52" endline="62">xpe::render::cShadowManager::Free</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a507527ff5a70e8697cfa84cf01c439ce" compoundref="render__target_8cpp" startline="73" endline="78">ResizeColors</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a72b8bf700c0712f8de22273b561492e0" compoundref="render__target_8cpp" startline="29" endline="45">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a061a0cd8cc663cbd70e438cd00411286" compoundref="render__target_8cpp" startline="8" endline="19">sRenderTarget</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1aa5a44bf9fcb607e8332ecbc0503a8226" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture* xpe::render::sRenderTarget::DepthStencil</definition>
+        <argsstring></argsstring>
+        <name>DepthStencil</name>
+        <qualifiedname>xpe::render::sRenderTarget::DepthStencil</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="14" column="22" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="14" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a2f2297ddbc96d23512f70de8fef5b564" compoundref="render__target_8cpp" startline="95" endline="98">BindDepth</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_manager_1abcaed5d467f2c0c6e85a9508818efd8b" compoundref="shadow__manager_8cpp" startline="52" endline="62">xpe::render::cShadowManager::Free</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a8d5386303bbb663e5dd5512eecd1c63e" compoundref="render__target_8cpp" startline="21" endline="27">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a72b8bf700c0712f8de22273b561492e0" compoundref="render__target_8cpp" startline="29" endline="45">sRenderTarget</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984" compoundref="render__system_8cpp" startline="241" endline="257">xpe::render::cRenderSystem::WindowFrameResized</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+        <definition>sViewport* xpe::render::sRenderTarget::Viewport</definition>
+        <argsstring></argsstring>
+        <name>Viewport</name>
+        <qualifiedname>xpe::render::sRenderTarget::Viewport</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="15" column="23" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="15" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" compoundref="canvas_8cpp" startline="30" endline="44">xpe::render::cCanvas::Draw</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a8d5386303bbb663e5dd5512eecd1c63e" compoundref="render__target_8cpp" startline="21" endline="27">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a72b8bf700c0712f8de22273b561492e0" compoundref="render__target_8cpp" startline="29" endline="45">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a061a0cd8cc663cbd70e438cd00411286" compoundref="render__target_8cpp" startline="8" endline="19">sRenderTarget</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1aa9bf356d7c6ffc3b0cf0054926376273" compoundref="render__target_8cpp" startline="47" endline="55">sRenderTarget</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1aa2ee11146ce783e2aa821717ea2295b8" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; glm::vec4 &gt;</type>
+        <definition>vector&lt;glm::vec4&gt; xpe::render::sRenderTarget::ClearColors</definition>
+        <argsstring></argsstring>
+        <name>ClearColors</name>
+        <qualifiedname>xpe::render::sRenderTarget::ClearColors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="16" column="20" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="16" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" compoundref="render__target_8cpp" startline="105" endline="114">Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_ssao_shader_1abe0dfc617df3607eaa964137437fffcb" compoundref="shaders_8cpp" startline="398" endline="444">xpe::render::cSsaoShader::cSsaoShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_manager_1ab48f2f89acf430f23bd847d1d6522702" compoundref="shadow__manager_8cpp" startline="8" endline="50">xpe::render::cShadowManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1acde4317ff9849e50fb56436943dbbd0e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sRenderTarget::ClearDepth</definition>
+        <argsstring></argsstring>
+        <name>ClearDepth</name>
+        <qualifiedname>xpe::render::sRenderTarget::ClearDepth</qualifiedname>
+        <initializer>= <ref refid="macro__constants_8hpp_1a85e6337346a6ea4f556bebea44119253" kindref="member">K_DEPTH_INVALID</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="17" column="19" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="17" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" compoundref="render__target_8cpp" startline="105" endline="114">Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_ssao_shader_1abe0dfc617df3607eaa964137437fffcb" compoundref="shaders_8cpp" startline="398" endline="444">xpe::render::cSsaoShader::cSsaoShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_manager_1ab48f2f89acf430f23bd847d1d6522702" compoundref="shadow__manager_8cpp" startline="8" endline="50">xpe::render::cShadowManager::Init</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_render_target_1a7d4786bf639b884685d49fe104e69967" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sRenderTarget::m_Resizable</definition>
+        <argsstring></argsstring>
+        <name>m_Resizable</name>
+        <qualifiedname>xpe::render::sRenderTarget::m_Resizable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="44" column="18" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a061a0cd8cc663cbd70e438cd00411286" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sRenderTarget::sRenderTarget</definition>
+        <argsstring>(const vector&lt; sTexture * &gt; &amp;colors, sViewport *viewport)</argsstring>
+        <name>sRenderTarget</name>
+        <qualifiedname>xpe::render::sRenderTarget::sRenderTarget</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> * &gt; &amp;</type>
+          <declname>colors</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+          <declname>viewport</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="19" column="13" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="8" bodyend="19"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a3b81fe98fd6ef9ff743e6c9d22debd9a" compoundref="render__target_8hpp" startline="13">Colors</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" compoundref="render__target_8hpp" startline="11">ColorViews</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" compoundref="render__target_8hpp" startline="15">Viewport</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a8d5386303bbb663e5dd5512eecd1c63e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sRenderTarget::sRenderTarget</definition>
+        <argsstring>(const sTexture *depthStencil, sViewport *viewport)</argsstring>
+        <name>sRenderTarget</name>
+        <qualifiedname>xpe::render::sRenderTarget::sRenderTarget</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+          <declname>depthStencil</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+          <declname>viewport</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="20" column="13" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="21" bodyend="27"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1aa5a44bf9fcb607e8332ecbc0503a8226" compoundref="render__target_8hpp" startline="14">DepthStencil</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" compoundref="render__target_8hpp" startline="12">DepthStencilView</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" compoundref="render__target_8hpp" startline="15">Viewport</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a72b8bf700c0712f8de22273b561492e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sRenderTarget::sRenderTarget</definition>
+        <argsstring>(const vector&lt; sTexture * &gt; &amp;colors, const sTexture *depthStencil, sViewport *viewport)</argsstring>
+        <name>sRenderTarget</name>
+        <qualifiedname>xpe::render::sRenderTarget::sRenderTarget</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> * &gt; &amp;</type>
+          <declname>colors</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+          <declname>depthStencil</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+          <declname>viewport</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="21" column="13" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="29" bodyend="45"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a3b81fe98fd6ef9ff743e6c9d22debd9a" compoundref="render__target_8hpp" startline="13">Colors</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" compoundref="render__target_8hpp" startline="11">ColorViews</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1aa5a44bf9fcb607e8332ecbc0503a8226" compoundref="render__target_8hpp" startline="14">DepthStencil</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" compoundref="render__target_8hpp" startline="12">DepthStencilView</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" compoundref="render__target_8hpp" startline="15">Viewport</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1aa9bf356d7c6ffc3b0cf0054926376273" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sRenderTarget::sRenderTarget</definition>
+        <argsstring>(const vector&lt; void * &gt; &amp;colorViews, sViewport *viewport)</argsstring>
+        <name>sRenderTarget</name>
+        <qualifiedname>xpe::render::sRenderTarget::sRenderTarget</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> * &gt; &amp;</type>
+          <declname>colorViews</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> *</type>
+          <declname>viewport</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="22" column="13" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="47" bodyend="55"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" compoundref="render__target_8hpp" startline="11">ColorViews</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" compoundref="render__target_8hpp" startline="15">Viewport</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a1dbe1ee9b468e6a9be900ebd213211ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sRenderTarget::~sRenderTarget</definition>
+        <argsstring>()</argsstring>
+        <name>~sRenderTarget</name>
+        <qualifiedname>xpe::render::sRenderTarget::~sRenderTarget</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="24" column="13" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="57" bodyend="61"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a5e7adec056e5269e8803ce06f45144c4" compoundref="rendering_2core_2context_8cpp" startline="238" endline="242">xpe::render::context::FreeRenderTarget</references>
+        <references refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" compoundref="input__manager_8hpp" startline="19">RemoveWindowFrameResized</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a13cc34a42448dc14bdfbeef99f79a196" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::Resize</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>Resize</name>
+        <qualifiedname>xpe::render::sRenderTarget::Resize</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="26" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="68" bodyend="71"/>
+        <references refid="namespacexpe_1_1render_1_1context_1aa0e867f933b023f350e43a1b1d359ab2">xpe::render::context::ResizeRenderTarget</references>
+        <referencedby refid="classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984" compoundref="render__system_8cpp" startline="241" endline="257">xpe::render::cRenderSystem::WindowFrameResized</referencedby>
+        <referencedby refid="structxpe_1_1render_1_1s_render_target_1a7880528c246353f51a7cb3fd1953226b" compoundref="render__target_8cpp" startline="80" endline="83">WindowFrameResized</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a507527ff5a70e8697cfa84cf01c439ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::ResizeColors</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>ResizeColors</name>
+        <qualifiedname>xpe::render::sRenderTarget::ResizeColors</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="27" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="73" bodyend="78"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a3b81fe98fd6ef9ff743e6c9d22debd9a" compoundref="render__target_8hpp" startline="13">Colors</references>
+        <referencedby refid="classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984" compoundref="render__system_8cpp" startline="241" endline="257">xpe::render::cRenderSystem::WindowFrameResized</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1ab66aa8906eda1422cc1ae35224e8b745" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::Bind</definition>
+        <argsstring>()</argsstring>
+        <name>Bind</name>
+        <qualifiedname>xpe::render::sRenderTarget::Bind</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="29" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="85" bodyend="88"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a1b599623aad5a454a34697cec5c79143" compoundref="rendering_2core_2context_8cpp" startline="244" endline="248">xpe::render::context::BindRenderTarget</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" compoundref="render__target_8hpp" startline="11">ColorViews</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" compoundref="render__target_8hpp" startline="12">DepthStencilView</references>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ae049ee7d29afa50b562466bdef95b704" compoundref="shader_8cpp" startline="180" endline="204">xpe::render::cDefaultShader::Bind</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a5b6776e400962296e04d74517b8ecf95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::BindColor</definition>
+        <argsstring>(u32 index)</argsstring>
+        <name>BindColor</name>
+        <qualifiedname>xpe::render::sRenderTarget::BindColor</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="30" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="90" bodyend="93"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a3b81fe98fd6ef9ff743e6c9d22debd9a" compoundref="render__target_8hpp" startline="13">Colors</references>
+        <references refid="namespacexpe_1_1render_1_1context_1af7d77195f515615a89c72aa4f236bf05" compoundref="rendering_2core_2context_8cpp" startline="316" endline="319">xpe::render::context::PSBindTexture</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a2f2297ddbc96d23512f70de8fef5b564" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::BindDepth</definition>
+        <argsstring>()</argsstring>
+        <name>BindDepth</name>
+        <qualifiedname>xpe::render::sRenderTarget::BindDepth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="31" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="95" bodyend="98"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1aa5a44bf9fcb607e8332ecbc0503a8226" compoundref="render__target_8hpp" startline="14">DepthStencil</references>
+        <references refid="namespacexpe_1_1render_1_1context_1af7d77195f515615a89c72aa4f236bf05" compoundref="rendering_2core_2context_8cpp" startline="316" endline="319">xpe::render::context::PSBindTexture</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a1262bb2d115b64799b8078a0e8db4e9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::Unbind</definition>
+        <argsstring>()</argsstring>
+        <name>Unbind</name>
+        <qualifiedname>xpe::render::sRenderTarget::Unbind</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="32" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="100" bodyend="103"/>
+        <references refid="namespacexpe_1_1render_1_1context_1ad285536878ad00fc96fb4b887a993364">xpe::render::context::UnbindRenderTarget</references>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a214ac22548a93e5291b81c69b1e801ee" compoundref="shader_8cpp" startline="206" endline="223">xpe::render::cDefaultShader::Unbind</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a7880528c246353f51a7cb3fd1953226b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::WindowFrameResized</definition>
+        <argsstring>(s32 width, s32 height)</argsstring>
+        <name>WindowFrameResized</name>
+        <qualifiedname>xpe::render::sRenderTarget::WindowFrameResized</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="34" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="80" bodyend="83"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a13cc34a42448dc14bdfbeef99f79a196" compoundref="render__target_8cpp" startline="68" endline="71">Resize</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>xpe::render::sRenderTarget::Clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="36" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="105" bodyend="114"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1aa2ee11146ce783e2aa821717ea2295b8" compoundref="render__target_8hpp" startline="16">ClearColors</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a7ef3ba5c9c5d29b8a2f1d9551b452d5e">xpe::render::context::ClearColorTarget</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1acde4317ff9849e50fb56436943dbbd0e" compoundref="render__target_8hpp" startline="17">ClearDepth</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a8bb6771b669d48ce52f66951f781c5e5">xpe::render::context::ClearDepthTarget</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" compoundref="render__target_8hpp" startline="11">ColorViews</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" compoundref="render__target_8hpp" startline="12">DepthStencilView</references>
+        <references refid="macro__constants_8hpp_1a85e6337346a6ea4f556bebea44119253" compoundref="macro__constants_8hpp" startline="3">K_DEPTH_INVALID</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">xpe::core::cApp::Render</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a17f0a872aae3eb6370c290695e31b208" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::SetResizable</definition>
+        <argsstring>(bool resizable)</argsstring>
+        <name>SetResizable</name>
+        <qualifiedname>xpe::render::sRenderTarget::SetResizable</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>resizable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="38" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="116" bodyend="124"/>
+        <references refid="input__manager_8hpp_1a2cd1cdcbe57492f3f37f3242807b8d22" compoundref="input__manager_8hpp" startline="7">AddWindowFrameResized</references>
+        <references refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" compoundref="input__manager_8hpp" startline="19">RemoveWindowFrameResized</references>
+        <referencedby refid="classxpe_1_1render_1_1c_ssao_shader_1abe0dfc617df3607eaa964137437fffcb" compoundref="shaders_8cpp" startline="398" endline="444">xpe::render::cSsaoShader::cSsaoShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_manager_1ab48f2f89acf430f23bd847d1d6522702" compoundref="shadow__manager_8cpp" startline="8" endline="50">xpe::render::cShadowManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a3396c3a773c8da0167cc6bf88e49ae32" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sRenderTarget::IsResizable</definition>
+        <argsstring>() const</argsstring>
+        <name>IsResizable</name>
+        <qualifiedname>xpe::render::sRenderTarget::IsResizable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="39" column="26" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_render_target_1a150691adee7198557f40d6d8778dfc1d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sRenderTarget::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::render::sRenderTarget::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/render_target.hpp" line="42" column="18" bodyfile="engine/src/rendering/core/render_target.cpp" bodystart="63" bodyend="66"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sRenderTarget</label>
+        <link refid="structxpe_1_1render_1_1s_render_target"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sRenderTarget</label>
+        <link refid="structxpe_1_1render_1_1s_render_target"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>DepthStencil</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Viewport</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::render::sViewport</label>
+        <link refid="structxpe_1_1render_1_1s_viewport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/render_target.hpp" line="9" column="9" bodyfile="engine/src/rendering/core/render_target.hpp" bodystart="10" bodyend="45"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_render_target_1ab66aa8906eda1422cc1ae35224e8b745" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>Bind</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a5b6776e400962296e04d74517b8ecf95" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>BindColor</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a2f2297ddbc96d23512f70de8fef5b564" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>BindDepth</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1af588c7ab0827cf451febf7f410b23609" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>Clear</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1aa2ee11146ce783e2aa821717ea2295b8" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>ClearColors</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1acde4317ff9849e50fb56436943dbbd0e" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>ClearDepth</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a3b81fe98fd6ef9ff743e6c9d22debd9a" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>Colors</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>ColorViews</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1aa5a44bf9fcb607e8332ecbc0503a8226" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>DepthStencil</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>DepthStencilView</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a150691adee7198557f40d6d8778dfc1d" prot="private" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>Init</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a3396c3a773c8da0167cc6bf88e49ae32" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>IsResizable</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a7d4786bf639b884685d49fe104e69967" prot="private" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>m_Resizable</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a13cc34a42448dc14bdfbeef99f79a196" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>Resize</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a507527ff5a70e8697cfa84cf01c439ce" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>ResizeColors</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a17f0a872aae3eb6370c290695e31b208" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>SetResizable</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a061a0cd8cc663cbd70e438cd00411286" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>sRenderTarget</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a8d5386303bbb663e5dd5512eecd1c63e" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>sRenderTarget</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a72b8bf700c0712f8de22273b561492e0" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>sRenderTarget</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1aa9bf356d7c6ffc3b0cf0054926376273" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>sRenderTarget</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a1262bb2d115b64799b8078a0e8db4e9e" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>Unbind</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>Viewport</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a7880528c246353f51a7cb3fd1953226b" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>WindowFrameResized</name></member>
+      <member refid="structxpe_1_1render_1_1s_render_target_1a1dbe1ee9b468e6a9be900ebd213211ec" prot="public" virt="non-virtual"><scope>xpe::render::sRenderTarget</scope><name>~sRenderTarget</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

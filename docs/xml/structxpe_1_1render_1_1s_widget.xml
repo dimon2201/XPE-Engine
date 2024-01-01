@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_widget" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sWidget</compoundname>
+    <basecompoundref refid="classxpe_1_1res_1_1c_xml" prot="public" virt="non-virtual">xpe::res::cXml</basecompoundref>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_button" prot="public" virt="non-virtual">xpe::ecs::CButton</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_container" prot="public" virt="non-virtual">xpe::ecs::CContainer</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_field" prot="public" virt="non-virtual">xpe::ecs::CField</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_label" prot="public" virt="non-virtual">xpe::ecs::CLabel</derivedcompoundref>
+    <includes refid="widget__manager_8hpp" local="no">widget_manager.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_widget_1a9b580c426c346de4ee436e05f31e9f70" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::render::sWidget::Projection</definition>
+        <argsstring></argsstring>
+        <name>Projection</name>
+        <qualifiedname>xpe::render::sWidget::Projection</qualifiedname>
+        <initializer>= glm::mat4(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/widget_manager.hpp" line="11" column="23" bodyfile="engine/src/rendering/widget_manager.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>xpe::ecs::CButton</label>
+        <link refid="structxpe_1_1ecs_1_1_c_button"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::ecs::CContainer</label>
+        <link refid="structxpe_1_1ecs_1_1_c_container"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::ecs::CField</label>
+        <link refid="structxpe_1_1ecs_1_1_c_field"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::ecs::CLabel</label>
+        <link refid="structxpe_1_1ecs_1_1_c_label"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sWidget</label>
+        <link refid="structxpe_1_1render_1_1s_widget"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::render::sWidget</label>
+        <link refid="structxpe_1_1render_1_1s_widget"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/widget_manager.hpp" line="9" column="9" bodyfile="engine/src/rendering/widget_manager.hpp" bodystart="10" bodyend="12"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1res_1_1c_xml_1ad40ae73f421e5655d44fe871cdfe808f" prot="public" virt="pure-virtual"><scope>xpe::render::sWidget</scope><name>FromXml</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a47e4be13468d499a782a8f9bf25c3602" prot="public" virt="non-virtual"><scope>xpe::render::sWidget</scope><name>LoadFile</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a8a1dda763ec866fcb4b8f6b0c02e91a3" prot="protected" virt="non-virtual"><scope>xpe::render::sWidget</scope><name>m_Doc</name></member>
+      <member refid="structxpe_1_1render_1_1s_widget_1a9b580c426c346de4ee436e05f31e9f70" prot="public" virt="non-virtual"><scope>xpe::render::sWidget</scope><name>Projection</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a0165873965f1f93bec83a91f72b7741a" prot="public" virt="non-virtual"><scope>xpe::render::sWidget</scope><name>SaveFile</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1aecfd539665c2cc21965c15aa4f53b9e2" prot="public" virt="pure-virtual"><scope>xpe::render::sWidget</scope><name>ToXml</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a92a96665a2976d88f96c8f4a9744939a" prot="public" virt="non-virtual"><scope>xpe::render::sWidget</scope><name>XmlChildren</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_skeleton__manager_8hpp_source" xml:lang="en-US">
+<title>skeleton_manager.hpp</title>
+<indexterm><primary>engine/src/anim/skeleton_manager.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_skeleton_8hpp">anim/skeleton.hpp</link>&gt;</emphasis>
+4 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_bindings_8hpp">rendering/bindings.hpp</link>&gt;</emphasis>
+5 
+6 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+7 
+8 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>anim&#32;{
+9 
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>ecs;
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>render;
+12 
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1anim_1_1c_skeleton_manager">cSkeletonManager</link>&#32;final
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Init();
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Free();
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Flush();
+19 
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;Args&gt;
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;std::pair&lt;sSkeleton,&#32;sSkeletonInfo&gt;&#32;AddSkeleton(Args&#32;&amp;&amp;...&#32;args);
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+23 
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>...&#32;Args&gt;
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;std::pair&lt;sSkeleton,&#32;sSkeletonInfo&gt;&#32;<link linkend="_classxpe_1_1anim_1_1c_skeleton_manager_1a78919107dce1e4029702fe6ed0f12175">cSkeletonManager::AddSkeleton</link>(Args&#32;&amp;&amp;...&#32;args)
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_skeleton">sSkeleton</link>&#32;skeleton(std::forward&lt;Args&gt;(args)...);
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_skeleton_info">sSkeletonInfo</link>&#32;skeletonInfo;
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;skeletonInfo.<link linkend="_structxpe_1_1anim_1_1s_skeleton_info_1a3492a69a758f3bab256e2112631a3f40">SkeletonIndex</link>&#32;=&#32;<link linkend="_structxpe_1_1render_1_1_buffers_1a40c3f91f9d60532775f460dccd7d254d">Buffers::Skeleton</link>-&gt;<link linkend="_classxpe_1_1render_1_1s_list_buffer_1af1b78e374e912c0f7ea9363d579553c5">Size</link>();
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1_buffers_1a40c3f91f9d60532775f460dccd7d254d">Buffers::Skeleton</link>-&gt;<link linkend="_classxpe_1_1render_1_1s_list_buffer_1a05386fd8b9858ceda35f9f17d4de0cc1">Resize</link>(<link linkend="_structxpe_1_1render_1_1_buffers_1a40c3f91f9d60532775f460dccd7d254d">Buffers::Skeleton</link>-&gt;Size()&#32;+&#32;skeleton.<link linkend="_structxpe_1_1anim_1_1s_skeleton_1ad69c93268e627043f9e42cf52ca77fcb">Bones</link>.size());
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;{&#32;skeleton,&#32;skeletonInfo&#32;};
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+33 
+34 &#32;&#32;&#32;&#32;}
+35 
+36 }
+</programlisting></section>

@@ -1,0 +1,153 @@
+.TH "xpe::render::cFinalShader" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::cFinalShader
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <shaders\&.hpp>\fP
+.PP
+Inherits \fBxpe::render::cDefaultShader\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcFinalShader\fP (\fBconst\fP \fBstring\fP &\fBname\fP, \fBu32\fP \fBsampleCount\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBDraw\fP (\fBecs::cScene\fP *\fBscene\fP) \fBoverride\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::render::cDefaultShader\fP
+.in +1c
+.ti -1c
+.RI "\fBcDefaultShader\fP (\fBcShader::eCategory\fP \fBcategory\fP, \fBconst\fP \fBstring\fP &\fBname\fP)"
+.br
+.ti -1c
+.RI "\fB~cDefaultShader\fP () \fBoverride\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBBind\fP () \fBoverride\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBUnbind\fP () \fBoverride\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::render::cShader\fP
+.in +1c
+.ti -1c
+.RI "\fBcShader\fP (\fBcShader::eCategory\fP \fBcategory\fP, \fBconst\fP \fBstring\fP &\fBname\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~cShader\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::core::cObject\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBoperator new\fP (\fBusize\fP \fBbyteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator delete\fP (\fBvoid\fP *\fBaddress\fP)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBxpe::render::cShader\fP
+.in +1c
+.ti -1c
+.RI "enum \fBeCategory\fP { \fBNONE\fP = 0, \fBPREPASS\fP = 1, \fBOPAQUE\fP = 2, \fBTRANSPARENT\fP = 3, \fBPOSTFX\fP = 4, \fBUI\fP = 5, \fBFINAL\fP = 6, \fBCOMPUTE\fP = 7 }"
+.br
+.in -1c
+
+Public Attributes inherited from \fBxpe::render::cDefaultShader\fP
+.in +1c
+.ti -1c
+.RI "\fBePrimitiveTopology\fP \fBPrimitiveTopology\fP = \fBePrimitiveTopology::DEFAULT\fP"
+.br
+.ti -1c
+.RI "\fBsInputLayout\fP \fBInputLayout\fP = \fBsVertex::k_Format\fP"
+.br
+.ti -1c
+.RI "\fBsShaderStage\fP * \fBVertexStage\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBsShaderStage\fP * \fBPixelStage\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBsShaderStage\fP * \fBGeometryStage\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBsRenderTarget\fP * \fBRenderTarget\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBsRasterizer\fP \fBRasterizer\fP"
+.br
+.ti -1c
+.RI "\fBsDepthStencilMode\fP \fBDepthStencilMode\fP"
+.br
+.ti -1c
+.RI "\fBsBlendMode\fP \fBBlendMode\fP"
+.br
+.in -1c
+
+Public Attributes inherited from \fBxpe::render::cShader\fP
+.in +1c
+.ti -1c
+.RI "\fBu64\fP \fBID\fP = 0"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnable\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBeCategory\fP \fBCategory\fP = \fBeCategory::PREPASS\fP"
+.br
+.ti -1c
+.RI "\fBcShader\fP * \fBNext\fP = \fBnullptr\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBxpe::render::cDefaultShader\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInitPrepass\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInitOpaque\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInitTransparent\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInitPostFX\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInitUI\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBInitFinal\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::render::cFinalShader::cFinalShader (\fBconst\fP \fBstring\fP & name, \fBu32\fP sampleCount)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::render::cFinalShader::Draw (\fBecs::cScene\fP * scene)\fR [override]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBxpe::render::cShader\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

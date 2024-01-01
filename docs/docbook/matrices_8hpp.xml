@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_matrices_8hpp" xml:lang="en-US">
+<title>engine/src/math/matrices.hpp File Reference</title>
+<indexterm><primary>engine/src/math/matrices.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1math_1_1s_model_matrix">xpe::math::sModelMatrix</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1math">xpe::math</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1math_1aac02ad64d4e89e0dc7089b884ba631a6">xpe::math::JSON</link> (<link linkend="_structxpe_1_1math_1_1s_model_matrix">sModelMatrix</link>, Position, Rotation, Scale) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">struct</link> <link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1math_1a1a2ce8e134b89e865c1b5d903113129e">xpe::math::JSON</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link>, Position, Front, <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd">Up</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">struct</link> <link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link> sOrthoMatrix</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1math_1ad598b02ad44bbb24718c80baba9d88f8">xpe::math::JSON</link> (sOrthoMatrix, <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e">Left</link>, <link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13">Right</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Bottom</link>, Top, Near, Far) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">struct</link> <link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link> sPerspectiveMatrix</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

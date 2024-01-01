@@ -1,0 +1,381 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_ortho_camera" kind="class" language="C++" prot="public">
+    <compoundname>xpe::render::cOrthoCamera</compoundname>
+    <basecompoundref refid="classxpe_1_1render_1_1c_camera" prot="public" virt="non-virtual">xpe::render::cCamera</basecompoundref>
+    <includes refid="camera_8hpp" local="no">camera.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1af2c1a1fac211e146b8199d4bf7499dda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cOrthoCamera::cOrthoCamera</definition>
+        <argsstring>(int viewWidth, int viewHeight)</argsstring>
+        <name>cOrthoCamera</name>
+        <qualifiedname>xpe::render::cOrthoCamera::cOrthoCamera</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>viewWidth</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>viewHeight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="185" column="13" bodyfile="engine/src/rendering/camera.cpp" bodystart="206" bodyend="214"/>
+        <references refid="input__manager_8hpp_1a81e1153a87fa319a45de9d00676b0b5e" compoundref="input__manager_8hpp" startline="14">AddCursorMove</references>
+        <references refid="input__manager_8hpp_1a6a71e46125bc7a2d501908f55cdfb0f9" compoundref="input__manager_8hpp" startline="16">AddScrollChanged</references>
+        <references refid="input__manager_8hpp_1a576eabc769112ab438a27635af3dda0c" compoundref="input__manager_8hpp" startline="6">AddWindowResized</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1aeaced429c0b6541fbf79bacdf04cd13b" compoundref="camera_8hpp" startline="121" endline="121">xpe::render::cCamera::m_Position</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1a28492e2235c4200f70320ef5a7096728" compoundref="camera_8hpp" startline="120">xpe::render::cCamera::m_ViewHeight</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1a53656dd1e3a3d618506140a982c8b825" compoundref="camera_8hpp" startline="119">xpe::render::cCamera::m_ViewWidth</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1abea6a471706796afe7bcc5b2f5a97649" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cOrthoCamera::~cOrthoCamera</definition>
+        <argsstring>()</argsstring>
+        <name>~cOrthoCamera</name>
+        <qualifiedname>xpe::render::cOrthoCamera::~cOrthoCamera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="186" column="13" bodyfile="engine/src/rendering/camera.cpp" bodystart="216" bodyend="221"/>
+        <references refid="input__manager_8hpp_1a3be6a41ac17dff84029bf2d0067df2b3" compoundref="input__manager_8hpp" startline="26">RemoveCursorMove</references>
+        <references refid="input__manager_8hpp_1a61c570116fdcc1ac2fd424fc9ecb8cf6" compoundref="input__manager_8hpp" startline="28">RemoveScrollChanged</references>
+        <references refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" compoundref="input__manager_8hpp" startline="19">RemoveWindowFrameResized</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a39409b9673dcae7c006a31a5f020c5a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cOrthoCamera::JSON_CLASS</definition>
+        <argsstring>(cOrthoCamera, KeyMoveForward, KeyMoveLeft, KeyMoveBackward, KeyMoveRight, MoveSpeed, ZoomAcceleration, PanAcceleration, HorizontalSensitivity, VerticalSensitivity, Pitch, Yaw, Roll, LookMode, EnableLook, Component) COrthoCamera Component</argsstring>
+        <name>JSON_CLASS</name>
+        <qualifiedname>xpe::render::cOrthoCamera::JSON_CLASS</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_ortho_camera" kindref="compound">cOrthoCamera</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1aeef6a901293af20c9c11ed5ade59083e" kindref="member">KeyMoveForward</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a8c3b23f60e63a24a74e81a5ec3552776" kindref="member">KeyMoveLeft</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a9aa407adfe06962f62e8d7a4a2fc84dc" kindref="member">KeyMoveBackward</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a86e2a507b301e4e6c00ed383c3ed3cf4" kindref="member">KeyMoveRight</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a5ae0b712e41b4cff13ae7af9d57c388e" kindref="member">MoveSpeed</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a81d64eaef93a01651b6e6923f84afd88" kindref="member">ZoomAcceleration</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a2d2a648cead8ed474c91d1c5a9500a59" kindref="member">PanAcceleration</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a119c55e96f59557d9e0255eb3776fc3a" kindref="member">HorizontalSensitivity</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1ac742e2fa73cd9979f011aeb3ceccf620" kindref="member">VerticalSensitivity</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1ad4b2ac5395bbb366e36272599166655e" kindref="member">Pitch</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a44d402558ca8c042755d9db7fb8b9ec4" kindref="member">Yaw</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a01526b6c40ddafb45f22be0212227832" kindref="member">Roll</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1ab54dccbe7808b62c7a959843c703ae5b" kindref="member">LookMode</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_camera_1a9647646344f120b635994de528f7e2d4" kindref="member">EnableLook</ref></type>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Component</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="188" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a1f753d281df71156a2310d0971960a61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::Move</definition>
+        <argsstring>()</argsstring>
+        <name>Move</name>
+        <qualifiedname>xpe::render::cOrthoCamera::Move</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="209" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="244" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a7144c7e376127972d7f6988e54c0e54a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::ZoomIn</definition>
+        <argsstring>()</argsstring>
+        <name>ZoomIn</name>
+        <qualifiedname>xpe::render::cOrthoCamera::ZoomIn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="210" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="249" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a1c8c2f326316d5b441e8317fe05a09b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::ZoomOut</definition>
+        <argsstring>()</argsstring>
+        <name>ZoomOut</name>
+        <qualifiedname>xpe::render::cOrthoCamera::ZoomOut</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="211" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="254" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a6581d3ed635346a4ef6989f57521980c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::Look</definition>
+        <argsstring>(const double x, const double y)</argsstring>
+        <name>Look</name>
+        <qualifiedname>xpe::render::cOrthoCamera::Look</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="212" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="259" bodyend="262"/>
+        <referencedby refid="classxpe_1_1render_1_1c_ortho_camera_1a4627bf922337adb1e171eef09b8e279e" compoundref="camera_8cpp" startline="277" endline="280">CursorMoved</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1af4132b8507b0868ae09a75ea93fab69e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::WindowResized</definition>
+        <argsstring>(int w, int h)</argsstring>
+        <name>WindowResized</name>
+        <qualifiedname>xpe::render::cOrthoCamera::WindowResized</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="214" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="264" bodyend="271"/>
+        <references refid="structxpe_1_1render_1_1_buffers_1adefa07e479401aa7e6379b488541f2e0" compoundref="bindings_8hpp" startline="30">xpe::render::Buffers::Camera</references>
+        <references refid="structxpe_1_1render_1_1s_item_buffer_1a36748548161b72588ad888d58a2aa163" compoundref="buffers_8hpp" startline="119" endline="122">xpe::render::sItemBuffer&lt; T &gt;::Flush</references>
+        <references refid="log__manager_8hpp_1a57eb3ffc98e6ad1bdbed0a980a54c484" compoundref="log__manager_8hpp" startline="34">LogInfo</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1a28492e2235c4200f70320ef5a7096728" compoundref="camera_8hpp" startline="120">xpe::render::cCamera::m_ViewHeight</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1a53656dd1e3a3d618506140a982c8b825" compoundref="camera_8hpp" startline="119">xpe::render::cCamera::m_ViewWidth</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1ac9fb2452ea6f0de6a3e9fdc165e348c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::ScrollChanged</definition>
+        <argsstring>(const double x, const double y)</argsstring>
+        <name>ScrollChanged</name>
+        <qualifiedname>xpe::render::cOrthoCamera::ScrollChanged</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="215" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="273" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a4627bf922337adb1e171eef09b8e279e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::CursorMoved</definition>
+        <argsstring>(const double x, const double y)</argsstring>
+        <name>CursorMoved</name>
+        <qualifiedname>xpe::render::cOrthoCamera::CursorMoved</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">double</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="216" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="277" bodyend="280"/>
+        <references refid="classxpe_1_1render_1_1c_ortho_camera_1a6581d3ed635346a4ef6989f57521980c" compoundref="camera_8cpp" startline="259" endline="262">Look</references>
+        <references refid="namespacexpe_1_1core_1a49526f1e6a80726936b0b54c8ac10411" compoundref="events_8hpp" startline="12">xpe::core::x</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a03d4d16733c86e076d05d0b548ab05aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::Flush</definition>
+        <argsstring>()</argsstring>
+        <name>Flush</name>
+        <qualifiedname>xpe::render::cOrthoCamera::Flush</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="218" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="223" bodyend="242"/>
+        <references refid="structxpe_1_1render_1_1_buffers_1adefa07e479401aa7e6379b488541f2e0" compoundref="bindings_8hpp" startline="30">xpe::render::Buffers::Camera</references>
+        <references refid="structxpe_1_1render_1_1s_item_buffer_1a36748548161b72588ad888d58a2aa163" compoundref="buffers_8hpp" startline="119" endline="122">xpe::render::sItemBuffer&lt; T &gt;::Flush</references>
+        <references refid="structxpe_1_1render_1_1s_item_buffer_1a3cf0d01b28c943dc5fbfb8d51f9d04e0" compoundref="buffers_8hpp" startline="88">xpe::render::sItemBuffer&lt; T &gt;::Item</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1aeaced429c0b6541fbf79bacdf04cd13b" compoundref="camera_8hpp" startline="121" endline="121">xpe::render::cCamera::m_Position</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1a28492e2235c4200f70320ef5a7096728" compoundref="camera_8hpp" startline="120">xpe::render::cCamera::m_ViewHeight</references>
+        <references refid="classxpe_1_1render_1_1c_camera_1a53656dd1e3a3d618506140a982c8b825" compoundref="camera_8hpp" startline="119">xpe::render::cCamera::m_ViewWidth</references>
+        <references refid="structxpe_1_1render_1_1s_camera_data_1a6545a53760842893edeae2a6d35df7e9" compoundref="buffers_8hpp" startline="305">xpe::render::sCameraData::Position</references>
+        <references refid="classxpe_1_1math_1_1c_math_manager_1a0b5cbb14457c0bb17e32670b8251335b" compoundref="math__manager_8cpp" startline="95" endline="105">xpe::math::cMathManager::UpdateOrthoMatrix</references>
+        <references refid="classxpe_1_1math_1_1c_math_manager_1a346e686b18a98afe101c8bc164d28d01" compoundref="math__manager_8cpp" startline="90" endline="93">xpe::math::cMathManager::UpdateViewMatrix</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_ortho_camera_1a4540f45757d306141e8d874b18d1c1d1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cOrthoCamera::UpdateProjection</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateProjection</name>
+        <qualifiedname>xpe::render::cOrthoCamera::UpdateProjection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/camera.hpp" line="221" column="18" bodyfile="engine/src/rendering/camera.cpp" bodystart="282" bodyend="289"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::render::cCamera</label>
+        <link refid="classxpe_1_1render_1_1c_camera"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cOrthoCamera</label>
+        <link refid="classxpe_1_1render_1_1c_ortho_camera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::render::cCamera</label>
+        <link refid="classxpe_1_1render_1_1c_camera"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cOrthoCamera</label>
+        <link refid="classxpe_1_1render_1_1c_ortho_camera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/camera.hpp" line="182" column="9" bodyfile="engine/src/rendering/camera.hpp" bodystart="182" bodyend="223"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_camera_1aee6f05c836996417fd1e614b1c56053d" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>CalculateBackPosition</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1ae4c9dc25a4007387c8ac7e490a2e02c6" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>CalculateDownPosition</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a27c0f5223f35c6e804cc3f28a71efa6a" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>CalculateFrontPosition</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1af8b52c72cab774c8f24c8fcd3e83fb82" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>CalculateLeftPosition</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a8dbfd9c1b82ee3e2d49aa483119446e0" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>CalculateRightPosition</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a85cd971ce0facdfeaa6bfbb022af191a" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>CalculateUpPosition</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1af2c1a1fac211e146b8199d4bf7499dda" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>cOrthoCamera</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a4627bf922337adb1e171eef09b8e279e" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>CursorMoved</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a9647646344f120b635994de528f7e2d4" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>EnableLook</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a03d4d16733c86e076d05d0b548ab05aa" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>Flush</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b" prot="public" virt="pure-virtual"><scope>xpe::render::cOrthoCamera</scope><name>FromJson</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1abd730d2f7f17a3a9328040fbaaa79095" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>GetForwardDirection</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a0ac0c7129686dd9f3dc9e003266f7b8c" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>GetOrientation</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a98bea1639b40d11d667454189ec3df06" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>GetPanSpeed</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1ac21e3f0a59a37bae9d5996432eee06d1" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>GetRightDirection</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a756ab9fb77e88799df22a53e7ffab0c8" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>GetUpDirection</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a8968d5dc16af5c4d22c0dad61069b88a" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>GetZoomSpeed</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a119c55e96f59557d9e0255eb3776fc3a" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>HorizontalSensitivity</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a39409b9673dcae7c006a31a5f020c5a2" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>JSON_CLASS</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a8f27a44972298287b348f5cd08848e37" prot="public" virt="non-virtual" ambiguityscope="xpe::render::cCamera::"><scope>xpe::render::cOrthoCamera</scope><name>JSON_CLASS</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a9aa407adfe06962f62e8d7a4a2fc84dc" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>KeyMoveBackward</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1aeef6a901293af20c9c11ed5ade59083e" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>KeyMoveForward</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a8c3b23f60e63a24a74e81a5ec3552776" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>KeyMoveLeft</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a86e2a507b301e4e6c00ed383c3ed3cf4" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>KeyMoveRight</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a6581d3ed635346a4ef6989f57521980c" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>Look</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1ab54dccbe7808b62c7a959843c703ae5b" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>LookMode</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1aeaced429c0b6541fbf79bacdf04cd13b" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>m_Position</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a28492e2235c4200f70320ef5a7096728" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>m_ViewHeight</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a53656dd1e3a3d618506140a982c8b825" prot="protected" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>m_ViewWidth</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a1f753d281df71156a2310d0971960a61" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>Move</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a5ae0b712e41b4cff13ae7af9d57c388e" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>MoveSpeed</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a2d2a648cead8ed474c91d1c5a9500a59" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>PanAcceleration</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1ad4b2ac5395bbb366e36272599166655e" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>Pitch</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a01526b6c40ddafb45f22be0212227832" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>Roll</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1ac9fb2452ea6f0de6a3e9fdc165e348c5" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>ScrollChanged</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88" prot="public" virt="pure-virtual"><scope>xpe::render::cOrthoCamera</scope><name>ToJson</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a4540f45757d306141e8d874b18d1c1d1" prot="private" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>UpdateProjection</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1ac742e2fa73cd9979f011aeb3ceccf620" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>VerticalSensitivity</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1af4132b8507b0868ae09a75ea93fab69e" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>WindowResized</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a44d402558ca8c042755d9db7fb8b9ec4" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>Yaw</name></member>
+      <member refid="classxpe_1_1render_1_1c_camera_1a81d64eaef93a01651b6e6923f84afd88" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>ZoomAcceleration</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a7144c7e376127972d7f6988e54c0e54a" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>ZoomIn</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1a1c8c2f326316d5b441e8317fe05a09b1" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>ZoomOut</name></member>
+      <member refid="classxpe_1_1render_1_1c_ortho_camera_1abea6a471706796afe7bcc5b2f5a97649" prot="public" virt="non-virtual"><scope>xpe::render::cOrthoCamera</scope><name>~cOrthoCamera</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

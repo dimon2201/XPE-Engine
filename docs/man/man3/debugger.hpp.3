@@ -1,0 +1,105 @@
+.TH "engine/src/rendering/core/debugger.hpp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine/src/rendering/core/debugger.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <rendering/core/context\&.hpp>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBxpe::render::sDebugMessage\fP"
+.br
+.ti -1c
+.RI "class \fBxpe::render::cDebugManager\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBxpe\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::render\fP"
+.br
+.ti -1c
+.RI "namespace \fBxpe::render::context\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBInitDebugger\fP()"
+.br
+.ti -1c
+.RI "#define \fBFreeDebugger\fP()"
+.br
+.ti -1c
+.RI "#define \fBLogDebugMessages\fP()"
+.br
+.ti -1c
+.RI "#define \fBLogDebugMessage\fP()"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(* \fBxpe::render::DebuggerCallback\fP) (\fBconst\fP \fBsDebugMessage\fP &)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBxpe::render::eDebugErrorType\fP { \fBxpe::render::D_NO_ERROR_TYPE\fP, \fBxpe::render::D_INVALID_ENUM\fP, \fBxpe::render::D_INVALID_OPERATION\fP, \fBxpe::render::D_INVALID_VALUE\fP, \fBxpe::render::D_STACK_OVERFLOW\fP, \fBxpe::render::D_STACK_UNDERFLOW\fP, \fBxpe::render::D_OUT_OF_MEMORY\fP, \fBxpe::render::D_INVALID_FRAMEBUFFER_OPERATION\fP, \fBxpe::render::D_OTHER_ERROR_TYPE\fP }"
+.br
+.ti -1c
+.RI "enum class \fBxpe::render::eDebugType\fP { \fBxpe::render::D_NO_TYPE\fP, \fBxpe::render::D_ERROR\fP, \fBxpe::render::D_WARNING\fP, \fBxpe::render::D_DEPRECATED_BEHAVIOUR\fP, \fBxpe::render::D_UNDEFINED_BEHAVIOUR\fP, \fBxpe::render::D_PORTABILITY\fP, \fBxpe::render::D_PERFORMANCE\fP, \fBxpe::render::D_MARKER\fP, \fBxpe::render::D_PUSH_GROUP\fP, \fBxpe::render::D_POP_GROUP\fP, \fBxpe::render::D_OTHER\fP }"
+.br
+.ti -1c
+.RI "enum class \fBxpe::render::eDebugCategory\fP { \fBxpe::render::D_NO_CATEGORY\fP, \fBxpe::render::D_API\fP, \fBxpe::render::D_WINDOW_SYSTEM\fP, \fBxpe::render::D_SHADER_COMPILER\fP, \fBxpe::render::D_THIRD_PARTY\fP, \fBxpe::render::D_APPLICATION\fP, \fBxpe::render::D_OTHER\fP }"
+.br
+.ti -1c
+.RI "enum class \fBxpe::render::eDebugSeverity\fP { \fBxpe::render::D_NO_SEVERITY\fP, \fBxpe::render::D_LOW\fP, \fBxpe::render::D_MEDIUM\fP, \fBxpe::render::D_HIGH\fP, \fBxpe::render::D_NOTIFICATION\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::InitDebug\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::FreeDebug\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBbool\fP \fBxpe::render::context::GetLastMessage\fP (\fBsDebugMessage\fP &\fBmessage\fP)"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvector\fP< \fBsDebugMessage\fP > \fBxpe::render::context::GetMessageQueue\fP ()"
+.br
+.ti -1c
+.RI "\fBENGINE_API\fP \fBvoid\fP \fBxpe::render::context::ClearMessageQueue\fP ()"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define FreeDebugger()"
+
+.SS "#define InitDebugger()"
+
+.SS "#define LogDebugMessage()"
+
+.SS "#define LogDebugMessages()"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

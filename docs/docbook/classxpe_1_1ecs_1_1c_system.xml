@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1ecs_1_1c_system" xml:lang="en-US">
+<title>xpe::ecs::cSystem Class Reference</title>
+<indexterm><primary>xpe::ecs::cSystem</primary></indexterm>
+<para>
+<computeroutput>#include &lt;ecs.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::ecs::cSystem:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1ecs_1_1c_system.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1ecs_1_1c_system_1a2a77b444fc80b9f1bd43215a7ba894d6">Update</link> (<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dt</link>)=0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1ecs_1_1c_system_1a2a77b444fc80b9f1bd43215a7ba894d6"/><section>
+    <title>Update()</title>
+<indexterm><primary>Update</primary><secondary>xpe::ecs::cSystem</secondary></indexterm>
+<indexterm><primary>xpe::ecs::cSystem</primary><secondary>Update</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::ecs::cSystem::Update (<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link> * scene, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp; dt)<computeroutput>[pure virtual]</computeroutput></computeroutput></para><para>
+Implemented in <link linkend="_classxpe_1_1anim_1_1c_anim_system_1a0a35098c9165bcf4720ccfd500467e9d">xpe::anim::cAnimSystem</link>, <link linkend="_classxpe_1_1audio_1_1c_audio_system_1aa5ea13f96fded87ef85fd3164207670f">xpe::audio::cAudioSystem</link>, <link linkend="_classxpe_1_1physics_1_1c_physics_system_1a5679425dd00d09e95985cb8ffb23a036">xpe::physics::cPhysicsSystem</link>, and <link linkend="_classxpe_1_1render_1_1c_render_system_1adf9ca8fc79ed13660b521ef4cf9f78be">xpe::render::cRenderSystem</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+engine/src/ecs/<link linkend="_ecs_8hpp">ecs.hpp</link></section>
+</section>

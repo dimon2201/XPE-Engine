@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacexpe_1_1physics" kind="namespace" language="C++">
+    <compoundname>xpe::physics</compoundname>
+    <innerclass refid="classxpe_1_1physics_1_1c_physics_allocator" prot="public">xpe::physics::cPhysicsAllocator</innerclass>
+    <innerclass refid="classxpe_1_1physics_1_1c_physics_error_callback" prot="public">xpe::physics::cPhysicsErrorCallback</innerclass>
+    <innerclass refid="classxpe_1_1physics_1_1c_physics_manager" prot="public">xpe::physics::cPhysicsManager</innerclass>
+    <innerclass refid="classxpe_1_1physics_1_1c_physics_simulation_event_callback" prot="public">xpe::physics::cPhysicsSimulationEventCallback</innerclass>
+    <innerclass refid="classxpe_1_1physics_1_1c_physics_system" prot="public">xpe::physics::cPhysicsSystem</innerclass>
+    <innerclass refid="structxpe_1_1physics_1_1s_actor" prot="public">xpe::physics::sActor</innerclass>
+    <innerclass refid="structxpe_1_1physics_1_1s_box_shape_descriptor" prot="public">xpe::physics::sBoxShapeDescriptor</innerclass>
+    <innerclass refid="structxpe_1_1physics_1_1s_capsule_shape_descriptor" prot="public">xpe::physics::sCapsuleShapeDescriptor</innerclass>
+    <innerclass refid="structxpe_1_1physics_1_1s_plane_shape_descriptor" prot="public">xpe::physics::sPlaneShapeDescriptor</innerclass>
+    <innerclass refid="structxpe_1_1physics_1_1s_ragdoll" prot="public">xpe::physics::sRagdoll</innerclass>
+    <innerclass refid="structxpe_1_1physics_1_1s_sphere_shape_descriptor" prot="public">xpe::physics::sSphereShapeDescriptor</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438e" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>eShapeType</name>
+        <qualifiedname>xpe::physics::eShapeType</qualifiedname>
+        <enumvalue id="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693" prot="public">
+          <name>NONE</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43" prot="public">
+          <name>SPHERE</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9" prot="public">
+          <name>CAPSULE</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5" prot="public">
+          <name>BOX</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3" prot="public">
+          <name>PLANE</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="48" column="9" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="49" bodyend="55"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacexpe_1_1physics_1a7816cdaccad0a246b07867c18b673b9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxFilterFlags</ref></type>
+        <definition>PxFilterFlags xpe::physics::FilterShader</definition>
+        <argsstring>(PxFilterObjectAttributes attributes0, PxFilterData filterData0, PxFilterObjectAttributes attributes1, PxFilterData filterData1, PxPairFlags &amp;pairFlags, const void *constantBlock, PxU32 constantBlockSize)</argsstring>
+        <name>FilterShader</name>
+        <qualifiedname>xpe::physics::FilterShader</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxFilterObjectAttributes</ref></type>
+          <declname>attributes0</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxFilterData</ref></type>
+          <declname>filterData0</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxFilterObjectAttributes</ref></type>
+          <declname>attributes1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxFilterData</ref></type>
+          <declname>filterData1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxPairFlags</ref> &amp;</type>
+          <declname>pairFlags</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+          <declname>constantBlock</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxU32</ref></type>
+          <declname>constantBlockSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.cpp" line="24" column="23" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="24" bodyend="42"/>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_manager_1aa898c0a40205f342209d97ccd68d6bb7" compoundref="physics__manager_8cpp" startline="253" endline="272">xpe::physics::cPhysicsManager::AddScene</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacexpe_1_1physics_1afa19f45096b2341a10365ac1f56c1255" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::physics::QuatToEuler</definition>
+        <argsstring>(f32 w, f32 x, f32 y, f32 z)</argsstring>
+        <name>QuatToEuler</name>
+        <qualifiedname>xpe::physics::QuatToEuler</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_system.cpp" line="12" column="19" bodyfile="engine/src/physics/physics_system.cpp" bodystart="12" bodyend="17"/>
+        <references refid="namespacexpe_1_1core_1a531d26e89a16703584b7e1ec09302f99" compoundref="events_8hpp" startline="15">xpe::core::w</references>
+        <references refid="namespacexpe_1_1core_1a49526f1e6a80726936b0b54c8ac10411" compoundref="events_8hpp" startline="12">xpe::core::x</references>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_system_1a5679425dd00d09e95985cb8ffb23a036" compoundref="physics__system_8cpp" startline="19" endline="54">xpe::physics::cPhysicsSystem::Update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/app.hpp" line="33" column="5"/>
+  </compounddef>
+</doxygen>

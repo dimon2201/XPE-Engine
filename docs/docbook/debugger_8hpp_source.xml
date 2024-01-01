@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_debugger_8hpp_source" xml:lang="en-US">
+<title>debugger.hpp</title>
+<indexterm><primary>engine/src/rendering/core/debugger.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_rendering_2core_2context_8hpp">rendering/core/context.hpp</link>&gt;</emphasis>
+4 
+5 <emphasis role="preprocessor">#ifdef&#32;DEBUG</emphasis>
+6 
+7 <emphasis role="preprocessor">#define&#32;InitDebugger()&#32;xpe::render::cDebugManager::Init()</emphasis>
+8 <emphasis role="preprocessor">#define&#32;FreeDebugger()&#32;xpe::render::cDebugManager::Free()</emphasis>
+9 
+10 <emphasis role="preprocessor">#define&#32;LogDebugMessages()&#32;xpe::render::cDebugManager::LogMessages()</emphasis>
+11 <emphasis role="preprocessor">#define&#32;LogDebugMessage()&#32;xpe::render::cDebugManager::LogLastMessage()</emphasis>
+12 
+13 <emphasis role="preprocessor">#else</emphasis>
+14 
+15 <emphasis role="preprocessor">#define&#32;InitDebugger()</emphasis>
+16 <emphasis role="preprocessor">#define&#32;FreeDebugger()</emphasis>
+17 
+18 <emphasis role="preprocessor">#define&#32;LogDebugMessages()</emphasis>
+19 <emphasis role="preprocessor">#define&#32;LogDebugMessage()</emphasis>
+20 
+21 <emphasis role="preprocessor">#endif</emphasis>
+22 
+23 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+24 
+25 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>render&#32;{
+26 
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>core;
+28 
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum&#32;class</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ec">eDebugErrorType</link>&#32;{
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ecad625c22e41ddc5cb58dca5a75c075596">D_NO_ERROR_TYPE</link>,
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ecaac945d6b75c6aff91b5f96fa49a31e80">D_INVALID_ENUM</link>,
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253eca1b17df28efdccf495a3d550482737012">D_INVALID_OPERATION</link>,
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ecaa1babf9c48245a0c11aa2f277200f746">D_INVALID_VALUE</link>,
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ecaf9d66f7ae29c2900cfded830274d8570">D_STACK_OVERFLOW</link>,
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ecadee75f05c302e9f4ab2d16c34f0abe00">D_STACK_UNDERFLOW</link>,
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ecaca2918bda69c19182127e541d119311a">D_OUT_OF_MEMORY</link>,
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253eca988a57d535395034ca888f575c55b392">D_INVALID_FRAMEBUFFER_OPERATION</link>,
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ecac314679bc84c66501549f2c9628ebe0f">D_OTHER_ERROR_TYPE</link>
+39 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+40 
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum&#32;class</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0e">eDebugType</link>&#32;{
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea660eda79f10115318de0685be41c9919">D_NO_TYPE</link>,
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea53a299451b07d786124b2dd6f6ece682">D_ERROR</link>,
+44 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0eae129a76142411b87a4be453013664a98">D_WARNING</link>,
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea95865bd8eb0d26f70f7ee18ddd45484b">D_DEPRECATED_BEHAVIOUR</link>,
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea9450ba47f00a2529a731f04b175f8086">D_UNDEFINED_BEHAVIOUR</link>,
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0eabe55569d45ccc2f1ca8b277b42f7133c">D_PORTABILITY</link>,
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea8f2157e8ba5032e34315dc86b9f388dd">D_PERFORMANCE</link>,
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea092c9d74bb5427bb7c2e72bab32125ba">D_MARKER</link>,
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0eada67b2dcd2135082730aa47cc5337fe9">D_PUSH_GROUP</link>,
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea27e7e2977e878d95ab0bcb8d8a340f7b">D_POP_GROUP</link>,
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea270d9db2cf5e7fd2b20e13501f18c70a">D_OTHER</link>
+53 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+54 
+55 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum&#32;class</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29b">eDebugCategory</link>&#32;{
+56 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29bae353ad1d49ee9f9efe11a23704aa73e2">D_NO_CATEGORY</link>,
+57 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29bac9cd2f5f7e6eae33fedcf069a4e43f95">D_API</link>,
+58 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29ba138be597051997b2abe0de6f6c2b25b8">D_WINDOW_SYSTEM</link>,
+59 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29ba437e41f5318082a2d1cb739326e5debc">D_SHADER_COMPILER</link>,
+60 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29ba0660dda2610d961547a591a7f259ca72">D_THIRD_PARTY</link>,
+61 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29ba1e01595272cae31b06033ec30b468cb5">D_APPLICATION</link>,
+62 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0ea270d9db2cf5e7fd2b20e13501f18c70a">D_OTHER</link>
+63 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+64 
+65 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum&#32;class</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1a6ad3cf0e40aa506e56b2cc176ff704d5">eDebugSeverity</link>&#32;{
+66 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6ad3cf0e40aa506e56b2cc176ff704d5a795504f4af999f07628267f6eed46774">D_NO_SEVERITY</link>,
+67 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6ad3cf0e40aa506e56b2cc176ff704d5aea6b5c475d493c88d67d69e8d4a6ac01">D_LOW</link>,
+68 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6ad3cf0e40aa506e56b2cc176ff704d5a5a1ed94d173dc9c39534b43cbb8415d2">D_MEDIUM</link>,
+69 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6ad3cf0e40aa506e56b2cc176ff704d5af769df1231303c4666d57bcb351f2034">D_HIGH</link>,
+70 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6ad3cf0e40aa506e56b2cc176ff704d5a5c3d90b1e74e0d47247d2c23913f8427">D_NOTIFICATION</link>
+71 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+72 
+73 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1render_1_1s_debug_message">sDebugMessage</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>&#32;{
+74 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;ID&#32;=&#32;0;
+75 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1acef017c0ff17c5aee0985b3aea112a90">hstring</link>&#32;Description&#32;=&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>;
+76 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6d046b1ff462d4e59679d8de1dfbad0e">eDebugType</link>&#32;Type&#32;=&#32;eDebugType::D_NO_TYPE;
+77 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a9310408e246af9000b45bc55535ac29b">eDebugCategory</link>&#32;Category&#32;=&#32;eDebugCategory::D_NO_CATEGORY;
+78 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a6ad3cf0e40aa506e56b2cc176ff704d5">eDebugSeverity</link>&#32;Severity&#32;=&#32;eDebugSeverity::D_NO_SEVERITY;
+79 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a99c9e8bef18b3615f39b1cdb2e9253ec">eDebugErrorType</link>&#32;ErrorType&#32;=&#32;eDebugErrorType::D_NO_ERROR_TYPE;
+80 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+81 
+82 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">typedef</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>&#32;(*<link linkend="_namespacexpe_1_1render_1a08b01940bf881fe6bd2e55ed87bc2c72">DebuggerCallback</link>)(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_debug_message">sDebugMessage</link>&amp;);
+83 
+84 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>context&#32;{
+85 
+86 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">extern</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1a08b01940bf881fe6bd2e55ed87bc2c72">DebuggerCallback</link>&#32;Callback;
+87 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;EnableInfoLog;
+88 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;EnableWarnLog;
+89 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">extern</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;EnableErrorLog;
+90 
+91 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1_1context_1ab07e491fd3e0aab42a3f789e6b8ae0e0">InitDebug</link>();
+92 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1_1context_1a5ea9ec23acfb3fa644c5e7ad2cf5c93c">FreeDebug</link>();
+93 
+94 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1_1context_1ae09aecc509f2be59b6a226888404ba55">GetLastMessage</link>(<link linkend="_structxpe_1_1render_1_1s_debug_message">sDebugMessage</link>&amp;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">message</link>);
+95 
+96 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector&lt;sDebugMessage&gt;</link>&#32;<link linkend="_namespacexpe_1_1render_1_1context_1aa521e4c0300ff7c0eafb72228a0fa160">GetMessageQueue</link>();
+97 
+98 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_namespacexpe_1_1render_1_1context_1a223e186d2db510296c00f1fa836f5c36">ClearMessageQueue</link>();
+99 
+100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+101 
+102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1render_1_1c_debug_manager">cDebugManager</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>&#32;{
+103 
+104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Init();
+106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Free();
+107 
+108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;LogMessages();
+109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;LogLastMessage();
+110 
+111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+112 
+113 &#32;&#32;&#32;&#32;}
+114 
+115 }
+</programlisting></section>

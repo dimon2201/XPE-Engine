@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_render__system_8cpp" xml:lang="en-US">
+<title>engine/src/rendering/render_system.cpp File Reference</title>
+<indexterm><primary>engine/src/rendering/render_system.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/render_system.hpp&gt;<?linebreak?>#include &lt;rendering/material/material_manager.hpp&gt;<?linebreak?>#include &lt;rendering/geometry/geometry_manager.hpp&gt;<?linebreak?>#include &lt;rendering/skybox_manager.hpp&gt;<?linebreak?>#include &lt;rendering/camera_manager.hpp&gt;<?linebreak?>#include &lt;rendering/shadow_manager.hpp&gt;<?linebreak?>#include &lt;anim/skeleton_manager.hpp&gt;<?linebreak?>#include &lt;ecs/components.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

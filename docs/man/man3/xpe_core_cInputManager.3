@@ -1,0 +1,85 @@
+.TH "xpe::core::cInputManager" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cInputManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <input_manager\&.hpp>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBCaptureCursor\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBCaptureCursor\fP (\fBconst\fP \fBdouble\fP \fBx\fP, \fBconst\fP \fBdouble\fP \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBKeyPressed\fP (\fBconst\fP \fBeKey\fP \fBkey\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBKeyReleased\fP (\fBconst\fP \fBeKey\fP \fBkey\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBKeyHold\fP (\fBconst\fP \fBeKey\fP \fBkey\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsKeyState\fP \fBGetKeyState\fP (\fBconst\fP \fBeKey\fP \fBkey\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBMousePressed\fP (\fBconst\fP \fBeMouse\fP \fBmouse\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBMouseReleased\fP (\fBconst\fP \fBeMouse\fP \fBmouse\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBMouseHold\fP (\fBconst\fP \fBeMouse\fP \fBmouse\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsMouseState\fP \fBGetMouseState\fP (\fBconst\fP \fBeMouse\fP \fBmouse\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsMouseCursor\fP & \fBGetMouseCursor\fP ()"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::core::cInputManager::CaptureCursor ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cInputManager::CaptureCursor (\fBconst\fP \fBdouble\fP x, \fBconst\fP \fBdouble\fP y)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cInputManager::Free ()\fR [static]\fP"
+
+.SS "\fBsKeyState\fP xpe::core::cInputManager::GetKeyState (\fBconst\fP \fBeKey\fP key)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBconst\fP \fBsMouseCursor\fP & xpe::core::cInputManager::GetMouseCursor ()\fR [inline]\fP, \fR [static]\fP"
+
+.SS "\fBsMouseState\fP xpe::core::cInputManager::GetMouseState (\fBconst\fP \fBeMouse\fP mouse)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cInputManager::Init ()\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cInputManager::KeyHold (\fBconst\fP \fBeKey\fP key)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cInputManager::KeyPressed (\fBconst\fP \fBeKey\fP key)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cInputManager::KeyReleased (\fBconst\fP \fBeKey\fP key)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cInputManager::MouseHold (\fBconst\fP \fBeMouse\fP mouse)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cInputManager::MousePressed (\fBconst\fP \fBeMouse\fP mouse)\fR [static]\fP"
+
+.SS "\fBbool\fP xpe::core::cInputManager::MouseReleased (\fBconst\fP \fBeMouse\fP mouse)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

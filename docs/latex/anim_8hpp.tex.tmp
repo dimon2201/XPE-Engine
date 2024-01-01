@@ -1,0 +1,24 @@
+\doxysection{engine/src/anim/anim.hpp File Reference}
+\hypertarget{anim_8hpp}{}\label{anim_8hpp}\index{engine/src/anim/anim.hpp@{engine/src/anim/anim.hpp}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1anim_1_1s_key_position}{xpe\+::anim\+::s\+Key\+Position}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1anim_1_1s_key_rotate}{xpe\+::anim\+::s\+Key\+Rotate}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1anim_1_1s_key_scale}{xpe\+::anim\+::s\+Key\+Scale}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1anim_1_1s_animation_node}{xpe\+::anim\+::s\+Animation\+Node}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1anim_1_1s_animation}{xpe\+::anim\+::s\+Animation}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1anim}{xpe\+::anim}}
+\end{DoxyCompactItemize}

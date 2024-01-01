@@ -1,0 +1,51 @@
+.TH "engine/src/core/macro_debugbreak.hpp" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine/src/core/macro_debugbreak.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <signal\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBDEBUG_BREAK_USE_TRAP_INSTRUCTION\fP   1"
+.br
+.ti -1c
+.RI "#define \fBDEBUG_BREAK_USE_BULTIN_TRAP\fP   2"
+.br
+.ti -1c
+.RI "#define \fBDEBUG_BREAK_USE_SIGTRAP\fP   3"
+.br
+.ti -1c
+.RI "#define \fBDEBUG_BREAK_IMPL\fP   \fBDEBUG_BREAK_USE_SIGTRAP\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__attribute__\fP ((always_inline)) __inline__ static void debug_break(void)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define DEBUG_BREAK_IMPL   \fBDEBUG_BREAK_USE_SIGTRAP\fP"
+
+.SS "#define DEBUG_BREAK_USE_BULTIN_TRAP   2"
+
+.SS "#define DEBUG_BREAK_USE_SIGTRAP   3"
+
+.SS "#define DEBUG_BREAK_USE_TRAP_INSTRUCTION   1"
+
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((always_inline))"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

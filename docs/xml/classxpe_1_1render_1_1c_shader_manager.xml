@@ -1,0 +1,509 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_shader_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::cShaderManager</compoundname>
+    <includes refid="shader_8hpp" local="no">shader.hpp</includes>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1aeb985fc7ebbcc7053f3e14a00ecea9fb" prot="private" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref>, <ref refid="structxpe_1_1render_1_1s_shader_stage" kindref="compound">sShaderStage</ref> &gt; *</type>
+        <definition>unordered_map&lt; string, sShaderStage &gt; * xpe::render::cShaderManager::s_Stages</definition>
+        <argsstring></argsstring>
+        <name>s_Stages</name>
+        <qualifiedname>xpe::render::cShaderManager::s_Stages</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="157" column="34" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1a375a21c8f83a7cf77dd36ec75eb975e6" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::s_ComputeShaders</definition>
+        <argsstring></argsstring>
+        <name>s_ComputeShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::s_ComputeShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="158" column="28" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1a79fc802226f7f29630e8974677bacba6" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::s_PrepassShaders</definition>
+        <argsstring></argsstring>
+        <name>s_PrepassShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::s_PrepassShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="159" column="28" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1af0e323ec647d3913fd8a3902cfde7383" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::s_OpaqueShaders</definition>
+        <argsstring></argsstring>
+        <name>s_OpaqueShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::s_OpaqueShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="160" column="28" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1ae9445a13c9a4f93ab2f191654b05c8c8" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::s_TransparentShaders</definition>
+        <argsstring></argsstring>
+        <name>s_TransparentShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::s_TransparentShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="161" column="28" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1a28cdcc8851201d03e84e842350e25f97" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::s_PostfxShaders</definition>
+        <argsstring></argsstring>
+        <name>s_PostfxShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::s_PostfxShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="162" column="28" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1a683fbdf556cb0671f02ff1ad4dfaed91" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::s_UiShaders</definition>
+        <argsstring></argsstring>
+        <name>s_UiShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::s_UiShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="163" column="28" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_shader_manager_1aba106875a8987f3c2953fc9571bf27f2" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::s_FinalShaders</definition>
+        <argsstring></argsstring>
+        <name>s_FinalShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::s_FinalShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="164" column="28" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a7fedf125c3a33e37d90c849ec26c8a22" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::render::cShaderManager::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="132" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="244" bodyend="258"/>
+        <references refid="classxpe_1_1core_1_1c_file_manager_1a28a6dc4ad3fa49fe9827b2ef9c935d8f" compoundref="file__manager_8cpp" startline="5" endline="7">xpe::core::cFileManager::CreateDir</references>
+        <references refid="log__manager_8hpp_1a57eb3ffc98e6ad1bdbed0a980a54c484" compoundref="log__manager_8hpp" startline="34">LogInfo</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a9beb94b29db3fb777fa97e8b15e2cc9b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::render::cShaderManager::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="133" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="260" bodyend="272"/>
+        <references refid="log__manager_8hpp_1a57eb3ffc98e6ad1bdbed0a980a54c484" compoundref="log__manager_8hpp" startline="34">LogInfo</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a97a6e32b351d6afb063039f115b55ae7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structxpe_1_1render_1_1s_shader_stage" kindref="compound">sShaderStage</ref> *</type>
+        <definition>sShaderStage * xpe::render::cShaderManager::GetFromFile</definition>
+        <argsstring>(const sShaderStage::eType &amp;type, const char *filepath)</argsstring>
+        <name>GetFromFile</name>
+        <qualifiedname>xpe::render::cShaderManager::GetFromFile</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781" kindref="member">sShaderStage::eType</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="135" column="33" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="274" bodyend="282"/>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a118920e0723385c43912ddc9ac7441d7" compoundref="shader_8cpp" startline="284" endline="333">GetFromSrc</references>
+        <references refid="classxpe_1_1core_1_1c_file_manager_1a3026d07fbdb1dc19bc823cf2e474ba7d" compoundref="file__manager_8cpp" startline="9" endline="56">xpe::core::cFileManager::ReadFileWithIncludes</references>
+        <referencedby refid="classxpe_1_1render_1_1c_canvas_1a9d8c18ddfb24dcd26edf2ee2472f0fb5" compoundref="canvas_8cpp" startline="9" endline="20">xpe::render::cCanvas::cCanvas</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_composite_transparent_shader_1a27b9bbcaae81347a2efe7f2e2d414b5d" compoundref="shaders_8cpp" startline="356" endline="368">xpe::render::cCompositeTransparentShader::cCompositeTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_directional_shadow_shader_1a34a3196a6415f11c376dcbba41d97b6c" compoundref="shaders_8cpp" startline="232" endline="244">xpe::render::cDirectionalShadowShader::cDirectionalShadowShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_final_shader_1a3763390e93bd5d4588f493faf4080af3" compoundref="shaders_8cpp" startline="458" endline="472">xpe::render::cFinalShader::cFinalShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_point_shadow_shader_1a5e5c6589bc518f1e9b50291b76bf0037" compoundref="shaders_8cpp" startline="257" endline="269">xpe::render::cPointShadowShader::cPointShadowShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_skybox_shader_1a04b262012d3aeb73e97c1ccb095675c7" compoundref="shaders_8cpp" startline="307" endline="324">xpe::render::cSkyboxShader::cSkyboxShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_spot_shadow_shader_1a0a939c3f4df9fdb95844a223a0aedf69" compoundref="shaders_8cpp" startline="282" endline="294">xpe::render::cSpotShadowShader::cSpotShadowShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_ssao_shader_1abe0dfc617df3607eaa964137437fffcb" compoundref="shaders_8cpp" startline="398" endline="444">xpe::render::cSsaoShader::cSsaoShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_text_shader_1ad8b58ce40667013c62bc85cb9ae913fa" compoundref="shaders_8cpp" startline="726" endline="753">xpe::render::cTextShader::cTextShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_shader_1ac6d0a01c7e25a93a16e38d9642dfe0f2" compoundref="shaders_8cpp" startline="479" endline="497">xpe::render::cWidgetShader::cWidgetShader</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a118920e0723385c43912ddc9ac7441d7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structxpe_1_1render_1_1s_shader_stage" kindref="compound">sShaderStage</ref> *</type>
+        <definition>sShaderStage * xpe::render::cShaderManager::GetFromSrc</definition>
+        <argsstring>(const sShaderStage::eType &amp;type, const string &amp;id, const string &amp;src)</argsstring>
+        <name>GetFromSrc</name>
+        <qualifiedname>xpe::render::cShaderManager::GetFromSrc</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781" kindref="member">sShaderStage::eType</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="136" column="33" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="284" bodyend="333"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a816f76047d559204c31d48f1d3d443db">xpe::render::context::CompileShaderStage</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781aac404d7ce6ca5862e9b8a2641fbafd90">xpe::render::sShaderStage::COMPUTE</references>
+        <references refid="namespacexpe_1_1render_1_1context_1ac9189ce9a5381facd88c5277f912f364">xpe::render::context::CreateShaderStage</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781ab22957ad8078e8d73de61aef53d13a74">xpe::render::sShaderStage::GEOMETRY</references>
+        <references refid="namespacexpe_1_1core_1a21084dba4baabe2a8da4ee568572f6da" compoundref="stl_8cpp" startline="5" endline="9">xpe::core::Hash</references>
+        <references refid="macro__constants_8hpp_1a3b5ea3a71b2057d627ab8f0b53e7040b" compoundref="macro__constants_8hpp" startline="27">K_ENTRY_POINT_COMPUTE</references>
+        <references refid="macro__constants_8hpp_1afce5797e90e14ecc67a9af5924eb049c" compoundref="macro__constants_8hpp" startline="26">K_ENTRY_POINT_GEOMETRY</references>
+        <references refid="macro__constants_8hpp_1aaeeb5334a4a232e31e7fca5b93580b8e" compoundref="macro__constants_8hpp" startline="25">K_ENTRY_POINT_PIXEL</references>
+        <references refid="macro__constants_8hpp_1a187fca04ed0ba353f82db5669137aa38" compoundref="macro__constants_8hpp" startline="24">K_ENTRY_POINT_VERTEX</references>
+        <references refid="macro__constants_8hpp_1a7ecc2e6bb743ab97a04929292edc9e0d" compoundref="macro__constants_8hpp" startline="20">K_PROFILE_COMPUTE</references>
+        <references refid="macro__constants_8hpp_1af8d64bd1af6c56777ef2a273262743d7" compoundref="macro__constants_8hpp" startline="19">K_PROFILE_GEOMETRY</references>
+        <references refid="macro__constants_8hpp_1aef1338f2ecff3c5574144e98c9475b2b" compoundref="macro__constants_8hpp" startline="18">K_PROFILE_PIXEL</references>
+        <references refid="macro__constants_8hpp_1a2d22a9fda7c68f0389bdc591e97533ca" compoundref="macro__constants_8hpp" startline="17">K_PROFILE_VERTEX</references>
+        <references refid="log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e" compoundref="log__manager_8hpp" startline="36">LogError</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441">xpe::render::sShaderStage::PIXEL</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b">xpe::render::sShaderStage::VERTEX</references>
+        <referencedby refid="classxpe_1_1render_1_1c_shader_manager_1a97a6e32b351d6afb063039f115b55ae7" compoundref="shader_8cpp" startline="274" endline="282">GetFromFile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::SetShader</definition>
+        <argsstring>(cShader *shader)</argsstring>
+        <name>SetShader</name>
+        <qualifiedname>xpe::render::cShaderManager::SetShader</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="142" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="404" bodyend="436"/>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1" compoundref="shader_8hpp" startline="69">xpe::render::cShader::COMPUTE</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806" compoundref="shader_8hpp" startline="68">xpe::render::cShader::FINAL</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144" compoundref="shader_8hpp" startline="64">xpe::render::cShader::OPAQUE</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce" compoundref="shader_8hpp" startline="66">xpe::render::cShader::POSTFX</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b" compoundref="shader_8hpp" startline="63">xpe::render::cShader::PREPASS</references>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" compoundref="shader_8cpp" startline="404" endline="436">SetShader</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9" compoundref="shader_8hpp" startline="65">xpe::render::cShader::TRANSPARENT</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e" compoundref="shader_8hpp" startline="67">xpe::render::cShader::UI</references>
+        <referencedby refid="classxpe_1_1render_1_1c_canvas_1a9d8c18ddfb24dcd26edf2ee2472f0fb5" compoundref="canvas_8cpp" startline="9" endline="20">xpe::render::cCanvas::cCanvas</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" compoundref="app_8cpp" startline="160" endline="175">xpe::core::cApp::InitShaders</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" compoundref="shader_8cpp" startline="404" endline="436">SetShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shader_manager_1aee87be75b6982c9d1ff023c66f3d54c9" compoundref="shader_8cpp" startline="438" endline="471">SetShaderAfter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1aee87be75b6982c9d1ff023c66f3d54c9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::SetShaderAfter</definition>
+        <argsstring>(cShader *shader, const string &amp;name)</argsstring>
+        <name>SetShaderAfter</name>
+        <qualifiedname>xpe::render::cShaderManager::SetShaderAfter</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="143" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="438" bodyend="471"/>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1" compoundref="shader_8hpp" startline="69">xpe::render::cShader::COMPUTE</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806" compoundref="shader_8hpp" startline="68">xpe::render::cShader::FINAL</references>
+        <references refid="namespacexpe_1_1core_1a21084dba4baabe2a8da4ee568572f6da" compoundref="stl_8cpp" startline="5" endline="9">xpe::core::Hash</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144" compoundref="shader_8hpp" startline="64">xpe::render::cShader::OPAQUE</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce" compoundref="shader_8hpp" startline="66">xpe::render::cShader::POSTFX</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b" compoundref="shader_8hpp" startline="63">xpe::render::cShader::PREPASS</references>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" compoundref="shader_8cpp" startline="404" endline="436">SetShader</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9" compoundref="shader_8hpp" startline="65">xpe::render::cShader::TRANSPARENT</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e" compoundref="shader_8hpp" startline="67">xpe::render::cShader::UI</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1ace9b1ec2818c8f1d32071f920d3dcc04" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::GetShaders</definition>
+        <argsstring>(cShader::eCategory category)</argsstring>
+        <name>GetShaders</name>
+        <qualifiedname>xpe::render::cShaderManager::GetShaders</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04" kindref="member">cShader::eCategory</ref></type>
+          <declname>category</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="144" column="28" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="473" bodyend="486"/>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1" compoundref="shader_8hpp" startline="69">xpe::render::cShader::COMPUTE</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806" compoundref="shader_8hpp" startline="68">xpe::render::cShader::FINAL</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a" compoundref="shader_8hpp" startline="62">xpe::render::cShader::NONE</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144" compoundref="shader_8hpp" startline="64">xpe::render::cShader::OPAQUE</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce" compoundref="shader_8hpp" startline="66">xpe::render::cShader::POSTFX</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b" compoundref="shader_8hpp" startline="63">xpe::render::cShader::PREPASS</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9" compoundref="shader_8hpp" startline="65">xpe::render::cShader::TRANSPARENT</references>
+        <references refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e" compoundref="shader_8hpp" startline="67">xpe::render::cShader::UI</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a4057793b0888fbca76fcaa4b670dae05" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::GetShader</definition>
+        <argsstring>(const string &amp;name)</argsstring>
+        <name>GetShader</name>
+        <qualifiedname>xpe::render::cShaderManager::GetShader</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="145" column="28" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="488" bodyend="529"/>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a4057793b0888fbca76fcaa4b670dae05" compoundref="shader_8cpp" startline="488" endline="529">GetShader</references>
+        <references refid="namespacexpe_1_1core_1a21084dba4baabe2a8da4ee568572f6da" compoundref="stl_8cpp" startline="5" endline="9">xpe::core::Hash</references>
+        <referencedby refid="classxpe_1_1render_1_1c_shader_manager_1a4057793b0888fbca76fcaa4b670dae05" compoundref="shader_8cpp" startline="488" endline="529">GetShader</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" compoundref="app_8cpp" startline="160" endline="175">xpe::core::cApp::InitShaders</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1ad0ae2a451bce3fcb68a6fb712bffe722" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::ReloadStage</definition>
+        <argsstring>(const char *filepath)</argsstring>
+        <name>ReloadStage</name>
+        <qualifiedname>xpe::render::cShaderManager::ReloadStage</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="147" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="335" bodyend="354"/>
+        <references refid="namespacexpe_1_1render_1_1context_1ac9189ce9a5381facd88c5277f912f364">xpe::render::context::CreateShaderStage</references>
+        <references refid="namespacexpe_1_1render_1_1context_1addacfd4e0518c92c621f7104ba949cc8">xpe::render::context::FreeShaderStage</references>
+        <references refid="log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e" compoundref="log__manager_8hpp" startline="36">LogError</references>
+        <references refid="classxpe_1_1core_1_1c_file_manager_1a3026d07fbdb1dc19bc823cf2e474ba7d" compoundref="file__manager_8cpp" startline="9" endline="56">xpe::core::cFileManager::ReadFileWithIncludes</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a4f459c7d5b87562e875bad87b5bcee7c" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::FreeStages</definition>
+        <argsstring>()</argsstring>
+        <name>FreeStages</name>
+        <qualifiedname>xpe::render::cShaderManager::FreeStages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="150" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="356" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1abd12da74118ce28a319c99091de8bec1" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::WriteGeneratedShader</definition>
+        <argsstring>(const char *filepath, const string &amp;src)</argsstring>
+        <name>WriteGeneratedShader</name>
+        <qualifiedname>xpe::render::cShaderManager::WriteGeneratedShader</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filepath</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="151" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="363" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a693200ad2be87e489c7b6722c288dc06" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::SetShader</definition>
+        <argsstring>(cShader *&amp;dest, cShader *src)</argsstring>
+        <name>SetShader</name>
+        <qualifiedname>xpe::render::cShaderManager::SetShader</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *&amp;</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="153" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="371" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1a4169fd023d672be3269c6260ff534a09" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cShaderManager::SetShader</definition>
+        <argsstring>(cShader *&amp;dest, cShader *src, u64 id)</argsstring>
+        <name>SetShader</name>
+        <qualifiedname>xpe::render::cShaderManager::SetShader</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *&amp;</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="154" column="25" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="385" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_shader_manager_1acb73d50e33c936fb7919d610e2d01c8b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *</type>
+        <definition>cShader * xpe::render::cShaderManager::GetShader</definition>
+        <argsstring>(cShader *&amp;src, u64 id)</argsstring>
+        <name>GetShader</name>
+        <qualifiedname>xpe::render::cShaderManager::GetShader</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader" kindref="compound">cShader</ref> *&amp;</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/shader.hpp" line="155" column="28" bodyfile="engine/src/rendering/core/shader.cpp" bodystart="531" bodyend="542"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/core/shader.hpp" line="128" column="9" bodyfile="engine/src/rendering/core/shader.hpp" bodystart="129" bodyend="165"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a9beb94b29db3fb777fa97e8b15e2cc9b" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>Free</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a4f459c7d5b87562e875bad87b5bcee7c" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>FreeStages</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a97a6e32b351d6afb063039f115b55ae7" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>GetFromFile</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a118920e0723385c43912ddc9ac7441d7" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>GetFromSrc</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a4057793b0888fbca76fcaa4b670dae05" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>GetShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1acb73d50e33c936fb7919d610e2d01c8b" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>GetShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1ace9b1ec2818c8f1d32071f920d3dcc04" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>GetShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a7fedf125c3a33e37d90c849ec26c8a22" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>Init</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1ad0ae2a451bce3fcb68a6fb712bffe722" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>ReloadStage</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a375a21c8f83a7cf77dd36ec75eb975e6" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_ComputeShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1aba106875a8987f3c2953fc9571bf27f2" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_FinalShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1af0e323ec647d3913fd8a3902cfde7383" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_OpaqueShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a28cdcc8851201d03e84e842350e25f97" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_PostfxShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a79fc802226f7f29630e8974677bacba6" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_PrepassShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1aeb985fc7ebbcc7053f3e14a00ecea9fb" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_Stages</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1ae9445a13c9a4f93ab2f191654b05c8c8" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_TransparentShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a683fbdf556cb0671f02ff1ad4dfaed91" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>s_UiShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>SetShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a693200ad2be87e489c7b6722c288dc06" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>SetShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1a4169fd023d672be3269c6260ff534a09" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>SetShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1aee87be75b6982c9d1ff023c66f3d54c9" prot="public" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>SetShaderAfter</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_manager_1abd12da74118ce28a319c99091de8bec1" prot="private" virt="non-virtual"><scope>xpe::render::cShaderManager</scope><name>WriteGeneratedShader</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

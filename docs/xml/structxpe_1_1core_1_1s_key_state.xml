@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1core_1_1s_key_state" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::sKeyState</compoundname>
+    <includes refid="codes__keyboard_8hpp" local="no">codes_keyboard.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_key_state_1a2bb1083079d179dd90fd0810856a10e1" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sKeyState::Pressed</definition>
+        <argsstring></argsstring>
+        <name>Pressed</name>
+        <qualifiedname>xpe::core::sKeyState::Pressed</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/codes_keyboard.hpp" line="9" column="18" bodyfile="engine/src/core/codes_keyboard.hpp" bodystart="9" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_input_manager_1a2dc6a9936b54d0b7043b6db496c10c3a" compoundref="input__manager_8cpp" startline="172" endline="179">xpe::core::cInputManager::GetKeyState</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_key_state_1af9a0a08f36c98082e3b9fc5958656760" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sKeyState::Released</definition>
+        <argsstring></argsstring>
+        <name>Released</name>
+        <qualifiedname>xpe::core::sKeyState::Released</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/codes_keyboard.hpp" line="10" column="18" bodyfile="engine/src/core/codes_keyboard.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_key_state_1ac75c9a9855e8d868336340f790a429fa" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sKeyState::Hold</definition>
+        <argsstring></argsstring>
+        <name>Hold</name>
+        <qualifiedname>xpe::core::sKeyState::Hold</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/codes_keyboard.hpp" line="11" column="18" bodyfile="engine/src/core/codes_keyboard.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/codes_keyboard.hpp" line="7" column="9" bodyfile="engine/src/core/codes_keyboard.hpp" bodystart="8" bodyend="12"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1core_1_1s_key_state_1ac75c9a9855e8d868336340f790a429fa" prot="public" virt="non-virtual"><scope>xpe::core::sKeyState</scope><name>Hold</name></member>
+      <member refid="structxpe_1_1core_1_1s_key_state_1a2bb1083079d179dd90fd0810856a10e1" prot="public" virt="non-virtual"><scope>xpe::core::sKeyState</scope><name>Pressed</name></member>
+      <member refid="structxpe_1_1core_1_1s_key_state_1af9a0a08f36c98082e3b9fc5958656760" prot="public" virt="non-virtual"><scope>xpe::core::sKeyState</scope><name>Released</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

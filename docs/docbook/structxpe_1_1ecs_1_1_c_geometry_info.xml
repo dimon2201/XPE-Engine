@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1ecs_1_1_c_geometry_info" xml:lang="en-US">
+<title>xpe::ecs::CGeometryInfo Struct Reference</title>
+<indexterm><primary>xpe::ecs::CGeometryInfo</primary></indexterm>
+<para>
+<computeroutput>#include &lt;components.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::ecs::CGeometryInfo:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1ecs_1_1_c_geometry_info.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1ecs_1_1_c_geometry_info_1a29a10cfbc2c18bc2312c7f574cb59704">CGeometryInfo</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_geometry_info">sGeometryInfo</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">geometryInfo</link>={})</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1ecs_1_1_c_geometry_info_1acd4029841bf61d3b9d8d89d42564631c">CGeometryInfo</link> (<link linkend="_structxpe_1_1render_1_1s_geometry_info">sGeometryInfo</link> &amp;&amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">geometryInfo</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_geometry_info">xpe::render::sGeometryInfo</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100">ePrimitiveTopology</link> <link linkend="_structxpe_1_1render_1_1s_geometry_info_1a9312c855bfe65f73db55cee0182c64f6">PrimitiveTopology</link> = <link linkend="_namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee">ePrimitiveTopology::DEFAULT</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1render_1_1s_geometry_info_1a598b0bd2c9c16d9f2a9567be51c258b2">VertexOffset</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1render_1_1s_geometry_info_1a7b99f88471db9da763de77cb33747181">IndexOffset</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1render_1_1s_geometry_info_1a057fd20f951d01093445e05b750402f2">VertexCount</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1render_1_1s_geometry_info_1a849b825891604d340adc2c567a6d4a61">IndexCount</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5">EntityID</link> &gt; <link linkend="_structxpe_1_1render_1_1s_geometry_info_1a15819dd9d5922bdecb2101c7387ee006">Entities</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1ecs_1_1_c_geometry_info_1a29a10cfbc2c18bc2312c7f574cb59704"/><section>
+    <title>CGeometryInfo()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>CGeometryInfo</primary><secondary>xpe::ecs::CGeometryInfo</secondary></indexterm>
+<indexterm><primary>xpe::ecs::CGeometryInfo</primary><secondary>CGeometryInfo</secondary></indexterm>
+<para><computeroutput>xpe::ecs::CGeometryInfo::CGeometryInfo (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_geometry_info">sGeometryInfo</link> &amp; geometryInfo = <computeroutput>{}</computeroutput>
+)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1ecs_1_1_c_geometry_info_1acd4029841bf61d3b9d8d89d42564631c"/><section>
+    <title>CGeometryInfo()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>CGeometryInfo</primary><secondary>xpe::ecs::CGeometryInfo</secondary></indexterm>
+<indexterm><primary>xpe::ecs::CGeometryInfo</primary><secondary>CGeometryInfo</secondary></indexterm>
+<para><computeroutput>xpe::ecs::CGeometryInfo::CGeometryInfo (<link linkend="_structxpe_1_1render_1_1s_geometry_info">sGeometryInfo</link> &amp;&amp; geometryInfo)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/ecs/<link linkend="_components_8hpp">components.hpp</link></section>
+</section>

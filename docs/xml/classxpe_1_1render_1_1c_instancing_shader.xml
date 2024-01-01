@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_instancing_shader" kind="class" language="C++" prot="public">
+    <compoundname>xpe::render::cInstancingShader</compoundname>
+    <basecompoundref refid="classxpe_1_1render_1_1c_default_shader" prot="public" virt="non-virtual">xpe::render::cDefaultShader</basecompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1c_opaque_shader" prot="public" virt="non-virtual">xpe::render::cOpaqueShader</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1c_shadow_shader" prot="public" virt="non-virtual">xpe::render::cShadowShader</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1render_1_1c_transparent_shader" prot="public" virt="non-virtual">xpe::render::cTransparentShader</derivedcompoundref>
+    <includes refid="shaders_8hpp" local="no">shaders.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_instancing_shader_1a70b3f1e8e8ca450f06a4127e0793704e" prot="protected" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_instance_buffer" kindref="compound">sInstanceBuffer</ref></type>
+        <definition>sInstanceBuffer xpe::render::cInstancingShader::m_InstanceBuffer</definition>
+        <argsstring></argsstring>
+        <name>m_InstanceBuffer</name>
+        <qualifiedname>xpe::render::cInstancingShader::m_InstanceBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="25" column="29" bodyfile="engine/src/rendering/shaders.hpp" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_instancing_shader_1aa07434479537490283672f91f660c4d5" compoundref="shaders_8cpp" startline="12" endline="16">cInstancingShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_instancing_shader_1a8aff797e93842eabe1565da005bad1f9" compoundref="shaders_8cpp" startline="18" endline="54">DrawInstanced</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_instancing_shader_1aa07434479537490283672f91f660c4d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cInstancingShader::cInstancingShader</definition>
+        <argsstring>(eCategory category, const string &amp;name)</argsstring>
+        <name>cInstancingShader</name>
+        <qualifiedname>xpe::render::cInstancingShader::cInstancingShader</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04" kindref="member">eCategory</ref></type>
+          <declname>category</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="16" column="13" bodyfile="engine/src/rendering/shaders.cpp" bodystart="12" bodyend="16"/>
+        <references refid="classxpe_1_1render_1_1c_instancing_shader_1a70b3f1e8e8ca450f06a4127e0793704e" compoundref="shaders_8hpp" startline="25">m_InstanceBuffer</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a95eba2b8154bc1c8f9150e632e518161" compoundref="buffers_8hpp" startline="272" endline="275">xpe::render::sListBuffer&lt; T &gt;::Reserve</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_instancing_shader_1a8aff797e93842eabe1565da005bad1f9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cInstancingShader::DrawInstanced</definition>
+        <argsstring>(cScene *scene, const sGeometryInfo &amp;geometryInfo, const std::function&lt; void(EntityID entityId, sRenderInstance &amp;)&gt; &amp;callback=[](EntityID, sRenderInstance &amp;) {})</argsstring>
+        <name>DrawInstanced</name>
+        <qualifiedname>xpe::render::cInstancingShader::DrawInstanced</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_geometry_info" kindref="compound">sGeometryInfo</ref> &amp;</type>
+          <declname>geometryInfo</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::function&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref>(<ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">entityId</ref>, <ref refid="structxpe_1_1render_1_1s_render_instance" kindref="compound">sRenderInstance</ref> &amp;)&gt; &amp;</type>
+          <declname>callback</declname>
+          <defval>[](<ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref>, <ref refid="structxpe_1_1render_1_1s_render_instance" kindref="compound">sRenderInstance</ref> &amp;) {}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="19" column="18" bodyfile="engine/src/rendering/shaders.cpp" bodystart="18" bodyend="54"/>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a915d07581a0582453afaa6057d734476" compoundref="buffers_8hpp" startline="291" endline="295">xpe::render::sListBuffer&lt; T &gt;::Add</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a57085dc2ff5ca279f149c984962121c1">xpe::render::context::BindPrimitiveTopology</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1aa314c4a7aca6c0623cd4ac495925eae7" compoundref="buffers_8hpp" startline="278" endline="281">xpe::render::sListBuffer&lt; T &gt;::Clear</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a535d65fcd9491e2ec65cf429ca2a78f2">xpe::render::context::DrawIndexed</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a35565aa9f1c079d979b1d23b103134a1">xpe::render::context::DrawVertexed</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1ad9de1835e029836261d585eec95bedd5" compoundref="buffers_8hpp" startline="222" endline="231">xpe::render::sListBuffer&lt; T &gt;::Flush</references>
+        <references refid="classxpe_1_1render_1_1c_instancing_shader_1a70b3f1e8e8ca450f06a4127e0793704e" compoundref="shaders_8hpp" startline="25">m_InstanceBuffer</references>
+        <references refid="structxpe_1_1render_1_1s_render_instance_1a0d8886811a8973612892f4964e2eef33" compoundref="buffers_8hpp" startline="321">xpe::render::sRenderInstance::ModelMatrix</references>
+        <references refid="classxpe_1_1math_1_1c_math_manager_1a28fcdb1fcf8dfc293764646ecd419a82" compoundref="math__manager_8cpp" startline="76" endline="83">xpe::math::cMathManager::UpdateModelMatrix</references>
+        <references refid="classxpe_1_1math_1_1c_math_manager_1aba300145da6a5beaf3d4b76b99ea5e50" compoundref="math__manager_8cpp" startline="85" endline="88">xpe::math::cMathManager::UpdateNormalMatrix</references>
+        <references refid="namespacexpe_1_1render_1_1context_1ad9d47407f33b3d590885b9f5a997a78c" compoundref="rendering_2core_2context_8cpp" startline="250" endline="253">xpe::render::context::VSBindBuffer</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a14b40b432d37f92276a1766f9e1a39a2" compoundref="rendering_2core_2context_8cpp" startline="255" endline="259">xpe::render::context::VSUnbindBuffer</references>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a7b7b6a8e853bb0188f55d26cc5ce23e4" compoundref="shaders_8cpp" startline="88" endline="117">xpe::render::cOpaqueShader::Draw</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a41136b4dbad82e1306bed55c264f3772" compoundref="shaders_8cpp" startline="151" endline="180">xpe::render::cTransparentShader::Draw</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_shader_1a96fe11cf22a10fcc79bd896e3237ae59" compoundref="shaders_8cpp" startline="199" endline="230">xpe::render::cShadowShader::DrawShadow</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::cDefaultShader</label>
+        <link refid="classxpe_1_1render_1_1c_default_shader"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>xpe::render::cDirectionalShadowShader</label>
+        <link refid="classxpe_1_1render_1_1c_directional_shadow_shader"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cInstancingShader</label>
+        <link refid="classxpe_1_1render_1_1c_instancing_shader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::render::cOpaqueShader</label>
+        <link refid="classxpe_1_1render_1_1c_opaque_shader"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>xpe::render::cPointShadowShader</label>
+        <link refid="classxpe_1_1render_1_1c_point_shadow_shader"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::cShader</label>
+        <link refid="classxpe_1_1render_1_1c_shader"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::render::cShadowShader</label>
+        <link refid="classxpe_1_1render_1_1c_shadow_shader"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>xpe::render::cSpotShadowShader</label>
+        <link refid="classxpe_1_1render_1_1c_spot_shadow_shader"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>xpe::render::cTransparentShader</label>
+        <link refid="classxpe_1_1render_1_1c_transparent_shader"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="16">
+        <label>xpe::render::sListBuffer&lt; sRenderInstance &gt;</label>
+        <link refid="classxpe_1_1render_1_1s_list_buffer"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::cDefaultShader</label>
+        <link refid="classxpe_1_1render_1_1c_default_shader"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>GeometryStage</edgelabel>
+          <edgelabel>PixelStage</edgelabel>
+          <edgelabel>VertexStage</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>RenderTarget</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>Rasterizer</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>DepthStencilMode</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>BlendMode</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cInstancingShader</label>
+        <link refid="classxpe_1_1render_1_1c_instancing_shader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>m_InstanceBuffer</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::cShader</label>
+        <link refid="classxpe_1_1render_1_1c_shader"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>Next</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>xpe::render::sBlendMode</label>
+        <link refid="structxpe_1_1render_1_1s_blend_mode"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>xpe::render::sBlob</label>
+        <link refid="structxpe_1_1render_1_1s_blob"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>xpe::render::sDepthStencilMode</label>
+        <link refid="structxpe_1_1render_1_1s_depth_stencil_mode"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>BackFace</edgelabel>
+          <edgelabel>FrontFace</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>xpe::render::sInstanceBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_instance_buffer"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>xpe::render::sRasterizer</label>
+        <link refid="structxpe_1_1render_1_1s_rasterizer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>xpe::render::sRenderTarget</label>
+        <link refid="structxpe_1_1render_1_1s_render_target"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>DepthStencil</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>Viewport</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::render::sShaderStage</label>
+        <link refid="structxpe_1_1render_1_1s_shader_stage"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>Blob</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>xpe::render::sStencilTest</label>
+        <link refid="structxpe_1_1render_1_1s_stencil_test"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>xpe::render::sViewport</label>
+        <link refid="structxpe_1_1render_1_1s_viewport"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/shaders.hpp" line="12" column="9" bodyfile="engine/src/rendering/shaders.hpp" bodystart="13" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ae049ee7d29afa50b562466bdef95b704" prot="public" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>Bind</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a58ff40e7e48861009c86b5bc9e39d689" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>BlendMode</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a15d300d13e742ae170e20143521c062a" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>Category</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a29c90f7c9d9fdd883ada1b381a9bd317" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>cDefaultShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_instancing_shader_1aa07434479537490283672f91f660c4d5" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>cInstancingShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>COMPUTE</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a0cbea5a99dbdb3dfc6a7095ab8c206ab" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>cShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a85458b227cfcf927c59290f85facfa43" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>DepthStencilMode</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1ac2fb10c43abc3823aa6dc466b1f3ed56" prot="public" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>Draw</name></member>
+      <member refid="classxpe_1_1render_1_1c_instancing_shader_1a8aff797e93842eabe1565da005bad1f9" prot="protected" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>DrawInstanced</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>eCategory</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1afb11bac579269c1289d67f9ef0892980" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>Enable</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>FINAL</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a13e9aff101373819a6161f5bea71605f" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>GeometryStage</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1ac04f06dd5200515c26667aa1eddaeb42" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>ID</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ab70979a918380ad6b90ac6d020e23e56" prot="protected" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>Init</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a94c9420cc3cee18454c9b0381a0c8303" prot="protected" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>InitFinal</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a432663a9956bbd6b79fb46b6c5f70b92" prot="protected" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>InitOpaque</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ae7eae67faabb5d18b014aebbf9fef3f5" prot="protected" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>InitPostFX</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a113c277f6a3d283c6ace4e7fda913853" prot="protected" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>InitPrepass</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ad4f9480afbaccfd7f785e564b187c052" prot="protected" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>InitTransparent</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a5b9b2cb08e062a41083e5df13738f6be" prot="protected" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>InitUI</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a6912c47f8410d5b9301ac33209453014" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>InputLayout</name></member>
+      <member refid="classxpe_1_1render_1_1c_instancing_shader_1a70b3f1e8e8ca450f06a4127e0793704e" prot="protected" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>m_InstanceBuffer</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a1434a54f77c5b8dfbad9c83b0bc602b6" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>Next</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>NONE</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>OPAQUE</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>PixelStage</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>POSTFX</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>PREPASS</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ab9a49246297e92c63aa928f3efb6e371" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>PrimitiveTopology</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a3cb409c71bc3653e9d7c58182a447c9d" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>Rasterizer</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1abf89a1cb37817a55ff9c61f1cf61e145" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>RenderTarget</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>TRANSPARENT</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>UI</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a214ac22548a93e5291b81c69b1e801ee" prot="public" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>Unbind</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>VertexStage</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a9d9aaf06c895ee5e4d773960b8fede3a" prot="public" virt="non-virtual"><scope>xpe::render::cInstancingShader</scope><name>~cDefaultShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a9af1125e8f5c2d061535cc5b87206d05" prot="public" virt="virtual"><scope>xpe::render::cInstancingShader</scope><name>~cShader</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1ecs_1_1_c_material" xml:lang="en-US">
+<title>xpe::ecs::CMaterial Struct Reference</title>
+<indexterm><primary>xpe::ecs::CMaterial</primary></indexterm>
+<para>
+<computeroutput>#include &lt;components.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::ecs::CMaterial:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1ecs_1_1_c_material.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1ecs_1_1_c_material_1a95dbd853a07f57cdaf65db71517dd838">CMaterial</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>={})</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1ecs_1_1_c_material_1a8fb991ffe5c2e3470614f7ae8d53e5bb">CMaterial</link> (<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link> &amp;&amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">material</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1res_1_1c_json">xpe::res::cJson</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88">ToJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">virtual</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b">FromJson</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">root</link>)=0</para>
+</listitem>
+        </itemizedlist>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_material">xpe::render::sMaterial</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1render_1_1s_material_1a757b22aed38e6861f412eafcc2f28da9">Index</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> * <link linkend="_structxpe_1_1render_1_1s_material_1ab88689d44e7b88eff39fd0c83fff2280">AlbedoMap</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> * <link linkend="_structxpe_1_1render_1_1s_material_1ae6e50a7299329ae69d069a8dd391e29a">NormalMap</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> * <link linkend="_structxpe_1_1render_1_1s_material_1a5246278aec0eaa97daeec3c7af2a246e">ParallaxMap</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> * <link linkend="_structxpe_1_1render_1_1s_material_1aca8f684ea2e6dc26d6b9dd8fca2f32e6">MetalMap</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> * <link linkend="_structxpe_1_1render_1_1s_material_1a897f7b59df970acf28de682debdb052c">RoughnessMap</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> * <link linkend="_structxpe_1_1render_1_1s_material_1af538cb0f5d3342e9e1c5f261d031e1fa">AOMap</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> * <link linkend="_structxpe_1_1render_1_1s_material_1a7cd3b8226a2b8be9b9734ef6de6e1206">EmissionMap</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_material_data">xpe::render::sMaterialData</link>        <itemizedlist>
+            <listitem><para>glm::vec4 <link linkend="_structxpe_1_1render_1_1s_material_data_1a356d0d1b5bf01b688b0ebd4d445199a4">Albedo</link> = { 0.5, 0.5, 0.5, 1.0 }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1aaf8c8c778a572fec9540dbabd6f35df4">EnableAlbedoMap</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a3465dab281ef2fd290e934274903e123">EnableNormalMap</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a545082e3756d7f4d8d15268b4ec44a4c">EnableParallaxMap</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a425019f971aed63a2a18021002748c21">ParallaxHeightScale</link> = 0.1</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a9d75e6621d5a7f5475c497aeeaca2aeb">ParallaxMinLayers</link> = 8</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a2e9a01dc7f4b987c53b7ba275be19cf1">ParallaxMaxLayers</link> = 32</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1acd7393b29575d2e3625be481770e95c9">Metallness</link> = 0.5<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a2377f43c15e30ef9f7385a757360da04">EnableMetalMap</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1ad563ce12bd4a5b8942d4a66277633188">Roughness</link> = 0.5<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a1e19eb989b0e2dfb426c32e9e0694630">EnableRoughnessMap</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a89de4731402970568fb906af617a7898">AO</link> = 0.5<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">f</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1a765cd8e61efc02c4b545e4c071e60459">EnableAOMap</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1render_1_1s_material_data_1ab83b1ef034151bab989b3eefe3f21fef">Emission</link> = { 0, 0, 0 }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a3f9cec2c7902c056f501af31ee6e4692">Boolean</link> <link linkend="_structxpe_1_1render_1_1s_material_data_1acbe069a989f658e0d8c7e75df11cbfa1">EnableEmissionMap</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+        </itemizedlist>
+Static Public Attributes inherited from <link linkend="_structxpe_1_1render_1_1s_material">xpe::render::sMaterial</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link> <link linkend="_structxpe_1_1render_1_1s_material_1a0d94b1e860dc2325e2a44d5a74236c69">k_AlbedoFormat</link> = {<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">eTextureFormat::SRGBA8</link>, 2048, 2048, <link linkend="_macro__constants_8hpp_1aa42ea15a2dd8e8db222f0ef5b41b382a">K_SLOT_ALBEDO</link> }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link> <link linkend="_structxpe_1_1render_1_1s_material_1a988b64f18a21642da269713bcea946d3">k_NormalFormat</link> = {<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642">eTextureFormat::RGBA8</link>, 2048, 2048, <link linkend="_macro__constants_8hpp_1a1995ccbf83e8506089d9cf4b5516fc01">K_SLOT_BUMPING</link> }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link> <link linkend="_structxpe_1_1render_1_1s_material_1a5c63aeff2d60d9097bf4bfe22a1ea0fe">k_ParallaxFormat</link> = {<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">eTextureFormat::R8</link>, 2048, 2048, <link linkend="_macro__constants_8hpp_1a50d0d26800e7825664a38c16f334f5e6">K_SLOT_PARALLAX</link> }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link> <link linkend="_structxpe_1_1render_1_1s_material_1a778de9af6fe0c5d9bad03e3507df848d">k_MetalFormat</link> = {<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">eTextureFormat::R8</link>, 2048, 2048, <link linkend="_macro__constants_8hpp_1aa5c2bd81300aa2f35c1bbfefe8e22fc9">K_SLOT_METALLIC</link> }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link> <link linkend="_structxpe_1_1render_1_1s_material_1a3d8f9c4231009e6e6c3456daed421770">k_RoughnessFormat</link> = {<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">eTextureFormat::R8</link>, 2048, 2048, <link linkend="_macro__constants_8hpp_1a28be33e3843004d307f2943cd7238612">K_SLOT_ROUGHNESS</link> }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link> <link linkend="_structxpe_1_1render_1_1s_material_1a06cf1a4b230a8eb966444e960f58c739">k_AoFormat</link> = {<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">eTextureFormat::R8</link>, 2048, 2048, <link linkend="_macro__constants_8hpp_1a49221d34edf7442d66b433967b2dcc21">K_SLOT_AO</link> }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link> <link linkend="_structxpe_1_1render_1_1s_material_1a521990eae276dd1ccbca8488fe05b975">k_EmissionFormat</link> = {<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">eTextureFormat::SRGBA8</link>, 2048, 2048, <link linkend="_macro__constants_8hpp_1a6f2ebfba73bfdc52330d43b7bf94c6f7">K_SLOT_EMISSION</link> }</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1ecs_1_1_c_material_1a95dbd853a07f57cdaf65db71517dd838"/><section>
+    <title>CMaterial()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>CMaterial</primary><secondary>xpe::ecs::CMaterial</secondary></indexterm>
+<indexterm><primary>xpe::ecs::CMaterial</primary><secondary>CMaterial</secondary></indexterm>
+<para><computeroutput>xpe::ecs::CMaterial::CMaterial (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link> &amp; material = <computeroutput>{}</computeroutput>
+)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1ecs_1_1_c_material_1a8fb991ffe5c2e3470614f7ae8d53e5bb"/><section>
+    <title>CMaterial()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>CMaterial</primary><secondary>xpe::ecs::CMaterial</secondary></indexterm>
+<indexterm><primary>xpe::ecs::CMaterial</primary><secondary>CMaterial</secondary></indexterm>
+<para><computeroutput>xpe::ecs::CMaterial::CMaterial (<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link> &amp;&amp; material)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/ecs/<link linkend="_components_8hpp">components.hpp</link></section>
+</section>

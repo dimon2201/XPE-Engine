@@ -1,0 +1,45 @@
+.TH "xpe::core::cTaskManager" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cTaskManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <task_manager\&.hpp>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBSubmitTask\fP (\fBconst\fP \fBsTask\fP &\fBtask\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBSubmitTask\fP (\fBu32\fP \fBtasksPerThread\fP, \fBu32\fP \fBtotalTasks\fP, \fBconst\fP \fBsTask\fP &\fBtask\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBcSimulationDispatcher\fP * \fBGetSimulationDispatcher\fP ()"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::core::cTaskManager::Free ()\fR [static]\fP"
+
+.SS "\fBcSimulationDispatcher\fP * xpe::core::cTaskManager::GetSimulationDispatcher ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cTaskManager::Init ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cTaskManager::SubmitTask (\fBconst\fP \fBsTask\fP & task)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cTaskManager::SubmitTask (\fBu32\fP tasksPerThread, \fBu32\fP totalTasks, \fBconst\fP \fBsTask\fP & task)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

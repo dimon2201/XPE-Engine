@@ -1,0 +1,90 @@
+\doxysection{xpe\+::render\+::s\+Vertex Struct Reference}
+\hypertarget{structxpe_1_1render_1_1s_vertex}{}\label{structxpe_1_1render_1_1s_vertex}\index{xpe::render::sVertex@{xpe::render::sVertex}}
+
+
+{\ttfamily \#include $<$core.\+hpp$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_af3c38a215a62f0a241b80694212340b5}{Position}} = \{ 0, 0, 0 \}
+\item 
+glm\+::vec2 \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_a70cb67502969e6b7204d63b5b936f436}{UV}} = \{ 0, 0 \}
+\item 
+glm\+::vec3 \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_aca0e8ca4b2a5f9622da0e0f20173c84a}{Normal}} = \{ 0, 0, 0 \}
+\item 
+glm\+::vec3 \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_af448165bdaefb9f4bb31deb83d6ed6cf}{Tangent}} = \{ 0, 0, 0 \}
+\item 
+glm\+::ivec4 \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_abc4c2f8be1a80b90e61d8a9fde120f5f}{Bone\+IDs}} = \{ -\/1, -\/1, -\/1, -\/1 \}
+\item 
+glm\+::vec4 \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_af4e5512d240a5b363fcee562285a9e2a}{Bone\+Weights}} = \{ 0, 0, 0, 0 \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format}{s\+Vertex\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_a82bd9ee50a012b35683065a507c0310e}{k\+\_\+\+Format}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_vertex_abc4c2f8be1a80b90e61d8a9fde120f5f}\label{structxpe_1_1render_1_1s_vertex_abc4c2f8be1a80b90e61d8a9fde120f5f} 
+\index{xpe::render::sVertex@{xpe::render::sVertex}!BoneIDs@{BoneIDs}}
+\index{BoneIDs@{BoneIDs}!xpe::render::sVertex@{xpe::render::sVertex}}
+\doxysubsubsection{\texorpdfstring{BoneIDs}{BoneIDs}}
+{\footnotesize\ttfamily glm\+::ivec4 xpe\+::render\+::s\+Vertex\+::\+Bone\+IDs = \{ -\/1, -\/1, -\/1, -\/1 \}}
+
+\Hypertarget{structxpe_1_1render_1_1s_vertex_af4e5512d240a5b363fcee562285a9e2a}\label{structxpe_1_1render_1_1s_vertex_af4e5512d240a5b363fcee562285a9e2a} 
+\index{xpe::render::sVertex@{xpe::render::sVertex}!BoneWeights@{BoneWeights}}
+\index{BoneWeights@{BoneWeights}!xpe::render::sVertex@{xpe::render::sVertex}}
+\doxysubsubsection{\texorpdfstring{BoneWeights}{BoneWeights}}
+{\footnotesize\ttfamily glm\+::vec4 xpe\+::render\+::s\+Vertex\+::\+Bone\+Weights = \{ 0, 0, 0, 0 \}}
+
+\Hypertarget{structxpe_1_1render_1_1s_vertex_a82bd9ee50a012b35683065a507c0310e}\label{structxpe_1_1render_1_1s_vertex_a82bd9ee50a012b35683065a507c0310e} 
+\index{xpe::render::sVertex@{xpe::render::sVertex}!k\_Format@{k\_Format}}
+\index{k\_Format@{k\_Format}!xpe::render::sVertex@{xpe::render::sVertex}}
+\doxysubsubsection{\texorpdfstring{k\_Format}{k\_Format}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format}{s\+Vertex\+Format}} xpe\+::render\+::s\+Vertex\+::k\+\_\+\+Format\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes_a035514cd5bc1fcc1a9dc8ae981c38f21}{sAttributes::k\_Pos}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes_a4debbf06401114236dd548c50b0d5e41}{sAttributes::k\_UV}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes_a2f54e3a9cfaca629cb175e4117d2288d}{sAttributes::k\_Normal}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes_aad12d10b8300be8c432bf385434e5bfa}{sAttributes::k\_Tangent}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes_a62ea44fa4d9f64e4b3c9630d202bbd70}{sAttributes::k\_BoneIds}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes_aff3bd8c373059a70f71c04c7df2b2261}{sAttributes::k\_BoneWeights}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\}}
+
+\end{DoxyCode}
+\Hypertarget{structxpe_1_1render_1_1s_vertex_aca0e8ca4b2a5f9622da0e0f20173c84a}\label{structxpe_1_1render_1_1s_vertex_aca0e8ca4b2a5f9622da0e0f20173c84a} 
+\index{xpe::render::sVertex@{xpe::render::sVertex}!Normal@{Normal}}
+\index{Normal@{Normal}!xpe::render::sVertex@{xpe::render::sVertex}}
+\doxysubsubsection{\texorpdfstring{Normal}{Normal}}
+{\footnotesize\ttfamily glm\+::vec3 xpe\+::render\+::s\+Vertex\+::\+Normal = \{ 0, 0, 0 \}}
+
+\Hypertarget{structxpe_1_1render_1_1s_vertex_af3c38a215a62f0a241b80694212340b5}\label{structxpe_1_1render_1_1s_vertex_af3c38a215a62f0a241b80694212340b5} 
+\index{xpe::render::sVertex@{xpe::render::sVertex}!Position@{Position}}
+\index{Position@{Position}!xpe::render::sVertex@{xpe::render::sVertex}}
+\doxysubsubsection{\texorpdfstring{Position}{Position}}
+{\footnotesize\ttfamily glm\+::vec3 xpe\+::render\+::s\+Vertex\+::\+Position = \{ 0, 0, 0 \}}
+
+\Hypertarget{structxpe_1_1render_1_1s_vertex_af448165bdaefb9f4bb31deb83d6ed6cf}\label{structxpe_1_1render_1_1s_vertex_af448165bdaefb9f4bb31deb83d6ed6cf} 
+\index{xpe::render::sVertex@{xpe::render::sVertex}!Tangent@{Tangent}}
+\index{Tangent@{Tangent}!xpe::render::sVertex@{xpe::render::sVertex}}
+\doxysubsubsection{\texorpdfstring{Tangent}{Tangent}}
+{\footnotesize\ttfamily glm\+::vec3 xpe\+::render\+::s\+Vertex\+::\+Tangent = \{ 0, 0, 0 \}}
+
+\Hypertarget{structxpe_1_1render_1_1s_vertex_a70cb67502969e6b7204d63b5b936f436}\label{structxpe_1_1render_1_1s_vertex_a70cb67502969e6b7204d63b5b936f436} 
+\index{xpe::render::sVertex@{xpe::render::sVertex}!UV@{UV}}
+\index{UV@{UV}!xpe::render::sVertex@{xpe::render::sVertex}}
+\doxysubsubsection{\texorpdfstring{UV}{UV}}
+{\footnotesize\ttfamily glm\+::vec2 xpe\+::render\+::s\+Vertex\+::\+UV = \{ 0, 0 \}}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/rendering/core/\mbox{\hyperlink{rendering_2core_2core_8hpp}{core.\+hpp}}\item 
+engine/src/rendering/core/\mbox{\hyperlink{core_8cpp}{core.\+cpp}}\end{DoxyCompactItemize}

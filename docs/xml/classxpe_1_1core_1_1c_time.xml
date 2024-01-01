@@ -1,0 +1,670 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_time" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::cTime</compoundname>
+    <includes refid="time__manager_8hpp" local="no">time_manager.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_1a6cd7869ca1b08c4b9b7534c5e0cae2e7" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::m_Fps</definition>
+        <argsstring></argsstring>
+        <name>m_Fps</name>
+        <qualifiedname>xpe::core::cTime::m_Fps</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="150" column="19" bodyfile="engine/src/core/time_manager.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_1a376056858670debc67cbcb81ec3464aa" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::m_Millis</definition>
+        <argsstring></argsstring>
+        <name>m_Millis</name>
+        <qualifiedname>xpe::core::cTime::m_Millis</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="151" column="19" bodyfile="engine/src/core/time_manager.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_1a7c8420660d2bc6930b7cac0dd8a0d568" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::m_Seconds</definition>
+        <argsstring></argsstring>
+        <name>m_Seconds</name>
+        <qualifiedname>xpe::core::cTime::m_Seconds</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="152" column="19" bodyfile="engine/src/core/time_manager.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_1a9e3bb04a3a03deccb41e15918410ba6e" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::m_Minutes</definition>
+        <argsstring></argsstring>
+        <name>m_Minutes</name>
+        <qualifiedname>xpe::core::cTime::m_Minutes</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="153" column="19" bodyfile="engine/src/core/time_manager.hpp" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_1a2426e5626ca16d23eff93a186d24cda1" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::m_Hours</definition>
+        <argsstring></argsstring>
+        <name>m_Hours</name>
+        <qualifiedname>xpe::core::cTime::m_Hours</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="154" column="19" bodyfile="engine/src/core/time_manager.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1aa564e0d344b49f98ed764be3d027822d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cTime::cTime</definition>
+        <argsstring>()=default</argsstring>
+        <name>cTime</name>
+        <qualifiedname>xpe::core::cTime::cTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="32" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1ae569ab44699f194a059f1f088bb733d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cTime::cTime</definition>
+        <argsstring>(const float millis)</argsstring>
+        <name>cTime</name>
+        <qualifiedname>xpe::core::cTime::cTime</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>millis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="34" column="13" bodyfile="engine/src/core/time_manager.hpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1a001bf41a6b6d2a2a483aa953924e3566" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cTime::cTime</definition>
+        <argsstring>(const cTime &amp;time)</argsstring>
+        <name>cTime</name>
+        <qualifiedname>xpe::core::cTime::cTime</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="38" column="13" bodyfile="engine/src/core/time_manager.hpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1ac0640714273a5d788a93418f9db6e20f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::Millis</definition>
+        <argsstring>() const</argsstring>
+        <name>Millis</name>
+        <qualifiedname>xpe::core::cTime::Millis</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="42" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="42" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1a9ef071be238e4c1adb24bc48e9b990b3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::Seconds</definition>
+        <argsstring>() const</argsstring>
+        <name>Seconds</name>
+        <qualifiedname>xpe::core::cTime::Seconds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="46" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="46" bodyend="48"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1ad5cbcd934f1d734d4e95d3333309ac80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::Minutes</definition>
+        <argsstring>() const</argsstring>
+        <name>Minutes</name>
+        <qualifiedname>xpe::core::cTime::Minutes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="50" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1aa5587c3ceb2fa2303bcf40bce626b3e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::Hours</definition>
+        <argsstring>() const</argsstring>
+        <name>Hours</name>
+        <qualifiedname>xpe::core::cTime::Hours</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="54" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="54" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1af639bb5b7e24e85652ddd5508db9fd9a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::cTime::Fps</definition>
+        <argsstring>() const</argsstring>
+        <name>Fps</name>
+        <qualifiedname>xpe::core::cTime::Fps</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="58" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="58" bodyend="60"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" compoundref="app_8cpp" startline="152" endline="158">xpe::core::cApp::LockFPSFromConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1a7f748397ee483ce2bfdf6ce54e89992d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cTime::SetFps</definition>
+        <argsstring>(float fps)</argsstring>
+        <name>SetFps</name>
+        <qualifiedname>xpe::core::cTime::SetFps</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>fps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="62" column="25" bodyfile="engine/src/core/time_manager.hpp" bodystart="62" bodyend="65"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" compoundref="app_8cpp" startline="152" endline="158">xpe::core::cApp::LockFPSFromConfig</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1a84fed718d9b77f74b15080db519a9037" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+        <definition>cTime &amp; xpe::core::cTime::operator=</definition>
+        <argsstring>(float f)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>xpe::core::cTime::operator=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="131" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="131" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1a8fc2c0050e6ec40bc69a6a994a5b80ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cTime::operator float</definition>
+        <argsstring>() const</argsstring>
+        <name>operator float</name>
+        <qualifiedname>xpe::core::cTime::operator float</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="137" column="20" bodyfile="engine/src/core/time_manager.hpp" bodystart="137" bodyend="139"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1ab84a99bb460428fa9ed1fdf50a2cd0be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime operator+</definition>
+        <argsstring>(const cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator+</name>
+        <qualifiedname>xpe::core::cTime::operator+</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="67" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="67" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a219d5fbc77ddcaed3d390a04405545e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime operator-</definition>
+        <argsstring>(const cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator-</name>
+        <qualifiedname>xpe::core::cTime::operator-</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="71" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="71" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a4e9ed1be6dedfd7e7eca9e5cca5e3b32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime operator*</definition>
+        <argsstring>(const cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator*</name>
+        <qualifiedname>xpe::core::cTime::operator*</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="75" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="75" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a3d1b5b58941719af8e87600c258d825e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime operator/</definition>
+        <argsstring>(const cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator/</name>
+        <qualifiedname>xpe::core::cTime::operator/</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="79" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="79" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a9fa248644ac9ac6afd7a85854478922f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator+=</definition>
+        <argsstring>(cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>xpe::core::cTime::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="83" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="83" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a61cbe8356c9cd81fea866afed65a77a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator-=</definition>
+        <argsstring>(cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>xpe::core::cTime::operator-=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="87" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="87" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1af8e0022a344a1da4f3746371d57413d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator*=</definition>
+        <argsstring>(cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>xpe::core::cTime::operator*=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="91" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="91" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a657909899d8a1cbd1a9340cead5c058b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator/=</definition>
+        <argsstring>(cTime &amp;t1, const cTime &amp;t2)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>xpe::core::cTime::operator/=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="95" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="95" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a6e12c34d3324959a210ff19f3695a0e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float operator+</definition>
+        <argsstring>(const cTime &amp;t1, float t2)</argsstring>
+        <name>operator+</name>
+        <qualifiedname>xpe::core::cTime::operator+</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="99" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="99" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a20bdde0cef5c89d6188c7ad14c71505b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float operator-</definition>
+        <argsstring>(const cTime &amp;t1, float t2)</argsstring>
+        <name>operator-</name>
+        <qualifiedname>xpe::core::cTime::operator-</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="103" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="103" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a00324b1a4fa1b06b57b017c7fafa5969" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float operator*</definition>
+        <argsstring>(const cTime &amp;t1, float t2)</argsstring>
+        <name>operator*</name>
+        <qualifiedname>xpe::core::cTime::operator*</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="107" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="107" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a6df053f59848641544359d256f02bbcc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float operator/</definition>
+        <argsstring>(const cTime &amp;t1, float t2)</argsstring>
+        <name>operator/</name>
+        <qualifiedname>xpe::core::cTime::operator/</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="111" column="33" bodyfile="engine/src/core/time_manager.hpp" bodystart="111" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a381ef89c4f1c21640dc9b92b3860b986" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator+=</definition>
+        <argsstring>(cTime &amp;t1, float t2)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>xpe::core::cTime::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="115" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="115" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a920c4a1d9b6f34490fe0441334947e57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator-=</definition>
+        <argsstring>(cTime &amp;t1, float t2)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>xpe::core::cTime::operator-=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="119" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="119" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1a93135907f891f1b6f4193336119f6b05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator*=</definition>
+        <argsstring>(cTime &amp;t1, float t2)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>xpe::core::cTime::operator*=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="123" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="123" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="friend" id="classxpe_1_1core_1_1c_time_1ad06d1ba950dc90b0814d56e57fe26e1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void operator/=</definition>
+        <argsstring>(cTime &amp;t1, float t2)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>xpe::core::cTime::operator/=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="127" column="32" bodyfile="engine/src/core/time_manager.hpp" bodystart="127" bodyend="129"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_1a994a186f52a11e007a5f20a9a5ce7f57" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cTime::Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>xpe::core::cTime::Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="142" column="18" bodyfile="engine/src/core/time_manager.hpp" bodystart="142" bodyend="147"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/time_manager.hpp" line="29" column="9" bodyfile="engine/src/core/time_manager.hpp" bodystart="29" bodyend="155"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_time_1aa564e0d344b49f98ed764be3d027822d" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>cTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1ae569ab44699f194a059f1f088bb733d9" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>cTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a001bf41a6b6d2a2a483aa953924e3566" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>cTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1af639bb5b7e24e85652ddd5508db9fd9a" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>Fps</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1aa5587c3ceb2fa2303bcf40bce626b3e2" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>Hours</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a6cd7869ca1b08c4b9b7534c5e0cae2e7" prot="private" virt="non-virtual"><scope>xpe::core::cTime</scope><name>m_Fps</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a2426e5626ca16d23eff93a186d24cda1" prot="private" virt="non-virtual"><scope>xpe::core::cTime</scope><name>m_Hours</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a376056858670debc67cbcb81ec3464aa" prot="private" virt="non-virtual"><scope>xpe::core::cTime</scope><name>m_Millis</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a9e3bb04a3a03deccb41e15918410ba6e" prot="private" virt="non-virtual"><scope>xpe::core::cTime</scope><name>m_Minutes</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a7c8420660d2bc6930b7cac0dd8a0d568" prot="private" virt="non-virtual"><scope>xpe::core::cTime</scope><name>m_Seconds</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1ac0640714273a5d788a93418f9db6e20f" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>Millis</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1ad5cbcd934f1d734d4e95d3333309ac80" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>Minutes</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a8fc2c0050e6ec40bc69a6a994a5b80ad" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator float</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a4e9ed1be6dedfd7e7eca9e5cca5e3b32" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator*</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a00324b1a4fa1b06b57b017c7fafa5969" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator*</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1af8e0022a344a1da4f3746371d57413d9" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator*=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a93135907f891f1b6f4193336119f6b05" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator*=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1ab84a99bb460428fa9ed1fdf50a2cd0be" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator+</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a6e12c34d3324959a210ff19f3695a0e8" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator+</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a9fa248644ac9ac6afd7a85854478922f" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator+=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a381ef89c4f1c21640dc9b92b3860b986" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator+=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a219d5fbc77ddcaed3d390a04405545e9" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator-</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a20bdde0cef5c89d6188c7ad14c71505b" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator-</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a61cbe8356c9cd81fea866afed65a77a4" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator-=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a920c4a1d9b6f34490fe0441334947e57" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator-=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a3d1b5b58941719af8e87600c258d825e" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator/</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a6df053f59848641544359d256f02bbcc" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator/</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a657909899d8a1cbd1a9340cead5c058b" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator/=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1ad06d1ba950dc90b0814d56e57fe26e1c" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator/=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a84fed718d9b77f74b15080db519a9037" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>operator=</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a9ef071be238e4c1adb24bc48e9b990b3" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>Seconds</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a7f748397ee483ce2bfdf6ce54e89992d" prot="public" virt="non-virtual"><scope>xpe::core::cTime</scope><name>SetFps</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_1a994a186f52a11e007a5f20a9a5ce7f57" prot="private" virt="non-virtual"><scope>xpe::core::cTime</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

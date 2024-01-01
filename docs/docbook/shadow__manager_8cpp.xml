@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_shadow__manager_8cpp" xml:lang="en-US">
+<title>engine/src/rendering/shadow_manager.cpp File Reference</title>
+<indexterm><primary>engine/src/rendering/shadow_manager.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/shadow_manager.hpp&gt;<?linebreak?>#include &lt;rendering/bindings.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

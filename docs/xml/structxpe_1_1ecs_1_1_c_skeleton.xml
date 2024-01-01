@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_skeleton" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CSkeleton</compoundname>
+    <basecompoundref refid="structxpe_1_1anim_1_1s_skeleton" prot="public" virt="non-virtual">xpe::anim::sSkeleton</basecompoundref>
+    <basecompoundref refid="classxpe_1_1res_1_1c_json" prot="public" virt="non-virtual">xpe::res::cJson</basecompoundref>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1ecs_1_1_c_skeleton_1a6592ccd811776bb20afbf78bcb68402e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::ecs::CSkeleton::CSkeleton</definition>
+        <argsstring>(const sSkeleton &amp;skeleton={})</argsstring>
+        <name>CSkeleton</name>
+        <qualifiedname>xpe::ecs::CSkeleton::CSkeleton</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1anim_1_1s_skeleton" kindref="compound">sSkeleton</ref> &amp;</type>
+          <declname>skeleton</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="229" column="13" bodyfile="engine/src/ecs/components.hpp" bodystart="229" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1ecs_1_1_c_skeleton_1a80ee1cc83c2f9bc1d3ad8177e7739a98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::ecs::CSkeleton::CSkeleton</definition>
+        <argsstring>(sSkeleton &amp;&amp;skeleton)</argsstring>
+        <name>CSkeleton</name>
+        <qualifiedname>xpe::ecs::CSkeleton::CSkeleton</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1anim_1_1s_skeleton" kindref="compound">sSkeleton</ref> &amp;&amp;</type>
+          <declname>skeleton</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="230" column="13" bodyfile="engine/src/ecs/components.hpp" bodystart="230" bodyend="230"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::anim::sSkeleton</label>
+        <link refid="structxpe_1_1anim_1_1s_skeleton"/>
+      </node>
+      <node id="1">
+        <label>xpe::ecs::CSkeleton</label>
+        <link refid="structxpe_1_1ecs_1_1_c_skeleton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::anim::sSkeleton</label>
+        <link refid="structxpe_1_1anim_1_1s_skeleton"/>
+      </node>
+      <node id="1">
+        <label>xpe::ecs::CSkeleton</label>
+        <link refid="structxpe_1_1ecs_1_1_c_skeleton"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/components.hpp" line="227" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="228" bodyend="236"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1anim_1_1s_skeleton_1ad69c93268e627043f9e42cf52ca77fcb" prot="public" virt="non-virtual"><scope>xpe::ecs::CSkeleton</scope><name>Bones</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_skeleton_1a6592ccd811776bb20afbf78bcb68402e" prot="public" virt="non-virtual"><scope>xpe::ecs::CSkeleton</scope><name>CSkeleton</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_skeleton_1a80ee1cc83c2f9bc1d3ad8177e7739a98" prot="public" virt="non-virtual"><scope>xpe::ecs::CSkeleton</scope><name>CSkeleton</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b" prot="public" virt="pure-virtual"><scope>xpe::ecs::CSkeleton</scope><name>FromJson</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88" prot="public" virt="pure-virtual"><scope>xpe::ecs::CSkeleton</scope><name>ToJson</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

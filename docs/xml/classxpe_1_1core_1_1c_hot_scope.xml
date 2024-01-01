@@ -1,0 +1,336 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_hot_scope" kind="class" language="C++" prot="public">
+    <compoundname>xpe::core::cHotScope</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_hot_object" prot="public" virt="non-virtual">xpe::core::cHotObject</basecompoundref>
+    <includes refid="smart__pointers_8hpp" local="no">smart_pointers.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_hot_scope_1a4b69ec19f902f44183e38c9913c9ce9b" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T* xpe::core::cHotScope&lt; T &gt;::m_Ptr</definition>
+        <argsstring></argsstring>
+        <name>m_Ptr</name>
+        <qualifiedname>xpe::core::cHotScope::m_Ptr</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="87" column="15" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1abca4a17fbb9eb42194006a7de5023a1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cHotScope&lt; T &gt;::cHotScope</definition>
+        <argsstring>()=default</argsstring>
+        <name>cHotScope</name>
+        <qualifiedname>xpe::core::cHotScope::cHotScope</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="64" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1af6af2e8c04349254627884ecacb9b02c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cHotScope&lt; T &gt;::~cHotScope</definition>
+        <argsstring>()</argsstring>
+        <name>~cHotScope</name>
+        <qualifiedname>xpe::core::cHotScope::~cHotScope</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="65" column="13" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="91" bodyend="96"/>
+        <references refid="core_2allocators_8hpp_1a375348b94c144f7dd96baac0e308ef4e" compoundref="core_2allocators_8hpp" startline="8" endline="10">hot_destruct</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+        <referencedby refid="classxpe_1_1core_1_1c_hot_scope_1a91935b841912dd028ef353248f912553" compoundref="smart__pointers_8hpp" startline="106" endline="109">xpe::core::cHotScope&lt; T &gt;::Destroy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1ae12db7665a8b5fc373911366f3f2b2c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cHotScope&lt; T &gt;::cHotScope</definition>
+        <argsstring>(const cHotScope&lt; T &gt; &amp;other)=delete</argsstring>
+        <name>cHotScope</name>
+        <qualifiedname>xpe::core::cHotScope::cHotScope</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="67" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a59944ac515046ab236588c517491dba3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cHotScope&lt; T &gt;::cHotScope</definition>
+        <argsstring>(cHotScope&lt; T &gt; &amp;other)=delete</argsstring>
+        <name>cHotScope</name>
+        <qualifiedname>xpe::core::cHotScope::cHotScope</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="68" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a869b56d4d1cf67e97810fe58615c5a7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+        <definition>cHotScope&lt; T &gt; &amp; xpe::core::cHotScope&lt; T &gt;::operator=</definition>
+        <argsstring>(const cHotScope&lt; T &gt; &amp;other)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>xpe::core::cHotScope::operator=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="69" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1abb92c8fd99530cb29660beb546801117" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+        <definition>cHotScope&lt; T &gt; &amp; xpe::core::cHotScope&lt; T &gt;::operator=</definition>
+        <argsstring>(cHotScope&lt; T &gt; &amp;other)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>xpe::core::cHotScope::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="70" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a6680ae1b526669055072b2f066b59bbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+        <definition>cHotScope&lt; T &gt; &amp; xpe::core::cHotScope&lt; T &gt;::operator=</definition>
+        <argsstring>(cHotScope&lt; T &gt; other)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>xpe::core::cHotScope::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="71" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a519eaf858e4e75949cba94839b6f4d5c" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cHotScope&lt; T &gt;::cHotScope</definition>
+        <argsstring>(cHotScope&lt; T &gt; &amp;&amp;other) noexcept=delete</argsstring>
+        <name>cHotScope</name>
+        <qualifiedname>xpe::core::cHotScope::cHotScope</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="73" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1aaf6b4df14a0b77d72f5eb2185ee3abe6" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;</type>
+        <definition>cHotScope&lt; T &gt; &amp; xpe::core::cHotScope&lt; T &gt;::operator=</definition>
+        <argsstring>(cHotScope&lt; T &gt; &amp;&amp;other) noexcept=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>xpe::core::cHotScope::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_hot_scope" kindref="compound">cHotScope</ref>&lt; <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="74" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1afd86c65942f45e49844531c6b9b6ae15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cHotScope&lt; T &gt;::Create</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>Create</name>
+        <qualifiedname>xpe::core::cHotScope::Create</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="77" column="18" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="100" bodyend="103"/>
+        <references refid="core_2allocators_8hpp_1ac67ca42f522dd054da17196865395fc2" compoundref="core_2allocators_8hpp" startline="6">hot_construct_args</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" compoundref="codes__keyboard_8hpp" startline="57">xpe::core::T</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a91935b841912dd028ef353248f912553" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cHotScope&lt; T &gt;::Destroy</definition>
+        <argsstring>()</argsstring>
+        <name>Destroy</name>
+        <qualifiedname>xpe::core::cHotScope::Destroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="79" column="18" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="106" bodyend="109"/>
+        <references refid="classxpe_1_1core_1_1c_hot_scope_1af6af2e8c04349254627884ecacb9b02c" compoundref="smart__pointers_8hpp" startline="91" endline="96">xpe::core::cHotScope&lt; T &gt;::~cHotScope</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a2a62116c69a134351c90e1169fd73682" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T * xpe::core::cHotScope&lt; T &gt;::Get</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>Get</name>
+        <qualifiedname>xpe::core::cHotScope::Get</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="81" column="22" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a72fb3356b926fa6ff7b6a886a92ec3f5" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+        <definition>T &amp; xpe::core::cHotScope&lt; T &gt;::operator*</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator*</name>
+        <qualifiedname>xpe::core::cHotScope::operator*</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="82" column="22" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1ab1ac1d0fbac22c3092598b6940d4e2d7" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> *</type>
+        <definition>T * xpe::core::cHotScope&lt; T &gt;::operator-&gt;</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator-&gt;</name>
+        <qualifiedname>xpe::core::cHotScope::operator-&gt;</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="83" column="22" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_hot_scope_1a591bbc3dbf18498065223ef6d9a243ac" prot="public" static="no" const="yes" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cHotScope&lt; T &gt;::operator bool</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator bool</name>
+        <qualifiedname>xpe::core::cHotScope::operator bool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/smart_pointers.hpp" line="84" column="29" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cHotObject</label>
+        <link refid="classxpe_1_1core_1_1c_hot_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::cHotScope&lt; T &gt;</label>
+        <link refid="classxpe_1_1core_1_1c_hot_scope"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cHotObject</label>
+        <link refid="classxpe_1_1core_1_1c_hot_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::cHotScope&lt; T &gt;</label>
+        <link refid="classxpe_1_1core_1_1c_hot_scope"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/core/smart_pointers.hpp" line="59" column="9" bodyfile="engine/src/core/smart_pointers.hpp" bodystart="60" bodyend="88"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1abca4a17fbb9eb42194006a7de5023a1b" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>cHotScope</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1ae12db7665a8b5fc373911366f3f2b2c4" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>cHotScope</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a59944ac515046ab236588c517491dba3" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>cHotScope</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a519eaf858e4e75949cba94839b6f4d5c" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>cHotScope</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1afd86c65942f45e49844531c6b9b6ae15" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>Create</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a91935b841912dd028ef353248f912553" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>Destroy</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a2a62116c69a134351c90e1169fd73682" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>Get</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a4b69ec19f902f44183e38c9913c9ce9b" prot="private" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>m_Ptr</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a591bbc3dbf18498065223ef6d9a243ac" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator bool</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_object_1abacc389f124ab3c31c79e648fc3ce089" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_object_1ac76f89a81bbc05e5697b0d6f94b25861" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a72fb3356b926fa6ff7b6a886a92ec3f5" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator*</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1ab1ac1d0fbac22c3092598b6940d4e2d7" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator-&gt;</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a869b56d4d1cf67e97810fe58615c5a7a" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator=</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1abb92c8fd99530cb29660beb546801117" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator=</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1a6680ae1b526669055072b2f066b59bbe" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator=</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1aaf6b4df14a0b77d72f5eb2185ee3abe6" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>operator=</name></member>
+      <member refid="classxpe_1_1core_1_1c_hot_scope_1af6af2e8c04349254627884ecacb9b02c" prot="public" virt="non-virtual"><scope>xpe::core::cHotScope</scope><name>~cHotScope</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

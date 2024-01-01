@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_viewport" xml:lang="en-US">
+<title>xpe::render::sViewport Struct Reference</title>
+<indexterm><primary>xpe::render::sViewport</primary></indexterm>
+<para>
+<computeroutput>#include &lt;core.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::sViewport:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1render_1_1s_viewport.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_viewport_1af60f2fbeef295d14f36d1c1267dbd36c">Left</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_viewport_1a0faeaa721022a2c7bb2112f308e51293">Top</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_viewport_1af844df25d5d2c89c0c9cb8ebacbfc7a9">Width</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_viewport_1a5bf4baa8340c1e14a5208eba4165add7">Height</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_viewport_1a1cd6c00962a063d5065c1e28e6b1f66c">MinDepth</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_viewport_1a94f60b2cfd7c3452289cd02043aa455b">MaxDepth</link> = 1</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_viewport_1a5bf4baa8340c1e14a5208eba4165add7"/><section>
+    <title>Height</title>
+<indexterm><primary>Height</primary><secondary>xpe::render::sViewport</secondary></indexterm>
+<indexterm><primary>xpe::render::sViewport</primary><secondary>Height</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sViewport::Height = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_viewport_1af60f2fbeef295d14f36d1c1267dbd36c"/><section>
+    <title>Left</title>
+<indexterm><primary>Left</primary><secondary>xpe::render::sViewport</secondary></indexterm>
+<indexterm><primary>xpe::render::sViewport</primary><secondary>Left</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sViewport::Left = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_viewport_1a94f60b2cfd7c3452289cd02043aa455b"/><section>
+    <title>MaxDepth</title>
+<indexterm><primary>MaxDepth</primary><secondary>xpe::render::sViewport</secondary></indexterm>
+<indexterm><primary>xpe::render::sViewport</primary><secondary>MaxDepth</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sViewport::MaxDepth = 1</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_viewport_1a1cd6c00962a063d5065c1e28e6b1f66c"/><section>
+    <title>MinDepth</title>
+<indexterm><primary>MinDepth</primary><secondary>xpe::render::sViewport</secondary></indexterm>
+<indexterm><primary>xpe::render::sViewport</primary><secondary>MinDepth</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sViewport::MinDepth = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_viewport_1a0faeaa721022a2c7bb2112f308e51293"/><section>
+    <title>Top</title>
+<indexterm><primary>Top</primary><secondary>xpe::render::sViewport</secondary></indexterm>
+<indexterm><primary>xpe::render::sViewport</primary><secondary>Top</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sViewport::Top = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_viewport_1af844df25d5d2c89c0c9cb8ebacbfc7a9"/><section>
+    <title>Width</title>
+<indexterm><primary>Width</primary><secondary>xpe::render::sViewport</secondary></indexterm>
+<indexterm><primary>xpe::render::sViewport</primary><secondary>Width</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sViewport::Width = 0</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/rendering/core/<link linkend="_rendering_2core_2core_8hpp">core.hpp</link></section>
+</section>

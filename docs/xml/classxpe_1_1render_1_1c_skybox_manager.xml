@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_skybox_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::cSkyboxManager</compoundname>
+    <includes refid="skybox__manager_8hpp" local="no">skybox_manager.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_skybox_manager_1ab7bed947f4c5302e8104dce7e34d71bb" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_skybox" kindref="compound">sSkybox</ref></type>
+        <definition>sSkybox xpe::render::cSkyboxManager::Skybox</definition>
+        <argsstring></argsstring>
+        <name>Skybox</name>
+        <qualifiedname>xpe::render::cSkyboxManager::Skybox</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/skybox_manager.hpp" line="26" column="21" bodyfile="engine/src/rendering/skybox_manager.hpp" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_skybox_shader_1ad0657596c465749935ee5c1b5aab5bfc" compoundref="shaders_8cpp" startline="339" endline="354">xpe::render::cSkyboxShader::Draw</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_skybox_manager_1a8e270aa54c52e421f8a78009cbb241d2" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1render_1_1c_skybox_manager" kindref="compound">cSkyboxManager</ref> *</type>
+        <definition>cSkyboxManager * xpe::render::cSkyboxManager::s_Instance</definition>
+        <argsstring></argsstring>
+        <name>s_Instance</name>
+        <qualifiedname>xpe::render::cSkyboxManager::s_Instance</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/skybox_manager.hpp" line="29" column="35" bodyfile="engine/src/rendering/skybox_manager.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_skybox_manager_1aea9472d88211bd66da7999eabdb307cd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cSkyboxManager::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::render::cSkyboxManager::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/skybox_manager.hpp" line="22" column="25" bodyfile="engine/src/rendering/skybox_manager.cpp" bodystart="9" bodyend="12"/>
+        <referencedby refid="classxpe_1_1render_1_1c_skybox_manager_1a7dd6b461180ad3928c1b9b26d12c29b3" compoundref="skybox__manager_8cpp" startline="19" endline="25">Get</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_skybox_manager_1a38ce0b0196db0a643c46d2be4ac5d3cb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cSkyboxManager::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::render::cSkyboxManager::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/skybox_manager.hpp" line="23" column="25" bodyfile="engine/src/rendering/skybox_manager.cpp" bodystart="14" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_skybox_manager_1a7dd6b461180ad3928c1b9b26d12c29b3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1render_1_1c_skybox_manager" kindref="compound">cSkyboxManager</ref> &amp;</type>
+        <definition>cSkyboxManager &amp; xpe::render::cSkyboxManager::Get</definition>
+        <argsstring>()</argsstring>
+        <name>Get</name>
+        <qualifiedname>xpe::render::cSkyboxManager::Get</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/skybox_manager.hpp" line="24" column="35" bodyfile="engine/src/rendering/skybox_manager.cpp" bodystart="19" bodyend="25"/>
+        <references refid="classxpe_1_1render_1_1c_skybox_manager_1aea9472d88211bd66da7999eabdb307cd" compoundref="skybox__manager_8cpp" startline="9" endline="12">Init</references>
+        <referencedby refid="classxpe_1_1render_1_1c_skybox_shader_1ad0657596c465749935ee5c1b5aab5bfc" compoundref="shaders_8cpp" startline="339" endline="354">xpe::render::cSkyboxShader::Draw</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="7">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::cSkyboxManager</label>
+        <link refid="classxpe_1_1render_1_1c_skybox_manager"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>Skybox</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sGeometry</label>
+        <link refid="structxpe_1_1render_1_1s_geometry"/>
+      </node>
+      <node id="4">
+        <label>xpe::render::sGeometryInfo</label>
+        <link refid="structxpe_1_1render_1_1s_geometry_info"/>
+      </node>
+      <node id="6">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sSkybox</label>
+        <link refid="structxpe_1_1render_1_1s_skybox"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>Geometry</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>GeometryInfo</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Texture</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/skybox_manager.hpp" line="18" column="9" bodyfile="engine/src/rendering/skybox_manager.hpp" bodystart="19" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_skybox_manager_1a38ce0b0196db0a643c46d2be4ac5d3cb" prot="public" virt="non-virtual"><scope>xpe::render::cSkyboxManager</scope><name>Free</name></member>
+      <member refid="classxpe_1_1render_1_1c_skybox_manager_1a7dd6b461180ad3928c1b9b26d12c29b3" prot="public" virt="non-virtual"><scope>xpe::render::cSkyboxManager</scope><name>Get</name></member>
+      <member refid="classxpe_1_1render_1_1c_skybox_manager_1aea9472d88211bd66da7999eabdb307cd" prot="public" virt="non-virtual"><scope>xpe::render::cSkyboxManager</scope><name>Init</name></member>
+      <member refid="classxpe_1_1render_1_1c_skybox_manager_1a8e270aa54c52e421f8a78009cbb241d2" prot="private" virt="non-virtual"><scope>xpe::render::cSkyboxManager</scope><name>s_Instance</name></member>
+      <member refid="classxpe_1_1render_1_1c_skybox_manager_1ab7bed947f4c5302e8104dce7e34d71bb" prot="public" virt="non-virtual"><scope>xpe::render::cSkyboxManager</scope><name>Skybox</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

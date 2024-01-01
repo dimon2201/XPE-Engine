@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1anim_1_1s_skeleton_info" xml:lang="en-US">
+<title>xpe::anim::sSkeletonInfo Struct Reference</title>
+<indexterm><primary>xpe::anim::sSkeletonInfo</primary></indexterm>
+<para>
+<computeroutput>#include &lt;skeleton.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::anim::sSkeletonInfo:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1anim_1_1s_skeleton_info.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_geometry_info">render::sGeometryInfo</link> <link linkend="_structxpe_1_1anim_1_1s_skeleton_info_1aa689b26b33916657b3a62a90518c1687">GeometryInfo</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1anim_1_1s_skeleton_info_1a3492a69a758f3bab256e2112631a3f40">SkeletonIndex</link> = 0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1anim_1_1s_skeleton_info_1aa689b26b33916657b3a62a90518c1687"/><section>
+    <title>GeometryInfo</title>
+<indexterm><primary>GeometryInfo</primary><secondary>xpe::anim::sSkeletonInfo</secondary></indexterm>
+<indexterm><primary>xpe::anim::sSkeletonInfo</primary><secondary>GeometryInfo</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_geometry_info">render::sGeometryInfo</link> xpe::anim::sSkeletonInfo::GeometryInfo</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1anim_1_1s_skeleton_info_1a3492a69a758f3bab256e2112631a3f40"/><section>
+    <title>SkeletonIndex</title>
+<indexterm><primary>SkeletonIndex</primary><secondary>xpe::anim::sSkeletonInfo</secondary></indexterm>
+<indexterm><primary>xpe::anim::sSkeletonInfo</primary><secondary>SkeletonIndex</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::anim::sSkeletonInfo::SkeletonIndex = 0</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/anim/<link linkend="_skeleton_8hpp">skeleton.hpp</link></section>
+</section>

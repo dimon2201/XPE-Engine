@@ -1,0 +1,352 @@
+\doxysection{core.\+hpp}
+\hypertarget{rendering_2core_2core_8hpp_source}{}\label{rendering_2core_2core_8hpp_source}\index{engine/src/rendering/core/core.hpp@{engine/src/rendering/core/core.hpp}}
+\mbox{\hyperlink{rendering_2core_2core_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{sResource}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{eViewType}}}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DEPTH\_STENCIL,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RENDER\_TARGET,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SRV,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UAV}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_ad7ce5f809b1aaf3874fd64deebef7295}{eMapType}}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ READ,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WRITE,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ READ\_WRITE,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WRITE\_NO\_OVERWRITE,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WRITE\_DISCARD}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ ViewInstance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_resource_a93eeddbfb45d323aeb270cedb8ed20e4}{eViewType}}\ ViewType\ =\ eViewType::NONE;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100}{ePrimitiveTopology}}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a14d20da17f6d27fc43c5f311c17eb912}{TRIANGLE\_LIST}},}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a708de017e3b83ccba21dfc9f6367d46f}{TRIANGLE\_STRIP}},}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100ad2632e54a7b9520714554554f4b9619d}{POINT\_LIST}},}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a195d93c98c5e94cad21509e910f65fae}{LINE\_LIST}},}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100ae64a4d2159ed46d077e21a505575c814}{LINE\_STRIP}},}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100a14d20da17f6d27fc43c5f311c17eb912}{TRIANGLE\_LIST}}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer}{sBuffer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_resource}{sResource}}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer_a94462aa429bf7df8a8902f82772672ca}{eType}}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VERTEX,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INDEX,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ITEM,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LIST,}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CONSTANT\ =\ ITEM,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STRUCTURED\ =\ LIST,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer_a191110df899fd9d31cd0cd6a802dd633}{eSubType}}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RAW,\ \ \ \ \ \textcolor{comment}{//\ combined\ with\ VERTEX/INDEX/LIST\ buffer}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ APPEND,\ \ \textcolor{comment}{//\ combined\ with\ LIST/ITEM\ buffer}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CONSUME\ \ \textcolor{comment}{//\ combined\ with\ LIST/ITEM\ buffer}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer_af33d238170127123908d5da544dd5641}{eUsage}}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STATIC,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DYNAMIC,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STAGING}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer_a94462aa429bf7df8a8902f82772672ca}{eType}}\ Type\ =\ eType::NONE;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer_a191110df899fd9d31cd0cd6a802dd633}{eSubType}}\ SubType\ =\ eSubType::NONE;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer_af33d238170127123908d5da544dd5641}{eUsage}}\ Usage\ =\ eUsage::DYNAMIC;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ StructureSize\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ NumElements\ =\ 0;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ Slot\ =\ 0;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ InitialData\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ [[\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nodiscard}}]]\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_buffer_a2f14b04e600f8e56b9651a1e8ee32fb9}{GetByteSize}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NumElements\ *\ StructureSize;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_blob}{sBlob}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ ByteCode\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ ByteCodeSize\ =\ 0;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_viewport}{sViewport}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{Left}}\ =\ 0;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Top\ =\ 0;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Width\ =\ 0;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Height\ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ MinDepth\ =\ 0;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ MaxDepth\ =\ 1;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ defined\ statically\ in\ sVertex\ classes\ for\ describing\ "{}format"{}\ of\ single\ vertex\ of\ geometry}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format}{sVertexFormat}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{sAttribute}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute_aa1857e3d9b792c3ffcc5df4c97c7f558}{eType}}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FLOAT,\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ bytes}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOL,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ bytes}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ bytes}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ bytes}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC2\_FLOAT,\ \ \ \ \ \textcolor{comment}{//\ 8\ bytes}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC2\_UINT,\ \ \ \ \ \ \textcolor{comment}{//\ 8\ bytes}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC2\_INT,\ \ \ \ \ \ \ \textcolor{comment}{//\ 8\ bytes}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC2\_TYPELESS,\ \ \textcolor{comment}{//\ 8\ bytes}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC3\_FLOAT,\ \ \ \ \ \textcolor{comment}{//\ 12\ bytes}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC3\_UINT,\ \ \ \ \ \ \textcolor{comment}{//\ 12\ bytes}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC3\_INT,\ \ \ \ \ \ \ \textcolor{comment}{//\ 12\ bytes}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC3\_TYPELESS,\ \ \textcolor{comment}{//\ 12\ bytes}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC4\_FLOAT,\ \ \ \ \ \textcolor{comment}{//\ 16\ bytes}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC4\_UINT,\ \ \ \ \ \ \textcolor{comment}{//\ 16\ bytes}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC4\_INT,\ \ \ \ \ \ \ \textcolor{comment}{//\ 16\ bytes}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VEC4\_TYPELESS,\ \ \textcolor{comment}{//\ 16\ bytes}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MAT2X2,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 16\ bytes}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MAT3X3,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 36\ bytes}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MAT4X4,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 64\ bytes}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ Location\ =\ 0;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ Name\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute_aa1857e3d9b792c3ffcc5df4c97c7f558}{eType}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute_aacbad07880eb7032bf022569b19eeb02}{Format}};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ ByteSize\ =\ 0;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<sAttribute>\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_a3c026eb4dcd45fb6098139226607ca8e}{Attributes}};\ \textcolor{comment}{//\ used\ std::vector,\ because\ sVertexFormat\ is\ always\ defined\ as\ static\ var\ in\ sVertex\ class}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ Stride\ =\ 0;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_ad5ee011700f7287bd7b6ff25b5462c6c}{sVertexFormat}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_a365ec2d3f52b48c6ab3eb474e3401e03}{sVertexFormat}}(\textcolor{keyword}{const}\ std::vector<sAttribute>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{attributes}});}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ define\ here\ any\ custom\ attributes\ that\ you\ want\ to\ use\ in\ your\ vertex\ shader}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_attributes}{sAttributes}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{sVertexFormat::sAttribute}}\ k\_Pos\ =\ \{\ 0,\ \textcolor{stringliteral}{"{}XPE\_POSITION"{}},\ sVertexFormat::sAttribute::eType::VEC3\_FLOAT,\ 12\ \};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{sVertexFormat::sAttribute}}\ k\_UV\ =\ \{\ 1,\ \textcolor{stringliteral}{"{}XPE\_UV"{}},\ sVertexFormat::sAttribute::eType::VEC2\_FLOAT,\ 8\ \};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{sVertexFormat::sAttribute}}\ k\_Normal\ =\ \{\ 2,\ \textcolor{stringliteral}{"{}XPE\_NORMAL"{}},\ sVertexFormat::sAttribute::eType::VEC3\_FLOAT,\ 12\ \};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{sVertexFormat::sAttribute}}\ k\_Tangent\ =\ \{\ 3,\ \textcolor{stringliteral}{"{}XPE\_TANGENT"{}},\ sVertexFormat::sAttribute::eType::VEC3\_FLOAT,\ 12\ \};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{sVertexFormat::sAttribute}}\ k\_BoneIds\ =\ \{\ 4,\ \textcolor{stringliteral}{"{}XPE\_BONE\_IDS"{}},\ sVertexFormat::sAttribute::eType::VEC4\_INT,\ 16\ \};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format_1_1s_attribute}{sVertexFormat::sAttribute}}\ k\_BoneWeights\ =\ \{\ 5,\ \textcolor{stringliteral}{"{}XPE\_BONE\_WEIGHTS"{}},\ sVertexFormat::sAttribute::eType::VEC4\_FLOAT,\ 16\ \};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex}{sVertex}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format}{sVertexFormat}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_a82bd9ee50a012b35683065a507c0310e}{k\_Format}};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Position\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ UV\ =\ \{\ 0,\ 0\ \};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Normal\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Tangent\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ glm::ivec4\ BoneIDs\ =\ \{\ -\/1,\ -\/1,\ -\/1,\ -\/1\ \};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec4\ BoneWeights\ =\ \{\ 0,\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex}{sVertex}},}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UV,}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Normal,}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tangent,}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BoneIDs,}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BoneWeights}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sInputLayout}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Instance;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_blob}{sBlob}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{VertexBlob}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format}{sVertexFormat}}\ Format;}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sInputLayout}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sInputLayout}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_format}{sVertexFormat}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{format}})\ :\ Format(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{format}})\ \{\}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542}{eDepthWriteMask}}\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542a529e9e0beb5f85d1f132917c1a09860c}{ZERO}}\ =\ 0,}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618eae8d0dfe7c060638bef4030ce7aa1fcd1}{ALL}}\ =\ 1}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927}{eDepthStencilFunc}}\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a443475558f0168dff92ecde26b98ae5a}{NEVER}}\ =\ 1,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a1798e8c3621ca53d9e3a80d257306000}{LESS}}\ =\ 2,}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a969f331a87d8c958473c32b4d0e61a44}{EQUAL}}\ =\ 3,}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a8b4a5cd69b217bf93b054ada7f49abd4}{LESS\_EQUAL}}\ =\ 4,}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927ae7e72355289e404b762d4cf88824d23b}{GREATER}}\ =\ 5,}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a4ea2d378cdec20f59330f113297bc1ce}{NOT\_EQUAL}}\ =\ 6,}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927a87e6b203bf40967d37a33f9a4438561a}{GREATER\_EQUAL}}\ =\ 7,}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927af3fc827ade4b968e50406496907ef962}{ALWAYS}}\ =\ 8,}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409}{eDepthStencilOp}}\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a60cba2874369bd3790e14ea5f8a7bc58}{KEEP}}\ =\ 1,}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542a529e9e0beb5f85d1f132917c1a09860c}{ZERO}}\ =\ 2,}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a560a2dd6f6744646473b3b19e1fe96d7}{REPLACE}}\ =\ 3,}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a5a5305a172cd658125cfa47646dceba1}{INCR\_SAT}}\ =\ 4,}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409a5becedb7820af09b129428cea781c7ca}{DECR\_SAT}}\ =\ 5,}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409aa2727ae72447eea06d4cc0ef67187280}{INVERT}}\ =\ 6,}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409afc67535e5273d466beba3c06c0dbd988}{INCR}}\ =\ 7,}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409ac121b991572aba8a5789d08d7e9cf76e}{DECR}}\ =\ 8}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_stencil_test}{sStencilTest}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409}{eDepthStencilOp}}\ StencilFailOp\ =\ eDepthStencilOp::KEEP;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409}{eDepthStencilOp}}\ StencilDepthFailOp\ =\ eDepthStencilOp::KEEP;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_afd9133f65cb93b6650a0ba29806d1409}{eDepthStencilOp}}\ StencilPassOp\ =\ eDepthStencilOp::KEEP;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927}{eDepthStencilFunc}}\ StencilFunc\ =\ eDepthStencilFunc::ALWAYS;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_depth_stencil_mode}{sDepthStencilMode}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ State\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableDepth\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542}{eDepthWriteMask}}\ DepthWriteMask\ =\ eDepthWriteMask::ALL;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_abb3c1d6aed9b08a7c4da9ec1c14ec927}{eDepthStencilFunc}}\ DepthFunc\ =\ eDepthStencilFunc::LESS;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableStencil\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ StencilReadMask\ =\ 0xff;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ StencilWriteMask\ =\ 0xff;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_stencil_test}{sStencilTest}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_depth_stencil_mode_ab2b267937c57cd76fe2e8f1cbb891a13}{FrontFace}};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_stencil_test}{sStencilTest}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_depth_stencil_mode_a4cc28988c2066d96a4da0c96e9bedbc3}{BackFace}};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22c}{eBlend}}\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a56b413432be5a427db344339041ed542a529e9e0beb5f85d1f132917c1a09860c}{ZERO}}\ =\ 1,}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22cabc21e6484530fc9d0313cb816b733396}{ONE}}\ \ =\ 2,}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca0d64e73cd04f53e815a849347285839e}{SRC\_COLOR}}\ =\ 3,}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca5e4fced94ef5e9710ce78137845fa25c}{INV\_SRC\_COLOR}}\ =\ 4,}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22caa01be6519d4fb614f16261a59958bbb4}{SRC\_ALPHA}}\ =\ 5,}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca17595667cd320b6e679472da7a32e4c5}{INV\_SRC\_ALPHA}}\ =\ 6,}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22cae9f1eb5f70dec83523dc8c5ed48975bb}{DEST\_ALPHA}}\ =\ 7,}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca8a1073afa63c32ab6ba7c1c34874675e}{INV\_DEST\_ALPHA}}\ =\ 8,}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca40e4540ce040c52d2070b2b19f590ded}{DEST\_COLOR}}\ =\ 9,}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22caee898522202ff79c0e99fe097f12dfd1}{INV\_DEST\_COLOR}}\ =\ 10,}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca6fbee7e1f50ab11b3548fe4d66edb33b}{SRC\_ALPHA\_SAT}}\ =\ 11,}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca6582a89c86055442e24b63ce8ef51a11}{BLEND\_FACTOR}}\ =\ 14,}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca21d378651720cb4455d53e2cf313c5e7}{INV\_BLEND\_FACTOR}}\ =\ 15,}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca66d0eeba66efb4330b4282febabb5376}{SRC1\_COLOR}}\ =\ 16,}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca9ffd5c40e7ef30789f03bddf3fdd2b0b}{INV\_SRC1\_COLOR}}\ =\ 17,}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22ca9093618941290447db0d37e48f60f82a}{SRC1\_ALPHA}}\ =\ 18,}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22cab0b7d955c7fa184d61392db88e403251}{INV\_SRC1\_ALPHA}}\ =\ 19}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025}{eBlendOp}}\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025a9eeb52badb613229884838847294b90d}{ADD}}\ \ =\ 1,}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025a23ebcc4776b613af25dfbe7c8ce4813e}{SUBTRACT}}\ =\ 2,}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025ad1ce55434a47514db52d9706a79eaf7b}{REV\_SUBTRACT}}\ =\ 3,}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025ace31e2a082d17e038fcc6e3006166653}{MIN}}\ \ =\ 4,}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025a26a4b44a837bf97b972628509912b4a5}{MAX}}\ \ =\ 5}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618e}{eColorWriteEnableMask}}\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea6d9a3b389a702f29ef14d867ed7aef9c}{RED}}\ \ =\ 1,}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea054dc054cec517a54f25d8a38b3c3dd0}{GREEN}}\ =\ 2,}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea2f85853946b7cc49fce605cbe307c916}{BLUE}}\ =\ 4,}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618eafbc64e20f8fda25c03e032a359e22743}{ALPHA}}\ =\ 8,}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618eae8d0dfe7c060638bef4030ce7aa1fcd1}{ALL}}\ =\ (((\mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea6d9a3b389a702f29ef14d867ed7aef9c}{RED}}\ |\ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea054dc054cec517a54f25d8a38b3c3dd0}{GREEN}})\ |\ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618ea2f85853946b7cc49fce605cbe307c916}{BLUE}})\ |\ \mbox{\hyperlink{namespacexpe_1_1render_a7c37d1dd6c9b619ebef5a38235c2618eafbc64e20f8fda25c03e032a359e22743}{ALPHA}})}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_target}{sBlendTarget}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Enable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22c}{eBlend}}\ Src\ =\ eBlend::ONE;}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22c}{eBlend}}\ Dest\ =\ eBlend::ZERO;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025}{eBlendOp}}\ BlendOp\ =\ eBlendOp::ADD;}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22c}{eBlend}}\ SrcAlpha\ =\ eBlend::ONE;}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a64832e2bcfa081e507f4237e8bebe22c}{eBlend}}\ DestAlpha\ =\ eBlend::ZERO;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a6267ae08d343761595b6aa7932961025}{eBlendOp}}\ BlendOpAlpha\ =\ eBlendOp::ADD;}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ RenderTargetWriteMask\ =\ eColorWriteEnableMask::ALL;}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_mode}{sBlendMode}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ State\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ AlphaToCoverageEnable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IndependentBlendEnable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ blend\ mode\ can\ only\ have\ maximum\ 8\ targets\ per\ passes}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sBlendTarget>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_mode_aa8076ad01299d22001e4473079ac6511}{Targets}};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_mode_ab53a1189aea4bd652a632bf1b101d98e}{sBlendMode}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_mode}{sBlendMode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sBlendTarget>}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{targets}});}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_blend_mode}{\string~sBlendMode}}();}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Bind();}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84}{eFillMode}}\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84a43ea8c7cefb63ec314b4df5628cba577}{WIREFRAME}},}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84ad0dea69649a83749aa6bdf176092e8c9}{SOLID}},}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84ad0dea69649a83749aa6bdf176092e8c9}{SOLID}}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9}{eCullMode}}\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9abb2fe5c916efb43aab8cbb68f997d2ee}{FRONT}},}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9a1dd26f1f1790f0b56d5752fb0fbecef0}{BACK}},}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_rasterizer}{sRasterizer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \ \ \ \ State\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_af084fc3ad14c992e70a372f3d237bf84}{eFillMode}}\ FillMode\ =\ eFillMode::DEFAULT;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a70a8f9b1d613e1174531c58b493c2ef9}{eCullMode}}\ CullMode\ =\ eCullMode::DEFAULT;}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ FrontCounterClockwise\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ DepthBias\ =\ 0;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ DepthBiasClamp\ =\ 0;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ SlopeScaledDepthBias\ =\ 0;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ DepthClipEnable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ ScissorEnable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ MultisampleEnable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ AntialiasedLineEnable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1core_1_1s_window" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::sWindow</compoundname>
+    <includes refid="window__manager_8hpp" local="no">window_manager.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_window_1a215a0821d2571940d39e6e69b13927ad" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::core::sWindow::Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <qualifiedname>xpe::core::sWindow::Instance</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/window_manager.hpp" line="44" column="18" bodyfile="engine/src/core/window_manager.hpp" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1af5dfe3894003a8ad57e1354021b8d298" compoundref="window__manager_8cpp" startline="82" endline="88">xpe::core::cWindowManager::FreeWindow</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1ae6ee892b3e32195143535ebe4aa37858" compoundref="window__manager_8cpp" startline="130" endline="132">xpe::core::cWindowManager::GetInstance</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a5acf1469a7302505924c4c95048009c8" compoundref="window__manager_8cpp" startline="61" endline="80">xpe::core::cWindowManager::InitWindow</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_window_1a2dc13ca8aa7731b29344417c6448648e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::core::sWindow::Win32Instance</definition>
+        <argsstring></argsstring>
+        <name>Win32Instance</name>
+        <qualifiedname>xpe::core::sWindow::Win32Instance</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/window_manager.hpp" line="45" column="18" bodyfile="engine/src/core/window_manager.hpp" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a30882cfcb3ad62671bfff6f14ed7a51b" compoundref="window__manager_8cpp" startline="134" endline="136">xpe::core::cWindowManager::GetWin32Instance</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a5acf1469a7302505924c4c95048009c8" compoundref="window__manager_8cpp" startline="61" endline="80">xpe::core::cWindowManager::InitWindow</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_window_1aee788dddba446f855b1d3970d7de96cb" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1core_1_1s_window_descriptor" kindref="compound">sWindowDescriptor</ref></type>
+        <definition>sWindowDescriptor xpe::core::sWindow::Descriptor</definition>
+        <argsstring></argsstring>
+        <name>Descriptor</name>
+        <qualifiedname>xpe::core::sWindow::Descriptor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/window_manager.hpp" line="46" column="31" bodyfile="engine/src/core/window_manager.hpp" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1af13b833bb6135d03c2203143d0b6fcb5" compoundref="window__manager_8cpp" startline="90" endline="92">xpe::core::cWindowManager::GetDescriptor</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a880f8bbce61c69fd26da08b2134f455e" compoundref="window__manager_8cpp" startline="110" endline="114">xpe::core::cWindowManager::GetFrameHeight</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a895d5b1c7978ec07a7561a7b4f3ef5c7" compoundref="window__manager_8cpp" startline="104" endline="108">xpe::core::cWindowManager::GetFrameWidth</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a146fad2784fb4c33d64eaa08ae1bc340" compoundref="window__manager_8cpp" startline="99" endline="102">xpe::core::cWindowManager::GetHeight</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1aadcd2ac4ac0095630fb03b2db5e969a3" compoundref="window__manager_8cpp" startline="116" endline="119">xpe::core::cWindowManager::GetPosX</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a64a71817b3563439f68fb031185d513a" compoundref="window__manager_8cpp" startline="121" endline="124">xpe::core::cWindowManager::GetPosY</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a0e6c96929fc05f043170eef73e6771d9" compoundref="window__manager_8cpp" startline="126" endline="128">xpe::core::cWindowManager::GetTitle</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1afe9947fdbfa0a31f51a29d9553362c8c" compoundref="window__manager_8cpp" startline="94" endline="97">xpe::core::cWindowManager::GetWidth</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a5acf1469a7302505924c4c95048009c8" compoundref="window__manager_8cpp" startline="61" endline="80">xpe::core::cWindowManager::InitWindow</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1aaf0739a9475b6a20379432dd9140a66c" compoundref="window__manager_8cpp" startline="190" endline="197">xpe::core::cWindowManager::SetFullscreen</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1ad0abb87740201504a6329cd1808b8bea" compoundref="window__manager_8cpp" startline="214" endline="227">xpe::core::cWindowManager::SetFullscreenWindowed</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a6272f70a591a097255dfa7d8051bff64" compoundref="window__manager_8cpp" startline="150" endline="154">xpe::core::cWindowManager::SetPos</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a0f891f944608a67f77c84c6ba7624437" compoundref="window__manager_8cpp" startline="156" endline="160">xpe::core::cWindowManager::SetSize</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_window_manager_1a064a9ffa1f78b69ffb273cd012d9e05e" compoundref="window__manager_8cpp" startline="199" endline="212">xpe::core::cWindowManager::SetWindowed</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::core::sWindow</label>
+        <link refid="structxpe_1_1core_1_1s_window"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>Descriptor</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::core::sWindowDescriptor</label>
+        <link refid="structxpe_1_1core_1_1s_window_descriptor"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/core/window_manager.hpp" line="42" column="9" bodyfile="engine/src/core/window_manager.hpp" bodystart="43" bodyend="47"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1core_1_1s_window_1aee788dddba446f855b1d3970d7de96cb" prot="public" virt="non-virtual"><scope>xpe::core::sWindow</scope><name>Descriptor</name></member>
+      <member refid="structxpe_1_1core_1_1s_window_1a215a0821d2571940d39e6e69b13927ad" prot="public" virt="non-virtual"><scope>xpe::core::sWindow</scope><name>Instance</name></member>
+      <member refid="structxpe_1_1core_1_1s_window_1a2dc13ca8aa7731b29344417c6448648e" prot="public" virt="non-virtual"><scope>xpe::core::sWindow</scope><name>Win32Instance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

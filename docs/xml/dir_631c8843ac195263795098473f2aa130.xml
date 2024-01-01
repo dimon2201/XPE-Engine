@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_631c8843ac195263795098473f2aa130" kind="dir">
+    <compoundname>engine/src/audio</compoundname>
+    <innerdir refid="dir_a63ba103f6408dc56818e2bc428efcd4">engine/src/audio/core</innerdir>
+    <innerdir refid="dir_e32876124f4a38db207a8c984f8e505c">engine/src/audio/openal</innerdir>
+    <innerfile refid="audio__manager_8cpp">audio_manager.cpp</innerfile>
+    <innerfile refid="audio__manager_8hpp">audio_manager.hpp</innerfile>
+    <innerfile refid="audio__system_8cpp">audio_system.cpp</innerfile>
+    <innerfile refid="audio__system_8hpp">audio_system.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/audio/"/>
+  </compounddef>
+</doxygen>

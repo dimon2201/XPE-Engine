@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_window__manager_8hpp" xml:lang="en-US">
+<title>engine/src/core/window_manager.hpp File Reference</title>
+<indexterm><primary>engine/src/core/window_manager.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_window_descriptor">xpe::core::sWindowDescriptor</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_window">xpe::core::sWindow</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_window_manager">xpe::core::cWindowManager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9">xpe::core::eCursorMode</link> { <?linebreak?><link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9a1e23852820b9154316c7c06e2b7ba051">xpe::core::NORMAL</link>
+, <link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9a1e50e487f8672658546e3609404b53df">xpe::core::HIDE</link>
+, <link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9afc93ea58f6d27ffed2b6518ffecf3e4e">xpe::core::DISABLE</link>
+, <link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9a1f09b6651a28d99473712d885c2c31a3">xpe::core::CAPTURED</link>
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee">xpe::core::DEFAULT</link> = NORMAL
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5ccc">xpe::core::eWindowTheme</link> { <link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5cccaf8589806bbf66241917092b2a6e18c6f">xpe::core::LIGHT</link>
+, <link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5cccaacaef50d33fc86532c260a045c672f3e">xpe::core::DARK</link>
+, <link linkend="_namespacexpe_1_1core_1a824c0df4ac99ea6c553e561da24f5ccca5b39c8b553c821e7cddc6da64b5bd2ee">xpe::core::DEFAULT</link> = LIGHT
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

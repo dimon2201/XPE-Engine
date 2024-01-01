@@ -1,0 +1,171 @@
+\doxysection{engine/src/core/codes\+\_\+keyboard.hpp File Reference}
+\hypertarget{codes__keyboard_8hpp}{}\label{codes__keyboard_8hpp}\index{engine/src/core/codes\_keyboard.hpp@{engine/src/core/codes\_keyboard.hpp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1core_1_1s_key_state}{xpe\+::core\+::s\+Key\+State}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacexpe}{xpe}}
+\item 
+namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8}{xpe\+::core\+::e\+Key}} \+: u16 \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a70dfb99a2711cbd71a75c2fbfc926b9c}{xpe\+::core\+::\+None}} = 0
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0f1ca2db7acdf1ba74ff8fbdcf16d5be}{xpe\+::core\+::\+Space}} = 32
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa686703fa8e5c45b701bb472f4623189}{xpe\+::core\+::\+Apostrophe}} = 39
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6a99092f2111778d2dfe082736fa3147}{xpe\+::core\+::\+Comma}} = 44
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a21b5f604ba896c7a4f333bd66441e922}{xpe\+::core\+::\+Minus}} = 45
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad5c6c3fc903ff4af8823ed7ba55ff176}{xpe\+::core\+::\+Period}} = 46
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a190e688ea0e769c8777658307c42a4cd}{xpe\+::core\+::\+Slash}} = 47
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abdba42173d2fec77ce502f0417084ec0}{xpe\+::core\+::\+D0}} = 48
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a86fcd0eeb38c3a8c258498623fae666b}{xpe\+::core\+::\+D1}} = 49
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0f2f610ddc9316ec1339a0c073176b6b}{xpe\+::core\+::\+D2}} = 50
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ade46078052add3ce926ec9d8a1dd7ca0}{xpe\+::core\+::\+D3}} = 51
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af90c89cd2378cbe39859fad1c4a79f29}{xpe\+::core\+::\+D4}} = 52
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4f6a79958dc365b0996a959e6d67f7ee}{xpe\+::core\+::\+D5}} = 53
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4a9ccc71bdfff9a09fd0dda8fff650ae}{xpe\+::core\+::\+D6}} = 54
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a032eb51cc99816009a18dc7d3ee3a8f7}{xpe\+::core\+::\+D7}} = 55
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a786c5b544ec8371ff452aa072cacbd56}{xpe\+::core\+::\+D8}} = 56
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4d5ac2c1b04379d8e78fbd242d48c5cb}{xpe\+::core\+::\+D9}} = 57
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8add187706b69ff46b8fb8aba46908ecff}{xpe\+::core\+::\+Semicolon}} = 59
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab9e1a7ef294bab9dd2ce1029726d5546}{xpe\+::core\+::\+Equal}} = 61
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a397075a040528813f20f6c289b623a3b}{xpe\+::core\+::A}} = 65
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a30d29bb7b92629637b6646d739a3fba2}{xpe\+::core\+::B}} = 66
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a78f51c8a8e90c8c409fa7960e2bff6a3}{xpe\+::core\+::C}} = 67
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a09145696638abc5894df77a271ffdc79}{xpe\+::core\+::D}} = 68
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1cdf504473504d01f8b45cc41553f490}{xpe\+::core\+::E}} = 69
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa855c600d5a32a6609b63a1ddbb84c8d}{xpe\+::core\+::F}} = 70
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0754496e7b895b969ff5fba62052aa7f}{xpe\+::core\+::G}} = 71
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8acb447b80567676cf31264c547e672b01}{xpe\+::core\+::H}} = 72
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2887ed5592f424e3067da256affa7c8a}{xpe\+::core\+::I}} = 73
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a3601a60d9cbc6a5ac7bb603339d97b49}{xpe\+::core\+::J}} = 74
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a82ea43219d7245c6bd500ead32a0dd9a}{xpe\+::core\+::K}} = 75
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9762c725390c776ed7a17aa2e28e6d9e}{xpe\+::core\+::L}} = 76
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab3aab7dc2947543b2351599ce564fa28}{xpe\+::core\+::M}} = 77
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7a714558a0dc7b15f16d63f34cd14ce1}{xpe\+::core\+::N}} = 78
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a481cda320c74820c4ae12fc9f4c8b960}{xpe\+::core\+::O}} = 79
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a63995530d70d204acada2ee0f4e9b5f2}{xpe\+::core\+::P}} = 80
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2b6b1b2d3210455c2e06c64e39521db2}{xpe\+::core\+::Q}} = 81
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8afebda9e477bb6b269a3f018a504fd66a}{xpe\+::core\+::R}} = 82
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9e0bb5bfef067918bd4a835a5f0d65e6}{xpe\+::core\+::S}} = 83
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{xpe\+::core\+::T}} = 84
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997}{xpe\+::core\+::U}} = 85
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae1a61df881ca9edeb5c52654701c2081}{xpe\+::core\+::V}} = 86
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a598ed9709ade0d8f94ff4f795fb3ded5}{xpe\+::core\+::W}} = 87
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e2cee66a4284c61b71c86a96bed8a6e}{xpe\+::core\+::X}} = 88
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4ae41f354a0249602ac21e9f3bcea073}{xpe\+::core\+::Y}} = 89
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8c7ca128fd0eb8d52f14fefd8b42f580}{xpe\+::core\+::Z}} = 90
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ac3243a980dd6e4f3e988ea07d3d583e7}{xpe\+::core\+::\+Left\+Bracket}} = 91
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af20635bc50cf4245a648600d36ca7573}{xpe\+::core\+::\+Backslash}} = 92
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a00a6352eabf6e583381315c7764d540c}{xpe\+::core\+::\+Right\+Bracket}} = 93
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abba4a38b94156763cb5b9ff3e3cef0ea}{xpe\+::core\+::\+Grave\+Accent}} = 96
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1cbf490fca965cdd15cd2edef03d6282}{xpe\+::core\+::\+World1}} = 161
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad1cfac232687d62e679759f6b8dd9304}{xpe\+::core\+::\+World2}} = 162
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae88b40555e9aa9825b252bef72fe19ca}{xpe\+::core\+::\+Esc}} = 256
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1adae4463cf048f087aa4c6f8db4d4a1}{xpe\+::core\+::\+Enter}} = 257
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8adc19d8e1ada55218829037eeb034643a}{xpe\+::core\+::\+Tab}} = 258
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7245f44ebb9885e938543697334fa68a}{xpe\+::core\+::\+Backspace}} = 259
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aced39cea792863956fe0961a0f77eb7d}{xpe\+::core\+::\+Insert}} = 260
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa8d0e2d8882d3fe0e060d35943d5c4dd}{xpe\+::core\+::\+Delete}} = 261
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13}{xpe\+::core\+::\+Right}} = 262
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{xpe\+::core\+::\+Left}} = 263
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7819e03b2fd07a16ba43683f8bcc74b0}{xpe\+::core\+::\+Down}} = 264
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{xpe\+::core\+::\+Up}} = 265
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4248351233547c080e46e816dcbbc225}{xpe\+::core\+::\+Page\+Up}} = 266
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a449b2b5ff0d4cfac036ba56a94494eeb}{xpe\+::core\+::\+Page\+Down}} = 267
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a089e5809385a6fd189f1a2f063107a49}{xpe\+::core\+::\+Home}} = 268
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7c272f0f8db1370d3e1702f28d5f481b}{xpe\+::core\+::\+End}} = 269
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa3e3fd1c3cc752fb160567ffb3f76123}{xpe\+::core\+::\+Caps\+Lock}} = 280
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a41eff069ffe1b4258aa44338e0f6c0ae}{xpe\+::core\+::\+Scroll\+Lock}} = 281
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aef242ceaf5c0930c5abe2743d78a7388}{xpe\+::core\+::\+Num\+Lock}} = 282
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a05dcb925e9ad1559f943861ac6213ee8}{xpe\+::core\+::\+Print\+Screen}} = 283
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1c488af1702160bf271f692f9996787e}{xpe\+::core\+::\+Pause}} = 284
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa61db96c77f14e70dcef77ad218f1921}{xpe\+::core\+::\+F1}} = 290
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8936850adefbb65dccd172e4ad4cee80}{xpe\+::core\+::\+F2}} = 291
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a5b8d4396c3e46003e951406c6b0477e1}{xpe\+::core\+::\+F3}} = 292
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6c8f21a209c36878bffd5e0c6d41b605}{xpe\+::core\+::\+F4}} = 293
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9a5c6cf95213f2cc3849281e1a846e08}{xpe\+::core\+::\+F5}} = 294
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab0821ecf6ccad10eb51f350e138b21d0}{xpe\+::core\+::\+F6}} = 295
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a5bf3c909e634d0394b45c63d79986053}{xpe\+::core\+::\+F7}} = 296
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa52cca642ceb312ab47add562640ced2}{xpe\+::core\+::\+F8}} = 297
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad0a289ed0401f5471ca405a0fdb1cf20}{xpe\+::core\+::\+F9}} = 298
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9b6133caa70a4ccc4e9a4602a4a22f4e}{xpe\+::core\+::\+F10}} = 299
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a3b1e4c6d9f06ef6538673af32d4a37a3}{xpe\+::core\+::\+F11}} = 300
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a122eba3503b7a9358b3f1a41ff52c0f7}{xpe\+::core\+::\+F12}} = 301
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0aa1c3ed87964792da8e3e13322cc39e}{xpe\+::core\+::\+F13}} = 302
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2906bfbbd04d746fbfecd3db9d04c440}{xpe\+::core\+::\+F14}} = 303
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2182e8e59a9c70df53d8c3e7f629817e}{xpe\+::core\+::\+F15}} = 304
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a82d07c0fdc55fe7dc2414d7c28be69b0}{xpe\+::core\+::\+F16}} = 305
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a91b6d99a1d8f1284b5441dcf279a8534}{xpe\+::core\+::\+F17}} = 306
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a920865335a5ef5d5556676c715d315ab}{xpe\+::core\+::\+F18}} = 307
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a58b30ea773b40419f0a9c2d0b57a8b96}{xpe\+::core\+::\+F19}} = 308
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae84b0cc92e5352d1198f90e77b1d2b4f}{xpe\+::core\+::\+F20}} = 309
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab0b13452c477397e1fd895fbf13ebe71}{xpe\+::core\+::\+F21}} = 310
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a645db5b44e1bb61c87f099b6b2dd9fb1}{xpe\+::core\+::\+F22}} = 311
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8adc4936c91f944515d5441060d189ea8a}{xpe\+::core\+::\+F23}} = 312
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aeaf1f0c2fc90875d04b9cf5b64488205}{xpe\+::core\+::\+F24}} = 313
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aef04b788da664aa9f2c29db7395dabb9}{xpe\+::core\+::\+F25}} = 314
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6764b36b30127fb84eea953a27594304}{xpe\+::core\+::\+KP0}} = 320
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a49195a25a77b60695656864158bbcedf}{xpe\+::core\+::\+KP1}} = 321
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9084a28c4c759f2d105394b4dd8f3100}{xpe\+::core\+::\+KP2}} = 322
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a232a93391f9a9543e7c2e8c514f93732}{xpe\+::core\+::\+KP3}} = 323
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab333c2c7723f5cd37f0a9dc8a0b8f56f}{xpe\+::core\+::\+KP4}} = 324
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2ff1ef6ca0757a53cadcf55af9b540a1}{xpe\+::core\+::\+KP5}} = 325
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad3f0e0a16e9b94197083cbc91b0cb0d1}{xpe\+::core\+::\+KP6}} = 326
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a892017e2bbb03447c4a18ee86ee10f5e}{xpe\+::core\+::\+KP7}} = 327
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4268a37ca529d11b6aee68da72df7df8}{xpe\+::core\+::\+KP8}} = 328
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abbe0937b9c2d63d1ba15cd383e9b7eed}{xpe\+::core\+::\+KP9}} = 329
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8e213fa106a0947474caeb58bef70dd1}{xpe\+::core\+::\+KPDecimal}} = 330
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a546cff5630716a0ff4bec89668c09b74}{xpe\+::core\+::\+KPDivide}} = 331
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa8ea6d2532c5ad91e0124dbc6597072e}{xpe\+::core\+::\+KPMultiply}} = 332
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab713fb3c668af1b643d3de01dc38696a}{xpe\+::core\+::\+KPSubtract}} = 333
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a25371e66e25afc31fa0381a9716373c8}{xpe\+::core\+::\+KPAdd}} = 334
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8a5e9ffa30a4fa7ee955e279bdc17a67}{xpe\+::core\+::\+KPEnter}} = 335
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a5a0e4ea807a25b340d8d3bcb0f4cb5ae}{xpe\+::core\+::\+KPEqual}} = 336
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6807c26ccb62144c73904856d06e4898}{xpe\+::core\+::\+Left\+Shift}} = 340
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab011d66cc86d10a24deb5167e99181dc}{xpe\+::core\+::\+Left\+Control}} = 341
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae9757147afc92c06c8e935eaad898cae}{xpe\+::core\+::\+Left\+Alt}} = 342
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aec7680df7b3f06546266c7ccc5d5631b}{xpe\+::core\+::\+Left\+Super}} = 343
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ac1765578d77749f9d9f33259ad89e2e5}{xpe\+::core\+::\+Right\+Shift}} = 344
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aecdde3adaab49e42c5fdcb079b7bd673}{xpe\+::core\+::\+Right\+Control}} = 345
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8eddfec0a987e99842b9d92c3d8bc633}{xpe\+::core\+::\+Right\+Alt}} = 346
+, \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a466f4ceb4b9393eb7867a2cbc23be692}{xpe\+::core\+::\+Right\+Super}} = 347
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad449fa7756f1fcbcb6ceb3761c4cf35a}{xpe\+::core\+::\+Menu}} = 348
+ \}
+\end{DoxyCompactItemize}

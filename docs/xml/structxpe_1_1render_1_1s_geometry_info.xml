@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_geometry_info" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sGeometryInfo</compoundname>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_geometry_info" prot="public" virt="non-virtual">xpe::ecs::CGeometryInfo</derivedcompoundref>
+    <includes refid="geometry_8hpp" local="no">geometry.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_geometry_info_1a9312c855bfe65f73db55cee0182c64f6" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100" kindref="member">ePrimitiveTopology</ref></type>
+        <definition>ePrimitiveTopology xpe::render::sGeometryInfo::PrimitiveTopology</definition>
+        <argsstring></argsstring>
+        <name>PrimitiveTopology</name>
+        <qualifiedname>xpe::render::sGeometryInfo::PrimitiveTopology</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee" kindref="member">ePrimitiveTopology::DEFAULT</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometry.hpp" line="77" column="32" bodyfile="engine/src/rendering/geometry/geometry.hpp" bodystart="77" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_geometry_manager_1afcab89931d34518de9c76ff962e6a5b9" compoundref="geometry__manager_8cpp" startline="20" endline="31">xpe::render::cGeometryManager::AddGeometry</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_shader_1ac6d0a01c7e25a93a16e38d9642dfe0f2" compoundref="shaders_8cpp" startline="479" endline="497">xpe::render::cWidgetShader::cWidgetShader</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_geometry_info_1a598b0bd2c9c16d9f2a9567be51c258b2" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sGeometryInfo::VertexOffset</definition>
+        <argsstring></argsstring>
+        <name>VertexOffset</name>
+        <qualifiedname>xpe::render::sGeometryInfo::VertexOffset</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometry.hpp" line="78" column="19" bodyfile="engine/src/rendering/geometry/geometry.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_geometry_info_1a7b99f88471db9da763de77cb33747181" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sGeometryInfo::IndexOffset</definition>
+        <argsstring></argsstring>
+        <name>IndexOffset</name>
+        <qualifiedname>xpe::render::sGeometryInfo::IndexOffset</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometry.hpp" line="79" column="19" bodyfile="engine/src/rendering/geometry/geometry.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_geometry_info_1a057fd20f951d01093445e05b750402f2" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sGeometryInfo::VertexCount</definition>
+        <argsstring></argsstring>
+        <name>VertexCount</name>
+        <qualifiedname>xpe::render::sGeometryInfo::VertexCount</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometry.hpp" line="80" column="19" bodyfile="engine/src/rendering/geometry/geometry.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_geometry_info_1a849b825891604d340adc2c567a6d4a61" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sGeometryInfo::IndexCount</definition>
+        <argsstring></argsstring>
+        <name>IndexCount</name>
+        <qualifiedname>xpe::render::sGeometryInfo::IndexCount</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometry.hpp" line="81" column="19" bodyfile="engine/src/rendering/geometry/geometry.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_geometry_info_1a15819dd9d5922bdecb2101c7387ee006" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1ecs_1ac3e87a77d3ea7391b91ea14a0c999ac5" kindref="member">EntityID</ref> &gt;</type>
+        <definition>vector&lt;EntityID&gt; xpe::render::sGeometryInfo::Entities</definition>
+        <argsstring></argsstring>
+        <name>Entities</name>
+        <qualifiedname>xpe::render::sGeometryInfo::Entities</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometry.hpp" line="82" column="20" bodyfile="engine/src/rendering/geometry/geometry.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::ecs::CGeometryInfo</label>
+        <link refid="structxpe_1_1ecs_1_1_c_geometry_info"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sGeometryInfo</label>
+        <link refid="structxpe_1_1render_1_1s_geometry_info"/>
+      </node>
+    </inheritancegraph>
+    <location file="engine/src/rendering/geometry/geometry.hpp" line="75" column="9" bodyfile="engine/src/rendering/geometry/geometry.hpp" bodystart="76" bodyend="83"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_geometry_info_1a15819dd9d5922bdecb2101c7387ee006" prot="public" virt="non-virtual"><scope>xpe::render::sGeometryInfo</scope><name>Entities</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_info_1a849b825891604d340adc2c567a6d4a61" prot="public" virt="non-virtual"><scope>xpe::render::sGeometryInfo</scope><name>IndexCount</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_info_1a7b99f88471db9da763de77cb33747181" prot="public" virt="non-virtual"><scope>xpe::render::sGeometryInfo</scope><name>IndexOffset</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_info_1a9312c855bfe65f73db55cee0182c64f6" prot="public" virt="non-virtual"><scope>xpe::render::sGeometryInfo</scope><name>PrimitiveTopology</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_info_1a057fd20f951d01093445e05b750402f2" prot="public" virt="non-virtual"><scope>xpe::render::sGeometryInfo</scope><name>VertexCount</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_info_1a598b0bd2c9c16d9f2a9567be51c258b2" prot="public" virt="non-virtual"><scope>xpe::render::sGeometryInfo</scope><name>VertexOffset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

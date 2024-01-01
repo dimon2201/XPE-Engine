@@ -1,0 +1,65 @@
+\doxysection{codes\+\_\+gamepad.\+hpp}
+\hypertarget{codes__gamepad_8hpp_source}{}\label{codes__gamepad_8hpp_source}\index{engine/src/core/codes\_gamepad.hpp@{engine/src/core/codes\_gamepad.hpp}}
+\mbox{\hyperlink{codes__gamepad_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_gamepad_state}{sGamepadState}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Released\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Hold\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26}{eGamepadButton}}\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a3687fbfe9f2fdda2244770408fd2c681}{Pad\_A}}\ =\ 0,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26af2700249ef417eaea8cf716d48fd0827}{Pad\_B}}\ =\ 1,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abb62826bf2e91316d8a790fa55f1819a}{Pad\_X}}\ =\ 2,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1dac038a79602619e1a7be9e4ab872cc}{Pad\_Y}}\ =\ 3,}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a41295e646d7bb68cf4a793d4ed7f106c}{Pad\_LeftBumper}}\ =\ 4,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1672427b5e0b2a9f1ce3971fce88fb89}{Pad\_RightBumper}}\ =\ 5,}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a529a8d53ddba22b06f1708c6ff8d3642}{Pad\_Back}}\ =\ 6,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a506f1b55538cb40fb0d742db500493e8}{Pad\_Start}}\ =\ 7,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1ba8ea192d4238eb4997fc9d9c61fb49}{Pad\_Guide}}\ =\ 8,}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a9c80141c352b0620cef90f850346a543}{Pad\_LeftThumb}}\ =\ 9,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26ac793975743453b6a513539248582b14f}{Pad\_RightThumb}}\ =\ 10,}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abff713c98241f68fec0465974a3a80c5}{Pad\_Up}}\ =\ 11,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a4ef92a28a7310b1e33f7c7f09d34c447}{Pad\_Right}}\ =\ 12,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a6ea51f348ed2273d1cd7acc170cd960d}{Pad\_Down}}\ =\ 13,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304}{Pad\_Left}}\ =\ 14,}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26acf06b676d433a6ab517247d238512310}{Pad\_Last}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304}{Pad\_Left}},}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a35e7e2b4be7d3b09ce6268a34db25ef4}{Pad\_Cross}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a397075a040528813f20f6c289b623a3b}{A}},}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a504e23bce3b71286dd697aa11d27e8f2}{Pad\_Circle}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a30d29bb7b92629637b6646d739a3fba2}{B}},}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1bb4c477a5d06d7e7ade03b8db06c20e}{Pad\_Square}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e2cee66a4284c61b71c86a96bed8a6e}{X}},}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a39da9c46f43862115c612e9c3b99af50}{Pad\_Triangle}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4ae41f354a0249602ac21e9f3bcea073}{Y}}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38}{eGamepadAxis}}\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a207e9e5d2a6c7725bddb7124c0f61287}{Axis\_LeftX}}\ =\ 0,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a8e3a412945183656647d1076980caa6e}{Axis\_LeftY}}\ =\ 1,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38ac82c10c9d77e9ff5150ccaf740b84aaf}{Axis\_RightX}}\ =\ 2,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a1105fdc10b81ef4d8ecc0201289b2fe1}{Axis\_RightY}}\ =\ 3,}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a694b54f1b5afd19ed10b130526b2b2e0}{Axis\_LeftTrigger}}\ =\ 4,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a6fba40b7473ffd948e23323ecfa62d2b}{Axis\_RightTrigger}}\ =\ 5,}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38aec7b154c770e5bfb5be55cec1e787318}{Axis\_Last}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a6fba40b7473ffd948e23323ecfa62d2b}{Axis\_RightTrigger}}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \}}
+
+\end{DoxyCode}

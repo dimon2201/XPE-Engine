@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1anim_1_1s_bone" xml:lang="en-US">
+<title>xpe::anim::sBone Struct Reference</title>
+<indexterm><primary>xpe::anim::sBone</primary></indexterm>
+<para>
+<computeroutput>#include &lt;skeleton.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1anim_1_1s_bone_1a8f80516fd02edd118e4fc3fe04fcbdf2">ID</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> <link linkend="_structxpe_1_1anim_1_1s_bone_1a4668c968a8f7bdca01626fb1337dc63b">Name</link></para>
+</listitem>
+            <listitem><para>glm::mat4 <link linkend="_structxpe_1_1anim_1_1s_bone_1a5e94e9da1f554e19a3e28aa0ece653d2">Offset</link></para>
+</listitem>
+            <listitem><para>glm::mat4 <link linkend="_structxpe_1_1anim_1_1s_bone_1a328da8a21d179f267779ac55869e943d">Transform</link> = glm::mat4(1.0)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1anim_1_1s_key_position">sKeyPosition</link> &gt; <link linkend="_structxpe_1_1anim_1_1s_bone_1adac532a271d6e165dc0261016694c8dc">KeyPositions</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1anim_1_1s_key_rotate">sKeyRotate</link> &gt; <link linkend="_structxpe_1_1anim_1_1s_bone_1a30fa55e909f6c7956012e7544621b9f8">KeyRotations</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1anim_1_1s_key_scale">sKeyScale</link> &gt; <link linkend="_structxpe_1_1anim_1_1s_bone_1a3b9e4bfb8d72ec90e36958530c75b636">KeyScales</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1anim_1_1s_bone_1a8f80516fd02edd118e4fc3fe04fcbdf2"/><section>
+    <title>ID</title>
+<indexterm><primary>ID</primary><secondary>xpe::anim::sBone</secondary></indexterm>
+<indexterm><primary>xpe::anim::sBone</primary><secondary>ID</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::anim::sBone::ID</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1anim_1_1s_bone_1adac532a271d6e165dc0261016694c8dc"/><section>
+    <title>KeyPositions</title>
+<indexterm><primary>KeyPositions</primary><secondary>xpe::anim::sBone</secondary></indexterm>
+<indexterm><primary>xpe::anim::sBone</primary><secondary>KeyPositions</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt;<link linkend="_structxpe_1_1anim_1_1s_key_position">sKeyPosition</link>&gt; xpe::anim::sBone::KeyPositions</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1anim_1_1s_bone_1a30fa55e909f6c7956012e7544621b9f8"/><section>
+    <title>KeyRotations</title>
+<indexterm><primary>KeyRotations</primary><secondary>xpe::anim::sBone</secondary></indexterm>
+<indexterm><primary>xpe::anim::sBone</primary><secondary>KeyRotations</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt;<link linkend="_structxpe_1_1anim_1_1s_key_rotate">sKeyRotate</link>&gt; xpe::anim::sBone::KeyRotations</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1anim_1_1s_bone_1a3b9e4bfb8d72ec90e36958530c75b636"/><section>
+    <title>KeyScales</title>
+<indexterm><primary>KeyScales</primary><secondary>xpe::anim::sBone</secondary></indexterm>
+<indexterm><primary>xpe::anim::sBone</primary><secondary>KeyScales</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt;<link linkend="_structxpe_1_1anim_1_1s_key_scale">sKeyScale</link>&gt; xpe::anim::sBone::KeyScales</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1anim_1_1s_bone_1a4668c968a8f7bdca01626fb1337dc63b"/><section>
+    <title>Name</title>
+<indexterm><primary>Name</primary><secondary>xpe::anim::sBone</secondary></indexterm>
+<indexterm><primary>xpe::anim::sBone</primary><secondary>Name</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c">string</link> xpe::anim::sBone::Name</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1anim_1_1s_bone_1a5e94e9da1f554e19a3e28aa0ece653d2"/><section>
+    <title>Offset</title>
+<indexterm><primary>Offset</primary><secondary>xpe::anim::sBone</secondary></indexterm>
+<indexterm><primary>xpe::anim::sBone</primary><secondary>Offset</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::anim::sBone::Offset</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1anim_1_1s_bone_1a328da8a21d179f267779ac55869e943d"/><section>
+    <title>Transform</title>
+<indexterm><primary>Transform</primary><secondary>xpe::anim::sBone</secondary></indexterm>
+<indexterm><primary>xpe::anim::sBone</primary><secondary>Transform</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::anim::sBone::Transform = glm::mat4(1.0)</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/anim/<link linkend="_skeleton_8hpp">skeleton.hpp</link></section>
+</section>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_spot_light_data" xml:lang="en-US">
+<title>xpe::render::sSpotLightData Struct Reference</title>
+<indexterm><primary>xpe::render::sSpotLightData</primary></indexterm>
+<para>
+<computeroutput>#include &lt;buffers.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1ac9e1d85297884bb13336286ea66aff63">Position</link> = { 0, 0, 0 }</para>
+</listitem>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1a78e06bf5b09f5005be9009c5c955256d">Direction</link> = { 1, 1, 1 }</para>
+</listitem>
+            <listitem><para>glm::vec3 <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1a4568b30b8b6ddd8c2a168e0b946acbd3">Color</link> = { 1, 1, 1 }</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1ae5b14bdbf04f4eaeaaa31c7111228409">Cutoff</link> = 1</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1ad4a536a61a2c8ebe447a458d6fb9cc5e">Outer</link> = 1</para>
+</listitem>
+            <listitem><para>glm::mat4 <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1a0ef30dcd81d5fab13739447a1b2ad7a7">ViewProjection</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1acea3255bcc1daa1cd463456985bdb131">Near</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_structxpe_1_1render_1_1s_spot_light_data_1ad3bc15fddee151ec3e58b078d0d3c2f6">Far</link> = 1</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1a4568b30b8b6ddd8c2a168e0b946acbd3"/><section>
+    <title>Color</title>
+<indexterm><primary>Color</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>Color</secondary></indexterm>
+<para><computeroutput>glm::vec3 xpe::render::sSpotLightData::Color = { 1, 1, 1 }</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1ae5b14bdbf04f4eaeaaa31c7111228409"/><section>
+    <title>Cutoff</title>
+<indexterm><primary>Cutoff</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>Cutoff</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sSpotLightData::Cutoff = 1</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1a78e06bf5b09f5005be9009c5c955256d"/><section>
+    <title>Direction</title>
+<indexterm><primary>Direction</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>Direction</secondary></indexterm>
+<para><computeroutput>glm::vec3 xpe::render::sSpotLightData::Direction = { 1, 1, 1 }</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1ad3bc15fddee151ec3e58b078d0d3c2f6"/><section>
+    <title>Far</title>
+<indexterm><primary>Far</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>Far</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sSpotLightData::Far = 1</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1acea3255bcc1daa1cd463456985bdb131"/><section>
+    <title>Near</title>
+<indexterm><primary>Near</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>Near</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sSpotLightData::Near = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1ad4a536a61a2c8ebe447a458d6fb9cc5e"/><section>
+    <title>Outer</title>
+<indexterm><primary>Outer</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>Outer</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> xpe::render::sSpotLightData::Outer = 1</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1ac9e1d85297884bb13336286ea66aff63"/><section>
+    <title>Position</title>
+<indexterm><primary>Position</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>Position</secondary></indexterm>
+<para><computeroutput>glm::vec3 xpe::render::sSpotLightData::Position = { 0, 0, 0 }</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_spot_light_data_1a0ef30dcd81d5fab13739447a1b2ad7a7"/><section>
+    <title>ViewProjection</title>
+<indexterm><primary>ViewProjection</primary><secondary>xpe::render::sSpotLightData</secondary></indexterm>
+<indexterm><primary>xpe::render::sSpotLightData</primary><secondary>ViewProjection</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::render::sSpotLightData::ViewProjection</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/rendering/<link linkend="_buffers_8hpp">buffers.hpp</link></section>
+</section>

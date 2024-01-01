@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_time__manager_8hpp" xml:lang="en-US">
+<title>engine/src/core/time_manager.hpp File Reference</title>
+<indexterm><primary>engine/src/core/time_manager.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_time">xpe::core::cTime</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_time_manager">xpe::core::cTimeManager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_time__manager_8hpp_1afa19fbd79476ba9b7a8388d95429e3fb">LogTime</link>(t)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_time__manager_8hpp_1ab3a55de6979b221cf68ec9d259b90f3a">LogCpuTime</link>(t)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typedef</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> std::chrono::duration&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">double</link>, std::milli &gt; <link linkend="_namespacexpe_1_1core_1ace55348d22cc6787df79bc3c214c7c4d">xpe::core::TimeMillis</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_time__manager_8hpp_1ab3a55de6979b221cf68ec9d259b90f3a"/><section>
+    <title>LogCpuTime</title>
+<indexterm><primary>LogCpuTime</primary><secondary>time_manager.hpp</secondary></indexterm>
+<indexterm><primary>time_manager.hpp</primary><secondary>LogCpuTime</secondary></indexterm>
+<para><computeroutput>#define LogCpuTime( t)</computeroutput></para></section>
+<anchor xml:id="_time__manager_8hpp_1afa19fbd79476ba9b7a8388d95429e3fb"/><section>
+    <title>LogTime</title>
+<indexterm><primary>LogTime</primary><secondary>time_manager.hpp</secondary></indexterm>
+<indexterm><primary>time_manager.hpp</primary><secondary>LogTime</secondary></indexterm>
+<para><computeroutput>#define LogTime( t)</computeroutput></para></section>
+</section>
+</section>

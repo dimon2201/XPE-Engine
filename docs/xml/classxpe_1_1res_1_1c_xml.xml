@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1res_1_1c_xml" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>xpe::res::cXml</compoundname>
+    <derivedcompoundref refid="classxpe_1_1ecs_1_1c_entity" prot="public" virt="non-virtual">xpe::ecs::cEntity</derivedcompoundref>
+    <derivedcompoundref refid="classxpe_1_1ecs_1_1c_scene" prot="private" virt="non-virtual">xpe::ecs::cScene</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1render_1_1s_widget" prot="public" virt="non-virtual">xpe::render::sWidget</derivedcompoundref>
+    <includes refid="xml_8hpp" local="no">xml.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classxpe_1_1res_1_1c_xml_1a92a96665a2976d88f96c8f4a9744939a" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">xpe::core::vector</ref>&lt; <ref refid="classxpe_1_1res_1_1c_xml" kindref="compound">cXml</ref> * &gt;</type>
+        <definition>xpe::core::vector&lt;cXml*&gt; xpe::res::cXml::XmlChildren</definition>
+        <argsstring></argsstring>
+        <name>XmlChildren</name>
+        <qualifiedname>xpe::res::cXml::XmlChildren</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="208" column="31" bodyfile="engine/src/res/xml.hpp" bodystart="208" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1res_1_1c_xml_1a47e4be13468d499a782a8f9bf25c3602" compoundref="xml_8cpp" startline="7" endline="16">LoadFile</referencedby>
+        <referencedby refid="classxpe_1_1res_1_1c_xml_1a0165873965f1f93bec83a91f72b7741a" compoundref="xml_8cpp" startline="18" endline="22">SaveFile</referencedby>
+        <referencedby refid="classxpe_1_1ecs_1_1c_entity_1accafa42588ba3db4868cbd536bc2028a" compoundref="ecs_8cpp" startline="98" endline="104">xpe::ecs::cEntity::UpdateXmlChildren</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classxpe_1_1res_1_1c_xml_1a8a1dda763ec866fcb4b8f6b0c02e91a3" prot="protected" static="no" mutable="no">
+        <type>pugi::xml_document</type>
+        <definition>pugi::xml_document xpe::res::cXml::m_Doc</definition>
+        <argsstring></argsstring>
+        <name>m_Doc</name>
+        <qualifiedname>xpe::res::cXml::m_Doc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="217" column="32" bodyfile="engine/src/res/xml.hpp" bodystart="217" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1res_1_1c_xml_1a47e4be13468d499a782a8f9bf25c3602" compoundref="xml_8cpp" startline="7" endline="16">LoadFile</referencedby>
+        <referencedby refid="classxpe_1_1res_1_1c_xml_1a0165873965f1f93bec83a91f72b7741a" compoundref="xml_8cpp" startline="18" endline="22">SaveFile</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1res_1_1c_xml_1aecfd539665c2cc21965c15aa4f53b9e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref></type>
+        <definition>virtual xml xpe::res::cXml::ToXml</definition>
+        <argsstring>(xml &amp;root)=0</argsstring>
+        <name>ToXml</name>
+        <qualifiedname>xpe::res::cXml::ToXml</qualifiedname>
+        <reimplementedby refid="classxpe_1_1ecs_1_1c_scene_1a069b678a1d459ec195a12cc982e22c1b">ToXml</reimplementedby>
+        <reimplementedby refid="classxpe_1_1ecs_1_1c_entity_1aa8d2a9569eb64fe9d1e43e4baccab29d">ToXml</reimplementedby>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="210" column="25"/>
+        <referencedby refid="classxpe_1_1res_1_1c_xml_1a0165873965f1f93bec83a91f72b7741a" compoundref="xml_8cpp" startline="18" endline="22">SaveFile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1res_1_1c_xml_1ad40ae73f421e5655d44fe871cdfe808f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref></type>
+        <definition>virtual xml xpe::res::cXml::FromXml</definition>
+        <argsstring>(xml &amp;root)=0</argsstring>
+        <name>FromXml</name>
+        <qualifiedname>xpe::res::cXml::FromXml</qualifiedname>
+        <reimplementedby refid="classxpe_1_1ecs_1_1c_scene_1a1a742c4d2f714632fdb3dd10b933db75">FromXml</reimplementedby>
+        <reimplementedby refid="classxpe_1_1ecs_1_1c_entity_1a09181b66bb5edce85a5806a9c491cb89">FromXml</reimplementedby>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="211" column="25"/>
+        <referencedby refid="classxpe_1_1res_1_1c_xml_1a47e4be13468d499a782a8f9bf25c3602" compoundref="xml_8cpp" startline="7" endline="16">LoadFile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1res_1_1c_xml_1a47e4be13468d499a782a8f9bf25c3602" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::res::cXml::LoadFile</definition>
+        <argsstring>(const char *filepath)</argsstring>
+        <name>LoadFile</name>
+        <qualifiedname>xpe::res::cXml::LoadFile</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="213" column="18" bodyfile="engine/src/res/xml.cpp" bodystart="7" bodyend="16"/>
+        <references refid="classxpe_1_1res_1_1c_xml_1ad40ae73f421e5655d44fe871cdfe808f">FromXml</references>
+        <references refid="classxpe_1_1res_1_1c_xml_1a8a1dda763ec866fcb4b8f6b0c02e91a3" compoundref="xml_8hpp" startline="217">m_Doc</references>
+        <references refid="classxpe_1_1res_1_1c_xml_1a92a96665a2976d88f96c8f4a9744939a" compoundref="xml_8hpp" startline="208">XmlChildren</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1res_1_1c_xml_1a0165873965f1f93bec83a91f72b7741a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::res::cXml::SaveFile</definition>
+        <argsstring>(const char *filepath)</argsstring>
+        <name>SaveFile</name>
+        <qualifiedname>xpe::res::cXml::SaveFile</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="214" column="18" bodyfile="engine/src/res/xml.cpp" bodystart="18" bodyend="22"/>
+        <references refid="classxpe_1_1res_1_1c_xml_1a8a1dda763ec866fcb4b8f6b0c02e91a3" compoundref="xml_8hpp" startline="217">m_Doc</references>
+        <references refid="classxpe_1_1res_1_1c_xml_1aecfd539665c2cc21965c15aa4f53b9e2">ToXml</references>
+        <references refid="classxpe_1_1res_1_1c_xml_1a92a96665a2976d88f96c8f4a9744939a" compoundref="xml_8hpp" startline="208">XmlChildren</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxpe_1_1res_1_1c_xml_1a728e48c63b3fed3d672731494f54ece4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::res::cXml::FromXmlChildren</definition>
+        <argsstring>(xml root, xpe::core::vector&lt; cXml * &gt; &amp;children)</argsstring>
+        <name>FromXmlChildren</name>
+        <qualifiedname>xpe::res::cXml::FromXmlChildren</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref></type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">xpe::core::vector</ref>&lt; <ref refid="classxpe_1_1res_1_1c_xml" kindref="compound">cXml</ref> * &gt; &amp;</type>
+          <declname>children</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="220" column="18" bodyfile="engine/src/res/xml.cpp" bodystart="24" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1res_1_1c_xml_1a0ee9582efa29e38cf3de49528557da68" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::res::cXml::ToXmlChildren</definition>
+        <argsstring>(xml root, xpe::core::vector&lt; cXml * &gt; &amp;children)</argsstring>
+        <name>ToXmlChildren</name>
+        <qualifiedname>xpe::res::cXml::ToXmlChildren</qualifiedname>
+        <param>
+          <type><ref refid="xml_8hpp_1aa0a06f210737bd93431285d99e56096a" kindref="member">xml</ref></type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">xpe::core::vector</ref>&lt; <ref refid="classxpe_1_1res_1_1c_xml" kindref="compound">cXml</ref> * &gt; &amp;</type>
+          <declname>children</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/res/xml.hpp" line="221" column="18" bodyfile="engine/src/res/xml.cpp" bodystart="31" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>xpe::ecs::CButton</label>
+        <link refid="structxpe_1_1ecs_1_1_c_button"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::ecs::CContainer</label>
+        <link refid="structxpe_1_1ecs_1_1_c_container"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>xpe::ecs::CField</label>
+        <link refid="structxpe_1_1ecs_1_1_c_field"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>xpe::ecs::CLabel</label>
+        <link refid="structxpe_1_1ecs_1_1_c_label"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::ecs::cEntity</label>
+        <link refid="classxpe_1_1ecs_1_1c_entity"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::ecs::cScene</label>
+        <link refid="classxpe_1_1ecs_1_1c_scene"/>
+        <childnode refid="1" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::render::sWidget</label>
+        <link refid="structxpe_1_1render_1_1s_widget"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::res::cXml</label>
+        <link refid="classxpe_1_1res_1_1c_xml"/>
+      </node>
+    </inheritancegraph>
+    <location file="engine/src/res/xml.hpp" line="204" column="9" bodyfile="engine/src/res/xml.hpp" bodystart="205" bodyend="222"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1res_1_1c_xml_1ad40ae73f421e5655d44fe871cdfe808f" prot="public" virt="pure-virtual"><scope>xpe::res::cXml</scope><name>FromXml</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a728e48c63b3fed3d672731494f54ece4" prot="private" virt="non-virtual"><scope>xpe::res::cXml</scope><name>FromXmlChildren</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a47e4be13468d499a782a8f9bf25c3602" prot="public" virt="non-virtual"><scope>xpe::res::cXml</scope><name>LoadFile</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a8a1dda763ec866fcb4b8f6b0c02e91a3" prot="protected" virt="non-virtual"><scope>xpe::res::cXml</scope><name>m_Doc</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a0165873965f1f93bec83a91f72b7741a" prot="public" virt="non-virtual"><scope>xpe::res::cXml</scope><name>SaveFile</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1aecfd539665c2cc21965c15aa4f53b9e2" prot="public" virt="pure-virtual"><scope>xpe::res::cXml</scope><name>ToXml</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a0ee9582efa29e38cf3de49528557da68" prot="private" virt="non-virtual"><scope>xpe::res::cXml</scope><name>ToXmlChildren</name></member>
+      <member refid="classxpe_1_1res_1_1c_xml_1a92a96665a2976d88f96c8f4a9744939a" prot="public" virt="non-virtual"><scope>xpe::res::cXml</scope><name>XmlChildren</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

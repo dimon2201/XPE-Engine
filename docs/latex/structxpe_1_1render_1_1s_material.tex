@@ -1,0 +1,180 @@
+\doxysection{xpe\+::render\+::s\+Material Struct Reference}
+\hypertarget{structxpe_1_1render_1_1s_material}{}\label{structxpe_1_1render_1_1s_material}\index{xpe::render::sMaterial@{xpe::render::sMaterial}}
+
+
+{\ttfamily \#include $<$material.\+hpp$>$}
+
+Inheritance diagram for xpe\+::render\+::s\+Material\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{structxpe_1_1render_1_1s_material}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a757b22aed38e6861f412eafcc2f28da9}{Index}} = 0
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_ab88689d44e7b88eff39fd0c83fff2280}{Albedo\+Map}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_ae6e50a7299329ae69d069a8dd391e29a}{Normal\+Map}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a5246278aec0eaa97daeec3c7af2a246e}{Parallax\+Map}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_aca8f684ea2e6dc26d6b9dd8fca2f32e6}{Metal\+Map}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a897f7b59df970acf28de682debdb052c}{Roughness\+Map}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_af538cb0f5d3342e9e1c5f261d031e1fa}{AOMap}}
+\item 
+\mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a7cd3b8226a2b8be9b9734ef6de6e1206}{Emission\+Map}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data}{xpe\+::render\+::s\+Material\+Data}}}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec4 \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a356d0d1b5bf01b688b0ebd4d445199a4}{Albedo}} = \{ 0.\+5, 0.\+5, 0.\+5, 1.\+0 \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a3f9cec2c7902c056f501af31ee6e4692}{Boolean}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_aaf8c8c778a572fec9540dbabd6f35df4}{Enable\+Albedo\+Map}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a3f9cec2c7902c056f501af31ee6e4692}{Boolean}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a3465dab281ef2fd290e934274903e123}{Enable\+Normal\+Map}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a3f9cec2c7902c056f501af31ee6e4692}{Boolean}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a545082e3756d7f4d8d15268b4ec44a4c}{Enable\+Parallax\+Map}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a425019f971aed63a2a18021002748c21}{Parallax\+Height\+Scale}} = 0.\+1
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a9d75e6621d5a7f5475c497aeeaca2aeb}{Parallax\+Min\+Layers}} = 8
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a2e9a01dc7f4b987c53b7ba275be19cf1}{Parallax\+Max\+Layers}} = 32
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_acd7393b29575d2e3625be481770e95c9}{Metallness}} = 0.\+5\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{f}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a3f9cec2c7902c056f501af31ee6e4692}{Boolean}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a2377f43c15e30ef9f7385a757360da04}{Enable\+Metal\+Map}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_ad563ce12bd4a5b8942d4a66277633188}{Roughness}} = 0.\+5\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{f}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a3f9cec2c7902c056f501af31ee6e4692}{Boolean}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a1e19eb989b0e2dfb426c32e9e0694630}{Enable\+Roughness\+Map}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a89de4731402970568fb906af617a7898}{AO}} = 0.\+5\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{f}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a3f9cec2c7902c056f501af31ee6e4692}{Boolean}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_a765cd8e61efc02c4b545e4c071e60459}{Enable\+AOMap}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\item 
+glm\+::vec3 \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_ab83b1ef034151bab989b3eefe3f21fef}{Emission}} = \{ 0, 0, 0 \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a3f9cec2c7902c056f501af31ee6e4692}{Boolean}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_data_acbe069a989f658e0d8c7e75df11cbfa1}{Enable\+Emission\+Map}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{false}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a0d94b1e860dc2325e2a44d5a74236c69}{k\+\_\+\+Albedo\+Format}} = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{e\+Texture\+Format\+::\+SRGBA8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_aa42ea15a2dd8e8db222f0ef5b41b382a}{K\+\_\+\+SLOT\+\_\+\+ALBEDO}} \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a988b64f18a21642da269713bcea946d3}{k\+\_\+\+Normal\+Format}} = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642}{e\+Texture\+Format\+::\+RGBA8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a1995ccbf83e8506089d9cf4b5516fc01}{K\+\_\+\+SLOT\+\_\+\+BUMPING}} \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a5c63aeff2d60d9097bf4bfe22a1ea0fe}{k\+\_\+\+Parallax\+Format}} = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a50d0d26800e7825664a38c16f334f5e6}{K\+\_\+\+SLOT\+\_\+\+PARALLAX}} \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a778de9af6fe0c5d9bad03e3507df848d}{k\+\_\+\+Metal\+Format}} = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_aa5c2bd81300aa2f35c1bbfefe8e22fc9}{K\+\_\+\+SLOT\+\_\+\+METALLIC}} \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a3d8f9c4231009e6e6c3456daed421770}{k\+\_\+\+Roughness\+Format}} = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a28be33e3843004d307f2943cd7238612}{K\+\_\+\+SLOT\+\_\+\+ROUGHNESS}} \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a06cf1a4b230a8eb966444e960f58c739}{k\+\_\+\+Ao\+Format}} = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a49221d34edf7442d66b433967b2dcc21}{K\+\_\+\+SLOT\+\_\+\+AO}} \}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a521990eae276dd1ccbca8488fe05b975}{k\+\_\+\+Emission\+Format}} = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{e\+Texture\+Format\+::\+SRGBA8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a6f2ebfba73bfdc52330d43b7bf94c6f7}{K\+\_\+\+SLOT\+\_\+\+EMISSION}} \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1render_1_1s_material_ab88689d44e7b88eff39fd0c83fff2280}\label{structxpe_1_1render_1_1s_material_ab88689d44e7b88eff39fd0c83fff2280} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!AlbedoMap@{AlbedoMap}}
+\index{AlbedoMap@{AlbedoMap}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{AlbedoMap}{AlbedoMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::s\+Material\+::\+Albedo\+Map}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_af538cb0f5d3342e9e1c5f261d031e1fa}\label{structxpe_1_1render_1_1s_material_af538cb0f5d3342e9e1c5f261d031e1fa} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!AOMap@{AOMap}}
+\index{AOMap@{AOMap}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{AOMap}{AOMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::s\+Material\+::\+AOMap}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a7cd3b8226a2b8be9b9734ef6de6e1206}\label{structxpe_1_1render_1_1s_material_a7cd3b8226a2b8be9b9734ef6de6e1206} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!EmissionMap@{EmissionMap}}
+\index{EmissionMap@{EmissionMap}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{EmissionMap}{EmissionMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::s\+Material\+::\+Emission\+Map}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a757b22aed38e6861f412eafcc2f28da9}\label{structxpe_1_1render_1_1s_material_a757b22aed38e6861f412eafcc2f28da9} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!Index@{Index}}
+\index{Index@{Index}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::render\+::s\+Material\+::\+Index = 0}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a0d94b1e860dc2325e2a44d5a74236c69}\label{structxpe_1_1render_1_1s_material_a0d94b1e860dc2325e2a44d5a74236c69} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!k\_AlbedoFormat@{k\_AlbedoFormat}}
+\index{k\_AlbedoFormat@{k\_AlbedoFormat}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{k\_AlbedoFormat}{k\_AlbedoFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} xpe\+::render\+::s\+Material\+::k\+\_\+\+Albedo\+Format = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{e\+Texture\+Format\+::\+SRGBA8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_aa42ea15a2dd8e8db222f0ef5b41b382a}{K\+\_\+\+SLOT\+\_\+\+ALBEDO}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a06cf1a4b230a8eb966444e960f58c739}\label{structxpe_1_1render_1_1s_material_a06cf1a4b230a8eb966444e960f58c739} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!k\_AoFormat@{k\_AoFormat}}
+\index{k\_AoFormat@{k\_AoFormat}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{k\_AoFormat}{k\_AoFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} xpe\+::render\+::s\+Material\+::k\+\_\+\+Ao\+Format = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a49221d34edf7442d66b433967b2dcc21}{K\+\_\+\+SLOT\+\_\+\+AO}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a521990eae276dd1ccbca8488fe05b975}\label{structxpe_1_1render_1_1s_material_a521990eae276dd1ccbca8488fe05b975} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!k\_EmissionFormat@{k\_EmissionFormat}}
+\index{k\_EmissionFormat@{k\_EmissionFormat}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{k\_EmissionFormat}{k\_EmissionFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} xpe\+::render\+::s\+Material\+::k\+\_\+\+Emission\+Format = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{e\+Texture\+Format\+::\+SRGBA8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a6f2ebfba73bfdc52330d43b7bf94c6f7}{K\+\_\+\+SLOT\+\_\+\+EMISSION}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a778de9af6fe0c5d9bad03e3507df848d}\label{structxpe_1_1render_1_1s_material_a778de9af6fe0c5d9bad03e3507df848d} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!k\_MetalFormat@{k\_MetalFormat}}
+\index{k\_MetalFormat@{k\_MetalFormat}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{k\_MetalFormat}{k\_MetalFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} xpe\+::render\+::s\+Material\+::k\+\_\+\+Metal\+Format = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_aa5c2bd81300aa2f35c1bbfefe8e22fc9}{K\+\_\+\+SLOT\+\_\+\+METALLIC}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a988b64f18a21642da269713bcea946d3}\label{structxpe_1_1render_1_1s_material_a988b64f18a21642da269713bcea946d3} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!k\_NormalFormat@{k\_NormalFormat}}
+\index{k\_NormalFormat@{k\_NormalFormat}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{k\_NormalFormat}{k\_NormalFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} xpe\+::render\+::s\+Material\+::k\+\_\+\+Normal\+Format = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642}{e\+Texture\+Format\+::\+RGBA8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a1995ccbf83e8506089d9cf4b5516fc01}{K\+\_\+\+SLOT\+\_\+\+BUMPING}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a5c63aeff2d60d9097bf4bfe22a1ea0fe}\label{structxpe_1_1render_1_1s_material_a5c63aeff2d60d9097bf4bfe22a1ea0fe} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!k\_ParallaxFormat@{k\_ParallaxFormat}}
+\index{k\_ParallaxFormat@{k\_ParallaxFormat}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{k\_ParallaxFormat}{k\_ParallaxFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} xpe\+::render\+::s\+Material\+::k\+\_\+\+Parallax\+Format = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a50d0d26800e7825664a38c16f334f5e6}{K\+\_\+\+SLOT\+\_\+\+PARALLAX}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a3d8f9c4231009e6e6c3456daed421770}\label{structxpe_1_1render_1_1s_material_a3d8f9c4231009e6e6c3456daed421770} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!k\_RoughnessFormat@{k\_RoughnessFormat}}
+\index{k\_RoughnessFormat@{k\_RoughnessFormat}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{k\_RoughnessFormat}{k\_RoughnessFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{s\+Material\+Format}} xpe\+::render\+::s\+Material\+::k\+\_\+\+Roughness\+Format = \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{e\+Texture\+Format\+::\+R8}}, 2048, 2048, \mbox{\hyperlink{macro__constants_8hpp_a28be33e3843004d307f2943cd7238612}{K\+\_\+\+SLOT\+\_\+\+ROUGHNESS}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_aca8f684ea2e6dc26d6b9dd8fca2f32e6}\label{structxpe_1_1render_1_1s_material_aca8f684ea2e6dc26d6b9dd8fca2f32e6} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!MetalMap@{MetalMap}}
+\index{MetalMap@{MetalMap}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{MetalMap}{MetalMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::s\+Material\+::\+Metal\+Map}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_ae6e50a7299329ae69d069a8dd391e29a}\label{structxpe_1_1render_1_1s_material_ae6e50a7299329ae69d069a8dd391e29a} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!NormalMap@{NormalMap}}
+\index{NormalMap@{NormalMap}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{NormalMap}{NormalMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::s\+Material\+::\+Normal\+Map}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a5246278aec0eaa97daeec3c7af2a246e}\label{structxpe_1_1render_1_1s_material_a5246278aec0eaa97daeec3c7af2a246e} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!ParallaxMap@{ParallaxMap}}
+\index{ParallaxMap@{ParallaxMap}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{ParallaxMap}{ParallaxMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::s\+Material\+::\+Parallax\+Map}
+
+\Hypertarget{structxpe_1_1render_1_1s_material_a897f7b59df970acf28de682debdb052c}\label{structxpe_1_1render_1_1s_material_a897f7b59df970acf28de682debdb052c} 
+\index{xpe::render::sMaterial@{xpe::render::sMaterial}!RoughnessMap@{RoughnessMap}}
+\index{RoughnessMap@{RoughnessMap}!xpe::render::sMaterial@{xpe::render::sMaterial}}
+\doxysubsubsection{\texorpdfstring{RoughnessMap}{RoughnessMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{s\+Texture\+Layer}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::s\+Material\+::\+Roughness\+Map}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/rendering/material/\mbox{\hyperlink{material_8hpp}{material.\+hpp}}\item 
+engine/src/rendering/material/\mbox{\hyperlink{material_8cpp}{material.\+cpp}}\end{DoxyCompactItemize}

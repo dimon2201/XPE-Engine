@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_time_manager" kind="class" language="C++" prot="public">
+    <compoundname>xpe::core::cTimeManager</compoundname>
+    <includes refid="time__manager_8hpp" local="no">time_manager.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_manager_1ad759d74e98ad0810c0235264be68b37a" prot="private" static="no" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> *</type>
+        <definition>cTime* xpe::core::cTimeManager::m_Output</definition>
+        <argsstring></argsstring>
+        <name>m_Output</name>
+        <qualifiedname>xpe::core::cTimeManager::m_Output</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="189" column="19" bodyfile="engine/src/core/time_manager.hpp" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_manager_1aa3e5b883c5f8510ec1a8620075a75468" prot="private" static="no" mutable="no">
+        <type>system_clock::time_point</type>
+        <definition>system_clock::time_point xpe::core::cTimeManager::m_Start</definition>
+        <argsstring></argsstring>
+        <name>m_Start</name>
+        <qualifiedname>xpe::core::cTimeManager::m_Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="190" column="38" bodyfile="engine/src/core/time_manager.hpp" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_time_manager_1a53ba77c627004b6661fb04d6d360df3e" prot="private" static="no" mutable="no">
+        <type>system_clock::time_point</type>
+        <definition>system_clock::time_point xpe::core::cTimeManager::m_End</definition>
+        <argsstring></argsstring>
+        <name>m_End</name>
+        <qualifiedname>xpe::core::cTimeManager::m_End</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="191" column="38" bodyfile="engine/src/core/time_manager.hpp" bodystart="191" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_manager_1a38c024f2bc1861f04d05455796cf2334" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cTimeManager::cTimeManager</definition>
+        <argsstring>(cTime *output)</argsstring>
+        <name>cTimeManager</name>
+        <qualifiedname>xpe::core::cTimeManager::cTimeManager</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> *</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="161" column="13" bodyfile="engine/src/core/time_manager.hpp" bodystart="161" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_manager_1a6694e4faf7bdb855018cc0dadb2410a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cTimeManager::~cTimeManager</definition>
+        <argsstring>()</argsstring>
+        <name>~cTimeManager</name>
+        <qualifiedname>xpe::core::cTimeManager::~cTimeManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="167" column="13" bodyfile="engine/src/core/time_manager.hpp" bodystart="167" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_manager_1a19e5e02f6beab4826bb47de4e67830e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cTimeManager::GetStartTime</definition>
+        <argsstring>()</argsstring>
+        <name>GetStartTime</name>
+        <qualifiedname>xpe::core::cTimeManager::GetStartTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="176" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="176" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_manager_1a0648898719ca245be890abce2cb8a4e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cTimeManager::GetEndTime</definition>
+        <argsstring>()</argsstring>
+        <name>GetEndTime</name>
+        <qualifiedname>xpe::core::cTimeManager::GetEndTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="180" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="180" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_manager_1a9405e60b05665b4b788769711f15753a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cTimeManager::GetDeltaTime</definition>
+        <argsstring>()</argsstring>
+        <name>GetDeltaTime</name>
+        <qualifiedname>xpe::core::cTimeManager::GetDeltaTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="184" column="26" bodyfile="engine/src/core/time_manager.hpp" bodystart="184" bodyend="186"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_manager_1ad4eee807afc073e9b6664251e5622f29" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cTimeManager::Now</definition>
+        <argsstring>()</argsstring>
+        <name>Now</name>
+        <qualifiedname>xpe::core::cTimeManager::Now</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="173" column="26" bodyfile="engine/src/core/time_manager.cpp" bodystart="5" bodyend="8"/>
+        <references refid="classxpe_1_1core_1_1c_time_manager_1aa45fb82e71fef143167e16ac124b1c03" compoundref="time__manager_8cpp" startline="10" endline="12">Cast</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_time_manager_1aa45fb82e71fef143167e16ac124b1c03" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref></type>
+        <definition>cTime xpe::core::cTimeManager::Cast</definition>
+        <argsstring>(const system_clock::time_point &amp;time)</argsstring>
+        <name>Cast</name>
+        <qualifiedname>xpe::core::cTimeManager::Cast</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> system_clock::time_point &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/time_manager.hpp" line="174" column="26" bodyfile="engine/src/core/time_manager.cpp" bodystart="10" bodyend="12"/>
+        <referencedby refid="classxpe_1_1core_1_1c_time_manager_1ad4eee807afc073e9b6664251e5622f29" compoundref="time__manager_8cpp" startline="5" endline="8">Now</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/time_manager.hpp" line="157" column="9" bodyfile="engine/src/core/time_manager.hpp" bodystart="158" bodyend="192"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1aa45fb82e71fef143167e16ac124b1c03" prot="public" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>Cast</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1a38c024f2bc1861f04d05455796cf2334" prot="public" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>cTimeManager</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1a9405e60b05665b4b788769711f15753a" prot="public" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>GetDeltaTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1a0648898719ca245be890abce2cb8a4e4" prot="public" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>GetEndTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1a19e5e02f6beab4826bb47de4e67830e4" prot="public" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>GetStartTime</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1a53ba77c627004b6661fb04d6d360df3e" prot="private" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>m_End</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1ad759d74e98ad0810c0235264be68b37a" prot="private" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>m_Output</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1aa3e5b883c5f8510ec1a8620075a75468" prot="private" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>m_Start</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1ad4eee807afc073e9b6664251e5622f29" prot="public" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>Now</name></member>
+      <member refid="classxpe_1_1core_1_1c_time_manager_1a6694e4faf7bdb855018cc0dadb2410a4" prot="public" virt="non-virtual"><scope>xpe::core::cTimeManager</scope><name>~cTimeManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

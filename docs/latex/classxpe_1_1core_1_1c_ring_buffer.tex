@@ -1,0 +1,66 @@
+\doxysection{xpe\+::core\+::c\+Ring\+Buffer\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classxpe_1_1core_1_1c_ring_buffer}{}\label{classxpe_1_1core_1_1c_ring_buffer}\index{xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}}
+
+
+{\ttfamily \#include $<$ring\+\_\+buffer.\+hpp$>$}
+
+Inheritance diagram for xpe\+::core\+::c\+Ring\+Buffer\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classxpe_1_1core_1_1c_ring_buffer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer_a7e2a7496f4d8a0f1f1a741ab765f7dad}{Reserve}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{capacity}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer_aeeb81d25975173d770612c5857de76eb}{Resize}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer_add2bf87765a5be55fd2547edacc153f0}{Push}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{item}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer_a642e4da2861f21242c6268b480a0eb88}{Pop}} (\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{item}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_ring_buffer_a642e4da2861f21242c6268b480a0eb88}\label{classxpe_1_1core_1_1c_ring_buffer_a642e4da2861f21242c6268b480a0eb88} 
+\index{xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}!Pop@{Pop}}
+\index{Pop@{Pop}!xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Pop()}{Pop()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer}{xpe\+::core\+::c\+Ring\+Buffer}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::\+Pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \&}]{item }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1core_1_1c_ring_buffer_add2bf87765a5be55fd2547edacc153f0}\label{classxpe_1_1core_1_1c_ring_buffer_add2bf87765a5be55fd2547edacc153f0} 
+\index{xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}!Push@{Push}}
+\index{Push@{Push}!xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Push()}{Push()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer}{xpe\+::core\+::c\+Ring\+Buffer}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::\+Push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} \&}]{item }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1core_1_1c_ring_buffer_a7e2a7496f4d8a0f1f1a741ab765f7dad}\label{classxpe_1_1core_1_1c_ring_buffer_a7e2a7496f4d8a0f1f1a741ab765f7dad} 
+\index{xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}!Reserve@{Reserve}}
+\index{Reserve@{Reserve}!xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Reserve()}{Reserve()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer}{xpe\+::core\+::c\+Ring\+Buffer}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::\+Reserve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{capacity }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1core_1_1c_ring_buffer_aeeb81d25975173d770612c5857de76eb}\label{classxpe_1_1core_1_1c_ring_buffer_aeeb81d25975173d770612c5857de76eb} 
+\index{xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}!Resize@{Resize}}
+\index{Resize@{Resize}!xpe::core::cRingBuffer$<$ T $>$@{xpe::core::cRingBuffer$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Resize()}{Resize()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typename}} \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$ \\
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_ring_buffer}{xpe\+::core\+::c\+Ring\+Buffer}}$<$ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}} $>$\+::\+Resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{size }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/stl/\mbox{\hyperlink{ring__buffer_8hpp}{ring\+\_\+buffer.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1anim_1_1c_anim_system" xml:lang="en-US">
+<title>xpe::anim::cAnimSystem Class Reference</title>
+<indexterm><primary>xpe::anim::cAnimSystem</primary></indexterm>
+<para>
+<computeroutput>#include &lt;anim_system.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::anim::cAnimSystem:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1anim_1_1c_anim_system.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1anim_1_1c_anim_system_1a0a35098c9165bcf4720ccfd500467e9d">Update</link> (<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">scene</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">dt</link>) <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">override</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1anim_1_1c_anim_system_1a0a35098c9165bcf4720ccfd500467e9d"/><section>
+    <title>Update()</title>
+<indexterm><primary>Update</primary><secondary>xpe::anim::cAnimSystem</secondary></indexterm>
+<indexterm><primary>xpe::anim::cAnimSystem</primary><secondary>Update</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::anim::cAnimSystem::Update (<link linkend="_classxpe_1_1ecs_1_1c_scene">cScene</link> * scene, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_classxpe_1_1core_1_1c_time">cTime</link> &amp; dt)<computeroutput>[final]</computeroutput>, <computeroutput>[override]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Implements <link linkend="_classxpe_1_1ecs_1_1c_system_1a2a77b444fc80b9f1bd43215a7ba894d6">xpe::ecs::cSystem</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/anim/<link linkend="_anim__system_8hpp">anim_system.hpp</link>engine/src/anim/<link linkend="_anim__system_8cpp">anim_system.cpp</link></section>
+</section>

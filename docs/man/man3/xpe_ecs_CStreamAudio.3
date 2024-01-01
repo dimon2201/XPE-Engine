@@ -1,0 +1,74 @@
+.TH "xpe::ecs::CStreamAudio" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::ecs::CStreamAudio
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <components\&.hpp>\fP
+.PP
+Inherits \fBxpe::res::cJson\fP\&.
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsAudioSource\fP \fBSource\fP"
+.br
+.ti -1c
+.RI "\fBeAudioState\fP \fBState\fP = eAudioState::INITIAL"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBNumBuffers\fP = 4"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBBufferSamples\fP = 8192"
+.br
+.ti -1c
+.RI "\fBs64\fP \fBCurrentFrame\fP = 0"
+.br
+.ti -1c
+.RI "\fBvector\fP< \fBu32\fP > \fBBufferID\fP"
+.br
+.ti -1c
+.RI "\fBvector\fP< \fBs16\fP > \fBData\fP"
+.br
+.ti -1c
+.RI "\fBsAudioFile\fP * \fBFile\fP = \fBnullptr\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBxpe::res::cJson\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBToJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBFromJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBvector\fP<\fBu32\fP> xpe::ecs::CStreamAudio::BufferID"
+
+.SS "\fBu32\fP xpe::ecs::CStreamAudio::BufferSamples = 8192"
+
+.SS "\fBs64\fP xpe::ecs::CStreamAudio::CurrentFrame = 0"
+
+.SS "\fBvector\fP<\fBs16\fP> xpe::ecs::CStreamAudio::Data"
+
+.SS "\fBsAudioFile\fP* xpe::ecs::CStreamAudio::File = \fBnullptr\fP"
+
+.SS "\fBu32\fP xpe::ecs::CStreamAudio::NumBuffers = 4"
+
+.SS "\fBsAudioSource\fP xpe::ecs::CStreamAudio::Source"
+
+.SS "\fBeAudioState\fP xpe::ecs::CStreamAudio::State = eAudioState::INITIAL"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

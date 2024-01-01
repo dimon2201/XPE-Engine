@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_vertex_format" xml:lang="en-US">
+<title>xpe::render::sVertexFormat Struct Reference</title>
+<indexterm><primary>xpe::render::sVertexFormat</primary></indexterm>
+<para>
+<computeroutput>#include &lt;core.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1render_1_1s_vertex_format_1_1s_attribute">sAttribute</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_vertex_format_1ad5ee011700f7287bd7b6ff25b5462c6c">sVertexFormat</link> ()=<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">default</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_vertex_format_1a365ec2d3f52b48c6ab3eb474e3401e03">sVertexFormat</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> std::vector&lt; <link linkend="_structxpe_1_1render_1_1s_vertex_format_1_1s_attribute">sAttribute</link> &gt; &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">attributes</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>std::vector&lt; <link linkend="_structxpe_1_1render_1_1s_vertex_format_1_1s_attribute">sAttribute</link> &gt; <link linkend="_structxpe_1_1render_1_1s_vertex_format_1a3c026eb4dcd45fb6098139226607ca8e">Attributes</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_structxpe_1_1render_1_1s_vertex_format_1af42037dec502a5182f3a6a2dd9358a5d">Stride</link> = 0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_vertex_format_1ad5ee011700f7287bd7b6ff25b5462c6c"/><section>
+    <title>sVertexFormat()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>sVertexFormat</primary><secondary>xpe::render::sVertexFormat</secondary></indexterm>
+<indexterm><primary>xpe::render::sVertexFormat</primary><secondary>sVertexFormat</secondary></indexterm>
+<para><computeroutput>xpe::render::sVertexFormat::sVertexFormat ( )<computeroutput>[default]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_vertex_format_1a365ec2d3f52b48c6ab3eb474e3401e03"/><section>
+    <title>sVertexFormat()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>sVertexFormat</primary><secondary>xpe::render::sVertexFormat</secondary></indexterm>
+<indexterm><primary>xpe::render::sVertexFormat</primary><secondary>sVertexFormat</secondary></indexterm>
+<para><computeroutput>xpe::render::sVertexFormat::sVertexFormat (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> std::vector&lt; <link linkend="_structxpe_1_1render_1_1s_vertex_format_1_1s_attribute">sAttribute</link> &gt; &amp; attributes)</computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_vertex_format_1a3c026eb4dcd45fb6098139226607ca8e"/><section>
+    <title>Attributes</title>
+<indexterm><primary>Attributes</primary><secondary>xpe::render::sVertexFormat</secondary></indexterm>
+<indexterm><primary>xpe::render::sVertexFormat</primary><secondary>Attributes</secondary></indexterm>
+<para><computeroutput>std::vector&lt;<link linkend="_structxpe_1_1render_1_1s_vertex_format_1_1s_attribute">sAttribute</link>&gt; xpe::render::sVertexFormat::Attributes</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_vertex_format_1af42037dec502a5182f3a6a2dd9358a5d"/><section>
+    <title>Stride</title>
+<indexterm><primary>Stride</primary><secondary>xpe::render::sVertexFormat</secondary></indexterm>
+<indexterm><primary>xpe::render::sVertexFormat</primary><secondary>Stride</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::render::sVertexFormat::Stride = 0</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/rendering/core/<link linkend="_rendering_2core_2core_8hpp">core.hpp</link></section>
+</section>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacexpe_1_1anim" kind="namespace" language="C++">
+    <compoundname>xpe::anim</compoundname>
+    <innerclass refid="classxpe_1_1anim_1_1c_anim_system" prot="public">xpe::anim::cAnimSystem</innerclass>
+    <innerclass refid="classxpe_1_1anim_1_1c_skeleton_manager" prot="public">xpe::anim::cSkeletonManager</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_animation" prot="public">xpe::anim::sAnimation</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_animation_node" prot="public">xpe::anim::sAnimationNode</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_bone" prot="public">xpe::anim::sBone</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_key_position" prot="public">xpe::anim::sKeyPosition</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_key_rotate" prot="public">xpe::anim::sKeyRotate</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_key_scale" prot="public">xpe::anim::sKeyScale</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_skeleton" prot="public">xpe::anim::sSkeleton</innerclass>
+    <innerclass refid="structxpe_1_1anim_1_1s_skeleton_info" prot="public">xpe::anim::sSkeletonInfo</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/anim/anim.hpp" line="5" column="5"/>
+  </compounddef>
+</doxygen>

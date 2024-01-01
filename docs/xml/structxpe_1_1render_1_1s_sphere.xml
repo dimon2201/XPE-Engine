@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_sphere" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sSphere</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_geometry" prot="public" virt="non-virtual">xpe::render::sGeometry</basecompoundref>
+    <includes refid="geometries_8hpp" local="no">geometries.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_sphere_1a3fc30d210bed867d8b64c75be12cf654" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::render::sSphere::Center</definition>
+        <argsstring></argsstring>
+        <name>Center</name>
+        <qualifiedname>xpe::render::sSphere::Center</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometries.hpp" line="49" column="23" bodyfile="engine/src/rendering/geometry/geometries.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_sphere_1a7e1128cb020b06871a86fa8f9e2e9fa9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sSphere::Radius</definition>
+        <argsstring></argsstring>
+        <name>Radius</name>
+        <qualifiedname>xpe::render::sSphere::Radius</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometries.hpp" line="50" column="19" bodyfile="engine/src/rendering/geometry/geometries.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_sphere_1a6161b35b3ad4c62dde67898f4fe668a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sSphere::sSphere</definition>
+        <argsstring>(s32 xSegments=64, s32 ySegments=64)</argsstring>
+        <name>sSphere</name>
+        <qualifiedname>xpe::render::sSphere::sSphere</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>xSegments</declname>
+          <defval>64</defval>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+          <declname>ySegments</declname>
+          <defval>64</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/geometry/geometries.hpp" line="52" column="13" bodyfile="engine/src/rendering/geometry/geometries.cpp" bodystart="158" bodyend="223"/>
+        <references refid="structxpe_1_1render_1_1s_geometry_1ac9add3011709810d7c76883a6c604a69" compoundref="geometry_8hpp" startline="72">xpe::render::sGeometry::Indices</references>
+        <references refid="macro__constants_8hpp_1a7f5d931d5fbaeacdfc2efacf4175b298" compoundref="macro__constants_8hpp" startline="7">K_PI</references>
+        <references refid="structxpe_1_1render_1_1s_geometry_1a379b899d1d5cf643d32c40aff02461bc" compoundref="geometry_8hpp" startline="70">xpe::render::sGeometry::PrimitiveTopology</references>
+        <references refid="namespacexpe_1_1render_1a1ed914ac1656a886e026259749d31100a708de017e3b83ccba21dfc9f6367d46f">xpe::render::TRIANGLE_STRIP</references>
+        <references refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8ae1a61df881ca9edeb5c52654701c2081" compoundref="codes__keyboard_8hpp" startline="59">xpe::core::V</references>
+        <references refid="structxpe_1_1render_1_1s_geometry_1a8d830374768f5294dd56e98eb7a4dcb2" compoundref="geometry_8hpp" startline="71">xpe::render::sGeometry::Vertices</references>
+        <references refid="namespacexpe_1_1core_1a49526f1e6a80726936b0b54c8ac10411" compoundref="events_8hpp" startline="12">xpe::core::x</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::render::sGeometry</label>
+        <link refid="structxpe_1_1render_1_1s_geometry"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sSphere</label>
+        <link refid="structxpe_1_1render_1_1s_sphere"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::render::sGeometry</label>
+        <link refid="structxpe_1_1render_1_1s_geometry"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sSphere</label>
+        <link refid="structxpe_1_1render_1_1s_sphere"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/geometry/geometries.hpp" line="48" column="9" bodyfile="engine/src/rendering/geometry/geometries.hpp" bodystart="48" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_sphere_1a3fc30d210bed867d8b64c75be12cf654" prot="public" virt="non-virtual"><scope>xpe::render::sSphere</scope><name>Center</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_1ac9add3011709810d7c76883a6c604a69" prot="public" virt="non-virtual"><scope>xpe::render::sSphere</scope><name>Indices</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_1a379b899d1d5cf643d32c40aff02461bc" prot="public" virt="non-virtual"><scope>xpe::render::sSphere</scope><name>PrimitiveTopology</name></member>
+      <member refid="structxpe_1_1render_1_1s_sphere_1a7e1128cb020b06871a86fa8f9e2e9fa9" prot="public" virt="non-virtual"><scope>xpe::render::sSphere</scope><name>Radius</name></member>
+      <member refid="structxpe_1_1render_1_1s_sphere_1a6161b35b3ad4c62dde67898f4fe668a4" prot="public" virt="non-virtual"><scope>xpe::render::sSphere</scope><name>sSphere</name></member>
+      <member refid="structxpe_1_1render_1_1s_geometry_1a8d830374768f5294dd56e98eb7a4dcb2" prot="public" virt="non-virtual"><scope>xpe::render::sSphere</scope><name>Vertices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

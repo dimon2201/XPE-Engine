@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_1196fceec8cdf035bd6eb95fe8dddeb4" kind="dir">
+    <compoundname>engine/src/physics</compoundname>
+    <innerfile refid="physics_2allocators_8cpp">allocators.cpp</innerfile>
+    <innerfile refid="physics_2allocators_8hpp">allocators.hpp</innerfile>
+    <innerfile refid="callbacks_8cpp">callbacks.cpp</innerfile>
+    <innerfile refid="callbacks_8hpp">callbacks.hpp</innerfile>
+    <innerfile refid="physics__manager_8cpp">physics_manager.cpp</innerfile>
+    <innerfile refid="physics__manager_8hpp">physics_manager.hpp</innerfile>
+    <innerfile refid="physics__system_8cpp">physics_system.cpp</innerfile>
+    <innerfile refid="physics__system_8hpp">physics_system.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/physics/"/>
+  </compounddef>
+</doxygen>

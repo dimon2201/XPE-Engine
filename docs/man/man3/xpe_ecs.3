@@ -1,0 +1,145 @@
+.TH "xpe::ecs" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::ecs
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBCAnimation\fP"
+.br
+.ti -1c
+.RI "struct \fBCAudio\fP"
+.br
+.ti -1c
+.RI "struct \fBCButton\fP"
+.br
+.ti -1c
+.RI "struct \fBCCamera\fP"
+.br
+.ti -1c
+.RI "struct \fBCContainer\fP"
+.br
+.ti -1c
+.RI "struct \fBCDirectionalLight\fP"
+.br
+.ti -1c
+.RI "class \fBcEntity\fP"
+.br
+.ti -1c
+.RI "struct \fBCField\fP"
+.br
+.ti -1c
+.RI "struct \fBCGeometry\fP"
+.br
+.ti -1c
+.RI "struct \fBCGeometryInfo\fP"
+.br
+.ti -1c
+.RI "struct \fBCHasShadow\fP"
+.br
+.ti -1c
+.RI "struct \fBCLabel\fP"
+.br
+.ti -1c
+.RI "struct \fBCMaterial\fP"
+.br
+.ti -1c
+.RI "struct \fBCOpaque\fP"
+.br
+.ti -1c
+.RI "struct \fBCOrthoCamera\fP"
+.br
+.ti -1c
+.RI "struct \fBCPerspectiveCamera\fP"
+.br
+.ti -1c
+.RI "struct \fBCPhysicsActor\fP"
+.br
+.ti -1c
+.RI "struct \fBCPointLight\fP"
+.br
+.ti -1c
+.RI "class \fBcScene\fP"
+.br
+.ti -1c
+.RI "struct \fBCSkeleton\fP"
+.br
+.ti -1c
+.RI "struct \fBCSkeletonInfo\fP"
+.br
+.ti -1c
+.RI "struct \fBCSpace2D\fP"
+.br
+.ti -1c
+.RI "struct \fBCSpace3D\fP"
+.br
+.ti -1c
+.RI "struct \fBCSpotLight\fP"
+.br
+.ti -1c
+.RI "struct \fBCStreamAudio\fP"
+.br
+.ti -1c
+.RI "class \fBcSystem\fP"
+.br
+.ti -1c
+.RI "struct \fBCTag\fP"
+.br
+.ti -1c
+.RI "struct \fBCTransform\fP"
+.br
+.ti -1c
+.RI "struct \fBCTransparent\fP"
+.br
+.ti -1c
+.RI "struct \fBCVisible\fP"
+.br
+.ti -1c
+.RI "struct \fBCVoice\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP entt::entity \fBEntityID\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBusize\fP \fBComponentID\fP"
+.br
+.ti -1c
+.RI "\fBusing\fP \fBcRegistry\fP = entt::basic_registry<\fBEntityID\fP, \fBcMainAllocator\fP<\fBEntityID\fP>>"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBusing\fP \fBcStorage\fP = entt::basic_storage<\fBT\fP, \fBEntityID\fP, \fBcMainAllocator\fP<\fBEntityID\fP>>"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBconstexpr\fP \fBEntityID\fP \fBEntityNull\fP = entt::null"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBusize\fP \fBxpe::ecs::ComponentID\fP"
+
+.SS "\fBusing\fP \fBxpe::ecs::cRegistry\fP = entt::basic_registry<\fBEntityID\fP, \fBcMainAllocator\fP<\fBEntityID\fP>>"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBusing\fP \fBxpe::ecs::cStorage\fP = entt::basic_storage<\fBT\fP, \fBEntityID\fP, \fBcMainAllocator\fP<\fBEntityID\fP>>"
+
+.SS "\fBtypedef\fP entt::entity \fBxpe::ecs::EntityID\fP"
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBconstexpr\fP \fBEntityID\fP xpe::ecs::EntityNull = entt::null\fR [constexpr]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

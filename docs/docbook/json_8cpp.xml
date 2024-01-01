@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_json_8cpp" xml:lang="en-US">
+<title>engine/src/res/json.cpp File Reference</title>
+<indexterm><primary>engine/src/res/json.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;res/json.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1res">xpe::res</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespaceglm">glm</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_namespacexpe_1_1res_1a457564438c0393afed9708a5e9da8433">xpe::res::ReadJsonFile</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">char</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">filepath</link>, <link linkend="_classxpe_1_1res_1_1c_json">cJson</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">object</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_namespacexpe_1_1res_1ab18afec3554029bc51ab158fc31b846c">xpe::res::WriteJsonFile</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">char</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">filepath</link>, <link linkend="_classxpe_1_1res_1_1c_json">cJson</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">object</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_namespaceglm_1a6ca3f0bb1f4567a945315161608f3fb8">glm::to_json</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;j, const glm::mat2 &amp;m)</para>
+</listitem>
+            <listitem><para>void <link linkend="_namespaceglm_1a5cdb13e0404806cd221c3870fc7b9760">glm::from_json</link> (const <link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;j, glm::mat2 &amp;m)</para>
+</listitem>
+            <listitem><para>void <link linkend="_namespaceglm_1aac16aab5372625b0e1e8256ba3d6c8a5">glm::to_json</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;j, const glm::mat3 &amp;m)</para>
+</listitem>
+            <listitem><para>void <link linkend="_namespaceglm_1a05f58758cca3383a1c393639cde56cad">glm::from_json</link> (const <link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;j, glm::mat3 &amp;m)</para>
+</listitem>
+            <listitem><para>void <link linkend="_namespaceglm_1a5e6943721882e8ab806468897263d8ad">glm::to_json</link> (<link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;j, const glm::mat4 &amp;m)</para>
+</listitem>
+            <listitem><para>void <link linkend="_namespaceglm_1a68ed9b5561fba2143e62fb81a499dfe0">glm::from_json</link> (const <link linkend="_json_8hpp_1ab701e3ac61a85b337ec5c1abaad6742d">json</link> &amp;j, glm::mat4 &amp;m)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

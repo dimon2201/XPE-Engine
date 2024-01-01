@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1anim_1_1s_key_position" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::anim::sKeyPosition</compoundname>
+    <includes refid="anim_8hpp" local="no">anim.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_key_position_1a77a97b0d5a57fb61ff420f58b4051aed" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::anim::sKeyPosition::Timestamp</definition>
+        <argsstring></argsstring>
+        <name>Timestamp</name>
+        <qualifiedname>xpe::anim::sKeyPosition::Timestamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="11" column="19" bodyfile="engine/src/anim/anim.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_key_position_1afa9dc828e37efeb33f2f3e27ee36a640" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::anim::sKeyPosition::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>xpe::anim::sKeyPosition::Position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="12" column="23" bodyfile="engine/src/anim/anim.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1anim_1_1s_key_position_1a45af11b2e06e61d4de0e656ef94a2f08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::anim::sKeyPosition::sKeyPosition</definition>
+        <argsstring>()=default</argsstring>
+        <name>sKeyPosition</name>
+        <qualifiedname>xpe::anim::sKeyPosition::sKeyPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="14" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1anim_1_1s_key_position_1a10ad279836842537b005ff2bc3bda7bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::anim::sKeyPosition::sKeyPosition</definition>
+        <argsstring>(float timestamp, const glm::vec3 &amp;position)</argsstring>
+        <name>sKeyPosition</name>
+        <qualifiedname>xpe::anim::sKeyPosition::sKeyPosition</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>timestamp</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec3 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="15" column="13" bodyfile="engine/src/anim/anim.hpp" bodystart="15" bodyend="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/anim/anim.hpp" line="9" column="9" bodyfile="engine/src/anim/anim.hpp" bodystart="10" bodyend="16"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1anim_1_1s_key_position_1afa9dc828e37efeb33f2f3e27ee36a640" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyPosition</scope><name>Position</name></member>
+      <member refid="structxpe_1_1anim_1_1s_key_position_1a45af11b2e06e61d4de0e656ef94a2f08" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyPosition</scope><name>sKeyPosition</name></member>
+      <member refid="structxpe_1_1anim_1_1s_key_position_1a10ad279836842537b005ff2bc3bda7bb" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyPosition</scope><name>sKeyPosition</name></member>
+      <member refid="structxpe_1_1anim_1_1s_key_position_1a77a97b0d5a57fb61ff420f58b4051aed" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyPosition</scope><name>Timestamp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

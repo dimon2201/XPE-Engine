@@ -1,0 +1,51 @@
+.TH "xpe::core::cMemoryManager" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cMemoryManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <memory_manager\&.hpp>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBLogPools\fP ()"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBcMemoryPoolStack\fP * \fBMainPools\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBcMemoryPoolStack\fP * \fBHotPools\fP = \fBnullptr\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::core::cMemoryManager::Free ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cMemoryManager::Init ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cMemoryManager::LogPools ()\fR [static]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBcMemoryPoolStack\fP * xpe::core::cMemoryManager::HotPools = \fBnullptr\fP\fR [static]\fP"
+
+.SS "\fBcMemoryPoolStack\fP * xpe::core::cMemoryManager::MainPools = \fBnullptr\fP\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

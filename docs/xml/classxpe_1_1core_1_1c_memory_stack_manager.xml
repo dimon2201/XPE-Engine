@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_memory_stack_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::cMemoryStackManager</compoundname>
+    <includes refid="core_2allocators_8hpp" local="no">allocators.hpp</includes>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryStackManager::TotalAllocCount</definition>
+        <argsstring></argsstring>
+        <name>TotalAllocCount</name>
+        <qualifiedname>xpe::core::cMemoryStackManager::TotalAllocCount</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="110" column="26" bodyfile="engine/src/core/allocators.hpp" bodystart="110" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_stack_manager_1a0435e9203e4fdc326ef2f93327a2d46a" compoundref="core_2allocators_8cpp" startline="36" endline="47">Log</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_allocator_1ae8e279f0a2907c31e1befb0c690c2e90" compoundref="core_2allocators_8cpp" startline="49" endline="53">xpe::core::sStackAllocator::sStackAllocator</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a63ca56f4ed115eee4ad13d2ff4b04ff7" compoundref="core_2allocators_8hpp" startline="133" endline="137">xpe::core::sStackTypedAllocator&lt; T &gt;::sStackTypedAllocator</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_allocator_1a21bfc66e7907d1fe8fff15e9f8b0002c" compoundref="core_2allocators_8cpp" startline="55" endline="59">xpe::core::sStackAllocator::~sStackAllocator</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a0bf3824fb6bb58a7b1f0c3b57e20a43b" compoundref="core_2allocators_8hpp" startline="140" endline="144">xpe::core::sStackTypedAllocator&lt; T &gt;::~sStackTypedAllocator</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::core::cMemoryStackManager::MemoryOccupiedBytes</definition>
+        <argsstring></argsstring>
+        <name>MemoryOccupiedBytes</name>
+        <qualifiedname>xpe::core::cMemoryStackManager::MemoryOccupiedBytes</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="111" column="26" bodyfile="engine/src/core/allocators.hpp" bodystart="111" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_memory_stack_manager_1a0435e9203e4fdc326ef2f93327a2d46a" compoundref="core_2allocators_8cpp" startline="36" endline="47">Log</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_allocator_1ae8e279f0a2907c31e1befb0c690c2e90" compoundref="core_2allocators_8cpp" startline="49" endline="53">xpe::core::sStackAllocator::sStackAllocator</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a63ca56f4ed115eee4ad13d2ff4b04ff7" compoundref="core_2allocators_8hpp" startline="133" endline="137">xpe::core::sStackTypedAllocator&lt; T &gt;::sStackTypedAllocator</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_allocator_1a21bfc66e7907d1fe8fff15e9f8b0002c" compoundref="core_2allocators_8cpp" startline="55" endline="59">xpe::core::sStackAllocator::~sStackAllocator</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_stack_typed_allocator_1a0bf3824fb6bb58a7b1f0c3b57e20a43b" compoundref="core_2allocators_8hpp" startline="140" endline="144">xpe::core::sStackTypedAllocator&lt; T &gt;::~sStackTypedAllocator</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_memory_stack_manager_1a0435e9203e4fdc326ef2f93327a2d46a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cMemoryStackManager::Log</definition>
+        <argsstring>()</argsstring>
+        <name>Log</name>
+        <qualifiedname>xpe::core::cMemoryStackManager::Log</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/allocators.hpp" line="112" column="25" bodyfile="engine/src/core/allocators.cpp" bodystart="36" bodyend="47"/>
+        <references refid="macro__constants_8hpp_1a1f8a407cbad0acdc37be099e2cc86baa" compoundref="macro__constants_8hpp" startline="11">K_MEMORY_KB</references>
+        <references refid="log__manager_8hpp_1a9a24dfbeabc0f2323f3e94fc982e8ffd" compoundref="log__manager_8hpp" startline="37">LogMemory</references>
+        <references refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" compoundref="core_2allocators_8hpp" startline="111">MemoryOccupiedBytes</references>
+        <references refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" compoundref="core_2allocators_8hpp" startline="110">TotalAllocCount</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/allocators.hpp" line="107" column="9" bodyfile="engine/src/core/allocators.hpp" bodystart="108" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_memory_stack_manager_1a0435e9203e4fdc326ef2f93327a2d46a" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryStackManager</scope><name>Log</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryStackManager</scope><name>MemoryOccupiedBytes</name></member>
+      <member refid="classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c" prot="public" virt="non-virtual"><scope>xpe::core::cMemoryStackManager</scope><name>TotalAllocCount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

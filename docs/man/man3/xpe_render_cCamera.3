@@ -1,0 +1,198 @@
+.TH "xpe::render::cCamera" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::cCamera
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <camera\&.hpp>\fP
+.PP
+Inherits \fBxpe::res::cJson\fP\&.
+.PP
+Inherited by \fBxpe::render::cOrthoCamera\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBJSON_CLASS\fP (\fBcCamera\fP, \fBKeyMoveForward\fP, \fBKeyMoveLeft\fP, \fBKeyMoveBackward\fP, \fBKeyMoveRight\fP, \fBMoveSpeed\fP, \fBZoomAcceleration\fP, \fBPanAcceleration\fP, \fBHorizontalSensitivity\fP, \fBVerticalSensitivity\fP, \fBPitch\fP, \fBYaw\fP, \fBRoll\fP, \fBLookMode\fP, \fBEnableLook\fP, \fBm_ViewWidth\fP, \fBm_ViewHeight\fP, \fBm_Position\fP) \fBenum\fP \fBclass\fP \fBeLookMode\fP"
+.br
+.ti -1c
+.RI "glm::vec2 \fBGetPanSpeed\fP ()"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBGetZoomSpeed\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::res::cJson\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBToJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBFromJson\fP (\fBjson\fP &\fBroot\fP)=0"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveForward\fP = eKey::W"
+.br
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveLeft\fP = eKey::A"
+.br
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveBackward\fP = eKey::S"
+.br
+.ti -1c
+.RI "\fBeKey\fP \fBKeyMoveRight\fP = eKey::D"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBMoveSpeed\fP = 0\&.1\fBf\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBZoomAcceleration\fP = 10\&.0f"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBPanAcceleration\fP = 10\&.0f"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBHorizontalSensitivity\fP = 0\&.01\fBf\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBVerticalSensitivity\fP = 0\&.01\fBf\fP"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBPitch\fP = 0"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBYaw\fP = 0"
+.br
+.ti -1c
+.RI "\fBfloat\fP \fBRoll\fP = 0"
+.br
+.ti -1c
+.RI "\fBeLookMode\fP \fBLookMode\fP = eLookMode::GAME"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnableLook\fP = \fBtrue\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "glm::vec3 \fBGetUpDirection\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBGetRightDirection\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBGetForwardDirection\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateFrontPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateBackPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateRightPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateLeftPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateUpPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::vec3 \fBCalculateDownPosition\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "glm::quat \fBGetOrientation\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBint\fP \fBm_ViewWidth\fP = 0"
+.br
+.ti -1c
+.RI "\fBint\fP \fBm_ViewHeight\fP = 0"
+.br
+.ti -1c
+.RI "glm::vec3 \fBm_Position\fP = { 0, 0, 0 }"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "glm::vec3 xpe::render::cCamera::CalculateBackPosition () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec3 xpe::render::cCamera::CalculateDownPosition () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec3 xpe::render::cCamera::CalculateFrontPosition () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec3 xpe::render::cCamera::CalculateLeftPosition () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec3 xpe::render::cCamera::CalculateRightPosition () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec3 xpe::render::cCamera::CalculateUpPosition () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec3 xpe::render::cCamera::GetForwardDirection () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::quat xpe::render::cCamera::GetOrientation () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec2 xpe::render::cCamera::GetPanSpeed ()"
+
+.SS "glm::vec3 xpe::render::cCamera::GetRightDirection () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "glm::vec3 xpe::render::cCamera::GetUpDirection () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBfloat\fP xpe::render::cCamera::GetZoomSpeed ()"
+
+.SS "xpe::render::cCamera::JSON_CLASS (\fBcCamera\fP, \fBKeyMoveForward\fP, \fBKeyMoveLeft\fP, \fBKeyMoveBackward\fP, \fBKeyMoveRight\fP, \fBMoveSpeed\fP, \fBZoomAcceleration\fP, \fBPanAcceleration\fP, \fBHorizontalSensitivity\fP, \fBVerticalSensitivity\fP, \fBPitch\fP, \fBYaw\fP, \fBRoll\fP, \fBLookMode\fP, \fBEnableLook\fP, \fBm_ViewWidth\fP, \fBm_ViewHeight\fP, \fBm_Position\fP)\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBbool\fP xpe::render::cCamera::EnableLook = \fBtrue\fP"
+
+.SS "\fBfloat\fP xpe::render::cCamera::HorizontalSensitivity = 0\&.01\fBf\fP"
+
+.SS "\fBeKey\fP xpe::render::cCamera::KeyMoveBackward = eKey::S"
+
+.SS "\fBeKey\fP xpe::render::cCamera::KeyMoveForward = eKey::W"
+
+.SS "\fBeKey\fP xpe::render::cCamera::KeyMoveLeft = eKey::A"
+
+.SS "\fBeKey\fP xpe::render::cCamera::KeyMoveRight = eKey::D"
+
+.SS "\fBeLookMode\fP xpe::render::cCamera::LookMode = eLookMode::GAME"
+
+.SS "glm::vec3 xpe::render::cCamera::m_Position = { 0, 0, 0 }\fR [protected]\fP"
+
+.SS "\fBint\fP xpe::render::cCamera::m_ViewHeight = 0\fR [protected]\fP"
+
+.SS "\fBint\fP xpe::render::cCamera::m_ViewWidth = 0\fR [protected]\fP"
+
+.SS "\fBfloat\fP xpe::render::cCamera::MoveSpeed = 0\&.1\fBf\fP"
+
+.SS "\fBfloat\fP xpe::render::cCamera::PanAcceleration = 10\&.0f"
+
+.SS "\fBfloat\fP xpe::render::cCamera::Pitch = 0"
+
+.SS "\fBfloat\fP xpe::render::cCamera::Roll = 0"
+
+.SS "\fBfloat\fP xpe::render::cCamera::VerticalSensitivity = 0\&.01\fBf\fP"
+
+.SS "\fBfloat\fP xpe::render::cCamera::Yaw = 0"
+
+.SS "\fBfloat\fP xpe::render::cCamera::ZoomAcceleration = 10\&.0f"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

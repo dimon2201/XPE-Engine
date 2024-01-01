@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode" xml:lang="en-US">
+<title>xpe::render::sDepthStencilMode Struct Reference</title>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary></indexterm>
+<para>
+<computeroutput>#include &lt;core.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::render::sDepthStencilMode:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structxpe_1_1render_1_1s_depth_stencil_mode.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1a00d3c82a6b3f92d6b59f5d136627ab6a">State</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1a7fbd120dd98a061338e5c41122d5c89f">EnableDepth</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a56b413432be5a427db344339041ed542">eDepthWriteMask</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1a5d07bd0bad00e16368bce131b49fb0b3">DepthWriteMask</link> = <link linkend="_namespacexpe_1_1render_1a56b413432be5a427db344339041ed542a5fb1f955b45e38e31789286a1790398d">eDepthWriteMask::ALL</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1abb3c1d6aed9b08a7c4da9ec1c14ec927">eDepthStencilFunc</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1a589a3dc9d63e4b0224bdbbfc7e7591c7">DepthFunc</link> = <link linkend="_namespacexpe_1_1render_1abb3c1d6aed9b08a7c4da9ec1c14ec927a1798e8c3621ca53d9e3a80d257306000">eDepthStencilFunc::LESS</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1a594d40aa96870a7cff0516e1a29305eb">EnableStencil</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1ae92da888edcbf4be003bbc55c9bfacb3">StencilReadMask</link> = 0xff</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1ad8f6855d3dd4addfea0bbc96e7cfba00">StencilWriteMask</link> = 0xff</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_stencil_test">sStencilTest</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1ab2b267937c57cd76fe2e8f1cbb891a13">FrontFace</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_stencil_test">sStencilTest</link> <link linkend="_structxpe_1_1render_1_1s_depth_stencil_mode_1a4cc28988c2066d96a4da0c96e9bedbc3">BackFace</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1a4cc28988c2066d96a4da0c96e9bedbc3"/><section>
+    <title>BackFace</title>
+<indexterm><primary>BackFace</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>BackFace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_stencil_test">sStencilTest</link> xpe::render::sDepthStencilMode::BackFace</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1a589a3dc9d63e4b0224bdbbfc7e7591c7"/><section>
+    <title>DepthFunc</title>
+<indexterm><primary>DepthFunc</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>DepthFunc</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1render_1abb3c1d6aed9b08a7c4da9ec1c14ec927">eDepthStencilFunc</link> xpe::render::sDepthStencilMode::DepthFunc = <link linkend="_namespacexpe_1_1render_1abb3c1d6aed9b08a7c4da9ec1c14ec927a1798e8c3621ca53d9e3a80d257306000">eDepthStencilFunc::LESS</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1a5d07bd0bad00e16368bce131b49fb0b3"/><section>
+    <title>DepthWriteMask</title>
+<indexterm><primary>DepthWriteMask</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>DepthWriteMask</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1render_1a56b413432be5a427db344339041ed542">eDepthWriteMask</link> xpe::render::sDepthStencilMode::DepthWriteMask = <link linkend="_namespacexpe_1_1render_1a56b413432be5a427db344339041ed542a5fb1f955b45e38e31789286a1790398d">eDepthWriteMask::ALL</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1a7fbd120dd98a061338e5c41122d5c89f"/><section>
+    <title>EnableDepth</title>
+<indexterm><primary>EnableDepth</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>EnableDepth</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::render::sDepthStencilMode::EnableDepth = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1a594d40aa96870a7cff0516e1a29305eb"/><section>
+    <title>EnableStencil</title>
+<indexterm><primary>EnableStencil</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>EnableStencil</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::render::sDepthStencilMode::EnableStencil = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1ab2b267937c57cd76fe2e8f1cbb891a13"/><section>
+    <title>FrontFace</title>
+<indexterm><primary>FrontFace</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>FrontFace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_stencil_test">sStencilTest</link> xpe::render::sDepthStencilMode::FrontFace</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1a00d3c82a6b3f92d6b59f5d136627ab6a"/><section>
+    <title>State</title>
+<indexterm><primary>State</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>State</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>* xpe::render::sDepthStencilMode::State = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1ae92da888edcbf4be003bbc55c9bfacb3"/><section>
+    <title>StencilReadMask</title>
+<indexterm><primary>StencilReadMask</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>StencilReadMask</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link> xpe::render::sDepthStencilMode::StencilReadMask = 0xff</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_depth_stencil_mode_1ad8f6855d3dd4addfea0bbc96e7cfba00"/><section>
+    <title>StencilWriteMask</title>
+<indexterm><primary>StencilWriteMask</primary><secondary>xpe::render::sDepthStencilMode</secondary></indexterm>
+<indexterm><primary>xpe::render::sDepthStencilMode</primary><secondary>StencilWriteMask</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link> xpe::render::sDepthStencilMode::StencilWriteMask = 0xff</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/rendering/core/<link linkend="_rendering_2core_2core_8hpp">core.hpp</link></section>
+</section>

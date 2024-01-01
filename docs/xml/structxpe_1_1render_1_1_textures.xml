@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1_textures" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::Textures</compoundname>
+    <includes refid="bindings_8hpp" local="no">bindings.hpp</includes>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1ad899c5ceab4e39079770ff8b238f1b82" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::Canvas</definition>
+        <argsstring></argsstring>
+        <name>Canvas</name>
+        <qualifiedname>xpe::render::Textures::Canvas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="42" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" compoundref="canvas_8cpp" startline="30" endline="44">xpe::render::cCanvas::Draw</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1ac93872fd21faffa72c22f0ab4acfc88c" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::SharedDepth</definition>
+        <argsstring></argsstring>
+        <name>SharedDepth</name>
+        <qualifiedname>xpe::render::Textures::SharedDepth</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="43" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984" compoundref="render__system_8cpp" startline="241" endline="257">xpe::render::cRenderSystem::WindowFrameResized</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::AlbedoAtlas</definition>
+        <argsstring></argsstring>
+        <name>AlbedoAtlas</name>
+        <qualifiedname>xpe::render::Textures::AlbedoAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="44" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" compoundref="material__manager_8cpp" startline="20" endline="31">xpe::render::cMaterialManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::NormalAtlas</definition>
+        <argsstring></argsstring>
+        <name>NormalAtlas</name>
+        <qualifiedname>xpe::render::Textures::NormalAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="45" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" compoundref="material__manager_8cpp" startline="20" endline="31">xpe::render::cMaterialManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::ParallaxAtlas</definition>
+        <argsstring></argsstring>
+        <name>ParallaxAtlas</name>
+        <qualifiedname>xpe::render::Textures::ParallaxAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="46" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" compoundref="material__manager_8cpp" startline="20" endline="31">xpe::render::cMaterialManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::MetalAtlas</definition>
+        <argsstring></argsstring>
+        <name>MetalAtlas</name>
+        <qualifiedname>xpe::render::Textures::MetalAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="47" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" compoundref="material__manager_8cpp" startline="20" endline="31">xpe::render::cMaterialManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::RoughnessAtlas</definition>
+        <argsstring></argsstring>
+        <name>RoughnessAtlas</name>
+        <qualifiedname>xpe::render::Textures::RoughnessAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="48" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" compoundref="material__manager_8cpp" startline="20" endline="31">xpe::render::cMaterialManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::AOAtlas</definition>
+        <argsstring></argsstring>
+        <name>AOAtlas</name>
+        <qualifiedname>xpe::render::Textures::AOAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="49" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" compoundref="material__manager_8cpp" startline="20" endline="31">xpe::render::cMaterialManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::Textures::EmissionAtlas</definition>
+        <argsstring></argsstring>
+        <name>EmissionAtlas</name>
+        <qualifiedname>xpe::render::Textures::EmissionAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="50" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="50" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">xpe::render::cMaterialManager::AddMaterial</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" compoundref="material__manager_8cpp" startline="60" endline="85">xpe::render::cMaterialManager::Clear</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_opaque_shader_1a16050985173c72f5015636dfcad6483f" compoundref="shaders_8cpp" startline="56" endline="86">xpe::render::cOpaqueShader::cOpaqueShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_transparent_shader_1a06b2efa059709fd73f449e80f289e02a" compoundref="shaders_8cpp" startline="119" endline="149">xpe::render::cTransparentShader::cTransparentShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" compoundref="material__manager_8cpp" startline="20" endline="31">xpe::render::cMaterialManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1_textures_1ac6f1fb7834d145a999d6fe567d8b0ba1" prot="public" static="yes" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_atlas" kindref="compound">sAtlas</ref> *</type>
+        <definition>sAtlas * xpe::render::Textures::WidgetAtlas</definition>
+        <argsstring></argsstring>
+        <name>WidgetAtlas</name>
+        <qualifiedname>xpe::render::Textures::WidgetAtlas</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/bindings.hpp" line="51" column="40" bodyfile="engine/src/rendering/bindings.hpp" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_shader_1ac6d0a01c7e25a93a16e38d9642dfe0f2" compoundref="shaders_8cpp" startline="479" endline="497">xpe::render::cWidgetShader::cWidgetShader</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a6a32a8e5b1e365a10beed0c2608ea823" compoundref="widget__manager_8cpp" startline="31" endline="35">xpe::render::cWidgetManager::Free</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::Textures</label>
+        <link refid="structxpe_1_1render_1_1_textures"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>AOAtlas</edgelabel>
+          <edgelabel>AlbedoAtlas</edgelabel>
+          <edgelabel>Canvas</edgelabel>
+          <edgelabel>EmissionAtlas</edgelabel>
+          <edgelabel>MetalAtlas</edgelabel>
+          <edgelabel>NormalAtlas</edgelabel>
+          <edgelabel>ParallaxAtlas</edgelabel>
+          <edgelabel>RoughnessAtlas</edgelabel>
+          <edgelabel>SharedDepth</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>WidgetAtlas</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::render::sAtlas</label>
+        <link refid="structxpe_1_1render_1_1s_atlas"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/bindings.hpp" line="40" column="9" bodyfile="engine/src/rendering/bindings.hpp" bodystart="41" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>AlbedoAtlas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>AOAtlas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1ad899c5ceab4e39079770ff8b238f1b82" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>Canvas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>EmissionAtlas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>MetalAtlas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>NormalAtlas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>ParallaxAtlas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>RoughnessAtlas</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1ac93872fd21faffa72c22f0ab4acfc88c" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>SharedDepth</name></member>
+      <member refid="structxpe_1_1render_1_1_textures_1ac6f1fb7834d145a999d6fe567d8b0ba1" prot="public" virt="non-virtual"><scope>xpe::render::Textures</scope><name>WidgetAtlas</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

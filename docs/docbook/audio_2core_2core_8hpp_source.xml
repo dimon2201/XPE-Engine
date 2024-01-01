@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_audio_2core_2core_8hpp_source" xml:lang="en-US">
+<title>core.hpp</title>
+<indexterm><primary>engine/src/audio/core/core.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+4 
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>audio&#32;{
+6 
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>core;
+8 
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum</emphasis>&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016ae">eAudioState</link>&#32;{
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164">INITIAL</link>,
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127">PLAYING</link>,
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651">PAUSED</link>,
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662">STOPPED</link>
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a85a6dfc31ce6b1db814a5641eee98a59">JSON_ENUM</link>(<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016ae">eAudioState</link>,&#32;{
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164">eAudioState::INITIAL</link>,&#32;<emphasis role="stringliteral">&quot;INITIAL&quot;</emphasis>&#32;},
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127">eAudioState::PLAYING</link>,&#32;<emphasis role="stringliteral">&quot;PLAYING&quot;</emphasis>&#32;},
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651">eAudioState::PAUSED</link>,&#32;&#32;<emphasis role="stringliteral">&quot;PAUSED&quot;</emphasis>&#32;},
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662">eAudioState::STOPPED</link>,&#32;<emphasis role="stringliteral">&quot;STOPPED&quot;</emphasis>&#32;},
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;})
+21 
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">enum</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">eAudioError</link>&#32;{
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693">NONE</link>,
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">INVALID_NAME</link>,
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">INVALID_ENUM</link>,
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">INVALID_VALUE</link>,
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">INVALID_OPERATION</link>,
+28 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">OUT_OF_MEMORY</link>
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+30 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a85a6dfc31ce6b1db814a5641eee98a59">JSON_ENUM</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">eAudioError</link>,&#32;{
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;eAudioError::NONE,&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;INITIAL&quot;</emphasis>&#32;},
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;eAudioError::INVALID_NAME,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;INVALID_NAME&quot;</emphasis>&#32;},
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;eAudioError::INVALID_ENUM,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;INVALID_ENUM&quot;</emphasis>&#32;},
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;eAudioError::INVALID_VALUE,&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;INVALID_VALUE&quot;</emphasis>&#32;},
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;eAudioError::INVALID_OPERATION,&#32;<emphasis role="stringliteral">&quot;INVALID_OPERATION&quot;</emphasis>&#32;},
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;eAudioError::OUT_OF_MEMORY,&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;OUT_OF_MEMORY&quot;</emphasis>&#32;},
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;})
+38 
+39 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct</emphasis>&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sAudioSource</link>
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Id</link>&#32;=&#32;0;
+42 
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016ae">eAudioState</link>&#32;State&#32;=&#32;<link linkend="_namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164">eAudioState::INITIAL</link>;
+44 
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Gain</link>&#32;=&#32;1;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;affects&#32;audio&#32;volume</emphasis>
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;Pitch&#32;=&#32;1;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;affects&#32;playback&#32;speed</emphasis>
+47 
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">RefDistance</link>&#32;=&#32;1.0f;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Distance&#32;at&#32;which&#32;the&#32;sound&#32;is&#32;heard&#32;clearly</emphasis>
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">MaxDistance</link>&#32;=&#32;100.0f;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Maximum&#32;distance&#32;at&#32;which&#32;the&#32;sound&#32;is&#32;heard</emphasis>
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">RollOffFactor</link>&#32;=&#32;1.0f;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Volume&#32;reduction&#32;factor&#32;with&#32;distance</emphasis>
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ConeInnerAngle</link>&#32;=&#32;180.0f;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Angle&#32;of&#32;the&#32;inner&#32;zone&#32;of&#32;the&#32;cone</emphasis>
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7">f32</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ConeOuterAngle</link>&#32;=&#32;180.0f;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Angle&#32;of&#32;the&#32;outer&#32;zone&#32;of&#32;the&#32;cone</emphasis>
+53 
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Looping</link>&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+55 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+56 
+57 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a64a0d7950ac2a45cdc342a649e970f96">JSON</link>(
+58 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sAudioSource</link>,
+59 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Id</link>,
+60 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;State,
+61 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Gain</link>,
+62 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Pitch,
+63 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">RefDistance</link>,
+64 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">MaxDistance</link>
+65 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)
+66 &#32;&#32;&#32;&#32;}
+67 
+68 }
+</programlisting></section>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_macro__build_8hpp" xml:lang="en-US">
+<title>engine/src/core/macro_build.hpp File Reference</title>
+<indexterm><primary>engine/src/core/macro_build.hpp</primary></indexterm>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_macro__build_8hpp_1a1565a5197989b9640b5ecd1d012a8093">GAME_API</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835"/><section>
+    <title>ENGINE_API</title>
+<indexterm><primary>ENGINE_API</primary><secondary>macro_build.hpp</secondary></indexterm>
+<indexterm><primary>macro_build.hpp</primary><secondary>ENGINE_API</secondary></indexterm>
+<para><computeroutput>#define ENGINE_API</computeroutput></para></section>
+<anchor xml:id="_macro__build_8hpp_1a1565a5197989b9640b5ecd1d012a8093"/><section>
+    <title>GAME_API</title>
+<indexterm><primary>GAME_API</primary><secondary>macro_build.hpp</secondary></indexterm>
+<indexterm><primary>macro_build.hpp</primary><secondary>GAME_API</secondary></indexterm>
+<para><computeroutput>#define GAME_API</computeroutput></para></section>
+</section>
+</section>

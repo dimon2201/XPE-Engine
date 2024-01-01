@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_components_8hpp" xml:lang="en-US">
+<title>engine/src/ecs/components.hpp File Reference</title>
+<indexterm><primary>engine/src/ecs/components.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/geometry/geometries.hpp&gt;<?linebreak?>#include &lt;rendering/material/material.hpp&gt;<?linebreak?>#include &lt;rendering/buffers.hpp&gt;<?linebreak?>#include &lt;rendering/font/font.hpp&gt;<?linebreak?>#include &lt;rendering/widget_manager.hpp&gt;<?linebreak?>#include &lt;anim/skeleton.hpp&gt;<?linebreak?>#include &lt;audio/core/context.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_space2_d">xpe::ecs::CSpace2D</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_space3_d">xpe::ecs::CSpace3D</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_tag">xpe::ecs::CTag</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_transform">xpe::ecs::CTransform</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_visible">xpe::ecs::CVisible</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_opaque">xpe::ecs::COpaque</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_transparent">xpe::ecs::CTransparent</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_has_shadow">xpe::ecs::CHasShadow</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_camera">xpe::ecs::CCamera</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_perspective_camera">xpe::ecs::CPerspectiveCamera</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_ortho_camera">xpe::ecs::COrthoCamera</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_material">xpe::ecs::CMaterial</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_directional_light">xpe::ecs::CDirectionalLight</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_point_light">xpe::ecs::CPointLight</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_spot_light">xpe::ecs::CSpotLight</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_geometry">xpe::ecs::CGeometry</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_geometry_info">xpe::ecs::CGeometryInfo</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_skeleton">xpe::ecs::CSkeleton</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_skeleton_info">xpe::ecs::CSkeletonInfo</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_animation">xpe::ecs::CAnimation</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_audio">xpe::ecs::CAudio</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_stream_audio">xpe::ecs::CStreamAudio</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_voice">xpe::ecs::CVoice</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_physics_actor">xpe::ecs::CPhysicsActor</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_label">xpe::ecs::CLabel</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_container">xpe::ecs::CContainer</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_button">xpe::ecs::CButton</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1ecs_1_1_c_field">xpe::ecs::CField</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1physics">xpe::physics</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1ecs">xpe::ecs</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

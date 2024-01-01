@@ -1,0 +1,493 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1core_1_1s_app_config" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::core::sAppConfig</compoundname>
+    <basecompoundref refid="classxpe_1_1res_1_1c_json" prot="public" virt="non-virtual">xpe::res::cJson</basecompoundref>
+    <includes refid="app__config_8hpp" local="no">app_config.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::core::sAppConfig::WinWidth</definition>
+        <argsstring></argsstring>
+        <name>WinWidth</name>
+        <qualifiedname>xpe::core::sAppConfig::WinWidth</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="37" column="17" bodyfile="engine/src/core/app_config.hpp" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::core::sAppConfig::WinHeight</definition>
+        <argsstring></argsstring>
+        <name>WinHeight</name>
+        <qualifiedname>xpe::core::sAppConfig::WinHeight</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="38" column="17" bodyfile="engine/src/core/app_config.hpp" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::core::sAppConfig::WinX</definition>
+        <argsstring></argsstring>
+        <name>WinX</name>
+        <qualifiedname>xpe::core::sAppConfig::WinX</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="39" column="17" bodyfile="engine/src/core/app_config.hpp" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::core::sAppConfig::WinY</definition>
+        <argsstring></argsstring>
+        <name>WinY</name>
+        <qualifiedname>xpe::core::sAppConfig::WinY</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="40" column="17" bodyfile="engine/src/core/app_config.hpp" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::VSync</definition>
+        <argsstring></argsstring>
+        <name>VSync</name>
+        <qualifiedname>xpe::core::sAppConfig::VSync</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="41" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="41" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::Fullscreen</definition>
+        <argsstring></argsstring>
+        <name>Fullscreen</name>
+        <qualifiedname>xpe::core::sAppConfig::Fullscreen</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="42" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::sAppConfig::Gamma</definition>
+        <argsstring></argsstring>
+        <name>Gamma</name>
+        <qualifiedname>xpe::core::sAppConfig::Gamma</qualifiedname>
+        <initializer>= 2.2<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="43" column="19" bodyfile="engine/src/core/app_config.hpp" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::sAppConfig::Exposure</definition>
+        <argsstring></argsstring>
+        <name>Exposure</name>
+        <qualifiedname>xpe::core::sAppConfig::Exposure</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="44" column="19" bodyfile="engine/src/core/app_config.hpp" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a2cccaa8ba46ff64ec540ab7d30f5f7dd" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1core_1_1s_observer_window_ratio" kindref="compound">sObserverWindowRatio</ref></type>
+        <definition>sObserverWindowRatio xpe::core::sAppConfig::AspectRatio</definition>
+        <argsstring></argsstring>
+        <name>AspectRatio</name>
+        <qualifiedname>xpe::core::sAppConfig::AspectRatio</qualifiedname>
+        <initializer>= 1.6<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="45" column="34" bodyfile="engine/src/core/app_config.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref></type>
+        <definition>string xpe::core::sAppConfig::LogTitle</definition>
+        <argsstring></argsstring>
+        <name>LogTitle</name>
+        <qualifiedname>xpe::core::sAppConfig::LogTitle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="47" column="20" bodyfile="engine/src/core/app_config.hpp" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref></type>
+        <definition>s32 xpe::core::sAppConfig::LogBacktrace</definition>
+        <argsstring></argsstring>
+        <name>LogBacktrace</name>
+        <qualifiedname>xpe::core::sAppConfig::LogBacktrace</qualifiedname>
+        <initializer>= 32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="48" column="17" bodyfile="engine/src/core/app_config.hpp" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::EnableGPUInfoLog</definition>
+        <argsstring></argsstring>
+        <name>EnableGPUInfoLog</name>
+        <qualifiedname>xpe::core::sAppConfig::EnableGPUInfoLog</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="50" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="50" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::EnableGPUWarnLog</definition>
+        <argsstring></argsstring>
+        <name>EnableGPUWarnLog</name>
+        <qualifiedname>xpe::core::sAppConfig::EnableGPUWarnLog</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="51" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::EnableGPUErrorLog</definition>
+        <argsstring></argsstring>
+        <name>EnableGPUErrorLog</name>
+        <qualifiedname>xpe::core::sAppConfig::EnableGPUErrorLog</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="52" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::sAppConfig::FPS</definition>
+        <argsstring></argsstring>
+        <name>FPS</name>
+        <qualifiedname>xpe::core::sAppConfig::FPS</qualifiedname>
+        <initializer>= 165.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="54" column="19" bodyfile="engine/src/core/app_config.hpp" bodystart="54" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" compoundref="app_8cpp" startline="152" endline="158">xpe::core::cApp::LockFPSFromConfig</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::core::sAppConfig::LogTimeDelaySeconds</definition>
+        <argsstring></argsstring>
+        <name>LogTimeDelaySeconds</name>
+        <qualifiedname>xpe::core::sAppConfig::LogTimeDelaySeconds</qualifiedname>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="56" column="19" bodyfile="engine/src/core/app_config.hpp" bodystart="56" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::LockOnFps</definition>
+        <argsstring></argsstring>
+        <name>LockOnFps</name>
+        <qualifiedname>xpe::core::sAppConfig::LockOnFps</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="58" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="58" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a3755f6a16cd4ffbf305714016a876383" compoundref="app_8cpp" startline="152" endline="158">xpe::core::cApp::LockFPSFromConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1abe8961c8be9c69d0d19683ecdcf23c32" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::HotReloadShaders</definition>
+        <argsstring></argsstring>
+        <name>HotReloadShaders</name>
+        <qualifiedname>xpe::core::sAppConfig::HotReloadShaders</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="60" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sAppConfig::EnableSSAO</definition>
+        <argsstring></argsstring>
+        <name>EnableSSAO</name>
+        <qualifiedname>xpe::core::sAppConfig::EnableSSAO</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="62" column="18" bodyfile="engine/src/core/app_config.hpp" bodystart="62" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" compoundref="app_8cpp" startline="160" endline="175">xpe::core::cApp::InitShaders</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1core_1_1s_observer_sample_count" kindref="compound">sObserverSampleCount</ref></type>
+        <definition>sObserverSampleCount xpe::core::sAppConfig::MsaaSampleCount</definition>
+        <argsstring></argsstring>
+        <name>MsaaSampleCount</name>
+        <qualifiedname>xpe::core::sAppConfig::MsaaSampleCount</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="64" column="34" bodyfile="engine/src/core/app_config.hpp" bodystart="64" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a0346f4840135da0c87a39899926cd98e" compoundref="app_8cpp" startline="160" endline="175">xpe::core::cApp::InitShaders</referencedby>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_app_config_1a25b6c80ea03e809e2d2f536c681aec3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sAppConfig::JSON_CLASS</definition>
+        <argsstring>(sAppConfig, WinTitle, WinWidth, WinHeight, WinX, WinY, VSync, Fullscreen, Gamma, Exposure, AspectRatio.Value, LogTitle, LogBacktrace, EnableGPUInfoLog, EnableGPUWarnLog, EnableGPUErrorLog, FPS, LogTimeDelaySeconds, LockOnFps, HotReloadShaders, MsaaSampleCount.Value, EnableSSAO) string WinTitle</argsstring>
+        <name>JSON_CLASS</name>
+        <qualifiedname>xpe::core::sAppConfig::JSON_CLASS</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config" kindref="compound">sAppConfig</ref></type>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">WinTitle</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32" kindref="member">WinWidth</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6" kindref="member">WinHeight</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9" kindref="member">WinX</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014" kindref="member">WinY</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3" kindref="member">VSync</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b" kindref="member">Fullscreen</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f" kindref="member">Gamma</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677" kindref="member">Exposure</ref></type>
+        </param>
+        <param>
+          <type>AspectRatio.</type>
+          <declname>Value</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf" kindref="member">LogTitle</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275" kindref="member">LogBacktrace</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78" kindref="member">EnableGPUInfoLog</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748" kindref="member">EnableGPUWarnLog</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21" kindref="member">EnableGPUErrorLog</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" kindref="member">FPS</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e" kindref="member">LogTimeDelaySeconds</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4" kindref="member">LockOnFps</ref></type>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1abe8961c8be9c69d0d19683ecdcf23c32" kindref="member">HotReloadShaders</ref></type>
+        </param>
+        <param>
+          <type>MsaaSampleCount.</type>
+          <declname>Value</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77" kindref="member">EnableSSAO</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/app_config.hpp" line="11" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::core::sAppConfig</label>
+        <link refid="structxpe_1_1core_1_1s_app_config"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>xpe::core::sObserver&lt; float &gt;</label>
+        <link refid="structxpe_1_1core_1_1s_observer"/>
+      </node>
+      <node id="6">
+        <label>xpe::core::sObserver&lt; u32 &gt;</label>
+        <link refid="structxpe_1_1core_1_1s_observer"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::sAppConfig</label>
+        <link refid="structxpe_1_1core_1_1s_app_config"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>AspectRatio</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>MsaaSampleCount</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::core::sObserverSampleCount</label>
+        <link refid="structxpe_1_1core_1_1s_observer_sample_count"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::core::sObserverWindowRatio</label>
+        <link refid="structxpe_1_1core_1_1s_observer_window_ratio"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/core/app_config.hpp" line="9" column="9" bodyfile="engine/src/core/app_config.hpp" bodystart="10" bodyend="65"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a2cccaa8ba46ff64ec540ab7d30f5f7dd" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>AspectRatio</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a7c9c2f867c6786427cb34c9356cd8c21" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>EnableGPUErrorLog</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a6540494d2193a2df842b87f1936a6e78" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>EnableGPUInfoLog</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1addd31d13da2f5aa0f721460f33ff1748" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>EnableGPUWarnLog</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1af4517f8977b042a2024669783c4f8c77" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>EnableSSAO</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a840271115d6af0604f3267e189d23677" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>Exposure</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a1823d143e1013df4c8ba7e8d753f82b0" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>FPS</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b" prot="public" virt="pure-virtual"><scope>xpe::core::sAppConfig</scope><name>FromJson</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a1c442f3483b8a4aec58343e8bda6505b" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>Fullscreen</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a718146fc87ff59c80bd01c76e62f633f" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>Gamma</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1abe8961c8be9c69d0d19683ecdcf23c32" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>HotReloadShaders</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a25b6c80ea03e809e2d2f536c681aec3b" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>JSON_CLASS</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a72ff94e27d9a4e862ac4f25000a456b4" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>LockOnFps</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a63eefdde091f2c253a3cda2baa184275" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>LogBacktrace</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1aa7872ab3325e0842574d226448d8831e" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>LogTimeDelaySeconds</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a05df6daee01aea8de6417a1900702caf" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>LogTitle</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a599d63e604f7e57d34d49ea56a6bc2d8" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>MsaaSampleCount</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88" prot="public" virt="pure-virtual"><scope>xpe::core::sAppConfig</scope><name>ToJson</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a790e643af27d43ef9749bdc55a6256a3" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>VSync</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1af516a3d629e71ffc18d60dde9c875fd6" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>WinHeight</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a80e6b6553193953e456c6e2f35297d32" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>WinWidth</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1af912eff016d31d8adfd619bf4ded8cf9" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>WinX</name></member>
+      <member refid="structxpe_1_1core_1_1s_app_config_1a2bb52f0570e63dae9e2d5abd380e6014" prot="public" virt="non-virtual"><scope>xpe::core::sAppConfig</scope><name>WinY</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

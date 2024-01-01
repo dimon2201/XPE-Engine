@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_0c92e0ec2b3a83cff45176222669dd0e" kind="dir">
+    <compoundname>engine/src/res</compoundname>
+    <innerfile refid="json_8cpp">json.cpp</innerfile>
+    <innerfile refid="json_8hpp">json.hpp</innerfile>
+    <innerfile refid="xml_8cpp">xml.cpp</innerfile>
+    <innerfile refid="xml_8hpp">xml.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/res/"/>
+  </compounddef>
+</doxygen>

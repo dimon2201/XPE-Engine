@@ -1,0 +1,83 @@
+\doxysection{macro\+\_\+platform.\+hpp}
+\hypertarget{macro__platform_8hpp_source}{}\label{macro__platform_8hpp_source}\index{engine/src/core/macro\_platform.hpp@{engine/src/core/macro\_platform.hpp}}
+\mbox{\hyperlink{macro__platform_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{/*\ Windows\ x64/x86\ */}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifdef\ \_WIN64}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{/*\ Windows\ x64\ \ */}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ WINDOWS}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ DX11}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ OPENAL}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00014\ \textcolor{comment}{/*\ Windows\ x86\ */}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#error\ "{}x86\ Builds\ are\ not\ supported!"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)\ ||\ defined(\_\_MACH\_\_)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ OPENAL}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <TargetConditionals.h>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{/*\ TARGET\_OS\_MAC\ exists\ on\ all\ the\ platforms}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ *\ so\ we\ must\ check\ all\ of\ them\ (in\ this\ order)}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ \ *\ to\ ensure\ that\ we're\ running\ on\ MAC}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ \ *\ and\ not\ some\ other\ Apple\ platform\ */}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \#if\ TARGET\_IPHONE\_SIMULATOR\ ==\ 1}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}IOS\ simulator\ is\ not\ supported!"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ \#elif\ TARGET\_OS\_IPHONE\ ==\ 1}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ IOS}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}IOS\ is\ not\ supported!"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \#elif\ TARGET\_OS\_MAC\ ==\ 1}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ MACOS}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ OPENAL}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}MacOS\ is\ not\ supported!"{}}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Unknown\ Apple\ platform!"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{/*\ We\ also\ have\ to\ check\ \_\_ANDROID\_\_\ before\ \_\_linux\_\_}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *\ since\ android\ is\ based\ on\ the\ linux\ kernel}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ it\ has\ \_\_linux\_\_\ defined\ */}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#elif\ defined(\_\_ANDROID\_\_)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ANDROID}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ OPENAL}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#error\ "{}Android\ is\ not\ supported!"{}}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#elif\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ LINUX}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ OPENAL}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{/*\ Unknown\ compiler/platform\ */}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#error\ "{}Unknown\ platform!"{}}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifdef\ DX11}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ GLM\_FORCE\_LEFT\_HANDED}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DX11}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#ifdef\ VK}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VK}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#ifdef\ OGL}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OGL}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#ifdef\ OPENAL}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OPENAL}}
+
+\end{DoxyCode}

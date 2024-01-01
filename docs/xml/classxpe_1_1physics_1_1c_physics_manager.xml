@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1physics_1_1c_physics_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::physics::cPhysicsManager</compoundname>
+    <includes refid="physics__manager_8hpp" local="no">physics_manager.hpp</includes>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1ab9f2681405a9145c86945e98145a4cdc" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1physics_1_1c_physics_allocator" kindref="compound">cPhysicsAllocator</ref> *</type>
+        <definition>cPhysicsAllocator * xpe::physics::cPhysicsManager::s_Allocator</definition>
+        <argsstring></argsstring>
+        <name>s_Allocator</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_Allocator</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="224" column="38" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1a5c59b664e3b186ec8d6b89570411abc1" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1physics_1_1c_physics_error_callback" kindref="compound">cPhysicsErrorCallback</ref> *</type>
+        <definition>cPhysicsErrorCallback * xpe::physics::cPhysicsManager::s_ErrorCallback</definition>
+        <argsstring></argsstring>
+        <name>s_ErrorCallback</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_ErrorCallback</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="225" column="42" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1a02a78542bbbab1015ecc351ca1d94296" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1physics_1_1c_physics_simulation_event_callback" kindref="compound">cPhysicsSimulationEventCallback</ref> *</type>
+        <definition>cPhysicsSimulationEventCallback * xpe::physics::cPhysicsManager::s_EventCallback</definition>
+        <argsstring></argsstring>
+        <name>s_EventCallback</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_EventCallback</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="226" column="52" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1a0abf816566716631817ba9c6c57cfde3" prot="private" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxFoundation</ref> *</type>
+        <definition>PxFoundation * xpe::physics::cPhysicsManager::s_Foundation</definition>
+        <argsstring></argsstring>
+        <name>s_Foundation</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_Foundation</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="228" column="33" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1a45394f54bea2f6d5757c26861540a3cc" prot="private" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxPhysics</ref> *</type>
+        <definition>PxPhysics * xpe::physics::cPhysicsManager::s_Physics</definition>
+        <argsstring></argsstring>
+        <name>s_Physics</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_Physics</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="229" column="30" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1af1aa9624f3e2aee21ab09730ddc2d4bb" prot="private" static="yes" mutable="no">
+        <type>PxCpuDispatcher *</type>
+        <definition>PxCpuDispatcher * xpe::physics::cPhysicsManager::s_Dispatcher</definition>
+        <argsstring></argsstring>
+        <name>s_Dispatcher</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_Dispatcher</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="230" column="36" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1a63dd280c368c4f459e57bafaf1011f92" prot="private" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref>, <ref refid="structxpe_1_1physics_1_1s_actor" kindref="compound">sActor</ref> * &gt; *</type>
+        <definition>unordered_map&lt; string, sActor * &gt; * xpe::physics::cPhysicsManager::s_Actors</definition>
+        <argsstring></argsstring>
+        <name>s_Actors</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_Actors</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="232" column="34" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_manager_1ab55e20f76be72ea33389ad5aa1ab1c3a" prot="private" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref>&lt; <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref>, <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxScene</ref> * &gt; *</type>
+        <definition>unordered_map&lt; string, PxScene * &gt; * xpe::physics::cPhysicsManager::s_Scenes</definition>
+        <argsstring></argsstring>
+        <name>s_Scenes</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::s_Scenes</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="233" column="34" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="233" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1a37d2691cdf4bf8bf56425ffee6d932ec" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsManager::Init</definition>
+        <argsstring>(PxCpuDispatcher *dispatcher, bool enableMemoryProfiling=false)</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::Init</qualifiedname>
+        <param>
+          <type>PxCpuDispatcher *</type>
+          <declname>dispatcher</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enableMemoryProfiling</declname>
+          <defval><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="199" column="25" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="44" bodyend="78"/>
+        <references refid="log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e" compoundref="log__manager_8hpp" startline="36">LogError</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1a4f1601625b22bfa825c44ee871d4f8be" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsManager::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="200" column="25" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="80" bodyend="86"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1a5cd5060de27b26d69c7a1de65acef7e6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsManager::EnableLoggingInfo</definition>
+        <argsstring>(bool enable)</argsstring>
+        <name>EnableLoggingInfo</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::EnableLoggingInfo</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="202" column="25" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="88" bodyend="90"/>
+        <references refid="classxpe_1_1physics_1_1c_physics_error_callback_1a34a3f282f5bd81e9cee52f8986750fb8" compoundref="callbacks_8hpp" startline="16">xpe::physics::cPhysicsErrorCallback::EnableInfo</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1af76f425ba35f8fd00fb6f740ea3219f3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsManager::EnableLoggingWarning</definition>
+        <argsstring>(bool enable)</argsstring>
+        <name>EnableLoggingWarning</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::EnableLoggingWarning</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="203" column="25" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="92" bodyend="94"/>
+        <references refid="classxpe_1_1physics_1_1c_physics_error_callback_1abbeeb19aa0fa65b36ffb21d9f80086a9" compoundref="callbacks_8hpp" startline="17">xpe::physics::cPhysicsErrorCallback::EnableWarning</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1adce57bf32f9b50791e22c1eafcf3a8a1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsManager::EnableLoggingError</definition>
+        <argsstring>(bool enable)</argsstring>
+        <name>EnableLoggingError</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::EnableLoggingError</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="204" column="25" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="96" bodyend="98"/>
+        <references refid="classxpe_1_1physics_1_1c_physics_error_callback_1a6eb8c3499057b2191f0fb4f2a46f00e6" compoundref="callbacks_8hpp" startline="18">xpe::physics::cPhysicsErrorCallback::EnableError</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1a8485895993a10de8e7bea43e462665f6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structxpe_1_1physics_1_1s_actor" kindref="compound">sActor</ref> *</type>
+        <definition>sActor * xpe::physics::cPhysicsManager::AddActor</definition>
+        <argsstring>(cEntity &amp;entity, const sActor::eActorType &amp;actorType, sShapeDescriptor *shapeDesc, const glm::vec3 &amp;linearVelocity, f32 staticFriction, f32 dynamicFriction, f32 restitution, f32 contactOffset, f32 restOffset)</argsstring>
+        <name>AddActor</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::AddActor</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_entity" kindref="compound">cEntity</ref> &amp;</type>
+          <declname>entity</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5" kindref="member">sActor::eActorType</ref> &amp;</type>
+          <declname>actorType</declname>
+        </param>
+        <param>
+          <type>sShapeDescriptor *</type>
+          <declname>shapeDesc</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec3 &amp;</type>
+          <declname>linearVelocity</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>staticFriction</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>dynamicFriction</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>restitution</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>contactOffset</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>restOffset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="206" column="27" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="100" bodyend="240"/>
+        <references refid="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5">xpe::physics::BOX</references>
+        <references refid="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9">xpe::physics::CAPSULE</references>
+        <references refid="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3">xpe::physics::PLANE</references>
+        <references refid="structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1">xpe::physics::sActor::RIGID_DYNAMIC</references>
+        <references refid="structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c">xpe::physics::sActor::RIGID_STATIC</references>
+        <references refid="namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43">xpe::physics::SPHERE</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1a2cf208ad9559752ec45914ea1562c79a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structxpe_1_1physics_1_1s_ragdoll" kindref="compound">sRagdoll</ref> *</type>
+        <definition>sRagdoll * xpe::physics::cPhysicsManager::AddRagdoll</definition>
+        <argsstring>()</argsstring>
+        <name>AddRagdoll</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::AddRagdoll</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="218" column="29" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="242" bodyend="251"/>
+        <references refid="structxpe_1_1physics_1_1s_ragdoll_1a2781089318e519e18316b4f65f840062" compoundref="physics__manager_8hpp" startline="173">xpe::physics::sRagdoll::k_BodypartCount</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1aa898c0a40205f342209d97ccd68d6bb7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">PxScene</ref> *</type>
+        <definition>PxScene * xpe::physics::cPhysicsManager::AddScene</definition>
+        <argsstring>(const string &amp;tag)</argsstring>
+        <name>AddScene</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::AddScene</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="219" column="28" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="253" bodyend="272"/>
+        <references refid="namespacexpe_1_1physics_1a7816cdaccad0a246b07867c18b673b9b" compoundref="physics__manager_8cpp" startline="24" endline="42">xpe::physics::FilterShader</references>
+        <references refid="log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e" compoundref="log__manager_8hpp" startline="36">LogError</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_manager_1a6a2db35b7416716d3b07b7c5cf862835" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsManager::SetActorPose</definition>
+        <argsstring>(sActor &amp;actor, math::sTransform &amp;transform)</argsstring>
+        <name>SetActorPose</name>
+        <qualifiedname>xpe::physics::cPhysicsManager::SetActorPose</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1physics_1_1s_actor" kindref="compound">sActor</ref> &amp;</type>
+          <declname>actor</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1math_1_1s_transform" kindref="compound">math::sTransform</ref> &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="221" column="25" bodyfile="engine/src/physics/physics_manager.cpp" bodystart="274" bodyend="291"/>
+        <references refid="structxpe_1_1physics_1_1s_actor_1a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1">xpe::physics::sActor::RIGID_DYNAMIC</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/physics/physics_manager.hpp" line="195" column="9" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="196" bodyend="234"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a8485895993a10de8e7bea43e462665f6" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>AddActor</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a2cf208ad9559752ec45914ea1562c79a" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>AddRagdoll</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1aa898c0a40205f342209d97ccd68d6bb7" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>AddScene</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1adce57bf32f9b50791e22c1eafcf3a8a1" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>EnableLoggingError</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a5cd5060de27b26d69c7a1de65acef7e6" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>EnableLoggingInfo</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1af76f425ba35f8fd00fb6f740ea3219f3" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>EnableLoggingWarning</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a4f1601625b22bfa825c44ee871d4f8be" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>Free</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a37d2691cdf4bf8bf56425ffee6d932ec" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>Init</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a63dd280c368c4f459e57bafaf1011f92" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_Actors</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1ab9f2681405a9145c86945e98145a4cdc" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_Allocator</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1af1aa9624f3e2aee21ab09730ddc2d4bb" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_Dispatcher</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a5c59b664e3b186ec8d6b89570411abc1" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_ErrorCallback</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a02a78542bbbab1015ecc351ca1d94296" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_EventCallback</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a0abf816566716631817ba9c6c57cfde3" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_Foundation</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a45394f54bea2f6d5757c26861540a3cc" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_Physics</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1ab55e20f76be72ea33389ad5aa1ab1c3a" prot="private" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>s_Scenes</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_manager_1a6a2db35b7416716d3b07b7c5cf862835" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsManager</scope><name>SetActorPose</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

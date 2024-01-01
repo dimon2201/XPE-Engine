@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_f8c22eb530ce806c9f0ee03801c99f37" xml:lang="en-US">
+<title>engine/src/math Directory Reference</title>
+<indexterm><primary>engine/src/math Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_math_8hpp">math.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_math__manager_8cpp">math_manager.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_math__manager_8hpp">math_manager.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_matrices_8hpp">matrices.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ray_8hpp">ray.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_transform_8hpp">transform.hpp</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

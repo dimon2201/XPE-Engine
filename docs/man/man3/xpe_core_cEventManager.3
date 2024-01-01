@@ -1,0 +1,150 @@
+.TH "xpe::core::cEventManager" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::cEventManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <event_manager\&.hpp>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBcEventManager\fP & \fBGet\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfWindowClosed\fP > \fBWindowClosedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfWindowResized\fP > \fBWindowResizedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfWindowFrameResized\fP > \fBWindowFrameResizedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfWindowMoved\fP > \fBWindowMovedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfWindowFocused\fP > \fBWindowFocusedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfWindowFocusLost\fP > \fBWindowFocusLostEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfKeyPressed\fP > \fBKeyPressedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfKeyReleased\fP > \fBKeyReleasedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfKeyHold\fP > \fBKeyHoldEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfMousePressed\fP > \fBMousePressedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfMouseReleased\fP > \fBMouseReleasedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfMouseHold\fP > \fBMouseHoldEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfCursorMoved\fP > \fBCursorMovedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfCursorEntered\fP > \fBCursorEnteredEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfCursorLeft\fP > \fBCursorLeftEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfScrollChanged\fP > \fBScrollChangedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfCharTyped\fP > \fBCharTypedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfCharModsTyped\fP > \fBCharModsTypedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfSampleCountChanged\fP > \fBSampleCountChangedEvents\fP"
+.br
+.ti -1c
+.RI "\fBcEventBuffer\fP< \fBfWindowRatioChanged\fP > \fBWindowRatioChangedEvents\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBcEventManager\fP * \fBs_Instance\fP = \fBnullptr\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP xpe::core::cEventManager::Free ()\fR [static]\fP"
+
+.SS "\fBcEventManager\fP & xpe::core::cEventManager::Get ()\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::core::cEventManager::Init ()\fR [static]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBcEventBuffer\fP<\fBfCharModsTyped\fP> xpe::core::cEventManager::CharModsTypedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfCharTyped\fP> xpe::core::cEventManager::CharTypedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfCursorEntered\fP> xpe::core::cEventManager::CursorEnteredEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfCursorLeft\fP> xpe::core::cEventManager::CursorLeftEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfCursorMoved\fP> xpe::core::cEventManager::CursorMovedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfKeyHold\fP> xpe::core::cEventManager::KeyHoldEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfKeyPressed\fP> xpe::core::cEventManager::KeyPressedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfKeyReleased\fP> xpe::core::cEventManager::KeyReleasedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfMouseHold\fP> xpe::core::cEventManager::MouseHoldEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfMousePressed\fP> xpe::core::cEventManager::MousePressedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfMouseReleased\fP> xpe::core::cEventManager::MouseReleasedEvents"
+
+.SS "\fBcEventManager\fP * xpe::core::cEventManager::s_Instance = \fBnullptr\fP\fR [static]\fP"
+
+.SS "\fBcEventBuffer\fP<\fBfSampleCountChanged\fP> xpe::core::cEventManager::SampleCountChangedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfScrollChanged\fP> xpe::core::cEventManager::ScrollChangedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfWindowClosed\fP> xpe::core::cEventManager::WindowClosedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfWindowFocused\fP> xpe::core::cEventManager::WindowFocusedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfWindowFocusLost\fP> xpe::core::cEventManager::WindowFocusLostEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfWindowFrameResized\fP> xpe::core::cEventManager::WindowFrameResizedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfWindowMoved\fP> xpe::core::cEventManager::WindowMovedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfWindowRatioChanged\fP> xpe::core::cEventManager::WindowRatioChangedEvents"
+
+.SS "\fBcEventBuffer\fP<\fBfWindowResized\fP> xpe::core::cEventManager::WindowResizedEvents"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

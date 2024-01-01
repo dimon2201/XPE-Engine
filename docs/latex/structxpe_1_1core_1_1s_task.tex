@@ -1,0 +1,116 @@
+\doxysection{xpe\+::core\+::s\+Task Struct Reference}
+\hypertarget{structxpe_1_1core_1_1s_task}{}\label{structxpe_1_1core_1_1s_task}\index{xpe::core::sTask@{xpe::core::sTask}}
+
+
+{\ttfamily \#include $<$task\+\_\+manager.\+hpp$>$}
+
+Inheritance diagram for xpe\+::core\+::s\+Task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{structxpe_1_1core_1_1s_task}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{e\+Type}} \+: u8 \{ \newline
+\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96}{THREAD\+\_\+\+POOL}} = 0
+, \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae}{AUDIO}} = 1
+, \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d}{NETWORK}} = 2
+, \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b}{ANIMATION}} = 3
+, \newline
+\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb}{PHYSICS}} = 4
+, \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96}{DEFAULT}} = THREAD\+\_\+\+POOL
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a98a32f166503d07754051ffbb0de4f77}{s\+Task}} ()=\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{default}}
+\item 
+\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a72b2582e5dc7cceb42a92214c20b438c}{s\+Task}} (\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{e\+Type}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} std\+::function$<$ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}()$>$ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{todo}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{e\+Type}} \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a8b6c4d6e9f73187b6fe9594c26121b08}{Type}} = \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96}{e\+Type\+::\+DEFAULT}}
+\item 
+std\+::function$<$ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}()$>$ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_ae37dc636337031739b2ea80a97c78f94}{Todo}} = \mbox{[}$\,$\mbox{]}()\{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}\label{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06} 
+\index{xpe::core::sTask@{xpe::core::sTask}!eType@{eType}}
+\index{eType@{eType}!xpe::core::sTask@{xpe::core::sTask}}
+\doxysubsubsection{\texorpdfstring{eType}{eType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{xpe\+::core\+::s\+Task\+::e\+Type}} \+: \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THREAD\_POOL@{THREAD\_POOL}!xpe::core::sTask@{xpe::core::sTask}}\index{xpe::core::sTask@{xpe::core::sTask}!THREAD\_POOL@{THREAD\_POOL}}}\Hypertarget{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96}\label{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96} 
+THREAD\+\_\+\+POOL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AUDIO@{AUDIO}!xpe::core::sTask@{xpe::core::sTask}}\index{xpe::core::sTask@{xpe::core::sTask}!AUDIO@{AUDIO}}}\Hypertarget{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae}\label{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae} 
+AUDIO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK@{NETWORK}!xpe::core::sTask@{xpe::core::sTask}}\index{xpe::core::sTask@{xpe::core::sTask}!NETWORK@{NETWORK}}}\Hypertarget{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d}\label{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d} 
+NETWORK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANIMATION@{ANIMATION}!xpe::core::sTask@{xpe::core::sTask}}\index{xpe::core::sTask@{xpe::core::sTask}!ANIMATION@{ANIMATION}}}\Hypertarget{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b}\label{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b} 
+ANIMATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PHYSICS@{PHYSICS}!xpe::core::sTask@{xpe::core::sTask}}\index{xpe::core::sTask@{xpe::core::sTask}!PHYSICS@{PHYSICS}}}\Hypertarget{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb}\label{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb} 
+PHYSICS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!xpe::core::sTask@{xpe::core::sTask}}\index{xpe::core::sTask@{xpe::core::sTask}!DEFAULT@{DEFAULT}}}\Hypertarget{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96}\label{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96} 
+DEFAULT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structxpe_1_1core_1_1s_task_a98a32f166503d07754051ffbb0de4f77}\label{structxpe_1_1core_1_1s_task_a98a32f166503d07754051ffbb0de4f77} 
+\index{xpe::core::sTask@{xpe::core::sTask}!sTask@{sTask}}
+\index{sTask@{sTask}!xpe::core::sTask@{xpe::core::sTask}}
+\doxysubsubsection{\texorpdfstring{sTask()}{sTask()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily xpe\+::core\+::s\+Task\+::s\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{structxpe_1_1core_1_1s_task_a72b2582e5dc7cceb42a92214c20b438c}\label{structxpe_1_1core_1_1s_task_a72b2582e5dc7cceb42a92214c20b438c} 
+\index{xpe::core::sTask@{xpe::core::sTask}!sTask@{sTask}}
+\index{sTask@{sTask}!xpe::core::sTask@{xpe::core::sTask}}
+\doxysubsubsection{\texorpdfstring{sTask()}{sTask()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily xpe\+::core\+::s\+Task\+::s\+Task (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{e\+Type}}}]{type,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} std\+::function$<$ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}()$>$ \&}]{todo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1core_1_1s_task_ae37dc636337031739b2ea80a97c78f94}\label{structxpe_1_1core_1_1s_task_ae37dc636337031739b2ea80a97c78f94} 
+\index{xpe::core::sTask@{xpe::core::sTask}!Todo@{Todo}}
+\index{Todo@{Todo}!xpe::core::sTask@{xpe::core::sTask}}
+\doxysubsubsection{\texorpdfstring{Todo}{Todo}}
+{\footnotesize\ttfamily std\+::function$<$\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}()$>$ xpe\+::core\+::s\+Task\+::\+Todo = \mbox{[}$\,$\mbox{]}()\{\}}
+
+\Hypertarget{structxpe_1_1core_1_1s_task_a8b6c4d6e9f73187b6fe9594c26121b08}\label{structxpe_1_1core_1_1s_task_a8b6c4d6e9f73187b6fe9594c26121b08} 
+\index{xpe::core::sTask@{xpe::core::sTask}!Type@{Type}}
+\index{Type@{Type}!xpe::core::sTask@{xpe::core::sTask}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{e\+Type}} xpe\+::core\+::s\+Task\+::\+Type = \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96}{e\+Type\+::\+DEFAULT}}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{task__manager_8hpp}{task\+\_\+manager.\+hpp}}\end{DoxyCompactItemize}

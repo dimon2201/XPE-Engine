@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="canvas_8cpp" kind="file" language="C++">
+    <compoundname>canvas.cpp</compoundname>
+    <includes refid="canvas_8hpp" local="no">rendering/canvas.hpp</includes>
+    <includes refid="camera__manager_8hpp" local="no">rendering/camera_manager.hpp</includes>
+    <includes refid="bindings_8hpp" local="no">rendering/bindings.hpp</includes>
+    <incdepgraph>
+      <node id="18">
+        <label>anim/anim.hpp</label>
+        <link refid="anim_8hpp"/>
+      </node>
+      <node id="17">
+        <label>anim/skeleton.hpp</label>
+        <link refid="skeleton_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>audio/core/context.hpp</label>
+        <link refid="audio_2core_2context_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>audio/core/core.hpp</label>
+        <link refid="audio_2core_2core_8hpp"/>
+      </node>
+      <node id="21">
+        <label>audio/core/sndfile_context.hpp</label>
+        <link refid="sndfile__context_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>core/types.hpp</label>
+        <link refid="types_8hpp"/>
+      </node>
+      <node id="10">
+        <label>ecs/components.hpp</label>
+        <link refid="components_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>rendering/bindings.hpp</label>
+        <link refid="bindings_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>rendering/buffers.hpp</label>
+        <link refid="buffers_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>rendering/camera.hpp</label>
+        <link refid="camera_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>rendering/camera_manager.hpp</label>
+        <link refid="camera__manager_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>engine/src/rendering/canvas.cpp</label>
+        <link refid="canvas_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>rendering/canvas.hpp</label>
+        <link refid="canvas_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>rendering/core/context.hpp</label>
+        <link refid="rendering_2core_2context_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>rendering/core/core.hpp</label>
+        <link refid="rendering_2core_2core_8hpp"/>
+      </node>
+      <node id="5">
+        <label>rendering/core/render_target.hpp</label>
+        <link refid="render__target_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>rendering/core/shader.hpp</label>
+        <link refid="shader_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>rendering/core/texture.hpp</label>
+        <link refid="texture_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>rendering/font/font.hpp</label>
+        <link refid="font_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>rendering/geometry/geometries.hpp</label>
+        <link refid="geometries_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>rendering/geometry/geometry.hpp</label>
+        <link refid="geometry_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>rendering/material/material.hpp</label>
+        <link refid="material_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>rendering/widget_manager.hpp</label>
+        <link refid="widget__manager_8hpp"/>
+      </node>
+      <node id="22">
+        <label>sndfile.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1render">xpe::render</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="canvas_8hpp" kindref="compound">rendering/canvas.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="camera__manager_8hpp" kindref="compound">rendering/camera_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="bindings_8hpp" kindref="compound">rendering/bindings.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">render<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="classxpe_1_1render_1_1c_canvas_1a9d8c18ddfb24dcd26edf2ee2472f0fb5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_canvas_1a9d8c18ddfb24dcd26edf2ee2472f0fb5" kindref="member">cCanvas::cCanvas</ref>()</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_Shader<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_default_shader" kindref="compound">cDefaultShader</ref>(<ref refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a" kindref="member">cShader::eCategory::NONE</ref>,<sp/></highlight><highlight class="stringliteral">&quot;canvas&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_Shader-&gt;<ref refid="classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0" kindref="member">VertexStage</ref><sp/>=<sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a97a6e32b351d6afb063039f115b55ae7" kindref="member">cShaderManager::GetFromFile</ref>(<ref refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b" kindref="member">sShaderStage::eType::VERTEX</ref>,<sp/></highlight><highlight class="stringliteral">&quot;engine_shaders/passes/screen.vs&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_Shader-&gt;<ref refid="classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd" kindref="member">PixelStage</ref><sp/>=<sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a97a6e32b351d6afb063039f115b55ae7" kindref="member">cShaderManager::GetFromFile</ref>(<ref refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441" kindref="member">sShaderStage::eType::PIXEL</ref>,<sp/></highlight><highlight class="stringliteral">&quot;engine_shaders/passes/canvas.ps&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_Viewport<sp/>=<sp/><ref refid="classxpe_1_1render_1_1c_camera_manager_1abe3b469b340e88d3b463a76164e5f308" kindref="member">cCameraManager::GetViewport</ref>();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_shader_manager_1a25db8a33bd2cf7ff61d126363bcb945f" kindref="member">cShaderManager::SetShader</ref>(m_Shader);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CreatePresentTarget();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CreatePresentSampler();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="input__manager_8hpp_1a2cd1cdcbe57492f3f37f3242807b8d22" kindref="member">AddWindowFrameResized</ref>(<ref refid="classxpe_1_1render_1_1c_canvas" kindref="compound">cCanvas</ref>,<sp/>1);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classxpe_1_1render_1_1c_canvas_1acf1b2e05f157135eb1ea38e361f47354" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_canvas_1acf1b2e05f157135eb1ea38e361f47354" kindref="member">cCanvas::~cCanvas</ref>()</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>m_Shader;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>m_PresentTarget;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>m_PresentSampler;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" kindref="member">RemoveWindowFrameResized</ref>();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_canvas_1a220c846d34dca49160b1d1af669cba2a" kindref="member">cCanvas::Draw</ref>()</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a012199697e8054ff25d90b30a8e434ad" kindref="member">context::PSBindTextureSlot</ref>(0);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a1b599623aad5a454a34697cec5c79143" kindref="member">context::BindRenderTarget</ref>(m_PresentTarget-&gt;<ref refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" kindref="member">ColorViews</ref>,<sp/>m_PresentTarget-&gt;<ref refid="structxpe_1_1render_1_1s_render_target_1ae9050a5b264993030f0a1efebbe44526" kindref="member">DepthStencilView</ref>,<sp/>m_PresentTarget-&gt;<ref refid="structxpe_1_1render_1_1s_render_target_1ac8f50a66375d807db256b81a9a6ca28e" kindref="member">Viewport</ref>);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a48c270e9a05382bd3824c1d9fa92268b" kindref="member">context::BindVSStage</ref>(*m_Shader-&gt;<ref refid="classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0" kindref="member">VertexStage</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a68b9c3c436cb270939b34679a3c4dcef" kindref="member">context::BindPSStage</ref>(*m_Shader-&gt;<ref refid="classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd" kindref="member">PixelStage</ref>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1aa422283e5b1e7f0ec37bce4e205040b1" kindref="member">context::PSBindSampler</ref>(*m_PresentSampler);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1af7d77195f515615a89c72aa4f236bf05" kindref="member">context::PSBindTexture</ref>(*<ref refid="structxpe_1_1render_1_1_textures_1ad899c5ceab4e39079770ff8b238f1b82" kindref="member">Textures::Canvas</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a7ef3ba5c9c5d29b8a2f1d9551b452d5e" kindref="member">context::ClearColorTarget</ref>(m_PresentTarget-&gt;<ref refid="structxpe_1_1render_1_1s_render_target_1a7ed892ae572b888369028e5fe5e04dae" kindref="member">ColorViews</ref>[m_BoundTargetIndex],<sp/>glm::vec4(0,<sp/>0,<sp/>0,<sp/>1));</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a87a2da77de2bea05f299145aa58d7ca5" kindref="member">context::DrawQuad</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1aebbc29eb22343932ff7c938aefcb3468" kindref="member">context::Present</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="classxpe_1_1render_1_1c_canvas_1a01d13a50afd94a2e6d847eb2ef0c186b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_canvas_1a01d13a50afd94a2e6d847eb2ef0c186b" kindref="member">cCanvas::WindowFrameResized</ref>(<ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">width</ref>,<sp/><ref refid="namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109" kindref="member">s32</ref><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">height</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1render_1_1context_1a50e128be96001994d7db255d0f372e80" kindref="member">context::ResizeSwapchain</ref>(*m_PresentTarget,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">width</ref>,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">height</ref>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>cCanvas::CreatePresentTarget()</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentTarget<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="structxpe_1_1render_1_1s_render_target" kindref="compound">sRenderTarget</ref>(</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector&lt;void*&gt;</ref><sp/>{<sp/><ref refid="namespacexpe_1_1render_1_1context_1a7d95bd6eeae71095919960361058fd7f" kindref="member">context::SwapchainTargetView</ref><sp/>},</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_Viewport</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentTarget-&gt;<ref refid="structxpe_1_1render_1_1s_render_target_1a17f0a872aae3eb6370c290695e31b208" kindref="member">SetResizable</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>cCanvas::CreatePresentSampler()</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentSampler<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>sSampler();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentSampler-&gt;<ref refid="structxpe_1_1render_1_1s_sampler_1a00645d12398bcc905de33feb27153065" kindref="member">Filter</ref><sp/><sp/><sp/>=<sp/><ref refid="structxpe_1_1render_1_1s_sampler_1a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5" kindref="member">sSampler::eFilter::MIN_MAG_MIP_POINT</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentSampler-&gt;<ref refid="structxpe_1_1render_1_1s_sampler_1a667dc6455e11368da13e15df19234954" kindref="member">AddressU</ref><sp/>=<sp/><ref refid="structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345" kindref="member">sSampler::eAddress::CLAMP</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentSampler-&gt;<ref refid="structxpe_1_1render_1_1s_sampler_1a101c6c8edcb9e9b127fdd2bcfb2e5056" kindref="member">AddressV</ref><sp/>=<sp/><ref refid="structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345" kindref="member">sSampler::eAddress::CLAMP</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentSampler-&gt;<ref refid="structxpe_1_1render_1_1s_sampler_1af7562572bdf962338a55e88467f24f82" kindref="member">AddressW</ref><sp/>=<sp/><ref refid="structxpe_1_1render_1_1s_sampler_1ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345" kindref="member">sSampler::eAddress::CLAMP</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentSampler-&gt;<ref refid="structxpe_1_1render_1_1s_sampler_1a3288fae8b851ef315ce0ed38335f81ab" kindref="member">AnisotropyLevel</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_PresentSampler-&gt;<ref refid="structxpe_1_1render_1_1s_sampler_1afb7fae3cf8ede538ecf2c087de227340" kindref="member">Init</ref>();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="classxpe_1_1render_1_1c_canvas_1a8b2bcc95a8e76bff19d4aaa3938e8450" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classxpe_1_1render_1_1c_canvas_1a8b2bcc95a8e76bff19d4aaa3938e8450" kindref="member">cCanvas::SetViewport</ref>(<ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref>*<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">viewport</ref>)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_Viewport<sp/>=<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">viewport</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxpe_1_1render_1_1c_canvas_1a01d13a50afd94a2e6d847eb2ef0c186b" kindref="member">WindowFrameResized</ref>(<ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">viewport</ref>-&gt;Width,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">viewport</ref>-&gt;Height);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/rendering/canvas.cpp"/>
+  </compounddef>
+</doxygen>

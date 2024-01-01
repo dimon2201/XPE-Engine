@@ -1,0 +1,648 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="pch_8hpp" kind="file" language="C++">
+    <compoundname>pch.hpp</compoundname>
+    <includes refid="macro__platform_8hpp" local="no">core/macro_platform.hpp</includes>
+    <includes refid="macro__build_8hpp" local="no">core/macro_build.hpp</includes>
+    <includes refid="macro__constants_8hpp" local="no">core/macro_constants.hpp</includes>
+    <includes refid="macro__debugbreak_8hpp" local="no">core/macro_debugbreak.hpp</includes>
+    <includes local="no">random</includes>
+    <includes local="no">string</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">functional</includes>
+    <includes local="no">array</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">thread</includes>
+    <includes local="no">future</includes>
+    <includes local="no">map</includes>
+    <includes local="no">unordered_map</includes>
+    <includes local="no">unordered_set</includes>
+    <includes local="no">set</includes>
+    <includes local="no">queue</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">mutex</includes>
+    <includes local="no">filesystem</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">cstdint</includes>
+    <includes local="no">cassert</includes>
+    <includes local="no">cstdarg</includes>
+    <includes local="no">ctime</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">chrono</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">regex</includes>
+    <includes local="no">atomic</includes>
+    <includes local="no">condition_variable</includes>
+    <includes local="no">glm.hpp</includes>
+    <includes local="no">gtx/quaternion.hpp</includes>
+    <includes local="no">gtc/type_ptr.hpp</includes>
+    <includes local="no">gtc/matrix_transform.hpp</includes>
+    <includes local="no">gtx/matrix_transform_2d.hpp</includes>
+    <includes local="no">gtx/string_cast.hpp</includes>
+    <includes refid="types_8hpp" local="no">core/types.hpp</includes>
+    <includes refid="memory__manager_8hpp" local="no">core/memory_manager.hpp</includes>
+    <includes refid="core_2allocators_8hpp" local="no">core/allocators.hpp</includes>
+    <includes refid="smart__pointers_8hpp" local="no">core/smart_pointers.hpp</includes>
+    <includes refid="codes__keyboard_8hpp" local="no">core/codes_keyboard.hpp</includes>
+    <includes refid="codes__mouse_8hpp" local="no">core/codes_mouse.hpp</includes>
+    <includes refid="codes__gamepad_8hpp" local="no">core/codes_gamepad.hpp</includes>
+    <includes refid="json_8hpp" local="no">res/json.hpp</includes>
+    <includes refid="xml_8hpp" local="no">res/xml.hpp</includes>
+    <includes refid="app__config_8hpp" local="no">core/app_config.hpp</includes>
+    <includes refid="hardware__manager_8hpp" local="no">core/hardware_manager.hpp</includes>
+    <includes refid="stl_8hpp" local="no">stl/stl.hpp</includes>
+    <includes refid="ring__buffer_8hpp" local="no">stl/ring_buffer.hpp</includes>
+    <includes refid="time__manager_8hpp" local="no">core/time_manager.hpp</includes>
+    <includes refid="log__manager_8hpp" local="no">core/log_manager.hpp</includes>
+    <includes refid="thread_8hpp" local="no">core/thread.hpp</includes>
+    <includes refid="task__manager_8hpp" local="no">core/task_manager.hpp</includes>
+    <includes refid="event__manager_8hpp" local="no">core/event_manager.hpp</includes>
+    <includes refid="observers_8hpp" local="no">core/observers.hpp</includes>
+    <includes refid="file__manager_8hpp" local="no">core/file_manager.hpp</includes>
+    <includes refid="window__manager_8hpp" local="no">core/window_manager.hpp</includes>
+    <includes refid="input__manager_8hpp" local="no">core/input_manager.hpp</includes>
+    <includes refid="physics__manager_8hpp" local="no">physics/physics_manager.hpp</includes>
+    <includes refid="math__manager_8hpp" local="no">math/math_manager.hpp</includes>
+    <includes refid="ecs_8hpp" local="no">ecs/ecs.hpp</includes>
+    <incdepgraph>
+      <node id="43">
+        <label>core/allocators.hpp</label>
+        <link refid="core_2allocators_8hpp"/>
+      </node>
+      <node id="53">
+        <label>core/app_config.hpp</label>
+        <link refid="app__config_8hpp"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>core/codes_gamepad.hpp</label>
+        <link refid="codes__gamepad_8hpp"/>
+      </node>
+      <node id="45">
+        <label>core/codes_keyboard.hpp</label>
+        <link refid="codes__keyboard_8hpp"/>
+      </node>
+      <node id="46">
+        <label>core/codes_mouse.hpp</label>
+        <link refid="codes__mouse_8hpp"/>
+      </node>
+      <node id="69">
+        <label>core/event.hpp</label>
+        <link refid="event_8hpp"/>
+      </node>
+      <node id="67">
+        <label>core/event_manager.hpp</label>
+        <link refid="event__manager_8hpp"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>core/events.hpp</label>
+        <link refid="events_8hpp"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>core/file_manager.hpp</label>
+        <link refid="file__manager_8hpp"/>
+      </node>
+      <node id="56">
+        <label>core/hardware_manager.hpp</label>
+        <link refid="hardware__manager_8hpp"/>
+      </node>
+      <node id="72">
+        <label>core/input_manager.hpp</label>
+        <link refid="input__manager_8hpp"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>core/log_manager.hpp</label>
+        <link refid="log__manager_8hpp"/>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>core/macro_build.hpp</label>
+        <link refid="macro__build_8hpp"/>
+      </node>
+      <node id="4">
+        <label>core/macro_constants.hpp</label>
+        <link refid="macro__constants_8hpp"/>
+      </node>
+      <node id="5">
+        <label>core/macro_debugbreak.hpp</label>
+        <link refid="macro__debugbreak_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>core/macro_platform.hpp</label>
+        <link refid="macro__platform_8hpp"/>
+      </node>
+      <node id="42">
+        <label>core/memory_manager.hpp</label>
+        <link refid="memory__manager_8hpp"/>
+      </node>
+      <node id="55">
+        <label>core/observer.hpp</label>
+        <link refid="observer_8hpp"/>
+      </node>
+      <node id="54">
+        <label>core/observers.hpp</label>
+        <link refid="observers_8hpp"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>core/smart_pointers.hpp</label>
+        <link refid="smart__pointers_8hpp"/>
+      </node>
+      <node id="65">
+        <label>core/task_manager.hpp</label>
+        <link refid="task__manager_8hpp"/>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>core/thread.hpp</label>
+        <link refid="thread_8hpp"/>
+      </node>
+      <node id="58">
+        <label>core/time_manager.hpp</label>
+        <link refid="time__manager_8hpp"/>
+      </node>
+      <node id="41">
+        <label>core/types.hpp</label>
+        <link refid="types_8hpp"/>
+      </node>
+      <node id="71">
+        <label>core/window_manager.hpp</label>
+        <link refid="window__manager_8hpp"/>
+      </node>
+      <node id="79">
+        <label>ecs/ecs.hpp</label>
+        <link refid="ecs_8hpp"/>
+        <childnode refid="80" relation="include">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>math/math.hpp</label>
+        <link refid="math_8hpp"/>
+      </node>
+      <node id="74">
+        <label>math/math_manager.hpp</label>
+        <link refid="math__manager_8hpp"/>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>math/matrices.hpp</label>
+        <link refid="matrices_8hpp"/>
+      </node>
+      <node id="76">
+        <label>math/ray.hpp</label>
+        <link refid="ray_8hpp"/>
+      </node>
+      <node id="78">
+        <label>math/transform.hpp</label>
+        <link refid="transform_8hpp"/>
+      </node>
+      <node id="1">
+        <label>engine/src/pch.hpp</label>
+        <link refid="pch_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>physics/physics_manager.hpp</label>
+        <link refid="physics__manager_8hpp"/>
+      </node>
+      <node id="48">
+        <label>res/json.hpp</label>
+        <link refid="json_8hpp"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>res/xml.hpp</label>
+        <link refid="xml_8hpp"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>stl/ring_buffer.hpp</label>
+        <link refid="ring__buffer_8hpp"/>
+      </node>
+      <node id="49">
+        <label>stl/stl.hpp</label>
+        <link refid="stl_8hpp"/>
+      </node>
+      <node id="66">
+        <label>PxPhysicsAPI.h</label>
+      </node>
+      <node id="9">
+        <label>algorithm</label>
+      </node>
+      <node id="11">
+        <label>array</label>
+      </node>
+      <node id="33">
+        <label>atomic</label>
+      </node>
+      <node id="26">
+        <label>cassert</label>
+      </node>
+      <node id="30">
+        <label>chrono</label>
+      </node>
+      <node id="34">
+        <label>condition_variable</label>
+      </node>
+      <node id="27">
+        <label>cstdarg</label>
+      </node>
+      <node id="25">
+        <label>cstdint</label>
+      </node>
+      <node id="28">
+        <label>ctime</label>
+      </node>
+      <node id="80">
+        <label>entt/entity/registry.hpp</label>
+      </node>
+      <node id="22">
+        <label>filesystem</label>
+      </node>
+      <node id="23">
+        <label>fstream</label>
+      </node>
+      <node id="10">
+        <label>functional</label>
+      </node>
+      <node id="14">
+        <label>future</label>
+      </node>
+      <node id="35">
+        <label>glm.hpp</label>
+      </node>
+      <node id="38">
+        <label>gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="37">
+        <label>gtc/type_ptr.hpp</label>
+      </node>
+      <node id="39">
+        <label>gtx/matrix_transform_2d.hpp</label>
+      </node>
+      <node id="36">
+        <label>gtx/quaternion.hpp</label>
+      </node>
+      <node id="40">
+        <label>gtx/string_cast.hpp</label>
+      </node>
+      <node id="31">
+        <label>iostream</label>
+      </node>
+      <node id="15">
+        <label>map</label>
+      </node>
+      <node id="20">
+        <label>memory</label>
+      </node>
+      <node id="21">
+        <label>mutex</label>
+      </node>
+      <node id="50">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="52">
+        <label>pugixml.hpp</label>
+      </node>
+      <node id="19">
+        <label>queue</label>
+      </node>
+      <node id="7">
+        <label>random</label>
+      </node>
+      <node id="32">
+        <label>regex</label>
+      </node>
+      <node id="18">
+        <label>set</label>
+      </node>
+      <node id="6">
+        <label>signal.h</label>
+      </node>
+      <node id="63">
+        <label>spdlog/async.h</label>
+      </node>
+      <node id="61">
+        <label>spdlog/sinks/basic_file_sink.h</label>
+      </node>
+      <node id="62">
+        <label>spdlog/sinks/stdout_color_sinks.h</label>
+      </node>
+      <node id="60">
+        <label>spdlog/spdlog.h</label>
+      </node>
+      <node id="24">
+        <label>sstream</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="13">
+        <label>thread</label>
+      </node>
+      <node id="16">
+        <label>unordered_map</label>
+      </node>
+      <node id="17">
+        <label>unordered_set</label>
+      </node>
+      <node id="29">
+        <label>utility</label>
+      </node>
+      <node id="12">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="pch_8hpp_1a4e22ca4479658148746f876744072766" prot="public" static="no">
+        <name>K_SLOT_SSAO</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/pch.hpp" line="12" column="9"/>
+      </memberdef>
+      <memberdef kind="define" id="pch_8hpp_1a5c7fdfd3782b3a78f43daa36c4522a32" prot="public" static="no">
+        <name>_ENFORCE_MATCHING_ALLOCATORS</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/pch.hpp" line="16" column="9" bodyfile="engine/src/pch.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pch_8hpp_1abd75661fe7969e19439052a5f69ba5d1" prot="public" static="no">
+        <name>GLM_ENABLE_EXPERIMENTAL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/pch.hpp" line="52" column="14" bodyfile="engine/src/pch.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>skip<sp/>non-critical<sp/>Win<sp/>API<sp/>warnings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning(disable<sp/>:<sp/>4081)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning(disable<sp/>:<sp/>4103)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning(disable<sp/>:<sp/>4067)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>warning(disable<sp/>:<sp/>4251)<sp/></highlight><highlight class="comment">//<sp/>dll-interface<sp/>warning</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Macros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="macro__platform_8hpp" kindref="compound">core/macro_platform.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="macro__build_8hpp" kindref="compound">core/macro_build.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="macro__constants_8hpp" kindref="compound">core/macro_constants.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="macro__debugbreak_8hpp" kindref="compound">core/macro_debugbreak.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>STL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="pch_8hpp_1a5c7fdfd3782b3a78f43daa36c4522a32" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_ENFORCE_MATCHING_ALLOCATORS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;thread&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;future&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;queue&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cassert&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdarg&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctime&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;regex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;atomic&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;condition_variable&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GLM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtx/quaternion.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/type_ptr.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/matrix_transform.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtx/matrix_transform_2d.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="pch_8hpp_1abd75661fe7969e19439052a5f69ba5d1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GLM_ENABLE_EXPERIMENTAL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtx/string_cast.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8hpp" kindref="compound">core/types.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="memory__manager_8hpp" kindref="compound">core/memory_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="core_2allocators_8hpp" kindref="compound">core/allocators.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="smart__pointers_8hpp" kindref="compound">core/smart_pointers.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="codes__keyboard_8hpp" kindref="compound">core/codes_keyboard.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="codes__mouse_8hpp" kindref="compound">core/codes_mouse.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="codes__gamepad_8hpp" kindref="compound">core/codes_gamepad.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="json_8hpp" kindref="compound">res/json.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="xml_8hpp" kindref="compound">res/xml.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="app__config_8hpp" kindref="compound">core/app_config.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="hardware__manager_8hpp" kindref="compound">core/hardware_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>STL<sp/>customization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stl_8hpp" kindref="compound">stl/stl.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ring__buffer_8hpp" kindref="compound">stl/ring_buffer.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="time__manager_8hpp" kindref="compound">core/time_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="log__manager_8hpp" kindref="compound">core/log_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="thread_8hpp" kindref="compound">core/thread.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="task__manager_8hpp" kindref="compound">core/task_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="event__manager_8hpp" kindref="compound">core/event_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="observers_8hpp" kindref="compound">core/observers.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="file__manager_8hpp" kindref="compound">core/file_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="window__manager_8hpp" kindref="compound">core/window_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="input__manager_8hpp" kindref="compound">core/input_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Physics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="physics__manager_8hpp" kindref="compound">physics/physics_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Math</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="math__manager_8hpp" kindref="compound">math/math_manager.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>ECS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ecs_8hpp" kindref="compound">ecs/ecs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core" kindref="compound">xpe::core</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1ecs" kindref="compound">xpe::ecs</ref>;</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/pch.hpp"/>
+  </compounddef>
+</doxygen>

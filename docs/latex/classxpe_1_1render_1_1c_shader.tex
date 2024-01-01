@@ -1,0 +1,181 @@
+\doxysection{xpe\+::render\+::c\+Shader Class Reference}
+\hypertarget{classxpe_1_1render_1_1c_shader}{}\label{classxpe_1_1render_1_1c_shader}\index{xpe::render::cShader@{xpe::render::cShader}}
+
+
+{\ttfamily \#include $<$shader.\+hpp$>$}
+
+Inheritance diagram for xpe\+::render\+::c\+Shader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.818182cm]{classxpe_1_1render_1_1c_shader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{e\+Category}} \{ \newline
+\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a}{NONE}} = 0
+, \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b}{PREPASS}} = 1
+, \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144}{OPAQUE}} = 2
+, \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9}{TRANSPARENT}} = 3
+, \newline
+\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce}{POSTFX}} = 4
+, \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e}{UI}} = 5
+, \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806}{FINAL}} = 6
+, \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1}{COMPUTE}} = 7
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_a0cbea5a99dbdb3dfc6a7095ab8c206ab}{c\+Shader}} (\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{c\+Shader\+::e\+Category}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{category}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_a9af1125e8f5c2d061535cc5b87206d05}{\texorpdfstring{$\sim$}{\string~}c\+Shader}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_ac2fb10c43abc3823aa6dc466b1f3ed56}{Draw}} (\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs\+::c\+Scene}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_a0278697eafc93f03dc126a6e2d3a2cbd}{Bind}} ()=0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_a84982d70a60b8fc688009d083e6dd2a1}{Unbind}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{xpe\+::core\+::c\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_a94001505b3b68276770a97bc35079194}{operator new}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_object_af52ced913116436c9a1410d942d1911e}{operator delete}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_ac04f06dd5200515c26667aa1eddaeb42}{ID}} = 0
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_afb11bac579269c1289d67f9ef0892980}{Enable}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{true}}
+\item 
+\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{e\+Category}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_a15d300d13e742ae170e20143521c062a}{Category}} = \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b}{e\+Category\+::\+PREPASS}}
+\item 
+\mbox{\hyperlink{classxpe_1_1render_1_1c_shader}{c\+Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_a1434a54f77c5b8dfbad9c83b0bc602b6}{Next}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04} 
+\index{xpe::render::cShader@{xpe::render::cShader}!eCategory@{eCategory}}
+\index{eCategory@{eCategory}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{eCategory}{eCategory}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{xpe\+::render\+::c\+Shader\+::e\+Category}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!NONE@{NONE}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PREPASS@{PREPASS}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!PREPASS@{PREPASS}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b} 
+PREPASS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPAQUE@{OPAQUE}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!OPAQUE@{OPAQUE}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144} 
+OPAQUE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRANSPARENT@{TRANSPARENT}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!TRANSPARENT@{TRANSPARENT}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9} 
+TRANSPARENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POSTFX@{POSTFX}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!POSTFX@{POSTFX}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce} 
+POSTFX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI@{UI}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!UI@{UI}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e} 
+UI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FINAL@{FINAL}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!FINAL@{FINAL}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806} 
+FINAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPUTE@{COMPUTE}!xpe::render::cShader@{xpe::render::cShader}}\index{xpe::render::cShader@{xpe::render::cShader}!COMPUTE@{COMPUTE}}}\Hypertarget{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1}\label{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1} 
+COMPUTE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classxpe_1_1render_1_1c_shader_a0cbea5a99dbdb3dfc6a7095ab8c206ab}\label{classxpe_1_1render_1_1c_shader_a0cbea5a99dbdb3dfc6a7095ab8c206ab} 
+\index{xpe::render::cShader@{xpe::render::cShader}!cShader@{cShader}}
+\index{cShader@{cShader}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{cShader()}{cShader()}}
+{\footnotesize\ttfamily xpe\+::render\+::c\+Shader\+::c\+Shader (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{c\+Shader\+::e\+Category}}}]{category,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a78ed6bb66afe2b4a776d73948fc8637c}{string}} \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1render_1_1c_shader_a9af1125e8f5c2d061535cc5b87206d05}\label{classxpe_1_1render_1_1c_shader_a9af1125e8f5c2d061535cc5b87206d05} 
+\index{xpe::render::cShader@{xpe::render::cShader}!````~cShader@{\texorpdfstring{$\sim$}{\string~}cShader}}
+\index{````~cShader@{\texorpdfstring{$\sim$}{\string~}cShader}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}cShader()}{\string~cShader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} xpe\+::render\+::c\+Shader\+::\texorpdfstring{$\sim$}{\string~}c\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1render_1_1c_shader_a0278697eafc93f03dc126a6e2d3a2cbd}\label{classxpe_1_1render_1_1c_shader_a0278697eafc93f03dc126a6e2d3a2cbd} 
+\index{xpe::render::cShader@{xpe::render::cShader}!Bind@{Bind}}
+\index{Bind@{Bind}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{Bind()}{Bind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::c\+Shader\+::\+Bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader_ae049ee7d29afa50b562466bdef95b704}{xpe\+::render\+::c\+Default\+Shader}}, and \mbox{\hyperlink{classxpe_1_1render_1_1c_compute_shader_ad1871544c342223819d9b30bc6ab6658}{xpe\+::render\+::c\+Compute\+Shader}}.
+
+\Hypertarget{classxpe_1_1render_1_1c_shader_ac2fb10c43abc3823aa6dc466b1f3ed56}\label{classxpe_1_1render_1_1c_shader_ac2fb10c43abc3823aa6dc466b1f3ed56} 
+\index{xpe::render::cShader@{xpe::render::cShader}!Draw@{Draw}}
+\index{Draw@{Draw}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::c\+Shader\+::\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs\+::c\+Scene}} \texorpdfstring{$\ast$}{*}}]{scene }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classxpe_1_1render_1_1c_directional_shadow_shader_af7c943a5a94f8f5b5d9def4b96b418e8}{xpe\+::render\+::c\+Directional\+Shadow\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_point_shadow_shader_a1113634e6e17cea7bea8395707aa809b}{xpe\+::render\+::c\+Point\+Shadow\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_spot_shadow_shader_a110c7db6532938ddfb6a93f0a48b8439}{xpe\+::render\+::c\+Spot\+Shadow\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader_ad0657596c465749935ee5c1b5aab5bfc}{xpe\+::render\+::c\+Skybox\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_widget_shader_a9b0f970a9d73603c8030fda37d7a5e3c}{xpe\+::render\+::c\+Widget\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader_a1eee34fddc8be62badbcb8c4a0b93ad2}{xpe\+::render\+::c\+Text\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_compute_shader_ac9c262bc825081afa6b2e6c8b7323cfc}{xpe\+::render\+::c\+Compute\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_opaque_shader_a7b7b6a8e853bb0188f55d26cc5ce23e4}{xpe\+::render\+::c\+Opaque\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_transparent_shader_a41136b4dbad82e1306bed55c264f3772}{xpe\+::render\+::c\+Transparent\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_composite_transparent_shader_a0adeb52a54f424294085fadb351b4c26}{xpe\+::render\+::c\+Composite\+Transparent\+Shader}}, \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader_ae7d2cd7e2a2994d9c4045b58e9e3603c}{xpe\+::render\+::c\+Ssao\+Shader}}, and \mbox{\hyperlink{classxpe_1_1render_1_1c_final_shader_aa5f19f47078dabb1c26a7071ee57fd44}{xpe\+::render\+::c\+Final\+Shader}}.
+
+\Hypertarget{classxpe_1_1render_1_1c_shader_a84982d70a60b8fc688009d083e6dd2a1}\label{classxpe_1_1render_1_1c_shader_a84982d70a60b8fc688009d083e6dd2a1} 
+\index{xpe::render::cShader@{xpe::render::cShader}!Unbind@{Unbind}}
+\index{Unbind@{Unbind}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{Unbind()}{Unbind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::render\+::c\+Shader\+::\+Unbind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader_a214ac22548a93e5291b81c69b1e801ee}{xpe\+::render\+::c\+Default\+Shader}}, and \mbox{\hyperlink{classxpe_1_1render_1_1c_compute_shader_a5fc99399f5142c1242d2db1d67bebd84}{xpe\+::render\+::c\+Compute\+Shader}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classxpe_1_1render_1_1c_shader_a15d300d13e742ae170e20143521c062a}\label{classxpe_1_1render_1_1c_shader_a15d300d13e742ae170e20143521c062a} 
+\index{xpe::render::cShader@{xpe::render::cShader}!Category@{Category}}
+\index{Category@{Category}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{Category}{Category}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{e\+Category}} xpe\+::render\+::c\+Shader\+::\+Category = \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b}{e\+Category\+::\+PREPASS}}}
+
+\Hypertarget{classxpe_1_1render_1_1c_shader_afb11bac579269c1289d67f9ef0892980}\label{classxpe_1_1render_1_1c_shader_afb11bac579269c1289d67f9ef0892980} 
+\index{xpe::render::cShader@{xpe::render::cShader}!Enable@{Enable}}
+\index{Enable@{Enable}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{Enable}{Enable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::render\+::c\+Shader\+::\+Enable = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{true}}}
+
+\Hypertarget{classxpe_1_1render_1_1c_shader_ac04f06dd5200515c26667aa1eddaeb42}\label{classxpe_1_1render_1_1c_shader_ac04f06dd5200515c26667aa1eddaeb42} 
+\index{xpe::render::cShader@{xpe::render::cShader}!ID@{ID}}
+\index{ID@{ID}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}} xpe\+::render\+::c\+Shader\+::\+ID = 0}
+
+\Hypertarget{classxpe_1_1render_1_1c_shader_a1434a54f77c5b8dfbad9c83b0bc602b6}\label{classxpe_1_1render_1_1c_shader_a1434a54f77c5b8dfbad9c83b0bc602b6} 
+\index{xpe::render::cShader@{xpe::render::cShader}!Next@{Next}}
+\index{Next@{Next}!xpe::render::cShader@{xpe::render::cShader}}
+\doxysubsubsection{\texorpdfstring{Next}{Next}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classxpe_1_1render_1_1c_shader}{c\+Shader}}\texorpdfstring{$\ast$}{*} xpe\+::render\+::c\+Shader\+::\+Next = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/rendering/core/\mbox{\hyperlink{shader_8hpp}{shader.\+hpp}}\end{DoxyCompactItemize}

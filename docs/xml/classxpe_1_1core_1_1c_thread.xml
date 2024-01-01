@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_thread" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::cThread</compoundname>
+    <includes refid="thread_8hpp" local="no">thread.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ePriority</name>
+        <qualifiedname>xpe::core::cThread::ePriority</qualifiedname>
+        <enumvalue id="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae" prot="public">
+          <name>LOWEST</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1a909306e50b86209177b07950049ad263" prot="public">
+          <name>NORMAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1a2d251a22a90f57b47b2bb9c450656387" prot="public">
+          <name>HIGHEST</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/thread.hpp" line="10" column="13" bodyfile="engine/src/core/thread.hpp" bodystart="10" bodyend="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_thread_1a08780dfcc0a7467edd05bd3d464c28f7" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::core::cThread::m_ID</definition>
+        <argsstring></argsstring>
+        <name>m_ID</name>
+        <qualifiedname>xpe::core::cThread::m_ID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/thread.hpp" line="22" column="17" bodyfile="engine/src/core/thread.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_thread_1a918a2be34bad6d237f6e7ddecec95237" prot="private" static="no" mutable="no">
+        <type>std::thread &amp;</type>
+        <definition>std::thread&amp; xpe::core::cThread::m_Thread</definition>
+        <argsstring></argsstring>
+        <name>m_Thread</name>
+        <qualifiedname>xpe::core::cThread::m_Thread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/thread.hpp" line="23" column="25" bodyfile="engine/src/core/thread.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_thread_1ac1bd1b99597a7dac182fd0c142bb93bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cThread::cThread</definition>
+        <argsstring>(u32 id, std::thread &amp;thread)</argsstring>
+        <name>cThread</name>
+        <qualifiedname>xpe::core::cThread::cThread</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>std::thread &amp;</type>
+          <declname>thread</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/thread.hpp" line="14" column="13" bodyfile="engine/src/core/thread.cpp" bodystart="5" bodyend="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_thread_1a2c4f38b61459c9d0cf5246ee5ad072de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cThread::SetFormat</definition>
+        <argsstring>(const char *name, ePriority priority)</argsstring>
+        <name>SetFormat</name>
+        <qualifiedname>xpe::core::cThread::SetFormat</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1" kindref="member">ePriority</ref></type>
+          <declname>priority</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/thread.hpp" line="19" column="18"/>
+        <referencedby refid="classxpe_1_1core_1_1c_task_dispatcher_1a0ed830ba0ff8290188850e8d323ac592" compoundref="task__manager_8cpp" startline="100" endline="119">xpe::core::cTaskDispatcher::InitThread</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_thread_1a2099798571924fd52cafa3c336fc8a57" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cThread::CurrentSleep</definition>
+        <argsstring>(u32 millis)</argsstring>
+        <name>CurrentSleep</name>
+        <qualifiedname>xpe::core::cThread::CurrentSleep</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>millis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/thread.hpp" line="16" column="25" bodyfile="engine/src/core/thread.cpp" bodystart="12" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_thread_1a8a5362a2375462e796b4361c8c406e48" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::core::cThread::CurrentID</definition>
+        <argsstring>()</argsstring>
+        <name>CurrentID</name>
+        <qualifiedname>xpe::core::cThread::CurrentID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/thread.hpp" line="17" column="24" bodyfile="engine/src/core/thread.cpp" bodystart="7" bodyend="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/thread.hpp" line="7" column="9" bodyfile="engine/src/core/thread.hpp" bodystart="7" bodyend="25"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_thread_1ac1bd1b99597a7dac182fd0c142bb93bc" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>cThread</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a8a5362a2375462e796b4361c8c406e48" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>CurrentID</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a2099798571924fd52cafa3c336fc8a57" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>CurrentSleep</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>ePriority</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1a2d251a22a90f57b47b2bb9c450656387" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>HIGHEST</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>LOWEST</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a08780dfcc0a7467edd05bd3d464c28f7" prot="private" virt="non-virtual"><scope>xpe::core::cThread</scope><name>m_ID</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a918a2be34bad6d237f6e7ddecec95237" prot="private" virt="non-virtual"><scope>xpe::core::cThread</scope><name>m_Thread</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1a909306e50b86209177b07950049ad263" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>NORMAL</name></member>
+      <member refid="classxpe_1_1core_1_1c_thread_1a2c4f38b61459c9d0cf5246ee5ad072de" prot="public" virt="non-virtual"><scope>xpe::core::cThread</scope><name>SetFormat</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

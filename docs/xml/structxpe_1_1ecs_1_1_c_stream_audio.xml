@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_stream_audio" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CStreamAudio</compoundname>
+    <basecompoundref refid="classxpe_1_1res_1_1c_json" prot="public" virt="non-virtual">xpe::res::cJson</basecompoundref>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1ac6b47e6e7811c19793e9e6d5112ce70d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">sAudioSource</ref></type>
+        <definition>sAudioSource xpe::ecs::CStreamAudio::Source</definition>
+        <argsstring></argsstring>
+        <name>Source</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::Source</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="273" column="26" bodyfile="engine/src/ecs/components.hpp" bodystart="273" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1a4d84a55cf10c6421c5463bed80cfe2ae" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1audio_1ab2de5b026314e5fade6726443fe016ae" kindref="member">eAudioState</ref></type>
+        <definition>eAudioState xpe::ecs::CStreamAudio::State</definition>
+        <argsstring></argsstring>
+        <name>State</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::State</qualifiedname>
+        <initializer>= eAudioState::INITIAL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="274" column="25" bodyfile="engine/src/ecs/components.hpp" bodystart="274" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1a9139c47f1228b1b8f0702dbba287edb9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::ecs::CStreamAudio::NumBuffers</definition>
+        <argsstring></argsstring>
+        <name>NumBuffers</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::NumBuffers</qualifiedname>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="276" column="17" bodyfile="engine/src/ecs/components.hpp" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1a6a907f4bd11a004ee7689c15f20b7c31" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::ecs::CStreamAudio::BufferSamples</definition>
+        <argsstring></argsstring>
+        <name>BufferSamples</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::BufferSamples</qualifiedname>
+        <initializer>= 8192</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="277" column="17" bodyfile="engine/src/ecs/components.hpp" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1a546ad779dc6883a1150064b75189762a" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a37a5a683d03a765d1a97c0984dd65771" kindref="member">s64</ref></type>
+        <definition>s64 xpe::ecs::CStreamAudio::CurrentFrame</definition>
+        <argsstring></argsstring>
+        <name>CurrentFrame</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::CurrentFrame</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="278" column="17" bodyfile="engine/src/ecs/components.hpp" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1a081b9c60a293748f9ac1be21e16e9a6f" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref> &gt;</type>
+        <definition>vector&lt;u32&gt; xpe::ecs::CStreamAudio::BufferID</definition>
+        <argsstring></argsstring>
+        <name>BufferID</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::BufferID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="280" column="20" bodyfile="engine/src/ecs/components.hpp" bodystart="280" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1a4bd3baee265a051d922a7d34b0796dcc" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="namespacexpe_1_1core_1a3ef33364f79f5d0dc0e14b61fe762b97" kindref="member">s16</ref> &gt;</type>
+        <definition>vector&lt;s16&gt; xpe::ecs::CStreamAudio::Data</definition>
+        <argsstring></argsstring>
+        <name>Data</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::Data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="281" column="20" bodyfile="engine/src/ecs/components.hpp" bodystart="281" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_stream_audio_1a30330213a1b9a2afb559e9854060706d" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1audio_1_1s_audio_file" kindref="compound">sAudioFile</ref> *</type>
+        <definition>sAudioFile* xpe::ecs::CStreamAudio::File</definition>
+        <argsstring></argsstring>
+        <name>File</name>
+        <qualifiedname>xpe::ecs::CStreamAudio::File</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="283" column="24" bodyfile="engine/src/ecs/components.hpp" bodystart="283" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::ecs::CStreamAudio</label>
+        <link refid="structxpe_1_1ecs_1_1_c_stream_audio"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>xpe::audio::sAudioFile</label>
+        <link refid="structxpe_1_1audio_1_1s_audio_file"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::ecs::CStreamAudio</label>
+        <link refid="structxpe_1_1ecs_1_1_c_stream_audio"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>File</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/components.hpp" line="271" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="272" bodyend="294"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1a081b9c60a293748f9ac1be21e16e9a6f" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>BufferID</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1a6a907f4bd11a004ee7689c15f20b7c31" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>BufferSamples</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1a546ad779dc6883a1150064b75189762a" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>CurrentFrame</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1a4bd3baee265a051d922a7d34b0796dcc" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>Data</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1a30330213a1b9a2afb559e9854060706d" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>File</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b" prot="public" virt="pure-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>FromJson</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1a9139c47f1228b1b8f0702dbba287edb9" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>NumBuffers</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1ac6b47e6e7811c19793e9e6d5112ce70d" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>Source</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_stream_audio_1a4d84a55cf10c6421c5463bed80cfe2ae" prot="public" virt="non-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>State</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88" prot="public" virt="pure-virtual"><scope>xpe::ecs::CStreamAudio</scope><name>ToJson</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

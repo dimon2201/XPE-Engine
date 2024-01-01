@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_simulation_dispatcher" kind="class" language="C++" prot="public">
+    <compoundname>xpe::core::cSimulationDispatcher</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_task_dispatcher" prot="public" virt="non-virtual">xpe::core::cTaskDispatcher</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">physx::PxCpuDispatcher</basecompoundref>
+    <includes refid="task__manager_8hpp" local="no">task_manager.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_simulation_dispatcher_1a03402af9a4692af19df4f4cf1fb06f69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cSimulationDispatcher::cSimulationDispatcher</definition>
+        <argsstring>(usize workerSize, usize taskBufferSize, const char *name, cThread::ePriority priority)</argsstring>
+        <name>cSimulationDispatcher</name>
+        <qualifiedname>xpe::core::cSimulationDispatcher::cSimulationDispatcher</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>workerSize</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+          <declname>taskBufferSize</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1" kindref="member">cThread::ePriority</ref></type>
+          <declname>priority</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="75" column="13" bodyfile="engine/src/core/task_manager.hpp" bodystart="75" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_simulation_dispatcher_1a493289526bd21e68c177c08468d555f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::cSimulationDispatcher::~cSimulationDispatcher</definition>
+        <argsstring>() override</argsstring>
+        <name>~cSimulationDispatcher</name>
+        <qualifiedname>xpe::core::cSimulationDispatcher::~cSimulationDispatcher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="78" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_simulation_dispatcher_1a5325d7dece59cf7a08b8dbef17764317" prot="public" static="no" const="no" explicit="no" inline="no" final="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cSimulationDispatcher::submitTask</definition>
+        <argsstring>(physx::PxBaseTask &amp;task) override final</argsstring>
+        <name>submitTask</name>
+        <qualifiedname>xpe::core::cSimulationDispatcher::submitTask</qualifiedname>
+        <param>
+          <type>physx::PxBaseTask &amp;</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="80" column="18" bodyfile="engine/src/core/task_manager.cpp" bodystart="123" bodyend="132"/>
+        <references refid="classxpe_1_1core_1_1c_task_dispatcher_1a9c0c18dbf564186d946ca962fea4b898" compoundref="task__manager_8cpp" startline="38" endline="46">xpe::core::cTaskDispatcher::Dispatch</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb" compoundref="task__manager_8hpp" startline="17">xpe::core::sTask::PHYSICS</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a8b6c4d6e9f73187b6fe9594c26121b08" compoundref="task__manager_8hpp" startline="22">xpe::core::sTask::Type</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_simulation_dispatcher_1a6e43096a7f0c9dbaad09a67ee017328a" prot="public" static="no" const="yes" explicit="no" inline="no" final="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">uint32_t</ref></type>
+        <definition>uint32_t xpe::core::cSimulationDispatcher::getWorkerCount</definition>
+        <argsstring>() const override final</argsstring>
+        <name>getWorkerCount</name>
+        <qualifiedname>xpe::core::cSimulationDispatcher::getWorkerCount</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="82" column="22" bodyfile="engine/src/core/task_manager.cpp" bodystart="134" bodyend="137"/>
+        <references refid="classxpe_1_1core_1_1c_task_dispatcher_1a49bf69fb2bde1506378fb05c6c9442a7" compoundref="task__manager_8cpp" startline="82" endline="85">xpe::core::cTaskDispatcher::GetWorkerCount</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>physx::PxCpuDispatcher</label>
+      </node>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::cSimulationDispatcher</label>
+        <link refid="classxpe_1_1core_1_1c_simulation_dispatcher"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::core::cTaskDispatcher</label>
+        <link refid="classxpe_1_1core_1_1c_task_dispatcher"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>xpe::core::cRingBuffer&lt; xpe::core::sTask &gt;</label>
+        <link refid="classxpe_1_1core_1_1c_ring_buffer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>physx::PxCpuDispatcher</label>
+      </node>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::core::cSimulationDispatcher</label>
+        <link refid="classxpe_1_1core_1_1c_simulation_dispatcher"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::core::cTaskDispatcher</label>
+        <link refid="classxpe_1_1core_1_1c_task_dispatcher"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>m_TaskBuffer</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/core/task_manager.hpp" line="72" column="9" bodyfile="engine/src/core/task_manager.hpp" bodystart="72" bodyend="84"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_simulation_dispatcher_1a03402af9a4692af19df4f4cf1fb06f69" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>cSimulationDispatcher</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a8b31fc506fb0e2f9f8226ef416c895fc" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>cTaskDispatcher</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a9c0c18dbf564186d946ca962fea4b898" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>Dispatch</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a4811adb9542a927aa10e811016738a03" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>Dispatch</name></member>
+      <member refid="classxpe_1_1core_1_1c_simulation_dispatcher_1a6e43096a7f0c9dbaad09a67ee017328a" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>getWorkerCount</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a49bf69fb2bde1506378fb05c6c9442a7" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>GetWorkerCount</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a0ed830ba0ff8290188850e8d323ac592" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>InitThread</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a854d3943678b3a7acba946444716cd3f" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>IsBusy</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a6b88d57d92d2d9745c3df4d684edea50" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>m_TaskBuffer</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a2a1a61cf6c2caea1de30583c0146f7b5" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>m_TasksDone</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a122a3bb1bfa10ac948f995fe3a5c820e" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>m_TasksTodo</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1ab138311f4c5844fc1ffdd9b575c5e057" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>m_WakeCondition</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1aeed8047b981e99e67ae3025006d586e9" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>m_WakeMutex</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a932baf4d6c1c03c8968a8129da4ab6d1" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>m_WorkerCount</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a65dcf432e2c479da29f08ae128cee2b4" prot="protected" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>Poll</name></member>
+      <member refid="classxpe_1_1core_1_1c_simulation_dispatcher_1a5325d7dece59cf7a08b8dbef17764317" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>submitTask</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_dispatcher_1a5b0ee750b601bbefec2f5d142c5704b3" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>Wait</name></member>
+      <member refid="classxpe_1_1core_1_1c_simulation_dispatcher_1a493289526bd21e68c177c08468d555f4" prot="public" virt="non-virtual"><scope>xpe::core::cSimulationDispatcher</scope><name>~cSimulationDispatcher</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

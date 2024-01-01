@@ -1,0 +1,301 @@
+\doxysection{json.\+hpp}
+\hypertarget{json_8hpp_source}{}\label{json_8hpp_source}\index{engine/src/res/json.hpp@{engine/src/res/json.hpp}}
+\mbox{\hyperlink{json_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{stl_8hpp}{stl/stl.hpp}}>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ =\ nlohmann::json;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ JSON(clazz,\ ...)\ NLOHMANN\_DEFINE\_TYPE\_NON\_INTRUSIVE(clazz,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ JSON\_CLASS\_NAMED(clazz,\ name,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{NLOHMANN\_DEFINE\_TYPE\_INTRUSIVE(clazz,\ \_\_VA\_ARGS\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{void\ ToJson(json\ \&root)\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ root[name.c\_str()]\ =\ *this;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{void\ FromJson(json\ \&root)\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ root.at(name.c\_str()).get\_to(*this);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ JSON\_CLASS(clazz,\ ...)\ JSON\_CLASS\_NAMED(clazz,\ string(\#clazz),\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ JSON\_ENUM(clazz,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{NLOHMANN\_JSON\_SERIALIZE\_ENUM(clazz,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{namespace\ }res\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json_ae9f2dda5c12658850632637c06868e88}{ToJson}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}})\ =\ 0;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json_ac1f545d15f6d5162d765f9c8eb9b336b}{FromJson}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}})\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1res_a457564438c0393afed9708a5e9da8433}{ReadJsonFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}\&\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1res_ab18afec3554029bc51ab158fc31b846c}{WriteJsonFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}\&\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ JSON\ for\ GLM\ library}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceglm}{glm}}\ \{}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(vec2,\ x,\ y)}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(vec3,\ x,\ y,\ z)}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(vec4,\ x,\ y,\ z,\ w)}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(ivec2,\ x,\ y)}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(ivec3,\ x,\ y,\ z)}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(ivec4,\ x,\ y,\ z,\ w)}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(quat,\ x,\ y,\ z,\ w)}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{to\_json}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ \textcolor{keyword}{const}\ glm::mat2\&\ m);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{from\_json}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ glm::mat2\&\ m);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{to\_json}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ \textcolor{keyword}{const}\ glm::mat3\&\ m);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{from\_json}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ glm::mat3\&\ m);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{to\_json}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ \textcolor{keyword}{const}\ glm::mat4\&\ m);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{from\_json}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ glm::mat4\&\ m);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \}\ \textcolor{comment}{//\ namespace\ glm}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ JSON\ for\ KeyCodes}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe_1_1core}{xpe::core}}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8}{eKey}},\ \{}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a70dfb99a2711cbd71a75c2fbfc926b9c}{eKey::None}},\ \textcolor{stringliteral}{"{}None"{}}\ \},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0f1ca2db7acdf1ba74ff8fbdcf16d5be}{eKey::Space}},\ \textcolor{stringliteral}{"{}Space"{}}\ \},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa686703fa8e5c45b701bb472f4623189}{eKey::Apostrophe}},\ \textcolor{stringliteral}{"{}Apostrophe"{}}\ \},}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6a99092f2111778d2dfe082736fa3147}{eKey::Comma}},\ \textcolor{stringliteral}{"{}Comma"{}}\ \},}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a21b5f604ba896c7a4f333bd66441e922}{eKey::Minus}},\ \textcolor{stringliteral}{"{}Minus"{}}\ \},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad5c6c3fc903ff4af8823ed7ba55ff176}{eKey::Period}},\ \textcolor{stringliteral}{"{}Period"{}}\ \},}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a190e688ea0e769c8777658307c42a4cd}{eKey::Slash}},\ \textcolor{stringliteral}{"{}Slash"{}}\ \},}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abdba42173d2fec77ce502f0417084ec0}{eKey::D0}},\ \textcolor{stringliteral}{"{}D0"{}}\ \},}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a86fcd0eeb38c3a8c258498623fae666b}{eKey::D1}},\ \textcolor{stringliteral}{"{}D1"{}}\ \},}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0f2f610ddc9316ec1339a0c073176b6b}{eKey::D2}},\ \textcolor{stringliteral}{"{}D2"{}}\ \},}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ade46078052add3ce926ec9d8a1dd7ca0}{eKey::D3}},\ \textcolor{stringliteral}{"{}D3"{}}\ \},}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af90c89cd2378cbe39859fad1c4a79f29}{eKey::D4}},\ \textcolor{stringliteral}{"{}D4"{}}\ \},}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4f6a79958dc365b0996a959e6d67f7ee}{eKey::D5}},\ \textcolor{stringliteral}{"{}D5"{}}\ \},}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4a9ccc71bdfff9a09fd0dda8fff650ae}{eKey::D6}},\ \textcolor{stringliteral}{"{}D6"{}}\ \},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a032eb51cc99816009a18dc7d3ee3a8f7}{eKey::D7}},\ \textcolor{stringliteral}{"{}D7"{}}\ \},}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a786c5b544ec8371ff452aa072cacbd56}{eKey::D8}},\ \textcolor{stringliteral}{"{}D8"{}}\ \},}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4d5ac2c1b04379d8e78fbd242d48c5cb}{eKey::D9}},\ \textcolor{stringliteral}{"{}D9"{}}\ \},}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8add187706b69ff46b8fb8aba46908ecff}{eKey::Semicolon}},\ \textcolor{stringliteral}{"{}Semicolon"{}}\ \},}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab9e1a7ef294bab9dd2ce1029726d5546}{eKey::Equal}},\ \textcolor{stringliteral}{"{}Equal"{}}\ \},}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a397075a040528813f20f6c289b623a3b}{eKey::A}},\ \textcolor{stringliteral}{"{}A"{}}\ \},}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a30d29bb7b92629637b6646d739a3fba2}{eKey::B}},\ \textcolor{stringliteral}{"{}B"{}}\ \},}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a78f51c8a8e90c8c409fa7960e2bff6a3}{eKey::C}},\ \textcolor{stringliteral}{"{}C"{}}\ \},}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a09145696638abc5894df77a271ffdc79}{eKey::D}},\ \textcolor{stringliteral}{"{}D"{}}\ \},}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1cdf504473504d01f8b45cc41553f490}{eKey::E}},\ \textcolor{stringliteral}{"{}E"{}}\ \},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa855c600d5a32a6609b63a1ddbb84c8d}{eKey::F}},\ \textcolor{stringliteral}{"{}F"{}}\ \},}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0754496e7b895b969ff5fba62052aa7f}{eKey::G}},\ \textcolor{stringliteral}{"{}G"{}}\ \},}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8acb447b80567676cf31264c547e672b01}{eKey::H}},\ \textcolor{stringliteral}{"{}H"{}}\ \},}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2887ed5592f424e3067da256affa7c8a}{eKey::I}},\ \textcolor{stringliteral}{"{}I"{}}\ \},}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a3601a60d9cbc6a5ac7bb603339d97b49}{eKey::J}},\ \textcolor{stringliteral}{"{}J"{}}\ \},}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a82ea43219d7245c6bd500ead32a0dd9a}{eKey::K}},\ \textcolor{stringliteral}{"{}K"{}}\ \},}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9762c725390c776ed7a17aa2e28e6d9e}{eKey::L}},\ \textcolor{stringliteral}{"{}L"{}}\ \},}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab3aab7dc2947543b2351599ce564fa28}{eKey::M}},\ \textcolor{stringliteral}{"{}M"{}}\ \},}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7a714558a0dc7b15f16d63f34cd14ce1}{eKey::N}},\ \textcolor{stringliteral}{"{}N"{}}\ \},}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a481cda320c74820c4ae12fc9f4c8b960}{eKey::O}},\ \textcolor{stringliteral}{"{}O"{}}\ \},}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a63995530d70d204acada2ee0f4e9b5f2}{eKey::P}},\ \textcolor{stringliteral}{"{}P"{}}\ \},}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2b6b1b2d3210455c2e06c64e39521db2}{eKey::Q}},\ \textcolor{stringliteral}{"{}Q"{}}\ \},}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8afebda9e477bb6b269a3f018a504fd66a}{eKey::R}},\ \textcolor{stringliteral}{"{}R"{}}\ \},}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9e0bb5bfef067918bd4a835a5f0d65e6}{eKey::S}},\ \textcolor{stringliteral}{"{}S"{}}\ \},}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{eKey::T}},\ \textcolor{stringliteral}{"{}T"{}}\ \},}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abc4622eb1258ea0912a5a84d861e9997}{eKey::U}},\ \textcolor{stringliteral}{"{}U"{}}\ \},}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae1a61df881ca9edeb5c52654701c2081}{eKey::V}},\ \textcolor{stringliteral}{"{}V"{}}\ \},}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a598ed9709ade0d8f94ff4f795fb3ded5}{eKey::W}},\ \textcolor{stringliteral}{"{}W"{}}\ \},}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e2cee66a4284c61b71c86a96bed8a6e}{eKey::X}},\ \textcolor{stringliteral}{"{}X"{}}\ \},}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4ae41f354a0249602ac21e9f3bcea073}{eKey::Y}},\ \textcolor{stringliteral}{"{}Y"{}}\ \},}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8c7ca128fd0eb8d52f14fefd8b42f580}{eKey::Z}},\ \textcolor{stringliteral}{"{}Z"{}}\ \},}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ac3243a980dd6e4f3e988ea07d3d583e7}{eKey::LeftBracket}},\ \textcolor{stringliteral}{"{}LeftBracket"{}}\ \},}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af20635bc50cf4245a648600d36ca7573}{eKey::Backslash}},\ \textcolor{stringliteral}{"{}Backslash"{}}\ \},}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a00a6352eabf6e583381315c7764d540c}{eKey::RightBracket}},\ \textcolor{stringliteral}{"{}RightBracket"{}}\ \},}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abba4a38b94156763cb5b9ff3e3cef0ea}{eKey::GraveAccent}},\ \textcolor{stringliteral}{"{}GraveAccent"{}}\ \},}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1cbf490fca965cdd15cd2edef03d6282}{eKey::World1}},\ \textcolor{stringliteral}{"{}World1"{}}\ \},}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad1cfac232687d62e679759f6b8dd9304}{eKey::World2}},\ \textcolor{stringliteral}{"{}World2"{}}\ \},}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae88b40555e9aa9825b252bef72fe19ca}{eKey::Esc}},\ \textcolor{stringliteral}{"{}Esc"{}}\ \},}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1adae4463cf048f087aa4c6f8db4d4a1}{eKey::Enter}},\ \textcolor{stringliteral}{"{}Enter"{}}\ \},}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8adc19d8e1ada55218829037eeb034643a}{eKey::Tab}},\ \textcolor{stringliteral}{"{}Tab"{}}\ \},}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7245f44ebb9885e938543697334fa68a}{eKey::Backspace}},\ \textcolor{stringliteral}{"{}Backspace"{}}\ \},}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aced39cea792863956fe0961a0f77eb7d}{eKey::Insert}},\ \textcolor{stringliteral}{"{}Insert"{}}\ \},}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa8d0e2d8882d3fe0e060d35943d5c4dd}{eKey::Delete}},\ \textcolor{stringliteral}{"{}Delete"{}}\ \},}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13}{eKey::Right}},\ \textcolor{stringliteral}{"{}Right"{}}\ \},}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{eKey::Left}},\ \textcolor{stringliteral}{"{}Left"{}}\ \},}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7819e03b2fd07a16ba43683f8bcc74b0}{eKey::Down}},\ \textcolor{stringliteral}{"{}Down"{}}\ \},}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{eKey::Up}},\ \textcolor{stringliteral}{"{}Up"{}}\ \},}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4248351233547c080e46e816dcbbc225}{eKey::PageUp}},\ \textcolor{stringliteral}{"{}PageUp"{}}\ \},}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a449b2b5ff0d4cfac036ba56a94494eeb}{eKey::PageDown}},\ \textcolor{stringliteral}{"{}PageDown"{}}\ \},}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a089e5809385a6fd189f1a2f063107a49}{eKey::Home}},\ \textcolor{stringliteral}{"{}Home"{}}\ \},}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7c272f0f8db1370d3e1702f28d5f481b}{eKey::End}},\ \textcolor{stringliteral}{"{}End"{}}\ \},}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa3e3fd1c3cc752fb160567ffb3f76123}{eKey::CapsLock}},\ \textcolor{stringliteral}{"{}CapsLock"{}}\ \},}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a41eff069ffe1b4258aa44338e0f6c0ae}{eKey::ScrollLock}},\ \textcolor{stringliteral}{"{}ScrollLock"{}}\ \},}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aef242ceaf5c0930c5abe2743d78a7388}{eKey::NumLock}},\ \textcolor{stringliteral}{"{}NumLock"{}}\ \},}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a05dcb925e9ad1559f943861ac6213ee8}{eKey::PrintScreen}},\ \textcolor{stringliteral}{"{}PrintScreen"{}}\ \},}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a1c488af1702160bf271f692f9996787e}{eKey::Pause}},\ \textcolor{stringliteral}{"{}Pause"{}}\ \},}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa61db96c77f14e70dcef77ad218f1921}{eKey::F1}},\ \textcolor{stringliteral}{"{}F1"{}}\ \},}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8936850adefbb65dccd172e4ad4cee80}{eKey::F2}},\ \textcolor{stringliteral}{"{}F2"{}}\ \},}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a5b8d4396c3e46003e951406c6b0477e1}{eKey::F3}},\ \textcolor{stringliteral}{"{}F3"{}}\ \},}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6c8f21a209c36878bffd5e0c6d41b605}{eKey::F4}},\ \textcolor{stringliteral}{"{}F4"{}}\ \},}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9a5c6cf95213f2cc3849281e1a846e08}{eKey::F5}},\ \textcolor{stringliteral}{"{}F5"{}}\ \},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab0821ecf6ccad10eb51f350e138b21d0}{eKey::F6}},\ \textcolor{stringliteral}{"{}F6"{}}\ \},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a5bf3c909e634d0394b45c63d79986053}{eKey::F7}},\ \textcolor{stringliteral}{"{}F7"{}}\ \},}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa52cca642ceb312ab47add562640ced2}{eKey::F8}},\ \textcolor{stringliteral}{"{}F8"{}}\ \},}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad0a289ed0401f5471ca405a0fdb1cf20}{eKey::F9}},\ \textcolor{stringliteral}{"{}F9"{}}\ \},}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9b6133caa70a4ccc4e9a4602a4a22f4e}{eKey::F10}},\ \textcolor{stringliteral}{"{}F10"{}}\ \},}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a3b1e4c6d9f06ef6538673af32d4a37a3}{eKey::F11}},\ \textcolor{stringliteral}{"{}F11"{}}\ \},}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a122eba3503b7a9358b3f1a41ff52c0f7}{eKey::F12}},\ \textcolor{stringliteral}{"{}F12"{}}\ \},}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a0aa1c3ed87964792da8e3e13322cc39e}{eKey::F13}},\ \textcolor{stringliteral}{"{}F13"{}}\ \},}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2906bfbbd04d746fbfecd3db9d04c440}{eKey::F14}},\ \textcolor{stringliteral}{"{}F14"{}}\ \},}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2182e8e59a9c70df53d8c3e7f629817e}{eKey::F15}},\ \textcolor{stringliteral}{"{}F15"{}}\ \},}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a82d07c0fdc55fe7dc2414d7c28be69b0}{eKey::F16}},\ \textcolor{stringliteral}{"{}F16"{}}\ \},}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a91b6d99a1d8f1284b5441dcf279a8534}{eKey::F17}},\ \textcolor{stringliteral}{"{}F17"{}}\ \},}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a920865335a5ef5d5556676c715d315ab}{eKey::F18}},\ \textcolor{stringliteral}{"{}F18"{}}\ \},}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a58b30ea773b40419f0a9c2d0b57a8b96}{eKey::F19}},\ \textcolor{stringliteral}{"{}F19"{}}\ \},}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae84b0cc92e5352d1198f90e77b1d2b4f}{eKey::F20}},\ \textcolor{stringliteral}{"{}F20"{}}\ \},}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab0b13452c477397e1fd895fbf13ebe71}{eKey::F21}},\ \textcolor{stringliteral}{"{}F21"{}}\ \},}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a645db5b44e1bb61c87f099b6b2dd9fb1}{eKey::F22}},\ \textcolor{stringliteral}{"{}F22"{}}\ \},}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8adc4936c91f944515d5441060d189ea8a}{eKey::F23}},\ \textcolor{stringliteral}{"{}F23"{}}\ \},}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aeaf1f0c2fc90875d04b9cf5b64488205}{eKey::F24}},\ \textcolor{stringliteral}{"{}F24"{}}\ \},}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aef04b788da664aa9f2c29db7395dabb9}{eKey::F25}},\ \textcolor{stringliteral}{"{}F25"{}}\ \},}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6764b36b30127fb84eea953a27594304}{eKey::KP0}},\ \textcolor{stringliteral}{"{}KP0"{}}\ \},}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a49195a25a77b60695656864158bbcedf}{eKey::KP1}},\ \textcolor{stringliteral}{"{}KP1"{}}\ \},}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a9084a28c4c759f2d105394b4dd8f3100}{eKey::KP2}},\ \textcolor{stringliteral}{"{}KP2"{}}\ \},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a232a93391f9a9543e7c2e8c514f93732}{eKey::KP3}},\ \textcolor{stringliteral}{"{}KP3"{}}\ \},}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab333c2c7723f5cd37f0a9dc8a0b8f56f}{eKey::KP4}},\ \textcolor{stringliteral}{"{}KP4"{}}\ \},}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a2ff1ef6ca0757a53cadcf55af9b540a1}{eKey::KP5}},\ \textcolor{stringliteral}{"{}KP5"{}}\ \},}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad3f0e0a16e9b94197083cbc91b0cb0d1}{eKey::KP6}},\ \textcolor{stringliteral}{"{}KP6"{}}\ \},}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a892017e2bbb03447c4a18ee86ee10f5e}{eKey::KP7}},\ \textcolor{stringliteral}{"{}KP7"{}}\ \},}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a4268a37ca529d11b6aee68da72df7df8}{eKey::KP8}},\ \textcolor{stringliteral}{"{}KP8"{}}\ \},}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8abbe0937b9c2d63d1ba15cd383e9b7eed}{eKey::KP9}},\ \textcolor{stringliteral}{"{}KP9"{}}\ \},}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8e213fa106a0947474caeb58bef70dd1}{eKey::KPDecimal}},\ \textcolor{stringliteral}{"{}KPDecimal"{}}\ \},}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a546cff5630716a0ff4bec89668c09b74}{eKey::KPDivide}},\ \textcolor{stringliteral}{"{}KPDivide"{}}\ \},}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aa8ea6d2532c5ad91e0124dbc6597072e}{eKey::KPMultiply}},\ \textcolor{stringliteral}{"{}KPMultiply"{}}\ \},}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab713fb3c668af1b643d3de01dc38696a}{eKey::KPSubtract}},\ \textcolor{stringliteral}{"{}KPSubtract"{}}\ \},}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a25371e66e25afc31fa0381a9716373c8}{eKey::KPAdd}},\ \textcolor{stringliteral}{"{}KPAdd"{}}\ \},}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8a5e9ffa30a4fa7ee955e279bdc17a67}{eKey::KPEnter}},\ \textcolor{stringliteral}{"{}KPEnter"{}}\ \},}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a5a0e4ea807a25b340d8d3bcb0f4cb5ae}{eKey::KPEqual}},\ \textcolor{stringliteral}{"{}KPEqual"{}}\ \},}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6807c26ccb62144c73904856d06e4898}{eKey::LeftShift}},\ \textcolor{stringliteral}{"{}LeftShift"{}}\ \},}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ab011d66cc86d10a24deb5167e99181dc}{eKey::LeftControl}},\ \textcolor{stringliteral}{"{}LeftControl"{}}\ \},}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ae9757147afc92c06c8e935eaad898cae}{eKey::LeftAlt}},\ \textcolor{stringliteral}{"{}LeftAlt"{}}\ \},}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aec7680df7b3f06546266c7ccc5d5631b}{eKey::LeftSuper}},\ \textcolor{stringliteral}{"{}LeftSuper"{}}\ \},}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ac1765578d77749f9d9f33259ad89e2e5}{eKey::RightShift}},\ \textcolor{stringliteral}{"{}RightShift"{}}\ \},}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8aecdde3adaab49e42c5fdcb079b7bd673}{eKey::RightControl}},\ \textcolor{stringliteral}{"{}RightControl"{}}\ \},}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a8eddfec0a987e99842b9d92c3d8bc633}{eKey::RightAlt}},\ \textcolor{stringliteral}{"{}RightAlt"{}}\ \},}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a466f4ceb4b9393eb7867a2cbc23be692}{eKey::RightSuper}},\ \textcolor{stringliteral}{"{}RightSuper"{}}\ \},}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8ad449fa7756f1fcbcb6ceb3761c4cf35a}{eKey::Menu}},\ \textcolor{stringliteral}{"{}Menu"{}}\ \},}
+\DoxyCodeLine{00217\ \ \ \ \ \})}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \}\ \textcolor{comment}{//\ namespace\ xpe::core}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ JSON\ for\ MouseCodes}}
+\DoxyCodeLine{00222\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe_1_1core}{xpe::core}}}
+\DoxyCodeLine{00223\ \{}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62}{eMouse}},\ \{}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a6f9117080d9a04b8cc36cb06dc84dc1c}{eMouse::NoneButton}},\ \textcolor{stringliteral}{"{}NoneButton"{}}\ \},}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62ac90e9e64b2f96ed3e7243caaaef0d4c8}{eMouse::Button0}},\ \textcolor{stringliteral}{"{}Button0"{}}\ \},}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a40ed92f1ee1d3aba975f394704633ae5}{eMouse::Button1}},\ \textcolor{stringliteral}{"{}Button1"{}}\ \},}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a856295141a850ad2143d777f097998b2}{eMouse::Button2}},\ \textcolor{stringliteral}{"{}Button2"{}}\ \},}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62abc7970d854230f9771885d2531af9971}{eMouse::Button3}},\ \textcolor{stringliteral}{"{}Button3"{}}\ \},}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62aef4d4fe8182f928003d378b944ef23b3}{eMouse::Button4}},\ \textcolor{stringliteral}{"{}Button4"{}}\ \},}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a55e3d7a0f61f12241cd12f7392823043}{eMouse::Button5}},\ \textcolor{stringliteral}{"{}Button5"{}}\ \},}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a2fd9a7ed46e2f9d21126d4ccc061f8a2}{eMouse::Button6}},\ \textcolor{stringliteral}{"{}Button6"{}}\ \},}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a89d460cc6d8f79fa6467b70a1f60b5e5}{eMouse::Button7}},\ \textcolor{stringliteral}{"{}Button7"{}}\ \},}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a5ba4e717224da4e5800953546a70c6f5}{eMouse::ButtonLast}},\ \textcolor{stringliteral}{"{}ButtonLast"{}}\ \},}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a40e3123019d5c14ebb2698c04dcc3a22}{eMouse::ButtonLeft}},\ \textcolor{stringliteral}{"{}ButtonLeft"{}}\ \},}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a2fe4e37aa9d2f65a0d02267a177384c1}{eMouse::ButtonRight}},\ \textcolor{stringliteral}{"{}ButtonRight"{}}\ \},}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a2628d67c9a478732d27e45b06eaf8889}{eMouse::ButtonMiddle}},\ \textcolor{stringliteral}{"{}ButtonMiddle"{}}\ \},}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \})}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \}\ \textcolor{comment}{//\ namespace\ xpe::core}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{//\ JSON\ for\ GamepadCodes}}
+\DoxyCodeLine{00248\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe_1_1core}{xpe::core}}}
+\DoxyCodeLine{00249\ \{}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26}{eGamepadButton}},\ \{}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a3687fbfe9f2fdda2244770408fd2c681}{eGamepadButton::Pad\_A}},\ \textcolor{stringliteral}{"{}Pad\_A"{}}\ \},}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26af2700249ef417eaea8cf716d48fd0827}{eGamepadButton::Pad\_B}},\ \textcolor{stringliteral}{"{}Pad\_B"{}}\ \},}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abb62826bf2e91316d8a790fa55f1819a}{eGamepadButton::Pad\_X}},\ \textcolor{stringliteral}{"{}Pad\_X"{}}\ \},}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1dac038a79602619e1a7be9e4ab872cc}{eGamepadButton::Pad\_Y}},\ \textcolor{stringliteral}{"{}Pad\_Y"{}}\ \},}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a41295e646d7bb68cf4a793d4ed7f106c}{eGamepadButton::Pad\_LeftBumper}},\ \textcolor{stringliteral}{"{}Pad\_LeftBumper"{}}\ \},}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1672427b5e0b2a9f1ce3971fce88fb89}{eGamepadButton::Pad\_RightBumper}},\ \textcolor{stringliteral}{"{}Pad\_RightBumper"{}}\ \},}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a529a8d53ddba22b06f1708c6ff8d3642}{eGamepadButton::Pad\_Back}},\ \textcolor{stringliteral}{"{}Pad\_Back"{}}\ \},}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a506f1b55538cb40fb0d742db500493e8}{eGamepadButton::Pad\_Start}},\ \textcolor{stringliteral}{"{}Pad\_Start"{}}\ \},}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1ba8ea192d4238eb4997fc9d9c61fb49}{eGamepadButton::Pad\_Guide}},\ \textcolor{stringliteral}{"{}Pad\_Guide"{}}\ \},}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a9c80141c352b0620cef90f850346a543}{eGamepadButton::Pad\_LeftThumb}},\ \textcolor{stringliteral}{"{}Pad\_LeftThumb"{}}\ \},}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26ac793975743453b6a513539248582b14f}{eGamepadButton::Pad\_RightThumb}},\ \textcolor{stringliteral}{"{}Pad\_RightThumb"{}}\ \},}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26abff713c98241f68fec0465974a3a80c5}{eGamepadButton::Pad\_Up}},\ \textcolor{stringliteral}{"{}Pad\_Up"{}}\ \},}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a4ef92a28a7310b1e33f7c7f09d34c447}{eGamepadButton::Pad\_Right}},\ \textcolor{stringliteral}{"{}Pad\_Right"{}}\ \},}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a6ea51f348ed2273d1cd7acc170cd960d}{eGamepadButton::Pad\_Down}},\ \textcolor{stringliteral}{"{}Pad\_Down"{}}\ \},}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304}{eGamepadButton::Pad\_Left}},\ \textcolor{stringliteral}{"{}Pad\_Left"{}}\ \},}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26acf06b676d433a6ab517247d238512310}{eGamepadButton::Pad\_Last}},\ \textcolor{stringliteral}{"{}Pad\_Last"{}}\ \},}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a35e7e2b4be7d3b09ce6268a34db25ef4}{eGamepadButton::Pad\_Cross}},\ \textcolor{stringliteral}{"{}Pad\_Cross"{}}\ \},}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a504e23bce3b71286dd697aa11d27e8f2}{eGamepadButton::Pad\_Circle}},\ \textcolor{stringliteral}{"{}Pad\_Circle"{}}\ \},}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a1bb4c477a5d06d7e7ade03b8db06c20e}{eGamepadButton::Pad\_Square}},\ \textcolor{stringliteral}{"{}Pad\_Square"{}}\ \},}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_aaf38120261ee284a00c809dc4a86da26a39da9c46f43862115c612e9c3b99af50}{eGamepadButton::Pad\_Triangle}},\ \textcolor{stringliteral}{"{}Pad\_Triangle"{}}\ \},}
+\DoxyCodeLine{00279\ \ \ \ \ \})}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38}{eGamepadAxis}},\ \{}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a207e9e5d2a6c7725bddb7124c0f61287}{eGamepadAxis::Axis\_LeftX}},\ \textcolor{stringliteral}{"{}Axis\_LeftX"{}}\ \},}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a8e3a412945183656647d1076980caa6e}{eGamepadAxis::Axis\_LeftY}},\ \textcolor{stringliteral}{"{}Axis\_LeftY"{}}\ \},}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38ac82c10c9d77e9ff5150ccaf740b84aaf}{eGamepadAxis::Axis\_RightX}},\ \textcolor{stringliteral}{"{}Axis\_RightX"{}}\ \},}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a1105fdc10b81ef4d8ecc0201289b2fe1}{eGamepadAxis::Axis\_RightY}},\ \textcolor{stringliteral}{"{}Axis\_RightY"{}}\ \},}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a694b54f1b5afd19ed10b130526b2b2e0}{eGamepadAxis::Axis\_LeftTrigger}},\ \textcolor{stringliteral}{"{}Axis\_LeftTrigger"{}}\ \},}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38a6fba40b7473ffd948e23323ecfa62d2b}{eGamepadAxis::Axis\_RightTrigger}},\ \textcolor{stringliteral}{"{}Axis\_RightTrigger"{}}\ \},}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1core_adbe1a654c5179a88a1390e31f9621b38aec7b154c770e5bfb5be55cec1e787318}{eGamepadAxis::Axis\_Last}},\ \textcolor{stringliteral}{"{}Axis\_Last"{}}\ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \})}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \}\ \textcolor{comment}{//\ namespace\ xpe::core}}
+
+\end{DoxyCode}

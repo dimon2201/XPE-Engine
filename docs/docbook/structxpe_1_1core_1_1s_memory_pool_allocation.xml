@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1core_1_1s_memory_pool_allocation" xml:lang="en-US">
+<title>xpe::core::sMemoryPoolAllocation Struct Reference</title>
+<indexterm><primary>xpe::core::sMemoryPoolAllocation</primary></indexterm>
+<para>
+<computeroutput>#include &lt;memory_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link> <link linkend="_structxpe_1_1core_1_1s_memory_pool_allocation_1ada5e714da298e85d50d1dd857c23cb5d">FreeFlag</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1core_1_1s_memory_pool_allocation_1aec877d7cb835d5110e5e6c66c8eb718c">AllocByteWidth</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> <link linkend="_structxpe_1_1core_1_1s_memory_pool_allocation_1a21d3f55f4a4b08eaaeac5c9d7d7c5671">OccupiedByteWidth</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1core_1_1s_memory_pool_allocation_1a4cda2a9bb73fe41f08df98817963a202">Address</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1core_1_1s_memory_pool_allocation_1a4cda2a9bb73fe41f08df98817963a202"/><section>
+    <title>Address</title>
+<indexterm><primary>Address</primary><secondary>xpe::core::sMemoryPoolAllocation</secondary></indexterm>
+<indexterm><primary>xpe::core::sMemoryPoolAllocation</primary><secondary>Address</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>* xpe::core::sMemoryPoolAllocation::Address = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_memory_pool_allocation_1aec877d7cb835d5110e5e6c66c8eb718c"/><section>
+    <title>AllocByteWidth</title>
+<indexterm><primary>AllocByteWidth</primary><secondary>xpe::core::sMemoryPoolAllocation</secondary></indexterm>
+<indexterm><primary>xpe::core::sMemoryPoolAllocation</primary><secondary>AllocByteWidth</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::core::sMemoryPoolAllocation::AllocByteWidth = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_memory_pool_allocation_1ada5e714da298e85d50d1dd857c23cb5d"/><section>
+    <title>FreeFlag</title>
+<indexterm><primary>FreeFlag</primary><secondary>xpe::core::sMemoryPoolAllocation</secondary></indexterm>
+<indexterm><primary>xpe::core::sMemoryPoolAllocation</primary><secondary>FreeFlag</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6">u8</link> xpe::core::sMemoryPoolAllocation::FreeFlag = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1core_1_1s_memory_pool_allocation_1a21d3f55f4a4b08eaaeac5c9d7d7c5671"/><section>
+    <title>OccupiedByteWidth</title>
+<indexterm><primary>OccupiedByteWidth</primary><secondary>xpe::core::sMemoryPoolAllocation</secondary></indexterm>
+<indexterm><primary>xpe::core::sMemoryPoolAllocation</primary><secondary>OccupiedByteWidth</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link> xpe::core::sMemoryPoolAllocation::OccupiedByteWidth = 0</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/core/<link linkend="_memory__manager_8hpp">memory_manager.hpp</link></section>
+</section>

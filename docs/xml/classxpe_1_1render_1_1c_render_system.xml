@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_render_system" kind="class" language="C++" prot="public">
+    <compoundname>xpe::render::cRenderSystem</compoundname>
+    <basecompoundref refid="classxpe_1_1ecs_1_1c_system" prot="public" virt="non-virtual">xpe::ecs::cSystem</basecompoundref>
+    <includes refid="render__system_8hpp" local="no">render_system.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1abcbdfa25ef1687e44c642a2dd04e4762" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cRenderSystem::cRenderSystem</definition>
+        <argsstring>(sViewport &amp;viewport, u32 sampleCount)</argsstring>
+        <name>cRenderSystem</name>
+        <qualifiedname>xpe::render::cRenderSystem::cRenderSystem</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> &amp;</type>
+          <declname>viewport</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="16" column="13" bodyfile="engine/src/rendering/render_system.cpp" bodystart="16" bodyend="24"/>
+        <references refid="input__manager_8hpp_1a2cd1cdcbe57492f3f37f3242807b8d22" compoundref="input__manager_8hpp" startline="7">AddWindowFrameResized</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1abe3b469b340e88d3b463a76164e5f308" compoundref="camera__manager_8cpp" startline="69" endline="72">xpe::render::cCameraManager::GetViewport</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a828639847fb4674f2bc13796b985ddaf">xpe::render::context::Init</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1a9c0c4c39c990785bf9a1872668e034d4" compoundref="camera__manager_8cpp" startline="63" endline="67">xpe::render::cCameraManager::SetViewport</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1af94aa18605dede3765dec0d2e029c120" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cRenderSystem::~cRenderSystem</definition>
+        <argsstring>()</argsstring>
+        <name>~cRenderSystem</name>
+        <qualifiedname>xpe::render::cRenderSystem::~cRenderSystem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="17" column="13" bodyfile="engine/src/rendering/render_system.cpp" bodystart="26" bodyend="33"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a8d9cadae672dac3fef057d542959c9fd">xpe::render::context::Free</references>
+        <references refid="input__manager_8hpp_1a63d155ba501a5780d2d067ac845da1d9" compoundref="input__manager_8hpp" startline="19">RemoveWindowFrameResized</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1ac2834a58be8933708392e7d92a79e43e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::Prepare</definition>
+        <argsstring>()</argsstring>
+        <name>Prepare</name>
+        <qualifiedname>xpe::render::cRenderSystem::Prepare</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="19" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="259" bodyend="263"/>
+        <references refid="namespacexpe_1_1render_1_1context_1a9cff9162e6ac9fa6d9d170c4ef5d8793">xpe::render::context::BindIndexBuffer</references>
+        <references refid="namespacexpe_1_1render_1_1context_1a05745fc445674257136a8f567a703b01">xpe::render::context::BindVertexBuffer</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1a5c7fbcce9a91a8cade08dc58bc6bf0cd" compoundref="bindings_8hpp" startline="29">xpe::render::Buffers::Index</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1a17e78b5995040ce0922bb6e86b9ac029" compoundref="bindings_8hpp" startline="28">xpe::render::Buffers::Vertex</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1adf9ca8fc79ed13660b521ef4cf9f78be" prot="public" static="no" const="no" explicit="no" inline="no" final="yes" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::Update</definition>
+        <argsstring>(cScene *scene, const cTime &amp;dt) override final</argsstring>
+        <name>Update</name>
+        <qualifiedname>xpe::render::cRenderSystem::Update</qualifiedname>
+        <reimplements refid="classxpe_1_1ecs_1_1c_system_1a2a77b444fc80b9f1bd43215a7ba894d6">Update</reimplements>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="classxpe_1_1core_1_1c_time" kindref="compound">cTime</ref> &amp;</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="20" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="265" bodyend="270"/>
+        <references refid="classxpe_1_1anim_1_1c_skeleton_manager_1a4abeb14a1cd0427e88c31b8ef6efc480" compoundref="skeleton__manager_8cpp" startline="17" endline="20">xpe::anim::cSkeletonManager::Flush</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1a1b8ab19056f84742e5fa02c488cf3f52" compoundref="app_8cpp" startline="177" endline="182">xpe::core::cApp::Render</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::WindowFrameResized</definition>
+        <argsstring>(int width, int height)</argsstring>
+        <name>WindowFrameResized</name>
+        <qualifiedname>xpe::render::cRenderSystem::WindowFrameResized</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="22" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="241" bodyend="257"/>
+        <references refid="structxpe_1_1render_1_1s_render_target_1aa5a44bf9fcb607e8332ecbc0503a8226" compoundref="render__target_8hpp" startline="14">xpe::render::sRenderTarget::DepthStencil</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1af424d0046e0de26200627a11e1051303" compoundref="camera__manager_8cpp" startline="26" endline="29">xpe::render::cCameraManager::Flush</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1abe3b469b340e88d3b463a76164e5f308" compoundref="camera__manager_8cpp" startline="69" endline="72">xpe::render::cCameraManager::GetViewport</references>
+        <references refid="structxpe_1_1render_1_1_render_targets_1aea80a7365d3fe9bfc78d3e67c62241c5" compoundref="bindings_8hpp" startline="18">xpe::render::RenderTargets::Opaque</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a13cc34a42448dc14bdfbeef99f79a196" compoundref="render__target_8cpp" startline="68" endline="71">xpe::render::sRenderTarget::Resize</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b" compoundref="texture_8cpp" startline="121" endline="127">xpe::render::sTexture::Resize</references>
+        <references refid="structxpe_1_1render_1_1s_render_target_1a507527ff5a70e8697cfa84cf01c439ce" compoundref="render__target_8cpp" startline="73" endline="78">xpe::render::sRenderTarget::ResizeColors</references>
+        <references refid="structxpe_1_1render_1_1_textures_1ac93872fd21faffa72c22f0ab4acfc88c" compoundref="bindings_8hpp" startline="43">xpe::render::Textures::SharedDepth</references>
+        <references refid="structxpe_1_1render_1_1_render_targets_1a5707635fef6e8157ed49abe40dfdc9a5" compoundref="bindings_8hpp" startline="19">xpe::render::RenderTargets::Transparent</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1abf86f929da0ab62132f0e443dcebd3ef" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::InitManagers</definition>
+        <argsstring>(sViewport &amp;viewport, u32 sampleCount)</argsstring>
+        <name>InitManagers</name>
+        <qualifiedname>xpe::render::cRenderSystem::InitManagers</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> &amp;</type>
+          <declname>viewport</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="25" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="35" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1a1d5215548ce675983e3daa283a63f18a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::InitBuffers</definition>
+        <argsstring>(sViewport &amp;viewport, u32 sampleCount)</argsstring>
+        <name>InitBuffers</name>
+        <qualifiedname>xpe::render::cRenderSystem::InitBuffers</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> &amp;</type>
+          <declname>viewport</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="26" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="47" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1ab1e800fd0ee3f4537875b0399a0f3a96" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::InitRenderTargets</definition>
+        <argsstring>(sViewport &amp;viewport, u32 sampleCount)</argsstring>
+        <name>InitRenderTargets</name>
+        <qualifiedname>xpe::render::cRenderSystem::InitRenderTargets</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_viewport" kindref="compound">sViewport</ref> &amp;</type>
+          <declname>viewport</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="27" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="57" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1a77d8055eb1a369d1bb3406b9b5d42788" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::FreeManagers</definition>
+        <argsstring>()</argsstring>
+        <name>FreeManagers</name>
+        <qualifiedname>xpe::render::cRenderSystem::FreeManagers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="29" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="213" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1a1ec73f314a79f9c70332f4e501f8af61" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::FreeBuffers</definition>
+        <argsstring>()</argsstring>
+        <name>FreeBuffers</name>
+        <qualifiedname>xpe::render::cRenderSystem::FreeBuffers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="30" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="225" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1a3f085377706173d9be7dccaa049c8850" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::FreeRenderTargets</definition>
+        <argsstring>()</argsstring>
+        <name>FreeRenderTargets</name>
+        <qualifiedname>xpe::render::cRenderSystem::FreeRenderTargets</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="31" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="232" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1a3bed5a69be586339497a9291db43a04e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::UpdateLight</definition>
+        <argsstring>(cScene *scene)</argsstring>
+        <name>UpdateLight</name>
+        <qualifiedname>xpe::render::cRenderSystem::UpdateLight</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="33" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="272" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_render_system_1a2b68d29894d99a298b7e10e6cec947d0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cRenderSystem::UpdateShaders</definition>
+        <argsstring>(cScene *scene)</argsstring>
+        <name>UpdateShaders</name>
+        <qualifiedname>xpe::render::cRenderSystem::UpdateShaders</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/render_system.hpp" line="34" column="18" bodyfile="engine/src/rendering/render_system.cpp" bodystart="325" bodyend="423"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::ecs::cSystem</label>
+        <link refid="classxpe_1_1ecs_1_1c_system"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cRenderSystem</label>
+        <link refid="classxpe_1_1render_1_1c_render_system"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::ecs::cSystem</label>
+        <link refid="classxpe_1_1ecs_1_1c_system"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cRenderSystem</label>
+        <link refid="classxpe_1_1render_1_1c_render_system"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/render_system.hpp" line="12" column="9" bodyfile="engine/src/rendering/render_system.hpp" bodystart="13" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_render_system_1abcbdfa25ef1687e44c642a2dd04e4762" prot="public" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>cRenderSystem</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1a1ec73f314a79f9c70332f4e501f8af61" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>FreeBuffers</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1a77d8055eb1a369d1bb3406b9b5d42788" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>FreeManagers</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1a3f085377706173d9be7dccaa049c8850" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>FreeRenderTargets</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1a1d5215548ce675983e3daa283a63f18a" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>InitBuffers</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1abf86f929da0ab62132f0e443dcebd3ef" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>InitManagers</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1ab1e800fd0ee3f4537875b0399a0f3a96" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>InitRenderTargets</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1ac2834a58be8933708392e7d92a79e43e" prot="public" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>Prepare</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1adf9ca8fc79ed13660b521ef4cf9f78be" prot="public" virt="virtual"><scope>xpe::render::cRenderSystem</scope><name>Update</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1a3bed5a69be586339497a9291db43a04e" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>UpdateLight</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1a2b68d29894d99a298b7e10e6cec947d0" prot="private" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>UpdateShaders</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1a7b60a7e2b3cfc9089bfda515a12f7984" prot="public" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>WindowFrameResized</name></member>
+      <member refid="classxpe_1_1render_1_1c_render_system_1af94aa18605dede3765dec0d2e029c120" prot="public" virt="non-virtual"><scope>xpe::render::cRenderSystem</scope><name>~cRenderSystem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

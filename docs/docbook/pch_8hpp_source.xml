@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_pch_8hpp_source" xml:lang="en-US">
+<title>pch.hpp</title>
+<indexterm><primary>engine/src/pch.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="comment">//&#32;skip&#32;non-critical&#32;Win&#32;API&#32;warnings</emphasis>
+4 <emphasis role="preprocessor">#pragma&#32;warning(disable&#32;:&#32;4081)</emphasis>
+5 <emphasis role="preprocessor">#pragma&#32;warning(disable&#32;:&#32;4103)</emphasis>
+6 <emphasis role="preprocessor">#pragma&#32;warning(disable&#32;:&#32;4067)</emphasis>
+7 <emphasis role="preprocessor">#pragma&#32;warning(disable&#32;:&#32;4251)&#32;</emphasis><emphasis role="comment">//&#32;dll-interface&#32;warning</emphasis>
+8 
+9 <emphasis role="comment">//&#32;Macros</emphasis>
+10 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_macro__platform_8hpp">core/macro_platform.hpp</link>&gt;</emphasis>
+11 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_macro__build_8hpp">core/macro_build.hpp</link>&gt;</emphasis>
+12 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_macro__constants_8hpp">core/macro_constants.hpp</link>&gt;</emphasis>
+13 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_macro__debugbreak_8hpp">core/macro_debugbreak.hpp</link>&gt;</emphasis>
+14 
+15 <emphasis role="comment">//&#32;STL</emphasis>
+16 <emphasis role="preprocessor">#define&#32;_ENFORCE_MATCHING_ALLOCATORS&#32;0</emphasis>
+17 <emphasis role="preprocessor">#include&#32;&lt;random&gt;</emphasis>
+18 <emphasis role="preprocessor">#include&#32;&lt;string&gt;</emphasis>
+19 <emphasis role="preprocessor">#include&#32;&lt;algorithm&gt;</emphasis>
+20 <emphasis role="preprocessor">#include&#32;&lt;functional&gt;</emphasis>
+21 <emphasis role="preprocessor">#include&#32;&lt;array&gt;</emphasis>
+22 <emphasis role="preprocessor">#include&#32;&lt;vector&gt;</emphasis>
+23 <emphasis role="preprocessor">#include&#32;&lt;thread&gt;</emphasis>
+24 <emphasis role="preprocessor">#include&#32;&lt;future&gt;</emphasis>
+25 <emphasis role="preprocessor">#include&#32;&lt;map&gt;</emphasis>
+26 <emphasis role="preprocessor">#include&#32;&lt;unordered_map&gt;</emphasis>
+27 <emphasis role="preprocessor">#include&#32;&lt;unordered_set&gt;</emphasis>
+28 <emphasis role="preprocessor">#include&#32;&lt;set&gt;</emphasis>
+29 <emphasis role="preprocessor">#include&#32;&lt;queue&gt;</emphasis>
+30 <emphasis role="preprocessor">#include&#32;&lt;memory&gt;</emphasis>
+31 <emphasis role="preprocessor">#include&#32;&lt;mutex&gt;</emphasis>
+32 <emphasis role="preprocessor">#include&#32;&lt;filesystem&gt;</emphasis>
+33 <emphasis role="preprocessor">#include&#32;&lt;fstream&gt;</emphasis>
+34 <emphasis role="preprocessor">#include&#32;&lt;sstream&gt;</emphasis>
+35 <emphasis role="preprocessor">#include&#32;&lt;cstdint&gt;</emphasis>
+36 <emphasis role="preprocessor">#include&#32;&lt;cassert&gt;</emphasis>
+37 <emphasis role="preprocessor">#include&#32;&lt;cstdarg&gt;</emphasis>
+38 <emphasis role="preprocessor">#include&#32;&lt;ctime&gt;</emphasis>
+39 <emphasis role="preprocessor">#include&#32;&lt;utility&gt;</emphasis>
+40 <emphasis role="preprocessor">#include&#32;&lt;chrono&gt;</emphasis>
+41 <emphasis role="preprocessor">#include&#32;&lt;iostream&gt;</emphasis>
+42 <emphasis role="preprocessor">#include&#32;&lt;regex&gt;</emphasis>
+43 <emphasis role="preprocessor">#include&#32;&lt;atomic&gt;</emphasis>
+44 <emphasis role="preprocessor">#include&#32;&lt;condition_variable&gt;</emphasis>
+45 
+46 <emphasis role="comment">//&#32;GLM</emphasis>
+47 <emphasis role="preprocessor">#include&#32;&lt;glm.hpp&gt;</emphasis>
+48 <emphasis role="preprocessor">#include&#32;&lt;gtx/quaternion.hpp&gt;</emphasis>
+49 <emphasis role="preprocessor">#include&#32;&lt;gtc/type_ptr.hpp&gt;</emphasis>
+50 <emphasis role="preprocessor">#include&#32;&lt;gtc/matrix_transform.hpp&gt;</emphasis>
+51 <emphasis role="preprocessor">#include&#32;&lt;gtx/matrix_transform_2d.hpp&gt;</emphasis>
+52 <emphasis role="preprocessor">#define&#32;GLM_ENABLE_EXPERIMENTAL</emphasis>
+53 <emphasis role="preprocessor">#include&#32;&lt;gtx/string_cast.hpp&gt;</emphasis>
+54 
+55 <emphasis role="comment">//&#32;Core</emphasis>
+56 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_types_8hpp">core/types.hpp</link>&gt;</emphasis>
+57 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_memory__manager_8hpp">core/memory_manager.hpp</link>&gt;</emphasis>
+58 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_core_2allocators_8hpp">core/allocators.hpp</link>&gt;</emphasis>
+59 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_smart__pointers_8hpp">core/smart_pointers.hpp</link>&gt;</emphasis>
+60 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_codes__keyboard_8hpp">core/codes_keyboard.hpp</link>&gt;</emphasis>
+61 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_codes__mouse_8hpp">core/codes_mouse.hpp</link>&gt;</emphasis>
+62 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_codes__gamepad_8hpp">core/codes_gamepad.hpp</link>&gt;</emphasis>
+63 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_json_8hpp">res/json.hpp</link>&gt;</emphasis>
+64 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_xml_8hpp">res/xml.hpp</link>&gt;</emphasis>
+65 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_app__config_8hpp">core/app_config.hpp</link>&gt;</emphasis>
+66 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_hardware__manager_8hpp">core/hardware_manager.hpp</link>&gt;</emphasis>
+67 
+68 <emphasis role="comment">//&#32;STL&#32;customization</emphasis>
+69 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_stl_8hpp">stl/stl.hpp</link>&gt;</emphasis>
+70 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_ring__buffer_8hpp">stl/ring_buffer.hpp</link>&gt;</emphasis>
+71 
+72 <emphasis role="comment">//&#32;Core</emphasis>
+73 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_time__manager_8hpp">core/time_manager.hpp</link>&gt;</emphasis>
+74 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_log__manager_8hpp">core/log_manager.hpp</link>&gt;</emphasis>
+75 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_thread_8hpp">core/thread.hpp</link>&gt;</emphasis>
+76 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_task__manager_8hpp">core/task_manager.hpp</link>&gt;</emphasis>
+77 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_event__manager_8hpp">core/event_manager.hpp</link>&gt;</emphasis>
+78 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_observers_8hpp">core/observers.hpp</link>&gt;</emphasis>
+79 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_file__manager_8hpp">core/file_manager.hpp</link>&gt;</emphasis>
+80 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_window__manager_8hpp">core/window_manager.hpp</link>&gt;</emphasis>
+81 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_input__manager_8hpp">core/input_manager.hpp</link>&gt;</emphasis>
+82 
+83 <emphasis role="comment">//&#32;Physics</emphasis>
+84 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_physics__manager_8hpp">physics/physics_manager.hpp</link>&gt;</emphasis>
+85 
+86 <emphasis role="comment">//&#32;Math</emphasis>
+87 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_math__manager_8hpp">math/math_manager.hpp</link>&gt;</emphasis>
+88 
+89 <emphasis role="comment">//&#32;ECS</emphasis>
+90 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_ecs_8hpp">ecs/ecs.hpp</link>&gt;</emphasis>
+91 
+92 <emphasis role="keyword">using&#32;namespace&#32;</emphasis><link linkend="_namespacexpe_1_1core">xpe::core</link>;
+93 <emphasis role="keyword">using&#32;namespace&#32;</emphasis><link linkend="_namespacexpe_1_1ecs">xpe::ecs</link>;
+</programlisting></section>

@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1physics_1_1s_ragdoll" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::physics::sRagdoll</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="physics__manager_8hpp" local="no">physics_manager.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709" prot="public" static="no" strong="no">
+        <type></type>
+        <name>eBodypart</name>
+        <qualifiedname>xpe::physics::sRagdoll::eBodypart</qualifiedname>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aefb98acb6ef2cd6eb1eaeffdfea97b29" prot="public">
+          <name>NONE</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a89d7d7084592f3b74d9125b5aefd2cfe" prot="public">
+          <name>HEAD</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a3ba2668b058e0cd7aa1767b981f748d2" prot="public">
+          <name>TORSO_TOP</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a39c829d9cb116e506e3df3652cf869d6" prot="public">
+          <name>TORSO_MIDDLE</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a43c8fbe94e8ae5076edc6cb1f4bd1877" prot="public">
+          <name>TORSO_BOTTOM</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aca226a80fc561d2f6ed401fc0fabee06" prot="public">
+          <name>LEFT_ARM_TOP</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a606308157b03caad8e5af199a8f471cd" prot="public">
+          <name>LEFT_ARM_BOTTOM</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a691caa8051d8480c9a80d5112012a97e" prot="public">
+          <name>RIGHT_ARM_TOP</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a8a71e669377d5972511162ae9ddd6e67" prot="public">
+          <name>RIGHT_ARM_BOTTOM</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709ae3948599804700d4626ff6f71b059a82" prot="public">
+          <name>LEFT_LEG_TOP</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709afb4afe8477614f2db8bf90eef6722710" prot="public">
+          <name>LEFT_LEG_BOTTOM</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a6c18cc2eff2092f315cc9c7e4189ab1c" prot="public">
+          <name>RIGHT_LEG_TOP</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a5b4172a43b9bb6a20a7736d22ce5043a" prot="public">
+          <name>RIGHT_LEG_BOTTOM</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="175" column="13" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="176" bodyend="190"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structxpe_1_1physics_1_1s_ragdoll_1a2781089318e519e18316b4f65f840062" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>const usize xpe::physics::sRagdoll::k_BodypartCount</definition>
+        <argsstring></argsstring>
+        <name>k_BodypartCount</name>
+        <qualifiedname>xpe::physics::sRagdoll::k_BodypartCount</qualifiedname>
+        <initializer>= 12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="173" column="32" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="173" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_manager_1a2cf208ad9559752ec45914ea1562c79a" compoundref="physics__manager_8cpp" startline="242" endline="251">xpe::physics::cPhysicsManager::AddRagdoll</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1physics_1_1s_ragdoll_1a3c78e7d1cf49375afb779a32b6f71ad8" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1physics_1_1s_actor" kindref="compound">sActor</ref> * &gt;</type>
+        <definition>vector&lt;sActor*&gt; xpe::physics::sRagdoll::Bodyparts</definition>
+        <argsstring></argsstring>
+        <name>Bodyparts</name>
+        <qualifiedname>xpe::physics::sRagdoll::Bodyparts</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="192" column="20" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="192" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1physics_1_1s_ragdoll_1aeda9a25ef2fa74f5948681b045346e80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::sRagdoll::sRagdoll</definition>
+        <argsstring>(const vector&lt; sActor * &gt; &amp;bodyparts)</argsstring>
+        <name>sRagdoll</name>
+        <qualifiedname>xpe::physics::sRagdoll::sRagdoll</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1physics_1_1s_actor" kindref="compound">sActor</ref> * &gt; &amp;</type>
+          <declname>bodyparts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="170" column="13" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="170" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1physics_1_1s_ragdoll_1aa867b794021be6821bd4d44f5f6da88e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::sRagdoll::~sRagdoll</definition>
+        <argsstring>()=default</argsstring>
+        <name>~sRagdoll</name>
+        <qualifiedname>xpe::physics::sRagdoll::~sRagdoll</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="171" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::physics::sRagdoll</label>
+        <link refid="structxpe_1_1physics_1_1s_ragdoll"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::physics::sRagdoll</label>
+        <link refid="structxpe_1_1physics_1_1s_ragdoll"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/physics/physics_manager.hpp" line="168" column="9" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="169" bodyend="193"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1a3c78e7d1cf49375afb779a32b6f71ad8" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>Bodyparts</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>eBodypart</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a89d7d7084592f3b74d9125b5aefd2cfe" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>HEAD</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1a2781089318e519e18316b4f65f840062" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>k_BodypartCount</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a606308157b03caad8e5af199a8f471cd" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>LEFT_ARM_BOTTOM</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aca226a80fc561d2f6ed401fc0fabee06" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>LEFT_ARM_TOP</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709afb4afe8477614f2db8bf90eef6722710" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>LEFT_LEG_BOTTOM</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709ae3948599804700d4626ff6f71b059a82" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>LEFT_LEG_TOP</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709aefb98acb6ef2cd6eb1eaeffdfea97b29" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>NONE</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a8a71e669377d5972511162ae9ddd6e67" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>RIGHT_ARM_BOTTOM</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a691caa8051d8480c9a80d5112012a97e" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>RIGHT_ARM_TOP</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a5b4172a43b9bb6a20a7736d22ce5043a" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>RIGHT_LEG_BOTTOM</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a6c18cc2eff2092f315cc9c7e4189ab1c" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>RIGHT_LEG_TOP</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1aeda9a25ef2fa74f5948681b045346e80" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>sRagdoll</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a43c8fbe94e8ae5076edc6cb1f4bd1877" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>TORSO_BOTTOM</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a39c829d9cb116e506e3df3652cf869d6" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>TORSO_MIDDLE</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1afcafb1e0c7980f74ea09073f55b47709a3ba2668b058e0cd7aa1767b981f748d2" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>TORSO_TOP</name></member>
+      <member refid="structxpe_1_1physics_1_1s_ragdoll_1aa867b794021be6821bd4d44f5f6da88e" prot="public" virt="non-virtual"><scope>xpe::physics::sRagdoll</scope><name>~sRagdoll</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

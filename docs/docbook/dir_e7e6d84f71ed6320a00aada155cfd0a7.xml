@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_e7e6d84f71ed6320a00aada155cfd0a7" xml:lang="en-US">
+<title>engine/src/platform/win Directory Reference</title>
+<indexterm><primary>engine/src/platform/win Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_win__hardware__manager_8cpp">win_hardware_manager.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_win__thread_8cpp">win_thread.cpp</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

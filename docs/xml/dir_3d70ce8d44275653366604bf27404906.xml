@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_3d70ce8d44275653366604bf27404906" kind="dir">
+    <compoundname>engine/src/rendering/dx11</compoundname>
+    <innerfile refid="dx11__context_8cpp">dx11_context.cpp</innerfile>
+    <innerfile refid="dx11__debugger_8cpp">dx11_debugger.cpp</innerfile>
+    <innerfile refid="dx11__hardware_8cpp">dx11_hardware.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/dx11/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1core_1_1c_event_buffer" xml:lang="en-US">
+<title>xpe::core::cEventBuffer&lt; EventFunction &gt; Class Template Reference</title>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary></indexterm>
+<para>
+<computeroutput>#include &lt;event.hpp&gt;</computeroutput>
+</para>
+<para>Inheritance diagram for xpe::core::cEventBuffer&lt; EventFunction &gt;:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classxpe_1_1core_1_1c_event_buffer.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classxpe_1_1core_1_1c_event_buffer_1a2be267c957472f93aa9515646d3e3795">~cEventBuffer</link> ()</para>
+</listitem>
+            <listitem><para>template&lt;typename... Args&gt; </para><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer_1a0106c2c3db24b98a723b1bbf58de4b00">AddEvent</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">eventArgs</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer_1afb40e69af07e0b0629b6fee202ad0725">RemoveEvent</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">_this</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer_1acfd3a3d7ae6153c9d4fec6e7f33243d4">Clear</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer_1a58a439d6e5a5a927f41b3f6e8be5f462">Reserve</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)</para>
+</listitem>
+            <listitem><para>template&lt;typename... Args&gt; </para><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer_1aea68f47d551082a2b6878a5e18b1bdf8">NotifyAll</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">args</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1core_1_1s_event">sEvent</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; &gt; &amp; <link linkend="_classxpe_1_1core_1_1c_event_buffer_1aa4a92e5cf28a047819c1bc32c84b7ba8">GetEvents</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+Public Member Functions inherited from <link linkend="_classxpe_1_1core_1_1c_object">xpe::core::cObject</link>        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194">operator new</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">byteSize</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e">operator delete</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>)</para>
+</listitem>
+        </itemizedlist>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_event_buffer_1a2be267c957472f93aa9515646d3e3795"/><section>
+    <title>~cEventBuffer()</title>
+<indexterm><primary>~cEventBuffer</primary><secondary>xpe::core::cEventBuffer&lt; EventFunction &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary><secondary>~cEventBuffer</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; </computeroutput><para><computeroutput><link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt;::~<link linkend="_classxpe_1_1core_1_1c_event_buffer">cEventBuffer</link> ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_event_buffer_1a0106c2c3db24b98a723b1bbf58de4b00"/><section>
+    <title>AddEvent()</title>
+<indexterm><primary>AddEvent</primary><secondary>xpe::core::cEventBuffer&lt; EventFunction &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary><secondary>AddEvent</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; </computeroutput><computeroutput>template&lt;typename... Args&gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt;::AddEvent (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... eventArgs)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_event_buffer_1acfd3a3d7ae6153c9d4fec6e7f33243d4"/><section>
+    <title>Clear()</title>
+<indexterm><primary>Clear</primary><secondary>xpe::core::cEventBuffer&lt; EventFunction &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary><secondary>Clear</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt;::Clear ( )</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_event_buffer_1aa4a92e5cf28a047819c1bc32c84b7ba8"/><section>
+    <title>GetEvents()</title>
+<indexterm><primary>GetEvents</primary><secondary>xpe::core::cEventBuffer&lt; EventFunction &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary><secondary>GetEvents</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1core_1_1s_event">sEvent</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; &gt; &amp; <link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt;::GetEvents ( ) const<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_event_buffer_1aea68f47d551082a2b6878a5e18b1bdf8"/><section>
+    <title>NotifyAll()</title>
+<indexterm><primary>NotifyAll</primary><secondary>xpe::core::cEventBuffer&lt; EventFunction &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary><secondary>NotifyAll</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; </computeroutput><computeroutput>template&lt;typename... Args&gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt;::NotifyAll (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">Args</link> &amp;&amp;... args)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_event_buffer_1afb40e69af07e0b0629b6fee202ad0725"/><section>
+    <title>RemoveEvent()</title>
+<indexterm><primary>RemoveEvent</primary><secondary>xpe::core::cEventBuffer&lt; EventFunction &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary><secondary>RemoveEvent</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt;::RemoveEvent (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> _this)</computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_event_buffer_1a58a439d6e5a5a927f41b3f6e8be5f462"/><section>
+    <title>Reserve()</title>
+<indexterm><primary>Reserve</primary><secondary>xpe::core::cEventBuffer&lt; EventFunction &gt;</secondary></indexterm>
+<indexterm><primary>xpe::core::cEventBuffer&lt; EventFunction &gt;</primary><secondary>Reserve</secondary></indexterm>
+<computeroutput>template&lt;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">typename</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt; </computeroutput><para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer</link>&lt; <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">EventFunction</link> &gt;::Reserve (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> count)</computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following file:</para>
+engine/src/core/<link linkend="_event_8hpp">event.hpp</link></section>
+</section>

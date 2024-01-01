@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_event_8hpp" xml:lang="en-US">
+<title>engine/src/core/event.hpp File Reference</title>
+<indexterm><primary>engine/src/core/event.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_event">xpe::core::sEvent&lt; EventFunction &gt;</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1core_1_1c_event_buffer">xpe::core::cEventBuffer&lt; EventFunction &gt;</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_event_8hpp_1a64e953d064fd9f060c44e75f3340604d">event_begin</link>(name, ...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_event_8hpp_1a84f30cac3bef98bd3c88d619af98bcea">event_end</link>(name, ...)&#160;&#160;&#160;((T*) thiz)-&gt;name(__VA_ARGS__); }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_event_8hpp_1a64e953d064fd9f060c44e75f3340604d"/><section>
+    <title>event_begin</title>
+<indexterm><primary>event_begin</primary><secondary>event.hpp</secondary></indexterm>
+<indexterm><primary>event.hpp</primary><secondary>event_begin</secondary></indexterm>
+<para><computeroutput>#define event_begin( name,  ...)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">typedef</emphasis>&#32;void&#32;(*f##name)(<emphasis role="keywordtype">void</emphasis>*&#32;thiz,&#32;__VA_ARGS__);&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;On##name(<emphasis role="keywordtype">void</emphasis>*&#32;<emphasis role="keyword">const</emphasis>&#32;thiz,&#32;__VA_ARGS__)&#32;{&#32;\
+</programlisting></section>
+<anchor xml:id="_event_8hpp_1a84f30cac3bef98bd3c88d619af98bcea"/><section>
+    <title>event_end</title>
+<indexterm><primary>event_end</primary><secondary>event.hpp</secondary></indexterm>
+<indexterm><primary>event.hpp</primary><secondary>event_end</secondary></indexterm>
+<para><computeroutput>#define event_end( name,  ...)&#160;&#160;&#160;((T*) thiz)-&gt;name(__VA_ARGS__); }</computeroutput></para></section>
+</section>
+</section>

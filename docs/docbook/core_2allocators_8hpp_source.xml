@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_core_2allocators_8hpp_source" xml:lang="en-US">
+<title>allocators.hpp</title>
+<indexterm><primary>engine/src/core/allocators.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#define&#32;hot_alloc(size)&#32;xpe::core::cMemoryManager::HotPools-&gt;Allocate(size)</emphasis>
+4 <emphasis role="preprocessor">#define&#32;hot_allocT(T,&#32;count)&#32;static_cast&lt;T*&gt;(hot_alloc(sizeof(T)&#32;*&#32;count))</emphasis>
+5 <emphasis role="preprocessor">#define&#32;hot_construct(T)&#32;xpe::core::cMemoryManager::HotPools-&gt;AllocateConstruct&lt;T&gt;()</emphasis>
+6 <emphasis role="preprocessor">#define&#32;hot_construct_args(T,&#32;...)&#32;xpe::core::cMemoryManager::HotPools-&gt;AllocateConstructArgs&lt;T&gt;(__VA_ARGS__)</emphasis>
+7 <emphasis role="preprocessor">#define&#32;hot_free(addr)&#32;xpe::core::cMemoryManager::HotPools-&gt;Free(addr)</emphasis>
+8 <emphasis role="preprocessor">#define&#32;hot_destruct(T,&#32;addr)&#32;\</emphasis>
+9 <emphasis role="preprocessor">addr-&gt;~T();&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;\</emphasis>
+10 <emphasis role="preprocessor">hot_free(addr)</emphasis>
+11 
+12 <emphasis role="preprocessor">#define&#32;main_alloc(size)&#32;xpe::core::cMemoryManager::MainPools-&gt;Allocate(size)</emphasis>
+13 <emphasis role="preprocessor">#define&#32;main_allocT(T,&#32;count)&#32;static_cast&lt;T*&gt;(main_alloc(sizeof(T)&#32;*&#32;count))</emphasis>
+14 <emphasis role="preprocessor">#define&#32;main_construct(T)&#32;xpe::core::cMemoryManager::MainPools-&gt;AllocateConstruct&lt;T&gt;()</emphasis>
+15 <emphasis role="preprocessor">#define&#32;main_construct_args(T,&#32;...)&#32;xpe::core::cMemoryManager::MainPools-&gt;AllocateConstructArgs&lt;T&gt;(__VA_ARGS__)</emphasis>
+16 <emphasis role="preprocessor">#define&#32;main_free(addr)&#32;xpe::core::cMemoryManager::MainPools-&gt;Free(addr)</emphasis>
+17 <emphasis role="preprocessor">#define&#32;main_destruct(T,&#32;addr)&#32;\</emphasis>
+18 <emphasis role="preprocessor">addr-&gt;~T();&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;\</emphasis>
+19 <emphasis role="preprocessor">main_free(addr)</emphasis>
+20 
+21 <emphasis role="preprocessor">#ifdef&#32;DEBUG</emphasis>
+22 
+23 <emphasis role="preprocessor">#define&#32;TOKENPASTE(x,&#32;y)&#32;x&#32;##&#32;y</emphasis>
+24 <emphasis role="preprocessor">#define&#32;TOKENPASTE2(x,&#32;y)&#32;TOKENPASTE(x,&#32;y)</emphasis>
+25 <emphasis role="preprocessor">#define&#32;STACK(size)&#32;xpe::core::sStackAllocator&#32;TOKENPASTE2(s_,&#32;__LINE__)(size)</emphasis>
+26 <emphasis role="preprocessor">#define&#32;STACKT(T,&#32;count)&#32;xpe::core::sStackTypedAllocator&lt;T&gt;&#32;TOKENPASTE2(s_,&#32;__LINE__)(count)</emphasis>
+27 
+28 <emphasis role="preprocessor">#define&#32;salloc(size)&#32;alloca(size);&#32;STACK(size)</emphasis>
+29 <emphasis role="preprocessor">#define&#32;sallocT(T,&#32;count)&#32;static_cast&lt;T*&gt;(alloca(sizeof(T)&#32;*&#32;count));&#32;STACKT(T,&#32;count)</emphasis>
+30 
+31 <emphasis role="preprocessor">#define&#32;LogStackMemory()&#32;xpe::core::cMemoryStackManager::Log()</emphasis>
+32 
+33 <emphasis role="preprocessor">#else</emphasis>
+34 
+35 <emphasis role="preprocessor">#define&#32;salloc(size)&#32;alloca(size)</emphasis>
+36 <emphasis role="preprocessor">#define&#32;sallocT(T,&#32;count)&#32;static_cast&lt;T*&gt;(alloca(sizeof(T)&#32;*&#32;count))</emphasis>
+37 
+38 <emphasis role="preprocessor">#define&#32;LogStackMemory()</emphasis>
+39 
+40 <emphasis role="preprocessor">#endif</emphasis>
+41 
+42 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+43 
+44 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>core&#32;{
+45 
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">void</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1ae5d0b54168ae6e02cf8c8b7d9327c96f">align16_malloc</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">size</link>);
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<emphasis role="keywordtype">void</emphasis>&#32;&#32;<link linkend="_namespacexpe_1_1core_1a10508d83f4fe37b4a622196fe785a7b5">align16_free</link>(<emphasis role="keywordtype">void</emphasis>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">address</link>);
+48 
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_classxpe_1_1core_1_1c_hot_allocator">cHotAllocator</link>
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+52 
+53 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">typedef</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_allocator_1ab5ecfcfe024492cddaaf83e1cf399e40">value_type</link>;
+55 
+56 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_hot_allocator_1a56223db2c0e1b0547731616338d7127e">cHotAllocator</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+57 
+58 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">class</emphasis>&#32;U&gt;
+59 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">constexpr</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_allocator_1a2bb628cfee24a72086a3dab9a2e4ef6c">cHotAllocator</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotAllocator&lt;U&gt;</link>&amp;)&#32;<emphasis role="keyword">noexcept</emphasis>&#32;{}
+60 
+61 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;[[<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nodiscard</link>]]&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_classxpe_1_1core_1_1c_hot_allocator_1a83586b7354621fe8c38d09bdf7f715a2">allocate</link>(std::size_t&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)
+62 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+63 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">static_cast&lt;</emphasis><link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*<emphasis role="keyword">&gt;</emphasis>(<link linkend="_core_2allocators_8hpp_1a907c182cb7f92ee2064968fda57d6656">hot_alloc</link>(<emphasis role="keyword">sizeof</emphasis>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>)&#32;*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>));
+64 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+65 
+66 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_hot_allocator_1ac22b8b9b09101333e086e1b5c4878302">deallocate</link>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">element</link>,&#32;std::size_t&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)&#32;<emphasis role="keyword">noexcept</emphasis>
+67 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+68 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_core_2allocators_8hpp_1a787bfb5b87d8abdec2e3c38601cf4a31">hot_free</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">element</link>);
+69 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+70 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+71 
+72 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">class</emphasis>&#32;T,&#32;<emphasis role="keyword">class</emphasis>&#32;U&gt;
+73 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a532904247c5a467c46d0af45f025fdd2">operator==</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotAllocator&lt;T&gt;</link>&amp;,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotAllocator&lt;U&gt;</link>&amp;)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;&#32;}
+74 
+75 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">class</emphasis>&#32;T,&#32;<emphasis role="keyword">class</emphasis>&#32;U&gt;
+76 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa">operator!=</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotAllocator&lt;T&gt;</link>&amp;,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cHotAllocator&lt;U&gt;</link>&amp;)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;}
+77 
+78 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+79 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_classxpe_1_1core_1_1c_main_allocator">cMainAllocator</link>
+80 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+81 
+82 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+83 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">typedef</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>&#32;<link linkend="_classxpe_1_1core_1_1c_main_allocator_1a855065a97a2bc149b3054b76b66d17ca">value_type</link>;
+84 
+85 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_main_allocator_1aa150d0e4f524c33c8cb2b4d1949897b8">cMainAllocator</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+86 
+87 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">class</emphasis>&#32;U&gt;
+88 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">constexpr</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_main_allocator_1a9224359fd1505bf67899bc4f4d6a7959">cMainAllocator</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cMainAllocator&lt;U&gt;</link>&amp;)&#32;<emphasis role="keyword">noexcept</emphasis>&#32;{}
+89 
+90 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;[[<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nodiscard</link>]]&#32;<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_classxpe_1_1core_1_1c_main_allocator_1afbc9b354b3cbfc82c5993edef67a3539">allocate</link>(std::size_t&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)
+91 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+92 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">static_cast&lt;</emphasis><link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*<emphasis role="keyword">&gt;</emphasis>(<link linkend="_core_2allocators_8hpp_1a0b2c774a281f8d83b9add0b64bf4cff1">main_alloc</link>(<emphasis role="keyword">sizeof</emphasis>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>)&#32;*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>));
+93 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+94 
+95 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_classxpe_1_1core_1_1c_main_allocator_1a682580bb1b6b9f607dc7cef8114a650c">deallocate</link>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">element</link>,&#32;std::size_t&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)&#32;<emphasis role="keyword">noexcept</emphasis>
+96 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+97 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_core_2allocators_8hpp_1a998b108b08cd42f273b431e77afe83cc">main_free</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">element</link>);
+98 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+99 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+100 
+101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">class</emphasis>&#32;T,&#32;<emphasis role="keyword">class</emphasis>&#32;U&gt;
+102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a532904247c5a467c46d0af45f025fdd2">operator==</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cMainAllocator&lt;T&gt;</link>&amp;,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cMainAllocator&lt;U&gt;</link>&amp;)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;&#32;}
+103 
+104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">class</emphasis>&#32;T,&#32;<emphasis role="keyword">class</emphasis>&#32;U&gt;
+105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa">operator!=</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cMainAllocator&lt;T&gt;</link>&amp;,&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">cMainAllocator&lt;U&gt;</link>&amp;)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;}
+106 
+107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_classxpe_1_1core_1_1c_memory_stack_manager">cMemoryStackManager</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>:
+110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c">TotalAllocCount</link>;
+111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6">MemoryOccupiedBytes</link>;
+112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;Log();
+113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+114 
+115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1core_1_1s_stack_allocator">sStackAllocator</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;Size&#32;=&#32;0;
+118 
+119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_stack_allocator">sStackAllocator</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">size</link>);
+120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_stack_allocator">~sStackAllocator</link>();
+121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+122 
+123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_structxpe_1_1core_1_1s_stack_typed_allocator">sStackTypedAllocator</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_structxpe_1_1core_1_1s_stack_typed_allocator_1aed21b1e9ca7688dcec87e00bd857fbd9">Size</link>&#32;=&#32;0;
+127 
+128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_stack_typed_allocator_1a63ca56f4ed115eee4ad13d2ff4b04ff7">sStackTypedAllocator</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>);
+129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_stack_typed_allocator_1a0bf3824fb6bb58a7b1f0c3b57e20a43b">~sStackTypedAllocator</link>();
+130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+131 
+132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_stack_typed_allocator_1a63ca56f4ed115eee4ad13d2ff4b04ff7">sStackTypedAllocator&lt;T&gt;::sStackTypedAllocator</link>(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)&#32;:&#32;Size(<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sizeof</link>(<link linkend="_namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">T</link>)&#32;*&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">count</link>)
+134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c">cMemoryStackManager::TotalAllocCount</link>&#32;+=&#32;1;
+136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6">cMemoryStackManager::MemoryOccupiedBytes</link>&#32;+=&#32;<link linkend="_structxpe_1_1core_1_1s_stack_typed_allocator_1aed21b1e9ca7688dcec87e00bd857fbd9">Size</link>;
+137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+138 
+139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">template</emphasis>&lt;<emphasis role="keyword">typename</emphasis>&#32;T&gt;
+140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1core_1_1s_stack_typed_allocator_1a0bf3824fb6bb58a7b1f0c3b57e20a43b">sStackTypedAllocator&lt;T&gt;::~sStackTypedAllocator</link>()
+141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c">cMemoryStackManager::TotalAllocCount</link>&#32;-=&#32;1;
+143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6">cMemoryStackManager::MemoryOccupiedBytes</link>&#32;-=&#32;Size;
+144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+145 
+146 &#32;&#32;&#32;&#32;}
+147 
+148 }
+</programlisting></section>

@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_task_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::cTaskManager</compoundname>
+    <includes refid="task__manager_8hpp" local="no">task_manager.hpp</includes>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_task_manager_1a95fb0b0d3d934bc9c73cf7d92630ac85" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_task_dispatcher" kindref="compound">cTaskDispatcher</ref> *</type>
+        <definition>cTaskDispatcher * xpe::core::cTaskManager::s_AudioDispatcher</definition>
+        <argsstring></argsstring>
+        <name>s_AudioDispatcher</name>
+        <qualifiedname>xpe::core::cTaskManager::s_AudioDispatcher</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="98" column="36" bodyfile="engine/src/core/task_manager.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_task_manager_1ac593a4d719a32b8418f2b639d8db7c7b" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_task_dispatcher" kindref="compound">cTaskDispatcher</ref> *</type>
+        <definition>cTaskDispatcher * xpe::core::cTaskManager::s_NetworkDispatcher</definition>
+        <argsstring></argsstring>
+        <name>s_NetworkDispatcher</name>
+        <qualifiedname>xpe::core::cTaskManager::s_NetworkDispatcher</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="99" column="36" bodyfile="engine/src/core/task_manager.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_task_manager_1a2043eece800131c45e1d8b8e09267c32" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_simulation_dispatcher" kindref="compound">cSimulationDispatcher</ref> *</type>
+        <definition>cSimulationDispatcher * xpe::core::cTaskManager::s_SimulationDispatcher</definition>
+        <argsstring></argsstring>
+        <name>s_SimulationDispatcher</name>
+        <qualifiedname>xpe::core::cTaskManager::s_SimulationDispatcher</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="100" column="42" bodyfile="engine/src/core/task_manager.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1core_1_1c_task_manager_1a61f6c3f0e4e923fdda74e9c7811b591b" prot="private" static="yes" mutable="no">
+        <type><ref refid="classxpe_1_1core_1_1c_task_dispatcher" kindref="compound">cTaskDispatcher</ref> *</type>
+        <definition>cTaskDispatcher * xpe::core::cTaskManager::s_ThreadPoolDispatcher</definition>
+        <argsstring></argsstring>
+        <name>s_ThreadPoolDispatcher</name>
+        <qualifiedname>xpe::core::cTaskManager::s_ThreadPoolDispatcher</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="101" column="36" bodyfile="engine/src/core/task_manager.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_task_manager_1a46a55aa8997512cd132a29694a4f5526" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cTaskManager::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::core::cTaskManager::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="89" column="25" bodyfile="engine/src/core/task_manager.cpp" bodystart="144" bodyend="150"/>
+        <references refid="classxpe_1_1core_1_1c_hardware_manager_1a862c8f425b7c7fb53f5598f68247fef2" compoundref="hardware__manager_8hpp" startline="41">xpe::core::cHardwareManager::CPU</references>
+        <references refid="classxpe_1_1core_1_1c_thread_1a714e0fbeefe921f4fbe195de023a4fa1a909306e50b86209177b07950049ad263" compoundref="thread_8hpp" startline="11">xpe::core::cThread::NORMAL</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_task_manager_1a1460b83cb7d2cc385262757d46157076" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cTaskManager::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::core::cTaskManager::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="90" column="25" bodyfile="engine/src/core/task_manager.cpp" bodystart="152" bodyend="158"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_task_manager_1a0e82de392ba02bbe3ad1303ef2d4d813" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cTaskManager::SubmitTask</definition>
+        <argsstring>(const sTask &amp;task)</argsstring>
+        <name>SubmitTask</name>
+        <qualifiedname>xpe::core::cTaskManager::SubmitTask</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1core_1_1s_task" kindref="compound">sTask</ref> &amp;</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="92" column="25" bodyfile="engine/src/core/task_manager.cpp" bodystart="160" bodyend="180"/>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b" compoundref="task__manager_8hpp" startline="16">xpe::core::sTask::ANIMATION</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae" compoundref="task__manager_8hpp" startline="14">xpe::core::sTask::AUDIO</references>
+        <references refid="classxpe_1_1core_1_1c_task_dispatcher_1a9c0c18dbf564186d946ca962fea4b898" compoundref="task__manager_8cpp" startline="38" endline="46">xpe::core::cTaskDispatcher::Dispatch</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d" compoundref="task__manager_8hpp" startline="15">xpe::core::sTask::NETWORK</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb" compoundref="task__manager_8hpp" startline="17">xpe::core::sTask::PHYSICS</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96" compoundref="task__manager_8hpp" startline="13">xpe::core::sTask::THREAD_POOL</references>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_task_manager_1a7fd38c7c9b4021c105bcb12e96a469c3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cTaskManager::SubmitTask</definition>
+        <argsstring>(u32 tasksPerThread, u32 totalTasks, const sTask &amp;task)</argsstring>
+        <name>SubmitTask</name>
+        <qualifiedname>xpe::core::cTaskManager::SubmitTask</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>tasksPerThread</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>totalTasks</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1core_1_1s_task" kindref="compound">sTask</ref> &amp;</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="93" column="25" bodyfile="engine/src/core/task_manager.cpp" bodystart="182" bodyend="202"/>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b" compoundref="task__manager_8hpp" startline="16">xpe::core::sTask::ANIMATION</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae" compoundref="task__manager_8hpp" startline="14">xpe::core::sTask::AUDIO</references>
+        <references refid="classxpe_1_1core_1_1c_task_dispatcher_1a9c0c18dbf564186d946ca962fea4b898" compoundref="task__manager_8cpp" startline="38" endline="46">xpe::core::cTaskDispatcher::Dispatch</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d" compoundref="task__manager_8hpp" startline="15">xpe::core::sTask::NETWORK</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb" compoundref="task__manager_8hpp" startline="17">xpe::core::sTask::PHYSICS</references>
+        <references refid="structxpe_1_1core_1_1s_task_1a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96" compoundref="task__manager_8hpp" startline="13">xpe::core::sTask::THREAD_POOL</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_task_manager_1afdf5cf1f256eb417b3207318805aaba3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classxpe_1_1core_1_1c_simulation_dispatcher" kindref="compound">cSimulationDispatcher</ref> *</type>
+        <definition>cSimulationDispatcher * xpe::core::cTaskManager::GetSimulationDispatcher</definition>
+        <argsstring>()</argsstring>
+        <name>GetSimulationDispatcher</name>
+        <qualifiedname>xpe::core::cTaskManager::GetSimulationDispatcher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/task_manager.hpp" line="95" column="42" bodyfile="engine/src/core/task_manager.cpp" bodystart="204" bodyend="207"/>
+        <referencedby refid="classxpe_1_1core_1_1c_app_1adf244904fa58277fe265be994ae664fc" compoundref="app_8cpp" startline="26" endline="150">xpe::core::cApp::Run</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/task_manager.hpp" line="86" column="9" bodyfile="engine/src/core/task_manager.hpp" bodystart="86" bodyend="102"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1a1460b83cb7d2cc385262757d46157076" prot="public" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>Free</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1afdf5cf1f256eb417b3207318805aaba3" prot="public" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>GetSimulationDispatcher</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1a46a55aa8997512cd132a29694a4f5526" prot="public" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>Init</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1a95fb0b0d3d934bc9c73cf7d92630ac85" prot="private" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>s_AudioDispatcher</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1ac593a4d719a32b8418f2b639d8db7c7b" prot="private" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>s_NetworkDispatcher</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1a2043eece800131c45e1d8b8e09267c32" prot="private" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>s_SimulationDispatcher</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1a61f6c3f0e4e923fdda74e9c7811b591b" prot="private" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>s_ThreadPoolDispatcher</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1a0e82de392ba02bbe3ad1303ef2d4d813" prot="public" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>SubmitTask</name></member>
+      <member refid="classxpe_1_1core_1_1c_task_manager_1a7fd38c7c9b4021c105bcb12e96a469c3" prot="public" virt="non-virtual"><scope>xpe::core::cTaskManager</scope><name>SubmitTask</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

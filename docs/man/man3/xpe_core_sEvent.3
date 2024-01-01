@@ -1,0 +1,82 @@
+.TH "xpe::core::sEvent< EventFunction >" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::core::sEvent< EventFunction >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <event\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsEvent\fP ()=\fBdefault\fP"
+.br
+.ti -1c
+.RI "\fBsEvent\fP (\fBEventFunction\fP \fBfunction\fP, \fBint\fP \fBpriority\fP)"
+.br
+.ti -1c
+.RI "\fBsEvent\fP (\fBvoid\fP *\fBconst\fP \fB_this\fP, \fBEventFunction\fP \fBfunction\fP, \fBint\fP \fBpriority\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBThis\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBEventFunction\fP \fBFunction\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBint\fP \fBPriority\fP = 0"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe1\fP, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe2\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe1\fP, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe2\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe1\fP, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe2\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe1\fP, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > &\fBe2\fP)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBxpe::core::sEvent\fP< \fBEventFunction\fP >::sEvent ()\fR [default]\fP"
+
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBxpe::core::sEvent\fP< \fBEventFunction\fP >::sEvent (\fBEventFunction\fP function, \fBint\fP priority)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBxpe::core::sEvent\fP< \fBEventFunction\fP >::sEvent (\fBvoid\fP *\fBconst\fP _this, \fBEventFunction\fP function, \fBint\fP priority)\fR [inline]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBbool\fP \fBoperator!\fP= (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e1, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e2)\fR [friend]\fP"
+
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e1, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e2)\fR [friend]\fP"
+
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e1, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e2)\fR [friend]\fP"
+
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e1, \fBconst\fP \fBsEvent\fP< \fBEventFunction\fP > & e2)\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBEventFunction\fP \fBxpe::core::sEvent\fP< \fBEventFunction\fP >::Function = \fBnullptr\fP"
+
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBint\fP \fBxpe::core::sEvent\fP< \fBEventFunction\fP >::Priority = 0"
+
+.SS "template<\fBtypename\fP \fBEventFunction\fP > \fBvoid\fP* \fBxpe::core::sEvent\fP< \fBEventFunction\fP >::This = \fBnullptr\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

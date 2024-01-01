@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_atlas" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sAtlas</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_texture" prot="public" virt="non-virtual">xpe::render::sTexture</basecompoundref>
+    <includes refid="texture_8hpp" local="no">texture.hpp</includes>
+    <innerclass refid="structxpe_1_1render_1_1s_atlas_1_1s_cell" prot="public">xpe::render::sAtlas::sCell</innerclass>
+    <innerclass refid="structxpe_1_1render_1_1s_atlas_1_1s_location" prot="public">xpe::render::sAtlas::sLocation</innerclass>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_atlas_1a9b13fba96a509782b26f37769d067d1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sAtlas::AddLayer</definition>
+        <argsstring>()</argsstring>
+        <name>AddLayer</name>
+        <qualifiedname>xpe::render::sAtlas::AddLayer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="198" column="18" bodyfile="engine/src/rendering/core/texture.cpp" bodystart="458" bodyend="461"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" compoundref="texture_8cpp" startline="82" endline="92">xpe::render::sTexture::CreateLayer</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">xpe::render::sTexture::Layers</references>
+        <referencedby refid="classxpe_1_1render_1_1c_widget_manager_1a4d08e3ea21dc782147a000446ff780c7" compoundref="widget__manager_8cpp" startline="8" endline="29">xpe::render::cWidgetManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structxpe_1_1render_1_1s_atlas_1_1s_location" kindref="compound">sLocation</ref></type>
+        <definition>sAtlas::sLocation xpe::render::sAtlas::AddCell</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>AddCell</name>
+        <qualifiedname>xpe::render::sAtlas::AddCell</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="201" column="23" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="208" bodyend="256"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1a10628a7ab9042a9df51147bf76b38c81" compoundref="texture_8hpp" startline="122">xpe::render::sTexture::Channels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a569be24358e889b9b52802dea3fd4155" compoundref="texture_8cpp" startline="258" endline="263">xpe::render::sTextureLayer::Clone</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" compoundref="texture_8hpp" startline="123">xpe::render::sTexture::Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" compoundref="texture_8hpp" startline="114">xpe::render::sTexture::k_BppTable</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c" compoundref="texture_8hpp" startline="112">xpe::render::sTexture::k_ChannelTable</references>
+        <references refid="structxpe_1_1render_1_1s_atlas_1_1s_location_1acd2f198d37bc2a5e945aee4a01152aee" compoundref="texture_8hpp" startline="189">xpe::render::sAtlas::sLocation::LayerIndex</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">xpe::render::sTexture::Layers</references>
+        <references refid="log__manager_8hpp_1a2c6c3e9c356e14fb4a7139acf4fa7b18" compoundref="log__manager_8hpp" startline="35">LogWarning</references>
+        <references refid="structxpe_1_1render_1_1s_texture_layer_1a312528dbd92ffb2a012cc45b08b0c48d" compoundref="texture_8cpp" startline="351" endline="392">xpe::render::sTextureLayer::Resize</references>
+        <references refid="namespacexpe_1_1core_1a49526f1e6a80726936b0b54c8ac10411" compoundref="events_8hpp" startline="12">xpe::core::x</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sAtlas::RemoveCell</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>RemoveCell</name>
+        <qualifiedname>xpe::render::sAtlas::RemoveCell</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/texture.hpp" line="204" column="18" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="259" bodyend="288"/>
+        <references refid="structxpe_1_1render_1_1s_texture_1a10628a7ab9042a9df51147bf76b38c81" compoundref="texture_8hpp" startline="122">xpe::render::sTexture::Channels</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" compoundref="texture_8hpp" startline="123">xpe::render::sTexture::Format</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" compoundref="texture_8hpp" startline="114">xpe::render::sTexture::k_BppTable</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c" compoundref="texture_8hpp" startline="112">xpe::render::sTexture::k_ChannelTable</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">xpe::render::sTexture::Layers</references>
+        <references refid="log__manager_8hpp_1a2c6c3e9c356e14fb4a7139acf4fa7b18" compoundref="log__manager_8hpp" startline="35">LogWarning</references>
+        <references refid="namespacexpe_1_1core_1a49526f1e6a80726936b0b54c8ac10411" compoundref="events_8hpp" startline="12">xpe::core::x</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sAtlas</label>
+        <link refid="structxpe_1_1render_1_1s_atlas"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sAtlas</label>
+        <link refid="structxpe_1_1render_1_1s_atlas"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/texture.hpp" line="172" column="9" bodyfile="engine/src/rendering/core/texture.hpp" bodystart="173" bodyend="205"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_atlas_1aadddcc49677815c6ff7169e7cb8b9f5a" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>AddCell</name></member>
+      <member refid="structxpe_1_1render_1_1s_atlas_1a9b13fba96a509782b26f37769d067d1a" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>AddLayer</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a10628a7ab9042a9df51147bf76b38c81" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Channels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a2e269ea33914935250859d42dadae69b" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>CreateLayer</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a981813f57d7d1d49d1c8bd3f142c9a96" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Depth</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>eMapType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a39d0f942dc05ef4c535be42d8ea3d0b0" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>EnableRenderTarget</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a495c63bd3a4c8fa449a25a168f7909c7" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>eType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a38f5cc01d9dbc0bbd30463c0563daa2b" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>eUsage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>eViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a133c8b74d8bff5b814d265334c7ced00" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Flip</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a2cdf5d311c6d8c2f0f066e63a2cbb854" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Flush</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ad6c83752e22730ab10f2fd97c160de63" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>FlushLayer</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1abb723fd3f4ee9573148bf11fd9491985" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Format</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a9f477cd7cc9f05c9544b5cd7f864f8a4" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Free</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a9ea65fd61b1bd856345e485a76611ca9" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>GenerateMips</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1afca3ad09a60227179d3a670ccc977cde" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>GetMipLevels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a1ac807fdbbada7bbd0c0766f33bf060e" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>GetMipsLevels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a30ea6eae15dadddb4f65afae1a4106e6" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Height</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a266c9db8925ad6755a455f20f1375e52" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Init</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ad97d493ce4705e27f8fa3be57b23657d" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>InitializeData</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Instance</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ad6d30c28e7b20bfdfb29b099a371def3" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>IsResizable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a29bf78a80d911f38c36e371e4a75828e" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>k_BppTable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1adc0d03a68a09e08cd032cad442af672c" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>k_ChannelTable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Layers</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a828db7ee4fc05b358bd43b60ceb69532" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>MostDetailedMip</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_atlas_1ae86c89d26a46de2c298c647bd7f3ca8b" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>RemoveCell</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a0369835873cfc25776640f320e0fad09" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>RemoveLayerAt</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a972b174ae8fa4351f8cecf52e771b92b" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Resize</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a5d2b4723da07e042cc5d2d9807820fc8" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>ResizePixels</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ac10f77c7c7b681f8c057d739e927c1fb" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>SampleCount</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a5b2549ba6691480e47ea4175c584f8f8" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>SetResizable</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a57c79caedf5201b6ff362b15499313d0" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Slot</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a700b7503a37d4f407f2c57287b121a1d" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>sTexture</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ac31bce368d387d78d37db106f54cc5bf" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Type</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1ac23d567666987a86801e12b7daefea2d" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Usage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>ViewInstance</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>ViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1a6c8207cb90ffe2906a9409638386c6dd" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>Width</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1af387596e9480a6ea1647b59a5cf59da2" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>WindowFrameResized</name></member>
+      <member refid="structxpe_1_1render_1_1s_texture_1aacf76abd32ef8b66ad73b177086bb6fd" prot="public" virt="non-virtual"><scope>xpe::render::sAtlas</scope><name>~sTexture</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

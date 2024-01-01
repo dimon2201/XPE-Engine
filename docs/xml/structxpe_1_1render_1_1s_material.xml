@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_material" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sMaterial</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_material_data" prot="public" virt="non-virtual">xpe::render::sMaterialData</basecompoundref>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_material" prot="public" virt="non-virtual">xpe::ecs::CMaterial</derivedcompoundref>
+    <includes refid="material_8hpp" local="no">material.hpp</includes>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a0d94b1e860dc2325e2a44d5a74236c69" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref></type>
+        <definition>const sMaterialFormat xpe::render::sMaterial::k_AlbedoFormat</definition>
+        <argsstring></argsstring>
+        <name>k_AlbedoFormat</name>
+        <qualifiedname>xpe::render::sMaterial::k_AlbedoFormat</qualifiedname>
+        <initializer>= {<ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3" kindref="member">eTextureFormat::SRGBA8</ref>, 2048, 2048, <ref refid="macro__constants_8hpp_1aa42ea15a2dd8e8db222f0ef5b41b382a" kindref="member">K_SLOT_ALBEDO</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="21" column="42" bodyfile="engine/src/rendering/material/material.hpp" bodystart="21" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a988b64f18a21642da269713bcea946d3" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref></type>
+        <definition>const sMaterialFormat xpe::render::sMaterial::k_NormalFormat</definition>
+        <argsstring></argsstring>
+        <name>k_NormalFormat</name>
+        <qualifiedname>xpe::render::sMaterial::k_NormalFormat</qualifiedname>
+        <initializer>= {<ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642" kindref="member">eTextureFormat::RGBA8</ref>, 2048, 2048, <ref refid="macro__constants_8hpp_1a1995ccbf83e8506089d9cf4b5516fc01" kindref="member">K_SLOT_BUMPING</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="22" column="42" bodyfile="engine/src/rendering/material/material.hpp" bodystart="22" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a5c63aeff2d60d9097bf4bfe22a1ea0fe" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref></type>
+        <definition>const sMaterialFormat xpe::render::sMaterial::k_ParallaxFormat</definition>
+        <argsstring></argsstring>
+        <name>k_ParallaxFormat</name>
+        <qualifiedname>xpe::render::sMaterial::k_ParallaxFormat</qualifiedname>
+        <initializer>= {<ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90" kindref="member">eTextureFormat::R8</ref>, 2048, 2048, <ref refid="macro__constants_8hpp_1a50d0d26800e7825664a38c16f334f5e6" kindref="member">K_SLOT_PARALLAX</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="23" column="42" bodyfile="engine/src/rendering/material/material.hpp" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a778de9af6fe0c5d9bad03e3507df848d" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref></type>
+        <definition>const sMaterialFormat xpe::render::sMaterial::k_MetalFormat</definition>
+        <argsstring></argsstring>
+        <name>k_MetalFormat</name>
+        <qualifiedname>xpe::render::sMaterial::k_MetalFormat</qualifiedname>
+        <initializer>= {<ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90" kindref="member">eTextureFormat::R8</ref>, 2048, 2048, <ref refid="macro__constants_8hpp_1aa5c2bd81300aa2f35c1bbfefe8e22fc9" kindref="member">K_SLOT_METALLIC</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="24" column="42" bodyfile="engine/src/rendering/material/material.hpp" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a3d8f9c4231009e6e6c3456daed421770" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref></type>
+        <definition>const sMaterialFormat xpe::render::sMaterial::k_RoughnessFormat</definition>
+        <argsstring></argsstring>
+        <name>k_RoughnessFormat</name>
+        <qualifiedname>xpe::render::sMaterial::k_RoughnessFormat</qualifiedname>
+        <initializer>= {<ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90" kindref="member">eTextureFormat::R8</ref>, 2048, 2048, <ref refid="macro__constants_8hpp_1a28be33e3843004d307f2943cd7238612" kindref="member">K_SLOT_ROUGHNESS</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="25" column="42" bodyfile="engine/src/rendering/material/material.hpp" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a06cf1a4b230a8eb966444e960f58c739" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref></type>
+        <definition>const sMaterialFormat xpe::render::sMaterial::k_AoFormat</definition>
+        <argsstring></argsstring>
+        <name>k_AoFormat</name>
+        <qualifiedname>xpe::render::sMaterial::k_AoFormat</qualifiedname>
+        <initializer>= {<ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90" kindref="member">eTextureFormat::R8</ref>, 2048, 2048, <ref refid="macro__constants_8hpp_1a49221d34edf7442d66b433967b2dcc21" kindref="member">K_SLOT_AO</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="26" column="42" bodyfile="engine/src/rendering/material/material.hpp" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a521990eae276dd1ccbca8488fe05b975" prot="public" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref></type>
+        <definition>const sMaterialFormat xpe::render::sMaterial::k_EmissionFormat</definition>
+        <argsstring></argsstring>
+        <name>k_EmissionFormat</name>
+        <qualifiedname>xpe::render::sMaterial::k_EmissionFormat</qualifiedname>
+        <initializer>= {<ref refid="namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3" kindref="member">eTextureFormat::SRGBA8</ref>, 2048, 2048, <ref refid="macro__constants_8hpp_1a6f2ebfba73bfdc52330d43b7bf94c6f7" kindref="member">K_SLOT_EMISSION</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="27" column="42" bodyfile="engine/src/rendering/material/material.hpp" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" compoundref="material__manager_8cpp" startline="7" endline="18">xpe::render::cMaterialManager::Init</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a757b22aed38e6861f412eafcc2f28da9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::render::sMaterial::Index</definition>
+        <argsstring></argsstring>
+        <name>Index</name>
+        <qualifiedname>xpe::render::sMaterial::Index</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="29" column="17" bodyfile="engine/src/rendering/material/material.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1ab88689d44e7b88eff39fd0c83fff2280" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sMaterial::AlbedoMap</definition>
+        <argsstring></argsstring>
+        <name>AlbedoMap</name>
+        <qualifiedname>xpe::render::sMaterial::AlbedoMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="31" column="27" bodyfile="engine/src/rendering/material/material.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1ae6e50a7299329ae69d069a8dd391e29a" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sMaterial::NormalMap</definition>
+        <argsstring></argsstring>
+        <name>NormalMap</name>
+        <qualifiedname>xpe::render::sMaterial::NormalMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="32" column="27" bodyfile="engine/src/rendering/material/material.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a5246278aec0eaa97daeec3c7af2a246e" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sMaterial::ParallaxMap</definition>
+        <argsstring></argsstring>
+        <name>ParallaxMap</name>
+        <qualifiedname>xpe::render::sMaterial::ParallaxMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="33" column="27" bodyfile="engine/src/rendering/material/material.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1aca8f684ea2e6dc26d6b9dd8fca2f32e6" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sMaterial::MetalMap</definition>
+        <argsstring></argsstring>
+        <name>MetalMap</name>
+        <qualifiedname>xpe::render::sMaterial::MetalMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="34" column="27" bodyfile="engine/src/rendering/material/material.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a897f7b59df970acf28de682debdb052c" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sMaterial::RoughnessMap</definition>
+        <argsstring></argsstring>
+        <name>RoughnessMap</name>
+        <qualifiedname>xpe::render::sMaterial::RoughnessMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="35" column="27" bodyfile="engine/src/rendering/material/material.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1af538cb0f5d3342e9e1c5f261d031e1fa" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sMaterial::AOMap</definition>
+        <argsstring></argsstring>
+        <name>AOMap</name>
+        <qualifiedname>xpe::render::sMaterial::AOMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="36" column="27" bodyfile="engine/src/rendering/material/material.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_material_1a7cd3b8226a2b8be9b9734ef6de6e1206" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+        <definition>sTextureLayer* xpe::render::sMaterial::EmissionMap</definition>
+        <argsstring></argsstring>
+        <name>EmissionMap</name>
+        <qualifiedname>xpe::render::sMaterial::EmissionMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material.hpp" line="37" column="27" bodyfile="engine/src/rendering/material/material.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>xpe::ecs::CMaterial</label>
+        <link refid="structxpe_1_1ecs_1_1_c_material"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sMaterial</label>
+        <link refid="structxpe_1_1render_1_1s_material"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sMaterialData</label>
+        <link refid="structxpe_1_1render_1_1s_material_data"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::render::sMaterial</label>
+        <link refid="structxpe_1_1render_1_1s_material"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>k_AlbedoFormat</edgelabel>
+          <edgelabel>k_AoFormat</edgelabel>
+          <edgelabel>k_EmissionFormat</edgelabel>
+          <edgelabel>k_MetalFormat</edgelabel>
+          <edgelabel>k_NormalFormat</edgelabel>
+          <edgelabel>k_ParallaxFormat</edgelabel>
+          <edgelabel>k_RoughnessFormat</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>AOMap</edgelabel>
+          <edgelabel>AlbedoMap</edgelabel>
+          <edgelabel>EmissionMap</edgelabel>
+          <edgelabel>MetalMap</edgelabel>
+          <edgelabel>NormalMap</edgelabel>
+          <edgelabel>ParallaxMap</edgelabel>
+          <edgelabel>RoughnessMap</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sMaterialData</label>
+        <link refid="structxpe_1_1render_1_1s_material_data"/>
+      </node>
+      <node id="3">
+        <label>xpe::render::sMaterialFormat</label>
+        <link refid="structxpe_1_1render_1_1s_material_format"/>
+      </node>
+      <node id="4">
+        <label>xpe::render::sTextureLayer</label>
+        <link refid="structxpe_1_1render_1_1s_texture_layer"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/material/material.hpp" line="19" column="9" bodyfile="engine/src/rendering/material/material.hpp" bodystart="20" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a356d0d1b5bf01b688b0ebd4d445199a4" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>Albedo</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1ab88689d44e7b88eff39fd0c83fff2280" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>AlbedoMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a89de4731402970568fb906af617a7898" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>AO</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1af538cb0f5d3342e9e1c5f261d031e1fa" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>AOMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1ab83b1ef034151bab989b3eefe3f21fef" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>Emission</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a7cd3b8226a2b8be9b9734ef6de6e1206" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EmissionMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1aaf8c8c778a572fec9540dbabd6f35df4" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EnableAlbedoMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a765cd8e61efc02c4b545e4c071e60459" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EnableAOMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1acbe069a989f658e0d8c7e75df11cbfa1" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EnableEmissionMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a2377f43c15e30ef9f7385a757360da04" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EnableMetalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a3465dab281ef2fd290e934274903e123" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EnableNormalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a545082e3756d7f4d8d15268b4ec44a4c" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EnableParallaxMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a1e19eb989b0e2dfb426c32e9e0694630" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>EnableRoughnessMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a757b22aed38e6861f412eafcc2f28da9" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>Index</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a0d94b1e860dc2325e2a44d5a74236c69" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>k_AlbedoFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a06cf1a4b230a8eb966444e960f58c739" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>k_AoFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a521990eae276dd1ccbca8488fe05b975" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>k_EmissionFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a778de9af6fe0c5d9bad03e3507df848d" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>k_MetalFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a988b64f18a21642da269713bcea946d3" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>k_NormalFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a5c63aeff2d60d9097bf4bfe22a1ea0fe" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>k_ParallaxFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a3d8f9c4231009e6e6c3456daed421770" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>k_RoughnessFormat</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1acd7393b29575d2e3625be481770e95c9" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>Metallness</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1aca8f684ea2e6dc26d6b9dd8fca2f32e6" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>MetalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1ae6e50a7299329ae69d069a8dd391e29a" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>NormalMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a425019f971aed63a2a18021002748c21" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>ParallaxHeightScale</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a5246278aec0eaa97daeec3c7af2a246e" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>ParallaxMap</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a2e9a01dc7f4b987c53b7ba275be19cf1" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>ParallaxMaxLayers</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1a9d75e6621d5a7f5475c497aeeaca2aeb" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>ParallaxMinLayers</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_data_1ad563ce12bd4a5b8942d4a66277633188" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>Roughness</name></member>
+      <member refid="structxpe_1_1render_1_1s_material_1a897f7b59df970acf28de682debdb052c" prot="public" virt="non-virtual"><scope>xpe::render::sMaterial</scope><name>RoughnessMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

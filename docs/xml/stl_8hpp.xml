@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="stl_8hpp" kind="file" language="C++">
+    <compoundname>stl.hpp</compoundname>
+    <includedby refid="pch_8hpp" local="no">engine/src/pch.hpp</includedby>
+    <includedby refid="json_8hpp" local="no">engine/src/res/json.hpp</includedby>
+    <includedby refid="xml_8hpp" local="no">engine/src/res/xml.hpp</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>engine/src/pch.hpp</label>
+        <link refid="pch_8hpp"/>
+      </node>
+      <node id="4">
+        <label>engine/src/res/json.cpp</label>
+        <link refid="json_8cpp"/>
+      </node>
+      <node id="3">
+        <label>engine/src/res/json.hpp</label>
+        <link refid="json_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>engine/src/res/xml.cpp</label>
+        <link refid="xml_8cpp"/>
+      </node>
+      <node id="5">
+        <label>engine/src/res/xml.hpp</label>
+        <link refid="xml_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>engine/src/stl/stl.hpp</label>
+        <link refid="stl_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacexpe">xpe</innernamespace>
+    <innernamespace refid="namespacexpe_1_1core">xpe::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacexpe" kindref="compound">xpe</ref><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::basic_string&lt;char,<sp/>std::char_traits&lt;char&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;char&gt;</ref>&gt;<sp/><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref>;</highlight></codeline>
+<codeline lineno="8" refid="namespacexpe_1_1core_1acef017c0ff17c5aee0985b3aea112a90" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::basic_string&lt;char,<sp/>std::char_traits&lt;char&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;char&gt;</ref>&gt;<sp/><ref refid="namespacexpe_1_1core_1acef017c0ff17c5aee0985b3aea112a90" kindref="member">hstring</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref><sp/><ref refid="namespacexpe_1_1core_1a21084dba4baabe2a8da4ee568572f6da" kindref="member">Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">&amp;<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">str</ref>);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835" kindref="member">ENGINE_API</ref><sp/><ref refid="namespacexpe_1_1core_1a5339d437e076788ee8b8217188685ee6" kindref="member">u64</ref><sp/><ref refid="namespacexpe_1_1core_1a21084dba4baabe2a8da4ee568572f6da" kindref="member">Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacexpe_1_1core_1acef017c0ff17c5aee0985b3aea112a90" kindref="member">hstring</ref>&amp;<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">str</ref>);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="namespacexpe_1_1core_1a74c6d12f646e004c7b55a543ae9e8a37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::basic_stringstream&lt;char,<sp/>std::char_traits&lt;char&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;char&gt;</ref>&gt;<sp/><ref refid="namespacexpe_1_1core_1a74c6d12f646e004c7b55a543ae9e8a37" kindref="member">stringstream</ref>;</highlight></codeline>
+<codeline lineno="14" refid="namespacexpe_1_1core_1ad25fb3781440baa5b332afa17ddfa6db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::basic_stringstream&lt;char,<sp/>std::char_traits&lt;char&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;char&gt;</ref>&gt;<sp/><ref refid="namespacexpe_1_1core_1ad25fb3781440baa5b332afa17ddfa6db" kindref="member">hstringstream</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="17" refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref><sp/>=<sp/>std::vector&lt;T,<sp/>cMainAllocator&lt;T&gt;&gt;;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="20" refid="namespacexpe_1_1core_1aa631f1df6bbff91816ab1ca55985ffce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1aa631f1df6bbff91816ab1ca55985ffce" kindref="member">hvector</ref><sp/>=<sp/>std::vector&lt;T,<sp/>cHotAllocator&lt;T&gt;&gt;;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Size&gt;</highlight></codeline>
+<codeline lineno="23" refid="namespacexpe_1_1core_1af1faf38160c359a3107783de1ccd0e0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1af1faf38160c359a3107783de1ccd0e0b" kindref="member">array</ref><sp/>=<sp/>std::array&lt;T,<sp/>Size&gt;;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>V&gt;</highlight></codeline>
+<codeline lineno="26" refid="namespacexpe_1_1core_1a7f4450b27bad0d3d2e66274aa3f6716d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a7f4450b27bad0d3d2e66274aa3f6716d" kindref="member">map</ref><sp/>=<sp/>std::map&lt;K,<sp/>V,<sp/>std::equal_to&lt;K&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;std::pair&lt;K, V&gt;</ref>&gt;&gt;;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>V&gt;</highlight></codeline>
+<codeline lineno="29" refid="namespacexpe_1_1core_1ab3f968ad8c468067eb302c62f773e1d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1ab3f968ad8c468067eb302c62f773e1d9" kindref="member">hmap</ref><sp/>=<sp/>std::map&lt;K,<sp/>V,<sp/>std::equal_to&lt;K&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;std::pair&lt;K, V&gt;</ref>&gt;&gt;;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Comparator<sp/>=<sp/>std::less&lt;K&gt;&gt;</highlight></codeline>
+<codeline lineno="32" refid="namespacexpe_1_1core_1a8ac037afa106b7ff21a6eedf7b7e62bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a8ac037afa106b7ff21a6eedf7b7e62bb" kindref="member">set</ref><sp/>=<sp/>std::set&lt;K,<sp/>Comparator,<sp/>cMainAllocator&lt;K&gt;&gt;;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Comparator<sp/>=<sp/>std::less&lt;K&gt;&gt;</highlight></codeline>
+<codeline lineno="35" refid="namespacexpe_1_1core_1a6438ef223e5f8612dd3bd7b85ca46d52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a6438ef223e5f8612dd3bd7b85ca46d52" kindref="member">hset</ref><sp/>=<sp/>std::set&lt;K,<sp/>Comparator,<sp/>cHotAllocator&lt;K&gt;&gt;;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K&gt;</highlight></codeline>
+<codeline lineno="38" refid="namespacexpe_1_1core_1a407f7eba91bc4f2413b2cd0f154dda91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a407f7eba91bc4f2413b2cd0f154dda91" kindref="member">unordered_set</ref><sp/>=<sp/>std::unordered_set&lt;K,<sp/>std::hash&lt;K&gt;,<sp/>std::equal_to&lt;K&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;K&gt;</ref>&gt;;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K&gt;</highlight></codeline>
+<codeline lineno="41" refid="namespacexpe_1_1core_1a5e5fc45c2a0c317ca0414d3287d523fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a5e5fc45c2a0c317ca0414d3287d523fd" kindref="member">hunordered_set</ref><sp/>=<sp/>std::unordered_set&lt;K,<sp/>std::hash&lt;K&gt;,<sp/>std::equal_to&lt;K&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;K&gt;</ref>&gt;;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>V&gt;</highlight></codeline>
+<codeline lineno="44" refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1affe7ea2db8f29e4d85e6a1da779b90dd" kindref="member">unordered_map</ref><sp/>=<sp/>std::unordered_map&lt;K,<sp/>V,<sp/>std::hash&lt;K&gt;,<sp/>std::equal_to&lt;K&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cMainAllocator&lt;std::pair&lt;K, V&gt;</ref>&gt;&gt;;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>V&gt;</highlight></codeline>
+<codeline lineno="47" refid="namespacexpe_1_1core_1a583fdad976e8a1cab53f96ba86055423" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacexpe_1_1core_1a583fdad976e8a1cab53f96ba86055423" kindref="member">hunordered_map</ref><sp/>=<sp/>std::unordered_map&lt;K,<sp/>V,<sp/>std::hash&lt;K&gt;,<sp/>std::equal_to&lt;K&gt;,<sp/><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">cHotAllocator&lt;std::pair&lt;K, V&gt;</ref>&gt;&gt;;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="engine/src/stl/stl.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,123 @@
+.TH "xpe::render::sTextureLayer" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::sTextureLayer
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <texture\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsTextureLayer\fP ()=\fBdefault\fP"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP (\fBeTextureFormat\fP \fBformat\fP, \fBs32\fP \fBwidth\fP, \fBs32\fP \fBheight\fP, \fBvoid\fP *\fBpixels\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBCopyFrom\fP (\fBconst\fP \fBsTextureLayer\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP \fBClone\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBGenerateMips\fP (\fBconst\fP \fBeTextureFormat\fP &\fBformat\fP, \fBint\fP \fBwidth\fP, \fBint\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBGenerateMipsU8\fP (\fBint\fP \fBwidth\fP, \fBint\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBGenerateMipsFloat\fP (\fBint\fP \fBwidth\fP, \fBint\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFreeMips\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBResize\fP (\fBconst\fP \fBeTextureFormat\fP &\fBformat\fP, \fBs32\fP \fBwidth\fP, \fBs32\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBResizeU8\fP (\fBs32\fP \fBwidth\fP, \fBs32\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBResizeFloat\fP (\fBs32\fP \fBwidth\fP, \fBs32\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBResizePixelsU8\fP (\fBconst\fP \fBvoid\fP *\fBinputPixels\fP, \fBint\fP \fBinputWidth\fP, \fBint\fP \fBinputHeight\fP, \fBint\fP \fBoutputWidth\fP, \fBint\fP \fBoutputHeight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBResizePixelsFloat\fP (\fBconst\fP \fBvoid\fP *\fBinputPixels\fP, \fBint\fP \fBinputWidth\fP, \fBint\fP \fBinputHeight\fP, \fBint\fP \fBoutputWidth\fP, \fBint\fP \fBoutputHeight\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeTextureFormat\fP \fBFormat\fP"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBWidth\fP"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBHeight\fP = 0"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBPixels\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBvector\fP< \fBsMip\fP > \fBMips\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::render::sTextureLayer::sTextureLayer ()\fR [default]\fP"
+
+.SS "xpe::render::sTextureLayer::sTextureLayer (\fBeTextureFormat\fP format, \fBs32\fP width, \fBs32\fP height, \fBvoid\fP * pixels)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBsTextureLayer\fP xpe::render::sTextureLayer::Clone () const"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::CopyFrom (\fBconst\fP \fBsTextureLayer\fP & other)"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::Free ()"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::FreeMips ()"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::GenerateMips (\fBconst\fP \fBeTextureFormat\fP & format, \fBint\fP width, \fBint\fP height)"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::GenerateMipsFloat (\fBint\fP width, \fBint\fP height)"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::GenerateMipsU8 (\fBint\fP width, \fBint\fP height)"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::Resize (\fBconst\fP \fBeTextureFormat\fP & format, \fBs32\fP width, \fBs32\fP height)"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::ResizeFloat (\fBs32\fP width, \fBs32\fP height)"
+
+.SS "\fBvoid\fP * xpe::render::sTextureLayer::ResizePixelsFloat (\fBconst\fP \fBvoid\fP * inputPixels, \fBint\fP inputWidth, \fBint\fP inputHeight, \fBint\fP outputWidth, \fBint\fP outputHeight)"
+
+.SS "\fBvoid\fP * xpe::render::sTextureLayer::ResizePixelsU8 (\fBconst\fP \fBvoid\fP * inputPixels, \fBint\fP inputWidth, \fBint\fP inputHeight, \fBint\fP outputWidth, \fBint\fP outputHeight)"
+
+.SS "\fBvoid\fP xpe::render::sTextureLayer::ResizeU8 (\fBs32\fP width, \fBs32\fP height)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBeTextureFormat\fP xpe::render::sTextureLayer::Format"
+
+.SS "\fBs32\fP xpe::render::sTextureLayer::Height = 0"
+
+.SS "\fBvector\fP<\fBsMip\fP> xpe::render::sTextureLayer::Mips"
+
+.SS "\fBvoid\fP* xpe::render::sTextureLayer::Pixels = \fBnullptr\fP"
+
+.SS "\fBs32\fP xpe::render::sTextureLayer::Width"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

@@ -1,0 +1,14 @@
+digraph "xpe::core::cHardwareManager"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="xpe::core::cHardwareManager",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [id="edge10_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" Memory",fontcolor="grey" ];
+  Node2 [id="Node000002",label="xpe::core::sMemoryStats",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1core_1_1s_memory_stats.html",tooltip=" "];
+  Node3 -> Node1 [id="edge11_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" CPU",fontcolor="grey" ];
+  Node3 [id="Node000003",label="xpe::core::sCpuStats",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1core_1_1s_cpu_stats.html",tooltip=" "];
+  Node4 -> Node1 [id="edge12_Node000001_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" GPU",fontcolor="grey" ];
+  Node4 [id="Node000004",label="xpe::core::sGpuStats",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1core_1_1s_gpu_stats.html",tooltip=" "];
+}

@@ -1,0 +1,82 @@
+\doxysection{xpe\+::core\+::c\+Memory\+Pool Class Reference}
+\hypertarget{classxpe_1_1core_1_1c_memory_pool}{}\label{classxpe_1_1core_1_1c_memory_pool}\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+
+
+{\ttfamily \#include $<$memory\+\_\+manager.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_a758ddd40c10e6e5b8bfebd17245dac75}{Init}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byte\+Size}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{allocs}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{alignment}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_a440d95eb9d3f9e46250182f2927b2a2f}{Release}} ()
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_a213424d7b68568217760b8717ea90447}{Allocate}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_ac16a3ff0230764a05b791226c2149a73}{Free}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_a6522f0d3fd6fe0ded6f6f47c423c2cb1}{Get\+Alloc\+Count}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_a36098361cfd16fb1c5642d6f0195ee7e}{Get\+Byte\+Size}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_ab6f6f1a953d48db7aa2b94cc05e1ed2c}{Get\+Bytes\+Usage}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_pool_a154cc7bfe409e6ee097530288ac6c8b9}{Get\+Last\+Freed\+Bytes}} () \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_a213424d7b68568217760b8717ea90447}\label{classxpe_1_1core_1_1c_memory_pool_a213424d7b68568217760b8717ea90447} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!Allocate@{Allocate}}
+\index{Allocate@{Allocate}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{Allocate()}{Allocate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*} xpe\+::core\+::c\+Memory\+Pool\+::\+Allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{size }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_ac16a3ff0230764a05b791226c2149a73}\label{classxpe_1_1core_1_1c_memory_pool_ac16a3ff0230764a05b791226c2149a73} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!Free@{Free}}
+\index{Free@{Free}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bool}} xpe\+::core\+::c\+Memory\+Pool\+::\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}}]{address }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_a6522f0d3fd6fe0ded6f6f47c423c2cb1}\label{classxpe_1_1core_1_1c_memory_pool_a6522f0d3fd6fe0ded6f6f47c423c2cb1} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!GetAllocCount@{GetAllocCount}}
+\index{GetAllocCount@{GetAllocCount}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{GetAllocCount()}{GetAllocCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} xpe\+::core\+::c\+Memory\+Pool\+::\+Get\+Alloc\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_a36098361cfd16fb1c5642d6f0195ee7e}\label{classxpe_1_1core_1_1c_memory_pool_a36098361cfd16fb1c5642d6f0195ee7e} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!GetByteSize@{GetByteSize}}
+\index{GetByteSize@{GetByteSize}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{GetByteSize()}{GetByteSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} xpe\+::core\+::c\+Memory\+Pool\+::\+Get\+Byte\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_ab6f6f1a953d48db7aa2b94cc05e1ed2c}\label{classxpe_1_1core_1_1c_memory_pool_ab6f6f1a953d48db7aa2b94cc05e1ed2c} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!GetBytesUsage@{GetBytesUsage}}
+\index{GetBytesUsage@{GetBytesUsage}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{GetBytesUsage()}{GetBytesUsage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} xpe\+::core\+::c\+Memory\+Pool\+::\+Get\+Bytes\+Usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_a154cc7bfe409e6ee097530288ac6c8b9}\label{classxpe_1_1core_1_1c_memory_pool_a154cc7bfe409e6ee097530288ac6c8b9} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!GetLastFreedBytes@{GetLastFreedBytes}}
+\index{GetLastFreedBytes@{GetLastFreedBytes}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{GetLastFreedBytes()}{GetLastFreedBytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}} xpe\+::core\+::c\+Memory\+Pool\+::\+Get\+Last\+Freed\+Bytes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_a758ddd40c10e6e5b8bfebd17245dac75}\label{classxpe_1_1core_1_1c_memory_pool_a758ddd40c10e6e5b8bfebd17245dac75} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!Init@{Init}}
+\index{Init@{Init}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::core\+::c\+Memory\+Pool\+::\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{byte\+Size,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{allocs,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}}]{alignment }\end{DoxyParamCaption})}
+
+\Hypertarget{classxpe_1_1core_1_1c_memory_pool_a440d95eb9d3f9e46250182f2927b2a2f}\label{classxpe_1_1core_1_1c_memory_pool_a440d95eb9d3f9e46250182f2927b2a2f} 
+\index{xpe::core::cMemoryPool@{xpe::core::cMemoryPool}!Release@{Release}}
+\index{Release@{Release}!xpe::core::cMemoryPool@{xpe::core::cMemoryPool}}
+\doxysubsubsection{\texorpdfstring{Release()}{Release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::core\+::c\+Memory\+Pool\+::\+Release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{memory__manager_8hpp}{memory\+\_\+manager.\+hpp}}\item 
+engine/src/core/\mbox{\hyperlink{memory__manager_8cpp}{memory\+\_\+manager.\+cpp}}\end{DoxyCompactItemize}

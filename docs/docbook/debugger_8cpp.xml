@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_debugger_8cpp" xml:lang="en-US">
+<title>engine/src/rendering/core/debugger.cpp File Reference</title>
+<indexterm><primary>engine/src/rendering/core/debugger.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/core/debugger.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render_1_1context">xpe::render::context</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a08b01940bf881fe6bd2e55ed87bc2c72">DebuggerCallback</link> <link linkend="_namespacexpe_1_1render_1_1context_1ae0e6ccd8d44b1ed3b5905d3aa622b0c5">xpe::render::context::Callback</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_namespacexpe_1_1render_1_1context_1af2d11cdae2d8d2f7d279f2f5084af3db">xpe::render::context::EnableInfoLog</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_namespacexpe_1_1render_1_1context_1a0aadefb26c0f0b42144c840348f50dc8">xpe::render::context::EnableWarnLog</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">false</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_namespacexpe_1_1render_1_1context_1a8d307d9518a59bafae06691f1c8009cc">xpe::render::context::EnableErrorLog</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

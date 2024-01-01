@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1audio_1_1c_audio_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::audio::cAudioManager</compoundname>
+    <includes refid="audio__manager_8hpp" local="no">audio_manager.hpp</includes>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classxpe_1_1audio_1_1c_audio_manager_1ac70ca3f1a23cdb82eecb377a6c7a5575" prot="private" static="yes" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::audio::cAudioManager::s_Recording</definition>
+        <argsstring></argsstring>
+        <name>s_Recording</name>
+        <qualifiedname>xpe::audio::cAudioManager::s_Recording</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="23" column="13" bodyfile="engine/src/audio/audio_manager.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classxpe_1_1audio_1_1c_audio_manager_1afdfe9e29d6935c744617acd61098ecb8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">class</ref></type>
+        <definition>friend class cAudioSystem</definition>
+        <argsstring></argsstring>
+        <name>cAudioSystem</name>
+        <qualifiedname>xpe::audio::cAudioManager::cAudioSystem</qualifiedname>
+        <param>
+          <type><ref refid="classxpe_1_1audio_1_1c_audio_system" kindref="compound">cAudioSystem</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="25" column="14" bodyfile="engine/src/audio/audio_manager.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_manager_1ae9894202640e400278bcdccfae96d05c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioManager::SetListenerPosition</definition>
+        <argsstring>(glm::vec3 position)</argsstring>
+        <name>SetListenerPosition</name>
+        <qualifiedname>xpe::audio::cAudioManager::SetListenerPosition</qualifiedname>
+        <param>
+          <type>glm::vec3</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="11" column="13" bodyfile="engine/src/audio/audio_manager.cpp" bodystart="10" bodyend="13"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1aaf3004496e351a239bea9d0ade024160">xpe::audio::context::SetListenerPosition</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_manager_1a50edbadc1d670c7820e88de7b24bc2ec" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioManager::SetListenerVelocity</definition>
+        <argsstring>(glm::vec3 velocity)</argsstring>
+        <name>SetListenerVelocity</name>
+        <qualifiedname>xpe::audio::cAudioManager::SetListenerVelocity</qualifiedname>
+        <param>
+          <type>glm::vec3</type>
+          <declname>velocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="12" column="13" bodyfile="engine/src/audio/audio_manager.cpp" bodystart="15" bodyend="18"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1a78092fb106e2211efc0ca702d64fb824">xpe::audio::context::SetListenerVelocity</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_manager_1ad0a17d0c1c6615dc6104074ba28947d9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioManager::SetListenerOrientation</definition>
+        <argsstring>(f32 pitch, f32 yaw, f32 roll, glm::vec3 up)</argsstring>
+        <name>SetListenerOrientation</name>
+        <qualifiedname>xpe::audio::cAudioManager::SetListenerOrientation</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>pitch</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>yaw</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>roll</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>up</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="14" column="13" bodyfile="engine/src/audio/audio_manager.cpp" bodystart="20" bodyend="26"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1ab9f35ee9cee876aeb42e8a0ed27c1809">xpe::audio::context::SetListenerOrientation</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_manager_1aa428335afa984d8ee94cb6c81fb94ca9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioManager::SetListenerGain</definition>
+        <argsstring>(f32 volume)</argsstring>
+        <name>SetListenerGain</name>
+        <qualifiedname>xpe::audio::cAudioManager::SetListenerGain</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>volume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="15" column="13" bodyfile="engine/src/audio/audio_manager.cpp" bodystart="28" bodyend="31"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1aa4e46e3b5de7ef2f5754efb8c01abd07">xpe::audio::context::SetListenerGain</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_manager_1ad2f1b247396c8a28f7a5d17e4d566b58" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioManager::SetListenerDopplerFactor</definition>
+        <argsstring>(f32 factor)</argsstring>
+        <name>SetListenerDopplerFactor</name>
+        <qualifiedname>xpe::audio::cAudioManager::SetListenerDopplerFactor</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>factor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="17" column="13" bodyfile="engine/src/audio/audio_manager.cpp" bodystart="33" bodyend="36"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1aeceeba937bb35833645046c39a19ce5b">xpe::audio::context::SetListenerDopplerFactor</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_manager_1ac6b617370e6fd0202be11c694debf6ed" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioManager::SetListenerSpeedOfSound</definition>
+        <argsstring>(f32 seed)</argsstring>
+        <name>SetListenerSpeedOfSound</name>
+        <qualifiedname>xpe::audio::cAudioManager::SetListenerSpeedOfSound</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="18" column="13" bodyfile="engine/src/audio/audio_manager.cpp" bodystart="38" bodyend="41"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1a03fd23c618ef38a1577c991ce42d344a">xpe::audio::context::SetListenerSpeedOfSound</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1audio_1_1c_audio_manager_1a8717798d1dead084694903fac1ef487d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::audio::cAudioManager::VoiceRecord</definition>
+        <argsstring>()</argsstring>
+        <name>VoiceRecord</name>
+        <qualifiedname>xpe::audio::cAudioManager::VoiceRecord</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/audio/audio_manager.hpp" line="20" column="13" bodyfile="engine/src/audio/audio_manager.cpp" bodystart="43" bodyend="53"/>
+        <references refid="namespacexpe_1_1audio_1_1context_1a7e3e7b78e61c8ea463a52d480e97f6e8">xpe::audio::context::StartRecord</references>
+        <references refid="namespacexpe_1_1audio_1_1context_1a34835d068264a28789ce49ca78172edb">xpe::audio::context::StopRecord</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/audio/audio_manager.hpp" line="7" column="1" bodyfile="engine/src/audio/audio_manager.hpp" bodystart="8" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1afdfe9e29d6935c744617acd61098ecb8" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>cAudioSystem</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1ac70ca3f1a23cdb82eecb377a6c7a5575" prot="private" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>s_Recording</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1ad2f1b247396c8a28f7a5d17e4d566b58" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>SetListenerDopplerFactor</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1aa428335afa984d8ee94cb6c81fb94ca9" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>SetListenerGain</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1ad0a17d0c1c6615dc6104074ba28947d9" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>SetListenerOrientation</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1ae9894202640e400278bcdccfae96d05c" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>SetListenerPosition</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1ac6b617370e6fd0202be11c694debf6ed" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>SetListenerSpeedOfSound</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1a50edbadc1d670c7820e88de7b24bc2ec" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>SetListenerVelocity</name></member>
+      <member refid="classxpe_1_1audio_1_1c_audio_manager_1a8717798d1dead084694903fac1ef487d" prot="public" virt="non-virtual"><scope>xpe::audio::cAudioManager</scope><name>VoiceRecord</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

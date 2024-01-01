@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_material_8hpp_source" xml:lang="en-US">
+<title>material.hpp</title>
+<indexterm><primary>engine/src/rendering/material/material.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="preprocessor">#include&#32;&lt;<link linkend="_buffers_8hpp">rendering/buffers.hpp</link>&gt;</emphasis>
+4 
+5 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>
+6 {
+7 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>render
+8 &#32;&#32;&#32;&#32;{
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>core;
+10 
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">final</link>
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+13 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format_1acf6d90013764531461c21f26cdf8ecc0">Format</link>;
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format_1aefd7479cd240990191b1d0f3c61643a1">Width</link>;
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format_1a20fd88e732c3d093aa7e9ba64cd95f8b">Height</link>;
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format_1ac3bed044183899db200981af56a10341">Slot</link>;
+17 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+18 
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link>&#32;:&#32;<link linkend="_structxpe_1_1render_1_1s_material_data">sMaterialData</link>
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a0d94b1e860dc2325e2a44d5a74236c69">k_AlbedoFormat</link>;
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a988b64f18a21642da269713bcea946d3">k_NormalFormat</link>;
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a5c63aeff2d60d9097bf4bfe22a1ea0fe">k_ParallaxFormat</link>;
+24 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a778de9af6fe0c5d9bad03e3507df848d">k_MetalFormat</link>;
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a3d8f9c4231009e6e6c3456daed421770">k_RoughnessFormat</link>;
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a06cf1a4b230a8eb966444e960f58c739">k_AoFormat</link>;
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structxpe_1_1render_1_1s_material_format">sMaterialFormat</link>&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a521990eae276dd1ccbca8488fe05b975">k_EmissionFormat</link>;
+28 
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc">u32</link>&#32;Index&#32;=&#32;0;
+30 
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_structxpe_1_1render_1_1s_material_1ab88689d44e7b88eff39fd0c83fff2280">AlbedoMap</link>;
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_structxpe_1_1render_1_1s_material_1ae6e50a7299329ae69d069a8dd391e29a">NormalMap</link>;
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a5246278aec0eaa97daeec3c7af2a246e">ParallaxMap</link>;
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_structxpe_1_1render_1_1s_material_1aca8f684ea2e6dc26d6b9dd8fca2f32e6">MetalMap</link>;
+35 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a897f7b59df970acf28de682debdb052c">RoughnessMap</link>;
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_structxpe_1_1render_1_1s_material_1af538cb0f5d3342e9e1c5f261d031e1fa">AOMap</link>;
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link>*&#32;<link linkend="_structxpe_1_1render_1_1s_material_1a7cd3b8226a2b8be9b9734ef6de6e1206">EmissionMap</link>;
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+39 
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a64a0d7950ac2a45cdc342a649e970f96">JSON</link>(
+41 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1render_1_1s_material">sMaterial</link>,
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Albedo,
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;EnableAlbedoMap,
+44 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;EnableNormalMap,
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;EnableParallaxMap,
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ParallaxHeightScale,
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ParallaxMinLayers,
+48 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ParallaxMaxLayers,
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Metallness,
+50 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;EnableMetalMap,
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Roughness,
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;EnableRoughnessMap,
+53 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;AO,
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;EnableAOMap,
+55 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Emission,
+56 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;EnableEmissionMap
+57 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)
+58 
+59 &#32;&#32;&#32;&#32;}
+60 
+61 }
+</programlisting></section>

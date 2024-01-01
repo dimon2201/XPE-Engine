@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1render_1_1c_shadow_manager" xml:lang="en-US">
+<title>xpe::render::cShadowManager Class Reference</title>
+<indexterm><primary>xpe::render::cShadowManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;shadow_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_shadow_manager_1ab48f2f89acf430f23bd847d1d6522702">Init</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_shadow_manager_1abcaed5d467f2c0c6e85a9508818efd8b">Free</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1render_1_1c_shadow_manager_1afbb2abf517384579c57f20d6feb29add">Flush</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1render_1_1c_shadow_manager_1afbb2abf517384579c57f20d6feb29add"/><section>
+    <title>Flush()</title>
+<indexterm><primary>Flush</primary><secondary>xpe::render::cShadowManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cShadowManager</primary><secondary>Flush</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cShadowManager::Flush ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_shadow_manager_1abcaed5d467f2c0c6e85a9508818efd8b"/><section>
+    <title>Free()</title>
+<indexterm><primary>Free</primary><secondary>xpe::render::cShadowManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cShadowManager</primary><secondary>Free</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cShadowManager::Free ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1render_1_1c_shadow_manager_1ab48f2f89acf430f23bd847d1d6522702"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>xpe::render::cShadowManager</secondary></indexterm>
+<indexterm><primary>xpe::render::cShadowManager</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::cShadowManager::Init ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/rendering/<link linkend="_shadow__manager_8hpp">shadow_manager.hpp</link>engine/src/rendering/<link linkend="_shadow__manager_8cpp">shadow_manager.cpp</link></section>
+</section>

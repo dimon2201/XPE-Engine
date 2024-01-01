@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_codes__gamepad_8hpp" xml:lang="en-US">
+<title>engine/src/core/codes_gamepad.hpp File Reference</title>
+<indexterm><primary>engine/src/core/codes_gamepad.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1core_1_1s_gamepad_state">xpe::core::sGamepadState</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26">xpe::core::eGamepadButton</link> : u8 { <?linebreak?><link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a3687fbfe9f2fdda2244770408fd2c681">xpe::core::Pad_A</link> = 0
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26af2700249ef417eaea8cf716d48fd0827">xpe::core::Pad_B</link> = 1
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26abb62826bf2e91316d8a790fa55f1819a">xpe::core::Pad_X</link> = 2
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1dac038a79602619e1a7be9e4ab872cc">xpe::core::Pad_Y</link> = 3
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a41295e646d7bb68cf4a793d4ed7f106c">xpe::core::Pad_LeftBumper</link> = 4
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1672427b5e0b2a9f1ce3971fce88fb89">xpe::core::Pad_RightBumper</link> = 5
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a529a8d53ddba22b06f1708c6ff8d3642">xpe::core::Pad_Back</link> = 6
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a506f1b55538cb40fb0d742db500493e8">xpe::core::Pad_Start</link> = 7
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1ba8ea192d4238eb4997fc9d9c61fb49">xpe::core::Pad_Guide</link> = 8
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a9c80141c352b0620cef90f850346a543">xpe::core::Pad_LeftThumb</link> = 9
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26ac793975743453b6a513539248582b14f">xpe::core::Pad_RightThumb</link> = 10
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26abff713c98241f68fec0465974a3a80c5">xpe::core::Pad_Up</link> = 11
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a4ef92a28a7310b1e33f7c7f09d34c447">xpe::core::Pad_Right</link> = 12
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a6ea51f348ed2273d1cd7acc170cd960d">xpe::core::Pad_Down</link> = 13
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a21b7af54fb4ed3a932c9aa04d80b4304">xpe::core::Pad_Left</link> = 14
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26acf06b676d433a6ab517247d238512310">xpe::core::Pad_Last</link> = Pad_Left
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a35e7e2b4be7d3b09ce6268a34db25ef4">xpe::core::Pad_Cross</link> = A
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a504e23bce3b71286dd697aa11d27e8f2">xpe::core::Pad_Circle</link> = B
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a1bb4c477a5d06d7e7ade03b8db06c20e">xpe::core::Pad_Square</link> = X
+, <link linkend="_namespacexpe_1_1core_1aaf38120261ee284a00c809dc4a86da26a39da9c46f43862115c612e9c3b99af50">xpe::core::Pad_Triangle</link> = Y
+ }</para>
+</listitem>
+            <listitem><para>enum <link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38">xpe::core::eGamepadAxis</link> : u8 { <?linebreak?><link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a207e9e5d2a6c7725bddb7124c0f61287">xpe::core::Axis_LeftX</link> = 0
+, <link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a8e3a412945183656647d1076980caa6e">xpe::core::Axis_LeftY</link> = 1
+, <link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38ac82c10c9d77e9ff5150ccaf740b84aaf">xpe::core::Axis_RightX</link> = 2
+, <link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a1105fdc10b81ef4d8ecc0201289b2fe1">xpe::core::Axis_RightY</link> = 3
+, <?linebreak?><link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a694b54f1b5afd19ed10b130526b2b2e0">xpe::core::Axis_LeftTrigger</link> = 4
+, <link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38a6fba40b7473ffd948e23323ecfa62d2b">xpe::core::Axis_RightTrigger</link> = 5
+, <link linkend="_namespacexpe_1_1core_1adbe1a654c5179a88a1390e31f9621b38aec7b154c770e5bfb5be55cec1e787318">xpe::core::Axis_Last</link> = Axis_RightTrigger
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

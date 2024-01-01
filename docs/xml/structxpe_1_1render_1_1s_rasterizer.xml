@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_rasterizer" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sRasterizer</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="rendering_2core_2core_8hpp" local="no">core.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1a36261360c3b1293fbfa18b31f04a6b43" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::render::sRasterizer::State</definition>
+        <argsstring></argsstring>
+        <name>State</name>
+        <qualifiedname>xpe::render::sRasterizer::State</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="331" column="22" bodyfile="engine/src/rendering/core/core.hpp" bodystart="331" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ae049ee7d29afa50b562466bdef95b704" compoundref="shader_8cpp" startline="180" endline="204">xpe::render::cDefaultShader::Bind</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1aca341e517063be3935e9e0b113f01965" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1render_1af084fc3ad14c992e70a372f3d237bf84" kindref="member">eFillMode</ref></type>
+        <definition>eFillMode xpe::render::sRasterizer::FillMode</definition>
+        <argsstring></argsstring>
+        <name>FillMode</name>
+        <qualifiedname>xpe::render::sRasterizer::FillMode</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1render_1af084fc3ad14c992e70a372f3d237bf84a5b39c8b553c821e7cddc6da64b5bd2ee" kindref="member">eFillMode::DEFAULT</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="332" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="332" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1add3944a2d9a4efbc518cde0a72a97483" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1render_1a70a8f9b1d613e1174531c58b493c2ef9" kindref="member">eCullMode</ref></type>
+        <definition>eCullMode xpe::render::sRasterizer::CullMode</definition>
+        <argsstring></argsstring>
+        <name>CullMode</name>
+        <qualifiedname>xpe::render::sRasterizer::CullMode</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1render_1a70a8f9b1d613e1174531c58b493c2ef9a5b39c8b553c821e7cddc6da64b5bd2ee" kindref="member">eCullMode::DEFAULT</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="333" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="333" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a432663a9956bbd6b79fb46b6c5f70b92" compoundref="shader_8cpp" startline="91" endline="103">xpe::render::cDefaultShader::InitOpaque</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_skybox_shader_1a914912b074db5d3f985c8d31da02d417" compoundref="shaders_8cpp" startline="331" endline="337">xpe::render::cSkyboxShader::InitOpaque</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a113c277f6a3d283c6ace4e7fda913853" compoundref="shader_8cpp" startline="77" endline="89">xpe::render::cDefaultShader::InitPrepass</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_shader_1acd5d0ef8a94bc9f6fd5c9ef429a7ba99" compoundref="shaders_8cpp" startline="187" endline="197">xpe::render::cShadowShader::InitPrepass</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ad4f9480afbaccfd7f785e564b187c052" compoundref="shader_8cpp" startline="105" endline="131">xpe::render::cDefaultShader::InitTransparent</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1ab517581c7bc7d68cf9d3d90878f11c06" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sRasterizer::FrontCounterClockwise</definition>
+        <argsstring></argsstring>
+        <name>FrontCounterClockwise</name>
+        <qualifiedname>xpe::render::sRasterizer::FrontCounterClockwise</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="334" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="334" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1a508c8bf260667ae2421421808054b9e2" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+        <definition>int xpe::render::sRasterizer::DepthBias</definition>
+        <argsstring></argsstring>
+        <name>DepthBias</name>
+        <qualifiedname>xpe::render::sRasterizer::DepthBias</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="335" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="335" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1a7df45ffd7f5cc1ded06be9dbb6db7150" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sRasterizer::DepthBiasClamp</definition>
+        <argsstring></argsstring>
+        <name>DepthBiasClamp</name>
+        <qualifiedname>xpe::render::sRasterizer::DepthBiasClamp</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="336" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="336" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1aa6888474e249342627c282fc0b523b9e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::render::sRasterizer::SlopeScaledDepthBias</definition>
+        <argsstring></argsstring>
+        <name>SlopeScaledDepthBias</name>
+        <qualifiedname>xpe::render::sRasterizer::SlopeScaledDepthBias</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="337" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="337" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1ae1eb7ee283ec3bc4bf08bc0d048c24d7" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sRasterizer::DepthClipEnable</definition>
+        <argsstring></argsstring>
+        <name>DepthClipEnable</name>
+        <qualifiedname>xpe::render::sRasterizer::DepthClipEnable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="338" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="338" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1af1e3445ca9f9699a854b914411d7cf3b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sRasterizer::ScissorEnable</definition>
+        <argsstring></argsstring>
+        <name>ScissorEnable</name>
+        <qualifiedname>xpe::render::sRasterizer::ScissorEnable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="339" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="339" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1a72a4931ce711f3f4ccb006be524e259d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sRasterizer::MultisampleEnable</definition>
+        <argsstring></argsstring>
+        <name>MultisampleEnable</name>
+        <qualifiedname>xpe::render::sRasterizer::MultisampleEnable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="340" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="340" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_rasterizer_1ad5cb539fadcfb797a66e0d97bb8035f8" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sRasterizer::AntialiasedLineEnable</definition>
+        <argsstring></argsstring>
+        <name>AntialiasedLineEnable</name>
+        <qualifiedname>xpe::render::sRasterizer::AntialiasedLineEnable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="341" column="23" bodyfile="engine/src/rendering/core/core.hpp" bodystart="341" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sRasterizer</label>
+        <link refid="structxpe_1_1render_1_1s_rasterizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sRasterizer</label>
+        <link refid="structxpe_1_1render_1_1s_rasterizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/core.hpp" line="329" column="9" bodyfile="engine/src/rendering/core/core.hpp" bodystart="330" bodyend="342"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1ad5cb539fadcfb797a66e0d97bb8035f8" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>AntialiasedLineEnable</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1add3944a2d9a4efbc518cde0a72a97483" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>CullMode</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1a508c8bf260667ae2421421808054b9e2" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>DepthBias</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1a7df45ffd7f5cc1ded06be9dbb6db7150" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>DepthBiasClamp</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1ae1eb7ee283ec3bc4bf08bc0d048c24d7" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>DepthClipEnable</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1aca341e517063be3935e9e0b113f01965" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>FillMode</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1ab517581c7bc7d68cf9d3d90878f11c06" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>FrontCounterClockwise</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1a72a4931ce711f3f4ccb006be524e259d" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>MultisampleEnable</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1af1e3445ca9f9699a854b914411d7cf3b" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>ScissorEnable</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1aa6888474e249342627c282fc0b523b9e" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>SlopeScaledDepthBias</name></member>
+      <member refid="structxpe_1_1render_1_1s_rasterizer_1a36261360c3b1293fbfa18b31f04a6b43" prot="public" virt="non-virtual"><scope>xpe::render::sRasterizer</scope><name>State</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

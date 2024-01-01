@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1anim_1_1s_animation_node" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::anim::sAnimationNode</compoundname>
+    <includes refid="anim_8hpp" local="no">anim.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_animation_node_1ad3ae7012e8540bd128e5966a5689daee" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref></type>
+        <definition>string xpe::anim::sAnimationNode::Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <qualifiedname>xpe::anim::sAnimationNode::Name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="44" column="20" bodyfile="engine/src/anim/anim.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_animation_node_1a2a81c7a94573d2604c4c174a3aef7281" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::anim::sAnimationNode::Transform</definition>
+        <argsstring></argsstring>
+        <name>Transform</name>
+        <qualifiedname>xpe::anim::sAnimationNode::Transform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="45" column="23" bodyfile="engine/src/anim/anim.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_animation_node_1af98efeb9ccb7fa80abafe07104dc52d7" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1anim_1_1s_animation_node" kindref="compound">sAnimationNode</ref> &gt;</type>
+        <definition>vector&lt;sAnimationNode&gt; xpe::anim::sAnimationNode::Children</definition>
+        <argsstring></argsstring>
+        <name>Children</name>
+        <qualifiedname>xpe::anim::sAnimationNode::Children</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="46" column="20" bodyfile="engine/src/anim/anim.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/anim/anim.hpp" line="42" column="9" bodyfile="engine/src/anim/anim.hpp" bodystart="43" bodyend="47"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1anim_1_1s_animation_node_1af98efeb9ccb7fa80abafe07104dc52d7" prot="public" virt="non-virtual"><scope>xpe::anim::sAnimationNode</scope><name>Children</name></member>
+      <member refid="structxpe_1_1anim_1_1s_animation_node_1ad3ae7012e8540bd128e5966a5689daee" prot="public" virt="non-virtual"><scope>xpe::anim::sAnimationNode</scope><name>Name</name></member>
+      <member refid="structxpe_1_1anim_1_1s_animation_node_1a2a81c7a94573d2604c4c174a3aef7281" prot="public" virt="non-virtual"><scope>xpe::anim::sAnimationNode</scope><name>Transform</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1math_1_1c_math_manager" xml:lang="en-US">
+<title>xpe::math::cMathManager Class Reference</title>
+<indexterm><primary>xpe::math::cMathManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;math_manager.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1abbcbde168c734b18cbe053f0f43d9295">ToLocalSpace</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">modelMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a0e4831d72097b847bee6145769169ba8">ToWorldSpace</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">modelMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a9b4dcfb004f793620557c1b6c750e96d">ToWorldSpaceInverse</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">viewMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1aee075b7292b6861aafa6bd63a98c0490">ToViewSpace</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">viewMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a7cb75a11d7486b4a7020c5ffa0c4e8c4">ToViewSpaceInverse</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">fov</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">aspectRatio</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a5e5f7c0735e8bcd3392e6f9b3eb1a862">ToViewSpaceInverse</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">perspectiveMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1af6bc16161d8c53e22d8f23e7ead10491">ToClipSpace</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">fov</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">aspectRatio</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a1b6fde417c860eeea1c7da4780007021">ToClipSpace</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">perspectiveMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1aae18ba6c1ce3498fb4cd7de185ebd905">ToClipSpaceInverse</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a0179ec677169833d764f3d441d2e705a">ToNDCSpace</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a3682765b3d0fe9afdf8e9b8622d24d68">ToNDCSpaceInverse</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> <link linkend="_classxpe_1_1math_1_1c_math_manager_1a66832c2942f8afb6b1c3ceda1a322c01">ToScreenSpace</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">ray</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> glm::mat4 <link linkend="_classxpe_1_1math_1_1c_math_manager_1a28fcdb1fcf8dfc293764646ecd419a82">UpdateModelMatrix</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_model_matrix">sModelMatrix</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">modelMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> glm::mat4 <link linkend="_classxpe_1_1math_1_1c_math_manager_1aba300145da6a5beaf3d4b76b99ea5e50">UpdateNormalMatrix</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">modelMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> glm::mat4 <link linkend="_classxpe_1_1math_1_1c_math_manager_1a346e686b18a98afe101c8bc164d28d01">UpdateViewMatrix</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">viewMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> glm::mat4 <link linkend="_classxpe_1_1math_1_1c_math_manager_1a0b5cbb14457c0bb17e32670b8251335b">UpdateOrthoMatrix</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sOrthoMatrix &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">orthoMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> glm::mat4 <link linkend="_classxpe_1_1math_1_1c_math_manager_1a26636137cc090d16adfc60715ff9aef8">UpdatePerspectiveMatrix</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sPerspectiveMatrix &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">perspectiveMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> glm::mat4 <link linkend="_classxpe_1_1math_1_1c_math_manager_1a50589adb8ddea81fc5f07378aa4d26c6">UpdateLightMatrix</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sOrthoMatrix &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">orthoMatrix</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">viewMatrix</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> glm::mat4 <link linkend="_classxpe_1_1math_1_1c_math_manager_1a37863e53d00e46ba3877ecdcf90599ac">UpdateLightMatrix</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sPerspectiveMatrix &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">perspectiveMatrix</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">viewMatrix</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1af6bc16161d8c53e22d8f23e7ead10491"/><section>
+    <title>ToClipSpace()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>ToClipSpace</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToClipSpace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToClipSpace (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> fov, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> aspectRatio)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a1b6fde417c860eeea1c7da4780007021"/><section>
+    <title>ToClipSpace()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>ToClipSpace</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToClipSpace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToClipSpace (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp; perspectiveMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1aae18ba6c1ce3498fb4cd7de185ebd905"/><section>
+    <title>ToClipSpaceInverse()</title>
+<indexterm><primary>ToClipSpaceInverse</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToClipSpaceInverse</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToClipSpaceInverse (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1abbcbde168c734b18cbe053f0f43d9295"/><section>
+    <title>ToLocalSpace()</title>
+<indexterm><primary>ToLocalSpace</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToLocalSpace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToLocalSpace (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp; modelMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a0179ec677169833d764f3d441d2e705a"/><section>
+    <title>ToNDCSpace()</title>
+<indexterm><primary>ToNDCSpace</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToNDCSpace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToNDCSpace (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a3682765b3d0fe9afdf8e9b8622d24d68"/><section>
+    <title>ToNDCSpaceInverse()</title>
+<indexterm><primary>ToNDCSpaceInverse</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToNDCSpaceInverse</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToNDCSpaceInverse (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> width, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> height)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a66832c2942f8afb6b1c3ceda1a322c01"/><section>
+    <title>ToScreenSpace()</title>
+<indexterm><primary>ToScreenSpace</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToScreenSpace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToScreenSpace (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> width, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> height)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1aee075b7292b6861aafa6bd63a98c0490"/><section>
+    <title>ToViewSpace()</title>
+<indexterm><primary>ToViewSpace</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToViewSpace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToViewSpace (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp; viewMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a7cb75a11d7486b4a7020c5ffa0c4e8c4"/><section>
+    <title>ToViewSpaceInverse()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>ToViewSpaceInverse</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToViewSpaceInverse</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToViewSpaceInverse (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> fov, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">float</link> aspectRatio)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a5e5f7c0735e8bcd3392e6f9b3eb1a862"/><section>
+    <title>ToViewSpaceInverse()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>ToViewSpaceInverse</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToViewSpaceInverse</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToViewSpaceInverse (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp; perspectiveMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a0e4831d72097b847bee6145769169ba8"/><section>
+    <title>ToWorldSpace()</title>
+<indexterm><primary>ToWorldSpace</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToWorldSpace</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToWorldSpace (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp; modelMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a9b4dcfb004f793620557c1b6c750e96d"/><section>
+    <title>ToWorldSpaceInverse()</title>
+<indexterm><primary>ToWorldSpaceInverse</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>ToWorldSpaceInverse</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> xpe::math::cMathManager::ToWorldSpaceInverse (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_ray">sRay</link> &amp; ray, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp; viewMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a50589adb8ddea81fc5f07378aa4d26c6"/><section>
+    <title>UpdateLightMatrix()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>UpdateLightMatrix</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>UpdateLightMatrix</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::math::cMathManager::UpdateLightMatrix (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sOrthoMatrix &amp; orthoMatrix, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link> &amp; viewMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a37863e53d00e46ba3877ecdcf90599ac"/><section>
+    <title>UpdateLightMatrix()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>UpdateLightMatrix</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>UpdateLightMatrix</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::math::cMathManager::UpdateLightMatrix (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sPerspectiveMatrix &amp; perspectiveMatrix, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link> &amp; viewMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a28fcdb1fcf8dfc293764646ecd419a82"/><section>
+    <title>UpdateModelMatrix()</title>
+<indexterm><primary>UpdateModelMatrix</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>UpdateModelMatrix</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::math::cMathManager::UpdateModelMatrix (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1math_1_1s_model_matrix">sModelMatrix</link> &amp; modelMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1aba300145da6a5beaf3d4b76b99ea5e50"/><section>
+    <title>UpdateNormalMatrix()</title>
+<indexterm><primary>UpdateNormalMatrix</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>UpdateNormalMatrix</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::math::cMathManager::UpdateNormalMatrix (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> glm::mat4 &amp; modelMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a0b5cbb14457c0bb17e32670b8251335b"/><section>
+    <title>UpdateOrthoMatrix()</title>
+<indexterm><primary>UpdateOrthoMatrix</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>UpdateOrthoMatrix</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::math::cMathManager::UpdateOrthoMatrix (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sOrthoMatrix &amp; orthoMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a26636137cc090d16adfc60715ff9aef8"/><section>
+    <title>UpdatePerspectiveMatrix()</title>
+<indexterm><primary>UpdatePerspectiveMatrix</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>UpdatePerspectiveMatrix</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::math::cMathManager::UpdatePerspectiveMatrix (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> sPerspectiveMatrix &amp; perspectiveMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1math_1_1c_math_manager_1a346e686b18a98afe101c8bc164d28d01"/><section>
+    <title>UpdateViewMatrix()</title>
+<indexterm><primary>UpdateViewMatrix</primary><secondary>xpe::math::cMathManager</secondary></indexterm>
+<indexterm><primary>xpe::math::cMathManager</primary><secondary>UpdateViewMatrix</secondary></indexterm>
+<para><computeroutput>glm::mat4 xpe::math::cMathManager::UpdateViewMatrix (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">sViewMatrix</link> &amp; viewMatrix)<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/math/<link linkend="_math__manager_8hpp">math_manager.hpp</link>engine/src/math/<link linkend="_math__manager_8cpp">math_manager.cpp</link></section>
+</section>

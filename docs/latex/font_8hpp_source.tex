@@ -1,0 +1,75 @@
+\doxysection{font.\+hpp}
+\hypertarget{font_8hpp_source}{}\label{font_8hpp_source}\index{engine/src/rendering/font/font.hpp@{engine/src/rendering/font/font.hpp}}
+\mbox{\hyperlink{font_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{texture_8hpp}{rendering/core/texture.hpp}}>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{namespace\ }render}
+\DoxyCodeLine{00009\ \ \ \ \ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph}{sGlyph}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_a351d3c1de019dcc1ad10449716f5538d}{Char}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_a974d9563b78bc8bc12eb2a68abcebbf8}{Width}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_ae7dec2daaa5873776b8ff35b3cd57985}{Height}};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ssize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_a5cfbf2775dbc94844508c478b7b35ff0}{Left}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ssize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_afdd1b5d930dc2f6a05d2830acf80a58b}{Top}};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_aa22aabf05fda59a021506f99e99d20e5}{AdvanceX}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_ac9fa70414056190921fbc1449e3383c0}{AdvanceY}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ BitmapData\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_a59f1b396b21ece6b8ab8b12ca356533e}{AtlasXOffset}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph_a786d02bb4671fcef6ed8c33074bbd546}{AtlasYOffset}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_a48838bb6200c4dd8734d03e11e65f3a2}{GlyphCount}};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_a8b05f091c74c64d1b2d21e4f19173f9d}{GlyphSize}};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_acb7b60ad9157498875d937176dbd67a0}{NewLineOffset}};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_aaf9a8fc710ce330c7c5657c257fde3a0}{WhitespaceOffset}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_a5a64105b4dc3226fed6eb0eb254de1a1}{MaxGlyphHeight}};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{unordered\_map<char,\ sFont::sGlyph>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_a50ddaa802be0f4074f51e8a5da3a0c50}{AlphaBet}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_a2f7c61c8c0bbe77328bc84c7b91ec5b7}{Atlas}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{\string~sFont}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_a94f4a176fa24946d125916905f34587f}{GetWhitespaceWidth}}()}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 8.0f\ *\ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}})\ AlphaBet[0x20].AdvanceX\ /\ 64.0f);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font_1_1s_glyph}{sFont::sGlyph}},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ Char,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ Width,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ Height,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{Left}},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ Top,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ AdvanceX,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ AdvanceY,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ AtlasXOffset,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ AtlasYOffset}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_ae5fd894f0070107242bfc6ca6f7533d2}{GlyphCount}},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a2fe1f6d43d54e1296405a1f31ebe4a50}{GlyphSize}},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a7ff3e06a3c32742dbfbdb8a7d3f9827c}{NewLineOffset}},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a60a22b42d177de6f3c8a06dc395a7fc6}{WhitespaceOffset}},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a85e7da60ced5657efd54c86294c57a71}{MaxGlyphHeight}},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ AlphaBet}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \}}
+
+\end{DoxyCode}

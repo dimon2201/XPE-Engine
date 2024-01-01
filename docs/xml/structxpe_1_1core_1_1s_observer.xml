@@ -1,0 +1,513 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1core_1_1s_observer" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::core::sObserver</compoundname>
+    <includes refid="observer_8hpp" local="no">observer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">typename</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref></type>
+        <definition>T xpe::core::sObserver&lt; T &gt;::Value</definition>
+        <argsstring></argsstring>
+        <name>Value</name>
+        <qualifiedname>xpe::core::sObserver::Value</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="9" column="15" bodyfile="engine/src/core/observer.hpp" bodystart="9" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1ab81082f760f9c507937a21604d958e07" compoundref="observer_8hpp" startline="22" endline="22">xpe::core::sObserver&lt; float &gt;::operator float</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a1d40b50056be4667333f630547ae6149" compoundref="observer_8hpp" startline="25" endline="25">xpe::core::sObserver&lt; T &gt;::operator!=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1aad03823e7ef98dc2a1ee06f5f6f0758b" compoundref="observer_8hpp" startline="39" endline="39">xpe::core::sObserver&lt; T &gt;::operator!=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a149bf7344514f2e38b6a53fec6235305" compoundref="observer_8hpp" startline="32" endline="32">xpe::core::sObserver&lt; T &gt;::operator!=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a1d1dcf741ba102441f059801e715a8a1" compoundref="observer_8hpp" startline="27" endline="27">xpe::core::sObserver&lt; T &gt;::operator&lt;</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1aa0f9dee51375748c046238f8b9b39db0" compoundref="observer_8hpp" startline="41" endline="41">xpe::core::sObserver&lt; T &gt;::operator&lt;</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a2e39c826d8988030a95a82df468e750e" compoundref="observer_8hpp" startline="34" endline="34">xpe::core::sObserver&lt; T &gt;::operator&lt;</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1ab09d392742847aeab6623d40b678c520" compoundref="observer_8hpp" startline="28" endline="28">xpe::core::sObserver&lt; T &gt;::operator&lt;=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1aac27addf1be37f0b16a9dbcf84b30d24" compoundref="observer_8hpp" startline="42" endline="42">xpe::core::sObserver&lt; T &gt;::operator&lt;=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1adf0b1af83b82d7ab08a3ff983cbeb93f" compoundref="observer_8hpp" startline="35" endline="35">xpe::core::sObserver&lt; T &gt;::operator&lt;=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a29c4c31ed712e8ad0b6108eb9ddfb82e" compoundref="observer_8hpp" startline="14" endline="19">xpe::core::sObserver&lt; T &gt;::operator=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a16fdd18dfa87de699b93ae7b4e19bfa8" compoundref="observer_8hpp" startline="24" endline="24">xpe::core::sObserver&lt; T &gt;::operator==</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a9d3298132df88256089fec4d90d2d8d4" compoundref="observer_8hpp" startline="38" endline="38">xpe::core::sObserver&lt; T &gt;::operator==</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1abda90864ce669d8069b89e0ebecdfcd1" compoundref="observer_8hpp" startline="31" endline="31">xpe::core::sObserver&lt; T &gt;::operator==</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1aea316df7ff0f83cc124ba8a658ee7f7a" compoundref="observer_8hpp" startline="26" endline="26">xpe::core::sObserver&lt; T &gt;::operator&gt;</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a2960d0ff7c7c49464970e880749d6793" compoundref="observer_8hpp" startline="40" endline="40">xpe::core::sObserver&lt; T &gt;::operator&gt;</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a158a2096015600fc7415132ec0f53511" compoundref="observer_8hpp" startline="33" endline="33">xpe::core::sObserver&lt; T &gt;::operator&gt;</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a95a83bd87ad5ba361d56b437d8cbd46a" compoundref="observer_8hpp" startline="29" endline="29">xpe::core::sObserver&lt; T &gt;::operator&gt;=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1af52bbfd564cee65e847f9db7df103860" compoundref="observer_8hpp" startline="43" endline="43">xpe::core::sObserver&lt; T &gt;::operator&gt;=</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1adfc85eab6559e6e478e398d86381bab4" compoundref="observer_8hpp" startline="36" endline="36">xpe::core::sObserver&lt; T &gt;::operator&gt;=</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="structxpe_1_1core_1_1s_observer_1a5d351e8173fd954c2c6a964d3411a241" prot="protected" static="no" mutable="no">
+        <type>std::function&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref>(<ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>)&gt;</type>
+        <definition>std::function&lt;void(T)&gt; xpe::core::sObserver&lt; T &gt;::m_OnChanged</definition>
+        <argsstring></argsstring>
+        <name>m_OnChanged</name>
+        <qualifiedname>xpe::core::sObserver::m_OnChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="46" column="27" bodyfile="engine/src/core/observer.hpp" bodystart="46" bodyend="-1"/>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a3112b70cb139bfd7f68bec9948f31a8b" compoundref="observer_8hpp" startline="21" endline="21">xpe::core::sObserver&lt; T &gt;::operator()</referencedby>
+        <referencedby refid="structxpe_1_1core_1_1s_observer_1a29c4c31ed712e8ad0b6108eb9ddfb82e" compoundref="observer_8hpp" startline="14" endline="19">xpe::core::sObserver&lt; T &gt;::operator=</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a22dfe1edba80d794f09d54bf28c519b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sObserver&lt; T &gt;::sObserver</definition>
+        <argsstring>(const T &amp;value, const std::function&lt; void(T)&gt; onChanged={})</argsstring>
+        <name>sObserver</name>
+        <qualifiedname>xpe::core::sObserver::sObserver</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::function&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref>(<ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref>)&gt;</type>
+          <declname>onChanged</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="11" column="13" bodyfile="engine/src/core/observer.hpp" bodystart="11" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a29c4c31ed712e8ad0b6108eb9ddfb82e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structxpe_1_1core_1_1s_observer" kindref="compound">sObserver</ref> &amp;</type>
+        <definition>sObserver &amp; xpe::core::sObserver&lt; T &gt;::operator=</definition>
+        <argsstring>(const T &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>xpe::core::sObserver::operator=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="14" column="30" bodyfile="engine/src/core/observer.hpp" bodystart="14" bodyend="19"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a5d351e8173fd954c2c6a964d3411a241" compoundref="observer_8hpp" startline="46">xpe::core::sObserver&lt; T &gt;::m_OnChanged</references>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a3112b70cb139bfd7f68bec9948f31a8b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::sObserver&lt; T &gt;::operator()</definition>
+        <argsstring>()</argsstring>
+        <name>operator()</name>
+        <qualifiedname>xpe::core::sObserver::operator()</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="21" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="21" bodyend="21"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a5d351e8173fd954c2c6a964d3411a241" compoundref="observer_8hpp" startline="46">xpe::core::sObserver&lt; T &gt;::m_OnChanged</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1ab81082f760f9c507937a21604d958e07" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::core::sObserver&lt; T &gt;::operator T</definition>
+        <argsstring>() const</argsstring>
+        <name>operator T</name>
+        <qualifiedname>xpe::core::sObserver::operator T</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="22" column="20" bodyfile="engine/src/core/observer.hpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a16fdd18dfa87de699b93ae7b4e19bfa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator==</definition>
+        <argsstring>(const T &amp;other)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>xpe::core::sObserver::operator==</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="24" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="24" bodyend="24"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a1d40b50056be4667333f630547ae6149" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator!=</definition>
+        <argsstring>(const T &amp;other)</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>xpe::core::sObserver::operator!=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="25" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="25" bodyend="25"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1aea316df7ff0f83cc124ba8a658ee7f7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&gt;</definition>
+        <argsstring>(const T &amp;other)</argsstring>
+        <name>operator&gt;</name>
+        <qualifiedname>xpe::core::sObserver::operator&gt;</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="26" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="26" bodyend="26"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a1d1dcf741ba102441f059801e715a8a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&lt;</definition>
+        <argsstring>(const T &amp;other)</argsstring>
+        <name>operator&lt;</name>
+        <qualifiedname>xpe::core::sObserver::operator&lt;</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="27" column="20" bodyfile="engine/src/core/observer.hpp" bodystart="27" bodyend="27"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1ab09d392742847aeab6623d40b678c520" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&lt;=</definition>
+        <argsstring>(const T &amp;other)</argsstring>
+        <name>operator&lt;=</name>
+        <qualifiedname>xpe::core::sObserver::operator&lt;=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="28" column="20" bodyfile="engine/src/core/observer.hpp" bodystart="28" bodyend="28"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a95a83bd87ad5ba361d56b437d8cbd46a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&gt;=</definition>
+        <argsstring>(const T &amp;other)</argsstring>
+        <name>operator&gt;=</name>
+        <qualifiedname>xpe::core::sObserver::operator&gt;=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b" kindref="member">T</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="29" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="29" bodyend="29"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1abda90864ce669d8069b89e0ebecdfcd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator==</definition>
+        <argsstring>(u32 other)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>xpe::core::sObserver::operator==</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="31" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="31" bodyend="31"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a149bf7344514f2e38b6a53fec6235305" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator!=</definition>
+        <argsstring>(u32 other)</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>xpe::core::sObserver::operator!=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="32" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="32" bodyend="32"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a158a2096015600fc7415132ec0f53511" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&gt;</definition>
+        <argsstring>(u32 other)</argsstring>
+        <name>operator&gt;</name>
+        <qualifiedname>xpe::core::sObserver::operator&gt;</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="33" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="33" bodyend="33"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a2e39c826d8988030a95a82df468e750e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&lt;</definition>
+        <argsstring>(u32 other)</argsstring>
+        <name>operator&lt;</name>
+        <qualifiedname>xpe::core::sObserver::operator&lt;</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="34" column="20" bodyfile="engine/src/core/observer.hpp" bodystart="34" bodyend="34"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1adf0b1af83b82d7ab08a3ff983cbeb93f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&lt;=</definition>
+        <argsstring>(u32 other)</argsstring>
+        <name>operator&lt;=</name>
+        <qualifiedname>xpe::core::sObserver::operator&lt;=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="35" column="20" bodyfile="engine/src/core/observer.hpp" bodystart="35" bodyend="35"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1adfc85eab6559e6e478e398d86381bab4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&gt;=</definition>
+        <argsstring>(u32 other)</argsstring>
+        <name>operator&gt;=</name>
+        <qualifiedname>xpe::core::sObserver::operator&gt;=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="36" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="36" bodyend="36"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a9d3298132df88256089fec4d90d2d8d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator==</definition>
+        <argsstring>(int other)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>xpe::core::sObserver::operator==</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="38" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="38" bodyend="38"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1aad03823e7ef98dc2a1ee06f5f6f0758b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator!=</definition>
+        <argsstring>(int other)</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>xpe::core::sObserver::operator!=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="39" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="39" bodyend="39"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1a2960d0ff7c7c49464970e880749d6793" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&gt;</definition>
+        <argsstring>(int other)</argsstring>
+        <name>operator&gt;</name>
+        <qualifiedname>xpe::core::sObserver::operator&gt;</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="40" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="40" bodyend="40"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1aa0f9dee51375748c046238f8b9b39db0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&lt;</definition>
+        <argsstring>(int other)</argsstring>
+        <name>operator&lt;</name>
+        <qualifiedname>xpe::core::sObserver::operator&lt;</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="41" column="20" bodyfile="engine/src/core/observer.hpp" bodystart="41" bodyend="41"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1aac27addf1be37f0b16a9dbcf84b30d24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&lt;=</definition>
+        <argsstring>(int other)</argsstring>
+        <name>operator&lt;=</name>
+        <qualifiedname>xpe::core::sObserver::operator&lt;=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="42" column="20" bodyfile="engine/src/core/observer.hpp" bodystart="42" bodyend="42"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1core_1_1s_observer_1af52bbfd564cee65e847f9db7df103860" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::core::sObserver&lt; T &gt;::operator&gt;=</definition>
+        <argsstring>(int other)</argsstring>
+        <name>operator&gt;=</name>
+        <qualifiedname>xpe::core::sObserver::operator&gt;=</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/observer.hpp" line="43" column="25" bodyfile="engine/src/core/observer.hpp" bodystart="43" bodyend="43"/>
+        <references refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" compoundref="observer_8hpp" startline="9">xpe::core::sObserver&lt; T &gt;::Value</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/observer.hpp" line="8" column="9" bodyfile="engine/src/core/observer.hpp" bodystart="8" bodyend="47"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1core_1_1s_observer_1a5d351e8173fd954c2c6a964d3411a241" prot="protected" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>m_OnChanged</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1ab81082f760f9c507937a21604d958e07" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator T</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a1d40b50056be4667333f630547ae6149" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator!=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a149bf7344514f2e38b6a53fec6235305" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator!=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aad03823e7ef98dc2a1ee06f5f6f0758b" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator!=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a3112b70cb139bfd7f68bec9948f31a8b" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator()</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a1d1dcf741ba102441f059801e715a8a1" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&lt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a2e39c826d8988030a95a82df468e750e" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&lt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aa0f9dee51375748c046238f8b9b39db0" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&lt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1ab09d392742847aeab6623d40b678c520" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&lt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1adf0b1af83b82d7ab08a3ff983cbeb93f" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&lt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aac27addf1be37f0b16a9dbcf84b30d24" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&lt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a29c4c31ed712e8ad0b6108eb9ddfb82e" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a16fdd18dfa87de699b93ae7b4e19bfa8" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator==</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1abda90864ce669d8069b89e0ebecdfcd1" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator==</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a9d3298132df88256089fec4d90d2d8d4" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator==</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1aea316df7ff0f83cc124ba8a658ee7f7a" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&gt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a158a2096015600fc7415132ec0f53511" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&gt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a2960d0ff7c7c49464970e880749d6793" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&gt;</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a95a83bd87ad5ba361d56b437d8cbd46a" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&gt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1adfc85eab6559e6e478e398d86381bab4" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&gt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1af52bbfd564cee65e847f9db7df103860" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>operator&gt;=</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a22dfe1edba80d794f09d54bf28c519b6" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>sObserver</name></member>
+      <member refid="structxpe_1_1core_1_1s_observer_1a171bd1c8c8ab7d0f70674921efc90eb5" prot="public" virt="non-virtual"><scope>xpe::core::sObserver</scope><name>Value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,87 @@
+\doxysection{xpe\+::core\+::c\+Thread Class Reference}
+\hypertarget{classxpe_1_1core_1_1c_thread}{}\label{classxpe_1_1core_1_1c_thread}\index{xpe::core::cThread@{xpe::core::cThread}}
+
+
+{\ttfamily \#include $<$thread.\+hpp$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{e\+Priority}} \{ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae}{LOWEST}}
+, \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a909306e50b86209177b07950049ad263}{NORMAL}}
+, \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a2d251a22a90f57b47b2bb9c450656387}{HIGHEST}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_ac1bd1b99597a7dac182fd0c142bb93bc}{c\+Thread}} (\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{id}}, std\+::thread \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{thread}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2c4f38b61459c9d0cf5246ee5ad072de}{Set\+Format}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}}, \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{e\+Priority}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2099798571924fd52cafa3c336fc8a57}{Current\+Sleep}} (\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{millis}})
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static}} \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a8a5362a2375462e796b4361c8c406e48}{Current\+ID}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}\label{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1} 
+\index{xpe::core::cThread@{xpe::core::cThread}!ePriority@{ePriority}}
+\index{ePriority@{ePriority}!xpe::core::cThread@{xpe::core::cThread}}
+\doxysubsubsection{\texorpdfstring{ePriority}{ePriority}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{xpe\+::core\+::c\+Thread\+::e\+Priority}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOWEST@{LOWEST}!xpe::core::cThread@{xpe::core::cThread}}\index{xpe::core::cThread@{xpe::core::cThread}!LOWEST@{LOWEST}}}\Hypertarget{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae}\label{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae} 
+LOWEST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NORMAL@{NORMAL}!xpe::core::cThread@{xpe::core::cThread}}\index{xpe::core::cThread@{xpe::core::cThread}!NORMAL@{NORMAL}}}\Hypertarget{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a909306e50b86209177b07950049ad263}\label{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a909306e50b86209177b07950049ad263} 
+NORMAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HIGHEST@{HIGHEST}!xpe::core::cThread@{xpe::core::cThread}}\index{xpe::core::cThread@{xpe::core::cThread}!HIGHEST@{HIGHEST}}}\Hypertarget{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a2d251a22a90f57b47b2bb9c450656387}\label{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a2d251a22a90f57b47b2bb9c450656387} 
+HIGHEST&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_thread_ac1bd1b99597a7dac182fd0c142bb93bc}\label{classxpe_1_1core_1_1c_thread_ac1bd1b99597a7dac182fd0c142bb93bc} 
+\index{xpe::core::cThread@{xpe::core::cThread}!cThread@{cThread}}
+\index{cThread@{cThread}!xpe::core::cThread@{xpe::core::cThread}}
+\doxysubsubsection{\texorpdfstring{cThread()}{cThread()}}
+{\footnotesize\ttfamily xpe\+::core\+::c\+Thread\+::c\+Thread (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}}]{id,  }\item[{std\+::thread \&}]{thread }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1core_1_1c_thread_a8a5362a2375462e796b4361c8c406e48}\label{classxpe_1_1core_1_1c_thread_a8a5362a2375462e796b4361c8c406e48} 
+\index{xpe::core::cThread@{xpe::core::cThread}!CurrentID@{CurrentID}}
+\index{CurrentID@{CurrentID}!xpe::core::cThread@{xpe::core::cThread}}
+\doxysubsubsection{\texorpdfstring{CurrentID()}{CurrentID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}} xpe\+::core\+::c\+Thread\+::\+Current\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_thread_a2099798571924fd52cafa3c336fc8a57}\label{classxpe_1_1core_1_1c_thread_a2099798571924fd52cafa3c336fc8a57} 
+\index{xpe::core::cThread@{xpe::core::cThread}!CurrentSleep@{CurrentSleep}}
+\index{CurrentSleep@{CurrentSleep}!xpe::core::cThread@{xpe::core::cThread}}
+\doxysubsubsection{\texorpdfstring{CurrentSleep()}{CurrentSleep()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::core\+::c\+Thread\+::\+Current\+Sleep (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}}]{millis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classxpe_1_1core_1_1c_thread_a2c4f38b61459c9d0cf5246ee5ad072de}\label{classxpe_1_1core_1_1c_thread_a2c4f38b61459c9d0cf5246ee5ad072de} 
+\index{xpe::core::cThread@{xpe::core::cThread}!SetFormat@{SetFormat}}
+\index{SetFormat@{SetFormat}!xpe::core::cThread@{xpe::core::cThread}}
+\doxysubsubsection{\texorpdfstring{SetFormat()}{SetFormat()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::core\+::c\+Thread\+::\+Set\+Format (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{char}} \texorpdfstring{$\ast$}{*}}]{name,  }\item[{\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{e\+Priority}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{thread_8hpp}{thread.\+hpp}}\item 
+engine/src/core/\mbox{\hyperlink{thread_8cpp}{thread.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_shaders_8hpp" xml:lang="en-US">
+<title>engine/src/rendering/shaders.hpp File Reference</title>
+<indexterm><primary>engine/src/rendering/shaders.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;rendering/core/shader.hpp&gt;<?linebreak?>#include &lt;rendering/buffers.hpp&gt;<?linebreak?>#include &lt;rendering/geometry/geometry.hpp&gt;<?linebreak?>#include &lt;rendering/font/font.hpp&gt;<?linebreak?></programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_instancing_shader">xpe::render::cInstancingShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_opaque_shader">xpe::render::cOpaqueShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_transparent_shader">xpe::render::cTransparentShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_shadow_shader">xpe::render::cShadowShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_directional_shadow_shader">xpe::render::cDirectionalShadowShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_point_shadow_shader">xpe::render::cPointShadowShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_spot_shadow_shader">xpe::render::cSpotShadowShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_skybox_shader">xpe::render::cSkyboxShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_composite_transparent_shader">xpe::render::cCompositeTransparentShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_ssao_shader">xpe::render::cSsaoShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_final_shader">xpe::render::cFinalShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_widget_shader">xpe::render::cWidgetShader</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1render_1_1c_text_shader">xpe::render::cTextShader</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

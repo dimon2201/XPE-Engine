@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1core_1_1c_log_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::core::cLogManager</compoundname>
+    <includes refid="log__manager_8hpp" local="no">log_manager.hpp</includes>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_log_manager_1aa74243c8d16a41f50d9c7f8504b89916" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cLogManager::Init</definition>
+        <argsstring>(const sLoggerDescriptor &amp;descriptor)</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::core::cLogManager::Init</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1core_1_1s_logger_descriptor" kindref="compound">sLoggerDescriptor</ref> &amp;</type>
+          <declname>descriptor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/log_manager.hpp" line="59" column="25" bodyfile="engine/src/core/log_manager.cpp" bodystart="38" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_log_manager_1afca6c1c76a9d72bd0c9b20bb1b9a12de" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cLogManager::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::core::cLogManager::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/log_manager.hpp" line="60" column="25" bodyfile="engine/src/core/log_manager.cpp" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_log_manager_1a619950f7cd7eca33631d17311e25de06" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>spdlog::logger *</type>
+        <definition>spdlog::logger * xpe::core::cLogManager::GetLogger</definition>
+        <argsstring>()</argsstring>
+        <name>GetLogger</name>
+        <qualifiedname>xpe::core::cLogManager::GetLogger</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/log_manager.hpp" line="62" column="35" bodyfile="engine/src/core/log_manager.cpp" bodystart="84" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_log_manager_1ab61d9f265f1d8a79f8c35ced774bf096" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>spdlog::logger *</type>
+        <definition>spdlog::logger * xpe::core::cLogManager::GetTracer</definition>
+        <argsstring>()</argsstring>
+        <name>GetTracer</name>
+        <qualifiedname>xpe::core::cLogManager::GetTracer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/log_manager.hpp" line="63" column="35" bodyfile="engine/src/core/log_manager.cpp" bodystart="88" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_log_manager_1a36199b32ad07adca9005ab1c0ab0e82b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>spdlog::logger *</type>
+        <definition>spdlog::logger * xpe::core::cLogManager::GetMemLogger</definition>
+        <argsstring>()</argsstring>
+        <name>GetMemLogger</name>
+        <qualifiedname>xpe::core::cLogManager::GetMemLogger</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/log_manager.hpp" line="64" column="35" bodyfile="engine/src/core/log_manager.cpp" bodystart="92" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1core_1_1c_log_manager_1a9926687b6984605f8e0282325d7264a0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::core::cLogManager::DumpBacktrace</definition>
+        <argsstring>()</argsstring>
+        <name>DumpBacktrace</name>
+        <qualifiedname>xpe::core::cLogManager::DumpBacktrace</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/core/log_manager.hpp" line="66" column="25" bodyfile="engine/src/core/log_manager.cpp" bodystart="80" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/core/log_manager.hpp" line="56" column="9" bodyfile="engine/src/core/log_manager.hpp" bodystart="56" bodyend="68"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1core_1_1c_log_manager_1a9926687b6984605f8e0282325d7264a0" prot="public" virt="non-virtual"><scope>xpe::core::cLogManager</scope><name>DumpBacktrace</name></member>
+      <member refid="classxpe_1_1core_1_1c_log_manager_1afca6c1c76a9d72bd0c9b20bb1b9a12de" prot="public" virt="non-virtual"><scope>xpe::core::cLogManager</scope><name>Free</name></member>
+      <member refid="classxpe_1_1core_1_1c_log_manager_1a619950f7cd7eca33631d17311e25de06" prot="public" virt="non-virtual"><scope>xpe::core::cLogManager</scope><name>GetLogger</name></member>
+      <member refid="classxpe_1_1core_1_1c_log_manager_1a36199b32ad07adca9005ab1c0ab0e82b" prot="public" virt="non-virtual"><scope>xpe::core::cLogManager</scope><name>GetMemLogger</name></member>
+      <member refid="classxpe_1_1core_1_1c_log_manager_1ab61d9f265f1d8a79f8c35ced774bf096" prot="public" virt="non-virtual"><scope>xpe::core::cLogManager</scope><name>GetTracer</name></member>
+      <member refid="classxpe_1_1core_1_1c_log_manager_1aa74243c8d16a41f50d9c7f8504b89916" prot="public" virt="non-virtual"><scope>xpe::core::cLogManager</scope><name>Init</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

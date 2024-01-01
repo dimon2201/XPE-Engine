@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1ecs_1_1_c_camera" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::ecs::CCamera</compoundname>
+    <basecompoundref refid="classxpe_1_1res_1_1c_json" prot="public" virt="non-virtual">xpe::res::cJson</basecompoundref>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_ortho_camera" prot="public" virt="non-virtual">xpe::ecs::COrthoCamera</derivedcompoundref>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_perspective_camera" prot="public" virt="non-virtual">xpe::ecs::CPerspectiveCamera</derivedcompoundref>
+    <includes refid="components_8hpp" local="no">components.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_camera_1ab3082484fe8770bfe6d074ce175f65a2" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::ecs::CCamera::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>xpe::ecs::CCamera::Position</qualifiedname>
+        <initializer>= { 0, 0, -1 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="63" column="23" bodyfile="engine/src/ecs/components.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_camera_1a636e4980bf69df249495f4e1b98e8aff" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::ecs::CCamera::Front</definition>
+        <argsstring></argsstring>
+        <name>Front</name>
+        <qualifiedname>xpe::ecs::CCamera::Front</qualifiedname>
+        <initializer>= { 0, 0, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="64" column="23" bodyfile="engine/src/ecs/components.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1ecs_1_1_c_camera_1a1ace175af5a24628c5aab30268ea3833" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 xpe::ecs::CCamera::Up</definition>
+        <argsstring></argsstring>
+        <name>Up</name>
+        <qualifiedname>xpe::ecs::CCamera::Up</qualifiedname>
+        <initializer>= { 0, 1, 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/ecs/components.hpp" line="65" column="23" bodyfile="engine/src/ecs/components.hpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::ecs::CCamera</label>
+        <link refid="structxpe_1_1ecs_1_1_c_camera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::ecs::COrthoCamera</label>
+        <link refid="structxpe_1_1ecs_1_1_c_ortho_camera"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::ecs::CPerspectiveCamera</label>
+        <link refid="structxpe_1_1ecs_1_1_c_perspective_camera"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::ecs::CCamera</label>
+        <link refid="structxpe_1_1ecs_1_1_c_camera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::res::cJson</label>
+        <link refid="classxpe_1_1res_1_1c_json"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/ecs/components.hpp" line="59" column="9" bodyfile="engine/src/ecs/components.hpp" bodystart="60" bodyend="73"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1res_1_1c_json_1ac1f545d15f6d5162d765f9c8eb9b336b" prot="public" virt="pure-virtual"><scope>xpe::ecs::CCamera</scope><name>FromJson</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_camera_1a636e4980bf69df249495f4e1b98e8aff" prot="public" virt="non-virtual"><scope>xpe::ecs::CCamera</scope><name>Front</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_camera_1ab3082484fe8770bfe6d074ce175f65a2" prot="public" virt="non-virtual"><scope>xpe::ecs::CCamera</scope><name>Position</name></member>
+      <member refid="classxpe_1_1res_1_1c_json_1ae9f2dda5c12658850632637c06868e88" prot="public" virt="pure-virtual"><scope>xpe::ecs::CCamera</scope><name>ToJson</name></member>
+      <member refid="structxpe_1_1ecs_1_1_c_camera_1a1ace175af5a24628c5aab30268ea3833" prot="public" virt="non-virtual"><scope>xpe::ecs::CCamera</scope><name>Up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

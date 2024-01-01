@@ -1,0 +1,325 @@
+.TH "xpe::render::sTexture" 3 "Version 0.1" "XPE-Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+xpe::render::sTexture
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <texture\&.hpp>\fP
+.PP
+Inherits \fBxpe::render::sResource\fP\&.
+.PP
+Inherited by \fBxpe::render::sAtlas\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBeType\fP { \fBTEXTURE_1D\fP, \fBTEXTURE_2D\fP, \fBTEXTURE_2D_MS\fP, \fBTEXTURE_2D_DEPTH_STENCIL\fP, \fBTEXTURE_2D_ARRAY\fP, \fBTEXTURE_3D\fP, \fBTEXTURE_CUBE\fP, \fBTEXTURE_DEFAULT\fP = TEXTURE_2D }"
+.br
+.ti -1c
+.RI "enum class \fBeUsage\fP { \fBDEFAULT\fP, \fBSTATIC\fP, \fBDYNAMIC\fP, \fBSTAGING\fP }"
+.br
+.in -1c
+
+Public Types inherited from \fBxpe::render::sResource\fP
+.in +1c
+.ti -1c
+.RI "enum class \fBeViewType\fP { \fBNONE\fP, \fBDEPTH_STENCIL\fP, \fBRENDER_TARGET\fP, \fBSRV\fP, \fBUAV\fP }"
+.br
+.ti -1c
+.RI "enum class \fBeMapType\fP { \fBREAD\fP, \fBWRITE\fP, \fBREAD_WRITE\fP, \fBWRITE_NO_OVERWRITE\fP, \fBWRITE_DISCARD\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsTexture\fP ()"
+.br
+.ti -1c
+.RI "\fB~sTexture\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBInit\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFree\fP ()"
+.br
+.ti -1c
+.RI "\fBsTextureLayer\fP \fBCreateLayer\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBRemoveLayerAt\fP (\fBu32\fP \fBindex\fP)"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBGetMipLevels\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBWindowFrameResized\fP (\fBs32\fP \fBwidth\fP, \fBs32\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBResize\fP (\fBs32\fP \fBwidth\fP, \fBs32\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBResizePixels\fP (\fBs32\fP \fBwidth\fP, \fBs32\fP \fBheight\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFlip\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBGenerateMips\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFlushLayer\fP (\fBu32\fP \fBindex\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBFlush\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBSetResizable\fP (\fBbool\fP \fBresizable\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBIsResizable\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBxpe::core::cObject\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBoperator new\fP (\fBusize\fP \fBbyteSize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator delete\fP (\fBvoid\fP *\fBaddress\fP)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBu32\fP \fBGetMipsLevels\fP (\fBs32\fP \fBwidth\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeType\fP \fBType\fP = \fBeType::TEXTURE_DEFAULT\fP"
+.br
+.ti -1c
+.RI "\fBeUsage\fP \fBUsage\fP = \fBeUsage::DEFAULT\fP"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBWidth\fP"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBHeight\fP"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBDepth\fP = 1"
+.br
+.ti -1c
+.RI "\fBs32\fP \fBChannels\fP"
+.br
+.ti -1c
+.RI "\fBeTextureFormat\fP \fBFormat\fP"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBSampleCount\fP = 1"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBEnableRenderTarget\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBSlot\fP = 0"
+.br
+.ti -1c
+.RI "\fBu32\fP \fBMostDetailedMip\fP = 0"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBInitializeData\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBvector\fP< \fBsTextureLayer\fP > \fBLayers\fP"
+.br
+.in -1c
+
+Public Attributes inherited from \fBxpe::render::sResource\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBInstance\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBViewInstance\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBeViewType\fP \fBViewType\fP = \fBeViewType::NONE\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP std::unordered_map< \fBeTextureFormat\fP, \fBint\fP > \fBk_ChannelTable\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP std::unordered_map< \fBeTextureFormat\fP, \fBint\fP > \fBk_BppTable\fP"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::sTexture::eType\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITEXTURE_1D \fP\fP
+.TP
+\fB\fITEXTURE_2D \fP\fP
+.TP
+\fB\fITEXTURE_2D_MS \fP\fP
+.TP
+\fB\fITEXTURE_2D_DEPTH_STENCIL \fP\fP
+.TP
+\fB\fITEXTURE_2D_ARRAY \fP\fP
+.TP
+\fB\fITEXTURE_3D \fP\fP
+.TP
+\fB\fITEXTURE_CUBE \fP\fP
+.TP
+\fB\fITEXTURE_DEFAULT \fP\fP
+.SS "\fBenum\fP \fBclass\fP \fBxpe::render::sTexture::eUsage\fP\fR [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIDEFAULT \fP\fP
+.TP
+\fB\fISTATIC \fP\fP
+.TP
+\fB\fIDYNAMIC \fP\fP
+.TP
+\fB\fISTAGING \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "xpe::render::sTexture::sTexture ()"
+
+.SS "xpe::render::sTexture::~sTexture ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBsTextureLayer\fP xpe::render::sTexture::CreateLayer () const"
+
+.SS "\fBvoid\fP xpe::render::sTexture::Flip ()"
+
+.SS "\fBvoid\fP xpe::render::sTexture::Flush ()"
+
+.SS "\fBvoid\fP xpe::render::sTexture::FlushLayer (\fBu32\fP index)"
+
+.SS "\fBvoid\fP xpe::render::sTexture::Free ()"
+
+.SS "\fBvoid\fP xpe::render::sTexture::GenerateMips ()"
+
+.SS "\fBu32\fP xpe::render::sTexture::GetMipLevels () const"
+
+.SS "\fBu32\fP xpe::render::sTexture::GetMipsLevels (\fBs32\fP width)\fR [static]\fP"
+
+.SS "\fBvoid\fP xpe::render::sTexture::Init ()"
+
+.SS "\fBbool\fP xpe::render::sTexture::IsResizable () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP xpe::render::sTexture::RemoveLayerAt (\fBu32\fP index)"
+
+.SS "\fBvoid\fP xpe::render::sTexture::Resize (\fBs32\fP width, \fBs32\fP height)"
+
+.SS "\fBvoid\fP xpe::render::sTexture::ResizePixels (\fBs32\fP width, \fBs32\fP height)"
+
+.SS "\fBvoid\fP xpe::render::sTexture::SetResizable (\fBbool\fP resizable)"
+
+.SS "\fBvoid\fP xpe::render::sTexture::WindowFrameResized (\fBs32\fP width, \fBs32\fP height)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBs32\fP xpe::render::sTexture::Channels"
+
+.SS "\fBs32\fP xpe::render::sTexture::Depth = 1"
+
+.SS "\fBbool\fP xpe::render::sTexture::EnableRenderTarget = \fBfalse\fP"
+
+.SS "\fBeTextureFormat\fP xpe::render::sTexture::Format"
+
+.SS "\fBs32\fP xpe::render::sTexture::Height"
+
+.SS "\fBbool\fP xpe::render::sTexture::InitializeData = \fBtrue\fP"
+
+.SS "\fBconst\fP std::unordered_map< \fBeTextureFormat\fP, \fBint\fP > xpe::render::sTexture::k_BppTable\fR [static]\fP"
+\fBInitial value:\fP.PP
+.nf
+=
+        {
+                { eTextureFormat::R8, 1 },
+                { eTextureFormat::R16, 2 },
+                { eTextureFormat::R32, 4 },
+
+                { eTextureFormat::RG8, 2 },
+                { eTextureFormat::RG16, 4 },
+                { eTextureFormat::RG32, 8 },
+
+                { eTextureFormat::RGB8, 3 },
+                { eTextureFormat::RGB16, 6 },
+                { eTextureFormat::RGB32, 12 },
+
+                { eTextureFormat::RGBA8, 4 },
+                { eTextureFormat::RGBA16, 8 },
+                { eTextureFormat::RGBA32, 16 },
+
+                { eTextureFormat::SRGBA8, 4 },
+        }
+.fi
+
+.SS "\fBconst\fP std::unordered_map< \fBeTextureFormat\fP, \fBint\fP > xpe::render::sTexture::k_ChannelTable\fR [static]\fP"
+\fBInitial value:\fP.PP
+.nf
+=
+        {
+                { eTextureFormat::R8, 1 },
+                { eTextureFormat::R16, 1 },
+                { eTextureFormat::R32, 1 },
+
+                { eTextureFormat::RG8, 2 },
+                { eTextureFormat::RG16, 2 },
+                { eTextureFormat::RG32, 2 },
+
+                { eTextureFormat::RGB8, 3 },
+                { eTextureFormat::RGB16, 3 },
+                { eTextureFormat::RGB32, 3 },
+
+                { eTextureFormat::RGBA8, 4 },
+                { eTextureFormat::RGBA16, 4 },
+                { eTextureFormat::RGBA32, 4 },
+
+                { eTextureFormat::SRGBA8, 4 }
+        }
+.fi
+
+.SS "\fBvector\fP<\fBsTextureLayer\fP> xpe::render::sTexture::Layers"
+
+.SS "\fBu32\fP xpe::render::sTexture::MostDetailedMip = 0"
+
+.SS "\fBu32\fP xpe::render::sTexture::SampleCount = 1"
+
+.SS "\fBu32\fP xpe::render::sTexture::Slot = 0"
+
+.SS "\fBeType\fP xpe::render::sTexture::Type = \fBeType::TEXTURE_DEFAULT\fP"
+
+.SS "\fBeUsage\fP xpe::render::sTexture::Usage = \fBeUsage::DEFAULT\fP"
+
+.SS "\fBs32\fP xpe::render::sTexture::Width"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for XPE-Engine from the source code\&.

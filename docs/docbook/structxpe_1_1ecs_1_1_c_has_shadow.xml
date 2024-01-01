@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1ecs_1_1_c_has_shadow" xml:lang="en-US">
+<title>xpe::ecs::CHasShadow Struct Reference</title>
+<indexterm><primary>xpe::ecs::CHasShadow</primary></indexterm>
+<para>
+<computeroutput>#include &lt;components.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> <link linkend="_structxpe_1_1ecs_1_1_c_has_shadow_1a7d0042387ba2d42cc00e82494304063b">HasShadow</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1ecs_1_1_c_has_shadow_1a7d0042387ba2d42cc00e82494304063b"/><section>
+    <title>HasShadow</title>
+<indexterm><primary>HasShadow</primary><secondary>xpe::ecs::CHasShadow</secondary></indexterm>
+<indexterm><primary>xpe::ecs::CHasShadow</primary><secondary>HasShadow</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">bool</link> xpe::ecs::CHasShadow::HasShadow = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">true</link></computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+engine/src/ecs/<link linkend="_components_8hpp">components.hpp</link></section>
+</section>

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1anim_1_1s_key_rotate" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::anim::sKeyRotate</compoundname>
+    <includes refid="anim_8hpp" local="no">anim.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_key_rotate_1abafc94424c35f0f4e37e5f235e595a99" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+        <definition>float xpe::anim::sKeyRotate::Timestamp</definition>
+        <argsstring></argsstring>
+        <name>Timestamp</name>
+        <qualifiedname>xpe::anim::sKeyRotate::Timestamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="22" column="19" bodyfile="engine/src/anim/anim.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_key_rotate_1af64a5c7627858bd45b67864bba84fd3a" prot="public" static="no" mutable="no">
+        <type>glm::quat</type>
+        <definition>glm::quat xpe::anim::sKeyRotate::Orientation</definition>
+        <argsstring></argsstring>
+        <name>Orientation</name>
+        <qualifiedname>xpe::anim::sKeyRotate::Orientation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="23" column="23" bodyfile="engine/src/anim/anim.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1anim_1_1s_key_rotate_1a28a4a69fc69fe801b0c2401ec5549a29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::anim::sKeyRotate::sKeyRotate</definition>
+        <argsstring>()=default</argsstring>
+        <name>sKeyRotate</name>
+        <qualifiedname>xpe::anim::sKeyRotate::sKeyRotate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="25" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1anim_1_1s_key_rotate_1a2de1c10b42f3cdaaed3130f4413f9ac3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::anim::sKeyRotate::sKeyRotate</definition>
+        <argsstring>(float timestamp, const glm::quat &amp;orientation)</argsstring>
+        <name>sKeyRotate</name>
+        <qualifiedname>xpe::anim::sKeyRotate::sKeyRotate</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">float</ref></type>
+          <declname>timestamp</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::quat &amp;</type>
+          <declname>orientation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/anim.hpp" line="26" column="13" bodyfile="engine/src/anim/anim.hpp" bodystart="26" bodyend="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/anim/anim.hpp" line="20" column="9" bodyfile="engine/src/anim/anim.hpp" bodystart="21" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1anim_1_1s_key_rotate_1af64a5c7627858bd45b67864bba84fd3a" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyRotate</scope><name>Orientation</name></member>
+      <member refid="structxpe_1_1anim_1_1s_key_rotate_1a28a4a69fc69fe801b0c2401ec5549a29" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyRotate</scope><name>sKeyRotate</name></member>
+      <member refid="structxpe_1_1anim_1_1s_key_rotate_1a2de1c10b42f3cdaaed3130f4413f9ac3" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyRotate</scope><name>sKeyRotate</name></member>
+      <member refid="structxpe_1_1anim_1_1s_key_rotate_1abafc94424c35f0f4e37e5f235e595a99" prot="public" virt="non-virtual"><scope>xpe::anim::sKeyRotate</scope><name>Timestamp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

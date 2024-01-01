@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structxpe_1_1render_1_1s_texture_layer" xml:lang="en-US">
+<title>xpe::render::sTextureLayer Struct Reference</title>
+<indexterm><primary>xpe::render::sTextureLayer</primary></indexterm>
+<para>
+<computeroutput>#include &lt;texture.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer_1ac3d739257fc08d099a972e182390dde1">sTextureLayer</link> ()=<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">default</link></para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer_1a693eac44108e02aaa674aac7dccda669">sTextureLayer</link> (<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">format</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">pixels</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a3cc06d7291a272bb5316e177a2c1fe6a">Free</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1">CopyFrom</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">other</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a569be24358e889b9b52802dea3fd4155">Clone</link> () <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a351c03d48adce5f555d6475ba1cde159">GenerateMips</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">format</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca">GenerateMipsU8</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118">GenerateMipsFloat</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c">FreeMips</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a312528dbd92ffb2a012cc45b08b0c48d">Resize</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> &amp;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">format</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc">ResizeU8</link> (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074">ResizeFloat</link> (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">width</link>, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">height</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8">ResizePixelsU8</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">inputPixels</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">inputWidth</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">inputHeight</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">outputWidth</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">outputHeight</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7">ResizePixelsFloat</link> (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> *<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">inputPixels</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">inputWidth</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">inputHeight</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">outputWidth</link>, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">outputHeight</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312">Format</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a4f7a8417b7507fd7995cc9d806b26bef">Width</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer_1abda979fb0bf11c9ac88768710be75550">Height</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * <link linkend="_structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21">Pixels</link> = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt; <link linkend="_structxpe_1_1render_1_1s_mip">sMip</link> &gt; <link linkend="_structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f">Mips</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1ac3d739257fc08d099a972e182390dde1"/><section>
+    <title>sTextureLayer()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>sTextureLayer</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>sTextureLayer</secondary></indexterm>
+<para><computeroutput>xpe::render::sTextureLayer::sTextureLayer ( )<computeroutput>[default]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a693eac44108e02aaa674aac7dccda669"/><section>
+    <title>sTextureLayer()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>sTextureLayer</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>sTextureLayer</secondary></indexterm>
+<para><computeroutput>xpe::render::sTextureLayer::sTextureLayer (<link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> format, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> width, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> height, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * pixels)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a569be24358e889b9b52802dea3fd4155"/><section>
+    <title>Clone()</title>
+<indexterm><primary>Clone</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Clone</secondary></indexterm>
+<para><computeroutput><link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> xpe::render::sTextureLayer::Clone ( ) const</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a12e948ef5bf79b48840a29946005c6c1"/><section>
+    <title>CopyFrom()</title>
+<indexterm><primary>CopyFrom</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>CopyFrom</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::CopyFrom (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_structxpe_1_1render_1_1s_texture_layer">sTextureLayer</link> &amp; other)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a3cc06d7291a272bb5316e177a2c1fe6a"/><section>
+    <title>Free()</title>
+<indexterm><primary>Free</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Free</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::Free ( )</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1ad4b2a507381612d8bc5a76553264c76c"/><section>
+    <title>FreeMips()</title>
+<indexterm><primary>FreeMips</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>FreeMips</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::FreeMips ( )</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a351c03d48adce5f555d6475ba1cde159"/><section>
+    <title>GenerateMips()</title>
+<indexterm><primary>GenerateMips</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>GenerateMips</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::GenerateMips (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> &amp; format, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> width, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> height)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a4ae6035aab786ac2b487c9f8abcf1118"/><section>
+    <title>GenerateMipsFloat()</title>
+<indexterm><primary>GenerateMipsFloat</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>GenerateMipsFloat</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::GenerateMipsFloat (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> width, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> height)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a3d0688e388aa3c4e46ed6a46c50155ca"/><section>
+    <title>GenerateMipsU8()</title>
+<indexterm><primary>GenerateMipsU8</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>GenerateMipsU8</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::GenerateMipsU8 (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> width, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> height)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a312528dbd92ffb2a012cc45b08b0c48d"/><section>
+    <title>Resize()</title>
+<indexterm><primary>Resize</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Resize</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::Resize (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> &amp; format, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> width, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> height)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1acf486041e8c9738e444750b84c881074"/><section>
+    <title>ResizeFloat()</title>
+<indexterm><primary>ResizeFloat</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>ResizeFloat</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::ResizeFloat (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> width, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> height)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1acc46ca8c8cc2b4163881c06806efe0a7"/><section>
+    <title>ResizePixelsFloat()</title>
+<indexterm><primary>ResizePixelsFloat</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>ResizePixelsFloat</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * xpe::render::sTextureLayer::ResizePixelsFloat (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * inputPixels, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> inputWidth, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> inputHeight, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> outputWidth, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> outputHeight)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1aa1a0a8fefcc48efa8229cd8e9d0ff7c8"/><section>
+    <title>ResizePixelsU8()</title>
+<indexterm><primary>ResizePixelsU8</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>ResizePixelsU8</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * xpe::render::sTextureLayer::ResizePixelsU8 (<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">const</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> * inputPixels, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> inputWidth, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> inputHeight, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> outputWidth, <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">int</link> outputHeight)</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a3a21289fbdb54c0191c706c31edf3abc"/><section>
+    <title>ResizeU8()</title>
+<indexterm><primary>ResizeU8</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>ResizeU8</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::render::sTextureLayer::ResizeU8 (<link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> width, <link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> height)</computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1ad9b16fd95aac03c29f271dce9d953312"/><section>
+    <title>Format</title>
+<indexterm><primary>Format</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Format</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1render_1a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</link> xpe::render::sTextureLayer::Format</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1abda979fb0bf11c9ac88768710be75550"/><section>
+    <title>Height</title>
+<indexterm><primary>Height</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Height</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::render::sTextureLayer::Height = 0</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1afbdbd822b1a0a084c3876451d8b3922f"/><section>
+    <title>Mips</title>
+<indexterm><primary>Mips</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Mips</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector</link>&lt;<link linkend="_structxpe_1_1render_1_1s_mip">sMip</link>&gt; xpe::render::sTextureLayer::Mips</computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a2ccb6220c77e5cbcc50385c7d234bd21"/><section>
+    <title>Pixels</title>
+<indexterm><primary>Pixels</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Pixels</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link>* xpe::render::sTextureLayer::Pixels = <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">nullptr</link></computeroutput></para></section>
+<anchor xml:id="_structxpe_1_1render_1_1s_texture_layer_1a4f7a8417b7507fd7995cc9d806b26bef"/><section>
+    <title>Width</title>
+<indexterm><primary>Width</primary><secondary>xpe::render::sTextureLayer</secondary></indexterm>
+<indexterm><primary>xpe::render::sTextureLayer</primary><secondary>Width</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1accef6bf85b3c0f0eb539eb2a4f1c6109">s32</link> xpe::render::sTextureLayer::Width</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following files:</para>
+engine/src/rendering/core/<link linkend="_texture_8hpp">texture.hpp</link>engine/src/rendering/core/<link linkend="_texture_8cpp">texture.cpp</link></section>
+</section>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_anim_8hpp_source" xml:lang="en-US">
+<title>anim.hpp</title>
+<indexterm><primary>engine/src/anim/anim.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+2 
+3 <emphasis role="keyword">namespace&#32;</emphasis><link linkend="_namespacexpe">xpe</link>&#32;{
+4 
+5 &#32;&#32;&#32;&#32;<emphasis role="keyword">namespace&#32;</emphasis>anim&#32;{
+6 
+7 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">using&#32;namespace&#32;</emphasis>core;
+8 
+9 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis><link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1anim_1_1s_key_position">sKeyPosition</link>&#32;final
+10 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+11 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_key_position_1a77a97b0d5a57fb61ff420f58b4051aed">Timestamp</link>;
+12 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::vec3&#32;<link linkend="_structxpe_1_1anim_1_1s_key_position_1afa9dc828e37efeb33f2f3e27ee36a640">Position</link>;
+13 
+14 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_key_position_1a45af11b2e06e61d4de0e656ef94a2f08">sKeyPosition</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_key_position_1a10ad279836842537b005ff2bc3bda7bb">sKeyPosition</link>(<emphasis role="keywordtype">float</emphasis>&#32;timestamp,&#32;<emphasis role="keyword">const</emphasis>&#32;glm::vec3&amp;&#32;position)&#32;:&#32;Timestamp(timestamp),&#32;Position(position)&#32;{}
+16 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+17 
+18 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a64a0d7950ac2a45cdc342a649e970f96">JSON</link>(<link linkend="_structxpe_1_1anim_1_1s_key_position">sKeyPosition</link>,&#32;Timestamp,&#32;Position)
+19 
+20 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;struct&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1anim_1_1s_key_rotate">sKeyRotate</link>&#32;final
+21 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+22 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_key_rotate_1abafc94424c35f0f4e37e5f235e595a99">Timestamp</link>;
+23 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::quat&#32;<link linkend="_structxpe_1_1anim_1_1s_key_rotate_1af64a5c7627858bd45b67864bba84fd3a">Orientation</link>;
+24 
+25 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_key_rotate_1a28a4a69fc69fe801b0c2401ec5549a29">sKeyRotate</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+26 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_key_rotate_1a2de1c10b42f3cdaaed3130f4413f9ac3">sKeyRotate</link>(<emphasis role="keywordtype">float</emphasis>&#32;timestamp,&#32;<emphasis role="keyword">const</emphasis>&#32;glm::quat&amp;&#32;orientation)&#32;:&#32;Timestamp(timestamp),&#32;Orientation(orientation)&#32;{}
+27 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+28 
+29 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a64a0d7950ac2a45cdc342a649e970f96">JSON</link>(<link linkend="_structxpe_1_1anim_1_1s_key_rotate">sKeyRotate</link>,&#32;Timestamp,&#32;Orientation)
+30 
+31 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;struct&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1anim_1_1s_key_scale">sKeyScale</link>&#32;final
+32 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+33 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_key_scale_1aa3c626fee964a15e479775d397530c5d">Timestamp</link>;
+34 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::vec3&#32;<link linkend="_structxpe_1_1anim_1_1s_key_scale_1ac59cd244fd4077e04db61d21509907ff">Scale</link>;
+35 
+36 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_key_scale_1a1e1bad1606776f6d37cea3694d7490c7">sKeyScale</link>()&#32;=&#32;<emphasis role="keywordflow">default</emphasis>;
+37 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_key_scale_1a8377603c7e37b53c02cae436a95bfcf2">sKeyScale</link>(<emphasis role="keywordtype">float</emphasis>&#32;timestamp,&#32;<emphasis role="keyword">const</emphasis>&#32;glm::vec3&amp;&#32;scale)&#32;:&#32;Timestamp(timestamp),&#32;Scale(scale)&#32;{}
+38 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+39 
+40 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a64a0d7950ac2a45cdc342a649e970f96">JSON</link>(<link linkend="_structxpe_1_1anim_1_1s_key_scale">sKeyScale</link>,&#32;Timestamp,&#32;Scale)
+41 
+42 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;struct&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_node">sAnimationNode</link>&#32;final
+43 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+44 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_node_1ad3ae7012e8540bd128e5966a5689daee">Name</link>;
+45 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;glm::mat4&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_node_1a2a81c7a94573d2604c4c174a3aef7281">Transform</link>;
+46 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">vector&lt;sAnimationNode&gt;</link>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_node_1af98efeb9ccb7fa80abafe07104dc52d7">Children</link>;
+47 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+48 
+49 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a64a0d7950ac2a45cdc342a649e970f96">JSON</link>(<link linkend="_structxpe_1_1anim_1_1s_animation_node">sAnimationNode</link>,&#32;Name,&#32;Transform,&#32;Children)
+50 
+51 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;struct&#32;<link linkend="_macro__build_8hpp_1a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</link>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation">sAnimation</link>
+52 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+53 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_1a49dc7fef8a60f900f53e8f1e2dddc1bb">Play</link>;
+54 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_1ab5a23d272a0e96fcf2c83b2e1e8fc21c">Duration</link>;
+55 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_1a523299c781dbf2988aa09cf1f3fd0c33">TicksPerSecond</link>;
+56 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_node">sAnimationNode</link>&#32;<link linkend="_structxpe_1_1anim_1_1s_animation_1ad0aba240ec3b0d6f1a1af300a4318132">Root</link>;
+57 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+58 
+59 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_json_8hpp_1a64a0d7950ac2a45cdc342a649e970f96">JSON</link>(<link linkend="_structxpe_1_1anim_1_1s_animation">sAnimation</link>,&#32;Duration,&#32;TicksPerSecond,&#32;Root)
+60 
+61 &#32;&#32;&#32;&#32;}
+62 
+63 }
+</programlisting></section>

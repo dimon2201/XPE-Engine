@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_24058a3dfe158ba78d4abd2421b76572" kind="dir">
+    <compoundname>engine/src/rendering/geometry</compoundname>
+    <innerfile refid="geometries_8cpp">geometries.cpp</innerfile>
+    <innerfile refid="geometries_8hpp">geometries.hpp</innerfile>
+    <innerfile refid="geometry_8hpp">geometry.hpp</innerfile>
+    <innerfile refid="geometry__manager_8cpp">geometry_manager.cpp</innerfile>
+    <innerfile refid="geometry__manager_8hpp">geometry_manager.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/geometry/"/>
+  </compounddef>
+</doxygen>

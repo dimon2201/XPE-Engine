@@ -1,0 +1,72 @@
+\doxysection{xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback Class Reference}
+\hypertarget{classxpe_1_1physics_1_1c_physics_simulation_event_callback}{}\label{classxpe_1_1physics_1_1c_physics_simulation_event_callback}\index{xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}}
+
+
+{\ttfamily \#include $<$callbacks.\+hpp$>$}
+
+Inheritance diagram for xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classxpe_1_1physics_1_1c_physics_simulation_event_callback}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a046017393adf432a13f88f4bd3b26e21}{on\+Constraint\+Break}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Constraint\+Info}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a1ac125e903701784c351bc07f777ed0a}{on\+Wake}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_ae3bb12c8615583f4fb199efa186a03cd}{on\+Sleep}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_aa7cc466577d3d41031a4309f985ff69c}{on\+Contact}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Contact\+Pair\+Header}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pair\+Header}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Contact\+Pair}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pairs}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nb\+Pairs}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a0e15d7927fa0c80a3d805c08897dbff4}{on\+Trigger}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Trigger\+Pair}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{virtual}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a73c477f354afb64d54a624c2349d4d0c}{on\+Advance}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Rigid\+Body}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Transform}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}) \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a73c477f354afb64d54a624c2349d4d0c}\label{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a73c477f354afb64d54a624c2349d4d0c} 
+\index{xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}!onAdvance@{onAdvance}}
+\index{onAdvance@{onAdvance}!xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}}
+\doxysubsubsection{\texorpdfstring{onAdvance()}{onAdvance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback\+::on\+Advance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Rigid\+Body}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \texorpdfstring{$\ast$}{*}}]{,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Transform}} \texorpdfstring{$\ast$}{*}}]{,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a046017393adf432a13f88f4bd3b26e21}\label{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a046017393adf432a13f88f4bd3b26e21} 
+\index{xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}!onConstraintBreak@{onConstraintBreak}}
+\index{onConstraintBreak@{onConstraintBreak}!xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}}
+\doxysubsubsection{\texorpdfstring{onConstraintBreak()}{onConstraintBreak()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback\+::on\+Constraint\+Break (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Constraint\+Info}} \texorpdfstring{$\ast$}{*}}]{,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_simulation_event_callback_aa7cc466577d3d41031a4309f985ff69c}\label{classxpe_1_1physics_1_1c_physics_simulation_event_callback_aa7cc466577d3d41031a4309f985ff69c} 
+\index{xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}!onContact@{onContact}}
+\index{onContact@{onContact}!xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}}
+\doxysubsubsection{\texorpdfstring{onContact()}{onContact()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback\+::on\+Contact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Contact\+Pair\+Header}} \&}]{pair\+Header,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Contact\+Pair}} \texorpdfstring{$\ast$}{*}}]{pairs,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}}]{nb\+Pairs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_simulation_event_callback_ae3bb12c8615583f4fb199efa186a03cd}\label{classxpe_1_1physics_1_1c_physics_simulation_event_callback_ae3bb12c8615583f4fb199efa186a03cd} 
+\index{xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}!onSleep@{onSleep}}
+\index{onSleep@{onSleep}!xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}}
+\doxysubsubsection{\texorpdfstring{onSleep()}{onSleep()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback\+::on\+Sleep (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a0e15d7927fa0c80a3d805c08897dbff4}\label{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a0e15d7927fa0c80a3d805c08897dbff4} 
+\index{xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}!onTrigger@{onTrigger}}
+\index{onTrigger@{onTrigger}!xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}}
+\doxysubsubsection{\texorpdfstring{onTrigger()}{onTrigger()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback\+::on\+Trigger (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Trigger\+Pair}} \texorpdfstring{$\ast$}{*}}]{,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a1ac125e903701784c351bc07f777ed0a}\label{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a1ac125e903701784c351bc07f777ed0a} 
+\index{xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}!onWake@{onWake}}
+\index{onWake@{onWake}!xpe::physics::cPhysicsSimulationEventCallback@{xpe::physics::cPhysicsSimulationEventCallback}}
+\doxysubsubsection{\texorpdfstring{onWake()}{onWake()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} xpe\+::physics\+::c\+Physics\+Simulation\+Event\+Callback\+::on\+Wake (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/physics/\mbox{\hyperlink{callbacks_8hpp}{callbacks.\+hpp}}\item 
+engine/src/physics/\mbox{\hyperlink{callbacks_8cpp}{callbacks.\+cpp}}\end{DoxyCompactItemize}

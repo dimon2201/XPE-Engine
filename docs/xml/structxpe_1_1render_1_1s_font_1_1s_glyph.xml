@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_font_1_1s_glyph" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::sFont::sGlyph</compoundname>
+    <includes refid="font_8hpp" local="no">font.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1a351d3c1de019dcc1ad10449716f5538d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a13fec7f69dcb34583a9c88a8c2d85ab6" kindref="member">u8</ref></type>
+        <definition>u8 xpe::render::sFont::sGlyph::Char</definition>
+        <argsstring></argsstring>
+        <name>Char</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::Char</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="17" column="20" bodyfile="engine/src/rendering/font/font.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1a974d9563b78bc8bc12eb2a68abcebbf8" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sFont::sGlyph::Width</definition>
+        <argsstring></argsstring>
+        <name>Width</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::Width</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="18" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1ae7dec2daaa5873776b8ff35b3cd57985" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sFont::sGlyph::Height</definition>
+        <argsstring></argsstring>
+        <name>Height</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::Height</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="19" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1a5cfbf2775dbc94844508c478b7b35ff0" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">ssize</ref></type>
+        <definition>ssize xpe::render::sFont::sGlyph::Left</definition>
+        <argsstring></argsstring>
+        <name>Left</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::Left</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="20" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1afdd1b5d930dc2f6a05d2830acf80a58b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">ssize</ref></type>
+        <definition>ssize xpe::render::sFont::sGlyph::Top</definition>
+        <argsstring></argsstring>
+        <name>Top</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::Top</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="21" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1aa22aabf05fda59a021506f99e99d20e5" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sFont::sGlyph::AdvanceX</definition>
+        <argsstring></argsstring>
+        <name>AdvanceX</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::AdvanceX</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="22" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1ac9fa70414056190921fbc1449e3383c0" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sFont::sGlyph::AdvanceY</definition>
+        <argsstring></argsstring>
+        <name>AdvanceY</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::AdvanceY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="23" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1a0b2396a00b2202079b1e906b1960b868" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::render::sFont::sGlyph::BitmapData</definition>
+        <argsstring></argsstring>
+        <name>BitmapData</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::BitmapData</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="24" column="22" bodyfile="engine/src/rendering/font/font.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1a59f1b396b21ece6b8ab8b12ca356533e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sFont::sGlyph::AtlasXOffset</definition>
+        <argsstring></argsstring>
+        <name>AtlasXOffset</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::AtlasXOffset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="25" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_font_1_1s_glyph_1a786d02bb4671fcef6ed8c33074bbd546" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">usize</ref></type>
+        <definition>usize xpe::render::sFont::sGlyph::AtlasYOffset</definition>
+        <argsstring></argsstring>
+        <name>AtlasYOffset</name>
+        <qualifiedname>xpe::render::sFont::sGlyph::AtlasYOffset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/font/font.hpp" line="26" column="23" bodyfile="engine/src/rendering/font/font.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/font/font.hpp" line="15" column="13" bodyfile="engine/src/rendering/font/font.hpp" bodystart="16" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1aa22aabf05fda59a021506f99e99d20e5" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>AdvanceX</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1ac9fa70414056190921fbc1449e3383c0" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>AdvanceY</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1a59f1b396b21ece6b8ab8b12ca356533e" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>AtlasXOffset</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1a786d02bb4671fcef6ed8c33074bbd546" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>AtlasYOffset</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1a0b2396a00b2202079b1e906b1960b868" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>BitmapData</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1a351d3c1de019dcc1ad10449716f5538d" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>Char</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1ae7dec2daaa5873776b8ff35b3cd57985" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>Height</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1a5cfbf2775dbc94844508c478b7b35ff0" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>Left</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1afdd1b5d930dc2f6a05d2830acf80a58b" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>Top</name></member>
+      <member refid="structxpe_1_1render_1_1s_font_1_1s_glyph_1a974d9563b78bc8bc12eb2a68abcebbf8" prot="public" virt="non-virtual"><scope>xpe::render::sFont::sGlyph</scope><name>Width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

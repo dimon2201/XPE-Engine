@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_camera_buffer" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sCameraBuffer</compoundname>
+    <basecompoundref refid="structxpe_1_1render_1_1s_item_buffer" prot="public" virt="non-virtual">xpe::render::sItemBuffer&lt; sCameraData &gt;</basecompoundref>
+    <includes refid="buffers_8hpp" local="no">buffers.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_camera_buffer_1a3bc4f48a70fb46518a98517c12a90b84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sCameraBuffer::sCameraBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>sCameraBuffer</name>
+        <qualifiedname>xpe::render::sCameraBuffer::sCameraBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/buffers.hpp" line="316" column="13" bodyfile="engine/src/rendering/buffers.hpp" bodystart="316" bodyend="316"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::render::sItemBuffer&lt; sCameraData &gt;</label>
+        <link refid="structxpe_1_1render_1_1s_item_buffer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="3">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sCameraBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_camera_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::render::sItemBuffer&lt; sCameraData &gt;</label>
+        <link refid="structxpe_1_1render_1_1s_item_buffer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>Item</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="3">
+        <label>xpe::render::sBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_buffer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::sCameraBuffer</label>
+        <link refid="structxpe_1_1render_1_1s_camera_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::render::sCameraData</label>
+        <link refid="structxpe_1_1render_1_1s_camera_data"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>Viewport</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>xpe::render::sViewport</label>
+        <link refid="structxpe_1_1render_1_1s_viewport"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/buffers.hpp" line="314" column="9" bodyfile="engine/src/rendering/buffers.hpp" bodystart="315" bodyend="317"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_resource_1ad7ce5f809b1aaf3874fd64deebef7295" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>eMapType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a191110df899fd9d31cd0cd6a802dd633" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>eSubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a94462aa429bf7df8a8902f82772672ca" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>eType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af33d238170127123908d5da544dd5641" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>eUsage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a93eeddbfb45d323aeb270cedb8ed20e4" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>eViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_item_buffer_1a36748548161b72588ad888d58a2aa163" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>Flush</name></member>
+      <member refid="structxpe_1_1render_1_1s_item_buffer_1a2ec0e0a22ec010a9eaab044ea4559f5f" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>FlushItem</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a2f14b04e600f8e56b9651a1e8ee32fb9" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>GetByteSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1aa437d3524db10d15513f18ea3d5a5740" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>InitialData</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1af827dadaafbfdfbb81c4fe6d17d37bfd" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>Instance</name></member>
+      <member refid="structxpe_1_1render_1_1s_item_buffer_1a3cf0d01b28c943dc5fbfb8d51f9d04e0" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>Item</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a42991f09f8d33b8b838558387211a32d" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>NumElements</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_camera_buffer_1a3bc4f48a70fb46518a98517c12a90b84" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>sCameraBuffer</name></member>
+      <member refid="structxpe_1_1render_1_1s_item_buffer_1a2dc29550f3a412bb684362be20a40c31" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>sItemBuffer</name></member>
+      <member refid="structxpe_1_1render_1_1s_item_buffer_1a39db5f0b06af9220020254eafb019243" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>sItemBuffer</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1af3faa739ee8d36ff1b306fe10a5184bf" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>Slot</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1ace0b40376d954d07edb21f18bf121de3" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>StructureSize</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a3fbb622dc1a7e0dfbe2d7ff84434e548" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>SubType</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a033793e2ef063b073d1c527af7ec6237" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>Type</name></member>
+      <member refid="structxpe_1_1render_1_1s_buffer_1a74933b3c2fa8f86517547b9dcc9c903a" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>Usage</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1acd7826aa1301d8a032b85078503313ca" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>ViewInstance</name></member>
+      <member refid="structxpe_1_1render_1_1s_resource_1a92908e592469d360bed7d9526fb59b69" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>ViewType</name></member>
+      <member refid="structxpe_1_1render_1_1s_item_buffer_1ad30731eca43bd810c08678f340b22797" prot="public" virt="non-virtual"><scope>xpe::render::sCameraBuffer</scope><name>~sItemBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

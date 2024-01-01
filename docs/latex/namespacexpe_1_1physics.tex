@@ -1,0 +1,92 @@
+\doxysection{xpe\+::physics Namespace Reference}
+\hypertarget{namespacexpe_1_1physics}{}\label{namespacexpe_1_1physics}\index{xpe::physics@{xpe::physics}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator}{c\+Physics\+Allocator}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback}{c\+Physics\+Error\+Callback}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager}{c\+Physics\+Manager}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback}{c\+Physics\+Simulation\+Event\+Callback}}
+\item 
+class \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_system}{c\+Physics\+System}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{s\+Actor}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1physics_1_1s_box_shape_descriptor}{s\+Box\+Shape\+Descriptor}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1physics_1_1s_capsule_shape_descriptor}{s\+Capsule\+Shape\+Descriptor}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1physics_1_1s_plane_shape_descriptor}{s\+Plane\+Shape\+Descriptor}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1physics_1_1s_ragdoll}{s\+Ragdoll}}
+\item 
+struct \mbox{\hyperlink{structxpe_1_1physics_1_1s_sphere_shape_descriptor}{s\+Sphere\+Shape\+Descriptor}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438e}{e\+Shape\+Type}} \{ \newline
+\mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}} = 0
+, \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43}{SPHERE}} = 1
+, \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9}{CAPSULE}} = 2
+, \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5}{BOX}} = 3
+, \newline
+\mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3}{PLANE}} = 4
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Flags}} \mbox{\hyperlink{namespacexpe_1_1physics_a7816cdaccad0a246b07867c18b673b9b}{Filter\+Shader}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Object\+Attributes}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{attributes0}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Data}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filter\+Data0}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Object\+Attributes}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{attributes1}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Data}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filter\+Data1}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Pair\+Flags}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pair\+Flags}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{constant\+Block}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{constant\+Block\+Size}})
+\item 
+glm\+::vec3 \mbox{\hyperlink{namespacexpe_1_1physics_afa19f45096b2341a10365ac1f56c1255}{Quat\+To\+Euler}} (\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a531d26e89a16703584b7e1ec09302f99}{w}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{z}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438e}\label{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438e} 
+\index{xpe::physics@{xpe::physics}!eShapeType@{eShapeType}}
+\index{eShapeType@{eShapeType}!xpe::physics@{xpe::physics}}
+\doxysubsubsection{\texorpdfstring{eShapeType}{eShapeType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438e}{xpe\+::physics\+::e\+Shape\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!xpe::physics@{xpe::physics}}\index{xpe::physics@{xpe::physics}!NONE@{NONE}}}\Hypertarget{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}\label{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SPHERE@{SPHERE}!xpe::physics@{xpe::physics}}\index{xpe::physics@{xpe::physics}!SPHERE@{SPHERE}}}\Hypertarget{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43}\label{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43} 
+SPHERE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAPSULE@{CAPSULE}!xpe::physics@{xpe::physics}}\index{xpe::physics@{xpe::physics}!CAPSULE@{CAPSULE}}}\Hypertarget{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9}\label{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9} 
+CAPSULE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOX@{BOX}!xpe::physics@{xpe::physics}}\index{xpe::physics@{xpe::physics}!BOX@{BOX}}}\Hypertarget{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5}\label{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5} 
+BOX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLANE@{PLANE}!xpe::physics@{xpe::physics}}\index{xpe::physics@{xpe::physics}!PLANE@{PLANE}}}\Hypertarget{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3}\label{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3} 
+PLANE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacexpe_1_1physics_a7816cdaccad0a246b07867c18b673b9b}\label{namespacexpe_1_1physics_a7816cdaccad0a246b07867c18b673b9b} 
+\index{xpe::physics@{xpe::physics}!FilterShader@{FilterShader}}
+\index{FilterShader@{FilterShader}!xpe::physics@{xpe::physics}}
+\doxysubsubsection{\texorpdfstring{FilterShader()}{FilterShader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Flags}} xpe\+::physics\+::\+Filter\+Shader (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Object\+Attributes}}}]{attributes0,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Data}}}]{filter\+Data0,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Object\+Attributes}}}]{attributes1,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Filter\+Data}}}]{filter\+Data1,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Pair\+Flags}} \&}]{pair\+Flags,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}} \texorpdfstring{$\ast$}{*}}]{constant\+Block,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+U32}}}]{constant\+Block\+Size }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacexpe_1_1physics_afa19f45096b2341a10365ac1f56c1255}\label{namespacexpe_1_1physics_afa19f45096b2341a10365ac1f56c1255} 
+\index{xpe::physics@{xpe::physics}!QuatToEuler@{QuatToEuler}}
+\index{QuatToEuler@{QuatToEuler}!xpe::physics@{xpe::physics}}
+\doxysubsubsection{\texorpdfstring{QuatToEuler()}{QuatToEuler()}}
+{\footnotesize\ttfamily glm\+::vec3 xpe\+::physics\+::\+Quat\+To\+Euler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{w,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{x,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{y,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{z }\end{DoxyParamCaption})}
+

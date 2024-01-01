@@ -1,0 +1,41 @@
+\doxysection{codes\+\_\+mouse.\+hpp}
+\hypertarget{codes__mouse_8hpp_source}{}\label{codes__mouse_8hpp_source}\index{engine/src/core/codes\_mouse.hpp@{engine/src/core/codes\_mouse.hpp}}
+\mbox{\hyperlink{codes__mouse_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_mouse_state}{sMouseState}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Pressed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Released\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Hold\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62}{eMouse}}\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a6f9117080d9a04b8cc36cb06dc84dc1c}{NoneButton}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 16,}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62ac90e9e64b2f96ed3e7243caaaef0d4c8}{Button0}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a40ed92f1ee1d3aba975f394704633ae5}{Button1}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a856295141a850ad2143d777f097998b2}{Button2}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 2,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62abc7970d854230f9771885d2531af9971}{Button3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 3,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62aef4d4fe8182f928003d378b944ef23b3}{Button4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 4,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a55e3d7a0f61f12241cd12f7392823043}{Button5}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 5,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a2fd9a7ed46e2f9d21126d4ccc061f8a2}{Button6}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 6,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a89d460cc6d8f79fa6467b70a1f60b5e5}{Button7}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 7,}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a5ba4e717224da4e5800953546a70c6f5}{ButtonLast}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a89d460cc6d8f79fa6467b70a1f60b5e5}{Button7}},}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a40e3123019d5c14ebb2698c04dcc3a22}{ButtonLeft}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62ac90e9e64b2f96ed3e7243caaaef0d4c8}{Button0}},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a2fe4e37aa9d2f65a0d02267a177384c1}{ButtonRight}}\ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a40ed92f1ee1d3aba975f394704633ae5}{Button1}},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a2628d67c9a478732d27e45b06eaf8889}{ButtonMiddle}}\ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacexpe_1_1core_a2b9db99325643f54e77f1b26c03dfa62a856295141a850ad2143d777f097998b2}{Button2}}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \}}
+
+\end{DoxyCode}

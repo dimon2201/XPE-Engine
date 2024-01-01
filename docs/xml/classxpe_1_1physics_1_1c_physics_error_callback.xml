@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1physics_1_1c_physics_error_callback" kind="class" language="C++" prot="public">
+    <compoundname>xpe::physics::cPhysicsErrorCallback</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">PxErrorCallback</basecompoundref>
+    <includes refid="callbacks_8hpp" local="no">callbacks.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_error_callback_1a34a3f282f5bd81e9cee52f8986750fb8" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::physics::cPhysicsErrorCallback::EnableInfo</definition>
+        <argsstring></argsstring>
+        <name>EnableInfo</name>
+        <qualifiedname>xpe::physics::cPhysicsErrorCallback::EnableInfo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/callbacks.hpp" line="16" column="18" bodyfile="engine/src/physics/callbacks.hpp" bodystart="16" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_manager_1a5cd5060de27b26d69c7a1de65acef7e6" compoundref="physics__manager_8cpp" startline="88" endline="90">xpe::physics::cPhysicsManager::EnableLoggingInfo</referencedby>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_error_callback_1aa3ec24246144136cc5a4ca76d2a72960" compoundref="callbacks_8cpp" startline="14" endline="120">reportError</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_error_callback_1abbeeb19aa0fa65b36ffb21d9f80086a9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::physics::cPhysicsErrorCallback::EnableWarning</definition>
+        <argsstring></argsstring>
+        <name>EnableWarning</name>
+        <qualifiedname>xpe::physics::cPhysicsErrorCallback::EnableWarning</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/callbacks.hpp" line="17" column="18" bodyfile="engine/src/physics/callbacks.hpp" bodystart="17" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_manager_1af76f425ba35f8fd00fb6f740ea3219f3" compoundref="physics__manager_8cpp" startline="92" endline="94">xpe::physics::cPhysicsManager::EnableLoggingWarning</referencedby>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_error_callback_1aa3ec24246144136cc5a4ca76d2a72960" compoundref="callbacks_8cpp" startline="14" endline="120">reportError</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1physics_1_1c_physics_error_callback_1a6eb8c3499057b2191f0fb4f2a46f00e6" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::physics::cPhysicsErrorCallback::EnableError</definition>
+        <argsstring></argsstring>
+        <name>EnableError</name>
+        <qualifiedname>xpe::physics::cPhysicsErrorCallback::EnableError</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/callbacks.hpp" line="18" column="18" bodyfile="engine/src/physics/callbacks.hpp" bodystart="18" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_manager_1adce57bf32f9b50791e22c1eafcf3a8a1" compoundref="physics__manager_8cpp" startline="96" endline="98">xpe::physics::cPhysicsManager::EnableLoggingError</referencedby>
+        <referencedby refid="classxpe_1_1physics_1_1c_physics_error_callback_1aa3ec24246144136cc5a4ca76d2a72960" compoundref="callbacks_8cpp" startline="14" endline="120">reportError</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_error_callback_1aec7ed480c859f36f20d20a9f888547f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::cPhysicsErrorCallback::cPhysicsErrorCallback</definition>
+        <argsstring>(bool enableInfo=true, bool enableWarning=true, bool enableError=true)</argsstring>
+        <name>cPhysicsErrorCallback</name>
+        <qualifiedname>xpe::physics::cPhysicsErrorCallback::cPhysicsErrorCallback</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enableInfo</declname>
+          <defval><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enableWarning</declname>
+          <defval><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enableError</declname>
+          <defval><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">true</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/callbacks.hpp" line="20" column="13" bodyfile="engine/src/physics/callbacks.cpp" bodystart="7" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_error_callback_1a1ceeae410021c3b968ef34e17d390b64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::cPhysicsErrorCallback::~cPhysicsErrorCallback</definition>
+        <argsstring>() override</argsstring>
+        <name>~cPhysicsErrorCallback</name>
+        <qualifiedname>xpe::physics::cPhysicsErrorCallback::~cPhysicsErrorCallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/callbacks.hpp" line="21" column="13" bodyfile="engine/src/physics/callbacks.cpp" bodystart="11" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1physics_1_1c_physics_error_callback_1aa3ec24246144136cc5a4ca76d2a72960" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::physics::cPhysicsErrorCallback::reportError</definition>
+        <argsstring>(PxErrorCode::Enum code, const char *message, const char *file, int line) override</argsstring>
+        <name>reportError</name>
+        <qualifiedname>xpe::physics::cPhysicsErrorCallback::reportError</qualifiedname>
+        <param>
+          <type>PxErrorCode::Enum</type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">char</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">int</ref></type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/callbacks.hpp" line="23" column="18" bodyfile="engine/src/physics/callbacks.cpp" bodystart="14" bodyend="120"/>
+        <references refid="classxpe_1_1physics_1_1c_physics_error_callback_1a6eb8c3499057b2191f0fb4f2a46f00e6" compoundref="callbacks_8hpp" startline="18">EnableError</references>
+        <references refid="classxpe_1_1physics_1_1c_physics_error_callback_1a34a3f282f5bd81e9cee52f8986750fb8" compoundref="callbacks_8hpp" startline="16">EnableInfo</references>
+        <references refid="classxpe_1_1physics_1_1c_physics_error_callback_1abbeeb19aa0fa65b36ffb21d9f80086a9" compoundref="callbacks_8hpp" startline="17">EnableWarning</references>
+        <references refid="log__manager_8hpp_1a611dbbfa5c2f148b7190b97a12835b5e" compoundref="log__manager_8hpp" startline="36">LogError</references>
+        <references refid="log__manager_8hpp_1a57eb3ffc98e6ad1bdbed0a980a54c484" compoundref="log__manager_8hpp" startline="34">LogInfo</references>
+        <references refid="log__manager_8hpp_1a2c6c3e9c356e14fb4a7139acf4fa7b18" compoundref="log__manager_8hpp" startline="35">LogWarning</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>PxErrorCallback</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::cPhysicsErrorCallback</label>
+        <link refid="classxpe_1_1physics_1_1c_physics_error_callback"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>PxErrorCallback</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::cPhysicsErrorCallback</label>
+        <link refid="classxpe_1_1physics_1_1c_physics_error_callback"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/physics/callbacks.hpp" line="12" column="9" bodyfile="engine/src/physics/callbacks.hpp" bodystart="13" bodyend="25"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1physics_1_1c_physics_error_callback_1aec7ed480c859f36f20d20a9f888547f9" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsErrorCallback</scope><name>cPhysicsErrorCallback</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_error_callback_1a6eb8c3499057b2191f0fb4f2a46f00e6" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsErrorCallback</scope><name>EnableError</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_error_callback_1a34a3f282f5bd81e9cee52f8986750fb8" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsErrorCallback</scope><name>EnableInfo</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_error_callback_1abbeeb19aa0fa65b36ffb21d9f80086a9" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsErrorCallback</scope><name>EnableWarning</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_error_callback_1aa3ec24246144136cc5a4ca76d2a72960" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsErrorCallback</scope><name>reportError</name></member>
+      <member refid="classxpe_1_1physics_1_1c_physics_error_callback_1a1ceeae410021c3b968ef34e17d390b64" prot="public" virt="non-virtual"><scope>xpe::physics::cPhysicsErrorCallback</scope><name>~cPhysicsErrorCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

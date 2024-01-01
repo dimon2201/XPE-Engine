@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1render_1_1s_blend_mode" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::render::sBlendMode</compoundname>
+    <basecompoundref refid="classxpe_1_1core_1_1c_object" prot="public" virt="non-virtual">xpe::core::cObject</basecompoundref>
+    <includes refid="rendering_2core_2core_8hpp" local="no">core.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_blend_mode_1adcc031173ae6cfc57c3f8e8912c78027" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref> *</type>
+        <definition>void* xpe::render::sBlendMode::State</definition>
+        <argsstring></argsstring>
+        <name>State</name>
+        <qualifiedname>xpe::render::sBlendMode::State</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="298" column="18" bodyfile="engine/src/rendering/core/core.hpp" bodystart="298" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ae049ee7d29afa50b562466bdef95b704" compoundref="shader_8cpp" startline="180" endline="204">xpe::render::cDefaultShader::Bind</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_blend_mode_1aee132a63477b1bd41642981c7fddd336" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sBlendMode::AlphaToCoverageEnable</definition>
+        <argsstring></argsstring>
+        <name>AlphaToCoverageEnable</name>
+        <qualifiedname>xpe::render::sBlendMode::AlphaToCoverageEnable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="299" column="18" bodyfile="engine/src/rendering/core/core.hpp" bodystart="299" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_blend_mode_1a307dfc9b57d8229b884f94f4e1db96e1" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::sBlendMode::IndependentBlendEnable</definition>
+        <argsstring></argsstring>
+        <name>IndependentBlendEnable</name>
+        <qualifiedname>xpe::render::sBlendMode::IndependentBlendEnable</qualifiedname>
+        <initializer>= <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="300" column="18" bodyfile="engine/src/rendering/core/core.hpp" bodystart="300" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a94c9420cc3cee18454c9b0381a0c8303" compoundref="shader_8cpp" startline="155" endline="163">xpe::render::cDefaultShader::InitFinal</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a432663a9956bbd6b79fb46b6c5f70b92" compoundref="shader_8cpp" startline="91" endline="103">xpe::render::cDefaultShader::InitOpaque</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ae7eae67faabb5d18b014aebbf9fef3f5" compoundref="shader_8cpp" startline="133" endline="141">xpe::render::cDefaultShader::InitPostFX</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_composite_transparent_shader_1a4c3dd46f56bb16151ce904d15d791fe5" compoundref="shaders_8cpp" startline="370" endline="391">xpe::render::cCompositeTransparentShader::InitPostFX</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a113c277f6a3d283c6ace4e7fda913853" compoundref="shader_8cpp" startline="77" endline="89">xpe::render::cDefaultShader::InitPrepass</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_shader_1acd5d0ef8a94bc9f6fd5c9ef429a7ba99" compoundref="shaders_8cpp" startline="187" endline="197">xpe::render::cShadowShader::InitPrepass</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ad4f9480afbaccfd7f785e564b187c052" compoundref="shader_8cpp" startline="105" endline="131">xpe::render::cDefaultShader::InitTransparent</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a5b9b2cb08e062a41083e5df13738f6be" compoundref="shader_8cpp" startline="143" endline="153">xpe::render::cDefaultShader::InitUI</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1render_1_1s_blend_mode_1aa8076ad01299d22001e4473079ac6511" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_blend_target" kindref="compound">sBlendTarget</ref> &gt;</type>
+        <definition>vector&lt;sBlendTarget&gt; xpe::render::sBlendMode::Targets</definition>
+        <argsstring></argsstring>
+        <name>Targets</name>
+        <qualifiedname>xpe::render::sBlendMode::Targets</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="302" column="20" bodyfile="engine/src/rendering/core/core.hpp" bodystart="302" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a94c9420cc3cee18454c9b0381a0c8303" compoundref="shader_8cpp" startline="155" endline="163">xpe::render::cDefaultShader::InitFinal</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a432663a9956bbd6b79fb46b6c5f70b92" compoundref="shader_8cpp" startline="91" endline="103">xpe::render::cDefaultShader::InitOpaque</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ae7eae67faabb5d18b014aebbf9fef3f5" compoundref="shader_8cpp" startline="133" endline="141">xpe::render::cDefaultShader::InitPostFX</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_composite_transparent_shader_1a4c3dd46f56bb16151ce904d15d791fe5" compoundref="shaders_8cpp" startline="370" endline="391">xpe::render::cCompositeTransparentShader::InitPostFX</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a113c277f6a3d283c6ace4e7fda913853" compoundref="shader_8cpp" startline="77" endline="89">xpe::render::cDefaultShader::InitPrepass</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_shadow_shader_1acd5d0ef8a94bc9f6fd5c9ef429a7ba99" compoundref="shaders_8cpp" startline="187" endline="197">xpe::render::cShadowShader::InitPrepass</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1ad4f9480afbaccfd7f785e564b187c052" compoundref="shader_8cpp" startline="105" endline="131">xpe::render::cDefaultShader::InitTransparent</referencedby>
+        <referencedby refid="classxpe_1_1render_1_1c_default_shader_1a5b9b2cb08e062a41083e5df13738f6be" compoundref="shader_8cpp" startline="143" endline="153">xpe::render::cDefaultShader::InitUI</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_blend_mode_1ab53a1189aea4bd652a632bf1b101d98e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sBlendMode::sBlendMode</definition>
+        <argsstring>()=default</argsstring>
+        <name>sBlendMode</name>
+        <qualifiedname>xpe::render::sBlendMode::sBlendMode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="304" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_blend_mode_1ac2140eae02730445a5ae632ed2d8b810" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sBlendMode::sBlendMode</definition>
+        <argsstring>(const vector&lt; sBlendTarget &gt; &amp;targets)</argsstring>
+        <name>sBlendMode</name>
+        <qualifiedname>xpe::render::sBlendMode::sBlendMode</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">vector</ref>&lt; <ref refid="structxpe_1_1render_1_1s_blend_target" kindref="compound">sBlendTarget</ref> &gt; &amp;</type>
+          <declname>targets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="305" column="13" bodyfile="engine/src/rendering/core/core.cpp" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_blend_mode_1aec1ab519c6eebc249a6f962dcf3b6ef1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::sBlendMode::~sBlendMode</definition>
+        <argsstring>()</argsstring>
+        <name>~sBlendMode</name>
+        <qualifiedname>xpe::render::sBlendMode::~sBlendMode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="306" column="13" bodyfile="engine/src/rendering/core/core.cpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_blend_mode_1aa122d6a2eca4a0e23262646c30779cca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sBlendMode::Bind</definition>
+        <argsstring>()</argsstring>
+        <name>Bind</name>
+        <qualifiedname>xpe::render::sBlendMode::Bind</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="308" column="18" bodyfile="engine/src/rendering/core/core.cpp" bodystart="38" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="structxpe_1_1render_1_1s_blend_mode_1a68bfcb965500e95ffb2d0473786d8bd0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::sBlendMode::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::render::sBlendMode::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/core/core.hpp" line="311" column="18" bodyfile="engine/src/rendering/core/core.cpp" bodystart="43" bodyend="46"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sBlendMode</label>
+        <link refid="structxpe_1_1render_1_1s_blend_mode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="1">
+        <label>xpe::render::sBlendMode</label>
+        <link refid="structxpe_1_1render_1_1s_blend_mode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/core/core.hpp" line="296" column="9" bodyfile="engine/src/rendering/core/core.hpp" bodystart="297" bodyend="312"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1aee132a63477b1bd41642981c7fddd336" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>AlphaToCoverageEnable</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1aa122d6a2eca4a0e23262646c30779cca" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>Bind</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1a307dfc9b57d8229b884f94f4e1db96e1" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>IndependentBlendEnable</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1a68bfcb965500e95ffb2d0473786d8bd0" prot="private" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>Init</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>operator new</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1ab53a1189aea4bd652a632bf1b101d98e" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>sBlendMode</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1ac2140eae02730445a5ae632ed2d8b810" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>sBlendMode</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1adcc031173ae6cfc57c3f8e8912c78027" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>State</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1aa8076ad01299d22001e4473079ac6511" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>Targets</name></member>
+      <member refid="structxpe_1_1render_1_1s_blend_mode_1aec1ab519c6eebc249a6f962dcf3b6ef1" prot="public" virt="non-virtual"><scope>xpe::render::sBlendMode</scope><name>~sBlendMode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

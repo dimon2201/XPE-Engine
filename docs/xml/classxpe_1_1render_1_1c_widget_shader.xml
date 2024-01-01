@@ -1,0 +1,501 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_widget_shader" kind="class" language="C++" prot="public">
+    <compoundname>xpe::render::cWidgetShader</compoundname>
+    <basecompoundref refid="classxpe_1_1render_1_1c_default_shader" prot="public" virt="non-virtual">xpe::render::cDefaultShader</basecompoundref>
+    <includes refid="shaders_8hpp" local="no">shaders.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_widget_shader_1a63357b727fe2e107e098dce7c9c90991" prot="private" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_geometry" kindref="compound">sGeometry</ref></type>
+        <definition>sGeometry xpe::render::cWidgetShader::m_Quad</definition>
+        <argsstring></argsstring>
+        <name>m_Quad</name>
+        <qualifiedname>xpe::render::cWidgetShader::m_Quad</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="149" column="23" bodyfile="engine/src/rendering/shaders.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_widget_shader_1ad9dc4c91e074faf5da89601419a29759" prot="private" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_geometry_info" kindref="compound">sGeometryInfo</ref></type>
+        <definition>sGeometryInfo xpe::render::cWidgetShader::m_QuadInfo</definition>
+        <argsstring></argsstring>
+        <name>m_QuadInfo</name>
+        <qualifiedname>xpe::render::cWidgetShader::m_QuadInfo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="150" column="27" bodyfile="engine/src/rendering/shaders.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_widget_shader_1a5f3f16cb9fdb4dd35096107a4bcff310" prot="private" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_widget_buffer" kindref="compound">sWidgetBuffer</ref></type>
+        <definition>sWidgetBuffer xpe::render::cWidgetShader::m_WidgetBuffer</definition>
+        <argsstring></argsstring>
+        <name>m_WidgetBuffer</name>
+        <qualifiedname>xpe::render::cWidgetShader::m_WidgetBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="151" column="27" bodyfile="engine/src/rendering/shaders.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_widget_shader_1a98b148404da08cfcd09f3dd465e2efb7" prot="private" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::render::cWidgetShader::m_Projection2D</definition>
+        <argsstring></argsstring>
+        <name>m_Projection2D</name>
+        <qualifiedname>xpe::render::cWidgetShader::m_Projection2D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="152" column="23" bodyfile="engine/src/rendering/shaders.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxpe_1_1render_1_1c_widget_shader_1a9a65a9399e30813793525c847018f022" prot="private" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 xpe::render::cWidgetShader::m_Projection3D</definition>
+        <argsstring></argsstring>
+        <name>m_Projection3D</name>
+        <qualifiedname>xpe::render::cWidgetShader::m_Projection3D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="153" column="23" bodyfile="engine/src/rendering/shaders.hpp" bodystart="153" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_widget_shader_1ac6d0a01c7e25a93a16e38d9642dfe0f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::render::cWidgetShader::cWidgetShader</definition>
+        <argsstring>(const string &amp;name)</argsstring>
+        <name>cWidgetShader</name>
+        <qualifiedname>xpe::render::cWidgetShader::cWidgetShader</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="namespacexpe_1_1core_1a78ed6bb66afe2b4a776d73948fc8637c" kindref="member">string</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="119" column="13" bodyfile="engine/src/rendering/shaders.cpp" bodystart="479" bodyend="497"/>
+        <references refid="classxpe_1_1render_1_1c_geometry_manager_1afcab89931d34518de9c76ff962e6a5b9" compoundref="geometry__manager_8cpp" startline="20" endline="31">xpe::render::cGeometryManager::AddGeometry</references>
+        <references refid="classxpe_1_1render_1_1c_shader_manager_1a97a6e32b351d6afb063039f115b55ae7" compoundref="shader_8cpp" startline="274" endline="282">xpe::render::cShaderManager::GetFromFile</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1ab70979a918380ad6b90ac6d020e23e56" compoundref="shader_8cpp" startline="17" endline="75">xpe::render::cDefaultShader::Init</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441">xpe::render::sShaderStage::PIXEL</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd" compoundref="shader_8hpp" startline="96">xpe::render::cDefaultShader::PixelStage</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1ab9a49246297e92c63aa928f3efb6e371" compoundref="shader_8hpp" startline="93">xpe::render::cDefaultShader::PrimitiveTopology</references>
+        <references refid="structxpe_1_1render_1_1s_geometry_info_1a9312c855bfe65f73db55cee0182c64f6" compoundref="geometry_8hpp" startline="77">xpe::render::sGeometryInfo::PrimitiveTopology</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1abf89a1cb37817a55ff9c61f1cf61e145" compoundref="shader_8hpp" startline="98">xpe::render::cDefaultShader::RenderTarget</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a95eba2b8154bc1c8f9150e632e518161" compoundref="buffers_8hpp" startline="272" endline="275">xpe::render::sListBuffer&lt; T &gt;::Reserve</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1acf471dfdf127b77268e9bcab19f8a6ba" compoundref="shader_8hpp" startline="35" endline="40">xpe::render::sShaderStage::SetBuffer</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a93f171a836a5716cd48b332327de8675" compoundref="shader_8hpp" startline="49" endline="54">xpe::render::sShaderStage::SetSampler</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a94e63af7ae74675f7fcb248f99dadca8" compoundref="shader_8hpp" startline="42" endline="47">xpe::render::sShaderStage::SetTexture</references>
+        <references refid="structxpe_1_1render_1_1_render_targets_1a759abfd2d5c9358d9ccab484be76e894" compoundref="bindings_8hpp" startline="20">xpe::render::RenderTargets::UI</references>
+        <references refid="structxpe_1_1render_1_1s_shader_stage_1a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b">xpe::render::sShaderStage::VERTEX</references>
+        <references refid="classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0" compoundref="shader_8hpp" startline="95">xpe::render::cDefaultShader::VertexStage</references>
+        <references refid="structxpe_1_1render_1_1_samplers_1a9d18d6bcb797e4eb03de7fcb3f96fe17" compoundref="bindings_8hpp" startline="58">xpe::render::Samplers::Widget</references>
+        <references refid="structxpe_1_1render_1_1_textures_1ac6f1fb7834d145a999d6fe567d8b0ba1" compoundref="bindings_8hpp" startline="51">xpe::render::Textures::WidgetAtlas</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_widget_shader_1a9b0f970a9d73603c8030fda37d7a5e3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cWidgetShader::Draw</definition>
+        <argsstring>(cScene *scene) override</argsstring>
+        <name>Draw</name>
+        <qualifiedname>xpe::render::cWidgetShader::Draw</qualifiedname>
+        <reimplements refid="classxpe_1_1render_1_1c_shader_1ac2fb10c43abc3823aa6dc466b1f3ed56">Draw</reimplements>
+        <param>
+          <type><ref refid="classxpe_1_1ecs_1_1c_scene" kindref="compound">cScene</ref> *</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="120" column="18" bodyfile="engine/src/rendering/shaders.cpp" bodystart="499" bodyend="570"/>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1abe3b469b340e88d3b463a76164e5f308" compoundref="camera__manager_8cpp" startline="69" endline="72">xpe::render::cCameraManager::GetViewport</references>
+        <references refid="classxpe_1_1render_1_1c_camera_manager_1a58279b3cb239ca16a76b8d04eacb93cc" compoundref="camera__manager_8cpp" startline="21" endline="24">xpe::render::cCameraManager::GetViewProjection</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1a5bf4baa8340c1e14a5208eba4165add7" compoundref="rendering_2core_2core_8hpp" startline="101">xpe::render::sViewport::Height</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1af60f2fbeef295d14f36d1c1267dbd36c" compoundref="rendering_2core_2core_8hpp" startline="98">xpe::render::sViewport::Left</references>
+        <references refid="classxpe_1_1core_1_1c_input_manager_1a54f5c248de3d090bad3605187bf6a87e" compoundref="input__manager_8cpp" startline="181" endline="183">xpe::core::cInputManager::MousePressed</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1a0faeaa721022a2c7bb2112f308e51293" compoundref="rendering_2core_2core_8hpp" startline="99">xpe::render::sViewport::Top</references>
+        <references refid="classxpe_1_1math_1_1c_math_manager_1a0b5cbb14457c0bb17e32670b8251335b" compoundref="math__manager_8cpp" startline="95" endline="105">xpe::math::cMathManager::UpdateOrthoMatrix</references>
+        <references refid="structxpe_1_1render_1_1s_viewport_1af844df25d5d2c89c0c9cb8ebacbfc7a9" compoundref="rendering_2core_2core_8hpp" startline="100">xpe::render::sViewport::Width</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_widget_shader_1aa0998808cc95dc5d5091f1b2006641a3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cWidgetShader::DrawWidgets</definition>
+        <argsstring>()</argsstring>
+        <name>DrawWidgets</name>
+        <qualifiedname>xpe::render::cWidgetShader::DrawWidgets</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="123" column="18" bodyfile="engine/src/rendering/shaders.cpp" bodystart="690" bodyend="702"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_widget_shader_1a252be83b398a523502dff2fd74ebff9b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cWidgetShader::UpdateWidget2D</definition>
+        <argsstring>(glm::mat4 projection, sTransform transform, const glm::vec4 &amp;color, bool enableTexture, const sAtlas::sLocation &amp;atlasLocation, bool fillFrame, bool pressed, const std::function&lt; void(sWidgetData &amp;)&gt; &amp;pressedCallback, const std::function&lt; void(sWidgetData &amp;)&gt; &amp;hoveredCallback)</argsstring>
+        <name>UpdateWidget2D</name>
+        <qualifiedname>xpe::render::cWidgetShader::UpdateWidget2D</qualifiedname>
+        <param>
+          <type>glm::mat4</type>
+          <declname>projection</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1math_1_1s_transform" kindref="compound">sTransform</ref></type>
+          <declname>transform</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec4 &amp;</type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enableTexture</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_atlas_1_1s_location" kindref="compound">sAtlas::sLocation</ref> &amp;</type>
+          <declname>atlasLocation</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>fillFrame</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>pressed</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::function&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref>(<ref refid="structxpe_1_1render_1_1s_widget_data" kindref="compound">sWidgetData</ref> &amp;)&gt; &amp;</type>
+          <declname>pressedCallback</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::function&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref>(<ref refid="structxpe_1_1render_1_1s_widget_data" kindref="compound">sWidgetData</ref> &amp;)&gt; &amp;</type>
+          <declname>hoveredCallback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="124" column="18" bodyfile="engine/src/rendering/shaders.cpp" bodystart="572" bodyend="629"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_widget_shader_1a5e5d6d051170dcfeddfea03bd51e9c0d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cWidgetShader::UpdateWidget3D</definition>
+        <argsstring>(glm::mat4 projection, sTransform transform, const glm::vec4 &amp;color, bool enableTexture, const sAtlas::sLocation &amp;atlasLocation, bool fillFrame, bool pressed, const std::function&lt; void(sWidgetData &amp;)&gt; &amp;pressedCallback, const std::function&lt; void(sWidgetData &amp;)&gt; &amp;hoveredCallback)</argsstring>
+        <name>UpdateWidget3D</name>
+        <qualifiedname>xpe::render::cWidgetShader::UpdateWidget3D</qualifiedname>
+        <param>
+          <type>glm::mat4</type>
+          <declname>projection</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1math_1_1s_transform" kindref="compound">sTransform</ref></type>
+          <declname>transform</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec4 &amp;</type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>enableTexture</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_atlas_1_1s_location" kindref="compound">sAtlas::sLocation</ref> &amp;</type>
+          <declname>atlasLocation</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>fillFrame</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+          <declname>pressed</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::function&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref>(<ref refid="structxpe_1_1render_1_1s_widget_data" kindref="compound">sWidgetData</ref> &amp;)&gt; &amp;</type>
+          <declname>pressedCallback</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> std::function&lt; <ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref>(<ref refid="structxpe_1_1render_1_1s_widget_data" kindref="compound">sWidgetData</ref> &amp;)&gt; &amp;</type>
+          <declname>hoveredCallback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="135" column="18" bodyfile="engine/src/rendering/shaders.cpp" bodystart="631" bodyend="688"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_widget_shader_1a0c15e124c1c5d15f419720ef1604bea5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::cWidgetShader::IsHovered2D</definition>
+        <argsstring>(const glm::mat4 &amp;modelMatrix, const glm::vec2 &amp;mousePos)</argsstring>
+        <name>IsHovered2D</name>
+        <qualifiedname>xpe::render::cWidgetShader::IsHovered2D</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::mat4 &amp;</type>
+          <declname>modelMatrix</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec2 &amp;</type>
+          <declname>mousePos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="146" column="18" bodyfile="engine/src/rendering/shaders.cpp" bodystart="704" bodyend="719"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_widget_shader_1a9927e6d9780a74c4898f40e132041309" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">bool</ref></type>
+        <definition>bool xpe::render::cWidgetShader::IsHovered3D</definition>
+        <argsstring>(const glm::mat4 &amp;modelMatrix, const glm::vec2 &amp;mousePos)</argsstring>
+        <name>IsHovered3D</name>
+        <qualifiedname>xpe::render::cWidgetShader::IsHovered3D</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::mat4 &amp;</type>
+          <declname>modelMatrix</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> glm::vec2 &amp;</type>
+          <declname>mousePos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/shaders.hpp" line="147" column="18" bodyfile="engine/src/rendering/shaders.cpp" bodystart="721" bodyend="724"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::cDefaultShader</label>
+        <link refid="classxpe_1_1render_1_1c_default_shader"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::cShader</label>
+        <link refid="classxpe_1_1render_1_1c_shader"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cWidgetShader</label>
+        <link refid="classxpe_1_1render_1_1c_widget_shader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>xpe::core::cObject</label>
+        <link refid="classxpe_1_1core_1_1c_object"/>
+      </node>
+      <node id="2">
+        <label>xpe::render::cDefaultShader</label>
+        <link refid="classxpe_1_1render_1_1c_default_shader"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>GeometryStage</edgelabel>
+          <edgelabel>PixelStage</edgelabel>
+          <edgelabel>VertexStage</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>RenderTarget</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>Rasterizer</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>DepthStencilMode</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>BlendMode</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>xpe::render::cShader</label>
+        <link refid="classxpe_1_1render_1_1c_shader"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>Next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>xpe::render::cWidgetShader</label>
+        <link refid="classxpe_1_1render_1_1c_widget_shader"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>xpe::render::sBlendMode</label>
+        <link refid="structxpe_1_1render_1_1s_blend_mode"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>xpe::render::sBlob</label>
+        <link refid="structxpe_1_1render_1_1s_blob"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>xpe::render::sDepthStencilMode</label>
+        <link refid="structxpe_1_1render_1_1s_depth_stencil_mode"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>BackFace</edgelabel>
+          <edgelabel>FrontFace</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>xpe::render::sRasterizer</label>
+        <link refid="structxpe_1_1render_1_1s_rasterizer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>xpe::render::sRenderTarget</label>
+        <link refid="structxpe_1_1render_1_1s_render_target"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>DepthStencil</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>Viewport</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xpe::render::sResource</label>
+        <link refid="structxpe_1_1render_1_1s_resource"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>xpe::render::sShaderStage</label>
+        <link refid="structxpe_1_1render_1_1s_shader_stage"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>Blob</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>xpe::render::sStencilTest</label>
+        <link refid="structxpe_1_1render_1_1s_stencil_test"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>xpe::render::sTexture</label>
+        <link refid="structxpe_1_1render_1_1s_texture"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>xpe::render::sViewport</label>
+        <link refid="structxpe_1_1render_1_1s_viewport"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/rendering/shaders.hpp" line="115" column="9" bodyfile="engine/src/rendering/shaders.hpp" bodystart="116" bodyend="154"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ae049ee7d29afa50b562466bdef95b704" prot="public" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>Bind</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a58ff40e7e48861009c86b5bc9e39d689" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>BlendMode</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a15d300d13e742ae170e20143521c062a" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>Category</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a29c90f7c9d9fdd883ada1b381a9bd317" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>cDefaultShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04afe7db2c9b190c7dd5f38beee8bc0b8b1" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>COMPUTE</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a0cbea5a99dbdb3dfc6a7095ab8c206ab" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>cShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1ac6d0a01c7e25a93a16e38d9642dfe0f2" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>cWidgetShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a85458b227cfcf927c59290f85facfa43" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>DepthStencilMode</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a9b0f970a9d73603c8030fda37d7a5e3c" prot="public" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>Draw</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1aa0998808cc95dc5d5091f1b2006641a3" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>DrawWidgets</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>eCategory</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1afb11bac579269c1289d67f9ef0892980" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>Enable</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04aa94cec6d1a2118f154d295617c676806" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>FINAL</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a13e9aff101373819a6161f5bea71605f" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>GeometryStage</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1ac04f06dd5200515c26667aa1eddaeb42" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>ID</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ab70979a918380ad6b90ac6d020e23e56" prot="protected" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>Init</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a94c9420cc3cee18454c9b0381a0c8303" prot="protected" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>InitFinal</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a432663a9956bbd6b79fb46b6c5f70b92" prot="protected" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>InitOpaque</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ae7eae67faabb5d18b014aebbf9fef3f5" prot="protected" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>InitPostFX</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a113c277f6a3d283c6ace4e7fda913853" prot="protected" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>InitPrepass</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ad4f9480afbaccfd7f785e564b187c052" prot="protected" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>InitTransparent</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a5b9b2cb08e062a41083e5df13738f6be" prot="protected" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>InitUI</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a6912c47f8410d5b9301ac33209453014" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>InputLayout</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a0c15e124c1c5d15f419720ef1604bea5" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>IsHovered2D</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a9927e6d9780a74c4898f40e132041309" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>IsHovered3D</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a98b148404da08cfcd09f3dd465e2efb7" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>m_Projection2D</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a9a65a9399e30813793525c847018f022" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>m_Projection3D</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a63357b727fe2e107e098dce7c9c90991" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>m_Quad</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1ad9dc4c91e074faf5da89601419a29759" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>m_QuadInfo</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a5f3f16cb9fdb4dd35096107a4bcff310" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>m_WidgetBuffer</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a1434a54f77c5b8dfbad9c83b0bc602b6" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>Next</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>NONE</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a860e8cc758196bea4bfbf9f206dbb144" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>OPAQUE</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1af52ced913116436c9a1410d942d1911e" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>operator delete</name></member>
+      <member refid="classxpe_1_1core_1_1c_object_1a94001505b3b68276770a97bc35079194" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>operator new</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a12fc55115ef8d894b3f6987c9bb008fd" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>PixelStage</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a6ef1df10078846bb69c62244430d94ce" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>POSTFX</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04acbb2ca3d34c4f02408ef5dc6579df36b" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>PREPASS</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1ab9a49246297e92c63aa928f3efb6e371" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>PrimitiveTopology</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a3cb409c71bc3653e9d7c58182a447c9d" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>Rasterizer</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1abf89a1cb37817a55ff9c61f1cf61e145" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>RenderTarget</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04ae432c99123abfdcc4f8c7f16b1420bc9" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>TRANSPARENT</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1acb782867f55952b3546bcc4731be3b04a54d02f9dd6df4fa57ca763660eb22e3e" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>UI</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a214ac22548a93e5291b81c69b1e801ee" prot="public" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>Unbind</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a252be83b398a523502dff2fd74ebff9b" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>UpdateWidget2D</name></member>
+      <member refid="classxpe_1_1render_1_1c_widget_shader_1a5e5d6d051170dcfeddfea03bd51e9c0d" prot="private" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>UpdateWidget3D</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1af28923883534a920f9315e0393627af0" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>VertexStage</name></member>
+      <member refid="classxpe_1_1render_1_1c_default_shader_1a9d9aaf06c895ee5e4d773960b8fede3a" prot="public" virt="non-virtual"><scope>xpe::render::cWidgetShader</scope><name>~cDefaultShader</name></member>
+      <member refid="classxpe_1_1render_1_1c_shader_1a9af1125e8f5c2d061535cc5b87206d05" prot="public" virt="virtual"><scope>xpe::render::cWidgetShader</scope><name>~cShader</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

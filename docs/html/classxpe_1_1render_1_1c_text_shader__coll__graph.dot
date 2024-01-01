@@ -1,0 +1,45 @@
+digraph "xpe::render::cTextShader"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="xpe::render::cTextShader",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="xpe::render::cDefaultShader",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_default_shader.html",tooltip=" "];
+  Node3 -> Node2 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="xpe::render::cShader",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classxpe_1_1render_1_1c_shader.html",tooltip=" "];
+  Node4 -> Node3 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="xpe::core::cObject",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classxpe_1_1core_1_1c_object.html",tooltip=" "];
+  Node3 -> Node3 [id="edge4_Node000003_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" Next",fontcolor="grey" ];
+  Node5 -> Node2 [id="edge5_Node000002_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" GeometryStage\nPixelStage\nVertexStage",fontcolor="grey" ];
+  Node5 [id="Node000005",label="xpe::render::sShaderStage",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_shader_stage.html",tooltip=" "];
+  Node6 -> Node5 [id="edge6_Node000005_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="xpe::render::sResource",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_resource.html",tooltip=" "];
+  Node4 -> Node6 [id="edge7_Node000006_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 -> Node5 [id="edge8_Node000005_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" Blob",fontcolor="grey" ];
+  Node7 [id="Node000007",label="xpe::render::sBlob",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_blob.html",tooltip=" "];
+  Node4 -> Node7 [id="edge9_Node000007_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 -> Node2 [id="edge10_Node000002_Node000008",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" RenderTarget",fontcolor="grey" ];
+  Node8 [id="Node000008",label="xpe::render::sRenderTarget",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_render_target.html",tooltip=" "];
+  Node4 -> Node8 [id="edge11_Node000008_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 -> Node8 [id="edge12_Node000008_Node000009",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" DepthStencil",fontcolor="grey" ];
+  Node9 [id="Node000009",label="xpe::render::sTexture",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_texture.html",tooltip=" "];
+  Node6 -> Node9 [id="edge13_Node000009_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 -> Node8 [id="edge14_Node000008_Node000010",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" Viewport",fontcolor="grey" ];
+  Node10 [id="Node000010",label="xpe::render::sViewport",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_viewport.html",tooltip=" "];
+  Node4 -> Node10 [id="edge15_Node000010_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node11 -> Node2 [id="edge16_Node000002_Node000011",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" Rasterizer",fontcolor="grey" ];
+  Node11 [id="Node000011",label="xpe::render::sRasterizer",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_rasterizer.html",tooltip=" "];
+  Node4 -> Node11 [id="edge17_Node000011_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node12 -> Node2 [id="edge18_Node000002_Node000012",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" DepthStencilMode",fontcolor="grey" ];
+  Node12 [id="Node000012",label="xpe::render::sDepthStencilMode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_depth_stencil_mode.html",tooltip=" "];
+  Node4 -> Node12 [id="edge19_Node000012_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 -> Node12 [id="edge20_Node000012_Node000013",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" BackFace\nFrontFace",fontcolor="grey" ];
+  Node13 [id="Node000013",label="xpe::render::sStencilTest",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_stencil_test.html",tooltip=" "];
+  Node4 -> Node13 [id="edge21_Node000013_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node14 -> Node2 [id="edge22_Node000002_Node000014",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" BlendMode",fontcolor="grey" ];
+  Node14 [id="Node000014",label="xpe::render::sBlendMode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structxpe_1_1render_1_1s_blend_mode.html",tooltip=" "];
+  Node4 -> Node14 [id="edge23_Node000014_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+}

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classxpe_1_1core_1_1c_memory_stack_manager" xml:lang="en-US">
+<title>xpe::core::cMemoryStackManager Class Reference</title>
+<indexterm><primary>xpe::core::cMemoryStackManager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;allocators.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> <link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a0435e9203e4fdc326ef2f93327a2d46a">Log</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c">TotalAllocCount</link> = 0</para>
+</listitem>
+            <listitem><para><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">static</link> <link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> <link linkend="_classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6">MemoryOccupiedBytes</link> = 0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_stack_manager_1a0435e9203e4fdc326ef2f93327a2d46a"/><section>
+    <title>Log()</title>
+<indexterm><primary>Log</primary><secondary>xpe::core::cMemoryStackManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryStackManager</primary><secondary>Log</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">void</link> xpe::core::cMemoryStackManager::Log ( )<computeroutput>[static]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_stack_manager_1a46c4ed527f799eefe7e6cd61b79919b6"/><section>
+    <title>MemoryOccupiedBytes</title>
+<indexterm><primary>MemoryOccupiedBytes</primary><secondary>xpe::core::cMemoryStackManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryStackManager</primary><secondary>MemoryOccupiedBytes</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::core::cMemoryStackManager::MemoryOccupiedBytes = 0<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classxpe_1_1core_1_1c_memory_stack_manager_1a5859b3442e622e9b688291501d3af07c"/><section>
+    <title>TotalAllocCount</title>
+<indexterm><primary>TotalAllocCount</primary><secondary>xpe::core::cMemoryStackManager</secondary></indexterm>
+<indexterm><primary>xpe::core::cMemoryStackManager</primary><secondary>TotalAllocCount</secondary></indexterm>
+<para><computeroutput><link linkend="_namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde">usize</link> xpe::core::cMemoryStackManager::TotalAllocCount = 0<computeroutput>[static]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+engine/src/core/<link linkend="_core_2allocators_8hpp">allocators.hpp</link>engine/src/core/<link linkend="_core_2allocators_8cpp">allocators.cpp</link></section>
+</section>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1physics_1_1s_sphere_shape_descriptor" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::physics::sSphereShapeDescriptor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">sShapeDescriptor</basecompoundref>
+    <includes refid="physics__manager_8hpp" local="no">physics_manager.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1physics_1_1s_sphere_shape_descriptor_1a867e5eddcf13838f0a8a1165d9794682" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+        <definition>f32 xpe::physics::sSphereShapeDescriptor::Radius</definition>
+        <argsstring></argsstring>
+        <name>Radius</name>
+        <qualifiedname>xpe::physics::sSphereShapeDescriptor::Radius</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="81" column="17" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structxpe_1_1physics_1_1s_sphere_shape_descriptor_1a17f9361b0cfab9468c439f0d71beb125" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::sSphereShapeDescriptor::sSphereShapeDescriptor</definition>
+        <argsstring>()=delete</argsstring>
+        <name>sSphereShapeDescriptor</name>
+        <qualifiedname>xpe::physics::sSphereShapeDescriptor::sSphereShapeDescriptor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="78" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structxpe_1_1physics_1_1s_sphere_shape_descriptor_1a430c8fb21c235d141e847d4e1b66d572" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>xpe::physics::sSphereShapeDescriptor::sSphereShapeDescriptor</definition>
+        <argsstring>(f32 radius)</argsstring>
+        <name>sSphereShapeDescriptor</name>
+        <qualifiedname>xpe::physics::sSphereShapeDescriptor::sSphereShapeDescriptor</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1ac96cda3a207e0a6466eefd15632420f7" kindref="member">f32</ref></type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/physics/physics_manager.hpp" line="79" column="13" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="79" bodyend="79"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>sShapeDescriptor</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::sSphereShapeDescriptor</label>
+        <link refid="structxpe_1_1physics_1_1s_sphere_shape_descriptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>sShapeDescriptor</label>
+      </node>
+      <node id="1">
+        <label>xpe::physics::sSphereShapeDescriptor</label>
+        <link refid="structxpe_1_1physics_1_1s_sphere_shape_descriptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/physics/physics_manager.hpp" line="76" column="9" bodyfile="engine/src/physics/physics_manager.hpp" bodystart="77" bodyend="82"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1physics_1_1s_sphere_shape_descriptor_1a867e5eddcf13838f0a8a1165d9794682" prot="public" virt="non-virtual"><scope>xpe::physics::sSphereShapeDescriptor</scope><name>Radius</name></member>
+      <member refid="structxpe_1_1physics_1_1s_sphere_shape_descriptor_1a17f9361b0cfab9468c439f0d71beb125" prot="public" virt="non-virtual"><scope>xpe::physics::sSphereShapeDescriptor</scope><name>sSphereShapeDescriptor</name></member>
+      <member refid="structxpe_1_1physics_1_1s_sphere_shape_descriptor_1a430c8fb21c235d141e847d4e1b66d572" prot="public" virt="non-virtual"><scope>xpe::physics::sSphereShapeDescriptor</scope><name>sSphereShapeDescriptor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

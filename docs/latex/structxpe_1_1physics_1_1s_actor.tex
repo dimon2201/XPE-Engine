@@ -1,0 +1,167 @@
+\doxysection{xpe\+::physics\+::s\+Actor Struct Reference}
+\hypertarget{structxpe_1_1physics_1_1s_actor}{}\label{structxpe_1_1physics_1_1s_actor}\index{xpe::physics::sActor@{xpe::physics::sActor}}
+
+
+{\ttfamily \#include $<$physics\+\_\+manager.\+hpp$>$}
+
+Inheritance diagram for xpe\+::physics\+::s\+Actor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structxpe_1_1physics_1_1s_actor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{e\+Actor\+Type}} \{ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693}{NONE}} = 0
+, \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c}{RIGID\+\_\+\+STATIC}} = 1
+, \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1}{RIGID\+\_\+\+DYNAMIC}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a0d6b26bb92c74fce700ff90d28d9d58b}{JSON\+\_\+\+ENUM}} (\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{e\+Actor\+Type}}, \{ \{ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693}{e\+Actor\+Type\+::\+NONE}}, "{}NONE"{} \}, \{ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c}{e\+Actor\+Type\+::\+RIGID\+\_\+\+STATIC}}, "{}RIGID\+\_\+\+STATIC"{} \}, \{ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1}{e\+Actor\+Type\+::\+RIGID\+\_\+\+DYNAMIC}}, "{}RIGID\+\_\+\+DYNAMIC"{} \}, \}) \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{s\+Actor}}()=\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{default}}
+\item 
+\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_af3c72e195b2eb868f37caa615fb1bede}{s\+Actor}} (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Material}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Shape}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shape}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{e\+Actor\+Type}} \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor\+Type}}, s\+Shape\+Descriptor \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shape\+Desc}}, \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{linear\+Velocity}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{static\+Friction}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dynamic\+Friction}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restitution}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{contact\+Offset}}, \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{rest\+Offset}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a9ff38980fdbabf914bad7b253ed7d6f5}{Actor}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a9e80cc5169928f239a53083a391a5803}{Material}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Shape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a7f08a26f1289c9fbc767fd2922a99a8f}{Shape}} = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}
+\item 
+\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{e\+Actor\+Type}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_afd480d49892ce3cf3eee0d2defb3be9b}{Actor\+Type}} = \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693}{e\+Actor\+Type\+::\+NONE}}
+\item 
+s\+Shape\+Descriptor \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a886a2c46ef656e8dd58bf4759858d612}{Shape\+Desc}} = s\+Shape\+Descriptor(\mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{e\+Shape\+Type\+::\+NONE}})
+\item 
+glm\+::vec3 \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a94cce68d00c948b3fa10645375fb6ead}{Linear\+Velocity}} = glm\+::vec3(0.\+0f)
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_aac90896e9c533034a5e8cdd42ceda3a3}{Static\+Friction}} = 0.\+0f
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_aa785997ff79c868fbeb006245e130466}{Dynamic\+Friction}} = 0.\+0f
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_af1398d6be32b80d0da1f67a32b709a98}{Restitution}} = 0.\+0f
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_ac5687cbf86bf09611d55a1cb4a9d469f}{Contact\+Offset}} = 0.\+0f
+\item 
+\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_af022fe076cb3c0459d37d1de9421fc2f}{Rest\+Offset}} = 0.\+0f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}\label{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!eActorType@{eActorType}}
+\index{eActorType@{eActorType}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{eActorType}{eActorType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enum}} \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{xpe\+::physics\+::s\+Actor\+::e\+Actor\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!xpe::physics::sActor@{xpe::physics::sActor}}\index{xpe::physics::sActor@{xpe::physics::sActor}!NONE@{NONE}}}\Hypertarget{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693}\label{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGID\_STATIC@{RIGID\_STATIC}!xpe::physics::sActor@{xpe::physics::sActor}}\index{xpe::physics::sActor@{xpe::physics::sActor}!RIGID\_STATIC@{RIGID\_STATIC}}}\Hypertarget{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c}\label{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c} 
+RIGID\+\_\+\+STATIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGID\_DYNAMIC@{RIGID\_DYNAMIC}!xpe::physics::sActor@{xpe::physics::sActor}}\index{xpe::physics::sActor@{xpe::physics::sActor}!RIGID\_DYNAMIC@{RIGID\_DYNAMIC}}}\Hypertarget{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1}\label{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1} 
+RIGID\+\_\+\+DYNAMIC&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structxpe_1_1physics_1_1s_actor_af3c72e195b2eb868f37caa615fb1bede}\label{structxpe_1_1physics_1_1s_actor_af3c72e195b2eb868f37caa615fb1bede} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!sActor@{sActor}}
+\index{sActor@{sActor}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{sActor()}{sActor()}}
+{\footnotesize\ttfamily xpe\+::physics\+::s\+Actor\+::s\+Actor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}} \texorpdfstring{$\ast$}{*}}]{actor,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Material}} \texorpdfstring{$\ast$}{*}}]{material,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Shape}} \texorpdfstring{$\ast$}{*}}]{shape,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{e\+Actor\+Type}} \&}]{actor\+Type,  }\item[{s\+Shape\+Descriptor \texorpdfstring{$\ast$}{*}}]{shape\+Desc,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}} glm\+::vec3 \&}]{linear\+Velocity,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{static\+Friction,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{dynamic\+Friction,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{restitution,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{contact\+Offset,  }\item[{\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}}]{rest\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structxpe_1_1physics_1_1s_actor_a0d6b26bb92c74fce700ff90d28d9d58b}\label{structxpe_1_1physics_1_1s_actor_a0d6b26bb92c74fce700ff90d28d9d58b} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!JSON\_ENUM@{JSON\_ENUM}}
+\index{JSON\_ENUM@{JSON\_ENUM}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{JSON\_ENUM()}{JSON\_ENUM()}}
+{\footnotesize\ttfamily xpe\+::physics\+::s\+Actor\+::\+JSON\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{e\+Actor\+Type}}}]{,  }\item[{\{ \{ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693}{e\+Actor\+Type\+::\+NONE}}, "{}NONE"{} \}, \{ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c}{e\+Actor\+Type\+::\+RIGID\+\_\+\+STATIC}}, "{}RIGID\+\_\+\+STATIC"{} \}, \{ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1}{e\+Actor\+Type\+::\+RIGID\+\_\+\+DYNAMIC}}, "{}RIGID\+\_\+\+DYNAMIC"{} \}, \}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structxpe_1_1physics_1_1s_actor_a9ff38980fdbabf914bad7b253ed7d6f5}\label{structxpe_1_1physics_1_1s_actor_a9ff38980fdbabf914bad7b253ed7d6f5} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!Actor@{Actor}}
+\index{Actor@{Actor}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{Actor}{Actor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Actor}}\texorpdfstring{$\ast$}{*} xpe\+::physics\+::s\+Actor\+::\+Actor = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_afd480d49892ce3cf3eee0d2defb3be9b}\label{structxpe_1_1physics_1_1s_actor_afd480d49892ce3cf3eee0d2defb3be9b} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!ActorType@{ActorType}}
+\index{ActorType@{ActorType}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{ActorType}{ActorType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{e\+Actor\+Type}} xpe\+::physics\+::s\+Actor\+::\+Actor\+Type = \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5ab50339a10e1de285ac99d4c3990b8693}{e\+Actor\+Type\+::\+NONE}}}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_ac5687cbf86bf09611d55a1cb4a9d469f}\label{structxpe_1_1physics_1_1s_actor_ac5687cbf86bf09611d55a1cb4a9d469f} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!ContactOffset@{ContactOffset}}
+\index{ContactOffset@{ContactOffset}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{ContactOffset}{ContactOffset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::physics\+::s\+Actor\+::\+Contact\+Offset = 0.\+0f}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_aa785997ff79c868fbeb006245e130466}\label{structxpe_1_1physics_1_1s_actor_aa785997ff79c868fbeb006245e130466} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!DynamicFriction@{DynamicFriction}}
+\index{DynamicFriction@{DynamicFriction}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{DynamicFriction}{DynamicFriction}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::physics\+::s\+Actor\+::\+Dynamic\+Friction = 0.\+0f}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_a94cce68d00c948b3fa10645375fb6ead}\label{structxpe_1_1physics_1_1s_actor_a94cce68d00c948b3fa10645375fb6ead} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!LinearVelocity@{LinearVelocity}}
+\index{LinearVelocity@{LinearVelocity}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{LinearVelocity}{LinearVelocity}}
+{\footnotesize\ttfamily glm\+::vec3 xpe\+::physics\+::s\+Actor\+::\+Linear\+Velocity = glm\+::vec3(0.\+0f)}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_a9e80cc5169928f239a53083a391a5803}\label{structxpe_1_1physics_1_1s_actor_a9e80cc5169928f239a53083a391a5803} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!Material@{Material}}
+\index{Material@{Material}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{Material}{Material}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Material}}\texorpdfstring{$\ast$}{*} xpe\+::physics\+::s\+Actor\+::\+Material = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_af1398d6be32b80d0da1f67a32b709a98}\label{structxpe_1_1physics_1_1s_actor_af1398d6be32b80d0da1f67a32b709a98} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!Restitution@{Restitution}}
+\index{Restitution@{Restitution}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{Restitution}{Restitution}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::physics\+::s\+Actor\+::\+Restitution = 0.\+0f}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_af022fe076cb3c0459d37d1de9421fc2f}\label{structxpe_1_1physics_1_1s_actor_af022fe076cb3c0459d37d1de9421fc2f} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!RestOffset@{RestOffset}}
+\index{RestOffset@{RestOffset}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{RestOffset}{RestOffset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::physics\+::s\+Actor\+::\+Rest\+Offset = 0.\+0f}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_a7f08a26f1289c9fbc767fd2922a99a8f}\label{structxpe_1_1physics_1_1s_actor_a7f08a26f1289c9fbc767fd2922a99a8f} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!Shape@{Shape}}
+\index{Shape@{Shape}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{Shape}{Shape}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Px\+Shape}}\texorpdfstring{$\ast$}{*} xpe\+::physics\+::s\+Actor\+::\+Shape = \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nullptr}}}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_a886a2c46ef656e8dd58bf4759858d612}\label{structxpe_1_1physics_1_1s_actor_a886a2c46ef656e8dd58bf4759858d612} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!ShapeDesc@{ShapeDesc}}
+\index{ShapeDesc@{ShapeDesc}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{ShapeDesc}{ShapeDesc}}
+{\footnotesize\ttfamily s\+Shape\+Descriptor xpe\+::physics\+::s\+Actor\+::\+Shape\+Desc = s\+Shape\+Descriptor(\mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{e\+Shape\+Type\+::\+NONE}})}
+
+\Hypertarget{structxpe_1_1physics_1_1s_actor_aac90896e9c533034a5e8cdd42ceda3a3}\label{structxpe_1_1physics_1_1s_actor_aac90896e9c533034a5e8cdd42ceda3a3} 
+\index{xpe::physics::sActor@{xpe::physics::sActor}!StaticFriction@{StaticFriction}}
+\index{StaticFriction@{StaticFriction}!xpe::physics::sActor@{xpe::physics::sActor}}
+\doxysubsubsection{\texorpdfstring{StaticFriction}{StaticFriction}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}} xpe\+::physics\+::s\+Actor\+::\+Static\+Friction = 0.\+0f}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/physics/\mbox{\hyperlink{physics__manager_8hpp}{physics\+\_\+manager.\+hpp}}\end{DoxyCompactItemize}

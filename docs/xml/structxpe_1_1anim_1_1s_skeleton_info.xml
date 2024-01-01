@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structxpe_1_1anim_1_1s_skeleton_info" kind="struct" language="C++" prot="public">
+    <compoundname>xpe::anim::sSkeletonInfo</compoundname>
+    <derivedcompoundref refid="structxpe_1_1ecs_1_1_c_skeleton_info" prot="public" virt="non-virtual">xpe::ecs::CSkeletonInfo</derivedcompoundref>
+    <includes refid="skeleton_8hpp" local="no">skeleton.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_skeleton_info_1aa689b26b33916657b3a62a90518c1687" prot="public" static="no" mutable="no">
+        <type><ref refid="structxpe_1_1render_1_1s_geometry_info" kindref="compound">render::sGeometryInfo</ref></type>
+        <definition>render::sGeometryInfo xpe::anim::sSkeletonInfo::GeometryInfo</definition>
+        <argsstring></argsstring>
+        <name>GeometryInfo</name>
+        <qualifiedname>xpe::anim::sSkeletonInfo::GeometryInfo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="31" column="35" bodyfile="engine/src/anim/skeleton.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structxpe_1_1anim_1_1s_skeleton_info_1a3492a69a758f3bab256e2112631a3f40" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+        <definition>u32 xpe::anim::sSkeletonInfo::SkeletonIndex</definition>
+        <argsstring></argsstring>
+        <name>SkeletonIndex</name>
+        <qualifiedname>xpe::anim::sSkeletonInfo::SkeletonIndex</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/anim/skeleton.hpp" line="32" column="17" bodyfile="engine/src/anim/skeleton.hpp" bodystart="32" bodyend="-1"/>
+        <referencedby refid="classxpe_1_1anim_1_1c_skeleton_manager_1a78919107dce1e4029702fe6ed0f12175" compoundref="skeleton__manager_8hpp" startline="25" endline="32">xpe::anim::cSkeletonManager::AddSkeleton</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>xpe::anim::sSkeletonInfo</label>
+        <link refid="structxpe_1_1anim_1_1s_skeleton_info"/>
+      </node>
+      <node id="2">
+        <label>xpe::ecs::CSkeletonInfo</label>
+        <link refid="structxpe_1_1ecs_1_1_c_skeleton_info"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>xpe::anim::sSkeletonInfo</label>
+        <link refid="structxpe_1_1anim_1_1s_skeleton_info"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>GeometryInfo</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>xpe::render::sGeometryInfo</label>
+        <link refid="structxpe_1_1render_1_1s_geometry_info"/>
+      </node>
+    </collaborationgraph>
+    <location file="engine/src/anim/skeleton.hpp" line="29" column="9" bodyfile="engine/src/anim/skeleton.hpp" bodystart="30" bodyend="33"/>
+    <listofallmembers>
+      <member refid="structxpe_1_1anim_1_1s_skeleton_info_1aa689b26b33916657b3a62a90518c1687" prot="public" virt="non-virtual"><scope>xpe::anim::sSkeletonInfo</scope><name>GeometryInfo</name></member>
+      <member refid="structxpe_1_1anim_1_1s_skeleton_info_1a3492a69a758f3bab256e2112631a3f40" prot="public" virt="non-virtual"><scope>xpe::anim::sSkeletonInfo</scope><name>SkeletonIndex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

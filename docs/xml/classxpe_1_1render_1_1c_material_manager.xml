@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classxpe_1_1render_1_1c_material_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>xpe::render::cMaterialManager</compoundname>
+    <includes refid="material__manager_8hpp" local="no">material_manager.hpp</includes>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cMaterialManager::Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>xpe::render::cMaterialManager::Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="13" column="25" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="7" bodyend="18"/>
+        <references refid="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" compoundref="bindings_8hpp" startline="44">xpe::render::Textures::AlbedoAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" compoundref="bindings_8hpp" startline="49">xpe::render::Textures::AOAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" compoundref="bindings_8hpp" startline="50">xpe::render::Textures::EmissionAtlas</references>
+        <references refid="structxpe_1_1render_1_1s_material_1a0d94b1e860dc2325e2a44d5a74236c69" compoundref="material_8hpp" startline="21">xpe::render::sMaterial::k_AlbedoFormat</references>
+        <references refid="structxpe_1_1render_1_1s_material_1a06cf1a4b230a8eb966444e960f58c739" compoundref="material_8hpp" startline="26">xpe::render::sMaterial::k_AoFormat</references>
+        <references refid="structxpe_1_1render_1_1s_material_1a521990eae276dd1ccbca8488fe05b975" compoundref="material_8hpp" startline="27">xpe::render::sMaterial::k_EmissionFormat</references>
+        <references refid="structxpe_1_1render_1_1s_material_1a778de9af6fe0c5d9bad03e3507df848d" compoundref="material_8hpp" startline="24">xpe::render::sMaterial::k_MetalFormat</references>
+        <references refid="structxpe_1_1render_1_1s_material_1a988b64f18a21642da269713bcea946d3" compoundref="material_8hpp" startline="22">xpe::render::sMaterial::k_NormalFormat</references>
+        <references refid="structxpe_1_1render_1_1s_material_1a5c63aeff2d60d9097bf4bfe22a1ea0fe" compoundref="material_8hpp" startline="23">xpe::render::sMaterial::k_ParallaxFormat</references>
+        <references refid="structxpe_1_1render_1_1s_material_1a3d8f9c4231009e6e6c3456daed421770" compoundref="material_8hpp" startline="25">xpe::render::sMaterial::k_RoughnessFormat</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d" compoundref="bindings_8hpp" startline="34">xpe::render::Buffers::Material</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" compoundref="bindings_8hpp" startline="47">xpe::render::Textures::MetalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" compoundref="bindings_8hpp" startline="45">xpe::render::Textures::NormalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" compoundref="bindings_8hpp" startline="46">xpe::render::Textures::ParallaxAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" compoundref="bindings_8hpp" startline="48">xpe::render::Textures::RoughnessAtlas</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cMaterialManager::Free</definition>
+        <argsstring>()</argsstring>
+        <name>Free</name>
+        <qualifiedname>xpe::render::cMaterialManager::Free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="14" column="25" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="20" bodyend="31"/>
+        <references refid="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" compoundref="bindings_8hpp" startline="44">xpe::render::Textures::AlbedoAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" compoundref="bindings_8hpp" startline="49">xpe::render::Textures::AOAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" compoundref="bindings_8hpp" startline="50">xpe::render::Textures::EmissionAtlas</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d" compoundref="bindings_8hpp" startline="34">xpe::render::Buffers::Material</references>
+        <references refid="structxpe_1_1render_1_1_samplers_1a4d9fb16bf8ee515af1e578fce358875f" compoundref="bindings_8hpp" startline="56">xpe::render::Samplers::Material</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" compoundref="bindings_8hpp" startline="47">xpe::render::Textures::MetalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" compoundref="bindings_8hpp" startline="45">xpe::render::Textures::NormalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" compoundref="bindings_8hpp" startline="46">xpe::render::Textures::ParallaxAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" compoundref="bindings_8hpp" startline="48">xpe::render::Textures::RoughnessAtlas</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structxpe_1_1render_1_1s_material" kindref="compound">sMaterial</ref></type>
+        <definition>sMaterial xpe::render::cMaterialManager::AddMaterial</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>AddMaterial</name>
+        <qualifiedname>xpe::render::cMaterialManager::AddMaterial</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="17" column="30" bodyfile="engine/src/rendering/material/material_manager.hpp" bodystart="33" bodyend="51"/>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1a915d07581a0582453afaa6057d734476" compoundref="buffers_8hpp" startline="291" endline="295">xpe::render::sListBuffer&lt; T &gt;::Add</references>
+        <references refid="classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9" compoundref="material__manager_8cpp" startline="92" endline="106">AddLayer</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" compoundref="bindings_8hpp" startline="44">xpe::render::Textures::AlbedoAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" compoundref="bindings_8hpp" startline="49">xpe::render::Textures::AOAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" compoundref="bindings_8hpp" startline="50">xpe::render::Textures::EmissionAtlas</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1ad9de1835e029836261d585eec95bedd5" compoundref="buffers_8hpp" startline="222" endline="231">xpe::render::sListBuffer&lt; T &gt;::Flush</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d" compoundref="bindings_8hpp" startline="34">xpe::render::Buffers::Material</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" compoundref="bindings_8hpp" startline="47">xpe::render::Textures::MetalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" compoundref="bindings_8hpp" startline="45">xpe::render::Textures::NormalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" compoundref="bindings_8hpp" startline="46">xpe::render::Textures::ParallaxAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" compoundref="bindings_8hpp" startline="48">xpe::render::Textures::RoughnessAtlas</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1af1b78e374e912c0f7ea9363d579553c5" compoundref="buffers_8hpp" startline="167" endline="170">xpe::render::sListBuffer&lt; T &gt;::Size</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cMaterialManager::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>xpe::render::cMaterialManager::Clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="19" column="25" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="60" bodyend="85"/>
+        <references refid="structxpe_1_1render_1_1_textures_1a42292b1dc7b07a324b4e23d567a9bfd7" compoundref="bindings_8hpp" startline="44">xpe::render::Textures::AlbedoAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a23d603423d753c8df77368b4a62aac4c" compoundref="bindings_8hpp" startline="49">xpe::render::Textures::AOAtlas</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1aa314c4a7aca6c0623cd4ac495925eae7" compoundref="buffers_8hpp" startline="278" endline="281">xpe::render::sListBuffer&lt; T &gt;::Clear</references>
+        <references refid="structxpe_1_1render_1_1_textures_1acc343398897ff2e4334c241c7fb83f58" compoundref="bindings_8hpp" startline="50">xpe::render::Textures::EmissionAtlas</references>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1ad9de1835e029836261d585eec95bedd5" compoundref="buffers_8hpp" startline="222" endline="231">xpe::render::sListBuffer&lt; T &gt;::Flush</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a2cdf5d311c6d8c2f0f066e63a2cbb854" compoundref="texture_8cpp" startline="212" endline="226">xpe::render::sTexture::Flush</references>
+        <references refid="structxpe_1_1render_1_1s_texture_1a269fc30698e07b48a71b4ee0b5ea2e19" compoundref="texture_8hpp" startline="133">xpe::render::sTexture::Layers</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d" compoundref="bindings_8hpp" startline="34">xpe::render::Buffers::Material</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a02d35766e8095f673f878003eb765b35" compoundref="bindings_8hpp" startline="47">xpe::render::Textures::MetalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1a6ef1ffedc5f27b970a4f7c2bfbe06194" compoundref="bindings_8hpp" startline="45">xpe::render::Textures::NormalAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1aa122a27de0ed7cbea22357dad2f23f11" compoundref="bindings_8hpp" startline="46">xpe::render::Textures::ParallaxAtlas</references>
+        <references refid="structxpe_1_1render_1_1_textures_1adf5081ac8b7892c619b284fdefccdff3" compoundref="bindings_8hpp" startline="48">xpe::render::Textures::RoughnessAtlas</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1a93d92265c6b46eadf6bcb57c948f2907" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cMaterialManager::Flush</definition>
+        <argsstring>(const sMaterial &amp;material)</argsstring>
+        <name>Flush</name>
+        <qualifiedname>xpe::render::cMaterialManager::Flush</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material" kindref="compound">sMaterial</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="21" column="25" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="87" bodyend="90"/>
+        <references refid="classxpe_1_1render_1_1s_list_buffer_1abbb9adba1403faffd5abc203db0ba419" compoundref="buffers_8hpp" startline="234" endline="242">xpe::render::sListBuffer&lt; T &gt;::FlushItem</references>
+        <references refid="structxpe_1_1render_1_1_buffers_1af61f00806c13311b489ee4f5abc0a12d" compoundref="bindings_8hpp" startline="34">xpe::render::Buffers::Material</references>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cMaterialManager::AddLayer</definition>
+        <argsstring>(sTexture &amp;texture, sTextureLayer *layer)</argsstring>
+        <name>AddLayer</name>
+        <qualifiedname>xpe::render::cMaterialManager::AddLayer</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="23" column="25" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="92" bodyend="106"/>
+        <referencedby refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" compoundref="material__manager_8hpp" startline="33" endline="51">AddMaterial</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1ac7be8cc9840d4c3d40339e9fb14b8e47" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cMaterialManager::SetLayer</definition>
+        <argsstring>(sTexture &amp;texture, sTextureLayer *layer, u32 layerIndex)</argsstring>
+        <name>SetLayer</name>
+        <qualifiedname>xpe::render::cMaterialManager::SetLayer</qualifiedname>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type><ref refid="structxpe_1_1render_1_1s_texture_layer" kindref="compound">sTextureLayer</ref> *</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1aa507c1ad5e6e22c6561d60671555dafc" kindref="member">u32</ref></type>
+          <declname>layerIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="25" column="25" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="108" bodyend="122"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1aa1e0e6de38cc8426ab472ef264178c7b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">void</ref></type>
+        <definition>void xpe::render::cMaterialManager::InitSampler</definition>
+        <argsstring>()</argsstring>
+        <name>InitSampler</name>
+        <qualifiedname>xpe::render::cMaterialManager::InitSampler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="28" column="25" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="33" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classxpe_1_1render_1_1c_material_manager_1a74426a21412cfd79c218101f2f6acd5e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structxpe_1_1render_1_1s_texture" kindref="compound">sTexture</ref> *</type>
+        <definition>sTexture * xpe::render::cMaterialManager::InitTextureArray</definition>
+        <argsstring>(const sMaterialFormat &amp;materialFormat)</argsstring>
+        <name>InitTextureArray</name>
+        <qualifiedname>xpe::render::cMaterialManager::InitTextureArray</qualifiedname>
+        <param>
+          <type><ref refid="namespacexpe_1_1core_1a7a9b1d92471db2af59acf8c301267fde" kindref="member">const</ref> <ref refid="structxpe_1_1render_1_1s_material_format" kindref="compound">sMaterialFormat</ref> &amp;</type>
+          <declname>materialFormat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="engine/src/rendering/material/material_manager.hpp" line="29" column="29" bodyfile="engine/src/rendering/material/material_manager.cpp" bodystart="45" bodyend="58"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="engine/src/rendering/material/material_manager.hpp" line="10" column="9" bodyfile="engine/src/rendering/material/material_manager.hpp" bodystart="11" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1a2af0aaa9ef9bd87a55981b88cd8fd7a9" prot="public" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>AddLayer</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1a6b824ebed9ce5b4d7a2c4a33cefdb3f4" prot="public" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>AddMaterial</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1a842944eaf29305b77e95d8b9f18c728b" prot="public" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>Clear</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1a93d92265c6b46eadf6bcb57c948f2907" prot="public" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>Flush</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1af126c2a9c16cdecf7bc11cd9959eea92" prot="public" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>Free</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1ae9f60b96b66edc7a2a9208f2b7bcf4e7" prot="public" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>Init</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1aa1e0e6de38cc8426ab472ef264178c7b" prot="private" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>InitSampler</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1a74426a21412cfd79c218101f2f6acd5e" prot="private" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>InitTextureArray</name></member>
+      <member refid="classxpe_1_1render_1_1c_material_manager_1ac7be8cc9840d4c3d40339e9fb14b8e47" prot="public" virt="non-virtual"><scope>xpe::render::cMaterialManager</scope><name>SetLayer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

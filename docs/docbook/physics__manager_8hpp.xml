@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_physics__manager_8hpp" xml:lang="en-US">
+<title>engine/src/physics/physics_manager.hpp File Reference</title>
+<indexterm><primary>engine/src/physics/physics_manager.hpp</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structxpe_1_1physics_1_1s_sphere_shape_descriptor">xpe::physics::sSphereShapeDescriptor</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1physics_1_1s_capsule_shape_descriptor">xpe::physics::sCapsuleShapeDescriptor</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1physics_1_1s_box_shape_descriptor">xpe::physics::sBoxShapeDescriptor</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1physics_1_1s_plane_shape_descriptor">xpe::physics::sPlaneShapeDescriptor</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1physics_1_1s_actor">xpe::physics::sActor</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structxpe_1_1physics_1_1s_ragdoll">xpe::physics::sRagdoll</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_classxpe_1_1physics_1_1c_physics_manager">xpe::physics::cPhysicsManager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespacephysx">physx</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe">xpe</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1core">xpe::core</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1ecs">xpe::ecs</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1render">xpe::render</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1math">xpe::math</link></para>
+</listitem>
+            <listitem><para>namespace <link linkend="_namespacexpe_1_1physics">xpe::physics</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438e">xpe::physics::eShapeType</link> { <?linebreak?><link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693">xpe::physics::NONE</link> = 0
+, <link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43">xpe::physics::SPHERE</link> = 1
+, <link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9">xpe::physics::CAPSULE</link> = 2
+, <link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5">xpe::physics::BOX</link> = 3
+, <?linebreak?><link linkend="_namespacexpe_1_1physics_1a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3">xpe::physics::PLANE</link> = 4
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>
