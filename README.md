@@ -7,7 +7,7 @@ XPE stands for "eXplicit Play Experience"
 ### 1. Clone
 
 ```bash
-git clone --recursive https://github.com/dmmon01/XPE-Engine.git
+git clone --recursive https://github.com/dimon2201/XPE-Engine.git
 ```
 
 ### 2. Generate
